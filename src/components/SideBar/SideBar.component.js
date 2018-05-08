@@ -7,7 +7,7 @@ import { SideBarLayout, SideBarMenu, MenuItemIcon } from './SideBar.style';
 const { Sider } = Layout;
 
 /**
- * Side bar component
+ * Side bar component to show features on a  long left bar
  */
 
 const SideBar = ({ menuItems, logoSrc, children }) => (
