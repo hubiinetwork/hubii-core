@@ -49,29 +49,37 @@ const WalletItemCard = props => (
         </AssetsWrapper>
       </LeftSideWrapper>
       <TotalBalance>{`$${props.totalBalance}`}</TotalBalance>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between'
+        }}
+      >
+        <CardIcon>
+          <Popover
+            placement="right"
+            trigger="hover"
+            content={
+              <WalletDetailPopoverContent
+                address={props.primaryAddress}
+                type={props.type}
+              />
+            }
+          >
+            <Icon type="info-circle-o" />
+          </Popover>
+        </CardIcon>
+        <CardIconSettings>
+          <Dropdown
+            placement="bottomLeft"
+            overlay={settingsMenu(props.primaryAddress)}
+          >
+            <Icon type="setting" />
+          </Dropdown>
+        </CardIconSettings>
+      </div>
     </OuterWrapper>
-    <CardIcon>
-      <Popover
-        placement="right"
-        trigger="hover"
-        content={
-          <WalletDetailPopoverContent
-            address={props.primaryAddress}
-            type={props.type}
-          />
-        }
-      >
-        <Icon type="info-circle-o" />
-      </Popover>
-    </CardIcon>
-    <CardIconSettings>
-      <Dropdown
-        placement="bottomLeft"
-        overlay={settingsMenu(props.primaryAddress)}
-      >
-        <Icon type="setting" />
-      </Dropdown>
-    </CardIconSettings>
   </div>
 );
 

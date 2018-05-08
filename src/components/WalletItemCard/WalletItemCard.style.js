@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Menu } from "antd";
+import styled from 'styled-components';
+import { Menu } from 'antd';
 
 export const AssetsWrapper = styled.div`
   display: flex;
@@ -15,7 +15,6 @@ export const AssetWrapper = styled.div`
 `;
 
 export const CardIcon = styled.div`
-  position: absolute;
   color: ${({ theme }) => theme.palette.secondary1};
   font-size: 20px;
   margin-left: 8px;
@@ -24,12 +23,9 @@ export const CardIcon = styled.div`
     font-size: 20px;
     margin-left: 8px;
   }
-  top: 13px;
-  right: 28px;
 `;
 
 export const CardIconSettings = styled.div`
-  position: absolute;
   color: ${({ theme }) => theme.palette.secondary1};
   font-size: 20px;
   margin-left: 8px;
@@ -38,8 +34,6 @@ export const CardIconSettings = styled.div`
     font-size: 20px;
     margin-left: 8px;
   }
-  bottom: 10px;
-  right: 28px;
 `;
 
 export const LeftSideWrapper = styled.div`
