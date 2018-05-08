@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 const AssetAmountBubble = props => (
   <Wrapper>
-    <Image src={`../static/asset_images/${props.name}.svg`} />
+    <Image src={`../public/asset_images/${props.name}.svg`} />
     <Span>{props.amount}</Span>
   </Wrapper>
 );
