@@ -14,7 +14,6 @@ import {
   MenuDivider,
   CardIconSettings
 } from './WalletItemCard.style';
-import PasswordModal from './PasswordModal';
 import PropTypes from 'prop-types';
 
 /**
@@ -27,32 +26,11 @@ import PropTypes from 'prop-types';
 
 const settingsMenu = props => (
   <Menu>
-    <MenuItem>
-      <PasswordModal
-        description="You are about to export your private keys to the clipboard."
-        title="Export private keys"
-        option="private"
-        address={props.address}
-      />
-    </MenuItem>
+    <MenuItem>Export Seed Words</MenuItem>
     <MenuDivider />
-    <MenuItem>
-      <PasswordModal
-        description="You are about to export your seed words to the clipboard."
-        title="Export seed words"
-        option="seed"
-        address={props.address}
-      />
-    </MenuItem>
+    <MenuItem>Export Password</MenuItem>
     <MenuDivider />
-    <MenuItem>
-      <PasswordModal
-        description="Please note, once the wallet is deleted it cannot be restored without the seed phrase!"
-        title="Delete wallet"
-        option="delete"
-        address={props.address}
-      />
-    </MenuItem>
+    <MenuItem>Delete Wallet</MenuItem>
   </Menu>
 );
 
