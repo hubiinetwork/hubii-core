@@ -1,7 +1,7 @@
 import { Icon, Dropdown, Popover } from 'antd';
 import * as React from 'react';
-import WalletDetailPopoverContent from '../WalletDetailPopoverContent';
-import AssetAmountBubble from '../AssetAmountBubble';
+import WalletDetailPopoverContent from './WalletDetailPopoverContent';
+import AssetAmountBubble from './AssetAmountBubble';
 import {
   AssetsWrapper,
   AssetWrapper,

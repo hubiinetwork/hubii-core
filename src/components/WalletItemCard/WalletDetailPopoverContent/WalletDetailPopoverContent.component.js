@@ -1,5 +1,5 @@
 import * as React from 'react';
-import walletTypeDescriptions from '../../helpers/walletTypeDescriptions';
+import walletTypeDescriptions from '../../../helpers/walletTypeDescriptions';
 import { Subtitle, Wrapper } from './WalletDetailPopoverContent.style';
 import PropTypes from 'prop-types';
 
