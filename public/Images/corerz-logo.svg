@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>CoreRZ_logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="44.06%" cy="31.3895238%" fx="44.06%" fy="31.3895238%" r="67.834127%" id="radialGradient-1">
+            <stop stop-color="#D6E6F1" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="1.43%"></stop>
+            <stop stop-color="#5AADED" offset="52.51%"></stop>
+            <stop stop-color="#0063A5" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="CoreRZ_logo" fill-rule="nonzero">
+            <g id="CoreRZ_64x64">
+                <circle id="Oval" fill="url(#radialGradient-1)" cx="32" cy="32" r="31.5"></circle>
+                <path d="M30.29,42.8 C27.73,42.75 25.18,42.57 22.83,42.28 C22.83,26.73 24.89,14.85 32.01,5.98 C39.14,6.87 45.82,10.47 50.83,16.11 C55.83,21.75 58.59,28.77 58.62,35.89 C55.36,39.27 47.29,41.86 37.53,42.59 C35.14,42.78 32.7,42.85 30.29,42.8 Z" id="Shape" fill="#FFFFFF"></path>
+                <path d="M31.58,38.89 C29.86,38.86 27.75,38.79 26.18,38.6 C26.18,28.51 28.65,17.54 32.02,13.84 C36.8,14.45 42.01,16.68 45.37,20.55 C48.72,24.42 50.44,29.74 50.45,34.64 C48.26,36.96 42.98,38.25 36.45,38.76 C34.83,38.87 33.2,38.91 31.58,38.89 Z" id="Shape" fill="#0063A5"></path>
+            </g>
+        </g>
+    </g>
+</svg>
