@@ -15,8 +15,8 @@ const Tokens = props => {
   const sortedData = props.data.sort((a, b) => {
     return b.percentage - a.percentage;
   });
-  const items = sortedData.map(item => (
-    <FlexItem>
+  const items = sortedData.map((item, i) => (
+    <FlexItem key={`token-${i}`}>
       <Logo src={`public/asset_images/${item.label}.svg`} />
       <Label>{item.label}</Label>
       <Percentage>{item.percentage}%</Percentage>
