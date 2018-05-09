@@ -32,7 +32,7 @@ Tokens.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
-      percentage: PropTypes.node
+      percentage: PropTypes.number
     }).isRequired
   )
 };
