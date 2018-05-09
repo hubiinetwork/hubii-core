@@ -9,8 +9,8 @@ import {
 } from './AddNewContactModal.style';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 
-/** The props of AddNewContactModal Component
- * @param {function} props.onSubmit function to handle onSubmit.
+/**
+ * This component is used to add a new contact in ContactBook.
  */
 
 class AddNewContactModal extends React.Component {
@@ -72,7 +72,9 @@ class AddNewContactModal extends React.Component {
   }
 }
 AddNewContactModal.propTypes = {
-  /** Function to be executed when form is submitted */
+  /**
+   * function to handle onSubmit.
+   */
   onSubmit: PropTypes.func
 };
 

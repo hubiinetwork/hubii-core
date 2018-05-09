@@ -12,7 +12,7 @@ import {
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 
 /**
- * Modal for editing contact
+ * Modal component for editing a contact.
  */
 
 class EditContactModal extends React.Component {
@@ -94,13 +94,13 @@ class EditContactModal extends React.Component {
   }
 }
 EditContactModal.propTypes = {
-  /** name of contact */
+  /** Name of contact. */
   name: PropTypes.string.isRequired,
-  /** Address of contact */
+  /** Address of contact. */
   address: PropTypes.string.isRequired,
-  /** Function to be executed when edit is clicked */
+  /** Function to be executed when edit button is pressed */
   onEdit: PropTypes.func,
-  /** Function to be executed when delete is clicked */
+  /** Function to be executed when delete button is pressed */
   onDelete: PropTypes.func
 };
 

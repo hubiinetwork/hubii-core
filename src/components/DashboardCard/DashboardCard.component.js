@@ -9,7 +9,7 @@ import {
 } from './DashboardCard.style';
 
 /**
- * Dashboad card component to show features as option on the main screen
+ * This component shows app's features as options on the main screen.
  */
 
 const DashboardCard = ({ iconType, to, title }) => (
@@ -24,11 +24,11 @@ const DashboardCard = ({ iconType, to, title }) => (
 );
 DashboardCard.propTypes = {
   /**
-   * title to show on dashboard card
+   * title to show on dashboard card.
    */
   title: PropTypes.string.isRequired,
   /**
-   * icon to show on dashboard card with title
+   * icon to show on dashboard card with title.
    */
   iconType: PropTypes.string.isRequired
 };
