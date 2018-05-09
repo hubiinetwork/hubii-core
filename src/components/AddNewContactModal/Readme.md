@@ -1,4 +1,4 @@
-Examples:
+Variant of AddNewContactModal component:
 
 ```js
 <AddNewContactModal

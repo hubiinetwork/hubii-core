@@ -9,8 +9,8 @@ import {
 } from './AddNewContactModal.style';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 
-/** This component is used to add a new contact in ContactBook
- *
+/**
+ * This component is used to add a new contact in ContactBook.
  */
 
 class AddNewContactModal extends React.Component {
