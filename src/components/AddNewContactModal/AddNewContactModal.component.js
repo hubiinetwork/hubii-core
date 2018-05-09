@@ -5,7 +5,8 @@ import {
   Text,
   Wrapper,
   WrapperIcon,
-  StyledButton
+  StyledButton,
+  ButtonWrapper
 } from './AddNewContactModal.style';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 
@@ -62,10 +63,12 @@ class AddNewContactModal extends React.Component {
               />
             )}
           </ModalFormItem>
-          <StyledButton type="primary" htmlType="submit">
-            <Icon type="plus" />
-            Add New Contact
-          </StyledButton>
+          <ButtonWrapper>
+            <StyledButton type="primary" htmlType="submit">
+              <Icon type="plus" />
+              Add New Contact
+            </StyledButton>
+          </ButtonWrapper>
         </Form>
       </Wrapper>
     );

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Button from "../ui/Button";
+import styled from 'styled-components';
+import Button from '../ui/Button';
 
 export const WrapperIcon = styled.div`
   display: flex;
@@ -41,4 +41,6 @@ export const StyledButton2 = styled(Button)`
 `;
 export const ParentDiv = styled.div`
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
 `;

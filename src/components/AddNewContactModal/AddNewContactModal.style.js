@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Button from "../ui/Button";
+import styled from 'styled-components';
+import Button from '../ui/Button';
 
 export const WrapperIcon = styled.div`
   display: flex;
@@ -35,6 +35,9 @@ export const Wrapper = styled.div`
 export const StyledButton = styled(Button)`
   margin-top: 30px;
   max-width: 175px;
-  margin-left: 72px;
   margin-bottom: 30px;
+`;
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 `;
