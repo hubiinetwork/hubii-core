@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { notification } from 'antd';
 import { StyledIcon, StyledTitle } from './Notification.style';
-
-const Notification = (success, title) => {
+export default (success, title) => {
   const color = success ? '#51b651' : '#ef3f20';
   notification.open({
     duration: 2,
@@ -13,5 +12,3 @@ const Notification = (success, title) => {
     style: { background: color }
   });
 };
-
-export default Notification;

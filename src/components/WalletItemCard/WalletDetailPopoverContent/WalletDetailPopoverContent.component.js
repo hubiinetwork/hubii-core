@@ -27,7 +27,7 @@ WalletDetailPopoverContent.propTypes = {
   /**
    * type of wallet item.
    */
-  type: PropTypes.number.isRequired
+  type: PropTypes.string.isRequired
 };
 
 export default WalletDetailPopoverContent;
