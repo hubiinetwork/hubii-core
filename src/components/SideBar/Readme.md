@@ -13,8 +13,7 @@ const menuItems = [
     name: 'Wallet detail'
   }
 ];
-<SideBar
-  menuItems={menuItems}
-  logoSrc="../../../public/Images/corerz-logo.svg"
-/>;
+<SideBar menuItems={menuItems} logoSrc="../../../public/Images/corerz-logo.svg">
+  <p>children</p>
+</SideBar>;
 ```
