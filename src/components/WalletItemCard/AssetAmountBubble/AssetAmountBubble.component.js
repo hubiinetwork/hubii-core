@@ -21,7 +21,7 @@ AssetAmountBubble.propTypes = {
   /**
    * Amount shown on bubble.
    */
-  amount: PropTypes.string.isRequired
+  amount: PropTypes.number.isRequired
 };
 
 export default AssetAmountBubble;

@@ -95,10 +95,12 @@ WalletItemCard.propTypes = {
   /**
    * assets/coins in a wallet.
    */
-  assets: PropTypes.shape({
-    name: PropTypes.string,
-    amount: PropTypes.number
-  }),
+  assets: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      amount: PropTypes.number
+    })
+  ),
   /**
    * primary Address of the wallet.
    */

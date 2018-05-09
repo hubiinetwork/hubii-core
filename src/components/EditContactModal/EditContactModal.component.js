@@ -94,9 +94,14 @@ class EditContactModal extends React.Component {
   }
 }
 EditContactModal.propTypes = {
+  /** name of contact */
   name: PropTypes.string.isRequired,
+  /** Address of contact */
   address: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func
+  /** Function to be executed when edit is clicked */
+  onEdit: PropTypes.func,
+  /** Function to be executed when delete is clicked */
+  onDelete: PropTypes.func
 };
 
 export default Form.create()(EditContactModal);
