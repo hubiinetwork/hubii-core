@@ -8,8 +8,8 @@ import {
 } from './Tokens.style';
 import PropTypes from 'prop-types';
 
-/** This component is used to show percentage of coins of every wallet
- *
+/**
+ * This component is used to show percentage of every coin in the wallet.
  */
 const Tokens = props => {
   const sortedData = props.data.sort((a, b) => {
@@ -27,7 +27,7 @@ const Tokens = props => {
 
 Tokens.propTypes = {
   /**
-   * data prop to populate tokens
+   * data prop to populate tokens.
    */
   data: PropTypes.arrayOf(
     PropTypes.shape({

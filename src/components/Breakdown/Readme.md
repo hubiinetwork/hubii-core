@@ -1,4 +1,4 @@
-Variant of Breakdown component:
+A variant of Breakdown component:
 
 ```js
 <div style={{ backgroundColor: 'rgba(0,0,0,0.65)', padding: 25 }}>

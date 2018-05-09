@@ -6,7 +6,7 @@ import { VictoryPie, VictoryContainer, VictoryTooltip } from 'victory';
 import Tokens from './Tokens';
 
 /**
- * This component shows user's total coins' convertion in dollar and a relative chart
+ * This component shows user's total coins' convertion in dollar and a relative chart.
  */
 class Breakdown extends React.Component {
   constructor(props) {

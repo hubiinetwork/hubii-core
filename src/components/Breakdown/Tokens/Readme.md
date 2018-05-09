@@ -1,4 +1,4 @@
-Variant of Token component:
+A variant of Tokens component:
 
 ```js
 <div style={{ backgroundColor: 'rgba(0,0,0,0.65)', padding: 25 }}>
