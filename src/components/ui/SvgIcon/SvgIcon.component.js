@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 /**
- * Our SvgIcon component takes basic params  to show an SVGIcon.
+ * This SvgIcon component takes basic params to draw an SVGIcon.
  */
 
 export default class SvgIcon extends React.PureComponent {

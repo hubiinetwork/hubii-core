@@ -3,7 +3,7 @@ import { Wrapper, Span, Image } from './AssetAmountBubble.style';
 import PropTypes from 'prop-types';
 
 /**
- * The AssetAmountBubble Component  is useful  to show  name  and  amount of  a  wallet's  balance.
+ * This Component  is useful  to show  name  and  amount of  a  wallet's  balance.
  */
 
 const AssetAmountBubble = props => (
