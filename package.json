@@ -11,9 +11,7 @@
     "react-scripts": "1.1.4",
     "react-styleguidist": "^7.0.9",
     "styled-components": "^3.2.6",
-    "ethers": "^3.0.15",
-    "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
+    "ethers": "^3.0.15"
   },
   "scripts": {
     "start": "react-scripts start",

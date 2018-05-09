@@ -10,7 +10,6 @@ export const Subtitle = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  background: ${({ theme }) => theme.palette.primary1};
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.palette.primary1};
