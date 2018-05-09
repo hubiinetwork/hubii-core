@@ -16,11 +16,21 @@ import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
  */
 
 class EditContactModal extends React.Component {
-  handleSubmit = e => {
+  handleEdit = e => {
+    const self = this;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        self.props.onEdit(values);
+      }
+    });
+  };
+  handleDelete = e => {
+    const self = this;
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        self.props.onDelete(values);
       }
     });
   };
@@ -35,7 +45,7 @@ class EditContactModal extends React.Component {
             transaction is made, it can not be changed.
           </Text>
         </WrapperIcon>
-        <Form onSubmit={this.handleSubmit} layout="vertical">
+        <Form layout="vertical">
           <ModalFormItem label={<ModalFormLabel>Name</ModalFormLabel>}>
             {getFieldDecorator('Name', {
               rules: [
@@ -61,11 +71,19 @@ class EditContactModal extends React.Component {
             })(<ModalFormInput />)}
           </ModalFormItem>
           <ParentDiv>
-            <StyledButton1 type="primary" htmlType="submit">
+            <StyledButton1
+              type="primary"
+              htmlType="submit"
+              onClick={this.handleEdit}
+            >
               <Icon type="plus" />
               Delete Contact
             </StyledButton1>
-            <StyledButton2 type="primary" htmlType="submit">
+            <StyledButton2
+              type="primary"
+              htmlType="submit"
+              onClick={this.handleDelete}
+            >
               <Icon type="plus" />
               Edit Contact
             </StyledButton2>

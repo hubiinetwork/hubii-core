@@ -15,10 +15,11 @@ import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 
 class AddNewContactModal extends React.Component {
   handleSubmit = e => {
+    const self = this;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        self.props.onSubmit(values);
       }
     });
   };
