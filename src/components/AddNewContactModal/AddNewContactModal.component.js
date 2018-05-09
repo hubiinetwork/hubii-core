@@ -72,6 +72,7 @@ class AddNewContactModal extends React.Component {
   }
 }
 AddNewContactModal.propTypes = {
+  /** Function to be executed when form is submitted */
   onSubmit: PropTypes.func
 };
 
