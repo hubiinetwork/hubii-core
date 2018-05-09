@@ -4,7 +4,7 @@ import { Subtitle, Wrapper } from './WalletDetailPopoverContent.style';
 import PropTypes from 'prop-types';
 
 /**
- * This component shows specific content in the popover of WalletItemCaard
+ * This component shows specific content in the popover of WalletItemCard.
  */
 
 const WalletDetailPopoverContent = props => {

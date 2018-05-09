@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { HelperWrapper, Text } from './HelperText.style';
 
 /**
- * This component is designed to show Hubii design specific requirement i.e. showing text on left and right under  input component.
+ * This component is designed to show Hubii design specific requirement i.e. showing text on left and right under input component as helperText.
  */
 
 const HelperTextComponent = props => {

@@ -12,7 +12,7 @@ import {
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 
 /**
- * Modal for editing contact
+ * Modal component for editing a contact.
  */
 
 class EditContactModal extends React.Component {
@@ -94,8 +94,17 @@ class EditContactModal extends React.Component {
   }
 }
 EditContactModal.propTypes = {
+  /**
+   * Name of the contact.
+   */
   name: PropTypes.string.isRequired,
+  /**
+   * Address of the contact.
+   */
   address: PropTypes.string.isRequired,
+  /**
+   * Callback function to be called when Button is pressed.
+   */
   onSubmit: PropTypes.func
 };
 

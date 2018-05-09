@@ -17,11 +17,7 @@ import {
 import PropTypes from 'prop-types';
 
 /**
- * The props of WalletItemCard Component
- * @param {string} props.name name of the wallet.
- * @param {string} props.totalBalance total Balance of the wallet.
- * @param {string} props.primaryAddress primary Address of the wallet.
- * @param {string} props.type type of the wallet.
+ * This component shows details of a wallet in the card.
  */
 
 const settingsMenu = props => (
@@ -89,7 +85,7 @@ WalletItemCard.propTypes = {
    */
   name: PropTypes.string.isRequired,
   /**
-   * total Balance of the wallet..
+   * total Balance of the wallet.
    */
   totalBalance: PropTypes.number.isRequired,
   /**
