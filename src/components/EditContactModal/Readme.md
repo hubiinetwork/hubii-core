@@ -1,6 +1,7 @@
 Examples:
 
 ```js
+<div style={{ backgroundColor: '#2f4d5c', padding: 25 }}>
 <EditContactModal
   name="Edit modal1"
   address="abcaddress"
@@ -11,9 +12,11 @@ Examples:
     console.log('delete modal1 clicked');
   }}
 />
+</div>
 ```
 
 ```js
+<div style={{ backgroundColor: '#2f4d5c', padding: 25 }}>
 <EditContactModal
   name="Edit modal2"
   address="abcaddress2"
@@ -24,4 +27,5 @@ Examples:
     console.log('delete modal2 clicked');
   }}
 />
+</div>
 ```
