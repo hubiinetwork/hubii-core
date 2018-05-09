@@ -1,2 +1,2 @@
-import Notification from "./Notification.component";
+import Notification from './Notification';
 export default Notification;
