@@ -3,14 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 /**
- * The props of SVGIcon Component
- * @param {string} props.dPath dPath for single colored svg icon.
- * @param {Node} props.children children for multi-colored svg icon as a group.
- * @param {string} props.viewBox [props.viewBox="0 0 24 24"] viewBox for size adjustments of svg icon.
- * @param {string} props.color color of svg icon (does  not work when children is passed).
- * @param {string} props.hoverColor color of svg icon when hovered (does  not work when children is passed).
- * @param {number} props.size [props.size=24] size of svg icon.
- * @param {object} props.style  style  object for svg icon.
+ * Our SvgIcon component takes basic params  to show an SVGIcon.
  */
 
 export default class SvgIcon extends React.PureComponent {
@@ -50,11 +43,32 @@ SvgIcon.defaultProps = {
   style: {}
 };
 SvgIcon.propTypes = {
+  /**
+   * dPath for single colored svg icon.
+   */
   dPath: PropTypes.string,
+  /**
+   * children for multi-colored svg icon as a group.
+   */
   children: PropTypes.node,
+  /**
+   * viewBox for size adjustments of svg icon (default '0 0 24 24').
+   */
   viewBox: PropTypes.string,
+  /**
+   * color of svg icon (does  not work when children is passed).
+   */
   color: PropTypes.string,
+  /**
+   * color of svg icon when hovered (does  not work when children is passed).
+   */
   hoverColor: PropTypes.string,
+  /**
+   * size of svg icon (default is 24(px).
+   */
   size: PropTypes.number,
+  /**
+   * style  object for svg icon.
+   */
   style: PropTypes.object
 };

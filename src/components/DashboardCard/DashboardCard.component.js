@@ -9,10 +9,7 @@ import {
 } from './DashboardCard.style';
 
 /**
- * The props of Dashboard Component
- * @param {string} props.title title to be shown on the card.
- * @param {string} props.iconType icon to be shown at the header.
- * @param {string} props.href path to navigate when DashboardCard is clicked.
+ * Dashboad card component to show features as option on the main screen
  */
 
 const DashboardCard = ({ iconType, to, title }) => (
@@ -26,7 +23,13 @@ const DashboardCard = ({ iconType, to, title }) => (
   </Wrapper>
 );
 DashboardCard.propTypes = {
+  /**
+   * title to show on dashboard card
+   */
   title: PropTypes.string.isRequired,
+  /**
+   * icon to show on dashboard card with title
+   */
   iconType: PropTypes.string.isRequired
 };
 export default DashboardCard;
