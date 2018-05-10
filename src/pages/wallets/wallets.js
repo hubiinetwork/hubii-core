@@ -11,6 +11,7 @@ import {
   WalletsTabHeader
 } from './wallets.style';
 // import AddRestoreWalletModal from '../../components/AddRestoreWalletModal';
+import ImportWallet from '../../components/ImportWallet';
 import AddNewContactModal from '../../components/AddNewContactModal';
 import { Modal } from '../../components/ui/Modal';
 
@@ -46,12 +47,12 @@ export default class WalletTabs extends React.PureComponent {
               onCancel={this.handleCancel}
             >
               {this.state.activeTab === 'wallets' ? (
+                <ImportWallet />
+              ) : (
                 // <AddRestoreWalletModal
                 //   handleClose={this.handleCancel}
                 //   goBack={this.state.visible}
                 // />
-                <div> addd restore</div>
-              ) : (
                 <AddNewContactModal />
               )}
             </Modal>
