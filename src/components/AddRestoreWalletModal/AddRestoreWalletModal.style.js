@@ -1,11 +1,16 @@
-import styled from "styled-components";
-import Button from "../ui/Button";
-import { Icon } from "antd";
+import styled from 'styled-components';
+import Button from '../ui/Button';
+import { Icon } from 'antd';
 
 export const TitleDiv = styled.div`
   font-size: 17px;
   margin-top: 66px;
   text-align: center;
+  color: ${({ theme }) => theme.palette.light};
+`;
+
+export const TextWhite = styled.span`
+  color: ${({ theme }) => theme.palette.light};
 `;
 
 export const Arrow = styled(Icon)`
@@ -19,6 +24,7 @@ export const Arrow = styled(Icon)`
 export const IconWrapper = styled.div`
   display: flex;
   margin-top: -7px;
+  color: ${({ theme }) => theme.palette.light};
 `;
 
 export const Wrapper = styled.div`
@@ -36,7 +42,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Description = styled.div`
-  color: ${({ theme }) => theme.palette.secondary};
+  color: ${({ theme }) => theme.palette.light};
   font-size: 12px;
   margin-top: 8px;
   margin-bottom: 48px;
@@ -46,7 +52,7 @@ export const ButtonDiv = styled(Button)`
   margin: auto;
   opacity: 0.6;
   display: block;
-  min-width: 45%;
+  min-width: 25%;
   margin-top: 20px;
   margin-bottom: 20px;
   border-color: ${({ theme }) => theme.palette.light} !important;

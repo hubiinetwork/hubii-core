@@ -8,7 +8,8 @@ import {
   Description,
   Arrow,
   IconWrapper,
-  DisabledButton
+  DisabledButton,
+  TextWhite
 } from './AddRestoreWalletModal.style';
 import { AddWallet } from './AddWallet';
 import { RestoreWallet } from './RestoreWallet';
@@ -34,7 +35,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
             <ButtonDiv onClick={() => this.switchModals('add')} type="primary">
               <Wrapper>
                 <Icon type="plus" />
-                Add Wallet
+                <TextWhite>Add Wallet</TextWhite>
               </Wrapper>
             </ButtonDiv>
             <ButtonDiv
