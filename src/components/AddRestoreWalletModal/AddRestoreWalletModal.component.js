@@ -13,7 +13,9 @@ import {
 } from './AddRestoreWalletModal.style';
 import { AddWallet } from './AddWallet';
 import { RestoreWallet } from './RestoreWallet';
-
+/**
+ * This component shows options for modals to  be opened.
+ */
 export default class AddRestoreWalletModal extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -85,5 +87,8 @@ export default class AddRestoreWalletModal extends React.PureComponent {
   }
 }
 AddRestoreWalletModal.propTypes = {
+  /**
+   * Callback  function triggered when modal is closed.
+   */
   handleClose: PropTypes.func
 };

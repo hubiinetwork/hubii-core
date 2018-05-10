@@ -9,7 +9,9 @@ import {
   ModalFormTextArea
 } from '../../ui/Modal';
 import ethers from 'ethers';
-
+/**
+ * This component shows form to  restorewallet.
+ */
 class RestoreWallet extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -151,8 +153,18 @@ class RestoreWallet extends React.PureComponent {
   }
 }
 RestoreWallet.propTypes = {
+  /**
+   * loading state of the component.
+   */
   loading: PropTypes.bool,
+  /**
+   *  callback  function,  triggered when formis  successfully submitted.
+   */
   handleSubmit: PropTypes.func,
+
+  /**
+   * This prop is passed by  Form component to  use  validation.
+   */
   form: PropTypes.object
 };
 

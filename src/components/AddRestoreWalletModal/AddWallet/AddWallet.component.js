@@ -17,6 +17,9 @@ import {
 } from './AddWallet.style';
 import Notification from '../../Notification';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../../ui/Modal';
+/**
+ * This component shows form  to add a  wallet..
+ */
 
 class AddWallet extends React.PureComponent {
   constructor(props) {
@@ -177,8 +180,18 @@ class AddWallet extends React.PureComponent {
   };
 }
 AddWallet.propTypes = {
-  handleSubmit: PropTypes.func,
+  /**
+   * loading state of the component.
+   */
   loading: PropTypes.bool,
+  /**
+   *  callback  function,  triggered when formissuccessfully submitted.
+   */
+  handleSubmit: PropTypes.func,
+
+  /**
+   * This prop is passed by  Form component to  use  validation.
+   */
   form: PropTypes.object
 };
 
