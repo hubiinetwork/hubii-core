@@ -24,9 +24,26 @@ export const LeftArrow = styled(Icon)`
 `;
 
 export const Coins = styled(Radio.Group)`
+  margin-top: 32px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+`;
+
+export const CoinButton = styled(Radio.Button)`
+  background-color: transparent;
+  &:hover {
+    background-color: ${({ theme }) => theme.palette.info2};
+    border-color: ${({ theme }) => theme.palette.light};
+  }
+  &:focus {
+    background-color: ${({ theme }) => theme.palette.info};
+    border-color: ${({ theme }) => theme.palette.info};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.palette.info};
+    border-color: ${({ theme }) => theme.palette.info};
+  }
 `;
 
 export const Flex = styled.div`

@@ -6,7 +6,8 @@ import {
   CreateButton,
   LeftArrow,
   Flex,
-  Coins
+  Coins,
+  CoinButton
 } from './ImportWallet.style';
 const onChange = e => {
   console.log(`radio checked:${e.target.value}`);
@@ -26,11 +27,42 @@ const ImportWallet = () => (
       </div>
     </Between>
     <Coins onChange={onChange}>
-      <RadioButton value="a">Coin1</RadioButton>
-      <RadioButton value="b">Coin1</RadioButton>
-      <RadioButton value="c">Coin1</RadioButton>
-      <RadioButton value="d">Coin1</RadioButton>
-      <RadioButton value="e">Coin1</RadioButton>
+      <CoinButton value="a">
+        <img
+          src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
+          style={{ width: 110 }}
+        />
+      </CoinButton>
+      <CoinButton value="b">
+        <img
+          src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
+          style={{ width: 110 }}
+        />
+      </CoinButton>
+      <CoinButton value="c">
+        <img
+          src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
+          style={{ width: 110 }}
+        />
+      </CoinButton>
+      <CoinButton value="d">
+        <img
+          src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
+          style={{ width: 110 }}
+        />
+      </CoinButton>
+      <CoinButton value="e">
+        <img
+          src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
+          style={{ width: 110 }}
+        />
+      </CoinButton>
+      <CoinButton value="f">
+        <img
+          src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
+          style={{ width: 110 }}
+        />
+      </CoinButton>
     </Coins>
   </div>
 );
