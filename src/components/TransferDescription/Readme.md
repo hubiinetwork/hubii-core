@@ -12,13 +12,13 @@ A variant of TransferDescription:
   balance: '0',
   decimals: 18,
   symbol: 'ETH',
-  price: {
+  price: {{
     BTC: '0.0608707',
     ETH: '1.0',
     USD: '663.07'
-  }
+  }}
             ethInformation={
-  address: '',
+  {address: '',
   balance: '0',
   decimals: 18,
   symbol: 'ETH',
@@ -26,6 +26,6 @@ A variant of TransferDescription:
     BTC: '0.0608707',
     ETH: '1.0',
     USD: '663.07'
-  }
+  }}
           />
 ```
