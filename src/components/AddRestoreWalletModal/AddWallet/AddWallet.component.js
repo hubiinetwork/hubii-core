@@ -29,12 +29,14 @@ class AddWallet extends React.PureComponent {
     );
     this.state = {
       mnemonic: mnemonic.toString(),
-      confirmValidity: false
+      confirmPasswordsMatch: false
     };
   }
   handleConfirmBlur = e => {
     const value = e.target.value;
-    this.setState({ confirmValidity: this.state.confirmValidity || !!value });
+    this.setState({
+      confirmPasswordsMatch: this.state.confirmPasswordsMatch || !!value
+    });
   };
   compareToFirstPassword = (rule, value, callback) => {
     const form = this.props.form;
@@ -46,7 +48,7 @@ class AddWallet extends React.PureComponent {
   };
   validateToNextPassword = (rule, value, callback) => {
     const form = this.props.form;
-    if (value && this.state.confirmValidity) {
+    if (value && this.state.confirmPasswordsMatch) {
       form.validateFields(['confirm'], { force: true });
     }
     callback();

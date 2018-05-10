@@ -16,8 +16,7 @@ class RestoreWallet extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      confirmPasswordsMatch: false,
-      done: false
+      confirmPasswordsMatch: false
     };
   }
   handleConfirmBlur = e => {

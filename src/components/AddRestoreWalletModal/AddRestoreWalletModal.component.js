@@ -22,12 +22,12 @@ export default class AddRestoreWalletModal extends React.PureComponent {
     this.state = {
       type: 'main'
     };
-    this.switchModals = this.switchModals.bind(this);
   }
   render() {
+    const { type } = this.state;
     return (
       <div>
-        {this.state.type === 'main' && (
+        {type === 'main' && (
           <div>
             <TitleDiv>
               Add / Restore Wallet<br />
@@ -57,7 +57,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
             </DisabledButton>
           </div>
         )}
-        {this.state.type === 'add' && (
+        {type === 'add' && (
           <div>
             <IconWrapper>
               <Arrow
@@ -68,7 +68,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
             <AddWallet handleClose={this.props.handleClose} />
           </div>
         )}
-        {this.state.type === 'restore' && (
+        {type === 'restore' && (
           <div>
             <IconWrapper>
               <Arrow
@@ -82,9 +82,9 @@ export default class AddRestoreWalletModal extends React.PureComponent {
       </div>
     );
   }
-  switchModals(selectedType) {
+  switchModals = selectedType => {
     this.setState({ type: selectedType });
-  }
+  };
 }
 AddRestoreWalletModal.propTypes = {
   /**
