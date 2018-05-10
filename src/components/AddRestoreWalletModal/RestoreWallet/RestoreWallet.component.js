@@ -152,7 +152,8 @@ class RestoreWallet extends React.PureComponent {
 }
 RestoreWallet.propTypes = {
   loading: PropTypes.bool,
-  handleSubmit: PropTypes.func
+  handleSubmit: PropTypes.func,
+  form: PropTypes.object
 };
 
 export default Form.create()(RestoreWallet);
