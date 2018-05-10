@@ -34,31 +34,33 @@ const TransactionHistoryDetail = props => {
           </div>
         )}
       </TransactionHistoryType>
-      <DetailCollapse bordered={false}>
-        <DetailPanel
-          style={{ border: 0 }}
-          showArrow={false}
-          header={
-            <TransactionHistoryAddress>
-              {props.address}
-            </TransactionHistoryAddress>
-          }
-          key="1"
-        >
-          <div>
-            <div style={{ display: 'flex' }}>
-              <HashText>Transaction Hash:</HashText>
-              <TransactionHistoryAddressLink
-                href={'https://etherscan.io/tx/' + props.hashId}
-                target="_blank"
-              >
-                {props.hashId}
-              </TransactionHistoryAddressLink>
+      {props.type !== 'exchange' && (
+        <DetailCollapse bordered={false}>
+          <DetailPanel
+            style={{ border: 0 }}
+            showArrow={false}
+            header={
+              <TransactionHistoryAddress>
+                {props.address}
+              </TransactionHistoryAddress>
+            }
+            key="1"
+          >
+            <div>
+              <div style={{ display: 'flex' }}>
+                <HashText>Transaction Hash:</HashText>
+                <TransactionHistoryAddressLink
+                  href={'https://etherscan.io/tx/' + props.hashId}
+                  target="_blank"
+                >
+                  {props.hashId}
+                </TransactionHistoryAddressLink>
+              </div>
+              <HashText>${props.usd * props.amount}</HashText>
             </div>
-            <HashText>${props.usd * props.amount}</HashText>
-          </div>
-        </DetailPanel>
-      </DetailCollapse>
+          </DetailPanel>
+        </DetailCollapse>
+      )}
     </Wrapper>
   );
 };
@@ -82,7 +84,15 @@ TransactionHistoryDetail.propTypes = {
   /**
    * USD price of ETH coin.
    */
-  usd: PropTypes.number.isRequired
+  usd: PropTypes.number.isRequired,
+  /**
+   * Short capitalized name of coin that was exchanged to.
+   */
+  toCoin: PropTypes.string,
+  /**
+   * Short capitalized name of coin that was exchanged from.
+   */
+  fromCoin: PropTypes.string
 };
 
 export default TransactionHistoryDetail;

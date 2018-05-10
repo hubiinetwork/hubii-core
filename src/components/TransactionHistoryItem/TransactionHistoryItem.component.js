@@ -68,6 +68,9 @@ TransactionHistoryItem.propTypes = {
    */
   data: PropTypes.shape({
     date: PropTypes.string.isRequired,
+    /**
+     * Do not  pass address if you want to show exchange state of the component.
+     */
     address: PropTypes.string,
     time: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
