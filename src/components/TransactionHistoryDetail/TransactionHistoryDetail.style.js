@@ -9,6 +9,8 @@ export const TransactionHistoryType = styled.div`
 export const TransactionHistoryAddress = styled.div`
   word-break: break-all;
   color: ${({ theme }) => theme.palette.info};
+  margin-left: 3px;
+  margin-right: 3px;
 `;
 
 export const TransactionHistoryAddressLink = styled.a`
@@ -30,6 +32,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  justify-content: center;
   margin-left: 10px;
 `;
 

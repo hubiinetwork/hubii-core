@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const TransactionHistoryItemCard = styled.div`
   background-color: ${({ theme }) => theme.palette.primary4};
   padding: 5px;
-  border-radius: 10px;
+  border-radius: 26px;
   flex: 1;
   display: flex;
   box-shadow: ${({ theme }) => theme.shadows.light};
@@ -16,6 +16,18 @@ export const TransactionHistoryItemDate = styled.span`
   text-align: center;
   font-weight: 550;
   font-size: 12px;
+`;
+export const SpaceAround = styled.div`
+  margin-right: 10px;
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const Image = styled.img`
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-self: center;
 `;
 
 export const TransactionHistoryItemCardIcon = styled(Icon)`

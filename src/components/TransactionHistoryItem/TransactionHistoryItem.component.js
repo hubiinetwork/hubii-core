@@ -5,27 +5,38 @@ import {
   TransactionHistoryItemDate,
   TransactionHistoryTime,
   TransactionHistoryConversion,
-  Wrapper
+  Wrapper,
+  Image,
+  SpaceAround
 } from './TransactionHistoryItem.style';
 import PropTypes from 'prop-types';
 import TransactionHistoryDetail from '../TransactionHistoryDetail';
 /**
- * This component shows  history of a past transaction detail.
+ * This component shows history of a past transaction's detail.
  */
 export const TransactionHistoryItem = props => {
-  const type = props.data.address === props.data.to ? 'received' : 'sent';
+  const type = !props.data.address
+    ? 'exchange'
+    : props.data.address === props.data.to
+      ? 'received'
+      : 'sent';
   return (
     <Wrapper>
       <TransactionHistoryItemDate>{props.data.date}</TransactionHistoryItemDate>
       <TransactionHistoryItemCard>
-        <img src="../../../public/asset_images/ETH.svg" />
+        <Image
+          src={`../../../public/asset_images/${
+            type === 'exchange' ? props.data.fromCoin : props.data.coin
+          }.svg`}
+        />
         <TransactionHistoryItemCardIcon
           type={
             type === 'received' ? 'download' : type === 'sent' ? 'upload' : ' '
           }
         />
-        <img
-          src="/static/Images/ETH.svg"
+
+        <Image
+          src={`../../../public/asset_images/${props.data.toCoin}.svg`}
           style={{
             display: type === 'received' || type === 'sent' ? 'none' : 'block'
           }}
@@ -37,14 +48,16 @@ export const TransactionHistoryItem = props => {
           hashId={props.data.hashId}
           amount={props.data.amount}
           usd={props.price}
+          toCoin={props.data.toCoin}
+          fromCoin={props.data.fromCoin}
         />
-        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <SpaceAround>
           <TransactionHistoryTime>{props.data.time}</TransactionHistoryTime>
           <TransactionHistoryConversion>
-            {type !== 'received' ? '-' : '+'}
+            {type === 'sent' ? '-' : '+'}
             {props.data.amount}
           </TransactionHistoryConversion>
-        </div>
+        </SpaceAround>
       </TransactionHistoryItemCard>
     </Wrapper>
   );
@@ -55,15 +68,18 @@ TransactionHistoryItem.propTypes = {
    */
   data: PropTypes.shape({
     date: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
+    address: PropTypes.string,
     time: PropTypes.string.isRequired,
-    amount: PropTypes.node.isRequired,
-    hashId: PropTypes.string.isRequired,
-    to: PropTypes.string.isRequired,
-    from: PropTypes.string.isRequired
+    amount: PropTypes.number.isRequired,
+    hashId: PropTypes.string,
+    to: PropTypes.string,
+    from: PropTypes.string,
+    toCoin: PropTypes.string,
+    fromCoin: PropTypes.string,
+    coin: PropTypes.string
   }).isRequired,
   /**
    * price of 1ETH in dollars.
    */
-  price: PropTypes.node.isRequired
+  price: PropTypes.number.isRequired
 };

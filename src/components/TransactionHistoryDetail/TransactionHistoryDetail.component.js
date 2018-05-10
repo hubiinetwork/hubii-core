@@ -17,11 +17,22 @@ const TransactionHistoryDetail = props => {
   return (
     <Wrapper>
       <TransactionHistoryType>
-        {props.type === 'received'
-          ? 'Recieved from'
-          : props.type === 'sent'
-            ? 'Sent to'
-            : 'Exchanged'}
+        {props.type === 'received' ? (
+          'Recieved from'
+        ) : props.type === 'sent' ? (
+          'Sent to'
+        ) : (
+          <div style={{ display: 'flex' }}>
+            Exchanged
+            <TransactionHistoryAddress>
+              {props.fromCoin}
+            </TransactionHistoryAddress>
+            to
+            <TransactionHistoryAddress>
+              {props.toCoin}
+            </TransactionHistoryAddress>
+          </div>
+        )}
       </TransactionHistoryType>
       <DetailCollapse bordered={false}>
         <DetailPanel
@@ -55,15 +66,15 @@ TransactionHistoryDetail.propTypes = {
   /**
    * address for transactionHistory.
    */
-  address: PropTypes.string.isRequired,
+  address: PropTypes.string,
   /**
    * amount for transactionHistory.
    */
-  amount: PropTypes.node.isRequired,
+  amount: PropTypes.number.isRequired,
   /**
    * hashID to see live transactionHistory.
    */
-  hashId: PropTypes.string.isRequired,
+  hashId: PropTypes.string,
   /**
    * type of transactionHistory.
    */
@@ -71,7 +82,7 @@ TransactionHistoryDetail.propTypes = {
   /**
    * USD price of ETH coin.
    */
-  usd: PropTypes.node.isRequired
+  usd: PropTypes.number.isRequired
 };
 
 export default TransactionHistoryDetail;
