@@ -12,10 +12,12 @@ export const StyledCancelButton = styled(Button)`
   border-width: 2px;
   padding: 0.5rem 1rem;
   margin: 1rem 0;
-  &:hover {
-    color: ${({ theme }) => theme.palette.info};
-    opacity: 0.9;
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.palette.light};
+    opacity: 0.7;
     border-color: ${({ theme }) => theme.palette.light} !important;
+    color: ${({ theme }) => theme.palette.info};
   }
 `;
 export const StyledTitle = styled(Col)`
