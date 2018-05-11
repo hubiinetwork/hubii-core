@@ -7,7 +7,8 @@ import {
   CopyButton,
   HeaderDetail,
   DetailWrapper,
-  WalletHeaderWrapper
+  WalletHeaderWrapper,
+  OverflowHidden
 } from './WalletHeader.style';
 import Notification from '../Notification';
 import WalletHeaderIcon from './WalletHeaderIcon';
@@ -28,7 +29,7 @@ const WalletHeader = props => {
   return (
     <WalletHeaderWrapper>
       <WalletHeaderIcon iconType={props.iconType} />
-      <div style={{ overflow: 'hidden', flex: 1, display: 'flex' }}>
+      <OverflowHidden>
         {props.connected !== undefined && (
           <USBFlag connected={props.connected} />
         )}
@@ -53,7 +54,7 @@ const WalletHeader = props => {
             <Balance>${props.balance}</Balance>
           </DetailWrapper>
         </HeaderDetail>
-      </div>
+      </OverflowHidden>
     </WalletHeaderWrapper>
   );
 };

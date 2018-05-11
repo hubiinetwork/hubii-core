@@ -57,6 +57,12 @@ const WalletHeaderWrapper = styled.div`
   height: 72px;
 `;
 
+const OverflowHidden = styled.div`
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+`;
+
 export {
   WalletHeaderWrapper,
   Name,
@@ -64,5 +70,6 @@ export {
   DetailWrapper,
   CopyButton,
   Balance,
-  Address
+  Address,
+  OverflowHidden
 };

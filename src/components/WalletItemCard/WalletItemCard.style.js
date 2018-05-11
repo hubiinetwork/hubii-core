@@ -6,6 +6,12 @@ export const AssetsWrapper = styled.div`
   flex-flow: row wrap;
 `;
 
+export const SpaceBetween = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 export const AssetWrapper = styled.div`
   margin-right: 12px;
   margin-top: 6px;

@@ -14,7 +14,8 @@ import {
   MenuItem,
   MenuDivider,
   CardIconSettings,
-  OverflowHidden
+  OverflowHidden,
+  SpaceBetween
 } from './WalletItemCard.style';
 import PropTypes from 'prop-types';
 
@@ -48,13 +49,7 @@ const WalletItemCard = props => (
         </AssetsWrapper>
       </LeftSideWrapper>
       <TotalBalance>{`$${props.totalBalance}`}</TotalBalance>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between'
-        }}
-      >
+      <SpaceBetween>
         <CardIcon>
           <Popover
             placement="right"
@@ -77,7 +72,7 @@ const WalletItemCard = props => (
             <Icon type="setting" />
           </Dropdown>
         </CardIconSettings>
-      </div>
+      </SpaceBetween>
     </OuterWrapper>
   </OverflowHidden>
 );
