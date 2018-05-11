@@ -6,7 +6,9 @@ import {
   TransactionHistoryConversion,
   Wrapper,
   Image,
-  SpaceAround
+  SpaceAround,
+  Received,
+  Sent
 } from './TransactionHistoryItem.style';
 import PropTypes from 'prop-types';
 import TransactionHistoryDetail from '../TransactionHistoryDetail';
@@ -48,8 +50,11 @@ export const TransactionHistoryItem = props => {
         <SpaceAround>
           <TransactionHistoryTime>{props.data.time}</TransactionHistoryTime>
           <TransactionHistoryConversion>
-            {type === 'sent' ? '-' : '+'}
-            {props.data.amount}
+            {type === 'sent' ? (
+              <Sent>-{props.data.amount}</Sent>
+            ) : (
+              <Received>+{props.data.amount}</Received>
+            )}
           </TransactionHistoryConversion>
         </SpaceAround>
       </TransactionHistoryItemCard>
