@@ -1,4 +1,3 @@
-import { Icon } from 'antd';
 import styled from 'styled-components';
 
 export const TransactionHistoryItemCard = styled.div`
@@ -28,14 +27,7 @@ export const Image = styled.img`
   height: 32px;
   width: 32px;
   display: flex;
-`;
-
-export const TransactionHistoryItemCardIcon = styled(Icon)`
-  color: ${({ theme }) => theme.palette.success1};
-  font-size: 28px;
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
+  margin-right: 9px;
 `;
 
 export const TransactionHistoryTime = styled.span`

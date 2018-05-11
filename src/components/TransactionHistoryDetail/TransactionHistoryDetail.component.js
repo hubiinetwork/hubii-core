@@ -2,12 +2,13 @@ import React from 'react';
 import {
   TransactionHistoryType,
   TransactionHistoryAddress,
-  Wrapper,
+  Wrapper as Wrapperr,
   DetailCollapse,
   DetailPanel,
   HashText,
   TransactionHistoryAddressLink,
-  TextWhiteBold
+  TransactionHistoryItemCardIcon,
+  Amount
 } from './TransactionHistoryDetail.style';
 import PropTypes from 'prop-types';
 
@@ -16,59 +17,66 @@ import PropTypes from 'prop-types';
  */
 const TransactionHistoryDetail = props => {
   return (
-    <Wrapper>
-      <TransactionHistoryType>
-        {props.type === 'received' ? (
-          'Recieved from'
-        ) : props.type === 'sent' ? (
-          'Sent to'
-        ) : (
+    <DetailCollapse bordered={false}>
+      <DetailPanel
+        style={{ border: 0 }}
+        showArrow={false}
+        header={
+          <Wrapperr>
+            <TransactionHistoryItemCardIcon
+              type={
+                props.type === 'received'
+                  ? 'download'
+                  : props.type === 'sent'
+                    ? 'upload'
+                    : ' '
+              }
+            />
+            <TransactionHistoryType>
+              {props.type === 'received' ? (
+                'Recieved from'
+              ) : props.type === 'sent' ? (
+                'Sent to'
+              ) : (
+                <div style={{ display: 'flex' }}>
+                  Exchanged
+                  <TransactionHistoryAddress>
+                    {props.fromCoin}
+                  </TransactionHistoryAddress>
+                  to
+                  <TransactionHistoryAddress>
+                    {props.toCoin}
+                  </TransactionHistoryAddress>
+                </div>
+              )}
+            </TransactionHistoryType>
+            <TransactionHistoryAddress>
+              {props.address}
+            </TransactionHistoryAddress>
+          </Wrapperr>
+        }
+        key="1"
+      >
+        <div>
           <div style={{ display: 'flex' }}>
-            Exchanged
-            <TransactionHistoryAddress>
-              {props.fromCoin}
-            </TransactionHistoryAddress>
-            to
-            <TransactionHistoryAddress>
-              {props.toCoin}
-            </TransactionHistoryAddress>
+            <HashText>Transaction Hash:</HashText>
+            <TransactionHistoryAddressLink
+              href={'https://etherscan.io/tx/' + props.hashId}
+              target="_blank"
+            >
+              {props.hashId}
+            </TransactionHistoryAddressLink>
           </div>
-        )}
-      </TransactionHistoryType>
-      {props.type !== 'exchange' && (
-        <DetailCollapse bordered={false}>
-          <DetailPanel
-            style={{ border: 0 }}
-            showArrow={false}
-            header={
-              <TransactionHistoryAddress>
-                {props.address}
-              </TransactionHistoryAddress>
-            }
-            key="1"
-          >
-            <div>
-              <div style={{ display: 'flex' }}>
-                <HashText>Transaction Hash:</HashText>
-                <TransactionHistoryAddressLink
-                  href={'https://etherscan.io/tx/' + props.hashId}
-                  target="_blank"
-                >
-                  {props.hashId}
-                </TransactionHistoryAddressLink>
-              </div>
-              <div style={{ display: 'flex' }}>
-                <TransactionHistoryAddress>
-                  {props.status}
-                </TransactionHistoryAddress>
-                <TransactionHistoryType>Status Network</TransactionHistoryType>
-                <HashText>${props.usd * props.amount}</HashText>
-              </div>
-            </div>
-          </DetailPanel>
-        </DetailCollapse>
-      )}
-    </Wrapper>
+          <div style={{ display: 'flex' }}>
+            <TransactionHistoryAddress>
+              {props.status}
+            </TransactionHistoryAddress>
+            <TransactionHistoryType>Status Network</TransactionHistoryType>
+            <Amount>${props.usd * props.amount}</Amount>
+          </div>
+        </div>
+      </DetailPanel>
+    </DetailCollapse>
   );
 };
 TransactionHistoryDetail.propTypes = {
