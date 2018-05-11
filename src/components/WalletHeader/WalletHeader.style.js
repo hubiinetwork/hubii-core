@@ -35,10 +35,11 @@ const DetailWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 30px;
+  margin-left: 50px;
 `;
 
 const HeaderDetail = styled.div`
+  overflow: hidden;
   display: flex;
   justify-content: space-between;
   flex: 1;

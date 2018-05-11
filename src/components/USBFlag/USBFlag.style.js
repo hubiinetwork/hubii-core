@@ -7,7 +7,7 @@ export const Slanted = styled.div`
     content: '';
     position: absolute;
     top: 0;
-    left: -48px;
+    left: -55px;
     width: 0;
     height: 0;
     border-top: 100px solid ${({ theme }) => theme.palette.info};
@@ -18,7 +18,11 @@ export const Slanted = styled.div`
 export const USB = styled(Icon)`
   position: absolute;
   font-size: 16px;
-  top: 10px;
-  left: 7px;
+  top: 9px;
+  left: 4px;
   font-weight: bolder;
+`;
+
+export const TextWhite = styled.span`
+  color: ${({ theme }) => theme.palette.light};
 `;

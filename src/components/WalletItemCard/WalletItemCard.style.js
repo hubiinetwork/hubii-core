@@ -25,6 +25,11 @@ export const CardIcon = styled.div`
   }
 `;
 
+export const OverflowHidden = styled.div`
+  overflow: hidden;
+  border-radius: 10px;
+`;
+
 export const CardIconSettings = styled.div`
   color: ${({ theme }) => theme.palette.secondary1};
   font-size: 20px;
@@ -53,8 +58,7 @@ export const OuterWrapper = styled.div`
   flex: 1;
   justify-content: space-between;
   min-height: 120px;
-  padding: 15px 20px;
-  border-radius: 10px;
+  padding: 25px 40px;
   background-color: ${({ theme }) => theme.palette.primary4};
   color: white;
   cursor: pointer;

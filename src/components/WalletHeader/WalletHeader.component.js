@@ -11,6 +11,7 @@ import {
 } from './WalletHeader.style';
 import Notification from '../Notification';
 import WalletHeaderIcon from './WalletHeaderIcon';
+import USBFlag from '../USBFlag';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
 /**
@@ -27,43 +28,56 @@ const WalletHeader = props => {
   return (
     <WalletHeaderWrapper>
       <WalletHeaderIcon iconType={props.iconType} />
-      <HeaderDetail>
-        <DetailWrapper>
-          <Name>{props.name}</Name>
-          <Address>
-            {`0x${props.address}`}
-            <CopyToClipboard text={`0x${props.address}`}>
-              <CopyButton
-                type="primary"
-                shape="circle"
-                icon="copy"
-                size={'small'}
-                onClick={showNotification}
-                key={2}
-              />
-            </CopyToClipboard>
-          </Address>
-        </DetailWrapper>
-        <DetailWrapper>
-          <Balance>${props.balance}</Balance>
-        </DetailWrapper>
-      </HeaderDetail>
+      <div style={{ overflow: 'hidden', flex: 1, display: 'flex' }}>
+        {props.connected !== undefined && (
+          <USBFlag connected={props.connected} />
+        )}
+        <HeaderDetail>
+          <DetailWrapper>
+            <Name>{props.name}</Name>
+            <Address>
+              {`0x${props.address}`}
+              <CopyToClipboard text={`0x${props.address}`}>
+                <CopyButton
+                  type="primary"
+                  shape="circle"
+                  icon="copy"
+                  size={'small'}
+                  onClick={showNotification}
+                  key={2}
+                />
+              </CopyToClipboard>
+            </Address>
+          </DetailWrapper>
+          <DetailWrapper>
+            <Balance>${props.balance}</Balance>
+          </DetailWrapper>
+        </HeaderDetail>
+      </div>
     </WalletHeaderWrapper>
   );
 };
 WalletHeader.propTypes = {
   /**
-   * Type of icon to be shown in header
+   * Type of icon to be shown in header.
    */
   iconType: PropTypes.string,
   /**
-   * Name of the wallet
+   * Name of the wallet.
    */
   name: PropTypes.string,
-  /** Address of the wallet */
+  /**
+   * Address of the wallet
+   */
   address: PropTypes.string,
-  /** Balance of the wallet */
-  balance: PropTypes.number
+  /**
+   * Balance of the wallet
+   */
+  balance: PropTypes.number,
+  /**
+   *  Balance of the wallet
+   */
+  connected: PropTypes.bool
 };
 
 export default WalletHeader;

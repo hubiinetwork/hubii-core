@@ -1,1 +1,1 @@
-export { default } from 'USBFlag.component';
+export { default } from './USBFlag.component';

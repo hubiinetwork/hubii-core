@@ -1,4 +1,4 @@
-A variant of USBFlag:
+Variants of USBFlag:
 
 ```js
 <div
@@ -11,5 +11,19 @@ A variant of USBFlag:
   }}
 >
   <USBFlag />
+</div>
+```
+
+```js
+<div
+  style={{
+    display: 'flex',
+    flex: 1,
+    backgroundColor: 'black',
+    height: 80,
+    overflow: 'hidden'
+  }}
+>
+  <USBFlag connected={false} />
 </div>
 ```

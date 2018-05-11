@@ -2,6 +2,7 @@ import { Icon, Dropdown, Popover } from 'antd';
 import * as React from 'react';
 import WalletDetailPopoverContent from './WalletDetailPopoverContent';
 import AssetAmountBubble from './AssetAmountBubble';
+import USBFlag from '../USBFlag';
 import {
   AssetsWrapper,
   AssetWrapper,
@@ -12,7 +13,8 @@ import {
   IconMenu as Menu,
   MenuItem,
   MenuDivider,
-  CardIconSettings
+  CardIconSettings,
+  OverflowHidden
 } from './WalletItemCard.style';
 import PropTypes from 'prop-types';
 
@@ -31,7 +33,8 @@ const settingsMenu = props => (
 );
 
 const WalletItemCard = props => (
-  <div>
+  <OverflowHidden>
+    {props.connected && <USBFlag connected={props.connected} />}
     <OuterWrapper>
       <LeftSideWrapper>
         <p>{props.name}</p>
@@ -76,7 +79,7 @@ const WalletItemCard = props => (
         </CardIconSettings>
       </div>
     </OuterWrapper>
-  </div>
+  </OverflowHidden>
 );
 
 WalletItemCard.propTypes = {
@@ -104,7 +107,11 @@ WalletItemCard.propTypes = {
   /**
    * props.type type of the wallet.
    */
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
+  /**
+   * props.bool shows connection status  of  wallet if  provided.
+   */
+  connected: PropTypes.bool
 };
 
 export default WalletItemCard;
