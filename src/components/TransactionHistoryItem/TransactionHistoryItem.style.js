@@ -19,6 +19,7 @@ export const TransactionHistoryItemDate = styled.span`
 `;
 export const SpaceAround = styled.div`
   margin-right: 10px;
+  margin-top: 8px;
   display: flex;
   justify-content: space-around;
 `;
@@ -27,7 +28,6 @@ export const Image = styled.img`
   height: 32px;
   width: 32px;
   display: flex;
-  align-self: center;
 `;
 
 export const TransactionHistoryItemCardIcon = styled(Icon)`

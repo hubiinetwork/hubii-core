@@ -13,7 +13,8 @@ const address = '0xb2682160c482eB985EC9F3e364eEc0a904C44C23';
         '0x4891ee9bc872f5ea35b1dd3b7384bdc4a4c26f63ee7036f83568c8612603ed63',
       to: '60c482eB985EC9F3e364eEc0a904C44C23',
       from: '60c482eB985EC9F3e364eEc0a904C44C23',
-      coin: 'UKG'
+      coin: 'UKG',
+      status: 204
     }}
     price={671.23}
     key={
@@ -36,7 +37,8 @@ const address = '0xb2682160c482eB985EC9F3e364eEc0a904C44C23';
         '0x4891ee9bc872f5ea35b1dd3b7384bdc4a4c26f63ee7036f83568c8612603ed63',
       to: '0xb2682160c482eB985EC9F3e364eEc0a904C44C23',
       from: '60c482eB985EC9F3e364eEc0a904C44C23',
-      coin: 'VEE'
+      coin: 'VEE',
+      status: 204
     }}
     price={671.23}
     key={
@@ -54,7 +56,8 @@ const address = '0xb2682160c482eB985EC9F3e364eEc0a904C44C23';
       time: '2:18PM',
       amount: 0.0001111,
       toCoin: 'ADX',
-      fromCoin: 'AIR'
+      fromCoin: 'AIR',
+      status: 204
     }}
     price={671.23}
     key={

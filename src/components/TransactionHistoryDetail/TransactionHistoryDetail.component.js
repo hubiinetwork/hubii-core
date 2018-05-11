@@ -6,7 +6,8 @@ import {
   DetailCollapse,
   DetailPanel,
   HashText,
-  TransactionHistoryAddressLink
+  TransactionHistoryAddressLink,
+  TextWhiteBold
 } from './TransactionHistoryDetail.style';
 import PropTypes from 'prop-types';
 
@@ -56,7 +57,13 @@ const TransactionHistoryDetail = props => {
                   {props.hashId}
                 </TransactionHistoryAddressLink>
               </div>
-              <HashText>${props.usd * props.amount}</HashText>
+              <div style={{ display: 'flex' }}>
+                <TransactionHistoryAddress>
+                  {props.status}
+                </TransactionHistoryAddress>
+                <TransactionHistoryType>Status Network</TransactionHistoryType>
+                <HashText>${props.usd * props.amount}</HashText>
+              </div>
             </div>
           </DetailPanel>
         </DetailCollapse>
@@ -92,7 +99,11 @@ TransactionHistoryDetail.propTypes = {
   /**
    * Short capitalized name of coin that was exchanged from.
    */
-  fromCoin: PropTypes.string
+  fromCoin: PropTypes.string,
+  /**
+   * status code of the transaction.
+   */
+  status: PropTypes.number
 };
 
 export default TransactionHistoryDetail;

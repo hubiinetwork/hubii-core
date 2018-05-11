@@ -4,6 +4,8 @@ const Panel = Collapse.Panel;
 
 export const TransactionHistoryType = styled.div`
   color: ${({ theme }) => theme.palette.light};
+  font-weight: bolder;
+  margin-right: 10px;
 `;
 
 export const TransactionHistoryAddress = styled.div`
@@ -30,9 +32,9 @@ export const TransactionHistoryAddressLink = styled.a`
 
 export const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex: 1;
-  justify-content: center;
+  align-items: center;
   margin-left: 10px;
 `;
 
@@ -40,6 +42,9 @@ export const DetailCollapse = styled(Collapse)`
   border-width: 0px;
   padding: 0px;
   background-color: transparent;
+  flex: 1;
+  display: flex;
+  align-items: center;
   .ant-collapse-header {
     padding: 0px !important;
   }
