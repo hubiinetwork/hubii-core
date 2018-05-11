@@ -29,9 +29,22 @@ export const Coins = styled(Radio.Group)`
   flex-wrap: wrap;
   justify-content: space-between;
 `;
-
-export const CoinButton = styled(Radio.Button)`
+const RadioButton = Radio.Button;
+export const CoinButton = styled(RadioButton)`
+  margin-top: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 8px;
+  padding-bottom: 40px;
   background-color: transparent;
+  .ant-radio-button-wrapper-checked {
+    background: #fff;
+    border-color: green;
+    color: #1890ff;
+    -webkit-box-shadow: -1px 0 0 0 #1890ff;
+    box-shadow: -1px 0 0 0 #1890ff;
+    z-index: 1;
+  }
   &:hover {
     background-color: ${({ theme }) => theme.palette.info2};
     border-color: ${({ theme }) => theme.palette.light};
@@ -41,7 +54,7 @@ export const CoinButton = styled(Radio.Button)`
     border-color: ${({ theme }) => theme.palette.info};
   }
   &:active {
-    background-color: ${({ theme }) => theme.palette.info};
+    background-color: ${({ theme }) => theme.palette.info} !important;
     border-color: ${({ theme }) => theme.palette.info};
   }
 `;
