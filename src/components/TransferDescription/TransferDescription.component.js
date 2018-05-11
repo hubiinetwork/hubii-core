@@ -7,7 +7,8 @@ import {
   BalanceCol,
   StyledTitle,
   StyledButton,
-  StyledRecipient
+  StyledRecipient,
+  StyledCancelButton
 } from './TransferDescription.style';
 import TransferDescriptionList from '../TransferDescriptionList';
 
@@ -116,6 +117,7 @@ const TransferDescription = props => {
         </BalanceCol>
       </Row>
       <StyledDiv>
+        <StyledCancelButton ghost>Cancel</StyledCancelButton>
         <StyledButton type="primary">{buttonLabel}</StyledButton>
       </StyledDiv>
     </div>

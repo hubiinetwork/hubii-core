@@ -1,12 +1,17 @@
-import { Col } from "antd";
-import Button from "../ui/Button";
-import styled from "styled-components";
+import { Col } from 'antd';
+import Button from '../ui/Button';
+import styled from 'styled-components';
 
 export const StyledButton = styled(Button)`
   min-width: 150px;
-  margin-top: 17px;
   border-width: 2px;
   padding: 0.5rem 1rem;
+  margin: 1rem;
+`;
+export const StyledCancelButton = styled(Button)`
+  border-width: 2px;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
 `;
 export const StyledTitle = styled(Col)`
   color: ${({ theme }) => theme.palette.info};
