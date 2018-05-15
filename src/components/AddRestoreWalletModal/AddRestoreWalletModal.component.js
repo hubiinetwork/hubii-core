@@ -9,7 +9,8 @@ import {
   Arrow,
   IconWrapper,
   DisabledButton,
-  TextWhite
+  TextWhite,
+  RightTopButton
 } from './AddRestoreWalletModal.style';
 import { AddWallet } from './AddWallet';
 import { RestoreWallet } from './RestoreWallet';
@@ -65,6 +66,15 @@ export default class AddRestoreWalletModal extends React.PureComponent {
                 onClick={() => this.switchModals('main')}
               />New Hubii Wallet
             </IconWrapper>
+            <RightTopButton
+              onClick={() => this.switchModals('import')}
+              type="primary"
+            >
+              <Wrapper>
+                <Icon type="download" />
+                import Wallet
+              </Wrapper>
+            </RightTopButton>
             <AddWallet handleClose={this.props.handleClose} />
           </div>
         )}
@@ -77,6 +87,25 @@ export default class AddRestoreWalletModal extends React.PureComponent {
               />Restore Wallet
             </IconWrapper>
             <RestoreWallet handleClose={this.props.handleClose} />
+          </div>
+        )}
+        {type === 'import' && (
+          <div>
+            <IconWrapper>
+              <Arrow
+                type="arrow-left"
+                onClick={() => this.switchModals('main')}
+              />Import Wallet
+            </IconWrapper>
+            <RightTopButton
+              onClick={() => this.switchModals('add')}
+              type="primary"
+            >
+              <Wrapper>
+                <Icon type="plus" />
+                Add Wallet
+              </Wrapper>
+            </RightTopButton>
           </div>
         )}
       </div>

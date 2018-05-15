@@ -79,6 +79,13 @@ export const ButtonDiv = styled(Button)`
   }
 `;
 
+export const RightTopButton = styled(ButtonDiv)`
+  margin-top: -25px;
+  margin-bottom: 0;
+  margin-left: 85%;
+  min-width: auto;
+`;
+
 export const DisabledButton = styled(ButtonDiv)`
   cursor: not-allowed;
 `;
