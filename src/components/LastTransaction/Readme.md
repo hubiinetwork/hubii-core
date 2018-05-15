@@ -11,6 +11,9 @@ Example:
     date="6 jan 2018"
     time="05 : 16 pm"
     gmt="+1"
+    handleNewTransfer={() => {
+      console.log('new transfer button clcked');
+    }}
   />
 </div>
 ```

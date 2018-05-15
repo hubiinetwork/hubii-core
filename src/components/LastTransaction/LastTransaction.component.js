@@ -47,7 +47,9 @@ const LastTransaction = props => {
           </SpaceBetween>
         </FlexWrapper>
       </StyledRow>
-      <StyledButton type="primary">Make a new Transfer</StyledButton>
+      <StyledButton type="primary" onClick={props.handleNewTransfer}>
+        Make a new Transfer
+      </StyledButton>
     </div>
   );
 };
@@ -83,6 +85,10 @@ LastTransaction.propTypes = {
   /**
    * gmt of last transaction
    */
-  gmt: PropTypes.string
+  gmt: PropTypes.string,
+  /**
+   * Function to execute when make new transfer button is clicked
+   */
+  handleNewTransfer: PropTypes.func
 };
 export default LastTransaction;
