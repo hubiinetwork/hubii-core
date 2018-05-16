@@ -5,6 +5,7 @@ const white = '#ffffff';
 // ****** teal ****** //
 
 const teal = '#3b6174';
+const tealBlue = '#1e6d95';
 const tealDark = '#263c46';
 const tealLight = '#26404d';
 const tealLighter = '#395664';
@@ -34,12 +35,16 @@ const blackLighter = '#404f56';
 
 // ****** green ****** //
 
-const green = 'greenyellow';
+const green = '#77b213';
 const greenLight = 'rgba(173, 255, 47, 0.5)';
 
 // ****** yellow ****** //
 
-const orange = 'orange';
+const yellow = '#f5a623';
+
+// ****** tomato ****** //
+
+const tomato = 'tomato';
 
 // ****** shadows ****** //
 
@@ -61,6 +66,7 @@ export default {
     primary3: tealDark,
     primary4: tealDarker,
     primary5: teal50,
+    primary6: tealBlue,
 
     secondary: grey,
     secondary1: greyLight,
@@ -81,6 +87,7 @@ export default {
 
     success: green,
     success1: greenLight,
-    warning: orange
+    warning: yellow,
+    danger: tomato
   }
 };
