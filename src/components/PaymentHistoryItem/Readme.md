@@ -1,68 +1,23 @@
 A variant of PaymentHistoryItem:
 
 ```js
-const address = '0xb2682160c482eB985EC9F3e364eEc0a904C44C23';
+const show = {
+  coin: 'AIR',
+  coinAmount: 212,
+  USDAmount: 434,
+  to: '0xb2682160c482eB985EC9F3e364eEc0a904C44C23',
+  type: 'Payment',
+  toID: '0xb2682160c482eB985EC9F3e364eEc0a904C44C23',
+  hashID: '0xb2682160c482eB985EC9F3e364eEc0a904C44C23',
+  timeStamp: '21 April 2018 3:48 PM',
+  timePast: '2 days',
+  blockHeight: 23112,
+  gasLimit: 21000,
+  gasTxn: 21001,
+  gasPrice: 0.0003,
+  cost: 0.000063
+};
 <div style={{ backgroundColor: 'grey', padding: 10 }}>
-  <PaymentHistoryItem
-    data={{
-      date: 'APR 27',
-      address: `${address}`,
-      time: '2:18PM',
-      amount: 0.0001111,
-      hashId:
-        '0x4891ee9bc872f5ea35b1dd3b7384bdc4a4c26f63ee7036f83568c8612603ed63',
-      to: '60c482eB985EC9F3e364eEc0a904C44C23',
-      from: '60c482eB985EC9F3e364eEc0a904C44C23',
-      coin: 'UKG',
-      status: 204
-    }}
-    price={671.23}
-    key={
-      '0xb2682160c482eB985EC9F3e364eEc0a904C44C2360c482eB985EC9F3e364eEc0a904C44C23'
-    }
-  />
+  <PaymentHistoryItem data={show} />
 </div>;
-```
-
-```js
-const address = '0xb2682160c482eB985EC9F3e364eEc0a904C44C23';
-<div style={{ backgroundColor: 'grey', padding: 10 }}>
-  <PaymentHistoryItem
-    data={{
-      date: 'APR 27',
-      address: `${address}`,
-      time: '2:18PM',
-      amount: 0.0001111,
-      hashId:
-        '0x4891ee9bc872f5ea35b1dd3b7384bdc4a4c26f63ee7036f83568c8612603ed63',
-      to: '0xb2682160c482eB985EC9F3e364eEc0a904C44C23',
-      from: '60c482eB985EC9F3e364eEc0a904C44C23',
-      coin: 'VEE',
-      status: 204
-    }}
-    price={671.23}
-    key={
-      '0xb2682160c482eB985EC9F3e364eEc0a904C44C2360c482eB985EC9F3e364eEc0a904C44C23'
-    }
-  />
-</div>;
-```
-
-```js
-<div style={{ backgroundColor: 'grey', padding: 10 }}>
-  <PaymentHistoryItem
-    data={{
-      date: 'APR 27',
-      time: '2:18PM',
-      amount: 0.0001111,
-      toCoin: 'ADX',
-      fromCoin: 'AIR',
-      status: 204
-    }}
-    price={671.23}
-    key={
-      '0xb2682160c482eB985EC9F3e364eEc0a904C44C2360c482eB985EC9F3e364eEc0a904C44C23'
-    }
-  />
-</div>
 ```

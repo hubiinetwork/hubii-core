@@ -1,27 +1,41 @@
 import styled from 'styled-components';
-import { Collapse, Icon } from 'antd';
+import { Collapse } from 'antd';
 const Panel = Collapse.Panel;
 
-export const TransactionHistoryType = styled.div`
+export const PaymentHistoryType = styled.div`
   color: ${({ theme }) => theme.palette.light};
+  font-weight: bolder;
+  display: flex;
+`;
+
+export const TimePast = styled.div`
+  color: ${({ theme }) => theme.palette.secondary4};
   font-weight: bolder;
 `;
 
-export const TransactionHistoryItemCardIcon = styled(Icon)`
-  color: ${({ theme }) => theme.palette.success1};
-  font-size: 32px;
+export const CollapseLeft = styled.div`
+  border-right: 1px solid ${({ theme }) => theme.palette.secondary4};
+  margin-top: 1rem;
+  flex: 0.7;
+`;
+
+export const CollapseRight = styled.div`
+  flex: 0.3;
+  margin-top: 1rem;
+  margin-left: 1rem;
+`;
+
+export const CollapseParent = styled.div`
   display: flex;
-  align-items: center;
-  margin-right: 9px;
+  flex: 1;
 `;
 
 export const Amount = styled.div`
   color: ${({ theme }) => theme.palette.secondary1};
   font-weight: bolder;
-  margin-left: 15px;
 `;
 
-export const TransactionHistoryAddress = styled.div`
+export const PaymentHistoryAddress = styled.div`
   word-break: break-all;
   color: ${({ theme }) => theme.palette.info};
   margin-left: 3px;
@@ -29,27 +43,12 @@ export const TransactionHistoryAddress = styled.div`
   margin-right: 3px;
 `;
 
-export const TransactionHistoryAddressLink = styled.a`
-  color: ${({ theme }) => theme.palette.info};
-  font-weight: bolder;
-  word-break: break-all;
-  &:active {
-    color: ${({ theme }) => theme.palette.info};
-  }
-  &:hover {
-    color: ${({ theme }) => theme.palette.info};
-    text-decoration: underline;
-  }
-  &:focus {
-    color: ${({ theme }) => theme.palette.info};
-  }
-`;
-
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
   align-items: center;
+  justify-content: space-around;
 `;
 
 export const DetailCollapse = styled(Collapse)`
@@ -73,9 +72,16 @@ export const DetailCollapse = styled(Collapse)`
 
 export const DetailPanel = styled(Panel)`
   padding: 0px;
+  flex: 1;
+  .ant-collapse-header {
+    flex: 1;
+    &:focus {
+      border: 0px solid red;
+    }
+  }
 `;
 
-export const HashText = styled.div`
+export const TextGrey = styled.div`
   color: ${({ theme }) => theme.palette.secondary1};
   margin-bottom: 0px;
   margin-right: 5px;
