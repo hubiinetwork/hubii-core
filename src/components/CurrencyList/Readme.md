@@ -1,0 +1,13 @@
+Examples:
+
+```
+const data = [
+  { coin: 'ETH', coinAmount: '1.5264', coinAmountUSD: '1,200.59' },
+  { coin: 'HBT', coinAmount: '1,559.54', coinAmountUSD: '359.2' },
+  { coin: 'ETH', coinAmount: '1.5264', coinAmountUSD: '1,200.59' },
+  { coin: 'HBT', coinAmount: '1,559.54', coinAmountUSD: '359.2' }
+];
+<div style={{ backgroundColor: '#2f4d5c', padding: 25 }}>
+  <CurrencyList data={data} />
+</div>
+```

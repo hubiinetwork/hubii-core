@@ -1,5 +1,5 @@
-import { Button } from "antd";
-import styled from "styled-components";
+import { Button } from 'antd';
+import styled from 'styled-components';
 
 export default styled(Button)`
   height: 38px;
@@ -8,7 +8,7 @@ export default styled(Button)`
   font-weight: 400;
   border-radius: 0.3rem;
   ${({ theme, type }) => {
-    if (type === "primary") {
+    if (type === 'primary') {
       return `
         color: ${theme.palette.info};
         border-color: ${theme.palette.info};
