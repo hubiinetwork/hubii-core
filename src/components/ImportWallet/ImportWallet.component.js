@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Icon, Radio } from 'antd';
-import Button from '../ui/Button';
+import { Icon } from 'antd';
 import {
   Between,
   CreateButton,
@@ -12,7 +11,6 @@ import {
 const onChange = e => {
   console.log(`radio checked:${e.target.value}`);
 };
-const RadioButton = Radio.Button;
 const ImportWallet = () => (
   <div>
     <Between>
