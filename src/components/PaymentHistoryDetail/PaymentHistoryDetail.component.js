@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 import PaymentType from '../PaymentType';
 
 /**
- * This component  shows  the collapsed  area of TransactionHistoryItem.
+ * This component shows the collapsed area of PaymentHistoryItem.
  */
 const PaymentHistoryDetail = props => {
   return (
