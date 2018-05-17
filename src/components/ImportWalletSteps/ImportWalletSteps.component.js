@@ -8,6 +8,8 @@ import {
   TextDiv
 } from './ImportWalletSteps.style';
 import ImportWallet from '../ImportWallet';
+import ImportWalletForm from '../ImportWalletForm';
+import ImportWalletNameForm from '../ImportWalletNameForm';
 
 const steps = [
   {
@@ -16,11 +18,11 @@ const steps = [
   },
   {
     title: 'Second',
-    content: 'Second-content'
+    content: <ImportWalletForm />
   },
   {
     title: 'Last',
-    content: 'Last-content'
+    content: <ImportWalletNameForm />
   }
 ];
 
