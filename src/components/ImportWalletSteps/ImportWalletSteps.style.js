@@ -41,7 +41,7 @@ export const StyledBackButton = styled(Button)`
 `;
 export const TextDiv = styled.div`
   display: flex;
-  color: grey;
+  color: ${({ theme }) => theme.palette.secondary1};
   justify-content: center;
   margin-bottom: 20px;
 `;
