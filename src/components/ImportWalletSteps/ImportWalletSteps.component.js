@@ -4,6 +4,7 @@ import {
   StyledStep,
   StyledButton,
   StyledBackButton,
+  StepsCentered,
   ButtonDiv,
   TextDiv
 } from './ImportWalletSteps.style';
@@ -69,11 +70,11 @@ export default class ImportWalletSteps extends React.Component {
         <TextDiv>
           Step {this.state.current + 1} of {steps.length}
         </TextDiv>
-        <Steps current={current}>
+        <StepsCentered current={current}>
           {steps.map(item => (
             <StyledStep key={item.title} title={item.title} />
           ))}
-        </Steps>
+        </StepsCentered>
       </div>
     );
   }
