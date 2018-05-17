@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Steps, Button, message } from 'antd';
+import { Steps } from 'antd';
+import Button from '../ui/Button';
 const Step = Steps.Step;
 
 export const StyledStep = styled(Step)`
@@ -18,4 +19,19 @@ export const StyledStep = styled(Step)`
 export const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
+`;
+export const StyledButton = styled(Button)`
+  min-width: 160px;
+`;
+export const StyledBackButton = styled(Button)`
+  color: white;
+  border-color: white;
+  margin-right: 3px;
+`;
+export const TextDiv = styled.div`
+  display: flex;
+  color: grey;
+  justify-content: center;
+  margin-bottom: 20px;
 `;

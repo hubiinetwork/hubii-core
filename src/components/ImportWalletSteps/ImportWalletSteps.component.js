@@ -1,6 +1,12 @@
 import React from 'react';
-import { Steps, Button, message } from 'antd';
-import { StyledStep, ButtonDiv } from './ImportWalletSteps.style';
+import { Steps, message } from 'antd';
+import {
+  StyledStep,
+  StyledButton,
+  StyledBackButton,
+  ButtonDiv,
+  TextDiv
+} from './ImportWalletSteps.style';
 import ImportWallet from '../ImportWallet';
 
 const steps = [
@@ -37,27 +43,30 @@ export default class ImportWalletSteps extends React.Component {
     const { current } = this.state;
     return (
       <div>
-        <div className="steps-content">{steps[this.state.current].content}</div>
+        <div>{steps[this.state.current].content}</div>
         <ButtonDiv>
           {this.state.current > 0 && (
-            <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
+            <StyledBackButton type="primary" onClick={() => this.prev()}>
               Back
-            </Button>
+            </StyledBackButton>
           )}
           {this.state.current < steps.length - 1 && (
-            <Button type="primary" onClick={() => this.next()}>
+            <StyledButton type="primary" onClick={() => this.next()}>
               Next
-            </Button>
+            </StyledButton>
           )}
           {this.state.current === steps.length - 1 && (
-            <Button
+            <StyledButton
               type="primary"
               onClick={() => message.success('Processing complete!')}
             >
               Finish
-            </Button>
+            </StyledButton>
           )}
         </ButtonDiv>
+        <TextDiv>
+          Step {this.state.current + 1} of {steps.length}
+        </TextDiv>
         <Steps current={current}>
           {steps.map(item => (
             <StyledStep key={item.title} title={item.title} />
