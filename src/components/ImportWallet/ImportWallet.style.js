@@ -21,6 +21,7 @@ export const CreateButton = styled(Button)`
 export const LeftArrow = styled(Icon)`
   font-size: 20px;
   margin-right: 7px;
+  cursor: pointer;
 `;
 
 export const Coins = styled(Radio.Group)`
@@ -28,6 +29,10 @@ export const Coins = styled(Radio.Group)`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  .ant-radio-button-wrapper-checked {
+    background-color: ${({ theme }) => theme.palette.info};
+    border: 1px solid ${({ theme }) => theme.palette.info};
+  }
 `;
 const RadioButton = Radio.Button;
 export const CoinButton = styled(RadioButton)`
@@ -37,28 +42,9 @@ export const CoinButton = styled(RadioButton)`
   padding-top: 8px;
   padding-bottom: 40px;
   background-color: transparent;
-  .ant-radio-button-wrapper-checked {
-    background: #fff;
-    border-color: green;
-    color: #1890ff;
-    -webkit-box-shadow: -1px 0 0 0 #1890ff;
-    box-shadow: -1px 0 0 0 #1890ff;
-    z-index: 1;
-  }
-  &:hover {
-    background-color: ${({ theme }) => theme.palette.info2};
-    border-color: ${({ theme }) => theme.palette.light};
-  }
-  &:focus {
-    background-color: ${({ theme }) => theme.palette.info};
-    border-color: ${({ theme }) => theme.palette.info};
-  }
-  &:active {
-    background-color: ${({ theme }) => theme.palette.info} !important;
-    border-color: ${({ theme }) => theme.palette.info};
-  }
 `;
 
 export const Flex = styled.div`
   display: flex;
+  color: ${({ theme }) => theme.palette.light};
 `;

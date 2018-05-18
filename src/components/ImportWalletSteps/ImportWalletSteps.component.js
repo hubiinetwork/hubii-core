@@ -54,7 +54,11 @@ export default class ImportWalletSteps extends React.Component {
             </StyledBackButton>
           )}
           {this.state.current < steps.length - 1 && (
-            <StyledButton type="primary" onClick={() => this.next()}>
+            <StyledButton
+              type="primary"
+              onClick={() => this.next()}
+              current={this.state.current}
+            >
               Next
             </StyledButton>
           )}

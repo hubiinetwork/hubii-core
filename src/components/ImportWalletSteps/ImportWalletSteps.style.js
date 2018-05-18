@@ -32,7 +32,7 @@ export const ButtonDiv = styled.div`
   margin-bottom: 20px;
 `;
 export const StyledButton = styled(Button)`
-  min-width: 260px;
+  min-width: ${({ current: width }) => (width === 0 ? `260px` : `190px`)};
 `;
 export const StyledBackButton = styled(Button)`
   color: white;

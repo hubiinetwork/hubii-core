@@ -15,7 +15,12 @@ const ImportWallet = () => (
   <div>
     <Between>
       <Flex>
-        <LeftArrow type="arrow-left" />
+        <LeftArrow
+          type="arrow-left"
+          onClick={() => {
+            console.log('Go  back to  Import  wallet screen');
+          }}
+        />
         <span>Importing Ledger Wallet</span>
       </Flex>
       <div>
@@ -28,7 +33,7 @@ const ImportWallet = () => (
       <CoinButton value="a">
         <img
           src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
-          style={{ width: 110 }}
+          style={{ width: 110, height: 35 }}
         />
       </CoinButton>
       <CoinButton value="b">
