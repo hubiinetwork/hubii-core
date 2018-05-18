@@ -47,13 +47,17 @@ export const StyledButton = styled(Button)`
 
   font-weight: 550;
 
+  border-width: 2px;
+
   border: ${({ disabled: white, theme }) =>
     white && `2px solid ${theme.palette.secondary4} !important`};
 
   min-width: ${({ current: width }) => (width === 0 ? `260px` : `190px`)};
 
   color: ${({ disabled: white, theme }) =>
-    white && `${theme.palette.secondary4} !important`};
+    white
+      ? `${theme.palette.secondary4} !important`
+      : `${theme.palette.light} !important`};
 
   &:hover {
     background-color: ${({ disabled: white }) =>

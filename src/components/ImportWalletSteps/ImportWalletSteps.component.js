@@ -33,7 +33,7 @@ export default class ImportWalletSteps extends React.Component {
     super(props);
     this.state = {
       current: 0,
-      disabled: true
+      disabled: false
     };
   }
   next() {
