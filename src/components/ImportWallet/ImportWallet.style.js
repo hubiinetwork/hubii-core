@@ -39,12 +39,25 @@ export const CoinButton = styled(RadioButton)`
   margin-top: 15px;
   padding-left: 25px;
   padding-right: 25px;
-  padding-top: 8px;
+  padding-top: 15px;
   padding-bottom: 40px;
   background-color: transparent;
+  min-width: 230px;
+  min-height: 60px;
 `;
 
 export const Flex = styled.div`
   display: flex;
   color: ${({ theme }) => theme.palette.light};
+`;
+
+export const Image = styled.img`
+  width: 90px;
+  height: 30px;
+`;
+
+export const Center = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

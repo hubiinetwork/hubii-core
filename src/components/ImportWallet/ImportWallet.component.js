@@ -6,7 +6,9 @@ import {
   LeftArrow,
   Flex,
   Coins,
-  CoinButton
+  CoinButton,
+  Image,
+  Center
 } from './ImportWallet.style';
 const onChange = e => {
   console.log(`radio checked:${e.target.value}`);
@@ -31,40 +33,34 @@ const ImportWallet = () => (
     </Between>
     <Coins onChange={onChange}>
       <CoinButton value="a">
-        <img
-          src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
-          style={{ width: 110, height: 35 }}
-        />
+        <Center>
+          <Image src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png" />
+        </Center>
       </CoinButton>
       <CoinButton value="b">
-        <img
-          src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
-          style={{ width: 110 }}
-        />
+        <Center>
+          <Image src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png" />
+        </Center>
       </CoinButton>
       <CoinButton value="c">
-        <img
-          src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
-          style={{ width: 110 }}
-        />
+        <Center>
+          <Image src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png" />
+        </Center>
       </CoinButton>
       <CoinButton value="d">
-        <img
-          src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
-          style={{ width: 110 }}
-        />
+        <Center>
+          <Image src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png" />
+        </Center>
       </CoinButton>
       <CoinButton value="e">
-        <img
-          src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
-          style={{ width: 110 }}
-        />
+        <Center>
+          <Image src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png" />
+        </Center>
       </CoinButton>
       <CoinButton value="f">
-        <img
-          src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
-          style={{ width: 110 }}
-        />
+        <Center>
+          <Image src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png" />
+        </Center>
       </CoinButton>
     </Coins>
   </div>

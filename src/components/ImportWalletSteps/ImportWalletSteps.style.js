@@ -30,6 +30,7 @@ export const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  margin-top: 1rem;
 `;
 export const StyledButton = styled(Button)`
   min-width: ${({ current: width }) => (width === 0 ? `260px` : `190px`)};
