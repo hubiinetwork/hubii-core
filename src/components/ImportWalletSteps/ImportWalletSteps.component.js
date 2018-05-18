@@ -6,7 +6,8 @@ import {
   StyledBackButton,
   StepsCentered,
   ButtonDiv,
-  TextDiv
+  TextDiv,
+  SpaceBetween
 } from './ImportWalletSteps.style';
 import ImportWallet from '../ImportWallet';
 import ImportWalletForm from '../ImportWalletForm';
@@ -31,7 +32,8 @@ export default class ImportWalletSteps extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: 0
+      current: 0,
+      disabled: true
     };
   }
   next() {
@@ -45,14 +47,7 @@ export default class ImportWalletSteps extends React.Component {
   render() {
     const { current } = this.state;
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          flex: 1,
-          justifyContent: 'space-between'
-        }}
-      >
+      <SpaceBetween>
         <div>{steps[this.state.current].content}</div>
         <div>
           <ButtonDiv>
@@ -66,6 +61,7 @@ export default class ImportWalletSteps extends React.Component {
                 type="primary"
                 onClick={() => this.next()}
                 current={this.state.current}
+                disabled={this.state.disabled}
               >
                 Next
               </StyledButton>
@@ -88,7 +84,7 @@ export default class ImportWalletSteps extends React.Component {
             ))}
           </StepsCentered>
         </div>
-      </div>
+      </SpaceBetween>
     );
   }
 }

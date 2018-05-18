@@ -26,6 +26,13 @@ export const StepsCentered = styled(Steps)`
   }
 `;
 
+export const SpaceBetween = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+`;
+
 export const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
@@ -33,7 +40,28 @@ export const ButtonDiv = styled.div`
   margin-top: 1rem;
 `;
 export const StyledButton = styled(Button)`
+  background-color: ${({ disabled: white }) =>
+    white && `transparent !important`};
+
+  font-size: 15px;
+
+  font-weight: 550;
+
+  border: ${({ disabled: white, theme }) =>
+    white && `2px solid ${theme.palette.secondary4} !important`};
+
   min-width: ${({ current: width }) => (width === 0 ? `260px` : `190px`)};
+
+  color: ${({ disabled: white, theme }) =>
+    white && `${theme.palette.secondary4} !important`};
+
+  &:hover {
+    background-color: ${({ disabled: white }) =>
+      white && `transparent !important`};
+
+    border: ${({ disabled: white, theme }) =>
+      white && `2px solid ${theme.palette.secondary4} !important`};
+  }
 `;
 export const StyledBackButton = styled(Button)`
   color: white;
