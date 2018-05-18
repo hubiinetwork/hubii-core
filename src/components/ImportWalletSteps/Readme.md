@@ -1,4 +1,4 @@
-Variants of ImportWalletSteps:
+A variant of ImportWalletSteps:
 
 ```js
 <div

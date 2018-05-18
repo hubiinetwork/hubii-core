@@ -5,7 +5,9 @@ import {
   Between,
   IconDiv,
   LeftArrow,
-  CreateButton
+  CreateButton,
+  Image,
+  WidthEighty
 } from './ImportWalletForm.style';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 class ImportWalletForm extends React.Component {
@@ -15,8 +17,11 @@ class ImportWalletForm extends React.Component {
       <div>
         <Between>
           <Flex>
-            <LeftArrow type="arrow-left" />
-            <span>Importing Ledger Wallet</span>
+            <LeftArrow
+              type="arrow-left"
+              onClick={() => console.log('onGoBack  func')}
+            />
+            <span>Importing {this.props.wallet.value} Wallet</span>
           </Flex>
           <div>
             <CreateButton>
@@ -25,35 +30,47 @@ class ImportWalletForm extends React.Component {
           </div>
         </Between>
         <IconDiv>
-          <img src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png" />
+          <Image src={this.props.wallet.src} />
         </IconDiv>
-        <Form onSubmit={this.handleSubmit} layout="vertical">
-          <ModalFormItem
-            label={
-              <ModalFormLabel>Enter your Ledger Wallet Address</ModalFormLabel>
-            }
-          >
-            {getFieldDecorator('Address', {
-              rules: [
-                {
-                  message: 'Address is required.',
-                  required: true
-                }
-              ]
-            })(<ModalFormInput />)}
-          </ModalFormItem>
-          <ModalFormItem
-            label={<ModalFormLabel>Enter your Wallet Key</ModalFormLabel>}
-          >
-            {getFieldDecorator('key', {
-              rules: [
-                {
-                  message: 'key is required.',
-                  required: true
-                }
-              ]
-            })(<ModalFormInput />)}
-          </ModalFormItem>
+        <Form
+          onSubmit={this.handleSubmit}
+          layout="vertical"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+          }}
+        >
+          <WidthEighty>
+            <ModalFormItem
+              label={
+                <ModalFormLabel>
+                  Enter your {this.props.wallet.value} Wallet Address
+                </ModalFormLabel>
+              }
+            >
+              {getFieldDecorator('Address', {
+                rules: [
+                  {
+                    message: 'Address is required.',
+                    required: true
+                  }
+                ]
+              })(<ModalFormInput />)}
+            </ModalFormItem>
+            <ModalFormItem
+              label={<ModalFormLabel>Enter your Wallet Key</ModalFormLabel>}
+            >
+              {getFieldDecorator('key', {
+                rules: [
+                  {
+                    message: 'key is required.',
+                    required: true
+                  }
+                ]
+              })(<ModalFormInput />)}
+            </ModalFormItem>
+          </WidthEighty>
         </Form>
       </div>
     );
