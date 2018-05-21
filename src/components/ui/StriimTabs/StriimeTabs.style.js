@@ -22,7 +22,7 @@ export default styled(Tabs)`
 
   .ant-tabs-nav .ant-tabs-tab {
     margin: 0 0px 0 0 !important;
-    padding: 6px 20px !important;
+    padding: 4px 20px !important;
     color: ${({ theme }) => theme.palette.light};
     font-weight: bold;
     flex: 1;
@@ -68,10 +68,6 @@ export default styled(Tabs)`
 
   .ant-tabs-ink-bar {
     background-color: transparent;
-  }
-
-  .ant-tabs-content {
-    padding: 0px 26px;
   }
 `;
 export const TabPane = Tabs.TabPane;
