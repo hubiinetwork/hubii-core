@@ -1,3 +1,3 @@
-import StriimTabs, { TabPane } from './StriimeTabs.style';
+import StriimTabs, { TabPane } from './StriimTabs.style';
 export { TabPane };
 export default StriimTabs;
