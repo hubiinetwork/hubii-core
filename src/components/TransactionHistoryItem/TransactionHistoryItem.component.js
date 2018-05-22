@@ -2,13 +2,8 @@ import React from 'react';
 import {
   TransactionHistoryItemCard,
   TransactionHistoryItemDate,
-  TransactionHistoryTime,
-  TransactionHistoryConversion,
   Wrapper,
-  Image,
-  SpaceAround,
-  Received,
-  Sent
+  Image
 } from './TransactionHistoryItem.style';
 import PropTypes from 'prop-types';
 import TransactionHistoryDetail from '../TransactionHistoryDetail';
@@ -40,23 +35,14 @@ export const TransactionHistoryItem = props => {
         <TransactionHistoryDetail
           type={type}
           address={type === 'received' ? props.data.from : props.data.to}
-          hashId={props.data.hashId}
+          txnId={props.data.txnId}
           amount={props.data.amount}
           usd={props.price}
           toCoin={props.data.toCoin}
           fromCoin={props.data.fromCoin}
           status={props.data.status}
+          time={props.data.time}
         />
-        <SpaceAround>
-          <TransactionHistoryTime>{props.data.time}</TransactionHistoryTime>
-          <TransactionHistoryConversion>
-            {type === 'sent' ? (
-              <Sent>-{props.data.amount}</Sent>
-            ) : (
-              <Received>+{props.data.amount}</Received>
-            )}
-          </TransactionHistoryConversion>
-        </SpaceAround>
       </TransactionHistoryItemCard>
     </Wrapper>
   );
@@ -73,7 +59,7 @@ TransactionHistoryItem.propTypes = {
     address: PropTypes.string,
     time: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
-    hashId: PropTypes.string,
+    txnId: PropTypes.string,
     to: PropTypes.string,
     from: PropTypes.string,
     toCoin: PropTypes.string,
@@ -82,7 +68,7 @@ TransactionHistoryItem.propTypes = {
     status: PropTypes.number
   }).isRequired,
   /**
-   * price of 1ETH in dollars.
+   * price of 1ETH or any other currency, in dollars.
    */
   price: PropTypes.number.isRequired
 };

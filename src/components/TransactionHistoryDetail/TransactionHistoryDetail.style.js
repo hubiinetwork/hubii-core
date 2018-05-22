@@ -21,6 +21,12 @@ export const Amount = styled.div`
   margin-left: 15px;
 `;
 
+export const Left = styled.div`
+  display: flex;
+  align-items: center;
+  flex: 1;
+`;
+
 export const TransactionHistoryAddress = styled.div`
   word-break: break-all;
   color: ${({ theme }) => theme.palette.info};
@@ -73,6 +79,7 @@ export const DetailCollapse = styled(Collapse)`
 
 export const DetailPanel = styled(Panel)`
   padding: 0px;
+  flex: 1;
 `;
 
 export const HashText = styled.div`

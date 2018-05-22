@@ -2,14 +2,22 @@ import React from 'react';
 import {
   TransactionHistoryType,
   TransactionHistoryAddress,
-  Wrapper as Wrapperr,
+  Wrapper,
   DetailCollapse,
   DetailPanel,
   HashText,
   TransactionHistoryAddressLink,
   TransactionHistoryItemCardIcon,
-  Amount
+  Amount,
+  Left
 } from './TransactionHistoryDetail.style';
+import {
+  SpaceAround,
+  TransactionHistoryTime,
+  TransactionHistoryConversion,
+  Sent,
+  Received
+} from '../TransactionHistoryItem/TransactionHistoryItem.style';
 import PropTypes from 'prop-types';
 
 /**
@@ -22,38 +30,50 @@ const TransactionHistoryDetail = props => {
         style={{ border: 0 }}
         showArrow={false}
         header={
-          <Wrapperr>
-            <TransactionHistoryItemCardIcon
-              type={
-                props.type === 'received'
-                  ? 'download'
-                  : props.type === 'sent'
-                    ? 'upload'
-                    : ' '
-              }
-            />
-            <TransactionHistoryType>
-              {props.type === 'received' ? (
-                'Recieved from'
-              ) : props.type === 'sent' ? (
-                'Sent to'
-              ) : (
-                <div style={{ display: 'flex' }}>
-                  Exchanged
-                  <TransactionHistoryAddress>
-                    {props.fromCoin}
-                  </TransactionHistoryAddress>
-                  to
-                  <TransactionHistoryAddress>
-                    {props.toCoin}
-                  </TransactionHistoryAddress>
-                </div>
-              )}
-            </TransactionHistoryType>
-            <TransactionHistoryAddress>
-              {props.address}
-            </TransactionHistoryAddress>
-          </Wrapperr>
+          <Wrapper>
+            <Left>
+              <TransactionHistoryItemCardIcon
+                type={
+                  props.type === 'received'
+                    ? 'download'
+                    : props.type === 'sent'
+                      ? 'upload'
+                      : ' '
+                }
+              />
+              <TransactionHistoryType>
+                {props.type === 'received' ? (
+                  'Recieved from'
+                ) : props.type === 'sent' ? (
+                  'Sent to'
+                ) : (
+                  <div style={{ display: 'flex' }}>
+                    Exchanged
+                    <TransactionHistoryAddress>
+                      {props.fromCoin}
+                    </TransactionHistoryAddress>
+                    to
+                    <TransactionHistoryAddress>
+                      {props.toCoin}
+                    </TransactionHistoryAddress>
+                  </div>
+                )}
+              </TransactionHistoryType>
+              <TransactionHistoryAddress>
+                {props.address}
+              </TransactionHistoryAddress>
+            </Left>
+            <SpaceAround>
+              <TransactionHistoryTime>{props.time}</TransactionHistoryTime>
+              <TransactionHistoryConversion>
+                {props.type === 'sent' ? (
+                  <Sent>-{props.amount}</Sent>
+                ) : (
+                  <Received>+{props.amount}</Received>
+                )}
+              </TransactionHistoryConversion>
+            </SpaceAround>
+          </Wrapper>
         }
         key="1"
       >
@@ -61,10 +81,10 @@ const TransactionHistoryDetail = props => {
           <div style={{ display: 'flex' }}>
             <HashText>Transaction Hash:</HashText>
             <TransactionHistoryAddressLink
-              href={'https://etherscan.io/tx/' + props.hashId}
+              href={'https://etherscan.io/tx/' + props.txnId}
               target="_blank"
             >
-              {props.hashId}
+              {props.txnId}
             </TransactionHistoryAddressLink>
           </div>
           <div style={{ display: 'flex' }}>
@@ -89,9 +109,9 @@ TransactionHistoryDetail.propTypes = {
    */
   amount: PropTypes.number.isRequired,
   /**
-   * hashID to see live transactionHistory.
+   * txnId to see live transactionHistory.
    */
-  hashId: PropTypes.string,
+  txnId: PropTypes.string,
   /**
    * type of transactionHistory.
    */
@@ -111,7 +131,11 @@ TransactionHistoryDetail.propTypes = {
   /**
    * status code of the transaction.
    */
-  status: PropTypes.number
+  status: PropTypes.number,
+  /**
+   * status code of the transaction.
+   */
+  time: PropTypes.string
 };
 
 export default TransactionHistoryDetail;

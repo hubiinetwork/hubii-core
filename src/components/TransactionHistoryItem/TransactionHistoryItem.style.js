@@ -29,7 +29,6 @@ export const Sent = styled.div`
 
 export const SpaceAround = styled.div`
   margin-right: 10px;
-  margin-top: 8px;
   display: flex;
   justify-content: space-around;
 `;
