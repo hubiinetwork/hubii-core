@@ -9,7 +9,7 @@ import { Tooltip } from 'antd';
  */
 
 const USBFlag = props => (
-  <Slanted>
+  <Slanted connected={props.connected}>
     <Tooltip
       placement="right"
       title={
@@ -21,7 +21,7 @@ const USBFlag = props => (
       }
     >
       <USB
-        type="usb"
+        type={props.connected ? 'check' : 'close'}
         style={{
           color: props.connected ? '#2f4d5c' : 'white'
         }}
@@ -31,7 +31,7 @@ const USBFlag = props => (
 );
 USBFlag.propTypes = {
   /**
-   * shows whetheer a wallet  is connected or not.
+   * shows whether a wallet is connected or not.
    */
   connected: PropTypes.bool.isRequired
 };

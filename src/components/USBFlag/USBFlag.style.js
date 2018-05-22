@@ -10,8 +10,12 @@ export const Slanted = styled.div`
     left: -55px;
     width: 0;
     height: 0;
-    border-top: 100px solid ${({ theme }) => theme.palette.info};
     border-right: 100px solid transparent;
+    border-top: 100px solid
+      ${props =>
+        props.connected
+          ? props.theme.palette.success
+          : props.theme.palette.danger};
   }
 `;
 

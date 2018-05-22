@@ -41,6 +41,10 @@ const greenLight = 'rgba(173, 255, 47, 0.5)';
 
 const orange = 'orange';
 
+// ****** red ****** //
+
+const red = 'tomato';
+
 // ****** shadows ****** //
 
 const shadowLight = '0 2px 5px 0 rgba(0, 0, 0, 0.15)';
@@ -81,6 +85,7 @@ export default {
 
     success: green,
     success1: greenLight,
-    warning: orange
+    warning: orange,
+    danger: red
   }
 };
