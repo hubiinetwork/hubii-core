@@ -55,6 +55,7 @@ TransactionHistoryItem.propTypes = {
     date: PropTypes.string.isRequired,
     /**
      * Do not  pass address if you want to show exchange state of the component.
+     * 'address' prop is used to pass the address of the walletHolder where 'to' and 'from' props are used to check  whether the transaction was a receving or a sending one.
      */
     address: PropTypes.string,
     time: PropTypes.string.isRequired,
