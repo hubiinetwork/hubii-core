@@ -11,6 +11,7 @@ export const PaymentHistoryType = styled.div`
 export const TimePast = styled.div`
   color: ${({ theme }) => theme.palette.secondary4};
   font-weight: bolder;
+  margin-right: 10px;
 `;
 
 export const CollapseLeft = styled.div`
@@ -41,6 +42,10 @@ export const PaymentHistoryAddress = styled.div`
   margin-left: 3px;
   font-weight: bolder;
   margin-right: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 308px;
 `;
 
 export const Wrapper = styled.div`
@@ -48,7 +53,7 @@ export const Wrapper = styled.div`
   flex-direction: row;
   flex: 1;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 export const DetailCollapse = styled(Collapse)`
