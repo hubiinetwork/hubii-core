@@ -1,8 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Balance from '../Balance';
+import Amount from '../Amount';
+import { Heading } from './SwapCurrencies.style';
 
 const SwapCurrencies = props => {
-  return null;
+  return (
+    <div style={{ display: 'flex', borderBottom: '1px solid grey', flex: 1 }}>
+      <div style={{ borderRight: '1px solid grey', flex: 1 }}>
+        <Heading>Exchange</Heading>
+        <Balance title="Available Balance" coin="HBT" balance={12121} />
+        <Amount amount={450} dollarAmount={309.45} coin="HBT" />
+      </div>
+      <div
+        style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
+        }}
+      >
+        <div>
+          <Heading>Receive</Heading>
+          <Balance title="Available Balance" coin="HBT" balance={12121} />
+          <Amount amount={450} dollarAmount={309.45} coin="ETH" />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 SwapCurrencies.propTypes = {
@@ -43,3 +68,5 @@ SwapCurrencies.propTypes = {
    */
   oneExchangeInReceive: PropTypes.number
 };
+
+export default SwapCurrencies;
