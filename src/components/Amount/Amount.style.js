@@ -3,6 +3,7 @@ import { SectionHeading } from '../ui/SectionHeading';
 
 export const Wrapper = styled(SectionHeading)`
   margin-top: 1rem;
+  margin-bottom: 3rem;
 `;
 
 export const AlignCenter = styled.div`

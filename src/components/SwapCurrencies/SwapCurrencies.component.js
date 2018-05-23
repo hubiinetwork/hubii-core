@@ -2,30 +2,67 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Balance from '../Balance';
 import Amount from '../Amount';
-import { Heading } from './SwapCurrencies.style';
+import {
+  Wrapper,
+  Heading,
+  ConvertionWrapper,
+  Conversion,
+  Left,
+  Right,
+  Transfer,
+  Arrow,
+  RightArrow,
+  LeftArrow
+} from './SwapCurrencies.style';
 
 const SwapCurrencies = props => {
   return (
-    <div style={{ display: 'flex', borderBottom: '1px solid grey', flex: 1 }}>
-      <div style={{ borderRight: '1px solid grey', flex: 1 }}>
-        <Heading>Exchange</Heading>
-        <Balance title="Available Balance" coin="HBT" balance={12121} />
-        <Amount amount={450} dollarAmount={309.45} coin="HBT" />
-      </div>
-      <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
-        }}
-      >
-        <div>
-          <Heading>Receive</Heading>
-          <Balance title="Available Balance" coin="HBT" balance={12121} />
-          <Amount amount={450} dollarAmount={309.45} coin="ETH" />
-        </div>
-      </div>
+    <div style={{ position: 'relative' }}>
+      <Wrapper>
+        <Left>
+          <Heading>Exchange</Heading>
+          <Balance
+            coin={props.exchangeCoin}
+            balance={props.exchangeBalance}
+            showCoinName={props.exchangeCoin}
+          />
+          <Amount
+            amount={props.exchangeAmount}
+            dollarAmount={props.exchangeAmountInDollar}
+            coin={props.exchangeCoin}
+          />
+        </Left>
+        <Right>
+          <div>
+            <Heading>Receive</Heading>
+            <Balance
+              coin={props.receiveCoin}
+              balance={props.receiveBalance}
+              caret
+              showCoinName={props.receiveCoin}
+            />
+            <Amount
+              amount={props.receiveAmount}
+              dollarAmount={props.receiveAmountInDollar}
+              coin={props.receiveCoin}
+            />
+          </div>
+        </Right>
+      </Wrapper>
+      <ConvertionWrapper>
+        <Conversion>
+          1 {props.exchangeCoin} = {props.oneExchangeInReceive}{' '}
+          {props.receiveCoin}
+        </Conversion>
+        <Transfer>
+          <RightArrow>
+            <Arrow type="arrow-right" color />
+          </RightArrow>
+          <LeftArrow>
+            <Arrow type="arrow-left" />
+          </LeftArrow>
+        </Transfer>
+      </ConvertionWrapper>
     </div>
   );
 };

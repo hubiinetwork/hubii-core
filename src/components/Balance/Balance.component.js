@@ -6,7 +6,8 @@ import {
   Image,
   DetailWrapper,
   AlignCenter,
-  BalanceColor
+  BalanceColor,
+  Caret
 } from './Balance.style';
 
 const Balance = props => {
@@ -15,6 +16,7 @@ const Balance = props => {
       {props.coin && (
         <ImageWrapper>
           <Image src={`../../public/asset_images/${props.coin}.svg`} />
+          {props.caret && <Caret />}
         </ImageWrapper>
       )}
       <DetailWrapper>

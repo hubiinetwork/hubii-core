@@ -23,7 +23,7 @@ const Amount = props => {
 
 Amount.propTypes = {
   /**
-   * Name of the coin to be exchange.
+   * Name of the coin to be exchanged.
    */
   amount: PropTypes.nmber,
   /**
