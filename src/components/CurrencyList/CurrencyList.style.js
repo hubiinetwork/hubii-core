@@ -37,7 +37,7 @@ export const Header = styled.div`
 `;
 
 export const StyledSearch = styled(InputSearch)`
-  max-width: 30%;
+  max-width: 60%;
   i {
     color: ${({ theme }) => theme.palette.light};
   }

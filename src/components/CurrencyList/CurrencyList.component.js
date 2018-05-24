@@ -77,7 +77,11 @@ export default class CurrencyList extends React.PureComponent {
 }
 
 CurrencyList.propTypes = {
-  coin: PropTypes.string.isRequired,
-  coinAmount: PropTypes.string.isRequired,
-  coinAmountUSD: PropTypes.string.isRequired
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      coin: PropTypes.string.isRequired,
+      coinAmount: PropTypes.string.isRequired,
+      coinAmountUSD: PropTypes.string.isRequired
+    })
+  )
 };
