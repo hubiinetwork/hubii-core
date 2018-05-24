@@ -28,6 +28,7 @@ const SwapCurrencies = props => {
             coin={props.exchangeCoin}
             balance={props.exchangeBalance.toString()}
             showCoinName={props.exchangeCoin}
+            info
           />
           <Amount
             amount={props.exchangeAmount}
@@ -43,6 +44,7 @@ const SwapCurrencies = props => {
               balance={props.receiveBalance.toString()}
               caret
               showCoinName={props.receiveCoin}
+              info
             />
             <Amount
               amount={props.receiveAmount}

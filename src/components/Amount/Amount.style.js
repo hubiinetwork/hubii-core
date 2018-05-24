@@ -14,7 +14,6 @@ export const AlignCenter = styled.div`
 export const AmountWrapper = styled.div`
   color: ${({ theme }) => theme.palette.light};
   margin-right: 16px;
-  font-weight: bold;
   font-size: 18px;
 `;
 

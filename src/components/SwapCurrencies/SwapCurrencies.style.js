@@ -15,7 +15,7 @@ export const Arrow = styled(Icon)`
 export const ConvertionWrapper = styled.div`
   display: flex;
   flex: 1;
-  margin-top: -21px;
+  margin-top: -13px;
   justify-content: center;
 `;
 
@@ -52,10 +52,10 @@ export const Transfer = styled.div`
   border: 1px solid ${({ theme }) => theme.palette.secondary1};
   border-radius: 50px;
   top: 80px;
-  width: 50px;
+  width: 48px;
   display: flex;
   flex-direction: column;
-  height: 50px;
+  height: 48px;
   justify-content: center;
   position: absolute;
   background-color: ${({ theme }) => theme.palette.primary1};
@@ -66,12 +66,13 @@ export const Transfer = styled.div`
 export const Conversion = styled.div`
   border: 1px solid ${({ theme }) => theme.palette.secondary1};
   border-radius: 30px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   background-color: ${({ theme }) => theme.palette.primary1};
-  min-width: 250px;
+  min-width: 220px;
   color: ${({ theme }) => theme.palette.secondary1};
   text-align: center;
+  font-size: 11px;
 `;
 
 export const Submit = styled.div`
