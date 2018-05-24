@@ -7,8 +7,8 @@ export const Heading = styled(SectionHeading)`
   margin-bottom: 2rem;
 `;
 export const Arrow = styled(Icon)`
-  color: ${({ theme, color }) =>
-    color ? theme.palette.info : theme.palette.secondary1};
+  color: ${({ theme, info }) =>
+    info === 'true' ? theme.palette.info : theme.palette.secondary1};
   font-size: 25px;
 `;
 

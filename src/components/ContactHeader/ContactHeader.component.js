@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { InputSearch } from "../ui/Input";
-import { StyledDiv, Wrapper } from "./ContactHeader.style";
+import { InputSearch } from '../ui/Input';
+import { StyledDiv, Wrapper } from './ContactHeader.style';
 
 /*** The props of ContactHeader Component
  * @param {string} [props.title="All Contacts"] title of the ContactHeader component to shown at top the list.
@@ -10,7 +10,7 @@ import { StyledDiv, Wrapper } from "./ContactHeader.style";
  */
 
 export default class ContactHeader extends React.PureComponent {
-   render() {
+  render() {
     const { title, placeholder, showSearch } = this.props;
     return (
       <StyledDiv>
@@ -26,25 +26,22 @@ export default class ContactHeader extends React.PureComponent {
 }
 
 ContactHeader.defaultProps = {
-  title: "All Contacts",
-  placeholder: "Filter",
+  title: 'All Contacts',
+  placeholder: 'Filter',
   showSearch: false
 };
 
 ContactHeader.propTypes = {
-
-    /**
+  /**
    * title of the ContactHeader.
    */
   title: PropTypes.string,
-    /**
+  /**
    * placeHolder of the search.
    */
   placeholder: PropTypes.string,
-    /**
+  /**
    * show of the search Bar or not.
    */
-  showSearch: PropTypes.boolean,
-
-
+  showSearch: PropTypes.bool
 };

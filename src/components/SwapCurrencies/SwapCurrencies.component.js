@@ -26,7 +26,7 @@ const SwapCurrencies = props => {
           <Heading>Exchange</Heading>
           <Balance
             coin={props.exchangeCoin}
-            balance={props.exchangeBalance}
+            balance={props.exchangeBalance.toString()}
             showCoinName={props.exchangeCoin}
           />
           <Amount
@@ -40,7 +40,7 @@ const SwapCurrencies = props => {
             <Heading>Receive</Heading>
             <Balance
               coin={props.receiveCoin}
-              balance={props.receiveBalance}
+              balance={props.receiveBalance.toString()}
               caret
               showCoinName={props.receiveCoin}
             />
@@ -59,7 +59,7 @@ const SwapCurrencies = props => {
         </Conversion>
         <Transfer>
           <RightArrow>
-            <Arrow type="arrow-right" color />
+            <Arrow type="arrow-right" info="true" />
           </RightArrow>
           <LeftArrow>
             <Arrow type="arrow-left" />

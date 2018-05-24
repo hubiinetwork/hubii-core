@@ -25,7 +25,7 @@ Amount.propTypes = {
   /**
    * Name of the coin to be exchanged.
    */
-  amount: PropTypes.nmber,
+  amount: PropTypes.number,
   /**
    * Name of the receiving coin.
    */
