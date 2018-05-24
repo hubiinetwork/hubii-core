@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Icon } from 'antd';
+import Button from '../ui/Button';
 
 export const Heading = styled(SectionHeading)`
   margin-bottom: 2rem;
@@ -57,8 +58,9 @@ export const Transfer = styled.div`
   height: 50px;
   justify-content: center;
   position: absolute;
-  background-color: #26404d;
+  background-color: ${({ theme }) => theme.palette.primary1};
   padding: 4px;
+  margin-bottom: 5rem;
 `;
 
 export const Conversion = styled.div`
@@ -70,4 +72,16 @@ export const Conversion = styled.div`
   min-width: 250px;
   color: ${({ theme }) => theme.palette.secondary1};
   text-align: center;
+`;
+
+export const Submit = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6rem;
+`;
+
+export const Exchange = styled(Button)`
+  min-width: 250px;
+  margin-bottom: 3rem;
 `;

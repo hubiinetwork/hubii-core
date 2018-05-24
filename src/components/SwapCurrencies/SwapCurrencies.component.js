@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Balance from '../Balance';
 import Amount from '../Amount';
+import TermsAndConditions from '../TermsAndConditions';
 import {
   Wrapper,
   Heading,
@@ -12,7 +13,9 @@ import {
   Transfer,
   Arrow,
   RightArrow,
-  LeftArrow
+  LeftArrow,
+  Submit,
+  Exchange
 } from './SwapCurrencies.style';
 
 const SwapCurrencies = props => {
@@ -63,6 +66,10 @@ const SwapCurrencies = props => {
           </LeftArrow>
         </Transfer>
       </ConvertionWrapper>
+      <Submit>
+        <Exchange type="primary">Exchange</Exchange>
+        <TermsAndConditions />
+      </Submit>
     </div>
   );
 };
