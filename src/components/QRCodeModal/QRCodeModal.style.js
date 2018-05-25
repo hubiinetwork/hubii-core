@@ -19,3 +19,6 @@ export const Wrapper = styled.div`
   max-width: 15rem;
   text-align: center;
 `;
+export const Logo = styled.img`
+  margin-top: -10px;
+`;

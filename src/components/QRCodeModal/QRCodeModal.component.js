@@ -1,11 +1,12 @@
 import React from 'react';
 import QRCode from 'qrcode.react';
-import { Text, StyledQRCode, Wrapper } from './QRCodeModal.style';
+import { Text, StyledQRCode, Wrapper, Logo } from './QRCodeModal.style';
 
 const QRCodeModal = () => (
   <div>
     <Text>
-      Connect with <img src="public/Images/hubii-film-logo.png" />
+      Connect with{' '}
+      <Logo alt="hubii film logo" src="public/Images/hubii_film_logo.png" />
     </Text>
     <Wrapper>
       <StyledQRCode value="Striim Account 2" />
