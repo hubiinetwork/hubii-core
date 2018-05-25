@@ -83,6 +83,6 @@ export const Submit = styled.div`
 `;
 
 export const Exchange = styled(Button)`
-  min-width: 250px;
+  min-width: 300px;
   margin-bottom: 3rem;
 `;
