@@ -102,9 +102,8 @@ export const Buttons = styled.div`
   align-items: center;
 `;
 export const BalanceDiv = styled.div`
-  margin-top: 30px;
-  margin-left: 110px;
-  margin-bottom: 20px;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
 `;
 export const CancelButton = styled(Button)`
   background-color: transparent;
