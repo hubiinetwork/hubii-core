@@ -25,6 +25,6 @@ const options = [
   }
 ];
 <div style={{ backgroundColor: '#2f4d5c', padding: 25 }}>
-  <AccountInfoDropdown options={options} />
+  <AccountInfo options={options} />
 </div>;
 ```

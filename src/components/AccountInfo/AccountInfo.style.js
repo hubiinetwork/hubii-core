@@ -27,7 +27,7 @@ export const StyledIcon = styled(Icon)`
 export const StyledSelect = styled(Select)`
   .ant-select-selection {
     background-color: ${({ theme }) => theme.palette.primary4};
-    height: 45px;
+    height: 50px;
     border-color: ${({ theme }) => theme.palette.secondary4};
   }
   .ant-select-arrow {
