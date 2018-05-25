@@ -14,7 +14,9 @@ import {
   StyledLabel,
   StyledInput,
   StyledButton,
-  ButtonWrapper
+  ButtonWrapper,
+  Conversion,
+  ConversionWrapper
 } from './PaymentForm.style';
 const Item = Form.Item;
 
@@ -68,6 +70,11 @@ class PaymentForm extends React.Component {
               </Select>
             </Item>
           </ItemDiv>
+
+          <ConversionWrapper>
+            <Conversion>Transaction Fee 0.0012ETH</Conversion>
+          </ConversionWrapper>
+
           <ButtonWrapper>
             <StyledButton type="primary" htmlType="submit">
               Topup

@@ -19,6 +19,26 @@ export const Wrapper = styled.div`
     margin-bottom: 0px;
   }
 `;
+
+export const ConversionWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  margin-top: -13px;
+  justify-content: center;
+`;
+
+export const Conversion = styled.div`
+  border: 1px solid ${({ theme }) => theme.palette.secondary1};
+  border-radius: 30px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: ${({ theme }) => theme.palette.primary1};
+  min-width: 220px;
+  color: ${({ theme }) => theme.palette.secondary1};
+  text-align: center;
+  font-size: 11px;
+`;
+
 export const StyledButton = styled(Button)`
   color: ${({ theme }) => theme.palette.light};
   margin-top: 30px;
