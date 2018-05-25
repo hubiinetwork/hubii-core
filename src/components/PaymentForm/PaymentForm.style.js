@@ -23,8 +23,10 @@ export const Wrapper = styled.div`
 export const ConversionWrapper = styled.div`
   display: flex;
   flex: 1;
-  margin-top: -13px;
   justify-content: center;
+  border-bottom: 1px solid ${({ theme }) => theme.palette.secondary1};
+  margin-bottom: 3rem;
+  margin-top: 1rem;
 `;
 
 export const Conversion = styled.div`
@@ -32,11 +34,12 @@ export const Conversion = styled.div`
   border-radius: 30px;
   padding-top: 4px;
   padding-bottom: 4px;
-  background-color: ${({ theme }) => theme.palette.primary1};
+  background-color: ${({ theme }) => theme.palette.primary4};
   min-width: 220px;
   color: ${({ theme }) => theme.palette.secondary1};
   text-align: center;
   font-size: 11px;
+  margin-bottom: -12px;
 `;
 
 export const StyledButton = styled(Button)`
@@ -47,17 +50,13 @@ export const StyledButton = styled(Button)`
 `;
 export const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 export const HeadingDiv = styled.div`
   color: ${({ theme }) => theme.palette.light};
   display: flex;
   font-size: 20px;
-  justify-content: center;
-`;
-export const TermDiv = styled.div`
-  color: ${({ theme }) => theme.palette.secondary1};
-  display: flex;
   justify-content: center;
 `;
 export const StyledLabel = styled(ModalFormLabel)`
@@ -97,18 +96,18 @@ export const StyledSpan = styled.span`
 export const ItemDiv = styled.div`
   margin-bottom: 40px;
 `;
-export const StyledA = styled.a`
-  color: ${({ theme }) => theme.palette.light};
-  padding-left: 5px;
-  text-decoration: underline;
-  &:hover {
-    color: ${({ theme }) => theme.palette.light};
-    padding-left: 5px;
-    text-decoration: underline;
-  }
+export const Buttons = styled.div`
+  display: flex;
+  align-items: center;
 `;
 export const BalanceDiv = styled.div`
   margin-top: 30px;
   margin-left: 110px;
   margin-bottom: 20px;
+`;
+export const CancelButton = styled(Button)`
+  background-color: transparent;
+  color: ${({ theme }) => theme.palette.light};
+  min-width: 130px;
+  margin-right: 16px;
 `;

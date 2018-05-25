@@ -2,12 +2,11 @@ import * as React from 'react';
 import { Form } from 'antd';
 import PropTypes from 'prop-types';
 import Balance from '../Balance';
+import TermsAndConditions from '../TermsAndConditions';
 import Select, { Option } from '../ui/Select';
 import {
   Wrapper,
-  TermDiv,
   ItemDiv,
-  StyledA,
   StyledSpan,
   HeadingDiv,
   BalanceDiv,
@@ -16,7 +15,9 @@ import {
   StyledButton,
   ButtonWrapper,
   Conversion,
-  ConversionWrapper
+  ConversionWrapper,
+  Buttons,
+  CancelButton
 } from './PaymentForm.style';
 const Item = Form.Item;
 
@@ -76,17 +77,15 @@ class PaymentForm extends React.Component {
           </ConversionWrapper>
 
           <ButtonWrapper>
-            <StyledButton type="primary" htmlType="submit">
-              Topup
-            </StyledButton>
+            <Buttons>
+              <CancelButton htmlType="submit">Cancel</CancelButton>
+              <StyledButton type="primary" htmlType="submit">
+                Send
+              </StyledButton>
+            </Buttons>
+            <TermsAndConditions />
           </ButtonWrapper>
         </Form>
-        <TermDiv>
-          By depositing, withdrawing and making payments you agree to Hubii
-        </TermDiv>
-        <TermDiv>
-          Core´s <StyledA href="/"> terms and conditions </StyledA>
-        </TermDiv>
       </Wrapper>
     );
   }
