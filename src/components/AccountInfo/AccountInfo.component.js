@@ -15,27 +15,56 @@ const AccountInfoItem = ({ accountName, amount, handleIconClick }) => (
     <div>
       <TextPrimary className="white">{accountName}</TextPrimary>
       <Text>{`$${amount}`} </Text>
+      <StyledIcon type="qrcode" className="hide" />
     </div>
-    <StyledIcon type="qrcode" onClick={handleIconClick} />
   </Wrapper>
 );
 
 /**
  * This component give option to select different striim accounts
  */
-const AccountInfo = ({ options }) => (
-  <StyledSelect defaultValue={options[0].accountName} style={{ width: '100%' }}>
-    {options.map(option => (
-      <Option value={option.accountName}>
-        <AccountInfoItem
-          accountName={option.accountName}
-          amount={option.amount.toLocaleString('en')}
-          handleIconClick={option.handleIconClick}
+class AccountInfo extends React.Component {
+  state = {
+    activeSelect: 0
+  };
+  onChange = value => {
+    const activeSelect = this.props.options.findIndex(
+      (option, i) => `${option.accountName}-${i}` === value
+    );
+    this.setState({ activeSelect });
+  };
+  render() {
+    const { options } = this.props;
+    const { activeSelect } = this.state;
+
+    return (
+      <div style={{ position: 'relative' }}>
+        <StyledIcon
+          type="qrcode"
+          onClick={options[activeSelect].handleIconClick}
         />
-      </Option>
-    ))}
-  </StyledSelect>
-);
+        <StyledSelect
+          defaultValue={`${options[0].accountName}-${0}`}
+          style={{ width: '100%' }}
+          onChange={this.onChange}
+        >
+          {options.map((option, i) => (
+            <Option
+              value={`${option.accountName}-${i}`}
+              key={`${option.accountName}-${i}`}
+            >
+              <AccountInfoItem
+                accountName={option.accountName}
+                amount={option.amount.toLocaleString('en')}
+                handleIconClick={option.handleIconClick}
+              />
+            </Option>
+          ))}
+        </StyledSelect>
+      </div>
+    );
+  }
+}
 export default AccountInfo;
 
 AccountInfo.propTypes = {

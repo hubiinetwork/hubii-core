@@ -22,6 +22,10 @@ export const Wrapper = styled.div`
 export const StyledIcon = styled(Icon)`
   font-size: 1.2rem;
   color: ${({ theme }) => theme.palette.secondary4};
+  position: absolute;
+  top: 16px;
+  right: 30px;
+  z-index: 2;
 `;
 
 export const StyledSelect = styled(Select)`
@@ -41,5 +45,8 @@ export const StyledSelect = styled(Select)`
   }
   .white {
     color: ${({ theme }) => theme.palette.light};
+  }
+  .hide {
+    display: none;
   }
 `;
