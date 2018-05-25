@@ -1,1 +1,2 @@
-export { default } from './PaymentForm.component';
+import TopupForm from './TopupForm.component';
+export default TopupForm;
