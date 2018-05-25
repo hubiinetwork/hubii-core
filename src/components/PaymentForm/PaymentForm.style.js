@@ -8,8 +8,6 @@ export const Wrapper = styled.div`
   }
   .ant-form-vertical {
     display: flex;
-    max-width: 67%;
-    margin-left: 113px;
     flex-direction: column;
   }
   .ant-form-vertical .ant-form-item {
@@ -68,7 +66,7 @@ export const StyledInput = styled(ModalFormInput)`
   border: none;
   border-radius: unset;
   font-size: 22px;
-  width: 90% !important;
+  margin-bottom: 0px;
   padding: 0px !important;
   border-bottom: 1px solid ${({ theme }) => theme.palette.secondary1};
   &:hover {
@@ -92,9 +90,12 @@ export const StyledSpan = styled.span`
   color: ${({ theme }) => theme.palette.secondary1};
   padding-bottom: 5px;
   border-bottom: 1px solid ${({ theme }) => theme.palette.secondary1};
+  display: flex;
+  align-items: flex-end;
 `;
 export const ItemDiv = styled.div`
   margin-bottom: 40px;
+  display: flex;
 `;
 export const Buttons = styled.div`
   display: flex;

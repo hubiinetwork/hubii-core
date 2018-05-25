@@ -36,14 +36,14 @@ class PaymentForm extends React.Component {
           <Balance
             title="Balance"
             info
-            balance="1,234.09"
-            coin="HBT"
-            showCoinName="HBT"
+            balance={this.props.balance}
+            coin={this.props.currency}
+            showCoinName={this.props.currency}
           />
         </BalanceDiv>
         <Form onSubmit={this.handleSubmit} layout="vertical">
           <ItemDiv>
-            <Item label={<StyledLabel>Amount</StyledLabel>}>
+            <Item label={<StyledLabel>Amount</StyledLabel>} style={{ flex: 1 }}>
               {getFieldDecorator('Amount', {
                 initialValue: `${450}`,
                 rules: [
@@ -53,11 +53,14 @@ class PaymentForm extends React.Component {
                   }
                 ]
               })(<StyledInput />)}
-              <StyledSpan>{'$300.59'}</StyledSpan>
             </Item>
+            <StyledSpan>{'$300.59'}</StyledSpan>
           </ItemDiv>
           <ItemDiv>
-            <Item label={<StyledLabel>Recipient</StyledLabel>}>
+            <Item
+              label={<StyledLabel>Recipient</StyledLabel>}
+              style={{ flex: 1 }}
+            >
               <Select defaultValue="address1">
                 <Option value="address1">
                   0x86ecabe4d265a11c06d3af979fedbc3a5b48b7c9b96d44af5b504d2bd2480687
