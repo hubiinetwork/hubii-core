@@ -16,11 +16,11 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-top: 0.2rem;
-  padding-right: 0.8rem;
+  padding-right: 1rem;
 `;
 
 export const StyledIcon = styled(Icon)`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: ${({ theme }) => theme.palette.secondary4};
 `;
 
