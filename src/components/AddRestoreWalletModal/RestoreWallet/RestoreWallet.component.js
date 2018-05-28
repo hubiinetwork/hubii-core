@@ -61,13 +61,13 @@ class RestoreWallet extends React.PureComponent {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <div>
+      <div style={{ marginTop: 67 }}>
         <Row justify="center" type="flex">
           <Col span={18}>
             <Form onSubmit={this.handleSubmit}>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>Wallet Name</ModalFormLabel>}
+                label={<ModalFormLabel>Give your wallet a Name</ModalFormLabel>}
               >
                 {getFieldDecorator('name', {
                   rules: [
@@ -80,48 +80,7 @@ class RestoreWallet extends React.PureComponent {
               </ModalFormItem>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>Password</ModalFormLabel>}
-              >
-                {getFieldDecorator('password', {
-                  rules: [
-                    {
-                      required: true,
-                      message: 'Please enter your password.'
-                    },
-                    {
-                      min: 6,
-                      message: 'The required minimum is 6 characters.'
-                    },
-                    {
-                      validator: this.validateToNextPassword
-                    }
-                  ]
-                })(<ModalFormInput type="password" />)}
-              </ModalFormItem>
-              <ModalFormItem
-                colon={false}
-                label={<ModalFormLabel>Repeat Password</ModalFormLabel>}
-              >
-                {getFieldDecorator('confirm', {
-                  rules: [
-                    {
-                      required: true,
-                      message: 'Please repeat your password.'
-                    },
-                    {
-                      validator: this.compareToFirstPassword
-                    }
-                  ]
-                })(
-                  <ModalFormInput
-                    type="password"
-                    onBlur={this.handleConfirmBlur}
-                  />
-                )}
-              </ModalFormItem>
-              <ModalFormItem
-                colon={false}
-                label={<ModalFormLabel>Seed Words</ModalFormLabel>}
+                label={<ModalFormLabel>Enter the seed words</ModalFormLabel>}
               >
                 {getFieldDecorator('mnemonic', {
                   rules: [

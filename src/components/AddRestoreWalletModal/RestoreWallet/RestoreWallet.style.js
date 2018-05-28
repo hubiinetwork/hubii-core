@@ -36,7 +36,7 @@ export const RoundButton = styled(Button)`
 export const RestoreButton = styled(Button)`
   min-width: 240px;
   border-width: 2px;
-  margin-top: 2rem;
+  margin-top: 3.5rem;
 `;
 
 export const IconWrapper = styled.div`
