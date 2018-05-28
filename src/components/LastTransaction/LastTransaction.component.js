@@ -8,7 +8,9 @@ import {
   StyledRow,
   FlexWrapper,
   StyledButton,
-  SpaceBetween
+  SpaceBetween,
+  TextGrey,
+  TransactionInfo
 } from './LastTransaction.style';
 
 /**
@@ -20,33 +22,35 @@ const LastTransaction = props => {
       <StyledRow>
         <TextSecondary>Last Transfer was</TextSecondary>
       </StyledRow>
-      <StyledRow>
-        <FlexWrapper>
-          <Image src={`/public/asset_images/${props.coin}.svg`} alt="icon" />
-          <Text>{props.coinAmount}</Text>
-          {'  '}
-          <TextPrimary>{props.coin}</TextPrimary>
-          <TextSecondary>{`$${props.coinAmountUSD}`}</TextSecondary>
-        </FlexWrapper>
-      </StyledRow>
-      <StyledRow>
-        <TextPrimary>Transfered to: </TextPrimary>
-        <Text>{props.name}</Text>
-        <TextSecondary>{props.address}</TextSecondary>
-      </StyledRow>
-      <StyledRow>
-        <TextPrimary>Date:</TextPrimary>
-        <Text>{props.date}</Text>
-      </StyledRow>
-      <StyledRow>
-        <TextPrimary>Time:</TextPrimary>
-        <FlexWrapper>
-          <Text>{props.time}</Text>
-          <SpaceBetween>
-            <TextSecondary>{`GMT ${props.gmt}`}</TextSecondary>
-          </SpaceBetween>
-        </FlexWrapper>
-      </StyledRow>
+      <TransactionInfo>
+        <StyledRow>
+          <FlexWrapper>
+            <Image src={`/public/asset_images/${props.coin}.svg`} alt="icon" />
+            <Text>{props.coinAmount}</Text>
+            {'  '}
+            <TextPrimary>{props.coin}</TextPrimary>
+            <TextGrey>{`$${props.coinAmountUSD}`}</TextGrey>
+          </FlexWrapper>
+        </StyledRow>
+        <StyledRow>
+          <TextPrimary>Transfered to: </TextPrimary>
+          <Text>{props.name}</Text>
+          <TextGrey>{props.address}</TextGrey>
+        </StyledRow>
+        <StyledRow>
+          <TextPrimary>Date:</TextPrimary>
+          <Text>{props.date}</Text>
+        </StyledRow>
+        <StyledRow>
+          <TextPrimary>Time:</TextPrimary>
+          <FlexWrapper>
+            <Text>{props.time}</Text>
+            <SpaceBetween>
+              <TextGrey>{`GMT ${props.gmt}`}</TextGrey>
+            </SpaceBetween>
+          </FlexWrapper>
+        </StyledRow>
+      </TransactionInfo>
       <StyledButton type="primary" onClick={props.handleNewTransfer}>
         Make a new Transfer
       </StyledButton>
