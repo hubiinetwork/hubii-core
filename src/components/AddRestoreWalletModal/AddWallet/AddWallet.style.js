@@ -103,5 +103,5 @@ export const SeedText = styled.span`
   color: ${({ theme }) => theme.palette.info};
   font-size: 16px;
   line-height: 1.2;
-  flex: 0.5;
+  flex: 0.869;
 `;
