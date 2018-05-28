@@ -10,7 +10,10 @@ import {
   IconWrapper,
   DisabledButton,
   TextWhite,
-  RightTopButton
+  RightTopButton,
+  DescriptionWrapper,
+  TextGrey,
+  Info
 } from './AddRestoreWalletModal.style';
 import { AddWallet } from './AddWallet';
 import { RestoreWallet } from './RestoreWallet';
@@ -35,27 +38,39 @@ export default class AddRestoreWalletModal extends React.PureComponent {
               <Description>Please select what you want to do</Description>
             </TitleDiv>
 
+            <DisabledButton type="primary">
+              <Wrapper>
+                <Icon type="download" />
+                <TextWhite>Import Wallet</TextWhite>
+              </Wrapper>
+            </DisabledButton>
+
             <ButtonDiv onClick={() => this.switchModals('add')} type="primary">
               <Wrapper>
                 <Icon type="plus" />
-                <TextWhite>Add Wallet</TextWhite>
+                <TextWhite>Create New Wallet</TextWhite>
               </Wrapper>
             </ButtonDiv>
+
             <ButtonDiv
               onClick={() => this.switchModals('restore')}
               type="primary"
             >
               <Wrapper>
                 <Icon type="sync" />
-                Restore Wallet
+                <TextWhite>Restore Wallet</TextWhite>
               </Wrapper>
             </ButtonDiv>
-            <DisabledButton type="primary">
-              <Wrapper>
-                <Icon type="download" />
-                Import Wallet
-              </Wrapper>
-            </DisabledButton>
+
+            <DescriptionWrapper>
+              <div style={{ display: 'flex', width: '47%' }}>
+                <Info type="info-circle-o" />
+                <TextGrey>
+                  Description of what each option do, lorem ipsum dolor sit amet
+                  lorem ipsum dolor sit amet.
+                </TextGrey>
+              </div>
+            </DescriptionWrapper>
           </div>
         )}
         {type === 'add' && (
