@@ -14,7 +14,7 @@ const AccountInfoItem = ({ accountName, amount, handleIconClick }) => (
   <Wrapper>
     <div>
       <TextPrimary className="white">{accountName}</TextPrimary>
-      <Text>{`$${amount}`} </Text>
+      <Text>{`$ ${amount}`} </Text>
       <StyledIcon type="qrcode" className="hide" />
     </div>
   </Wrapper>

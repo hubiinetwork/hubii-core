@@ -14,6 +14,7 @@ const teal50 = 'rgba(47,77,92,.5)';
 // ****** seaGreen ****** //
 
 const seaGreen = '#3df5cd';
+const seaGreenDark = '#50E3C2';
 const seaGreenLight = 'rgba(80,227,194,.05)';
 const seaGreen50 = 'rgba(80,227,194,.5)';
 
@@ -82,6 +83,7 @@ export default {
     info: seaGreen,
     info1: seaGreenLight,
     info2: seaGreen50,
+    info3: seaGreenDark,
 
     success: green,
     success1: greenLight,

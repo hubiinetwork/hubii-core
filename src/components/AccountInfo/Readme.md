@@ -3,8 +3,8 @@ Examples:
 ```js
 const options = [
   {
-    accountName: 'Striim account 1',
-    amount: 60923.4,
+    accountName: 'Striim Account 1',
+    amount: 6090.03,
     handleIconClick: () => {
       console.log('icon1 clicked');
     }
@@ -24,7 +24,7 @@ const options = [
     }
   }
 ];
-<div style={{ backgroundColor: '#2f4d5c', padding: 25 }}>
+<div style={{ backgroundColor: '#26404D', padding: 25 }}>
   <AccountInfo options={options} />
 </div>;
 ```
