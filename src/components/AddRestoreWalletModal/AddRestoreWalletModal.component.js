@@ -75,32 +75,48 @@ export default class AddRestoreWalletModal extends React.PureComponent {
         )}
         {type === 'add' && (
           <div>
-            <IconWrapper>
-              <Arrow
-                type="arrow-left"
-                onClick={() => this.switchModals('main')}
-              />New Hubii Wallet
-            </IconWrapper>
-            <RightTopButton
-              onClick={() => this.switchModals('import')}
-              type="primary"
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}
             >
-              <Wrapper>
-                <Icon type="download" />
-                Import Wallet
-              </Wrapper>
-            </RightTopButton>
+              <IconWrapper>
+                <Arrow
+                  type="arrow-left"
+                  onClick={() => this.switchModals('main')}
+                />New Hubii Wallet
+              </IconWrapper>
+              <RightTopButton
+                onClick={() => this.switchModals('import')}
+                type="primary"
+              >
+                <Wrapper>
+                  <Icon type="download" />
+                  Import Wallet
+                </Wrapper>
+              </RightTopButton>
+            </div>
             <AddWallet handleClose={this.props.handleClose} />
           </div>
         )}
         {type === 'restore' && (
           <div>
-            <IconWrapper>
-              <Arrow
-                type="arrow-left"
-                onClick={() => this.switchModals('main')}
-              />Restore Wallet
-            </IconWrapper>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}
+            >
+              <IconWrapper>
+                <Arrow
+                  type="arrow-left"
+                  onClick={() => this.switchModals('main')}
+                />Restore Wallet
+              </IconWrapper>
+            </div>
             <RestoreWallet handleClose={this.props.handleClose} />
           </div>
         )}

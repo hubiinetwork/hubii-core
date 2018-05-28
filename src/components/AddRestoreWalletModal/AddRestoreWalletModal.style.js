@@ -99,12 +99,9 @@ export const ButtonDiv = styled(Button)`
   }
 `;
 
-export const RightTopButton = styled(ButtonDiv)`
-  margin-top: -25px;
-  margin-bottom: 0;
-  margin-left: 85%;
+export const RightTopButton = styled(Button)`
   min-width: 131px;
-  font-weight: 500;
+  border-color: ${({ theme }) => theme.palette.light};
 `;
 
 export const DisabledButton = styled(ButtonDiv)`
