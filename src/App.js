@@ -6,6 +6,7 @@ import 'antd/dist/antd.css';
 import SideBar from './components/SideBar';
 import Status from './components/Status';
 import Dashboard from './pages/indexPage';
+import Wallets from './pages/wallets';
 const menuItems = [
   {
     to: '/wallets',
@@ -27,6 +28,7 @@ class App extends Component {
             <Status statusValue="online" />
             <Switch>
               <Route exact path="/" component={Dashboard} />
+              <Route exact path="/wallets" component={Wallets} />
             </Switch>
           </SideBar>
         </div>
