@@ -5,6 +5,8 @@ import Amount from '../Amount';
 import TermsAndConditions from '../TermsAndConditions';
 import {
   Wrapper,
+  BalanceWrapper,
+  AmountWrapper,
   Heading,
   ConvertionWrapper,
   Conversion,
@@ -15,7 +17,7 @@ import {
   RightArrow,
   LeftArrow,
   Submit,
-  Exchange
+  Exchange,
 } from './SwapCurrencies.style';
 
 const SwapCurrencies = props => {
@@ -24,33 +26,41 @@ const SwapCurrencies = props => {
       <Wrapper>
         <Left>
           <Heading>Exchange</Heading>
-          <Balance
-            coin={props.exchangeCoin}
-            balance={props.exchangeBalance.toString()}
-            showCoinName={props.exchangeCoin}
-            info
-          />
-          <Amount
-            amount={props.exchangeAmount}
-            dollarAmount={props.exchangeAmountInDollar}
-            coin={props.exchangeCoin}
-          />
+          <BalanceWrapper>
+            <Balance
+              coin={props.exchangeCoin}
+              balance={props.exchangeBalance.toString()}
+              showCoinName={props.exchangeCoin}
+              info
+            />
+          </BalanceWrapper>
+          <AmountWrapper>
+            <Amount
+              amount={props.exchangeAmount}
+              dollarAmount={props.exchangeAmountInDollar}
+              coin={props.exchangeCoin}
+            />
+          </AmountWrapper>
         </Left>
         <Right>
           <div>
             <Heading>Receive</Heading>
-            <Balance
-              coin={props.receiveCoin}
-              balance={props.receiveBalance.toString()}
-              caret
-              showCoinName={props.receiveCoin}
-              info
-            />
-            <Amount
-              amount={props.receiveAmount}
-              dollarAmount={props.receiveAmountInDollar}
-              coin={props.receiveCoin}
-            />
+            <BalanceWrapper>
+              <Balance
+                coin={props.receiveCoin}
+                balance={props.receiveBalance.toString()}
+                caret
+                showCoinName={props.receiveCoin}
+                info
+              />
+            </BalanceWrapper>
+            <AmountWrapper>
+              <Amount
+                amount={props.receiveAmount}
+                dollarAmount={props.receiveAmountInDollar}
+                coin={props.receiveCoin}
+              />
+            </AmountWrapper>          
           </div>
         </Right>
       </Wrapper>

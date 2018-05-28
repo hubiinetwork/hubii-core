@@ -4,12 +4,14 @@ import { Icon } from 'antd';
 import Button from '../ui/Button';
 
 export const Heading = styled(SectionHeading)`
-  margin-bottom: 2rem;
+  margin-bottom: 42px;
 `;
 export const Arrow = styled(Icon)`
   color: ${({ theme, info }) =>
-    info === 'true' ? theme.palette.info : theme.palette.secondary1};
-  font-size: 25px;
+    info === 'true' ? theme.palette.info : theme.palette.secondary6};
+  font-size: 20px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 `;
 
 export const ConvertionWrapper = styled.div`
@@ -21,12 +23,20 @@ export const ConvertionWrapper = styled.div`
 
 export const Wrapper = styled.div`
   display: flex;
-  border-bottom: 1px solid ${({ theme }) => theme.palette.secondary1};
+  border-bottom: 1px solid ${({ theme }) => theme.palette.secondary5};
   flex: 1;
 `;
 
+export const BalanceWrapper = styled.div`
+  margin-bottom: 30px;
+`;
+
+export const AmountWrapper = styled.div`
+  margin-bottom: 50px;
+`;
+
 export const Left = styled.div`
-  border-right: 1px solid ${({ theme }) => theme.palette.secondary1};
+  border-right: 1px solid ${({ theme }) => theme.palette.secondary5};
   flex: 1;
 `;
 
@@ -49,13 +59,13 @@ export const Right = styled.div`
 `;
 
 export const Transfer = styled.div`
-  border: 1px solid ${({ theme }) => theme.palette.secondary1};
+  border: 1px solid ${({ theme }) => theme.palette.secondary5};
   border-radius: 50px;
   top: 80px;
-  width: 48px;
+  width: 44px;
   display: flex;
   flex-direction: column;
-  height: 48px;
+  height: 44px;
   justify-content: center;
   position: absolute;
   background-color: ${({ theme }) => theme.palette.primary1};
@@ -64,15 +74,15 @@ export const Transfer = styled.div`
 `;
 
 export const Conversion = styled.div`
-  border: 1px solid ${({ theme }) => theme.palette.secondary1};
+  border: 1px solid ${({ theme }) => theme.palette.secondary5};
   border-radius: 30px;
   padding-top: 4px;
   padding-bottom: 4px;
   background-color: ${({ theme }) => theme.palette.primary1};
   min-width: 220px;
-  color: ${({ theme }) => theme.palette.secondary1};
+  color: ${({ theme }) => theme.palette.secondary6};
   text-align: center;
-  font-size: 11px;
+  font-size: 12px;
 `;
 
 export const Submit = styled.div`
@@ -85,4 +95,5 @@ export const Submit = styled.div`
 export const Exchange = styled(Button)`
   min-width: 300px;
   margin-bottom: 3rem;
+  border-width: 2px;
 `;

@@ -4,19 +4,20 @@ import {
   AlignCenter,
   AmountWrapper,
   Coin,
-  Amount as AmountHeading,
+  Title,
+  DollarAmount,
   Wrapper
 } from './Amount.style';
 
 const Amount = props => {
   return (
     <Wrapper>
-      <AmountHeading>Amount</AmountHeading>
+      <Title>Amount</Title>
       <AlignCenter>
         <AmountWrapper>{props.amount}</AmountWrapper>
         <Coin>{props.coin}</Coin>
       </AlignCenter>
-      <AmountHeading>${props.dollarAmount}</AmountHeading>
+      <DollarAmount>${props.dollarAmount}</DollarAmount>
     </Wrapper>
   );
 };

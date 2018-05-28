@@ -5,12 +5,12 @@ A variant of SwapCurrencies component with title and balance:
   <SwapCurrencies
     exchangeCoin="HBT"
     receiveCoin="ETH"
-    exchangeBalance={1599.45}
-    receiveBalance={1230.01}
+    exchangeBalance={1599.54}
+    receiveBalance={1.5264}
     exchangeAmount={450}
-    receiveAmount={405}
+    receiveAmount={0.4564}
     exchangeAmountInDollar={300.59}
-    receiveAmountInDollar={298.03}
+    receiveAmountInDollar={298.456}
     oneExchangeInReceive={0.0001987231}
   />
 </div>
