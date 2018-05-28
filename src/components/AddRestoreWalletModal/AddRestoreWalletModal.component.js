@@ -94,7 +94,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
               >
                 <Wrapper>
                   <Icon type="download" />
-                  Import Wallet
+                  <TextWhite>Import Wallet</TextWhite>
                 </Wrapper>
               </RightTopButton>
             </div>

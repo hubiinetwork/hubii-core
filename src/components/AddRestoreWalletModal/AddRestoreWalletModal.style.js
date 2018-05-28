@@ -20,6 +20,12 @@ export const DescriptionWrapper = styled.div`
 
 export const TextWhite = styled.span`
   color: ${({ theme }) => theme.palette.light};
+  height: 14px;
+  width: 112.39px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  text-align: center;
 `;
 
 export const TextGrey = styled.span`
@@ -40,6 +46,10 @@ export const Arrow = styled(Icon)`
 `;
 
 export const IconWrapper = styled.div`
+  height: 19px;
+  font-weight: 500;
+  line-height: 19px;
+
   font-size: 16px;
   display: flex;
   margin-top: -7px;
