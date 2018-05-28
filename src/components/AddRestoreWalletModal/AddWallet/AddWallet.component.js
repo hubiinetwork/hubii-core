@@ -13,7 +13,9 @@ import {
   RoundButton,
   FinishButton,
   SeedWrapper,
-  CenterWrapper
+  CenterWrapper,
+  HBT,
+  HBTtext
 } from './AddWallet.style';
 import Notification from '../../Notification';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../../ui/Modal';
@@ -68,14 +70,15 @@ class AddWallet extends React.PureComponent {
     return (
       <div>
         <CenterWrapper>
-          <img src="public/Images/hubii-isologo.svg" alt="hubii logo" />
+          <HBT src="public/asset_images/HBT.svg" alt="hubii logo" />
+          <HBTtext>Hubii</HBTtext>
         </CenterWrapper>
         <Row justify="center" type="flex">
           <Col span={18}>
             <Form onSubmit={this.handleSubmit}>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>Wallet Name</ModalFormLabel>}
+                label={<ModalFormLabel>Give your wallet a Name</ModalFormLabel>}
               >
                 {getFieldDecorator('name', {
                   rules: [
@@ -88,7 +91,7 @@ class AddWallet extends React.PureComponent {
               </ModalFormItem>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>Password</ModalFormLabel>}
+                label={<ModalFormLabel>Set a Password</ModalFormLabel>}
               >
                 {getFieldDecorator('password', {
                   rules: [
@@ -108,7 +111,7 @@ class AddWallet extends React.PureComponent {
               </ModalFormItem>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>Confirm Password</ModalFormLabel>}
+                label={<ModalFormLabel>Repeat Password</ModalFormLabel>}
               >
                 {getFieldDecorator('confirm', {
                   rules: [
@@ -129,7 +132,7 @@ class AddWallet extends React.PureComponent {
               </ModalFormItem>
               <ModalFormItem colon={false}>
                 <SeedWrapper>
-                  <SeedInfo>Save these seed words somewhere safe</SeedInfo>
+                  <SeedInfo>Save these Seed Words somewhere safe</SeedInfo>
                   <Popover
                     overlayStyle={{ width: 270 }}
                     content={

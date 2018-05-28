@@ -87,7 +87,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
             >
               <Wrapper>
                 <Icon type="download" />
-                import Wallet
+                Import Wallet
               </Wrapper>
             </RightTopButton>
             <AddWallet handleClose={this.props.handleClose} />

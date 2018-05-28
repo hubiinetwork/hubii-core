@@ -13,9 +13,23 @@ export const WrapperDiv = styled.div`
   justify-content: space-between;
 `;
 
+export const HBT = styled.img`
+  width: 38.4px;
+  height: 38.4px;
+`;
+
+export const HBTtext = styled.div`
+  color: ${({ theme }) => theme.palette.light};
+  font-size: 22.8px;
+  font-style: italic;
+  font-weight: 900;
+  line-height: 27px;
+  margin-left: 8px;
+`;
+
 export const Info = styled(Icon)`
-  color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 20px;
+  color: ${({ theme }) => theme.palette.secondary4};
+  font-size: 13px;
   display: flex;
   align-items: center;
   &:hover {
@@ -31,24 +45,26 @@ export const Loading = styled(Icon)`
 
 export const RoundButton = styled(Button)`
   color: ${({ theme }) => theme.palette.secondary1};
-  background: ${({ theme }) => theme.palette.primary4};
+  background: ${({ theme }) => theme.palette.secondary4};
   border-color: ${({ theme }) => theme.palette.primary4};
+  width: 29px !important;
+  height: 29px !important;
   &:hover {
     color: ${({ theme }) => theme.palette.info} !important;
-    background: ${({ theme }) => theme.palette.primary4} !important;
-    border-color: ${({ theme }) => theme.palette.primary4} !important;
+    background: ${({ theme }) => theme.palette.secondary4} !important;
+    border-color: ${({ theme }) => theme.palette.secondary4} !important;
   }
   &:focus {
     color: ${({ theme }) => theme.palette.secondary1};
-    background: ${({ theme }) => theme.palette.primary4};
-    border-color: ${({ theme }) => theme.palette.primary4};
+    background: ${({ theme }) => theme.palette.secondary4};
+    border-color: ${({ theme }) => theme.palette.secondary4};
   }
 `;
 
 export const FinishButton = styled(Button)`
   min-width: 240px;
   border-width: 2px;
-  margin-top: 2rem;
+  margin-top: 3rem;
 `;
 
 export const Arrow = styled(Icon)`
@@ -68,6 +84,7 @@ export const CenterWrapper = styled.div`
   justify-content: center;
   margin-top: 10px;
   margin-bottom: 12px;
+  align-items: center;
 `;
 
 export const SeedWrapper = styled.div`
@@ -79,11 +96,12 @@ export const SeedWrapper = styled.div`
 export const SeedInfo = styled.span`
   color: ${({ theme }) => theme.palette.light};
   font-size: 12px;
+  font-weight: 500;
 `;
 
 export const SeedText = styled.span`
   color: ${({ theme }) => theme.palette.info};
   font-size: 16px;
   line-height: 1.2;
-  flex: 0.8;
+  flex: 0.5;
 `;

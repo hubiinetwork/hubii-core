@@ -40,6 +40,7 @@ export const Arrow = styled(Icon)`
 `;
 
 export const IconWrapper = styled.div`
+  font-size: 16px;
   display: flex;
   margin-top: -7px;
   color: ${({ theme }) => theme.palette.light};
@@ -102,7 +103,8 @@ export const RightTopButton = styled(ButtonDiv)`
   margin-top: -25px;
   margin-bottom: 0;
   margin-left: 85%;
-  min-width: auto;
+  min-width: 131px;
+  font-weight: 500;
 `;
 
 export const DisabledButton = styled(ButtonDiv)`
