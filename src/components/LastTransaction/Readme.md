@@ -1,7 +1,7 @@
 Example:
 
 ```js
-<div style={{ backgroundColor: '#2f4d5c', padding: 25 }}>
+<div style={{ backgroundColor: '#26404D', padding: 25 }}>
   <LastTransaction
     coin="ICX"
     coinAmount={181.68}
