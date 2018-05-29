@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const TransactionHistoryItemCard = styled.div`
   background-color: ${({ theme }) => theme.palette.primary4};
   padding: 5px;
+  align-items: center;
   border-radius: 26px;
   flex: 1;
   display: flex;
@@ -13,8 +14,9 @@ export const TransactionHistoryItemDate = styled.span`
   margin-right: 10px;
   max-width: 25px;
   text-align: center;
-  font-weight: 550;
-  font-size: 12px;
+  font-family: 'SF Text';
+  font-size: 15px;
+  font-weight: 600;
 `;
 
 export const Received = styled.div`
@@ -38,6 +40,7 @@ export const Image = styled.img`
   width: 32px;
   display: flex;
   margin-right: 9px;
+  align-self: flex-start;
 `;
 
 export const TransactionHistoryTime = styled.span`

@@ -5,7 +5,6 @@ import {
   Wrapper,
   DetailCollapse,
   DetailPanel,
-  HashText,
   TransactionHistoryAddressLink,
   TransactionHistoryItemCardIcon,
   Amount,
@@ -85,7 +84,9 @@ const TransactionHistoryDetail = props => {
           >
             {props.txnId}
           </TransactionHistoryAddressLink>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div
+            style={{ display: 'flex', alignItems: 'center', marginBottom: 5 }}
+          >
             <TransactionHistoryAddress>
               {props.amount}
             </TransactionHistoryAddress>
