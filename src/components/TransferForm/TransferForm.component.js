@@ -17,7 +17,8 @@ export default class TransferForm extends React.PureComponent {
     super(props);
     this.state = {
       input: 0,
-      icon: this.props.currencies[0]
+      icon: this.props.currencies[0].name,
+      priceInDollar: this.props.currencies[0].priceInDollar
     };
   }
 
@@ -26,6 +27,13 @@ export default class TransferForm extends React.PureComponent {
   };
 
   handleIcon = (value, option) => {
+    for (var i = 0; i < this.props.currencies.length; i++) {
+      if (this.props.currencies[i].name === value) {
+        this.setState({
+          priceInDollar: this.props.currencies[i].priceInDollar
+        });
+      }
+    }
     this.setState({ icon: value });
   };
 
@@ -43,8 +51,8 @@ export default class TransferForm extends React.PureComponent {
               />
               <Select defaultValue={this.state.icon} onSelect={this.handleIcon}>
                 {this.props.currencies.map(currency => (
-                  <Option value={currency} key={currency}>
-                    {currency}
+                  <Option value={currency.value} key={currency.value}>
+                    {currency.value}
                   </Option>
                 ))}
               </Select>
@@ -72,7 +80,9 @@ export default class TransferForm extends React.PureComponent {
               <Input onChange={this.handleChange} type="number" />
             </FormItem>
             <AdvanceSettings />
-            <ETHtoDollar>1 ETH = $663.07 </ETHtoDollar>
+            <ETHtoDollar>
+              1 {this.state.icon} = ${this.state.priceInDollar}
+            </ETHtoDollar>
           </Form>
         </Col>
         <Col xl={6} sm={22}>
