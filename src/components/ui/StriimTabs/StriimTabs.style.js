@@ -6,8 +6,8 @@ export default styled(Tabs)`
   flex: 1;
 
   .ant-tabs-nav-container {
-    border: 2px solid ${({ theme }) => theme.palette.light};
-    border-radius: 8px;
+    border: 1px solid ${({ theme }) => theme.palette.light};
+    border-radius: 4px;
     overflow: visible;
   }
 
@@ -22,13 +22,19 @@ export default styled(Tabs)`
 
   .ant-tabs-nav .ant-tabs-tab {
     margin: 0 0px 0 0 !important;
-    padding: 4px 20px !important;
+    padding: 6px 20px !important;
     color: ${({ theme }) => theme.palette.light};
-    font-weight: bold;
+    font-family: 'SF Text';
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 13px;
     flex: 1;
     display: flex;
     justify-content: center;
     border-right: 1px solid ${({ theme }) => theme.palette.light};
+    &:last-child {
+      border-right: 0;
+    }
   }
 
   .ant-tabs-nav-wrap {
@@ -58,7 +64,6 @@ export default styled(Tabs)`
   .ant-tabs-tab-active.ant-tabs-tab {
     background-color: ${({ theme }) => theme.palette.light};
     color: ${({ theme }) => theme.palette.primary1};
-    font-weight: bold;
   }
 
   .ant-tabs-tab-active.ant-tabs-tab:hover {
