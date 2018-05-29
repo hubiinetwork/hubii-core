@@ -25,6 +25,11 @@ const options = [
   }
 ];
 <div style={{ backgroundColor: '#26404D', padding: 25 }}>
-  <AccountInfo options={options} />
+  <AccountInfo
+    options={options}
+    onSelectChange={() => {
+      console.log('selected item changed');
+    }}
+  />
 </div>;
 ```

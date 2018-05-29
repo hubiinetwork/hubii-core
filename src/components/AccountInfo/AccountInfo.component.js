@@ -14,8 +14,7 @@ const AccountInfoItem = ({ accountName, amount, handleIconClick }) => (
   <Wrapper>
     <div>
       <TextPrimary className="white">{accountName}</TextPrimary>
-      <Text>{`$ ${amount}`} </Text>
-      <StyledIcon type="qrcode" className="hide" />
+      <Text>{`$${amount}`} </Text>
     </div>
   </Wrapper>
 );
@@ -31,6 +30,7 @@ class AccountInfo extends React.Component {
     const activeSelect = this.props.options.findIndex(
       (option, i) => `${option.accountName}-${i}` === value
     );
+    this.props.onSelectChange(activeSelect);
     this.setState({ activeSelect });
   };
   render() {
@@ -77,5 +77,9 @@ AccountInfo.propTypes = {
       amount: PropTypes.number,
       handleIconClick: PropTypes.func
     }).isRequired
-  ).isRequired
+  ).isRequired,
+  /**
+   * Function executed when dropdown selected item is changed.
+   */
+  onSelectChange: PropTypes.func.isRequired
 };
