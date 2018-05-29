@@ -7,6 +7,8 @@ import {
   StyledButton
 } from './ConnectionErrorModal.style';
 
+// TODO: Make component generic for info, error and success and display respective icon onthe base of type
+
 /**
  * This component shows error if wallet is not connected to server
  */
