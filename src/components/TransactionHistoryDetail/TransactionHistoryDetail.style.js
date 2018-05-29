@@ -16,7 +16,7 @@ export const TransactionStatus = styled.div`
 
 export const TransactionHistoryItemCardIcon = styled(Icon)`
   color: ${({ theme }) => theme.palette.success1};
-  font-size: 32px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   margin-right: 9px;

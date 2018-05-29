@@ -4,22 +4,19 @@ export const TransactionHistoryItemCard = styled.div`
   background-color: ${({ theme }) => theme.palette.primary4};
   padding: 5px;
   align-items: center;
-  border-radius: 26px;
+  border-radius: 20px;
   flex: 1;
   display: flex;
   box-shadow: ${({ theme }) => theme.shadows.light};
 `;
 export const TransactionHistoryItemDate = styled.span`
   color: ${({ theme }) => theme.palette.light};
-  margin-right: 15px;
+  margin-right: 12px;
   max-width: 25px;
   text-align: center;
-  display: -ms-flexbox;
   display: flex;
-  margin-top: 8px;
   align-self: baseline;
-  line-height: 14px;
-  font-family: 'SF Text';
+  line-height: 15px;
   font-size: 15px;
   font-weight: 600;
 `;
@@ -41,8 +38,8 @@ export const SpaceAround = styled.div`
 `;
 
 export const Image = styled.img`
-  height: 32px;
-  width: 32px;
+  height: 24px;
+  width: 24px;
   display: flex;
   margin-right: 9px;
   align-self: flex-start;
