@@ -34,7 +34,7 @@ export const TextSecondary = styled.div`
 export const StyledListItem = styled(Item)`
   border-bottom-color: ${({ theme }) => theme.palette.secondary4} !important;
   background-color: ${({ active, theme }) =>
-    active ? theme.palette.secondary3 : null};
+    active ? theme.palette.primary4 : null};
   padding-left: 24px;
   padding-right: 16px;
 `;
