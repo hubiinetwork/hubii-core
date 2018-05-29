@@ -25,13 +25,6 @@ export const TransactionHistoryItem = props => {
             type === 'exchange' ? props.data.fromCoin : props.data.coin
           }.svg`}
         />
-
-        <Image
-          src={`../../../public/asset_images/${props.data.toCoin}.svg`}
-          style={{
-            display: type === 'received' || type === 'sent' ? 'none' : 'block'
-          }}
-        />
         <TransactionHistoryDetail
           type={type}
           address={type === 'received' ? props.data.from : props.data.to}

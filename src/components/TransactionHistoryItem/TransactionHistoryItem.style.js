@@ -11,9 +11,14 @@ export const TransactionHistoryItemCard = styled.div`
 `;
 export const TransactionHistoryItemDate = styled.span`
   color: ${({ theme }) => theme.palette.light};
-  margin-right: 10px;
+  margin-right: 15px;
   max-width: 25px;
   text-align: center;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 8px;
+  align-self: baseline;
+  line-height: 14px;
   font-family: 'SF Text';
   font-size: 15px;
   font-weight: 600;
@@ -61,4 +66,5 @@ export const TransactionHistoryConversion = styled.span`
 export const Wrapper = styled.div`
   display: flex;
   margin-bottom: 16px;
+  align-items: center;
 `;

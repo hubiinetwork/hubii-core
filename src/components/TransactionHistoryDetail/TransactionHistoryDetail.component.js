@@ -16,7 +16,8 @@ import {
   TransactionHistoryTime,
   TransactionHistoryConversion,
   Sent,
-  Received
+  Received,
+  Image
 } from '../TransactionHistoryItem/TransactionHistoryItem.style';
 import PropTypes from 'prop-types';
 
@@ -32,6 +33,15 @@ const TransactionHistoryDetail = props => {
         header={
           <Wrapper>
             <Left>
+              <Image
+                src={`../../../public/asset_images/${props.toCoin}.svg`}
+                style={{
+                  display:
+                    props.type === 'received' || props.type === 'sent'
+                      ? 'none'
+                      : 'block'
+                }}
+              />
               <TransactionHistoryItemCardIcon
                 type={
                   props.type === 'received'
