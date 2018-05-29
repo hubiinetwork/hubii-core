@@ -69,7 +69,7 @@ export default class TransferForm extends React.PureComponent {
               colon={false}
               help={<HelperText left="0.00" right="USD" />}
             >
-              <Input onChange={this.handleChange} />
+              <Input onChange={this.handleChange} type="number" />
             </FormItem>
             <AdvanceSettings />
             <ETHtoDollar>1 ETH = $663.07 </ETHtoDollar>
