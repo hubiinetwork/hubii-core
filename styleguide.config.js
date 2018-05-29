@@ -5,5 +5,5 @@ module.exports = {
   styleguideComponents: {
     Wrapper: path.join(__dirname, 'src/themes/Wrapper.js')
   },
-  require: ['antd/dist/antd.css']
+  require: ['antd/dist/antd.css', path.join(__dirname, 'src/index.css')]
 };
