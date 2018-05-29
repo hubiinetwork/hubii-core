@@ -13,7 +13,7 @@ import {
   StyledAvatar
 } from './CurrencyList.style';
 
-/** The CurrencyList Component
+/** The CurrencyList Component shows the list of currencies and search bar to search different currencies.
  */
 
 export default class CurrencyList extends React.PureComponent {
@@ -81,6 +81,9 @@ export default class CurrencyList extends React.PureComponent {
 }
 
 CurrencyList.propTypes = {
+  /**
+   * Array of icons with amount
+   */
   data: PropTypes.arrayOf(
     PropTypes.shape({
       coin: PropTypes.string.isRequired,
