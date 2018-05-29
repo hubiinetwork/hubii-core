@@ -1,5 +1,5 @@
-import { Row } from "antd";
-import * as React from "react";
+import { Row } from 'antd';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
   StyledCol,
@@ -8,8 +8,8 @@ import {
   StyledTitle,
   StyledButton,
   StyledRecipient
-} from "./TransferDescription.style";
-import TransferDescriptionList from "../TransferDescriptionList";
+} from './TransferDescription.style';
+import TransferDescriptionList from '../TransferDescriptionList';
 
 /*** The props of TransferDescription Component
  * @param {string} [props.title="Transaction Description"] title of the TransferDescription.
@@ -24,7 +24,7 @@ import TransferDescriptionList from "../TransferDescriptionList";
  * @param {object} props.ethInformation ethInformation in the TransferDescription.
  */
 export default class TransferDescription extends React.PureComponent {
-   render() {
+  render() {
     const {
       title,
       totalUsd,
@@ -101,7 +101,7 @@ export default class TransferDescription extends React.PureComponent {
         <Row>
           <TransferDescriptionList
             label={
-              selectedToken.symbol === "ETH"
+              selectedToken.symbol === 'ETH'
                 ? totalAmount - amountToSend - transactionFee
                 : totalAmount - amountToSend
             }
@@ -126,6 +126,7 @@ export default class TransferDescription extends React.PureComponent {
           </BalanceCol>
         </Row>
         <StyledDiv>
+          <StyledButton type="primary">{'Cancel'}</StyledButton>
           <StyledButton type="primary">{buttonLabel}</StyledButton>
         </StyledDiv>
       </div>
@@ -134,52 +135,50 @@ export default class TransferDescription extends React.PureComponent {
 }
 
 TransferDescription.defaultProps = {
-  title: "Transaction Description",
-  currencySymbol: "$",
-  buttonLabel: "Send"
+  title: 'Transaction Description',
+  currencySymbol: '$',
+  buttonLabel: 'Send'
 };
 
 TransferDescription.propTypes = {
-
-    /**
+  /**
    * title of the TransferDescription.
    */
-  title:PropTypes.string,
-    /**
+  title: PropTypes.string,
+  /**
    * button label of the TransferDescription.
    */
   buttonLabel: PropTypes.string,
-    /**
+  /**
    * currency sign of the TransferDescription.
    */
   currencySymbol: PropTypes.string,
-    /**
+  /**
    * total Usd  of the transaction.
    */
   totalUsd: PropTypes.number.isRequired,
-    /**
+  /**
    * receipient of the TransferDescription.
    */
   recipient: PropTypes.string.isRequired,
-    /**
+  /**
    * totalAmount of the TransferDescription.
    */
   totalAmount: PropTypes.number.isRequired,
-    /**
+  /**
    * amount to send in the TransferDescription.
    */
   amountToSend: PropTypes.number.isRequired,
-    /**
+  /**
    * transactionFee in the TransferDescription.
    */
   transactionFee: PropTypes.number.isRequired,
-    /**
+  /**
    * selectedToken in the TransferDescription.
    */
   selectedToken: PropTypes.object.isRequired,
-    /**
+  /**
    * ethInformation in the TransferDescription.
    */
-  ethInformation: PropTypes.object.isRequired,
-
+  ethInformation: PropTypes.object.isRequired
 };

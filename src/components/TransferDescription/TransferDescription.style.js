@@ -1,6 +1,6 @@
-import { Col } from "antd";
-import Button from "../ui/Button";
-import styled from "styled-components";
+import { Col } from 'antd';
+import Button from '../ui/Button';
+import styled from 'styled-components';
 
 export const StyledButton = styled(Button)`
   min-width: 150px;
@@ -9,14 +9,18 @@ export const StyledButton = styled(Button)`
   padding: 0.5rem 1rem;
 `;
 export const StyledTitle = styled(Col)`
-  color: ${({ theme }) => theme.palette.info};
+  color: #50e3c2;
   font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
 `;
 export const StyledCol = styled(Col)`
-  margin-top: 10px;
-  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.5);
   font-size: 12px;
-  color: ${({ theme }) => theme.palette.secondary};
+  font-weight: 500;
+  line-height: 14px;
+  margin-top: 20px;
+  margin-bottom: 6px;
 `;
 export const StyledRecipient = styled(Col)`
   color: ${({ theme }) => theme.palette.light};
@@ -26,6 +30,10 @@ export const StyledDiv = styled.div`
   justify-content: center;
 `;
 export const BalanceCol = styled(Col)`
-  color: ${({ theme }) => theme.palette.info};
+  height: 21px;
+  width: 112px;
+  color: ${({ theme }) => theme.palette.light};
   font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
 `;
