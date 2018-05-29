@@ -3,10 +3,28 @@ import Button from '../ui/Button';
 import styled from 'styled-components';
 
 export const StyledButton = styled(Button)`
-  min-width: 150px;
-  margin-top: 17px;
-  border-width: 2px;
-  padding: 0.5rem 1rem;
+  height: 40px;
+  width: 162px;
+  margin-top: 69px;
+  border: 2px solid #50e3c2;
+  border-radius: 4px;
+`;
+export const StyledButtonCancel = styled(Button)`
+  height: 40px;
+  width: 70px;
+  min-width: 70px;
+  margin-top: 69px;
+  margin-right: 8px;
+  border-radius: 4px;
+  background: #26404d;
+  color: ${({ theme }) => theme.palette.light};
+  border: 1px solid ${({ theme }) => theme.palette.light};
+  &:hover {
+    border-radius: 4px;
+    background: #26404d;
+    color: ${({ theme }) => theme.palette.light};
+    border: 1px solid ${({ theme }) => theme.palette.light};
+  }
 `;
 export const StyledTitle = styled(Col)`
   color: #50e3c2;
@@ -27,7 +45,7 @@ export const StyledRecipient = styled(Col)`
 `;
 export const StyledDiv = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 export const BalanceCol = styled(Col)`
   height: 21px;

@@ -7,7 +7,8 @@ import {
   BalanceCol,
   StyledTitle,
   StyledButton,
-  StyledRecipient
+  StyledRecipient,
+  StyledButtonCancel
 } from './TransferDescription.style';
 import TransferDescriptionList from '../TransferDescriptionList';
 
@@ -126,7 +127,7 @@ export default class TransferDescription extends React.PureComponent {
           </BalanceCol>
         </Row>
         <StyledDiv>
-          <StyledButton type="primary">{'Cancel'}</StyledButton>
+          <StyledButtonCancel type="secondary">{'Cancel'}</StyledButtonCancel>
           <StyledButton type="primary">{buttonLabel}</StyledButton>
         </StyledDiv>
       </div>
