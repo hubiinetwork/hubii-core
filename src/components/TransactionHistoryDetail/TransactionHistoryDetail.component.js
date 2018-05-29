@@ -9,7 +9,8 @@ import {
   TransactionHistoryAddressLink,
   TransactionHistoryItemCardIcon,
   Amount,
-  Left
+  Left,
+  TransactionStatus
 } from './TransactionHistoryDetail.style';
 import {
   SpaceAround,
@@ -78,20 +79,17 @@ const TransactionHistoryDetail = props => {
         key="1"
       >
         <div>
-          <div style={{ display: 'flex' }}>
-            <HashText>Transaction Hash:</HashText>
-            <TransactionHistoryAddressLink
-              href={'https://etherscan.io/tx/' + props.txnId}
-              target="_blank"
-            >
-              {props.txnId}
-            </TransactionHistoryAddressLink>
-          </div>
-          <div style={{ display: 'flex' }}>
+          <TransactionHistoryAddressLink
+            href={'https://etherscan.io/tx/' + props.txnId}
+            target="_blank"
+          >
+            {props.txnId}
+          </TransactionHistoryAddressLink>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <TransactionHistoryAddress>
-              {props.status}
+              {props.amount}
             </TransactionHistoryAddress>
-            <TransactionHistoryType>Status Network</TransactionHistoryType>
+            <TransactionStatus>Status Network</TransactionStatus>
             <Amount>${props.usd * props.amount}</Amount>
           </div>
         </div>

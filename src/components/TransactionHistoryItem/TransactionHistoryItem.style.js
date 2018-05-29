@@ -18,13 +18,13 @@ export const TransactionHistoryItemDate = styled.span`
 `;
 
 export const Received = styled.div`
-  font-weight: bolder;
   color: ${({ theme }) => theme.palette.info} !important;
+  font-family: 'SF Text';
 `;
 
 export const Sent = styled.div`
-  font-weight: bolder;
   color: ${({ theme }) => theme.palette.warning} !important;
+  font-family: 'SF Text';
 `;
 
 export const SpaceAround = styled.div`
@@ -42,14 +42,15 @@ export const Image = styled.img`
 
 export const TransactionHistoryTime = styled.span`
   color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 10px;
+  font-size: 12px;
   min-width: 65px;
-  font-weight: bolder;
+  font-family: 'SF Text';
 `;
 
 export const TransactionHistoryConversion = styled.span`
-  font-size: 12px;
+  font-size: 14px;
   width: 65px;
+  font-family: 'SF Text';
   word-break: break-all;
   color: ${({ theme }) => theme.palette.success};
 `;

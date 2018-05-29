@@ -4,7 +4,14 @@ const Panel = Collapse.Panel;
 
 export const TransactionHistoryType = styled.div`
   color: ${({ theme }) => theme.palette.light};
-  font-weight: bolder;
+  font-family: 'SF Text';
+  font-size: 14px;
+`;
+
+export const TransactionStatus = styled.div`
+  color: ${({ theme }) => theme.palette.light};
+  font-family: 'SF Text';
+  font-size: 12px;
 `;
 
 export const TransactionHistoryItemCardIcon = styled(Icon)`
@@ -17,7 +24,8 @@ export const TransactionHistoryItemCardIcon = styled(Icon)`
 
 export const Amount = styled.div`
   color: ${({ theme }) => theme.palette.secondary1};
-  font-weight: bolder;
+  font-size: 12px;
+  font-family: 'SF Text';
   margin-left: 15px;
 `;
 
@@ -31,13 +39,14 @@ export const TransactionHistoryAddress = styled.div`
   word-break: break-all;
   color: ${({ theme }) => theme.palette.info};
   margin-left: 3px;
-  font-weight: bolder;
+  font-family: 'SF Text';
   margin-right: 3px;
 `;
 
 export const TransactionHistoryAddressLink = styled.a`
-  color: ${({ theme }) => theme.palette.info};
-  font-weight: bolder;
+  color: ${({ theme }) => theme.palette.secondary};
+  font-family: 'SF Text';
+  font-size: 12px;
   word-break: break-all;
   &:active {
     color: ${({ theme }) => theme.palette.info};

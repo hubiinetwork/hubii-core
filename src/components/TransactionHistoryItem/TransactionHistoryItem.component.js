@@ -47,6 +47,7 @@ export const TransactionHistoryItem = props => {
     </Wrapper>
   );
 };
+
 TransactionHistoryItem.propTypes = {
   /**
    * prop  of data of TransactionHistoryItem.
