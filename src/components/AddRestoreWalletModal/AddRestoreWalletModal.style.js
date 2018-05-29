@@ -26,11 +26,13 @@ export const TextWhite = styled.span`
   font-weight: 500;
   line-height: 14px;
   text-align: center;
+  font-family: 'SF Text';
 `;
 
 export const TextGrey = styled.span`
   color: ${({ theme }) => theme.palette.secondary6};
   margin-left: 5px;
+  font-family: 'SF Text';
 `;
 
 export const Info = styled(Icon)`
@@ -49,7 +51,7 @@ export const IconWrapper = styled.div`
   height: 19px;
   font-weight: 500;
   line-height: 19px;
-
+  font-family: 'SF Text';
   font-size: 16px;
   display: flex;
   margin-top: -7px;

@@ -5,6 +5,7 @@ import Button from '../../ui/Button';
 export const InfoContent = styled.span`
   color: ${({ theme }) => theme.palette.secondary1};
   font-size: 13px;
+  font-family: 'SF Text';
 `;
 
 export const WrapperDiv = styled.div`
@@ -65,6 +66,7 @@ export const FinishButton = styled(Button)`
   min-width: 240px;
   border-width: 2px;
   margin-top: 3rem;
+  font-family: 'SF Text';
 `;
 
 export const Arrow = styled(Icon)`
@@ -97,6 +99,7 @@ export const SeedInfo = styled.span`
   color: ${({ theme }) => theme.palette.light};
   font-size: 12px;
   font-weight: 500;
+  font-family: 'SF Text';
 `;
 
 export const SeedText = styled.span`
@@ -104,4 +107,5 @@ export const SeedText = styled.span`
   font-size: 16px;
   line-height: 1.2;
   flex: 0.869;
+  font-family: 'SF Text';
 `;

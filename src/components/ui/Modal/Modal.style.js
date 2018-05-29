@@ -19,6 +19,7 @@ export default styled(Modal)`
 export const ModalFormLabel = styled.span`
   color: ${({ theme }) => theme.palette.light};
   margin-bottom: 8px;
+  font-family: 'SF Text';
 `;
 
 export const ModalFormInput = styled(Input)`
