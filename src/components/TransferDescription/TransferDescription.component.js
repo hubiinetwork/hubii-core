@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {
   StyledCol,
   StyledDiv,
+  WrapperDiv,
   BalanceCol,
   StyledTitle,
   StyledButton,
@@ -39,7 +40,7 @@ export default class TransferDescription extends React.PureComponent {
       currencySymbol
     } = this.props;
     return (
-      <div>
+      <WrapperDiv>
         <Row>
           <StyledTitle span={12}>{title}</StyledTitle>
         </Row>
@@ -130,7 +131,7 @@ export default class TransferDescription extends React.PureComponent {
           <StyledButtonCancel type="secondary">{'Cancel'}</StyledButtonCancel>
           <StyledButton type="primary">{buttonLabel}</StyledButton>
         </StyledDiv>
-      </div>
+      </WrapperDiv>
     );
   }
 }

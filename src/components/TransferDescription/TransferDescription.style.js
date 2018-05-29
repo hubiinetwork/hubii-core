@@ -55,3 +55,6 @@ export const BalanceCol = styled(Col)`
   font-weight: 500;
   line-height: 21px;
 `;
+export const WrapperDiv = styled.div`
+  width: 300px;
+`;
