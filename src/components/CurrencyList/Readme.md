@@ -7,7 +7,7 @@ const data = [
   { coin: 'OMG', coinAmount: '1.5264', coinAmountUSD: '1,200.59' },
   { coin: 'ICX', coinAmount: '1,559.54', coinAmountUSD: '359.2' }
 ];
-<div style={{ backgroundColor: '#2f4d5c', padding: 25 }}>
+<div style={{ backgroundColor: '#26404D', padding: 25, width: 304 }}>
   <CurrencyList data={data} />
 </div>
 ```

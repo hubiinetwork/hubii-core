@@ -1,4 +1,4 @@
-import { List, Avatar } from 'antd';
+import { List } from 'antd';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -9,7 +9,8 @@ import {
   AmountWrapper,
   Header,
   StyledSearch,
-  StyledList
+  StyledList,
+  StyledAvatar
 } from './CurrencyList.style';
 
 /** The CurrencyList Component
@@ -29,13 +30,16 @@ export default class CurrencyList extends React.PureComponent {
     const { data } = this.state;
     const Item = (item, i) => (
       <StyledListItem
-        active={this.state.activeCurrency === i ? 1 : 0}
-        onClick={() => this.updateActive(i)}
+        active={this.state.activeCurrency === `${item.coin}-${i}` ? 1 : 0}
+        onClick={() => this.updateActive(`${item.coin}-${i}`)}
       >
         <List.Item.Meta
           title={<TextPrimary>{item.coin}</TextPrimary>}
           avatar={
-            <Avatar src={`public/asset_images/${item.coin}.svg`} alt="coin" />
+            <StyledAvatar
+              src={`public/asset_images/${item.coin}.svg`}
+              alt="coin"
+            />
           }
         />
         <AmountWrapper>
