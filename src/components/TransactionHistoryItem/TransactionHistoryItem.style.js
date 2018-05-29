@@ -19,6 +19,7 @@ export const TransactionHistoryItemDate = styled.span`
   line-height: 15px;
   font-size: 15px;
   font-weight: 600;
+  margin-top: 4px;
 `;
 
 export const Received = styled.div`
