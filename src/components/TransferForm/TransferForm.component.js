@@ -16,12 +16,19 @@ export default class TransferForm extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      input: 0
+      input: 0,
+      icon: this.props.currencies[0]
     };
   }
+
   handleChange = e => {
     this.setState({ input: e.target.value });
   };
+
+  handleIcon = (value, option) => {
+    this.setState({ icon: value });
+  };
+
   render() {
     return (
       <Row gutter={24} justify="center">
@@ -31,21 +38,25 @@ export default class TransferForm extends React.PureComponent {
               label={<FormItemLabel>Select Currency</FormItemLabel>}
               colon={false}
             >
-              <Image src="../../../public/asset_images/ETH.svg" />
-              <Select defaultValue="ETH">
-                <Option value="helllo">ETH</Option>
+              <Image
+                src={`../../../public/asset_images/${this.state.icon}.svg`}
+              />
+              <Select defaultValue={this.state.icon} onSelect={this.handleIcon}>
+                {this.props.currencies.map(currency => (
+                  <Option value={currency}>{currency}</Option>
+                ))}
               </Select>
             </FormItem>
             <FormItem
               label={<FormItemLabel>Recipient</FormItemLabel>}
               colon={false}
-              help={
-                <HelperText left="0xf400db37c54c535febca1b470fd1d23d30acdd11" />
-              }
+              help={<HelperText left={this.props.address} />}
             >
               <Select defaultValue="Jacobo">
                 <OptGroup label={<OptGroupLabel>Own Addresses</OptGroupLabel>}>
-                  <Option value="jacobo">Jacobo</Option>
+                  {this.props.recipients.map(recipient => (
+                    <Option value={recipient}>{recipient}</Option>
+                  ))}
                 </OptGroup>
               </Select>
             </FormItem>

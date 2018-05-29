@@ -1,11 +1,12 @@
-import styled from "styled-components";
-import { Collapse } from "antd";
+import styled from 'styled-components';
+import { Collapse } from 'antd';
 
 const Panel = Collapse.Panel;
 
 const AdvanceSettingsHeader = styled.span`
   font-size: 14px;
   color: ${({ theme }) => theme.palette.info};
+  font-family: 'SF Text';
 `;
 
 const styledCollapse = styled(Collapse)`
