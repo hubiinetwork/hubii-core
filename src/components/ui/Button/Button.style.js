@@ -10,7 +10,7 @@ export default styled(Button)`
   ${({ theme, type }) => {
     if (type === 'primary') {
       return `
-        color: ${theme.palette.info};
+        color: ${theme.palette.light};
         border-color: ${theme.palette.info};
         background: transparent;
         &:hover {
