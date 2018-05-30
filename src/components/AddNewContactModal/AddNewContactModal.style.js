@@ -14,6 +14,7 @@ export const WrapperIcon = styled.div`
 `;
 export const Text = styled.div`
   padding-left: 7px;
+  font-family: 'SF Text';
 `;
 export const Wrapper = styled.div`
   .ant-form-item-required:before {
@@ -36,6 +37,8 @@ export const StyledButton = styled(Button)`
   margin-top: 30px;
   max-width: 175px;
   margin-bottom: 30px;
+  border: 2px solid ${({ theme }) => theme.palette.info3};
+  font-family: 'SF Text';
 `;
 export const ButtonWrapper = styled.div`
   display: flex;
