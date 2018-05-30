@@ -7,7 +7,7 @@ export const Slanted = styled.div`
     content: '';
     position: absolute;
     top: 0;
-    left: -55px;
+    left: -62px;
     width: 0;
     height: 0;
     border-right: 100px solid transparent;
@@ -22,8 +22,8 @@ export const Slanted = styled.div`
 export const USB = styled(Icon)`
   position: absolute;
   font-size: 16px;
-  top: 9px;
-  left: 4px;
+  top: 4px;
+  left: 3px;
   font-weight: bolder;
 `;
 

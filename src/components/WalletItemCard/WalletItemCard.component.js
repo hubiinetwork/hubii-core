@@ -35,7 +35,7 @@ const settingsMenu = props => (
 
 const WalletItemCard = props => (
   <OverflowHidden>
-    {props.connected && <USBFlag connected={props.connected} />}
+    {props.connected !== undefined && <USBFlag connected={props.connected} />}
     <OuterWrapper>
       <LeftSideWrapper>
         <p>{props.name}</p>
