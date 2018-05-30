@@ -18,7 +18,8 @@ export default class TransferForm extends React.PureComponent {
     this.state = {
       input: 0,
       icon: this.props.currencies[0].name,
-      priceInDollar: this.props.currencies[0].priceInDollar
+      priceInDollar: this.props.currencies[0].priceInDollar,
+      address: this.props.recipients[0].address
     };
   }
 
@@ -37,6 +38,16 @@ export default class TransferForm extends React.PureComponent {
     this.setState({ icon: value });
   };
 
+  handleRecipient = (value, option) => {
+    for (var i = 0; i < this.props.recipients.length; i++) {
+      if (this.props.recipients[i].name === value) {
+        this.setState({
+          address: this.props.recipients[i].address
+        });
+      }
+    }
+  };
+
   render() {
     return (
       <Row gutter={24} justify="center">
@@ -46,9 +57,13 @@ export default class TransferForm extends React.PureComponent {
               label={<FormItemLabel>Select Currency</FormItemLabel>}
               colon={false}
             >
-              <Image
-                src={`../../../public/asset_images/${this.state.icon}.svg`}
-              />
+              <Image>
+                <img
+                  src={`../../../public/asset_images/${this.state.icon}.svg`}
+                  width="32px"
+                  height="32px"
+                />
+              </Image>
               <Select defaultValue={this.state.icon} onSelect={this.handleIcon}>
                 {this.props.currencies.map(currency => (
                   <Option value={currency.name} key={currency.name}>
@@ -60,13 +75,17 @@ export default class TransferForm extends React.PureComponent {
             <FormItem
               label={<FormItemLabel>Recipient</FormItemLabel>}
               colon={false}
-              help={<HelperText left={this.props.address} />}
+              help={<HelperText left={this.state.address} />}
             >
-              <Select defaultValue={this.props.recipients[0]}>
+              <Select
+                defaultValue={this.props.recipients[0].name}
+                recipient
+                onSelect={this.handleRecipient}
+              >
                 <OptGroup label={<OptGroupLabel>Own Addresses</OptGroupLabel>}>
                   {this.props.recipients.map(recipient => (
-                    <Option value={recipient} key={recipient}>
-                      {recipient}
+                    <Option value={recipient.name} key={recipient.name}>
+                      {recipient.name}
                     </Option>
                   ))}
                 </OptGroup>

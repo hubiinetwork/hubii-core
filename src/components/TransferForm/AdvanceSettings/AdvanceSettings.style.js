@@ -20,6 +20,9 @@ const styledCollapse = styled(Collapse)`
   .ant-collapse-content {
     padding-right: 0px !important;
   }
+  .ant-collapse-content-box {
+    padding-right: 0px !important;
+  }
 `;
 
 export { styledCollapse as Collapse, Panel, AdvanceSettingsHeader };

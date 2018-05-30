@@ -4,7 +4,11 @@ Sample of TransferForm:
 <div style={{ padding: 25, backgroundColor: '#26404D' }}>
   <TransferForm
     address="0xf400db37c54c535febca1b470fd1d23d30acdd11"
-    recipients={['Jacobo', 'Liam', 'Kata']}
+    recipients={[
+      { name: 'Jacobo', address: '0xf400db37c54c535febca1b470fd1d23d30ac12wd' },
+      { name: 'Liam', address: '0xf400db37c54c535febca1b470fd1d23d30acdd11' },
+      { name: 'Kata', address: '0xf400db37c54c535febca1b470fd1d23d30agh65' }
+    ]}
     currencies={[
       { name: 'ETH', priceInDollar: '200' },
       { name: 'ICX', priceInDollar: '129' },

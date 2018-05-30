@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 import { Row } from 'antd';
 
-export const Image = styled.img`
-  height: 31.5px;
+export const Image = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.palette.secondary};
   padding-bottom: 4px;
-  margin-top: 3px;
-  padding-right: 8px;
 `;
 
 export const ETHtoDollar = styled.span`
