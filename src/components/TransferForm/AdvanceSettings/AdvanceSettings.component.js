@@ -11,7 +11,7 @@ import { FormItem, FormItemLabel } from '../../ui/Form';
 const AdvanceSettings = () => (
   <Collapse bordered={false} defaultActiveKey={['2']}>
     <Panel
-      header={<AdvanceSettingsHeader>Advance Settings</AdvanceSettingsHeader>}
+      header={<AdvanceSettingsHeader>Advanced Settings</AdvanceSettingsHeader>}
       key="1"
     >
       <FormItem

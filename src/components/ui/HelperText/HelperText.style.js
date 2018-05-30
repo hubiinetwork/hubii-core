@@ -9,5 +9,4 @@ export const HelperWrapper = styled.div`
 export const Text = styled.span`
   font-size: 14px;
   color: ${({ theme }) => theme.palette.secondary1};
-  font-family: 'SF Text';
 `;

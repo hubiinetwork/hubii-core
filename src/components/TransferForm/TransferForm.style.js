@@ -12,7 +12,6 @@ export const Image = styled.img`
 export const ETHtoDollar = styled.span`
   font-size: 12px;
   color: ${({ theme }) => theme.palette.secondary};
-  font-family: 'SF Text';
 `;
 
 const StyledRow = styled(Row)`
@@ -24,7 +23,6 @@ const StyledRow = styled(Row)`
 export const StyledLabel = styled.span`
   color: ${({ theme }) => theme.palette.info};
   font-weight: bold;
-  font-family: 'SF Text';
 `;
 
 export { StyledRow as Row };

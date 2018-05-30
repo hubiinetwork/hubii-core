@@ -25,7 +25,6 @@ export const FormItemLabel = styled.span`
   font-size: 12px;
   color: ${({ theme }) => theme.palette.secondary1};
   margin-bottom: 8px;
-  font-family: 'SF Text';
 `;
 
 export { FlexForm as Form };
