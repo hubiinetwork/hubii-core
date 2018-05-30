@@ -8,10 +8,8 @@ import {
 } from './ContactHeader.style';
 import { TabPane } from '../ui/StriimTabs';
 
-/*** The props of ContactHeader Component
- * @param {string} [props.title="All Contacts"] title of the ContactHeader component to shown at top the list.
- * @param {string} [props.placeholder="Filter"] placeholder to be shown in the search area.
- * @param {boolean} [props.showSearch=false] whether to show search bar or not.
+/***
+ * The header of contact list component
  */
 
 export default class ContactHeader extends React.PureComponent {
@@ -65,5 +63,18 @@ ContactHeader.propTypes = {
   /**
    * show of the search Bar or not.
    */
-  showSearch: PropTypes.bool
+  showSearch: PropTypes.bool,
+  /**
+   * Array of objects which contains title of tab and Tabcontent which is react component.
+   */
+  titleTabs: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      TabContent: PropTypes.node.isRequired
+    }).isRequired
+  ),
+  /**
+   * Function executed when tab is changed
+   */
+  onTabChange: PropTypes.func
 };
