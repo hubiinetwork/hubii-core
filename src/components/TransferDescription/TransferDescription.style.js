@@ -7,7 +7,7 @@ export const StyledButton = styled(Button)`
   width: 162px;
   margin-top: 69px;
   font-family: 'SF Text';
-  border: 2px solid #50e3c2;
+  border: 2px solid ${({ theme }) => theme.palette.info3};
   border-radius: 4px;
 `;
 export const StyledButtonCancel = styled(Button)`
@@ -17,12 +17,12 @@ export const StyledButtonCancel = styled(Button)`
   margin-top: 69px;
   margin-right: 8px;
   border-radius: 4px;
-  background: #26404d;
+  background: ${({ theme }) => theme.palette.primary1};
   color: ${({ theme }) => theme.palette.light};
   border: 1px solid ${({ theme }) => theme.palette.light};
   &:hover {
     border-radius: 4px;
-    background: #26404d;
+    background: ${({ theme }) => theme.palette.primary1};
     color: ${({ theme }) => theme.palette.light};
     border: 1px solid ${({ theme }) => theme.palette.light};
 `;
@@ -39,13 +39,13 @@ export const StyledCancelButton = styled(Button)`
   }
 `;
 export const StyledTitle = styled(Col)`
-  color: #50e3c2;
+  color: ${({ theme }) => theme.palette.info3};
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
 `;
 export const StyledCol = styled(Col)`
-  color: rgba(255, 255, 255, 0.5);
+  color: ${({ theme }) => theme.palette.secondary};
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
