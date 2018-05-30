@@ -37,7 +37,9 @@ export default class TransferDescription extends React.PureComponent {
       selectedToken,
       transactionFee,
       ethInformation,
-      currencySymbol
+      currencySymbol,
+      onSend,
+      onCancel
     } = this.props;
     return (
       <WrapperDiv>
@@ -128,8 +130,12 @@ export default class TransferDescription extends React.PureComponent {
           </BalanceCol>
         </Row>
         <StyledDiv>
-          <StyledButtonCancel type="secondary">{'Cancel'}</StyledButtonCancel>
-          <StyledButton type="primary">{buttonLabel}</StyledButton>
+          <StyledButtonCancel type="secondary" onClick={onCancel}>
+            {'Cancel'}
+          </StyledButtonCancel>
+          <StyledButton type="primary" onClick={onSend}>
+            {buttonLabel}
+          </StyledButton>
         </StyledDiv>
       </WrapperDiv>
     );
@@ -182,5 +188,13 @@ TransferDescription.propTypes = {
   /**
    * ethInformation in the TransferDescription.
    */
-  ethInformation: PropTypes.object.isRequired
+  ethInformation: PropTypes.object.isRequired,
+  /**
+   * onSend function Callback in the TransferDescription.
+   */
+  onSend: PropTypes.func.isRequired,
+  /**
+   * onSend function Callback  in the TransferDescription.
+   */
+  onCancel: PropTypes.func.isRequired
 };

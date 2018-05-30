@@ -6,6 +6,7 @@ export const StyledButton = styled(Button)`
   height: 40px;
   width: 162px;
   margin-top: 69px;
+  font-family: 'SF Text';
   border: 2px solid #50e3c2;
   border-radius: 4px;
 `;
