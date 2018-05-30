@@ -10,9 +10,9 @@ import {
   WalletHeaderWrapper,
   OverflowHidden
 } from './WalletHeader.style';
+import USBFlag from '../USBFlag';
 import Notification from '../Notification';
 import WalletHeaderIcon from './WalletHeaderIcon';
-import USBFlag from '../USBFlag';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
 /**

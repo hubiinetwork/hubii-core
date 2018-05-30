@@ -3,7 +3,7 @@ Examples:
 ```js
 <WalletHeader
   iconType="home"
-  name="MyWallet"
+  name="Ledger Nano S"
   address="0X21234asdq23d23234d"
   balance={12.34}
 />
