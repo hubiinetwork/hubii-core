@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.palette.light};
-  background: ${({ theme }) => theme.palette.secondary2};
+  background-color: ${({ theme }) => theme.palette.secondary2};
   height: 24px;
   line-height: 22px;
   min-width: 80px;
