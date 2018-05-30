@@ -13,17 +13,8 @@ import {
 } from './TransferDescription.style';
 import TransferDescriptionList from '../TransferDescriptionList';
 
-/*** The props of TransferDescription Component
- * @param {string} [props.title="Transaction Description"] title of the TransferDescription.
- * @param {string} [props.buttonLabel="Send"] button label of the TransferDescription.
- * @param {string} [props.currencySymbol="$"] currency sign of the TransferDescription.
- * @param {number} props.totalUsd total Usd  of the transaction.
- * @param {string} props.recipient receipient of the TransferDescription.
- * @param {number} props.totalAmount totalAmount of the TransferDescription.
- * @param {number} props.amountToSend amount to send in the TransferDescription.
- * @param {object} props.selectedToken selectedToken in the TransferDescription.
- * @param {number} props.transactionFee transactionFee in the TransferDescription.
- * @param {object} props.ethInformation ethInformation in the TransferDescription.
+/**
+ * The TransferDescription Component
  */
 export default class TransferDescription extends React.PureComponent {
   render() {
@@ -188,13 +179,15 @@ TransferDescription.propTypes = {
   /**
    * ethInformation in the TransferDescription.
    */
+
   ethInformation: PropTypes.object.isRequired,
   /**
    * onSend function Callback in the TransferDescription.
    */
-  onSend: PropTypes.func.isRequired,
+  onSend: PropTypes.func,
   /**
    * onSend function Callback  in the TransferDescription.
    */
-  onCancel: PropTypes.func.isRequired
+  onCancel: PropTypes.func
 };
+// export default TransferDescription;

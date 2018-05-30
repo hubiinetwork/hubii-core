@@ -25,6 +25,17 @@ export const StyledButtonCancel = styled(Button)`
     background: #26404d;
     color: ${({ theme }) => theme.palette.light};
     border: 1px solid ${({ theme }) => theme.palette.light};
+`;
+export const StyledCancelButton = styled(Button)`
+  border-width: 2px;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.palette.light};
+    opacity: 0.7;
+    border-color: ${({ theme }) => theme.palette.light} !important;
+    color: ${({ theme }) => theme.palette.info};
   }
 `;
 export const StyledTitle = styled(Col)`

@@ -1,2 +1,2 @@
-import TransferDescriptionList from "./TransferDescriptionList.component";
+import TransferDescriptionList from './TransferDescriptionList.component';
 export default TransferDescriptionList;
