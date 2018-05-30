@@ -51,8 +51,8 @@ export default class TransferForm extends React.PureComponent {
               />
               <Select defaultValue={this.state.icon} onSelect={this.handleIcon}>
                 {this.props.currencies.map(currency => (
-                  <Option value={currency.value} key={currency.value}>
-                    {currency.value}
+                  <Option value={currency.name} key={currency.name}>
+                    {currency.name}
                   </Option>
                 ))}
               </Select>
@@ -62,7 +62,7 @@ export default class TransferForm extends React.PureComponent {
               colon={false}
               help={<HelperText left={this.props.address} />}
             >
-              <Select defaultValue="Jacobo">
+              <Select defaultValue={this.props.recipients[0]}>
                 <OptGroup label={<OptGroupLabel>Own Addresses</OptGroupLabel>}>
                   {this.props.recipients.map(recipient => (
                     <Option value={recipient} key={recipient}>
