@@ -19,11 +19,13 @@ const seaGreen50 = 'rgba(80,227,194,.5)';
 
 // ****** grey ****** //
 
-const grey = '#567484';
-const greyLight = '#8ca5b1';
+const grey = 'rgba(255,255,255,0.5)';
+const greyDim = 'rgba(255,255,255,0.3)';
+const greyLight = '#C0CDD3';
 const greyDark = '#496370';
 const greyDarker = '#445f6c';
 const grey50 = 'rgba(140,165,177,.5)';
+const grey8C = '#8CA5B1';
 
 // ****** black ****** //
 
@@ -67,6 +69,8 @@ export default {
     secondary2: greyDark,
     secondary3: greyDarker,
     secondary4: grey50,
+    secondary5: greyDim,
+    secondary6: grey8C,
 
     dark: black,
     dark1: blackLight,
