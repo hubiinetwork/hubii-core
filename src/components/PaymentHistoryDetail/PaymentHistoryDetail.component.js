@@ -10,7 +10,8 @@ import {
   PaymentHistoryType,
   CollapseLeft,
   CollapseParent,
-  CollapseRight
+  CollapseRight,
+  ItemWrapper
 } from './PaymentHistoryDetail.style';
 import PropTypes from 'prop-types';
 import PaymentType from '../PaymentType';
@@ -45,50 +46,42 @@ const PaymentHistoryDetail = props => {
             <div>
               <TextGrey>To Wallet ID:</TextGrey>
               <PaymentHistoryType>{props.data.toID}</PaymentHistoryType>
-              <br />
             </div>
-            <div>
+            <ItemWrapper>
               <TextGrey>TxHash:</TextGrey>
               <PaymentHistoryType>{props.data.hashID}</PaymentHistoryType>
-              <br />
-            </div>
-            <div>
+            </ItemWrapper>
+            <ItemWrapper>
               <TextGrey>Timestamp:</TextGrey>
               <PaymentHistoryType>{props.data.timeStamp}</PaymentHistoryType>
-              <br />
-            </div>
-            <div>
+            </ItemWrapper>
+            <ItemWrapper>
               <TextGrey>Block Height:</TextGrey>
               <PaymentHistoryType>
                 {props.data.blockHeight} (2 block confirmations)
               </PaymentHistoryType>
-              <br />
-            </div>
+            </ItemWrapper>
           </CollapseLeft>
 
           <CollapseRight>
             <div>
               <TextGrey>Gas Limit:</TextGrey>
               <PaymentHistoryType>{props.data.gasLimit}</PaymentHistoryType>
-              <br />
             </div>
-            <div>
+            <ItemWrapper>
               <TextGrey>Gas used by Txn:</TextGrey>
               <PaymentHistoryType>{props.data.gasTxn}</PaymentHistoryType>
-              <br />
-            </div>
-            <div>
+            </ItemWrapper>
+            <ItemWrapper>
               <TextGrey>Gas Price:</TextGrey>
               <PaymentHistoryType>
                 {props.data.gasPrice} {props.data.coin}
               </PaymentHistoryType>
-              <br />
-            </div>
-            <div>
+            </ItemWrapper>
+            <ItemWrapper>
               <TextGrey>Actuaal Tx Cost/Fee:</TextGrey>
               <PaymentHistoryType>{props.data.cost} ($0.02)</PaymentHistoryType>
-              <br />
-            </div>
+            </ItemWrapper>
           </CollapseRight>
         </CollapseParent>
       </DetailPanel>

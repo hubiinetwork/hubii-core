@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const PaymentTypes = styled.div`
-  padding-top: 5px;
-  padding-bottom: 5px;
+  height: 22px;
   padding-left: 20px;
   padding-right: 20px;
   border-radius: 50px;
