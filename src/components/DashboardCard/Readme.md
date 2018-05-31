@@ -1,9 +1,13 @@
 Variants of DashboardCard:
 
 ```js
-<DashboardCard iconType="wallet" to="/" title="Wallet Manager" />
+<div style={{ backgroundColor: '#26404D', padding: 25 }}>
+  <DashboardCard iconType="wallet" to="/" title="Wallet Manager" />
+</div>
 ```
 
 ```js
-<DashboardCard iconType="setting" to="/" title="Settings" />
+<div style={{ backgroundColor: '#26404D', padding: 25 }}>
+  <DashboardCard iconType="setting" to="/" title="Settings" />
+</div>
 ```
