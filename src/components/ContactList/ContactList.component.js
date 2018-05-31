@@ -8,11 +8,8 @@ import { Modal } from '../ui/Modal';
 import EditContactModal from '../EditContactModal';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
-/** The props of ContactList Component
- * @param {object[]} props.data contact list to populate.
- * @param {default" | "small" | "large} [props.size="small"] enum of the size of List.
- * @param {string} [props.layout="horizontal"] layout direction of the List.
- * @param {string} [props.message="There are no contacts added yet."] message to show when list is empty.
+/**
+ * The ContactList Component shows list of contacts.
  */
 
 export default class ContactList extends React.PureComponent {
@@ -81,8 +78,8 @@ export default class ContactList extends React.PureComponent {
   }
   showNotification = () => {
     const success = true;
-    const meassage = 'Address copied to clipboard.';
-    Notification(success, meassage);
+    const message = 'Address copied to clipboard.';
+    Notification(success, message);
   };
   showModal = item => {
     this.setState({
@@ -106,19 +103,19 @@ ContactList.defaultProps = {
 
 ContactList.propTypes = {
   /**
-   * title of the ContactHeader.
+   * Array of contacts whose list is to be shown.
    */
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   /**
-   * title of the ContactHeader.
+   * Antd prop layout of list
    */
   layout: PropTypes.string,
   /**
-   * title of the ContactHeader.
+   * Message to shown if list is empty
    */
   message: PropTypes.string,
   /**
-   * title of the ContactHeader.
+   * size of antd list component
    */
   size: PropTypes.oneOf(['default', 'small', 'large'])
 };
