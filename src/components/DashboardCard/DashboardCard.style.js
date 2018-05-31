@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const StyledCard = styled(Card)`
   min-width: 370px;
+  height: 113px;
   border-radius: 8px;
   text-align: left;
   padding: 0px 29px;
