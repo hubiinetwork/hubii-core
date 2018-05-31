@@ -2,8 +2,8 @@ import { Card } from 'antd';
 import styled from 'styled-components';
 
 const StyledCard = styled(Card)`
-  min-width: 350px;
-  border-radius: 10px;
+  min-width: 370px;
+  border-radius: 8px;
   text-align: left;
   padding: 0px 29px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
@@ -27,7 +27,9 @@ const IconSpan = styled.span`
 
 const TitleSpan = styled.span`
   top: -7px;
-  font-size: large;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
   position: relative;
   padding-left: 20px;
   color: ${({ theme }) => theme.palette.light};
