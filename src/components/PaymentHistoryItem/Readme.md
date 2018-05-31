@@ -17,7 +17,7 @@ const show = {
   gasPrice: 0.0003,
   cost: 0.000063
 };
-<div style={{ backgroundColor: 'grey', padding: 10 }}>
+<div style={{ backgroundColor: 'rgb(38, 64, 77)', padding: 10 }}>
   <PaymentHistoryItem data={show} />
 </div>;
 ```

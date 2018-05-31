@@ -8,11 +8,10 @@ export const PaymentHistoryType = styled.div`
   font-size: 14px;
   font-weight: 500;
   line-height: 16px;
-  margin-top: 5px;
 `;
 
 export const ItemWrapper = styled.div`
-  margin-top: 1rem;
+  margin-top: 1.3rem;
 `;
 
 export const TimePast = styled.div`
@@ -66,7 +65,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
 `;
 
