@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Button from '../ui/Button';
 import { Icon } from 'antd';
+import { ModalFormLabel } from '../ui/Modal';
 
 export const Between = styled.div`
   display: flex;
@@ -42,4 +43,10 @@ export const Flex = styled.div`
 export const IconDiv = styled.div`
   display: flex;
   justify-content: center;
+`;
+export const StyledModalFormLabel = styled(ModalFormLabel)`
+  height: 14px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
 `;

@@ -8,7 +8,8 @@ import {
   Coins,
   CoinButton,
   Image,
-  Center
+  Center,
+  SpanText
 } from './ImportWallet.style';
 
 class ImportWallet extends React.Component {
@@ -25,7 +26,7 @@ class ImportWallet extends React.Component {
         <Between>
           <Flex>
             <LeftArrow type="arrow-left" onClick={this.onGoBack} />
-            <span>Importing Wallet</span>
+            <SpanText>Importing Wallet</SpanText>
           </Flex>
           <div>
             <CreateButton>

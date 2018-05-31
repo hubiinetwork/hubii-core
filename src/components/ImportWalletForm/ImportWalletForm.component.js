@@ -2,14 +2,15 @@ import * as React from 'react';
 import { Form, Icon } from 'antd';
 import {
   Flex,
+  Image,
   Between,
   IconDiv,
   LeftArrow,
+  WidthEighty,
   CreateButton,
-  Image,
-  WidthEighty
+  StyledModalFormLabel
 } from './ImportWalletForm.style';
-import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
+import { ModalFormInput, ModalFormItem } from '../ui/Modal';
 class ImportWalletForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -44,9 +45,9 @@ class ImportWalletForm extends React.Component {
           <WidthEighty>
             <ModalFormItem
               label={
-                <ModalFormLabel>
+                <StyledModalFormLabel>
                   Enter your {this.props.wallet.value} Wallet Address
-                </ModalFormLabel>
+                </StyledModalFormLabel>
               }
             >
               {getFieldDecorator('Address', {
@@ -59,7 +60,11 @@ class ImportWalletForm extends React.Component {
               })(<ModalFormInput />)}
             </ModalFormItem>
             <ModalFormItem
-              label={<ModalFormLabel>Enter your Wallet Key</ModalFormLabel>}
+              label={
+                <StyledModalFormLabel>
+                  Enter your Wallet Key
+                </StyledModalFormLabel>
+              }
             >
               {getFieldDecorator('key', {
                 rules: [

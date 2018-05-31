@@ -61,3 +61,8 @@ export const Center = styled.div`
   justify-content: center;
   align-items: center;
 `;
+export const SpanText = styled.span`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+`;

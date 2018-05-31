@@ -7,9 +7,10 @@ import {
   LeftArrow,
   CreateButton,
   WidthEighty,
-  Image
+  Image,
+  StyledModalFormLabel
 } from './ImportWalletNameForm.style';
-import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
+import { ModalFormInput, ModalFormItem } from '../ui/Modal';
 class ImportWalletNameForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -43,7 +44,11 @@ class ImportWalletNameForm extends React.Component {
         >
           <WidthEighty>
             <ModalFormItem
-              label={<ModalFormLabel>Give your Wallet a Name</ModalFormLabel>}
+              label={
+                <StyledModalFormLabel>
+                  Give your Wallet a Name
+                </StyledModalFormLabel>
+              }
             >
               {getFieldDecorator('Name', {
                 rules: [
@@ -55,7 +60,9 @@ class ImportWalletNameForm extends React.Component {
               })(<ModalFormInput />)}
             </ModalFormItem>
             <ModalFormItem
-              label={<ModalFormLabel>Set a password</ModalFormLabel>}
+              label={
+                <StyledModalFormLabel>Set a password</StyledModalFormLabel>
+              }
             >
               {getFieldDecorator('password', {
                 rules: [
@@ -67,7 +74,9 @@ class ImportWalletNameForm extends React.Component {
               })(<ModalFormInput />)}
             </ModalFormItem>
             <ModalFormItem
-              label={<ModalFormLabel>Repeat password</ModalFormLabel>}
+              label={
+                <StyledModalFormLabel>Repeat password</StyledModalFormLabel>
+              }
             >
               {getFieldDecorator('repeatPassword', {
                 rules: [
