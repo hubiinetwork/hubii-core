@@ -6,6 +6,7 @@ export const FlexWrapper = styled.div`
 
 export const ImageWrapper = styled.div`
   margin-right: 10px;
+  align-self: center;
   position: relative;
 `;
 
@@ -17,28 +18,32 @@ export const Caret = styled.div`
   border-left: 5px solid white;
   transform: rotate(45deg);
   position: absolute;
-  bottom: 7px;
-  right: -2px;
+  bottom: -3px;
+  right: -1px;
 `;
 
 export const Image = styled.img`
-  width: 37px;
-  height: 37px;
+  width: 32px;
+  height: 32px;
 `;
 
 export const DetailWrapper = styled.div`
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
   color: ${({ theme }) => theme.palette.secondary1};
 `;
 
 export const AlignCenter = styled.div`
   display: flex;
   align-items: center;
-  margin-top: -3px;
 `;
 
 export const BalanceColor = styled.div`
   color: ${({ info, theme }) =>
     info ? theme.palette.info : theme.palette.light};
   margin-right: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
 `;
