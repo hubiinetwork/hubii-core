@@ -27,9 +27,9 @@ const grey50 = 'rgba(140,165,177,.5)';
 
 // ****** black ****** //
 
-const black = '#122b2b';
+const black = '#122a2b';
 const black50 = 'rgba(36, 59, 71, 0.5)';
-const blackLight = '#27404c';
+const blackLight = '#26404d';
 const blackLighter = '#404f56';
 
 // ****** green ****** //
