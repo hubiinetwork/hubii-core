@@ -26,22 +26,29 @@ const Item = Form.Item;
  */
 
 class PaymentForm extends React.Component {
-  handleSubmit = e => {};
   render() {
     const { getFieldDecorator } = this.props.form;
+    const {
+      onCancel,
+      onSend,
+      transactionFee,
+      recipients,
+      balance,
+      currency
+    } = this.props;
     return (
       <Wrapper>
-        <HeadingDiv>{this.props.heading}</HeadingDiv>
+        <HeadingDiv>Make Payment</HeadingDiv>
         <BalanceDiv>
           <Balance
             title="Balance"
             info
-            balance={this.props.balance}
-            coin={this.props.currency}
-            showCoinName={this.props.currency}
+            balance={`${balance}`}
+            coin={currency}
+            showCoinName={currency}
           />
         </BalanceDiv>
-        <Form onSubmit={this.handleSubmit} layout="vertical">
+        <Form onSubmit={onSend} layout="vertical">
           <ItemDiv>
             <Item label={<StyledLabel>Amount</StyledLabel>} style={{ flex: 1 }}>
               {getFieldDecorator('Amount', {
@@ -61,27 +68,23 @@ class PaymentForm extends React.Component {
               label={<StyledLabel>Recipient</StyledLabel>}
               style={{ flex: 1 }}
             >
-              <Select defaultValue="address1">
-                <Option value="address1">
-                  0x86ecabe4d265a11c06d3af979fedbc3a5b48b7c9b96d44af5b504d2bd2480687
-                </Option>
-                <Option value="address2">
-                  0x86ecabe4d265a11c06d3af979fedbc3a5b48b7c9b96d44af5b504d2bd2480687
-                </Option>
-                <Option value="address3">
-                  0x86ecabe4d265a11c06d3af979fedbc3a5b48b7c9b96d44af5b504d2bd2480687
-                </Option>
+              <Select defaultValue={recipients[0]}>
+                {recipients.map((address, i) => (
+                  <Option key={i} value={address}>
+                    {address}
+                  </Option>
+                ))}
               </Select>
             </Item>
           </ItemDiv>
 
           <ConversionWrapper>
-            <Conversion>Transaction Fee 0.0012ETH</Conversion>
+            <Conversion>Transaction Fee {transactionFee}ETH</Conversion>
           </ConversionWrapper>
 
           <ButtonWrapper>
             <Buttons>
-              <CancelButton htmlType="submit">Cancel</CancelButton>
+              <CancelButton onClick={onCancel}>Cancel</CancelButton>
               <StyledButton type="primary" htmlType="submit">
                 Send
               </StyledButton>
@@ -95,21 +98,29 @@ class PaymentForm extends React.Component {
 }
 PaymentForm.propTypes = {
   /**
-   * function to handle onSubmit.
+   * function to handle onSend.
    */
-  onSubmit: PropTypes.func,
+  onSend: PropTypes.func,
+  /**
+   * function to handle onCancel.
+   */
+  onCancel: PropTypes.func,
   /**
    * Currency of the coint like HBT.
    */
   currency: PropTypes.string.isRequired,
   /**
-   * heading of the component .
-   */
-  heading: PropTypes.string.isRequired,
-  /**
    * balance of the component .
    */
-  balance: PropTypes.number.isRequired
+  balance: PropTypes.number.isRequired,
+  /**
+   * Transaction fee required
+   */
+  transactionFee: PropTypes.number.isRequired,
+  /**
+   * Array of string of recipients
+   */
+  recipients: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };
 
 export default Form.create()(PaymentForm);
