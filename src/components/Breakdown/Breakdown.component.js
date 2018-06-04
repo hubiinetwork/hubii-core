@@ -28,7 +28,7 @@ const Breakdown = ({ data, value }) => {
           <TotalAmount>${value}</TotalAmount>
         </div>
       )}
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>
         <VictoryPie
           labelComponent={
             <VictoryTooltip
