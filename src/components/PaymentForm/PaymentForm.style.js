@@ -22,21 +22,23 @@ export const ConversionWrapper = styled.div`
   display: flex;
   flex: 1;
   justify-content: center;
-  border-bottom: 1px solid ${({ theme }) => theme.palette.secondary1};
+  border-bottom: 1px solid ${({ theme }) => theme.palette.secondary5};
   margin-bottom: 3rem;
   margin-top: 1rem;
 `;
 
 export const Conversion = styled.div`
-  border: 1px solid ${({ theme }) => theme.palette.secondary1};
+  border: 1px solid ${({ theme }) => theme.palette.secondary5};
   border-radius: 30px;
   padding-top: 4px;
   padding-bottom: 4px;
-  background-color: ${({ theme }) => theme.palette.primary4};
+  background-color: ${({ theme }) => theme.palette.primary1};
   min-width: 220px;
-  color: ${({ theme }) => theme.palette.secondary1};
+  color: ${({ theme }) => theme.palette.secondary6};
   text-align: center;
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
   margin-bottom: -12px;
 `;
 
@@ -45,6 +47,7 @@ export const StyledButton = styled(Button)`
   margin-top: 30px;
   min-width: 300px;
   margin-bottom: 30px;
+  border: 2px solid ${({ theme }) => theme.palette.info3};
 `;
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -54,12 +57,16 @@ export const ButtonWrapper = styled.div`
 export const HeadingDiv = styled.div`
   color: ${({ theme }) => theme.palette.light};
   display: flex;
-  font-size: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
   justify-content: center;
 `;
 export const StyledLabel = styled(ModalFormLabel)`
-  color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 15px;
+  color: ${({ theme }) => theme.palette.secondary};
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
 `;
 export const StyledInput = styled(ModalFormInput)`
   color: ${({ theme }) => theme.palette.light};
@@ -69,21 +76,15 @@ export const StyledInput = styled(ModalFormInput)`
   margin-bottom: 0px;
   padding: 0px !important;
   border-bottom: 1px solid ${({ theme }) => theme.palette.secondary1};
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     border: none;
     border-radius: unset;
     border-bottom: 1px solid ${({ theme }) => theme.palette.secondary1};
   }
   &:focus {
     color: ${({ theme }) => theme.palette.light};
-    border: none;
-    border-radius: unset;
-    border-bottom: 1px solid ${({ theme }) => theme.palette.secondary1};
-  }
-  &:active {
-    border: none;
-    border-radius: unset;
-    border-bottom: 1px solid ${({ theme }) => theme.palette.secondary1};
   }
 `;
 export const StyledSpan = styled.span`
@@ -110,4 +111,5 @@ export const CancelButton = styled(Button)`
   color: ${({ theme }) => theme.palette.light};
   min-width: 130px;
   margin-right: 16px;
+  border-radius: 4px;
 `;
