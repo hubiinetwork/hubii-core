@@ -7,6 +7,7 @@ import {
   StepsCentered,
   ButtonDiv,
   TextDiv,
+  StyledSpan,
   SpaceBetween
 } from './ImportWalletSteps.style';
 import ImportWallet from '../ImportWallet';
@@ -138,7 +139,7 @@ export default class ImportWalletSteps extends React.Component {
                 current={this.state.current}
                 disabled={this.state.disabled}
               >
-                Next
+                <StyledSpan>Next</StyledSpan>
               </StyledButton>
             )}
             {this.state.current === steps.length - 1 && (
