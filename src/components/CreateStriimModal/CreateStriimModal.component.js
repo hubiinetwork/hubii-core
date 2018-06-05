@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Select } from 'antd';
+import PropTypes from 'prop-types';
 import {
   TextLight,
   LogoWrapper,
@@ -9,7 +10,10 @@ import {
   IconSelect,
   TextPrimary,
   FlexWrapper,
-  Rate
+  Rate,
+  StyledButton,
+  ButtonWrapper,
+  StyledForm
 } from './CreateStriimModal.style';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 
@@ -17,21 +21,33 @@ const { Option } = Select;
 
 class CreateStriimModal extends React.Component {
   state = {
-    icon: this.props.currencies[0]
+    currency: this.props.currencies[0]
   };
   handleIcon = icon => {
-    this.setState({ icon });
+    const currency = this.props.currencies.find(
+      currency => currency.name === icon
+    );
+    this.setState({ currency });
+  };
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        this.props.handleSubmit(values);
+      }
+    });
   };
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { currencies } = this.props;
+    const { currencies, wallets } = this.props;
+    const { name, balance, rate } = this.state.currency;
     return (
       <div>
         <TextLight>New Striim Account</TextLight>
         <LogoWrapper>
           <img src="/public/Images/striim-logo.png" alt="Striim  logo" />
         </LogoWrapper>
-        <Form>
+        <StyledForm onSubmit={this.handleSubmit}>
           <ModalFormItem
             colon={false}
             label={<ModalFormLabel>Account name</ModalFormLabel>}
@@ -50,6 +66,7 @@ class CreateStriimModal extends React.Component {
             label={<ModalFormLabel>Choose Wallet</ModalFormLabel>}
           >
             {getFieldDecorator('wallet', {
+              initialValue: wallets[0],
               rules: [
                 {
                   required: true,
@@ -57,9 +74,12 @@ class CreateStriimModal extends React.Component {
                 }
               ]
             })(
-              <StyledSelect defaultValue="rmb">
-                <Option value="rmb">RMB</Option>
-                <Option value="dollar">Dollar</Option>
+              <StyledSelect>
+                {wallets.map(wallet => (
+                  <Option value={wallet} key={wallet}>
+                    {wallet}
+                  </Option>
+                ))}
               </StyledSelect>
             )}
           </ModalFormItem>
@@ -70,32 +90,54 @@ class CreateStriimModal extends React.Component {
             <FlexWrapper>
               <div>
                 <IconSelectWrapper>
-                  <Image
-                    src={`/public/asset_images/${this.state.icon}.svg`}
-                    alt="coin"
-                  />
-                  <IconSelect
-                    defaultValue={this.state.icon}
-                    onSelect={this.handleIcon}
-                  >
-                    {currencies.map(currency => (
-                      <Option value={currency} key={currency}>
-                        {currency}
-                      </Option>
-                    ))}
-                  </IconSelect>
+                  <Image src={`/public/asset_images/${name}.svg`} alt="coin" />
+                  {getFieldDecorator('coin', {
+                    initialValue: currencies[0].name,
+                    rules: [
+                      {
+                        required: true,
+                        message: 'Please select wallet.'
+                      }
+                    ]
+                  })(
+                    <IconSelect onSelect={this.handleIcon}>
+                      {currencies.map(currency => (
+                        <Option value={currency.name} key={currency.name}>
+                          {currency.name}
+                        </Option>
+                      ))}
+                    </IconSelect>
+                  )}
                 </IconSelectWrapper>
-                <TextPrimary> Balance 1.213 ETH</TextPrimary>
+                <TextPrimary>
+                  {' '}
+                  Balance {balance} {name}
+                </TextPrimary>
               </div>
               <div>
-                <Rate> 0.245</Rate>
-                <TextPrimary> $300.5905</TextPrimary>
+                <Rate> {rate}</Rate>
+                <TextPrimary> ${rate * balance}</TextPrimary>
               </div>
             </FlexWrapper>
           </ModalFormItem>
-        </Form>
+          <ButtonWrapper>
+            <StyledButton type="primary" htmlType="submit">
+              Create
+            </StyledButton>
+          </ButtonWrapper>
+        </StyledForm>
       </div>
     );
   }
 }
 export default Form.create()(CreateStriimModal);
+CreateStriimModal.propTypes = {
+  currencies: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      balance: PropTypes.number,
+      rate: PropTypes.number
+    })
+  ).isRequired,
+  wallets: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+};

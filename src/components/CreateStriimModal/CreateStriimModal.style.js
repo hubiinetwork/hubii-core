@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Select } from 'antd';
+import { Form, Select } from 'antd';
+import Button from '../ui/Button';
 
 export const TextLight = styled.div`
   color: ${({ theme }) => theme.palette.light};
@@ -47,6 +48,7 @@ export const IconSelect = styled(StyledSelect)`
 export const Image = styled.img`
   width: 25px;
   height: 25px;
+  margin: 1rem 0;
 `;
 export const IconSelectWrapper = styled.div`
   display: flex;
@@ -69,4 +71,24 @@ export const Rate = styled.div`
   font-size: 20px;
   font-weight: 500;
   line-height: 24px;
+  text-align: right;
+  margin-bottom: 6px;
+`;
+
+export const StyledButton = styled(Button)`
+  color: ${({ theme }) => theme.palette.light};
+  margin-top: 93px;
+  min-width: 240px;
+  margin-bottom: 60px;
+  border: 2px solid ${({ theme }) => theme.palette.info3};
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const StyledForm = styled(Form)`
+  width: 67%;
+  margin: 0 auto;
 `;
