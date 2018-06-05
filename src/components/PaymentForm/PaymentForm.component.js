@@ -26,11 +26,34 @@ const Item = Form.Item;
  */
 
 class PaymentForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rate: this.props.rate
+    };
+  }
+  handleRate(e) {
+    this.setState({
+      rate:
+        this.state.rate === 0
+          ? this.props.rate * e.target.value
+          : this.state.rate * e.target.value
+    });
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        this.props.onSend(values);
+      }
+    });
+  };
+
   render() {
     const { getFieldDecorator } = this.props.form;
     const {
       onCancel,
-      onSend,
       transactionFee,
       recipients,
       balance,
@@ -48,20 +71,25 @@ class PaymentForm extends React.Component {
             showCoinName={currency}
           />
         </BalanceDiv>
-        <Form onSubmit={onSend} layout="vertical">
+        <Form onSubmit={this.handleSubmit} layout="vertical">
           <ItemDiv>
-            <Item label={<StyledLabel>Amount</StyledLabel>} style={{ flex: 1 }}>
+            <Item
+              label={<StyledLabel>Amount</StyledLabel>}
+              style={{ flex: 1, position: 'relative' }}
+            >
               {getFieldDecorator('Amount', {
-                initialValue: `${450}`,
+                initialValue: 1,
                 rules: [
                   {
                     message: 'Amount is required.',
                     required: true
                   }
                 ]
-              })(<StyledInput />)}
+              })(
+                <StyledInput type="number" onChange={e => this.handleRate(e)} />
+              )}
+              <StyledSpan>${this.state.rate}</StyledSpan>
             </Item>
-            <StyledSpan>{'$300.59'}</StyledSpan>
           </ItemDiv>
           <ItemDiv>
             <Item

@@ -87,16 +87,18 @@ export const StyledInput = styled(ModalFormInput)`
     color: ${({ theme }) => theme.palette.light};
   }
 `;
-export const StyledSpan = styled.span`
+export const StyledSpan = styled.div`
   color: ${({ theme }) => theme.palette.secondary1};
-  padding-bottom: 5px;
-  border-bottom: 1px solid ${({ theme }) => theme.palette.secondary1};
-  display: flex;
-  align-items: flex-end;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 `;
 export const ItemDiv = styled.div`
   margin-bottom: 40px;
   display: flex;
+  .has-error .ant-input:focus {
+    box-shadow: none;
+  }
 `;
 export const Buttons = styled.div`
   display: flex;

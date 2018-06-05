@@ -12,6 +12,8 @@ const recipients = [
     balance={1599.54}
     transactionFee={0.0012}
     recipients={recipients}
+    rate={120}
+    onSend={value => console.log('Sent', value)}
   />
 </div>;
 ```
