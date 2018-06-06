@@ -26,7 +26,10 @@ const WalletHeader = props => {
   };
   return (
     <WalletHeaderWrapper>
-      <WalletHeaderIcon iconType={props.iconType} />
+      <WalletHeaderIcon
+        onIconClick={props.onIconClick}
+        iconType={props.iconType}
+      />
       <HeaderDetail>
         <DetailWrapper>
           <Name>{props.name}</Name>
@@ -63,7 +66,11 @@ WalletHeader.propTypes = {
   /** Address of the wallet */
   address: PropTypes.string,
   /** Balance of the wallet */
-  balance: PropTypes.number
+  balance: PropTypes.number,
+  /**
+   * Callback when header icon is clicked.
+   */
+  onIconClick: PropTypes.func
 };
 
 export default WalletHeader;
