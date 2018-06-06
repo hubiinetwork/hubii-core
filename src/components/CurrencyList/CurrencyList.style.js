@@ -62,6 +62,7 @@ export const StyledSearch = styled(InputSearch)`
 export const StyledList = styled(List)`
   .ant-list-header {
     border-bottom: 0;
+    padding-bottom: 0;
   }
   .ant-list-empty-text {
     color: white;
@@ -70,8 +71,8 @@ export const StyledList = styled(List)`
     margin-right: 8px;
   }
   .ant-list-item {
-    padding-top: 13px;
-    padding-bottom: 9px;
+    padding-top: 11px;
+    padding-bottom: 5px;
   }
 `;
 
