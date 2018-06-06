@@ -74,6 +74,7 @@ export default class CurrencyList extends React.PureComponent {
     this.setState({ data: filtered, search: value });
   };
   updateActive = activeIcon => {
+    if (this.state.activeCurrency === activeIcon) return;
     this.setState({
       activeCurrency: activeIcon
     });
