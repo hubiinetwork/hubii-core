@@ -44,6 +44,7 @@ export const CoinButton = styled(RadioButton)`
   background-color: transparent;
   min-width: 230px;
   min-height: 60px;
+  border-radius: 3px;
 `;
 
 export const Flex = styled.div`

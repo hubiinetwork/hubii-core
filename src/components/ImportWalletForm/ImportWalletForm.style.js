@@ -45,6 +45,11 @@ export const IconDiv = styled.div`
   display: flex;
   justify-content: center;
 `;
+export const StyledTitle = styled.span`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+`;
 export const StyledModalFormLabel = styled(ModalFormLabel)`
   height: 14px;
   font-size: 12px;

@@ -6,6 +6,7 @@ import {
   Between,
   IconDiv,
   LeftArrow,
+  StyledTitle,
   WidthEighty,
   CreateButton,
   StyledModalFormLabel
@@ -22,7 +23,9 @@ class ImportWalletForm extends React.Component {
               type="arrow-left"
               onClick={() => console.log('onGoBack  func')}
             />
-            <span>Importing {this.props.wallet.value} Wallet</span>
+            <StyledTitle>
+              Importing {this.props.wallet.value} Wallet
+            </StyledTitle>
           </Flex>
           <div>
             <CreateButton>
