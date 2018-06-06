@@ -17,6 +17,9 @@ const StyledCard = styled(Card)`
   &:focus {
     text-decoration: none;
   }
+  .ant-card-body {
+    padding: 13px 24px;
+  }
 `;
 
 const IconSpan = styled.span`
