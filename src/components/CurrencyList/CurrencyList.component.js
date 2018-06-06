@@ -30,8 +30,8 @@ export default class CurrencyList extends React.PureComponent {
     const { data } = this.state;
     const Item = (item, i) => (
       <StyledListItem
-        active={this.state.activeCurrency === `${item.coin}-${i}` ? 1 : 0}
-        onClick={() => this.updateActive(`${item.coin}-${i}`)}
+        active={this.state.activeCurrency === `${item.coin}` ? 1 : 0}
+        onClick={() => this.updateActive(`${item.coin}`)}
       >
         <List.Item.Meta
           title={<TextPrimary>{item.coin}</TextPrimary>}
@@ -73,10 +73,11 @@ export default class CurrencyList extends React.PureComponent {
     });
     this.setState({ data: filtered, search: value });
   };
-  updateActive = active => {
+  updateActive = activeIcon => {
     this.setState({
-      activeCurrency: active
+      activeCurrency: activeIcon
     });
+    this.props.onIconSelect(activeIcon);
   };
 }
 
@@ -90,5 +91,6 @@ CurrencyList.propTypes = {
       coinAmount: PropTypes.string.isRequired,
       coinAmountUSD: PropTypes.string.isRequired
     })
-  )
+  ),
+  onIconSelect: PropTypes.func.isRequired
 };
