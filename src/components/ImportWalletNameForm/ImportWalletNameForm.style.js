@@ -33,7 +33,7 @@ export const Image = styled.img`
 `;
 
 export const WidthEighty = styled.div`
-  width: 80%;
+  width: 70%;
 `;
 
 export const Flex = styled.div`

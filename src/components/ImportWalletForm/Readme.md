@@ -1,7 +1,14 @@
 Variants of ImportWalletForm:
 
 ```js
-<div style={{ backgroundColor: '#2f4d5c', padding: 25 }}>
+<div
+  style={{
+    backgroundColor: '#2f4d5c',
+    padding: 25,
+    width: 576,
+    height: 576
+  }}
+>
   <ImportWalletForm
     wallet={{
       src:

@@ -6,7 +6,8 @@ A variant of ImportWalletSteps:
     backgroundColor: '#2f4d5c',
     padding: 25,
     flex: 1,
-    minHeight: 700,
+    width: 576,
+    height: 576,
     display: 'flex'
   }}
 >

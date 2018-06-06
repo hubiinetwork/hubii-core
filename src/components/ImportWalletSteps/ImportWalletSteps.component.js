@@ -50,6 +50,14 @@ const walletData = [
   {
     src: 'https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png',
     value: 'digitalBitbox1'
+  },
+  {
+    src: 'https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png',
+    value: 'digitalBitbox2'
+  },
+  {
+    src: 'https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png',
+    value: 'metamask2'
   }
 ];
 
@@ -129,7 +137,7 @@ export default class ImportWalletSteps extends React.Component {
           <ButtonDiv>
             {this.state.current > 0 && (
               <StyledBackButton type="primary" onClick={() => this.prev()}>
-                Back
+                <StyledSpan>Back</StyledSpan>
               </StyledBackButton>
             )}
             {this.state.current < steps.length - 1 && (
@@ -147,7 +155,7 @@ export default class ImportWalletSteps extends React.Component {
                 type="primary"
                 onClick={() => message.success('Processing complete!')}
               >
-                Finish
+                <StyledSpan>Finish</StyledSpan>
               </StyledButton>
             )}
           </ButtonDiv>

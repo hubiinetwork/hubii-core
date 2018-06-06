@@ -35,7 +35,14 @@ const walletData = [
     value: 'parity1'
   }
 ];
-<div style={{ backgroundColor: '#2f4d5c', padding: 25, width: 800 }}>
+<div
+  style={{
+    backgroundColor: '#2f4d5c',
+    padding: 25,
+    width: 576,
+    height: 576
+  }}
+>
   <ImportWallet wallets={walletData} />
 </div>;
 ```

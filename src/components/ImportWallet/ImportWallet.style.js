@@ -37,14 +37,11 @@ export const Coins = styled(Radio.Group)`
 const RadioButton = Radio.Button;
 export const CoinButton = styled(RadioButton)`
   margin-top: 15px;
-  padding-left: 25px;
-  padding-right: 25px;
-  padding-top: 15px;
-  padding-bottom: 40px;
+  padding-top: 8px;
   background-color: transparent;
-  min-width: 230px;
-  min-height: 60px;
-  border-radius: 3px;
+  width: 160px;
+  height: 48px;
+  border-radius: 3px !important;
 `;
 
 export const Flex = styled.div`
