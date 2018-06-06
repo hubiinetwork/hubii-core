@@ -8,6 +8,6 @@ const data = [
   { coin: 'ICX', coinAmount: '1,559.54', coinAmountUSD: '359.2' }
 ];
 <div style={{ backgroundColor: '#26404D', padding: 25, width: 304 }}>
-  <CurrencyList data={data} />
+  <CurrencyList data={data} onIconSelect={(icon) => {console.log('selected icon is',icon)}} />
 </div>
 ```
