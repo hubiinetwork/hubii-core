@@ -74,7 +74,7 @@ class EditContactModal extends React.Component {
             <StyledButton1
               type="primary"
               htmlType="submit"
-              onClick={this.handleEdit}
+              onClick={this.handleDelete}
             >
               <Icon type="plus" />
               Delete Contact
@@ -82,7 +82,7 @@ class EditContactModal extends React.Component {
             <StyledButton2
               type="primary"
               htmlType="submit"
-              onClick={this.handleDelete}
+              onClick={this.handleEdit}
             >
               <Icon type="plus" />
               Edit Contact

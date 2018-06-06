@@ -17,6 +17,12 @@ Variants of ContactList:
         address: '0xa7adde583f26c2f1c71e02f3bb729f0016033f78'
       }
     ]}
+    onEdit={values => {
+      console.log('Edited values are', values);
+    }}
+    onDelete={values => {
+      console.log('Deleted values are', values);
+    }}
   />
 </div>
 ```

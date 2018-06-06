@@ -69,6 +69,8 @@ export default class ContactList extends React.PureComponent {
           <EditContactModal
             name={this.state.name}
             address={this.state.address}
+            onEdit={this.props.onEdit}
+            onDelete={this.props.onDelete}
           />
         </Modal>
       </div>
@@ -117,5 +119,9 @@ ContactList.propTypes = {
   /**
    * size of antd list component
    */
-  size: PropTypes.oneOf(['default', 'small', 'large'])
+  size: PropTypes.oneOf(['default', 'small', 'large']),
+  /** Function to be executed when edit button of modal is pressed */
+  onEdit: PropTypes.func,
+  /** Function to be executed when delete button of modal is pressed */
+  onDelete: PropTypes.func
 };
