@@ -12,6 +12,8 @@ export const Between = styled.div`
 export const CreateButton = styled(Button)`
   background-color: transparent;
   color: ${({ theme }) => theme.palette.light};
+  height: 32px;
+  width: 153px;
   &:hover {
     background-color: ${({ theme }) => theme.palette.info2};
     color: ${({ theme }) => theme.palette.light};
@@ -21,7 +23,7 @@ export const CreateButton = styled(Button)`
 
 export const Image = styled.img`
   width: 150px;
-  height: 50px;
+  height: 44px;
   margin-top: 1rem;
   margin-bottom: 1rem;
 `;

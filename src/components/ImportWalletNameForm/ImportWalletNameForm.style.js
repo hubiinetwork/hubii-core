@@ -12,6 +12,8 @@ export const Between = styled.div`
 export const CreateButton = styled(Button)`
   background-color: transparent;
   color: ${({ theme }) => theme.palette.light};
+  height: 32px;
+  width: 153px;
   &:hover {
     background-color: ${({ theme }) => theme.palette.info2};
     color: ${({ theme }) => theme.palette.light};
@@ -27,7 +29,7 @@ export const LeftArrow = styled(Icon)`
 
 export const Image = styled.img`
   width: 150px;
-  height: 50px;
+  height: 44px;
   margin-top: 1rem;
   margin-bottom: 1rem;
 `;
@@ -49,4 +51,9 @@ export const StyledModalFormLabel = styled(ModalFormLabel)`
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
+`;
+export const StyledTitle = styled.span`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
 `;

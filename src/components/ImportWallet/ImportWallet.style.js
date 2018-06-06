@@ -11,6 +11,8 @@ export const Between = styled.div`
 export const CreateButton = styled(Button)`
   background-color: transparent;
   color: ${({ theme }) => theme.palette.light};
+  height: 32px;
+  width: 153px;
   &:hover {
     background-color: ${({ theme }) => theme.palette.info2};
     color: ${({ theme }) => theme.palette.light};
