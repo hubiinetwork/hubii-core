@@ -74,5 +74,9 @@ const MenuItemIcon = styled(Icon)`
   font-size: 32px !important;
   line-height: 70px !important;
 `;
+const Styledimg = styled.img`
+  margin-top: 25px;
+  margin-left: 5px;
+`;
 
-export { SideBarLayout, SideBarMenu, MenuItemIcon };
+export { SideBarLayout, SideBarMenu, MenuItemIcon, Styledimg };

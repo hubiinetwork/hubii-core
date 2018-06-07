@@ -2,7 +2,7 @@ import { Icon, Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SideBarLayout, SideBarMenu, MenuItemIcon } from './SideBar.style';
+import { SideBarLayout, SideBarMenu, Styledimg } from './SideBar.style';
 
 const { Sider } = Layout;
 
@@ -31,8 +31,9 @@ const SideBar = ({ menuItems, logoSrc, children }) => (
             <Menu.Item key={menuItem.to} className="menu-wallet">
               <Link to={menuItem.to}>
                 <div>
-                  <img src={`../../../public/Images/${menuItem.icon}.svg`} />
-                  <span>{menuItem.name}</span>
+                  <Styledimg
+                    src={`../../../public/Images/${menuItem.icon}.svg`}
+                  />
                 </div>
               </Link>
             </Menu.Item>
