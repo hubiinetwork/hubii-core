@@ -64,7 +64,7 @@ export const OuterWrapper = styled.div`
   flex: 1;
   justify-content: space-between;
   min-height: 120px;
-  padding: 25px 40px;
+  padding: 18px 24px;
   background-color: ${({ theme }) => theme.palette.primary4};
   color: white;
   cursor: pointer;
