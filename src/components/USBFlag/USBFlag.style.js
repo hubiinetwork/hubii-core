@@ -1,4 +1,3 @@
-import { Icon } from 'antd';
 import styled from 'styled-components';
 
 export const Slanted = styled.div`
@@ -13,18 +12,16 @@ export const Slanted = styled.div`
     border-right: 100px solid transparent;
     border-top: 100px solid
       ${props =>
-        props.connected
-          ? props.theme.palette.success
-          : props.theme.palette.danger};
+        props.connected ? props.theme.palette.info : props.theme.palette.info};
   }
 `;
 
-export const USB = styled(Icon)`
+export const USB = styled.img`
   position: absolute;
-  font-size: 16px;
-  top: 4px;
-  left: 3px;
-  font-weight: bolder;
+  width: 11px;
+  height: 16px;
+  top: 6px;
+  left: 6px;
 `;
 
 export const TextWhite = styled.span`

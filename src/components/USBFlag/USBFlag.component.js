@@ -2,6 +2,8 @@ import React from 'react';
 import { Slanted, USB, TextWhite } from './USBFlag.style';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'antd';
+import USBConnected from '../../usb-icon.svg';
+import USBDisconnected from '../../usb-icon-white.svg';
 
 /**
  * This component shows status of the user's API connection with wallet by showing connected flag.
@@ -20,12 +22,7 @@ const USBFlag = props => (
         )
       }
     >
-      <USB
-        type={props.connected ? 'check' : 'close'}
-        style={{
-          color: props.connected ? '#2f4d5c' : 'white'
-        }}
-      />
+      <USB src={props.connected ? USBConnected : USBDisconnected} />
     </Tooltip>
   </Slanted>
 );
