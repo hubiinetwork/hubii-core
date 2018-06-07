@@ -7,31 +7,29 @@ import {
   DetailWrapper,
   AlignCenter,
   BalanceColor,
-  Caret
+  Caret,
 } from './Balance.style';
 
-const Balance = props => {
-  return (
-    <FlexWrapper>
-      {props.coin && (
-        <ImageWrapper>
-          <Image src={`../../public/asset_images/${props.coin}.svg`} />
-          {props.caret && <Caret />}
-        </ImageWrapper>
+const Balance = (props) => (
+  <FlexWrapper>
+    {props.coin && (
+    <ImageWrapper>
+      <Image src={`/public/asset_images/${props.coin}.svg`} />
+      {props.caret && <Caret />}
+    </ImageWrapper>
       )}
-      <DetailWrapper>
-        <div>{props.title || 'Balance'}</div>
-        <AlignCenter>
-          <BalanceColor info={props.info}>
-            {props.showDollar && '$'}
-            {props.balance}
-          </BalanceColor>{' '}
-          {props.showCoinName}
-        </AlignCenter>
-      </DetailWrapper>
-    </FlexWrapper>
+    <DetailWrapper>
+      <div>{props.title || 'Balance'}</div>
+      <AlignCenter>
+        <BalanceColor info={props.info}>
+          {props.showDollar && '$'}
+          {props.balance}
+        </BalanceColor>{' '}
+        {props.showCoinName}
+      </AlignCenter>
+    </DetailWrapper>
+  </FlexWrapper>
   );
-};
 
 Balance.propTypes = {
   /**
@@ -61,7 +59,7 @@ Balance.propTypes = {
   /**
    * If  true, caret is shown with icon.
    */
-  caret: PropTypes.bool
+  caret: PropTypes.bool,
 };
 
 export default Balance;

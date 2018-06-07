@@ -7,7 +7,7 @@ import {
   CopyButton,
   HeaderDetail,
   DetailWrapper,
-  WalletHeaderWrapper
+  WalletHeaderWrapper,
 } from './WalletHeader.style';
 import Notification from '../Notification';
 import WalletHeaderIcon from './WalletHeaderIcon';
@@ -18,7 +18,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
  *
  */
 
-const WalletHeader = props => {
+const WalletHeader = (props) => {
   const showNotification = () => {
     const success = true;
     const message = 'Address copied to clipboard.';
@@ -70,7 +70,7 @@ WalletHeader.propTypes = {
   /**
    * Callback when header icon is clicked.
    */
-  onIconClick: PropTypes.func
+  onIconClick: PropTypes.func,
 };
 
 export default WalletHeader;

@@ -1,5 +1,5 @@
-import { Form, Input, Modal } from "antd";
-import styled from "styled-components";
+import { Form, Input, Modal } from 'antd';
+import styled from 'styled-components';
 
 export default styled(Modal)`
   .ant-modal-content {
