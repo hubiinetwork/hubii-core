@@ -7,7 +7,7 @@ import { HomeIcon, StyledLink } from './WalletHeaderIcon.style';
  */
 
 const WalletHeaderIcon = props => (
-  <StyledLink>
+  <StyledLink onClick={props.onIconClick}>
     <HomeIcon type={props.iconType} className="icon-home" />
   </StyledLink>
 );

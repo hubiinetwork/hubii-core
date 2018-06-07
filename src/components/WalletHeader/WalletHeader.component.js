@@ -28,7 +28,10 @@ const WalletHeader = props => {
   };
   return (
     <WalletHeaderWrapper>
-      <WalletHeaderIcon iconType={props.iconType} />
+      <WalletHeaderIcon
+        iconType={props.iconType}
+        onIconClick={props.onIconClick}
+      />
       <OverflowHidden>
         {props.connected !== undefined && (
           <USBFlag connected={props.connected} />
@@ -78,7 +81,11 @@ WalletHeader.propTypes = {
   /**
    *  Balance of the wallet
    */
-  connected: PropTypes.bool
+  connected: PropTypes.bool,
+  /**
+   * Callback when header icon is clicked.
+   */
+  onIconClick: PropTypes.func
 };
 
 export default WalletHeader;

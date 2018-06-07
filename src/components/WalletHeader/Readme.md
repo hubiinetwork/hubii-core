@@ -6,6 +6,9 @@ Examples:
   name="Ledger Nano S"
   address="0X21234asdq23d23234d"
   balance={12.34}
+  onIconClick={() => {
+    console.log('clicked first header icon');
+  }}
 />
 ```
 
@@ -15,6 +18,7 @@ Examples:
   name="Wallet"
   address="0X21234asdq23d23234d"
   balance={0.91}
+  connected={false}
   connected={false}
 />
 ```
@@ -26,5 +30,8 @@ Examples:
   address="0X21234asdq23d23234d"
   balance={0.91}
   connected
+  onIconClick={() => {
+    console.log('clicked second header icon');
+  }}
 />
 ```
