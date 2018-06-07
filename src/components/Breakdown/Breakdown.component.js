@@ -50,7 +50,7 @@ const Breakdown = ({ data, value }) => {
           containerComponent={
             <VictoryContainer
               responsive={true}
-              style={{ marginTop: '-35px', width: '90%', height: '90%' }}
+              style={{ marginTop: '-35px', width: '65%' }}
             />
           }
         />
