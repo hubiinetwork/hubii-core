@@ -108,3 +108,21 @@ body {
   padding: 0;
   font-family: 'SF Text';
 }
+
+div {
+  font-family: 'SF Text';
+}
+
+span {
+  font-family: 'SF Text';
+}
+
+p {
+  font-family: 'SF Text';
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
