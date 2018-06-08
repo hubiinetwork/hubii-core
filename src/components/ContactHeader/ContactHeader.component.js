@@ -19,7 +19,8 @@ export default class ContactHeader extends React.PureComponent {
       placeholder,
       showSearch,
       titleTabs,
-      onTabChange
+      onTabChange,
+      onSearch
     } = this.props;
     return (
       <StyledDiv>
@@ -38,7 +39,7 @@ export default class ContactHeader extends React.PureComponent {
         )}
         {showSearch ? (
           <Wrapper>
-            <StyledSearch placeholder={placeholder} />
+            <StyledSearch placeholder={placeholder} onSearch={onSearch} />
           </Wrapper>
         ) : null}
       </StyledDiv>
@@ -76,5 +77,9 @@ ContactHeader.propTypes = {
   /**
    * Function executed when tab is changed
    */
-  onTabChange: PropTypes.func
+  onTabChange: PropTypes.func,
+  /**
+   * Function triggered when enter is pressed in search bar
+   */
+  onSearch: PropTypes.func
 };

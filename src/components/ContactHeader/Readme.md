@@ -2,7 +2,11 @@ Variants of ContactHeader:
 
 ```js
 <div style={{ backgroundColor: '#2f4d5c', padding: 25 }}>
-  <ContactHeader title={'Recent Contacts'} showSearch={true} />
+  <ContactHeader
+    title={'Recent Contacts'}
+    showSearch={true}
+    onSearch={value => console.log(value)}
+  />
 </div>
 ```
 
@@ -12,6 +16,7 @@ Variants of ContactHeader:
     title={'Recent Contacts'}
     placeholder={'custom placeholder'}
     showSearch={true}
+    onSearch={value => console.log(value)}
   />
 </div>
 ```
@@ -34,6 +39,7 @@ const titleTabs = [
     onTabChange={() => {
       console.log('Tab changed');
     }}
+    onSearch={value => console.log(value)}
   />
 </div>;
 ```
