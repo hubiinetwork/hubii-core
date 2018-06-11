@@ -28,6 +28,8 @@ const greyDark = '#496370';
 const greyDarker = '#445f6c';
 const grey50 = 'rgba(140,165,177,.5)';
 const grey8C = '#8CA5B1';
+const grey6F = '#43616F';
+const grey40 = '#406171';
 
 // ****** black ****** //
 
@@ -73,6 +75,8 @@ export default {
     secondary4: grey50,
     secondary5: greyDim,
     secondary6: grey8C,
+    secondary7: grey6F,
+    secondary8: grey40,
 
     dark: black,
     dark1: blackLight,
