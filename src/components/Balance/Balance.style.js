@@ -29,14 +29,14 @@ export const Image = styled.img`
 
 export const DetailWrapper = styled.div`
   font-size: 14px;
-  font-weight: 200;
+  font-weight: 500;
+  line-height: 16px;
   color: ${({ theme }) => theme.palette.secondary1};
 `;
 
 export const AlignCenter = styled.div`
   display: flex;
   align-items: center;
-  margin-top: -3px;
 `;
 
 export const BalanceColor = styled.div`
@@ -44,5 +44,6 @@ export const BalanceColor = styled.div`
     info ? theme.palette.info : theme.palette.light};
   margin-right: 6px;
   font-size: 16px;
-  font-weight: 200;
+  font-weight: 500;
+  line-height: 16px;
 `;
