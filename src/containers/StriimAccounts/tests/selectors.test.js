@@ -3,13 +3,12 @@ import { fromJS } from 'immutable';
 import selectStriimAccountsDomain, {
   makeSelectLoading,
   makeSelectError,
-  makeSelectAccounts,
   makeSelectCurrentAccount,
   makeSelectCurrentCurrency,
 } from '../selectors';
 
 describe('selectStriimAccountsDomain', () => {
-  it('should select the deposit page state', () => {
+  it('should select the striimAccounts state', () => {
     const mockState = fromJS({
       striimAccounts: [{ balances: [] }],
     });
