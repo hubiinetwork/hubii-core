@@ -11,7 +11,9 @@ import {
   CollapseLeft,
   CollapseParent,
   CollapseRight,
-  ItemWrapper
+  ItemWrapper,
+  LeftFlex,
+  RightFlex
 } from './PaymentHistoryDetail.style';
 import PropTypes from 'prop-types';
 import PaymentType from '../PaymentType';
@@ -27,16 +29,22 @@ const PaymentHistoryDetail = props => {
         showArrow={false}
         header={
           <Wrapper>
-            <PaymentHistoryAddress>
-              {props.data.coinAmount} {props.data.coin}
-            </PaymentHistoryAddress>
-            <Amount>${props.data.USDAmount} USD</Amount>
-            <PaymentHistoryType>
-              To:
-              <PaymentHistoryAddress> {props.data.to}</PaymentHistoryAddress>
-            </PaymentHistoryType>
-            <PaymentType type="Order" />
-            <TimePast>{props.data.timePast} ago</TimePast>
+            <LeftFlex>
+              <PaymentHistoryAddress>
+                {props.data.coinAmount} {props.data.coin}
+              </PaymentHistoryAddress>
+              <Amount>${props.data.USDAmount} USD</Amount>
+              <PaymentHistoryType>
+                To:
+                <PaymentHistoryAddress> {props.data.to}</PaymentHistoryAddress>
+              </PaymentHistoryType>
+            </LeftFlex>
+            <RightFlex>
+              <div style={{ marginLeft: '-1rem' }}>
+                <PaymentType type="Order" />
+              </div>
+              <TimePast>{props.data.timePast} ago</TimePast>
+            </RightFlex>
           </Wrapper>
         }
         key="1"

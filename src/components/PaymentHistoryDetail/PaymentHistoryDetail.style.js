@@ -14,6 +14,22 @@ export const ItemWrapper = styled.div`
   margin-top: 1.3rem;
 `;
 
+export const LeftFlex = styled.div`
+  display: flex;
+  flex: 0.7;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 57px;
+`;
+
+export const RightFlex = styled.div`
+  display: flex;
+  flex: 0.3;
+  justify-content: space-between;
+  align-items: center;
+}}
+`;
+
 export const TimePast = styled.div`
   color: ${({ theme }) => theme.palette.secondary4};
   font-size: 12px;
