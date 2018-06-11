@@ -21,14 +21,14 @@ import App from 'containers/App';
 
 // Import Theme Provider
 import { ThemeProvider } from 'styled-components';
+// Import Themes
+import dark from 'themes/darkTheme';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
 
 import configureStore from './configureStore';
 
-// Import Themes
-import dark from 'themes/darkTheme';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
