@@ -11,16 +11,16 @@ export default styled(Button)`
     if (type === 'primary') {
       return `
         color: ${theme.palette.light};
-        border-color: ${theme.palette.info};
+        border-color: ${theme.palette.info3};
         background: transparent;
         &:hover {
           color: ${theme.palette.light};
           background: ${theme.palette.info2} !important;
-          border-color: ${theme.palette.info} !important;
+          border-color: ${theme.palette.info3} !important;
         }
         &:focus {
           color: ${theme.palette.light};
-          border-color: ${theme.palette.info};
+          border-color: ${theme.palette.info3};
           background-color: ${theme.palette.info2};
         }`;
     }
