@@ -36,7 +36,7 @@ export const TimePast = styled.div`
   font-weight: 500;
   line-height: 14px;
   text-align: right;
-  margin-right: 10px;
+  margin-right: 2.3rem;
 `;
 
 export const CollapseLeft = styled.div`
