@@ -1,5 +1,5 @@
-import { Form, Input, Modal } from "antd";
-import styled from "styled-components";
+import { Form, Input, Modal } from 'antd';
+import styled from 'styled-components';
 
 export default styled(Modal)`
   .ant-modal-content {
@@ -25,15 +25,15 @@ export const ModalFormLabel = styled.span`
 export const ModalFormInput = styled(Input)`
   font-size: 1em;
   background-color: transparent;
-  color: ${({ theme }) => theme.palette.secondary};
+  color: ${({ theme }) => theme.palette.secondary4};
   margin-bottom: 8px;
-  border: 1px solid ${({ theme }) => theme.palette.secondary};
+  border: 1px solid ${({ theme }) => theme.palette.secondary4};
   &:hover {
-    border: 1px solid ${({ theme }) => theme.palette.secondary1};
+    border: 1px solid ${({ theme }) => theme.palette.secondary4};
     box-shadow: none;
   }
   &:focus {
-    border: 1px solid ${({ theme }) => theme.palette.secondary1};
+    border: 1px solid ${({ theme }) => theme.palette.secondary4};
     box-shadow: none;
     color: ${({ theme }) => theme.palette.info};
   }
