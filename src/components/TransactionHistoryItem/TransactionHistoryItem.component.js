@@ -12,7 +12,7 @@ import TransactionHistoryDetail from '../TransactionHistoryDetail';
  */
 export const TransactionHistoryItem = props => {
   const type = !props.data.address
-    ? 'exchange'
+    ? 'exchanged'
     : props.data.address === props.data.to
       ? 'received'
       : 'sent';
@@ -22,7 +22,7 @@ export const TransactionHistoryItem = props => {
       <TransactionHistoryItemCard>
         <Image
           src={`../../../public/asset_images/${
-            type === 'exchange' ? props.data.fromCoin : props.data.coin
+            type === 'exchanged' ? props.data.fromCoin : props.data.coin
           }.svg`}
         />
         <TransactionHistoryDetail
