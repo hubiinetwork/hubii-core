@@ -64,6 +64,10 @@ const SideBarMenu = styled(Menu)`
     background: ${({ theme }) => theme.palette.dark1} !important;
     border-right: 2px solid ${({ theme }) => theme.palette.info};
   }
+  .ant-tooltip-open{
+    .ant-tooltip-open{
+    }
+  }
   // .ant-menu-item-selected.menu-logo {
   //   border-right: none;
   //   background: ${({ theme }) => theme.palette.dark} !important;
