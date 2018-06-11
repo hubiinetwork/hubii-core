@@ -19,7 +19,7 @@ export const LeftFlex = styled.div`
   flex: 0.7;
   justify-content: space-between;
   align-items: center;
-  margin-right: 57px;
+  margin-right: 65px;
 `;
 
 export const RightFlex = styled.div`
@@ -40,7 +40,7 @@ export const TimePast = styled.div`
 `;
 
 export const CollapseLeft = styled.div`
-  border-right: 1px solid ${({ theme }) => theme.palette.secondary4};
+  border-right: 1px solid ${({ theme }) => theme.palette.secondary7};
   margin-top: 1rem;
   flex: 0.7;
 `;
@@ -72,7 +72,7 @@ export const PaymentHistoryAddress = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 308px;
+  max-width: 266px;
   font-weight: 500;
   line-height: 16px;
 `;
