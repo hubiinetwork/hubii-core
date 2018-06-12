@@ -29,15 +29,19 @@ class PaymentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rate: this.props.rate
+      amount: 1,
+      selectedAddress: this.props.recipients[0]
     };
   }
-  handleRate(e) {
+
+  handleAddress(value) {
     this.setState({
-      rate:
-        this.state.rate === 0
-          ? this.props.rate * e.target.value
-          : this.state.rate * e.target.value
+      selectedAddress: value
+    });
+  }
+  handleAmount(e) {
+    this.setState({
+      amount: e.target.value
     });
   }
 
@@ -45,19 +49,21 @@ class PaymentForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.props.onSend(values);
+        this.props.onSend(values, this.state.selectedAddress);
       }
     });
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { amount } = this.state;
     const {
       onCancel,
       transactionFee,
       recipients,
       balance,
-      currency
+      currency,
+      rate
     } = this.props;
     return (
       <Wrapper>
@@ -86,9 +92,12 @@ class PaymentForm extends React.Component {
                   }
                 ]
               })(
-                <StyledInput type="number" onChange={e => this.handleRate(e)} />
+                <StyledInput
+                  type="number"
+                  onChange={e => this.handleAmount(e)}
+                />
               )}
-              <StyledSpan>${this.state.rate}</StyledSpan>
+              <StyledSpan>${amount * rate}</StyledSpan>
             </Item>
           </ItemDiv>
           <ItemDiv>
@@ -96,7 +105,10 @@ class PaymentForm extends React.Component {
               label={<StyledLabel>Recipient</StyledLabel>}
               style={{ flex: 1 }}
             >
-              <Select defaultValue={recipients[0]}>
+              <Select
+                defaultValue={recipients[0]}
+                onSelect={value => this.handleAddress(value)}
+              >
                 {recipients.map((address, i) => (
                   <Option key={i} value={address}>
                     {address}

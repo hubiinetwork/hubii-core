@@ -13,7 +13,7 @@ const recipients = [
     transactionFee={0.0012}
     recipients={recipients}
     rate={120}
-    onSend={value => console.log('Sent', value)}
+    onSend={(value, address) => console.log('Sent', value, address)}
   />
 </div>;
 ```
