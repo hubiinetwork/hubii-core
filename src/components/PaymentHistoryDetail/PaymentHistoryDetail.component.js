@@ -7,7 +7,7 @@ import {
   TextGrey,
   Amount,
   TimePast,
-  PaymentHistoryType,
+  TextDullWhite,
   CollapseLeft,
   CollapseParent,
   CollapseRight,
@@ -21,7 +21,9 @@ import PaymentType from '../PaymentType';
 /**
  * This component shows the collapsed area of PaymentHistoryItem.
  */
+const compareTime = new Date();
 const PaymentHistoryDetail = props => {
+  console.log(props.data);
   return (
     <DetailCollapse bordered={false}>
       <DetailPanel
@@ -34,16 +36,18 @@ const PaymentHistoryDetail = props => {
                 {props.data.coinAmount} {props.data.coin}
               </PaymentHistoryAddress>
               <Amount>${props.data.USDAmount} USD</Amount>
-              <PaymentHistoryType>
+              <TextDullWhite>
                 To:
                 <PaymentHistoryAddress> {props.data.to}</PaymentHistoryAddress>
-              </PaymentHistoryType>
+              </TextDullWhite>
             </LeftFlex>
             <RightFlex>
               <div style={{ marginLeft: '-1rem' }}>
-                <PaymentType type="Order" />
+                <PaymentType type={props.data.type} />
               </div>
-              <TimePast>{props.data.timePast} ago</TimePast>
+              <TimePast>
+                {(props.data.timeStamp - compareTime) / 1000} secs ago
+              </TimePast>
             </RightFlex>
           </Wrapper>
         }
@@ -53,42 +57,47 @@ const PaymentHistoryDetail = props => {
           <CollapseLeft>
             <div>
               <TextGrey>To Wallet ID:</TextGrey>
-              <PaymentHistoryType>{props.data.toID}</PaymentHistoryType>
+              <TextDullWhite>{props.data.toID}</TextDullWhite>
             </div>
             <ItemWrapper>
               <TextGrey>TxHash:</TextGrey>
-              <PaymentHistoryType>{props.data.hashID}</PaymentHistoryType>
+              <TextDullWhite>{props.data.hashID}</TextDullWhite>
             </ItemWrapper>
             <ItemWrapper>
               <TextGrey>Timestamp:</TextGrey>
-              <PaymentHistoryType>{props.data.timeStamp}</PaymentHistoryType>
+              <TextDullWhite>
+                {props.data.timeStamp.toLocaleString()}
+              </TextDullWhite>
             </ItemWrapper>
             <ItemWrapper>
               <TextGrey>Block Height:</TextGrey>
-              <PaymentHistoryType>
-                {props.data.blockHeight} (2 block confirmations)
-              </PaymentHistoryType>
+              <TextDullWhite>
+                {props.data.blockHeight} ({props.data.confirmationBlocks} block
+                confirmations)
+              </TextDullWhite>
             </ItemWrapper>
           </CollapseLeft>
 
           <CollapseRight>
             <div>
               <TextGrey>Gas Limit:</TextGrey>
-              <PaymentHistoryType>{props.data.gasLimit}</PaymentHistoryType>
+              <TextDullWhite>{props.data.gasLimit}</TextDullWhite>
             </div>
             <ItemWrapper>
               <TextGrey>Gas used by Txn:</TextGrey>
-              <PaymentHistoryType>{props.data.gasTxn}</PaymentHistoryType>
+              <TextDullWhite>{props.data.gasTxn}</TextDullWhite>
             </ItemWrapper>
             <ItemWrapper>
               <TextGrey>Gas Price:</TextGrey>
-              <PaymentHistoryType>
+              <TextDullWhite>
                 {props.data.gasPrice} {props.data.coin}
-              </PaymentHistoryType>
+              </TextDullWhite>
             </ItemWrapper>
             <ItemWrapper>
               <TextGrey>Actuaal Tx Cost/Fee:</TextGrey>
-              <PaymentHistoryType>{props.data.cost} ($0.02)</PaymentHistoryType>
+              <TextDullWhite>
+                {props.data.cost} {props.data.exchangeRate}
+              </TextDullWhite>
             </ItemWrapper>
           </CollapseRight>
         </CollapseParent>
@@ -99,6 +108,7 @@ const PaymentHistoryDetail = props => {
 PaymentHistoryDetail.propTypes = {
   data: PropTypes.shape({
     coin: PropTypes.string,
+    confirmationBlocks: PropTypes.number,
     coinAmount: PropTypes.number,
     USDAmount: PropTypes.number,
     to: PropTypes.string,
@@ -109,15 +119,15 @@ PaymentHistoryDetail.propTypes = {
       'Deposit',
       'Trade'
     ]),
-    timePast: PropTypes.string,
     toID: PropTypes.string,
     hashID: PropTypes.string,
-    timeStamp: PropTypes.string,
-    blockHeight: PropTypes.string,
+    timeStamp: PropTypes.object,
+    blockHeight: PropTypes.number,
     gasLimit: PropTypes.number,
     gasTxn: PropTypes.number,
     gasPrice: PropTypes.number,
-    cost: PropTypes.number
+    cost: PropTypes.number,
+    exchangeRate: PropTypes.number
   }).isRequired
 };
 

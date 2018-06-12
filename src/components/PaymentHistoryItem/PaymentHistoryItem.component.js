@@ -37,12 +37,12 @@ PaymentHistoryItem.propTypes = {
     ]),
     toID: PropTypes.string,
     hashID: PropTypes.string,
-    timeStamp: PropTypes.string,
-    timePast: PropTypes.string,
-    blockHeight: PropTypes.string,
+    timeStamp: PropTypes.object,
+    blockHeight: PropTypes.number,
     gasLimit: PropTypes.number,
     gasTxn: PropTypes.number,
     gasPrice: PropTypes.number,
-    cost: PropTypes.number
+    cost: PropTypes.number,
+    exchangeRate: PropTypes.number
   }).isRequired
 };

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Collapse } from 'antd';
 const Panel = Collapse.Panel;
 
-export const PaymentHistoryType = styled.div`
+export const TextDullWhite = styled.div`
   color: ${({ theme }) => theme.palette.light1};
   display: flex;
   font-size: 14px;
