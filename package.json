@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.5.0",
+    "qrcode.react": "^0.8.0",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
