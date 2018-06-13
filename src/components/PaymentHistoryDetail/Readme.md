@@ -1,7 +1,7 @@
 A variant of PaymentHistoryDetail:
 
 ```js
-const date = new Date();
+const date = new Date(2011, 12, 21, 15, 36, 56, 12);
 <div style={{ backgroundColor: 'grey', padding: 10 }}>
   <PaymentHistoryDetail
     data={{

@@ -17,6 +17,7 @@ import {
 } from './PaymentHistoryDetail.style';
 import PropTypes from 'prop-types';
 import PaymentType from '../PaymentType';
+import { FormattedRelative } from 'react-intl';
 
 /**
  * This component shows the collapsed area of PaymentHistoryItem.
@@ -46,7 +47,7 @@ const PaymentHistoryDetail = props => {
                 <PaymentType type={props.data.type} />
               </div>
               <TimePast>
-                {(props.data.timeStamp - compareTime) / 1000} secs ago
+                <FormattedRelative value={new Date(props.data.timeStamp)} />
               </TimePast>
             </RightFlex>
           </Wrapper>

@@ -1,7 +1,7 @@
 A variant of PaymentHistoryItem:
 
 ```js
-const date = new Date();
+const date = new Date(2016, 2);
 const show = {
   coin: 'AIR',
   coinAmount: 212,
