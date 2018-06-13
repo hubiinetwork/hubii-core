@@ -14,8 +14,6 @@
 import React from 'react';
 import { compose } from 'redux';
 import { Switch, Route } from 'react-router-dom';
-import 'antd/dist/antd.css';
-import '../../../public/index.css';
 import Striim from 'containers/Striim';
 import SideBar from 'components/SideBar';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';

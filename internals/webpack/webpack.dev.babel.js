@@ -9,7 +9,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const logger = require('../../server/logger');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
 const dllPlugin = process.env.NODE_ENV !== 'style' ? pkg.dllPlugin : null;
@@ -24,9 +23,6 @@ const plugins = [
     exclude: /a\.js|node_modules/, // exclude node_modules
     failOnError: false, // show a warning when there is a circular dependency
   }),
-  new CopyWebpackPlugin(
-    [{ from: 'public/', to: 'public/' }]
-  ),
 ];
 
 if (dllPlugin) {
@@ -47,6 +43,9 @@ module.exports = require('./webpack.base.babel')({
   entry: [
     'eventsource-polyfill', // Necessary for hot reloading with IE
     'webpack-hot-middleware/client?reload=true',
+    path.join(process.cwd(), 'public/index.css'),
+    path.join(process.cwd(), 'node_modules/antd/dist/antd.css'),
+    path.join(process.cwd(), 'node_modules/sanitize.css/sanitize.css'),
     path.join(process.cwd(), 'src/app.js'), // Start with js/app.js
   ],
 

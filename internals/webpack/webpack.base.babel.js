@@ -4,6 +4,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // Remove this line once the following warning goes away (it was meant for webpack loader authors not users):
 // 'DeprecationWarning: loaderUtils.parseQuery() received a non-string value which can be problematic,
@@ -124,6 +125,9 @@ module.exports = (options) => ({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
+    new CopyWebpackPlugin(
+      [{ from: 'public/', to: 'public/' }]
+    ),
   ]),
   resolve: {
     modules: [
@@ -134,12 +138,17 @@ module.exports = (options) => ({
       '.js',
       '.jsx',
       '.react.js',
+      '.css',
+      '.less',
     ],
     mainFields: [
       'browser',
       'jsnext:main',
       'main',
     ],
+    alias: {
+      moment$: 'moment/moment.js',
+    },
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
