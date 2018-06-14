@@ -8,7 +8,7 @@ export default class ThemeWrapper extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <IntlProvider>
+        <IntlProvider locale="en">
           <BrowserRouter>{this.props.children}</BrowserRouter>
         </IntlProvider>
       </ThemeProvider>

@@ -22,9 +22,8 @@ import { FormattedRelative } from 'react-intl';
 /**
  * This component shows the collapsed area of PaymentHistoryItem.
  */
-const compareTime = new Date();
+
 const PaymentHistoryDetail = props => {
-  console.log(props.data);
   return (
     <DetailCollapse bordered={false}>
       <DetailPanel
