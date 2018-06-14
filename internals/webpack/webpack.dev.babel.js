@@ -43,7 +43,6 @@ module.exports = require('./webpack.base.babel')({
   entry: [
     'eventsource-polyfill', // Necessary for hot reloading with IE
     'webpack-hot-middleware/client?reload=true',
-    path.join(process.cwd(), 'public/index.css'),
     path.join(process.cwd(), 'node_modules/antd/dist/antd.css'),
     path.join(process.cwd(), 'node_modules/sanitize.css/sanitize.css'),
     path.join(process.cwd(), 'src/app.js'), // Start with js/app.js

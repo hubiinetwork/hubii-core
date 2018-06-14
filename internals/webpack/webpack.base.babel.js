@@ -126,7 +126,9 @@ module.exports = (options) => ({
       },
     }),
     new CopyWebpackPlugin(
-      [{ from: 'public/', to: 'public/' }]
+      [
+        { from: 'public/', to: 'public/' },
+      ]
     ),
   ]),
   resolve: {

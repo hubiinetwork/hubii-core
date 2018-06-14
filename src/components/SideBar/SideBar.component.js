@@ -31,7 +31,7 @@ const SideBar = ({ menuItems, logoSrc, children }) => (
             <Menu.Item key={menuItem.to} className="menu-wallet">
               <Link to={menuItem.to}>
                 <div>
-                  <img src={`../../../public/Images/${menuItem.icon}.svg`} />
+                  <img src={require(`../../../public/Images/${menuItem.icon}.svg`)} />
                   <span>{menuItem.name}</span>
                 </div>
               </Link>

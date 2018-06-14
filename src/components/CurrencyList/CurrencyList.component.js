@@ -42,7 +42,7 @@ export default class CurrencyList extends React.PureComponent {
           title={<TextPrimary>{item.coin}</TextPrimary>}
           avatar={
             <StyledAvatar
-              src={`/public/asset_images/${item.coin}.svg`}
+              src={require(`../../../public/asset_images/${item.coin}.svg`)}
               alt="coin"
             />
           }

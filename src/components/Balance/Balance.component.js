@@ -14,7 +14,7 @@ const Balance = (props) => (
   <FlexWrapper>
     {props.coin && (
     <ImageWrapper>
-      <Image src={`/public/asset_images/${props.coin}.svg`} />
+      <Image src={require(`../../../public/asset_images/${props.coin}.svg`)} />
       {props.caret && <Caret />}
     </ImageWrapper>
       )}
