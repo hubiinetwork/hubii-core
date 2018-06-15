@@ -20,6 +20,8 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import withExchangeRate from 'containers/ExchangeRateHOC';
 
+import logoSvg from '../../../public/Images/corerz-logo.svg';
+
 export function App() {
   const menuItems = [
     {
@@ -39,7 +41,7 @@ export function App() {
     },
   ];
   return (
-    <SideBar menuItems={menuItems} logoSrc={require('../../../public/Images/corerz-logo.svg')}>
+    <SideBar menuItems={menuItems} logoSrc={logoSvg}>
       <Switch>
         <Route path="/striim" component={Striim} />
         <Route component={NotFoundPage} />
