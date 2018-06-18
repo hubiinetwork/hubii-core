@@ -20,20 +20,22 @@ export const ModalFormLabel = styled.span`
   font-size: 12px;
   color: ${({ theme }) => theme.palette.light};
   margin-bottom: 8px;
+  font-family: 'SF Text';
 `;
 
 export const ModalFormInput = styled(Input)`
   font-size: 1em;
+  font-family: 'SF Text';
   background-color: transparent;
-  color: ${({ theme }) => theme.palette.secondary};
+  color: ${({ theme }) => theme.palette.secondary4};
   margin-bottom: 8px;
-  border: 1px solid ${({ theme }) => theme.palette.secondary};
+  border: 1px solid ${({ theme }) => theme.palette.secondary4};
   &:hover {
-    border: 1px solid ${({ theme }) => theme.palette.secondary1};
+    border: 1px solid ${({ theme }) => theme.palette.secondary4};
     box-shadow: none;
   }
   &:focus {
-    border: 1px solid ${({ theme }) => theme.palette.secondary1};
+    border: 1px solid ${({ theme }) => theme.palette.secondary4};
     box-shadow: none;
     color: ${({ theme }) => theme.palette.info};
   }
@@ -41,6 +43,7 @@ export const ModalFormInput = styled(Input)`
 
 export const ModalFormTextArea = styled(Input.TextArea)`
   font-size: 1em;
+  font-family: 'SF Text';
   background-color: transparent;
   color: ${({ theme }) => theme.palette.secondary};
   margin-bottom: 8px;

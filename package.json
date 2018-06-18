@@ -1,11 +1,6 @@
 {
-  "name": "react-boilerplate",
-  "version": "3.5.0",
-  "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
-  },
+  "name": "hubii-core-ui",
+  "version": "0.1.0",
   "engines": {
     "npm": ">=5",
     "node": ">=6"
@@ -20,6 +15,7 @@
       "build/**/*"
     ]
   },
+  "private": true,
   "scripts": {
     "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "electron-pack": "electron-builder --dir",
@@ -272,6 +268,7 @@
     "lodash": "4.17.5",
     "minimist": "1.2.0",
     "prop-types": "15.6.1",
+    "qrcode.react": "^0.8.0",
     "react": "16.2.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "16.2.0",
