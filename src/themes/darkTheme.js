@@ -24,7 +24,7 @@ const seaGreen50 = 'rgba(80,227,194,.5)';
 const grey = 'rgba(255,255,255,0.5)';
 const greyDim = 'rgba(255,255,255,0.3)';
 const greyLight = '#C0CDD3';
-const greyDark = '#496370';
+const greyDark = '#43616F';
 const greyDarker = '#445f6c';
 const grey50 = 'rgba(140,165,177,.5)';
 const grey8C = '#8CA5B1';
@@ -46,6 +46,10 @@ const greenLight = 'rgba(173, 255, 47, 0.5)';
 // ****** yellow ****** //
 
 const orange = 'orange';
+
+// ****** red ****** //
+
+const red = 'tomato';
 
 // ****** shadows ****** //
 
@@ -94,5 +98,6 @@ export default {
     success: green,
     success1: greenLight,
     warning: orange,
-  },
+    danger: red
+  }
 };
