@@ -1,3 +1,3 @@
 export default {
-  "Hubii Wallet": "Cryptocurrency Software Wallet"
+  'Hubii Wallet': 'Cryptocurrency Software Wallet',
 };

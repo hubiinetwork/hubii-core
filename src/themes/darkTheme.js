@@ -45,7 +45,7 @@ const greenLight = 'rgba(173, 255, 47, 0.5)';
 
 // ****** yellow ****** //
 
-const orange = 'orange';
+const orange = '#e7a611';
 
 // ****** red ****** //
 

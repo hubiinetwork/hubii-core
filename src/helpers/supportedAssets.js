@@ -1,1 +1,1 @@
-export default ["HBT", "ETH"];
+export default ['HBT', 'ETH'];
