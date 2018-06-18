@@ -9,6 +9,7 @@ import {
   makeSelectPasswordInput,
   makeSelectSelectedWalletName,
   makeSelectWallets,
+  makeSelectDerivationPathInput,
 } from './selectors';
 import {
   createNewWalletFailed,
@@ -25,8 +26,9 @@ function* progressCallback(percent) {
 export function* createWallet() {
   try {
     const password = yield select(makeSelectPasswordInput());
+    const derivationPath = yield select(makeSelectDerivationPathInput());
     const mnemonic = ethers.HDNode.entropyToMnemonic(ethers.utils.randomBytes(16));
-    const wallet = Wallet.fromMnemonic(mnemonic);
+    const wallet = Wallet.fromMnemonic(mnemonic, derivationPath);
     const encryptedWallet = yield wallet.encrypt(password, progressCallback);
     yield put(createNewWalletSuccess(encryptedWallet));
   } catch (e) {

@@ -13,6 +13,11 @@ const makeSelectPasswordInput = () => createSelector(
   (depositPageDomain) => depositPageDomain.getIn(['inputs', 'password'])
 );
 
+const makeSelectDerivationPathInput = () => createSelector(
+  selectWalletManagerDomain,
+  (depositPageDomain) => depositPageDomain.getIn(['inputs', 'derivationPath'])
+);
+
 const makeSelectNewWalletNameInput = () => createSelector(
   selectWalletManagerDomain,
   (depositPageDomain) => depositPageDomain.getIn(['inputs', 'newWalletNameInput'])
@@ -45,4 +50,5 @@ export {
   makeSelectPasswordInput,
   makeSelectSelectedWalletName,
   makeSelectWallets,
+  makeSelectDerivationPathInput,
 };

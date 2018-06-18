@@ -17,7 +17,8 @@ describe('walletManagerReducer', () => {
       selectedWalletName: '',
       inputs: {
         password: '',
-        newWalletName: '',
+        newWalletName: 'My Wallet',
+        derivationPath: 'm/44\'/60\'/0\'/0/0',
       },
       loading: {
         creatingWallet: false,
@@ -52,7 +53,8 @@ describe('walletManagerReducer', () => {
       .setIn(['loading', 'creatingWallet'], false)
       .setIn(['inputs', 'password'], '')
       .setIn(['errors', 'creatingWalletError'], null)
-      .setIn(['wallets', 'software', state.getIn('inputs', 'newWalletNameInput'), 'encrypted'], encryptedWallet);
+      .setIn(['wallets', 'software', state.getIn(['inputs', 'newWalletName']), 'derivationPath'], state.getIn(['inputs', 'derivationPath']))
+      .setIn(['wallets', 'software', state.getIn(['inputs', 'newWalletName']), 'encrypted'], encryptedWallet);
     expect(walletManagerReducer(state, createNewWalletSuccess(encryptedWallet))).toEqual(expected);
   });
 
