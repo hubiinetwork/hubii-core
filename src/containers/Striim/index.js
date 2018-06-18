@@ -10,6 +10,10 @@ import StriimTabs, { TabPane } from 'components/ui/StriimTabs';
 import { Wrapper } from './StriimAccounts.style';
 
 export class StriimContainers extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  constructor(...args) {
+    super(...args);
+    this.onTabChange = this.onTabChange.bind(this);
+  }
 
   onTabChange(key) {
     const { history } = this.props;// eslint-disable-line
@@ -20,7 +24,7 @@ export class StriimContainers extends React.PureComponent { // eslint-disable-li
     const { history, match } = this.props;// eslint-disable-line
     return (
       <Wrapper>
-        <StriimTabs defaultActiveKey={history.location.pathname} onChange={this.onTabChange.bind(this)}>
+        <StriimTabs defaultActiveKey={history.location.pathname} onChange={this.onTabChange}>
           <TabPane tab="Accounts" key={`${match.url}/accounts`} style={{ color: 'white' }}>
             <Route path={`${match.url}/accounts`} component={StriimAccountsContainer} />
           </TabPane>

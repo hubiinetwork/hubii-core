@@ -2,16 +2,12 @@ import {
   LOAD_STRIIM_ACCOUNTS,
   LOAD_STRIIM_ACCOUNTS_SUCCESS,
   LOAD_STRIIM_ACCOUNTS_FAILURE,
-  CHANGE_CURRENT_ACCOUNT,
-  CHANGE_CURRENT_CURRENCY,
 } from '../constants';
 
 import {
   loadStriimAccounts,
   striimAccountsLoaded,
   striimAccountsLoadingError,
-  changeCurrentCurrency,
-  changeCurrentAccount,
 } from '../actions';
 
 describe('Striim Accounts Actions', () => {

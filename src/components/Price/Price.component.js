@@ -14,7 +14,6 @@ Price.propTypes = {
   error: PropTypes.bool,
   price: PropTypes.number,
   amount: PropTypes.number,
-  symbol: PropTypes.string,
 };
 
 export default Price;

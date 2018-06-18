@@ -31,7 +31,11 @@ const SideBar = ({ menuItems, logoSrc, children }) => (
             <Menu.Item key={menuItem.to} className="menu-wallet">
               <Link to={menuItem.to}>
                 <div>
-                  <img src={require(`../../../public/Images/${menuItem.icon}.svg`)} alt="" />
+                  <img
+                  // eslint-disable-next-line global-require
+                    src={require(`../../../public/Images/${menuItem.icon}.svg`)}
+                    alt=""
+                  />
                   <span>{menuItem.name}</span>
                 </div>
               </Link>

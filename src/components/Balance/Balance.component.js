@@ -14,7 +14,10 @@ const Balance = (props) => (
   <FlexWrapper>
     {props.coin && (
     <ImageWrapper>
-      <Image src={require(`../../../public/asset_images/${props.coin}.svg`)} />
+      <Image
+      // eslint-disable-next-line global-require
+        src={require(`../../../public/asset_images/${props.coin}.svg`)}
+      />
       {props.caret && <Caret />}
     </ImageWrapper>
       )}

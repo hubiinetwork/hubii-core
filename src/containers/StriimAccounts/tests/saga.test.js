@@ -6,15 +6,13 @@ import {
   striimAccountsLoadingError,
 } from '../actions';
 
-const id = '123';
-
 describe('getInfo Saga', () => {
   let getInfoGenerator;
 
   beforeEach(() => {
     getInfoGenerator = getInfo();
 
-    getInfoGenerator.next().value;
+    getInfoGenerator.next();
   });
 
   it('should dispatch the striimAccountsLoaded action if it requests the data successfully', () => {

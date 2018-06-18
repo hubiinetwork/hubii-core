@@ -31,6 +31,13 @@ import { loadStriimAccounts, changeCurrentAccount, changeCurrentCurrency } from 
 import { loadExchangeRate } from '../ExchangeRateHOC/actions';
 
 export class StriimAccounts extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  constructor(...args) {
+    super(...args);
+    this.onTabChange = this.onTabChange.bind(this);
+    this.onAccountChange = this.onAccountChange.bind(this);
+    this.onChangeCurrentCurrency = this.onChangeCurrentCurrency.bind(this);
+  }
+
   componentDidMount() {
     this.props.loadStriimAccounts();
   }
@@ -59,7 +66,7 @@ export class StriimAccounts extends React.PureComponent { // eslint-disable-line
 
   onChangeCurrentCurrency(currency) {
     const { currentAccount } = this.props;
-    const balance = currentAccount.toJS().balances.filter((balance) => balance.asset === currency)[0];
+    const balance = currentAccount.toJS().balances.filter((_balance) => _balance.asset === currency)[0];
     this.props.changeCurrentCurrency(balance);
   }
 
@@ -112,16 +119,16 @@ export class StriimAccounts extends React.PureComponent { // eslint-disable-line
         <AccountInfoWrapper>
           <AccountInfo
             options={options}
-            onSelectChange={this.onAccountChange.bind(this)}
+            onSelectChange={this.onAccountChange}
           />
           <CurrencyList
             data={currencies}
             activeCurrency={currentCurrency.get('asset')}
-            onCurrencySelect={this.onChangeCurrentCurrency.bind(this)}
+            onCurrencySelect={this.onChangeCurrentCurrency}
           />
         </AccountInfoWrapper>
         <MainWrapper>
-          <StriimTabs activeKey={history.location.pathname} onChange={this.onTabChange.bind(this)}>
+          <StriimTabs activeKey={history.location.pathname} onChange={this.onTabChange}>
             <TabPane tab="Payments" key={match.url} style={{ color: 'white' }}>
               Content of Tab Pane 1
               {/* <Route path={match.url} component={PageLoadingIndicator} /> */}

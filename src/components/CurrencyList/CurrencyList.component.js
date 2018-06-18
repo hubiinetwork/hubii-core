@@ -42,6 +42,7 @@ export default class CurrencyList extends React.PureComponent {
           title={<TextPrimary>{item.coin}</TextPrimary>}
           avatar={
             <StyledAvatar
+            // eslint-disable-next-line global-require
               src={require(`../../../public/asset_images/${item.coin}.svg`)}
               alt="coin"
             />
