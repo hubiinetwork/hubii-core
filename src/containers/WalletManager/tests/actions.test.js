@@ -1,5 +1,3 @@
-import ethers, { Wallet } from 'ethers';
-
 import {
   createNewWallet,
   createNewWalletFailed,
