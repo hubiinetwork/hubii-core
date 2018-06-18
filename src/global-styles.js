@@ -1,16 +1,16 @@
 import { injectGlobal } from 'styled-components';
-import Bold from "../public/fonts/SF-UI-Text-Bold.otf"
-import BoldItalic from "../public/fonts/SF-UI-Text-BoldItalic.otf"
-import HeavyItalic from "../public/fonts/SF-UI-Text-HeavyItalic.otf"
-import Medium from "../public/fonts/SF-UI-Text-Medium.otf"
-import MediumItalic from "../public/fonts/SF-UI-Text-MediumItalic.otf"
-import Regular from "../public/fonts/SF-UI-Text-Regular.otf"
-import RegularItalic from "../public/fonts/SF-UI-Text-RegularItalic.otf"
-import Light from "../public/fonts/SF-UI-Text-Light.otf"
-import Semibold from "../public/fonts/SF-UI-Text-Semibold.otf"
-import SemiboldItalic from "../public/fonts/SF-UI-Text-SemiboldItalic.otf"
-import Ultrathin from "../public/fonts/SF-UI-Text-Ultrathin.otf"
-import UltrathinItalic from "../public/fonts/SF-UI-Text-UltrathinItalic.otf"
+import Bold from '../public/fonts/SF-UI-Text-Bold.otf';
+import BoldItalic from '../public/fonts/SF-UI-Text-BoldItalic.otf';
+import HeavyItalic from '../public/fonts/SF-UI-Text-HeavyItalic.otf';
+import Medium from '../public/fonts/SF-UI-Text-Medium.otf';
+import MediumItalic from '../public/fonts/SF-UI-Text-MediumItalic.otf';
+import Regular from '../public/fonts/SF-UI-Text-Regular.otf';
+import RegularItalic from '../public/fonts/SF-UI-Text-RegularItalic.otf';
+import Light from '../public/fonts/SF-UI-Text-Light.otf';
+import Semibold from '../public/fonts/SF-UI-Text-Semibold.otf';
+import SemiboldItalic from '../public/fonts/SF-UI-Text-SemiboldItalic.otf';
+import Ultrathin from '../public/fonts/SF-UI-Text-Ultrathin.otf';
+import UltrathinItalic from '../public/fonts/SF-UI-Text-UltrathinItalic.otf';
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
