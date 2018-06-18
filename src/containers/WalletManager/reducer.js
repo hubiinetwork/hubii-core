@@ -10,7 +10,7 @@ import {
   CREATE_NEW_WALLET,
   CREATE_NEW_WALLET_FAILED,
   DECRYPT_WALLET,
-  DECRYPT_WALLET_FAILED,
+  DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
   UPDATE_PROGRESS,
 } from './constants';
@@ -60,7 +60,7 @@ function walletManagerReducer(state = initialState, action) {
         .setIn(['loading', 'decryptingWallet'], false)
         .setIn(['inputs', 'password'], '')
         .setIn(['wallets', state.get('selectedWallet'), 'decrypted'], action.decryptedWallet);
-    case DECRYPT_WALLET_FAILED:
+    case DECRYPT_WALLET_FAILURE:
       return state
         .setIn(['loading', 'decryptingWallet'], false)
         .setIn(['errors', 'decryptingWalletError'], false);

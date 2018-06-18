@@ -10,7 +10,7 @@ import {
   CREATE_NEW_WALLET_SUCCESS,
   UPDATE_PROGRESS,
   DECRYPT_WALLET,
-  DECRYPT_WALLET_FAILED,
+  DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
 } from './constants';
 
@@ -49,7 +49,7 @@ export function decryptWalletSuccess(decryptedWallet) {
 
 export function decryptWalletFailed(error) {
   return {
-    type: DECRYPT_WALLET_FAILED,
+    type: DECRYPT_WALLET_FAILURE,
     error,
   };
 }
