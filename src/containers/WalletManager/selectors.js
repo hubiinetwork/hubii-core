@@ -20,7 +20,7 @@ const makeSelectDerivationPathInput = () => createSelector(
 
 const makeSelectNewWalletNameInput = () => createSelector(
   selectWalletManagerDomain,
-  (depositPageDomain) => depositPageDomain.getIn(['inputs', 'newWalletNameInput'])
+  (depositPageDomain) => depositPageDomain.getIn(['inputs', 'newWalletName'])
 );
 
 const makeSelectSelectedWalletName = () => createSelector(
@@ -33,17 +33,6 @@ const makeSelectWallets = () => createSelector(
   (depositPageDomain) => depositPageDomain.get('wallets')
 );
 
-
-/**
- * Default selector used by WalletManager
- */
-
-const makeSelectWalletManager = () => createSelector(
-  selectWalletManagerDomain,
-  (substate) => substate.toJS()
-);
-
-export default makeSelectWalletManager;
 export {
   selectWalletManagerDomain,
   makeSelectNewWalletNameInput,

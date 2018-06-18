@@ -12,7 +12,6 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectWalletManager from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -31,7 +30,6 @@ WalletManager.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  walletManager: makeSelectWalletManager(),
 });
 
 function mapDispatchToProps(dispatch) {
