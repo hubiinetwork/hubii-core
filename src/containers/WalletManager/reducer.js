@@ -16,7 +16,7 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  selectedWallet: '',
+  selectedWalletName: '',
   inputs: {
     password: '',
     newWalletName: '',
