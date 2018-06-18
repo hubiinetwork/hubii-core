@@ -1,10 +1,7 @@
 {
   "name": "hubii-core-ui",
   "version": "0.1.0",
-  "engines": {
-    "npm": ">=5",
-    "node": ">=6"
-  },
+  "private": true,
   "author": "Hubii team",
   "license": "MIT",
   "main": "build/public/electron.js",
@@ -15,7 +12,6 @@
       "build/**/*"
     ]
   },
-  "private": true,
   "scripts": {
     "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "electron-pack": "electron-builder --dir",
