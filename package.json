@@ -253,6 +253,7 @@
     "cross-env": "5.1.4",
     "date-fns": "^1.29.0",
     "electron-is-dev": "^0.3.0",
+    "ethers": "^3.0.22",
     "express": "4.16.3",
     "fontfaceobserver": "2.0.13",
     "history": "4.7.2",
