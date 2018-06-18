@@ -58,28 +58,48 @@ describe('StriimAccounts', () => {
     const uid = '2';
     describe('with [loanding=false, error=null]', () => {
       const loadExchangeRateSpy = jest.fn();
-      const dom = shallow(
-        <StriimAccounts
-          loading={false}
-          striimAccounts={striimAccounts}
-          loadStriimAccounts={loadStriimAccountsSpy}
-          currentAccount={currentAccount}
-          currentCurrency={currentCurrency}
-          history={{ location: { pathname: currentPathname } }}
-          match={{ url: subMatchUrl }}
-          exchangeRates={exchangeRates}
-          loadExchangeRate={loadExchangeRateSpy}
-          changeCurrentAccount={() => {}}
-          changeCurrentCurrency={() => {}}
-        />
-      );
+      const params = {
+        loading: false,
+        striimAccounts,
+        loadStriimAccounts: loadStriimAccountsSpy,
+        currentAccount,
+        currentCurrency,
+        history: { location: { pathname: currentPathname } },
+        match: { url: subMatchUrl },
+        exchangeRates,
+        loadExchangeRate: loadExchangeRateSpy,
+        changeCurrentAccount: () => {},
+        changeCurrentCurrency: () => {},
+      };
+
+      let dom;
+      beforeEach(() => {
+        dom = shallow(
+          <StriimAccounts
+            {...params}
+          />
+        );
+      });
       it('should trigger loadStriimAccounts action on mount', () => {
-        expect(loadStriimAccountsSpy).toHaveBeenCalledTimes(1);
+        const spy = jest.fn();
+        shallow(
+          <StriimAccounts
+            {...params}
+            loadStriimAccounts={spy}
+          />
+        );
+        expect(spy).toHaveBeenCalledTimes(1);
       });
       describe('componentDidUpdate', () => {
+        it('should not trigger loadExchangeRate action when the striimAccounts ref is same', () => {
+          const instance = dom.instance();
+          instance.componentDidUpdate({ striimAccounts });
+          expect(loadExchangeRateSpy).toHaveBeenCalledTimes(0);
+        });
         it('should trigger loadExchangeRate action', () => {
           const newAccounts = fromJS(striimAccounts.toJS());
-          dom.instance().componentDidUpdate({ striimAccounts: newAccounts });
+          const instance = dom.instance();
+          instance.componentDidUpdate({ striimAccounts: newAccounts });
           expect(loadExchangeRateSpy).toHaveBeenCalledTimes(striimAccounts.get(0).get('balances').count() + striimAccounts.get(1).get('balances').count());
         });
       });
@@ -99,6 +119,24 @@ describe('StriimAccounts', () => {
           expect(options[0].amount).toEqual(1751800);
           expect(options[1].accountName).toEqual(striimAccounts.get(1).get('name'));
           expect(options[1].amount).toEqual(2002400);
+        });
+        it('AccountInfo should have show NaN for its total ammount when involved values are no available', () => {
+          const rates = fromJS({
+            HBT_USD: { data: { price: 0.6 } },
+            ETH_USD: { data: { price: null } },
+          });
+          const accountsDom = shallow(
+            <StriimAccounts
+              {...params}
+              exchangeRates={rates}
+            />
+          );
+          const options = accountsDom.find('AccountInfo').props().options;
+          expect(options.length).toEqual(striimAccounts.count());
+          expect(options[0].accountName).toEqual(striimAccounts.get(0).get('name'));
+          expect(options[0].amount).toEqual(NaN);
+          expect(options[1].accountName).toEqual(striimAccounts.get(1).get('name'));
+          expect(options[1].amount).toEqual(NaN);
         });
         it('CurrencyList should have data property assigned with the balances from current account', () => {
           const balances = dom.find('CurrencyList').props().data;
