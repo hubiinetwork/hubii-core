@@ -13,7 +13,7 @@ import {
   Rate,
   StyledButton,
   ButtonWrapper,
-  StyledForm
+  StyledForm,
 } from './CreateStriimModal.style';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 
@@ -21,15 +21,15 @@ const { Option } = Select;
 
 class CreateStriimModal extends React.Component {
   state = {
-    currency: this.props.currencies[0]
+    currency: this.props.currencies[0],
   };
-  handleIcon = icon => {
+  handleIcon = (icon) => {
     const currency = this.props.currencies.find(
-      currency => currency.name === icon
+      (currency) => currency.name === icon
     );
     this.setState({ currency });
   };
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
@@ -56,9 +56,9 @@ class CreateStriimModal extends React.Component {
               rules: [
                 {
                   required: true,
-                  message: 'Please enter your account name.'
-                }
-              ]
+                  message: 'Please enter your account name.',
+                },
+              ],
             })(<ModalFormInput />)}
           </ModalFormItem>
           <ModalFormItem
@@ -70,12 +70,12 @@ class CreateStriimModal extends React.Component {
               rules: [
                 {
                   required: true,
-                  message: 'Please select wallet.'
-                }
-              ]
+                  message: 'Please select wallet.',
+                },
+              ],
             })(
               <StyledSelect>
-                {wallets.map(wallet => (
+                {wallets.map((wallet) => (
                   <Option value={wallet} key={wallet}>
                     {wallet}
                   </Option>
@@ -96,12 +96,12 @@ class CreateStriimModal extends React.Component {
                     rules: [
                       {
                         required: true,
-                        message: 'Please select wallet.'
-                      }
-                    ]
+                        message: 'Please select wallet.',
+                      },
+                    ],
                   })(
                     <IconSelect onSelect={this.handleIcon}>
-                      {currencies.map(currency => (
+                      {currencies.map((currency) => (
                         <Option value={currency.name} key={currency.name}>
                           {currency.name}
                         </Option>
@@ -136,8 +136,8 @@ CreateStriimModal.propTypes = {
     PropTypes.shape({
       name: PropTypes.string,
       balance: PropTypes.number,
-      rate: PropTypes.number
+      rate: PropTypes.number,
     })
   ).isRequired,
-  wallets: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+  wallets: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };

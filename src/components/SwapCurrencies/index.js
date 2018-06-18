@@ -1,1 +1,1 @@
-export { default } from './SwapCurrencies.comnponent';
+export { default } from './SwapCurrencies.component';

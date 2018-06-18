@@ -26,5 +26,5 @@ QRCodeModal.propTypes = {
   /**
    * Value of qr code
    */
-  qrCodeValue: PropTypes.string
+  qrCodeValue: PropTypes.string,
 };

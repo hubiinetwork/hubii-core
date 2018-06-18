@@ -4,11 +4,11 @@ import {
   StyledDiv,
   Wrapper,
   StyledTabs,
-  StyledSearch
+  StyledSearch,
 } from './ContactHeader.style';
 import { TabPane } from '../ui/StriimTabs';
 
-/***
+/** *
  * The header of contact list component
  */
 
@@ -20,7 +20,7 @@ export default class ContactHeader extends React.PureComponent {
       showSearch,
       titleTabs,
       onTabChange,
-      onSearch
+      onSearch,
     } = this.props;
     return (
       <StyledDiv>
@@ -49,7 +49,7 @@ export default class ContactHeader extends React.PureComponent {
 
 ContactHeader.defaultProps = {
   placeholder: 'Filter',
-  showSearch: false
+  showSearch: false,
 };
 
 ContactHeader.propTypes = {
@@ -71,7 +71,7 @@ ContactHeader.propTypes = {
   titleTabs: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
-      TabContent: PropTypes.node.isRequired
+      TabContent: PropTypes.node.isRequired,
     }).isRequired
   ),
   /**
@@ -81,5 +81,5 @@ ContactHeader.propTypes = {
   /**
    * Function triggered when enter is pressed in search bar
    */
-  onSearch: PropTypes.func
+  onSearch: PropTypes.func,
 };

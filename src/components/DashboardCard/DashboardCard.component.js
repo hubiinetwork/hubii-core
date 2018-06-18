@@ -5,7 +5,7 @@ import {
   StyledCard,
   Wrapper,
   IconSpan,
-  TitleSpan
+  TitleSpan,
 } from './DashboardCard.style';
 
 /**
@@ -30,6 +30,6 @@ DashboardCard.propTypes = {
   /**
    * icon to show on dashboard card with title.
    */
-  iconType: PropTypes.string.isRequired
+  iconType: PropTypes.string.isRequired,
 };
 export default DashboardCard;

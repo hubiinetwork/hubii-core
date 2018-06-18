@@ -6,7 +6,7 @@ import {
   TextPrimary,
   StyledIcon,
   Wrapper,
-  StyledSelect
+  StyledSelect,
 } from './AccountInfo.style';
 
 const Option = Select.Option;
@@ -24,9 +24,9 @@ const AccountInfoItem = ({ accountName, amount, handleIconClick }) => (
  */
 class AccountInfo extends React.Component {
   state = {
-    activeSelect: 0
+    activeSelect: 0,
   };
-  onChange = value => {
+  onChange = (value) => {
     const activeSelect = this.props.options.findIndex(
       (option, i) => `${option.accountName}-${i}` === value
     );
@@ -38,7 +38,7 @@ class AccountInfo extends React.Component {
     const { activeSelect } = this.state;
 
     return (
-      <div style={{ position: 'relative' }}>
+      <div style={{ position: 'relative' }} className={this.props.className}>
         <StyledIcon
           type="qrcode"
           onClick={options[activeSelect].handleIconClick}
@@ -75,11 +75,11 @@ AccountInfo.propTypes = {
     PropTypes.shape({
       accountName: PropTypes.string,
       amount: PropTypes.number,
-      handleIconClick: PropTypes.func
+      handleIconClick: PropTypes.func,
     }).isRequired
   ).isRequired,
   /**
    * Function executed when dropdown selected item is changed.
    */
-  onSelectChange: PropTypes.func.isRequired
+  onSelectChange: PropTypes.func.isRequired,
 };

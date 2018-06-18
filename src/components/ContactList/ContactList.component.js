@@ -18,12 +18,12 @@ export default class ContactList extends React.PureComponent {
     this.state = {
       visible: false,
       name: '',
-      address: ''
+      address: '',
     };
   }
   render() {
     const { size, layout, data } = this.props;
-    const Item = item => (
+    const Item = (item) => (
       <List.Item
         actions={[
           <StyledButton
@@ -43,7 +43,7 @@ export default class ContactList extends React.PureComponent {
               onClick={this.showNotification}
               key={2}
             />
-          </CopyToClipboard>
+          </CopyToClipboard>,
         ]}
       >
         <List.Item.Meta title={item.name} description={item.address} />
@@ -83,16 +83,16 @@ export default class ContactList extends React.PureComponent {
     const message = 'Address copied to clipboard.';
     Notification(success, message);
   };
-  showModal = item => {
+  showModal = (item) => {
     this.setState({
       visible: true,
       name: item.name,
-      address: item.address
+      address: item.address,
     });
   };
   handleCancel = () => {
     this.setState({
-      visible: false
+      visible: false,
     });
   };
 }
@@ -100,7 +100,7 @@ export default class ContactList extends React.PureComponent {
 ContactList.defaultProps = {
   size: 'small',
   layout: 'horizontal',
-  message: 'There are no contacts added yet.'
+  message: 'There are no contacts added yet.',
 };
 
 ContactList.propTypes = {
@@ -123,5 +123,5 @@ ContactList.propTypes = {
   /** Function to be executed when edit button of modal is pressed */
   onEdit: PropTypes.func,
   /** Function to be executed when delete button of modal is pressed */
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
 };

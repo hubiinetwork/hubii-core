@@ -7,7 +7,7 @@ import {
   WrapperIcon,
   StyledButton1,
   StyledButton2,
-  ParentDiv
+  ParentDiv,
 } from './EditContactModal.style';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 
@@ -16,7 +16,7 @@ import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
  */
 
 class EditContactModal extends React.Component {
-  handleEdit = e => {
+  handleEdit = (e) => {
     const self = this;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -25,7 +25,7 @@ class EditContactModal extends React.Component {
       }
     });
   };
-  handleDelete = e => {
+  handleDelete = (e) => {
     const self = this;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -51,10 +51,10 @@ class EditContactModal extends React.Component {
               rules: [
                 {
                   message: 'Name is required.',
-                  required: true
-                }
+                  required: true,
+                },
               ],
-              initialValue: this.props.name
+              initialValue: this.props.name,
             })(<ModalFormInput />)}
           </ModalFormItem>
           <ModalFormItem
@@ -64,10 +64,10 @@ class EditContactModal extends React.Component {
               rules: [
                 {
                   message: 'Address is required.',
-                  required: true
-                }
+                  required: true,
+                },
               ],
-              initialValue: this.props.address
+              initialValue: this.props.address,
             })(<ModalFormInput />)}
           </ModalFormItem>
           <ParentDiv>
@@ -101,7 +101,7 @@ EditContactModal.propTypes = {
   /** Function to be executed when edit button is pressed */
   onEdit: PropTypes.func,
   /** Function to be executed when delete button is pressed */
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
 };
 
 export default Form.create()(EditContactModal);

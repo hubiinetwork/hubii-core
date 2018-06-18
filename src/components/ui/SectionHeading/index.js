@@ -1,1 +1,1 @@
-export { SectionHeading } from "./SectionHeading.style";
+export { SectionHeading } from './SectionHeading.style';

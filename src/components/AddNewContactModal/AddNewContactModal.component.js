@@ -6,7 +6,7 @@ import {
   Wrapper,
   WrapperIcon,
   StyledButton,
-  ButtonWrapper
+  ButtonWrapper,
 } from './AddNewContactModal.style';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 
@@ -15,7 +15,7 @@ import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
  */
 
 class AddNewContactModal extends React.Component {
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     const self = this;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -41,9 +41,9 @@ class AddNewContactModal extends React.Component {
               rules: [
                 {
                   message: 'Name is required.',
-                  required: true
-                }
-              ]
+                  required: true,
+                },
+              ],
             })(<ModalFormInput placeholder="John Doe" />)}
           </ModalFormItem>
           <ModalFormItem
@@ -53,9 +53,9 @@ class AddNewContactModal extends React.Component {
               rules: [
                 {
                   message: 'Address is required.',
-                  required: true
-                }
-              ]
+                  required: true,
+                },
+              ],
             })(
               <ModalFormInput
                 type="textarea"
@@ -78,7 +78,7 @@ AddNewContactModal.propTypes = {
   /**
    * function to handle onSubmit.
    */
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
 };
 
 export default Form.create()(AddNewContactModal);

@@ -17,7 +17,7 @@ import {
   Conversion,
   ConversionWrapper,
   Buttons,
-  CancelButton
+  CancelButton,
 } from './PaymentForm.style';
 const Item = Form.Item;
 
@@ -30,22 +30,22 @@ class PaymentForm extends React.Component {
     super(props);
     this.state = {
       amount: 1,
-      selectedAddress: this.props.recipients[0]
+      selectedAddress: this.props.recipients[0],
     };
   }
 
   handleAddress(value) {
     this.setState({
-      selectedAddress: value
+      selectedAddress: value,
     });
   }
   handleAmount(e) {
     this.setState({
-      amount: e.target.value
+      amount: e.target.value,
     });
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
@@ -63,7 +63,7 @@ class PaymentForm extends React.Component {
       recipients,
       balance,
       currency,
-      rate
+      rate,
     } = this.props;
     return (
       <Wrapper>
@@ -88,13 +88,13 @@ class PaymentForm extends React.Component {
                 rules: [
                   {
                     message: 'Amount is required.',
-                    required: true
-                  }
-                ]
+                    required: true,
+                  },
+                ],
               })(
                 <StyledInput
                   type="number"
-                  onChange={e => this.handleAmount(e)}
+                  onChange={(e) => this.handleAmount(e)}
                 />
               )}
               <StyledSpan>${amount * rate}</StyledSpan>
@@ -107,7 +107,7 @@ class PaymentForm extends React.Component {
             >
               <Select
                 defaultValue={recipients[0]}
-                onSelect={value => this.handleAddress(value)}
+                onSelect={(value) => this.handleAddress(value)}
               >
                 {recipients.map((address, i) => (
                   <Option key={i} value={address}>
@@ -160,7 +160,7 @@ PaymentForm.propTypes = {
   /**
    * Array of string of recipients
    */
-  recipients: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+  recipients: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };
 
 export default Form.create()(PaymentForm);
