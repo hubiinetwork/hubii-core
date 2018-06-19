@@ -16,6 +16,7 @@ WalletHeaderIcon.propTypes = {
    * Icon to be shown
    */
   iconType: PropTypes.string,
+  onIconClick: PropTypes.func,
 };
 
 export default WalletHeaderIcon;

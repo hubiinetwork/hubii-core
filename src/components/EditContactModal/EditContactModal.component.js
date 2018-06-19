@@ -16,24 +16,29 @@ import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
  */
 
 class EditContactModal extends React.Component {
-  handleEdit = (e) => {
-    const self = this;
+  constructor(props) {
+    super(props);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+  handleEdit(e) {
     e.preventDefault();
+    const { onEdit } = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        self.props.onEdit(values);
+        onEdit(values);
       }
     });
-  };
-  handleDelete = (e) => {
-    const self = this;
+  }
+  handleDelete(e) {
     e.preventDefault();
+    const { onDelete } = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        self.props.onDelete(values);
+        onDelete(values);
       }
     });
-  };
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -102,6 +107,7 @@ EditContactModal.propTypes = {
   onEdit: PropTypes.func,
   /** Function to be executed when delete button is pressed */
   onDelete: PropTypes.func,
+  form: PropTypes.object,
 };
 
 export default Form.create()(EditContactModal);

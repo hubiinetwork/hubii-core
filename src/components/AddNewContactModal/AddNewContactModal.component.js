@@ -15,15 +15,19 @@ import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
  */
 
 class AddNewContactModal extends React.Component {
-  handleSubmit = (e) => {
-    const self = this;
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleSubmit(e) {
+    const { onSubmit } = this.props;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        self.props.onSubmit(values);
+        onSubmit(values);
       }
     });
-  };
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -79,6 +83,7 @@ AddNewContactModal.propTypes = {
    * function to handle onSubmit.
    */
   onSubmit: PropTypes.func,
+  form: PropTypes.object,
 };
 
 export default Form.create()(AddNewContactModal);

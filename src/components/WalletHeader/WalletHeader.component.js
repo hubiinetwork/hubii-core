@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import {
   Name,
   Address,
@@ -11,7 +12,6 @@ import {
 } from './WalletHeader.style';
 import Notification from '../Notification';
 import WalletHeaderIcon from './WalletHeaderIcon';
-import CopyToClipboard from 'react-copy-to-clipboard';
 
 /**
  * The WalletHeader Component
