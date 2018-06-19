@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import walletTypeDescriptions from '../walletTypeDescriptions';
 import { Subtitle, Wrapper } from './WalletDetailPopoverContent.style';
