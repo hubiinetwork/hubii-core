@@ -14,15 +14,20 @@ import {
   DECRYPT_WALLET_SUCCESS,
 } from './constants';
 
-export function createNewWallet() {
+export function createNewWallet(name, mnemonic, derivationPath, password) {
   return {
     type: CREATE_NEW_WALLET,
+    name,
+    mnemonic,
+    derivationPath,
+    password,
   };
 }
 
-export function createNewWalletSuccess(encryptedWallet, decryptedWallet) {
+export function createNewWalletSuccess(name, encryptedWallet, decryptedWallet) {
   return {
     type: CREATE_NEW_WALLET_SUCCESS,
+    name,
     newWallet: {
       encrypted: encryptedWallet,
       decrypted: decryptedWallet,

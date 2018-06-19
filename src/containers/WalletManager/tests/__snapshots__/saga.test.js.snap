@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createWallet saga should dispatch the createNewWalletSuccess action if successful 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "dogs",
+      [Function],
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;

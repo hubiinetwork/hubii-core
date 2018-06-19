@@ -19,26 +19,42 @@ import {
 
 describe('WalletManager actions', () => {
   describe('createNewWallet Action', () => {
+    const name = 'Wallet8';
+    const mnemonic = 'word word word';
+    const derivationPath = '0/0/0';
+    const password = 'password1';
     it('returns expected output', () => {
       const expected = {
         type: CREATE_NEW_WALLET,
+        name,
+        mnemonic,
+        derivationPath,
+        password,
       };
-      expect(createNewWallet()).toEqual(expected);
+      expect(createNewWallet(
+        name,
+        mnemonic,
+        derivationPath,
+        password
+      )).toEqual(expected);
     });
   });
 
   describe('createNewWalletSuccess Action', () => {
     it('returns expected output', () => {
-      const encryptedWallet = { blah: 'blah123' };
+      const encryptedWallet = '{ blah: "blah123" }';
       const decryptedWallet = { key: 'twinkletoes' };
+      const name = 'George';
       const expected = {
         type: CREATE_NEW_WALLET_SUCCESS,
+        name,
         newWallet: {
           encrypted: encryptedWallet,
           decrypted: decryptedWallet,
         },
       };
       expect(createNewWalletSuccess(
+        name,
         encryptedWallet,
         decryptedWallet)).toEqual(expected);
     });

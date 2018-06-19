@@ -17,8 +17,8 @@ describe('walletManagerReducer', () => {
       selectedWalletName: '',
       inputs: {
         password: '',
-        newWalletName: 'My Wallet',
-        derivationPath: 'm/44\'/60\'/0\'/0/0',
+        newWalletName: '',
+        derivationPath: '',
       },
       loading: {
         creatingWallet: false,
@@ -50,15 +50,17 @@ describe('walletManagerReducer', () => {
   it('should handle createNewWalletSuccess action correctly', () => {
     const encryptedWallet = { id: 123 };
     const decryptedWallet = { key: 43 };
+    const name = 'Henry';
     const expected = state
       .setIn(['loading', 'creatingWallet'], false)
       .setIn(['inputs', 'password'], '')
       .setIn(['errors', 'creatingWalletError'], null)
-      .setIn(['wallets', 'software', state.getIn(['inputs', 'newWalletName'])],
+      .setIn(['wallets', 'software', name],
         fromJS({ encrypted: encryptedWallet, decrypted: decryptedWallet }));
     expect(walletManagerReducer(
       state,
       createNewWalletSuccess(
+        name,
         encryptedWallet,
         decryptedWallet)))
       .toEqual(expected);
