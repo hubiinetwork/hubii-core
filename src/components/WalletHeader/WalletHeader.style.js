@@ -67,5 +67,5 @@ export {
   DetailWrapper,
   CopyButton,
   Balance,
-  Address
+  Address,
 };

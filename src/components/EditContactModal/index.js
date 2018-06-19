@@ -1,2 +1,2 @@
-import EditContactModal from "./EditContactModal.component";
+import EditContactModal from './EditContactModal.component';
 export default EditContactModal;

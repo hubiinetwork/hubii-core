@@ -1,0 +1,85 @@
+{
+    "striim-accounts": [
+        {
+            "id": 100,
+            "uid": 1,
+            "name": "Striim Account 1",
+            "balances": [
+                {
+                    "active": 3500,
+                    "staged": 300,
+                    "asset": "ETH"
+                },
+                {
+                    "active": 3000,
+                    "staged": 300,
+                    "asset": "HBT"
+                },
+                {
+                    "active": 3000,
+                    "staged": 300,
+                    "asset": "ICX"
+                },
+                {
+                    "active": 3000,
+                    "staged": 300,
+                    "asset": "OMG"
+                }
+            ]
+        },
+        {
+            "id": 101,
+            "uid": 1,
+            "name": "Striim Account 2",
+            "balances": [
+                {
+                    "active": 4000,
+                    "staged": 300,
+                    "asset": "ETH"
+                },
+                {
+                    "active": 4000,
+                    "staged": 300,
+                    "asset": "HBT"
+                },
+                {
+                    "active": 4000,
+                    "staged": 300,
+                    "asset": "ICX"
+                },
+                {
+                    "active": 4000,
+                    "staged": 300,
+                    "asset": "OMG"
+                }
+            ]
+        },
+        {
+            "id": 102,
+            "uid": 1,
+            "name": "Striim Account 3",
+            "balances": [
+                {
+                    "active": 5000,
+                    "staged": 300,
+                    "asset": "ETH"
+                },
+                {
+                    "active": 5000,
+                    "staged": 300,
+                    "asset": "HBT"
+                },
+                {
+                    "active": 5000,
+                    "staged": 300,
+                    "asset": "ICX"
+                },
+                {
+                    "active": 5000,
+                    "staged": 300,
+                    "asset": "OMG"
+                }
+            ]
+        }
+    ]
+}

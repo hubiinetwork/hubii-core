@@ -1,1 +1,1 @@
-export { default } from './QRcodeModal.component';
+export { default } from './QRCodeModal.component';

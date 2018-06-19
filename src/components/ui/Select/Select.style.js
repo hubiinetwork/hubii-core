@@ -1,15 +1,20 @@
-import { Select } from "antd";
-import styled from "styled-components";
+import { Select } from 'antd';
+import styled from 'styled-components';
 
 export const Option = Select.Option;
 export const OptGroup = Select.OptGroup;
 
 export default styled(Select)`
+  font-family: 'SF Text';
   background-color: transparent;
   border: none;
   border-radius: 0px;
   padding: 0px;
   color: ${({ theme }) => theme.palette.light};
+  padding-left: ${({ recipient }) => (recipient ? '0px' : '1rem')};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border-bottom: 1px solid ${({ theme }) => theme.palette.secondary};
   .ant-select-selection__rendered {
     margin: 0px;

@@ -1,2 +1,2 @@
-import Tab from "./Tab.style";
+import Tab from './Tab.style';
 export default Tab;

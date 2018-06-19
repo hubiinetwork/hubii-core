@@ -1,16 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   TransactionHistoryItemCard,
   TransactionHistoryItemDate,
   Wrapper,
-  Image
+  Image,
 } from './TransactionHistoryItem.style';
-import PropTypes from 'prop-types';
 import TransactionHistoryDetail from '../TransactionHistoryDetail';
 /**
  * This component shows history of a past transaction's detail.
  */
-export const TransactionHistoryItem = props => {
+export const TransactionHistoryItem = (props) => {
   const { data, rate } = props;
   const locale = 'en-us';
   const type = !data.address
@@ -64,10 +64,10 @@ TransactionHistoryItem.propTypes = {
     toCoin: PropTypes.string,
     fromCoin: PropTypes.string,
     coin: PropTypes.string,
-    status: PropTypes.number
+    status: PropTypes.number,
   }).isRequired,
   /**
    * rate of 1ETH or any other currency, in dollars.
    */
-  rate: PropTypes.number.isRequired
+  rate: PropTypes.number.isRequired,
 };

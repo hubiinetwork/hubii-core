@@ -1,2 +1,2 @@
-import ContactList from "./ContactList.component";
+import ContactList from './ContactList.component';
 export default ContactList;

@@ -4,7 +4,7 @@ import {
   Text,
   TextPrimary,
   Wrapper,
-  StyledButton
+  StyledButton,
 } from './ConnectionErrorModal.style';
 
 // TODO: Make component generic for info, error and success and display respective icon onthe base of type
@@ -12,23 +12,21 @@ import {
 /**
  * This component shows error if wallet is not connected to server
  */
-const ConnectionErrorModal = props => {
-  return (
-    <Wrapper>
-      <Text> Wallet is not connnected</Text>
-      <TextPrimary>
+const ConnectionErrorModal = (props) => (
+  <Wrapper>
+    <Text> Wallet is not connnected</Text>
+    <TextPrimary>
         Please connect the wallet first to transfer money
       </TextPrimary>
-      <StyledButton type="primary" onClick={props.handleOK}>
+    <StyledButton type="primary" onClick={props.handleOK}>
         OK
       </StyledButton>
-    </Wrapper>
+  </Wrapper>
   );
-};
 ConnectionErrorModal.propTypes = {
   /**
    * Function to perform action when ok button is clicked
    */
-  handleOK: PropTypes.func
+  handleOK: PropTypes.func,
 };
 export default ConnectionErrorModal;

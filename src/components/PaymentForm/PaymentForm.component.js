@@ -17,7 +17,7 @@ import {
   Conversion,
   ConversionWrapper,
   Buttons,
-  CancelButton
+  CancelButton,
 } from './PaymentForm.style';
 const Item = Form.Item;
 
@@ -29,35 +29,42 @@ class PaymentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rate: this.props.rate
+      amount: 1,
+      selectedAddress: this.props.recipients[0],
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleRate(e) {
+
+  handleAddress(value) {
     this.setState({
-      rate:
-        this.state.rate === 0
-          ? this.props.rate * e.target.value
-          : this.state.rate * e.target.value
+      selectedAddress: value,
+    });
+  }
+  handleAmount(e) {
+    this.setState({
+      amount: e.target.value,
     });
   }
 
-  handleSubmit = e => {
+  handleSubmit(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.props.onSend(values);
+        this.props.onSend(values, this.state.selectedAddress);
       }
     });
-  };
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { amount } = this.state;
     const {
       onCancel,
       transactionFee,
       recipients,
       balance,
-      currency
+      currency,
+      rate,
     } = this.props;
     return (
       <Wrapper>
@@ -82,13 +89,16 @@ class PaymentForm extends React.Component {
                 rules: [
                   {
                     message: 'Amount is required.',
-                    required: true
-                  }
-                ]
+                    required: true,
+                  },
+                ],
               })(
-                <StyledInput type="number" onChange={e => this.handleRate(e)} />
+                <StyledInput
+                  type="number"
+                  onChange={(e) => this.handleAmount(e)}
+                />
               )}
-              <StyledSpan>${this.state.rate}</StyledSpan>
+              <StyledSpan>${amount * rate}</StyledSpan>
             </Item>
           </ItemDiv>
           <ItemDiv>
@@ -96,9 +106,12 @@ class PaymentForm extends React.Component {
               label={<StyledLabel>Recipient</StyledLabel>}
               style={{ flex: 1 }}
             >
-              <Select defaultValue={recipients[0]}>
-                {recipients.map((address, i) => (
-                  <Option key={i} value={address}>
+              <Select
+                defaultValue={recipients[0]}
+                onSelect={(value) => this.handleAddress(value)}
+              >
+                {recipients.map((address) => (
+                  <Option key={address} value={address}>
                     {address}
                   </Option>
                 ))}
@@ -148,7 +161,9 @@ PaymentForm.propTypes = {
   /**
    * Array of string of recipients
    */
-  recipients: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+  recipients: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  rate: PropTypes.number,
+  form: PropTypes.object,
 };
 
 export default Form.create()(PaymentForm);

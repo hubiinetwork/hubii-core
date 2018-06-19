@@ -1,12 +1,12 @@
 import { List } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import StyledButton from '../ui/Button';
 import { StyledDiv, StyledList } from './ContactList.style';
 import Notification from '../Notification';
 import { Modal } from '../ui/Modal';
 import EditContactModal from '../EditContactModal';
-import CopyToClipboard from 'react-copy-to-clipboard';
 
 /**
  * The ContactList Component shows list of contacts.
@@ -18,12 +18,33 @@ export default class ContactList extends React.PureComponent {
     this.state = {
       visible: false,
       name: '',
-      address: ''
+      address: '',
     };
+    this.showNotification = this.showNotification.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+  }
+
+  showNotification() {
+    const success = true;
+    const message = 'Address copied to clipboard.';
+    Notification(success, message);
+  }
+  showModal(item) {
+    this.setState({
+      visible: true,
+      name: item.name,
+      address: item.address,
+    });
+  }
+  handleCancel() {
+    this.setState({
+      visible: false,
+    });
   }
   render() {
     const { size, layout, data } = this.props;
-    const Item = item => (
+    const Item = (item) => (
       <List.Item
         actions={[
           <StyledButton
@@ -43,7 +64,7 @@ export default class ContactList extends React.PureComponent {
               onClick={this.showNotification}
               key={2}
             />
-          </CopyToClipboard>
+          </CopyToClipboard>,
         ]}
       >
         <List.Item.Meta title={item.name} description={item.address} />
@@ -78,29 +99,12 @@ export default class ContactList extends React.PureComponent {
       <StyledDiv>{this.props.message}</StyledDiv>
     );
   }
-  showNotification = () => {
-    const success = true;
-    const message = 'Address copied to clipboard.';
-    Notification(success, message);
-  };
-  showModal = item => {
-    this.setState({
-      visible: true,
-      name: item.name,
-      address: item.address
-    });
-  };
-  handleCancel = () => {
-    this.setState({
-      visible: false
-    });
-  };
 }
 
 ContactList.defaultProps = {
   size: 'small',
   layout: 'horizontal',
-  message: 'There are no contacts added yet.'
+  message: 'There are no contacts added yet.',
 };
 
 ContactList.propTypes = {
@@ -123,5 +127,5 @@ ContactList.propTypes = {
   /** Function to be executed when edit button of modal is pressed */
   onEdit: PropTypes.func,
   /** Function to be executed when delete button of modal is pressed */
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
 };

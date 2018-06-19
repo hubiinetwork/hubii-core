@@ -10,7 +10,8 @@ import {
   Header,
   StyledSearch,
   StyledList,
-  StyledAvatar
+  StyledAvatar,
+  StyledPrice,
 } from './CurrencyList.style';
 
 /** The CurrencyList Component shows the list of currencies and search bar to search different currencies.
@@ -20,31 +21,44 @@ export default class CurrencyList extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeCurrency: '',
       data: props.data,
-      search: ''
+      search: '',
     };
+    this.filterData = this.filterData.bind(this);
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.data !== this.props.data) {
+      this.filterData({ target: { value: this.state.search } });
+    }
+  }
+  filterData(event) {
+    const { value } = event.target;
+    const filtered = this.props.data.filter((item) => item.coin.toLowerCase().includes(value.toLowerCase()));
+    this.setState({ data: filtered, search: value });
   }
   render() {
-    const { size, layout } = this.props;
+    const { size, layout, activeCurrency, onCurrencySelect } = this.props;
     const { data } = this.state;
-    const Item = (item, i) => (
+    const Item = (item) => (
       <StyledListItem
-        active={this.state.activeCurrency === `${item.coin}` ? 1 : 0}
-        onClick={() => this.updateActive(`${item.coin}`)}
+        active={activeCurrency === `${item.coin}` ? 1 : 0}
+        onClick={() => onCurrencySelect(`${item.coin}`)}
       >
         <List.Item.Meta
           title={<TextPrimary>{item.coin}</TextPrimary>}
           avatar={
             <StyledAvatar
-              src={`public/asset_images/${item.coin}.svg`}
+            // eslint-disable-next-line global-require
+              src={require(`../../../public/asset_images/${item.coin}.svg`)}
               alt="coin"
             />
           }
         />
         <AmountWrapper>
           <Text>{item.coinAmount}</Text>
-          <TextSecondary>{`$${item.coinAmountUSD}`}</TextSecondary>
+          <TextSecondary>
+            {item.exchangeRate && <StyledPrice amount={item.coinAmount} {...item.exchangeRate} symbol="$" />}
+          </TextSecondary>
         </AmountWrapper>
       </StyledListItem>
     );
@@ -66,20 +80,6 @@ export default class CurrencyList extends React.PureComponent {
       />
     );
   }
-  filterData = event => {
-    const { value } = event.target;
-    const filtered = this.props.data.filter(item => {
-      return item.coin.toLowerCase().includes(value.toLowerCase());
-    });
-    this.setState({ data: filtered, search: value });
-  };
-  updateActive = activeIcon => {
-    if (this.state.activeCurrency === activeIcon) return;
-    this.setState({
-      activeCurrency: activeIcon
-    });
-    this.props.onIconSelect(activeIcon);
-  };
 }
 
 CurrencyList.propTypes = {
@@ -89,9 +89,12 @@ CurrencyList.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       coin: PropTypes.string.isRequired,
-      coinAmount: PropTypes.string.isRequired,
-      coinAmountUSD: PropTypes.string.isRequired
+      coinAmount: PropTypes.number.isRequired,
+      exchangeRate: PropTypes.object,
     })
   ),
-  onIconSelect: PropTypes.func.isRequired
+  onCurrencySelect: PropTypes.func.isRequired,
+  activeCurrency: PropTypes.string.isRequired,
+  size: PropTypes.string,
+  layout: PropTypes.string,
 };
