@@ -22,15 +22,15 @@ function* progressCallback(percent) {
   yield put(updateProgress(percent));
 }
 
-// Creates a new software wallet based on a mnemonic
+// Creates a new software wallet
 export function* createWallet() {
   try {
     const password = yield select(makeSelectPasswordInput());
     const derivationPath = yield select(makeSelectDerivationPathInput());
     const mnemonic = ethers.HDNode.entropyToMnemonic(ethers.utils.randomBytes(16));
-    const wallet = Wallet.fromMnemonic(mnemonic, derivationPath);
-    const encryptedWallet = yield wallet.encrypt(password, progressCallback);
-    yield put(createNewWalletSuccess(encryptedWallet));
+    const decryptedWallet = Wallet.fromMnemonic(mnemonic, derivationPath);
+    const encryptedWallet = yield decryptedWallet.encrypt(password, progressCallback);
+    yield put(createNewWalletSuccess(encryptedWallet, decryptedWallet, derivationPath));
   } catch (e) {
     yield put(createNewWalletFailed(e));
   }
