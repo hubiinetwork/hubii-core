@@ -48,7 +48,6 @@ describe('walletManagerReducer', () => {
   });
 
   it('should handle createNewWalletSuccess action correctly', () => {
-    const name = 'VeryDryFish';
     const encryptedWallet = { id: 123 };
     const decryptedWallet = { key: 43 };
     const derivationPath = 'm/43\'/60\'/4\'/0/0';
@@ -56,12 +55,11 @@ describe('walletManagerReducer', () => {
       .setIn(['loading', 'creatingWallet'], false)
       .setIn(['inputs', 'password'], '')
       .setIn(['errors', 'creatingWalletError'], null)
-      .setIn(['wallets', 'software', name],
+      .setIn(['wallets', 'software', state.getIn(['inputs', 'newWalletName'])],
         fromJS({ encrypted: encryptedWallet, decrypted: decryptedWallet, derivationPath }));
     expect(walletManagerReducer(
       state,
       createNewWalletSuccess(
-        name,
         encryptedWallet,
         decryptedWallet,
         derivationPath)))
