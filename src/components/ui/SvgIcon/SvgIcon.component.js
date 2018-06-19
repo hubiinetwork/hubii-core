@@ -15,7 +15,7 @@ export default class SvgIcon extends React.PureComponent {
       viewBox,
       size,
       hoverColor,
-      style
+      style,
     } = this.props;
     const SVGIcon = styled.svg`
       transition: all 0.25s ease-in;
@@ -27,11 +27,11 @@ export default class SvgIcon extends React.PureComponent {
       <SVGIcon
         fill={color}
         viewBox={viewBox}
-        height={size + 'px'}
-        width={size + 'px'}
+        height={`${size}px`}
+        width={`${size}px`}
         style={style}
       >
-        {children ? children : <path d={dPath} />}
+        {children || <path d={dPath} />}
       </SVGIcon>
     );
   }
@@ -40,7 +40,7 @@ export default class SvgIcon extends React.PureComponent {
 SvgIcon.defaultProps = {
   viewBox: '0 0 24 24',
   size: 24,
-  style: {}
+  style: {},
 };
 SvgIcon.propTypes = {
   /**
@@ -70,5 +70,5 @@ SvgIcon.propTypes = {
   /**
    * style  object for svg icon.
    */
-  style: PropTypes.object
+  style: PropTypes.object,
 };
