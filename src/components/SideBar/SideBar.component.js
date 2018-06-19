@@ -2,7 +2,7 @@ import { Icon, Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SideBarLayout, SideBarMenu } from './SideBar.style';
+import { SideBarLayout, SideBarMenu, Styledimg } from './SideBar.style';
 
 const { Sider } = Layout;
 
@@ -12,7 +12,7 @@ const { Sider } = Layout;
 
 const SideBar = ({ menuItems, logoSrc, children }) => (
   <SideBarLayout style={{ minHeight: '100vh' }}>
-    <Sider collapsed collapsedWidth="72" trigger={null}>
+    <Sider collapsed={true} collapsedWidth="72" trigger={null}>
       <SideBarMenu defaultSelectedKeys={['/']} mode="inline">
         <Menu.Item key="/" className="menu-logo">
           <Link to="/">
@@ -31,12 +31,11 @@ const SideBar = ({ menuItems, logoSrc, children }) => (
             <Menu.Item key={menuItem.to} className="menu-wallet">
               <Link to={menuItem.to}>
                 <div>
-                  <img
+                  <Styledimg
                   // eslint-disable-next-line global-require
                     src={require(`../../../public/Images/${menuItem.icon}.svg`)}
                     alt=""
                   />
-                  <span>{menuItem.name}</span>
                 </div>
               </Link>
             </Menu.Item>

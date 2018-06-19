@@ -64,6 +64,10 @@ const SideBarMenu = styled(Menu)`
     background: ${({ theme }) => theme.palette.dark1} !important;
     border-right: 2px solid ${({ theme }) => theme.palette.info};
   }
+  .ant-tooltip-open{
+    .ant-tooltip-open{
+    }
+  }
   // .ant-menu-item-selected.menu-logo {
   //   border-right: none;
   //   background: ${({ theme }) => theme.palette.dark} !important;
@@ -74,5 +78,9 @@ const MenuItemIcon = styled(Icon)`
   font-size: 32px !important;
   line-height: 70px !important;
 `;
+const Styledimg = styled.img`
+  margin-top: 25px;
+  margin-left: 5px;
+`;
 
-export { SideBarLayout, SideBarMenu, MenuItemIcon };
+export { SideBarLayout, SideBarMenu, MenuItemIcon, Styledimg };
