@@ -17,13 +17,14 @@ export default styled(Modal)`
 `;
 
 export const ModalFormLabel = styled.span`
-  font-size: 12px;
   color: ${({ theme }) => theme.palette.light};
   margin-bottom: 8px;
+  font-family: 'SF Text';
 `;
 
 export const ModalFormInput = styled(Input)`
   font-size: 1em;
+  font-family: 'SF Text';
   background-color: transparent;
   color: ${({ theme }) => theme.palette.secondary4};
   margin-bottom: 8px;
@@ -41,6 +42,7 @@ export const ModalFormInput = styled(Input)`
 
 export const ModalFormTextArea = styled(Input.TextArea)`
   font-size: 1em;
+  font-family: 'SF Text';
   background-color: transparent;
   color: ${({ theme }) => theme.palette.secondary};
   margin-bottom: 8px;

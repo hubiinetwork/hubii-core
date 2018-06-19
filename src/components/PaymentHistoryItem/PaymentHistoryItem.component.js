@@ -1,24 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   PaymentHistoryItemCard,
   Wrapper,
-  Image
+  Image,
 } from './PaymentHistoryItem.style';
-import PropTypes from 'prop-types';
 import PaymentHistoryDetail from '../PaymentHistoryDetail';
 /**
  * This component shows history of a past payment's detail.
  */
-export const PaymentHistoryItem = props => {
-  return (
-    <Wrapper>
-      <PaymentHistoryItemCard>
-        <Image src={`../../../public/asset_images/${props.data.coin}.svg`} />
-        <PaymentHistoryDetail data={props.data} />
-      </PaymentHistoryItemCard>
-    </Wrapper>
+export const PaymentHistoryItem = (props) => (
+  <Wrapper>
+    <PaymentHistoryItemCard>
+      <Image src={`../../../public/asset_images/${props.data.coin}.svg`} />
+      <PaymentHistoryDetail data={props.data} />
+    </PaymentHistoryItemCard>
+  </Wrapper>
   );
-};
 PaymentHistoryItem.propTypes = {
   /**
    * prop  of data of PaymentHistoryItem.
@@ -33,7 +31,7 @@ PaymentHistoryItem.propTypes = {
       'Payment',
       'Withdrawal',
       'Deposit',
-      'Trade'
+      'Trade',
     ]),
     toID: PropTypes.string,
     hashID: PropTypes.string,
@@ -43,6 +41,6 @@ PaymentHistoryItem.propTypes = {
     gasTxn: PropTypes.number,
     gasPrice: PropTypes.number,
     cost: PropTypes.number,
-    exchangeRate: PropTypes.number
-  }).isRequired
+    exchangeRate: PropTypes.number,
+  }).isRequired,
 };

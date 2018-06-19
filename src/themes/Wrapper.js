@@ -4,6 +4,7 @@ import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
 import theme from './darkTheme';
 
+/* eslint-disable */
 export default class ThemeWrapper extends Component {
   render() {
     return (

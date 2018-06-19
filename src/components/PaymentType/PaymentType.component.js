@@ -1,9 +1,9 @@
 import React from 'react';
-import { PaymentTypes } from './PaymentType.style';
 import PropTypes from 'prop-types';
+import { PaymentTypes } from './PaymentType.style';
 /**
  * This component shows type of the Payment.
- */ const PaymentType = props => (
+*/ const PaymentType = (props) => (
   <PaymentTypes type={props.type} disabled={props.disabled}>
     {props.type}
   </PaymentTypes>
@@ -22,12 +22,12 @@ PaymentType.propTypes = {
     'Trade',
     'Payment',
     'Withdrawal',
-    'Deposit'
+    'Deposit',
   ]).isRequired,
   /**
    * shows disbaled state if true.
    */
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 };
 
 export default PaymentType;

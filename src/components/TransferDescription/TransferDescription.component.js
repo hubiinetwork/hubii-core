@@ -9,7 +9,7 @@ import {
   StyledTitle,
   StyledButton,
   StyledRecipient,
-  StyledButtonCancel
+  StyledButtonCancel,
 } from './TransferDescription.style';
 import TransferDescriptionList from '../TransferDescriptionList';
 
@@ -30,7 +30,7 @@ export default class TransferDescription extends React.PureComponent {
       ethInformation,
       currencySymbol,
       onSend,
-      onCancel
+      onCancel,
     } = this.props;
     return (
       <WrapperDiv>
@@ -115,8 +115,8 @@ export default class TransferDescription extends React.PureComponent {
             {currencySymbol}
             {(
               totalUsd -
-              amountToSend * +selectedToken.price.USD -
-              transactionFee * +ethInformation.price.USD
+              ((amountToSend * +selectedToken.price.USD) -
+              (transactionFee * +ethInformation.price.USD))
             ).toFixed(2)}
           </BalanceCol>
         </Row>
@@ -136,7 +136,7 @@ export default class TransferDescription extends React.PureComponent {
 TransferDescription.defaultProps = {
   title: 'Transaction Description',
   currencySymbol: '$',
-  buttonLabel: 'Send'
+  buttonLabel: 'Send',
 };
 
 TransferDescription.propTypes = {
@@ -188,6 +188,6 @@ TransferDescription.propTypes = {
   /**
    * onSend function Callback  in the TransferDescription.
    */
-  onCancel: PropTypes.func
+  onCancel: PropTypes.func,
 };
 // export default TransferDescription;

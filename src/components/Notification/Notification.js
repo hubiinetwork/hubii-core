@@ -9,6 +9,6 @@ export default (success, title) => {
     message: <StyledTitle>{title}</StyledTitle>,
     description: '',
     placement: 'bottomRight',
-    style: { background: color }
+    style: { background: color },
   });
 };

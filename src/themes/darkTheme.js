@@ -16,8 +16,8 @@ const teal50 = 'rgba(47,77,92,.5)';
 // ****** seaGreen ****** //
 
 const seaGreen = '#3df5cd';
-const seaGreenDark = '#50E3C2';
 const seaGreenLight = 'rgba(80,227,194,.05)';
+const seaGreenDark = '#50e3c2';
 const seaGreen50 = 'rgba(80,227,194,.5)';
 
 // ****** grey ****** //
@@ -25,7 +25,7 @@ const seaGreen50 = 'rgba(80,227,194,.5)';
 const grey = 'rgba(255,255,255,0.5)';
 const greyDim = 'rgba(255,255,255,0.3)';
 const greyLight = '#C0CDD3';
-const greyDark = '#496370';
+const greyDark = '#43616F';
 const greyDarker = '#445f6c';
 const grey50 = 'rgba(140,165,177,.5)';
 const grey8C = '#8CA5B1';
@@ -34,9 +34,9 @@ const grey40 = '#406171';
 
 // ****** black ****** //
 
-const black = '#122b2b';
+const black = '#122a2b';
 const black50 = 'rgba(36, 59, 71, 0.5)';
-const blackLight = '#27404c';
+const blackLight = '#26404d';
 const blackLighter = '#404f56';
 
 // ****** green ****** //
@@ -63,7 +63,7 @@ export default {
   color: 'red',
   shadows: {
     light: shadowLight,
-    dark: shadowDark
+    dark: shadowDark,
   },
   palette: {
     primary: teal,
@@ -100,6 +100,6 @@ export default {
     success: green,
     success1: greenLight,
     warning: yellow,
-    danger: tomato
-  }
+    danger: tomato,
+  },
 };

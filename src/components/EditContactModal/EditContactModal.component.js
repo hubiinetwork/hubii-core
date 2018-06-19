@@ -7,7 +7,7 @@ import {
   WrapperIcon,
   StyledButton1,
   StyledButton2,
-  ParentDiv
+  ParentDiv,
 } from './EditContactModal.style';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 
@@ -16,24 +16,29 @@ import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
  */
 
 class EditContactModal extends React.Component {
-  handleEdit = e => {
-    const self = this;
+  constructor(props) {
+    super(props);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+  handleEdit(e) {
     e.preventDefault();
+    const { onEdit } = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        self.props.onEdit(values);
+        onEdit(values);
       }
     });
-  };
-  handleDelete = e => {
-    const self = this;
+  }
+  handleDelete(e) {
     e.preventDefault();
+    const { onDelete } = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        self.props.onDelete(values);
+        onDelete(values);
       }
     });
-  };
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -51,10 +56,10 @@ class EditContactModal extends React.Component {
               rules: [
                 {
                   message: 'Name is required.',
-                  required: true
-                }
+                  required: true,
+                },
               ],
-              initialValue: this.props.name
+              initialValue: this.props.name,
             })(<ModalFormInput />)}
           </ModalFormItem>
           <ModalFormItem
@@ -64,10 +69,10 @@ class EditContactModal extends React.Component {
               rules: [
                 {
                   message: 'Address is required.',
-                  required: true
-                }
+                  required: true,
+                },
               ],
-              initialValue: this.props.address
+              initialValue: this.props.address,
             })(<ModalFormInput />)}
           </ModalFormItem>
           <ParentDiv>
@@ -101,7 +106,8 @@ EditContactModal.propTypes = {
   /** Function to be executed when edit button is pressed */
   onEdit: PropTypes.func,
   /** Function to be executed when delete button is pressed */
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
+  form: PropTypes.object,
 };
 
 export default Form.create()(EditContactModal);
