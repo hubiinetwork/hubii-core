@@ -10,53 +10,51 @@ import {
   StyledButton,
   SpaceBetween,
   TextGrey,
-  TransactionInfo
+  TransactionInfo,
 } from './LastTransaction.style';
 
 /**
  * This component shows details of last transaction by wallet address
  */
-const LastTransaction = props => {
-  return (
-    <div>
+const LastTransaction = (props) => (
+  <div>
+    <StyledRow>
+      <TextSecondary>Last Transfer was</TextSecondary>
+    </StyledRow>
+    <TransactionInfo>
       <StyledRow>
-        <TextSecondary>Last Transfer was</TextSecondary>
+        <FlexWrapper>
+          <Image src={`/public/asset_images/${props.coin}.svg`} alt="icon" />
+          <Text>{props.coinAmount}</Text>
+          {'  '}
+          <TextPrimary>{props.coin}</TextPrimary>
+          <TextGrey>{`$${props.coinAmountUSD}`}</TextGrey>
+        </FlexWrapper>
       </StyledRow>
-      <TransactionInfo>
-        <StyledRow>
-          <FlexWrapper>
-            <Image src={`/public/asset_images/${props.coin}.svg`} alt="icon" />
-            <Text>{props.coinAmount}</Text>
-            {'  '}
-            <TextPrimary>{props.coin}</TextPrimary>
-            <TextGrey>{`$${props.coinAmountUSD}`}</TextGrey>
-          </FlexWrapper>
-        </StyledRow>
-        <StyledRow>
-          <TextPrimary>Transfered to: </TextPrimary>
-          <Text>{props.name}</Text>
-          <TextGrey>{props.address}</TextGrey>
-        </StyledRow>
-        <StyledRow>
-          <TextPrimary>Date:</TextPrimary>
-          <Text>{props.date}</Text>
-        </StyledRow>
-        <StyledRow>
-          <TextPrimary>Time:</TextPrimary>
-          <FlexWrapper>
-            <Text>{props.time}</Text>
-            <SpaceBetween>
-              <TextGrey>{`GMT ${props.gmt}`}</TextGrey>
-            </SpaceBetween>
-          </FlexWrapper>
-        </StyledRow>
-      </TransactionInfo>
-      <StyledButton type="primary" onClick={props.handleNewTransfer}>
+      <StyledRow>
+        <TextPrimary>Transfered to: </TextPrimary>
+        <Text>{props.name}</Text>
+        <TextGrey>{props.address}</TextGrey>
+      </StyledRow>
+      <StyledRow>
+        <TextPrimary>Date:</TextPrimary>
+        <Text>{props.date}</Text>
+      </StyledRow>
+      <StyledRow>
+        <TextPrimary>Time:</TextPrimary>
+        <FlexWrapper>
+          <Text>{props.time}</Text>
+          <SpaceBetween>
+            <TextGrey>{`GMT ${props.gmt}`}</TextGrey>
+          </SpaceBetween>
+        </FlexWrapper>
+      </StyledRow>
+    </TransactionInfo>
+    <StyledButton type="primary" onClick={props.handleNewTransfer}>
         Make a new Transfer
       </StyledButton>
-    </div>
+  </div>
   );
-};
 LastTransaction.propTypes = {
   /**
    * Coin used in last transaction e.g ICX
@@ -93,6 +91,6 @@ LastTransaction.propTypes = {
   /**
    * Function to execute when make new transfer button is clicked
    */
-  handleNewTransfer: PropTypes.func
+  handleNewTransfer: PropTypes.func,
 };
 export default LastTransaction;

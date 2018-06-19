@@ -2,12 +2,12 @@ Examples:
 
 ```
 const data = [
-  { coin: 'ETH', coinAmount: '1.5264', coinAmountUSD: '1,200.59' },
-  { coin: 'HBT', coinAmount: '1,559.54', coinAmountUSD: '359.2' },
-  { coin: 'OMG', coinAmount: '1.5264', coinAmountUSD: '1,200.59' },
-  { coin: 'ICX', coinAmount: '1,559.54', coinAmountUSD: '359.2' }
+  { coin: 'ETH', coinAmount: 1.5264, exchangeRate: {loading: true} },
+  { coin: 'HBT', coinAmount: 1559.54, exchangeRate: {error: true} },
+  { coin: 'OMG', coinAmount: 1.5264, exchangeRate: {price: 101} },
+  { coin: 'ICX', coinAmount: 1559.54, exchangeRate: {price: 201} }
 ];
 <div style={{ backgroundColor: '#26404D', padding: 25, width: 304 }}>
-  <CurrencyList data={data} onIconSelect={(icon) => {console.log('selected icon is',icon)}} />
+  <CurrencyList data={data} onCurrencySelect={(icon) => {console.log('selected icon is',icon)}} activeCurrency='ETH' />
 </div>
 ```

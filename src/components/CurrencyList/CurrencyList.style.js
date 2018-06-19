@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { List, Avatar } from 'antd';
+import Price from 'components/Price';
 import { InputSearch } from '../ui/Input';
 
 const { Item } = List;
@@ -80,3 +81,5 @@ export const StyledAvatar = styled(Avatar)`
   height: 24px;
   width: 24px;
 `;
+
+export const StyledPrice = styled(Price)``;

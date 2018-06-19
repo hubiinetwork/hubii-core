@@ -6,21 +6,19 @@ import {
   Coin,
   Title,
   DollarAmount,
-  Wrapper
+  Wrapper,
 } from './Amount.style';
 
-const Amount = props => {
-  return (
-    <Wrapper>
-      <Title>Amount</Title>
-      <AlignCenter>
-        <AmountWrapper>{props.amount}</AmountWrapper>
-        <Coin>{props.coin}</Coin>
-      </AlignCenter>
-      <DollarAmount>${props.dollarAmount}</DollarAmount>
-    </Wrapper>
+const Amount = (props) => (
+  <Wrapper>
+    <Title>Amount</Title>
+    <AlignCenter>
+      <AmountWrapper>{props.amount}</AmountWrapper>
+      <Coin>{props.coin}</Coin>
+    </AlignCenter>
+    <DollarAmount>${props.dollarAmount}</DollarAmount>
+  </Wrapper>
   );
-};
 
 Amount.propTypes = {
   /**
@@ -34,7 +32,7 @@ Amount.propTypes = {
   /**
    * Balance of exchange coin.
    */
-  dollarAmount: PropTypes.number
+  dollarAmount: PropTypes.number,
 };
 
 export default Amount;
