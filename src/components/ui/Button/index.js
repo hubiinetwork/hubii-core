@@ -1,2 +1,2 @@
-import Button from "./Button.style";
+import Button from './Button.style';
 export default Button;

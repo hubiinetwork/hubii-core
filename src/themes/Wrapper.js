@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
 import theme from './darkTheme';
 
+/* eslint-disable */
 export default class ThemeWrapper extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <BrowserRouter>{this.props.children}</BrowserRouter>
+        <IntlProvider locale="en">
+          <BrowserRouter>{this.props.children}</BrowserRouter>
+        </IntlProvider>
       </ThemeProvider>
     );
   }
