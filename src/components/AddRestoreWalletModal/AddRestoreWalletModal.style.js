@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Button from '../ui/Button';
 import { Icon } from 'antd';
+import Button from '../ui/Button';
 
 export const TitleDiv = styled.div`
   font-size: 16px;

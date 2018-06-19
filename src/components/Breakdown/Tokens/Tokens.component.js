@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Logo,
   Percentage,
@@ -6,15 +7,14 @@ import {
   FlexContainer,
   FlexItem,
 } from './Tokens.style';
-import PropTypes from 'prop-types';
 
 /**
  * This component is used to show percentage of every coin in the wallet.
  */
 const Tokens = (props) => {
   const sortedData = props.data.sort((a, b) => b.percentage - a.percentage);
-  const items = sortedData.map((item, i) => (
-    <FlexItem key={`token-${i}`}>
+  const items = sortedData.map((item) => (
+    <FlexItem key={`token-${item.label}`}>
       <Logo src={`public/asset_images/${item.label}.svg`} />
       <Label>{item.label}</Label>
       <Percentage>{item.percentage}%</Percentage>

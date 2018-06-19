@@ -34,37 +34,43 @@ class AddWallet extends React.PureComponent {
       confirmPasswordsMatch: false,
     };
   }
-  handleConfirmBlur = (e) => {
+  handleConfirmBlur(e) {
     const value = e.target.value;
     this.setState({
       confirmPasswordsMatch: this.state.confirmPasswordsMatch || !!value,
     });
-  };
-  compareToFirstPassword = (rule, value, callback) => {
+  }
+  compareToFirstPassword(rule, value, callback) {
     const form = this.props.form;
     if (value && value !== form.getFieldValue('password')) {
       callback('The passwords do not match!');
     } else {
       callback();
     }
-  };
-  validateToNextPassword = (rule, value, callback) => {
+  }
+  validateToNextPassword(rule, value, callback) {
     const form = this.props.form;
     if (value && this.state.confirmPasswordsMatch) {
       form.validateFields(['confirm'], { force: true });
     }
     callback();
-  };
+  }
 
-  handleSubmit = (e) => {
+  handleSubmit(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        values.mnemonic = this.state.mnemonic;
-        this.props.handleSubmit(values);
+        const value = values;
+        value.mnemonic = this.state.mnemonic;
+        this.props.handleSubmit(value);
       }
     });
-  };
+  }
+  showNotification() {
+    const success = true;
+    const message = 'Seed words copied to clipboard.';
+    Notification(success, message);
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -137,7 +143,7 @@ class AddWallet extends React.PureComponent {
                     overlayStyle={{ width: 270 }}
                     content={
                       <InfoContent>
-                        If your computer breaks, you'll be able to use this
+                        If your computer breaks, you&apos;ll be able to use this
                         phrase to restore your wallet.
                       </InfoContent>
                     }
@@ -178,11 +184,6 @@ class AddWallet extends React.PureComponent {
       </div>
     );
   }
-  showNotification = () => {
-    const success = true;
-    const message = 'Seed words copied to clipboard.';
-    Notification(success, message);
-  };
 }
 AddWallet.propTypes = {
   /**

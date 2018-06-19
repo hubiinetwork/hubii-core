@@ -1,2 +1,2 @@
-import AdvanceSettings from "./AdvanceSettings.component";
+import AdvanceSettings from './AdvanceSettings.component';
 export default AdvanceSettings;

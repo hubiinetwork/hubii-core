@@ -26,6 +26,10 @@ export default class AddRestoreWalletModal extends React.PureComponent {
     this.state = {
       type: 'main',
     };
+    this.switchModals = this.switchModals.bind(this);
+  }
+  switchModals(selectedType) {
+    this.setState({ type: selectedType });
   }
   render() {
     const { type } = this.state;
@@ -142,9 +146,6 @@ export default class AddRestoreWalletModal extends React.PureComponent {
       </div>
     );
   }
-  switchModals = (selectedType) => {
-    this.setState({ type: selectedType });
-  };
 }
 AddRestoreWalletModal.propTypes = {
   /**

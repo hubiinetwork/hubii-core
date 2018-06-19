@@ -24,5 +24,6 @@ export default styled(Button)`
           background-color: ${theme.palette.info2};
         }`;
     }
+    return '';
   }};
 `;

@@ -1,8 +1,8 @@
 import React from 'react';
-import { SectionHeading } from '../ui/SectionHeading';
-import { TotalAmount, Title } from './Breakdown.style';
 import PropTypes from 'prop-types';
 import { VictoryPie, VictoryContainer, VictoryTooltip } from 'victory';
+import { SectionHeading } from '../ui/SectionHeading';
+import { TotalAmount, Title } from './Breakdown.style';
 import Tokens from './Tokens';
 
 /**

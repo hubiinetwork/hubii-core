@@ -32,6 +32,7 @@ class PaymentForm extends React.Component {
       amount: 1,
       selectedAddress: this.props.recipients[0],
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleAddress(value) {
@@ -45,14 +46,14 @@ class PaymentForm extends React.Component {
     });
   }
 
-  handleSubmit = (e) => {
+  handleSubmit(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.props.onSend(values, this.state.selectedAddress);
       }
     });
-  };
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -109,8 +110,8 @@ class PaymentForm extends React.Component {
                 defaultValue={recipients[0]}
                 onSelect={(value) => this.handleAddress(value)}
               >
-                {recipients.map((address, i) => (
-                  <Option key={i} value={address}>
+                {recipients.map((address) => (
+                  <Option key={address} value={address}>
                     {address}
                   </Option>
                 ))}
@@ -161,6 +162,8 @@ PaymentForm.propTypes = {
    * Array of string of recipients
    */
   recipients: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  rate: PropTypes.number,
+  form: PropTypes.object,
 };
 
 export default Form.create()(PaymentForm);

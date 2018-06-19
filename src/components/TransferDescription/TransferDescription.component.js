@@ -115,8 +115,8 @@ export default class TransferDescription extends React.PureComponent {
             {currencySymbol}
             {(
               totalUsd -
-              amountToSend * +selectedToken.price.USD -
-              transactionFee * +ethInformation.price.USD
+              ((amountToSend * +selectedToken.price.USD) -
+              (transactionFee * +ethInformation.price.USD))
             ).toFixed(2)}
           </BalanceCol>
         </Row>

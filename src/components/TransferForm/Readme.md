@@ -10,9 +10,9 @@ Sample of TransferForm:
       { name: 'Kata', address: '0xf400db37c54c535febca1b470fd1d23d30agh65' }
     ]}
     currencies={[
-      { name: 'ETH', priceInDollar: '200' },
-      { name: 'ICX', priceInDollar: '129' },
-      { name: 'HBT', priceInDollar: '110' }
+      { coin: 'ETH', rateUSD: '200' },
+      { coin: 'ICX', rateUSD: '129' },
+      { coin: 'HBT', rateUSD: '110' }
     ]}
   />
 </div>

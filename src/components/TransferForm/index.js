@@ -1,2 +1,2 @@
-import TransferForm from "./TransferForm.component";
+import TransferForm from './TransferForm.component';
 export default TransferForm;

@@ -1,9 +1,9 @@
+import React from 'react';
 import {
   AdvanceSettingsHeader,
   Collapse,
-  Panel
+  Panel,
 } from './AdvanceSettings.style';
-import React from 'react';
 import Input from '../../ui/Input';
 import HelperText from '../../ui/HelperText';
 import { FormItem, FormItemLabel } from '../../ui/Form';
