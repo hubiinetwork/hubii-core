@@ -48,7 +48,7 @@ function walletManagerReducer(state = initialState, action) {
         .setIn(['loading', 'creatingWallet'], false)
         .setIn(['inputs', 'password'], '')
         .setIn(['errors', 'creatingWalletError'], null)
-        .setIn(['wallets', 'software', state.getIn(['inputs', 'newWalletName'])], fromJS(action.newWallet));
+        .setIn(['wallets', 'software', action.newWalletName], fromJS(action.newWallet));
     case CREATE_NEW_WALLET_FAILURE:
       return state
         .setIn(['loading', 'creatingWallet'], false)

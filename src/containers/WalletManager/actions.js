@@ -20,9 +20,10 @@ export function createNewWallet() {
   };
 }
 
-export function createNewWalletSuccess(encryptedWallet, decryptedWallet, derivationPath) {
+export function createNewWalletSuccess(name, encryptedWallet, decryptedWallet, derivationPath) {
   return {
     type: CREATE_NEW_WALLET_SUCCESS,
+    newWalletName: name,
     newWallet: {
       encrypted: encryptedWallet,
       decrypted: decryptedWallet,

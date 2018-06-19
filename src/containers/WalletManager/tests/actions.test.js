@@ -29,11 +29,13 @@ describe('WalletManager actions', () => {
 
   describe('createNewWalletSuccess Action', () => {
     it('returns expected output', () => {
+      const name = 'Big Joe';
       const encryptedWallet = { blah: 'blah123' };
       const decryptedWallet = { key: 'twinkletoes' };
       const derivationPath = 'm/43\'/60\'/0\'/0/0';
       const expected = {
         type: CREATE_NEW_WALLET_SUCCESS,
+        newWalletName: name,
         newWallet: {
           encrypted: encryptedWallet,
           decrypted: decryptedWallet,
@@ -41,6 +43,7 @@ describe('WalletManager actions', () => {
         },
       };
       expect(createNewWalletSuccess(
+        name,
         encryptedWallet,
         decryptedWallet,
         derivationPath)).toEqual(expected);
