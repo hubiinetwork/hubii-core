@@ -17,6 +17,7 @@ import {
 } from './AddRestoreWalletModal.style';
 import { AddWallet } from './AddWallet';
 import { RestoreWallet } from './RestoreWallet';
+import ImportWalletSteps from '../ImportWalletSteps';
 /**
  * This component shows options for modals to  be opened.
  */
@@ -38,12 +39,12 @@ export default class AddRestoreWalletModal extends React.PureComponent {
               <Description>Please select what you want to do</Description>
             </TitleDiv>
 
-            <DisabledButton type="primary">
+            <ButtonDiv onClick={() => this.switchModals('import')} type="primary">
               <Wrapper>
                 <Icon type="download" />
                 <TextWhite>Import Wallet</TextWhite>
               </Wrapper>
-            </DisabledButton>
+            </ButtonDiv>
 
             <ButtonDiv onClick={() => this.switchModals('add')} type="primary">
               <Wrapper>
@@ -122,21 +123,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
         )}
         {type === 'import' && (
           <div>
-            <IconWrapper>
-              <Arrow
-                type="arrow-left"
-                onClick={() => this.switchModals('main')}
-              />Import Wallet
-            </IconWrapper>
-            <RightTopButton
-              onClick={() => this.switchModals('add')}
-              type="primary"
-            >
-              <Wrapper>
-                <Icon type="plus" />
-                Add Wallet
-              </Wrapper>
-            </RightTopButton>
+            <ImportWalletSteps handleClose={this.props.handleClose} />
           </div>
         )}
       </div>

@@ -36,7 +36,7 @@ const settingsMenu = props => (
 const WalletItemCard = props => (
   <OverflowHidden>
     {props.connected !== undefined && <USBFlag connected={props.connected} />}
-    <OuterWrapper>
+    <OuterWrapper onClick={() => {props.handleCardClick(props.primaryAddress)}}>
       <LeftSideWrapper>
         <p>{props.name}</p>
         <AssetsWrapper>
@@ -106,7 +106,8 @@ WalletItemCard.propTypes = {
   /**
    * props.bool shows connection status  of  wallet if  provided.
    */
-  connected: PropTypes.bool
+  connected: PropTypes.bool,
+  handleCardClick: PropTypes.func,
 };
 
 export default WalletItemCard;

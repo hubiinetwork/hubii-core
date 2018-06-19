@@ -10,7 +10,7 @@ export default [
   {
     name: "Wallet Test",
     totalBalance: 100.231,
-    primaryAddress: "0xda1736e3eb1969b608ca9334b5baf8e3760bb16a",
+    primaryAddress: "0xda1736e3eb1969b608ca9334b5baf8e3760bb16b",
     type: "Hubii Wallet",
     assets: [{ name: "ETH", amount: 0.21 }, { name: "HBT", amount: 23102 }],
     href: "/"
@@ -18,7 +18,7 @@ export default [
   {
     name: "Wallet 34",
     totalBalance: 100.231,
-    primaryAddress: "0xda1736e3eb1969b608ca9334b5baf8e3760bb16a",
+    primaryAddress: "0xda1736e3eb1969b608ca9334b5baf8e3760bb16c",
     type: "Hubii Wallet",
     assets: [{ name: "ETH", amount: 0.21 }, { name: "HBT", amount: 23102 }],
     href: "/"
@@ -26,7 +26,7 @@ export default [
   {
     name: "Wallet 98",
     totalBalance: 100.231,
-    primaryAddress: "0xda1736e3eb1969b608ca9334b5baf8e3760bb16a",
+    primaryAddress: "0xda1736e3eb1969b608ca9334b5baf8e3760bb16d",
     type: "Hubii Wallet",
     assets: [{ name: "ETH", amount: 0.21 }, { name: "HBT", amount: 23102 }],
     href: "/"

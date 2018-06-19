@@ -14,6 +14,11 @@ const WalletCardsCol = styled(Col)`
   margin-bottom: 1rem;
 `;
 class WalletsOverview extends React.PureComponent {
+  constructor(...args) {
+    super(...args);
+    this.handleCardClick = this.handleCardClick.bind(this);
+  }
+
   render() {
     return (
       <Row gutter={16}>
@@ -49,6 +54,12 @@ class WalletsOverview extends React.PureComponent {
     );
   }
 
+  handleCardClick (address) {
+    console.log(this)
+    const {history} = this.props
+    history.push(`/wallet/${address}`)
+  }
+
   renderWalletItems() {
     const { cards } = this.props;
 
@@ -70,6 +81,7 @@ class WalletsOverview extends React.PureComponent {
             pathname: '/wallet',
             query: { address: card.primaryAddress }
           }}
+          handleCardClick={this.handleCardClick}
         />
       </WalletCardsCol>
     ));
