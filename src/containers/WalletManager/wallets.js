@@ -9,7 +9,7 @@ import {
   TabsLayout,
   StyledButton,
   WalletsTabHeader
-} from './index.style';
+} from './wallets.style';
 // import AddRestoreWalletModal from '../../components/AddRestoreWalletModal';
 import ImportWalletSteps from '../../components/ImportWalletSteps';
 import AddNewContactModal from '../../components/AddNewContactModal';
