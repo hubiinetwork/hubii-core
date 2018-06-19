@@ -18,9 +18,9 @@ export const TransactionHistoryItemDate = styled.span`
   display: flex;
   align-self: baseline;
   justify-content: center;
-  line-height: 15px;
-  font-size: 15px;
-  font-weight: 600;
+  line-height: 16px;
+  font-size: 17px;
+  font-weight: 500;
   margin-top: 4px;
 `;
 
