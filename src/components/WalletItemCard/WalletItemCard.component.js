@@ -1,5 +1,6 @@
 import { Icon, Dropdown, Popover } from 'antd';
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import WalletDetailPopoverContent from './WalletDetailPopoverContent';
 import AssetAmountBubble from './AssetAmountBubble';
 import {
@@ -12,15 +13,14 @@ import {
   IconMenu as Menu,
   MenuItem,
   MenuDivider,
-  CardIconSettings
+  CardIconSettings,
 } from './WalletItemCard.style';
-import PropTypes from 'prop-types';
 
 /**
  * This component shows details of a wallet in the card.
  */
 
-const settingsMenu = props => (
+const settingsMenu = () => (
   <Menu>
     <MenuItem>Export Seed Words</MenuItem>
     <MenuDivider />
@@ -30,14 +30,14 @@ const settingsMenu = props => (
   </Menu>
 );
 
-const WalletItemCard = props => (
+const WalletItemCard = (props) => (
   <div>
     <OuterWrapper>
       <LeftSideWrapper>
         <p>{props.name}</p>
         <AssetsWrapper>
           {props.assets &&
-            props.assets.map(asset => (
+            props.assets.map((asset) => (
               <AssetWrapper key={asset.name}>
                 <AssetAmountBubble name={asset.name} amount={asset.amount} />
               </AssetWrapper>
@@ -49,7 +49,7 @@ const WalletItemCard = props => (
         style={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between'
+          justifyContent: 'space-between',
         }}
       >
         <CardIcon>
@@ -94,7 +94,7 @@ WalletItemCard.propTypes = {
   assets: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
-      amount: PropTypes.number
+      amount: PropTypes.number,
     })
   ),
   /**
@@ -104,7 +104,7 @@ WalletItemCard.propTypes = {
   /**
    * props.type type of the wallet.
    */
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
 };
 
 export default WalletItemCard;

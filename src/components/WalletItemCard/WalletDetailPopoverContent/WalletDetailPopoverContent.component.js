@@ -1,13 +1,13 @@
 import * as React from 'react';
-import walletTypeDescriptions from '../../../helpers/walletTypeDescriptions';
-import { Subtitle, Wrapper } from './WalletDetailPopoverContent.style';
 import PropTypes from 'prop-types';
+import walletTypeDescriptions from '../walletTypeDescriptions';
+import { Subtitle, Wrapper } from './WalletDetailPopoverContent.style';
 
 /**
  * This component shows specific content in the popover of WalletItemCard.
  */
 
-const WalletDetailPopoverContent = props => {
+const WalletDetailPopoverContent = (props) => {
   const description = walletTypeDescriptions[props.type];
   return (
     <Wrapper>
@@ -27,7 +27,7 @@ WalletDetailPopoverContent.propTypes = {
   /**
    * type of wallet item.
    */
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
 };
 
 export default WalletDetailPopoverContent;
