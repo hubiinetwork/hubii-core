@@ -51,7 +51,6 @@ const yellow = '#F5A623';
 // ****** tomato ****** //
 
 const tomato = 'tomato';
-const orange = '#e7a611';
 
 // ****** shadows ****** //
 
