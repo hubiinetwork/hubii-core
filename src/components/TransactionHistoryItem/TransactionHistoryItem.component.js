@@ -12,36 +12,13 @@ import TransactionHistoryDetail from '../TransactionHistoryDetail';
  */
 export const TransactionHistoryItem = props => {
   const { data, rate } = props;
+  const locale = 'en-us';
   const type = !data.address
     ? 'exchange'
     : data.address === data.to
       ? 'received'
       : 'sent';
-  const getMonth = data.time.getMonth();
-  const month =
-    getMonth === 0
-      ? 'jan'
-      : getMonth === 1
-        ? 'feb'
-        : getMonth === 2
-          ? 'mar'
-          : getMonth === 3
-            ? 'apr'
-            : getMonth === 4
-              ? 'may'
-              : getMonth === 5
-                ? 'jun'
-                : getMonth === 6
-                  ? 'jul'
-                  : getMonth === 7
-                    ? 'aug'
-                    : getMonth === 8
-                      ? 'sep'
-                      : getMonth === 9
-                        ? 'oct'
-                        : getMonth === 10
-                          ? 'nov'
-                          : 'dec';
+  const month = data.time.toLocaleString(locale, { month: 'short' });
   return (
     <Wrapper>
       <TransactionHistoryItemDate>
