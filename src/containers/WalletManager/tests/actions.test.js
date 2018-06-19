@@ -31,19 +31,16 @@ describe('WalletManager actions', () => {
     it('returns expected output', () => {
       const encryptedWallet = { blah: 'blah123' };
       const decryptedWallet = { key: 'twinkletoes' };
-      const derivationPath = 'm/43\'/60\'/0\'/0/0';
       const expected = {
         type: CREATE_NEW_WALLET_SUCCESS,
         newWallet: {
           encrypted: encryptedWallet,
           decrypted: decryptedWallet,
-          derivationPath,
         },
       };
       expect(createNewWalletSuccess(
         encryptedWallet,
-        decryptedWallet,
-        derivationPath)).toEqual(expected);
+        decryptedWallet)).toEqual(expected);
     });
   });
 
