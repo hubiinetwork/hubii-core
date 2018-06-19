@@ -1,6 +1,7 @@
 // ****** white ****** //
 
 const white = '#ffffff';
+const dullWhite = '#C0CDD3';
 
 // ****** teal ****** //
 
@@ -83,6 +84,7 @@ export default {
     dark3: black50,
 
     light: white,
+    light1: dullWhite,
 
     info: seaGreen,
     info1: seaGreenLight,
