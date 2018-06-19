@@ -11,30 +11,58 @@ import TransactionHistoryDetail from '../TransactionHistoryDetail';
  * This component shows history of a past transaction's detail.
  */
 export const TransactionHistoryItem = props => {
-  const type = !props.data.address
+  const { data, rate } = props;
+  const type = !data.address
     ? 'exchange'
-    : props.data.address === props.data.to
+    : data.address === data.to
       ? 'received'
       : 'sent';
+  const getMonth = data.time.getMonth();
+  const month =
+    getMonth === 0
+      ? 'jan'
+      : getMonth === 1
+        ? 'feb'
+        : getMonth === 2
+          ? 'mar'
+          : getMonth === 3
+            ? 'apr'
+            : getMonth === 4
+              ? 'may'
+              : getMonth === 5
+                ? 'jun'
+                : getMonth === 6
+                  ? 'jul'
+                  : getMonth === 7
+                    ? 'aug'
+                    : getMonth === 8
+                      ? 'sep'
+                      : getMonth === 9
+                        ? 'oct'
+                        : getMonth === 10
+                          ? 'nov'
+                          : 'dec';
   return (
     <Wrapper>
-      <TransactionHistoryItemDate>{props.data.date}</TransactionHistoryItemDate>
+      <TransactionHistoryItemDate>
+        {month} {data.time.getDate()}
+      </TransactionHistoryItemDate>
       <TransactionHistoryItemCard>
         <Image
           src={`../../../public/asset_images/${
-            type === 'exchange' ? props.data.fromCoin : props.data.coin
+            type === 'exchange' ? data.fromCoin : data.coin
           }.svg`}
         />
         <TransactionHistoryDetail
           type={type}
-          address={type === 'received' ? props.data.from : props.data.to}
-          txnId={props.data.txnId}
-          amount={props.data.amount}
-          usd={props.price}
-          toCoin={props.data.toCoin}
-          fromCoin={props.data.fromCoin}
-          status={props.data.status}
-          time={props.data.time}
+          address={type === 'received' ? data.from : data.to}
+          txnId={data.txnId}
+          amount={data.amount}
+          rate={rate}
+          toCoin={data.toCoin}
+          fromCoin={data.fromCoin}
+          status={data.status}
+          time={data.time}
         />
       </TransactionHistoryItemCard>
     </Wrapper>
@@ -46,13 +74,12 @@ TransactionHistoryItem.propTypes = {
    * prop  of data of TransactionHistoryItem.
    */
   data: PropTypes.shape({
-    date: PropTypes.string.isRequired,
     /**
      * Do not  pass address if you want to show exchange state of the component.
      * 'address' prop is used to pass the address of the walletHolder where 'to' and 'from' props are used to check  whether the transaction was a receving or a sending one.
      */
     address: PropTypes.string,
-    time: PropTypes.string.isRequired,
+    time: PropTypes.object.isRequired,
     amount: PropTypes.number.isRequired,
     txnId: PropTypes.string,
     to: PropTypes.string,
@@ -63,7 +90,7 @@ TransactionHistoryItem.propTypes = {
     status: PropTypes.number
   }).isRequired,
   /**
-   * price of 1ETH or any other currency, in dollars.
+   * rate of 1ETH or any other currency, in dollars.
    */
-  price: PropTypes.number.isRequired
+  rate: PropTypes.number.isRequired
 };

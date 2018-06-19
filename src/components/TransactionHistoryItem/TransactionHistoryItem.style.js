@@ -13,9 +13,11 @@ export const TransactionHistoryItemDate = styled.span`
   color: ${({ theme }) => theme.palette.light};
   margin-right: 12px;
   max-width: 25px;
+  text-transform: uppercase;
   text-align: center;
   display: flex;
   align-self: baseline;
+  justify-content: center;
   line-height: 15px;
   font-size: 15px;
   font-weight: 600;

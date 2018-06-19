@@ -74,7 +74,15 @@ const TransactionHistoryDetail = props => {
               </TransactionHistoryAddress>
             </Left>
             <SpaceAround>
-              <TransactionHistoryTime>{props.time}</TransactionHistoryTime>
+              <TransactionHistoryTime>
+                {`${
+                  props.time.getHours() > 12
+                    ? Math.floor(props.time.getHours() - 12)
+                    : props.time.getHours()
+                }:${props.time.getMinutes()}${
+                  props.time.getHours() > 12 ? 'PM' : 'AM'
+                }`}
+              </TransactionHistoryTime>
               <TransactionHistoryConversion>
                 {props.type === 'sent' ? (
                   <Sent>-{props.amount}</Sent>
@@ -101,7 +109,7 @@ const TransactionHistoryDetail = props => {
               {props.amount}
             </TransactionHistoryAddress>
             <TransactionStatus>Status Network</TransactionStatus>
-            <Amount>${props.usd * props.amount}</Amount>
+            <Amount>${props.rate * props.amount}</Amount>
           </div>
         </div>
       </DetailPanel>
@@ -124,11 +132,11 @@ TransactionHistoryDetail.propTypes = {
   /**
    * type of transactionHistory.
    */
-  type: PropTypes.oneOf(['received', 'sent', 'exchanged']).isRequired,
+  type: PropTypes.oneOf(['received', 'sent', 'exchange']).isRequired,
   /**
    * USD price of ETH coin.
    */
-  usd: PropTypes.number.isRequired,
+  rate: PropTypes.number.isRequired,
   /**
    * Short capitalized name of coin that was exchanged to.
    */
@@ -144,7 +152,7 @@ TransactionHistoryDetail.propTypes = {
   /**
    * status code of the transaction.
    */
-  time: PropTypes.string
+  time: PropTypes.object
 };
 
 export default TransactionHistoryDetail;
