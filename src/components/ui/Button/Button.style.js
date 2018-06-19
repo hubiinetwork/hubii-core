@@ -1,5 +1,5 @@
-import { Button } from "antd";
-import styled from "styled-components";
+import { Button } from 'antd';
+import styled from 'styled-components';
 
 export default styled(Button)`
   height: 38px;
@@ -8,21 +8,22 @@ export default styled(Button)`
   font-weight: 400;
   border-radius: 0.3rem;
   ${({ theme, type }) => {
-    if (type === "primary") {
+    if (type === 'primary') {
       return `
-        color: ${theme.palette.info};
-        border-color: ${theme.palette.info};
+        color: ${theme.palette.light};
+        border-color: ${theme.palette.info3};
         background: transparent;
         &:hover {
           color: ${theme.palette.light};
           background: ${theme.palette.info2} !important;
-          border-color: ${theme.palette.info} !important;
+          border-color: ${theme.palette.info3} !important;
         }
         &:focus {
           color: ${theme.palette.light};
-          border-color: ${theme.palette.info};
+          border-color: ${theme.palette.info3};
           background-color: ${theme.palette.info2};
         }`;
     }
+    return '';
   }};
 `;

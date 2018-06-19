@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SectionHeading = styled.span`
-  font-weight: 400;
+  font-weight: 500;
   font-size: 12px;
   margin-bottom: 15px;
   display: inline-block;

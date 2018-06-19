@@ -1,4 +1,4 @@
-import { Icon, Layout, Menu, Tooltip } from 'antd';
+import { Icon, Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -27,12 +27,14 @@ const SideBar = ({ menuItems, logoSrc, children }) => (
           </Link>
         </Menu.Item>
         {menuItems &&
-          menuItems.map(menuItem => (
+          menuItems.map((menuItem) => (
             <Menu.Item key={menuItem.to} className="menu-wallet">
               <Link to={menuItem.to}>
                 <div>
                   <Styledimg
-                    src={`../../../public/Images/${menuItem.icon}.svg`}
+                  // eslint-disable-next-line global-require
+                    src={require(`../../../public/Images/${menuItem.icon}.svg`)}
+                    alt=""
                   />
                 </div>
               </Link>
@@ -59,7 +61,7 @@ SideBar.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       icon: PropTypes.string.isRequired,
-      to: PropTypes.string.isRequired
+      to: PropTypes.string.isRequired,
     })
   ),
   /**
@@ -68,8 +70,8 @@ SideBar.propTypes = {
   logoSrc: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default SideBar;
