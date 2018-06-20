@@ -88,12 +88,6 @@ export default class WalletDetails extends React.PureComponent {
 }
 
 WalletDetails.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-    }),
-  }),
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }),
+  history: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
 };
