@@ -1,6 +1,7 @@
 import { Icon, Tabs } from 'antd';
 import * as React from 'react';
 import { compose } from 'redux';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
@@ -12,8 +13,6 @@ import {
   StyledButton,
   WalletsTabHeader,
 } from './index.style';
-import ImportWalletSteps from '../../components/ImportWalletSteps';
-import AddNewContactModal from '../../components/AddNewContactModal';
 import AddRestoreWalletModal from '../../components/AddRestoreWalletModal';
 import { Modal } from '../../components/ui/Modal';
 
@@ -22,11 +21,29 @@ const TabPane = Tabs.TabPane;
 export class WalletManager extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.onTabsChange = this.onTabsChange.bind(this);
+
     this.state = {
       visible: false,
     };
+
+    this.onTabsChange = this.onTabsChange.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+    this.showModal = this.showModal.bind(this);
   }
+  onTabsChange(key) {
+    this.props.history.push(key);
+  }
+  showModal() {
+    this.setState({
+      visible: true,
+    });
+  }
+  hideModal() {
+    this.setState({
+      visible: false,
+    });
+  }
+
   render() {
     const { history, match } = this.props;
 
@@ -48,8 +65,8 @@ export class WalletManager extends React.PureComponent {
               maskStyle={{ background: 'rgba(232,237,239,.65)' }}
               style={{ marginTop: '20px' }}
               visible={this.state.visible}
-              onCancel={this.handleCancel}
-              destroyOnClose={true}
+              onCancel={this.hideModal}
+              destroyOnClose
             >
               <AddRestoreWalletModal
                 goBack={this.state.visible}
@@ -85,20 +102,12 @@ export class WalletManager extends React.PureComponent {
       </Wrapper>
     );
   }
-  onTabsChange(key) {
-    this.props.history.push(key);
-  }
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  };
-  handleCancel = () => {
-    this.setState({
-      visible: false,
-    });
-  };
 }
+
+WalletManager.propTypes = {
+  history: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = createStructuredSelector({});
 

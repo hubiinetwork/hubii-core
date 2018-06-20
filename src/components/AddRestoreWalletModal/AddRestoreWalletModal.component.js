@@ -27,15 +27,15 @@ export default class AddRestoreWalletModal extends React.PureComponent {
       type: 'main',
     };
     this.switchModals = this.switchModals.bind(this);
-    this.closeModal = this.closeModal.bind(this)
+    this.closeModal = this.closeModal.bind(this);
   }
   switchModals(selectedType) {
     this.setState({ type: selectedType });
   }
-  closeModal () {
-    console.log('close modal')
-    this.setState({ type: 'main'})
-    this.props.handleClose()
+  closeModal() {
+    console.log('close modal');
+    this.setState({ type: 'main' });
+    this.props.handleClose();
   }
   render() {
     const { type } = this.state;
