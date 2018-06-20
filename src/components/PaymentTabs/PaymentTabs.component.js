@@ -1,11 +1,11 @@
-import StriimTabs, { TabPane } from '../ui/StriimTabs';
 import React from 'react';
+import StriimTabs, { TabPane } from '../ui/StriimTabs';
 
 function callback(key) {
   console.log(key);
 }
 
-const PaymentTabs = (props) => (
+const PaymentTabs = () => (
   <StriimTabs defaultActiveKey="1" onChange={callback}>
     <TabPane tab="Payments" key="1" style={{ color: 'white' }}>
         Content of Tab Pane 1

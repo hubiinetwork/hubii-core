@@ -1,5 +1,6 @@
 import { Icon, Dropdown, Popover } from 'antd';
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import WalletDetailPopoverContent from './WalletDetailPopoverContent';
 import AssetAmountBubble from './AssetAmountBubble';
 import USBFlag from '../USBFlag';
@@ -15,15 +16,14 @@ import {
   MenuDivider,
   CardIconSettings,
   OverflowHidden,
-  SpaceBetween
+  SpaceBetween,
 } from './WalletItemCard.style';
-import PropTypes from 'prop-types';
 
 /**
  * This component shows details of a wallet in the card.
  */
 
-const settingsMenu = props => (
+const settingsMenu = () => (
   <Menu>
     <MenuItem>Export Seed Words</MenuItem>
     <MenuDivider />
@@ -33,15 +33,15 @@ const settingsMenu = props => (
   </Menu>
 );
 
-const WalletItemCard = props => (
+const WalletItemCard = (props) => (
   <OverflowHidden>
     {props.connected !== undefined && <USBFlag connected={props.connected} />}
-    <OuterWrapper onClick={() => {props.handleCardClick(props.primaryAddress)}}>
+    <OuterWrapper onClick={() => { props.handleCardClick(props.primaryAddress); }}>
       <LeftSideWrapper>
         <p>{props.name}</p>
         <AssetsWrapper>
           {props.assets &&
-            props.assets.map(asset => (
+            props.assets.map((asset) => (
               <AssetWrapper key={asset.name}>
                 <AssetAmountBubble name={asset.name} amount={asset.amount} />
               </AssetWrapper>
@@ -92,7 +92,7 @@ WalletItemCard.propTypes = {
   assets: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
-      amount: PropTypes.number
+      amount: PropTypes.number,
     })
   ),
   /**

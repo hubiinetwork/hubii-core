@@ -8,12 +8,11 @@ import {
   Description,
   Arrow,
   IconWrapper,
-  DisabledButton,
   TextWhite,
   RightTopButton,
   DescriptionWrapper,
   TextGrey,
-  Info
+  Info,
 } from './AddRestoreWalletModal.style';
 import { AddWallet } from './AddWallet';
 import { RestoreWallet } from './RestoreWallet';
@@ -25,8 +24,12 @@ export default class AddRestoreWalletModal extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      type: 'main'
+      type: 'main',
     };
+    this.switchModals = this.switchModals.bind(this);
+  }
+  switchModals(selectedType) {
+    this.setState({ type: selectedType });
   }
   render() {
     const { type } = this.state;
@@ -80,7 +83,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
               }}
             >
               <IconWrapper>
@@ -108,7 +111,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
               }}
             >
               <IconWrapper>
@@ -129,13 +132,10 @@ export default class AddRestoreWalletModal extends React.PureComponent {
       </div>
     );
   }
-  switchModals = selectedType => {
-    this.setState({ type: selectedType });
-  };
 }
 AddRestoreWalletModal.propTypes = {
   /**
    * Callback  function triggered when modal is closed.
    */
-  handleClose: PropTypes.func
+  handleClose: PropTypes.func,
 };

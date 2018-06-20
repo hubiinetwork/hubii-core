@@ -15,7 +15,7 @@ import {
   SeedWrapper,
   CenterWrapper,
   HBT,
-  HBTtext
+  HBTtext,
 } from './AddWallet.style';
 import Notification from '../../Notification';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../../ui/Modal';
@@ -31,40 +31,46 @@ class AddWallet extends React.PureComponent {
     );
     this.state = {
       mnemonic: mnemonic.toString(),
-      confirmPasswordsMatch: false
+      confirmPasswordsMatch: false,
     };
   }
-  handleConfirmBlur = e => {
+  handleConfirmBlur(e) {
     const value = e.target.value;
     this.setState({
-      confirmPasswordsMatch: this.state.confirmPasswordsMatch || !!value
+      confirmPasswordsMatch: this.state.confirmPasswordsMatch || !!value,
     });
-  };
-  compareToFirstPassword = (rule, value, callback) => {
+  }
+  compareToFirstPassword(rule, value, callback) {
     const form = this.props.form;
     if (value && value !== form.getFieldValue('password')) {
       callback('The passwords do not match!');
     } else {
       callback();
     }
-  };
-  validateToNextPassword = (rule, value, callback) => {
+  }
+  validateToNextPassword(rule, value, callback) {
     const form = this.props.form;
     if (value && this.state.confirmPasswordsMatch) {
       form.validateFields(['confirm'], { force: true });
     }
     callback();
-  };
+  }
 
-  handleSubmit = e => {
+  handleSubmit(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        values.mnemonic = this.state.mnemonic;
-        this.props.handleSubmit(values);
+        const value = values;
+        value.mnemonic = this.state.mnemonic;
+        this.props.handleSubmit(value);
       }
     });
-  };
+  }
+  showNotification() {
+    const success = true;
+    const message = 'Seed words copied to clipboard.';
+    Notification(success, message);
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -84,9 +90,9 @@ class AddWallet extends React.PureComponent {
                   rules: [
                     {
                       required: true,
-                      message: 'Please enter your wallet name.'
-                    }
-                  ]
+                      message: 'Please enter your wallet name.',
+                    },
+                  ],
                 })(<ModalFormInput />)}
               </ModalFormItem>
               <ModalFormItem
@@ -97,16 +103,16 @@ class AddWallet extends React.PureComponent {
                   rules: [
                     {
                       required: true,
-                      message: 'Please enter your password!'
+                      message: 'Please enter your password!',
                     },
                     {
                       min: 6,
-                      message: 'The required minimum is 6 characters.'
+                      message: 'The required minimum is 6 characters.',
                     },
                     {
-                      validator: this.validateToNextPassword
-                    }
-                  ]
+                      validator: this.validateToNextPassword,
+                    },
+                  ],
                 })(<ModalFormInput type="password" />)}
               </ModalFormItem>
               <ModalFormItem
@@ -117,12 +123,12 @@ class AddWallet extends React.PureComponent {
                   rules: [
                     {
                       required: true,
-                      message: 'Please confirm your password!'
+                      message: 'Please confirm your password!',
                     },
                     {
-                      validator: this.compareToFirstPassword
-                    }
-                  ]
+                      validator: this.compareToFirstPassword,
+                    },
+                  ],
                 })(
                   <ModalFormInput
                     type="password"
@@ -137,7 +143,7 @@ class AddWallet extends React.PureComponent {
                     overlayStyle={{ width: 270 }}
                     content={
                       <InfoContent>
-                        If your computer breaks, you'll be able to use this
+                        If your computer breaks, you&apos;ll be able to use this
                         phrase to restore your wallet.
                       </InfoContent>
                     }
@@ -178,11 +184,6 @@ class AddWallet extends React.PureComponent {
       </div>
     );
   }
-  showNotification = () => {
-    const success = true;
-    const message = 'Seed words copied to clipboard.';
-    Notification(success, message);
-  };
 }
 AddWallet.propTypes = {
   /**
@@ -197,7 +198,7 @@ AddWallet.propTypes = {
   /**
    * This prop is passed by  Form component to  use  validation.
    */
-  form: PropTypes.object
+  form: PropTypes.object,
 };
 
 export default Form.create()(AddWallet);

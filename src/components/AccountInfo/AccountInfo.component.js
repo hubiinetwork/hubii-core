@@ -10,7 +10,7 @@ import {
 } from './AccountInfo.style';
 
 const Option = Select.Option;
-const AccountInfoItem = ({ accountName, amount, handleIconClick }) => (
+const AccountInfoItem = ({ accountName, amount }) => (
   <Wrapper>
     <div>
       <TextPrimary className="white">{accountName}</TextPrimary>
@@ -18,40 +18,49 @@ const AccountInfoItem = ({ accountName, amount, handleIconClick }) => (
     </div>
   </Wrapper>
 );
+AccountInfoItem.propTypes = {
+  accountName: PropTypes.string,
+  amount: PropTypes.number,
+};
 
 /**
  * This component give option to select different striim accounts
  */
 class AccountInfo extends React.Component {
-  state = {
-    activeSelect: 0,
-  };
-  onChange = (value) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeSelect: 0,
+    };
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(value) {
     const activeSelect = this.props.options.findIndex(
-      (option, i) => `${option.accountName}-${i}` === value
+      (option) => `${option.accountName}` === value
     );
     this.props.onSelectChange(activeSelect);
     this.setState({ activeSelect });
-  };
+  }
   render() {
     const { options } = this.props;
     const { activeSelect } = this.state;
 
     return (
-      <div style={{ position: 'relative' }} className={this.props.className}>
+      <div style={{ position: 'relative' }}>
         <StyledIcon
           type="qrcode"
           onClick={options[activeSelect].handleIconClick}
         />
         <StyledSelect
-          defaultValue={`${options[0].accountName}-${0}`}
+          defaultValue={`${options[0].accountName}`}
           style={{ width: '100%' }}
           onChange={this.onChange}
         >
-          {options.map((option, i) => (
+          {options.map((option) => (
             <Option
-              value={`${option.accountName}-${i}`}
-              key={`${option.accountName}-${i}`}
+              value={`${option.accountName}`}
+              key={`${option.accountName}`}
             >
               <AccountInfoItem
                 accountName={option.accountName}

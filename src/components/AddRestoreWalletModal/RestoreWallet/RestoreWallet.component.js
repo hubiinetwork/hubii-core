@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Row, Col, Form, Spin } from 'antd';
+import ethers from 'ethers';
 import PropTypes from 'prop-types';
 import { CenterWrapper, RestoreButton, Loading } from './RestoreWallet.style';
 import {
   ModalFormLabel,
   ModalFormInput,
   ModalFormItem,
-  ModalFormTextArea
+  ModalFormTextArea,
 } from '../../ui/Modal';
-import ethers from 'ethers';
 /**
  * This component shows form to  restorewallet.
  */
@@ -16,48 +16,53 @@ class RestoreWallet extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      confirmPasswordsMatch: false
+      confirmPasswordsMatch: false,
     };
+    this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
+    this.validateSeedWords = this.validateSeedWords.bind(this);
+    this.compareToFirstPassword = this.compareToFirstPassword.bind(this);
+    this.validateToNextPassword = this.validateToNextPassword.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleConfirmBlur = e => {
+  handleConfirmBlur(e) {
     const value = e.target.value;
     this.setState({
-      confirmPasswordsMatch: this.state.confirmPasswordsMatch || !!value
+      confirmPasswordsMatch: this.state.confirmPasswordsMatch || !!value,
     });
-  };
+  }
 
-  validateSeedWords = (rule, value, callback) => {
+  validateSeedWords(rule, value, callback) {
     if (value && !ethers.HDNode.isValidMnemonic(value)) {
       callback('The seed words are invalid!!');
     } else {
       callback();
     }
-  };
+  }
 
-  compareToFirstPassword = (rule, value, callback) => {
+  compareToFirstPassword(rule, value, callback) {
     const form = this.props.form;
     if (value && value !== form.getFieldValue('password')) {
       callback('The passwords do not match!');
     } else {
       callback();
     }
-  };
-  validateToNextPassword = (rule, value, callback) => {
+  }
+  validateToNextPassword(rule, value, callback) {
     const form = this.props.form;
     if (value && this.state.confirmPasswordsMatch) {
       form.validateFields(['confirm'], { force: true });
     }
     callback();
-  };
+  }
 
-  handleSubmit = e => {
+  handleSubmit(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.props.handleSubmit(values);
       }
     });
-  };
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -73,9 +78,9 @@ class RestoreWallet extends React.PureComponent {
                   rules: [
                     {
                       required: true,
-                      message: 'Wallet name is required.'
-                    }
-                  ]
+                      message: 'Wallet name is required.',
+                    },
+                  ],
                 })(<ModalFormInput />)}
               </ModalFormItem>
               <ModalFormItem
@@ -86,12 +91,12 @@ class RestoreWallet extends React.PureComponent {
                   rules: [
                     {
                       required: true,
-                      message: 'Seed words are required.'
+                      message: 'Seed words are required.',
                     },
                     {
-                      validator: this.validateSeedWords
-                    }
-                  ]
+                      validator: this.validateSeedWords,
+                    },
+                  ],
                 })(<ModalFormTextArea rows={4} />)}
               </ModalFormItem>
               <CenterWrapper>
@@ -123,7 +128,7 @@ RestoreWallet.propTypes = {
   /**
    * This prop is passed by  Form component to  use  validation.
    */
-  form: PropTypes.object
+  form: PropTypes.object,
 };
 
 export default Form.create()(RestoreWallet);

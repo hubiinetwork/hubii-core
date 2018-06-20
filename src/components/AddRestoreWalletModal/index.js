@@ -1,2 +1,2 @@
-import AddRestoreWalletModal from "./AddRestoreWalletModal.component";
+import AddRestoreWalletModal from './AddRestoreWalletModal.component';
 export default AddRestoreWalletModal;

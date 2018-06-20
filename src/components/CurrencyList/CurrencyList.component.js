@@ -24,16 +24,22 @@ export default class CurrencyList extends React.PureComponent {
       data: props.data,
       search: '',
     };
+    this.filterData = this.filterData.bind(this);
   }
   componentDidUpdate(prevProps) {
     if (prevProps.data !== this.props.data) {
       this.filterData({ target: { value: this.state.search } });
     }
   }
+  filterData(event) {
+    const { value } = event.target;
+    const filtered = this.props.data.filter((item) => item.coin.toLowerCase().includes(value.toLowerCase()));
+    this.setState({ data: filtered, search: value });
+  }
   render() {
     const { size, layout, activeCurrency, onCurrencySelect } = this.props;
     const { data } = this.state;
-    const Item = (item, i) => (
+    const Item = (item) => (
       <StyledListItem
         active={activeCurrency === `${item.coin}` ? 1 : 0}
         onClick={() => onCurrencySelect(`${item.coin}`)}
@@ -74,11 +80,6 @@ export default class CurrencyList extends React.PureComponent {
       />
     );
   }
-  filterData = (event) => {
-    const { value } = event.target;
-    const filtered = this.props.data.filter((item) => item.coin.toLowerCase().includes(value.toLowerCase()));
-    this.setState({ data: filtered, search: value });
-  };
 }
 
 CurrencyList.propTypes = {
@@ -94,4 +95,6 @@ CurrencyList.propTypes = {
   ),
   onCurrencySelect: PropTypes.func.isRequired,
   activeCurrency: PropTypes.string.isRequired,
+  size: PropTypes.string,
+  layout: PropTypes.string,
 };

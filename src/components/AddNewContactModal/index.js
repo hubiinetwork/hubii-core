@@ -1,1 +1,2 @@
-export { default } from './AddNewContactModal.component';
+import AddNewContactModal from './AddNewContactModal.component';
+export default AddNewContactModal;

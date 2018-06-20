@@ -9,7 +9,8 @@ const address = '0xb2682160c482eB985EC9F3e364eEc0a904C44C23';
     txnId="0xb2682160c482eB985EC9F3e364eEc0a904C44C2360c482eB985EC9F3e364eEc0a904C44C23"
     type="received"
     status={204}
-    usd={12}
+    time={new Date('December 17, 1995 13:24:00')}
+    rate={671.23}
   />
 </div>;
 ```

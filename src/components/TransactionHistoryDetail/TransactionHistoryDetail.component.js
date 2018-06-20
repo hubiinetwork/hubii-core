@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   TransactionHistoryType,
   TransactionHistoryAddress,
@@ -9,7 +10,7 @@ import {
   TransactionHistoryItemCardIcon,
   Amount,
   Left,
-  TransactionStatus
+  TransactionStatus,
 } from './TransactionHistoryDetail.style';
 import {
   SpaceAround,
@@ -17,38 +18,36 @@ import {
   TransactionHistoryConversion,
   Sent,
   Received,
-  Image
+  Image,
 } from '../TransactionHistoryItem/TransactionHistoryItem.style';
-import PropTypes from 'prop-types';
 
 /**
  * This component  shows  the collapsed  area of TransactionHistoryItem.
  */
-const TransactionHistoryDetail = props => {
-  return (
-    <DetailCollapse bordered={false}>
-      <DetailPanel
-        style={{ border: 0 }}
-        showArrow={false}
-        header={
-          <Wrapper>
-            <Left>
-              {!(props.type === 'received' || props.type === 'sent') && (
-                <Image
-                  src={`../../../public/asset_images/${props.toCoin}.svg`}
-                />
+const TransactionHistoryDetail = (props) => (
+  <DetailCollapse bordered={false}>
+    <DetailPanel
+      style={{ border: 0 }}
+      showArrow={false}
+      header={
+        <Wrapper>
+          <Left>
+            {!(props.type === 'received' || props.type === 'sent') && (
+            <Image
+              src={`../../../public/asset_images/${props.toCoin}.svg`}
+            />
               )}
-              <TransactionHistoryItemCardIcon
-                type={
+            <TransactionHistoryItemCardIcon
+              type={
                   props.type === 'received'
                     ? 'download'
                     : props.type === 'sent'
                       ? 'upload'
                       : ' '
                 }
-              />
-              <TransactionHistoryType>
-                {props.type === 'received' ? (
+            />
+            <TransactionHistoryType>
+              {props.type === 'received' ? (
                   'Recieved from'
                 ) : props.type === 'sent' ? (
                   'Sent to'
@@ -64,46 +63,53 @@ const TransactionHistoryDetail = props => {
                     </TransactionHistoryAddress>
                   </div>
                 )}
-              </TransactionHistoryType>
-              <TransactionHistoryAddress>
-                {props.address}
-              </TransactionHistoryAddress>
-            </Left>
-            <SpaceAround>
-              <TransactionHistoryTime>{props.time}</TransactionHistoryTime>
-              <TransactionHistoryConversion>
-                {props.type === 'sent' ? (
-                  <Sent>-{props.amount}</Sent>
+            </TransactionHistoryType>
+            <TransactionHistoryAddress>
+              {props.address}
+            </TransactionHistoryAddress>
+          </Left>
+          <SpaceAround>
+            <TransactionHistoryTime>
+              {`${
+                  props.time.getHours() > 12
+                    ? Math.floor(props.time.getHours() - 12)
+                    : props.time.getHours()
+                }:${props.time.getMinutes()}${
+                  props.time.getHours() > 12 ? 'PM' : 'AM'
+                }`}
+            </TransactionHistoryTime>
+            <TransactionHistoryConversion>
+              {props.type === 'sent' ? (
+                <Sent>-{props.amount}</Sent>
                 ) : (
                   <Received>+{props.amount}</Received>
                 )}
-              </TransactionHistoryConversion>
-            </SpaceAround>
-          </Wrapper>
+            </TransactionHistoryConversion>
+          </SpaceAround>
+        </Wrapper>
         }
-        key="1"
-      >
-        <div>
-          <TransactionHistoryAddressLink
-            href={'https://etherscan.io/tx/' + props.txnId}
-            target="_blank"
-          >
-            {props.txnId}
-          </TransactionHistoryAddressLink>
-          <div
-            style={{ display: 'flex', alignItems: 'center', marginBottom: 5 }}
-          >
-            <TransactionHistoryAddress>
-              {props.amount}
-            </TransactionHistoryAddress>
-            <TransactionStatus>Status Network</TransactionStatus>
-            <Amount>${props.usd * props.amount}</Amount>
-          </div>
+      key="1"
+    >
+      <div>
+        <TransactionHistoryAddressLink
+          href={`https://etherscan.io/tx/${props.txnId}`}
+          target="_blank"
+        >
+          {props.txnId}
+        </TransactionHistoryAddressLink>
+        <div
+          style={{ display: 'flex', alignItems: 'center', marginBottom: 5 }}
+        >
+          <TransactionHistoryAddress>
+            {props.amount}
+          </TransactionHistoryAddress>
+          <TransactionStatus>Status Network</TransactionStatus>
+          <Amount>${props.rate * props.amount}</Amount>
         </div>
-      </DetailPanel>
-    </DetailCollapse>
+      </div>
+    </DetailPanel>
+  </DetailCollapse>
   );
-};
 TransactionHistoryDetail.propTypes = {
   /**
    * address for transactionHistory.
@@ -120,11 +126,11 @@ TransactionHistoryDetail.propTypes = {
   /**
    * type of transactionHistory.
    */
-  type: PropTypes.oneOf(['received', 'sent', 'exchanged']).isRequired,
+  type: PropTypes.oneOf(['received', 'sent', 'exchange']).isRequired,
   /**
    * USD price of ETH coin.
    */
-  usd: PropTypes.number.isRequired,
+  rate: PropTypes.number.isRequired,
   /**
    * Short capitalized name of coin that was exchanged to.
    */
@@ -136,11 +142,7 @@ TransactionHistoryDetail.propTypes = {
   /**
    * status code of the transaction.
    */
-  status: PropTypes.number,
-  /**
-   * status code of the transaction.
-   */
-  time: PropTypes.string
+  time: PropTypes.object,
 };
 
 export default TransactionHistoryDetail;
