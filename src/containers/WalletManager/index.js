@@ -1,32 +1,52 @@
 import { Icon, Tabs } from 'antd';
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
+
 import WalletsOverview from 'containers/WalletsOverview';
-import Tab from '../../components/ui/Tab';
+import Tab from 'components/ui/Tab';
+import AddRestoreWalletModal from 'components/AddRestoreWalletModal';
+import { Modal } from 'components/ui/Modal';
+
 import {
   Wrapper,
   TabsLayout,
   StyledButton,
   WalletsTabHeader,
 } from './index.style';
-import ImportWalletSteps from '../../components/ImportWalletSteps';
-import AddNewContactModal from '../../components/AddNewContactModal';
-import AddRestoreWalletModal from '../../components/AddRestoreWalletModal';
-import { Modal } from '../../components/ui/Modal';
 
 const TabPane = Tabs.TabPane;
 
 export class WalletManager extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.onTabsChange = this.onTabsChange.bind(this);
     this.state = {
       visible: false,
     };
+    this.onTabsChange = this.onTabsChange.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
+
+  onTabsChange(key) {
+    this.props.history.push(key);
+  }
+
+  showModal() {
+    this.setState({
+      visible: true,
+    });
+  }
+
+  handleCancel() {
+    this.setState({
+      visible: false,
+    });
+  }
+
   render() {
     const { history, match } = this.props;
 
@@ -85,20 +105,18 @@ export class WalletManager extends React.PureComponent {
       </Wrapper>
     );
   }
-  onTabsChange(key) {
-    this.props.history.push(key);
-  }
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  };
-  handleCancel = () => {
-    this.setState({
-      visible: false,
-    });
-  };
 }
+
+WalletManager.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }),
+  }),
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }),
+};
 
 const mapStateToProps = createStructuredSelector({});
 

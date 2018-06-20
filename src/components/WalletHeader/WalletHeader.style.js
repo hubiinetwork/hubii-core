@@ -74,5 +74,5 @@ export {
   CopyButton,
   Balance,
   Address,
-  OverflowHidden
+  OverflowHidden,
 };

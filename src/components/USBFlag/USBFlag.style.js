@@ -11,7 +11,7 @@ export const Slanted = styled.div`
     height: 0;
     border-right: 100px solid transparent;
     border-top: 100px solid
-      ${props =>
+      ${(props) =>
         props.connected ? props.theme.palette.info : props.theme.palette.info};
   }
 `;
