@@ -23,25 +23,24 @@ const TabPane = Tabs.TabPane;
 export class WalletManager extends React.PureComponent {
   constructor(props) {
     super(props);
+
     this.state = {
       visible: false,
     };
-    this.onTabsChange = this.onTabsChange.bind(this);
-    this.showModal = this.showModal.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
-  }
 
+    this.onTabsChange = this.onTabsChange.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+    this.showModal = this.showModal.bind(this);
+  }
   onTabsChange(key) {
     this.props.history.push(key);
   }
-
   showModal() {
     this.setState({
       visible: true,
     });
   }
-
-  handleCancel() {
+  hideModal() {
     this.setState({
       visible: false,
     });
@@ -68,10 +67,10 @@ export class WalletManager extends React.PureComponent {
               maskStyle={{ background: 'rgba(232,237,239,.65)' }}
               style={{ marginTop: '20px' }}
               visible={this.state.visible}
-              onCancel={this.handleCancel}
+              onCancel={this.hideModal}
+              destroyOnClose
             >
               <AddRestoreWalletModal
-                handleClose={this.handleCancel}
                 goBack={this.state.visible}
               />
             </Modal>
@@ -108,14 +107,8 @@ export class WalletManager extends React.PureComponent {
 }
 
 WalletManager.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-    }),
-  }),
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }),
+  history: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({});
