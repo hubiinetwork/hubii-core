@@ -48,9 +48,9 @@ const greenLight = 'rgba(173, 255, 47, 0.5)';
 
 const yellow = '#F5A623';
 
-// ****** tomato ****** //
+// ****** red ****** //
 
-const tomato = 'tomato';
+const red = 'tomato';
 
 // ****** shadows ****** //
 
@@ -100,6 +100,6 @@ export default {
     success: green,
     success1: greenLight,
     warning: yellow,
-    danger: tomato,
+    danger: red,
   },
 };

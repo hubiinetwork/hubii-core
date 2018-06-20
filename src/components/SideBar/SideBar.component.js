@@ -12,7 +12,7 @@ const { Sider } = Layout;
 
 const SideBar = ({ menuItems, logoSrc, children }) => (
   <SideBarLayout style={{ minHeight: '100vh' }}>
-    <Sider collapsed={true} collapsedWidth="72" trigger={null}>
+    <Sider collapsed collapsedWidth="72" trigger={null}>
       <SideBarMenu defaultSelectedKeys={['/']} mode="inline">
         <Menu.Item key="/" className="menu-logo">
           <Link to="/">

@@ -14,7 +14,7 @@ const AccountInfoItem = ({ accountName, amount }) => (
   <Wrapper>
     <div>
       <TextPrimary className="white">{accountName}</TextPrimary>
-      <Text>{`$${amount}`} </Text>
+      <Text>{`$${amount.toLocaleString('en')}`} </Text>
     </div>
   </Wrapper>
 );
@@ -64,7 +64,7 @@ class AccountInfo extends React.Component {
             >
               <AccountInfoItem
                 accountName={option.accountName}
-                amount={option.amount.toLocaleString('en')}
+                amount={option.amount}
                 handleIconClick={option.handleIconClick}
               />
             </Option>
