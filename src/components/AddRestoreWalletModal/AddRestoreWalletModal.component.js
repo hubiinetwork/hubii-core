@@ -27,9 +27,15 @@ export default class AddRestoreWalletModal extends React.PureComponent {
       type: 'main',
     };
     this.switchModals = this.switchModals.bind(this);
+    this.closeModal = this.closeModal.bind(this)
   }
   switchModals(selectedType) {
     this.setState({ type: selectedType });
+  }
+  closeModal () {
+    console.log('close modal')
+    this.setState({ type: 'main'})
+    this.props.handleClose()
   }
   render() {
     const { type } = this.state;
@@ -102,7 +108,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
                 </Wrapper>
               </RightTopButton>
             </div>
-            <AddWallet handleClose={this.props.handleClose} />
+            <AddWallet handleClose={this.closeModal} />
           </div>
         )}
         {type === 'restore' && (
@@ -121,12 +127,12 @@ export default class AddRestoreWalletModal extends React.PureComponent {
                 />Restore Wallet
               </IconWrapper>
             </div>
-            <RestoreWallet handleClose={this.props.handleClose} />
+            <RestoreWallet handleClose={this.closeModal} />
           </div>
         )}
         {type === 'import' && (
           <div>
-            <ImportWalletSteps handleClose={this.props.handleClose} />
+            <ImportWalletSteps handleClose={this.closeModal} />
           </div>
         )}
       </div>

@@ -49,9 +49,9 @@ export class WalletManager extends React.PureComponent {
               style={{ marginTop: '20px' }}
               visible={this.state.visible}
               onCancel={this.handleCancel}
+              destroyOnClose={true}
             >
               <AddRestoreWalletModal
-                handleClose={this.handleCancel}
                 goBack={this.state.visible}
               />
             </Modal>
