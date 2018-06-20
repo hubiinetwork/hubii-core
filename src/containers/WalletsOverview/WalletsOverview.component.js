@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { Row, Col } from 'antd';
 import styled from 'styled-components';
@@ -37,7 +38,7 @@ class WalletsOverview extends React.PureComponent {
               {
                 label: 'TRX',
                 percentage: 20.69,
-                color: 'rgba(255,255,255,0.5)'
+                color: 'rgba(255,255,255,0.5)',
               },
               { label: 'HBT', percentage: 16.8, color: '#0063A5' },
               { label: 'SNT', percentage: 10.54, color: '#5C6DED' },
@@ -45,7 +46,7 @@ class WalletsOverview extends React.PureComponent {
               { label: 'OMG', percentage: 5.35, color: '#0666FF' },
               { label: 'REP', percentage: 4.2, color: '#602453' },
               { label: 'QSP', percentage: 2.24, color: '#454545' },
-              { label: 'ZRX', percentage: 1.65, color: '#FFFFFF' }
+              { label: 'ZRX', percentage: 1.65, color: '#FFFFFF' },
             ]}
             value={24891.7}
           />
@@ -54,10 +55,10 @@ class WalletsOverview extends React.PureComponent {
     );
   }
 
-  handleCardClick (address) {
-    console.log(this)
-    const {history} = this.props
-    history.push(`/wallet/${address}`)
+  handleCardClick(address) {
+    console.log(this);
+    const { history } = this.props;
+    history.push(`/wallet/${address}`);
   }
 
   renderWalletItems() {
@@ -79,7 +80,7 @@ class WalletsOverview extends React.PureComponent {
           assets={card.assets}
           href={{
             pathname: '/wallet',
-            query: { address: card.primaryAddress }
+            query: { address: card.primaryAddress },
           }}
           handleCardClick={this.handleCardClick}
         />

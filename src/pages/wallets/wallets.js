@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Icon, Tabs } from 'antd';
 import * as React from 'react';
 import Tab from '../../components/ui/Tab';
@@ -8,7 +10,7 @@ import {
   Wrapper,
   TabsLayout,
   StyledButton,
-  WalletsTabHeader
+  WalletsTabHeader,
 } from './wallets.style';
 // import AddRestoreWalletModal from '../../components/AddRestoreWalletModal';
 import ImportWalletSteps from '../../components/ImportWalletSteps';
@@ -22,7 +24,7 @@ export default class WalletTabs extends React.PureComponent {
     super(props);
     this.state = {
       activeTab: 'wallets',
-      visible: false
+      visible: false,
     };
   }
   render() {
@@ -83,17 +85,17 @@ export default class WalletTabs extends React.PureComponent {
       </Wrapper>
     );
   }
-  onTabsChange = activeTab => {
+  onTabsChange = (activeTab) => {
     this.setState({ activeTab });
   };
   showModal = () => {
     this.setState({
-      visible: true
+      visible: true,
     });
   };
   handleCancel = () => {
     this.setState({
-      visible: false
+      visible: false,
     });
   };
 }

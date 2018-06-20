@@ -1,7 +1,8 @@
 import React from 'react';
-import { Slanted, USB, TextWhite } from './USBFlag.style';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'antd';
+
+import { Slanted, USB, TextWhite } from './USBFlag.style';
 import USBConnected from '../../usb-icon.svg';
 import USBDisconnected from '../../usb-icon-white.svg';
 
@@ -10,7 +11,7 @@ import USBDisconnected from '../../usb-icon-white.svg';
  * For proper UI, give style={{overflow:'hidden}} to the parent container.
  */
 
-const USBFlag = props => (
+const USBFlag = (props) => (
   <Slanted connected={props.connected}>
     <Tooltip
       placement="right"
@@ -30,10 +31,10 @@ USBFlag.propTypes = {
   /**
    * shows whether a wallet is connected or not.
    */
-  connected: PropTypes.bool.isRequired
+  connected: PropTypes.bool.isRequired,
 };
 
 USBFlag.defaultProps = {
-  connected: true
+  connected: true,
 };
 export default USBFlag;

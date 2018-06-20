@@ -41,7 +41,7 @@ export const ButtonDiv = styled.div`
 `;
 export const StyledButton = styled(Button)`
   background-color: ${({ disabled: white }) =>
-    white && `transparent !important`};
+    white && 'transparent !important'};
   font-size: 12px;
   font-weight: 500;
   border-width: 2px;
@@ -49,14 +49,14 @@ export const StyledButton = styled(Button)`
   width: 162px;
   border: ${({ disabled: white, theme }) =>
     white && `2px solid ${theme.palette.secondary4} !important`};
-  min-width: ${({ current: width }) => (width === 0 ? `260px` : `190px`)};
+  min-width: ${({ current: width }) => (width === 0 ? '260px' : '190px')};
   color: ${({ disabled: white, theme }) =>
     white
       ? `${theme.palette.secondary4} !important`
       : `${theme.palette.light} !important`};
   &:hover {
     background-color: ${({ disabled: white }) =>
-      white && `transparent !important`};
+      white && 'transparent !important'};
     border: ${({ disabled: white, theme }) =>
       white && `2px solid ${theme.palette.secondary4} !important`};
   }
