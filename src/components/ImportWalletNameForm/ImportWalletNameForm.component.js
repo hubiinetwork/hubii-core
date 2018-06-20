@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as React from 'react';
 import { Form, Icon } from 'antd';
 import {
@@ -9,7 +10,7 @@ import {
   WidthEighty,
   StyledTitle,
   CreateButton,
-  StyledModalFormLabel
+  StyledModalFormLabel,
 } from './ImportWalletNameForm.style';
 import { ModalFormInput, ModalFormItem } from '../ui/Modal';
 class ImportWalletNameForm extends React.Component {
@@ -42,7 +43,7 @@ class ImportWalletNameForm extends React.Component {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
           <WidthEighty>
@@ -57,9 +58,9 @@ class ImportWalletNameForm extends React.Component {
                 rules: [
                   {
                     message: 'Name is required.',
-                    required: true
-                  }
-                ]
+                    required: true,
+                  },
+                ],
               })(<ModalFormInput />)}
             </ModalFormItem>
             <ModalFormItem
@@ -71,9 +72,9 @@ class ImportWalletNameForm extends React.Component {
                 rules: [
                   {
                     message: 'password is required.',
-                    required: true
-                  }
-                ]
+                    required: true,
+                  },
+                ],
               })(<ModalFormInput />)}
             </ModalFormItem>
             <ModalFormItem
@@ -85,9 +86,9 @@ class ImportWalletNameForm extends React.Component {
                 rules: [
                   {
                     message: 'Repeat password is required.',
-                    required: true
-                  }
-                ]
+                    required: true,
+                  },
+                ],
               })(<ModalFormInput />)}
             </ModalFormItem>
           </WidthEighty>

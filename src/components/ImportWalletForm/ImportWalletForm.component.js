@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import * as React from 'react';
 import { Form, Icon } from 'antd';
 import {
@@ -9,7 +11,7 @@ import {
   StyledTitle,
   WidthEighty,
   CreateButton,
-  StyledModalFormLabel
+  StyledModalFormLabel,
 } from './ImportWalletForm.style';
 import { ModalFormInput, ModalFormItem } from '../ui/Modal';
 class ImportWalletForm extends React.Component {
@@ -42,7 +44,7 @@ class ImportWalletForm extends React.Component {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
           <WidthEighty>
@@ -57,9 +59,9 @@ class ImportWalletForm extends React.Component {
                 rules: [
                   {
                     message: 'Address is required.',
-                    required: true
-                  }
-                ]
+                    required: true,
+                  },
+                ],
               })(<ModalFormInput />)}
             </ModalFormItem>
             <ModalFormItem
@@ -73,9 +75,9 @@ class ImportWalletForm extends React.Component {
                 rules: [
                   {
                     message: 'key is required.',
-                    required: true
-                  }
-                ]
+                    required: true,
+                  },
+                ],
               })(<ModalFormInput />)}
             </ModalFormItem>
           </WidthEighty>

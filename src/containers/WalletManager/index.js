@@ -1,20 +1,22 @@
 import { Icon, Tabs } from 'antd';
 import * as React from 'react';
-import { compose } from 'redux';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
+
 import WalletsOverview from 'containers/WalletsOverview';
-import Tab from '../../components/ui/Tab';
+import Tab from 'components/ui/Tab';
+import AddRestoreWalletModal from 'components/AddRestoreWalletModal';
+import { Modal } from 'components/ui/Modal';
+
 import {
   Wrapper,
   TabsLayout,
   StyledButton,
   WalletsTabHeader,
 } from './index.style';
-import AddRestoreWalletModal from '../../components/AddRestoreWalletModal';
-import { Modal } from '../../components/ui/Modal';
 
 const TabPane = Tabs.TabPane;
 
