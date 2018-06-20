@@ -20,23 +20,28 @@ import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 const { Option } = Select;
 
 class CreateStriimModal extends React.Component {
-  state = {
-    currency: this.props.currencies[0],
-  };
-  handleIcon = (icon) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currency: props.currencies[0],
+    };
+    this.handleIcon = this.handleIcon.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleIcon(icon) {
     const currency = this.props.currencies.find(
-      (currency) => currency.name === icon
+      (currncy) => currncy.name === icon
     );
     this.setState({ currency });
-  };
-  handleSubmit = (e) => {
+  }
+  handleSubmit(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.props.handleSubmit(values);
       }
     });
-  };
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     const { currencies, wallets } = this.props;
@@ -140,4 +145,6 @@ CreateStriimModal.propTypes = {
     })
   ).isRequired,
   wallets: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  form: PropTypes.object,
+  handleSubmit: PropTypes.func,
 };

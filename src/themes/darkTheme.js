@@ -1,10 +1,12 @@
 // ****** white ****** //
 
 const white = '#ffffff';
+const dullWhite = '#E1E7EB';
 
 // ****** teal ****** //
 
 const teal = '#3b6174';
+const tealBlue = '#1D6E96';
 const tealDark = '#263c46';
 const tealLight = '#26404d';
 const tealLighter = '#395664';
@@ -23,7 +25,7 @@ const seaGreen50 = 'rgba(80,227,194,.5)';
 const grey = 'rgba(255,255,255,0.5)';
 const greyDim = 'rgba(255,255,255,0.3)';
 const greyLight = '#C0CDD3';
-const greyDark = '#496370';
+const greyDark = '#43616F';
 const greyDarker = '#445f6c';
 const grey50 = 'rgba(140,165,177,.5)';
 const grey8C = '#8CA5B1';
@@ -39,12 +41,16 @@ const blackLighter = '#404f56';
 
 // ****** green ****** //
 
-const green = 'greenyellow';
+const green = '#78B214';
 const greenLight = 'rgba(173, 255, 47, 0.5)';
 
 // ****** yellow ****** //
 
-const orange = 'orange';
+const yellow = '#F5A623';
+
+// ****** red ****** //
+
+const red = 'tomato';
 
 // ****** shadows ****** //
 
@@ -66,6 +72,7 @@ export default {
     primary3: tealDark,
     primary4: tealDarker,
     primary5: teal50,
+    primary6: tealBlue,
 
     secondary: grey,
     secondary1: greyLight,
@@ -83,6 +90,7 @@ export default {
     dark3: black50,
 
     light: white,
+    light1: dullWhite,
 
     info: seaGreen,
     info1: seaGreenLight,
@@ -91,6 +99,7 @@ export default {
 
     success: green,
     success1: greenLight,
-    warning: orange,
+    warning: yellow,
+    danger: red,
   },
 };

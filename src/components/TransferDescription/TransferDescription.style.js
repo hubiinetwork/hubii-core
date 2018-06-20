@@ -1,6 +1,6 @@
 import { Col } from 'antd';
-import Button from '../ui/Button';
 import styled from 'styled-components';
+import Button from '../ui/Button';
 
 export const StyledButton = styled(Button)`
   height: 40px;

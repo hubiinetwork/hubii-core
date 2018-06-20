@@ -94,7 +94,7 @@ export class StriimAccounts extends React.PureComponent { // eslint-disable-line
     }
 
     const options = striimAccounts.toJS().map((account) => {
-      const totalUSDValue = account.balances.reduce((accumulator, current) => (accumulator + (current.active * _.get(rates, `${current.asset}_USD.data.price`))) || NaN, 0);
+      const totalUSDValue = account.balances.reduce((accumulator, current) => accumulator + (current.active * _.get(rates, `${current.asset}_USD.data.price`)) || NaN, 0);
       return {
         accountName: account.name,
         amount: totalUSDValue,

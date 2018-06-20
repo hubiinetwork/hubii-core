@@ -30,8 +30,8 @@ export default class ContactHeader extends React.PureComponent {
             defaultActiveKey={titleTabs[0].title}
             onChange={onTabChange}
           >
-            {titleTabs.map(({ title, TabContent }) => (
-              <TabPane tab={title} key={title} style={{ color: 'white' }}>
+            {titleTabs.map(({ title: tabTitle, TabContent }) => (
+              <TabPane tab={tabTitle} key={tabTitle} style={{ color: 'white' }}>
                 {TabContent}
               </TabPane>
             ))}

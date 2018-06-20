@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { SectionHeading } from '../ui/SectionHeading';
 import { Icon } from 'antd';
+import { SectionHeading } from '../ui/SectionHeading';
 import Button from '../ui/Button';
 
 export const Heading = styled(SectionHeading)`
