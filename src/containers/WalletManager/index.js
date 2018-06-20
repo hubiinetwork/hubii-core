@@ -10,7 +10,7 @@ import {
   Wrapper,
   TabsLayout,
   StyledButton,
-  WalletsTabHeader
+  WalletsTabHeader,
 } from './index.style';
 import ImportWalletSteps from '../../components/ImportWalletSteps';
 import AddNewContactModal from '../../components/AddNewContactModal';
@@ -22,14 +22,14 @@ const TabPane = Tabs.TabPane;
 export class WalletManager extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.onTabsChange = this.onTabsChange.bind(this)
+    this.onTabsChange = this.onTabsChange.bind(this);
     this.state = {
-      visible: false
+      visible: false,
     };
   }
   render() {
-    const {history, match} = this.props
-    
+    const { history, match } = this.props;
+
     return (
       <Wrapper>
         <TabsLayout>
@@ -44,7 +44,7 @@ export class WalletManager extends React.PureComponent {
             <Modal
               footer={null}
               width={'585px'}
-              maskClosable={true}
+              maskClosable
               maskStyle={{ background: 'rgba(232,237,239,.65)' }}
               style={{ marginTop: '20px' }}
               visible={this.state.visible}
@@ -85,17 +85,17 @@ export class WalletManager extends React.PureComponent {
       </Wrapper>
     );
   }
-  onTabsChange (key) {
+  onTabsChange(key) {
     this.props.history.push(key);
-  };
+  }
   showModal = () => {
     this.setState({
-      visible: true
+      visible: true,
     });
   };
   handleCancel = () => {
     this.setState({
-      visible: false
+      visible: false,
     });
   };
 }
