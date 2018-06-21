@@ -51,7 +51,9 @@
     "test:dev": "cross-env NODE_ENV=test TZ=Europe/Paris jest --watch",
     "test:watch": "cross-env NODE_ENV=test TZ=Europe/Paris jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "styleguide": "NODE_ENV=style styleguidist server"
+    "styleguide": "NODE_ENV=style styleguidist server",
+    "styleguide:win": "cross-env NODE_ENV=style styleguidist server"
+
   },
   "moduleRoots": "src",
   "lint-staged": {

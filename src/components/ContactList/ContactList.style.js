@@ -7,7 +7,7 @@ export const StyledDiv = styled.div`
 `;
 export const StyledList = styled(List)`
   margin-right: 18px;
-  margin-left: 20px;
+  margin-left: 0px;
   .ant-list-item-meta-title {
     color: ${({ theme }) => theme.palette.info3};
     font-size: 14px;

@@ -9,6 +9,8 @@ import { createStructuredSelector } from 'reselect';
 import WalletsOverview from 'containers/WalletsOverview';
 import Tab from 'components/ui/Tab';
 import AddRestoreWalletModal from 'components/AddRestoreWalletModal';
+import AddNewContactModal from 'components/AddNewContactModal';
+import ContactBook from 'containers/ContactBook';
 import { Modal } from 'components/ui/Modal';
 
 import {
@@ -26,6 +28,7 @@ export class WalletManager extends React.PureComponent {
 
     this.state = {
       visible: false,
+      type: '',
     };
 
     this.onTabsChange = this.onTabsChange.bind(this);
@@ -35,9 +38,10 @@ export class WalletManager extends React.PureComponent {
   onTabsChange(key) {
     this.props.history.push(key);
   }
-  showModal() {
+  showModal(type) {
     this.setState({
       visible: true,
+      type,
     });
   }
   hideModal() {
@@ -48,18 +52,47 @@ export class WalletManager extends React.PureComponent {
 
   render() {
     const { history, match } = this.props;
+    let deleteContact;
+
+    if (history.location.pathname !== `${match.url}/overview`) {
+      deleteContact =
+        (<StyledButton type="primary" onClick={() => this.showModal('deleteContact')} style={{ marginRight: '2rem' }}>
+          <Icon type="delete" />
+          Delete Contact
+        </StyledButton>);
+    }
+
+    let modal;
+    switch (this.state.type) {
+      case 'deleteContact':
+        modal = ('hello');
+        break;
+      case 'addContact':
+        modal = (<AddNewContactModal
+          goBack={this.state.visible}
+        />);
+        break;
+      default:
+        modal = (<AddRestoreWalletModal
+          goBack={this.state.visible}
+        />);
+    }
 
     return (
       <Wrapper>
         <TabsLayout>
           <WalletsTabHeader>
             <h2 className="heading">All Wallets</h2>
-            <StyledButton type="primary" onClick={this.showModal}>
+            <StyledButton
+              type="primary"
+              onClick={() => this.showModal(history.location.pathname === `${match.url}/overview` ? 'addWallet' : 'addContact')}
+            >
               <Icon type="plus" />
               {history.location.pathname === `${match.url}/overview`
                 ? 'Add / Restore Wallet'
                 : 'Add New Contact'}
             </StyledButton>
+            {deleteContact}
             <Modal
               footer={null}
               width={'585px'}
@@ -70,9 +103,7 @@ export class WalletManager extends React.PureComponent {
               onCancel={this.hideModal}
               destroyOnClose
             >
-              <AddRestoreWalletModal
-                goBack={this.state.visible}
-              />
+              {modal}
             </Modal>
           </WalletsTabHeader>
         </TabsLayout>
@@ -95,6 +126,7 @@ export class WalletManager extends React.PureComponent {
             }
             key={`${match.url}/contacts`}
           >
+            <Route path={`${match.url}/contacts`} component={ContactBook} />
           </TabPane>
         </Tab>
         {
