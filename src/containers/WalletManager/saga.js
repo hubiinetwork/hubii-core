@@ -74,10 +74,10 @@ export function* loadWallets() {
   yield put(loadWalletsSuccess(fromJS(sessionWallets)));
 }
 
-export function* loadWalletBalances({name, walletAddress}) {
-  console.log(name, walletAddress)
-  const endpoint = 'https://api2.dev.hubii.net/'
-  const requestPath = `ethereum/wallets/${walletAddress}/balance`
+export function* loadWalletBalances({ name, walletAddress }) {
+  console.log(name, walletAddress);
+  const endpoint = 'https://api2.dev.hubii.net/';
+  const requestPath = `ethereum/wallets/${walletAddress}/balance`;
   try {
     const returnData = yield call(request, requestPath, null, endpoint);
     yield put(loadWalletBalancesSuccess(name, returnData));

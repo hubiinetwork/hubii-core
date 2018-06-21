@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col } from 'antd';
 import styled from 'styled-components';
 import WalletItemCard from '../../components/WalletItemCard';
@@ -20,7 +21,39 @@ class WalletsOverview extends React.PureComponent {
     this.handleCardClick = this.handleCardClick.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.cards !== this.props.cards) {
+
+    }
+  }
+
+  getBreakdown(wallets) {
+    const tokenValues = {}
+    const balanceSum = wallets.reduce((accumulator, current) => {
+      return accumulator + current.totalBalance
+    }, 0)
+
+    wallets.forEach(wallet => {
+      wallet.assets.forEach(asset => {
+        tokenValues[asset.name] = tokenValues[asset.name] || {value: 0}
+        tokenValues[asset.name].value += asset.amount * parseFloat(asset.price.USD)
+        tokenValues[asset.name].color = asset.color
+      })
+    })
+
+    const breakdown = Object.keys(tokenValues).map(token => {
+      return {
+        label: token,
+        percentage: tokenValues[token].value / balanceSum * 100,
+        color: tokenValues[token].color
+      }
+    })
+
+    return {balanceSum, breakdown}
+  }
+
   render() {
+    const summary = this.getBreakdown(this.props.cards)
     return (
       <Row gutter={16}>
         <Col span={16} xs={24} md={16}>
@@ -31,24 +64,8 @@ class WalletsOverview extends React.PureComponent {
         </Col>
         <Col span={8} xs={24} md={8}>
           <Breakdown
-            data={[
-              { label: 'ICX', percentage: 16, color: '#3df5cd' },
-              { label: 'EOS', percentage: 25.5, color: 'black' },
-              { label: 'ETH', percentage: 28.5, color: '#627EEA' },
-              {
-                label: 'TRX',
-                percentage: 20.69,
-                color: 'rgba(255,255,255,0.5)',
-              },
-              { label: 'HBT', percentage: 16.8, color: '#0063A5' },
-              { label: 'SNT', percentage: 10.54, color: '#5C6DED' },
-              { label: 'SALT', percentage: 8.6, color: '#1BEEF4' },
-              { label: 'OMG', percentage: 5.35, color: '#0666FF' },
-              { label: 'REP', percentage: 4.2, color: '#602453' },
-              { label: 'QSP', percentage: 2.24, color: '#454545' },
-              { label: 'ZRX', percentage: 1.65, color: '#FFFFFF' },
-            ]}
-            value={24891.7}
+            data={summary.breakdown}
+            value={summary.balanceSum}
           />
         </Col>
       </Row>
@@ -77,14 +94,16 @@ class WalletsOverview extends React.PureComponent {
           primaryAddress={`${card.primaryAddress}`}
           type={card.type}
           assets={card.assets}
-          // href={{
-          //   pathname: '/wallet',
-          //   query: { address: card.primaryAddress },
-          // }}
           handleCardClick={this.handleCardClick}
         />
       </WalletCardsCol>
     ));
   }
 }
+
+WalletsOverview.propTypes = {
+  cards: PropTypes.array.isRequired,
+  history: PropTypes.object.isRequired,
+};
+
 export default WalletsOverview;

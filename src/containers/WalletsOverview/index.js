@@ -27,14 +27,14 @@ export class WalletOverview extends React.PureComponent { // eslint-disable-line
   getWalletCardsData (walletsState) {
     const {loadWalletBalances} = this.props
     return this.convertWalletsList(walletsState).map(wallet => {
-      console.log(wallet)
       let assets, usdValue = 0
       if (wallet.balances) {
         assets = wallet.balances.map(token => {
           return {
             name: token.symbol,
             amount: parseInt(token.balance) / Math.pow(10, token.decimals),
-            price: token.price
+            price: token.price,
+            color: token.primaryColor
           }
         })
         usdValue = assets.reduce((accumulator, current) => {
@@ -77,7 +77,6 @@ export class WalletOverview extends React.PureComponent { // eslint-disable-line
     const {wallets} = this.props
 
     const walletCards = this.getWalletCardsData(wallets)
-    console.log(walletCards)
 
     return (
       <WalletsOverview cards={walletCards} history={this.props.history} />
