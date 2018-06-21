@@ -71,7 +71,7 @@ function walletManagerReducer(state = initialState, action) {
         .setIn(['errors', 'decryptingWalletError'], action.error);
     case LOAD_WALLETS_SUCCESS:
       return state
-        .set('wallets', action.wallets);
+        .set('wallets', fromJS(action.wallets));
     case LOAD_WALLET_BALANCES:
       return state
         .setIn(['wallets', 'software', action.name, 'loadingBalances'], true);

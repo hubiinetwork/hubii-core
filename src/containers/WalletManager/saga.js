@@ -1,6 +1,5 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { Wallet } from 'ethers';
-import { fromJS } from 'immutable';
 import { makeSelectWallets } from './selectors';
 import request from '../../utils/request';
 
@@ -64,7 +63,7 @@ export function* loadWallets() {
       }
     });
   });
-  yield put(loadWalletsSuccess(fromJS(sessionWallets)));
+  yield put(loadWalletsSuccess(sessionWallets));
 }
 
 export function* loadWalletBalances({ name, walletAddress }) {
