@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { message } from 'antd';
 import {
   StyledStep,
@@ -196,21 +195,3 @@ export default class ImportWalletSteps extends React.Component {
   }
 }
 
-ImportWalletSteps.propTypes = {
-  /**
-   * Wallet object to be shown.
-   */
-  wallet: PropTypes.object,
-  /**
-   * Function to be executed when back button is pressed
-   */
-  handleBack: PropTypes.func,
-  /**
-   * Function to be executed when next is clicked.
-   */
-  handleNext: PropTypes.func,
-    /**
-   * ant design form function
-   */
-  form: PropTypes.func,
-};
