@@ -5,13 +5,11 @@ import {
   decryptWallet,
   decryptWalletFailed,
   decryptWalletSuccess,
-  updateProgress,
 } from '../actions';
 import {
   CREATE_NEW_WALLET,
   CREATE_NEW_WALLET_FAILURE,
   CREATE_NEW_WALLET_SUCCESS,
-  UPDATE_PROGRESS,
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
@@ -99,17 +97,6 @@ describe('WalletManager actions', () => {
         error,
       };
       expect(decryptWalletFailed(error)).toEqual(expected);
-    });
-  });
-
-  describe('updateProgress Action', () => {
-    it('returns expected output', () => {
-      const percent = 11;
-      const expected = {
-        type: UPDATE_PROGRESS,
-        percent,
-      };
-      expect(updateProgress(percent)).toEqual(expected);
     });
   });
 });

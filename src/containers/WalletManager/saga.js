@@ -16,17 +16,10 @@ import {
   createNewWalletSuccess,
   decryptWalletFailed,
   decryptWalletSuccess,
-  updateProgress,
   loadWalletsSuccess,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
 } from './actions';
-
-// Called as wallet is being encrypted/decrypted
-export function* progressCallback(percent) {
-  if (percent < 0 || percent > 1) throw new Error('invalid param');
-  yield put(updateProgress(percent));
-}
 
 // Creates a new software wallet
 export function* createWallet({ name, mnemonic, derivationPath, password }) {
@@ -45,7 +38,7 @@ export function* createWallet({ name, mnemonic, derivationPath, password }) {
 export function* decryptWallet({ name, encryptedWallet, password }) {
   try {
     if (!name) throw new Error('name undefined');
-    const res = yield call(Wallet.fromEncryptedWallet, encryptedWallet, password, progressCallback);
+    const res = yield Wallet.fromEncryptedWallet(encryptedWallet, password);
     if (!res.privateKey) throw res;
     const decryptedWallet = res;
     yield put(decryptWalletSuccess(name, decryptedWallet));
@@ -75,7 +68,6 @@ export function* loadWallets() {
 }
 
 export function* loadWalletBalances({ name, walletAddress }) {
-  console.log(name, walletAddress);
   const endpoint = 'https://api2.dev.hubii.net/';
   const requestPath = `ethereum/wallets/${walletAddress}/balance`;
   try {

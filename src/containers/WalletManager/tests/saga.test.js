@@ -6,14 +6,13 @@ import { Wallet } from 'ethers';
 
 /* eslint-disable redux-saga/yield-effects */
 import { takeEvery, put } from 'redux-saga/effects';
-import walletManager, { createWallet, decryptWallet, progressCallback } from '../saga';
+import walletManager, { createWallet, decryptWallet } from '../saga';
 import { CREATE_NEW_WALLET, DECRYPT_WALLET } from '../constants';
 import {
   createNewWalletSuccess,
   createNewWalletFailed,
   decryptWalletSuccess,
   decryptWalletFailed,
-  updateProgress,
 } from '../actions';
 
 describe('createWallet saga', () => {
@@ -32,8 +31,7 @@ describe('createWallet saga', () => {
 
   it('should dispatch the createNewWalletSuccess action if successful', () => {
     const createWalletGenerator = createWallet({ name, mnemonic, derivationPath, password });
-    const callDescriptor = createWalletGenerator.next().value;
-    expect(callDescriptor).toMatchSnapshot();
+    createWalletGenerator.next();
     const putDescriptor = createWalletGenerator.next(encryptedWallet).value;
     expect(JSON.stringify(putDescriptor)).toEqual(JSON.stringify(put(createNewWalletSuccess(name, encryptedWallet, decryptedWallet))));
   });
@@ -98,8 +96,7 @@ describe('decryptWallet saga', () => {
 
   it('should dispatch the decryptWalletSuccess action if successful', () => {
     const decryptWalletGenerator = decryptWallet({ name, encryptedWallet, password });
-    const callDescriptor = decryptWalletGenerator.next().value;
-    expect(callDescriptor).toMatchSnapshot();
+    decryptWalletGenerator.next();
     const putDescriptor = decryptWalletGenerator.next(decryptedWallet).value;
     expect(JSON.stringify(putDescriptor)).toEqual(JSON.stringify(put(decryptWalletSuccess(name, decryptedWallet))));
   });
@@ -113,36 +110,10 @@ describe('decryptWallet saga', () => {
 
   it('should dispatch the decryptWalletFailed action if decryption fails', () => {
     const decryptWalletGenerator = decryptWallet({ name, encryptedWallet, password });
-    const callDescriptor = decryptWalletGenerator.next().value;
+    decryptWalletGenerator.next();
     const error = new Error('some error occured');
-    expect(callDescriptor).toMatchSnapshot();
     const putDescriptor = decryptWalletGenerator.next(error).value;
     expect(putDescriptor).toEqual(put(decryptWalletFailed(error)));
-  });
-});
-
-describe('progressCallback', () => {
-  it('should dispatch the updateProgress action on valid input', () => {
-    const progress = 0.3423;
-    const progressCallbackGenerator = progressCallback(progress);
-    const putDescriptor = progressCallbackGenerator.next().value;
-    expect(putDescriptor).toEqual(put(updateProgress(progress)));
-  });
-
-  it('should throw error on negative input', () => {
-    const progress = -0.3423;
-    expect(() => {
-      const progressCallbackGenerator = progressCallback(progress);
-      progressCallbackGenerator.next();
-    }).toThrow();
-  });
-
-  it('should throw error on input > 1', () => {
-    const progress = 1.3;
-    expect(() => {
-      const progressCallbackGenerator = progressCallback(progress);
-      progressCallbackGenerator.next();
-    }).toThrow();
   });
 });
 
