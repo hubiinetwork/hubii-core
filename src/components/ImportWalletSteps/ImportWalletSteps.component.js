@@ -4,12 +4,11 @@ import {
   TextDiv,
   ButtonDiv,
   StyledSpan,
-  StyledStep,
   StyledButton,
   SpaceBetween,
-  StepsCentered,
   StyledBackButton,
 } from './ImportWalletSteps.style';
+import { StyledStep, StepsCentered } from '../ui/Steps';
 import ImportWallet from './ImportWallet';
 import ImportWalletForm from './ImportWalletForm';
 import ImportWalletNameForm from './ImportWalletNameForm';
@@ -71,8 +70,9 @@ export default class ImportWalletSteps extends React.Component {
     };
     this.next = this.next.bind(this);
     this.prev = this.prev.bind(this);
-    this.handleBack = this.handleBack.bind(this);
     this.searchSRC = this.searchSRC.bind(this);
+    this.handleBack = this.handleBack.bind(this);
+    this.handleNext = this.handleNext.bind(this);
     this.disbaleAgain = this.disbaleAgain.bind(this);
     this.changeSelectedWallet = this.changeSelectedWallet.bind(this);
   }
@@ -119,6 +119,13 @@ export default class ImportWalletSteps extends React.Component {
     this.setState({ current });
     if (current === 0) {
       this.disbaleAgain();
+    }
+  }
+  handleNext(data) {
+    // console.log('dat', data);
+    if (data.Address !== undefined && data.key !== undefined) {
+      const current = this.state.current + 1;
+      this.setState({ current });
     }
   }
   render() {

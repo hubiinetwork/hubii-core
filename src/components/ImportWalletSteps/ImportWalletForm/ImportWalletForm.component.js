@@ -28,10 +28,14 @@ class ImportWalletForm extends React.Component {
   }
 
   handleNext(e) {
+    // console.log('eeeeeeeeeeeeeee');
     const { form, handleNext } = this.props;
     e.preventDefault();
     form.validateFields((err, values) => {
+      // console.log('here', err, values);
       if (handleNext) {
+        // console.log('eeeeeeeeeeeeeee', err);
+        // console.log('ffffffffffffff', values);
         handleNext(values);
       }
     });
@@ -39,7 +43,7 @@ class ImportWalletForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { wallet, handleBack, handleNext } = this.props;
+    const { wallet, handleBack } = this.props;
     return (
       <div>
         <Between>
@@ -61,7 +65,7 @@ class ImportWalletForm extends React.Component {
           <Image src={wallet.src} />
         </IconDiv>
         <Form
-          onSubmit={handleNext}
+          onSubmit={this.handleNext}
 
         >
           <WidthEighty>
