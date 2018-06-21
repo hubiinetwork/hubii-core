@@ -1,4 +1,4 @@
-import { takeEvery, put, call } from 'redux-saga/effects';
+import { takeEvery, put } from 'redux-saga/effects';
 import { Wallet } from 'ethers';
 
 import {
@@ -10,21 +10,14 @@ import {
   createNewWalletSuccess,
   decryptWalletFailed,
   decryptWalletSuccess,
-  updateProgress,
 } from './actions';
-
-// Called as wallet is being encrypted/decrypted
-export function* progressCallback(percent) {
-  if (percent < 0 || percent > 1) throw new Error('invalid param');
-  yield put(updateProgress(percent));
-}
 
 // Creates a new software wallet
 export function* createWallet({ name, mnemonic, derivationPath, password }) {
   try {
     if (!name || !derivationPath || !password || !mnemonic) throw new Error('invalid param');
     const decryptedWallet = Wallet.fromMnemonic(mnemonic, derivationPath);
-    const encryptedWallet = yield call(decryptedWallet.encrypt, password, progressCallback);
+    const encryptedWallet = yield decryptedWallet.encrypt(password);
     yield put(createNewWalletSuccess(name, encryptedWallet, decryptedWallet));
   } catch (e) {
     yield put(createNewWalletFailed(e));
@@ -35,7 +28,7 @@ export function* createWallet({ name, mnemonic, derivationPath, password }) {
 export function* decryptWallet({ name, encryptedWallet, password }) {
   try {
     if (!name) throw new Error('name undefined');
-    const res = yield call(Wallet.fromEncryptedWallet, encryptedWallet, password, progressCallback);
+    const res = yield Wallet.fromEncryptedWallet(encryptedWallet, password);
     if (!res.privateKey) throw res;
     const decryptedWallet = res;
     yield put(decryptWalletSuccess(name, decryptedWallet));

@@ -8,7 +8,6 @@ import {
   CREATE_NEW_WALLET,
   CREATE_NEW_WALLET_FAILURE,
   CREATE_NEW_WALLET_SUCCESS,
-  UPDATE_PROGRESS,
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
@@ -59,12 +58,5 @@ export function decryptWalletFailed(error) {
   return {
     type: DECRYPT_WALLET_FAILURE,
     error,
-  };
-}
-
-export function updateProgress(percent) {
-  return {
-    type: UPDATE_PROGRESS,
-    percent,
   };
 }
