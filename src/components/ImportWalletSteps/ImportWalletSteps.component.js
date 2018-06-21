@@ -1,14 +1,14 @@
 import React from 'react';
 import { message } from 'antd';
 import {
+  TextDiv,
+  ButtonDiv,
+  StyledSpan,
   StyledStep,
   StyledButton,
-  StyledBackButton,
-  StepsCentered,
-  ButtonDiv,
-  TextDiv,
-  StyledSpan,
   SpaceBetween,
+  StepsCentered,
+  StyledBackButton,
 } from './ImportWalletSteps.style';
 import ImportWallet from './ImportWallet';
 import ImportWalletForm from './ImportWalletForm';
@@ -71,6 +71,7 @@ export default class ImportWalletSteps extends React.Component {
     };
     this.next = this.next.bind(this);
     this.prev = this.prev.bind(this);
+    this.handleBack = this.handleBack.bind(this);
     this.searchSRC = this.searchSRC.bind(this);
     this.disbaleAgain = this.disbaleAgain.bind(this);
     this.changeSelectedWallet = this.changeSelectedWallet.bind(this);

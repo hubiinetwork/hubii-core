@@ -2,15 +2,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Icon, Button } from 'antd';
 import {
-  Between,
-  CreateButton,
-  LeftArrow,
   Flex,
   Coins,
-  CoinButton,
   Image,
   Center,
+  Between,
   SpanText,
+  LeftArrow,
+  CoinButton,
+  CreateButton,
 } from './ImportWallet.style';
 
 class ImportWallet extends React.Component {
