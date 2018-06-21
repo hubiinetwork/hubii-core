@@ -7,6 +7,9 @@
 import { fromJS } from 'immutable';
 import {
   LOAD_WALLETS_SUCCESS,
+  LOAD_WALLET_BALANCES,
+  LOAD_WALLET_BALANCES_SUCCESS,
+  LOAD_WALLET_BALANCES_ERROR,
   CREATE_NEW_WALLET_SUCCESS,
   CREATE_NEW_WALLET,
   CREATE_NEW_WALLET_FAILURE,
@@ -74,6 +77,18 @@ function walletManagerReducer(state = initialState, action) {
     case UPDATE_PROGRESS:
       return state
         .set('progress', action.percent);
+    case LOAD_WALLET_BALANCES:
+      return state
+        .setIn(['wallets', 'software', action.name, 'loadingBalances'], true);
+    case LOAD_WALLET_BALANCES_SUCCESS:
+      return state
+        .setIn(['wallets', 'software', action.name, 'loadingBalances'], false)
+        .setIn(['wallets', 'software', action.name, 'loadingBalancesError'], null)
+        .setIn(['wallets', 'software', action.name, 'balances'], fromJS(action.tokenBalances.tokens || []));
+    case LOAD_WALLET_BALANCES_ERROR:
+      return state
+        .setIn(['wallets', 'software', action.name, 'loadingBalances'], false)
+        .setIn(['wallets', 'software', action.name, 'loadingBalancesError'], action.error);
     default:
       return state;
   }

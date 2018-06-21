@@ -48,7 +48,7 @@ const WalletItemCard = (props) => (
             ))}
         </AssetsWrapper>
       </LeftSideWrapper>
-      <TotalBalance>{`$${props.totalBalance}`}</TotalBalance>
+      <TotalBalance>{`$${props.totalBalance.toLocaleString('en')}`}</TotalBalance>
       <SpaceBetween>
         <CardIcon>
           <Popover

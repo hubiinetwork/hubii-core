@@ -74,7 +74,7 @@ class WalletsOverview extends React.PureComponent {
         <WalletItemCard
           name={card.name}
           totalBalance={card.totalBalance}
-          primaryAddress={`0x${card.primaryAddress}`}
+          primaryAddress={`${card.primaryAddress}`}
           type={card.type}
           assets={card.assets}
           // href={{

@@ -2,12 +2,14 @@ import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { Wallet } from 'ethers';
 import { fromJS } from 'immutable';
 import { makeSelectWallets } from './selectors';
+import request from '../../utils/request';
 
 import {
   CREATE_NEW_WALLET,
   DECRYPT_WALLET,
   CREATE_NEW_WALLET_SUCCESS,
   LOAD_WALLETS,
+  LOAD_WALLET_BALANCES,
 } from './constants';
 import {
   createNewWalletFailed,
@@ -16,6 +18,8 @@ import {
   decryptWalletSuccess,
   updateProgress,
   loadWalletsSuccess,
+  loadWalletBalancesSuccess,
+  loadWalletBalancesError,
 } from './actions';
 
 // Called as wallet is being encrypted/decrypted
@@ -70,10 +74,23 @@ export function* loadWallets() {
   yield put(loadWalletsSuccess(fromJS(sessionWallets)));
 }
 
+export function* loadWalletBalances({name, walletAddress}) {
+  console.log(name, walletAddress)
+  const endpoint = 'https://api2.dev.hubii.net/'
+  const requestPath = `ethereum/wallets/${walletAddress}/balance`
+  try {
+    const returnData = yield call(request, requestPath, null, endpoint);
+    yield put(loadWalletBalancesSuccess(name, returnData));
+  } catch (err) {
+    yield put(loadWalletBalancesError(name, err));
+  }
+}
+
 // Root watcher
 export default function* walletManager() {
   yield takeEvery(CREATE_NEW_WALLET, createWallet);
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
   yield takeEvery(CREATE_NEW_WALLET_SUCCESS, cacheNewWallet);
   yield takeEvery(LOAD_WALLETS, loadWallets);
+  yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalances);
 }
