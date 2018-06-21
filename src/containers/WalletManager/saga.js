@@ -1,10 +1,13 @@
-import { takeEvery, put, call } from 'redux-saga/effects';
+import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { Wallet } from 'ethers';
+import { fromJS } from 'immutable';
+import { makeSelectWallets } from './selectors';
 
 import {
   CREATE_NEW_WALLET,
   DECRYPT_WALLET,
   CREATE_NEW_WALLET_SUCCESS,
+  LOAD_WALLETS,
 } from './constants';
 import {
   createNewWalletFailed,
@@ -12,6 +15,7 @@ import {
   decryptWalletFailed,
   decryptWalletSuccess,
   updateProgress,
+  loadWalletsSuccess,
 } from './actions';
 
 // Called as wallet is being encrypted/decrypted
@@ -47,14 +51,29 @@ export function* decryptWallet({ name, encryptedWallet, password }) {
 }
 
 export function cacheNewWallet({ name, newWallet }) {
-  const existingWallets = JSON.parse(window.localStorage.getItem('wallets')) || {};
-  existingWallets[name] = newWallet.decryptedWallet;
+  const existingWallets = JSON.parse(window.localStorage.getItem('wallets')) || { software: {}, hardware: {} };
+  existingWallets.software[name] = { encrypted: newWallet.encrypted };
   window.localStorage.setItem('wallets', JSON.stringify(existingWallets));
+}
+
+export function* loadWallets() {
+  const storedWallets = JSON.parse(window.localStorage.getItem('wallets')) || { software: {}, hardware: {} };
+  const sessionWallets = (yield select(makeSelectWallets())).toJS();
+
+  Object.keys(storedWallets).forEach((type) => {
+    Object.keys(storedWallets[type]).forEach((walletName) => {
+      if (!sessionWallets[type][walletName]) {
+        sessionWallets[type][walletName] = storedWallets[type][walletName];
+      }
+    });
+  });
+  yield put(loadWalletsSuccess(fromJS(sessionWallets)));
 }
 
 // Root watcher
 export default function* walletManager() {
   yield takeEvery(CREATE_NEW_WALLET, createWallet);
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
-  // yield takeEvery(CREATE_NEW_WALLET_SUCCESS, cacheNewWallet);
+  yield takeEvery(CREATE_NEW_WALLET_SUCCESS, cacheNewWallet);
+  yield takeEvery(LOAD_WALLETS, loadWallets);
 }

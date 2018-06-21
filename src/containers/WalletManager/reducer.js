@@ -6,6 +6,7 @@
 
 import { fromJS } from 'immutable';
 import {
+  LOAD_WALLETS_SUCCESS,
   CREATE_NEW_WALLET_SUCCESS,
   CREATE_NEW_WALLET,
   CREATE_NEW_WALLET_FAILURE,
@@ -67,6 +68,9 @@ function walletManagerReducer(state = initialState, action) {
       return state
         .setIn(['loading', 'decryptingWallet'], false)
         .setIn(['errors', 'decryptingWalletError'], action.error);
+    case LOAD_WALLETS_SUCCESS:
+      return state
+        .set('wallets', action.wallets);
     case UPDATE_PROGRESS:
       return state
         .set('progress', action.percent);

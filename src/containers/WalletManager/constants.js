@@ -4,6 +4,8 @@
  *
  */
 
+export const LOAD_WALLETS = 'src/WalletManager/LOAD_WALLETS';
+export const LOAD_WALLETS_SUCCESS = 'src/WalletManager/LOAD_WALLETS_SUCCESS';
 export const CREATE_NEW_WALLET = 'src/WalletManager/CREATE_NEW_WALLET';
 export const CREATE_NEW_WALLET_SUCCESS = 'src/WalletManager/CREATE_NEW_WALLET_SUCCESS';
 export const CREATE_NEW_WALLET_FAILURE = 'src/WalletManager/CREATE_NEW_WALLET_FAILURE';

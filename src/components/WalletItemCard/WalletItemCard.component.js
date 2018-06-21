@@ -29,7 +29,7 @@ const settingsMenu = () => (
     <MenuDivider />
     <MenuItem>Export Password</MenuItem>
     <MenuDivider />
-    <MenuItem>Delete Wallet</MenuItem>
+    <MenuItem onClick={(e) => { e.domEvent.stopPropagation(); }}>Delete Wallet</MenuItem>
   </Menu>
 );
 

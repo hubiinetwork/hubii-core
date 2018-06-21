@@ -56,7 +56,6 @@ class WalletsOverview extends React.PureComponent {
   }
 
   handleCardClick(address) {
-    console.log(this);
     const { history } = this.props;
     history.push(`/wallet/${address}`);
   }
@@ -78,10 +77,10 @@ class WalletsOverview extends React.PureComponent {
           primaryAddress={`0x${card.primaryAddress}`}
           type={card.type}
           assets={card.assets}
-          href={{
-            pathname: '/wallet',
-            query: { address: card.primaryAddress },
-          }}
+          // href={{
+          //   pathname: '/wallet',
+          //   query: { address: card.primaryAddress },
+          // }}
           handleCardClick={this.handleCardClick}
         />
       </WalletCardsCol>

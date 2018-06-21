@@ -12,6 +12,8 @@ import {
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
+  LOAD_WALLETS,
+  LOAD_WALLETS_SUCCESS,
 } from './constants';
 
 export function createNewWallet(name, mnemonic, derivationPath, password) {
@@ -66,5 +68,18 @@ export function updateProgress(percent) {
   return {
     type: UPDATE_PROGRESS,
     percent,
+  };
+}
+
+export function loadWallets() {
+  return {
+    type: LOAD_WALLETS,
+  };
+}
+
+export function loadWalletsSuccess(wallets) {
+  return {
+    type: LOAD_WALLETS_SUCCESS,
+    wallets,
   };
 }

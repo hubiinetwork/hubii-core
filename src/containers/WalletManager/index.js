@@ -13,7 +13,7 @@ import { Modal } from 'components/ui/Modal';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import { createNewWallet } from './actions';
+import { createNewWallet, loadWallets } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import { makeSelectLoading, makeSelectErrors } from './selectors';
@@ -41,17 +41,20 @@ export class WalletManager extends React.PureComponent {
     this.handleAddWalletSubmit = this.handleAddWalletSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.props.loadWallets();
+  }
+
   componentDidUpdate(prevProps) {
     const lastLoadingProps = prevProps.loading.toJS();
     const currentLoadingProps = this.props.loading.toJS();
-
     const currentErrorsProps = this.props.errors.toJS();
 
     if (lastLoadingProps.creatingWallet &&
         !currentLoadingProps.creatingWallet &&
         !currentErrorsProps.creatingWalletError
     ) {
-      this.state.visible = false;
+      this.hideModal();
     }
   }
 
@@ -75,7 +78,6 @@ export class WalletManager extends React.PureComponent {
 
   render() {
     const { history, match } = this.props;
-
     return (
       <Wrapper>
         <TabsLayout>
@@ -138,6 +140,7 @@ WalletManager.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   createNewWallet: PropTypes.func.isRequired,
+  loadWallets: PropTypes.func.isRequired,
   loading: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 };
@@ -150,6 +153,7 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     createNewWallet: (...args) => dispatch(createNewWallet(...args)),
+    loadWallets: () => dispatch(loadWallets()),
   };
 }
 
