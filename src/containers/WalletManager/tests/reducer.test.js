@@ -8,7 +8,6 @@ import {
   decryptWallet,
   decryptWalletFailed,
   decryptWalletSuccess,
-  updateProgress,
 } from '../actions';
 describe('walletManagerReducer', () => {
   let state;
@@ -32,7 +31,6 @@ describe('walletManagerReducer', () => {
         software: {},
         hardware: {},
       },
-      progress: 0,
     });
   });
 
@@ -97,12 +95,5 @@ describe('walletManagerReducer', () => {
       .setIn(['loading', 'decryptingWallet'], false)
       .setIn(['errors', 'decryptingWalletError'], error);
     expect(walletManagerReducer(state, decryptWalletFailed(error))).toEqual(expected);
-  });
-
-  it('should handle updateProgress action correctly', () => {
-    const percent = 13;
-    const expected = state
-    .set('progress', percent);
-    expect(walletManagerReducer(state, updateProgress(percent))).toEqual(expected);
   });
 });
