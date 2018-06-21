@@ -33,6 +33,10 @@ class AddWallet extends React.PureComponent {
       mnemonic: mnemonic.toString(),
       confirmPasswordsMatch: false,
     };
+    this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
+    this.compareToFirstPassword = this.compareToFirstPassword.bind(this);
+    this.validateToNextPassword = this.validateToNextPassword.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleConfirmBlur(e) {
     const value = e.target.value;

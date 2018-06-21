@@ -1,6 +1,7 @@
+import { Icon } from 'antd';
 import styled from 'styled-components';
-import Button from '../ui/Button';
-import { Icon, Radio } from 'antd';
+import Button from '../../ui/Button';
+import { ModalFormLabel } from '../../ui/Modal';
 
 export const Between = styled.div`
   display: flex;
@@ -20,30 +21,21 @@ export const CreateButton = styled(Button)`
   }
 `;
 
+export const Image = styled.img`
+  width: 150px;
+  height: 44px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+`;
+
 export const LeftArrow = styled(Icon)`
   font-size: 20px;
   margin-right: 7px;
   cursor: pointer;
 `;
 
-export const Coins = styled(Radio.Group)`
-  margin-top: 32px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  .ant-radio-button-wrapper-checked {
-    background-color: ${({ theme }) => theme.palette.info};
-    border: 1px solid ${({ theme }) => theme.palette.info};
-  }
-`;
-const RadioButton = Radio.Button;
-export const CoinButton = styled(RadioButton)`
-  margin-top: 15px;
-  padding-top: 8px;
-  background-color: transparent;
-  width: 160px;
-  height: 48px;
-  border-radius: 3px !important;
+export const WidthEighty = styled.div`
+  width: 70%;
 `;
 
 export const Flex = styled.div`
@@ -51,18 +43,18 @@ export const Flex = styled.div`
   color: ${({ theme }) => theme.palette.light};
 `;
 
-export const Image = styled.img`
-  width: 90px;
-  height: 30px;
-`;
-
-export const Center = styled.div`
+export const IconDiv = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
-export const SpanText = styled.span`
+export const StyledTitle = styled.span`
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
+`;
+export const StyledModalFormLabel = styled(ModalFormLabel)`
+  height: 14px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
 `;

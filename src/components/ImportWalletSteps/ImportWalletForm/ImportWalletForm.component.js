@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Form, Icon } from 'antd';
+import PropTypes from 'prop-types';
+import { Form, Icon, Button } from 'antd';
 import {
   Flex,
   Image,
@@ -9,22 +10,45 @@ import {
   StyledTitle,
   WidthEighty,
   CreateButton,
-  StyledModalFormLabel
+  StyledModalFormLabel,
 } from './ImportWalletForm.style';
-import { ModalFormInput, ModalFormItem } from '../ui/Modal';
+import { ModalFormInput, ModalFormItem } from '../../ui/Modal';
 class ImportWalletForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleNext = this.handleNext.bind(this);
+    this.handleBack = this.handleBack.bind(this);
+  }
+
+  handleBack() {
+    const { handleBack } = this.props;
+    if (handleBack) {
+      handleBack();
+    }
+  }
+
+  handleNext(e) {
+    const { form, handleNext } = this.props;
+    e.preventDefault();
+    form.validateFields((err, values) => {
+      if (handleNext) {
+        handleNext(values);
+      }
+    });
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { wallet, handleBack, handleNext } = this.props;
     return (
       <div>
         <Between>
           <Flex>
             <LeftArrow
               type="arrow-left"
-              onClick={() => console.log('onGoBack  func')}
             />
             <StyledTitle>
-              Importing {this.props.wallet.value} Wallet
+              Importing {wallet.value} Wallet
             </StyledTitle>
           </Flex>
           <div>
@@ -34,22 +58,17 @@ class ImportWalletForm extends React.Component {
           </div>
         </Between>
         <IconDiv>
-          <Image src={this.props.wallet.src} />
+          <Image src={wallet.src} />
         </IconDiv>
         <Form
-          onSubmit={this.handleSubmit}
-          layout="vertical"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center'
-          }}
+          onSubmit={handleNext}
+
         >
           <WidthEighty>
             <ModalFormItem
               label={
                 <StyledModalFormLabel>
-                  Enter your {this.props.wallet.value} Wallet Address
+                  Enter your {wallet.value} Wallet Address
                 </StyledModalFormLabel>
               }
             >
@@ -57,9 +76,9 @@ class ImportWalletForm extends React.Component {
                 rules: [
                   {
                     message: 'Address is required.',
-                    required: true
-                  }
-                ]
+                    required: true,
+                  },
+                ],
               })(<ModalFormInput />)}
             </ModalFormItem>
             <ModalFormItem
@@ -73,10 +92,16 @@ class ImportWalletForm extends React.Component {
                 rules: [
                   {
                     message: 'key is required.',
-                    required: true
-                  }
-                ]
+                    required: true,
+                  },
+                ],
               })(<ModalFormInput />)}
+              <Button type="primary" onClick={handleBack}>
+            Back
+          </Button>
+              <Button type="primary" htmlType="submit">
+            Next
+          </Button>
             </ModalFormItem>
           </WidthEighty>
         </Form>
@@ -84,4 +109,24 @@ class ImportWalletForm extends React.Component {
     );
   }
 }
+
+ImportWalletForm.propTypes = {
+  /**
+   * Wallet object to be shown.
+   */
+  wallet: PropTypes.object,
+  /**
+   * Function to be executed when back button is pressed
+   */
+  handleBack: PropTypes.func,
+  /**
+   * Function to be executed when next is clicked.
+   */
+  handleNext: PropTypes.func,
+    /**
+   * ant design form function
+   */
+  form: PropTypes.func,
+};
+
 export default Form.create()(ImportWalletForm);

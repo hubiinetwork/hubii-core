@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Form, Icon } from 'antd';
 import {
   Flex,
@@ -9,9 +10,9 @@ import {
   WidthEighty,
   StyledTitle,
   CreateButton,
-  StyledModalFormLabel
+  StyledModalFormLabel,
 } from './ImportWalletNameForm.style';
-import { ModalFormInput, ModalFormItem } from '../ui/Modal';
+import { ModalFormInput, ModalFormItem } from '../../ui/Modal';
 class ImportWalletNameForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -21,7 +22,6 @@ class ImportWalletNameForm extends React.Component {
           <Flex>
             <LeftArrow
               type="arrow-left"
-              onClick={() => console.log('onGoBack function')}
             />
             <StyledTitle>
               Importing {this.props.wallet.value} Wallet
@@ -42,7 +42,7 @@ class ImportWalletNameForm extends React.Component {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
           <WidthEighty>
@@ -57,9 +57,9 @@ class ImportWalletNameForm extends React.Component {
                 rules: [
                   {
                     message: 'Name is required.',
-                    required: true
-                  }
-                ]
+                    required: true,
+                  },
+                ],
               })(<ModalFormInput />)}
             </ModalFormItem>
             <ModalFormItem
@@ -71,9 +71,9 @@ class ImportWalletNameForm extends React.Component {
                 rules: [
                   {
                     message: 'password is required.',
-                    required: true
-                  }
-                ]
+                    required: true,
+                  },
+                ],
               })(<ModalFormInput />)}
             </ModalFormItem>
             <ModalFormItem
@@ -85,9 +85,9 @@ class ImportWalletNameForm extends React.Component {
                 rules: [
                   {
                     message: 'Repeat password is required.',
-                    required: true
-                  }
-                ]
+                    required: true,
+                  },
+                ],
               })(<ModalFormInput />)}
             </ModalFormItem>
           </WidthEighty>
@@ -96,4 +96,24 @@ class ImportWalletNameForm extends React.Component {
     );
   }
 }
+
+ImportWalletNameForm.propTypes = {
+  /**
+   * Wallet object to be shown.
+   */
+  wallet: PropTypes.object,
+  // /**
+  //  * Function to be executed when back button is pressed
+  //  */
+  // handleBack: PropTypes.func,
+  // /**
+  //  * Function to be executed when next is clicked.
+  //  */
+  // handleNext: PropTypes.func,
+    /**
+   * ant design form function
+   */
+  form: PropTypes.func,
+};
+
 export default Form.create()(ImportWalletNameForm);

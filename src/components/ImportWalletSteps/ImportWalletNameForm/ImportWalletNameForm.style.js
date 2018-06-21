@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import Button from '../ui/Button';
 import { Icon } from 'antd';
-import { ModalFormLabel } from '../ui/Modal';
+import styled from 'styled-components';
+import Button from '../../ui/Button';
+import { ModalFormLabel } from '../../ui/Modal';
 
 export const Between = styled.div`
   display: flex;
@@ -21,17 +21,17 @@ export const CreateButton = styled(Button)`
   }
 `;
 
+export const LeftArrow = styled(Icon)`
+  font-size: 20px;
+  margin-right: 7px;
+  cursor: pointer;
+`;
+
 export const Image = styled.img`
   width: 150px;
   height: 44px;
   margin-top: 1rem;
   margin-bottom: 1rem;
-`;
-
-export const LeftArrow = styled(Icon)`
-  font-size: 20px;
-  margin-right: 7px;
-  cursor: pointer;
 `;
 
 export const WidthEighty = styled.div`
@@ -42,19 +42,18 @@ export const Flex = styled.div`
   display: flex;
   color: ${({ theme }) => theme.palette.light};
 `;
-
 export const IconDiv = styled.div`
   display: flex;
   justify-content: center;
-`;
-export const StyledTitle = styled.span`
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 19px;
 `;
 export const StyledModalFormLabel = styled(ModalFormLabel)`
   height: 14px;
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
+`;
+export const StyledTitle = styled.span`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
 `;

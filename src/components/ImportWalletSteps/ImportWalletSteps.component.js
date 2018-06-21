@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { message } from 'antd';
 import {
   StyledStep,
@@ -8,57 +9,57 @@ import {
   ButtonDiv,
   TextDiv,
   StyledSpan,
-  SpaceBetween
+  SpaceBetween,
 } from './ImportWalletSteps.style';
-import ImportWallet from '../ImportWallet';
-import ImportWalletForm from '../ImportWalletForm';
-import ImportWalletNameForm from '../ImportWalletNameForm';
+import ImportWallet from './ImportWallet';
+import ImportWalletForm from './ImportWalletForm';
+import ImportWalletNameForm from './ImportWalletNameForm';
 
 const walletData = [
   {
     src:
       'https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png',
-    value: 'ledger'
+    value: 'ledger',
   },
   {
     src: 'https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png',
-    value: 'metamask'
+    value: 'metamask',
   },
   {
     src:
       'https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png',
-    value: 'parity'
+    value: 'parity',
   },
   {
     src: 'https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png',
-    value: 'digitalBitbox'
+    value: 'digitalBitbox',
   },
   {
     src:
       'https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png',
-    value: 'ledger1'
+    value: 'ledger1',
   },
   {
     src: 'https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png',
-    value: 'metamask1'
+    value: 'metamask1',
   },
   {
     src:
       'https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png',
-    value: 'parity1'
+    value: 'parity1',
   },
   {
     src: 'https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png',
-    value: 'digitalBitbox1'
+    value: 'digitalBitbox1',
   },
   {
     src: 'https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png',
-    value: 'digitalBitbox2'
+    value: 'digitalBitbox2',
   },
   {
     src: 'https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png',
-    value: 'metamask2'
-  }
+    value: 'metamask2',
+  },
 ];
 
 export default class ImportWalletSteps extends React.Component {
@@ -67,41 +68,59 @@ export default class ImportWalletSteps extends React.Component {
     this.state = {
       current: 0,
       disabled: true,
-      selectedWallet: { src: '', value: '' }
+      selectedWallet: { src: '', value: '' },
     };
+    this.next = this.next.bind(this);
+    this.prev = this.prev.bind(this);
+    this.searchSRC = this.searchSRC.bind(this);
+    this.disbaleAgain = this.disbaleAgain.bind(this);
     this.changeSelectedWallet = this.changeSelectedWallet.bind(this);
   }
 
-  searchSRC = (logoName, myArray) => {
-    for (var i = 0; i < myArray.length; i++) {
+  searchSRC(logoName, myArray) {
+    for (let i = 0; i < myArray.length; i += 1) {
       if (myArray[i].value === logoName) {
         return myArray[i];
       }
     }
-  };
+    return '';
+  }
 
-  changeSelectedWallet = value => {
+  changeSelectedWallet(value) {
     this.setState({
       selectedWallet: this.searchSRC(value, walletData),
-      disabled: false
+      disabled: false,
     });
-    console.log('Changed State is: ', this.state.selectedWallet);
-  };
+  }
 
-  disbaleAgain = () => {
-    this.setState({ disabled: true, selectedWallet: { src: '', value: '' } });
-  };
+  disbaleAgain() {
+    this.setState(
+      {
+        disabled: true,
+        selectedWallet: { src: '', value: '' },
+      }
+  );
+  }
 
-  next = () => {
+  next() {
     const current = this.state.current + 1;
     this.setState({ current });
-  };
+  }
 
-  prev = () => {
+  prev() {
     const current = this.state.current - 1;
     this.setState({ current });
-    current === 0 && this.disbaleAgain();
-  };
+    if (current === 0) {
+      this.disbaleAgain();
+    }
+  }
+  handleBack() {
+    const current = this.state.current - 1;
+    this.setState({ current });
+    if (current === 0) {
+      this.disbaleAgain();
+    }
+  }
   render() {
     const { current } = this.state;
 
@@ -114,11 +133,15 @@ export default class ImportWalletSteps extends React.Component {
             onGoBack={this.disbaleAgain}
             wallets={walletData}
           />
-        )
+        ),
       },
       {
         title: 'Second',
-        content: <ImportWalletForm wallet={this.state.selectedWallet} />
+        content: <ImportWalletForm
+          wallet={this.state.selectedWallet}
+          handleBack={this.handleBack}
+          handleNext={this.handleNext}
+        />,
       },
       {
         title: 'Last',
@@ -127,8 +150,8 @@ export default class ImportWalletSteps extends React.Component {
             wallet={this.state.selectedWallet}
             onGoBack={this.prev}
           />
-        )
-      }
+        ),
+      },
     ];
     return (
       <SpaceBetween>
@@ -163,7 +186,7 @@ export default class ImportWalletSteps extends React.Component {
             Step {this.state.current + 1} of {steps.length}
           </TextDiv>
           <StepsCentered current={current}>
-            {steps.map(item => (
+            {steps.map((item) => (
               <StyledStep key={item.title} title={item.title} />
             ))}
           </StepsCentered>
@@ -172,3 +195,22 @@ export default class ImportWalletSteps extends React.Component {
     );
   }
 }
+
+ImportWalletSteps.propTypes = {
+  /**
+   * Wallet object to be shown.
+   */
+  wallet: PropTypes.object,
+  /**
+   * Function to be executed when back button is pressed
+   */
+  handleBack: PropTypes.func,
+  /**
+   * Function to be executed when next is clicked.
+   */
+  handleNext: PropTypes.func,
+    /**
+   * ant design form function
+   */
+  form: PropTypes.func,
+};
