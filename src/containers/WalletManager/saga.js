@@ -2,6 +2,7 @@ import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { Wallet } from 'ethers';
 import { makeSelectWallets } from './selectors';
 import request from '../../utils/request';
+import { getWalletsLocalStorage } from '../../utils/wallet';
 
 import {
   CREATE_NEW_WALLET,
@@ -47,30 +48,27 @@ export function* decryptWallet({ name, encryptedWallet, password }) {
 }
 
 export function cacheNewWallet({ name, newWallet }) {
-  const existingWallets = JSON.parse(window.localStorage.getItem('wallets')) || { software: {}, hardware: {} };
+  const existingWallets = getWalletsLocalStorage();
   existingWallets.software[name] = { encrypted: newWallet.encrypted };
   window.localStorage.setItem('wallets', JSON.stringify(existingWallets));
 }
 
 export function* loadWallets() {
-  const storedWallets = JSON.parse(window.localStorage.getItem('wallets')) || { software: {}, hardware: {} };
+  const storedWallets = getWalletsLocalStorage();
   const sessionWallets = (yield select(makeSelectWallets())).toJS();
 
   Object.keys(storedWallets).forEach((type) => {
     Object.keys(storedWallets[type]).forEach((walletName) => {
-      if (!sessionWallets[type][walletName]) {
-        sessionWallets[type][walletName] = storedWallets[type][walletName];
-      }
+      sessionWallets[type][walletName] = storedWallets[type][walletName];
     });
   });
   yield put(loadWalletsSuccess(sessionWallets));
 }
 
 export function* loadWalletBalances({ name, walletAddress }) {
-  const endpoint = 'https://api2.dev.hubii.net/';
   const requestPath = `ethereum/wallets/${walletAddress}/balance`;
   try {
-    const returnData = yield call(request, requestPath, null, endpoint);
+    const returnData = yield call(request, requestPath);
     yield put(loadWalletBalancesSuccess(name, returnData));
   } catch (err) {
     yield put(loadWalletBalancesError(name, err));

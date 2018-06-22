@@ -5,6 +5,7 @@ import {
   decryptWallet,
   decryptWalletFailed,
   decryptWalletSuccess,
+  loadWallets,
 } from '../actions';
 import {
   CREATE_NEW_WALLET,
@@ -13,6 +14,7 @@ import {
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
+  LOAD_WALLETS,
 } from '../constants';
 
 describe('WalletManager actions', () => {
@@ -97,6 +99,15 @@ describe('WalletManager actions', () => {
         error,
       };
       expect(decryptWalletFailed(error)).toEqual(expected);
+    });
+  });
+
+  describe('loadWallets Action', () => {
+    it('loadWallets', () => {
+      const expected = {
+        type: LOAD_WALLETS,
+      };
+      expect(loadWallets()).toEqual(expected);
     });
   });
 });
