@@ -202,8 +202,8 @@ describe('load wallets saga', () => {
   });
 
   it('#loadWallets should only override non-exist wallet states from cache', () => {
-    const storedWallets = { software: { test: {encrypted: '1'} }, hardware: {} };
-    const sessionWallets = { software: { test: {encrypted: '2'} }, hardware: {} };
+    const storedWallets = { software: { test: { encrypted: '1' } }, hardware: {} };
+    const sessionWallets = { software: { test: { encrypted: '2' } }, hardware: {} };
 
     localStorage.getItem.mockReturnValueOnce(JSON.stringify(storedWallets));
 

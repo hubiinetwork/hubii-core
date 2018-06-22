@@ -2,7 +2,7 @@ import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { Wallet } from 'ethers';
 import { makeSelectWallets } from './selectors';
 import request from '../../utils/request';
-import {getWalletsLocalStorage} from '../../utils/wallet';
+import { getWalletsLocalStorage } from '../../utils/wallet';
 
 import {
   CREATE_NEW_WALLET,
