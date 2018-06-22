@@ -13,7 +13,7 @@ import { Modal } from 'components/ui/Modal';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import { createNewWallet, loadWallets } from './actions';
+import { createNewWallet } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import { makeSelectLoading, makeSelectErrors } from './selectors';
@@ -39,10 +39,6 @@ export class WalletManager extends React.PureComponent {
     this.hideModal = this.hideModal.bind(this);
     this.showModal = this.showModal.bind(this);
     this.handleAddWalletSubmit = this.handleAddWalletSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.loadWallets();
   }
 
   componentDidUpdate(prevProps) {
@@ -140,7 +136,6 @@ WalletManager.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   createNewWallet: PropTypes.func.isRequired,
-  loadWallets: PropTypes.func.isRequired,
   loading: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 };
@@ -153,7 +148,6 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     createNewWallet: (...args) => dispatch(createNewWallet(...args)),
-    loadWallets: () => dispatch(loadWallets()),
   };
 }
 
