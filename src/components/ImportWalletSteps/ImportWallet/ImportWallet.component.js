@@ -16,14 +16,19 @@ import {
 class ImportWallet extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      disabled: true,
+    };
     this.onChange = this.onChange.bind(this);
     this.onGoBack = this.onGoBack.bind(this);
+    this.handleNext2 = this.handleNext2.bind(this);
   }
 
   onChange(e) {
     const { changeSelectedWallet } = this.props;
     if (changeSelectedWallet) {
       changeSelectedWallet(e.target.value);
+      this.setState({ disabled: false });
     }
   }
   onGoBack() {
@@ -32,6 +37,14 @@ class ImportWallet extends React.Component {
       this.props.onGoBack();
     }
   }
+  handleNext2(e) {
+    const { changeSelectedWallet } = this.props;
+    const { handleNext2 } = this.props;
+    e.preventDefault();
+    console.log('here', changeSelectedWallet);
+    handleNext2();
+  }
+
   render() {
     return (
       <div>
@@ -54,7 +67,7 @@ class ImportWallet extends React.Component {
               </Center>
             </CoinButton>
           ))}
-          <Button type="primary" onClick={this.changeSelectedWallet}>
+          <Button type="primary" disabled={this.state.disabled} onClick={this.handleNext2}>
             next
           </Button>
         </Coins>
@@ -72,6 +85,10 @@ ImportWallet.propTypes = {
    * Function to be executed when back button is pressed
    */
   onGoBack: PropTypes.func,
+    /**
+   * Function to be executed when back button is pressed
+   */
+  handleNext2: PropTypes.func,
   /**
    * Function to be executed when wallet is selected
    */

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Icon } from 'antd';
+import { Form, Icon, Button } from 'antd';
 import {
   Flex,
   Image,
@@ -14,6 +14,31 @@ import {
 } from './ImportWalletNameForm.style';
 import { ModalFormInput, ModalFormItem } from '../../ui/Modal';
 class ImportWalletNameForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleBack = this.handleBack.bind(this);
+    this.handleFinish = this.handleFinish.bind(this);
+  }
+  handleBack() {
+    const { handleBack } = this.props;
+    if (handleBack) {
+      handleBack();
+    }
+  }
+
+  handleFinish(e) {
+    // console.log('eeeeeeeeeeeeeee');
+    const { form, handleFinish } = this.props;
+    e.preventDefault();
+    form.validateFields((err, values) => {
+      // console.log('here', err, values);
+      if (handleFinish) {
+        // console.log('eeeeeeeeeeeeeee', err);
+        // console.log('ffffffffffffff', values);
+        handleFinish(values);
+      }
+    });
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -37,7 +62,7 @@ class ImportWalletNameForm extends React.Component {
           <Image src={this.props.wallet.src} />
         </IconDiv>
         <Form
-          onSubmit={this.handleSubmit}
+          onSubmit={this.handleFinish}
           layout="vertical"
           style={{
             display: 'flex',
@@ -89,6 +114,12 @@ class ImportWalletNameForm extends React.Component {
                   },
                 ],
               })(<ModalFormInput />)}
+              <Button type="primary" onClick={this.handleBack}>
+            Back
+          </Button>
+              <Button type="primary" htmlType="submit">
+            Finish
+          </Button>
             </ModalFormItem>
           </WidthEighty>
         </Form>
@@ -102,14 +133,14 @@ ImportWalletNameForm.propTypes = {
    * Wallet object to be shown.
    */
   wallet: PropTypes.object,
-  // /**
-  //  * Function to be executed when back button is pressed
-  //  */
-  // handleBack: PropTypes.func,
-  // /**
-  //  * Function to be executed when next is clicked.
-  //  */
-  // handleNext: PropTypes.func,
+  /**
+   * Function to be executed when back button is pressed
+   */
+  handleBack: PropTypes.func,
+  /**
+   * Function to be executed when next is clicked.
+   */
+  handleFinish: PropTypes.func,
     /**
    * ant design form function
    */

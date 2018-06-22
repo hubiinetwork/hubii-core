@@ -73,6 +73,7 @@ export default class ImportWalletSteps extends React.Component {
     this.searchSRC = this.searchSRC.bind(this);
     this.handleBack = this.handleBack.bind(this);
     this.handleNext = this.handleNext.bind(this);
+    this.handleNext2 = this.handleNext2.bind(this);
     this.disbaleAgain = this.disbaleAgain.bind(this);
     this.changeSelectedWallet = this.changeSelectedWallet.bind(this);
   }
@@ -122,11 +123,18 @@ export default class ImportWalletSteps extends React.Component {
     }
   }
   handleNext(data) {
-    // console.log('dat', data);
     if (data.Address !== undefined && data.key !== undefined) {
       const current = this.state.current + 1;
       this.setState({ current });
     }
+  }
+  handleFinish() {
+    // console.log('data', data);
+    message.success('Processing complete!');
+  }
+  handleNext2() {
+    const current = this.state.current + 1;
+    this.setState({ current });
   }
   render() {
     const { current } = this.state;
@@ -138,6 +146,7 @@ export default class ImportWalletSteps extends React.Component {
           <ImportWallet
             changeSelectedWallet={this.changeSelectedWallet}
             onGoBack={this.disbaleAgain}
+            handleNext2={this.handleNext2}
             wallets={walletData}
           />
         ),
@@ -156,6 +165,8 @@ export default class ImportWalletSteps extends React.Component {
           <ImportWalletNameForm
             wallet={this.state.selectedWallet}
             onGoBack={this.prev}
+            handleBack={this.handleBack}
+            handleFinish={this.handleFinish}
           />
         ),
       },
