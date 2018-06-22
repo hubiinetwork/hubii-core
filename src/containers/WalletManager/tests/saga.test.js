@@ -189,8 +189,7 @@ describe('load wallets saga', () => {
 
     localStorage.getItem.mockReturnValueOnce(JSON.stringify(storedWallets));
 
-    const expectedWallets = Object.assign({}, sessionWallets);
-    Object.assign(expectedWallets.software, storedWallets.software);
+    const expectedWallets = { software: { test: {}, test2: {} }, hardware: {} };
     return expectSaga(loadWallets)
       .provide({
         select() {

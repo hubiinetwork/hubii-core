@@ -121,6 +121,7 @@ export class WalletManager extends React.PureComponent {
             }
             key={`${match.url}/contacts`}
           >
+            <Route path={`${match.url}/contacts`} />
           </TabPane>
         </Tab>
         {
