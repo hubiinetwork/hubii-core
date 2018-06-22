@@ -1,9 +1,9 @@
 export function getWalletsLocalStorage() {
-  let wallets = { software: {}, hardware: {} };
+  const defaultState = { software: {}, hardware: {} }
   try {
-    wallets = JSON.parse(localStorage.getItem('wallets'));
+    const wallets = JSON.parse(localStorage.getItem('wallets')) || defaultState;
+    return wallets
   } catch (e) {
-    return wallets;
+    return defaultState;
   }
-  return wallets;
 }

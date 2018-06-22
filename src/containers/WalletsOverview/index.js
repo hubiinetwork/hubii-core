@@ -77,7 +77,7 @@ export class WalletOverview extends React.PureComponent { // eslint-disable-line
     const {wallets} = this.props
 
     const walletCards = this.getWalletCardsData(wallets)
-
+    
     return (
       <WalletsOverview cards={walletCards} history={this.props.history} />
     );

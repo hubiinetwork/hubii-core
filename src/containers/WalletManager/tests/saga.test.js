@@ -189,7 +189,7 @@ describe('load wallets saga', () => {
 
     localStorage.getItem.mockReturnValueOnce(JSON.stringify(storedWallets));
 
-    const expectedWallets = Object.assign({}, sessionWallets);// {software: {test: {}, test2: {}}, hardware: {}}
+    const expectedWallets = Object.assign({}, sessionWallets);
     Object.assign(expectedWallets.software, storedWallets.software);
     return expectSaga(loadWallets)
       .provide({
@@ -198,6 +198,22 @@ describe('load wallets saga', () => {
         },
       })
       .put(loadWalletsSuccess(expectedWallets))
+      .run();
+  });
+
+  it('#loadWallets should only override non-exist wallet states from cache', () => {
+    const storedWallets = { software: { test: {encrypted: '1'} }, hardware: {} };
+    const sessionWallets = { software: { test: {encrypted: '2'} }, hardware: {} };
+
+    localStorage.getItem.mockReturnValueOnce(JSON.stringify(storedWallets));
+
+    return expectSaga(loadWallets)
+      .provide({
+        select() {
+          return fromJS(sessionWallets);
+        },
+      })
+      .put(loadWalletsSuccess(sessionWallets))
       .run();
   });
 

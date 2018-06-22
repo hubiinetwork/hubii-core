@@ -2,7 +2,7 @@ import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { Wallet } from 'ethers';
 import { makeSelectWallets } from './selectors';
 import request from '../../utils/request';
-import { getWalletsLocalStorage } from '../../utils/wallet';
+import {getWalletsLocalStorage} from '../../utils/wallet';
 
 import {
   CREATE_NEW_WALLET,
@@ -59,7 +59,9 @@ export function* loadWallets() {
 
   Object.keys(storedWallets).forEach((type) => {
     Object.keys(storedWallets[type]).forEach((walletName) => {
-      sessionWallets[type][walletName] = storedWallets[type][walletName];
+      if (!sessionWallets[type][walletName]) {
+        sessionWallets[type][walletName] = storedWallets[type][walletName];
+      }
     });
   });
   yield put(loadWalletsSuccess(sessionWallets));
