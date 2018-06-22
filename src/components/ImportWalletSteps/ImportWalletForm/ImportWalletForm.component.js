@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Icon, Button } from 'antd';
+import { Form, Icon } from 'antd';
 import {
   Flex,
   Image,
@@ -11,6 +11,10 @@ import {
   WidthEighty,
   CreateButton,
   StyledModalFormLabel,
+  ButtonDiv,
+  StyledSpan,
+  StyledButton,
+  StyledBackButton,
 } from './ImportWalletForm.style';
 import { ModalFormInput, ModalFormItem } from '../../ui/Modal';
 class ImportWalletForm extends React.Component {
@@ -50,6 +54,7 @@ class ImportWalletForm extends React.Component {
           <Flex>
             <LeftArrow
               type="arrow-left"
+              onClick={handleBack}
             />
             <StyledTitle>
               Importing {wallet.value} Wallet
@@ -100,13 +105,15 @@ class ImportWalletForm extends React.Component {
                   },
                 ],
               })(<ModalFormInput />)}
-              <Button type="primary" onClick={handleBack}>
-            Back
-          </Button>
-              <Button type="primary" htmlType="submit">
-            Next
-          </Button>
             </ModalFormItem>
+            <ButtonDiv>
+              <StyledBackButton onClick={handleBack}>
+                <StyledSpan>Back</StyledSpan>
+              </StyledBackButton>
+              <StyledButton htmlType="submit">
+                <StyledSpan>Next</StyledSpan>
+              </StyledButton>
+            </ButtonDiv>
           </WidthEighty>
         </Form>
       </div>

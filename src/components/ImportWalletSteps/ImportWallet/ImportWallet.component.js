@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Icon, Button } from 'antd';
+import { Icon } from 'antd';
 import {
   Flex,
   Coins,
@@ -11,6 +11,9 @@ import {
   LeftArrow,
   CoinButton,
   CreateButton,
+  ButtonDiv,
+  StyledSpan,
+  StyledButton,
 } from './ImportWallet.style';
 
 class ImportWallet extends React.Component {
@@ -38,10 +41,10 @@ class ImportWallet extends React.Component {
     }
   }
   handleNext2(e) {
-    const { changeSelectedWallet } = this.props;
+    // const { changeSelectedWallet } = this.props;
     const { handleNext2 } = this.props;
     e.preventDefault();
-    console.log('here', changeSelectedWallet);
+    // console.log('here', changeSelectedWallet);
     handleNext2();
   }
 
@@ -67,10 +70,12 @@ class ImportWallet extends React.Component {
               </Center>
             </CoinButton>
           ))}
-          <Button type="primary" disabled={this.state.disabled} onClick={this.handleNext2}>
-            next
-          </Button>
         </Coins>
+        <ButtonDiv>
+          <StyledButton disabled={this.state.disabled} onClick={this.handleNext2}>
+            <StyledSpan>Next</StyledSpan>
+          </StyledButton>
+        </ButtonDiv>
       </div>
     );
   }

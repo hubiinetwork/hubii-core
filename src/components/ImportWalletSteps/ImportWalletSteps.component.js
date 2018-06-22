@@ -2,11 +2,7 @@ import React from 'react';
 import { message } from 'antd';
 import {
   TextDiv,
-  ButtonDiv,
-  StyledSpan,
-  StyledButton,
   SpaceBetween,
-  StyledBackButton,
 } from './ImportWalletSteps.style';
 import { StyledStep, StepsCentered } from '../ui/Steps';
 import ImportWallet from './ImportWallet';
@@ -175,31 +171,6 @@ export default class ImportWalletSteps extends React.Component {
       <SpaceBetween>
         <div>{steps[this.state.current].content}</div>
         <div>
-          <ButtonDiv>
-            {this.state.current > 0 && (
-              <StyledBackButton type="primary" onClick={() => this.prev()}>
-                <StyledSpan>Back</StyledSpan>
-              </StyledBackButton>
-            )}
-            {this.state.current < steps.length - 1 && (
-              <StyledButton
-                type="primary"
-                onClick={() => this.next()}
-                current={this.state.current}
-                disabled={this.state.disabled}
-              >
-                <StyledSpan>Next</StyledSpan>
-              </StyledButton>
-            )}
-            {this.state.current === steps.length - 1 && (
-              <StyledButton
-                type="primary"
-                onClick={() => message.success('Processing complete!')}
-              >
-                <StyledSpan>Finish</StyledSpan>
-              </StyledButton>
-            )}
-          </ButtonDiv>
           <TextDiv>
             Step {this.state.current + 1} of {steps.length}
           </TextDiv>
