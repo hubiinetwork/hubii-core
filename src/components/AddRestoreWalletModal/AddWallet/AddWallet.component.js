@@ -19,7 +19,7 @@ import {
 } from './AddWallet.style';
 import Notification from '../../Notification';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../../ui/Modal';
-const hubiiLogo = require('../../../../public/asset_images/HBT.svg');
+import hubiiLogo from '../../../../public/asset_images/HBT.svg';
 /**
  * This component shows form  to add a  wallet..
  */

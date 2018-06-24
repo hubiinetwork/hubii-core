@@ -156,7 +156,7 @@ describe('WalletManager', () => {
           password: 'pwd',
         };
         instance.handleAddWalletSubmit(args);
-        expect(createNewWalletSpy).toBeCalledWith(args.name, args.mnemonic, args.derivationPath, args.password)
+        expect(createNewWalletSpy).toBeCalledWith(args.name, args.mnemonic, args.derivationPath, args.password);
       });
     });
     describe('#mapDispatchToProps', () => {
