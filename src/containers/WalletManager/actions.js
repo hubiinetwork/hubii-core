@@ -11,6 +11,11 @@ import {
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
+  LOAD_WALLETS,
+  LOAD_WALLETS_SUCCESS,
+  LOAD_WALLET_BALANCES,
+  LOAD_WALLET_BALANCES_SUCCESS,
+  LOAD_WALLET_BALANCES_ERROR,
 } from './constants';
 
 export function createNewWallet(name, mnemonic, derivationPath, password) {
@@ -57,6 +62,43 @@ export function decryptWalletSuccess(decryptedWallet) {
 export function decryptWalletFailed(error) {
   return {
     type: DECRYPT_WALLET_FAILURE,
+    error,
+  };
+}
+
+export function loadWallets() {
+  return {
+    type: LOAD_WALLETS,
+  };
+}
+
+export function loadWalletsSuccess(wallets) {
+  return {
+    type: LOAD_WALLETS_SUCCESS,
+    wallets,
+  };
+}
+
+export function loadWalletBalances(name, walletAddress) {
+  return {
+    type: LOAD_WALLET_BALANCES,
+    name,
+    walletAddress,
+  };
+}
+
+export function loadWalletBalancesSuccess(name, tokenBalances) {
+  return {
+    type: LOAD_WALLET_BALANCES_SUCCESS,
+    name,
+    tokenBalances,
+  };
+}
+
+export function loadWalletBalancesError(name, error) {
+  return {
+    type: LOAD_WALLET_BALANCES_ERROR,
+    name,
     error,
   };
 }

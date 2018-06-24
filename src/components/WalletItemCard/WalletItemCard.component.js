@@ -29,7 +29,7 @@ const settingsMenu = () => (
     <MenuDivider />
     <MenuItem>Export Password</MenuItem>
     <MenuDivider />
-    <MenuItem>Delete Wallet</MenuItem>
+    <MenuItem onClick={(e) => { e.domEvent.stopPropagation(); }}>Delete Wallet</MenuItem>
   </Menu>
 );
 
@@ -48,7 +48,7 @@ const WalletItemCard = (props) => (
             ))}
         </AssetsWrapper>
       </LeftSideWrapper>
-      <TotalBalance>{`$${props.totalBalance}`}</TotalBalance>
+      <TotalBalance>{`$${props.totalBalance.toLocaleString('en')}`}</TotalBalance>
       <SpaceBetween>
         <CardIcon>
           <Popover

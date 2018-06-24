@@ -11,6 +11,13 @@ import Tab from 'components/ui/Tab';
 import AddRestoreWalletModal from 'components/AddRestoreWalletModal';
 import { Modal } from 'components/ui/Modal';
 
+import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
+import { createNewWallet } from './actions';
+import reducer from './reducer';
+import saga from './saga';
+import { makeSelectLoading, makeSelectErrors } from './selectors';
+
 import {
   Wrapper,
   TabsLayout,
@@ -31,7 +38,22 @@ export class WalletManager extends React.PureComponent {
     this.onTabsChange = this.onTabsChange.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.showModal = this.showModal.bind(this);
+    this.handleAddWalletSubmit = this.handleAddWalletSubmit.bind(this);
   }
+
+  componentDidUpdate(prevProps) {
+    const lastLoadingProps = prevProps.loading.toJS();
+    const currentLoadingProps = this.props.loading.toJS();
+    const currentErrorsProps = this.props.errors.toJS();
+
+    if (lastLoadingProps.creatingWallet &&
+        !currentLoadingProps.creatingWallet &&
+        !currentErrorsProps.creatingWalletError
+    ) {
+      this.hideModal();
+    }
+  }
+
   onTabsChange(key) {
     this.props.history.push(key);
   }
@@ -46,9 +68,12 @@ export class WalletManager extends React.PureComponent {
     });
   }
 
+  handleAddWalletSubmit(params) {
+    this.props.createNewWallet(params.name, params.mnemonic, params.derivationPath, params.password);
+  }
+
   render() {
     const { history, match } = this.props;
-
     return (
       <Wrapper>
         <TabsLayout>
@@ -72,6 +97,7 @@ export class WalletManager extends React.PureComponent {
             >
               <AddRestoreWalletModal
                 goBack={this.state.visible}
+                handleAddWalletSubmit={this.handleAddWalletSubmit}
               />
             </Modal>
           </WalletsTabHeader>
@@ -95,6 +121,7 @@ export class WalletManager extends React.PureComponent {
             }
             key={`${match.url}/contacts`}
           >
+            <Route path={`${match.url}/contacts`} />
           </TabPane>
         </Tab>
         {
@@ -109,10 +136,29 @@ export class WalletManager extends React.PureComponent {
 WalletManager.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
+  createNewWallet: PropTypes.func.isRequired,
+  loading: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+  loading: makeSelectLoading(),
+  errors: makeSelectErrors(),
+});
 
-const withConnect = connect(mapStateToProps, null);
+export function mapDispatchToProps(dispatch) {
+  return {
+    createNewWallet: (...args) => dispatch(createNewWallet(...args)),
+  };
+}
 
-export default compose(withConnect)(WalletManager);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+const withReducer = injectReducer({ key: 'walletManager', reducer });
+const withSaga = injectSaga({ key: 'walletManager', saga });
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect,
+)(WalletManager);

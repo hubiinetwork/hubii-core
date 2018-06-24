@@ -14,7 +14,7 @@ export function* getInfo() {
   const id = 1;
   const requestPath = `striim-accounts/?uid=${id}`;
   try {
-    const returnData = yield call(request, requestPath);
+    const returnData = yield call(request, requestPath, null, 'http://localhost:8000/');
     yield delay(750); // simulate wait
     yield put(striimAccountsLoaded(returnData));
   } catch (err) {

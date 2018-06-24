@@ -6,6 +6,8 @@ import {
   makeSelectSelectedWalletName,
   makeSelectWallets,
   makeSelectDerivationPathInput,
+  makeSelectLoading,
+  makeSelectErrors,
 } from '../selectors';
 
 describe('selectWalletManagerDomain', () => {
@@ -88,5 +90,31 @@ describe('makeSelectWallets', () => {
       },
     });
     expect(walletsSelector(mockedState)).toEqual(wallets);
+  });
+});
+
+describe('makeSelectLoading', () => {
+  const loadingSelector = makeSelectLoading();
+  it('should correctly select loading state', () => {
+    const loading = fromJS({ creatingWallet: true });
+    const mockedState = fromJS({
+      walletManager: {
+        loading,
+      },
+    });
+    expect(loadingSelector(mockedState)).toEqual(loading);
+  });
+});
+
+describe('makeSelectErrors', () => {
+  const errorsSelector = makeSelectErrors();
+  it('should correctly select errors state', () => {
+    const errors = fromJS({ creatingWalletError: true });
+    const mockedState = fromJS({
+      walletManager: {
+        errors,
+      },
+    });
+    expect(errorsSelector(mockedState)).toEqual(errors);
   });
 });
