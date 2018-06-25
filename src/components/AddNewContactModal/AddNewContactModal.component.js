@@ -41,7 +41,7 @@ class AddNewContactModal extends React.Component {
         </WrapperIcon>
         <Form onSubmit={this.handleSubmit} layout="vertical">
           <ModalFormItem label={<ModalFormLabel>Name</ModalFormLabel>}>
-            {getFieldDecorator('Name', {
+            {getFieldDecorator('name', {
               rules: [
                 {
                   message: 'Name is required.',
@@ -53,7 +53,7 @@ class AddNewContactModal extends React.Component {
           <ModalFormItem
             label={<ModalFormLabel>Valid Ethereum Address</ModalFormLabel>}
           >
-            {getFieldDecorator('Valid Ethereum Address', {
+            {getFieldDecorator('address', {
               rules: [
                 {
                   message: 'Address is required.',

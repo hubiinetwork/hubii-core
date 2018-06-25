@@ -23,6 +23,7 @@ export default class ContactList extends React.PureComponent {
     this.showNotification = this.showNotification.bind(this);
     this.showModal = this.showModal.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   showNotification() {
@@ -41,6 +42,12 @@ export default class ContactList extends React.PureComponent {
     this.setState({
       visible: false,
     });
+  }
+
+  handleDelete(e) {
+    console.log(e);
+    this.setState({ visible: false });
+    this.props.onDelete(e);
   }
   render() {
     const { size, layout, data } = this.props;
@@ -91,7 +98,7 @@ export default class ContactList extends React.PureComponent {
             name={this.state.name}
             address={this.state.address}
             onEdit={this.props.onEdit}
-            onDelete={this.props.onDelete}
+            onDelete={(e) => this.handleDelete(e)}
           />
         </Modal>
       </div>

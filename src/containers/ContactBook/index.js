@@ -15,24 +15,55 @@ import ContactHeader from 'components/ContactHeader';
 import injectSaga from 'utils/injectSaga';
 import saga from './saga';
 
-// testing purposes only
-import TestItems from './TestItems';
-
 export class ContactBook extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      recentFilterText: null,
+      fullFilterText: null,
+    };
+
+    this.filterSearchText = this.filterSearchText.bind(this);
+    this.onDelete = this.onDelete.bind(this);
+  }
+
+  onDelete(data) {
+    const storage = JSON.parse(localStorage.getItem('contactBook'));
+    if (storage) {
+      const remainingList = storage.filter((contact) => contact.address !== data.address);
+      if (remainingList.length === storage.length) {
+        console.log('You did not delete anything');
+      } else {
+        localStorage.setItem('contactBook', JSON.stringify(remainingList));
+      }
+    }
+    this.setState({ recentFilterText: 'hello' });
+    return null;
+  }
+
+  filterSearchText(data, type) {
+    if (this.state[type]) {
+      return data.filter((contact) => contact.name.toLowerCase().includes(this.state[type].toLowerCase()) || contact.address.includes(this.state[type]));
+    }
+    return data;
+  }
+
   render() {
+    console.log('rerender');
+    const storage = JSON.parse(localStorage.getItem('contactBook'));
     const titleTabs = [
       {
         title: 'All Contacts',
         TabContent:
   <div style={{ borderRight: 'solid 1px black', lineHeight: '100rem' }}>
     <ContactList
-      data={TestItems.large}
+      data={this.filterSearchText(storage, 'fullFilterText')}
       onEdit={(values) => {
         console.log('Edited values are', values);
       }}
-      onDelete={(values) => {
-        console.log('Deleted values are', values);
-      }}
+      onDelete={(values) => this.onDelete(values)}
+
     />
   </div>,
       },
@@ -40,7 +71,7 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
         title: 'Striim Contacts',
         TabContent: <div style={{ borderRight: 'solid 1px black', lineHeight: '100rem' }}>
           <ContactList
-            data={TestItems.large}
+            data={this.filterSearchText(storage, 'fullFilterText')}
             onEdit={(values) => {
               console.log('Edited values are', values);
             }}
@@ -63,17 +94,15 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
             <ContactHeader
               title={'Recent Contacts'}
               showSearch
-              onSearch={(value) => console.log(value)}
+              onChange={((value) => this.setState({ recentFilterText: value }))}
             />
             <div style={{ borderRight: 'solid 1px black', lineHeight: '100rem' }}>
               <ContactList
-                data={TestItems.medium}
+                data={this.filterSearchText(storage, 'recentFilterText')}
                 onEdit={(values) => {
                   console.log('Edited values are', values);
                 }}
-                onDelete={(values) => {
-                  console.log('Deleted values are', values);
-                }}
+                onDelete={(values) => this.onDelete(values)}
               />
 
             </div>
@@ -81,11 +110,12 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
           <div style={{ color: 'white' }}>
             <ContactHeader
               titleTabs={titleTabs}
-              // showSearch
+              showSearch
               onTabChange={() => {
                 console.log('Tab changed');
               }}
-              onSearch={(value) => console.log(value)}
+              // onSearch={(value) => console.log(value)}
+              onChange={((value) => this.setState({ fullFilterText: value }))}
             />
           </div>
         </div>

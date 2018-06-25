@@ -58,18 +58,6 @@ export class WalletManager extends React.PureComponent {
     return null;
   }
 
-  onDelete(data) {
-    const storage = JSON.parse(localStorage.getItem('contactBook'));
-    if (storage) {
-      const remainingList = storage.filter((contact) => contact.address !== data.address);
-      if (remainingList.length === storage.length) {
-        console.log('You did not delete anything');
-      } else {
-        localStorage.setItem('contactBook', JSON.stringify(remainingList));
-      }
-    }
-  }
-
   showModal(type) {
     this.setState({
       visible: true,
