@@ -1,15 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Icon } from 'antd';
+import { Form } from 'antd';
 import {
-  Flex,
   Image,
-  Between,
   IconDiv,
-  LeftArrow,
-  StyledTitle,
   WidthEighty,
-  CreateButton,
   StyledModalFormLabel,
   ButtonDiv,
   StyledSpan,
@@ -32,14 +27,10 @@ class ImportWalletForm extends React.Component {
   }
 
   handleNext(e) {
-    // console.log('eeeeeeeeeeeeeee');
     const { form, handleNext } = this.props;
     e.preventDefault();
     form.validateFields((err, values) => {
-      // console.log('here', err, values);
-      if (handleNext) {
-        // console.log('eeeeeeeeeeeeeee', err);
-        // console.log('ffffffffffffff', values);
+      if (!err && handleNext) {
         handleNext(values);
       }
     });
@@ -50,22 +41,6 @@ class ImportWalletForm extends React.Component {
     const { wallet, handleBack } = this.props;
     return (
       <div>
-        <Between>
-          <Flex>
-            <LeftArrow
-              type="arrow-left"
-              onClick={handleBack}
-            />
-            <StyledTitle>
-              Importing {wallet.value} Wallet
-            </StyledTitle>
-          </Flex>
-          <div>
-            <CreateButton>
-              <Icon type="plus" />Create new wallet
-            </CreateButton>
-          </div>
-        </Between>
         <IconDiv>
           <Image src={wallet.src} />
         </IconDiv>
@@ -77,7 +52,7 @@ class ImportWalletForm extends React.Component {
             <ModalFormItem
               label={
                 <StyledModalFormLabel>
-                  Enter your {wallet.value} Wallet Address
+                  Enter your {wallet.name} Wallet Address
                 </StyledModalFormLabel>
               }
             >

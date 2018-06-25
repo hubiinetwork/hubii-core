@@ -1,156 +1,73 @@
 import React from 'react';
-import { message } from 'antd';
+import { Icon } from 'antd';
 import {
   TextDiv,
   SpaceBetween,
+  CreateButton,
+  Between,
+  SpanText,
+  LeftArrow,
+  Flex,
 } from './ImportWalletSteps.style';
 import { StyledStep, StepsCentered } from '../ui/Steps';
 import ImportWallet from './ImportWallet';
 import ImportWalletForm from './ImportWalletForm';
 import ImportWalletNameForm from './ImportWalletNameForm';
 
-const walletData = [
-  {
-    src:
-      'https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png',
-    value: 'ledger',
-  },
-  {
-    src: 'https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png',
-    value: 'metamask',
-  },
-  {
-    src:
-      'https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png',
-    value: 'parity',
-  },
-  {
-    src: 'https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png',
-    value: 'digitalBitbox',
-  },
-  {
-    src:
-      'https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png',
-    value: 'ledger1',
-  },
-  {
-    src: 'https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png',
-    value: 'metamask1',
-  },
-  {
-    src:
-      'https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png',
-    value: 'parity1',
-  },
-  {
-    src: 'https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png',
-    value: 'digitalBitbox1',
-  },
-  {
-    src: 'https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png',
-    value: 'digitalBitbox2',
-  },
-  {
-    src: 'https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png',
-    value: 'metamask2',
-  },
-];
-
 export default class ImportWalletSteps extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       current: 0,
-      disabled: true,
-      selectedWallet: { src: '', value: '' },
+      selectedWallet: { src: '', name: '' },
+      data: [],
     };
-    this.next = this.next.bind(this);
-    this.prev = this.prev.bind(this);
     this.searchSRC = this.searchSRC.bind(this);
     this.handleBack = this.handleBack.bind(this);
     this.handleNext = this.handleNext.bind(this);
-    this.handleNext2 = this.handleNext2.bind(this);
-    this.disbaleAgain = this.disbaleAgain.bind(this);
-    this.changeSelectedWallet = this.changeSelectedWallet.bind(this);
   }
 
-  searchSRC(logoName, myArray) {
-    for (let i = 0; i < myArray.length; i += 1) {
-      if (myArray[i].value === logoName) {
-        return myArray[i];
+  searchSRC(logoName, wallets) {
+    return wallets.find((wallet) => wallet.name === logoName);
+  }
+
+  handleBack() {
+    this.setState(({ current }) => ({ current: current - 1 }));
+  }
+
+  handleNext(stepData) {
+    const { wallets } = this.props;
+    this.setState((prev) => {
+      const { data, current } = prev;
+      data[current] = stepData;
+      if (current === 2) {
+        return this.props.handleSubmit(data);
       }
-    }
-    return '';
-  }
-
-  changeSelectedWallet(value) {
-    this.setState({
-      selectedWallet: this.searchSRC(value, walletData),
-      disabled: false,
+      if (current === 0) {
+        const selectedWallet = this.searchSRC(stepData.coin, wallets);
+        return { data, current: current + 1, selectedWallet };
+      }
+      return { data, current: current + 1 };
     });
   }
 
-  disbaleAgain() {
-    this.setState(
-      {
-        disabled: true,
-        selectedWallet: { src: '', value: '' },
-      }
-  );
-  }
-
-  next() {
-    const current = this.state.current + 1;
-    this.setState({ current });
-  }
-
-  prev() {
-    const current = this.state.current - 1;
-    this.setState({ current });
-    if (current === 0) {
-      this.disbaleAgain();
-    }
-  }
-  handleBack() {
-    const current = this.state.current - 1;
-    this.setState({ current });
-    if (current === 0) {
-      this.disbaleAgain();
-    }
-  }
-  handleNext(data) {
-    if (data.Address !== undefined && data.key !== undefined) {
-      const current = this.state.current + 1;
-      this.setState({ current });
-    }
-  }
-  handleFinish() {
-    // console.log('data', data);
-    message.success('Processing complete!');
-  }
-  handleNext2() {
-    const current = this.state.current + 1;
-    this.setState({ current });
-  }
   render() {
-    const { current } = this.state;
-
+    const { current, data, selectedWallet } = this.state;
+    const { onBackIcon, wallets } = this.props;
     const steps = [
       {
         title: 'First',
         content: (
           <ImportWallet
-            changeSelectedWallet={this.changeSelectedWallet}
-            onGoBack={this.disbaleAgain}
-            handleNext2={this.handleNext2}
-            wallets={walletData}
+            handleNext={this.handleNext}
+            wallets={wallets}
           />
         ),
       },
       {
         title: 'Second',
         content: <ImportWalletForm
-          wallet={this.state.selectedWallet}
+          wallet={selectedWallet}
           handleBack={this.handleBack}
           handleNext={this.handleNext}
         />,
@@ -159,17 +76,27 @@ export default class ImportWalletSteps extends React.Component {
         title: 'Last',
         content: (
           <ImportWalletNameForm
-            wallet={this.state.selectedWallet}
-            onGoBack={this.prev}
+            wallet={selectedWallet}
             handleBack={this.handleBack}
-            handleFinish={this.handleFinish}
+            handleNext={this.handleNext}
           />
         ),
       },
     ];
     return (
       <SpaceBetween>
-        <div>{steps[this.state.current].content}</div>
+        <Between>
+          <Flex>
+            <LeftArrow type="arrow-left" onClick={() => onBackIcon()} />
+            <SpanText>Importing {data[0] && data[0].coin} Wallet</SpanText>
+          </Flex>
+          <div>
+            <CreateButton>
+              <Icon type="plus" />Create new wallet
+            </CreateButton>
+          </div>
+        </Between>
+        {steps[this.state.current].content}
         <div>
           <TextDiv>
             Step {this.state.current + 1} of {steps.length}

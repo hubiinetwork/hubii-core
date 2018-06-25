@@ -1,16 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Icon } from 'antd';
 import {
-  Flex,
   Coins,
   Image,
   Center,
-  Between,
-  SpanText,
-  LeftArrow,
   CoinButton,
-  CreateButton,
   ButtonDiv,
   StyledSpan,
   StyledButton,
@@ -20,51 +14,30 @@ class ImportWallet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      disabled: true,
+      currentCoin: '',
     };
     this.onChange = this.onChange.bind(this);
-    this.onGoBack = this.onGoBack.bind(this);
-    this.handleNext2 = this.handleNext2.bind(this);
+    this.handleNext = this.handleNext.bind(this);
   }
 
   onChange(e) {
-    const { changeSelectedWallet } = this.props;
-    if (changeSelectedWallet) {
-      changeSelectedWallet(e.target.value);
-      this.setState({ disabled: false });
-    }
+    this.setState({ currentCoin: e.target.value });
   }
-  onGoBack() {
-    const { onGoBack } = this.props;
-    if (onGoBack) {
-      this.props.onGoBack();
-    }
-  }
-  handleNext2(e) {
-    // const { changeSelectedWallet } = this.props;
-    const { handleNext2 } = this.props;
+
+  handleNext(e) {
+    const { handleNext } = this.props;
+    const { currentCoin } = this.state;
     e.preventDefault();
-    // console.log('here', changeSelectedWallet);
-    handleNext2();
+    handleNext({ coin: currentCoin });
   }
 
   render() {
+    const { currentCoin } = this.state;
     return (
       <div>
-        <Between>
-          <Flex>
-            <LeftArrow type="arrow-left" onClick={this.onGoBack} />
-            <SpanText>Importing Wallet</SpanText>
-          </Flex>
-          <div>
-            <CreateButton>
-              <Icon type="plus" />Create new wallet
-            </CreateButton>
-          </div>
-        </Between>
         <Coins onChange={this.onChange}>
           {this.props.wallets.map((wallet) => (
-            <CoinButton value={wallet.value} key={wallet.value}>
+            <CoinButton value={wallet.name} key={wallet.name}>
               <Center>
                 <Image src={wallet.src} />
               </Center>
@@ -72,7 +45,7 @@ class ImportWallet extends React.Component {
           ))}
         </Coins>
         <ButtonDiv>
-          <StyledButton disabled={this.state.disabled} onClick={this.handleNext2}>
+          <StyledButton disabled={currentCoin === ''} onClick={this.handleNext}>
             <StyledSpan>Next</StyledSpan>
           </StyledButton>
         </ButtonDiv>
@@ -86,18 +59,11 @@ ImportWallet.propTypes = {
    * Array of contacts whose list is to be shown.
    */
   wallets: PropTypes.array.isRequired,
-  /**
-   * Function to be executed when back button is pressed
-   */
-  onGoBack: PropTypes.func,
     /**
    * Function to be executed when back button is pressed
    */
-  handleNext2: PropTypes.func,
-  /**
-   * Function to be executed when wallet is selected
-   */
-  changeSelectedWallet: PropTypes.func,
+  handleNext: PropTypes.func,
+
 };
 
 export default ImportWallet;
