@@ -34,21 +34,55 @@ export class WalletManager extends React.PureComponent {
     this.onTabsChange = this.onTabsChange.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.showModal = this.showModal.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
+
   onTabsChange(key) {
     this.props.history.push(key);
   }
+
+  onSubmit(data) {
+    if (data.address) {
+      let storage = [];
+      if (JSON.parse(localStorage.getItem('contactBook'))) {
+        storage = JSON.parse(localStorage.getItem('contactBook'));
+        const preExisiting = storage.filter((contact) => contact.address === data.address);
+        if (preExisiting.length) {
+          return console.log(`You already have this guy under ${preExisiting[0].name}`);
+        }
+      }
+      storage.push({ ...data });
+      localStorage.setItem('contactBook', JSON.stringify(storage));
+    }
+    this.hideModal();
+    return null;
+  }
+
+  onDelete(data) {
+    const storage = JSON.parse(localStorage.getItem('contactBook'));
+    if (storage) {
+      const remainingList = storage.filter((contact) => contact.address !== data.address);
+      if (remainingList.length === storage.length) {
+        console.log('You did not delete anything');
+      } else {
+        localStorage.setItem('contactBook', JSON.stringify(remainingList));
+      }
+    }
+  }
+
   showModal(type) {
     this.setState({
       visible: true,
       type,
     });
   }
+
   hideModal() {
     this.setState({
       visible: false,
     });
   }
+
 
   render() {
     const { history, match } = this.props;
@@ -69,7 +103,7 @@ export class WalletManager extends React.PureComponent {
         break;
       case 'addContact':
         modal = (<AddNewContactModal
-          goBack={this.state.visible}
+          onSubmit={(e) => this.onSubmit(e)}
         />);
         break;
       default:

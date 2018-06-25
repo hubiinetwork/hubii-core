@@ -10,27 +10,37 @@ const selectWalletManagerDomain = (state) => state.get('walletManager');
  */
 const makeSelectPasswordInput = () => createSelector(
   selectWalletManagerDomain,
-  (depositPageDomain) => depositPageDomain.getIn(['inputs', 'password'])
+  (walletManagerDomain) => walletManagerDomain.getIn(['inputs', 'password'])
 );
 
 const makeSelectDerivationPathInput = () => createSelector(
   selectWalletManagerDomain,
-  (depositPageDomain) => depositPageDomain.getIn(['inputs', 'derivationPath'])
+  (walletManagerDomain) => walletManagerDomain.getIn(['inputs', 'derivationPath'])
 );
 
 const makeSelectNewWalletNameInput = () => createSelector(
   selectWalletManagerDomain,
-  (depositPageDomain) => depositPageDomain.getIn(['inputs', 'newWalletName'])
+  (walletManagerDomain) => walletManagerDomain.getIn(['inputs', 'newWalletName'])
 );
 
 const makeSelectSelectedWalletName = () => createSelector(
   selectWalletManagerDomain,
-  (depositPageDomain) => depositPageDomain.get('selectedWalletName')
+  (walletManagerDomain) => walletManagerDomain.get('selectedWalletName')
 );
 
 const makeSelectWallets = () => createSelector(
   selectWalletManagerDomain,
-  (depositPageDomain) => depositPageDomain.get('wallets')
+  (walletManagerDomain) => walletManagerDomain.get('wallets')
+);
+
+const makeSelectLoading = () => createSelector(
+  selectWalletManagerDomain,
+  (walletManagerDomain) => walletManagerDomain.get('loading')
+);
+
+const makeSelectErrors = () => createSelector(
+  selectWalletManagerDomain,
+  (walletManagerDomain) => walletManagerDomain.get('errors')
 );
 
 export {
@@ -40,4 +50,6 @@ export {
   makeSelectSelectedWalletName,
   makeSelectWallets,
   makeSelectDerivationPathInput,
+  makeSelectLoading,
+  makeSelectErrors,
 };
