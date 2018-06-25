@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from 'antd';
+import PropTypes from 'prop-types';
 import {
   TextDiv,
   SpaceBetween,
@@ -112,3 +113,8 @@ export default class ImportWalletSteps extends React.Component {
   }
 }
 
+ImportWalletSteps.propTypes = {
+  wallets: PropTypes.array,
+  handleSubmit: PropTypes.func,
+  onBackIcon: PropTypes.func,
+};
