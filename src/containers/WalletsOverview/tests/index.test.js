@@ -169,30 +169,6 @@ describe('WalletsOverview', () => {
         expect(loadWalletsBalancesSpy.mock.calls).toEqual([['test2', '0xabcd2']]);
       });
     });
-    describe('#convertWalletsList', () => {
-      it('should convert wallets state into array', () => {
-        const instance = dom.instance();
-        const walletsList = instance.convertWalletsList(params.wallets);
-        const expected = [
-                    { encrypted: { address: 'abcd1' }, name: 'test1', type: 'software' },
-                    { encrypted: { address: 'abcd2' }, name: 'test2', type: 'software' },
-        ];
-        expect(walletsList).toEqual(expected);
-      });
-      it('should ignore invalid wallets with invalid encrypted json', () => {
-        const instance = dom.instance();
-        const walletStates = params.wallets
-                    .setIn(['software', 'test3', 'encrypted'], 'invalid json')
-                    .setIn(['software', 'test4', 'encrypted'], '{"address": "abcd4"}');
-        const walletsList = instance.convertWalletsList(walletStates);
-        const expected = [
-                    { encrypted: { address: 'abcd1' }, name: 'test1', type: 'software' },
-                    { encrypted: { address: 'abcd2' }, name: 'test2', type: 'software' },
-                    { encrypted: { address: 'abcd4' }, name: 'test4', type: 'software' },
-        ];
-        expect(walletsList).toEqual(expected);
-      });
-    });
     describe('#getWalletCardsData', () => {
       it('should transform wallets array into cards structure', () => {
         const instance = dom.instance();

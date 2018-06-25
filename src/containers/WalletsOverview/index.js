@@ -13,7 +13,10 @@ import { SectionHeading } from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
 
+import {convertWalletsList} from 'utils/wallet'
+
 import {WalletCardsCol} from './style.js'
+
 export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(...args) {
     super(...args);
@@ -27,7 +30,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
   componentDidUpdate(prevProps) {
     const {wallets, loadWalletBalances} = this.props
     if (prevProps.wallets !== wallets) {
-      let walletCardsData = this.convertWalletsList(wallets)
+      let walletCardsData = convertWalletsList(wallets)
       walletCardsData.forEach(wallet => {
         if (!wallet.balances && !wallet.loadingBalancesError && !wallet.loadingBalances) {
           loadWalletBalances(wallet.name, `0x${wallet.encrypted.address}`)
@@ -43,7 +46,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
   getWalletCardsData (walletsState) {
     const {loadWalletBalances} = this.props
-    return this.convertWalletsList(walletsState).map(wallet => {
+    return convertWalletsList(walletsState).map(wallet => {
       let assets, usdValue = 0
       if (wallet.balances) {
         assets = wallet.balances.map(token => {
@@ -70,26 +73,6 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     })
   }
   
-  convertWalletsList(walletsState) {
-    const walletsJSON = walletsState.toJS()
-    const wallets = []
-    Object.keys(walletsJSON).forEach(type => {
-      Object.keys(walletsJSON[type]).forEach(walletName => {
-        try {
-          const wallet = walletsJSON[type][walletName]
-          wallet.encrypted = JSON.parse(wallet.encrypted)
-          wallet.type = type
-          wallet.name = walletName
-          wallets.push(wallet)
-        }catch (e) {
-          return
-        }
-      })
-    })
-
-    return wallets
-  }
-
   getBreakdown(wallets) {
     const tokenValues = {}
     const balanceSum = wallets.reduce((accumulator, current) => {
