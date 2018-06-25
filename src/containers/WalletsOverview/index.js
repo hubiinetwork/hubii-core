@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
-import styled from 'styled-components';
 
 import { makeSelectWallets } from 'containers/WalletManager/selectors';
 import { loadWalletBalances, loadWallets } from 'containers/WalletManager/actions';
@@ -121,7 +120,6 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
   render() {
     const {wallets} = this.props
-
     const walletCards = this.getWalletCardsData(wallets)
     const summary = this.getBreakdown(walletCards)
     return (

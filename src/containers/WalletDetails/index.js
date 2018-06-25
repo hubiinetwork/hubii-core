@@ -1,20 +1,28 @@
 import { Icon, Tabs } from 'antd';
-import PropTypes from 'prop-types';
 import * as React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 import { Redirect } from 'react-router-dom';
-// import WalletsOverview from 'containers/WalletsOverview';
+import { makeSelectWallets } from 'containers/WalletManager/selectors';
+import { loadWalletBalances, loadWallets } from 'containers/WalletManager/actions';
 import WalletHeader from 'components/WalletHeader';
+import { convertWalletsList, getTotalUSDValue } from 'utils/wallet';
+import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
+import reducer from 'containers/WalletManager/reducer';
+import saga from 'containers/WalletManager/saga';
 import Tab from '../../components/ui/Tab';
+
 import {
   Wrapper,
   TabsLayout,
-  // StyledButton,
-  // WalletsTabHeader,
 } from './index.style';
 
 const TabPane = Tabs.TabPane;
 
-export default class WalletDetails extends React.PureComponent {
+export class WalletDetails extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +33,17 @@ export default class WalletDetails extends React.PureComponent {
     this.showModal = this.showModal.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
   }
-
+  componentDidMount() {
+    this.props.loadWallets();
+  }
+  componentDidUpdate(prevProps) {
+    let currentWallet = this.getMatchedWallet()
+    if (prevProps.wallets !== this.props.wallets && currentWallet) {
+      if (!currentWallet.balances && !currentWallet.loadingBalancesError && !currentWallet.loadingBalances) {
+        this.props.loadWalletBalances(currentWallet.name, `0x${currentWallet.encrypted.address}`)
+      }
+    }
+  }
   onTabsChange(key) {
     this.props.history.push(key);
   }
@@ -43,16 +61,33 @@ export default class WalletDetails extends React.PureComponent {
     });
   }
 
+  getMatchedWallet () {
+    const {match, wallets} = this.props
+    if (!wallets) {
+      return null
+    }
+    const walletsList = convertWalletsList(wallets);
+    const matchedWallet = walletsList.find((wallet) => `0x${wallet.encrypted.address}` === match.params.address);
+    return matchedWallet
+  }
+
   render() {
     const { history, match } = this.props;
+    const currentWallet = this.getMatchedWallet()
+    if (!currentWallet) {
+      return (null);
+    }
+
+    const totalUSDValue = getTotalUSDValue(currentWallet.balances);
+
     return (
       <Wrapper>
         <TabsLayout>
           <WalletHeader
             iconType="home"
-            name="Ledger Nano S"
+            name={currentWallet.name}
             address={`${match.params.address}`}
-            balance={12.34}
+            balance={totalUSDValue}
             onIconClick={this.onHomeClick}
           />
         </TabsLayout>
@@ -90,4 +125,28 @@ export default class WalletDetails extends React.PureComponent {
 WalletDetails.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
+  loadWallets: PropTypes.func.isRequired,
+  loadWalletBalances: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = createStructuredSelector({
+  wallets: makeSelectWallets(),
+});
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    loadWalletBalances: (...args) => dispatch(loadWalletBalances(...args)),
+    loadWallets: () => dispatch(loadWallets()),
+  };
+}
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+const withReducer = injectReducer({ key: 'walletManager', reducer });
+const withSaga = injectSaga({ key: 'walletManager', saga });
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect,
+)(WalletDetails);

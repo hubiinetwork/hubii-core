@@ -28,3 +28,14 @@ export function convertWalletsList(walletsState) {
   });
   return wallets;
 }
+
+export function getTotalUSDValue(balances) {
+  if (!balances) {
+    return 0;
+  }
+  const assets = balances.map((token) => ({
+    amount: parseInt(token.balance, 10) / (10 ** token.decimals),
+    price: token.price,
+  }));
+  return assets.reduce((accumulator, current) => accumulator + (parseFloat(current.price.USD, 10) * current.amount), 0);
+}
