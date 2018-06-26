@@ -16,6 +16,7 @@ import walletManager, {
   cacheNewWallet,
   loadWallets,
   loadWalletBalances,
+  transfer,
 } from '../saga';
 import {
   CREATE_NEW_WALLET,
@@ -29,6 +30,7 @@ import {
   createNewWalletFailed,
   decryptWalletSuccess,
   decryptWalletFailed,
+  showDecryptWalletModal,
   loadWalletsSuccess,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
@@ -246,6 +248,19 @@ describe('load wallets saga', () => {
       .put(loadWalletBalancesError(walletName, error))
       .run();
   });
+
+  describe('transfer', () => {
+    it('should trigger SHOW_DESCRYPT_WALLET_MODAL action when the wallet is not decrypted yet', () => {
+      const walletName = 'wallet name'
+      const wallet = {name: walletName}
+      return expectSaga(transfer, { wallet })
+      .put(showDecryptWalletModal(walletName))
+      .run();
+    })
+    it('should transfer to a ether wallet', () => {
+
+    })
+  })
 });
 
 describe('root Saga', () => {

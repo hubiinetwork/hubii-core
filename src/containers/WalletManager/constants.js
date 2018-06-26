@@ -4,7 +4,7 @@
  *
  */
 
-export const SET_CURRENT_WALLET_ADDRESS = 'src/WalletManager/SET_CURRENT_WALLET_ADDRESS';
+export const SET_CURRENT_WALLET = 'src/WalletManager/SET_CURRENT_WALLET';
 export const LOAD_WALLETS = 'src/WalletManager/LOAD_WALLETS';
 export const LOAD_WALLETS_SUCCESS = 'src/WalletManager/LOAD_WALLETS_SUCCESS';
 
@@ -19,3 +19,8 @@ export const CREATE_NEW_WALLET_FAILURE = 'src/WalletManager/CREATE_NEW_WALLET_FA
 export const DECRYPT_WALLET = 'src/WalletManager/DECRYPT_WALLET';
 export const DECRYPT_WALLET_SUCCESS = 'src/WalletManager/DECRYPT_WALLET_SUCCESS';
 export const DECRYPT_WALLET_FAILURE = 'src/WalletManager/DECRYPT_WALLET_FAILURE';
+
+export const SHOW_DESCRYPT_WALLET_MODAL = 'src/WalletManager/SHOW_DESCRYPT_WALLET_MODAL';
+export const HIDE_DESCRYPT_WALLET_MODAL = 'src/WalletManager/HIDE_DESCRYPT_WALLET_MODAL';
+
+export const TRANSFER = 'src/WalletManager/TRANSFER';

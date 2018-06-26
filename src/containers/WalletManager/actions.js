@@ -11,12 +11,15 @@ import {
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
-  SET_CURRENT_WALLET_ADDRESS,
+  SHOW_DESCRYPT_WALLET_MODAL,
+  HIDE_DESCRYPT_WALLET_MODAL,
+  SET_CURRENT_WALLET,
   LOAD_WALLETS,
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
+  TRANSFER,
 } from './constants';
 
 export function createNewWallet(name, mnemonic, derivationPath, password) {
@@ -47,9 +50,12 @@ export function createNewWalletFailed(error) {
   };
 }
 
-export function decryptWallet() {
+export function decryptWallet(name, encryptedWallet, password) {
   return {
     type: DECRYPT_WALLET,
+    name, 
+    encryptedWallet,
+    password,
   };
 }
 
@@ -67,10 +73,25 @@ export function decryptWalletFailed(error) {
   };
 }
 
-export function setCurrentWalletAddress(walletAddress) {
+export function showDecryptWalletModal(walletName) {
   return {
-    type: SET_CURRENT_WALLET_ADDRESS,
-    walletAddress,
+    type: SHOW_DESCRYPT_WALLET_MODAL,
+    walletName,
+  };
+}
+
+export function hideDecryptWalletModal(walletName) {
+  return {
+    type: HIDE_DESCRYPT_WALLET_MODAL,
+    walletName,
+  };
+}
+
+export function setCurrentWallet(name, address) {
+  return {
+    type: SET_CURRENT_WALLET,
+    name,
+    address,
   };
 }
 
@@ -108,5 +129,17 @@ export function loadWalletBalancesError(name, error) {
     type: LOAD_WALLET_BALANCES_ERROR,
     name,
     error,
+  };
+}
+
+export function transfer(payload) {
+  return {
+    type: TRANSFER,
+    wallet: payload.wallet,
+    token: payload.token,
+    toAddress: payload.toAddress,
+    amount: payload.amount,
+    gasPrice: payload.gasPrice,
+    gasLimit: payload.gasLimit,
   };
 }

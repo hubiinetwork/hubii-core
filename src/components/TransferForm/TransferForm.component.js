@@ -22,7 +22,7 @@ export default class TransferForm extends React.PureComponent {
     super(props);
     this.state = {
       input: 0,
-      icon: this.props.currencies[0].coin,
+      token: this.props.currencies[0].coin,
       priceInDollar: this.props.currencies[0].rateUSD,
       address: this.props.recipients[0].address,
       amount: this.props.currencies[0].amount,
@@ -32,10 +32,16 @@ export default class TransferForm extends React.PureComponent {
     };
     this.state.ethInformation = this.props.currencies.find((currency) => currency.symbol === 'ETH');
     this.handleChange = this.handleChange.bind(this);
-    this.handleIcon = this.handleIcon.bind(this);
+    this.handleTokenChange = this.handleTokenChange.bind(this);
+    this.onSend = this.onSend.bind(this);
     this.handleRecipient = this.handleRecipient.bind(this);
     this.handleGasPriceChange = this.handleGasPriceChange.bind(this);
     this.handleGasLimitChange = this.handleGasLimitChange.bind(this);
+  }
+
+  onSend() {
+    const {token, address, input, gasPrice, gasLimit} = this.state
+    this.props.onSend(token, address, input, gasPrice, gasLimit)
   }
 
   handleChange(e) {
@@ -50,7 +56,7 @@ export default class TransferForm extends React.PureComponent {
     this.setState({ gasLimit: parseFloat(e.target.value) });
   }
 
-  handleIcon(value) {
+  handleTokenChange(value) {
     for (let i = 0; i < this.props.currencies.length; i += 1) {
       if (this.props.currencies[i].coin === value) {
         this.setState({
@@ -58,7 +64,7 @@ export default class TransferForm extends React.PureComponent {
         });
       }
     }
-    this.setState({ icon: value });
+    this.setState({ token: value });
   }
 
   handleRecipient(value) {
@@ -88,7 +94,7 @@ export default class TransferForm extends React.PureComponent {
                   alt="logo"
                 />
               </Image>
-              <Select defaultValue={this.state.selectedToken.symbol} onSelect={this.handleIcon}>
+              <Select defaultValue={this.state.selectedToken.symbol} onSelect={this.handleTokenChange}>
                 {this.props.currencies.map((currency) => (
                   <Option value={currency.symbol} key={currency.symbol}>
                     {currency.symbol}
@@ -154,6 +160,7 @@ export default class TransferForm extends React.PureComponent {
             totalAmount={parseInt(this.state.selectedToken.balance, 10) / (10 ** this.state.selectedToken.decimals)}
             selectedToken={this.state.selectedToken}
             ethInformation={this.state.ethInformation}
+            onSend={this.onSend}
           />
         </Col>
       </Row>
@@ -167,6 +174,6 @@ TransferForm.propTypes = {
     name: PropTypes.string,
     address: PropTypes.string,
   })),
-  // gasPrice: PropTypes.number,
+  onSend: PropTypes.func.isRequired,
   // gasPriceRate: PropTypes.number,
 };

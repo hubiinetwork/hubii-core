@@ -9,12 +9,18 @@ import WalletHeader from 'components/WalletHeader';
 import { convertWalletsList, getTotalUSDValue } from 'utils/wallet';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+import { Modal } from 'components/ui/Modal';
+import { FormItem, FormItemLabel } from "components/ui/Form"
+import Input from "components/ui/Input";
+import Button from "components/ui/Button";
 import WalletTransfer from 'containers/WalletTransfer';
 import { makeSelectWallets, makeSelectCurrentWallet } from 'containers/WalletManager/selectors';
 import {
   loadWalletBalances,
   loadWallets,
-  setCurrentWalletAddress,
+  setCurrentWallet,
+  decryptWallet,
+  hideDecryptWalletModal,
 } from 'containers/WalletManager/actions';
 import reducer from 'containers/WalletManager/reducer';
 import saga from 'containers/WalletManager/saga';
@@ -32,30 +38,45 @@ export class WalletDetails extends React.PureComponent {
     super(props);
     this.state = {
       visible: false,
+      password: ''
     };
+    this.decryptWallet = this.decryptWallet.bind(this)
+    this.onPasswordChange = this.onPasswordChange.bind(this)
   }
   componentDidMount() {
-    const { match } = this.props;
     this.props.loadWallets();
-    this.props.setCurrentWalletAddress(match.params.address);
   }
   componentDidUpdate(prevProps) {
+    const { match } = this.props;
+    const currentWallet = this.getCurrentWallet();
+    if (currentWallet && !this.props.currentWallet.name) {
+      this.props.setCurrentWallet(currentWallet.name, match.params.address);
+    }
     if (prevProps.currentWallet !== this.props.currentWallet) {
-      const currentWallet = this.getCurrentWallet();
       if (currentWallet && !currentWallet.balances && !currentWallet.loadingBalancesError && !currentWallet.loadingBalances) {
         this.props.loadWalletBalances(currentWallet.name, `0x${currentWallet.encrypted.address}`);
       }
     }
   }
-
+  
   getCurrentWallet() {
-    const { wallets } = this.props;
+    const { wallets, match } = this.props;
     if (!wallets) {
       return null;
     }
     const walletsList = convertWalletsList(wallets);
-    const matchedWallet = walletsList.find((wallet) => `0x${wallet.encrypted.address}` === this.props.currentWallet.toJS().address);
+    const matchedWallet = walletsList.find((wallet) => `0x${wallet.encrypted.address}` === match.params.address);
     return matchedWallet;
+  }
+
+  decryptWallet() {
+    const currentWallet = this.getCurrentWallet()
+    this.props.decryptWallet(currentWallet.name, JSON.stringify(currentWallet.encrypted), this.state.password)
+    console.log('decrypt')
+  }
+
+  onPasswordChange(e) {
+    this.setState({password: e.target.value})
   }
 
   render() {
@@ -64,9 +85,8 @@ export class WalletDetails extends React.PureComponent {
     if (!currentWallet) {
       return (null);
     }
-
     const totalUSDValue = getTotalUSDValue(currentWallet.balances);
-
+    console.log(this.props.currentWallet)
     return (
       <Wrapper>
         <TabsLayout>
@@ -77,6 +97,26 @@ export class WalletDetails extends React.PureComponent {
             balance={totalUSDValue}
             onIconClick={this.onHomeClick}
           />
+          <Modal
+              footer={null}
+              width={'585px'}
+              maskClosable
+              maskStyle={{ background: 'rgba(232,237,239,.65)' }}
+              style={{ marginTop: '20px' }}
+              visible={this.props.currentWallet.toJS().showDecryptModal}
+              onCancel={this.props.hideDecryptWalletModal}
+              destroyOnClose
+            >
+            <FormItem
+              label={<FormItemLabel>Password</FormItemLabel>}
+              colon={false}
+            >
+              <Input onChange={this.onPasswordChange} />
+            </FormItem>
+            <Button type="primary" onClick={this.decryptWallet}>
+              Confirm
+            </Button>
+          </Modal>
         </TabsLayout>
         <Tab activeKey={history.location.pathname} onChange={this.onTabsChange} animated={false}>
           <TabPane
@@ -117,7 +157,8 @@ WalletDetails.propTypes = {
   wallets: PropTypes.object.isRequired,
   loadWallets: PropTypes.func.isRequired,
   loadWalletBalances: PropTypes.func.isRequired,
-  setCurrentWalletAddress: PropTypes.func.isRequired,
+  setCurrentWallet: PropTypes.func.isRequired,
+  decryptWallet: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -129,7 +170,9 @@ export function mapDispatchToProps(dispatch) {
   return {
     loadWalletBalances: (...args) => dispatch(loadWalletBalances(...args)),
     loadWallets: () => dispatch(loadWallets()),
-    setCurrentWalletAddress: (...args) => dispatch(setCurrentWalletAddress(...args)),
+    setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
+    hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
+    decryptWallet: (...args) => dispatch(decryptWallet(...args)),
   };
 }
 

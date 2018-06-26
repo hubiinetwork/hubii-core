@@ -10,6 +10,7 @@ import {
   CREATE_NEW_WALLET_SUCCESS,
   LOAD_WALLETS,
   LOAD_WALLET_BALANCES,
+  TRANSFER,
 } from './constants';
 import {
   createNewWalletFailed,
@@ -19,6 +20,7 @@ import {
   loadWalletsSuccess,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
+  showDecryptWalletModal,
 } from './actions';
 
 // Creates a new software wallet
@@ -36,13 +38,16 @@ export function* createWallet({ name, mnemonic, derivationPath, password }) {
 
 // Decrypt a software wallet using a password
 export function* decryptWallet({ name, encryptedWallet, password }) {
+  console.log(name, encryptedWallet, password)
   try {
     if (!name) throw new Error('name undefined');
     const res = yield Wallet.fromEncryptedWallet(encryptedWallet, password);
     if (!res.privateKey) throw res;
     const decryptedWallet = res;
-    yield put(decryptWalletSuccess(name, decryptedWallet));
+    console.log(name, decryptedWallet)
+    yield put(decryptWalletSuccess(decryptedWallet));
   } catch (e) {
+    console.log(e)
     yield put(decryptWalletFailed(e));
   }
 }
@@ -77,6 +82,13 @@ export function* loadWalletBalances({ name, walletAddress }) {
   }
 }
 
+export function* transfer({wallet, toAddress, amount, gasPrice, gasLimit, contractAddress}) {
+  if (!wallet.decrypted) {
+    yield put(showDecryptWalletModal(wallet.name))
+    return
+  }
+}
+
 // Root watcher
 export default function* walletManager() {
   yield takeEvery(CREATE_NEW_WALLET, createWallet);
@@ -84,4 +96,5 @@ export default function* walletManager() {
   yield takeEvery(CREATE_NEW_WALLET_SUCCESS, cacheNewWallet);
   yield takeEvery(LOAD_WALLETS, loadWallets);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalances);
+  yield takeEvery(TRANSFER, transfer);
 }

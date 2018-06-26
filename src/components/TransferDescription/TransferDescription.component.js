@@ -32,7 +32,7 @@ export default class TransferDescription extends React.PureComponent {
       onCancel,
     } = this.props;
 
-    const totalUsd = parseInt(selectedToken.balance, 10) / ((10 ** selectedToken.decimals) * parseFloat(selectedToken.price.USD));
+    const totalUsd = (parseInt(selectedToken.balance, 10) / (10 ** selectedToken.decimals)) * parseFloat(selectedToken.price.USD);
     return (
       <WrapperDiv>
         <Row>

@@ -16,7 +16,9 @@ import {
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
-  SET_CURRENT_WALLET_ADDRESS,
+  SET_CURRENT_WALLET,
+  SHOW_DESCRYPT_WALLET_MODAL,
+  HIDE_DESCRYPT_WALLET_MODAL,
 } from './constants';
 
 const initialState = fromJS({
@@ -68,7 +70,7 @@ function walletManagerReducer(state = initialState, action) {
       return state
         .setIn(['loading', 'decryptingWallet'], false)
         .setIn(['inputs', 'password'], '')
-        .setIn(['wallets', state.get('selectedWallet'), 'decrypted'], action.decryptedWallet);
+        .setIn(['wallets', 'software', state.get('currentWallet').get('name'), 'decrypted'], action.decryptedWallet)
     case DECRYPT_WALLET_FAILURE:
       return state
         .setIn(['loading', 'decryptingWallet'], false)
@@ -88,9 +90,16 @@ function walletManagerReducer(state = initialState, action) {
       return state
         .setIn(['wallets', 'software', action.name, 'loadingBalances'], false)
         .setIn(['wallets', 'software', action.name, 'loadingBalancesError'], action.error);
-    case SET_CURRENT_WALLET_ADDRESS:
+    case SET_CURRENT_WALLET:
       return state
-        .setIn(['currentWallet', 'address'], action.walletAddress);
+        .setIn(['currentWallet', 'name'], action.name)
+        .setIn(['currentWallet', 'address'], action.address)
+    case SHOW_DESCRYPT_WALLET_MODAL:
+      return state
+        .setIn(['currentWallet', 'showDecryptModal'], true);
+    case HIDE_DESCRYPT_WALLET_MODAL:
+      return state
+        .setIn(['currentWallet', 'showDecryptModal'], false);
     default:
       return state;
   }

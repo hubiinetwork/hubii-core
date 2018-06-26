@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import TransferForm from 'components/TransferForm';
 import { makeSelectWallets, makeSelectCurrentWallet } from 'containers/WalletManager/selectors';
+import { transfer } from 'containers/WalletManager/actions';
 import { convertWalletsList } from 'utils/wallet';
 
 export class WalletTransfer extends React.PureComponent {
@@ -13,6 +14,13 @@ export class WalletTransfer extends React.PureComponent {
     this.state = {
       visible: false,
     };
+    this.onSend = this.onSend.bind(this)
+  }
+
+  onSend (token, toAddress, amount, gasPrice, gasLimit) {
+    console.log(amount, gasPrice, gasLimit, this.getMatchedWallet())
+    const wallet = this.getMatchedWallet()
+    this.props.transfer({wallet, token, toAddress, amount, gasPrice, gasLimit})
   }
 
   getMatchedWallet() {
@@ -27,6 +35,7 @@ export class WalletTransfer extends React.PureComponent {
 
   render() {
     const currentWallet = this.getMatchedWallet();
+    console.log(currentWallet)
     if (!currentWallet || !currentWallet.balances) {
       return (null);
     }
@@ -37,9 +46,10 @@ export class WalletTransfer extends React.PureComponent {
         recipients={[
           { name: 'Jacobo', address: '0xf400db37c54c535febca1b470fd1d23d30ac12wd' },
           { name: 'Liam', address: '0xf400db37c54c535febca1b470fd1d23d30acdd11' },
-          { name: 'Kata', address: '0xf400db37c54c535febca1b470fd1d23d30agh65' },
+          { name: 'Kata', address: '0x83498a45BB6cF75fda53e86Bfb7febc5E7ebfE58' },
         ]}
         currencies={currentWallet.balances}
+        onSend={this.onSend}
       />
     );
   }
@@ -56,8 +66,9 @@ const mapStateToProps = createStructuredSelector({
   currentWallet: makeSelectCurrentWallet(),
 });
 
-export function mapDispatchToProps() {
+export function mapDispatchToProps(dispatch) {
   return {
+    transfer: (...args) => dispatch(transfer(...args))
   };
 }
 
