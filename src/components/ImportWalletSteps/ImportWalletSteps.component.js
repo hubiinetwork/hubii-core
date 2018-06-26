@@ -2,18 +2,16 @@ import React from 'react';
 import { Icon } from 'antd';
 import PropTypes from 'prop-types';
 import {
-  TextDiv,
-  SpaceBetween,
   CreateButton,
   Between,
   SpanText,
   LeftArrow,
   Flex,
 } from './ImportWalletSteps.style';
-import { StyledStep, StepsCentered } from '../ui/Steps';
 import ImportWallet from './ImportWallet';
 import ImportWalletForm from './ImportWalletForm';
 import ImportWalletNameForm from './ImportWalletNameForm';
+import FormSteps from '../FormSteps';
 
 export default class ImportWalletSteps extends React.Component {
   constructor(props) {
@@ -55,6 +53,19 @@ export default class ImportWalletSteps extends React.Component {
   render() {
     const { current, data, selectedWallet } = this.state;
     const { onBackIcon, wallets } = this.props;
+    const FormNavigation = (
+      <Between>
+        <Flex>
+          <LeftArrow type="arrow-left" onClick={() => onBackIcon()} />
+          <SpanText>Importing {data[0] && data[0].coin} Wallet</SpanText>
+        </Flex>
+        <div>
+          <CreateButton>
+            <Icon type="plus" />Create new wallet
+            </CreateButton>
+        </div>
+      </Between>
+    );
     const steps = [
       {
         title: 'First',
@@ -63,15 +74,18 @@ export default class ImportWalletSteps extends React.Component {
             handleNext={this.handleNext}
             wallets={wallets}
           />
+
         ),
       },
       {
         title: 'Second',
-        content: <ImportWalletForm
-          wallet={selectedWallet}
-          handleBack={this.handleBack}
-          handleNext={this.handleNext}
-        />,
+        content: (
+          <ImportWalletForm
+            wallet={selectedWallet}
+            handleBack={this.handleBack}
+            handleNext={this.handleNext}
+          />
+          ),
       },
       {
         title: 'Last',
@@ -85,30 +99,7 @@ export default class ImportWalletSteps extends React.Component {
       },
     ];
     return (
-      <SpaceBetween>
-        <Between>
-          <Flex>
-            <LeftArrow type="arrow-left" onClick={() => onBackIcon()} />
-            <SpanText>Importing {data[0] && data[0].coin} Wallet</SpanText>
-          </Flex>
-          <div>
-            <CreateButton>
-              <Icon type="plus" />Create new wallet
-            </CreateButton>
-          </div>
-        </Between>
-        {steps[this.state.current].content}
-        <div>
-          <TextDiv>
-            Step {this.state.current + 1} of {steps.length}
-          </TextDiv>
-          <StepsCentered current={current}>
-            {steps.map((item) => (
-              <StyledStep key={item.title} title={item.title} />
-            ))}
-          </StepsCentered>
-        </div>
-      </SpaceBetween>
+      <FormSteps steps={steps} currentStep={current} beforeContent={FormNavigation} />
     );
   }
 }

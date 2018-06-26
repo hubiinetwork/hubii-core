@@ -124,9 +124,9 @@ ImportWalletNameForm.propTypes = {
    */
   handleNext: PropTypes.func,
     /**
-   * ant design form function
+   * ant design form
    */
-  form: PropTypes.func,
+  form: PropTypes.object,
 };
 
 export default Form.create()(ImportWalletNameForm);
