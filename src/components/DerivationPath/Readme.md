@@ -36,19 +36,19 @@ const addressData = [
     key: '1',
     address: '042f500111f0BDc4f6711xFBb1b73C4dcA266ce6Ef',
     balance: '0.05 ETH',
-    tokenBalance: '10 Downing Street'
+    tokenBalance: 123
   },
   {
     key: '2',
     address: '03C4f0BDc4xFA266cBb1b7f67dce6Ef42f01111150',
     balance: '0.05 ETH',
-    tokenBalance: '10 Downing Street'
+    tokenBalance: 321
   },
   {
     key: '3',
     address: '0xFBb150011BDc4f6111b73C4f07dcA266Ef426cef',
     balance: '0.05 ETH',
-    tokenBalance: '10 Downing Street'
+    tokenBalance: 542
   }
 ];
 

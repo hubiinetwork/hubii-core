@@ -187,3 +187,10 @@ export const StyledTable = styled(Table)`
   margin-left: -15px;
 }
 `;
+
+export const PreviousAddresses = styled(Button)`
+  color: ${({ theme }) => theme.palette.info};
+  max-height: 26px;
+  min-width: 157px;
+  margin-top: 8px;
+`;
