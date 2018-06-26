@@ -11,6 +11,7 @@ import {
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
+  SET_CURRENT_WALLET_ADDRESS,
   LOAD_WALLETS,
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
@@ -63,6 +64,13 @@ export function decryptWalletFailed(error) {
   return {
     type: DECRYPT_WALLET_FAILURE,
     error,
+  };
+}
+
+export function setCurrentWalletAddress(walletAddress) {
+  return {
+    type: SET_CURRENT_WALLET_ADDRESS,
+    walletAddress,
   };
 }
 

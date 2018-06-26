@@ -16,6 +16,7 @@ import {
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
+  SET_CURRENT_WALLET_ADDRESS,
 } from './constants';
 
 const initialState = fromJS({
@@ -36,6 +37,9 @@ const initialState = fromJS({
   wallets: {
     software: {},
     hardware: {},
+  },
+  currentWallet: {
+    address: '',
   },
 });
 
@@ -84,6 +88,9 @@ function walletManagerReducer(state = initialState, action) {
       return state
         .setIn(['wallets', 'software', action.name, 'loadingBalances'], false)
         .setIn(['wallets', 'software', action.name, 'loadingBalancesError'], action.error);
+    case SET_CURRENT_WALLET_ADDRESS:
+      return state
+        .setIn(['currentWallet', 'address'], action.walletAddress);
     default:
       return state;
   }

@@ -4,13 +4,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { Redirect } from 'react-router-dom';
-import { makeSelectWallets } from 'containers/WalletManager/selectors';
-import { loadWalletBalances, loadWallets } from 'containers/WalletManager/actions';
+import { Route, Redirect } from 'react-router-dom';
 import WalletHeader from 'components/WalletHeader';
 import { convertWalletsList, getTotalUSDValue } from 'utils/wallet';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+import WalletTransfer from 'containers/WalletTransfer';
+import { makeSelectWallets, makeSelectCurrentWallet } from 'containers/WalletManager/selectors';
+import {
+  loadWalletBalances,
+  loadWallets,
+  setCurrentWalletAddress,
+} from 'containers/WalletManager/actions';
 import reducer from 'containers/WalletManager/reducer';
 import saga from 'containers/WalletManager/saga';
 import Tab from '../../components/ui/Tab';
@@ -28,52 +33,34 @@ export class WalletDetails extends React.PureComponent {
     this.state = {
       visible: false,
     };
-    this.onTabsChange = this.onTabsChange.bind(this);
-    this.onHomeClick = this.onHomeClick.bind(this);
-    this.showModal = this.showModal.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
   }
   componentDidMount() {
+    const { match } = this.props;
     this.props.loadWallets();
+    this.props.setCurrentWalletAddress(match.params.address);
   }
   componentDidUpdate(prevProps) {
-    let currentWallet = this.getMatchedWallet()
-    if (prevProps.wallets !== this.props.wallets && currentWallet) {
-      if (!currentWallet.balances && !currentWallet.loadingBalancesError && !currentWallet.loadingBalances) {
-        this.props.loadWalletBalances(currentWallet.name, `0x${currentWallet.encrypted.address}`)
+    if (prevProps.currentWallet !== this.props.currentWallet) {
+      const currentWallet = this.getCurrentWallet();
+      if (currentWallet && !currentWallet.balances && !currentWallet.loadingBalancesError && !currentWallet.loadingBalances) {
+        this.props.loadWalletBalances(currentWallet.name, `0x${currentWallet.encrypted.address}`);
       }
     }
   }
-  onTabsChange(key) {
-    this.props.history.push(key);
-  }
-  onHomeClick() {
-    this.props.history.push('/wallets');
-  }
-  showModal() {
-    this.setState({
-      visible: true,
-    });
-  }
-  handleCancel() {
-    this.setState({
-      visible: false,
-    });
-  }
 
-  getMatchedWallet () {
-    const {match, wallets} = this.props
+  getCurrentWallet() {
+    const { wallets } = this.props;
     if (!wallets) {
-      return null
+      return null;
     }
     const walletsList = convertWalletsList(wallets);
-    const matchedWallet = walletsList.find((wallet) => `0x${wallet.encrypted.address}` === match.params.address);
-    return matchedWallet
+    const matchedWallet = walletsList.find((wallet) => `0x${wallet.encrypted.address}` === this.props.currentWallet.toJS().address);
+    return matchedWallet;
   }
 
   render() {
     const { history, match } = this.props;
-    const currentWallet = this.getMatchedWallet()
+    const currentWallet = this.getCurrentWallet();
     if (!currentWallet) {
       return (null);
     }
@@ -110,6 +97,7 @@ export class WalletDetails extends React.PureComponent {
             }
             key={`${match.url}/transfer`}
           >
+            <Route path={`${match.url}/transfer`} component={WalletTransfer} />
           </TabPane>
         </Tab>
         {
@@ -125,18 +113,23 @@ export class WalletDetails extends React.PureComponent {
 WalletDetails.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
+  currentWallet: PropTypes.object.isRequired,
+  wallets: PropTypes.object.isRequired,
   loadWallets: PropTypes.func.isRequired,
   loadWalletBalances: PropTypes.func.isRequired,
+  setCurrentWalletAddress: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   wallets: makeSelectWallets(),
+  currentWallet: makeSelectCurrentWallet(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
     loadWalletBalances: (...args) => dispatch(loadWalletBalances(...args)),
     loadWallets: () => dispatch(loadWallets()),
+    setCurrentWalletAddress: (...args) => dispatch(setCurrentWalletAddress(...args)),
   };
 }
 

@@ -4,6 +4,7 @@
  *
  */
 
+export const SET_CURRENT_WALLET_ADDRESS = 'src/WalletManager/SET_CURRENT_WALLET_ADDRESS';
 export const LOAD_WALLETS = 'src/WalletManager/LOAD_WALLETS';
 export const LOAD_WALLETS_SUCCESS = 'src/WalletManager/LOAD_WALLETS_SUCCESS';
 

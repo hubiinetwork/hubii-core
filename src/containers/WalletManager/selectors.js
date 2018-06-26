@@ -43,6 +43,11 @@ const makeSelectErrors = () => createSelector(
   (walletManagerDomain) => walletManagerDomain.get('errors')
 );
 
+const makeSelectCurrentWallet = () => createSelector(
+  selectWalletManagerDomain,
+  (walletManagerDomain) => walletManagerDomain.get('currentWallet')
+);
+
 export {
   selectWalletManagerDomain,
   makeSelectNewWalletNameInput,
@@ -52,4 +57,5 @@ export {
   makeSelectDerivationPathInput,
   makeSelectLoading,
   makeSelectErrors,
+  makeSelectCurrentWallet,
 };
