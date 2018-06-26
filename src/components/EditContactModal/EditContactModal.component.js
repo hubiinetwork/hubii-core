@@ -21,23 +21,21 @@ class EditContactModal extends React.Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
-  handleEdit(e) {
-    e.preventDefault();
-    const { onEdit } = this.props;
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        onEdit(values);
-      }
-    });
+  handleEdit() {
+    // e.preventDefault();
+    const { onEdit, name, address } = this.props;
+    // this.props.form.validateFields((err, values) => {
+    //   if (!err) {
+    //     onEdit(values);
+    //   }
+    // });
+    onEdit({ name, address });
   }
-  handleDelete(e) {
-    e.preventDefault();
-    const { onDelete } = this.props;
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        onDelete(values);
-      }
-    });
+  handleDelete() {
+    const { onDelete, name, address } = this.props;
+
+    // validation required
+    onDelete({ name, address });
   }
   render() {
     const { getFieldDecorator } = this.props.form;

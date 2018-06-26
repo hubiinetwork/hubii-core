@@ -7,11 +7,19 @@ import { Route, Redirect } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import WalletsOverview from 'containers/WalletsOverview';
+import ContactBook from 'containers/ContactBook';
 import Tab from 'components/ui/Tab';
 import AddRestoreWalletModal from 'components/AddRestoreWalletModal';
 import AddNewContactModal from 'components/AddNewContactModal';
-import ContactBook from 'containers/ContactBook';
 import { Modal } from 'components/ui/Modal';
+
+import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
+import { createNewWallet } from './actions';
+import reducer from './reducer';
+import saga from './saga';
+import { makeSelectLoading, makeSelectErrors } from './selectors';
+import { createContact } from '../ContactBook/actions';
 
 import {
   Wrapper,
@@ -32,9 +40,23 @@ export class WalletManager extends React.PureComponent {
     };
 
     this.onTabsChange = this.onTabsChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.showModal = this.showModal.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.handleAddWalletSubmit = this.handleAddWalletSubmit.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    const lastLoadingProps = prevProps.loading.toJS();
+    const currentLoadingProps = this.props.loading.toJS();
+    const currentErrorsProps = this.props.errors.toJS();
+
+    if (lastLoadingProps.creatingWallet &&
+        !currentLoadingProps.creatingWallet &&
+        !currentErrorsProps.creatingWalletError
+    ) {
+      this.hideModal();
+    }
   }
 
   onTabsChange(key) {
@@ -42,17 +64,8 @@ export class WalletManager extends React.PureComponent {
   }
 
   onSubmit(data) {
-    if (data.address) {
-      let storage = [];
-      if (JSON.parse(localStorage.getItem('contactBook'))) {
-        storage = JSON.parse(localStorage.getItem('contactBook'));
-        const preExisiting = storage.filter((contact) => contact.address === data.address);
-        if (preExisiting.length) {
-          return console.log(`You already have this guy under ${preExisiting[0].name}`);
-        }
-      }
-      storage.push({ ...data });
-      localStorage.setItem('contactBook', JSON.stringify(storage));
+    if (data) {
+      this.props.createContact(data.name, data.address, 'Striim');
     }
     this.hideModal();
     return null;
@@ -72,10 +85,14 @@ export class WalletManager extends React.PureComponent {
   }
 
 
+  handleAddWalletSubmit(params) {
+    this.props.createNewWallet(params.name, params.mnemonic, params.derivationPath, params.password);
+  }
+
   render() {
     const { history, match } = this.props;
-    let deleteContact;
 
+    let deleteContact;
     if (history.location.pathname !== `${match.url}/overview`) {
       deleteContact =
         (<StyledButton type="primary" onClick={() => this.showModal('deleteContact')} style={{ marginRight: '2rem' }}>
@@ -83,7 +100,6 @@ export class WalletManager extends React.PureComponent {
           Delete Contact
         </StyledButton>);
     }
-
     let modal;
     switch (this.state.type) {
       case 'deleteContact':
@@ -126,6 +142,7 @@ export class WalletManager extends React.PureComponent {
               destroyOnClose
             >
               {modal}
+
             </Modal>
           </WalletsTabHeader>
         </TabsLayout>
@@ -163,10 +180,31 @@ export class WalletManager extends React.PureComponent {
 WalletManager.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
+  createNewWallet: PropTypes.func.isRequired,
+  loading: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  createContact: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+  loading: makeSelectLoading(),
+  errors: makeSelectErrors(),
+});
 
-const withConnect = connect(mapStateToProps, null);
+export function mapDispatchToProps(dispatch) {
+  return {
+    createNewWallet: (...args) => dispatch(createNewWallet(...args)),
+    createContact: (...args) => dispatch(createContact(...args)),
+  };
+}
 
-export default compose(withConnect)(WalletManager);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+const withReducer = injectReducer({ key: 'walletManager', reducer });
+const withSaga = injectSaga({ key: 'walletManager', saga });
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect,
+)(WalletManager);

@@ -16,6 +16,7 @@ import {
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
+  LOAD_CONTACTS_SUCESS,
 } from './constants';
 
 export function createNewWallet(name, mnemonic, derivationPath, password) {
@@ -100,5 +101,14 @@ export function loadWalletBalancesError(name, error) {
     type: LOAD_WALLET_BALANCES_ERROR,
     name,
     error,
+  };
+}
+
+// Contacts
+
+export function loadContactsSuccess(contacts) {
+  return {
+    type: LOAD_CONTACTS_SUCESS,
+    contacts,
   };
 }

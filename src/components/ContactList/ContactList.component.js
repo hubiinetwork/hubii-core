@@ -45,7 +45,7 @@ export default class ContactList extends React.PureComponent {
   }
 
   handleDelete(e) {
-    console.log(e);
+    console.log(`hello${e.name}`);
     this.setState({ visible: false });
     this.props.onDelete(e);
   }

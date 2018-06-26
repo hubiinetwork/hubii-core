@@ -9,11 +9,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
+import StriimTabs, { TabPane } from 'components/ui/StriimTabs';
 
 import ContactList from 'components/ContactList';
 import ContactHeader from 'components/ContactHeader';
 import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
 import saga from './saga';
+import { loadAllContacts, removeContact } from './actions';
+import { makeSelectContacts } from './selectors';
+import reducer from './reducer';
 
 export class ContactBook extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -28,18 +34,12 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
     this.onDelete = this.onDelete.bind(this);
   }
 
+  componentDidMount() {
+    this.props.loadAllContacts();
+  }
+
   onDelete(data) {
-    const storage = JSON.parse(localStorage.getItem('contactBook'));
-    if (storage) {
-      const remainingList = storage.filter((contact) => contact.address !== data.address);
-      if (remainingList.length === storage.length) {
-        console.log('You did not delete anything');
-      } else {
-        localStorage.setItem('contactBook', JSON.stringify(remainingList));
-      }
-    }
-    this.setState({ recentFilterText: 'hello' });
-    return null;
+    this.props.removeContact(data.name, data.address, 'Striim');
   }
 
   filterSearchText(data, type) {
@@ -50,20 +50,19 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
   }
 
   render() {
-    console.log('rerender');
-    const storage = JSON.parse(localStorage.getItem('contactBook'));
+    let { contacts } = this.props;
+    contacts = contacts.toJS();
     const titleTabs = [
       {
         title: 'All Contacts',
         TabContent:
   <div style={{ borderRight: 'solid 1px black', lineHeight: '100rem' }}>
     <ContactList
-      data={this.filterSearchText(storage, 'fullFilterText')}
+      data={this.filterSearchText(contacts || [], 'fullFilterText')}
       onEdit={(values) => {
         console.log('Edited values are', values);
       }}
-      onDelete={(values) => this.onDelete(values)}
-
+      onDelete={(data) => this.props.removeContact(data)}
     />
   </div>,
       },
@@ -71,13 +70,11 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
         title: 'Striim Contacts',
         TabContent: <div style={{ borderRight: 'solid 1px black', lineHeight: '100rem' }}>
           <ContactList
-            data={this.filterSearchText(storage, 'fullFilterText')}
+            data={this.filterSearchText(contacts, 'fullFilterText')}
             onEdit={(values) => {
               console.log('Edited values are', values);
             }}
-            onDelete={(values) => {
-              console.log('Deleted values are', values);
-            }}
+            onDelete={(data) => this.props.removeContact(data)}
           />
         </div>,
       },
@@ -89,6 +86,7 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
           <meta name="description" content="Description of ContactBook" />
         </Helmet>
 
+
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <div style={{ color: 'white', fontSize: '1.3rem' }}>
             <ContactHeader
@@ -98,11 +96,11 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
             />
             <div style={{ borderRight: 'solid 1px black', lineHeight: '100rem' }}>
               <ContactList
-                data={this.filterSearchText(storage, 'recentFilterText')}
+                data={this.filterSearchText(contacts || [], 'recentFilterText')}
                 onEdit={(values) => {
                   console.log('Edited values are', values);
                 }}
-                onDelete={(values) => this.onDelete(values)}
+                onDelete={(data) => this.props.removeContact(data)}
               />
 
             </div>
@@ -118,6 +116,16 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
               onChange={((value) => this.setState({ fullFilterText: value }))}
             />
           </div>
+          <StriimTabs onChange={this.onTabChange}>
+            <TabPane tab="Payments" style={{ color: 'white' }}>
+              Content of Tab Pane 1
+              {/* <Route path={match.url} component={PageLoadingIndicator} /> */}
+            </TabPane>
+            <TabPane tab="Topup" style={{ color: 'white' }}>
+              Content of Tab Pane 2
+            </TabPane>
+
+          </StriimTabs>
         </div>
       </div>
     );
@@ -125,20 +133,29 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
 }
 
 ContactBook.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  contacts: PropTypes.array,
+  loadAllContacts: PropTypes.func,
+  removeContact: PropTypes.func,
 };
 
+const mapStateToProps = createStructuredSelector({
+  contacts: makeSelectContacts(),
+});
 
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    loadAllContacts: (...args) => dispatch(loadAllContacts(...args)),
+    removeContact: (...args) => dispatch(removeContact(...args)),
   };
 }
 
-const withConnect = connect(null, mapDispatchToProps);
-const withSaga = injectSaga({ key: 'contactBook', saga });
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+const withReducer = injectReducer({ key: 'contacts', reducer });
+const withSaga = injectSaga({ key: 'contacts', saga });
 
 export default compose(
+  withReducer,
   withSaga,
   withConnect,
 )(ContactBook);
