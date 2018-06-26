@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 
-const defaultDevEndpoint = 'http://localhost:8000/';
-const defaultProdEndpoint = 'https://api.striim.io/';
+const defaultDevEndpoint = 'https://api2.dev.hubii.net/';
+const defaultProdEndpoint = 'https://api2.prod.hubii.net/';
 
 // Inserts the dev or prod endpoint for the striim api server
 function getDefaultEndpoint() {

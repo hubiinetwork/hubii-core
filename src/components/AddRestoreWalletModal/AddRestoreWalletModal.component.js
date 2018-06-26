@@ -102,7 +102,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
                 </Wrapper>
               </RightTopButton>
             </div>
-            <AddWallet handleClose={this.props.handleClose} />
+            <AddWallet handleSubmit={this.props.handleAddWalletSubmit} />
           </div>
         )}
         {type === 'restore' && (
@@ -121,12 +121,12 @@ export default class AddRestoreWalletModal extends React.PureComponent {
                 />Restore Wallet
               </IconWrapper>
             </div>
-            <RestoreWallet handleClose={this.props.handleClose} />
+            <RestoreWallet />
           </div>
         )}
         {type === 'import' && (
           <div>
-            <ImportWalletSteps handleClose={this.props.handleClose} />
+            <ImportWalletSteps />
           </div>
         )}
       </div>
@@ -137,5 +137,5 @@ AddRestoreWalletModal.propTypes = {
   /**
    * Callback  function triggered when modal is closed.
    */
-  handleClose: PropTypes.func,
+  handleAddWalletSubmit: PropTypes.func,
 };

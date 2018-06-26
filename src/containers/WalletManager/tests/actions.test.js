@@ -5,16 +5,16 @@ import {
   decryptWallet,
   decryptWalletFailed,
   decryptWalletSuccess,
-  updateProgress,
+  loadWallets,
 } from '../actions';
 import {
   CREATE_NEW_WALLET,
   CREATE_NEW_WALLET_FAILURE,
   CREATE_NEW_WALLET_SUCCESS,
-  UPDATE_PROGRESS,
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
+  LOAD_WALLETS,
 } from '../constants';
 
 describe('WalletManager actions', () => {
@@ -102,14 +102,12 @@ describe('WalletManager actions', () => {
     });
   });
 
-  describe('updateProgress Action', () => {
-    it('returns expected output', () => {
-      const percent = 11;
+  describe('loadWallets Action', () => {
+    it('loadWallets', () => {
       const expected = {
-        type: UPDATE_PROGRESS,
-        percent,
+        type: LOAD_WALLETS,
       };
-      expect(updateProgress(percent)).toEqual(expected);
+      expect(loadWallets()).toEqual(expected);
     });
   });
 });

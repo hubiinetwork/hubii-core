@@ -8,10 +8,14 @@ import {
   CREATE_NEW_WALLET,
   CREATE_NEW_WALLET_FAILURE,
   CREATE_NEW_WALLET_SUCCESS,
-  UPDATE_PROGRESS,
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
+  LOAD_WALLETS,
+  LOAD_WALLETS_SUCCESS,
+  LOAD_WALLET_BALANCES,
+  LOAD_WALLET_BALANCES_SUCCESS,
+  LOAD_WALLET_BALANCES_ERROR,
 } from './constants';
 
 export function createNewWallet(name, mnemonic, derivationPath, password) {
@@ -62,9 +66,39 @@ export function decryptWalletFailed(error) {
   };
 }
 
-export function updateProgress(percent) {
+export function loadWallets() {
   return {
-    type: UPDATE_PROGRESS,
-    percent,
+    type: LOAD_WALLETS,
+  };
+}
+
+export function loadWalletsSuccess(wallets) {
+  return {
+    type: LOAD_WALLETS_SUCCESS,
+    wallets,
+  };
+}
+
+export function loadWalletBalances(name, walletAddress) {
+  return {
+    type: LOAD_WALLET_BALANCES,
+    name,
+    walletAddress,
+  };
+}
+
+export function loadWalletBalancesSuccess(name, tokenBalances) {
+  return {
+    type: LOAD_WALLET_BALANCES_SUCCESS,
+    name,
+    tokenBalances,
+  };
+}
+
+export function loadWalletBalancesError(name, error) {
+  return {
+    type: LOAD_WALLET_BALANCES_ERROR,
+    name,
+    error,
   };
 }

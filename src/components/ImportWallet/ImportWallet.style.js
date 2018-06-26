@@ -1,6 +1,7 @@
-import styled from 'styled-components';
-import Button from '../ui/Button';
 import { Icon, Radio } from 'antd';
+import styled from 'styled-components';
+
+import Button from '../ui/Button';
 
 export const Between = styled.div`
   display: flex;

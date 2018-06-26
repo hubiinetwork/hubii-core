@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import * as React from 'react';
 import { Icon } from 'antd';
 import {
@@ -9,15 +11,15 @@ import {
   CoinButton,
   Image,
   Center,
-  SpanText
+  SpanText,
 } from './ImportWallet.style';
 
 class ImportWallet extends React.Component {
-  onChange = e => {
+  onChange = (e) => {
     this.props.changeSelectedWallet &&
       this.props.changeSelectedWallet(e.target.value);
   };
-  onGoBack = e => {
+  onGoBack = (e) => {
     this.props.onGoBack && this.props.onGoBack();
   };
   render() {

@@ -6,13 +6,16 @@
 
 import { fromJS } from 'immutable';
 import {
+  LOAD_WALLETS_SUCCESS,
+  LOAD_WALLET_BALANCES,
+  LOAD_WALLET_BALANCES_SUCCESS,
+  LOAD_WALLET_BALANCES_ERROR,
   CREATE_NEW_WALLET_SUCCESS,
   CREATE_NEW_WALLET,
   CREATE_NEW_WALLET_FAILURE,
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
-  UPDATE_PROGRESS,
 } from './constants';
 
 const initialState = fromJS({
@@ -34,7 +37,6 @@ const initialState = fromJS({
     software: {},
     hardware: {},
   },
-  progress: 0,
 });
 
 function walletManagerReducer(state = initialState, action) {
@@ -42,12 +44,12 @@ function walletManagerReducer(state = initialState, action) {
     case CREATE_NEW_WALLET:
       return state
         .setIn(['loading', 'creatingWallet'], true)
+        .setIn(['errors', 'creatingWalletError'], null)
         .set('progress', 0);
     case CREATE_NEW_WALLET_SUCCESS:
       return state
         .setIn(['loading', 'creatingWallet'], false)
         .setIn(['inputs', 'password'], '')
-        .setIn(['errors', 'creatingWalletError'], null)
         .setIn(['wallets', 'software', action.name], fromJS(action.newWallet));
     case CREATE_NEW_WALLET_FAILURE:
       return state
@@ -56,20 +58,32 @@ function walletManagerReducer(state = initialState, action) {
     case DECRYPT_WALLET:
       return state
         .setIn(['loading', 'decryptingWallet'], true)
+        .setIn(['errors', 'decryptingWalletError'], null)
         .set('progress', 0);
     case DECRYPT_WALLET_SUCCESS:
       return state
         .setIn(['loading', 'decryptingWallet'], false)
         .setIn(['inputs', 'password'], '')
-        .setIn(['errors', 'decryptingWalletError'], null)
         .setIn(['wallets', state.get('selectedWallet'), 'decrypted'], action.decryptedWallet);
     case DECRYPT_WALLET_FAILURE:
       return state
         .setIn(['loading', 'decryptingWallet'], false)
         .setIn(['errors', 'decryptingWalletError'], action.error);
-    case UPDATE_PROGRESS:
+    case LOAD_WALLETS_SUCCESS:
       return state
-        .set('progress', action.percent);
+        .set('wallets', fromJS(action.wallets));
+    case LOAD_WALLET_BALANCES:
+      return state
+        .setIn(['wallets', 'software', action.name, 'loadingBalances'], true);
+    case LOAD_WALLET_BALANCES_SUCCESS:
+      return state
+        .setIn(['wallets', 'software', action.name, 'loadingBalances'], false)
+        .setIn(['wallets', 'software', action.name, 'loadingBalancesError'], null)
+        .setIn(['wallets', 'software', action.name, 'balances'], fromJS(action.tokenBalances.tokens || []));
+    case LOAD_WALLET_BALANCES_ERROR:
+      return state
+        .setIn(['wallets', 'software', action.name, 'loadingBalances'], false)
+        .setIn(['wallets', 'software', action.name, 'loadingBalancesError'], action.error);
     default:
       return state;
   }
