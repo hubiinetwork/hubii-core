@@ -19,23 +19,23 @@ import {
   FormItem,
   StyledTable as Table,
   Address,
-  PreviousAddresses
+  PreviousAddresses,
 } from './DerivationPath.style';
 import { ModalFormInput } from '../ui/Modal';
 import Open from '../../../public/Images/open-new.svg';
 const columns = [
   {
     title: <Address>Your Address</Address>,
-    dataIndex: 'address'
+    dataIndex: 'address',
   },
   {
     title: 'Balance',
-    dataIndex: 'balance'
+    dataIndex: 'balance',
   },
   {
     title: 'Token Balance',
-    dataIndex: 'tokenBalance'
-  }
+    dataIndex: 'tokenBalance',
+  },
 ];
 
 class DerivationPath extends React.Component {
@@ -67,7 +67,7 @@ class DerivationPath extends React.Component {
 
   render() {
     const { walletName, paths, addresses } = this.props;
-    const newAddresses = oldAddresses => {
+    const newAddresses = (oldAddresses) => {
       for (let i = 0; i < oldAddresses.length; i += 1) {
         /* eslint-disable no-param-reassign */
         oldAddresses[i].tokenBalance = (
@@ -90,7 +90,7 @@ class DerivationPath extends React.Component {
           selectedRows
         );
       },
-      type: 'radio'
+      type: 'radio',
     };
 
     return (
@@ -114,7 +114,7 @@ class DerivationPath extends React.Component {
             size="small"
             onChange={this.handlePath}
           >
-            {paths.map(path => (
+            {paths.map((path) => (
               <RadioButtonWrapper key={path.title}>
                 <RadioButton value={path.title}>
                   <Tick type="check" />
@@ -184,7 +184,7 @@ DerivationPath.propTypes = {
   /**
    * object  of form validation by ant.design.
    */
-  form: PropTypes.object
+  form: PropTypes.object,
 };
 
 export default Form.create()(DerivationPath);
