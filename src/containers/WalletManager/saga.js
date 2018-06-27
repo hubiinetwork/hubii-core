@@ -1,6 +1,6 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { Wallet, utils, providers } from 'ethers';
-import { makeSelectWallets } from './selectors';
+import { makeSelectWallets, makeSelectWalletList } from './selectors';
 import request from '../../utils/request';
 import { getWalletsLocalStorage } from '../../utils/wallet';
 
@@ -9,6 +9,7 @@ import {
   DECRYPT_WALLET,
   CREATE_NEW_WALLET_SUCCESS,
   LOAD_WALLETS,
+  LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
   TRANSFER,
 } from './constants';
@@ -18,6 +19,7 @@ import {
   decryptWalletFailed,
   decryptWalletSuccess,
   loadWalletsSuccess,
+  loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
   showDecryptWalletModal,
@@ -45,7 +47,7 @@ export function* decryptWallet({ name, encryptedWallet, password }) {
     const res = yield Wallet.fromEncryptedWallet(encryptedWallet, password);
     if (!res.privateKey) throw res;
     const decryptedWallet = res;
-    yield put(decryptWalletSuccess(decryptedWallet));
+    yield put(decryptWalletSuccess(name, decryptedWallet));
   } catch (e) {
     yield put(decryptWalletFailed(e));
   }
@@ -71,7 +73,14 @@ export function* loadWallets() {
   yield put(loadWalletsSuccess(sessionWallets));
 }
 
-export function* loadWalletBalances({ name, walletAddress }) {
+export function* initWalletsBalances() {
+  const walletList = yield select(makeSelectWalletList());
+  for (let i = 0; i < walletList.length; i += 1) {
+    yield put(loadWalletBalances(walletList[i].name, `0x${walletList[i].address}`));
+  }
+}
+
+export function* loadWalletBalancesSaga({ name, walletAddress }) {
   const requestPath = `ethereum/wallets/${walletAddress}/balance`;
   try {
     const returnData = yield call(request, requestPath);
@@ -107,6 +116,7 @@ export default function* walletManager() {
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
   yield takeEvery(CREATE_NEW_WALLET_SUCCESS, cacheNewWallet);
   yield takeEvery(LOAD_WALLETS, loadWallets);
-  yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalances);
+  yield takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances);
+  yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
   yield takeEvery(TRANSFER, transfer);
 }

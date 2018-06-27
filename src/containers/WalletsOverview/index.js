@@ -7,7 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
 
 import { makeSelectWallets } from 'containers/WalletManager/selectors';
-import { loadWalletBalances, loadWallets } from 'containers/WalletManager/actions';
+import { loadWallets } from 'containers/WalletManager/actions';
 import { SectionHeading } from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
@@ -26,25 +26,12 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     this.props.loadWallets();
   }
 
-  componentDidUpdate(prevProps) {
-    const {wallets, loadWalletBalances} = this.props
-    if (prevProps.wallets !== wallets) {
-      let walletCardsData = convertWalletsList(wallets)
-      walletCardsData.forEach(wallet => {
-        if (!wallet.balances && !wallet.loadingBalancesError && !wallet.loadingBalances) {
-          loadWalletBalances(wallet.name, `0x${wallet.encrypted.address}`)
-        }
-      })
-    }
-  }
-
   handleCardClick(address) {
     const { history } = this.props;
     history.push(`/wallet/${address}`);
   }
 
   getWalletCardsData (walletsState) {
-    const {loadWalletBalances} = this.props
     return convertWalletsList(walletsState).map(wallet => {
       let assets, usdValue = 0
       if (wallet.balances) {
@@ -143,7 +130,6 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
 WalletsOverview.propTypes = {
   wallets: PropTypes.object.isRequired,
-  loadWalletBalances: PropTypes.func.isRequired,
   loadWallets: PropTypes.func.isRequired,
 };
 
@@ -153,7 +139,6 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    loadWalletBalances: (...args) => dispatch(loadWalletBalances(...args)),
     loadWallets: () => dispatch(loadWallets()),
   };
 }
