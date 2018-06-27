@@ -260,31 +260,27 @@ describe('load wallets saga', () => {
     const amount = 0.0001;
     const gasPrice = 30000;
     const gasLimit = 21000;
-    const transactionHash = {hash: ''}
-    it('should trigger SHOW_DESCRYPT_WALLET_MODAL action when the wallet is not decrypted yet', () => {
-      return expectSaga(transfer, { wallet: {name: walletName} })
+    const transactionHash = { hash: '' };
+    it('should trigger SHOW_DESCRYPT_WALLET_MODAL action when the wallet is not decrypted yet', () => expectSaga(transfer, { wallet: { name: walletName } })
       .put(showDecryptWalletModal(walletName))
-      .run();
-    });
-    it('should trigger transferSuccess action', () => {
-      return expectSaga(transfer, { wallet, token, toAddress, amount, gasPrice, gasLimit })
+      .run());
+    it('should trigger transferSuccess action', () => expectSaga(transfer, { wallet, token, toAddress, amount, gasPrice, gasLimit })
         .provide({
           call(effect) {
-            expect(effect.args[0]).toEqual(toAddress)
-            expect(effect.args[1]).toEqual(utils.parseEther(amount.toString()))
-            expect(effect.args[2]).toEqual({gasPrice, gasLimit})
-            return transactionHash
+            expect(effect.args[0]).toEqual(toAddress);
+            expect(effect.args[1]).toEqual(utils.parseEther(amount.toString()));
+            expect(effect.args[2]).toEqual({ gasPrice, gasLimit });
+            return transactionHash;
           },
         })
         .put(transferSuccess(transactionHash))
-        .run();
-    });
+        .run());
     it('should transfer to a ether wallet', () => {
-      const error = new Error()
+      const error = new Error();
       return expectSaga(transfer, { wallet, token, toAddress, amount, gasPrice, gasLimit })
         .provide({
           call() {
-            throw error
+            throw error;
           },
         })
         .put(transferError(error))

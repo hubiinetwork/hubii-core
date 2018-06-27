@@ -36,7 +36,7 @@ describe('walletManagerReducer', () => {
         hardware: {},
       },
       currentWallet: {
-        address: ""
+        address: '',
       },
     });
   });
@@ -88,7 +88,7 @@ describe('walletManagerReducer', () => {
 
   it('should handle decryptWalletSuccess action correctly', () => {
     const decryptedWallet = { id: 1234 };
-    const name = 'test'
+    const name = 'test';
     const expected = state
       .setIn(['loading', 'decryptingWallet'], false)
       .setIn(['inputs', 'password'], '')
