@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import TransferForm from 'components/TransferForm';
-import { makeSelectWallets, makeSelectCurrentWallet } from 'containers/WalletManager/selectors';
+import {
+  makeSelectCurrentWalletDetails,
+} from 'containers/WalletManager/selectors';
 import { transfer } from 'containers/WalletManager/actions';
-import { convertWalletsList } from 'utils/wallet';
 
 export class WalletTransfer extends React.PureComponent {
   constructor(props) {
@@ -18,22 +19,12 @@ export class WalletTransfer extends React.PureComponent {
   }
 
   onSend(token, toAddress, amount, gasPrice, gasLimit) {
-    const wallet = this.getMatchedWallet();
+    const wallet = this.props.currentWalletDetails;
     this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit });
   }
 
-  getMatchedWallet() {
-    const { wallets } = this.props;
-    if (!wallets) {
-      return null;
-    }
-    const walletsList = convertWalletsList(wallets);
-    const matchedWallet = walletsList.find((wallet) => `0x${wallet.encrypted.address}` === this.props.currentWallet.toJS().address);
-    return matchedWallet;
-  }
-
   render() {
-    const currentWallet = this.getMatchedWallet();
+    const currentWallet = this.props.currentWalletDetails;
     if (!currentWallet || !currentWallet.balances) {
       return (null);
     }
@@ -55,14 +46,12 @@ export class WalletTransfer extends React.PureComponent {
 }
 
 WalletTransfer.propTypes = {
-  wallets: PropTypes.object.isRequired,
-  currentWallet: PropTypes.object.isRequired,
+  currentWalletDetails: PropTypes.object.isRequired,
   transfer: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  wallets: makeSelectWallets(),
-  currentWallet: makeSelectCurrentWallet(),
+  currentWalletDetails: makeSelectCurrentWalletDetails(),
 });
 
 export function mapDispatchToProps(dispatch) {

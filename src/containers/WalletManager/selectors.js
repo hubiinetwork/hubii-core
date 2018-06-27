@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { convertWalletsList } from 'utils/wallet';
 
 /**
  * Direct selector to the walletManager state domain
@@ -48,6 +49,17 @@ const makeSelectCurrentWallet = () => createSelector(
   (walletManagerDomain) => walletManagerDomain.get('currentWallet')
 );
 
+const makeSelectWalletList = () => createSelector(
+  makeSelectWallets(),
+  (walletsState) => convertWalletsList(walletsState)
+);
+
+const makeSelectCurrentWalletDetails = () => createSelector(
+  makeSelectWalletList(),
+  makeSelectCurrentWallet(),
+  (walletList, currentWallet) => walletList.find((wallet) => `0x${wallet.encrypted.address}` === currentWallet.toJS().address) || {}
+);
+
 export {
   selectWalletManagerDomain,
   makeSelectNewWalletNameInput,
@@ -58,4 +70,6 @@ export {
   makeSelectLoading,
   makeSelectErrors,
   makeSelectCurrentWallet,
+  makeSelectWalletList,
+  makeSelectCurrentWalletDetails,
 };

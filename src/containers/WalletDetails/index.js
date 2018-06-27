@@ -6,17 +6,20 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Route, Redirect } from 'react-router-dom';
 import WalletHeader from 'components/WalletHeader';
-import { convertWalletsList, getTotalUSDValue } from 'utils/wallet';
+import { getTotalUSDValue } from 'utils/wallet';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { Modal } from 'components/ui/Modal';
-import { FormItem, FormItemLabel } from "components/ui/Form"
-import Input from "components/ui/Input";
-import Button from "components/ui/Button";
+import { FormItem, FormItemLabel } from 'components/ui/Form';
+import Input from 'components/ui/Input';
+import Button from 'components/ui/Button';
 import WalletTransfer from 'containers/WalletTransfer';
-import { makeSelectWallets, makeSelectCurrentWallet } from 'containers/WalletManager/selectors';
 import {
-  loadWalletBalances,
+  makeSelectCurrentWallet,
+  makeSelectWalletList,
+  makeSelectCurrentWalletDetails,
+} from 'containers/WalletManager/selectors';
+import {
   loadWallets,
   setCurrentWallet,
   decryptWallet,
@@ -38,55 +41,33 @@ export class WalletDetails extends React.PureComponent {
     super(props);
     this.state = {
       visible: false,
-      password: ''
+      password: '',
     };
-    this.decryptWallet = this.decryptWallet.bind(this)
-    this.onPasswordChange = this.onPasswordChange.bind(this)
-  }
-  componentDidMount() {
-    this.props.loadWallets();
-  }
-  componentDidUpdate(prevProps) {
-    const { match } = this.props;
-    const currentWallet = this.getCurrentWallet();
-    if (currentWallet && !this.props.currentWallet.name) {
-      this.props.setCurrentWallet(currentWallet.name, match.params.address);
-    }
-    if (prevProps.currentWallet !== this.props.currentWallet) {
-      if (currentWallet && !currentWallet.balances && !currentWallet.loadingBalancesError && !currentWallet.loadingBalances) {
-        this.props.loadWalletBalances(currentWallet.name, `0x${currentWallet.encrypted.address}`);
-      }
-    }
+    this.decryptWallet = this.decryptWallet.bind(this);
+    this.onPasswordChange = this.onPasswordChange.bind(this);
   }
   
-  getCurrentWallet() {
-    const { wallets, match } = this.props;
-    if (!wallets) {
-      return null;
-    }
-    const walletsList = convertWalletsList(wallets);
-    const matchedWallet = walletsList.find((wallet) => `0x${wallet.encrypted.address}` === match.params.address);
-    return matchedWallet;
-  }
-
-  decryptWallet() {
-    const currentWallet = this.getCurrentWallet()
-    this.props.decryptWallet(currentWallet.name, JSON.stringify(currentWallet.encrypted), this.state.password)
-    console.log('decrypt')
+  componentDidMount() {
+    this.props.loadWallets();
+    this.props.setCurrentWallet(null, this.props.match.params.address);
   }
 
   onPasswordChange(e) {
-    this.setState({password: e.target.value})
+    this.setState({ password: e.target.value });
+  }
+
+  decryptWallet() {
+    const currentWallet = this.props.currentWalletDetails;
+    this.props.decryptWallet(currentWallet.name, JSON.stringify(currentWallet.encrypted), this.state.password);
   }
 
   render() {
-    const { history, match } = this.props;
-    const currentWallet = this.getCurrentWallet();
+    const { history, match, currentWalletDetails } = this.props;
+    const currentWallet = currentWalletDetails;
     if (!currentWallet) {
       return (null);
     }
     const totalUSDValue = getTotalUSDValue(currentWallet.balances);
-    console.log(this.props.currentWallet)
     return (
       <Wrapper>
         <TabsLayout>
@@ -98,15 +79,15 @@ export class WalletDetails extends React.PureComponent {
             onIconClick={this.onHomeClick}
           />
           <Modal
-              footer={null}
-              width={'585px'}
-              maskClosable
-              maskStyle={{ background: 'rgba(232,237,239,.65)' }}
-              style={{ marginTop: '20px' }}
-              visible={this.props.currentWallet.toJS().showDecryptModal}
-              onCancel={this.props.hideDecryptWalletModal}
-              destroyOnClose
-            >
+            footer={null}
+            width={'585px'}
+            maskClosable
+            maskStyle={{ background: 'rgba(232,237,239,.65)' }}
+            style={{ marginTop: '20px' }}
+            visible={this.props.currentWallet.toJS().showDecryptModal}
+            onCancel={this.props.hideDecryptWalletModal}
+            destroyOnClose
+          >
             <FormItem
               label={<FormItemLabel>Password</FormItemLabel>}
               colon={false}
@@ -154,21 +135,21 @@ WalletDetails.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   currentWallet: PropTypes.object.isRequired,
-  wallets: PropTypes.object.isRequired,
+  currentWalletDetails: PropTypes.object.isRequired,
   loadWallets: PropTypes.func.isRequired,
-  loadWalletBalances: PropTypes.func.isRequired,
   setCurrentWallet: PropTypes.func.isRequired,
   decryptWallet: PropTypes.func.isRequired,
+  hideDecryptWalletModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  wallets: makeSelectWallets(),
   currentWallet: makeSelectCurrentWallet(),
+  walletList: makeSelectWalletList(),
+  currentWalletDetails: makeSelectCurrentWalletDetails(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
-    loadWalletBalances: (...args) => dispatch(loadWalletBalances(...args)),
     loadWallets: () => dispatch(loadWallets()),
     setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
     hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),

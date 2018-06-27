@@ -61,9 +61,10 @@ export function decryptWallet(name, encryptedWallet, password) {
   };
 }
 
-export function decryptWalletSuccess(decryptedWallet) {
+export function decryptWalletSuccess(name, decryptedWallet) {
   return {
     type: DECRYPT_WALLET_SUCCESS,
+    name,
     decryptedWallet,
   };
 }

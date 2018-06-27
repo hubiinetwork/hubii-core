@@ -70,7 +70,7 @@ function walletManagerReducer(state = initialState, action) {
       return state
         .setIn(['loading', 'decryptingWallet'], false)
         .setIn(['inputs', 'password'], '')
-        .setIn(['wallets', 'software', state.get('currentWallet').get('name'), 'decrypted'], action.decryptedWallet)
+        .setIn(['wallets', 'software', action.name, 'decrypted'], action.decryptedWallet);
     case DECRYPT_WALLET_FAILURE:
       return state
         .setIn(['loading', 'decryptingWallet'], false)
@@ -93,7 +93,7 @@ function walletManagerReducer(state = initialState, action) {
     case SET_CURRENT_WALLET:
       return state
         .setIn(['currentWallet', 'name'], action.name)
-        .setIn(['currentWallet', 'address'], action.address)
+        .setIn(['currentWallet', 'address'], action.address);
     case SHOW_DESCRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], true);
