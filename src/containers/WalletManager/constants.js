@@ -24,3 +24,5 @@ export const SHOW_DESCRYPT_WALLET_MODAL = 'src/WalletManager/SHOW_DESCRYPT_WALLE
 export const HIDE_DESCRYPT_WALLET_MODAL = 'src/WalletManager/HIDE_DESCRYPT_WALLET_MODAL';
 
 export const TRANSFER = 'src/WalletManager/TRANSFER';
+export const TRANSFER_SUCCESS = 'src/WalletManager/TRANSFER_SUCCESS';
+export const TRANSFER_ERROR = 'src/WalletManager/TRANSFER_ERROR';

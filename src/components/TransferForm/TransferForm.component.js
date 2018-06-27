@@ -22,7 +22,7 @@ export default class TransferForm extends React.PureComponent {
     super(props);
     this.state = {
       input: 0,
-      token: this.props.currencies[0].coin,
+      token: this.props.currencies[0].symbol,
       priceInDollar: this.props.currencies[0].rateUSD,
       address: this.props.recipients[0].address,
       amount: this.props.currencies[0].amount,
@@ -40,8 +40,8 @@ export default class TransferForm extends React.PureComponent {
   }
 
   onSend() {
-    const {token, address, input, gasPrice, gasLimit} = this.state
-    this.props.onSend(token, address, input, gasPrice, gasLimit)
+    const { token, address, input, gasPrice, gasLimit } = this.state;
+    this.props.onSend(token, address, input, gasPrice, gasLimit);
   }
 
   handleChange(e) {

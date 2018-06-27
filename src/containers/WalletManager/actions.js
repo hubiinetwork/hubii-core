@@ -20,6 +20,8 @@ import {
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
   TRANSFER,
+  TRANSFER_SUCCESS,
+  TRANSFER_ERROR,
 } from './constants';
 
 export function createNewWallet(name, mnemonic, derivationPath, password) {
@@ -53,7 +55,7 @@ export function createNewWalletFailed(error) {
 export function decryptWallet(name, encryptedWallet, password) {
   return {
     type: DECRYPT_WALLET,
-    name, 
+    name,
     encryptedWallet,
     password,
   };
@@ -141,5 +143,19 @@ export function transfer(payload) {
     amount: payload.amount,
     gasPrice: payload.gasPrice,
     gasLimit: payload.gasLimit,
+  };
+}
+
+export function transferSuccess(transactionHash) {
+  return {
+    type: TRANSFER_SUCCESS,
+    transactionHash,
+  };
+}
+
+export function transferError(error) {
+  return {
+    type: TRANSFER_ERROR,
+    error,
   };
 }

@@ -1,5 +1,5 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
-import { Wallet } from 'ethers';
+import { Wallet, utils, providers } from 'ethers';
 import { makeSelectWallets } from './selectors';
 import request from '../../utils/request';
 import { getWalletsLocalStorage } from '../../utils/wallet';
@@ -21,6 +21,8 @@ import {
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
   showDecryptWalletModal,
+  transferSuccess,
+  transferError,
 } from './actions';
 
 // Creates a new software wallet
@@ -38,16 +40,13 @@ export function* createWallet({ name, mnemonic, derivationPath, password }) {
 
 // Decrypt a software wallet using a password
 export function* decryptWallet({ name, encryptedWallet, password }) {
-  console.log(name, encryptedWallet, password)
   try {
     if (!name) throw new Error('name undefined');
     const res = yield Wallet.fromEncryptedWallet(encryptedWallet, password);
     if (!res.privateKey) throw res;
     const decryptedWallet = res;
-    console.log(name, decryptedWallet)
     yield put(decryptWalletSuccess(decryptedWallet));
   } catch (e) {
-    console.log(e)
     yield put(decryptWalletFailed(e));
   }
 }
@@ -82,10 +81,23 @@ export function* loadWalletBalances({ name, walletAddress }) {
   }
 }
 
-export function* transfer({wallet, toAddress, amount, gasPrice, gasLimit, contractAddress}) {
+export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit }) {
   if (!wallet.decrypted) {
-    yield put(showDecryptWalletModal(wallet.name))
-    return
+    yield put(showDecryptWalletModal(wallet.name));
+    return;
+  }
+  if (token !== 'ETH') {
+    return;
+  }
+  const etherWallet = new Wallet(wallet.decrypted.privateKey);
+  etherWallet.provider = providers.getDefaultProvider('ropsten');
+
+  const wei = utils.parseEther(amount.toString());
+  try {
+    const transactionHash = yield etherWallet.send(toAddress, wei, { gasPrice, gasLimit });
+    yield put(transferSuccess(transactionHash));
+  } catch (error) {
+    yield put(transferError(error));
   }
 }
 
