@@ -45,8 +45,10 @@ export class WalletDetails extends React.PureComponent {
     };
     this.decryptWallet = this.decryptWallet.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.onHomeClick = this.onHomeClick.bind(this);
+    this.onTabsChange = this.onTabsChange.bind(this);
   }
-  
+
   componentDidMount() {
     this.props.loadWallets();
     this.props.setCurrentWallet(null, this.props.match.params.address);
@@ -54,6 +56,16 @@ export class WalletDetails extends React.PureComponent {
 
   onPasswordChange(e) {
     this.setState({ password: e.target.value });
+  }
+
+  onHomeClick() {
+    const { history } = this.props;
+    history.push('/wallets');
+  }
+
+  onTabsChange(key) {
+    const { history } = this.props;
+    history.push(key);
   }
 
   decryptWallet() {
@@ -123,7 +135,7 @@ export class WalletDetails extends React.PureComponent {
         </Tab>
         {
           history.location.pathname === match.url &&
-          <Redirect from={match.url} to={`${match.url}/overview`} push />
+          <Redirect from={match.url} to={`${match.url}/transfer`} push />
         }
       </Wrapper>
     );
