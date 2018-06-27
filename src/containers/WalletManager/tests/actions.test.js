@@ -83,11 +83,13 @@ describe('WalletManager actions', () => {
   describe('decryptWalletSuccess Action', () => {
     it('returns expected output', () => {
       const decryptedWallet = { privatekey: '1234' };
+      const name = 'test'
       const expected = {
         type: DECRYPT_WALLET_SUCCESS,
         decryptedWallet,
+        name
       };
-      expect(decryptWalletSuccess(decryptedWallet)).toEqual(expected);
+      expect(decryptWalletSuccess(name, decryptedWallet)).toEqual(expected);
     });
   });
 

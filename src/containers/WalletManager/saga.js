@@ -103,7 +103,7 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
 
   const wei = utils.parseEther(amount.toString());
   try {
-    const transactionHash = yield etherWallet.send(toAddress, wei, { gasPrice, gasLimit });
+    const transactionHash = yield call(etherWallet.send, toAddress, wei, { gasPrice, gasLimit });
     yield put(transferSuccess(transactionHash));
   } catch (error) {
     yield put(transferError(error));

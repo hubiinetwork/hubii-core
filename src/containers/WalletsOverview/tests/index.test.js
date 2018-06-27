@@ -118,57 +118,6 @@ describe('WalletsOverview', () => {
         });
       });
     });
-    describe('#componentDidUpdate', () => {
-      it('should call loadWalletsBalancesSpy if wallets props has been changed', () => {
-        const instance = dom.instance();
-        instance.componentDidUpdate({});
-        expect(loadWalletsBalancesSpy.mock.calls).toEqual([['test1', '0xabcd1'], ['test2', '0xabcd2']]);
-      });
-      it('should not call loadWalletsBalancesSpy if wallets props has not been changed', () => {
-        const instance = dom.instance();
-        instance.componentDidUpdate({ wallets: params.wallets });
-        expect(loadWalletsBalancesSpy.mock.calls).toEqual([]);
-      });
-      it('should not call loadWalletsBalancesSpy when balances in state is not null', () => {
-        const walletsState = params.wallets.setIn(['software', 'test1', 'balances'], [{ price: { USD: 1 } }]);
-        dom = shallow(
-          <WalletsOverview
-            {...params}
-            wallets={walletsState}
-            loadWalletBalances={loadWalletsBalancesSpy}
-          />
-                );
-        const instance = dom.instance();
-        instance.componentDidUpdate({});
-        expect(loadWalletsBalancesSpy.mock.calls).toEqual([['test2', '0xabcd2']]);
-      });
-      it('should not call loadWalletsBalancesSpy when loadingBalancesError in state is not null', () => {
-        const walletsState = params.wallets.setIn(['software', 'test1', 'loadingBalancesError'], new Error());
-        dom = shallow(
-          <WalletsOverview
-            {...params}
-            wallets={walletsState}
-            loadWalletBalances={loadWalletsBalancesSpy}
-          />
-                );
-        const instance = dom.instance();
-        instance.componentDidUpdate({});
-        expect(loadWalletsBalancesSpy.mock.calls).toEqual([['test2', '0xabcd2']]);
-      });
-      it('should not call loadWalletsBalancesSpy when loadingBalancesError in state is not null', () => {
-        const walletsState = params.wallets.setIn(['software', 'test1', 'loadingBalances'], true);
-        dom = shallow(
-          <WalletsOverview
-            {...params}
-            wallets={walletsState}
-            loadWalletBalances={loadWalletsBalancesSpy}
-          />
-                );
-        const instance = dom.instance();
-        instance.componentDidUpdate({});
-        expect(loadWalletsBalancesSpy.mock.calls).toEqual([['test2', '0xabcd2']]);
-      });
-    });
     describe('#getWalletCardsData', () => {
       it('should transform wallets array into cards structure', () => {
         const instance = dom.instance();

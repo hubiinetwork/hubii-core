@@ -35,6 +35,9 @@ describe('walletManagerReducer', () => {
         software: {},
         hardware: {},
       },
+      currentWallet: {
+        address: ""
+      },
     });
   });
 
@@ -85,12 +88,13 @@ describe('walletManagerReducer', () => {
 
   it('should handle decryptWalletSuccess action correctly', () => {
     const decryptedWallet = { id: 1234 };
+    const name = 'test'
     const expected = state
       .setIn(['loading', 'decryptingWallet'], false)
       .setIn(['inputs', 'password'], '')
       .setIn(['errors', 'decryptingWalletError'], null)
-      .setIn(['wallets', state.get('selectedWallet'), 'decrypted'], decryptedWallet);
-    expect(walletManagerReducer(state, decryptWalletSuccess(decryptedWallet))).toEqual(expected);
+      .setIn(['wallets', 'software', name, 'decrypted'], decryptedWallet);
+    expect(walletManagerReducer(state, decryptWalletSuccess(name, decryptedWallet))).toEqual(expected);
   });
 
   it('should handle decryptWalletFailed action correctly', () => {

@@ -7,7 +7,7 @@ import { takeEvery, put } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
 import { fromJS } from 'immutable';
 import request from 'utils/request';
-import { Wallet } from 'ethers';
+import { Wallet, utils } from 'ethers';
 
 import walletManager, {
   createWallet,
@@ -34,6 +34,7 @@ import {
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
   transferSuccess,
+  transferError,
 } from '../actions';
 
 describe('createWallet saga', () => {
@@ -250,30 +251,43 @@ describe('load wallets saga', () => {
   });
 
   describe.only('transfer', () => {
+    const key = '0xf2249b753523f2f7c79a07c1b7557763af0606fb503d935734617bb7abaf06db';
+    const toAddress = '0xbfdc0c8e54af5719872a2edef8e65c9f4a3eae88';
+    const token = 'ETH';
+    const decrypted = new Wallet(key);
+    const walletName = 'wallet name';
+    const wallet = { decrypted, name: walletName };
+    const amount = 0.0001;
+    const gasPrice = 30000;
+    const gasLimit = 21000;
+    const transactionHash = {hash: ''}
     it('should trigger SHOW_DESCRYPT_WALLET_MODAL action when the wallet is not decrypted yet', () => {
-      const walletName = 'wallet name';
-      const wallet = { name: walletName };
-      return expectSaga(transfer, { wallet })
+      return expectSaga(transfer, { wallet: {name: walletName} })
       .put(showDecryptWalletModal(walletName))
       .run();
     });
-    it('should transfer to a ether wallet', () => {
-      const key = '0xf2249b753523f2f7c79a07c1b7557763af0606fb503d935734617bb7abaf06db';
-      const toAddress = '0xbfdc0c8e54af5719872a2edef8e65c9f4a3eae88';
-      const token = 'ETH';
-      const decrypted = new Wallet(key);
-      const wallet = { decrypted };
-      const amount = 0.0001;
-      const gasPrice = 30000;
-      const gasLimit = 21000;
+    it('should trigger transferSuccess action', () => {
       return expectSaga(transfer, { wallet, token, toAddress, amount, gasPrice, gasLimit })
-        // .provide({
-        //   call(effect) {
-        //     expect(effect.fn).toBe(request);
-        //     throw error;
-        //   },
-        // })
-        .put(transferSuccess())
+        .provide({
+          call(effect) {
+            expect(effect.args[0]).toEqual(toAddress)
+            expect(effect.args[1]).toEqual(utils.parseEther(amount.toString()))
+            expect(effect.args[2]).toEqual({gasPrice, gasLimit})
+            return transactionHash
+          },
+        })
+        .put(transferSuccess(transactionHash))
+        .run();
+    });
+    it('should transfer to a ether wallet', () => {
+      const error = new Error()
+      return expectSaga(transfer, { wallet, token, toAddress, amount, gasPrice, gasLimit })
+        .provide({
+          call() {
+            throw error
+          },
+        })
+        .put(transferError(error))
         .run();
     });
   });
