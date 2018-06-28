@@ -17,6 +17,7 @@ import {
   TRANSFER,
   TRANSFER_ERROR,
   TRANSFER_SUCCESS,
+  NOTIFY,
 } from './constants';
 import {
   createNewWalletFailed,
@@ -31,6 +32,7 @@ import {
   showDecryptWalletModal,
   transferSuccess,
   transferError,
+  notify,
 } from './actions';
 
 // Creates a new software wallet
@@ -116,35 +118,37 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
   }
 }
 
+export function* notifyUI({ success, message }) {
+  yield Promise.resolve(Notification(success, message));
+}
+
+// UI notifications
 export function* notifyDecryptWalletSuccessUI({ name }) {
-  Notification(true, `Successfully decrypted ${name}`);
+  yield put(notify(true, `Successfully decrypted ${name}`));
   yield put(hideDecryptWalletModal());
 }
 
-export function notifyDecryptWalletErrorUI({ error }) {
-  Notification(false, `Failed to decrypt wallet: ${error.message}`);
+export function* notifyDecryptWalletErrorUI({ error }) {
+  yield put(notify(false, `Failed to decrypt wallet: ${error.message}`));
 }
 
-export function notifyDecryptWalletUI({ name }) {
-  Notification(true, `Decrypting wallet ${name}`);
+export function* notifyDecryptWalletUI({ name }) {
+  yield put(notify(true, `Decrypting wallet ${name}`));
 }
 
 export function* notifyTransferSuccessUI() {
-  Notification(true, 'Transaction sent');
-  yield put(hideDecryptWalletModal());
+  yield put(notify(true, 'Transaction sent'));
 }
 
-export function notifyTransferErrorUI({ error }) {
-  Notification(false, `Failed to send transaction: ${error}`);
+export function* notifyTransferErrorUI({ error }) {
+  yield put(notify(false, `Failed to send transaction: ${error}`));
 }
 
-export function notifyTransferingUI({ wallet }) {
+export function* notifyTransferingUI({ wallet }) {
   if (wallet.decrypted) {
-    Notification(true, 'Sending transaction');
+    yield put(notify(true, 'Sending transaction'));
   }
 }
-
-// notifications
 
 // Root watcher
 export default function* walletManager() {
@@ -162,4 +166,5 @@ export default function* walletManager() {
   yield takeEvery(TRANSFER_ERROR, notifyTransferErrorUI);
   yield takeEvery(TRANSFER_SUCCESS, notifyTransferSuccessUI);
   yield takeEvery(TRANSFER, notifyTransferingUI);
+  yield takeEvery(NOTIFY, notifyUI);
 }

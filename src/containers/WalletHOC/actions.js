@@ -22,6 +22,7 @@ import {
   TRANSFER,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
+  NOTIFY,
 } from './constants';
 
 export function createNewWallet(name, mnemonic, derivationPath, password) {
@@ -158,5 +159,13 @@ export function transferError(error) {
   return {
     type: TRANSFER_ERROR,
     error,
+  };
+}
+
+export function notify(success, message) {
+  return {
+    type: NOTIFY,
+    success,
+    message,
   };
 }
