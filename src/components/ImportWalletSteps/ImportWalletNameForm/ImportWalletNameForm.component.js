@@ -69,7 +69,7 @@ class ImportWalletNameForm extends React.Component {
               })(<ModalFormInput />)}
             </ModalFormItem>
             <ButtonDiv>
-              <StyledBackButton onClick={this.handleBack}>
+              <StyledBackButton type={"primary"} onClick={this.handleBack}>
                 <StyledSpan>Back</StyledSpan>
               </StyledBackButton>
               <StyledButton htmlType="submit">

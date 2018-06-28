@@ -41,7 +41,7 @@ export const CoinButton = styled(RadioButton)`
   margin-top: 15px;
   padding-top: 8px;
   background-color: transparent;
-  width: 160px;
+  width: 227px;
   height: 48px;
   border-radius: 3px !important;
 `;

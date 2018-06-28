@@ -15,6 +15,10 @@ import {
   StyledTable as Table,
   Address,
   PreviousAddresses,
+  ButtonDiv,
+  StyledSpan,
+  StyledButton,
+  StyledBackButton,
 } from './DerivationPath.style';
 import { ModalFormInput } from '../../ui/Modal';
 import Open from '../../../../public/Images/open-new.svg';
@@ -137,12 +141,14 @@ class DerivationPath extends React.Component {
           />
         </div>
         <PreviousAddresses type="primary">Previous Addresses</PreviousAddresses>
-        <PreviousAddresses onClick={this.handleBack}>
-          Back
-        </PreviousAddresses>
-        <div>
-          <PreviousAddresses htmlType="submit">Next</PreviousAddresses>
-        </div>
+        <ButtonDiv>
+          <StyledBackButton type="primary" onClick={this.handleBack}>
+            <StyledSpan>Back</StyledSpan>
+          </StyledBackButton>
+          <StyledButton htmlType="submit">
+            <StyledSpan>Next</StyledSpan>
+          </StyledButton>
+        </ButtonDiv>
       </Form>
     );
   }

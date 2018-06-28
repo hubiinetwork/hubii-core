@@ -52,7 +52,8 @@ const walletData = [
     backgroundColor: '#2f4d5c',
     padding: 25,
     flex: 1,
-    padding: 25, maxWidth: 803 ,
+    padding: 25,
+    width: 803 ,
     height: 576,
     display: 'flex'
   }}
