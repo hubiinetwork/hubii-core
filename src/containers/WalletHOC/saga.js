@@ -11,6 +11,7 @@ import {
   LOAD_WALLETS,
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
+  DECRYPT_WALLET_SUCCESS,
   TRANSFER,
 } from './constants';
 import {
@@ -18,6 +19,7 @@ import {
   createNewWalletSuccess,
   decryptWalletFailed,
   decryptWalletSuccess,
+  hideDecryptWalletModal,
   loadWalletsSuccess,
   loadWalletBalances,
   loadWalletBalancesSuccess,
@@ -103,17 +105,24 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
 
   const wei = utils.parseEther(amount.toString());
   try {
-    const transactionHash = yield call(etherWallet.send, toAddress, wei, { gasPrice, gasLimit });
+    const transactionHash = yield etherWallet.send(toAddress, wei, { gasPrice, gasLimit });
     yield put(transferSuccess(transactionHash));
   } catch (error) {
-    yield put(transferError(error));
+    yield put(transferError(error.message));
   }
 }
+
+export function* hideDecryptPasswordModal({ name }) {
+  yield put(hideDecryptWalletModal(name));
+}
+
+// notifications
 
 // Root watcher
 export default function* walletManager() {
   yield takeEvery(CREATE_NEW_WALLET, createWallet);
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
+  yield takeEvery(DECRYPT_WALLET_SUCCESS, hideDecryptPasswordModal);
   yield takeEvery(CREATE_NEW_WALLET_SUCCESS, cacheNewWallet);
   yield takeEvery(LOAD_WALLETS, loadWallets);
   yield takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances);

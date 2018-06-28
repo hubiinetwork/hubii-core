@@ -6,8 +6,8 @@ import { createStructuredSelector } from 'reselect';
 import TransferForm from 'components/TransferForm';
 import {
   makeSelectCurrentWalletDetails,
-} from 'containers/WalletManager/selectors';
-import { transfer } from 'containers/WalletManager/actions';
+} from 'containers/WalletHOC/selectors';
+import { transfer } from 'containers/WalletHOC/actions';
 
 export class WalletTransfer extends React.PureComponent {
   constructor(props) {

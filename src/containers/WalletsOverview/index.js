@@ -6,8 +6,8 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
 
-import { makeSelectWallets } from 'containers/WalletManager/selectors';
-import { loadWallets } from 'containers/WalletManager/actions';
+import { makeSelectWallets } from 'containers/WalletHOC/selectors';
+import { loadWallets } from 'containers/WalletHOC/actions';
 import { SectionHeading } from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
@@ -20,10 +20,6 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
   constructor(...args) {
     super(...args);
     this.handleCardClick = this.handleCardClick.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.loadWallets();
   }
 
   handleCardClick(address) {
@@ -130,7 +126,6 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
 WalletsOverview.propTypes = {
   wallets: PropTypes.object.isRequired,
-  loadWallets: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -139,7 +134,7 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    loadWallets: () => dispatch(loadWallets()),
+    // loadWallets: () => dispatch(loadWallets()),
   };
 }
 

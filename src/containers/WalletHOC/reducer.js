@@ -19,6 +19,9 @@ import {
   SET_CURRENT_WALLET,
   SHOW_DESCRYPT_WALLET_MODAL,
   HIDE_DESCRYPT_WALLET_MODAL,
+  TRANSFER,
+  TRANSFER_SUCCESS,
+  TRANSFER_ERROR,
 } from './constants';
 
 const initialState = fromJS({
@@ -90,16 +93,34 @@ function walletManagerReducer(state = initialState, action) {
       return state
         .setIn(['wallets', 'software', action.name, 'loadingBalances'], false)
         .setIn(['wallets', 'software', action.name, 'loadingBalancesError'], action.error);
-    case SET_CURRENT_WALLET:
-      return state
-        .setIn(['currentWallet', 'name'], action.name)
-        .setIn(['currentWallet', 'address'], action.address);
     case SHOW_DESCRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], true);
     case HIDE_DESCRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], false);
+    case SET_CURRENT_WALLET:
+      return state
+        .setIn(['currentWallet', 'name'], action.name)
+        .setIn(['currentWallet', 'address'], action.address)
+        .setIn(['currentWallet', 'transfering'], false)
+        .setIn(['currentWallet', 'transferError'], null)
+        .setIn(['currentWallet', 'lastTransactionHash'], null);
+    case TRANSFER:
+      return state
+        .setIn(['currentWallet', 'transfering'], true)
+        .setIn(['currentWallet', 'transferError'], null)
+        .setIn(['currentWallet', 'lastTransactionHash'], null);
+    case TRANSFER_SUCCESS:
+      return state
+        .setIn(['currentWallet', 'transfering'], false)
+        .setIn(['currentWallet', 'transferError'], null)
+        .setIn(['currentWallet', 'lastTransactionHash'], action.transactionHash);
+    case TRANSFER_ERROR:
+      return state
+        .setIn(['currentWallet', 'transfering'], false)
+        .setIn(['currentWallet', 'transferError'], action.error)
+        .setIn(['currentWallet', 'lastTransactionHash'], null);
     default:
       return state;
   }
