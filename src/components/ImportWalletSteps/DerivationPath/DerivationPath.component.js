@@ -93,7 +93,7 @@ class DerivationPath extends React.Component {
       <Form onSubmit={this.handleNext}>
 
         <Radios>
-          <RadioTitle>Select HD deviation path</RadioTitle>
+          <RadioTitle>Select HD derivation path</RadioTitle>
           <RadioGroup
             defaultValue={this.state.path}
             size="small"
