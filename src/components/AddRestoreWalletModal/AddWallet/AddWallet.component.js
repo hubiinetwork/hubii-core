@@ -19,6 +19,7 @@ import {
 } from './AddWallet.style';
 import Notification from '../../Notification';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../../ui/Modal';
+import hubiiLogo from '../../../../public/asset_images/HBT.svg';
 /**
  * This component shows form  to add a  wallet..
  */
@@ -31,6 +32,7 @@ class AddWallet extends React.PureComponent {
     );
     this.state = {
       mnemonic: mnemonic.toString(),
+      derivationPath: 'm/44\'/60\'/0\'/0/0',
       confirmPasswordsMatch: false,
     };
     this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
@@ -66,6 +68,7 @@ class AddWallet extends React.PureComponent {
       if (!err) {
         const value = values;
         value.mnemonic = this.state.mnemonic;
+        value.derivationPath = this.state.derivationPath;
         this.props.handleSubmit(value);
       }
     });
@@ -80,7 +83,7 @@ class AddWallet extends React.PureComponent {
     return (
       <div>
         <CenterWrapper>
-          <HBT src="public/asset_images/HBT.svg" alt="hubii logo" />
+          <HBT src={hubiiLogo} alt="hubii logo" />
           <HBTtext>Hubii</HBTtext>
         </CenterWrapper>
         <Row justify="center" type="flex">

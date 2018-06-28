@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import WalletDetailPopoverContent from './WalletDetailPopoverContent';
 import AssetAmountBubble from './AssetAmountBubble';
+import USBFlag from '../USBFlag';
 import {
   AssetsWrapper,
   AssetWrapper,
@@ -14,6 +15,8 @@ import {
   MenuItem,
   MenuDivider,
   CardIconSettings,
+  OverflowHidden,
+  SpaceBetween,
 } from './WalletItemCard.style';
 
 /**
@@ -26,13 +29,14 @@ const settingsMenu = () => (
     <MenuDivider />
     <MenuItem>Export Password</MenuItem>
     <MenuDivider />
-    <MenuItem>Delete Wallet</MenuItem>
+    <MenuItem onClick={(e) => { e.domEvent.stopPropagation(); }}>Delete Wallet</MenuItem>
   </Menu>
 );
 
 const WalletItemCard = (props) => (
-  <div>
-    <OuterWrapper>
+  <OverflowHidden>
+    {props.connected !== undefined && <USBFlag connected={props.connected} />}
+    <OuterWrapper onClick={() => { props.handleCardClick(props.primaryAddress); }}>
       <LeftSideWrapper>
         <p>{props.name}</p>
         <AssetsWrapper>
@@ -44,14 +48,8 @@ const WalletItemCard = (props) => (
             ))}
         </AssetsWrapper>
       </LeftSideWrapper>
-      <TotalBalance>{`$${props.totalBalance}`}</TotalBalance>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-        }}
-      >
+      <TotalBalance>{`$${props.totalBalance.toLocaleString('en')}`}</TotalBalance>
+      <SpaceBetween>
         <CardIcon>
           <Popover
             placement="right"
@@ -74,9 +72,9 @@ const WalletItemCard = (props) => (
             <Icon type="setting" />
           </Dropdown>
         </CardIconSettings>
-      </div>
+      </SpaceBetween>
     </OuterWrapper>
-  </div>
+  </OverflowHidden>
 );
 
 WalletItemCard.propTypes = {
@@ -105,6 +103,11 @@ WalletItemCard.propTypes = {
    * props.type type of the wallet.
    */
   type: PropTypes.string.isRequired,
+  /**
+   * props.bool shows connection status  of  wallet if  provided.
+   */
+  connected: PropTypes.bool,
+  handleCardClick: PropTypes.func,
 };
 
 export default WalletItemCard;

@@ -2,7 +2,7 @@ import React from 'react';
 import StriimTabs, { TabPane } from '../ui/StriimTabs';
 
 function callback(key) {
-  console.log(key);
+  console.log(key); // eslint-disable-line
 }
 
 const PaymentTabs = () => (

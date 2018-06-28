@@ -14,9 +14,11 @@
 import React from 'react';
 import { compose } from 'redux';
 import { Switch, Route } from 'react-router-dom';
-import Striim from 'containers/Striim';
 import SideBar from 'components/SideBar';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import Striim from 'containers/Striim';
+import WalletManager from 'containers/WalletManager';
+import WalletDetails from 'containers/WalletDetails';
 
 import withExchangeRate from 'containers/ExchangeRateHOC';
 
@@ -25,7 +27,7 @@ import logoSvg from '../../../public/Images/corerz-logo.svg';
 export function App() {
   const menuItems = [
     {
-      to: '/wallet',
+      to: '/wallets',
       icon: 'wallet',
       name: 'Wallet Manager',
     },
@@ -43,6 +45,8 @@ export function App() {
   return (
     <SideBar menuItems={menuItems} logoSrc={logoSvg}>
       <Switch>
+        <Route path="/wallets" component={WalletManager} />
+        <Route path="/wallet/:address" component={WalletDetails} />
         <Route path="/striim" component={Striim} />
         <Route component={NotFoundPage} />
       </Switch>
