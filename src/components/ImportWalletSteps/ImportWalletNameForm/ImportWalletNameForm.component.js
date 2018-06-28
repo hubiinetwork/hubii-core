@@ -55,7 +55,7 @@ class ImportWalletNameForm extends React.Component {
             <ModalFormItem
               label={
                 <StyledModalFormLabel>
-                  Give your Wallet a Name
+                  Enyter Wallet Name
                 </StyledModalFormLabel>
               }
             >
@@ -63,34 +63,6 @@ class ImportWalletNameForm extends React.Component {
                 rules: [
                   {
                     message: 'Name is required.',
-                    required: true,
-                  },
-                ],
-              })(<ModalFormInput />)}
-            </ModalFormItem>
-            <ModalFormItem
-              label={
-                <StyledModalFormLabel>Set a password</StyledModalFormLabel>
-              }
-            >
-              {getFieldDecorator('password', {
-                rules: [
-                  {
-                    message: 'password is required.',
-                    required: true,
-                  },
-                ],
-              })(<ModalFormInput />)}
-            </ModalFormItem>
-            <ModalFormItem
-              label={
-                <StyledModalFormLabel>Repeat password</StyledModalFormLabel>
-              }
-            >
-              {getFieldDecorator('repeatPassword', {
-                rules: [
-                  {
-                    message: 'Repeat password is required.',
                     required: true,
                   },
                 ],

@@ -54,7 +54,6 @@ const addressData = [
 
 <div style={{ backgroundColor: '#26404D', padding: 25, maxWidth: 803 }}>
   <DerivationPath
-    walletName={'Ledger'}
     paths={paths}
     addresses={addressData}
     handleSubmit={values => console.log(values)}

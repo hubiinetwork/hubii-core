@@ -1,12 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Icon, Form } from 'antd';
+import { Form } from 'antd';
 import {
-  Between,
-  CreateButton,
-  LeftArrow,
-  Flex,
-  SpanText,
   PathTitle,
   PathSubtitle,
   PathWrapper,
@@ -43,20 +38,21 @@ class DerivationPath extends React.Component {
     super(props);
     this.state = { path: this.props.paths[3].title, address: '' };
     this.handlePath = this.handlePath.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.onGoBack = this.onGoBack.bind(this);
+    this.handleNext = this.handleNext.bind(this);
+    this.handleBack = this.handleBack.bind(this);
   }
-  onGoBack() {
-    this.props.onGoBack();
+  handleBack() {
+    this.props.handleBack();
   }
 
-  handleSubmit(e) {
+  handleNext(e) {
+    const { form, handleNext } = this.props;
     let data;
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    form.validateFields((err, values) => {
       if (!err) {
         data = { values, path: this.state.path, address: this.state.address };
-        this.props.handleSubmit(data);
+        handleNext(data);
       }
     });
   }
@@ -66,7 +62,7 @@ class DerivationPath extends React.Component {
   }
 
   render() {
-    const { walletName, paths, addresses } = this.props;
+    const { paths, addresses } = this.props;
     const newAddresses = (oldAddresses) => {
       for (let i = 0; i < oldAddresses.length; i += 1) {
         /* eslint-disable no-param-reassign */
@@ -94,18 +90,7 @@ class DerivationPath extends React.Component {
     };
 
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Between>
-          <Flex>
-            <LeftArrow type="arrow-left" onClick={this.onGoBack} />
-            <SpanText>Importing {walletName} Wallet</SpanText>
-          </Flex>
-          <div>
-            <CreateButton>
-              <Icon type="plus" />Create new wallet
-            </CreateButton>
-          </div>
-        </Between>
+      <Form onSubmit={this.handleNext}>
 
         <Radios>
           <RadioTitle>Select HD deviation path</RadioTitle>
@@ -152,6 +137,9 @@ class DerivationPath extends React.Component {
           />
         </div>
         <PreviousAddresses type="primary">Previous Addresses</PreviousAddresses>
+        <PreviousAddresses onClick={this.handleBack}>
+          Back
+        </PreviousAddresses>
         <div>
           <PreviousAddresses htmlType="submit">Next</PreviousAddresses>
         </div>
@@ -161,10 +149,6 @@ class DerivationPath extends React.Component {
 }
 
 DerivationPath.propTypes = {
-  /**
-   * Name of the wallet.
-   */
-  walletName: PropTypes.string,
   /**
    * paths in shape of array of object.
    */
@@ -176,11 +160,11 @@ DerivationPath.propTypes = {
   /**
    * callback triggerred when data  is  submitted.
    */
-  handleSubmit: PropTypes.func,
+  handleNext: PropTypes.func,
   /**
    * callback triggerred when back arrow iss clicked.
    */
-  onGoBack: PropTypes.func,
+  handleBack: PropTypes.func,
   /**
    * object  of form validation by ant.design.
    */
