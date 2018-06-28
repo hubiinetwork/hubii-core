@@ -9,9 +9,8 @@ import {
   LeftArrow,
   Flex,
 } from './ImportWalletSteps.style';
-import DerivationPath from "../DerivationPath";
+import DerivationPath from "./DerivationPath";
 import ImportWallet from './ImportWallet';
-import ImportWalletForm from './ImportWalletForm';
 import ImportWalletNameForm from './ImportWalletNameForm';
 import FormSteps from '../FormSteps';
 

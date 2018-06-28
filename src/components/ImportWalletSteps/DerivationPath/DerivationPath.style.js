@@ -1,7 +1,7 @@
 import { Icon, Radio, Table } from 'antd';
 import styled from 'styled-components';
-import Button from '../ui/Button';
-import { ModalFormItem } from '../ui/Modal';
+import Button from '../../ui/Button';
+import { ModalFormItem } from '../../ui/Modal';
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 export const Address = styled.span`

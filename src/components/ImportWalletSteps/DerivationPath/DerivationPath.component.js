@@ -16,8 +16,8 @@ import {
   Address,
   PreviousAddresses,
 } from './DerivationPath.style';
-import { ModalFormInput } from '../ui/Modal';
-import Open from '../../../public/Images/open-new.svg';
+import { ModalFormInput } from '../../ui/Modal';
+import Open from '../../../../public/Images/open-new.svg';
 const columns = [
   {
     title: <Address>Your Address</Address>,
