@@ -207,7 +207,7 @@ describe('load wallets saga', () => {
         },
       })
       .put(loadWalletsSuccess(expectedWallets))
-      .run();
+      .run({ silenceTimeout: true });
   });
 
   it('#loadWallets should only override non-exist wallet states from cache', () => {
@@ -223,7 +223,7 @@ describe('load wallets saga', () => {
         },
       })
       .put(loadWalletsSuccess(sessionWallets))
-      .run();
+      .run({ silenceTimeout: true });
   });
 
   it('#loadWalletBalances should load balances and dispatch loadWalletBalancesSuccess', () => {
@@ -239,7 +239,7 @@ describe('load wallets saga', () => {
         },
       })
       .put(loadWalletBalancesSuccess(walletName, response))
-      .run();
+      .run({ silenceTimeout: true });
   });
 
   it('#loadWalletBalances should dispatch loadWalletBalancesError when error throws in request', () => {
@@ -254,7 +254,7 @@ describe('load wallets saga', () => {
         },
       })
       .put(loadWalletBalancesError(walletName, error))
-      .run();
+      .run({ silenceTimeout: true });
   });
 
   it('#initWalletsBalances should trigger loadWalletBalances for all the wallets in the list', () => {
@@ -271,7 +271,7 @@ describe('load wallets saga', () => {
       .put(loadWalletBalances(walletList[0].name, `0x${walletList[0].address}`))
       .put(loadWalletBalances(walletList[1].name, `0x${walletList[1].address}`))
       .dispatch({ type: LOAD_WALLETS_SUCCESS })
-      .run();
+      .run({ silenceTimeout: true });
   });
 
   describe('UI notifications', () => {
@@ -280,7 +280,7 @@ describe('load wallets saga', () => {
       return expectSaga(walletManager)
       .put(notify(false, `Failed to decrypt wallet: ${error.message}`))
       .dispatch(decryptWalletFailed(error))
-      .run();
+      .run({ silenceTimeout: true });
     });
     it('DECRYPT_WALLET_SUCCESS', () => {
       const name = 'name';
@@ -288,7 +288,7 @@ describe('load wallets saga', () => {
       .put(notify(true, `Successfully decrypted ${name}`))
       .put(hideDecryptWalletModal())
       .dispatch(decryptWalletSuccess(name))
-      .run();
+      .run({ silenceTimeout: true });
     });
     it('DECRYPT_WALLET', () => {
       const name = 'w1';
@@ -297,25 +297,25 @@ describe('load wallets saga', () => {
       return expectSaga(walletManager)
       .put(notify(true, `Decrypting wallet ${name}`))
       .dispatch(decryptWalletAction(name, encrypted, password))
-      .run();
+      .run({ silenceTimeout: true });
     });
     it('TRANSFER', () => expectSaga(walletManager)
       .put(notify(true, 'Sending transaction'))
       .dispatch(transferAction({ wallet: { decrypted: {} } }))
-      .run());
+      .run({ silenceTimeout: true }));
     it('TRANSFER_SUCCESS', () => {
       const txnhash = '';
       return expectSaga(walletManager)
       .put(notify(true, 'Transaction sent'))
       .dispatch(transferSuccess(txnhash))
-      .run();
+      .run({ silenceTimeout: true });
     });
     it('TRANSFER_ERROR', () => {
       const error = 'w1';
       return expectSaga(walletManager)
       .put(notify(false, `Failed to send transaction: ${error}`))
       .dispatch(transferError(error))
-      .run();
+      .run({ silenceTimeout: true });
     });
   });
 
@@ -353,7 +353,7 @@ describe('load wallets saga', () => {
           },
         })
         .put(transferError(error))
-        .run();
+        .run({ silenceTimeout: true });
     });
   });
 });

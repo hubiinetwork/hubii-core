@@ -12,9 +12,6 @@ import { transfer } from 'containers/WalletHOC/actions';
 export class WalletTransfer extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      visible: false,
-    };
     this.onSend = this.onSend.bind(this);
   }
 

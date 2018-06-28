@@ -24,6 +24,26 @@ import {
 } from './actions';
 
 export default function WalletHOC(Component) {
+  const HOC = getComponentHOC(Component);
+
+  const mapStateToProps = createStructuredSelector({
+    currentWallet: makeSelectCurrentWallet(),
+    currentWalletDetails: makeSelectCurrentWalletDetails(),
+  });
+
+  const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+  const withReducer = injectReducer({ key: 'walletManager', reducer });
+  const withSaga = injectSaga({ key: 'walletManager', saga });
+
+  return compose(
+    withReducer,
+    withSaga,
+    withConnect,
+  )(HOC);
+}
+
+export function getComponentHOC(Component) {
   class HOC extends React.Component {
     constructor(...args) {
       super(...args);
@@ -40,8 +60,8 @@ export default function WalletHOC(Component) {
     }
 
     decryptWallet() {
-      const currentWallet = this.props.currentWalletDetails;
-      this.props.decryptWallet(currentWallet.name, JSON.stringify(currentWallet.encrypted), this.state.password);
+      const { currentWalletDetails } = this.props;
+      this.props.decryptWallet(currentWalletDetails.name, JSON.stringify(currentWalletDetails.encrypted), this.state.password);
     }
 
     render() {
@@ -79,32 +99,14 @@ export default function WalletHOC(Component) {
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
   };
+  return HOC;
+}
 
-  const mapStateToProps = createStructuredSelector({
-    currentWallet: makeSelectCurrentWallet(),
-    currentWalletDetails: makeSelectCurrentWalletDetails(),
-    // loading: makeSelectLoading(),
-    // errors: makeSelectErrors(),
-  });
-
-  function mapDispatchToProps(dispatch) {
-    return {
-      // createNewWallet: (...args) => dispatch(createNewWallet(...args)),
-      loadWallets: () => dispatch(loadWallets()),
-      hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
-      decryptWallet: (...args) => dispatch(decryptWallet(...args)),
-    };
-  }
-
-  const withConnect = connect(mapStateToProps, mapDispatchToProps);
-
-  const withReducer = injectReducer({ key: 'walletManager', reducer });
-  const withSaga = injectSaga({ key: 'walletManager', saga });
-
-  return compose(
-    withReducer,
-    withSaga,
-    withConnect,
-  )(HOC);
+export function mapDispatchToProps(dispatch) {
+  return {
+    loadWallets: () => dispatch(loadWallets()),
+    hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
+    decryptWallet: (...args) => dispatch(decryptWallet(...args)),
+  };
 }
 

@@ -8,6 +8,7 @@ import {
   makeSelectDerivationPathInput,
   makeSelectLoading,
   makeSelectErrors,
+  makeSelectCurrentWalletDetails,
 } from '../selectors';
 
 describe('selectWalletManagerDomain', () => {
@@ -116,5 +117,31 @@ describe('makeSelectErrors', () => {
       },
     });
     expect(errorsSelector(mockedState)).toEqual(errors);
+  });
+});
+
+describe('makeSelectCurrentWalletDetails', () => {
+  const walletSelector = makeSelectCurrentWalletDetails();
+  it('should convert select current wallet details from the wallet list', () => {
+    const expected = {
+      address: '2',
+      encrypted: { address: '2' },
+      name: 't2',
+      type: 'software',
+    };
+    const mockedState = fromJS({
+      walletManager: {
+        wallets: {
+          software: {
+            t1: { encrypted: '{"address": "1"}' },
+            t2: { encrypted: '{"address": "2"}' },
+          },
+        },
+        currentWallet: {
+          address: '0x2',
+        },
+      },
+    });
+    expect(walletSelector(mockedState)).toEqual(expected);
   });
 });

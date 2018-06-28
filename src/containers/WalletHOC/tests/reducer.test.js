@@ -12,6 +12,12 @@ import {
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
+  setCurrentWallet,
+  transferError,
+  transferSuccess,
+  transfer,
+  showDecryptWalletModal,
+  hideDecryptWalletModal,
 } from '../actions';
 describe('walletManagerReducer', () => {
   let state;
@@ -159,6 +165,82 @@ describe('walletManagerReducer', () => {
           .setIn(['wallets', 'software', walletName, 'loadingBalancesError'], error);
 
         expect(walletManagerReducer(state, loadWalletBalancesError(walletName, error))).toEqual(expected);
+      });
+    });
+
+    describe('currentWallet', () => {
+      it('SET_CURRENT_WALLET', () => {
+        const walletName = 'testWallet';
+        const address = 'abcd';
+        const currentWallet = {
+          address,
+          name: walletName,
+          transfering: false,
+          transferError: null,
+          lastTransactionHash: null,
+        };
+        const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+        expect(walletManagerReducer(state, setCurrentWallet(walletName, address))).toEqual(expected);
+      });
+      it('TRANSFER_SUCCESS', () => {
+        const transactionHash = 'abcd';
+        const currentWallet = {
+          address: '',
+          transfering: false,
+          transferError: null,
+          lastTransactionHash: transactionHash,
+        };
+        const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+        expect(walletManagerReducer(state, transferSuccess(transactionHash))).toEqual(expected);
+      });
+      it('TRANSFER', () => {
+        const currentWallet = {
+          address: '',
+          transfering: true,
+          transferError: null,
+          lastTransactionHash: null,
+        };
+        const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+        expect(walletManagerReducer(state, transfer({}))).toEqual(expected);
+      });
+      it('TRANSFER_ERROR', () => {
+        const error = 'error';
+        const currentWallet = {
+          address: '',
+          transfering: false,
+          transferError: error,
+          lastTransactionHash: null,
+        };
+        const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+        expect(walletManagerReducer(state, transferError(error))).toEqual(expected);
+      });
+      it('SHOW_DESCRYPT_WALLET_MODAL', () => {
+        const currentWallet = {
+          address: '',
+          showDecryptModal: true,
+        };
+        const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+        expect(walletManagerReducer(state, showDecryptWalletModal())).toEqual(expected);
+      });
+      it('HIDE_DESCRYPT_WALLET_MODAL', () => {
+        const currentWallet = {
+          address: '',
+          showDecryptModal: false,
+        };
+        const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+        expect(walletManagerReducer(state, hideDecryptWalletModal())).toEqual(expected);
       });
     });
   });
