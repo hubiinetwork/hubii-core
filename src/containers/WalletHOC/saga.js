@@ -1,5 +1,6 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { Wallet, utils, providers } from 'ethers';
+import Notification from 'components/Notification';
 import { makeSelectWallets, makeSelectWalletList } from './selectors';
 import request from '../../utils/request';
 import { getWalletsLocalStorage } from '../../utils/wallet';
@@ -7,12 +8,15 @@ import { getWalletsLocalStorage } from '../../utils/wallet';
 import {
   CREATE_NEW_WALLET,
   DECRYPT_WALLET,
+  DECRYPT_WALLET_SUCCESS,
+  DECRYPT_WALLET_FAILURE,
   CREATE_NEW_WALLET_SUCCESS,
   LOAD_WALLETS,
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
-  DECRYPT_WALLET_SUCCESS,
   TRANSFER,
+  TRANSFER_ERROR,
+  TRANSFER_SUCCESS,
 } from './constants';
 import {
   createNewWalletFailed,
@@ -112,8 +116,32 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
   }
 }
 
-export function* hideDecryptPasswordModal({ name }) {
-  yield put(hideDecryptWalletModal(name));
+export function* notifyDecryptWalletSuccessUI({ name }) {
+  Notification(true, `Successfully decrypted ${name}`);
+  yield put(hideDecryptWalletModal());
+}
+
+export function notifyDecryptWalletErrorUI({ error }) {
+  Notification(false, `Failed to decrypt wallet: ${error.message}`);
+}
+
+export function notifyDecryptWalletUI({ name }) {
+  Notification(true, `Decrypting wallet ${name}`);
+}
+
+export function* notifyTransferSuccessUI() {
+  Notification(true, 'Transaction sent');
+  yield put(hideDecryptWalletModal());
+}
+
+export function notifyTransferErrorUI({ error }) {
+  Notification(false, `Failed to send transaction: ${error}`);
+}
+
+export function notifyTransferingUI({ wallet }) {
+  if (wallet.decrypted) {
+    Notification(true, 'Sending transaction');
+  }
 }
 
 // notifications
@@ -122,10 +150,16 @@ export function* hideDecryptPasswordModal({ name }) {
 export default function* walletManager() {
   yield takeEvery(CREATE_NEW_WALLET, createWallet);
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
-  yield takeEvery(DECRYPT_WALLET_SUCCESS, hideDecryptPasswordModal);
   yield takeEvery(CREATE_NEW_WALLET_SUCCESS, cacheNewWallet);
   yield takeEvery(LOAD_WALLETS, loadWallets);
   yield takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
   yield takeEvery(TRANSFER, transfer);
+
+  yield takeEvery(DECRYPT_WALLET_FAILURE, notifyDecryptWalletErrorUI);
+  yield takeEvery(DECRYPT_WALLET_SUCCESS, notifyDecryptWalletSuccessUI);
+  yield takeEvery(DECRYPT_WALLET, notifyDecryptWalletUI);
+  yield takeEvery(TRANSFER_ERROR, notifyTransferErrorUI);
+  yield takeEvery(TRANSFER_SUCCESS, notifyTransferSuccessUI);
+  yield takeEvery(TRANSFER, notifyTransferingUI);
 }

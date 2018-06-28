@@ -59,10 +59,10 @@ export default function WalletHOC(Component) {
             destroyOnClose
           >
             <FormItem
-              label={<FormItemLabel>Password</FormItemLabel>}
+              label={<FormItemLabel>Please enter wallet password to proceed</FormItemLabel>}
               colon={false}
             >
-              <Input onChange={this.onPasswordChange} />
+              <Input onChange={this.onPasswordChange} type="password" />
             </FormItem>
             <Button type="primary" onClick={this.decryptWallet}>
               Confirm
