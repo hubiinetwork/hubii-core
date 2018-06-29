@@ -1,37 +1,29 @@
-import { Icon } from 'antd';
 import styled from 'styled-components';
 import Button from '../../ui/Button';
-import { ModalFormLabel } from '../../ui/Modal';
+import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../../ui/Modal';
 
-export const Between = styled.div`
+export const FormInput = styled(ModalFormInput)`
+  height: 46px;
+  width: 410px;
+  border: 1px solid #43616F;
+  border-radius: 4px;
+`;
+
+export const FormItem = styled(ModalFormItem)`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-`;
-
-export const CreateButton = styled(Button)`
-  background-color: transparent;
-  color: ${({ theme }) => theme.palette.light};
-  height: 32px;
-  width: 153px;
-  &:hover {
-    background-color: ${({ theme }) => theme.palette.info2};
-    color: ${({ theme }) => theme.palette.light};
-    border-color: ${({ theme }) => theme.palette.light};
-  }
-`;
-
-export const LeftArrow = styled(Icon)`
-  font-size: 20px;
-  margin-right: 7px;
-  cursor: pointer;
+  .ant-form-item-label{
+    display: flex;
+    align-self: start;
+    margin-left: 3.6rem;}
 `;
 
 export const Image = styled.img`
   width: 150px;
   height: 44px;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 53px;
+  margin-bottom: 53px;
 `;
 
 export const WidthEighty = styled.div`
@@ -61,8 +53,8 @@ export const StyledTitle = styled.span`
 export const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
-  margin-top: 1rem;
+  margin-top: 207px;
+  margin-bottom: 26px;
 `;
 export const StyledButton = styled(Button)`
   background-color: ${({ disabled: white }) =>

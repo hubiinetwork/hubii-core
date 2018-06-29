@@ -1,33 +1,10 @@
-import { Icon, Radio } from 'antd';
+import { Radio } from 'antd';
 import styled from 'styled-components';
 import Button from '../../ui/Button';
 
-export const Between = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-export const CreateButton = styled(Button)`
-  background-color: transparent;
-  color: ${({ theme }) => theme.palette.light};
-  height: 32px;
-  width: 153px;
-  &:hover {
-    background-color: ${({ theme }) => theme.palette.info2};
-    color: ${({ theme }) => theme.palette.light};
-    border-color: ${({ theme }) => theme.palette.light};
-  }
-`;
-
-export const LeftArrow = styled(Icon)`
-  font-size: 20px;
-  margin-right: 7px;
-  cursor: pointer;
-`;
-
 export const Coins = styled(Radio.Group)`
-  margin-top: 32px;
+  margin-top: 40px;
+  margin-bottom: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -69,7 +46,7 @@ export const SpanText = styled.span`
 export const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 26px;
   margin-top: 1rem;
 `;
 export const StyledButton = styled(Button)`
@@ -83,7 +60,7 @@ export const StyledButton = styled(Button)`
   width: 162px;
   border: ${({ disabled: white, theme }) =>
     white && `2px solid ${theme.palette.secondary4} !important`};
-  min-width: ${({ current: width }) => (width === 0 ? '260px' : '190px')};
+  min-width: ${({ current: width }) => (width === 0 ? '260px' : '260px')};
   color: ${({ disabled: white, theme }) =>
     white
       ? `${theme.palette.secondary4} !important`

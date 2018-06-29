@@ -2,23 +2,24 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'antd';
 import {
-  PathTitle,
-  PathSubtitle,
-  PathWrapper,
-  RadioTitle,
-  Radios,
-  RadioButtonWrapper,
   Tick,
-  StyledRadio as RadioButton,
-  StyledRadioGroup as RadioGroup,
-  FormItem,
-  StyledTable as Table,
+  Radios,
   Address,
-  PreviousAddresses,
+  FormItem,
+  FormDiv,
   ButtonDiv,
+  PathTitle,
+  RadioTitle,
   StyledSpan,
+  PathWrapper,
+  PathSubtitle,
   StyledButton,
   StyledBackButton,
+  PreviousAddresses,
+  RadioButtonWrapper,
+  StyledTable as Table,
+  StyledRadio as RadioButton,
+  StyledRadioGroup as RadioGroup,
 } from './DerivationPath.style';
 import { ModalFormInput } from '../../ui/Modal';
 import Open from '../../../../public/Images/open-new.svg';
@@ -95,57 +96,58 @@ class DerivationPath extends React.Component {
 
     return (
       <Form onSubmit={this.handleNext}>
-
-        <Radios>
-          <RadioTitle>Select HD derivation path</RadioTitle>
-          <RadioGroup
-            defaultValue={this.state.path}
-            size="small"
-            onChange={this.handlePath}
-          >
-            {paths.map((path) => (
-              <RadioButtonWrapper key={path.title}>
-                <RadioButton value={path.title}>
+        <FormDiv>
+          <Radios>
+            <RadioTitle>Select HD derivation path</RadioTitle>
+            <RadioGroup
+              defaultValue={this.state.path}
+              size="small"
+              onChange={this.handlePath}
+            >
+              {paths.map((path) => (
+                <RadioButtonWrapper key={path.title}>
+                  <RadioButton value={path.title}>
+                    <Tick type="check" />
+                  </RadioButton>
+                  <PathWrapper>
+                    <PathTitle>{path.title}</PathTitle>
+                    <PathSubtitle>{path.subtitle} </PathSubtitle>
+                  </PathWrapper>
+                </RadioButtonWrapper>
+            ))}
+              <RadioButtonWrapper>
+                <RadioButton value="custom">
                   <Tick type="check" />
                 </RadioButton>
                 <PathWrapper>
-                  <PathTitle>{path.title}</PathTitle>
-                  <PathSubtitle>{path.subtitle} </PathSubtitle>
+                  <PathSubtitle>Your Custom Path</PathSubtitle>
+                  <FormItem colon={false}>
+                    {getFieldDecorator('customPath')(<ModalFormInput />)}
+                  </FormItem>
                 </PathWrapper>
               </RadioButtonWrapper>
-            ))}
-            <RadioButtonWrapper>
-              <RadioButton value="custom">
-                <Tick type="check" />
-              </RadioButton>
-              <PathWrapper>
-                <PathSubtitle>Your Custom Path</PathSubtitle>
-                <FormItem colon={false}>
-                  {getFieldDecorator('customPath')(<ModalFormInput />)}
-                </FormItem>
-              </PathWrapper>
-            </RadioButtonWrapper>
-          </RadioGroup>
-        </Radios>
+            </RadioGroup>
+          </Radios>
 
-        <div>
-          <RadioTitle>
+          <div>
+            <RadioTitle>
             Please select the address you want to interact with
           </RadioTitle>
-          <Table
-            rowSelection={rowSelection}
-            columns={columns}
-            dataSource={newAddresses(addresses)}
-            size="small"
-            pagination={false}
-          />
-        </div>
-        <PreviousAddresses type="primary">Previous Addresses</PreviousAddresses>
+            <Table
+              rowSelection={rowSelection}
+              columns={columns}
+              dataSource={newAddresses(addresses)}
+              size="small"
+              pagination={false}
+            />
+          </div>
+          <PreviousAddresses type="primary">Previous Addresses</PreviousAddresses>
+        </FormDiv>
         <ButtonDiv>
           <StyledBackButton type="primary" onClick={this.handleBack}>
             <StyledSpan>Back</StyledSpan>
           </StyledBackButton>
-          <StyledButton htmlType="submit">
+          <StyledButton type={'primary'} htmlType="submit">
             <StyledSpan>Next</StyledSpan>
           </StyledButton>
         </ButtonDiv>

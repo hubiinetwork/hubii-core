@@ -3,11 +3,11 @@ import React from 'react';
 import { Icon } from 'antd';
 import PropTypes from 'prop-types';
 import {
-  CreateButton,
+  Flex,
   Between,
   SpanText,
   LeftArrow,
-  Flex,
+  CreateButton,
 } from './ImportWalletSteps.style';
 import DerivationPath from "./DerivationPath";
 import ImportWallet from './ImportWallet';

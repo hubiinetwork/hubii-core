@@ -7,29 +7,6 @@ const RadioGroup = Radio.Group;
 export const Address = styled.span`
   margin-left: -22px;
 `;
-export const Between = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-export const CreateButton = styled(Button)`
-  background-color: transparent;
-  color: ${({ theme }) => theme.palette.light};
-  height: 32px;
-  width: 153px;
-  &:hover {
-    background-color: ${({ theme }) => theme.palette.info2};
-    color: ${({ theme }) => theme.palette.light};
-    border-color: ${({ theme }) => theme.palette.light};
-  }
-`;
-
-export const LeftArrow = styled(Icon)`
-  font-size: 20px;
-  margin-right: 7px;
-  cursor: pointer;
-`;
 
 export const Flex = styled.div`
   display: flex;
@@ -124,7 +101,7 @@ export const StyledRadioGroup = styled(RadioGroup)`
 export const Addresses = styled.div`
   display: flex;
 `;
-export const Balance = styled.div``;
+
 export const TokenBalance = styled.div``;
 
 export const StyledTable = styled(Table)`
@@ -198,19 +175,28 @@ export const PreviousAddresses = styled(Button)`
 export const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 26px;
   margin-top: 1rem;
 `;
+export const FormDiv = styled.div`
+  margin-left: 30px;
+`;
+
 export const StyledButton = styled(Button)`
-  background-color: 'transparent !important';
+  background-color: ${({ disabled: white }) =>
+    white && 'transparent !important'};
   font-size: 12px;
   font-weight: 500;
   border-width: 2px;
   height: 40px;
   width: 162px;
-  border:${({ theme }) => theme.palette.secondary4} !important;
-  min-width: '190px';
-  color:${({ theme }) => theme.palette.secondary4}!important;
+  border: ${({ disabled: white, theme }) =>
+    white && `2px solid ${theme.palette.secondary4} !important`};
+  min-width: ${({ current: width }) => (width === 0 ? '260px' : '190px')};
+  color: ${({ disabled: white, theme }) =>
+    white
+      ? `${theme.palette.secondary4} !important`
+      : `${theme.palette.light} !important`};
   &:hover {
     background-color: ${({ disabled: white }) =>
       white && 'transparent !important'};

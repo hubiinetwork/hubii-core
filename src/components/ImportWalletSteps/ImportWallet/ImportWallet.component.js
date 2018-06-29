@@ -4,8 +4,8 @@ import {
   Coins,
   Image,
   Center,
-  CoinButton,
   ButtonDiv,
+  CoinButton,
   StyledSpan,
   StyledButton,
 } from './ImportWallet.style';
@@ -45,7 +45,7 @@ class ImportWallet extends React.Component {
           ))}
         </Coins>
         <ButtonDiv>
-          <StyledButton disabled={currentCoin === ''} onClick={this.handleNext}>
+          <StyledButton type={'primary'} disabled={currentCoin === ''} onClick={this.handleNext}>
             <StyledSpan>Next</StyledSpan>
           </StyledButton>
         </ButtonDiv>

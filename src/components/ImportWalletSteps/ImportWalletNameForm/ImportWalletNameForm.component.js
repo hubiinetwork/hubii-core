@@ -11,8 +11,9 @@ import {
   StyledSpan,
   StyledButton,
   StyledBackButton,
+  FormInput,
+  FormItem
 } from './ImportWalletNameForm.style';
-import { ModalFormInput, ModalFormItem } from '../../ui/Modal';
 class ImportWalletNameForm extends React.Component {
   constructor(props) {
     super(props);
@@ -52,10 +53,10 @@ class ImportWalletNameForm extends React.Component {
           }}
         >
           <WidthEighty>
-            <ModalFormItem
+            <FormItem
               label={
                 <StyledModalFormLabel>
-                  Enyter Wallet Name
+                  Enter Wallet Name
                 </StyledModalFormLabel>
               }
             >
@@ -66,13 +67,13 @@ class ImportWalletNameForm extends React.Component {
                     required: true,
                   },
                 ],
-              })(<ModalFormInput />)}
-            </ModalFormItem>
+              })(<FormInput />)}
+            </FormItem>
             <ButtonDiv>
               <StyledBackButton type={"primary"} onClick={this.handleBack}>
                 <StyledSpan>Back</StyledSpan>
               </StyledBackButton>
-              <StyledButton htmlType="submit">
+              <StyledButton type={"primary"} htmlType="submit">
                 <StyledSpan>Finish</StyledSpan>
               </StyledButton>
             </ButtonDiv>
