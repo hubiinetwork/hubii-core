@@ -1,6 +1,5 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { Wallet, utils, providers } from 'ethers';
-import config from 'config';
 import Notification from 'components/Notification';
 import { makeSelectWallets, makeSelectWalletList } from './selectors';
 import request from '../../utils/request';
@@ -108,7 +107,7 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
     return;
   }
   const etherWallet = new Wallet(wallet.decrypted.privateKey);
-  etherWallet.provider = providers.getDefaultProvider(config.ethereum.network);
+  etherWallet.provider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
 
   const wei = utils.parseEther(amount.toString());
   try {
