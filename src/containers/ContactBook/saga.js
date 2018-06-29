@@ -24,7 +24,7 @@ export function* loadAllContacts() {
 export function* removeContact({ contact }) {
   const contactBook = getContactsLocalStorage();
   if (contactBook) {
-    const remainingList = contactBook.filter((person) => person.address !== contact.address);
+    const remainingList = contactBook.filter((person) => !(person.address === contact.address && person.name === contact.name));
     localStorage.setItem('contactBook', JSON.stringify(remainingList));
     yield put(removeContactSuccess(remainingList));
   }

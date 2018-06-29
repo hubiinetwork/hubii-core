@@ -61,9 +61,10 @@ export default class ContactList extends React.PureComponent {
     });
   }
 
-  handleDelete(e) {
+  handleDelete() {
+    const { name, address } = this.state;
     this.setState({ visible: false });
-    this.props.onDelete(e);
+    this.props.onDelete({ name, address });
   }
 
   validateEdit(address, oldAddress) {
@@ -131,7 +132,7 @@ export default class ContactList extends React.PureComponent {
             name={name}
             address={address}
             onEdit={(e) => this.handleEdit(e)}
-            onDelete={(e) => this.handleDelete(e)}
+            onDelete={() => this.handleDelete()}
             onChange={(e, type) => this.onChange(e, type)}
             error={error}
             validateEdit={(newAddress, oldAddress) => this.validateEdit(newAddress, oldAddress)}

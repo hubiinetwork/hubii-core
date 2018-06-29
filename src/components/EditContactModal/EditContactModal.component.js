@@ -44,8 +44,8 @@ class EditContactModal extends React.Component {
   }
 
   handleDelete() {
-    const { onDelete, name, address } = this.props;
-    onDelete({ name, address });
+    const { onDelete } = this.props;
+    onDelete();
   }
 
   validateEdit(rule, value, callback) {
