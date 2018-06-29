@@ -6,13 +6,11 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
 
-import { makeSelectWallets } from 'containers/WalletHOC/selectors';
+import { makeSelectWalletList } from 'containers/WalletHOC/selectors';
 import { loadWallets } from 'containers/WalletHOC/actions';
 import { SectionHeading } from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
-
-import {convertWalletsList} from 'utils/wallet'
 
 import {WalletCardsCol} from './style.js'
 
@@ -27,8 +25,8 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     history.push(`/wallet/${address}`);
   }
 
-  getWalletCardsData (walletsState) {
-    return convertWalletsList(walletsState).map(wallet => {
+  getWalletCardsData (walletList) {
+    return walletList.map(wallet => {
       let assets, usdValue = 0
       if (wallet.balances) {
         assets = wallet.balances.map(token => {
@@ -102,8 +100,8 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
   }
 
   render() {
-    const {wallets} = this.props
-    const walletCards = this.getWalletCardsData(wallets)
+    const {walletList} = this.props
+    const walletCards = this.getWalletCardsData(walletList)
     const summary = this.getBreakdown(walletCards)
     return (
       <Row gutter={16}>
@@ -125,17 +123,15 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 }
 
 WalletsOverview.propTypes = {
-  wallets: PropTypes.object.isRequired,
+  walletList: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  wallets: makeSelectWallets(),
+  walletList: makeSelectWalletList(),
 });
 
 export function mapDispatchToProps(dispatch) {
-  return {
-    // loadWallets: () => dispatch(loadWallets()),
-  };
+  return {};
 }
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
