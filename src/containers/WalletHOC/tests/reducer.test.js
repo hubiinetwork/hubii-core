@@ -177,7 +177,7 @@ describe('walletManagerReducer', () => {
           name: walletName,
           transfering: false,
           transferError: null,
-          lastTransactionHash: null,
+          lastTransaction: null,
         };
         const expected = state
           .set('currentWallet', fromJS(currentWallet));
@@ -185,24 +185,24 @@ describe('walletManagerReducer', () => {
         expect(walletManagerReducer(state, setCurrentWallet(walletName, address))).toEqual(expected);
       });
       it('TRANSFER_SUCCESS', () => {
-        const transactionHash = 'abcd';
+        const transaction = 'abcd';
         const currentWallet = {
           address: '',
           transfering: false,
           transferError: null,
-          lastTransactionHash: transactionHash,
+          lastTransaction: transaction,
         };
         const expected = state
           .set('currentWallet', fromJS(currentWallet));
 
-        expect(walletManagerReducer(state, transferSuccess(transactionHash))).toEqual(expected);
+        expect(walletManagerReducer(state, transferSuccess(transaction))).toEqual(expected);
       });
       it('TRANSFER', () => {
         const currentWallet = {
           address: '',
           transfering: true,
           transferError: null,
-          lastTransactionHash: null,
+          lastTransaction: null,
         };
         const expected = state
           .set('currentWallet', fromJS(currentWallet));
@@ -215,7 +215,7 @@ describe('walletManagerReducer', () => {
           address: '',
           transfering: false,
           transferError: error,
-          lastTransactionHash: null,
+          lastTransaction: null,
         };
         const expected = state
           .set('currentWallet', fromJS(currentWallet));

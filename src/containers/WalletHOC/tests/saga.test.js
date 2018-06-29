@@ -329,7 +329,7 @@ describe('load wallets saga', () => {
     const amount = 0.0001;
     const gasPrice = 30000;
     const gasLimit = 21000;
-    const transactionHash = { hash: '' };
+    const transaction = { hash: '' };
     it('should trigger SHOW_DECRYPT_WALLET_MODAL action when the wallet is not decrypted yet', () => expectSaga(transfer, { wallet: { name: walletName } })
         .put(showDecryptWalletModal(walletName))
         .run());
@@ -339,10 +339,10 @@ describe('load wallets saga', () => {
             expect(effect.args[0]).toEqual(toAddress);
             expect(effect.args[1]).toEqual(utils.parseEther(amount.toString()));
             expect(effect.args[2]).toEqual({ gasPrice, gasLimit });
-            return transactionHash;
+            return transaction;
           },
         })
-        .put(transferSuccess(transactionHash))
+        .put(transferSuccess(transaction))
         .run());
     xit('should trigger transferError action', () => {
       const error = new Error();

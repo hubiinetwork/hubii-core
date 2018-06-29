@@ -105,22 +105,22 @@ function walletManagerReducer(state = initialState, action) {
         .setIn(['currentWallet', 'address'], action.address)
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], null)
-        .setIn(['currentWallet', 'lastTransactionHash'], null);
+        .setIn(['currentWallet', 'lastTransaction'], null);
     case TRANSFER:
       return state
         .setIn(['currentWallet', 'transfering'], true)
         .setIn(['currentWallet', 'transferError'], null)
-        .setIn(['currentWallet', 'lastTransactionHash'], null);
+        .setIn(['currentWallet', 'lastTransaction'], null);
     case TRANSFER_SUCCESS:
       return state
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], null)
-        .setIn(['currentWallet', 'lastTransactionHash'], action.transactionHash);
+        .setIn(['currentWallet', 'lastTransaction'], action.transaction);
     case TRANSFER_ERROR:
       return state
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], action.error)
-        .setIn(['currentWallet', 'lastTransactionHash'], null);
+        .setIn(['currentWallet', 'lastTransaction'], null);
     default:
       return state;
   }

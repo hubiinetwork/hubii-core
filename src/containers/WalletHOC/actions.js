@@ -148,10 +148,10 @@ export function transfer(payload) {
   };
 }
 
-export function transferSuccess(transactionHash) {
+export function transferSuccess(transaction) {
   return {
     type: TRANSFER_SUCCESS,
-    transactionHash,
+    transaction,
   };
 }
 
