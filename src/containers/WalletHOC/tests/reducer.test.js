@@ -185,7 +185,7 @@ describe('walletManagerReducer', () => {
         expect(walletManagerReducer(state, setCurrentWallet(walletName, address))).toEqual(expected);
       });
       it('TRANSFER_SUCCESS', () => {
-        const transaction = 'abcd';
+        const transaction = { hash: 'abcd' };
         const currentWallet = {
           address: '',
           transfering: false,

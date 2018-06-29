@@ -115,7 +115,7 @@ function walletManagerReducer(state = initialState, action) {
       return state
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], null)
-        .setIn(['currentWallet', 'lastTransaction'], action.transaction);
+        .setIn(['currentWallet', 'lastTransaction'], fromJS(action.transaction));
     case TRANSFER_ERROR:
       return state
         .setIn(['currentWallet', 'transfering'], false)
