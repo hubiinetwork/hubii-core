@@ -12,6 +12,12 @@ import {
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
+  setCurrentWallet,
+  transferError,
+  transferSuccess,
+  transfer,
+  showDecryptWalletModal,
+  hideDecryptWalletModal,
 } from '../actions';
 describe('walletManagerReducer', () => {
   let state;
@@ -34,6 +40,9 @@ describe('walletManagerReducer', () => {
       wallets: {
         software: {},
         hardware: {},
+      },
+      currentWallet: {
+        address: '',
       },
     });
   });
@@ -85,12 +94,13 @@ describe('walletManagerReducer', () => {
 
   it('should handle decryptWalletSuccess action correctly', () => {
     const decryptedWallet = { id: 1234 };
+    const name = 'test';
     const expected = state
       .setIn(['loading', 'decryptingWallet'], false)
       .setIn(['inputs', 'password'], '')
       .setIn(['errors', 'decryptingWalletError'], null)
-      .setIn(['wallets', state.get('selectedWallet'), 'decrypted'], decryptedWallet);
-    expect(walletManagerReducer(state, decryptWalletSuccess(decryptedWallet))).toEqual(expected);
+      .setIn(['wallets', 'software', name, 'decrypted'], decryptedWallet);
+    expect(walletManagerReducer(state, decryptWalletSuccess(name, decryptedWallet))).toEqual(expected);
   });
 
   it('should handle decryptWalletFailed action correctly', () => {
@@ -155,6 +165,82 @@ describe('walletManagerReducer', () => {
           .setIn(['wallets', 'software', walletName, 'loadingBalancesError'], error);
 
         expect(walletManagerReducer(state, loadWalletBalancesError(walletName, error))).toEqual(expected);
+      });
+    });
+
+    describe('currentWallet', () => {
+      it('SET_CURRENT_WALLET', () => {
+        const walletName = 'testWallet';
+        const address = 'abcd';
+        const currentWallet = {
+          address,
+          name: walletName,
+          transfering: false,
+          transferError: null,
+          lastTransaction: null,
+        };
+        const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+        expect(walletManagerReducer(state, setCurrentWallet(walletName, address))).toEqual(expected);
+      });
+      it('TRANSFER_SUCCESS', () => {
+        const transaction = { hash: 'abcd' };
+        const currentWallet = {
+          address: '',
+          transfering: false,
+          transferError: null,
+          lastTransaction: transaction,
+        };
+        const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+        expect(walletManagerReducer(state, transferSuccess(transaction))).toEqual(expected);
+      });
+      it('TRANSFER', () => {
+        const currentWallet = {
+          address: '',
+          transfering: true,
+          transferError: null,
+          lastTransaction: null,
+        };
+        const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+        expect(walletManagerReducer(state, transfer({}))).toEqual(expected);
+      });
+      it('TRANSFER_ERROR', () => {
+        const error = { message: 'error' };
+        const currentWallet = {
+          address: '',
+          transfering: false,
+          transferError: error.message,
+          lastTransaction: null,
+        };
+        const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+        expect(walletManagerReducer(state, transferError(error))).toEqual(expected);
+      });
+      it('SHOW_DECRYPT_WALLET_MODAL', () => {
+        const currentWallet = {
+          address: '',
+          showDecryptModal: true,
+        };
+        const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+        expect(walletManagerReducer(state, showDecryptWalletModal())).toEqual(expected);
+      });
+      it('HIDE_DESCRYPT_WALLET_MODAL', () => {
+        const currentWallet = {
+          address: '',
+          showDecryptModal: false,
+        };
+        const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+        expect(walletManagerReducer(state, hideDecryptWalletModal())).toEqual(expected);
       });
     });
   });
