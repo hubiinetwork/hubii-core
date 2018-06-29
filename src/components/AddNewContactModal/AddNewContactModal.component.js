@@ -18,16 +18,31 @@ class AddNewContactModal extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.validateAddress = this.validateField.bind(this);
   }
+
+  validateField(rule, value, callback) {
+    const { contacts } = this.props;
+    // can add more validation for name if required
+    if (rule.field === 'address') {
+      const sameAddressList = contacts.filter((person) => person.address === value.trim());
+      if (sameAddressList.length) {
+        callback('You have already saved this address');
+      }
+    }
+    callback();
+  }
+
   handleSubmit(e) {
     const { onSubmit } = this.props;
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields((err, value) => {
       if (!err) {
-        onSubmit(values);
+        onSubmit({ address: value.address.trim(), name: value.name.trim() });
       }
     });
   }
+
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -46,6 +61,7 @@ class AddNewContactModal extends React.Component {
                 {
                   message: 'Name is required.',
                   required: true,
+                  whitespace: true,
                 },
               ],
             })(<ModalFormInput placeholder="John Doe" />)}
@@ -58,6 +74,12 @@ class AddNewContactModal extends React.Component {
                 {
                   message: 'Address is required.',
                   required: true,
+                  whitespace: true,
+                },
+                {
+                  message: 'Address is already in use.',
+                  required: true,
+                  validator: (rule, value, callback) => this.validateField(rule, value, callback),
                 },
               ],
             })(
@@ -84,6 +106,7 @@ AddNewContactModal.propTypes = {
    */
   onSubmit: PropTypes.func,
   form: PropTypes.object,
+  contacts: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Form.create()(AddNewContactModal);

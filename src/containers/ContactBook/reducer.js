@@ -9,6 +9,7 @@ import {
   LOAD_CONTACTS_SUCCESS,
   CREATE_CONTACT_SUCCESS,
   REMOVE_CONTACT_SUCCESS,
+  EDIT_CONTACT_SUCCESS,
 } from './constants';
 
 const initialState = fromJS([]);
@@ -21,6 +22,11 @@ function walletManagerReducer(state = initialState, action) {
       return fromJS(action.contacts);
     case REMOVE_CONTACT_SUCCESS:
       return fromJS(action.remainingContacts);
+    case EDIT_CONTACT_SUCCESS: {
+      const newState = state.toJS();
+      newState[action.index] = action.newContact;
+      return fromJS([...newState]);
+    }
     default:
       return state;
   }

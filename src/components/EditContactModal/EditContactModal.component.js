@@ -20,25 +20,47 @@ class EditContactModal extends React.Component {
     super(props);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.validateEdit = this.validateEdit.bind(this);
+    this.state = {
+      oldName: null,
+      oldAddress: null,
+    };
+
+    this.validateEdit = this.validateEdit.bind(this);
   }
+
+  componentWillMount() {
+    const { name, address } = this.props;
+    this.setState({
+      oldName: name,
+      oldAddress: address,
+    });
+  }
+
   handleEdit() {
-    // e.preventDefault();
-    const { onEdit, name, address } = this.props;
-    // this.props.form.validateFields((err, values) => {
-    //   if (!err) {
-    //     onEdit(values);
-    //   }
-    // });
-    onEdit({ name, address });
+    const { onEdit } = this.props;
+    const { oldName, oldAddress } = this.state;
+    onEdit({ name: oldName, address: oldAddress });
   }
+
   handleDelete() {
     const { onDelete, name, address } = this.props;
-
-    // validation required
     onDelete({ name, address });
   }
+
+  validateEdit(rule, value, callback) {
+    const { validateEdit } = this.props;
+    const error = validateEdit(value, this.state.oldAddress);
+    if (error) {
+      callback('You have already saved this address');
+    } else {
+      callback();
+    }
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { onChange } = this.props;
     return (
       <Wrapper>
         <WrapperIcon>
@@ -48,7 +70,7 @@ class EditContactModal extends React.Component {
             transaction is made, it can not be changed.
           </Text>
         </WrapperIcon>
-        <Form layout="vertical">
+        <Form layout="vertical" onSubmit={this.handleSubmit}>
           <ModalFormItem label={<ModalFormLabel>Name</ModalFormLabel>}>
             {getFieldDecorator('name', {
               rules: [
@@ -58,7 +80,7 @@ class EditContactModal extends React.Component {
                 },
               ],
               initialValue: this.props.name,
-            })(<ModalFormInput />)}
+            })(<ModalFormInput onChange={(e) => onChange(e, 'name')} error={this.props.error} />)}
           </ModalFormItem>
           <ModalFormItem
             label={<ModalFormLabel>Valid Ethereum Address</ModalFormLabel>}
@@ -69,9 +91,14 @@ class EditContactModal extends React.Component {
                   message: 'Address is required.',
                   required: true,
                 },
+                {
+                  message: 'This address is already under use',
+                  required: true,
+                  validator: this.validateEdit,
+                },
               ],
               initialValue: this.props.address,
-            })(<ModalFormInput />)}
+            })(<ModalFormInput onChange={(e) => onChange(e, 'address')} />)}
           </ModalFormItem>
           <ParentDiv>
             <StyledButton1
@@ -106,6 +133,9 @@ EditContactModal.propTypes = {
   /** Function to be executed when delete button is pressed */
   onDelete: PropTypes.func,
   form: PropTypes.object,
+  onChange: PropTypes.func,
+  error: PropTypes.object,
+  validateEdit: PropTypes.func,
 };
 
 export default Form.create()(EditContactModal);

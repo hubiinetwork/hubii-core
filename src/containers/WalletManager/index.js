@@ -12,6 +12,7 @@ import Tab from 'components/ui/Tab';
 import AddRestoreWalletModal from 'components/AddRestoreWalletModal';
 import AddNewContactModal from 'components/AddNewContactModal';
 import { Modal } from 'components/ui/Modal';
+import { makeSelectContacts } from 'containers/ContactBook/selectors';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -19,8 +20,8 @@ import { createNewWallet } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import { makeSelectLoading, makeSelectErrors } from './selectors';
-import { createContact } from '../ContactBook/actions';
-
+import { createContact, removeContact } from '../ContactBook/actions';
+import DeleteContactModal from '../../components/DeleteContactModal';
 import {
   Wrapper,
   TabsLayout,
@@ -44,6 +45,7 @@ export class WalletManager extends React.PureComponent {
     this.hideModal = this.hideModal.bind(this);
     this.showModal = this.showModal.bind(this);
     this.handleAddWalletSubmit = this.handleAddWalletSubmit.bind(this);
+    this.onDeleteContact = this.onDeleteContact.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -63,9 +65,17 @@ export class WalletManager extends React.PureComponent {
     this.props.history.push(key);
   }
 
-  onSubmit(data) {
-    if (data) {
-      this.props.createContact(data.name, data.address, 'Striim');
+  onSubmit(contact) {
+    if (contact) {
+      this.props.createContact(contact.name, contact.address);
+    }
+    this.hideModal();
+    return null;
+  }
+
+  onDeleteContact(contact) {
+    if (contact) {
+      this.props.removeContact(contact);
     }
     this.hideModal();
     return null;
@@ -84,13 +94,12 @@ export class WalletManager extends React.PureComponent {
     });
   }
 
-
   handleAddWalletSubmit(params) {
     this.props.createNewWallet(params.name, params.mnemonic, params.derivationPath, params.password);
   }
 
   render() {
-    const { history, match } = this.props;
+    const { history, match, contacts } = this.props;
 
     let deleteContact;
     if (history.location.pathname !== `${match.url}/overview`) {
@@ -103,11 +112,15 @@ export class WalletManager extends React.PureComponent {
     let modal;
     switch (this.state.type) {
       case 'deleteContact':
-        modal = ('hello');
+        modal = (<DeleteContactModal
+          onDelete={(contact) => this.onDeleteContact(contact)}
+          contacts={contacts.toJS()}
+        />);
         break;
       case 'addContact':
         modal = (<AddNewContactModal
           onSubmit={(e) => this.onSubmit(e)}
+          contacts={contacts.toJS()}
         />);
         break;
       default:
@@ -155,7 +168,6 @@ export class WalletManager extends React.PureComponent {
             }
             key={`${match.url}/overview`}
           >
-            <Route path={`${match.url}/overview`} component={WalletsOverview} />
           </TabPane>
           <TabPane
             tab={
@@ -165,9 +177,11 @@ export class WalletManager extends React.PureComponent {
             }
             key={`${match.url}/contacts`}
           >
-            <Route path={`${match.url}/contacts`} component={ContactBook} />
           </TabPane>
         </Tab>
+        <Route path={`${match.url}/overview`} component={WalletsOverview} />
+        <Route path={`${match.url}/contacts`} component={ContactBook} />
+
         {
           history.location.pathname === match.url &&
           <Redirect from={match.url} to={`${match.url}/overview`} push />
@@ -184,17 +198,21 @@ WalletManager.propTypes = {
   loading: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   createContact: PropTypes.func.isRequired,
+  contacts: PropTypes.arrayOf(PropTypes.object),
+  removeContact: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
   errors: makeSelectErrors(),
+  contacts: makeSelectContacts(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
     createNewWallet: (...args) => dispatch(createNewWallet(...args)),
     createContact: (...args) => dispatch(createContact(...args)),
+    removeContact: (...args) => dispatch(removeContact(...args)),
   };
 }
 

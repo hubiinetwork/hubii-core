@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 export const StyledDiv = styled.div`
   margin-top: 15px;
-  margin-left: 15px;
 `;
 export const StyledList = styled(List)`
   margin-right: 18px;

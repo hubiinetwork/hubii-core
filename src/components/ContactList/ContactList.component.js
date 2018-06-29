@@ -11,7 +11,6 @@ import EditContactModal from '../EditContactModal';
 /**
  * The ContactList Component shows list of contacts.
  */
-
 export default class ContactList extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -19,11 +18,27 @@ export default class ContactList extends React.PureComponent {
       visible: false,
       name: '',
       address: '',
+      error: null,
     };
     this.showNotification = this.showNotification.bind(this);
     this.showModal = this.showModal.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.validateEdit = this.validateEdit.bind(this);
+  }
+
+  onChange(e, type) {
+    if (type === 'name') {
+      this.setState({
+        name: e.target.value,
+      });
+    } else {
+      this.setState({
+        address: e.target.value,
+      });
+    }
   }
 
   showNotification() {
@@ -31,6 +46,7 @@ export default class ContactList extends React.PureComponent {
     const message = 'Address copied to clipboard.';
     Notification(success, message);
   }
+
   showModal(item) {
     this.setState({
       visible: true,
@@ -38,6 +54,7 @@ export default class ContactList extends React.PureComponent {
       address: item.address,
     });
   }
+
   handleCancel() {
     this.setState({
       visible: false,
@@ -45,12 +62,27 @@ export default class ContactList extends React.PureComponent {
   }
 
   handleDelete(e) {
-    console.log(`hello${e.name}`);
     this.setState({ visible: false });
     this.props.onDelete(e);
   }
+
+  validateEdit(address, oldAddress) {
+    const { data } = this.props;
+    const sameAddressList = data.filter((person) => person.address === address);
+    // can implement function to do additional validation
+    return !!(sameAddressList.length && address !== oldAddress);
+  }
+
+  handleEdit(oldContact) {
+    const { onEdit } = this.props;
+    const { name, address } = this.state;
+    this.setState({ visible: false });
+    onEdit({ name, address }, oldContact);
+  }
+
   render() {
     const { size, layout, data } = this.props;
+    const { error, name, address } = this.state;
     const Item = (item) => (
       <List.Item
         actions={[
@@ -88,17 +120,21 @@ export default class ContactList extends React.PureComponent {
         <Modal
           footer={null}
           width={'585px'}
-          maskClosable={false}
+          maskClosable
           maskStyle={{ background: 'rgba(232,237,239,.65)' }}
           style={{ marginTop: '20px' }}
           visible={this.state.visible}
           onCancel={this.handleCancel}
+          destroyOnClose
         >
           <EditContactModal
-            name={this.state.name}
-            address={this.state.address}
-            onEdit={this.props.onEdit}
+            name={name}
+            address={address}
+            onEdit={(e) => this.handleEdit(e)}
             onDelete={(e) => this.handleDelete(e)}
+            onChange={(e, type) => this.onChange(e, type)}
+            error={error}
+            validateEdit={(newAddress, oldAddress) => this.validateEdit(newAddress, oldAddress)}
           />
         </Modal>
       </div>
