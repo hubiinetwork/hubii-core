@@ -2,7 +2,7 @@ import React from 'react';
 import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
 import { convertWalletsList } from 'utils/wallet';
-import {makeSelectWalletList} from 'containers/WalletHOC/selectors'
+import { makeSelectWalletList } from 'containers/WalletHOC/selectors';
 import { WalletsOverview, mapDispatchToProps } from '../index';
 
 describe('WalletsOverview', () => {
@@ -18,7 +18,7 @@ describe('WalletsOverview', () => {
       },
       hardware: {},
     };
-    const state = fromJS({walletManager: {wallets}})
+    const state = fromJS({ walletManager: { wallets } });
     const balances = [
       [
         {
@@ -85,9 +85,9 @@ describe('WalletsOverview', () => {
         it('Breakdown should be available when all balances are available', () => {
           const walletsState = state
             .setIn(['walletManager', 'wallets', 'software', 'test1', 'balances'], balances[0])
-            .setIn(['walletManager', 'wallets', 'software', 'test2', 'balances'], balances[1])
+            .setIn(['walletManager', 'wallets', 'software', 'test2', 'balances'], balances[1]);
 
-          const walletsList = makeSelectWalletList()(walletsState)
+          const walletsList = makeSelectWalletList()(walletsState);
           const overviewDom = shallow(
             <WalletsOverview
               {...params}
@@ -104,8 +104,8 @@ describe('WalletsOverview', () => {
           ]);
         });
         it('Breakdown should be also available when no all balances are available', () => {
-          const walletsState = state.setIn(['walletManager', 'wallets', 'software', 'test1', 'balances'], balances[0])
-          const walletsList = makeSelectWalletList()(walletsState)
+          const walletsState = state.setIn(['walletManager', 'wallets', 'software', 'test1', 'balances'], balances[0]);
+          const walletsList = makeSelectWalletList()(walletsState);
 
           const overviewDom = shallow(
             <WalletsOverview
@@ -129,8 +129,8 @@ describe('WalletsOverview', () => {
         const instance = dom.instance();
         const walletsState = state
           .setIn(['walletManager', 'wallets', 'software', 'test1', 'balances'], balances[0])
-          .setIn(['walletManager', 'wallets', 'software', 'test2', 'balances'], balances[1])
-        const walletsList = makeSelectWalletList()(walletsState)
+          .setIn(['walletManager', 'wallets', 'software', 'test2', 'balances'], balances[1]);
+        const walletsList = makeSelectWalletList()(walletsState);
 
         const cardsData = instance.getWalletCardsData(walletsList);
         expect(cardsData.length).toEqual(walletsList.length);
@@ -152,7 +152,7 @@ describe('WalletsOverview', () => {
       });
       it('should handle wallets that do not have balances', () => {
         const instance = dom.instance();
-        const walletsList = makeSelectWalletList()(state)
+        const walletsList = makeSelectWalletList()(state);
         const cardsData = instance.getWalletCardsData(walletsList);
         expect(cardsData.length).toEqual(walletsList.length);
         cardsData.forEach((card, index) => {
