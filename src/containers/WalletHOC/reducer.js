@@ -17,7 +17,7 @@ import {
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
   SET_CURRENT_WALLET,
-  SHOW_DESCRYPT_WALLET_MODAL,
+  SHOW_DECRYPT_WALLET_MODAL,
   HIDE_DESCRYPT_WALLET_MODAL,
   TRANSFER,
   TRANSFER_SUCCESS,
@@ -93,7 +93,7 @@ function walletManagerReducer(state = initialState, action) {
       return state
         .setIn(['wallets', 'software', action.name, 'loadingBalances'], false)
         .setIn(['wallets', 'software', action.name, 'loadingBalancesError'], action.error);
-    case SHOW_DESCRYPT_WALLET_MODAL:
+    case SHOW_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], true);
     case HIDE_DESCRYPT_WALLET_MODAL:

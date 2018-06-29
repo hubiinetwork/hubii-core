@@ -11,7 +11,7 @@ import {
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
-  SHOW_DESCRYPT_WALLET_MODAL,
+  SHOW_DECRYPT_WALLET_MODAL,
   HIDE_DESCRYPT_WALLET_MODAL,
   SET_CURRENT_WALLET,
   LOAD_WALLETS,
@@ -79,7 +79,7 @@ export function decryptWalletFailed(error) {
 
 export function showDecryptWalletModal(walletName) {
   return {
-    type: SHOW_DESCRYPT_WALLET_MODAL,
+    type: SHOW_DECRYPT_WALLET_MODAL,
     walletName,
   };
 }

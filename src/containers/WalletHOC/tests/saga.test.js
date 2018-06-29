@@ -330,7 +330,7 @@ describe('load wallets saga', () => {
     const gasPrice = 30000;
     const gasLimit = 21000;
     const transactionHash = { hash: '' };
-    it('should trigger SHOW_DESCRYPT_WALLET_MODAL action when the wallet is not decrypted yet', () => expectSaga(transfer, { wallet: { name: walletName } })
+    it('should trigger SHOW_DECRYPT_WALLET_MODAL action when the wallet is not decrypted yet', () => expectSaga(transfer, { wallet: { name: walletName } })
         .put(showDecryptWalletModal(walletName))
         .run());
     xit('should trigger transferSuccess action', () => expectSaga(transfer, { wallet, token, toAddress, amount, gasPrice, gasLimit })
