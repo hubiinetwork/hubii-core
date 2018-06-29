@@ -13,6 +13,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
+import { Route } from 'react-router';
 import createHistory from 'history/createBrowserHistory';
 
 // Import root app
@@ -47,7 +48,7 @@ const render = (messages) => {
       <ThemeProvider theme={dark}>
         <LanguageProvider messages={messages}>
           <ConnectedRouter history={history}>
-            <App />
+            <Route path="/" component={App} />
           </ConnectedRouter>
         </LanguageProvider>
       </ThemeProvider>

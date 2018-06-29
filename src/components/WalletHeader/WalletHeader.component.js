@@ -40,8 +40,8 @@ const WalletHeader = (props) => {
           <DetailWrapper>
             <Name>{props.name}</Name>
             <Address>
-              {`0x${props.address}`}
-              <CopyToClipboard text={`0x${props.address}`}>
+              {`${props.address}`}
+              <CopyToClipboard text={`${props.address}`}>
                 <CopyButton
                   type="primary"
                   shape="circle"
@@ -54,7 +54,7 @@ const WalletHeader = (props) => {
             </Address>
           </DetailWrapper>
           <DetailWrapper>
-            <Balance>${props.balance}</Balance>
+            <Balance>${props.balance.toLocaleString('en')}</Balance>
           </DetailWrapper>
         </HeaderDetail>
       </OverflowHidden>

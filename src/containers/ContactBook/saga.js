@@ -1,7 +1,7 @@
 import { takeEvery, put } from 'redux-saga/effects';
 import { loadAllContactsSucess, createContactSuccess, removeContactSuccess, editContactSuccess } from './actions';
 import { CREATE_CONTACT, LOAD_CONTACTS, REMOVE_CONTACT, EDIT_CONTACT } from './constants';
-import { getContactsLocalStorage } from '../../utils/wallet';
+import { getContactsLocalStorage } from '../../utils/contact';
 
 
 export function* cacheContact({ contactDetails }) {
@@ -35,8 +35,6 @@ export function* editContact({ oldContact, newContact }) {
   const reducer = (acc, currValue) => currValue.name === oldContact.name && currValue.address === oldContact.address ? contactBook.indexOf(currValue) : acc;
   const index = contactBook.reduce(reducer, 0);
   contactBook[index] = newContact;
-  // const  = doesContactExist(newContact);
-
   localStorage.setItem('contactBook', JSON.stringify(contactBook));
   yield put(editContactSuccess(index, newContact));
 }

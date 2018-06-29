@@ -11,12 +11,18 @@ import {
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
+  SHOW_DECRYPT_WALLET_MODAL,
+  HIDE_DESCRYPT_WALLET_MODAL,
+  SET_CURRENT_WALLET,
   LOAD_WALLETS,
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
-  LOAD_CONTACTS_SUCESS,
+  TRANSFER,
+  TRANSFER_SUCCESS,
+  TRANSFER_ERROR,
+  NOTIFY,
 } from './constants';
 
 export function createNewWallet(name, mnemonic, derivationPath, password) {
@@ -47,15 +53,19 @@ export function createNewWalletFailed(error) {
   };
 }
 
-export function decryptWallet() {
+export function decryptWallet(name, encryptedWallet, password) {
   return {
     type: DECRYPT_WALLET,
+    name,
+    encryptedWallet,
+    password,
   };
 }
 
-export function decryptWalletSuccess(decryptedWallet) {
+export function decryptWalletSuccess(name, decryptedWallet) {
   return {
     type: DECRYPT_WALLET_SUCCESS,
+    name,
     decryptedWallet,
   };
 }
@@ -64,6 +74,28 @@ export function decryptWalletFailed(error) {
   return {
     type: DECRYPT_WALLET_FAILURE,
     error,
+  };
+}
+
+export function showDecryptWalletModal(walletName) {
+  return {
+    type: SHOW_DECRYPT_WALLET_MODAL,
+    walletName,
+  };
+}
+
+export function hideDecryptWalletModal(walletName) {
+  return {
+    type: HIDE_DESCRYPT_WALLET_MODAL,
+    walletName,
+  };
+}
+
+export function setCurrentWallet(name, address) {
+  return {
+    type: SET_CURRENT_WALLET,
+    name,
+    address,
   };
 }
 
@@ -104,11 +136,36 @@ export function loadWalletBalancesError(name, error) {
   };
 }
 
-// Contacts
-
-export function loadContactsSuccess(contacts) {
+export function transfer(payload) {
   return {
-    type: LOAD_CONTACTS_SUCESS,
-    contacts,
+    type: TRANSFER,
+    wallet: payload.wallet,
+    token: payload.token,
+    toAddress: payload.toAddress,
+    amount: payload.amount,
+    gasPrice: payload.gasPrice,
+    gasLimit: payload.gasLimit,
+  };
+}
+
+export function transferSuccess(transaction) {
+  return {
+    type: TRANSFER_SUCCESS,
+    transaction,
+  };
+}
+
+export function transferError(error) {
+  return {
+    type: TRANSFER_ERROR,
+    error,
+  };
+}
+
+export function notify(success, message) {
+  return {
+    type: NOTIFY,
+    success,
+    message,
   };
 }
