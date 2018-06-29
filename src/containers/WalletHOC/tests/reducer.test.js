@@ -210,11 +210,11 @@ describe('walletManagerReducer', () => {
         expect(walletManagerReducer(state, transfer({}))).toEqual(expected);
       });
       it('TRANSFER_ERROR', () => {
-        const error = 'error';
+        const error = { message: 'error' };
         const currentWallet = {
           address: '',
           transfering: false,
-          transferError: error,
+          transferError: error.message,
           lastTransaction: null,
         };
         const expected = state

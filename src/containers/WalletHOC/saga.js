@@ -115,7 +115,7 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
     const transaction = yield etherWallet.send(toAddress, wei, { gasPrice, gasLimit });
     yield put(transferSuccess(transaction));
   } catch (error) {
-    yield put(transferError(error.message));
+    yield put(transferError(error));
   }
 }
 
