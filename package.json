@@ -263,6 +263,7 @@
     "intl": "1.2.5",
     "invariant": "2.2.4",
     "ip": "1.1.5",
+    "jsonwebtoken": "^8.3.0",
     "lodash": "4.17.5",
     "minimist": "1.2.0",
     "prop-types": "15.6.1",
