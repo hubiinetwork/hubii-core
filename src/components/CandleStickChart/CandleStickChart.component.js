@@ -127,7 +127,6 @@ export default class CandleStickChart extends React.Component {
     });
   }
   render() {
-    debugger;
     return (
       <ReactHighcharts config={this.state.config} />
     );
