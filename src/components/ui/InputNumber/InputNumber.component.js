@@ -21,7 +21,7 @@ export default class InputNumber extends React.PureComponent {
     });
   }
   render() {
-    const { minValue, maxValue, ...rest } = this.props;
+    const { ...rest } = this.props;
     return (
       <Input
         value={this.state.value}
