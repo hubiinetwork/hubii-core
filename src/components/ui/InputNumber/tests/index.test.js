@@ -25,4 +25,13 @@ describe('<InputNumber />', () => {
     input.simulate('change');
     expect(input.props().className).toHaveLength(9);
   });
+  it('should render correctly', () => {
+    const component = mount(
+      <ThemeProvider theme={darkTheme}>
+        <InputNumber />
+      </ThemeProvider>
+    );
+    const input = component.find('.ant-input');
+    expect(input.text()).toBe('');
+  });
 });
