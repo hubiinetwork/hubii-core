@@ -2,11 +2,13 @@ import { List } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import ContactDeletionModal from 'components/ContactDeletionModal';
+import EditContactModal from 'components/EditContactModal';
+
 import StyledButton from '../ui/Button';
-import { StyledDiv, StyledList } from './ContactList.style';
-import Notification from '../Notification';
 import { Modal } from '../ui/Modal';
-import EditContactModal from '../EditContactModal';
+import Notification from '../Notification';
+import { StyledDiv, StyledList } from './ContactList.style';
 
 /**
  * The ContactList Component shows list of contacts.
@@ -19,6 +21,7 @@ export default class ContactList extends React.PureComponent {
       name: '',
       address: '',
       error: null,
+      modalType: null,
     };
     this.showNotification = this.showNotification.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -30,15 +33,9 @@ export default class ContactList extends React.PureComponent {
   }
 
   onChange(e, type) {
-    if (type === 'name') {
-      this.setState({
-        name: e.target.value,
-      });
-    } else {
-      this.setState({
-        address: e.target.value,
-      });
-    }
+    this.setState({
+      [type]: e.target.value,
+    });
   }
 
   showNotification() {
@@ -47,11 +44,12 @@ export default class ContactList extends React.PureComponent {
     Notification(success, message);
   }
 
-  showModal(item) {
+  showModal(item, modalType) {
     this.setState({
       visible: true,
       name: item.name,
       address: item.address,
+      modalType,
     });
   }
 
@@ -83,16 +81,46 @@ export default class ContactList extends React.PureComponent {
 
   render() {
     const { size, layout, data } = this.props;
-    const { error, name, address } = this.state;
+    const { error, name, address, modalType } = this.state;
+    let modal;
+    if (modalType === 'delete') {
+      modal = (
+        <ContactDeletionModal
+          name={name}
+          address={address}
+          onCancel={this.handleCancel}
+          onDelete={this.handleDelete}
+        />
+      );
+    } else {
+      modal = (
+        <EditContactModal
+          name={name}
+          address={address}
+          onEdit={(e) => this.handleEdit(e)}
+          onChange={(e, type) => this.onChange(e, type)}
+          error={error}
+          validateEdit={(newAddress, oldAddress) => this.validateEdit(newAddress, oldAddress)}
+        />
+      );
+    }
     const Item = (item) => (
       <List.Item
         actions={[
           <StyledButton
             type="primary"
             shape="circle"
+            icon="delete"
+            size={'small'}
+            onClick={() => this.showModal(item, 'delete')}
+            key={1}
+          />,
+          <StyledButton
+            type="primary"
+            shape="circle"
             icon="edit"
             size={'small'}
-            onClick={() => this.showModal(item)}
+            onClick={() => this.showModal(item, 'edit')}
             key={1}
           />,
           <CopyToClipboard text={item.address} key={2}>
@@ -128,15 +156,7 @@ export default class ContactList extends React.PureComponent {
           onCancel={this.handleCancel}
           destroyOnClose
         >
-          <EditContactModal
-            name={name}
-            address={address}
-            onEdit={(e) => this.handleEdit(e)}
-            onDelete={() => this.handleDelete()}
-            onChange={(e, type) => this.onChange(e, type)}
-            error={error}
-            validateEdit={(newAddress, oldAddress) => this.validateEdit(newAddress, oldAddress)}
-          />
+          {modal}
         </Modal>
       </div>
     ) : (

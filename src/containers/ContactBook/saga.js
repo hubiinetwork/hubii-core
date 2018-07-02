@@ -6,7 +6,7 @@ import { getContactsLocalStorage } from '../../utils/contact';
 
 export function* cacheContact({ contactDetails }) {
   const contactBook = [];
-  if (JSON.parse(localStorage.getItem('contactBook'))){
+  if (JSON.parse(localStorage.getItem('contactBook'))) {
     contactBook.push(...JSON.parse(localStorage.getItem('contactBook')));
   }
   contactBook.push({ ...contactDetails });

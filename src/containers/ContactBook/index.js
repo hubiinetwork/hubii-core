@@ -106,7 +106,9 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
 }
 
 ContactBook.propTypes = {
-  contacts: PropTypes.array,
+  contacts: PropTypes.oneOfType(
+    [PropTypes.arrayOf(PropTypes.object), PropTypes.object]
+  ),
   loadAllContacts: PropTypes.func,
   removeContact: PropTypes.func,
   editContact: PropTypes.func,

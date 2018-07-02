@@ -6,7 +6,6 @@ import {
   Wrapper,
   WrapperIcon,
   StyledButton1,
-  StyledButton2,
   ParentDiv,
 } from './EditContactModal.style';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
@@ -19,7 +18,6 @@ class EditContactModal extends React.Component {
   constructor(props) {
     super(props);
     this.handleEdit = this.handleEdit.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
     this.validateEdit = this.validateEdit.bind(this);
     this.state = {
       oldName: null,
@@ -46,11 +44,6 @@ class EditContactModal extends React.Component {
         onEdit({ name: oldName, address: oldAddress });
       }
     });
-  }
-
-  handleDelete() {
-    const { onDelete } = this.props;
-    onDelete();
   }
 
   validateEdit(rule, value, callback) {
@@ -85,7 +78,7 @@ class EditContactModal extends React.Component {
                 },
               ],
               initialValue: this.props.name,
-            })(<ModalFormInput onChange={(e) => onChange(e, 'name')} error={this.props.error} />)}
+            })(<ModalFormInput onChange={(e) => onChange(e, 'name')} />)}
           </ModalFormItem>
           <ModalFormItem
             label={<ModalFormLabel>Valid Ethereum Address</ModalFormLabel>}
@@ -108,18 +101,11 @@ class EditContactModal extends React.Component {
           <ParentDiv>
             <StyledButton1
               type="primary"
-              onClick={this.handleDelete}
-            >
-              <Icon type="plus" />
-              Delete Contact
-            </StyledButton1>
-            <StyledButton2
-              type="primary"
               htmlType="submit"
             >
               <Icon type="plus" />
               Edit Contact
-            </StyledButton2>
+            </StyledButton1>
           </ParentDiv>
         </Form>
       </Wrapper>
@@ -133,11 +119,10 @@ EditContactModal.propTypes = {
   address: PropTypes.string.isRequired,
   /** Function to be executed when edit button is pressed */
   onEdit: PropTypes.func,
-  /** Function to be executed when delete button is pressed */
-  onDelete: PropTypes.func,
   form: PropTypes.object,
+  /** Function to be executed when input is changed */
   onChange: PropTypes.func,
-  error: PropTypes.object,
+  /** Function which  validates Input */
   validateEdit: PropTypes.func,
 };
 
