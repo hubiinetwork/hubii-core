@@ -41,7 +41,6 @@ class DeleteContactModal extends React.Component {
   onSelectAddress(address) {
     this.setState({
       currContactAddress: address,
-      initialDisable: false,
     });
   }
 
@@ -54,7 +53,7 @@ class DeleteContactModal extends React.Component {
         <LogoWrapper>
           <img src="/public/Images/striim-logo.png" alt="Striim  logo" />
         </LogoWrapper>
-        <StyledForm onSubmit={this.handleSubmit}>
+        <StyledForm>
 
           <ModalFormItem
             colon={false}
@@ -108,6 +107,6 @@ class DeleteContactModal extends React.Component {
 
 export default DeleteContactModal;
 DeleteContactModal.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.object),
+  contacts: PropTypes.arrayOf(PropTypes.object).isRequired,
   onDelete: PropTypes.func.isRequired,
 };

@@ -93,7 +93,6 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
                 <ContactList
                   data={this.filterSearchText(contacts || [], 'fullFilterText')}
                   onEdit={(newContact, oldContact) => this.props.editContact(newContact, oldContact)}
-                  onChange={this.onChange}
                   onDelete={(data) => this.props.removeContact(data)}
                 />
 

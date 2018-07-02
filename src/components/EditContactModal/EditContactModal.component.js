@@ -37,10 +37,15 @@ class EditContactModal extends React.Component {
     });
   }
 
-  handleEdit() {
+  handleEdit(e) {
     const { onEdit } = this.props;
     const { oldName, oldAddress } = this.state;
-    onEdit({ name: oldName, address: oldAddress });
+    e.preventDefault();
+    this.props.form.validateFields((err) => {
+      if (!err) {
+        onEdit({ name: oldName, address: oldAddress });
+      }
+    });
   }
 
   handleDelete() {
@@ -70,7 +75,7 @@ class EditContactModal extends React.Component {
             transaction is made, it can not be changed.
           </Text>
         </WrapperIcon>
-        <Form layout="vertical" onSubmit={this.handleSubmit}>
+        <Form layout="vertical" onSubmit={this.handleEdit}>
           <ModalFormItem label={<ModalFormLabel>Name</ModalFormLabel>}>
             {getFieldDecorator('name', {
               rules: [
@@ -94,7 +99,7 @@ class EditContactModal extends React.Component {
                 {
                   message: 'This address is already under use',
                   required: true,
-                  validator: this.validateEdit,
+                  validator: (rule, value, callback) => this.validateEdit(rule, value, callback),
                 },
               ],
               initialValue: this.props.address,
@@ -103,7 +108,6 @@ class EditContactModal extends React.Component {
           <ParentDiv>
             <StyledButton1
               type="primary"
-              htmlType="submit"
               onClick={this.handleDelete}
             >
               <Icon type="plus" />
@@ -112,7 +116,6 @@ class EditContactModal extends React.Component {
             <StyledButton2
               type="primary"
               htmlType="submit"
-              onClick={this.handleEdit}
             >
               <Icon type="plus" />
               Edit Contact

@@ -14,7 +14,7 @@ import {
 
 const initialState = fromJS([]);
 
-function walletManagerReducer(state = initialState, action) {
+function contactManagerReducer(state = initialState, action) {
   switch (action.type) {
     case CREATE_CONTACT_SUCCESS:
       return fromJS([...state.toJS(), action.contactDetails]);
@@ -32,4 +32,4 @@ function walletManagerReducer(state = initialState, action) {
   }
 }
 
-export default walletManagerReducer;
+export default contactManagerReducer;
