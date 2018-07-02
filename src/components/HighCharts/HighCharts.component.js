@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactHighcharts from 'react-highcharts';
 
-const Chart = () => {
+const DepthChart = () => {
   const config = {
     chart: {
       type: 'area',
@@ -55,7 +55,7 @@ const Chart = () => {
              [0, 'grey'],
              [1, '#FF5A5A'],
           ],
-        }, // '#ff80aa',
+        },
         step: 'right',
         data: [
           [870.46, 55],
@@ -103,4 +103,4 @@ const Chart = () => {
   };
   return (<ReactHighcharts config={config} />);
 };
-export default Chart;
+export default DepthChart;
