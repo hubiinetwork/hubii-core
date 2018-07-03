@@ -5,19 +5,21 @@ import WalletHOC, { getComponentHOC, mapDispatchToProps } from '../index';
 
 describe('WalletHOC', () => {
   describe('shallow mount', () => {
-    const params = {
+    const loadWalletsSpy = jest.fn();
+    const pollLedgerSpy = jest.fn();
+    const props = {
       currentWallet: fromJS({
         showDecryptModal: false,
       }),
       currentWalletDetails: {},
       decryptWallet: () => {},
       hideDecryptWalletModal: () => {},
+      loadWallets: loadWalletsSpy,
+      pollLedger: pollLedgerSpy,
     };
-    let loadWalletsSpy;
     let dom;
-    beforeEach(() => {
-      loadWalletsSpy = jest.fn();
-      params.loadWallets = loadWalletsSpy;
+    afterEach(() => {
+      jest.clearAllMocks();
     });
     describe('#WalletHOC', () => {
       it('should return composed component', () => {
@@ -26,11 +28,11 @@ describe('WalletHOC', () => {
       });
     });
     describe('#componentDidMount', () => {
-      it('should loadWallets action', () => {
+      it('should call loadWallets prop when called', () => {
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
-            {...params}
+            {...props}
           />
         );
         const instance = dom.instance();
@@ -38,12 +40,25 @@ describe('WalletHOC', () => {
         expect(loadWalletsSpy).toBeCalled();
       });
     });
+    describe('#componentDidMount', () => {
+      it('should call pollLedger prop when called', () => {
+        const Hoc = getComponentHOC('div');
+        dom = shallow(
+          <Hoc
+            {...props}
+          />
+        );
+        const instance = dom.instance();
+        instance.componentDidMount();
+        expect(pollLedgerSpy).toBeCalled();
+      });
+    });
     describe('#onPasswordChange', () => {
       it('should update password to temporary state', () => {
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
-            {...params}
+            {...props}
           />
         );
         const instance = dom.instance();
@@ -63,7 +78,7 @@ describe('WalletHOC', () => {
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
-            {...params}
+            {...props}
             decryptWallet={decryptWalletSpy}
             currentWalletDetails={currentWalletDetails}
           />

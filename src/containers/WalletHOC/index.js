@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import { Modal } from 'components/ui/Modal';
 import { FormItem, FormItemLabel } from 'components/ui/Form';
+
 import Input from 'components/ui/Input';
 import Button from 'components/ui/Button';
 
@@ -21,6 +22,7 @@ import {
   loadWallets,
   decryptWallet,
   hideDecryptWalletModal,
+  pollLedger,
 } from './actions';
 
 export default function WalletHOC(Component) {
@@ -53,6 +55,7 @@ export function getComponentHOC(Component) {
 
     componentDidMount() {
       this.props.loadWallets();
+      this.props.pollLedger();
     }
 
     onPasswordChange(e) {
@@ -96,6 +99,7 @@ export function getComponentHOC(Component) {
     currentWallet: PropTypes.object.isRequired,
     currentWalletDetails: PropTypes.object.isRequired,
     loadWallets: PropTypes.func.isRequired,
+    pollLedger: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
   };
@@ -105,6 +109,7 @@ export function getComponentHOC(Component) {
 export function mapDispatchToProps(dispatch) {
   return {
     loadWallets: () => dispatch(loadWallets()),
+    pollLedger: () => dispatch(pollLedger()),
     hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
     decryptWallet: (...args) => dispatch(decryptWallet(...args)),
   };

@@ -1,9 +1,12 @@
+import { delay } from 'redux-saga';
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { Wallet, utils, providers } from 'ethers';
+import Eth from '@ledgerhq/hw-app-eth';
 import Notification from 'components/Notification';
 import { makeSelectWallets, makeSelectWalletList } from './selectors';
 import request from '../../utils/request';
 import { getWalletsLocalStorage } from '../../utils/wallet';
+import LedgerTransport from '../../helpers/ledger/Transport';
 
 import {
   CREATE_NEW_WALLET,
@@ -18,6 +21,7 @@ import {
   TRANSFER_ERROR,
   TRANSFER_SUCCESS,
   NOTIFY,
+  POLL_LEDGER,
 } from './constants';
 import {
   createNewWalletFailed,
@@ -33,6 +37,9 @@ import {
   transferSuccess,
   transferError,
   notify,
+  ledgerDetected,
+  ledgerError,
+  pollLedger,
 } from './actions';
 
 // Creates a new software wallet
@@ -150,6 +157,27 @@ export function* notifyTransferingUI({ wallet }) {
   }
 }
 
+/*
+ * Ledger sagas
+ */
+
+// Keeps connection status of Ledger Nano S up to date
+export function* connectLedger() {
+  try {
+    const transport = yield LedgerTransport.create();
+    const eth = new Eth(transport);
+    // Ledger ID is its default address's public key
+    const address = yield eth.getAddress("m/44'/60'/0'/0");
+    const id = address.publicKey;
+    yield put(ledgerDetected(id));
+  } catch (e) {
+    yield put(ledgerError(e));
+  } finally {
+    yield delay(2500);
+    yield put(pollLedger());
+  }
+}
+
 // Root watcher
 export default function* walletManager() {
   yield takeEvery(CREATE_NEW_WALLET, createWallet);
@@ -158,6 +186,7 @@ export default function* walletManager() {
   yield takeEvery(LOAD_WALLETS, loadWallets);
   yield takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
+  yield takeEvery(POLL_LEDGER, connectLedger);
   yield takeEvery(TRANSFER, transfer);
 
   yield takeEvery(DECRYPT_WALLET_FAILURE, notifyDecryptWalletErrorUI);

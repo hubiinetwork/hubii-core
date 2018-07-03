@@ -22,6 +22,8 @@ import {
   TRANSFER,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
+  LEDGER_DETECTED,
+  LEDGER_ERROR,
 } from './constants';
 
 const initialState = fromJS({
@@ -38,6 +40,7 @@ const initialState = fromJS({
   errors: {
     creatingWalletError: null,
     decryptingWalletError: null,
+    ledgerError: 'Initialising, please try again in a few seconds...',
   },
   wallets: {
     software: {},
@@ -45,6 +48,10 @@ const initialState = fromJS({
   },
   currentWallet: {
     address: '',
+  },
+  ledgerNanoSInfo: {
+    status: 'disconnected',
+    id: null,
   },
 });
 
@@ -121,6 +128,14 @@ function walletManagerReducer(state = initialState, action) {
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], action.error.message)
         .setIn(['currentWallet', 'lastTransaction'], null);
+    case LEDGER_DETECTED:
+      return state
+        .set('ledgerNanoSInfo', fromJS({ status: 'connected', id: action.id }))
+        .setIn(['errors', 'ledgerError'], null);
+    case LEDGER_ERROR:
+      return state
+        .set('ledgerNanoSInfo', fromJS({ status: 'disconnected', id: null }))
+        .setIn(['errors', 'ledgerError'], action.error);
     default:
       return state;
   }

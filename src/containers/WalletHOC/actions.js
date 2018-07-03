@@ -23,7 +23,12 @@ import {
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
   NOTIFY,
+  POLL_LEDGER,
+  LEDGER_DETECTED,
+  LEDGER_ERROR,
 } from './constants';
+
+import getFriendlyError from '../../helpers/ledger/friendlyErrors';
 
 export function createNewWallet(name, mnemonic, derivationPath, password) {
   return {
@@ -159,6 +164,27 @@ export function transferError(error) {
   return {
     type: TRANSFER_ERROR,
     error,
+  };
+}
+
+export function pollLedger() {
+  return {
+    type: POLL_LEDGER,
+  };
+}
+
+export function ledgerDetected(id) {
+  return {
+    type: LEDGER_DETECTED,
+    id,
+  };
+}
+
+export function ledgerError(rawError) {
+  const friendlyError = getFriendlyError(rawError);
+  return {
+    type: LEDGER_ERROR,
+    error: friendlyError,
   };
 }
 

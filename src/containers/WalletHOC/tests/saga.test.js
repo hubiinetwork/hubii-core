@@ -3,6 +3,8 @@
  */
 
 /* eslint-disable redux-saga/yield-effects */
+import { delay } from 'redux-saga';
+import TransportNodeHid from '@ledgerhq/hw-transport-node-hid';
 import { takeEvery, put } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
 import { fromJS } from 'immutable';
@@ -17,7 +19,9 @@ import walletManager, {
   loadWalletBalancesSaga,
   initWalletsBalances,
   transfer,
+  connectLedger,
 } from '../saga';
+
 import {
   CREATE_NEW_WALLET,
   DECRYPT_WALLET,
@@ -25,7 +29,9 @@ import {
   LOAD_WALLETS,
   LOAD_WALLET_BALANCES,
   LOAD_WALLETS_SUCCESS,
+  POLL_LEDGER,
 } from '../constants';
+
 import {
   createNewWalletSuccess,
   createNewWalletFailed,
@@ -42,6 +48,9 @@ import {
   hideDecryptWalletModal,
   notify,
   decryptWallet as decryptWalletAction,
+  ledgerDetected,
+  ledgerError,
+  pollLedger,
 } from '../actions';
 
 describe('createWallet saga', () => {
@@ -51,6 +60,7 @@ describe('createWallet saga', () => {
   const name = 'wallet8';
   let encryptedWallet;
   let password;
+
   beforeEach(() => {
     password = 'dogs';
     mnemonic = 'movie viable write punch mango arrest cotton page grass dad document practice';
@@ -115,6 +125,42 @@ describe('createWallet saga', () => {
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invalid param');
     expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+  });
+});
+
+describe('connectLedger Saga', () => {
+  it('should dispatch the ledgerDetected action if successful', () => {
+    const transport = new TransportNodeHid();
+    const address = { publicKey: '4321' };
+    const id = '4321';
+    const connectLedgerGenerator = connectLedger();
+    connectLedgerGenerator.next();
+    connectLedgerGenerator.next(transport);
+    const putDescriptor = connectLedgerGenerator.next(address).value;
+    expect(putDescriptor).toEqual(put(ledgerDetected(id)));
+  });
+
+  it('should dispatch the ledgerError action on error', () => {
+    const error = new Error('some error');
+    const connectLedgerGenerator = connectLedger();
+    connectLedgerGenerator.next();
+    const putDescriptor = connectLedgerGenerator.next(error).value;
+    expect(putDescriptor).toEqual(put(ledgerError(error)));
+  });
+
+  it('should dispatch delay and pollLedger actions before finishing', () => {
+    const transport = new TransportNodeHid();
+    const address = { publicKey: '4321' };
+    const id = '4321';
+    const connectLedgerGenerator = connectLedger();
+    connectLedgerGenerator.next();
+    connectLedgerGenerator.next(transport);
+    let putDescriptor = connectLedgerGenerator.next(address).value;
+    expect(putDescriptor).toEqual(put(ledgerDetected(id)));
+    const delayDescriptor = connectLedgerGenerator.next().value;
+    expect(JSON.stringify(delayDescriptor)).toEqual(JSON.stringify((delay(2500))));
+    putDescriptor = connectLedgerGenerator.next().value;
+    expect(putDescriptor).toEqual(put(pollLedger()));
   });
 });
 
@@ -278,26 +324,26 @@ describe('load wallets saga', () => {
     it('DECRYPT_WALLET_FAILURE', () => {
       const error = { message: 'error' };
       return expectSaga(walletManager)
-      .put(notify(false, `Failed to decrypt wallet: ${error.message}`))
-      .dispatch(decryptWalletFailed(error))
-      .run({ silenceTimeout: true });
+        .put(notify(false, `Failed to decrypt wallet: ${error.message}`))
+        .dispatch(decryptWalletFailed(error))
+        .run({ silenceTimeout: true });
     });
     it('DECRYPT_WALLET_SUCCESS', () => {
       const name = 'name';
       return expectSaga(walletManager)
-      .put(notify(true, `Successfully decrypted ${name}`))
-      .put(hideDecryptWalletModal())
-      .dispatch(decryptWalletSuccess(name))
-      .run({ silenceTimeout: true });
+        .put(notify(true, `Successfully decrypted ${name}`))
+        .put(hideDecryptWalletModal())
+        .dispatch(decryptWalletSuccess(name))
+        .run({ silenceTimeout: true });
     });
     it('DECRYPT_WALLET', () => {
       const name = 'w1';
       const encrypted = '';
       const password = '';
       return expectSaga(walletManager)
-      .put(notify(true, `Decrypting wallet ${name}`))
-      .dispatch(decryptWalletAction(name, encrypted, password))
-      .run({ silenceTimeout: true });
+        .put(notify(true, `Decrypting wallet ${name}`))
+        .dispatch(decryptWalletAction(name, encrypted, password))
+        .run({ silenceTimeout: true });
     });
     it('TRANSFER', () => expectSaga(walletManager)
       .put(notify(true, 'Sending transaction'))
@@ -306,16 +352,16 @@ describe('load wallets saga', () => {
     it('TRANSFER_SUCCESS', () => {
       const txnhash = '';
       return expectSaga(walletManager)
-      .put(notify(true, 'Transaction sent'))
-      .dispatch(transferSuccess(txnhash))
-      .run({ silenceTimeout: true });
+        .put(notify(true, 'Transaction sent'))
+        .dispatch(transferSuccess(txnhash))
+        .run({ silenceTimeout: true });
     });
     it('TRANSFER_ERROR', () => {
       const error = 'w1';
       return expectSaga(walletManager)
-      .put(notify(false, `Failed to send transaction: ${error}`))
-      .dispatch(transferError(error))
-      .run({ silenceTimeout: true });
+        .put(notify(false, `Failed to send transaction: ${error}`))
+        .dispatch(transferError(error))
+        .run({ silenceTimeout: true });
     });
   });
 
@@ -389,5 +435,10 @@ describe('root Saga', () => {
   it('should start task to watch for LOAD_WALLET_BALANCES action', () => {
     const takeDescriptor = walletManagerSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga));
+  });
+
+  it('should start task to watch for POLL_LEDGER action', () => {
+    const takeDescriptor = walletManagerSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(POLL_LEDGER, connectLedger));
   });
 });

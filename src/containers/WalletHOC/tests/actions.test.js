@@ -6,6 +6,9 @@ import {
   decryptWalletFailed,
   decryptWalletSuccess,
   loadWallets,
+  pollLedger,
+  ledgerDetected,
+  ledgerError,
 } from '../actions';
 import {
   CREATE_NEW_WALLET,
@@ -15,7 +18,12 @@ import {
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
   LOAD_WALLETS,
+  POLL_LEDGER,
+  LEDGER_DETECTED,
+  LEDGER_ERROR,
 } from '../constants';
+
+import getFriendlyError from '../../../helpers/ledger/friendlyErrors';
 
 describe('WalletManager actions', () => {
   describe('createNewWallet Action', () => {
@@ -105,11 +113,43 @@ describe('WalletManager actions', () => {
   });
 
   describe('loadWallets Action', () => {
-    it('loadWallets', () => {
+    it('returns expected output', () => {
       const expected = {
         type: LOAD_WALLETS,
       };
       expect(loadWallets()).toEqual(expected);
+    });
+  });
+
+  describe('pollLedger Action', () => {
+    it('returns expected output', () => {
+      const expected = {
+        type: POLL_LEDGER,
+      };
+      expect(pollLedger()).toEqual(expected);
+    });
+  });
+
+  describe('ledgerDetected Action', () => {
+    it('returns expected output', () => {
+      const id = '048ncjdh39';
+      const expected = {
+        type: LEDGER_DETECTED,
+        id,
+      };
+      expect(ledgerDetected(id)).toEqual(expected);
+    });
+  });
+
+  describe('ledgerError Action', () => {
+    it('converts error and returns expected output', () => {
+      const error = { id: 'ListenTimeout' };
+      const friendlyError = getFriendlyError(error);
+      const expected = {
+        type: LEDGER_ERROR,
+        error: friendlyError,
+      };
+      expect(ledgerError(error)).toEqual(expected);
     });
   });
 });
