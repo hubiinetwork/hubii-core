@@ -20,8 +20,10 @@ import {
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
   TRANSFER,
+  TRANSFER_ETHER,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
+  TRANSACTION_CONFIRMED,
   NOTIFY,
 } from './constants';
 
@@ -148,9 +150,26 @@ export function transfer(payload) {
   };
 }
 
+export function transferEther(payload) {
+  return {
+    type: TRANSFER_ETHER,
+    toAddress: payload.toAddress,
+    amount: payload.amount,
+    gasPrice: payload.gasPrice,
+    gasLimit: payload.gasLimit,
+  };
+}
+
 export function transferSuccess(transaction) {
   return {
     type: TRANSFER_SUCCESS,
+    transaction,
+  };
+}
+
+export function transactionConfirmed(transaction) {
+  return {
+    type: TRANSACTION_CONFIRMED,
     transaction,
   };
 }

@@ -1,7 +1,7 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { Wallet, utils, providers } from 'ethers';
 import Notification from 'components/Notification';
-import { makeSelectWallets, makeSelectWalletList } from './selectors';
+import { makeSelectWallets, makeSelectWalletList, makeSelectCurrentWalletDetails } from './selectors';
 import request from '../../utils/request';
 import { getWalletsLocalStorage } from '../../utils/wallet';
 
@@ -15,6 +15,7 @@ import {
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
   TRANSFER,
+  TRANSFER_ETHER,
   TRANSFER_ERROR,
   TRANSFER_SUCCESS,
   NOTIFY,
@@ -32,7 +33,9 @@ import {
   showDecryptWalletModal,
   transferSuccess,
   transferError,
+  transferEther as transferEtherAction,
   notify,
+  transactionConfirmed,
 } from './actions';
 
 // Creates a new software wallet
@@ -88,6 +91,27 @@ export function* initWalletsBalances() {
   }
 }
 
+// const abi = [
+//   {
+//     constant: true,
+//     inputs: [
+//       {
+//         name: '_owner',
+//         type: 'address',
+//       },
+//     ],
+//     name: 'balanceOf',
+//     outputs: [
+//       {
+//         name: 'balance',
+//         type: 'uint256',
+//       },
+//     ],
+//     payable: false,
+//     type: 'function',
+//   },
+// ];
+
 export function* loadWalletBalancesSaga({ name, walletAddress }) {
   const requestPath = `ethereum/wallets/${walletAddress}/balance`;
   try {
@@ -103,19 +127,31 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
     yield put(showDecryptWalletModal(wallet.name));
     return;
   }
-  if (token !== 'ETH') {
-    return;
-  }
-  const etherWallet = new Wallet(wallet.decrypted.privateKey);
-  etherWallet.provider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
 
   const wei = utils.parseEther(amount.toString());
+  if (token === 'ETH') {
+    yield put(transferEtherAction({ toAddress, amount: wei, gasPrice, gasLimit }));
+  }
+}
+
+export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
+  const walletDetails = yield select(makeSelectCurrentWalletDetails());
+  const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
+  etherWallet.provider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
+
   try {
-    const transaction = yield etherWallet.send(toAddress, wei, { gasPrice, gasLimit });
+    const options = { gasPrice, gasLimit };
+    const transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
     yield put(transferSuccess(transaction));
   } catch (error) {
     yield put(transferError(error));
   }
+}
+
+export function* waitTransactionHash({ transaction }) {
+  const provider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
+  const confirmedTxn = yield call((...args) => provider.waitForTransaction(...args), transaction.hash);
+  yield put(transactionConfirmed(confirmedTxn));
 }
 
 export function* notifyUI({ success, message }) {
@@ -159,6 +195,8 @@ export default function* walletManager() {
   yield takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
   yield takeEvery(TRANSFER, transfer);
+  yield takeEvery(TRANSFER_ETHER, transferEther);
+  yield takeEvery(TRANSFER_SUCCESS, waitTransactionHash);
 
   yield takeEvery(DECRYPT_WALLET_FAILURE, notifyDecryptWalletErrorUI);
   yield takeEvery(DECRYPT_WALLET_SUCCESS, notifyDecryptWalletSuccessUI);

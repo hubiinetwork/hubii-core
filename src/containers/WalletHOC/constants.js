@@ -24,7 +24,10 @@ export const SHOW_DECRYPT_WALLET_MODAL = 'src/WalletHOC/SHOW_DECRYPT_WALLET_MODA
 export const HIDE_DESCRYPT_WALLET_MODAL = 'src/WalletHOC/HIDE_DESCRYPT_WALLET_MODAL';
 
 export const TRANSFER = 'src/WalletHOC/TRANSFER';
+export const TRANSFER_ETHER = 'src/WalletHOC/TRANSFER_ETHER';
 export const TRANSFER_SUCCESS = 'src/WalletHOC/TRANSFER_SUCCESS';
 export const TRANSFER_ERROR = 'src/WalletHOC/TRANSFER_ERROR';
+
+export const TRANSACTION_CONFIRMED = 'src/WalletHOC/TRANSACTION_CONFIRMED';
 
 export const NOTIFY = 'src/WalletHOC/NOTIFY';

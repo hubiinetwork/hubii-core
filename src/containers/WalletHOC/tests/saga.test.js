@@ -8,6 +8,7 @@ import { expectSaga } from 'redux-saga-test-plan';
 import { fromJS } from 'immutable';
 import request from 'utils/request';
 import { Wallet, utils } from 'ethers';
+import walletManagerReducer from 'containers/WalletHOC/reducer';
 
 import walletManager, {
   createWallet,
@@ -42,6 +43,7 @@ import {
   hideDecryptWalletModal,
   notify,
   decryptWallet as decryptWalletAction,
+  transactionConfirmed as transactionConfirmedAction,
 } from '../actions';
 
 describe('createWallet saga', () => {
@@ -257,6 +259,94 @@ describe('load wallets saga', () => {
       .run({ silenceTimeout: true });
   });
 
+  it('sign transaction for eth payment', () => {
+    // create txn hash
+    // should save pending txn hash in store and localstorage
+    // listen for confirmation
+    // update pending txn in store
+    const storeState = {
+      walletManager: {
+        wallets: {
+          software: {
+            t1: {
+              encrypted: '{"address": "abcd"}',
+              decrypted: {
+                privateKey: '0xf2249b753523f2f7c79a07c1b7557763af0606fb503d935734617bb7abaf06db',
+              },
+            },
+          },
+        },
+        currentWallet: {
+          address: '0xabcd',
+        },
+        pendingTransactions: [],
+        confirmedTransactions: [],
+      },
+    };
+    const signedTransaction = {
+      nonce: 49,
+      gasPrice: 1,
+      gasLimit: 1,
+      to: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+      value: 1,
+      data: '0x',
+      v: 42,
+      r: '0x715935bf243f0273429ba09b2c65ff2d15ca3a8b18aecc35e7d5b4ebf5fe2f56',
+      s: '0x32aacbc76007f51de3c6efedad074a6b396d2a35d9b6a49ad0b250d40a7f046e',
+      chainId: 3,
+      from: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a',
+      hash: '0x3c63ecb423263552cfc3e373778bf8244d490b06823b4b2f3203343ecb8f0518',
+    };
+    const confirmedTransaction = {
+      ...signedTransaction,
+      blockHash: '0x756da99f6be563b86238a162ee2586b0236e3e87c62cde69426ff7bab71d6066',
+      blockNumber: 3558042,
+      transactionIndex: 9,
+      raw: 'raw',
+    };
+    const params = {
+      token: 'ETH',
+      toAddress: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+      amount: 0.0001,
+      gasPrice: 30000,
+      gasLimit: 21000,
+      wallet: { decrypted: {} },
+    };
+    let called = 0;
+    return expectSaga(walletManager)
+      .provide({
+        call(effect, next) {
+          called += 1;
+          if (called === 1) {
+            return signedTransaction;
+          }
+          if (called === 2) {
+            return confirmedTransaction;
+          }
+          return next();
+        },
+      })
+      .withReducer((state, action) => state.set('walletManager', walletManagerReducer(state.get('walletManager'), action)), fromJS(storeState))
+      .dispatch(transferAction(params))
+      .put(transferSuccess(signedTransaction))// send signed transaction
+      .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
+      // .run({ silenceTimeout: true })
+      .run({ silenceTimeout: true })
+      .then((result) => {
+        const walletManagerState = result.storeState.get('walletManager');
+        expect(walletManagerState.getIn(['pendingTransactions']).count()).toEqual(0);
+        expect(walletManagerState.getIn(['confirmedTransactions']).count()).toEqual(1);
+        expect(walletManagerState.getIn(['confirmedTransactions']).get(0)).toEqual(fromJS(confirmedTransaction));
+      });
+  });
+
+  it('sign transaction for erc20 payment', () => {
+    // create txn hash
+    // should save pending txn hash in store
+    // listen for confirmation
+    // update pending txn in store
+  });
+
   it('#initWalletsBalances should trigger loadWalletBalances for all the wallets in the list', () => {
     const walletList = [
       { name: '1', address: '1' },
@@ -301,13 +391,16 @@ describe('load wallets saga', () => {
     });
     it('TRANSFER', () => expectSaga(walletManager)
       .put(notify(true, 'Sending transaction'))
-      .dispatch(transferAction({ wallet: { decrypted: {} } }))
+      .dispatch(transferAction({ wallet: { decrypted: {} }, amount: 1 }))
       .run({ silenceTimeout: true }));
     it('TRANSFER_SUCCESS', () => {
-      const txnhash = '';
+      const txnhash = 'abcd';
       return expectSaga(walletManager)
+      .provide({
+        call: () => {},
+      })
       .put(notify(true, 'Transaction sent'))
-      .dispatch(transferSuccess(txnhash))
+      .dispatch(transferSuccess({ hash: txnhash }))
       .run({ silenceTimeout: true });
     });
     it('TRANSFER_ERROR', () => {

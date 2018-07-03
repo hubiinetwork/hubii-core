@@ -44,6 +44,8 @@ describe('walletManagerReducer', () => {
       currentWallet: {
         address: '',
       },
+      pendingTransactions: [],
+      confirmedTransactions: [],
     });
   });
 
@@ -193,7 +195,8 @@ describe('walletManagerReducer', () => {
           lastTransaction: transaction,
         };
         const expected = state
-          .set('currentWallet', fromJS(currentWallet));
+          .set('currentWallet', fromJS(currentWallet))
+          .updateIn(['pendingTransactions'], (list) => list.insert(1, fromJS(transaction)));
 
         expect(walletManagerReducer(state, transferSuccess(transaction))).toEqual(expected);
       });

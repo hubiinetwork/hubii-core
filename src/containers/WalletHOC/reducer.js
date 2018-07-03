@@ -22,6 +22,7 @@ import {
   TRANSFER,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
+  TRANSACTION_CONFIRMED,
 } from './constants';
 
 const initialState = fromJS({
@@ -46,6 +47,8 @@ const initialState = fromJS({
   currentWallet: {
     address: '',
   },
+  pendingTransactions: [],
+  confirmedTransactions: [],
 });
 
 function walletManagerReducer(state = initialState, action) {
@@ -115,12 +118,17 @@ function walletManagerReducer(state = initialState, action) {
       return state
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], null)
-        .setIn(['currentWallet', 'lastTransaction'], fromJS(action.transaction));
+        .setIn(['currentWallet', 'lastTransaction'], fromJS(action.transaction))
+        .updateIn(['pendingTransactions'], (list) => list.insert(1, fromJS(action.transaction)));
     case TRANSFER_ERROR:
       return state
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], action.error.message)
         .setIn(['currentWallet', 'lastTransaction'], null);
+    case TRANSACTION_CONFIRMED:
+      return state
+        .updateIn(['pendingTransactions'], (list) => list.filter((txn) => txn.get('hash') !== action.transaction.hash))
+        .updateIn(['confirmedTransactions'], (list) => list.insert(1, fromJS(action.transaction)));
     default:
       return state;
   }
