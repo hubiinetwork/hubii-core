@@ -14,7 +14,7 @@
   },
   "scripts": {
     "electron-dev": "concurrently \"BROWSER=none yarn start:electron\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron-build": "yarn build:electron && DEBUG=electron-builder electron-builder --publish never",
+    "electron-build": "npm run build:electron && DEBUG=electron-builder electron-builder --publish never",
     "precommit": "npm run lint:staged",
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
