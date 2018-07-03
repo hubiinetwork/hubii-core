@@ -5,7 +5,7 @@
   "author": "Hubii team",
   "license": "MIT",
   "main": "build/public/electron.js",
-  "homepage": "./build",
+  "homepage": "https://github.com/hubiinetwork/omphalos-ui",
   "build": {
     "appId": "com.hubii.electron-hubii-core",
     "files": [
@@ -14,7 +14,7 @@
   },
   "scripts": {
     "electron-dev": "concurrently \"BROWSER=none yarn start:electron\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron-build": "yarn build:electron && DEBUG=electron-builder electron-builder --publish never",
+    "electron-build": "npm run build:electron && DEBUG=electron-builder electron-builder --publish never",
     "precommit": "npm run lint:staged",
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
@@ -317,6 +317,7 @@
     "css-loader": "0.28.11",
     "electron": "^2.0.2",
     "electron-builder": "20.14.7",
+    "electron-devtools-installer": "^2.2.4",
     "electron-rebuild": "^1.7.3",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
