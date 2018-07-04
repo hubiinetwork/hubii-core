@@ -1,5 +1,6 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
-import { Wallet, utils, providers } from 'ethers';
+import { Wallet, utils, providers, Contract, Interface } from 'ethers';
+import abiDecoder from 'abi-decoder'
 import Notification from 'components/Notification';
 import { makeSelectWallets, makeSelectWalletList, makeSelectCurrentWalletDetails } from './selectors';
 import request from '../../utils/request';
@@ -16,6 +17,7 @@ import {
   LOAD_WALLET_BALANCES,
   TRANSFER,
   TRANSFER_ETHER,
+  TRANSFER_ERC20,
   TRANSFER_ERROR,
   TRANSFER_SUCCESS,
   NOTIFY,
@@ -34,6 +36,7 @@ import {
   transferSuccess,
   transferError,
   transferEther as transferEtherAction,
+  transferERC20 as transferERC20Action,
   notify,
   transactionConfirmed,
 } from './actions';
@@ -122,15 +125,18 @@ export function* loadWalletBalancesSaga({ name, walletAddress }) {
   }
 }
 
-export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit }) {
+export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit, contractAddress }) {
   if (!wallet.decrypted) {
     yield put(showDecryptWalletModal(wallet.name));
     return;
   }
 
   const wei = utils.parseEther(amount.toString());
+  console.log('address', contractAddress)
   if (token === 'ETH') {
     yield put(transferEtherAction({ toAddress, amount: wei, gasPrice, gasLimit }));
+  } else if (contractAddress) {
+    yield put(transferERC20Action({ toAddress, amount: wei, gasPrice, gasLimit, contractAddress}))
   }
 }
 
@@ -144,6 +150,50 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
     const transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
     yield put(transferSuccess(transaction));
   } catch (error) {
+    yield put(transferError(error));
+  }
+}
+
+export function* transferERC20({ contractAddress, toAddress, amount, gasPrice, gasLimit }) {
+  var contractAbiFragment = [
+    {
+        "name" : "transfer",
+        "type" : "function",
+        "inputs" : [
+          {
+              "name" : "_to",
+              "type" : "address"
+          },
+          {
+              "type" : "uint256",
+              "name" : "_tokens"
+          }
+        ],
+        "constant" : false,
+        "outputs" : [],
+        "payable" : false
+    }
+  ];
+
+  const walletDetails = yield select(makeSelectCurrentWalletDetails());
+  const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
+  etherWallet.provider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
+
+  try {
+    const options = { gasPrice, gasLimit };
+    var contract = new Contract(contractAddress, contractAbiFragment, etherWallet);
+    var iface = new Interface(contractAbiFragment)
+    console.log('sending', toAddress, amount, options)
+    const transaction = yield call((...args) => contract.transfer(...args), toAddress, amount, options);
+    console.log('hash', transaction)
+    // console.log(contract.interface.functions.transfer(toAddress, amount, ).parse(transaction.data))
+    // abiDecoder.addABI(contractAbiFragment)
+    console.log(iface.functions.transfer.parse(transaction.data))
+    // console.log(contract.interface.functions.transfer)
+    // console.log(abiDecoder.decodeMethod(transaction.data))
+    yield put(transferSuccess(transaction));
+  } catch (error) {
+    console.log('err', error)
     yield put(transferError(error));
   }
 }
@@ -196,6 +246,7 @@ export default function* walletManager() {
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
   yield takeEvery(TRANSFER, transfer);
   yield takeEvery(TRANSFER_ETHER, transferEther);
+  yield takeEvery(TRANSFER_ERC20, transferERC20);
   yield takeEvery(TRANSFER_SUCCESS, waitTransactionHash);
 
   yield takeEvery(DECRYPT_WALLET_FAILURE, notifyDecryptWalletErrorUI);

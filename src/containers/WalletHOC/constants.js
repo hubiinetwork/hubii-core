@@ -25,6 +25,7 @@ export const HIDE_DESCRYPT_WALLET_MODAL = 'src/WalletHOC/HIDE_DESCRYPT_WALLET_MO
 
 export const TRANSFER = 'src/WalletHOC/TRANSFER';
 export const TRANSFER_ETHER = 'src/WalletHOC/TRANSFER_ETHER';
+export const TRANSFER_ERC20 = 'src/WalletHOC/TRANSFER_ERC20';
 export const TRANSFER_SUCCESS = 'src/WalletHOC/TRANSFER_SUCCESS';
 export const TRANSFER_ERROR = 'src/WalletHOC/TRANSFER_ERROR';
 

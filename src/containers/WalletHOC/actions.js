@@ -21,6 +21,7 @@ import {
   LOAD_WALLET_BALANCES_ERROR,
   TRANSFER,
   TRANSFER_ETHER,
+  TRANSFER_ERC20,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
   TRANSACTION_CONFIRMED,
@@ -147,12 +148,24 @@ export function transfer(payload) {
     amount: payload.amount,
     gasPrice: payload.gasPrice,
     gasLimit: payload.gasLimit,
+    contractAddress: payload.contractAddress,
   };
 }
 
 export function transferEther(payload) {
   return {
     type: TRANSFER_ETHER,
+    toAddress: payload.toAddress,
+    amount: payload.amount,
+    gasPrice: payload.gasPrice,
+    gasLimit: payload.gasLimit,
+  };
+}
+
+export function transferERC20(payload) {
+  return {
+    type: TRANSFER_ERC20,
+    contractAddress: payload.contractAddress,
     toAddress: payload.toAddress,
     amount: payload.amount,
     gasPrice: payload.gasPrice,
