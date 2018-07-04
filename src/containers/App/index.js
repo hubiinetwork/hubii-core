@@ -21,6 +21,7 @@ import WalletManager from 'containers/WalletManager';
 import WalletDetails from 'containers/WalletDetails';
 
 import withExchangeRate from 'containers/ExchangeRateHOC';
+import WalletHOC from 'containers/WalletHOC';
 
 import logoSvg from '../../../public/Images/corerz-logo.svg';
 
@@ -54,4 +55,7 @@ export function App() {
   );
 }
 
-export default compose(withExchangeRate)(App);
+export default compose(
+  withExchangeRate,
+  WalletHOC,
+)(App);

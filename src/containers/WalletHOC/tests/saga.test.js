@@ -2,20 +2,21 @@
  * WalletManager sagas
  */
 
-import { Wallet } from 'ethers';
-
 /* eslint-disable redux-saga/yield-effects */
 import { takeEvery, put } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
 import { fromJS } from 'immutable';
 import request from 'utils/request';
+import { Wallet, utils } from 'ethers';
 
 import walletManager, {
   createWallet,
   decryptWallet,
   cacheNewWallet,
   loadWallets,
-  loadWalletBalances,
+  loadWalletBalancesSaga,
+  initWalletsBalances,
+  transfer,
 } from '../saga';
 import {
   CREATE_NEW_WALLET,
@@ -23,15 +24,24 @@ import {
   CREATE_NEW_WALLET_SUCCESS,
   LOAD_WALLETS,
   LOAD_WALLET_BALANCES,
+  LOAD_WALLETS_SUCCESS,
 } from '../constants';
 import {
   createNewWalletSuccess,
   createNewWalletFailed,
   decryptWalletSuccess,
   decryptWalletFailed,
+  showDecryptWalletModal,
   loadWalletsSuccess,
+  loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
+  transfer as transferAction,
+  transferSuccess,
+  transferError,
+  hideDecryptWalletModal,
+  notify,
+  decryptWallet as decryptWalletAction,
 } from '../actions';
 
 describe('createWallet saga', () => {
@@ -197,7 +207,7 @@ describe('load wallets saga', () => {
         },
       })
       .put(loadWalletsSuccess(expectedWallets))
-      .run();
+      .run({ silenceTimeout: true });
   });
 
   it('#loadWallets should only override non-exist wallet states from cache', () => {
@@ -213,14 +223,14 @@ describe('load wallets saga', () => {
         },
       })
       .put(loadWalletsSuccess(sessionWallets))
-      .run();
+      .run({ silenceTimeout: true });
   });
 
   it('#loadWalletBalances should load balances and dispatch loadWalletBalancesSuccess', () => {
     const response = { tokens: [] };
     const walletName = 'test';
     const walletAddress = 'abcd';
-    return expectSaga(loadWalletBalances, { name: walletName, walletAddress })
+    return expectSaga(loadWalletBalancesSaga, { name: walletName, walletAddress })
       .provide({
         call(effect) {
           expect(effect.fn).toBe(request);
@@ -229,14 +239,14 @@ describe('load wallets saga', () => {
         },
       })
       .put(loadWalletBalancesSuccess(walletName, response))
-      .run();
+      .run({ silenceTimeout: true });
   });
 
   it('#loadWalletBalances should dispatch loadWalletBalancesError when error throws in request', () => {
     const walletName = 'test';
     const walletAddress = 'abcd';
     const error = new Error();
-    return expectSaga(loadWalletBalances, { name: walletName, walletAddress })
+    return expectSaga(loadWalletBalancesSaga, { name: walletName, walletAddress })
       .provide({
         call(effect) {
           expect(effect.fn).toBe(request);
@@ -244,7 +254,107 @@ describe('load wallets saga', () => {
         },
       })
       .put(loadWalletBalancesError(walletName, error))
-      .run();
+      .run({ silenceTimeout: true });
+  });
+
+  it('#initWalletsBalances should trigger loadWalletBalances for all the wallets in the list', () => {
+    const walletList = [
+      { name: '1', address: '1' },
+      { name: '2', address: '2' },
+    ];
+    return expectSaga(walletManager)
+      .provide({
+        select() {
+          return walletList;
+        },
+      })
+      .put(loadWalletBalances(walletList[0].name, `0x${walletList[0].address}`))
+      .put(loadWalletBalances(walletList[1].name, `0x${walletList[1].address}`))
+      .dispatch({ type: LOAD_WALLETS_SUCCESS })
+      .run({ silenceTimeout: true });
+  });
+
+  describe('UI notifications', () => {
+    it('DECRYPT_WALLET_FAILURE', () => {
+      const error = { message: 'error' };
+      return expectSaga(walletManager)
+      .put(notify(false, `Failed to decrypt wallet: ${error.message}`))
+      .dispatch(decryptWalletFailed(error))
+      .run({ silenceTimeout: true });
+    });
+    it('DECRYPT_WALLET_SUCCESS', () => {
+      const name = 'name';
+      return expectSaga(walletManager)
+      .put(notify(true, `Successfully decrypted ${name}`))
+      .put(hideDecryptWalletModal())
+      .dispatch(decryptWalletSuccess(name))
+      .run({ silenceTimeout: true });
+    });
+    it('DECRYPT_WALLET', () => {
+      const name = 'w1';
+      const encrypted = '';
+      const password = '';
+      return expectSaga(walletManager)
+      .put(notify(true, `Decrypting wallet ${name}`))
+      .dispatch(decryptWalletAction(name, encrypted, password))
+      .run({ silenceTimeout: true });
+    });
+    it('TRANSFER', () => expectSaga(walletManager)
+      .put(notify(true, 'Sending transaction'))
+      .dispatch(transferAction({ wallet: { decrypted: {} } }))
+      .run({ silenceTimeout: true }));
+    it('TRANSFER_SUCCESS', () => {
+      const txnhash = '';
+      return expectSaga(walletManager)
+      .put(notify(true, 'Transaction sent'))
+      .dispatch(transferSuccess(txnhash))
+      .run({ silenceTimeout: true });
+    });
+    it('TRANSFER_ERROR', () => {
+      const error = 'w1';
+      return expectSaga(walletManager)
+      .put(notify(false, `Failed to send transaction: ${error}`))
+      .dispatch(transferError(error))
+      .run({ silenceTimeout: true });
+    });
+  });
+
+  describe('transfer', () => {
+    const key = '0xf2249b753523f2f7c79a07c1b7557763af0606fb503d935734617bb7abaf06db';
+    const toAddress = '0xbfdc0c8e54af5719872a2edef8e65c9f4a3eae88';
+    const token = 'ETH';
+    const decrypted = new Wallet(key);
+    const walletName = 'wallet name';
+    const wallet = { decrypted, name: walletName };
+    const amount = 0.0001;
+    const gasPrice = 30000;
+    const gasLimit = 21000;
+    const transaction = { hash: '' };
+    it('should trigger SHOW_DECRYPT_WALLET_MODAL action when the wallet is not decrypted yet', () => expectSaga(transfer, { wallet: { name: walletName } })
+        .put(showDecryptWalletModal(walletName))
+        .run());
+    xit('should trigger transferSuccess action', () => expectSaga(transfer, { wallet, token, toAddress, amount, gasPrice, gasLimit })
+        .provide({
+          call(effect) {
+            expect(effect.args[0]).toEqual(toAddress);
+            expect(effect.args[1]).toEqual(utils.parseEther(amount.toString()));
+            expect(effect.args[2]).toEqual({ gasPrice, gasLimit });
+            return transaction;
+          },
+        })
+        .put(transferSuccess(transaction))
+        .run());
+    xit('should trigger transferError action', () => {
+      const error = new Error();
+      return expectSaga(transfer, { wallet, token, toAddress, amount, gasPrice, gasLimit })
+        .provide({
+          call() {
+            throw error;
+          },
+        })
+        .put(transferError(error))
+        .run({ silenceTimeout: true });
+    });
   });
 });
 
@@ -271,8 +381,13 @@ describe('root Saga', () => {
     expect(takeDescriptor).toEqual(takeEvery(LOAD_WALLETS, loadWallets));
   });
 
+  it('should start task to watch for LOAD_WALLETS_SUCCESS action', () => {
+    const takeDescriptor = walletManagerSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances));
+  });
+
   it('should start task to watch for LOAD_WALLET_BALANCES action', () => {
     const takeDescriptor = walletManagerSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(LOAD_WALLET_BALANCES, loadWalletBalances));
+    expect(takeDescriptor).toEqual(takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga));
   });
 });
