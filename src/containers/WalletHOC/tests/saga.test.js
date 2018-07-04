@@ -7,7 +7,8 @@ import { takeEvery, put } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
 import request from 'utils/request';
 import { Wallet, utils } from 'ethers';
-
+import walletManagerReducer from 'containers/WalletHOC/reducer';
+import { fromJS } from 'immutable';
 import { notify } from 'containers/App/actions';
 
 import walletManager, {
@@ -36,6 +37,8 @@ import {
   loadWalletBalancesError,
   transferSuccess,
   transferError,
+  transactionConfirmed as transactionConfirmedAction,
+  transfer as transferAction,
 } from '../actions';
 
 describe('createWallet saga', () => {
@@ -187,10 +190,197 @@ describe('load wallets saga', () => {
       .run({ silenceTimeout: true });
   });
 
+  it('sign transaction for eth payment', () => {
+    // create txn hash
+    // should save pending txn hash in store and localstorage
+    // listen for confirmation
+    // update pending txn in store
+    const storeState = {
+      walletManager: {
+        wallets: {
+          software: {
+            t1: {
+              encrypted: '{"address": "abcd"}',
+              decrypted: {
+                privateKey: '0xf2249b753523f2f7c79a07c1b7557763af0606fb503d935734617bb7abaf06db',
+              },
+            },
+          },
+        },
+        currentWallet: {
+          address: '0xabcd',
+        },
+        pendingTransactions: [],
+        confirmedTransactions: [],
+      },
+    };
+    const timestamp = new Date().getTime();
+    const signedTransaction = {
+      nonce: 49,
+      gasPrice: 1,
+      gasLimit: 1,
+      to: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+      value: 1,
+      data: '0x',
+      v: 42,
+      r: '0x715935bf243f0273429ba09b2c65ff2d15ca3a8b18aecc35e7d5b4ebf5fe2f56',
+      s: '0x32aacbc76007f51de3c6efedad074a6b396d2a35d9b6a49ad0b250d40a7f046e',
+      chainId: 3,
+      from: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a',
+      hash: '0x3c63ecb423263552cfc3e373778bf8244d490b06823b4b2f3203343ecb8f0518',
+    };
+    const confirmedTransaction = {
+      ...signedTransaction,
+      blockHash: '0x756da99f6be563b86238a162ee2586b0236e3e87c62cde69426ff7bab71d6066',
+      blockNumber: 3558042,
+      transactionIndex: 9,
+      raw: 'raw',
+    };
+    const formatedTransaction = {
+      timestamp,
+      token: 'ETH',
+      from: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a',
+      to: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+      hash: '0x3c63ecb423263552cfc3e373778bf8244d490b06823b4b2f3203343ecb8f0518',
+      value: 1,
+      input: '0x',
+      success: true,
+      original: confirmedTransaction,
+    };
+    const params = {
+      token: 'ETH',
+      toAddress: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+      amount: 0.0001,
+      gasPrice: 30000,
+      gasLimit: 21000,
+      wallet: { decrypted: {} },
+    };
+    let called = 0;
+    return expectSaga(walletManager)
+      .provide({
+        call(effect, next) {
+          called += 1;
+          if (called === 1) {
+            return signedTransaction;
+          }
+          if (called === 2) {
+            return confirmedTransaction;
+          }
+          return next();
+        },
+      })
+      .withReducer((state, action) => state.set('walletManager', walletManagerReducer(state.get('walletManager'), action)), fromJS(storeState))
+      .dispatch(transferAction(params))
+      .put(transferSuccess(signedTransaction, 'ETH'))// send signed transaction
+      .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
+      // .run({ silenceTimeout: true })
+      .run({ silenceTimeout: true })
+      .then((result) => {
+        const walletManagerState = result.storeState.get('walletManager');
+        expect(walletManagerState.getIn(['pendingTransactions']).count()).toEqual(0);
+        expect(walletManagerState.getIn(['confirmedTransactions']).count()).toEqual(1);
+        formatedTransaction.value = parseFloat(utils.formatEther(formatedTransaction.value));
+        expect(walletManagerState.getIn(['confirmedTransactions']).get(0).toJS()).toEqual(formatedTransaction);
+      });
+  });
+
+  it('sign transaction for erc20 payment', () => {
+    // create txn hash
+    // should save pending txn hash in store and localstorage
+    // listen for confirmation
+    // update pending txn in store
+    const storeState = {
+      walletManager: {
+        wallets: {
+          software: {
+            t1: {
+              encrypted: '{"address": "abcd"}',
+              decrypted: {
+                privateKey: '0x40c2ebcaf1c719f746bc57feb85c56b6143c906d849adb30d62990c4454b2f15',
+              },
+            },
+          },
+        },
+        currentWallet: {
+          address: '0xabcd',
+        },
+        pendingTransactions: [],
+        confirmedTransactions: [],
+      },
+    };
+    const signedTransaction = {
+      nonce: 49,
+      gasPrice: 1,
+      gasLimit: 1,
+      from: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+      value: 1,
+      data: '0xa9059cbb000000000000000000000000994c3de8cc5bc781183205a3dd6e175be1e6f14a00000000000000000000000000000000000000000000000000005af3107a4000',
+      v: 42,
+      r: '0x715935bf243f0273429ba09b2c65ff2d15ca3a8b18aecc35e7d5b4ebf5fe2f56',
+      s: '0x32aacbc76007f51de3c6efedad074a6b396d2a35d9b6a49ad0b250d40a7f046e',
+      chainId: 3,
+      to: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
+      hash: '0x3c63ecb423263552cfc3e373778bf8244d490b06823b4b2f3203343ecb8f0518',
+    };
+    const confirmedTransaction = {
+      ...signedTransaction,
+      blockHash: '0x756da99f6be563b86238a162ee2586b0236e3e87c62cde69426ff7bab71d6066',
+      blockNumber: 3558042,
+      transactionIndex: 9,
+      raw: 'raw',
+    };
+    const formatedTransaction = {
+      timestamp: new Date().getTime(),
+      token: 'BOKKY',
+      from: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+      to: '0x994c3de8cc5bc781183205a3dd6e175be1e6f14a',
+      hash: '0x3c63ecb423263552cfc3e373778bf8244d490b06823b4b2f3203343ecb8f0518',
+      value: 0.0001,
+      input: signedTransaction.data,
+      success: true,
+      original: confirmedTransaction,
+    };
+    const params = {
+      token: 'BOKKY',
+      toAddress: '0x994c3de8cc5bc781183205a3dd6e175be1e6f14a',
+      amount: 0.0001,
+      gasPrice: 3000000,
+      gasLimit: 210000,
+      wallet: { decrypted: {} },
+      contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
+    };
+    let called = 0;
+    return expectSaga(walletManager)
+      .provide({
+        call(effect, next) {
+          called += 1;
+          if (called === 1) {
+            return signedTransaction;
+          }
+          if (called === 2) {
+            return confirmedTransaction;
+          }
+          return next();
+        },
+      })
+      .withReducer((state, action) => state.set('walletManager', walletManagerReducer(state.get('walletManager'), action)), fromJS(storeState))
+      .dispatch(transferAction(params))
+      .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
+      .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
+      .run({ silenceTimeout: true })
+      // .run(500000)
+      .then((result) => {
+        const walletManagerState = result.storeState.get('walletManager');
+        expect(walletManagerState.getIn(['pendingTransactions']).count()).toEqual(0);
+        expect(walletManagerState.getIn(['confirmedTransactions']).count()).toEqual(1);
+        expect(walletManagerState.getIn(['confirmedTransactions']).get(0)).toEqual(fromJS(formatedTransaction));
+      });
+  });
+
   it('#initWalletsBalances should trigger loadWalletBalances for all the wallets in the list', () => {
     const walletList = [
-      { name: '1', address: '1' },
-      { name: '2', address: '2' },
+      { name: '1', address: '0x1' },
+      { name: '2', address: '0x2' },
     ];
     return expectSaga(walletManager)
       .provide({
@@ -198,8 +388,8 @@ describe('load wallets saga', () => {
           return walletList;
         },
       })
-      .put(loadWalletBalances(walletList[0].name, `0x${walletList[0].address}`))
-      .put(loadWalletBalances(walletList[1].name, `0x${walletList[1].address}`))
+      .put(loadWalletBalances(walletList[0].name, `${walletList[0].address}`))
+      .put(loadWalletBalances(walletList[1].name, `${walletList[1].address}`))
       .dispatch({ type: LOAD_WALLETS_SUCCESS })
       .run({ silenceTimeout: true });
   });

@@ -20,8 +20,11 @@ import {
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
   TRANSFER,
+  TRANSFER_ETHER,
+  TRANSFER_ERC20,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
+  TRANSACTION_CONFIRMED,
 } from './constants';
 
 export function createNewWallet(name, mnemonic, derivationPath, password) {
@@ -111,6 +114,12 @@ export function loadWalletsSuccess(wallets) {
   };
 }
 
+export function loadWalletsBalances() {
+  return {
+    type: LOAD_WALLETS_SUCCESS,
+  };
+}
+
 export function loadWalletBalances(name, walletAddress) {
   return {
     type: LOAD_WALLET_BALANCES,
@@ -144,12 +153,43 @@ export function transfer(payload) {
     amount: payload.amount,
     gasPrice: payload.gasPrice,
     gasLimit: payload.gasLimit,
+    contractAddress: payload.contractAddress,
   };
 }
 
-export function transferSuccess(transaction) {
+export function transferEther(payload) {
+  return {
+    type: TRANSFER_ETHER,
+    toAddress: payload.toAddress,
+    amount: payload.amount,
+    gasPrice: payload.gasPrice,
+    gasLimit: payload.gasLimit,
+  };
+}
+
+export function transferERC20(payload) {
+  return {
+    type: TRANSFER_ERC20,
+    token: payload.token,
+    contractAddress: payload.contractAddress,
+    toAddress: payload.toAddress,
+    amount: payload.amount,
+    gasPrice: payload.gasPrice,
+    gasLimit: payload.gasLimit,
+  };
+}
+
+export function transferSuccess(transaction, token) {
   return {
     type: TRANSFER_SUCCESS,
+    transaction,
+    token,
+  };
+}
+
+export function transactionConfirmed(transaction) {
+  return {
+    type: TRANSACTION_CONFIRMED,
     transaction,
   };
 }

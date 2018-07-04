@@ -124,7 +124,7 @@ describe('makeSelectCurrentWalletDetails', () => {
   const walletSelector = makeSelectCurrentWalletDetails();
   it('should convert select current wallet details from the wallet list', () => {
     const expected = {
-      address: '2',
+      address: '0x2',
       encrypted: { address: '2' },
       name: 't2',
       type: 'software',

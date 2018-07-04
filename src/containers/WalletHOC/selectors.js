@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { convertWalletsList } from 'utils/wallet';
+import { convertWalletsList, IsAddressMatch } from 'utils/wallet';
 
 /**
  * Direct selector to the walletManager state domain
@@ -57,7 +57,33 @@ const makeSelectWalletList = () => createSelector(
 const makeSelectCurrentWalletDetails = () => createSelector(
   makeSelectWalletList(),
   makeSelectCurrentWallet(),
-  (walletList, currentWallet) => walletList.find((wallet) => `0x${wallet.encrypted.address}` === currentWallet.toJS().address) || {}
+  (walletList, currentWallet) => {
+    const walletDetails = walletList.find((wallet) => `0x${wallet.encrypted.address}` === currentWallet.toJS().address);
+    return walletDetails || {};
+  }
+);
+
+const makeSelectPendingTransactions = () => createSelector(
+  selectWalletManagerDomain,
+  (walletManagerDomain) => walletManagerDomain.get('pendingTransactions')
+);
+
+const makeSelectConfirmedTransactions = () => createSelector(
+  selectWalletManagerDomain,
+  (walletManagerDomain) => walletManagerDomain.get('confirmedTransactions')
+);
+
+const makeSelectAllTransactions = () => createSelector(
+  makeSelectCurrentWalletDetails(),
+  makeSelectPendingTransactions(),
+  makeSelectConfirmedTransactions(),
+  (currentWalletDetails, pendingTxns, confirmedTxns) => {
+    const txns = [].concat(pendingTxns.toJS()).concat(confirmedTxns.toJS());
+    return txns.filter((txn) => {
+      const address = currentWalletDetails.address;
+      return IsAddressMatch(txn.from, address) || IsAddressMatch(txn.to, address);
+    }).sort((a, b) => b.timestamp - a.timestamp);
+  }
 );
 
 export {
@@ -72,4 +98,5 @@ export {
   makeSelectCurrentWallet,
   makeSelectWalletList,
   makeSelectCurrentWalletDetails,
+  makeSelectAllTransactions,
 };

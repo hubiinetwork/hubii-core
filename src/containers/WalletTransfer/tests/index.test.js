@@ -17,10 +17,12 @@ describe('WalletTransfer', () => {
     describe('#onSend', () => {
       it('should trigger transfer action', () => {
         const transferSpy = jest.fn();
+        const historySpy = jest.fn();
         dom = shallow(
           <WalletTransfer
             {...params}
             transfer={transferSpy}
+            history={{ push: historySpy }}
           />
         );
         const instance = dom.instance();
