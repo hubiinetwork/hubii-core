@@ -1,15 +1,5 @@
 import { providers } from 'ethers';
 
-export function getWalletsLocalStorage() {
-  const defaultState = { software: {}, hardware: {} };
-  try {
-    const wallets = JSON.parse(localStorage.getItem('wallets')) || defaultState;
-    return wallets;
-  } catch (e) {
-    return defaultState;
-  }
-}
-
 export function convertWalletsList(walletsState) {
   const walletsJSON = walletsState.toJS();
   const wallets = [];

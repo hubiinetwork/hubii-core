@@ -12,7 +12,7 @@ import {
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
   SHOW_DECRYPT_WALLET_MODAL,
-  HIDE_DESCRYPT_WALLET_MODAL,
+  HIDE_DECRYPT_WALLET_MODAL,
   SET_CURRENT_WALLET,
   LOAD_WALLETS,
   LOAD_WALLETS_SUCCESS,
@@ -25,7 +25,6 @@ import {
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
   TRANSACTION_CONFIRMED,
-  NOTIFY,
 } from './constants';
 
 export function createNewWallet(name, mnemonic, derivationPath, password) {
@@ -89,7 +88,7 @@ export function showDecryptWalletModal(walletName) {
 
 export function hideDecryptWalletModal(walletName) {
   return {
-    type: HIDE_DESCRYPT_WALLET_MODAL,
+    type: HIDE_DECRYPT_WALLET_MODAL,
     walletName,
   };
 }
@@ -112,6 +111,12 @@ export function loadWalletsSuccess(wallets) {
   return {
     type: LOAD_WALLETS_SUCCESS,
     wallets,
+  };
+}
+
+export function loadWalletsBalances() {
+  return {
+    type: LOAD_WALLETS_SUCCESS,
   };
 }
 
@@ -193,13 +198,5 @@ export function transferError(error) {
   return {
     type: TRANSFER_ERROR,
     error,
-  };
-}
-
-export function notify(success, message) {
-  return {
-    type: NOTIFY,
-    success,
-    message,
   };
 }

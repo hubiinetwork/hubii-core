@@ -12,6 +12,34 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 // in the next major version of loader-utils.'
 process.noDeprecation = true;
 
+const isElectron = process.env.TARGET === 'electron';
+
+// Create bindings for native node modules when running in Electron
+// supress false positive warnings when running in browser environment
+const externals = isElectron
+  ? {
+    'node-hid': 'require("node-hid")',
+    bindings: 'require("bindings")',
+  }
+  : {
+    'node-hid': 'empty',
+    bindings: 'empty',
+  };
+
+// Expose APIs for the environment targeted
+const target = isElectron
+  ? 'electron-renderer'
+  : 'web';
+
+// Supress false positive warnings during browser build
+const node = !isElectron
+  ? {
+    fs: 'empty',
+    bindings: 'empty',
+    child_process: 'empty',
+  }
+  : {};
+
 module.exports = (options) => ({
   mode: options.mode,
   entry: options.entry,
@@ -153,6 +181,8 @@ module.exports = (options) => ({
     },
   },
   devtool: options.devtool,
-  target: 'web', // Make web variables accessible to webpack, e.g. window
+  externals,
+  target,
+  node,
   performance: options.performance || {},
 });

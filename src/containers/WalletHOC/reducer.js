@@ -10,7 +10,6 @@ import { utils } from 'ethers';
 import abiDecoder from 'abi-decoder';
 
 import {
-  LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
@@ -22,14 +21,14 @@ import {
   DECRYPT_WALLET_SUCCESS,
   SET_CURRENT_WALLET,
   SHOW_DECRYPT_WALLET_MODAL,
-  HIDE_DESCRYPT_WALLET_MODAL,
+  HIDE_DECRYPT_WALLET_MODAL,
   TRANSFER,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
   TRANSACTION_CONFIRMED,
 } from './constants';
 
-const initialState = fromJS({
+export const initialState = fromJS({
   selectedWalletName: '',
   inputs: {
     password: '',
@@ -87,9 +86,6 @@ function walletManagerReducer(state = initialState, action) {
       return state
         .setIn(['loading', 'decryptingWallet'], false)
         .setIn(['errors', 'decryptingWalletError'], action.error);
-    case LOAD_WALLETS_SUCCESS:
-      return state
-        .set('wallets', fromJS(action.wallets));
     case LOAD_WALLET_BALANCES:
       return state
         .setIn(['wallets', 'software', action.name, 'loadingBalances'], true);
@@ -105,7 +101,7 @@ function walletManagerReducer(state = initialState, action) {
     case SHOW_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], true);
-    case HIDE_DESCRYPT_WALLET_MODAL:
+    case HIDE_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], false);
     case SET_CURRENT_WALLET:
