@@ -1,6 +1,6 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { Wallet, utils, providers, Contract } from 'ethers';
-import {notify} from 'containers/App/actions';
+import { notify } from 'containers/App/actions';
 import { makeSelectWalletList, makeSelectCurrentWalletDetails } from './selectors';
 import request from '../../utils/request';
 import { ERC20ABI, EthNetworkProvider } from '../../utils/wallet';
