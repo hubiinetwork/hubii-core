@@ -348,7 +348,7 @@ describe('load wallets saga', () => {
         const walletManagerState = result.storeState.get('walletManager');
         expect(walletManagerState.getIn(['pendingTransactions']).count()).toEqual(0);
         expect(walletManagerState.getIn(['confirmedTransactions']).count()).toEqual(1);
-        formatedTransaction.value = parseFloat(utils.formatEther(formatedTransaction.value))
+        formatedTransaction.value = parseFloat(utils.formatEther(formatedTransaction.value));
         expect(walletManagerState.getIn(['confirmedTransactions']).get(0).toJS()).toEqual(formatedTransaction);
       });
   });
@@ -448,8 +448,8 @@ describe('load wallets saga', () => {
 
   it('#initWalletsBalances should trigger loadWalletBalances for all the wallets in the list', () => {
     const walletList = [
-      { name: '1', address: '1' },
-      { name: '2', address: '2' },
+      { name: '1', address: '0x1' },
+      { name: '2', address: '0x2' },
     ];
     return expectSaga(walletManager)
       .provide({
@@ -457,8 +457,8 @@ describe('load wallets saga', () => {
           return walletList;
         },
       })
-      .put(loadWalletBalances(walletList[0].name, `0x${walletList[0].address}`))
-      .put(loadWalletBalances(walletList[1].name, `0x${walletList[1].address}`))
+      .put(loadWalletBalances(walletList[0].name, `${walletList[0].address}`))
+      .put(loadWalletBalances(walletList[1].name, `${walletList[1].address}`))
       .dispatch({ type: LOAD_WALLETS_SUCCESS })
       .run({ silenceTimeout: true });
   });
