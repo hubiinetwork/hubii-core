@@ -1,9 +1,5 @@
 import React from 'react';
-import ReactHighcharts from 'react-highcharts';
-import HighChartsMore from 'highcharts-more';
-import HighChartsExporting from 'highcharts-exporting';
-HighChartsMore(ReactHighcharts.Highcharts);
-HighChartsExporting(ReactHighcharts.Highcharts);
+import ReactHighstock from 'react-highcharts/ReactHighstock';
 
 export default class CandleStickChart extends React.Component {
   constructor(props) {
@@ -13,6 +9,11 @@ export default class CandleStickChart extends React.Component {
     };
   }
   componentDidMount() {
+    // setInterval(() => this.updateData(), 1000);
+    this.updateData();
+  }
+  updateData() {
+    console.log('api called');
     fetch('https://raw.githubusercontent.com/smartvikisogn/cryptocurrency/master/bitcoin.json')
     .then((res) => res.json())
     .then((data) => {
@@ -103,14 +104,16 @@ export default class CandleStickChart extends React.Component {
           candlestick: {
             color: 'green',
           },
+          column: {
+            color: 'red',
+          },
         },
 
         series: [
           {
             type: 'candlestick',
-            // name: '<b>Bitcoin</b> Historical Data in <b>USD</b>',
+            name: '<b>Bitcoin</b> Historical Data in <b>USD</b>',
             data: ohlc,
-
           },
           {
             type: 'column',
@@ -128,7 +131,7 @@ export default class CandleStickChart extends React.Component {
   }
   render() {
     return (
-      <ReactHighcharts config={this.state.config} />
+      <ReactHighstock config={this.state.config} />
     );
   }
 }
