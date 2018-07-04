@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactHighstock from 'react-highcharts/ReactHighstock';
+import './CandleStick.css';
 
 export default class CandleStickChart extends React.Component {
   constructor(props) {
