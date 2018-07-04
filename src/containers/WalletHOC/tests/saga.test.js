@@ -259,7 +259,7 @@ describe('load wallets saga', () => {
       .run({ silenceTimeout: true });
   });
 
-  it.only('sign transaction for eth payment', () => {
+  it('sign transaction for eth payment', () => {
     // create txn hash
     // should save pending txn hash in store and localstorage
     // listen for confirmation
@@ -352,7 +352,6 @@ describe('load wallets saga', () => {
       });
   });
 
-  // jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000;
   it('sign transaction for erc20 payment', () => {
     // create txn hash
     // should save pending txn hash in store and localstorage
@@ -381,14 +380,14 @@ describe('load wallets saga', () => {
       nonce: 49,
       gasPrice: 1,
       gasLimit: 1,
-      to: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+      from: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
       value: 1,
-      data: '0x',
+      data: '0xa9059cbb000000000000000000000000994c3de8cc5bc781183205a3dd6e175be1e6f14a00000000000000000000000000000000000000000000000000005af3107a4000',
       v: 42,
       r: '0x715935bf243f0273429ba09b2c65ff2d15ca3a8b18aecc35e7d5b4ebf5fe2f56',
       s: '0x32aacbc76007f51de3c6efedad074a6b396d2a35d9b6a49ad0b250d40a7f046e',
       chainId: 3,
-      from: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a',
+      to: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
       hash: '0x3c63ecb423263552cfc3e373778bf8244d490b06823b4b2f3203343ecb8f0518',
     };
     const confirmedTransaction = {
@@ -397,6 +396,17 @@ describe('load wallets saga', () => {
       blockNumber: 3558042,
       transactionIndex: 9,
       raw: 'raw',
+    };
+    const formatedTransaction = {
+      timestamp: new Date().getTime(),
+      token: 'BOKKY',
+      from: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+      to: '0x994c3de8cc5bc781183205a3dd6e175be1e6f14a',
+      hash: '0x3c63ecb423263552cfc3e373778bf8244d490b06823b4b2f3203343ecb8f0518',
+      value: 0.0001,
+      input: signedTransaction.data,
+      success: true,
+      original: confirmedTransaction,
     };
     const params = {
       token: 'BOKKY',
@@ -407,31 +417,31 @@ describe('load wallets saga', () => {
       wallet: { decrypted: {} },
       contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
     };
-    // const called = 0;
+    let called = 0;
     return expectSaga(walletManager)
-      // .provide({
-      //   call(effect, next) {
-      //     called += 1;
-      //     if (called === 1) {
-      //       return signedTransaction;
-      //     }
-      //     if (called === 2) {
-      //       return confirmedTransaction;
-      //     }
-      //     return next();
-      //   },
-      // })
+      .provide({
+        call(effect, next) {
+          called += 1;
+          if (called === 1) {
+            return signedTransaction;
+          }
+          if (called === 2) {
+            return confirmedTransaction;
+          }
+          return next();
+        },
+      })
       .withReducer((state, action) => state.set('walletManager', walletManagerReducer(state.get('walletManager'), action)), fromJS(storeState))
       .dispatch(transferAction(params))
-      .put(transferSuccess(signedTransaction))// send signed transaction
+      .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
       .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
-      // .run({ silenceTimeout: true })
-      .run(500000)
+      .run({ silenceTimeout: true })
+      // .run(500000)
       .then((result) => {
         const walletManagerState = result.storeState.get('walletManager');
         expect(walletManagerState.getIn(['pendingTransactions']).count()).toEqual(0);
         expect(walletManagerState.getIn(['confirmedTransactions']).count()).toEqual(1);
-        expect(walletManagerState.getIn(['confirmedTransactions']).get(0)).toEqual(fromJS(confirmedTransaction));
+        expect(walletManagerState.getIn(['confirmedTransactions']).get(0)).toEqual(fromJS(formatedTransaction));
       });
   });
 

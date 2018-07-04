@@ -1,3 +1,5 @@
+import { providers } from 'ethers';
+
 export function getWalletsLocalStorage() {
   const defaultState = { software: {}, hardware: {} };
   try {
@@ -40,3 +42,25 @@ export function getTotalUSDValue(balances) {
   }));
   return assets.reduce((accumulator, current) => accumulator + (parseFloat(current.price.USD, 10) * current.amount), 0);
 }
+
+export const ERC20ABI = [
+  {
+    name: 'transfer',
+    type: 'function',
+    inputs: [
+      {
+        name: '_to',
+        type: 'address',
+      },
+      {
+        type: 'uint256',
+        name: '_tokens',
+      },
+    ],
+    constant: false,
+    outputs: [],
+    payable: false,
+  },
+];
+
+export const EthNetworkProvider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');

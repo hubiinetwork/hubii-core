@@ -1,10 +1,9 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { Wallet, utils, providers, Contract } from 'ethers';
-import abiDecoder from 'abi-decoder';
 import Notification from 'components/Notification';
 import { makeSelectWallets, makeSelectWalletList, makeSelectCurrentWalletDetails } from './selectors';
 import request from '../../utils/request';
-import { getWalletsLocalStorage } from '../../utils/wallet';
+import { getWalletsLocalStorage, ERC20ABI, EthNetworkProvider } from '../../utils/wallet';
 
 import {
   CREATE_NEW_WALLET,
@@ -94,27 +93,6 @@ export function* initWalletsBalances() {
   }
 }
 
-// const abi = [
-//   {
-//     constant: true,
-//     inputs: [
-//       {
-//         name: '_owner',
-//         type: 'address',
-//       },
-//     ],
-//     name: 'balanceOf',
-//     outputs: [
-//       {
-//         name: 'balance',
-//         type: 'uint256',
-//       },
-//     ],
-//     payable: false,
-//     type: 'function',
-//   },
-// ];
-
 export function* loadWalletBalancesSaga({ name, walletAddress }) {
   const requestPath = `ethereum/wallets/${walletAddress}/balance`;
   try {
@@ -142,7 +120,7 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
 export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
   const walletDetails = yield select(makeSelectCurrentWalletDetails());
   const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
-  etherWallet.provider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
+  etherWallet.provider = EthNetworkProvider;
 
   try {
     const options = { gasPrice, gasLimit };
@@ -154,43 +132,19 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
   }
 }
 
-export function* transferERC20({ contractAddress, toAddress, amount, gasPrice, gasLimit }) {
-  const contractAbiFragment = [
-    {
-      name: 'transfer',
-      type: 'function',
-      inputs: [
-        {
-          name: '_to',
-          type: 'address',
-        },
-        {
-          type: 'uint256',
-          name: '_tokens',
-        },
-      ],
-      constant: false,
-      outputs: [],
-      payable: false,
-    },
-  ];
+export function* transferERC20({ token, contractAddress, toAddress, amount, gasPrice, gasLimit }) {
+  const contractAbiFragment = ERC20ABI;
 
   const walletDetails = yield select(makeSelectCurrentWalletDetails());
   const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
-  etherWallet.provider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
+  etherWallet.provider = EthNetworkProvider;
 
   try {
     const options = { gasPrice, gasLimit };
     const contract = new Contract(contractAddress, contractAbiFragment, etherWallet);
-    // const iface = new Interface(contractAbiFragment);
-    console.log('sending', toAddress, amount, options);
     const transaction = yield call((...args) => contract.transfer(...args), toAddress, amount, options);
-    console.log('hash', transaction);
-    abiDecoder.addABI(contractAbiFragment);
-    console.log(abiDecoder.decodeMethod(transaction.data));
-    yield put(transferSuccess(transaction));
+    yield put(transferSuccess(transaction, token));
   } catch (error) {
-    console.log('err', error);
     yield put(transferError(error));
   }
 }

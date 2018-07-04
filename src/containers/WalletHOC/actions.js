@@ -165,6 +165,7 @@ export function transferEther(payload) {
 export function transferERC20(payload) {
   return {
     type: TRANSFER_ERC20,
+    token: payload.token,
     contractAddress: payload.contractAddress,
     toAddress: payload.toAddress,
     amount: payload.amount,

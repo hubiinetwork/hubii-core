@@ -5,6 +5,10 @@
  */
 
 import { fromJS } from 'immutable';
+import { ERC20ABI } from 'utils/wallet';
+import { utils } from 'ethers';
+import abiDecoder from 'abi-decoder';
+
 import {
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
@@ -50,6 +54,8 @@ const initialState = fromJS({
   pendingTransactions: [],
   confirmedTransactions: [],
 });
+
+abiDecoder.addABI(ERC20ABI);
 
 function walletManagerReducer(state = initialState, action) {
   switch (action.type) {
@@ -120,7 +126,6 @@ function walletManagerReducer(state = initialState, action) {
         .setIn(['currentWallet', 'transferError'], null)
         .setIn(['currentWallet', 'lastTransaction'], fromJS(action.transaction))
         .updateIn(['pendingTransactions'], (list) => {
-          console.log('token', action.token);
           const transaction = action.transaction;
           const formatedTransaction = {
             timestamp: new Date().getTime(),
@@ -132,6 +137,14 @@ function walletManagerReducer(state = initialState, action) {
             input: transaction.data,
             original: transaction,
           };
+          if (action.token !== 'ETH') {
+            const inputData = abiDecoder.decodeMethod(transaction.data);
+            const toAddress = inputData.params.find((param) => param.name === '_to');
+            const tokens = inputData.params.find((param) => param.name === '_tokens');
+            const wei = utils.bigNumberify(tokens.value);
+            formatedTransaction.to = toAddress.value;
+            formatedTransaction.value = parseFloat(utils.formatEther(wei));
+          }
           return list.insert(1, fromJS(formatedTransaction));
         });
     case TRANSFER_ERROR:
