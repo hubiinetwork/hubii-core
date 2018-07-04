@@ -1,6 +1,8 @@
 import { fromJS } from 'immutable';
 
 import { initialState as walletHocInitialState } from 'containers/WalletHOC/reducer';
+import { initialState as contactsInitialState } from 'containers/ContactBook/reducer';
+
 
 export const loadState = () => {
   try {
@@ -39,6 +41,7 @@ export const filterPersistedState = (state) => {
    */
 
   // Start with clean initialState
+  persistedState = persistedState.set('contacts', contactsInitialState);
   persistedState = persistedState.set('walletManager', walletHocInitialState);
 
   // Get software wallets ensuring the decrypted property is filtered out

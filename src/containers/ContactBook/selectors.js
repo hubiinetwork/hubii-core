@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 
 /**
- * Direct selector to the walletManager state domain
+ * Direct selector to the contacts state domain
  */
-const selectContactsDomain = (state) => state.get('contacts');
+const selectContactsDomain = (state) => state.get('state');
 
 const makeSelectContacts = () => createSelector(
   selectContactsDomain,

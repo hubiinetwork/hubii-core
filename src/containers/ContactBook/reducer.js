@@ -12,9 +12,9 @@ import {
   EDIT_CONTACT_SUCCESS,
 } from './constants';
 
-const initialState = fromJS([]);
+export const initialState = fromJS([]);
 
-function contactManagerReducer(state = initialState, action) {
+function contactsReducer(state = initialState, action) {
   switch (action.type) {
     case CREATE_CONTACT_SUCCESS:
       return fromJS([...state.toJS(), action.contactDetails]);
@@ -32,4 +32,4 @@ function contactManagerReducer(state = initialState, action) {
   }
 }
 
-export default contactManagerReducer;
+export default contactsReducer;

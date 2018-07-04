@@ -7,6 +7,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import walletManagerReducer from 'containers/WalletHOC/reducer';
+import contactsReducer from 'containers/ContactBook/reducer';
 
 /*
  * routeReducer
@@ -33,6 +34,7 @@ export default function createReducer(injectedReducers) {
   return combineReducers({
     route: routeReducer,
     walletManager: walletManagerReducer,
+    contacts: contactsReducer,
     language: languageProviderReducer,
     ...injectedReducers,
   });
