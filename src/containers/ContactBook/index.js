@@ -50,7 +50,9 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
 
   filterSearchText(data, type) {
     if (this.state[type]) {
-      return data.filter((contact) => contact.name.toLowerCase().includes(this.state[type].toLowerCase()) || contact.address.includes(this.state[type]));
+      return data.filter((contact) =>
+                contact.name.toLowerCase().includes(this.state[type].toLowerCase())
+                || contact.address.includes(this.state[type]));
     }
     return data;
   }
@@ -82,7 +84,6 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
 
               </div>
             </div>
-
             <div style={{ color: 'white', minWidth: '30rem', marginLeft: '1rem' }}>
               <ContactHeader
                 title={'All Contacts'}
@@ -95,7 +96,6 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
                   onEdit={(newContact, oldContact) => this.props.editContact(newContact, oldContact)}
                   onDelete={(data) => this.props.removeContact(data)}
                 />
-
               </div>
             </div>
           </div>

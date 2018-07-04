@@ -6,28 +6,24 @@ import { getContactsLocalStorage } from '../../utils/contact';
 
 export function* cacheContact({ contactDetails }) {
   const contactBook = [];
-  if (JSON.parse(localStorage.getItem('contactBook'))) {
-    contactBook.push(...JSON.parse(localStorage.getItem('contactBook')));
+  if (getContactsLocalStorage()) {
+    contactBook.push(...getContactsLocalStorage());
   }
   contactBook.push({ ...contactDetails });
-  localStorage.setItem('contactBook', JSON.stringify(contactBook));
+  window.localStorage.setItem('contactBook', JSON.stringify(contactBook));
   yield put(createContactSuccess(contactDetails.name, contactDetails.address));
 }
 
 export function* loadAllContacts() {
   const contactBook = getContactsLocalStorage();
-  try {
-    yield put(loadAllContactsSucess(contactBook));
-  } catch (e) {
-    console.log(e);
-  }
+  yield put(loadAllContactsSucess(contactBook));
 }
 
 export function* removeContact({ contact }) {
   const contactBook = getContactsLocalStorage();
   if (contactBook) {
     const remainingList = contactBook.filter((person) => !(person.address === contact.address && person.name === contact.name));
-    localStorage.setItem('contactBook', JSON.stringify(remainingList));
+    window.localStorage.setItem('contactBook', JSON.stringify(remainingList));
     yield put(removeContactSuccess(remainingList));
   }
 }
@@ -35,10 +31,12 @@ export function* removeContact({ contact }) {
 export function* editContact({ oldContact, newContact }) {
   const contactBook = getContactsLocalStorage();
   const reducer = (acc, currValue) => currValue.name === oldContact.name && currValue.address === oldContact.address ? contactBook.indexOf(currValue) : acc;
-  const index = contactBook.reduce(reducer, 0);
-  contactBook[index] = newContact;
-  localStorage.setItem('contactBook', JSON.stringify(contactBook));
-  yield put(editContactSuccess(index, newContact));
+  const index = contactBook.reduce(reducer, -1);
+  if (index >= 0) {
+    contactBook[index] = newContact;
+    window.localStorage.setItem('contactBook', JSON.stringify(contactBook));
+    yield put(editContactSuccess(index, newContact));
+  }
 }
 
 // Root watcher

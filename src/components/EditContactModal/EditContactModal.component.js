@@ -78,7 +78,7 @@ class EditContactModal extends React.Component {
                 },
               ],
               initialValue: this.props.name,
-            })(<ModalFormInput onChange={(e) => onChange(e, 'name')} />)}
+            })(<ModalFormInput onChange={(e) => onChange(e.target.value, 'name')} />)}
           </ModalFormItem>
           <ModalFormItem
             label={<ModalFormLabel>Valid Ethereum Address</ModalFormLabel>}
@@ -96,12 +96,13 @@ class EditContactModal extends React.Component {
                 },
               ],
               initialValue: this.props.address,
-            })(<ModalFormInput onChange={(e) => onChange(e, 'address')} />)}
+            })(<ModalFormInput onChange={(e) => onChange(e.target.value, 'address')} />)}
           </ModalFormItem>
           <ParentDiv>
             <StyledButton1
               type="primary"
               htmlType="submit"
+              id="button"
             >
               <Icon type="plus" />
               Edit Contact
@@ -127,3 +128,5 @@ EditContactModal.propTypes = {
 };
 
 export default Form.create()(EditContactModal);
+export { EditContactModal }
+;

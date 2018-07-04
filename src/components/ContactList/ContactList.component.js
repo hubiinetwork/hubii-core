@@ -20,7 +20,6 @@ export default class ContactList extends React.PureComponent {
       visible: false,
       name: '',
       address: '',
-      error: null,
       modalType: null,
     };
     this.showNotification = this.showNotification.bind(this);
@@ -32,9 +31,9 @@ export default class ContactList extends React.PureComponent {
     this.validateEdit = this.validateEdit.bind(this);
   }
 
-  onChange(e, type) {
+  onChange(input, type) {
     this.setState({
-      [type]: e.target.value,
+      [type]: input,
     });
   }
 
@@ -81,7 +80,7 @@ export default class ContactList extends React.PureComponent {
 
   render() {
     const { size, layout, data } = this.props;
-    const { error, name, address, modalType } = this.state;
+    const { name, address, modalType } = this.state;
     let modal;
     if (modalType === 'delete') {
       modal = (
@@ -98,8 +97,7 @@ export default class ContactList extends React.PureComponent {
           name={name}
           address={address}
           onEdit={(e) => this.handleEdit(e)}
-          onChange={(e, type) => this.onChange(e, type)}
-          error={error}
+          onChange={(input, type) => this.onChange(input, type)}
           validateEdit={(newAddress, oldAddress) => this.validateEdit(newAddress, oldAddress)}
         />
       );

@@ -13,4 +13,5 @@ const makeSelectContacts = () => createSelector(
 
 export {
   makeSelectContacts,
+  selectContactsDomain,
 };
