@@ -133,7 +133,7 @@ function walletManagerReducer(state = initialState, action) {
             from: transaction.from,
             to: transaction.to,
             hash: transaction.hash,
-            value: transaction.value,
+            value: parseFloat(utils.formatEther(transaction.value)),
             input: transaction.data,
             original: transaction,
           };

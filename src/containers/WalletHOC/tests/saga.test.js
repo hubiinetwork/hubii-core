@@ -348,6 +348,7 @@ describe('load wallets saga', () => {
         const walletManagerState = result.storeState.get('walletManager');
         expect(walletManagerState.getIn(['pendingTransactions']).count()).toEqual(0);
         expect(walletManagerState.getIn(['confirmedTransactions']).count()).toEqual(1);
+        formatedTransaction.value = parseFloat(utils.formatEther(formatedTransaction.value))
         expect(walletManagerState.getIn(['confirmedTransactions']).get(0).toJS()).toEqual(formatedTransaction);
       });
   });
