@@ -11,7 +11,12 @@ const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const logger = require('../../server/logger');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
-const dllPlugin = process.env.NODE_ENV !== 'style' ? pkg.dllPlugin : null;
+
+// Don't use dllPlugin in Electron build, it breaks native node packages
+// during electron-rebuild
+const dllPlugin = (process.env.NODE_ENV !== 'style' && process.env.TARGET !== 'electron')
+  ? pkg.dllPlugin
+  : null;
 
 const plugins = [
   new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading

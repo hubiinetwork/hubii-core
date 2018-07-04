@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router';
 import { createStructuredSelector } from 'reselect';
 
 import WalletsOverview from 'containers/WalletsOverview';
@@ -11,12 +11,8 @@ import Tab from 'components/ui/Tab';
 import AddRestoreWalletModal from 'components/AddRestoreWalletModal';
 import { Modal } from 'components/ui/Modal';
 
-import injectSaga from 'utils/injectSaga';
-import injectReducer from 'utils/injectReducer';
-import { createNewWallet } from './actions';
-import reducer from './reducer';
-import saga from './saga';
-import { makeSelectLoading, makeSelectErrors } from './selectors';
+import { createNewWallet } from 'containers/WalletHOC/actions';
+import { makeSelectLoading, makeSelectErrors } from 'containers/WalletHOC/selectors';
 
 import {
   Wrapper,
@@ -154,11 +150,6 @@ export function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'walletManager', reducer });
-const withSaga = injectSaga({ key: 'walletManager', saga });
-
 export default compose(
-  withReducer,
-  withSaga,
   withConnect,
 )(WalletManager);
