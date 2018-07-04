@@ -4,6 +4,7 @@
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
+import throttle from 'lodash/throttle';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
@@ -47,10 +48,10 @@ export default function configureStore(history) {
     composeEnhancers(...enhancers)
   );
 
-  // Update persistent store dynamically
-  store.subscribe(() => {
+  // Update localStorage in sync with our Redux store
+  store.subscribe(throttle(() => {
     saveState(store.getState());
-  });
+  }, 1000));
 
   // Extensions
   store.runSaga = sagaMiddleware.run;
