@@ -9,6 +9,8 @@ import { fromJS } from 'immutable';
 import request from 'utils/request';
 import { Wallet, utils } from 'ethers';
 
+import { notify } from 'containers/App/actions';
+
 import walletManager, {
   createWallet,
   decryptWallet,
@@ -18,6 +20,7 @@ import walletManager, {
   initWalletsBalances,
   transfer,
 } from '../saga';
+
 import {
   CREATE_NEW_WALLET,
   DECRYPT_WALLET,
@@ -26,6 +29,7 @@ import {
   LOAD_WALLET_BALANCES,
   LOAD_WALLETS_SUCCESS,
 } from '../constants';
+
 import {
   createNewWalletSuccess,
   createNewWalletFailed,
@@ -36,12 +40,8 @@ import {
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
-  transfer as transferAction,
   transferSuccess,
   transferError,
-  hideDecryptWalletModal,
-  notify,
-  decryptWallet as decryptWalletAction,
 } from '../actions';
 
 describe('createWallet saga', () => {
@@ -123,26 +123,41 @@ describe('decryptWallet saga', () => {
   const password = 'dogs';
   const decryptedWallet = { privateKey: '0x409300caf64bdf96a92d7f99547a5d67702fbdd759bbea4ca19b11a21d9c8528', defaultGasLimit: 1500000, address: '0xA0EcCD7605Bb117DD2A4Cd55979C720Cf00F7fa4', mnemonic: 'movie viable write punch mango arrest cotton page grass dad document practice', path: "m/44'/60'/0'/0/0" };
 
-  it('should dispatch the decryptWalletSuccess action if successful', () => {
+  it('should first dispatch notify action', () => {
     const decryptWalletGenerator = decryptWallet({ name, encryptedWallet, password });
-    decryptWalletGenerator.next();
     const putDescriptor = decryptWalletGenerator.next(decryptedWallet).value;
-    expect(JSON.stringify(putDescriptor)).toEqual(JSON.stringify(put(decryptWalletSuccess(name, decryptedWallet))));
+    expect(putDescriptor).toEqual(put(notify('info', `Decrypting wallet ${name}`)));
   });
 
-  it('should dispatch decryptWalletFailed action if name is undefined', () => {
+  it('should dispatch the decryptWalletSuccess and notify action if successful', () => {
+    const decryptWalletGenerator = decryptWallet({ name, encryptedWallet, password });
+    decryptWalletGenerator.next();
+    decryptWalletGenerator.next();
+    let putDescriptor = decryptWalletGenerator.next(decryptedWallet).value;
+    expect(JSON.stringify(putDescriptor)).toEqual(JSON.stringify(put(decryptWalletSuccess(name, decryptedWallet))));
+    putDescriptor = decryptWalletGenerator.next().value;
+    expect(putDescriptor).toEqual(put(notify('success', `Successfully decrypted ${name}`)));
+  });
+
+  it('should dispatch decryptWalletFailed and notify action if name is undefined', () => {
     const decryptWalletGenerator = decryptWallet({ encryptedWallet, password });
-    const putDescriptor = decryptWalletGenerator.next().value;
+    decryptWalletGenerator.next();
+    let putDescriptor = decryptWalletGenerator.next().value;
     const error = new Error('name undefined');
     expect(putDescriptor).toEqual(put(decryptWalletFailed(error)));
+    putDescriptor = decryptWalletGenerator.next().value;
+    expect(putDescriptor).toEqual(put(notify('error', `Failed to decrypt wallet: ${error}`)));
   });
 
-  it('should dispatch the decryptWalletFailed action if decryption fails', () => {
+  it('should dispatch the decryptWalletFailed and notify action if decryption fails', () => {
     const decryptWalletGenerator = decryptWallet({ name, encryptedWallet, password });
     decryptWalletGenerator.next();
+    decryptWalletGenerator.next();
     const error = new Error('some error occured');
-    const putDescriptor = decryptWalletGenerator.next(error).value;
+    let putDescriptor = decryptWalletGenerator.next(error).value;
     expect(putDescriptor).toEqual(put(decryptWalletFailed(error)));
+    putDescriptor = decryptWalletGenerator.next().value;
+    expect(putDescriptor).toEqual(put(notify('error', `Failed to decrypt wallet: ${error}`)));
   });
 });
 
@@ -272,51 +287,6 @@ describe('load wallets saga', () => {
       .put(loadWalletBalances(walletList[1].name, `0x${walletList[1].address}`))
       .dispatch({ type: LOAD_WALLETS_SUCCESS })
       .run({ silenceTimeout: true });
-  });
-
-  describe('UI notifications', () => {
-    it('DECRYPT_WALLET_FAILURE', () => {
-      const error = { message: 'error' };
-      return expectSaga(walletManager)
-      .put(notify(false, `Failed to decrypt wallet: ${error.message}`))
-      .dispatch(decryptWalletFailed(error))
-      .run({ silenceTimeout: true });
-    });
-    it('DECRYPT_WALLET_SUCCESS', () => {
-      const name = 'name';
-      return expectSaga(walletManager)
-      .put(notify(true, `Successfully decrypted ${name}`))
-      .put(hideDecryptWalletModal())
-      .dispatch(decryptWalletSuccess(name))
-      .run({ silenceTimeout: true });
-    });
-    it('DECRYPT_WALLET', () => {
-      const name = 'w1';
-      const encrypted = '';
-      const password = '';
-      return expectSaga(walletManager)
-      .put(notify(true, `Decrypting wallet ${name}`))
-      .dispatch(decryptWalletAction(name, encrypted, password))
-      .run({ silenceTimeout: true });
-    });
-    it('TRANSFER', () => expectSaga(walletManager)
-      .put(notify(true, 'Sending transaction'))
-      .dispatch(transferAction({ wallet: { decrypted: {} } }))
-      .run({ silenceTimeout: true }));
-    it('TRANSFER_SUCCESS', () => {
-      const txnhash = '';
-      return expectSaga(walletManager)
-      .put(notify(true, 'Transaction sent'))
-      .dispatch(transferSuccess(txnhash))
-      .run({ silenceTimeout: true });
-    });
-    it('TRANSFER_ERROR', () => {
-      const error = 'w1';
-      return expectSaga(walletManager)
-      .put(notify(false, `Failed to send transaction: ${error}`))
-      .dispatch(transferError(error))
-      .run({ silenceTimeout: true });
-    });
   });
 
   describe('transfer', () => {

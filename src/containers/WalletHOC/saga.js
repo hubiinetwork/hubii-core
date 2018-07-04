@@ -1,30 +1,28 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { Wallet, utils, providers } from 'ethers';
-import Notification from 'components/Notification';
-import { makeSelectWallets, makeSelectWalletList } from './selectors';
+
+import { notify } from 'containers/App/actions';
+
 import request from '../../utils/request';
 import { getWalletsLocalStorage } from '../../utils/wallet';
+
+import { makeSelectWallets, makeSelectWalletList } from './selectors';
 
 import {
   CREATE_NEW_WALLET,
   DECRYPT_WALLET,
-  DECRYPT_WALLET_SUCCESS,
-  DECRYPT_WALLET_FAILURE,
   CREATE_NEW_WALLET_SUCCESS,
   LOAD_WALLETS,
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
   TRANSFER,
-  TRANSFER_ERROR,
-  TRANSFER_SUCCESS,
-  NOTIFY,
 } from './constants';
+
 import {
   createNewWalletFailed,
   createNewWalletSuccess,
   decryptWalletFailed,
   decryptWalletSuccess,
-  hideDecryptWalletModal,
   loadWalletsSuccess,
   loadWalletBalances,
   loadWalletBalancesSuccess,
@@ -32,7 +30,6 @@ import {
   showDecryptWalletModal,
   transferSuccess,
   transferError,
-  notify,
 } from './actions';
 
 // Creates a new software wallet
@@ -51,13 +48,16 @@ export function* createWallet({ name, mnemonic, derivationPath, password }) {
 // Decrypt a software wallet using a password
 export function* decryptWallet({ name, encryptedWallet, password }) {
   try {
+    yield put(notify('info', `Decrypting wallet ${name}`));
     if (!name) throw new Error('name undefined');
     const res = yield Wallet.fromEncryptedWallet(encryptedWallet, password);
     if (!res.privateKey) throw res;
     const decryptedWallet = res;
     yield put(decryptWalletSuccess(name, decryptedWallet));
+    yield put(notify('success', `Successfully decrypted ${name}`));
   } catch (e) {
     yield put(decryptWalletFailed(e));
+    yield put(notify('error', `Failed to decrypt wallet: ${e}`));
   }
 }
 
@@ -106,6 +106,7 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
   if (token !== 'ETH') {
     return;
   }
+  yield put(notify('info', 'Sending transaction...'));
   const etherWallet = new Wallet(wallet.decrypted.privateKey);
   etherWallet.provider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
 
@@ -113,40 +114,10 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
   try {
     const transaction = yield etherWallet.send(toAddress, wei, { gasPrice, gasLimit });
     yield put(transferSuccess(transaction));
+    yield put(notify('success', 'Transaction sent'));
   } catch (error) {
     yield put(transferError(error));
-  }
-}
-
-export function* notifyUI({ success, message }) {
-  yield Promise.resolve(Notification(success, message));
-}
-
-// UI notifications
-export function* notifyDecryptWalletSuccessUI({ name }) {
-  yield put(notify(true, `Successfully decrypted ${name}`));
-  yield put(hideDecryptWalletModal());
-}
-
-export function* notifyDecryptWalletErrorUI({ error }) {
-  yield put(notify(false, `Failed to decrypt wallet: ${error.message}`));
-}
-
-export function* notifyDecryptWalletUI({ name }) {
-  yield put(notify(true, `Decrypting wallet ${name}`));
-}
-
-export function* notifyTransferSuccessUI() {
-  yield put(notify(true, 'Transaction sent'));
-}
-
-export function* notifyTransferErrorUI({ error }) {
-  yield put(notify(false, `Failed to send transaction: ${error}`));
-}
-
-export function* notifyTransferingUI({ wallet }) {
-  if (wallet.decrypted) {
-    yield put(notify(true, 'Sending transaction'));
+    yield put(notify('error', `Failed to send transaction: ${error}`));
   }
 }
 
@@ -159,12 +130,4 @@ export default function* walletManager() {
   yield takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
   yield takeEvery(TRANSFER, transfer);
-
-  yield takeEvery(DECRYPT_WALLET_FAILURE, notifyDecryptWalletErrorUI);
-  yield takeEvery(DECRYPT_WALLET_SUCCESS, notifyDecryptWalletSuccessUI);
-  yield takeEvery(DECRYPT_WALLET, notifyDecryptWalletUI);
-  yield takeEvery(TRANSFER_ERROR, notifyTransferErrorUI);
-  yield takeEvery(TRANSFER_SUCCESS, notifyTransferSuccessUI);
-  yield takeEvery(TRANSFER, notifyTransferingUI);
-  yield takeEvery(NOTIFY, notifyUI);
 }
