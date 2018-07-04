@@ -89,7 +89,7 @@ export function* loadWallets() {
 export function* initWalletsBalances() {
   const walletList = yield select(makeSelectWalletList());
   for (let i = 0; i < walletList.length; i += 1) {
-    yield put(loadWalletBalances(walletList[i].name, `0x${walletList[i].address}`));
+    yield put(loadWalletBalances(walletList[i].name, `${walletList[i].address}`));
   }
 }
 

@@ -267,6 +267,7 @@
     "jsonwebtoken": "^8.3.0",
     "lodash": "4.17.5",
     "minimist": "1.2.0",
+    "moment": "^2.22.2",
     "prop-types": "15.6.1",
     "qrcode.react": "^0.8.0",
     "react": "16.2.0",

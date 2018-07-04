@@ -161,6 +161,7 @@ export default class TransferForm extends React.PureComponent {
             selectedToken={this.state.selectedToken}
             ethInformation={this.state.ethInformation}
             onSend={this.onSend}
+            onCancel={this.props.onCancel}
           />
         </Col>
       </Row>
@@ -175,5 +176,6 @@ TransferForm.propTypes = {
     address: PropTypes.string,
   })),
   onSend: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
   // gasPriceRate: PropTypes.number,
 };

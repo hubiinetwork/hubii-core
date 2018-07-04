@@ -64,3 +64,5 @@ export const ERC20ABI = [
 ];
 
 export const EthNetworkProvider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
+
+export const IsAddressMatch = (a, b) => a.toLowerCase() === b.toLowerCase();
