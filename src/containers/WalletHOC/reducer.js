@@ -18,13 +18,13 @@ import {
   DECRYPT_WALLET_SUCCESS,
   SET_CURRENT_WALLET,
   SHOW_DECRYPT_WALLET_MODAL,
-  HIDE_DESCRYPT_WALLET_MODAL,
+  HIDE_DECRYPT_WALLET_MODAL,
   TRANSFER,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
 } from './constants';
 
-const initialState = fromJS({
+export const initialState = fromJS({
   selectedWalletName: '',
   inputs: {
     password: '',
@@ -96,7 +96,7 @@ function walletManagerReducer(state = initialState, action) {
     case SHOW_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], true);
-    case HIDE_DESCRYPT_WALLET_MODAL:
+    case HIDE_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], false);
     case SET_CURRENT_WALLET:

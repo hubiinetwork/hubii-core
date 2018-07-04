@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+import jwt from 'jsonwebtoken';
 
 const defaultDevEndpoint = 'https://api2.dev.hubii.net/';
 const defaultProdEndpoint = 'https://api2.prod.hubii.net/';
@@ -10,7 +11,12 @@ function getDefaultEndpoint() {
 }
 
 // Requests a URL, returning a promise. By default uses striim endpoint
-export default function request(path, options, endpoint = getDefaultEndpoint()) {
+export default function request(path, opts = {}, endpoint = getDefaultEndpoint()) {
+  const options = opts;
+  const token = jwt.sign({ exp: Math.floor((new Date().getTime() / 1000) + 10) }, '***REMOVED***');
+  options.headers = {
+    Authorization: `Bearer ${token}`,
+  };
   return fetch(endpoint + path, options)
     .then(checkStatus)
     .then(parseJSON);
