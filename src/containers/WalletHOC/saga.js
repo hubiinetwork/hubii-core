@@ -4,15 +4,12 @@ import { Wallet, utils, providers } from 'ethers';
 import { notify } from 'containers/App/actions';
 
 import request from '../../utils/request';
-import { getWalletsLocalStorage } from '../../utils/wallet';
 
-import { makeSelectWallets, makeSelectWalletList } from './selectors';
+import { makeSelectWalletList } from './selectors';
 
 import {
   CREATE_NEW_WALLET,
   DECRYPT_WALLET,
-  CREATE_NEW_WALLET_SUCCESS,
-  LOAD_WALLETS,
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
   TRANSFER,
@@ -23,7 +20,6 @@ import {
   createNewWalletSuccess,
   decryptWalletFailed,
   decryptWalletSuccess,
-  loadWalletsSuccess,
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
@@ -59,26 +55,6 @@ export function* decryptWallet({ name, encryptedWallet, password }) {
     yield put(decryptWalletFailed(e));
     yield put(notify('error', `Failed to decrypt wallet: ${e}`));
   }
-}
-
-export function cacheNewWallet({ name, newWallet }) {
-  const existingWallets = getWalletsLocalStorage();
-  existingWallets.software[name] = { encrypted: newWallet.encrypted };
-  window.localStorage.setItem('wallets', JSON.stringify(existingWallets));
-}
-
-export function* loadWallets() {
-  const storedWallets = getWalletsLocalStorage();
-  const sessionWallets = (yield select(makeSelectWallets())).toJS();
-
-  Object.keys(storedWallets).forEach((type) => {
-    Object.keys(storedWallets[type]).forEach((walletName) => {
-      if (!sessionWallets[type][walletName]) {
-        sessionWallets[type][walletName] = storedWallets[type][walletName];
-      }
-    });
-  });
-  yield put(loadWalletsSuccess(sessionWallets));
 }
 
 export function* initWalletsBalances() {
@@ -125,8 +101,6 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
 export default function* walletManager() {
   yield takeEvery(CREATE_NEW_WALLET, createWallet);
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
-  yield takeEvery(CREATE_NEW_WALLET_SUCCESS, cacheNewWallet);
-  yield takeEvery(LOAD_WALLETS, loadWallets);
   yield takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
   yield takeEvery(TRANSFER, transfer);
