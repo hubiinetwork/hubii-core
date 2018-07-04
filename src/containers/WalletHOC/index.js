@@ -22,7 +22,7 @@ import {
   loadWallets,
   decryptWallet,
   hideDecryptWalletModal,
-  pollLedger,
+  startLedgerSync,
 } from './actions';
 
 export default function WalletHOC(Component) {
@@ -55,7 +55,7 @@ export function getComponentHOC(Component) {
 
     componentDidMount() {
       this.props.loadWallets();
-      this.props.pollLedger();
+      this.props.startLedgerSync();
     }
 
     onPasswordChange(e) {
@@ -99,7 +99,7 @@ export function getComponentHOC(Component) {
     currentWallet: PropTypes.object.isRequired,
     currentWalletDetails: PropTypes.object.isRequired,
     loadWallets: PropTypes.func.isRequired,
-    pollLedger: PropTypes.func.isRequired,
+    startLedgerSync: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
   };
@@ -109,7 +109,7 @@ export function getComponentHOC(Component) {
 export function mapDispatchToProps(dispatch) {
   return {
     loadWallets: () => dispatch(loadWallets()),
-    pollLedger: () => dispatch(pollLedger()),
+    startLedgerSync: () => dispatch(startLedgerSync()),
     hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
     decryptWallet: (...args) => dispatch(decryptWallet(...args)),
   };

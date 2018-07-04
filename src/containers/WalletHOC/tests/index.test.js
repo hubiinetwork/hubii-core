@@ -6,7 +6,7 @@ import WalletHOC, { getComponentHOC, mapDispatchToProps } from '../index';
 describe('WalletHOC', () => {
   describe('shallow mount', () => {
     const loadWalletsSpy = jest.fn();
-    const pollLedgerSpy = jest.fn();
+    const startLedgerSyncSpy = jest.fn();
     const props = {
       currentWallet: fromJS({
         showDecryptModal: false,
@@ -15,7 +15,7 @@ describe('WalletHOC', () => {
       decryptWallet: () => {},
       hideDecryptWalletModal: () => {},
       loadWallets: loadWalletsSpy,
-      pollLedger: pollLedgerSpy,
+      startLedgerSync: startLedgerSyncSpy,
     };
     let dom;
     afterEach(() => {
@@ -41,7 +41,7 @@ describe('WalletHOC', () => {
       });
     });
     describe('#componentDidMount', () => {
-      it('should call pollLedger prop when called', () => {
+      it('should call startLedgerSync prop when called', () => {
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
@@ -50,7 +50,7 @@ describe('WalletHOC', () => {
         );
         const instance = dom.instance();
         instance.componentDidMount();
-        expect(pollLedgerSpy).toBeCalled();
+        expect(startLedgerSyncSpy).toBeCalled();
       });
     });
     describe('#onPasswordChange', () => {

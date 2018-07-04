@@ -49,6 +49,7 @@ describe('walletManagerReducer', () => {
       },
       ledgerNanoSInfo: {
         status: 'disconnected',
+        addresses: null,
         id: null,
       },
     });
@@ -124,7 +125,8 @@ describe('walletManagerReducer', () => {
     it('should handle LEDGER_DETECTED action correctly', () => {
       const id = '893745sjdfhks83';
       const expected = state
-        .set('ledgerNanoSInfo', fromJS({ status: 'connected', id }))
+        .setIn(['ledgerNanoSInfo', 'status'], 'connected')
+        .setIn(['ledgerNanoSInfo', 'id'], id)
         .setIn(['errors', 'ledgerError'], null);
       expect(walletManagerReducer(state, ledgerDetected(id))).toEqual(expected);
     });
@@ -132,7 +134,7 @@ describe('walletManagerReducer', () => {
     it('should handle LEDGER_ERROR action correctly', () => {
       const error = 'oh no!';
       const expected = state
-        .set('ledgerNanoSInfo', fromJS({ status: 'disconnected', id: null }))
+        .set('ledgerNanoSInfo', fromJS({ status: 'disconnected' }))
         .setIn(['errors', 'ledgerError'], error);
       expect(walletManagerReducer(state, { type: LEDGER_ERROR, error })).toEqual(expected);
     });

@@ -24,6 +24,8 @@ import {
   TRANSFER_ERROR,
   LEDGER_DETECTED,
   LEDGER_ERROR,
+  FETCHED_LEDGER_ADDRESS,
+  SAVE_LEDGER_ADDRESS,
 } from './constants';
 
 const initialState = fromJS({
@@ -51,6 +53,7 @@ const initialState = fromJS({
   },
   ledgerNanoSInfo: {
     status: 'disconnected',
+    addresses: null,
     id: null,
   },
 });
@@ -130,12 +133,19 @@ function walletManagerReducer(state = initialState, action) {
         .setIn(['currentWallet', 'lastTransaction'], null);
     case LEDGER_DETECTED:
       return state
-        .set('ledgerNanoSInfo', fromJS({ status: 'connected', id: action.id }))
+        .setIn(['ledgerNanoSInfo', 'status'], 'connected')
+        .setIn(['ledgerNanoSInfo', 'id'], action.id)
         .setIn(['errors', 'ledgerError'], null);
     case LEDGER_ERROR:
       return state
-        .set('ledgerNanoSInfo', fromJS({ status: 'disconnected', id: null }))
+        .set('ledgerNanoSInfo', fromJS({ status: 'disconnected' }))
         .setIn(['errors', 'ledgerError'], action.error);
+    case SAVE_LEDGER_ADDRESS:
+      return state
+        .setIn(['wallets', 'hardware', 'ledger', action.name], fromJS(action.newLedgerWallet));
+    case FETCHED_LEDGER_ADDRESS:
+      return state
+        .setIn(['ledgerNanoSInfo', 'addresses', action.derivationPath], action.address);
     default:
       return state;
   }

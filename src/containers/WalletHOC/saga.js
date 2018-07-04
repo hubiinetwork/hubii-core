@@ -1,5 +1,5 @@
 import { delay } from 'redux-saga';
-import { takeEvery, put, call, select } from 'redux-saga/effects';
+import { takeEvery, put, call, select, fork, take, cancel } from 'redux-saga/effects';
 import { Wallet, utils, providers } from 'ethers';
 import Eth from '@ledgerhq/hw-app-eth';
 import Notification from 'components/Notification';
@@ -22,6 +22,11 @@ import {
   TRANSFER_SUCCESS,
   NOTIFY,
   POLL_LEDGER,
+  START_LEDGER_SYNC,
+  STOP_LEDGER_SYNC,
+  LEDGER_ERROR,
+  LEDGER_DETECTED,
+  FETCH_LEDGER_ADDRESSES,
 } from './constants';
 import {
   createNewWalletFailed,
@@ -39,7 +44,10 @@ import {
   notify,
   ledgerDetected,
   ledgerError,
-  pollLedger,
+  pollLedger as pollLedgerAction,
+  stopLedgerSync,
+  startLedgerSync,
+  fetchedLedgerAddress,
 } from './actions';
 
 // Creates a new software wallet
@@ -161,8 +169,21 @@ export function* notifyTransferingUI({ wallet }) {
  * Ledger sagas
  */
 
+// Will continuously poll the ledger, keeping the connection status up to date
+export function* ledgerSync() {
+  try {
+    while (true) { // eslint-disable-line no-constant-condition
+      yield put(pollLedgerAction());
+      yield take([LEDGER_ERROR, LEDGER_DETECTED]);
+      yield delay(2500);
+    }
+  } finally {
+    // sync cancelled
+  }
+}
+
 // Keeps connection status of Ledger Nano S up to date
-export function* connectLedger() {
+export function* pollLedger() {
   try {
     const transport = yield LedgerTransport.create();
     const eth = new Eth(transport);
@@ -172,9 +193,28 @@ export function* connectLedger() {
     yield put(ledgerDetected(id));
   } catch (e) {
     yield put(ledgerError(e));
+  }
+}
+
+// Dispatches the address for every derivation path in the input
+export function* fetchLedgerAddresses({ derivationPaths }) {
+  try {
+    // Pause the ledger sync to ensure only one process is accessing it at a time
+    yield put(stopLedgerSync());
+    const transport = yield LedgerTransport.create();
+    const eth = new Eth(transport);
+
+    let i;
+    for (i = 0; i < derivationPaths.length; i += 1) {
+      const path = derivationPaths[i];
+      const publicAddressKeyPair = yield eth.getAddress(path);
+      yield put(fetchedLedgerAddress(path, publicAddressKeyPair.address));
+    }
+  } catch (error) {
+    put(ledgerError('Error fetching address'));
   } finally {
-    yield delay(2500);
-    yield put(pollLedger());
+    // Start ledger sync back up
+    yield put(startLedgerSync());
   }
 }
 
@@ -186,8 +226,20 @@ export default function* walletManager() {
   yield takeEvery(LOAD_WALLETS, loadWallets);
   yield takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
-  yield takeEvery(POLL_LEDGER, connectLedger);
+  yield takeEvery(POLL_LEDGER, pollLedger);
+  yield takeEvery(FETCH_LEDGER_ADDRESSES, fetchLedgerAddresses);
   yield takeEvery(TRANSFER, transfer);
+
+  // Handles the Ledger auto polling lifecycle
+  // START_LEDGER_SYNC activates ledgerSync saga
+  // STOP_LEDGER_SYNC causes ledgerSync saga to drop what it's doing
+  // and immidietly enter its 'finally' block
+  while (yield take(START_LEDGER_SYNC)) {
+    const bgSyncTask = yield fork(ledgerSync);
+
+    yield take(STOP_LEDGER_SYNC);
+    yield cancel(bgSyncTask);
+  }
 
   yield takeEvery(DECRYPT_WALLET_FAILURE, notifyDecryptWalletErrorUI);
   yield takeEvery(DECRYPT_WALLET_SUCCESS, notifyDecryptWalletSuccessUI);

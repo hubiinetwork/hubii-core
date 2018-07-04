@@ -26,6 +26,11 @@ import {
   POLL_LEDGER,
   LEDGER_DETECTED,
   LEDGER_ERROR,
+  START_LEDGER_SYNC,
+  STOP_LEDGER_SYNC,
+  FETCH_LEDGER_ADDRESSES,
+  FETCHED_LEDGER_ADDRESS,
+  SAVE_LEDGER_ADDRESS,
 } from './constants';
 
 import getFriendlyError from '../../helpers/ledger/friendlyErrors';
@@ -170,6 +175,46 @@ export function transferError(error) {
 export function pollLedger() {
   return {
     type: POLL_LEDGER,
+  };
+}
+
+export function startLedgerSync() {
+  return {
+    type: START_LEDGER_SYNC,
+  };
+}
+
+export function stopLedgerSync() {
+  return {
+    type: STOP_LEDGER_SYNC,
+  };
+}
+
+export function fetchLedgerAddresses(derivationPaths) {
+  return {
+    type: FETCH_LEDGER_ADDRESSES,
+    derivationPaths,
+  };
+}
+
+export function fetchedLedgerAddress(derivationPath, address) {
+  return {
+    type: FETCHED_LEDGER_ADDRESS,
+    derivationPath,
+    address,
+  };
+}
+
+export function saveLedgerAddress(name, address, mnemonic, ledgerId) {
+  const newLedgerWallet = {
+    ledgerId,
+    address,
+    mnemonic,
+  };
+  return {
+    type: SAVE_LEDGER_ADDRESS,
+    name,
+    newLedgerWallet,
   };
 }
 

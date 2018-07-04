@@ -29,7 +29,13 @@ export const TRANSFER_ERROR = 'src/WalletHOC/TRANSFER_ERROR';
 
 // Ledger Nano S constants
 export const POLL_LEDGER = 'src/WalletHOC/POLL_LEDGER';
+export const START_LEDGER_SYNC = 'src/WalletHOC/START_LEDGER_SYNC';
+export const STOP_LEDGER_SYNC = 'src/WalletHOC/STOP_LEDGER_SYNC';
 export const LEDGER_DETECTED = 'src/WalletHOC/LEDGER_DETECTED';
+export const FETCH_LEDGER_ADDRESSES = 'src/WalletHOC/FETCH_LEDGER_ADDRESSES';
+export const FETCHED_LEDGER_ADDRESS = 'src/WalletHOC/FETCHED_LEDGER_ADDRESS';
+export const SAVE_LEDGER_ADDRESS = 'src/WalletHOC/SAVE_LEDGER_ADDRESS';
+
 export const LEDGER_ERROR = 'src/WalletHOC/LEDGER_ERROR';
 
 export const NOTIFY = 'src/WalletHOC/NOTIFY';
