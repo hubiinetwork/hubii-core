@@ -64,7 +64,7 @@ TransactionHistoryItem.propTypes = {
     toCoin: PropTypes.string,
     fromCoin: PropTypes.string,
     coin: PropTypes.string,
-    status: PropTypes.number,
+    status: PropTypes.bool,
   }).isRequired,
   /**
    * rate of 1ETH or any other currency, in dollars.

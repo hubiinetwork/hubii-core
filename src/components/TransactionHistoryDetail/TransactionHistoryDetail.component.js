@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import {
   TransactionHistoryType,
   TransactionHistoryAddress,
@@ -70,13 +71,7 @@ const TransactionHistoryDetail = (props) => (
           </Left>
           <SpaceAround>
             <TransactionHistoryTime>
-              {`${
-                  props.time.getHours() > 12
-                    ? Math.floor(props.time.getHours() - 12)
-                    : props.time.getHours()
-                }:${props.time.getMinutes()}${
-                  props.time.getHours() > 12 ? 'PM' : 'AM'
-                }`}
+              {moment(props.time).format('h:mm a')}
             </TransactionHistoryTime>
             <TransactionHistoryConversion>
               {props.type === 'sent' ? (
@@ -103,7 +98,7 @@ const TransactionHistoryDetail = (props) => (
           <TransactionHistoryAddress>
             {props.amount}
           </TransactionHistoryAddress>
-          <TransactionStatus>Status Network</TransactionStatus>
+          <TransactionStatus>{props.status ? 'Confirmed' : 'Pending'}</TransactionStatus>
           <Amount>${props.rate * props.amount}</Amount>
         </div>
       </div>
@@ -143,6 +138,7 @@ TransactionHistoryDetail.propTypes = {
    * status code of the transaction.
    */
   time: PropTypes.object,
+  status: PropTypes.bool,
 };
 
 export default TransactionHistoryDetail;
