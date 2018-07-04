@@ -247,6 +247,7 @@
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/react-fontawesome": "^0.0.20",
+    "abi-decoder": "^1.1.0",
     "antd": "^3.6.2",
     "babel-polyfill": "6.26.0",
     "chalk": "2.3.2",

@@ -259,7 +259,7 @@ describe('load wallets saga', () => {
       .run({ silenceTimeout: true });
   });
 
-  it('sign transaction for eth payment', () => {
+  it.only('sign transaction for eth payment', () => {
     // create txn hash
     // should save pending txn hash in store and localstorage
     // listen for confirmation
@@ -283,6 +283,7 @@ describe('load wallets saga', () => {
         confirmedTransactions: [],
       },
     };
+    const timestamp = new Date().getTime();
     const signedTransaction = {
       nonce: 49,
       gasPrice: 1,
@@ -303,6 +304,17 @@ describe('load wallets saga', () => {
       blockNumber: 3558042,
       transactionIndex: 9,
       raw: 'raw',
+    };
+    const formatedTransaction = {
+      timestamp,
+      token: 'ETH',
+      from: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a',
+      to: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+      hash: '0x3c63ecb423263552cfc3e373778bf8244d490b06823b4b2f3203343ecb8f0518',
+      value: 1,
+      input: '0x',
+      success: true,
+      original: confirmedTransaction,
     };
     const params = {
       token: 'ETH',
@@ -328,7 +340,7 @@ describe('load wallets saga', () => {
       })
       .withReducer((state, action) => state.set('walletManager', walletManagerReducer(state.get('walletManager'), action)), fromJS(storeState))
       .dispatch(transferAction(params))
-      .put(transferSuccess(signedTransaction))// send signed transaction
+      .put(transferSuccess(signedTransaction, 'ETH'))// send signed transaction
       .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
       // .run({ silenceTimeout: true })
       .run({ silenceTimeout: true })
@@ -336,12 +348,12 @@ describe('load wallets saga', () => {
         const walletManagerState = result.storeState.get('walletManager');
         expect(walletManagerState.getIn(['pendingTransactions']).count()).toEqual(0);
         expect(walletManagerState.getIn(['confirmedTransactions']).count()).toEqual(1);
-        expect(walletManagerState.getIn(['confirmedTransactions']).get(0)).toEqual(fromJS(confirmedTransaction));
+        expect(walletManagerState.getIn(['confirmedTransactions']).get(0).toJS()).toEqual(formatedTransaction);
       });
   });
 
-  jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000
-  it.only('sign transaction for erc20 payment', () => {
+  // jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000;
+  it('sign transaction for erc20 payment', () => {
     // create txn hash
     // should save pending txn hash in store and localstorage
     // listen for confirmation
@@ -393,9 +405,9 @@ describe('load wallets saga', () => {
       gasPrice: 3000000,
       gasLimit: 210000,
       wallet: { decrypted: {} },
-      contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367'
+      contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
     };
-    let called = 0;
+    // const called = 0;
     return expectSaga(walletManager)
       // .provide({
       //   call(effect, next) {

@@ -173,10 +173,11 @@ export function transferERC20(payload) {
   };
 }
 
-export function transferSuccess(transaction) {
+export function transferSuccess(transaction, token) {
   return {
     type: TRANSFER_SUCCESS,
     transaction,
+    token,
   };
 }
 
