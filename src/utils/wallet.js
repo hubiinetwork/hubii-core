@@ -20,7 +20,7 @@ export function convertWalletsList(walletsState) {
         wallet.encrypted = JSON.parse(wallet.encrypted);
         wallet.type = type;
         wallet.name = walletName;
-        wallet.address = wallet.encrypted.address;
+        wallet.address = `0x${wallet.encrypted.address}`;
         wallets.push(wallet);
       } catch (e) {
         return e;
