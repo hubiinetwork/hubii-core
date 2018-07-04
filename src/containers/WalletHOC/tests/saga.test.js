@@ -5,15 +5,12 @@
 /* eslint-disable redux-saga/yield-effects */
 import { takeEvery, put } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
-import { fromJS } from 'immutable';
 import request from 'utils/request';
 import { Wallet, utils } from 'ethers';
 
 import walletManager, {
   createWallet,
   decryptWallet,
-  cacheNewWallet,
-  loadWallets,
   loadWalletBalancesSaga,
   initWalletsBalances,
   transfer,
@@ -21,8 +18,6 @@ import walletManager, {
 import {
   CREATE_NEW_WALLET,
   DECRYPT_WALLET,
-  CREATE_NEW_WALLET_SUCCESS,
-  LOAD_WALLETS,
   LOAD_WALLET_BALANCES,
   LOAD_WALLETS_SUCCESS,
 } from '../constants';
@@ -32,7 +27,6 @@ import {
   decryptWalletSuccess,
   decryptWalletFailed,
   showDecryptWalletModal,
-  loadWalletsSuccess,
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
@@ -147,85 +141,6 @@ describe('decryptWallet saga', () => {
 });
 
 describe('load wallets saga', () => {
-  let localStorageMock;
-  beforeEach(() => {
-    localStorageMock = {
-      getItem: jest.fn(),
-      setItem: jest.fn(),
-      clear: jest.fn(),
-    };
-    global.localStorage = localStorageMock;
-  });
-
-  it('#cacheNewWallet with null value in localStorage', () => {
-    const existingWallets = null;
-    localStorage.getItem.mockReturnValueOnce(existingWallets);
-    const walletName = 'test';
-    const newWallet = { encrypted: '{"address": "abcd"}' };
-
-    cacheNewWallet({ name: walletName, newWallet });
-
-    const expectedWallets = { software: { test: { encrypted: newWallet.encrypted } }, hardware: {} };
-    expect(localStorage.setItem).toBeCalledWith('wallets', JSON.stringify(expectedWallets));
-  });
-
-  it('#cacheNewWallet with valid json string in localStorage', () => {
-    const existingWallets = { software: { test: {}, test2: {} }, hardware: {} };
-    localStorage.getItem.mockReturnValueOnce(JSON.stringify(existingWallets));
-    const walletName = 'test';
-    const newWallet = { encrypted: '{"address": "abcd"}' };
-
-    cacheNewWallet({ name: walletName, newWallet });
-
-    const expectedWallets = Object.assign({}, existingWallets);
-    expectedWallets.software.test.encrypted = newWallet.encrypted;
-    expect(localStorage.setItem).toBeCalledWith('wallets', JSON.stringify(expectedWallets));
-  });
-
-  it('#cacheNewWallet with invalid json string in localStorage', () => {
-    localStorage.getItem.mockReturnValueOnce('invalid json string');
-    const walletName = 'test';
-    const newWallet = { encrypted: '{"address": "abcd"}' };
-
-    cacheNewWallet({ name: walletName, newWallet });
-
-    const expectedWallets = { software: { test: { encrypted: newWallet.encrypted } }, hardware: {} };
-    expect(localStorage.setItem).toBeCalledWith('wallets', JSON.stringify(expectedWallets));
-  });
-
-  it('#loadWallets should load encrypted wallet and merge into wallets stored in session', () => {
-    const storedWallets = { software: { test: {} }, hardware: {} };
-    const sessionWallets = { software: { test2: {} }, hardware: {} };
-
-    localStorage.getItem.mockReturnValueOnce(JSON.stringify(storedWallets));
-
-    const expectedWallets = { software: { test: {}, test2: {} }, hardware: {} };
-    return expectSaga(loadWallets)
-      .provide({
-        select() {
-          return fromJS(sessionWallets);
-        },
-      })
-      .put(loadWalletsSuccess(expectedWallets))
-      .run({ silenceTimeout: true });
-  });
-
-  it('#loadWallets should only override non-exist wallet states from cache', () => {
-    const storedWallets = { software: { test: { encrypted: '1' } }, hardware: {} };
-    const sessionWallets = { software: { test: { encrypted: '2' } }, hardware: {} };
-
-    localStorage.getItem.mockReturnValueOnce(JSON.stringify(storedWallets));
-
-    return expectSaga(loadWallets)
-      .provide({
-        select() {
-          return fromJS(sessionWallets);
-        },
-      })
-      .put(loadWalletsSuccess(sessionWallets))
-      .run({ silenceTimeout: true });
-  });
-
   it('#loadWalletBalances should load balances and dispatch loadWalletBalancesSuccess', () => {
     const response = { tokens: [] };
     const walletName = 'test';
@@ -369,16 +284,6 @@ describe('root Saga', () => {
   it('should start task to watch for DECRYPT_WALLET action', () => {
     const takeDescriptor = walletManagerSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(DECRYPT_WALLET, decryptWallet));
-  });
-
-  it('should start task to watch for CREATE_NEW_WALLET_SUCCESS action', () => {
-    const takeDescriptor = walletManagerSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(CREATE_NEW_WALLET_SUCCESS, cacheNewWallet));
-  });
-
-  it('should start task to watch for LOAD_WALLETS action', () => {
-    const takeDescriptor = walletManagerSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(LOAD_WALLETS, loadWallets));
   });
 
   it('should start task to watch for LOAD_WALLETS_SUCCESS action', () => {

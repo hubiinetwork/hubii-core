@@ -24,7 +24,7 @@ import {
   TRANSFER_ERROR,
 } from './constants';
 
-const initialState = fromJS({
+export const initialState = fromJS({
   selectedWalletName: '',
   inputs: {
     password: '',
