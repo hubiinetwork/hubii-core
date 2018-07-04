@@ -232,7 +232,7 @@ describe('walletManagerReducer', () => {
 
         expect(walletManagerReducer(state, showDecryptWalletModal())).toEqual(expected);
       });
-      it('HIDE_DESCRYPT_WALLET_MODAL', () => {
+      it('HIDE_DECRYPT_WALLET_MODAL', () => {
         const currentWallet = {
           address: '',
           showDecryptModal: false,
