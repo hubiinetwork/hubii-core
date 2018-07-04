@@ -44,10 +44,6 @@ describe('<ImportWallet />', () => {
     const wrapper = shallow(<ImportWallet wallets={walletData} />);
     expect(wrapper).toMatchSnapshot();
   });
-  it('should have StyledStep component', () => {
-    const wrapper = shallow(<ImportWallet wallets={walletData} />);
-    expect(wrapper.find('StyledStep')).toBeTruthy();
-  });
   it('should have correct props', () => {
     const wrapper = shallow(<ImportWallet wallets={walletData} />);
     const wrapperProps = wrapper.instance().props;
