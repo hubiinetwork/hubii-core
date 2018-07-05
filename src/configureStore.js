@@ -8,7 +8,7 @@ import throttle from 'lodash/throttle';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
-import { loadState, saveState } from './utils/localStorage';
+import { loadState, saveState, filterPersistedState } from './utils/localStorage';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -50,7 +50,7 @@ export default function configureStore(history) {
 
   // Update localStorage in sync with our Redux store
   store.subscribe(throttle(() => {
-    saveState(store.getState());
+    saveState(store.getState(), filterPersistedState);
   }, 1000));
 
   // Extensions
