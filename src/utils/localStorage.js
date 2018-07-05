@@ -39,16 +39,16 @@ export const filterPersistedState = (state) => {
    */
 
   // Start with clean initialState
-  persistedState = persistedState.set('walletManager', walletHocInitialState);
+  persistedState = persistedState.set('walletHoc', walletHocInitialState);
 
   // Get software wallets ensuring the decrypted property is filtered out
   const sanitizedSoftwareWallets = state
-    .getIn(['walletManager', 'wallets', 'software'])
+    .getIn(['walletHoc', 'wallets', 'software'])
     .map(((w) => w.set('decrypted', null)));
 
   // Save sanitized software wallets to the persisted state
   persistedState = persistedState
-    .setIn(['walletManager', 'wallets', 'software'], sanitizedSoftwareWallets);
+    .setIn(['walletHoc', 'wallets', 'software'], sanitizedSoftwareWallets);
 
   return persistedState;
 };

@@ -6,7 +6,7 @@ import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
-import walletManagerReducer from 'containers/WalletHOC/reducer';
+import walletHocReducer from 'containers/WalletHOC/reducer';
 
 /*
  * routeReducer
@@ -32,7 +32,7 @@ const routeReducer = combineReducers({ location });
 export default function createReducer(injectedReducers) {
   return combineReducers({
     route: routeReducer,
-    walletManager: walletManagerReducer,
+    walletHoc: walletHocReducer,
     language: languageProviderReducer,
     ...injectedReducers,
   });
