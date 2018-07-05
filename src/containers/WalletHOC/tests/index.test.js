@@ -5,7 +5,7 @@ import WalletHOC, { getComponentHOC, mapDispatchToProps } from '../index';
 
 describe('WalletHOC', () => {
   describe('shallow mount', () => {
-    const loadWalletsSpy = jest.fn();
+    const loadWalletsBalancesSpy = jest.fn();
     const startLedgerSyncSpy = jest.fn();
     const props = {
       currentWallet: fromJS({
@@ -14,7 +14,7 @@ describe('WalletHOC', () => {
       currentWalletDetails: {},
       decryptWallet: () => {},
       hideDecryptWalletModal: () => {},
-      loadWallets: loadWalletsSpy,
+      loadWalletsBalances: loadWalletsBalancesSpy,
       startLedgerSync: startLedgerSyncSpy,
     };
     let dom;
@@ -37,7 +37,7 @@ describe('WalletHOC', () => {
         );
         const instance = dom.instance();
         instance.componentDidMount();
-        expect(loadWalletsSpy).toBeCalled();
+        expect(loadWalletsBalancesSpy).toBeCalled();
       });
     });
     describe('#componentDidMount', () => {

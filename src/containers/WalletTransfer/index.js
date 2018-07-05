@@ -13,11 +13,16 @@ export class WalletTransfer extends React.PureComponent {
   constructor(props) {
     super(props);
     this.onSend = this.onSend.bind(this);
+    this.onCancel = this.onCancel.bind(this);
   }
 
   onSend(token, toAddress, amount, gasPrice, gasLimit) {
     const wallet = this.props.currentWalletDetails;
     this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit });
+  }
+
+  onCancel() {
+    this.props.history.push(`/wallet/${this.props.currentWalletDetails.address}/overview`);
   }
 
   render() {
@@ -36,6 +41,7 @@ export class WalletTransfer extends React.PureComponent {
         ]}
         currencies={currentWallet.balances}
         onSend={this.onSend}
+        onCancel={this.onCancel}
       />
     );
   }
@@ -45,6 +51,7 @@ export class WalletTransfer extends React.PureComponent {
 WalletTransfer.propTypes = {
   currentWalletDetails: PropTypes.object.isRequired,
   transfer: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

@@ -5,8 +5,11 @@
  */
 
 import { fromJS } from 'immutable';
+import { ERC20ABI } from 'utils/wallet';
+import { utils } from 'ethers';
+import abiDecoder from 'abi-decoder';
+
 import {
-  LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
@@ -18,7 +21,7 @@ import {
   DECRYPT_WALLET_SUCCESS,
   SET_CURRENT_WALLET,
   SHOW_DECRYPT_WALLET_MODAL,
-  HIDE_DESCRYPT_WALLET_MODAL,
+  HIDE_DECRYPT_WALLET_MODAL,
   TRANSFER,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
@@ -26,9 +29,10 @@ import {
   LEDGER_ERROR,
   FETCHED_LEDGER_ADDRESS,
   SAVE_LEDGER_ADDRESS,
+  TRANSACTION_CONFIRMED,
 } from './constants';
 
-const initialState = fromJS({
+export const initialState = fromJS({
   selectedWalletName: '',
   inputs: {
     password: '',
@@ -56,7 +60,11 @@ const initialState = fromJS({
     addresses: null,
     id: null,
   },
+  pendingTransactions: [],
+  confirmedTransactions: [],
 });
+
+abiDecoder.addABI(ERC20ABI);
 
 function walletManagerReducer(state = initialState, action) {
   switch (action.type) {
@@ -88,9 +96,6 @@ function walletManagerReducer(state = initialState, action) {
       return state
         .setIn(['loading', 'decryptingWallet'], false)
         .setIn(['errors', 'decryptingWalletError'], action.error);
-    case LOAD_WALLETS_SUCCESS:
-      return state
-        .set('wallets', fromJS(action.wallets));
     case LOAD_WALLET_BALANCES:
       return state
         .setIn(['wallets', 'software', action.name, 'loadingBalances'], true);
@@ -106,7 +111,7 @@ function walletManagerReducer(state = initialState, action) {
     case SHOW_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], true);
-    case HIDE_DESCRYPT_WALLET_MODAL:
+    case HIDE_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], false);
     case SET_CURRENT_WALLET:
@@ -125,7 +130,29 @@ function walletManagerReducer(state = initialState, action) {
       return state
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], null)
-        .setIn(['currentWallet', 'lastTransaction'], fromJS(action.transaction));
+        .setIn(['currentWallet', 'lastTransaction'], fromJS(action.transaction))
+        .updateIn(['pendingTransactions'], (list) => {
+          const transaction = action.transaction;
+          const formatedTransaction = {
+            timestamp: new Date().getTime(),
+            token: action.token,
+            from: transaction.from,
+            to: transaction.to,
+            hash: transaction.hash,
+            value: parseFloat(utils.formatEther(transaction.value)),
+            input: transaction.data,
+            original: transaction,
+          };
+          if (action.token !== 'ETH') {
+            const inputData = abiDecoder.decodeMethod(transaction.data);
+            const toAddress = inputData.params.find((param) => param.name === '_to');
+            const tokens = inputData.params.find((param) => param.name === '_tokens');
+            const wei = utils.bigNumberify(tokens.value);
+            formatedTransaction.to = toAddress.value;
+            formatedTransaction.value = parseFloat(utils.formatEther(wei));
+          }
+          return list.insert(1, fromJS(formatedTransaction));
+        });
     case TRANSFER_ERROR:
       return state
         .setIn(['currentWallet', 'transfering'], false)
@@ -146,6 +173,17 @@ function walletManagerReducer(state = initialState, action) {
     case FETCHED_LEDGER_ADDRESS:
       return state
         .setIn(['ledgerNanoSInfo', 'addresses', action.derivationPath], action.address);
+    case TRANSACTION_CONFIRMED:
+      return state
+        .updateIn(['confirmedTransactions'], (list) => {
+          const pendingTxn = state.get('pendingTransactions').filter((txn) => txn.get('hash') === action.transaction.hash).get(0);
+          if (!pendingTxn) {
+            return list;
+          }
+          const confirmedTxn = pendingTxn.set('success', true).set('original', fromJS(action.transaction));
+          return list.insert(1, confirmedTxn);
+        })
+        .updateIn(['pendingTransactions'], (list) => list.filter((txn) => txn.get('hash') !== action.transaction.hash));
     default:
       return state;
   }

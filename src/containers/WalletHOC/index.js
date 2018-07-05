@@ -19,10 +19,10 @@ import {
   makeSelectCurrentWalletDetails,
 } from './selectors';
 import {
-  loadWallets,
   decryptWallet,
   hideDecryptWalletModal,
   startLedgerSync,
+  loadWalletsBalances,
 } from './actions';
 
 export default function WalletHOC(Component) {
@@ -49,13 +49,14 @@ export function getComponentHOC(Component) {
   class HOC extends React.Component {
     constructor(...args) {
       super(...args);
+      this.state = {};
       this.onPasswordChange = this.onPasswordChange.bind(this);
       this.decryptWallet = this.decryptWallet.bind(this);
     }
 
     componentDidMount() {
-      this.props.loadWallets();
       this.props.startLedgerSync();
+      this.props.loadWalletsBalances();
     }
 
     onPasswordChange(e) {
@@ -98,8 +99,8 @@ export function getComponentHOC(Component) {
   HOC.propTypes = {
     currentWallet: PropTypes.object.isRequired,
     currentWalletDetails: PropTypes.object.isRequired,
-    loadWallets: PropTypes.func.isRequired,
     startLedgerSync: PropTypes.func.isRequired,
+    loadWalletsBalances: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
   };
@@ -108,10 +109,10 @@ export function getComponentHOC(Component) {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    loadWallets: () => dispatch(loadWallets()),
     startLedgerSync: () => dispatch(startLedgerSync()),
     hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
     decryptWallet: (...args) => dispatch(decryptWallet(...args)),
+    loadWalletsBalances: (...args) => dispatch(loadWalletsBalances(...args)),
   };
 }
 

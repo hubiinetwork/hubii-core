@@ -12,7 +12,7 @@ import {
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
   SHOW_DECRYPT_WALLET_MODAL,
-  HIDE_DESCRYPT_WALLET_MODAL,
+  HIDE_DECRYPT_WALLET_MODAL,
   SET_CURRENT_WALLET,
   LOAD_WALLETS,
   LOAD_WALLETS_SUCCESS,
@@ -20,9 +20,10 @@ import {
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
   TRANSFER,
+  TRANSFER_ETHER,
+  TRANSFER_ERC20,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
-  NOTIFY,
   POLL_LEDGER,
   LEDGER_DETECTED,
   LEDGER_ERROR,
@@ -31,6 +32,7 @@ import {
   FETCH_LEDGER_ADDRESSES,
   FETCHED_LEDGER_ADDRESS,
   SAVE_LEDGER_ADDRESS,
+  TRANSACTION_CONFIRMED,
 } from './constants';
 
 import getFriendlyError from '../../helpers/ledger/friendlyErrors';
@@ -96,7 +98,7 @@ export function showDecryptWalletModal(walletName) {
 
 export function hideDecryptWalletModal(walletName) {
   return {
-    type: HIDE_DESCRYPT_WALLET_MODAL,
+    type: HIDE_DECRYPT_WALLET_MODAL,
     walletName,
   };
 }
@@ -119,6 +121,12 @@ export function loadWalletsSuccess(wallets) {
   return {
     type: LOAD_WALLETS_SUCCESS,
     wallets,
+  };
+}
+
+export function loadWalletsBalances() {
+  return {
+    type: LOAD_WALLETS_SUCCESS,
   };
 }
 
@@ -155,20 +163,44 @@ export function transfer(payload) {
     amount: payload.amount,
     gasPrice: payload.gasPrice,
     gasLimit: payload.gasLimit,
+    contractAddress: payload.contractAddress,
   };
 }
 
-export function transferSuccess(transaction) {
+export function transferEther(payload) {
+  return {
+    type: TRANSFER_ETHER,
+    toAddress: payload.toAddress,
+    amount: payload.amount,
+    gasPrice: payload.gasPrice,
+    gasLimit: payload.gasLimit,
+  };
+}
+
+export function transferERC20(payload) {
+  return {
+    type: TRANSFER_ERC20,
+    token: payload.token,
+    contractAddress: payload.contractAddress,
+    toAddress: payload.toAddress,
+    amount: payload.amount,
+    gasPrice: payload.gasPrice,
+    gasLimit: payload.gasLimit,
+  };
+}
+
+export function transferSuccess(transaction, token) {
   return {
     type: TRANSFER_SUCCESS,
     transaction,
+    token,
   };
 }
 
-export function transferError(error) {
+export function transactionConfirmed(transaction) {
   return {
-    type: TRANSFER_ERROR,
-    error,
+    type: TRANSACTION_CONFIRMED,
+    transaction,
   };
 }
 
@@ -233,10 +265,9 @@ export function ledgerError(rawError) {
   };
 }
 
-export function notify(success, message) {
+export function transferError(error) {
   return {
-    type: NOTIFY,
-    success,
-    message,
+    type: TRANSFER_ERROR,
+    error,
   };
 }

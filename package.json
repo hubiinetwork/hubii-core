@@ -5,7 +5,7 @@
   "author": "Hubii team",
   "license": "MIT",
   "main": "build/public/electron.js",
-  "homepage": "./build",
+  "homepage": "https://github.com/hubiinetwork/omphalos-ui",
   "build": {
     "appId": "com.hubii.electron-hubii-core",
     "files": [
@@ -246,6 +246,7 @@
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/react-fontawesome": "^0.0.20",
+    "abi-decoder": "^1.1.0",
     "@ledgerhq/hw-app-eth": "^4.15.0",
     "@ledgerhq/hw-transport-node-hid": "^4.16.0",
     "@ledgerhq/hw-transport-u2f": "^4.15.0",
@@ -268,6 +269,7 @@
     "jsonwebtoken": "^8.3.0",
     "lodash": "4.17.5",
     "minimist": "1.2.0",
+    "moment": "^2.22.2",
     "prop-types": "15.6.1",
     "qrcode.react": "^0.8.0",
     "react": "16.2.0",
@@ -317,6 +319,7 @@
     "css-loader": "0.28.11",
     "electron": "^2.0.2",
     "electron-builder": "20.14.7",
+    "electron-devtools-installer": "^2.2.4",
     "electron-rebuild": "^1.7.3",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",

@@ -1,4 +1,6 @@
+
 const electron = require('electron');
+
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
@@ -9,8 +11,22 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({ width: 1400, height: 680 });
-  mainWindow.webContents.openDevTools();
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../index.html')}`);
+  mainWindow.webContents.openDevTools();
+  if (isDev) {
+    // Need to require this globally so we can keep it as a
+    // dev-only dependency
+    const {
+      default: installExtension,
+      REACT_DEVELOPER_TOOLS,
+      REDUX_DEVTOOLS,
+    } = require('electron-devtools-installer'); // eslint-disable-line global-require
+    [REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS].forEach((extension) => {
+      installExtension(extension)
+      .then()
+      .catch((err) => console.error(`An error occurred loading extension ${name}: `, err)); // eslint-disable-line no-console
+    });
+  }
   mainWindow.on('closed', () => { mainWindow = null; });
 }
 
