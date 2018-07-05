@@ -26,7 +26,7 @@ export const ModalFormInput = styled(Input)`
   font-size: 1em;
   font-family: 'SF Text';
   background-color: transparent;
-  color: ${({ theme }) => theme.palette.secondary4};
+  color: ${({ theme }) => theme.palette.info};
   margin-bottom: 8px;
   border: 1px solid ${({ theme }) => theme.palette.secondary4};
   &:hover {

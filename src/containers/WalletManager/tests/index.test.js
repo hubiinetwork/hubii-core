@@ -23,11 +23,15 @@ describe('WalletManager', () => {
       errors: fromJS(errors),
     };
     let createNewWalletSpy;
+    let createContactSpy;
+
     let dom;
     beforeEach(() => {
       createNewWalletSpy = jest.fn();
       params.createNewWallet = createNewWalletSpy;
 
+      createContactSpy = jest.fn();
+      params.createContact = createContactSpy;
       dom = shallow(
         <WalletManager
           {...params}
@@ -141,6 +145,24 @@ describe('WalletManager', () => {
           instance.componentDidUpdate(lastProps);
           expect(instance.state.visible).toEqual(true);
         });
+      });
+      it('#onCreateContact should call createContact action', () => {
+        dom = shallow(
+          <WalletManager
+            {...params}
+          />
+        );
+        const instance = dom.instance();
+        const args = {
+          name: 'mike',
+          address: '0x12312',
+        };
+        const newName = args.name.replace(
+          /\w\S*/g,
+          (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+        );
+        instance.onCreateContact(args);
+        expect(createContactSpy).toBeCalledWith(newName, args.address);
       });
       it('#handleAddWalletSubmit should call createNewWallet action', () => {
         dom = shallow(
