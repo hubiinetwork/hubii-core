@@ -123,6 +123,7 @@ export class WalletManager extends React.PureComponent {
       default:
         modal = (<AddRestoreWalletModal
           goBack={this.state.visible}
+          handleAddWalletSubmit={this.handleAddWalletSubmit}
         />);
     }
 

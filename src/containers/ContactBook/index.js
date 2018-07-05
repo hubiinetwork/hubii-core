@@ -15,11 +15,9 @@ import { createStructuredSelector } from 'reselect';
 import ContactList from 'components/ContactList';
 import ContactHeader from 'components/ContactHeader';
 import injectSaga from 'utils/injectSaga';
-import injectReducer from 'utils/injectReducer';
 import saga from './saga';
 import { loadAllContacts, removeContact, editContact } from './actions';
 import { makeSelectContacts } from './selectors';
-import reducer from './reducer';
 
 import {
   Wrapper,
@@ -128,11 +126,9 @@ export function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'contacts', reducer });
 const withSaga = injectSaga({ key: 'contacts', saga });
 
 export default compose(
-  withReducer,
   withSaga,
   withConnect,
 )(ContactBook);
