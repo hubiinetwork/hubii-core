@@ -1,5 +1,7 @@
 
 import { fromJS } from 'immutable';
+import { initialState as walletHocInitialState } from 'containers/WalletHOC/reducer';
+import { initialState as contactsInitialState } from 'containers/ContactBook/reducer';
 import { loadState, saveState, filterPersistedState } from '../localStorage';
 
 class LocalStorageMock {
@@ -56,23 +58,30 @@ describe('localStorage', () => {
   });
 
   describe('filterPersistedState', () => {
-    it('should return wallets with decrypted filtered out', () => {
-      const state = fromJS(
-        {
-          walletHoc: {
-            wallets: {
-              software: {
-                wallet1: {
-                  encrypted: 'encrypted data',
-                  decrypted: 'privatekey',
-                },
-              },
+    let state = fromJS({});
+    beforeEach(() => {
+      state = state.set('contacts', contactsInitialState);
+      state = state.set('walletHoc', walletHocInitialState);
+    });
+    describe('walletHoc state', () => {
+      it('should return wallets with decrypted filtered out', () => {
+        state = state
+          .setIn(['walletHoc', 'wallets', 'software'], fromJS({ wallet1: { encrypted: 'encryptedData', decrypted: 'decryptedData' } }));
+        const persistedState = filterPersistedState(state);
+        expect(persistedState.getIn(['walletHoc', 'wallets', 'software', 'wallet1', 'decrypted'])).toBeNull();
+      });
+
+      it('should filter saved hardware wallets', () => {
+        state = state
+          .setIn(['walletHoc', 'wallets', 'hardware'], fromJS({
+            wallet1: {
+              id: 'encrypted data',
+              adderss: '0x0000000',
             },
-          },
-        }
-      );
-      const persistedState = filterPersistedState(state);
-      expect(persistedState.getIn(['walletHoc', 'wallets', 'software', 'wallet1', 'decrypted'])).toBeNull();
+          }));
+        const persistedState = filterPersistedState(state);
+        expect(persistedState.getIn(['walletHoc', 'wallets', 'hardware'])).toEqual(state.getIn(['walletHoc', 'wallets', 'hardware']));
+      });
     });
   });
 });
