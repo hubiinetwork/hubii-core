@@ -103,7 +103,6 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
     yield put(showDecryptWalletModal(wallet.name));
     return;
   }
-
   yield put(notify('info', 'Sending transaction...'));
 
   const wei = utils.parseEther(amount.toString());
@@ -218,6 +217,10 @@ export default function* walletManager() {
   yield takeEvery(FETCH_LEDGER_ADDRESSES, fetchLedgerAddresses);
   yield takeEvery(TRANSFER, transfer);
 
+  yield takeEvery(TRANSFER_ETHER, transferEther);
+  yield takeEvery(TRANSFER_ERC20, transferERC20);
+  yield takeEvery(TRANSFER_SUCCESS, waitTransactionHash);
+
   // Handles the Ledger auto polling lifecycle
   // START_LEDGER_SYNC activates ledgerSync saga
   // STOP_LEDGER_SYNC causes ledgerSync saga to drop what it's doing
@@ -228,8 +231,4 @@ export default function* walletManager() {
     yield take(STOP_LEDGER_SYNC);
     yield cancel(bgSyncTask);
   }
-
-  yield takeEvery(TRANSFER_ETHER, transferEther);
-  yield takeEvery(TRANSFER_ERC20, transferERC20);
-  yield takeEvery(TRANSFER_SUCCESS, waitTransactionHash);
 }
