@@ -7,9 +7,8 @@ import { notify } from 'containers/App/actions';
 
 import request from '../../utils/request';
 import { ERC20ABI, EthNetworkProvider } from '../../utils/wallet';
-import LedgerTransport from '../../utils/ledger/Transport';
-
 import { makeSelectWalletList, makeSelectCurrentWalletDetails } from './selectors';
+import LedgerTransport from '../../utils/ledger/Transport';
 
 import {
   CREATE_NEW_WALLET,

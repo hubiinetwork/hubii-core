@@ -4,7 +4,9 @@
 
 /* eslint-disable redux-saga/yield-effects */
 import TransportNodeHid from '@ledgerhq/hw-transport-node-hid';
-import { takeEvery, put } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+import { fork, takeEvery, put, take, cancel } from 'redux-saga/effects';
+import { createMockTask } from 'redux-saga/utils';
 import { expectSaga } from 'redux-saga-test-plan';
 import request from 'utils/request';
 import { Wallet, utils } from 'ethers';
@@ -19,6 +21,11 @@ import walletHoc, {
   initWalletsBalances,
   transfer,
   pollLedger,
+  fetchLedgerAddresses,
+  transferERC20,
+  transferEther,
+  ledgerSync,
+  waitTransactionHash,
 } from '../saga';
 
 import {
@@ -27,6 +34,15 @@ import {
   LOAD_WALLET_BALANCES,
   LOAD_WALLETS_SUCCESS,
   POLL_LEDGER,
+  FETCH_LEDGER_ADDRESSES,
+  TRANSFER,
+  TRANSFER_ETHER,
+  TRANSFER_ERC20,
+  START_LEDGER_SYNC,
+  STOP_LEDGER_SYNC,
+  TRANSFER_SUCCESS,
+  LEDGER_ERROR,
+  LEDGER_DETECTED,
 } from '../constants';
 
 import {
@@ -41,9 +57,13 @@ import {
   ledgerDetected,
   ledgerError,
   transferSuccess,
+  pollLedger as pollLedgerAction,
   transferError,
   transactionConfirmed as transactionConfirmedAction,
   transfer as transferAction,
+  stopLedgerSync,
+  fetchedLedgerAddress,
+  startLedgerSync,
 } from '../actions';
 
 describe('createWallet saga', () => {
@@ -139,6 +159,59 @@ describe('pollLedger Saga', () => {
     pollLedgerGenerator.next();
     const putDescriptor = pollLedgerGenerator.next(error).value;
     expect(putDescriptor).toEqual(put(ledgerError(error)));
+  });
+});
+
+describe('fetchLedgerAddresses Saga', () => {
+  const input = { derivationPaths: ['1', '2'] };
+
+  it('should dispatch the fetchedLedgerAddress action with correct params if successful', () => {
+    const fetchLedgerAddressesGenerator = fetchLedgerAddresses(input);
+    let putDescriptor = fetchLedgerAddressesGenerator.next().value;
+    expect(putDescriptor).toEqual(put(stopLedgerSync()));
+    const transport = new TransportNodeHid();
+    const publicAddressKeyPair1 = { address: '12345' };
+    const publicAddressKeyPair2 = { address: '67890' };
+    fetchLedgerAddressesGenerator.next();
+    fetchLedgerAddressesGenerator.next(transport);
+    putDescriptor = fetchLedgerAddressesGenerator.next(publicAddressKeyPair1).value;
+    expect(putDescriptor).toEqual(put(fetchedLedgerAddress(input.derivationPaths[0], publicAddressKeyPair1.address)));
+    fetchLedgerAddressesGenerator.next();
+    putDescriptor = fetchLedgerAddressesGenerator.next(publicAddressKeyPair2).value;
+    expect(putDescriptor).toEqual(put(fetchedLedgerAddress(input.derivationPaths[1], publicAddressKeyPair2.address)));
+    putDescriptor = fetchLedgerAddressesGenerator.next().value;
+    expect(putDescriptor).toEqual(put(startLedgerSync()));
+  });
+
+  it('should dispatch ledgerError action if unsuccessful', () => {
+    const fetchLedgerAddressesGenerator = fetchLedgerAddresses(input);
+    let putDescriptor = fetchLedgerAddressesGenerator.next().value;
+    expect(putDescriptor).toEqual(put(stopLedgerSync()));
+    fetchLedgerAddressesGenerator.next();
+    putDescriptor = fetchLedgerAddressesGenerator.next().value;
+    expect(putDescriptor).toEqual(put(startLedgerSync()));
+  });
+
+  it('should dispatch the ledgerError action on error', () => {
+    const error = new Error('some error');
+    const pollLedgerGenerator = pollLedger();
+    pollLedgerGenerator.next();
+    const putDescriptor = pollLedgerGenerator.next(error).value;
+    expect(putDescriptor).toEqual(put(ledgerError(error)));
+  });
+});
+
+describe('ledgerSync Saga', () => {
+  const ledgerSyncGenerator = ledgerSync();
+  it('should continuously dispatch the pollLedger action, after pollLedger action completes', () => {
+    let putDescriptor = ledgerSyncGenerator.next().value;
+    expect(putDescriptor).toEqual(put(pollLedgerAction()));
+    const takeDescriptor = ledgerSyncGenerator.next().value;
+    expect(takeDescriptor).toEqual(take([LEDGER_ERROR, LEDGER_DETECTED]));
+    const delayDescriptor = ledgerSyncGenerator.next().value;
+    expect(JSON.stringify(delayDescriptor)).toEqual(JSON.stringify(delay(2500)));
+    putDescriptor = ledgerSyncGenerator.next().value;
+    expect(putDescriptor).toEqual(put(pollLedgerAction()));
   });
 });
 
@@ -486,5 +559,51 @@ describe('root Saga', () => {
   it('should start task to watch for POLL_LEDGER action', () => {
     const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(POLL_LEDGER, pollLedger));
+  });
+
+  it('should start task to watch for FETCH_LEDGER_ADDRESSES action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(FETCH_LEDGER_ADDRESSES, fetchLedgerAddresses));
+  });
+
+  it('should start task to watch for TRANSFER action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(TRANSFER, transfer));
+  });
+
+  it('should start task to watch for TRANSFER_ETHER action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(TRANSFER_ETHER, transferEther));
+  });
+
+  it('should start task to watch for TRANSFER_ERC20 action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(TRANSFER_ERC20, transferERC20));
+  });
+
+  it('should start task to watch for TRANSFER_SUCCESS action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(TRANSFER_SUCCESS, waitTransactionHash));
+  });
+
+  it('should wait for the START_LEDGER_SYNC action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(take(START_LEDGER_SYNC));
+  });
+
+  it('forks the ledgerSync service', () => {
+    const expected = fork(ledgerSync);
+    const mockedAction = { type: START_LEDGER_SYNC };
+    expect(walletHocSaga.next(mockedAction).value).toEqual(expected);
+  });
+
+  it('waits for stopLedgerSync action and then cancels the ledgerSync service', () => {
+    const mockTask = createMockTask();
+
+    const expectedTakeYield = take(STOP_LEDGER_SYNC);
+    expect(walletHocSaga.next(mockTask).value).toEqual(expectedTakeYield);
+
+    const expectedCancelYield = cancel(mockTask);
+    expect(walletHocSaga.next().value).toEqual(expectedCancelYield);
   });
 });

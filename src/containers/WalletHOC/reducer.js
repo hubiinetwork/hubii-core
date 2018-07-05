@@ -57,7 +57,7 @@ export const initialState = fromJS({
   },
   ledgerNanoSInfo: {
     status: 'disconnected',
-    addresses: null,
+    addresses: {},
     id: null,
   },
   pendingTransactions: [],
