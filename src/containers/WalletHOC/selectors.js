@@ -2,51 +2,51 @@ import { createSelector } from 'reselect';
 import { convertWalletsList, IsAddressMatch } from 'utils/wallet';
 
 /**
- * Direct selector to the walletManager state domain
+ * Direct selector to the walletHoc state domain
  */
-const selectWalletManagerDomain = (state) => state.get('walletManager');
+const selectWalletHocDomain = (state) => state.get('walletHoc');
 
 /**
  * Other specific selectors
  */
 const makeSelectPasswordInput = () => createSelector(
-  selectWalletManagerDomain,
-  (walletManagerDomain) => walletManagerDomain.getIn(['inputs', 'password'])
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.getIn(['inputs', 'password'])
 );
 
 const makeSelectDerivationPathInput = () => createSelector(
-  selectWalletManagerDomain,
-  (walletManagerDomain) => walletManagerDomain.getIn(['inputs', 'derivationPath'])
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.getIn(['inputs', 'derivationPath'])
 );
 
 const makeSelectNewWalletNameInput = () => createSelector(
-  selectWalletManagerDomain,
-  (walletManagerDomain) => walletManagerDomain.getIn(['inputs', 'newWalletName'])
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.getIn(['inputs', 'newWalletName'])
 );
 
 const makeSelectSelectedWalletName = () => createSelector(
-  selectWalletManagerDomain,
-  (walletManagerDomain) => walletManagerDomain.get('selectedWalletName')
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('selectedWalletName')
 );
 
 const makeSelectWallets = () => createSelector(
-  selectWalletManagerDomain,
-  (walletManagerDomain) => walletManagerDomain.get('wallets')
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('wallets')
 );
 
 const makeSelectLoading = () => createSelector(
-  selectWalletManagerDomain,
-  (walletManagerDomain) => walletManagerDomain.get('loading')
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('loading')
 );
 
 const makeSelectErrors = () => createSelector(
-  selectWalletManagerDomain,
-  (walletManagerDomain) => walletManagerDomain.get('errors')
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('errors')
 );
 
 const makeSelectCurrentWallet = () => createSelector(
-  selectWalletManagerDomain,
-  (walletManagerDomain) => walletManagerDomain.get('currentWallet')
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('currentWallet')
 );
 
 const makeSelectWalletList = () => createSelector(
@@ -64,13 +64,13 @@ const makeSelectCurrentWalletDetails = () => createSelector(
 );
 
 const makeSelectPendingTransactions = () => createSelector(
-  selectWalletManagerDomain,
-  (walletManagerDomain) => walletManagerDomain.get('pendingTransactions')
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('pendingTransactions')
 );
 
 const makeSelectConfirmedTransactions = () => createSelector(
-  selectWalletManagerDomain,
-  (walletManagerDomain) => walletManagerDomain.get('confirmedTransactions')
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('confirmedTransactions')
 );
 
 const makeSelectAllTransactions = () => createSelector(
@@ -87,7 +87,7 @@ const makeSelectAllTransactions = () => createSelector(
 );
 
 export {
-  selectWalletManagerDomain,
+  selectWalletHocDomain,
   makeSelectNewWalletNameInput,
   makeSelectPasswordInput,
   makeSelectSelectedWalletName,

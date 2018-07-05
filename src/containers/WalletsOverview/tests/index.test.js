@@ -18,7 +18,7 @@ describe('WalletsOverview', () => {
       },
       hardware: {},
     };
-    const state = fromJS({ walletManager: { wallets } });
+    const state = fromJS({ walletHoc: { wallets } });
     const balances = [
       [
         {
@@ -84,8 +84,8 @@ describe('WalletsOverview', () => {
         });
         it('Breakdown should be available when all balances are available', () => {
           const walletsState = state
-            .setIn(['walletManager', 'wallets', 'software', 'test1', 'balances'], balances[0])
-            .setIn(['walletManager', 'wallets', 'software', 'test2', 'balances'], balances[1]);
+            .setIn(['walletHoc', 'wallets', 'software', 'test1', 'balances'], balances[0])
+            .setIn(['walletHoc', 'wallets', 'software', 'test2', 'balances'], balances[1]);
 
           const walletsList = makeSelectWalletList()(walletsState);
           const overviewDom = shallow(
@@ -104,7 +104,7 @@ describe('WalletsOverview', () => {
           ]);
         });
         it('Breakdown should be also available when no all balances are available', () => {
-          const walletsState = state.setIn(['walletManager', 'wallets', 'software', 'test1', 'balances'], balances[0]);
+          const walletsState = state.setIn(['walletHoc', 'wallets', 'software', 'test1', 'balances'], balances[0]);
           const walletsList = makeSelectWalletList()(walletsState);
 
           const overviewDom = shallow(
@@ -128,8 +128,8 @@ describe('WalletsOverview', () => {
       it('should transform wallets array into cards structure', () => {
         const instance = dom.instance();
         const walletsState = state
-          .setIn(['walletManager', 'wallets', 'software', 'test1', 'balances'], balances[0])
-          .setIn(['walletManager', 'wallets', 'software', 'test2', 'balances'], balances[1]);
+          .setIn(['walletHoc', 'wallets', 'software', 'test1', 'balances'], balances[0])
+          .setIn(['walletHoc', 'wallets', 'software', 'test2', 'balances'], balances[1]);
         const walletsList = makeSelectWalletList()(walletsState);
 
         const cardsData = instance.getWalletCardsData(walletsList);
