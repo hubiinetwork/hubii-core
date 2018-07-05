@@ -67,9 +67,9 @@ export default class CandleStickChart extends React.Component {
                   // set up the updating of the chart each second
               const series = this.series[0];
               const columnSeries = this.series[1];
+              let time = Date.now();
               // debugger;
               setInterval(() => {
-                const time = Date.now();
                 const point = [
                   time,
                   Math.round(Math.random() * 20000),
@@ -83,7 +83,8 @@ export default class CandleStickChart extends React.Component {
                   Math.round(Math.random() * 18000000000) + 5000000,
                 ];
                 columnSeries.addPoint(columnPoint, true, true);
-              }, 2000);
+                time += 86400000;
+              }, 5000);
             },
           },
         },
@@ -91,6 +92,9 @@ export default class CandleStickChart extends React.Component {
         rangeSelector: {
           selected: 1,
         },
+        // exporting: {
+        //   enabled: false,
+        // },
 
         title: {
           text: 'Bitcoin (BTC) Historical Data',
