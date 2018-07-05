@@ -2,8 +2,8 @@ import { fromJS } from 'immutable';
 
 import {
   createContact,
-  removeContactSuccess,
-  editContactSuccess,
+  removeContact,
+  editContact,
 } from '../actions';
 
 import contactsReducer from '../reducer';
@@ -26,42 +26,50 @@ describe('ContactBook reducer', () => {
     const expectedResult = fromJS([...state.toJS(), contact]);
     expect(contactsReducer(state, createContact(contact.name, contact.address))).toEqual(expectedResult);
   });
+
+  const contacts = [
+    {
+      name: 'mike',
+      address: '0x342432',
+    },
+    {
+      name: 'joe',
+      address: '0x342s32',
+    },
+  ];
   it('should handle the remove contact success action', () => {
-    const remainingContacts = [
-      {
-        name: 'mike',
-        address: '0x342432',
-      },
+    const contact = {
+      name: 'mike',
+      address: '0x342432',
+    };
+    const expectedResult = fromJS([
       {
         name: 'joe',
         address: '0x342s32',
       },
-    ];
-    const expectedResult = fromJS(remainingContacts);
-    expect(contactsReducer(state, removeContactSuccess(remainingContacts))).toEqual(expectedResult);
+    ]);
+    expect(contactsReducer(state, removeContact(contacts, contact))).toEqual(expectedResult);
   });
   it('should handle the edit contact success action', () => {
-    state = fromJS([
+    const oldContact = {
+      name: 'mike',
+      address: '0x342432',
+    };
+    const newContact = {
+      name: 'tim',
+      address: '0x342s32',
+    };
+
+    const expectedNewContactList = fromJS([
       {
-        name: 'mike',
-        address: '0x342432',
+        name: 'tim',
+        address: '0x342s32',
       },
       {
         name: 'joe',
         address: '0x342s32',
       },
     ]);
-
-    const editedContact = {
-      name: 'mike',
-      address: '0x342432',
-    };
-
-    const index = 1;
-
-    const newState = state.toJS();
-    newState[index] = editedContact;
-    const expectedResult = fromJS([...newState]);
-    expect(contactsReducer(state, editContactSuccess(index, editedContact))).toEqual(expectedResult);
+    expect(contactsReducer(state, editContact(contacts, newContact, oldContact))).toEqual(expectedNewContactList);
   });
 });

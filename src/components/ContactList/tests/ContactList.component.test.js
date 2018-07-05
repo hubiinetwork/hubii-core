@@ -66,7 +66,7 @@ describe('<ContactList/>', () => {
         expect(contactList.state.name).toEqual(item.name);
         expect(contactList.state.address).toEqual(item.address);
         expect(contactList.state.modalType).toEqual(modalType);
-        expect(contactList.state.visible).toEqual(true);
+        expect(contactList.state.modalVisibility).toEqual(true);
       });
 
       it('when the modalType is delete <ContactDeletionModal/> should be rendered', () => {
@@ -84,25 +84,25 @@ describe('<ContactList/>', () => {
 
     it('should execute the handleCancel function', () => {
       contactList.handleCancel();
-      expect(contactList.state.visible).toBe(false);
+      expect(contactList.state.modalVisibility).toBe(false);
     });
 
     it('should execute the handleDelete function', () => {
       contactList.handleDelete();
-      expect(contactList.state.visible).toBe(false);
+      expect(contactList.state.modalVisibility).toBe(false);
       expect(contactList.props.onDelete).toHaveBeenCalledTimes(1);
     });
 
     describe('validateEdit function', () => {
-      it('should return true from the validateEdit function', () => {
+      it('should return false from the validateEdit function', () => {
         const address = '0x324234234';
         const oldAddress = '0x213123123';
-        expect(contactList.validateEdit(address, oldAddress)).toEqual(false);
+        expect(contactList.validateEdit(address, oldAddress)).toBeFalsy();
       });
       it('should return true from the validateEdit function', () => {
         const address = '0x123123123';
         const oldAddress = '0x213123123';
-        expect(contactList.validateEdit(address, oldAddress)).toEqual(true);
+        expect(contactList.validateEdit(address, oldAddress)).toBeTruthy();
       });
     });
 

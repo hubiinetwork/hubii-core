@@ -16,7 +16,8 @@ import { makeSelectContacts } from 'containers/ContactBook/selectors';
 
 import { createNewWallet } from 'containers/WalletHOC/actions';
 import { makeSelectLoading, makeSelectErrors } from 'containers/WalletHOC/selectors';
-import { createContact, removeContact } from '../ContactBook/actions';
+import { createContact,
+ } from '../ContactBook/actions';
 
 import {
   Wrapper,
@@ -37,11 +38,10 @@ export class WalletManager extends React.PureComponent {
     };
 
     this.onTabsChange = this.onTabsChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onCreateContact = this.onCreateContact.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.showModal = this.showModal.bind(this);
     this.handleAddWalletSubmit = this.handleAddWalletSubmit.bind(this);
-    this.onDeleteContact = this.onDeleteContact.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -61,20 +61,21 @@ export class WalletManager extends React.PureComponent {
     this.props.history.push(key);
   }
 
-  onSubmit(contact) {
+  onCreateContact(contact) {
     if (contact) {
-      this.props.createContact(contact.name, contact.address);
+      const name = contact.name.replace(
+        /\w\S*/g,
+        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+      );
+      this.props.createContact(name, contact.address);
     }
     this.hideModal();
-    return null;
   }
-
-  onDeleteContact(contact) {
-    if (contact) {
-      this.props.removeContact(contact);
-    }
-    this.hideModal();
-    return null;
+  toTitleCase(str) {
+    return str.replace(
+        /\w\S*/g,
+        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+    );
   }
 
   showModal(type) {
@@ -101,7 +102,7 @@ export class WalletManager extends React.PureComponent {
     switch (this.state.type) {
       case 'addContact':
         modal = (<AddNewContactModal
-          onSubmit={(e) => this.onSubmit(e)}
+          onSubmit={(contact) => this.onCreateContact(contact)}
           contacts={contacts.toJS()}
         />);
         break;
@@ -181,7 +182,6 @@ WalletManager.propTypes = {
   contacts: PropTypes.oneOfType(
     [PropTypes.arrayOf(PropTypes.object), PropTypes.object]
   ),
-  removeContact: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -194,7 +194,6 @@ export function mapDispatchToProps(dispatch) {
   return {
     createNewWallet: (...args) => dispatch(createNewWallet(...args)),
     createContact: (...args) => dispatch(createContact(...args)),
-    removeContact: (...args) => dispatch(removeContact(...args)),
   };
 }
 

@@ -7,9 +7,7 @@
 import {
   CREATE_CONTACT,
   REMOVE_CONTACT,
-  REMOVE_CONTACT_SUCCESS,
   EDIT_CONTACT,
-  EDIT_CONTACT_SUCCESS,
 } from './constants';
 
 export function createContact(name, address) {
@@ -19,32 +17,26 @@ export function createContact(name, address) {
   };
 }
 
-export function removeContact(contact) {
+export function removeContact(contacts, contact) {
+  const remainingContacts = contacts.filter(
+    (person) =>
+    !(person.address === contact.address && person.name === contact.name)
+  );
   return {
     type: REMOVE_CONTACT,
-    contact,
-  };
-}
-
-export function removeContactSuccess(remainingContacts) {
-  return {
-    type: REMOVE_CONTACT_SUCCESS,
     remainingContacts,
   };
 }
 
-export function editContact(newContact, oldContact) {
+export function editContact(contacts, newContact, oldContact) {
+  const newContactsList = contacts.map(
+    (contact) =>
+    contact.name === oldContact.name && contact.address === oldContact.address ?
+    newContact :
+    contact
+  );
   return {
     type: EDIT_CONTACT,
-    newContact,
-    oldContact,
-  };
-}
-
-export function editContactSuccess(index, newContact) {
-  return {
-    type: EDIT_CONTACT_SUCCESS,
-    index,
-    newContact,
+    newContactsList,
   };
 }

@@ -9,18 +9,32 @@ describe('<ContactBook />', () => {
   describe('mapDispatchToProps', () => {
     describe('removeContact', () => {
       it('should call dispatch', () => {
+        const contacts = [];
+        const contact = {
+          name: 'mike',
+          address: '0x3424',
+        };
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
-        result.removeContact();
-        expect(dispatch).toHaveBeenCalledWith(removeContact());
+        result.removeContact(contacts, contact);
+        expect(dispatch).toHaveBeenCalledWith(removeContact(contacts, contact));
       });
     });
     describe('editContact', () => {
       it('should call dispatch', () => {
+        const contacts = [];
+        const newContact = {
+          name: 'mike',
+          address: '0x3424',
+        };
+        const oldContact = {
+          name: 'mike',
+          address: '0x3424',
+        };
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
-        result.editContact();
-        expect(dispatch).toHaveBeenCalledWith(editContact());
+        result.editContact(contacts, newContact, oldContact);
+        expect(dispatch).toHaveBeenCalledWith(editContact(contacts, newContact, oldContact));
       });
     });
   });
@@ -61,17 +75,6 @@ describe('<ContactBook />', () => {
     });
   });
   describe('methods in <ContactBook />', () => {
-    describe('onDelete', () => {
-      it('should execute onDelete action', () => {
-        const data = {
-          name: 'mike',
-          address: '0x324324234',
-        };
-        instance.onDelete(data);
-        expect(params.removeContact).toBeCalled();
-      });
-    });
-
     describe('filterSearchText', () => {
       it('if type is recentFilterText should filter data based on recentFilterText', () => {
         const state = {

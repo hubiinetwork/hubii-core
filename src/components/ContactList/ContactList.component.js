@@ -17,7 +17,7 @@ export default class ContactList extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false,
+      modalVisibility: false,
       name: '',
       address: '',
       modalType: null,
@@ -45,7 +45,7 @@ export default class ContactList extends React.PureComponent {
 
   showModal(item, modalType) {
     this.setState({
-      visible: true,
+      modalVisibility: true,
       name: item.name,
       address: item.address,
       modalType,
@@ -54,13 +54,13 @@ export default class ContactList extends React.PureComponent {
 
   handleCancel() {
     this.setState({
-      visible: false,
+      modalVisibility: false,
     });
   }
 
   handleDelete() {
     const { name, address } = this.state;
-    this.setState({ visible: false });
+    this.setState({ modalVisibility: false });
     this.props.onDelete({ name, address });
   }
 
@@ -68,13 +68,13 @@ export default class ContactList extends React.PureComponent {
     const { data } = this.props;
     const sameAddressList = data.filter((person) => person.address === address);
     // can implement function to do additional validation
-    return !!(sameAddressList.length && address !== oldAddress);
+    return sameAddressList.length && address !== oldAddress;
   }
 
   handleEdit(oldContact) {
     const { onEdit } = this.props;
     const { name, address } = this.state;
-    this.setState({ visible: false });
+    this.setState({ modalVisibility: false });
     onEdit({ name, address }, oldContact);
   }
 
@@ -111,7 +111,6 @@ export default class ContactList extends React.PureComponent {
             icon="delete"
             size={'small'}
             onClick={() => this.showModal(item, 'delete')}
-            key={1}
           />,
           <StyledButton
             type="primary"
@@ -119,7 +118,6 @@ export default class ContactList extends React.PureComponent {
             icon="edit"
             size={'small'}
             onClick={() => this.showModal(item, 'edit')}
-            key={1}
           />,
           <CopyToClipboard text={item.address} key={2}>
             <StyledButton
@@ -128,7 +126,6 @@ export default class ContactList extends React.PureComponent {
               icon="copy"
               size={'small'}
               onClick={this.showNotification}
-              key={2}
             />
           </CopyToClipboard>,
         ]}
@@ -150,7 +147,7 @@ export default class ContactList extends React.PureComponent {
           maskClosable
           maskStyle={{ background: 'rgba(232,237,239,.65)' }}
           style={{ marginTop: '20px' }}
-          visible={this.state.visible}
+          visible={this.state.modalVisibility}
           onCancel={this.handleCancel}
           destroyOnClose
         >
@@ -186,8 +183,12 @@ ContactList.propTypes = {
    * size of antd list component
    */
   size: PropTypes.oneOf(['default', 'small', 'large']),
-  /** Function to be executed when edit button of modal is pressed */
-  onEdit: PropTypes.func,
-  /** Function to be executed when delete button of modal is pressed */
-  onDelete: PropTypes.func,
+  /**
+   * Function to be executed when edit button of modal is pressed
+   */
+  onEdit: PropTypes.func.isRequired,
+  /**
+   * Function to be executed when delete button of modal is pressed
+   */
+  onDelete: PropTypes.func.isRequired,
 };

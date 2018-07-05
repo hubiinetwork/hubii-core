@@ -14,8 +14,6 @@ import { createStructuredSelector } from 'reselect';
 
 import ContactList from 'components/ContactList';
 import ContactHeader from 'components/ContactHeader';
-import injectSaga from 'utils/injectSaga';
-import saga from './saga';
 import { removeContact, editContact } from './actions';
 import { makeSelectContacts } from './selectors';
 
@@ -38,11 +36,6 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
     };
 
     this.filterSearchText = this.filterSearchText.bind(this);
-    this.onDelete = this.onDelete.bind(this);
-  }
-
-  onDelete(data) {
-    this.props.removeContact(data.name, data.address);
   }
 
   filterSearchText(data, type) {
@@ -74,8 +67,8 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
             <Border contactsLength={contacts.length}>
               <ContactList
                 data={this.filterSearchText(contacts || [], 'recentFilterText')}
-                onEdit={(newContact, oldContact) => this.props.editContact(newContact, oldContact)}
-                onDelete={(contact) => this.props.removeContact(contact)}
+                onEdit={(newContact, oldContact) => this.props.editContact(contacts, newContact, oldContact)}
+                onDelete={(contact) => this.props.removeContact(contacts, contact)}
               />
             </Border>
           </InnerWrapper1>
@@ -88,8 +81,8 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
             <Border contactsLength={contacts.length}>
               <ContactList
                 data={this.filterSearchText(contacts || [], 'fullFilterText')}
-                onEdit={(newContact, oldContact) => this.props.editContact(newContact, oldContact)}
-                onDelete={(data) => this.props.removeContact(data)}
+                onEdit={(newContact, oldContact) => this.props.editContact(contacts, newContact, oldContact)}
+                onDelete={(data) => this.props.removeContact(contacts, data)}
               />
             </Border>
           </InnerWrapper2>
@@ -120,9 +113,7 @@ export function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withSaga = injectSaga({ key: 'contacts', saga });
 
 export default compose(
-  withSaga,
   withConnect,
 )(ContactBook);
