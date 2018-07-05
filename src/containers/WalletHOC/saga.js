@@ -208,7 +208,7 @@ export function* fetchLedgerAddresses({ derivationPaths }) {
 }
 
 // Root watcher
-export default function* walletManager() {
+export default function* walletHoc() {
   yield takeEvery(CREATE_NEW_WALLET, createWallet);
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
   yield takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances);

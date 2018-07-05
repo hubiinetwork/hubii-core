@@ -1,6 +1,6 @@
 
 import { fromJS } from 'immutable';
-import walletManagerReducer from '../reducer';
+import walletHocReducer from '../reducer';
 import {
   createNewWallet,
   createNewWalletFailed,
@@ -20,7 +20,8 @@ import {
   ledgerDetected,
 } from '../actions';
 import { LEDGER_ERROR } from '../constants';
-describe('walletManagerReducer', () => {
+
+describe('walletHocReducer', () => {
   let state;
   beforeEach(() => {
     state = fromJS({
@@ -57,7 +58,7 @@ describe('walletManagerReducer', () => {
   });
 
   it('returns the initial state', () => {
-    expect(walletManagerReducer(undefined, {})).toEqual(state);
+    expect(walletHocReducer(undefined, {})).toEqual(state);
   });
 
   describe('software wallet lifecycle reducers', () => {
@@ -65,7 +66,7 @@ describe('walletManagerReducer', () => {
       const expected = state
       .setIn(['loading', 'creatingWallet'], true)
       .set('progress', 0);
-      expect(walletManagerReducer(state, createNewWallet())).toEqual(expected);
+      expect(walletHocReducer(state, createNewWallet())).toEqual(expected);
     });
 
     it('should handle createNewWalletSuccess action correctly', () => {
@@ -78,7 +79,7 @@ describe('walletManagerReducer', () => {
       .setIn(['errors', 'creatingWalletError'], null)
       .setIn(['wallets', 'software', name],
         fromJS({ encrypted: encryptedWallet, decrypted: decryptedWallet }));
-      expect(walletManagerReducer(
+      expect(walletHocReducer(
       state,
       createNewWalletSuccess(
         name,
@@ -92,14 +93,14 @@ describe('walletManagerReducer', () => {
       const expected = state
       .setIn(['loading', 'creatingWallet'], false)
       .setIn(['errors', 'creatingWalletError'], error);
-      expect(walletManagerReducer(state, createNewWalletFailed(error))).toEqual(expected);
+      expect(walletHocReducer(state, createNewWalletFailed(error))).toEqual(expected);
     });
 
     it('should handle decryptWallet action correctly', () => {
       const expected = state
       .setIn(['loading', 'decryptingWallet'], true)
       .set('progress', 0);
-      expect(walletManagerReducer(state, decryptWallet())).toEqual(expected);
+      expect(walletHocReducer(state, decryptWallet())).toEqual(expected);
     });
 
     it('should handle decryptWalletSuccess action correctly', () => {
@@ -110,7 +111,7 @@ describe('walletManagerReducer', () => {
       .setIn(['inputs', 'password'], '')
       .setIn(['errors', 'decryptingWalletError'], null)
       .setIn(['wallets', 'software', name, 'decrypted'], decryptedWallet);
-      expect(walletManagerReducer(state, decryptWalletSuccess(name, decryptedWallet))).toEqual(expected);
+      expect(walletHocReducer(state, decryptWalletSuccess(name, decryptedWallet))).toEqual(expected);
     });
 
     it('should handle decryptWalletFailed action correctly', () => {
@@ -118,153 +119,154 @@ describe('walletManagerReducer', () => {
       const expected = state
       .setIn(['loading', 'decryptingWallet'], false)
       .setIn(['errors', 'decryptingWalletError'], error);
-      expect(walletManagerReducer(state, decryptWalletFailed(error))).toEqual(expected);
+      expect(walletHocReducer(state, decryptWalletFailed(error))).toEqual(expected);
     });
-  });
 
-  describe('Ledger Nano S reducers', () => {
-    it('should handle LEDGER_DETECTED action correctly', () => {
-      const id = '893745sjdfhks83';
-      const expected = state
+    describe('Ledger Nano S reducers', () => {
+      it('should handle LEDGER_DETECTED action correctly', () => {
+        const id = '893745sjdfhks83';
+        const expected = state
         .setIn(['ledgerNanoSInfo', 'status'], 'connected')
         .setIn(['ledgerNanoSInfo', 'id'], id)
         .setIn(['errors', 'ledgerError'], null);
-      expect(walletManagerReducer(state, ledgerDetected(id))).toEqual(expected);
-    });
+        expect(walletHocReducer(state, ledgerDetected(id))).toEqual(expected);
+      });
 
-    it('should handle LEDGER_ERROR action correctly', () => {
-      const error = 'oh no!';
-      const expected = state
+      it('should handle LEDGER_ERROR action correctly', () => {
+        const error = 'oh no!';
+        const expected = state
         .set('ledgerNanoSInfo', fromJS({ status: 'disconnected' }))
         .setIn(['errors', 'ledgerError'], error);
-      expect(walletManagerReducer(state, { type: LEDGER_ERROR, error })).toEqual(expected);
+        expect(walletHocReducer(state, { type: LEDGER_ERROR, error })).toEqual(expected);
+      });
     });
-  });
 
 
-  describe('load wallet stores', () => {
-    xit('load wallets', () => {
-      const wallets = { software: { testWallet: { encrypted: '' } }, hardware: {} };
-      const expected = state
+    describe('load wallet stores', () => {
+      xit('load wallets', () => {
+        const wallets = { software: { testWallet: { encrypted: '' } }, hardware: {} };
+        const expected = state
         .set('wallets', fromJS(wallets));
 
-      expect(walletManagerReducer(state, loadWalletsSuccess(wallets))).toEqual(expected);
-    });
+        expect(walletHocReducer(state, loadWalletsSuccess(wallets))).toEqual(expected);
+      });
 
-    describe('balances', () => {
-      it('load wallet balances', () => {
-        const wallets = { software: { testWallet: {} }, hardware: {} };
-        const loading = true;
-        const walletName = 'testWallet';
-        const expected = state
+      describe('balances', () => {
+        it('load wallet balances', () => {
+          const wallets = { software: { testWallet: {} }, hardware: {} };
+          const loading = true;
+          const walletName = 'testWallet';
+          const expected = state
           .set('wallets', fromJS(wallets))
           .setIn(['wallets', 'software', walletName, 'loadingBalances'], loading);
 
-        expect(walletManagerReducer(state, loadWalletBalances(walletName, 'test'))).toEqual(expected);
-      });
+          expect(walletHocReducer(state, loadWalletBalances(walletName, 'test'))).toEqual(expected);
+        });
 
-      it('load wallet balances', () => {
-        const wallets = { software: { testWallet: {} }, hardware: {} };
-        const balances = { tokenBalances: { tokens: [] } };
-        const walletName = 'testWallet';
-        const expected = state
+        it('load wallet balances', () => {
+          const wallets = { software: { testWallet: {} }, hardware: {} };
+          const balances = { tokenBalances: { tokens: [] } };
+          const walletName = 'testWallet';
+          const expected = state
           .set('wallets', fromJS(wallets))
           .setIn(['wallets', 'software', walletName, 'loadingBalances'], false)
           .setIn(['wallets', 'software', walletName, 'loadingBalancesError'], null)
           .setIn(['wallets', 'software', walletName, 'balances'], fromJS(balances.tokenBalances.tokens));
 
-        expect(walletManagerReducer(state, loadWalletBalancesSuccess(walletName, balances.tokenBalances))).toEqual(expected);
-      });
+          expect(walletHocReducer(state, loadWalletBalancesSuccess(walletName, balances.tokenBalances))).toEqual(expected);
+        });
 
-      it('should default to empty array if token property is null', () => {
-        const wallets = { software: { testWallet: {} }, hardware: {} };
-        const balances = { tokenBalances: {} };
-        const walletName = 'testWallet';
-        const expected = state
+        it('should default to empty array if token property is null', () => {
+          const wallets = { software: { testWallet: {} }, hardware: {} };
+          const balances = { tokenBalances: {} };
+          const walletName = 'testWallet';
+          const expected = state
           .set('wallets', fromJS(wallets))
           .setIn(['wallets', 'software', walletName, 'loadingBalances'], false)
           .setIn(['wallets', 'software', walletName, 'loadingBalancesError'], null)
           .setIn(['wallets', 'software', walletName, 'balances'], fromJS([]));
 
-        expect(walletManagerReducer(state, loadWalletBalancesSuccess(walletName, balances.tokenBalances))).toEqual(expected);
-      });
+          expect(walletHocReducer(state, loadWalletBalancesSuccess(walletName, balances.tokenBalances))).toEqual(expected);
+        });
 
-      it('load wallet balances error', () => {
-        const wallets = { software: { testWallet: {} }, hardware: {} };
-        const error = new Error();
-        const walletName = 'testWallet';
-        const expected = state
+        it('load wallet balances error', () => {
+          const wallets = { software: { testWallet: {} }, hardware: {} };
+          const error = new Error();
+          const walletName = 'testWallet';
+          const expected = state
           .set('wallets', fromJS(wallets))
           .setIn(['wallets', 'software', walletName, 'loadingBalances'], false)
           .setIn(['wallets', 'software', walletName, 'loadingBalancesError'], error);
 
-        expect(walletManagerReducer(state, loadWalletBalancesError(walletName, error))).toEqual(expected);
-      });
-    });
-
-    describe('currentWallet', () => {
-      it('SET_CURRENT_WALLET', () => {
-        const walletName = 'testWallet';
-        const address = 'abcd';
-        const currentWallet = {
-          address,
-          name: walletName,
-          transfering: false,
-          transferError: null,
-          lastTransaction: null,
-        };
-        const expected = state
-          .set('currentWallet', fromJS(currentWallet));
-
-        expect(walletManagerReducer(state, setCurrentWallet(walletName, address))).toEqual(expected);
+          expect(walletHocReducer(state, loadWalletBalancesError(walletName, error))).toEqual(expected);
+        });
       });
 
-      it('TRANSFER', () => {
-        const currentWallet = {
-          address: '',
-          transfering: true,
-          transferError: null,
-          lastTransaction: null,
-        };
-
-        const expected = state
+      describe('currentWallet', () => {
+        it('SET_CURRENT_WALLET', () => {
+          const walletName = 'testWallet';
+          const address = 'abcd';
+          const currentWallet = {
+            address,
+            name: walletName,
+            transfering: false,
+            transferError: null,
+            lastTransaction: null,
+          };
+          const expected = state
           .set('currentWallet', fromJS(currentWallet));
 
-        expect(walletManagerReducer(state, transfer({}))).toEqual(expected);
-      });
+          expect(walletHocReducer(state, setCurrentWallet(walletName, address))).toEqual(expected);
+        });
 
-      it('TRANSFER_ERROR', () => {
-        const error = { message: 'error' };
-        const currentWallet = {
-          address: '',
-          transfering: false,
-          transferError: error.message,
-          lastTransaction: null,
-        };
-        const expected = state
+        it('TRANSFER', () => {
+          const currentWallet = {
+            address: '',
+            transfering: true,
+            transferError: null,
+            lastTransaction: null,
+          };
+
+          const expected = state
           .set('currentWallet', fromJS(currentWallet));
 
-        expect(walletManagerReducer(state, transferError(error))).toEqual(expected);
-      });
+          expect(walletHocReducer(state, transfer({}))).toEqual(expected);
+        });
 
-      it('SHOW_DECRYPT_WALLET_MODAL', () => {
-        const currentWallet = {
-          address: '',
-          showDecryptModal: true,
-        };
-        const expected = state
+        it('TRANSFER_ERROR', () => {
+          const error = { message: 'error' };
+          const currentWallet = {
+            address: '',
+            transfering: false,
+            transferError: error.message,
+            lastTransaction: null,
+          };
+          const expected = state
           .set('currentWallet', fromJS(currentWallet));
 
-        expect(walletManagerReducer(state, showDecryptWalletModal())).toEqual(expected);
-      });
-      it('HIDE_DECRYPT_WALLET_MODAL', () => {
-        const currentWallet = {
-          address: '',
-          showDecryptModal: false,
-        };
-        const expected = state
+          expect(walletHocReducer(state, transferError(error))).toEqual(expected);
+        });
+
+        it('SHOW_DECRYPT_WALLET_MODAL', () => {
+          const currentWallet = {
+            address: '',
+            showDecryptModal: true,
+          };
+          const expected = state
           .set('currentWallet', fromJS(currentWallet));
-        expect(walletManagerReducer(state, hideDecryptWalletModal())).toEqual(expected);
+
+          expect(walletHocReducer(state, showDecryptWalletModal())).toEqual(expected);
+        });
+        it('HIDE_DECRYPT_WALLET_MODAL', () => {
+          const currentWallet = {
+            address: '',
+            showDecryptModal: false,
+          };
+          const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+          expect(walletHocReducer(state, hideDecryptWalletModal())).toEqual(expected);
+        });
       });
     });
   });

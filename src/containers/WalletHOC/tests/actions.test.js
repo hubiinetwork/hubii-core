@@ -25,7 +25,7 @@ import {
 
 import getFriendlyError from '../../../helpers/ledger/friendlyErrors';
 
-describe('WalletManager actions', () => {
+describe('WalletHoc actions', () => {
   describe('createNewWallet Action', () => {
     const name = 'Wallet8';
     const mnemonic = 'word word word';

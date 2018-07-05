@@ -35,8 +35,8 @@ export default function WalletHOC(Component) {
 
   const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-  const withReducer = injectReducer({ key: 'walletManager', reducer });
-  const withSaga = injectSaga({ key: 'walletManager', saga });
+  const withReducer = injectReducer({ key: 'walletHoc', reducer });
+  const withSaga = injectSaga({ key: 'walletHoc', saga });
 
   return compose(
     withReducer,

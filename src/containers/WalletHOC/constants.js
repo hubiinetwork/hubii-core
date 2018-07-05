@@ -1,6 +1,6 @@
 /*
  *
- * WalletManager constants
+ * WalletHoc constants
  *
  */
 
