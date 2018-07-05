@@ -13,6 +13,15 @@ import { TabPane } from '../ui/StriimTabs';
  */
 
 export default class ContactHeader extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(value) {
+    this.props.onChange(value);
+  }
+
   render() {
     const {
       title,
@@ -20,7 +29,6 @@ export default class ContactHeader extends React.PureComponent {
       showSearch,
       titleTabs,
       onTabChange,
-      onSearch,
     } = this.props;
     return (
       <StyledDiv>
@@ -39,7 +47,7 @@ export default class ContactHeader extends React.PureComponent {
         )}
         {showSearch ? (
           <Wrapper>
-            <StyledSearch placeholder={placeholder} onSearch={onSearch} />
+            <StyledSearch placeholder={placeholder} onChange={(e) => this.onChange(e.target.value)} />
           </Wrapper>
         ) : null}
       </StyledDiv>
@@ -79,7 +87,7 @@ ContactHeader.propTypes = {
    */
   onTabChange: PropTypes.func,
   /**
-   * Function triggered when enter is pressed in search bar
+   * Function triggered as text is inputted
    */
-  onSearch: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
 };
