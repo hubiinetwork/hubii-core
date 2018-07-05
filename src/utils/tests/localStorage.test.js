@@ -59,7 +59,7 @@ describe('localStorage', () => {
     it('should return wallets with decrypted filtered out', () => {
       const state = fromJS(
         {
-          walletManager: {
+          walletHoc: {
             wallets: {
               software: {
                 wallet1: {
@@ -72,7 +72,7 @@ describe('localStorage', () => {
         }
       );
       const persistedState = filterPersistedState(state);
-      expect(persistedState.getIn(['walletManager', 'wallets', 'software', 'wallet1', 'decrypted'])).toBeNull();
+      expect(persistedState.getIn(['walletHoc', 'wallets', 'software', 'wallet1', 'decrypted'])).toBeNull();
     });
   });
 });
