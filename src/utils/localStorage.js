@@ -14,7 +14,7 @@ export const loadState = () => {
   }
 };
 
-export const saveState = (state) => {
+export const saveState = (state, filterPersistedState) => {
   try {
     const persistedState = filterPersistedState(state);
     const serializedPersistedState = JSON.stringify(persistedState);
