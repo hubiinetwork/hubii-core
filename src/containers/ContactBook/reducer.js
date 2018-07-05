@@ -1,25 +1,22 @@
 /*
  *
- * WalletManager reducer
+ * contacts reducer
  *
  */
 
 import { fromJS } from 'immutable';
 import {
-  LOAD_CONTACTS_SUCCESS,
-  CREATE_CONTACT_SUCCESS,
   REMOVE_CONTACT_SUCCESS,
   EDIT_CONTACT_SUCCESS,
+  CREATE_CONTACT,
 } from './constants';
 
 export const initialState = fromJS([]);
 
 function contactsReducer(state = initialState, action) {
   switch (action.type) {
-    case CREATE_CONTACT_SUCCESS:
+    case CREATE_CONTACT:
       return fromJS([...state.toJS(), action.contactDetails]);
-    case LOAD_CONTACTS_SUCCESS:
-      return fromJS(action.contacts);
     case REMOVE_CONTACT_SUCCESS:
       return fromJS(action.remainingContacts);
     case EDIT_CONTACT_SUCCESS: {

@@ -5,10 +5,7 @@
  */
 
 import {
-  LOAD_CONTACTS,
-  LOAD_CONTACTS_SUCCESS,
   CREATE_CONTACT,
-  CREATE_CONTACT_SUCCESS,
   REMOVE_CONTACT,
   REMOVE_CONTACT_SUCCESS,
   EDIT_CONTACT,
@@ -19,27 +16,6 @@ export function createContact(name, address) {
   return {
     type: CREATE_CONTACT,
     contactDetails: { name, address },
-  };
-}
-
-export function createContactSuccess(name, address) {
-  return {
-    type: CREATE_CONTACT_SUCCESS,
-    contactDetails: { name, address },
-  };
-}
-
-
-export function loadAllContacts() {
-  return {
-    type: LOAD_CONTACTS,
-  };
-}
-
-export function loadAllContactsSucess(contacts) {
-  return {
-    type: LOAD_CONTACTS_SUCCESS,
-    contacts,
   };
 }
 

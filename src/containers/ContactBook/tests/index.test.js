@@ -2,19 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { fromJS } from 'immutable';
 import { ContactBook, mapDispatchToProps } from '../index';
-import { loadAllContacts, removeContact, editContact } from '../actions';
+import { removeContact, editContact } from '../actions';
 
 
 describe('<ContactBook />', () => {
   describe('mapDispatchToProps', () => {
-    describe('loadAllContacts', () => {
-      it('should call dispatch', () => {
-        const dispatch = jest.fn();
-        const result = mapDispatchToProps(dispatch);
-        result.loadAllContacts();
-        expect(dispatch).toHaveBeenCalledWith(loadAllContacts());
-      });
-    });
     describe('removeContact', () => {
       it('should call dispatch', () => {
         const dispatch = jest.fn();
@@ -44,7 +36,6 @@ describe('<ContactBook />', () => {
         address: '0x123123123',
       },
     ]),
-    loadAllContacts: jest.fn(),
     removeContact: jest.fn(),
     editContact: jest.fn(),
   };
@@ -70,13 +61,6 @@ describe('<ContactBook />', () => {
     });
   });
   describe('methods in <ContactBook />', () => {
-    describe('componentDidMount', () => {
-      it('should loadAllContacts action', () => {
-        instance.componentDidMount();
-        expect(params.loadAllContacts).toBeCalled();
-      });
-    });
-
     describe('onDelete', () => {
       it('should execute onDelete action', () => {
         const data = {

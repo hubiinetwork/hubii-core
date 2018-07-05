@@ -16,11 +16,14 @@ import ContactList from 'components/ContactList';
 import ContactHeader from 'components/ContactHeader';
 import injectSaga from 'utils/injectSaga';
 import saga from './saga';
-import { loadAllContacts, removeContact, editContact } from './actions';
+import { removeContact, editContact } from './actions';
 import { makeSelectContacts } from './selectors';
 
 import {
   Wrapper,
+  Border,
+  InnerWrapper1,
+  InnerWrapper2,
 } from './index.style';
 
 export class ContactBook extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -36,10 +39,6 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
 
     this.filterSearchText = this.filterSearchText.bind(this);
     this.onDelete = this.onDelete.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.loadAllContacts();
   }
 
   onDelete(data) {
@@ -66,37 +65,34 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
         </Helmet>
 
         <Wrapper>
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <div style={{ color: 'white', minWidth: '30rem' }}>
-              <ContactHeader
-                title={'Recent Contacts'}
-                showSearch
-                onChange={((value) => this.setState({ recentFilterText: value }))}
+          <InnerWrapper1>
+            <ContactHeader
+              title={'Recent Contacts'}
+              showSearch
+              onChange={((value) => this.setState({ recentFilterText: value }))}
+            />
+            <Border contactsLength={contacts.length}>
+              <ContactList
+                data={this.filterSearchText(contacts || [], 'recentFilterText')}
+                onEdit={(newContact, oldContact) => this.props.editContact(newContact, oldContact)}
+                onDelete={(contact) => this.props.removeContact(contact)}
               />
-              <div style={{ borderRight: 'solid 1px #43616F ', marginTop: contacts.length ? '1rem' : '2rem' }}>
-                <ContactList
-                  data={this.filterSearchText(contacts || [], 'recentFilterText')}
-                  onEdit={(newContact, oldContact) => this.props.editContact(newContact, oldContact)}
-                  onDelete={(contact) => this.props.removeContact(contact)}
-                />
-
-              </div>
-            </div>
-            <div style={{ color: 'white', minWidth: '30rem', marginLeft: '1rem' }}>
-              <ContactHeader
-                title={'All Contacts'}
-                showSearch
-                onChange={((value) => this.setState({ fullFilterText: value }))}
+            </Border>
+          </InnerWrapper1>
+          <InnerWrapper2>
+            <ContactHeader
+              title={'All Contacts'}
+              showSearch
+              onChange={((value) => this.setState({ fullFilterText: value }))}
+            />
+            <Border contactsLength={contacts.length}>
+              <ContactList
+                data={this.filterSearchText(contacts || [], 'fullFilterText')}
+                onEdit={(newContact, oldContact) => this.props.editContact(newContact, oldContact)}
+                onDelete={(data) => this.props.removeContact(data)}
               />
-              <div style={{ borderRight: 'solid 1px #43616F ', marginTop: contacts.length ? '1rem' : '2rem' }}>
-                <ContactList
-                  data={this.filterSearchText(contacts || [], 'fullFilterText')}
-                  onEdit={(newContact, oldContact) => this.props.editContact(newContact, oldContact)}
-                  onDelete={(data) => this.props.removeContact(data)}
-                />
-              </div>
-            </div>
-          </div>
+            </Border>
+          </InnerWrapper2>
         </Wrapper>
       </div>
     );
@@ -107,7 +103,6 @@ ContactBook.propTypes = {
   contacts: PropTypes.oneOfType(
     [PropTypes.arrayOf(PropTypes.object), PropTypes.object]
   ),
-  loadAllContacts: PropTypes.func,
   removeContact: PropTypes.func,
   editContact: PropTypes.func,
 };
@@ -118,7 +113,6 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    loadAllContacts: (...args) => dispatch(loadAllContacts(...args)),
     removeContact: (...args) => dispatch(removeContact(...args)),
     editContact: (...args) => dispatch(editContact(...args)),
   };

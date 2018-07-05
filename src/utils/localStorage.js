@@ -48,10 +48,11 @@ export const filterPersistedState = (state) => {
   const sanitizedSoftwareWallets = state
     .getIn(['walletManager', 'wallets', 'software'])
     .map(((w) => w.set('decrypted', null)));
-
   // Save sanitized software wallets to the persisted state
   persistedState = persistedState
     .setIn(['walletManager', 'wallets', 'software'], sanitizedSoftwareWallets);
 
+  persistedState = persistedState
+    .set('contacts', state.get('contacts'));
   return persistedState;
 };

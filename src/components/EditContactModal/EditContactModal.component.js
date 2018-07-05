@@ -14,7 +14,7 @@ import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
  * Modal component for editing a contact.
  */
 
-class EditContactModal extends React.Component {
+export class EditContactModal extends React.Component {
   constructor(props) {
     super(props);
     this.handleEdit = this.handleEdit.bind(this);
@@ -128,5 +128,4 @@ EditContactModal.propTypes = {
 };
 
 export default Form.create()(EditContactModal);
-export { EditContactModal }
-;
+

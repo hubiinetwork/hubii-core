@@ -1,18 +1,12 @@
 import {
   createContact,
-  createContactSuccess,
-  loadAllContacts,
-  loadAllContactsSucess,
   removeContact,
   removeContactSuccess,
   editContact,
   editContactSuccess } from '../actions';
 
 import {
-  LOAD_CONTACTS,
-  LOAD_CONTACTS_SUCCESS,
   CREATE_CONTACT,
-  CREATE_CONTACT_SUCCESS,
   REMOVE_CONTACT,
   REMOVE_CONTACT_SUCCESS,
   EDIT_CONTACT,
@@ -30,48 +24,6 @@ describe('ContactBook actions', () => {
         contactDetails: { name, address },
       };
       expect(createContact(name, address)).toEqual(expected);
-    });
-  });
-
-  describe('createContactSuccess Action', () => {
-    it('has the correct type and passes the contact', () => {
-      const name = 'mike';
-      const address = '0x324234';
-
-      const expected = {
-        type: CREATE_CONTACT_SUCCESS,
-        contactDetails: { name, address },
-      };
-      expect(createContactSuccess(name, address)).toEqual(expected);
-    });
-  });
-
-  describe('loadAllContacts Action', () => {
-    it('has the correct type', () => {
-      const expected = {
-        type: LOAD_CONTACTS,
-      };
-      expect(loadAllContacts()).toEqual(expected);
-    });
-  });
-
-  describe('loadAllContactsSucess Action', () => {
-    it('has the correct type and passes the contacts to be loaded', () => {
-      const contacts = [
-        {
-          name: 'mike',
-          address: '0x324234',
-        },
-        {
-          name: 'john',
-          address: '0x234234',
-        },
-      ];
-      const expected = {
-        type: LOAD_CONTACTS_SUCCESS,
-        contacts,
-      };
-      expect(loadAllContactsSucess(contacts)).toEqual(expected);
     });
   });
 
