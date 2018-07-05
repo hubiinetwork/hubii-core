@@ -10,8 +10,8 @@ export default class CandleStickChart extends React.Component {
     };
   }
   componentDidMount() {
-    // setInterval(() => this.updateData(), 1000);
-    this.updateData();
+    setInterval(() => this.updateData(), 1000);
+    // this.updateData();
   }
   updateData() {
     console.log('api called');
@@ -103,10 +103,10 @@ export default class CandleStickChart extends React.Component {
         },
         plotOptions: {
           candlestick: {
-            color: 'green',
+            // color: 'green',
           },
           column: {
-            color: 'red',
+            // color: 'red',
           },
         },
 

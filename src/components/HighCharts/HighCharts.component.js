@@ -50,7 +50,7 @@ const DepthChart = () => {
       {
         name: 'BTC',
         color: {
-          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1.1 },
+          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
           stops: [
              [0, 'grey'],
              [1, '#FF5A5A'],
@@ -75,7 +75,7 @@ const DepthChart = () => {
       }, {
         name: 'Hubii',
         color: {
-          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1.1 },
+          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
           stops: [
              [0, 'grey'],
              [1, '#78B214'],
