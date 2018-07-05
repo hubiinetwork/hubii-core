@@ -7,6 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import { Route, Redirect } from 'react-router';
 import WalletHeader from 'components/WalletHeader';
 import { getTotalUSDValue } from 'utils/wallet';
+import WalletTransactions from 'containers/WalletTransactions';
 import WalletTransfer from 'containers/WalletTransfer';
 import {
   makeSelectWalletList,
@@ -72,7 +73,7 @@ export class WalletDetails extends React.PureComponent {
             }
             key={`${match.url}/overview`}
           >
-            {/* <Route path={`${match.url}/overview`} component={WalletsOverview} /> */}
+            <Route path={`${match.url}/overview`} component={WalletTransactions} />
           </TabPane>
           <TabPane
             tab={
