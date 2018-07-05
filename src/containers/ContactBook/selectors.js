@@ -10,7 +10,6 @@ const makeSelectContacts = () => createSelector(
   (contactsDomain) => contactsDomain
 );
 
-
 export {
   makeSelectContacts,
   selectContactsDomain,

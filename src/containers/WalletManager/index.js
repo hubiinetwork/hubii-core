@@ -17,7 +17,6 @@ import { makeSelectContacts } from 'containers/ContactBook/selectors';
 import { createNewWallet } from 'containers/WalletHOC/actions';
 import { makeSelectLoading, makeSelectErrors } from 'containers/WalletHOC/selectors';
 import { createContact, removeContact } from '../ContactBook/actions';
-// import DeleteContactModal from '../../components/DeleteContactModal';
 
 import {
   Wrapper,
@@ -98,22 +97,8 @@ export class WalletManager extends React.PureComponent {
   render() {
     const { history, match, contacts } = this.props;
 
-    // let deleteContact;
-    // if (history.location.pathname !== `${match.url}/overview`) {
-    //   deleteContact =
-    //     (<StyledButton type="primary" onClick={() => this.showModal('deleteContact')} style={{ marginRight: '2rem' }}>
-    //       <Icon type="delete" />
-    //       Delete Contact
-    //     </StyledButton>);
-    // }
     let modal;
     switch (this.state.type) {
-      // case 'deleteContact':
-      //   modal = (<DeleteContactModal
-      //     onDelete={(contact) => this.onDeleteContact(contact)}
-      //     contacts={contacts.toJS()}
-      //   />);
-      //   break;
       case 'addContact':
         modal = (<AddNewContactModal
           onSubmit={(e) => this.onSubmit(e)}
@@ -141,7 +126,6 @@ export class WalletManager extends React.PureComponent {
                 ? 'Add / Restore Wallet'
                 : 'Add New Contact'}
             </StyledButton>
-            {/* {deleteContact} */}
             <Modal
               footer={null}
               width={'585px'}
