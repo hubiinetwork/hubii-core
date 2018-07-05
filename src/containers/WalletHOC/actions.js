@@ -35,7 +35,7 @@ import {
   TRANSACTION_CONFIRMED,
 } from './constants';
 
-import getFriendlyError from '../../helpers/ledger/friendlyErrors';
+import getFriendlyError from '../../utils/ledger/friendlyErrors';
 
 export function createNewWallet(name, mnemonic, derivationPath, password) {
   return {

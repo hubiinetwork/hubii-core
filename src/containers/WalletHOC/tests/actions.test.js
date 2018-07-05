@@ -23,7 +23,7 @@ import {
   LEDGER_ERROR,
 } from '../constants';
 
-import getFriendlyError from '../../../helpers/ledger/friendlyErrors';
+import getFriendlyError from '../../../utils/ledger/friendlyErrors';
 
 describe('WalletHoc actions', () => {
   describe('createNewWallet Action', () => {

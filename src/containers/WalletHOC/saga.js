@@ -7,7 +7,7 @@ import { notify } from 'containers/App/actions';
 
 import request from '../../utils/request';
 import { ERC20ABI, EthNetworkProvider } from '../../utils/wallet';
-import LedgerTransport from '../../helpers/ledger/Transport';
+import LedgerTransport from '../../utils/ledger/Transport';
 
 import { makeSelectWalletList, makeSelectCurrentWalletDetails } from './selectors';
 
