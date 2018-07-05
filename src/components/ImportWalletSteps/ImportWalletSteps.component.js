@@ -12,6 +12,7 @@ import {
 import DerivationPath from "./DerivationPath";
 import ImportWallet from './ImportWallet';
 import ImportWalletNameForm from './ImportWalletNameForm';
+import ImportWalletPasswordForm from './ImportWalletPasswordForm';
 import FormSteps from '../FormSteps';
 
 const paths = [
@@ -95,16 +96,71 @@ export default class ImportWalletSteps extends React.Component {
         return this.props.handleSubmit(data);
       }
       if (current === 0) {
-        const selectedWallet = this.searchSRC(stepData.coin, wallets);
+        const selectedWallet = this.searchSRC(stepData.walletType, wallets);
         return { data, current: current + 1, selectedWallet };
       }
       return { data, current: current + 1 };
     });
   }
 
+  getSteps () {
+    const {selectedWallet} = this.state
+    const {wallets} = this.props
+    const steps = [
+      {
+        title: 'First',
+        content: (
+          <ImportWallet
+            handleNext={this.handleNext}
+            wallets={wallets}
+          />
+        ),
+      },
+    ];
+    const stepTypes = {
+      ledger: [
+        {
+          title: 'Second',
+          content: (
+            <DerivationPath
+            walletName={'selectedWallet'}
+            paths={paths}
+            addresses={addressData}
+            handleBack={this.handleBack}
+            handleNext={this.handleNext}
+          />
+            ),
+        },
+        {
+          title: 'Last',
+          content: (
+            <ImportWalletNameForm
+              wallet={selectedWallet}
+              handleBack={this.handleBack}
+              handleNext={this.handleNext}
+            />
+          ),
+        },
+      ],
+      metamask: [
+        {
+          title: 'Last',
+          content: (
+            <ImportWalletPasswordForm
+              wallet={selectedWallet}
+              handleBack={this.handleBack}
+              handleNext={this.handleNext}
+            />
+          ),
+        },
+      ]
+    }
+    return steps.concat(stepTypes[selectedWallet.name || 'metamask'])
+  }
+
   render() {
-    const { current, data, selectedWallet } = this.state;
-    const { onBackIcon, wallets } = this.props;
+    const { current, data} = this.state;
+    const { onBackIcon, } = this.props;
     const FormNavigation = (
       <Between>
         <Flex>
@@ -118,39 +174,7 @@ export default class ImportWalletSteps extends React.Component {
         </div>
       </Between>
     );
-    const steps = [
-      {
-        title: 'First',
-        content: (
-          <ImportWallet
-            handleNext={this.handleNext}
-            wallets={wallets}
-          />
-        ),
-      },
-      {
-        title: 'Second',
-        content: (
-          <DerivationPath
-          walletName={'selectedWallet'}
-          paths={paths}
-          addresses={addressData}
-          handleBack={this.handleBack}
-          handleNext={this.handleNext}
-        />
-          ),
-      },
-      {
-        title: 'Last',
-        content: (
-          <ImportWalletNameForm
-            wallet={selectedWallet}
-            handleBack={this.handleBack}
-            handleNext={this.handleNext}
-          />
-        ),
-      },
-    ];
+    const steps = this.getSteps()
     return (
       <FormSteps steps={steps} currentStep={current} beforeContent={FormNavigation} />
     );

@@ -126,7 +126,20 @@ export default class AddRestoreWalletModal extends React.PureComponent {
         )}
         {type === 'import' && (
           <div>
-            <ImportWalletSteps />
+            <ImportWalletSteps
+              wallets={[
+                {
+                  src:
+                    'https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png',
+                  name: 'ledger',
+                },
+                {
+                  src: 'https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png',
+                  name: 'metamask',
+                },
+              ]}
+              onBackIcon={() => this.switchModals('main')}
+            />
           </div>
         )}
       </div>

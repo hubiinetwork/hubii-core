@@ -14,25 +14,25 @@ class ImportWallet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentCoin: '',
+      walletType: '',
     };
     this.onChange = this.onChange.bind(this);
     this.handleNext = this.handleNext.bind(this);
   }
 
   onChange(e) {
-    this.setState({ currentCoin: e.target.value });
+    this.setState({ walletType: e.target.value });
   }
 
   handleNext(e) {
     const { handleNext } = this.props;
-    const { currentCoin } = this.state;
+    const { walletType } = this.state;
     e.preventDefault();
-    handleNext({ coin: currentCoin });
+    handleNext({ walletType });
   }
 
   render() {
-    const { currentCoin } = this.state;
+    const { walletType } = this.state;
     return (
       <div>
         <Coins onChange={this.onChange}>
@@ -45,7 +45,7 @@ class ImportWallet extends React.Component {
           ))}
         </Coins>
         <ButtonDiv>
-          <StyledButton type={'primary'} disabled={currentCoin === ''} onClick={this.handleNext}>
+          <StyledButton type={'primary'} disabled={walletType === ''} onClick={this.handleNext}>
             <StyledSpan>Next</StyledSpan>
           </StyledButton>
         </ButtonDiv>
