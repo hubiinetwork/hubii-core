@@ -11,7 +11,7 @@ import Tab from 'components/ui/Tab';
 import AddRestoreWalletModal from 'components/AddRestoreWalletModal';
 import { Modal } from 'components/ui/Modal';
 
-import { createNewWallet } from 'containers/WalletHOC/actions';
+import { createNewWallet, createWalletFromPrivateKey } from 'containers/WalletHOC/actions';
 import { makeSelectLoading, makeSelectErrors } from 'containers/WalletHOC/selectors';
 
 import {
@@ -35,6 +35,7 @@ export class WalletManager extends React.PureComponent {
     this.hideModal = this.hideModal.bind(this);
     this.showModal = this.showModal.bind(this);
     this.handleAddWalletSubmit = this.handleAddWalletSubmit.bind(this);
+    this.handleImportWalletSubmit = this.handleImportWalletSubmit.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -68,6 +69,14 @@ export class WalletManager extends React.PureComponent {
     this.props.createNewWallet(params.name, params.mnemonic, params.derivationPath, params.password);
   }
 
+  handleImportWalletSubmit(data) {
+    if (data[0].walletType === 'metamask') {
+      const { privateKey, name, password } = data[1];
+      this.props.createWalletFromPrivateKey(privateKey, name, password);
+    }
+    // console.log(data)
+  }
+
   render() {
     const { history, match } = this.props;
     return (
@@ -94,6 +103,7 @@ export class WalletManager extends React.PureComponent {
               <AddRestoreWalletModal
                 goBack={this.state.visible}
                 handleAddWalletSubmit={this.handleAddWalletSubmit}
+                handleImportWalletSubmit={this.handleImportWalletSubmit}
               />
             </Modal>
           </WalletsTabHeader>
@@ -133,6 +143,7 @@ WalletManager.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   createNewWallet: PropTypes.func.isRequired,
+  createWalletFromPrivateKey: PropTypes.func.isRequired,
   loading: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 };
@@ -145,6 +156,7 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     createNewWallet: (...args) => dispatch(createNewWallet(...args)),
+    createWalletFromPrivateKey: (...args) => dispatch(createWalletFromPrivateKey(...args)),
   };
 }
 

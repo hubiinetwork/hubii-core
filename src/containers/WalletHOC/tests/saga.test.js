@@ -13,6 +13,7 @@ import { notify } from 'containers/App/actions';
 
 import walletManager, {
   createWallet,
+  createWalletFromPrivateKey,
   decryptWallet,
   loadWalletBalancesSaga,
   initWalletsBalances,
@@ -24,6 +25,7 @@ import {
   DECRYPT_WALLET,
   LOAD_WALLET_BALANCES,
   LOAD_WALLETS_SUCCESS,
+  CREATE_NEW_WALLET_SUCCESS,
 } from '../constants';
 
 import {
@@ -39,6 +41,7 @@ import {
   transferError,
   transactionConfirmed as transactionConfirmedAction,
   transfer as transferAction,
+  createWalletFromPrivateKey as createWalletFromPrivateKeyAction,
 } from '../actions';
 
 describe('createWallet saga', () => {
@@ -112,6 +115,40 @@ describe('createWallet saga', () => {
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invalid param');
     expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+  });
+
+  describe('create wallet by private key', () => {
+    const privateKey = '0x409300caf64bdf96a92d7f99547a5d67702fbdd759bbea4ca19b11a21d9c8528';
+    const encrypted = '{"address":"a0eccd7605bb117dd2a4cd55979c720cf00f7fa4","id":"72b4922e-3785-4f0d-8c8c-b18c45ee431a","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"673d20bb45325d1f9cff0803b6fc9bd4"},"ciphertext":"6d72b87ed428d191730880ec10b24e10024d6fcccc51d0d306a111af35d9e557","kdf":"scrypt","kdfparams":{"salt":"1b62a7c98ca890b8f87a8dc06d958a8361057e2739f865691e6fb19c969f9d0c","n":131072,"dklen":32,"p":1,"r":8},"mac":"56569c22a1008b6a55e15758a4d3165bf1dbbdd3cb525ba42a0ee444394f1993"}}';
+    const pwd = 'test';
+    it('should dispatch createNewWalletSuccess', async () => expectSaga(walletManager, { privateKey, name, password: pwd })
+        .provide({
+          call() {
+            return encrypted;
+          },
+        })
+        .put.like({
+          action: {
+            type: CREATE_NEW_WALLET_SUCCESS,
+            name,
+            newWallet: {
+              encrypted,
+            },
+          },
+        })
+        .dispatch(createWalletFromPrivateKeyAction(privateKey, name, pwd))
+        .run({ silenceTimeout: true }));
+    describe('exceptions', () => {
+      it('when private key is invalid', () => expectSaga(createWalletFromPrivateKey, { privateKey: null, name, password: pwd })
+          .put(createNewWalletFailed(new Error('invalid param')))
+          .run({ silenceTimeout: true }));
+      it('when name is not given', () => expectSaga(createWalletFromPrivateKey, { privateKey, name: null, password: pwd })
+          .put(createNewWalletFailed(new Error('invalid param')))
+          .run({ silenceTimeout: true }));
+      it('when password is not given', () => expectSaga(createWalletFromPrivateKey, { privateKey, name, password: null })
+          .put(createNewWalletFailed(new Error('invalid param')))
+          .run({ silenceTimeout: true }));
+    });
   });
 });
 

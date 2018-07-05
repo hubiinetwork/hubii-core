@@ -6,6 +6,7 @@
 
 import {
   CREATE_NEW_WALLET,
+  IMPORT_WALLET_BY_PRIVATE_KEY,
   CREATE_NEW_WALLET_FAILURE,
   CREATE_NEW_WALLET_SUCCESS,
   DECRYPT_WALLET,
@@ -33,6 +34,15 @@ export function createNewWallet(name, mnemonic, derivationPath, password) {
     name,
     mnemonic,
     derivationPath,
+    password,
+  };
+}
+
+export function createWalletFromPrivateKey(privateKey, name, password) {
+  return {
+    type: IMPORT_WALLET_BY_PRIVATE_KEY,
+    privateKey,
+    name,
     password,
   };
 }

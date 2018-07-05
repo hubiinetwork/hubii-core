@@ -57,10 +57,26 @@ class ImportWalletNameForm extends React.Component {
                 </StyledModalFormLabel>
               }
             >
-              {getFieldDecorator('Name', {
+              {getFieldDecorator('name', {
                 rules: [
                   {
                     message: 'Name is required.',
+                    required: true,
+                  },
+                ],
+              })(<ModalFormInput />)}
+            </ModalFormItem>
+            <ModalFormItem
+              label={
+                <StyledModalFormLabel>
+                  Wallet Private Key
+                </StyledModalFormLabel>
+              }
+            >
+              {getFieldDecorator('privateKey', {
+                rules: [
+                  {
+                    message: 'Private Key is required.',
                     required: true,
                   },
                 ],

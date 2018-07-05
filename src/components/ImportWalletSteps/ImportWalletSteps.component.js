@@ -92,7 +92,8 @@ export default class ImportWalletSteps extends React.Component {
     this.setState((prev) => {
       const { data, current } = prev;
       data[current] = stepData;
-      if (current === 2) {
+      const steps = this.getSteps()
+      if (current === steps.length - 1) {
         return this.props.handleSubmit(data);
       }
       if (current === 0) {

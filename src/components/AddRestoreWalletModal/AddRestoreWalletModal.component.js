@@ -139,6 +139,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
                 },
               ]}
               onBackIcon={() => this.switchModals('main')}
+              handleSubmit={this.props.handleImportWalletSubmit}
             />
           </div>
         )}
@@ -151,4 +152,5 @@ AddRestoreWalletModal.propTypes = {
    * Callback  function triggered when modal is closed.
    */
   handleAddWalletSubmit: PropTypes.func,
+  handleImportWalletSubmit: PropTypes.func,
 };
