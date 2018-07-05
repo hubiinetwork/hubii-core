@@ -10,8 +10,8 @@ export default class CandleStickChart extends React.Component {
     };
   }
   componentDidMount() {
-    setInterval(() => this.updateData(), 1000);
-    // this.updateData();
+    // setInterval(() => this.updateData(), 1000);
+    this.updateData();
   }
   updateData() {
     console.log('api called');
@@ -47,7 +47,6 @@ export default class CandleStickChart extends React.Component {
 
   // get timestamp
         date = new Date(date.join('-')).getTime();
-
         ohlc.push([
           date, // the date
           data[i].open, // open
@@ -62,6 +61,32 @@ export default class CandleStickChart extends React.Component {
         ]);
       }
       const config = {
+        chart: {
+          events: {
+            load() {
+                  // set up the updating of the chart each second
+              const series = this.series[0];
+              const columnSeries = this.series[1];
+              // debugger;
+              setInterval(() => {
+                const time = Date.now();
+                const point = [
+                  time,
+                  Math.round(Math.random() * 20000),
+                  Math.round(Math.random() * 20000),
+                  Math.round(Math.random() * 20000),
+                  Math.round(Math.random() * 20000)];
+                // console.log('point', point);
+                series.addPoint(point, true, true);
+                const columnPoint = [
+                  time,
+                  Math.round(Math.random() * 18000000000) + 5000000,
+                ];
+                columnSeries.addPoint(columnPoint, true, true);
+              }, 2000);
+            },
+          },
+        },
 
         rangeSelector: {
           selected: 1,
