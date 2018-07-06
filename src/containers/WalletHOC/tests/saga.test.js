@@ -1,50 +1,50 @@
 /**
- * WalletManager sagas
+ * WalletHoc sagas
  */
 
 /* eslint-disable redux-saga/yield-effects */
 import { takeEvery, put } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
-import { fromJS } from 'immutable';
 import request from 'utils/request';
 import { Wallet, utils } from 'ethers';
-
+import walletHocReducer from 'containers/WalletHOC/reducer';
+import { fromJS } from 'immutable';
 import { notify } from 'containers/App/actions';
 
-import walletManager, {
-  createWallet,
+import walletHoc, {
+  createWalletFromMnemonic,
+  createWalletFromPrivateKey,
   decryptWallet,
-  cacheNewWallet,
-  loadWallets,
   loadWalletBalancesSaga,
   initWalletsBalances,
   transfer,
 } from '../saga';
 
 import {
-  CREATE_NEW_WALLET,
+  CREATE_WALLET_FROM_MNEMONIC,
   DECRYPT_WALLET,
-  CREATE_NEW_WALLET_SUCCESS,
-  LOAD_WALLETS,
   LOAD_WALLET_BALANCES,
   LOAD_WALLETS_SUCCESS,
+  CREATE_WALLET_SUCCESS,
 } from '../constants';
 
 import {
-  createNewWalletSuccess,
-  createNewWalletFailed,
+  createWalletSuccess,
+  createWalletFailed,
   decryptWalletSuccess,
   decryptWalletFailed,
   showDecryptWalletModal,
-  loadWalletsSuccess,
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
   transferSuccess,
   transferError,
+  transactionConfirmed as transactionConfirmedAction,
+  transfer as transferAction,
+  createWalletFromPrivateKey as createWalletFromPrivateKeyAction,
 } from '../actions';
 
-describe('createWallet saga', () => {
+describe('createWalletFromMnemonic saga', () => {
   let mnemonic = 'movie viable write punch mango arrest cotton page grass dad document practice';
   let derivationPath = 'm/44\'/60\'/0\'/0/0';
   const decryptedWallet = Wallet.fromMnemonic(mnemonic, derivationPath);
@@ -58,63 +58,97 @@ describe('createWallet saga', () => {
     encryptedWallet = '{"address":"a0eccd7605bb117dd2a4cd55979c720cf00f7fa4","id":"f17128a6-c5f0-4af0-a168-67cf6d3d8552","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"6167c13fe3cd195b4ce9312a9f9399ce"},"ciphertext":"2434b52afa29851edea2acb7f33dd854fc7e7b036ad6a2c3614f3d61ef0e19ce","kdf":"scrypt","kdfparams":{"salt":"b0662c8968389207137be9f346fb1cfba604f9d214e95012881025b7ebc5b9da","n":131072,"dklen":32,"p":1,"r":8},"mac":"256bd09baf3341e9f7df675b8a8cc551b86dfd0dfdf1aa8df2596882f3751496"},"x-ethers":{"client":"ethers.js","gethFilename":"UTC--2018-06-19T04-19-27.0Z--a0eccd7605bb117dd2a4cd55979c720cf00f7fa4","mnemonicCounter":"20da552ff9e584fc89194af19543a096","mnemonicCiphertext":"ff46b728607532d5be86a0647b169a18","version":"0.1"}}';
   });
 
-  it('should dispatch the createNewWalletSuccess action if successful', () => {
-    const createWalletGenerator = createWallet({ name, mnemonic, derivationPath, password });
+  it('should dispatch the createWalletSuccess action if successful', () => {
+    const createWalletGenerator = createWalletFromMnemonic({ name, mnemonic, derivationPath, password });
     createWalletGenerator.next();
     const putDescriptor = createWalletGenerator.next(encryptedWallet).value;
-    expect(JSON.stringify(putDescriptor)).toEqual(JSON.stringify(put(createNewWalletSuccess(name, encryptedWallet, decryptedWallet))));
+    expect(JSON.stringify(putDescriptor)).toEqual(JSON.stringify(put(createWalletSuccess(name, encryptedWallet, decryptedWallet))));
   });
 
-  it('should dispatch the createNewWalletFailed action if bad mnemonic', () => {
+  it('should dispatch the createWalletFailed action if bad mnemonic', () => {
     mnemonic = 'rubbish';
-    const createWalletGenerator = createWallet({ name, mnemonic, derivationPath, password });
+    const createWalletGenerator = createWalletFromMnemonic({ name, mnemonic, derivationPath, password });
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invalid mnemonic');
-    expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+    expect(putDescriptor).toEqual(put(createWalletFailed(error)));
   });
 
-  it('should dispatch the createNewWalletFailed action if bad derivationPath', () => {
+  it('should dispatch the createWalletFailed action if bad derivationPath', () => {
     derivationPath = 'm/0.0';
-    const createWalletGenerator = createWallet({ name, mnemonic, derivationPath, password });
+    const createWalletGenerator = createWalletFromMnemonic({ name, mnemonic, derivationPath, password });
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invlaid path component - 0.0');
-    expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+    expect(putDescriptor).toEqual(put(createWalletFailed(error)));
   });
 
-  it('should dispatch the createNewWalletFailed action if invalid mnemonic password', () => {
+  it('should dispatch the createWalletFailed action if invalid mnemonic password', () => {
     mnemonic = 'rubbish';
-    const createWalletGenerator = createWallet({ name, mnemonic, derivationPath, password });
+    const createWalletGenerator = createWalletFromMnemonic({ name, mnemonic, derivationPath, password });
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invalid mnemonic');
-    expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+    expect(putDescriptor).toEqual(put(createWalletFailed(error)));
   });
 
-  it('should dispatch createNewWalletFailed action if name is undefined', () => {
-    const createWalletGenerator = createWallet({ mnemonic, derivationPath, password });
+  it('should dispatch createWalletFailed action if name is undefined', () => {
+    const createWalletGenerator = createWalletFromMnemonic({ mnemonic, derivationPath, password });
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invalid param');
-    expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+    expect(putDescriptor).toEqual(put(createWalletFailed(error)));
   });
 
-  it('should dispatch createNewWalletFailed action if mnemonic is undefined', () => {
-    const createWalletGenerator = createWallet({ name, derivationPath, password });
+  it('should dispatch createWalletFailed action if mnemonic is undefined', () => {
+    const createWalletGenerator = createWalletFromMnemonic({ name, derivationPath, password });
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invalid param');
-    expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+    expect(putDescriptor).toEqual(put(createWalletFailed(error)));
   });
 
-  it('should dispatch createNewWalletFailed action if derivationPath is undefined', () => {
-    const createWalletGenerator = createWallet({ mnemonic, name, password });
+  it('should dispatch createWalletFailed action if derivationPath is undefined', () => {
+    const createWalletGenerator = createWalletFromMnemonic({ mnemonic, name, password });
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invalid param');
-    expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+    expect(putDescriptor).toEqual(put(createWalletFailed(error)));
   });
 
-  it('should dispatch createNewWalletFailed action if password is undefined', () => {
-    const createWalletGenerator = createWallet({ mnemonic, name, derivationPath });
+  it('should dispatch createWalletFailed action if password is undefined', () => {
+    const createWalletGenerator = createWalletFromMnemonic({ mnemonic, name, derivationPath });
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invalid param');
-    expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+    expect(putDescriptor).toEqual(put(createWalletFailed(error)));
+  });
+
+  describe('create wallet by private key', () => {
+    const privateKey = '0x409300caf64bdf96a92d7f99547a5d67702fbdd759bbea4ca19b11a21d9c8528';
+    const encrypted = '{"address":"a0eccd7605bb117dd2a4cd55979c720cf00f7fa4","id":"72b4922e-3785-4f0d-8c8c-b18c45ee431a","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"673d20bb45325d1f9cff0803b6fc9bd4"},"ciphertext":"6d72b87ed428d191730880ec10b24e10024d6fcccc51d0d306a111af35d9e557","kdf":"scrypt","kdfparams":{"salt":"1b62a7c98ca890b8f87a8dc06d958a8361057e2739f865691e6fb19c969f9d0c","n":131072,"dklen":32,"p":1,"r":8},"mac":"56569c22a1008b6a55e15758a4d3165bf1dbbdd3cb525ba42a0ee444394f1993"}}';
+    const pwd = 'test';
+    it('should dispatch createWalletSuccess', async () => expectSaga(walletHoc, { privateKey, name, password: pwd })
+        .provide({
+          call() {
+            return encrypted;
+          },
+        })
+        .put.like({
+          action: {
+            type: CREATE_WALLET_SUCCESS,
+            name,
+            newWallet: {
+              encrypted,
+            },
+          },
+        })
+        .dispatch(createWalletFromPrivateKeyAction(privateKey, name, pwd))
+        .run({ silenceTimeout: true }));
+    describe('exceptions', () => {
+      it('when private key is invalid', () => expectSaga(createWalletFromPrivateKey, { privateKey: null, name, password: pwd })
+          .put(createWalletFailed(new Error('invalid param')))
+          .run({ silenceTimeout: true }));
+      it('when name is not given', () => expectSaga(createWalletFromPrivateKey, { privateKey, name: null, password: pwd })
+          .put(createWalletFailed(new Error('invalid param')))
+          .run({ silenceTimeout: true }));
+      it('when password is not given', () => expectSaga(createWalletFromPrivateKey, { privateKey, name, password: null })
+          .put(createWalletFailed(new Error('invalid param')))
+          .run({ silenceTimeout: true }));
+    });
   });
 });
 
@@ -162,85 +196,6 @@ describe('decryptWallet saga', () => {
 });
 
 describe('load wallets saga', () => {
-  let localStorageMock;
-  beforeEach(() => {
-    localStorageMock = {
-      getItem: jest.fn(),
-      setItem: jest.fn(),
-      clear: jest.fn(),
-    };
-    global.localStorage = localStorageMock;
-  });
-
-  it('#cacheNewWallet with null value in localStorage', () => {
-    const existingWallets = null;
-    localStorage.getItem.mockReturnValueOnce(existingWallets);
-    const walletName = 'test';
-    const newWallet = { encrypted: '{"address": "abcd"}' };
-
-    cacheNewWallet({ name: walletName, newWallet });
-
-    const expectedWallets = { software: { test: { encrypted: newWallet.encrypted } }, hardware: {} };
-    expect(localStorage.setItem).toBeCalledWith('wallets', JSON.stringify(expectedWallets));
-  });
-
-  it('#cacheNewWallet with valid json string in localStorage', () => {
-    const existingWallets = { software: { test: {}, test2: {} }, hardware: {} };
-    localStorage.getItem.mockReturnValueOnce(JSON.stringify(existingWallets));
-    const walletName = 'test';
-    const newWallet = { encrypted: '{"address": "abcd"}' };
-
-    cacheNewWallet({ name: walletName, newWallet });
-
-    const expectedWallets = Object.assign({}, existingWallets);
-    expectedWallets.software.test.encrypted = newWallet.encrypted;
-    expect(localStorage.setItem).toBeCalledWith('wallets', JSON.stringify(expectedWallets));
-  });
-
-  it('#cacheNewWallet with invalid json string in localStorage', () => {
-    localStorage.getItem.mockReturnValueOnce('invalid json string');
-    const walletName = 'test';
-    const newWallet = { encrypted: '{"address": "abcd"}' };
-
-    cacheNewWallet({ name: walletName, newWallet });
-
-    const expectedWallets = { software: { test: { encrypted: newWallet.encrypted } }, hardware: {} };
-    expect(localStorage.setItem).toBeCalledWith('wallets', JSON.stringify(expectedWallets));
-  });
-
-  it('#loadWallets should load encrypted wallet and merge into wallets stored in session', () => {
-    const storedWallets = { software: { test: {} }, hardware: {} };
-    const sessionWallets = { software: { test2: {} }, hardware: {} };
-
-    localStorage.getItem.mockReturnValueOnce(JSON.stringify(storedWallets));
-
-    const expectedWallets = { software: { test: {}, test2: {} }, hardware: {} };
-    return expectSaga(loadWallets)
-      .provide({
-        select() {
-          return fromJS(sessionWallets);
-        },
-      })
-      .put(loadWalletsSuccess(expectedWallets))
-      .run({ silenceTimeout: true });
-  });
-
-  it('#loadWallets should only override non-exist wallet states from cache', () => {
-    const storedWallets = { software: { test: { encrypted: '1' } }, hardware: {} };
-    const sessionWallets = { software: { test: { encrypted: '2' } }, hardware: {} };
-
-    localStorage.getItem.mockReturnValueOnce(JSON.stringify(storedWallets));
-
-    return expectSaga(loadWallets)
-      .provide({
-        select() {
-          return fromJS(sessionWallets);
-        },
-      })
-      .put(loadWalletsSuccess(sessionWallets))
-      .run({ silenceTimeout: true });
-  });
-
   it('#loadWalletBalances should load balances and dispatch loadWalletBalancesSuccess', () => {
     const response = { tokens: [] };
     const walletName = 'test';
@@ -272,19 +227,215 @@ describe('load wallets saga', () => {
       .run({ silenceTimeout: true });
   });
 
+  it('should trigger action loadWalletBalances when createWalletSuccess action is dispatch', () => {
+    const decryptedWallet = { address: 'abcd' };
+    const encryptedWallet = 'json';
+    return expectSaga(walletHoc)
+      .put(loadWalletBalances(name, decryptedWallet.address))
+      .dispatch(createWalletSuccess(name, encryptedWallet, decryptedWallet))
+      .run({ silenceTimeout: true });
+  });
+
+  it('sign transaction for eth payment', () => {
+    // create txn hash
+    // should save pending txn hash in store and localstorage
+    // listen for confirmation
+    // update pending txn in store
+    const storeState = {
+      walletHoc: {
+        wallets: {
+          software: {
+            t1: {
+              encrypted: '{"address": "abcd"}',
+              decrypted: {
+                privateKey: '0xf2249b753523f2f7c79a07c1b7557763af0606fb503d935734617bb7abaf06db',
+              },
+            },
+          },
+        },
+        currentWallet: {
+          address: '0xabcd',
+        },
+        pendingTransactions: [],
+        confirmedTransactions: [],
+      },
+    };
+    const timestamp = new Date().getTime();
+    const signedTransaction = {
+      nonce: 49,
+      gasPrice: 1,
+      gasLimit: 1,
+      to: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+      value: 1,
+      data: '0x',
+      v: 42,
+      r: '0x715935bf243f0273429ba09b2c65ff2d15ca3a8b18aecc35e7d5b4ebf5fe2f56',
+      s: '0x32aacbc76007f51de3c6efedad074a6b396d2a35d9b6a49ad0b250d40a7f046e',
+      chainId: 3,
+      from: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a',
+      hash: '0x3c63ecb423263552cfc3e373778bf8244d490b06823b4b2f3203343ecb8f0518',
+    };
+    const confirmedTransaction = {
+      ...signedTransaction,
+      blockHash: '0x756da99f6be563b86238a162ee2586b0236e3e87c62cde69426ff7bab71d6066',
+      blockNumber: 3558042,
+      transactionIndex: 9,
+      raw: 'raw',
+    };
+    const formatedTransaction = {
+      timestamp,
+      token: 'ETH',
+      from: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a',
+      to: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+      hash: '0x3c63ecb423263552cfc3e373778bf8244d490b06823b4b2f3203343ecb8f0518',
+      value: 1,
+      input: '0x',
+      success: true,
+      original: confirmedTransaction,
+    };
+    const params = {
+      token: 'ETH',
+      toAddress: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+      amount: 0.0001,
+      gasPrice: 30000,
+      gasLimit: 21000,
+      wallet: { decrypted: {} },
+    };
+    let called = 0;
+    return expectSaga(walletHoc)
+      .provide({
+        call(effect, next) {
+          called += 1;
+          if (called === 1) {
+            return signedTransaction;
+          }
+          if (called === 2) {
+            return confirmedTransaction;
+          }
+          return next();
+        },
+      })
+      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .dispatch(transferAction(params))
+      .put(transferSuccess(signedTransaction, 'ETH'))// send signed transaction
+      .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
+      // .run({ silenceTimeout: true })
+      .run({ silenceTimeout: true })
+      .then((result) => {
+        const walletHocState = result.storeState.get('walletHoc');
+        expect(walletHocState.getIn(['pendingTransactions']).count()).toEqual(0);
+        expect(walletHocState.getIn(['confirmedTransactions']).count()).toEqual(1);
+        formatedTransaction.value = parseFloat(utils.formatEther(formatedTransaction.value));
+        expect(walletHocState.getIn(['confirmedTransactions']).get(0).toJS()).toEqual(formatedTransaction);
+      });
+  });
+
+  it('sign transaction for erc20 payment', () => {
+    // create txn hash
+    // should save pending txn hash in store and localstorage
+    // listen for confirmation
+    // update pending txn in store
+    const storeState = {
+      walletHoc: {
+        wallets: {
+          software: {
+            t1: {
+              encrypted: '{"address": "abcd"}',
+              decrypted: {
+                privateKey: '0x40c2ebcaf1c719f746bc57feb85c56b6143c906d849adb30d62990c4454b2f15',
+              },
+            },
+          },
+        },
+        currentWallet: {
+          address: '0xabcd',
+        },
+        pendingTransactions: [],
+        confirmedTransactions: [],
+      },
+    };
+    const signedTransaction = {
+      nonce: 49,
+      gasPrice: 1,
+      gasLimit: 1,
+      from: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+      value: 1,
+      data: '0xa9059cbb000000000000000000000000994c3de8cc5bc781183205a3dd6e175be1e6f14a00000000000000000000000000000000000000000000000000005af3107a4000',
+      v: 42,
+      r: '0x715935bf243f0273429ba09b2c65ff2d15ca3a8b18aecc35e7d5b4ebf5fe2f56',
+      s: '0x32aacbc76007f51de3c6efedad074a6b396d2a35d9b6a49ad0b250d40a7f046e',
+      chainId: 3,
+      to: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
+      hash: '0x3c63ecb423263552cfc3e373778bf8244d490b06823b4b2f3203343ecb8f0518',
+    };
+    const confirmedTransaction = {
+      ...signedTransaction,
+      blockHash: '0x756da99f6be563b86238a162ee2586b0236e3e87c62cde69426ff7bab71d6066',
+      blockNumber: 3558042,
+      transactionIndex: 9,
+      raw: 'raw',
+    };
+    const formatedTransaction = {
+      timestamp: new Date().getTime(),
+      token: 'BOKKY',
+      from: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+      to: '0x994c3de8cc5bc781183205a3dd6e175be1e6f14a',
+      hash: '0x3c63ecb423263552cfc3e373778bf8244d490b06823b4b2f3203343ecb8f0518',
+      value: 0.0001,
+      input: signedTransaction.data,
+      success: true,
+      original: confirmedTransaction,
+    };
+    const params = {
+      token: 'BOKKY',
+      toAddress: '0x994c3de8cc5bc781183205a3dd6e175be1e6f14a',
+      amount: 0.0001,
+      gasPrice: 3000000,
+      gasLimit: 210000,
+      wallet: { decrypted: {} },
+      contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
+    };
+    let called = 0;
+    return expectSaga(walletHoc)
+      .provide({
+        call(effect, next) {
+          called += 1;
+          if (called === 1) {
+            return signedTransaction;
+          }
+          if (called === 2) {
+            return confirmedTransaction;
+          }
+          return next();
+        },
+      })
+      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .dispatch(transferAction(params))
+      .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
+      .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
+      .run({ silenceTimeout: true })
+      // .run(500000)
+      .then((result) => {
+        const walletHocState = result.storeState.get('walletHoc');
+        expect(walletHocState.getIn(['pendingTransactions']).count()).toEqual(0);
+        expect(walletHocState.getIn(['confirmedTransactions']).count()).toEqual(1);
+        expect(walletHocState.getIn(['confirmedTransactions']).get(0)).toEqual(fromJS(formatedTransaction));
+      });
+  });
+
   it('#initWalletsBalances should trigger loadWalletBalances for all the wallets in the list', () => {
     const walletList = [
-      { name: '1', address: '1' },
-      { name: '2', address: '2' },
+      { name: '1', address: '0x1' },
+      { name: '2', address: '0x2' },
     ];
-    return expectSaga(walletManager)
+    return expectSaga(walletHoc)
       .provide({
         select() {
           return walletList;
         },
       })
-      .put(loadWalletBalances(walletList[0].name, `0x${walletList[0].address}`))
-      .put(loadWalletBalances(walletList[1].name, `0x${walletList[1].address}`))
+      .put(loadWalletBalances(walletList[0].name, `${walletList[0].address}`))
+      .put(loadWalletBalances(walletList[1].name, `${walletList[1].address}`))
       .dispatch({ type: LOAD_WALLETS_SUCCESS })
       .run({ silenceTimeout: true });
   });
@@ -329,35 +480,25 @@ describe('load wallets saga', () => {
 });
 
 describe('root Saga', () => {
-  const walletManagerSaga = walletManager();
+  const walletHocSaga = walletHoc();
 
-  it('should start task to watch for CREATE_NEW_WALLET action', () => {
-    const takeDescriptor = walletManagerSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(CREATE_NEW_WALLET, createWallet));
+  it('should start task to watch for CREATE_WALLET_FROM_MNEMONIC action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_FROM_MNEMONIC, createWalletFromMnemonic));
   });
 
   it('should start task to watch for DECRYPT_WALLET action', () => {
-    const takeDescriptor = walletManagerSaga.next().value;
+    const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(DECRYPT_WALLET, decryptWallet));
   });
 
-  it('should start task to watch for CREATE_NEW_WALLET_SUCCESS action', () => {
-    const takeDescriptor = walletManagerSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(CREATE_NEW_WALLET_SUCCESS, cacheNewWallet));
-  });
-
-  it('should start task to watch for LOAD_WALLETS action', () => {
-    const takeDescriptor = walletManagerSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(LOAD_WALLETS, loadWallets));
-  });
-
   it('should start task to watch for LOAD_WALLETS_SUCCESS action', () => {
-    const takeDescriptor = walletManagerSaga.next().value;
+    const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances));
   });
 
   it('should start task to watch for LOAD_WALLET_BALANCES action', () => {
-    const takeDescriptor = walletManagerSaga.next().value;
+    const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga));
   });
 });

@@ -17,8 +17,8 @@ describe('utils#wallet', () => {
     it('should convert wallets state into array', () => {
       const walletsList = convertWalletsList(wallets);
       const expected = [
-                  { encrypted: { address: 'abcd1' }, address: 'abcd1', name: 'test1', type: 'software' },
-                  { encrypted: { address: 'abcd2' }, address: 'abcd2', name: 'test2', type: 'software' },
+                  { encrypted: { address: 'abcd1' }, address: '0xabcd1', name: 'test1', type: 'software' },
+                  { encrypted: { address: 'abcd2' }, address: '0xabcd2', name: 'test2', type: 'software' },
       ];
       expect(walletsList).toEqual(expected);
     });
@@ -28,9 +28,9 @@ describe('utils#wallet', () => {
                   .setIn(['software', 'test4', 'encrypted'], '{"address": "abcd4"}');
       const walletsList = convertWalletsList(walletStates);
       const expected = [
-                  { encrypted: { address: 'abcd1' }, address: 'abcd1', name: 'test1', type: 'software' },
-                  { encrypted: { address: 'abcd2' }, address: 'abcd2', name: 'test2', type: 'software' },
-                  { encrypted: { address: 'abcd4' }, address: 'abcd4', name: 'test4', type: 'software' },
+                  { encrypted: { address: 'abcd1' }, address: '0xabcd1', name: 'test1', type: 'software' },
+                  { encrypted: { address: 'abcd2' }, address: '0xabcd2', name: 'test2', type: 'software' },
+                  { encrypted: { address: 'abcd4' }, address: '0xabcd4', name: 'test4', type: 'software' },
       ];
       expect(walletsList).toEqual(expected);
     });

@@ -4,13 +4,15 @@
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
+import throttle from 'lodash/throttle';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
+import { loadState, saveState, filterPersistedState } from './utils/localStorage';
 
 const sagaMiddleware = createSagaMiddleware();
 
-export default function configureStore(initialState = {}, history) {
+export default function configureStore(history) {
   // Create the store with two middlewares
   // 1. sagaMiddleware: Makes redux-sagas work
   // 2. routerMiddleware: Syncs the location/URL path to the state
@@ -37,11 +39,19 @@ export default function configureStore(initialState = {}, history) {
       : compose;
   /* eslint-enable */
 
+  // Load persistent state from localStorage
+  const persistedState = loadState();
+
   const store = createStore(
     createReducer(),
-    fromJS(initialState),
+    fromJS(persistedState),
     composeEnhancers(...enhancers)
   );
+
+  // Update localStorage in sync with our Redux store
+  store.subscribe(throttle(() => {
+    saveState(store.getState(), filterPersistedState);
+  }, 1000));
 
   // Extensions
   store.runSaga = sagaMiddleware.run;

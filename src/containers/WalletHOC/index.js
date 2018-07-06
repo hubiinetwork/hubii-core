@@ -18,9 +18,9 @@ import {
   makeSelectCurrentWalletDetails,
 } from './selectors';
 import {
-  loadWallets,
   decryptWallet,
   hideDecryptWalletModal,
+  loadWalletsBalances,
 } from './actions';
 
 export default function WalletHOC(Component) {
@@ -33,8 +33,8 @@ export default function WalletHOC(Component) {
 
   const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-  const withReducer = injectReducer({ key: 'walletManager', reducer });
-  const withSaga = injectSaga({ key: 'walletManager', saga });
+  const withReducer = injectReducer({ key: 'walletHoc', reducer });
+  const withSaga = injectSaga({ key: 'walletHoc', saga });
 
   return compose(
     withReducer,
@@ -47,12 +47,13 @@ export function getComponentHOC(Component) {
   class HOC extends React.Component {
     constructor(...args) {
       super(...args);
+      this.state = {};
       this.onPasswordChange = this.onPasswordChange.bind(this);
       this.decryptWallet = this.decryptWallet.bind(this);
     }
 
     componentDidMount() {
-      this.props.loadWallets();
+      this.props.loadWalletsBalances();
     }
 
     onPasswordChange(e) {
@@ -95,7 +96,7 @@ export function getComponentHOC(Component) {
   HOC.propTypes = {
     currentWallet: PropTypes.object.isRequired,
     currentWalletDetails: PropTypes.object.isRequired,
-    loadWallets: PropTypes.func.isRequired,
+    loadWalletsBalances: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
   };
@@ -104,9 +105,9 @@ export function getComponentHOC(Component) {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    loadWallets: () => dispatch(loadWallets()),
     hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
     decryptWallet: (...args) => dispatch(decryptWallet(...args)),
+    loadWalletsBalances: (...args) => dispatch(loadWalletsBalances(...args)),
   };
 }
 

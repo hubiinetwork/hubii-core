@@ -16,6 +16,9 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Route } from 'react-router';
 import createHistory from 'history/createBrowserHistory';
 
+// import semantic ui styles
+import 'semantic-ui-css/semantic.min.css';
+
 // Import root app
 import App from 'containers/App';
 
@@ -29,7 +32,6 @@ import LanguageProvider from 'containers/LanguageProvider';
 
 import configureStore from './configureStore';
 
-
 // Import i18n messages
 import { translationMessages } from './i18n';
 
@@ -37,9 +39,8 @@ import { translationMessages } from './i18n';
 import './global-styles';
 
 // Create redux store with history
-const initialState = {};
 const history = createHistory();
-const store = configureStore(initialState, history);
+const store = configureStore(history);
 const MOUNT_NODE = document.getElementById('app');
 
 const render = (messages) => {

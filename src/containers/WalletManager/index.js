@@ -7,12 +7,18 @@ import { Route, Redirect } from 'react-router';
 import { createStructuredSelector } from 'reselect';
 
 import WalletsOverview from 'containers/WalletsOverview';
+import ContactBook from 'containers/ContactBook';
 import Tab from 'components/ui/Tab';
 import AddRestoreWalletModal from 'components/AddRestoreWalletModal';
+import AddNewContactModal from 'components/AddNewContactModal';
 import { Modal } from 'components/ui/Modal';
+import { makeSelectContacts } from 'containers/ContactBook/selectors';
 
-import { createNewWallet } from 'containers/WalletHOC/actions';
+import { createWalletFromMnemonic, createWalletFromPrivateKey } from 'containers/WalletHOC/actions';
 import { makeSelectLoading, makeSelectErrors } from 'containers/WalletHOC/selectors';
+import { createContact,
+ } from '../ContactBook/actions';
+
 
 import {
   Wrapper,
@@ -29,12 +35,15 @@ export class WalletManager extends React.PureComponent {
 
     this.state = {
       visible: false,
+      type: '',
     };
 
     this.onTabsChange = this.onTabsChange.bind(this);
+    this.onCreateContact = this.onCreateContact.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.showModal = this.showModal.bind(this);
     this.handleAddWalletSubmit = this.handleAddWalletSubmit.bind(this);
+    this.handleImportWalletSubmit = this.handleImportWalletSubmit.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -53,11 +62,25 @@ export class WalletManager extends React.PureComponent {
   onTabsChange(key) {
     this.props.history.push(key);
   }
-  showModal() {
+
+  onCreateContact(contact) {
+    if (contact) {
+      const name = contact.name.replace(
+        /\w\S*/g,
+        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+      );
+      this.props.createContact(name, contact.address);
+    }
+    this.hideModal();
+  }
+
+  showModal(type) {
     this.setState({
       visible: true,
+      type,
     });
   }
+
   hideModal() {
     this.setState({
       visible: false,
@@ -65,17 +88,44 @@ export class WalletManager extends React.PureComponent {
   }
 
   handleAddWalletSubmit(params) {
-    this.props.createNewWallet(params.name, params.mnemonic, params.derivationPath, params.password);
+    this.props.createWalletFromMnemonic(params.name, params.mnemonic, params.derivationPath, params.password);
+  }
+
+  handleImportWalletSubmit(data) {
+    if (data[0].walletType === 'metamask') {
+      const { privateKey, name, password } = data[1];
+      this.props.createWalletFromPrivateKey(privateKey, name, password);
+    }
   }
 
   render() {
-    const { history, match } = this.props;
+    const { history, match, contacts, loading } = this.props;
+    let modal;
+    switch (this.state.type) {
+      case 'addContact':
+        modal = (<AddNewContactModal
+          onSubmit={(contact) => this.onCreateContact(contact)}
+          contacts={contacts.toJS()}
+        />);
+        break;
+      default:
+        modal = (<AddRestoreWalletModal
+          goBack={this.state.visible}
+          handleAddWalletSubmit={this.handleAddWalletSubmit}
+          handleImportWalletSubmit={this.handleImportWalletSubmit}
+          loading={loading}
+        />);
+    }
+
     return (
       <Wrapper>
         <TabsLayout>
           <WalletsTabHeader>
             <h2 className="heading">All Wallets</h2>
-            <StyledButton type="primary" onClick={this.showModal}>
+            <StyledButton
+              type="primary"
+              onClick={() => this.showModal(history.location.pathname === `${match.url}/overview` ? 'addWallet' : 'addContact')}
+            >
               <Icon type="plus" />
               {history.location.pathname === `${match.url}/overview`
                 ? 'Add / Restore Wallet'
@@ -91,10 +141,7 @@ export class WalletManager extends React.PureComponent {
               onCancel={this.hideModal}
               destroyOnClose
             >
-              <AddRestoreWalletModal
-                goBack={this.state.visible}
-                handleAddWalletSubmit={this.handleAddWalletSubmit}
-              />
+              {modal}
             </Modal>
           </WalletsTabHeader>
         </TabsLayout>
@@ -107,7 +154,6 @@ export class WalletManager extends React.PureComponent {
             }
             key={`${match.url}/overview`}
           >
-            <Route path={`${match.url}/overview`} component={WalletsOverview} />
           </TabPane>
           <TabPane
             tab={
@@ -117,13 +163,15 @@ export class WalletManager extends React.PureComponent {
             }
             key={`${match.url}/contacts`}
           >
-            <Route path={`${match.url}/contacts`} />
           </TabPane>
         </Tab>
+        <Route path={`${match.url}/overview`} component={WalletsOverview} />
+        <Route path={`${match.url}/contacts`} component={ContactBook} />
         {
           history.location.pathname === match.url &&
           <Redirect from={match.url} to={`${match.url}/overview`} push />
         }
+
       </Wrapper>
     );
   }
@@ -132,19 +180,27 @@ export class WalletManager extends React.PureComponent {
 WalletManager.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
-  createNewWallet: PropTypes.func.isRequired,
+  createWalletFromMnemonic: PropTypes.func.isRequired,
+  createWalletFromPrivateKey: PropTypes.func.isRequired,
   loading: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  createContact: PropTypes.func,
+  contacts: PropTypes.oneOfType(
+    [PropTypes.arrayOf(PropTypes.object), PropTypes.object]
+  ),
 };
 
 const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
   errors: makeSelectErrors(),
+  contacts: makeSelectContacts(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
-    createNewWallet: (...args) => dispatch(createNewWallet(...args)),
+    createWalletFromMnemonic: (...args) => dispatch(createWalletFromMnemonic(...args)),
+    createWalletFromPrivateKey: (...args) => dispatch(createWalletFromPrivateKey(...args)),
+    createContact: (...args) => dispatch(createContact(...args)),
   };
 }
 

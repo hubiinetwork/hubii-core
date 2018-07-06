@@ -1,47 +1,62 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
-import { Wallet, utils, providers } from 'ethers';
-
+import { Wallet, utils, providers, Contract } from 'ethers';
 import { notify } from 'containers/App/actions';
-
+import { makeSelectWalletList, makeSelectCurrentWalletDetails } from './selectors';
 import request from '../../utils/request';
-import { getWalletsLocalStorage } from '../../utils/wallet';
-
-import { makeSelectWallets, makeSelectWalletList } from './selectors';
+import { ERC20ABI, EthNetworkProvider } from '../../utils/wallet';
 
 import {
-  CREATE_NEW_WALLET,
+  CREATE_WALLET_FROM_MNEMONIC,
+  CREATE_WALLET_SUCCESS,
   DECRYPT_WALLET,
-  CREATE_NEW_WALLET_SUCCESS,
-  LOAD_WALLETS,
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
   TRANSFER,
+  TRANSFER_ETHER,
+  TRANSFER_ERC20,
+  TRANSFER_SUCCESS,
+  CREATE_WALLET_FROM_PRIVATE_KEY,
 } from './constants';
 
 import {
-  createNewWalletFailed,
-  createNewWalletSuccess,
+  createWalletFailed,
+  createWalletSuccess,
   decryptWalletFailed,
   decryptWalletSuccess,
-  loadWalletsSuccess,
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
   showDecryptWalletModal,
   transferSuccess,
   transferError,
+  transferEther as transferEtherAction,
+  transferERC20 as transferERC20Action,
+  transactionConfirmed,
+  hideDecryptWalletModal,
 } from './actions';
 
 // Creates a new software wallet
-export function* createWallet({ name, mnemonic, derivationPath, password }) {
+export function* createWalletFromMnemonic({ name, mnemonic, derivationPath, password }) {
   try {
     if (!name || !derivationPath || !password || !mnemonic) throw new Error('invalid param');
     const decryptedWallet = Wallet.fromMnemonic(mnemonic, derivationPath);
-    // const encryptedWallet = yield call(decryptedWallet.encrypt, password);
     const encryptedWallet = yield decryptedWallet.encrypt(password);
-    yield put(createNewWalletSuccess(name, encryptedWallet, decryptedWallet));
+    yield put(createWalletSuccess(name, encryptedWallet, decryptedWallet));
   } catch (e) {
-    yield put(createNewWalletFailed(e));
+    yield put(createWalletFailed(e));
+  }
+}
+
+export function* createWalletFromPrivateKey({ privateKey, name, password }) {
+  try {
+    if (!name || !privateKey || !password) throw new Error('invalid param');
+    const decryptedWallet = new Wallet(privateKey);
+    const encryptedWallet = yield call((...args) => decryptedWallet.encrypt(...args), password);
+    yield put(notify('success', `Successfully imported ${name}`));
+    yield put(createWalletSuccess(name, encryptedWallet, decryptedWallet));
+  } catch (e) {
+    yield put(notify('error', `Failed to import wallet: ${e}`));
+    yield put(createWalletFailed(e));
   }
 }
 
@@ -55,36 +70,17 @@ export function* decryptWallet({ name, encryptedWallet, password }) {
     const decryptedWallet = res;
     yield put(decryptWalletSuccess(name, decryptedWallet));
     yield put(notify('success', `Successfully decrypted ${name}`));
+    yield put(hideDecryptWalletModal());
   } catch (e) {
     yield put(decryptWalletFailed(e));
     yield put(notify('error', `Failed to decrypt wallet: ${e}`));
   }
 }
 
-export function cacheNewWallet({ name, newWallet }) {
-  const existingWallets = getWalletsLocalStorage();
-  existingWallets.software[name] = { encrypted: newWallet.encrypted };
-  window.localStorage.setItem('wallets', JSON.stringify(existingWallets));
-}
-
-export function* loadWallets() {
-  const storedWallets = getWalletsLocalStorage();
-  const sessionWallets = (yield select(makeSelectWallets())).toJS();
-
-  Object.keys(storedWallets).forEach((type) => {
-    Object.keys(storedWallets[type]).forEach((walletName) => {
-      if (!sessionWallets[type][walletName]) {
-        sessionWallets[type][walletName] = storedWallets[type][walletName];
-      }
-    });
-  });
-  yield put(loadWalletsSuccess(sessionWallets));
-}
-
 export function* initWalletsBalances() {
   const walletList = yield select(makeSelectWalletList());
   for (let i = 0; i < walletList.length; i += 1) {
-    yield put(loadWalletBalances(walletList[i].name, `0x${walletList[i].address}`));
+    yield put(loadWalletBalances(walletList[i].name, `${walletList[i].address}`));
   }
 }
 
@@ -98,22 +94,49 @@ export function* loadWalletBalancesSaga({ name, walletAddress }) {
   }
 }
 
-export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit }) {
+export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit, contractAddress }) {
   if (!wallet.decrypted) {
     yield put(showDecryptWalletModal(wallet.name));
     return;
   }
-  if (token !== 'ETH') {
-    return;
-  }
+
   yield put(notify('info', 'Sending transaction...'));
-  const etherWallet = new Wallet(wallet.decrypted.privateKey);
-  etherWallet.provider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
 
   const wei = utils.parseEther(amount.toString());
+  if (token === 'ETH') {
+    yield put(transferEtherAction({ toAddress, amount: wei, gasPrice, gasLimit }));
+  } else if (contractAddress) {
+    yield put(transferERC20Action({ token, toAddress, amount: wei, gasPrice, gasLimit, contractAddress }));
+  }
+}
+
+export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
+  const walletDetails = yield select(makeSelectCurrentWalletDetails());
+  const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
+  etherWallet.provider = EthNetworkProvider;
+
   try {
-    const transaction = yield etherWallet.send(toAddress, wei, { gasPrice, gasLimit });
-    yield put(transferSuccess(transaction));
+    const options = { gasPrice, gasLimit };
+    const transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
+
+    yield put(transferSuccess(transaction, 'ETH'));
+  } catch (error) {
+    yield put(transferError(error));
+  }
+}
+
+export function* transferERC20({ token, contractAddress, toAddress, amount, gasPrice, gasLimit }) {
+  const contractAbiFragment = ERC20ABI;
+
+  const walletDetails = yield select(makeSelectCurrentWalletDetails());
+  const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
+  etherWallet.provider = EthNetworkProvider;
+
+  try {
+    const options = { gasPrice, gasLimit };
+    const contract = new Contract(contractAddress, contractAbiFragment, etherWallet);
+    const transaction = yield call((...args) => contract.transfer(...args), toAddress, amount, options);
+    yield put(transferSuccess(transaction, token));
     yield put(notify('success', 'Transaction sent'));
   } catch (error) {
     yield put(transferError(error));
@@ -121,13 +144,28 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
   }
 }
 
+export function* waitTransactionHash({ transaction }) {
+  const provider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
+  const confirmedTxn = yield call((...args) => provider.waitForTransaction(...args), transaction.hash);
+  yield put(transactionConfirmed(confirmedTxn));
+  yield put(notify('success', 'Transaction confirmed'));
+}
+
+export function* hookNewWalletCreated({ name, newWallet }) {
+  yield put(loadWalletBalances(name, newWallet.decrypted.address));
+}
+
 // Root watcher
-export default function* walletManager() {
-  yield takeEvery(CREATE_NEW_WALLET, createWallet);
+export default function* walletHoc() {
+  yield takeEvery(CREATE_WALLET_FROM_MNEMONIC, createWalletFromMnemonic);
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
-  yield takeEvery(CREATE_NEW_WALLET_SUCCESS, cacheNewWallet);
-  yield takeEvery(LOAD_WALLETS, loadWallets);
   yield takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
   yield takeEvery(TRANSFER, transfer);
+  yield takeEvery(TRANSFER_ETHER, transferEther);
+  yield takeEvery(TRANSFER_ERC20, transferERC20);
+  yield takeEvery(TRANSFER_SUCCESS, waitTransactionHash);
+
+  yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
+  yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
 }
