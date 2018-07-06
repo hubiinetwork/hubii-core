@@ -81,11 +81,6 @@ class DerivationPath extends React.Component {
     const rowSelection = {
       onChange: (selectedRowKeys, selectedRows) => {
         this.setState({ address: selectedRows[0].address });
-        console.log(
-          `selectedRowKeys: ${selectedRowKeys}`,
-          'selectedRows: ',
-          selectedRows
-        );
       },
       type: 'radio',
     };
