@@ -8,32 +8,12 @@ ShallowWrapper {
     wallets={
         Array [
             Object {
+              "name": "ledger",
               "src": "https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png",
-              "value": "ledger",
             },
             Object {
+              "name": "metamask",
               "src": "https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png",
-              "value": "metamask",
-            },
-            Object {
-              "src": "https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png",
-              "value": "parity",
-            },
-            Object {
-              "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
-              "value": "digitalBitbox",
-            },
-            Object {
-              "src": "https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png",
-              "value": "ledger1",
-            },
-            Object {
-              "src": "https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png",
-              "value": "metamask1",
-            },
-            Object {
-              "src": "https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png",
-              "value": "parity1",
             },
           ]
     }
@@ -55,7 +35,7 @@ ShallowWrapper {
           onChange={[Function]}
 >
           <ImportWallet.style__CoinButton
-                    value={undefined}
+                    value="ledger"
           >
                     <ImportWallet.style__Center>
                               <ImportWallet.style__Image
@@ -64,56 +44,11 @@ ShallowWrapper {
                     </ImportWallet.style__Center>
           </ImportWallet.style__CoinButton>
           <ImportWallet.style__CoinButton
-                    value={undefined}
+                    value="metamask"
           >
                     <ImportWallet.style__Center>
                               <ImportWallet.style__Image
                                         src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                              />
-                    </ImportWallet.style__Center>
-          </ImportWallet.style__CoinButton>
-          <ImportWallet.style__CoinButton
-                    value={undefined}
-          >
-                    <ImportWallet.style__Center>
-                              <ImportWallet.style__Image
-                                        src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
-                              />
-                    </ImportWallet.style__Center>
-          </ImportWallet.style__CoinButton>
-          <ImportWallet.style__CoinButton
-                    value={undefined}
-          >
-                    <ImportWallet.style__Center>
-                              <ImportWallet.style__Image
-                                        src="https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png"
-                              />
-                    </ImportWallet.style__Center>
-          </ImportWallet.style__CoinButton>
-          <ImportWallet.style__CoinButton
-                    value={undefined}
-          >
-                    <ImportWallet.style__Center>
-                              <ImportWallet.style__Image
-                                        src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
-                              />
-                    </ImportWallet.style__Center>
-          </ImportWallet.style__CoinButton>
-          <ImportWallet.style__CoinButton
-                    value={undefined}
-          >
-                    <ImportWallet.style__Center>
-                              <ImportWallet.style__Image
-                                        src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                              />
-                    </ImportWallet.style__Center>
-          </ImportWallet.style__CoinButton>
-          <ImportWallet.style__CoinButton
-                    value={undefined}
-          >
-                    <ImportWallet.style__Center>
-                              <ImportWallet.style__Image
-                                        src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
                               />
                     </ImportWallet.style__Center>
           </ImportWallet.style__CoinButton>
@@ -140,7 +75,7 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <ImportWallet.style__CoinButton
-              value={undefined}
+              value="ledger"
 >
               <ImportWallet.style__Center>
                             <ImportWallet.style__Image
@@ -149,56 +84,11 @@ ShallowWrapper {
               </ImportWallet.style__Center>
 </ImportWallet.style__CoinButton>,
             <ImportWallet.style__CoinButton
-              value={undefined}
+              value="metamask"
 >
               <ImportWallet.style__Center>
                             <ImportWallet.style__Image
                                           src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                            />
-              </ImportWallet.style__Center>
-</ImportWallet.style__CoinButton>,
-            <ImportWallet.style__CoinButton
-              value={undefined}
->
-              <ImportWallet.style__Center>
-                            <ImportWallet.style__Image
-                                          src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
-                            />
-              </ImportWallet.style__Center>
-</ImportWallet.style__CoinButton>,
-            <ImportWallet.style__CoinButton
-              value={undefined}
->
-              <ImportWallet.style__Center>
-                            <ImportWallet.style__Image
-                                          src="https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png"
-                            />
-              </ImportWallet.style__Center>
-</ImportWallet.style__CoinButton>,
-            <ImportWallet.style__CoinButton
-              value={undefined}
->
-              <ImportWallet.style__Center>
-                            <ImportWallet.style__Image
-                                          src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
-                            />
-              </ImportWallet.style__Center>
-</ImportWallet.style__CoinButton>,
-            <ImportWallet.style__CoinButton
-              value={undefined}
->
-              <ImportWallet.style__Center>
-                            <ImportWallet.style__Image
-                                          src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                            />
-              </ImportWallet.style__Center>
-</ImportWallet.style__CoinButton>,
-            <ImportWallet.style__CoinButton
-              value={undefined}
->
-              <ImportWallet.style__Center>
-                            <ImportWallet.style__Image
-                                          src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
                             />
               </ImportWallet.style__Center>
 </ImportWallet.style__CoinButton>,
@@ -209,7 +99,7 @@ ShallowWrapper {
         "rendered": Array [
           Object {
             "instance": null,
-            "key": undefined,
+            "key": "ledger",
             "nodeType": "class",
             "props": Object {
               "children": <ImportWallet.style__Center>
@@ -217,7 +107,7 @@ ShallowWrapper {
                                 src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
                 />
 </ImportWallet.style__Center>,
-              "value": undefined,
+              "value": "ledger",
             },
             "ref": null,
             "rendered": Object {
@@ -247,7 +137,7 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": undefined,
+            "key": "metamask",
             "nodeType": "class",
             "props": Object {
               "children": <ImportWallet.style__Center>
@@ -255,7 +145,7 @@ ShallowWrapper {
                                 src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
                 />
 </ImportWallet.style__Center>,
-              "value": undefined,
+              "value": "metamask",
             },
             "ref": null,
             "rendered": Object {
@@ -274,196 +164,6 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "src": "https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <ImportWallet.style__Center>
-                <ImportWallet.style__Image
-                                src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
-                />
-</ImportWallet.style__Center>,
-              "value": undefined,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <ImportWallet.style__Image
-                  src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
-/>,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "src": "https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <ImportWallet.style__Center>
-                <ImportWallet.style__Image
-                                src="https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png"
-                />
-</ImportWallet.style__Center>,
-              "value": undefined,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <ImportWallet.style__Image
-                  src="https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png"
-/>,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <ImportWallet.style__Center>
-                <ImportWallet.style__Image
-                                src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
-                />
-</ImportWallet.style__Center>,
-              "value": undefined,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <ImportWallet.style__Image
-                  src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
-/>,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "src": "https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <ImportWallet.style__Center>
-                <ImportWallet.style__Image
-                                src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                />
-</ImportWallet.style__Center>,
-              "value": undefined,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <ImportWallet.style__Image
-                  src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-/>,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "src": "https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <ImportWallet.style__Center>
-                <ImportWallet.style__Image
-                                src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
-                />
-</ImportWallet.style__Center>,
-              "value": undefined,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <ImportWallet.style__Image
-                  src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
-/>,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "src": "https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png",
                 },
                 "ref": null,
                 "rendered": null,
@@ -534,7 +234,7 @@ ShallowWrapper {
             onChange={[Function]}
 >
             <ImportWallet.style__CoinButton
-                        value={undefined}
+                        value="ledger"
             >
                         <ImportWallet.style__Center>
                                     <ImportWallet.style__Image
@@ -543,56 +243,11 @@ ShallowWrapper {
                         </ImportWallet.style__Center>
             </ImportWallet.style__CoinButton>
             <ImportWallet.style__CoinButton
-                        value={undefined}
+                        value="metamask"
             >
                         <ImportWallet.style__Center>
                                     <ImportWallet.style__Image
                                                 src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                                    />
-                        </ImportWallet.style__Center>
-            </ImportWallet.style__CoinButton>
-            <ImportWallet.style__CoinButton
-                        value={undefined}
-            >
-                        <ImportWallet.style__Center>
-                                    <ImportWallet.style__Image
-                                                src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
-                                    />
-                        </ImportWallet.style__Center>
-            </ImportWallet.style__CoinButton>
-            <ImportWallet.style__CoinButton
-                        value={undefined}
-            >
-                        <ImportWallet.style__Center>
-                                    <ImportWallet.style__Image
-                                                src="https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png"
-                                    />
-                        </ImportWallet.style__Center>
-            </ImportWallet.style__CoinButton>
-            <ImportWallet.style__CoinButton
-                        value={undefined}
-            >
-                        <ImportWallet.style__Center>
-                                    <ImportWallet.style__Image
-                                                src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
-                                    />
-                        </ImportWallet.style__Center>
-            </ImportWallet.style__CoinButton>
-            <ImportWallet.style__CoinButton
-                        value={undefined}
-            >
-                        <ImportWallet.style__Center>
-                                    <ImportWallet.style__Image
-                                                src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                                    />
-                        </ImportWallet.style__Center>
-            </ImportWallet.style__CoinButton>
-            <ImportWallet.style__CoinButton
-                        value={undefined}
-            >
-                        <ImportWallet.style__Center>
-                                    <ImportWallet.style__Image
-                                                src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
                                     />
                         </ImportWallet.style__Center>
             </ImportWallet.style__CoinButton>
@@ -619,7 +274,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <ImportWallet.style__CoinButton
-                value={undefined}
+                value="ledger"
 >
                 <ImportWallet.style__Center>
                                 <ImportWallet.style__Image
@@ -628,56 +283,11 @@ ShallowWrapper {
                 </ImportWallet.style__Center>
 </ImportWallet.style__CoinButton>,
               <ImportWallet.style__CoinButton
-                value={undefined}
+                value="metamask"
 >
                 <ImportWallet.style__Center>
                                 <ImportWallet.style__Image
                                                 src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                                />
-                </ImportWallet.style__Center>
-</ImportWallet.style__CoinButton>,
-              <ImportWallet.style__CoinButton
-                value={undefined}
->
-                <ImportWallet.style__Center>
-                                <ImportWallet.style__Image
-                                                src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
-                                />
-                </ImportWallet.style__Center>
-</ImportWallet.style__CoinButton>,
-              <ImportWallet.style__CoinButton
-                value={undefined}
->
-                <ImportWallet.style__Center>
-                                <ImportWallet.style__Image
-                                                src="https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png"
-                                />
-                </ImportWallet.style__Center>
-</ImportWallet.style__CoinButton>,
-              <ImportWallet.style__CoinButton
-                value={undefined}
->
-                <ImportWallet.style__Center>
-                                <ImportWallet.style__Image
-                                                src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
-                                />
-                </ImportWallet.style__Center>
-</ImportWallet.style__CoinButton>,
-              <ImportWallet.style__CoinButton
-                value={undefined}
->
-                <ImportWallet.style__Center>
-                                <ImportWallet.style__Image
-                                                src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                                />
-                </ImportWallet.style__Center>
-</ImportWallet.style__CoinButton>,
-              <ImportWallet.style__CoinButton
-                value={undefined}
->
-                <ImportWallet.style__Center>
-                                <ImportWallet.style__Image
-                                                src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
                                 />
                 </ImportWallet.style__Center>
 </ImportWallet.style__CoinButton>,
@@ -688,7 +298,7 @@ ShallowWrapper {
           "rendered": Array [
             Object {
               "instance": null,
-              "key": undefined,
+              "key": "ledger",
               "nodeType": "class",
               "props": Object {
                 "children": <ImportWallet.style__Center>
@@ -696,7 +306,7 @@ ShallowWrapper {
                                     src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
                   />
 </ImportWallet.style__Center>,
-                "value": undefined,
+                "value": "ledger",
               },
               "ref": null,
               "rendered": Object {
@@ -726,7 +336,7 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": undefined,
+              "key": "metamask",
               "nodeType": "class",
               "props": Object {
                 "children": <ImportWallet.style__Center>
@@ -734,7 +344,7 @@ ShallowWrapper {
                                     src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
                   />
 </ImportWallet.style__Center>,
-                "value": undefined,
+                "value": "metamask",
               },
               "ref": null,
               "rendered": Object {
@@ -753,196 +363,6 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "src": "https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <ImportWallet.style__Center>
-                  <ImportWallet.style__Image
-                                    src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
-                  />
-</ImportWallet.style__Center>,
-                "value": undefined,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <ImportWallet.style__Image
-                    src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
-/>,
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "src": "https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <ImportWallet.style__Center>
-                  <ImportWallet.style__Image
-                                    src="https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png"
-                  />
-</ImportWallet.style__Center>,
-                "value": undefined,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <ImportWallet.style__Image
-                    src="https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png"
-/>,
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <ImportWallet.style__Center>
-                  <ImportWallet.style__Image
-                                    src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
-                  />
-</ImportWallet.style__Center>,
-                "value": undefined,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <ImportWallet.style__Image
-                    src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
-/>,
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "src": "https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <ImportWallet.style__Center>
-                  <ImportWallet.style__Image
-                                    src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                  />
-</ImportWallet.style__Center>,
-                "value": undefined,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <ImportWallet.style__Image
-                    src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-/>,
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "src": "https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <ImportWallet.style__Center>
-                  <ImportWallet.style__Image
-                                    src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
-                  />
-</ImportWallet.style__Center>,
-                "value": undefined,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <ImportWallet.style__Image
-                    src="https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png"
-/>,
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "src": "https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png",
                   },
                   "ref": null,
                   "rendered": null,
