@@ -2,9 +2,9 @@
 import { fromJS } from 'immutable';
 import walletHocReducer from '../reducer';
 import {
-  createNewWallet,
-  createNewWalletFailed,
-  createNewWalletSuccess,
+  createWalletFromMnemonic,
+  createWalletFailed,
+  createWalletSuccess,
   decryptWallet,
   decryptWalletFailed,
   decryptWalletSuccess,
@@ -52,14 +52,14 @@ describe('walletHocReducer', () => {
     expect(walletHocReducer(undefined, {})).toEqual(state);
   });
 
-  it('should handle createNewWallet action correctly', () => {
+  it('should handle createWalletFromMnemonic action correctly', () => {
     const expected = state
       .setIn(['loading', 'creatingWallet'], true)
-      .set('progress', 0);
-    expect(walletHocReducer(state, createNewWallet())).toEqual(expected);
+      .setIn(['errors', 'creatingWalletError'], null);
+    expect(walletHocReducer(state, createWalletFromMnemonic())).toEqual(expected);
   });
 
-  it('should handle createNewWalletSuccess action correctly', () => {
+  it('should handle createWalletSuccess action correctly', () => {
     const encryptedWallet = { id: 123 };
     const decryptedWallet = { key: 43 };
     const name = 'Henry';
@@ -71,19 +71,19 @@ describe('walletHocReducer', () => {
         fromJS({ encrypted: encryptedWallet, decrypted: decryptedWallet }));
     expect(walletHocReducer(
       state,
-      createNewWalletSuccess(
+      createWalletSuccess(
         name,
         encryptedWallet,
         decryptedWallet)))
       .toEqual(expected);
   });
 
-  it('should handle createNewWalletFailed action correctly', () => {
+  it('should handle createWalletFailed action correctly', () => {
     const error = 'error 1';
     const expected = state
       .setIn(['loading', 'creatingWallet'], false)
       .setIn(['errors', 'creatingWalletError'], error);
-    expect(walletHocReducer(state, createNewWalletFailed(error))).toEqual(expected);
+    expect(walletHocReducer(state, createWalletFailed(error))).toEqual(expected);
   });
 
   it('should handle decryptWallet action correctly', () => {

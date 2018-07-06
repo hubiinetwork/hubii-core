@@ -14,7 +14,7 @@ import AddNewContactModal from 'components/AddNewContactModal';
 import { Modal } from 'components/ui/Modal';
 import { makeSelectContacts } from 'containers/ContactBook/selectors';
 
-import { createNewWallet, createWalletFromPrivateKey } from 'containers/WalletHOC/actions';
+import { createWalletFromMnemonic, createWalletFromPrivateKey } from 'containers/WalletHOC/actions';
 import { makeSelectLoading, makeSelectErrors } from 'containers/WalletHOC/selectors';
 import { createContact,
  } from '../ContactBook/actions';
@@ -93,7 +93,7 @@ export class WalletManager extends React.PureComponent {
   }
 
   handleAddWalletSubmit(params) {
-    this.props.createNewWallet(params.name, params.mnemonic, params.derivationPath, params.password);
+    this.props.createWalletFromMnemonic(params.name, params.mnemonic, params.derivationPath, params.password);
   }
 
   handleImportWalletSubmit(data) {
@@ -184,7 +184,7 @@ export class WalletManager extends React.PureComponent {
 WalletManager.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
-  createNewWallet: PropTypes.func.isRequired,
+  createWalletFromMnemonic: PropTypes.func.isRequired,
   createWalletFromPrivateKey: PropTypes.func.isRequired,
   loading: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
@@ -202,7 +202,7 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    createNewWallet: (...args) => dispatch(createNewWallet(...args)),
+    createWalletFromMnemonic: (...args) => dispatch(createWalletFromMnemonic(...args)),
     createWalletFromPrivateKey: (...args) => dispatch(createWalletFromPrivateKey(...args)),
     createContact: (...args) => dispatch(createContact(...args)),
   };
