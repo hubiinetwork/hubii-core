@@ -15,7 +15,7 @@ import messages from './messages';
 function PageLoadingIndicator(props) {
   return (
     <div>
-      <Loader active size="huge">
+      <Loader active={props.loading} size="huge">
         <FormattedMessage
           {...messages.header}
           values={{ pageType: props.pageType, id: props.id }}
@@ -28,6 +28,7 @@ function PageLoadingIndicator(props) {
 PageLoadingIndicator.propTypes = {
   id: PropTypes.string.isRequired,
   pageType: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default PageLoadingIndicator;

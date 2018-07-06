@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Icon } from 'antd';
+import { Icon, Spin } from 'antd';
 import Button from '../../ui/Button';
 
 export const InfoContent = styled.span`
@@ -36,12 +36,6 @@ export const Info = styled(Icon)`
   &:hover {
     color: ${({ theme }) => theme.palette.info};
   }
-`;
-
-export const Loading = styled(Icon)`
-  font-size: 75px;
-  color: ${({ theme }) => theme.palette.info};
-  margin-top: 1rem;
 `;
 
 export const RoundButton = styled(Button)`
@@ -108,4 +102,12 @@ export const SeedText = styled.span`
   line-height: 1.2;
   flex: 0.869;
   font-family: 'SF Text';
+`;
+
+export const StyledSpin = styled(Spin)`
+  margin-top: 2rem;
+  &.ant-spin.ant-spin-show-text .ant-spin-text{
+    margin-top:1.5rem;
+  }
+  color: white;
 `;

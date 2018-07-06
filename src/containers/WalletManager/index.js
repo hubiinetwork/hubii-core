@@ -19,6 +19,7 @@ import { makeSelectLoading, makeSelectErrors } from 'containers/WalletHOC/select
 import { createContact,
  } from '../ContactBook/actions';
 
+
 import {
   Wrapper,
   TabsLayout,
@@ -161,6 +162,7 @@ export class WalletManager extends React.PureComponent {
           history.location.pathname === match.url &&
           <Redirect from={match.url} to={`${match.url}/overview`} push />
         }
+
       </Wrapper>
     );
   }
