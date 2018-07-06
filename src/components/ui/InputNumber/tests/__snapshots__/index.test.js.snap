@@ -4,7 +4,9 @@ exports[`<InputNumber /> should render correctly 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <InputNumber />,
+  Symbol(enzyme.__unrendered__): <InputNumber
+    handleChange={[Function]}
+/>,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -17,7 +19,10 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
+      "defaultValue": undefined,
       "disabled": false,
+      "max": undefined,
+      "min": undefined,
       "onChange": [Function],
       "prefixCls": "ant-input",
       "type": "number",
@@ -33,7 +38,10 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
+        "defaultValue": undefined,
         "disabled": false,
+        "max": undefined,
+        "min": undefined,
         "onChange": [Function],
         "prefixCls": "ant-input",
         "type": "number",
