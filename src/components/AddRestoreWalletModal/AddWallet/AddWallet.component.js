@@ -37,10 +37,10 @@ class AddWallet extends React.PureComponent {
       derivationPath: 'm/44\'/60\'/0\'/0/0',
       confirmPasswordsMatch: false,
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
     this.compareToFirstPassword = this.compareToFirstPassword.bind(this);
     this.validateToNextPassword = this.validateToNextPassword.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleConfirmBlur(e) {
     const value = e.target.value;

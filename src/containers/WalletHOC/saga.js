@@ -6,8 +6,8 @@ import request from '../../utils/request';
 import { ERC20ABI, EthNetworkProvider } from '../../utils/wallet';
 
 import {
-  CREATE_NEW_WALLET,
-  CREATE_NEW_WALLET_SUCCESS,
+  CREATE_WALLET_FROM_MNEMONIC,
+  CREATE_WALLET_SUCCESS,
   DECRYPT_WALLET,
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
@@ -15,11 +15,12 @@ import {
   TRANSFER_ETHER,
   TRANSFER_ERC20,
   TRANSFER_SUCCESS,
+  CREATE_WALLET_FROM_PRIVATE_KEY,
 } from './constants';
 
 import {
-  createNewWalletFailed,
-  createNewWalletSuccess,
+  createWalletFailed,
+  createWalletSuccess,
   decryptWalletFailed,
   decryptWalletSuccess,
   loadWalletBalances,
@@ -35,15 +36,27 @@ import {
 } from './actions';
 
 // Creates a new software wallet
-export function* createWallet({ name, mnemonic, derivationPath, password }) {
+export function* createWalletFromMnemonic({ name, mnemonic, derivationPath, password }) {
   try {
     if (!name || !derivationPath || !password || !mnemonic) throw new Error('invalid param');
     const decryptedWallet = Wallet.fromMnemonic(mnemonic, derivationPath);
-    // const encryptedWallet = yield call(decryptedWallet.encrypt, password);
     const encryptedWallet = yield decryptedWallet.encrypt(password);
-    yield put(createNewWalletSuccess(name, encryptedWallet, decryptedWallet));
+    yield put(createWalletSuccess(name, encryptedWallet, decryptedWallet));
   } catch (e) {
-    yield put(createNewWalletFailed(e));
+    yield put(createWalletFailed(e));
+  }
+}
+
+export function* createWalletFromPrivateKey({ privateKey, name, password }) {
+  try {
+    if (!name || !privateKey || !password) throw new Error('invalid param');
+    const decryptedWallet = new Wallet(privateKey);
+    const encryptedWallet = yield call((...args) => decryptedWallet.encrypt(...args), password);
+    yield put(notify('success', `Successfully imported ${name}`));
+    yield put(createWalletSuccess(name, encryptedWallet, decryptedWallet));
+  } catch (e) {
+    yield put(notify('error', `Failed to import wallet: ${e}`));
+    yield put(createWalletFailed(e));
   }
 }
 
@@ -144,7 +157,7 @@ export function* hookNewWalletCreated({ name, newWallet }) {
 
 // Root watcher
 export default function* walletHoc() {
-  yield takeEvery(CREATE_NEW_WALLET, createWallet);
+  yield takeEvery(CREATE_WALLET_FROM_MNEMONIC, createWalletFromMnemonic);
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
   yield takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
@@ -152,5 +165,7 @@ export default function* walletHoc() {
   yield takeEvery(TRANSFER_ETHER, transferEther);
   yield takeEvery(TRANSFER_ERC20, transferERC20);
   yield takeEvery(TRANSFER_SUCCESS, waitTransactionHash);
-  yield takeEvery(CREATE_NEW_WALLET_SUCCESS, hookNewWalletCreated);
+
+  yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
+  yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
 }

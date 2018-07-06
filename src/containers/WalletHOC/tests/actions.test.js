@@ -1,16 +1,16 @@
 import {
-  createNewWallet,
-  createNewWalletFailed,
-  createNewWalletSuccess,
+  createWalletFromMnemonic,
+  createWalletFailed,
+  createWalletSuccess,
   decryptWallet,
   decryptWalletFailed,
   decryptWalletSuccess,
   loadWallets,
 } from '../actions';
 import {
-  CREATE_NEW_WALLET,
-  CREATE_NEW_WALLET_FAILURE,
-  CREATE_NEW_WALLET_SUCCESS,
+  CREATE_WALLET_FROM_MNEMONIC,
+  CREATE_WALLET_FAILURE,
+  CREATE_WALLET_SUCCESS,
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
@@ -18,20 +18,20 @@ import {
 } from '../constants';
 
 describe('WalletHoc actions', () => {
-  describe('createNewWallet Action', () => {
+  describe('createWalletFromMnemonic Action', () => {
     const name = 'Wallet8';
     const mnemonic = 'word word word';
     const derivationPath = '0/0/0';
     const password = 'password1';
     it('returns expected output', () => {
       const expected = {
-        type: CREATE_NEW_WALLET,
+        type: CREATE_WALLET_FROM_MNEMONIC,
         name,
         mnemonic,
         derivationPath,
         password,
       };
-      expect(createNewWallet(
+      expect(createWalletFromMnemonic(
         name,
         mnemonic,
         derivationPath,
@@ -40,34 +40,34 @@ describe('WalletHoc actions', () => {
     });
   });
 
-  describe('createNewWalletSuccess Action', () => {
+  describe('createWalletSuccess Action', () => {
     it('returns expected output', () => {
       const encryptedWallet = '{ blah: "blah123" }';
       const decryptedWallet = { key: 'twinkletoes' };
       const name = 'George';
       const expected = {
-        type: CREATE_NEW_WALLET_SUCCESS,
+        type: CREATE_WALLET_SUCCESS,
         name,
         newWallet: {
           encrypted: encryptedWallet,
           decrypted: decryptedWallet,
         },
       };
-      expect(createNewWalletSuccess(
+      expect(createWalletSuccess(
         name,
         encryptedWallet,
         decryptedWallet)).toEqual(expected);
     });
   });
 
-  describe('createNewWalletFailed Action', () => {
+  describe('createWalletFailed Action', () => {
     it('returns expected output', () => {
       const error = 'Error 1';
       const expected = {
-        type: CREATE_NEW_WALLET_FAILURE,
+        type: CREATE_WALLET_FAILURE,
         error,
       };
-      expect(createNewWalletFailed(error)).toEqual(expected);
+      expect(createWalletFailed(error)).toEqual(expected);
     });
   });
 

@@ -9,7 +9,7 @@ import {
   Arrow,
   IconWrapper,
   TextWhite,
-  RightTopButton,
+  // RightTopButton,
   DescriptionWrapper,
   TextGrey,
   Info,
@@ -17,8 +17,12 @@ import {
 import { AddWallet } from './AddWallet';
 import { RestoreWallet } from './RestoreWallet';
 import ImportWalletSteps from '../ImportWalletSteps';
+
+import metamaskImg from '../../../public/Images/metamask_wallet.png';
+import ledgerImg from '../../../public/Images/ledger_wallet.png';
+
 /**
- * This component shows options for modals to  be opened.
+ * This component shows options for modals to be opened.
  */
 export default class AddRestoreWalletModal extends React.PureComponent {
   constructor(props) {
@@ -93,7 +97,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
                   onClick={() => this.switchModals('main')}
                 />New Hubii Wallet
               </IconWrapper>
-              <RightTopButton
+              {/* <RightTopButton
                 onClick={() => this.switchModals('import')}
                 type="primary"
               >
@@ -101,7 +105,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
                   <Icon type="download" />
                   <TextWhite>Import Wallet</TextWhite>
                 </Wrapper>
-              </RightTopButton>
+              </RightTopButton> */}
             </div>
             <AddWallet loading={loading.toJS().creatingWallet} handleSubmit={this.props.handleAddWalletSubmit} />
           </div>
@@ -127,7 +131,20 @@ export default class AddRestoreWalletModal extends React.PureComponent {
         )}
         {type === 'import' && (
           <div>
-            <ImportWalletSteps />
+            <ImportWalletSteps
+              wallets={[
+                {
+                  src: ledgerImg,
+                  name: 'ledger',
+                },
+                {
+                  src: metamaskImg,
+                  name: 'metamask',
+                },
+              ]}
+              onBackIcon={() => this.switchModals('main')}
+              handleSubmit={this.props.handleImportWalletSubmit}
+            />
           </div>
         )}
       </div>
@@ -139,6 +156,7 @@ AddRestoreWalletModal.propTypes = {
    * Callback  function triggered when modal is closed.
    */
   handleAddWalletSubmit: PropTypes.func,
+  handleImportWalletSubmit: PropTypes.func,
 
   /**
    * loading
