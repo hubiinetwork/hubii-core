@@ -68,13 +68,9 @@ export default class TransferForm extends React.PureComponent {
   }
 
   handleRecipient(value) {
-    for (let i = 0; i < this.props.recipients.length; i += 1) {
-      if (this.props.recipients[i].name === value) {
-        this.setState({
-          address: this.props.recipients[i].address,
-        });
-      }
-    }
+    this.setState({
+      address: value,
+    });
   }
 
   render() {
@@ -114,7 +110,7 @@ export default class TransferForm extends React.PureComponent {
               >
                 <OptGroup label={<OptGroupLabel>Own Addresses</OptGroupLabel>}>
                   {this.props.recipients.map((recipient) => (
-                    <Option value={recipient.name} key={recipient.name}>
+                    <Option value={recipient.address} key={recipient.address}>
                       {recipient.name}
                     </Option>
                   ))}
