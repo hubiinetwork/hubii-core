@@ -191,11 +191,11 @@ describe('WalletManager', () => {
         );
         const instance = dom.instance();
         const args = [{
-          walletType: 'metamask'
+          walletType: 'metamask',
         }, {
           privateKey: 'privateKey',
           name: 'name',
-          password: 'pwd'
+          password: 'pwd',
         }];
         instance.handleImportWalletSubmit(args);
         expect(createWalletFromPrivateKeySpy).toBeCalledWith(args[1].privateKey, args[1].name, args[1].password);
