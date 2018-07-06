@@ -33,6 +33,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
   }
   render() {
     const { type } = this.state;
+    const { loading } = this.props;
     return (
       <div>
         {type === 'main' && (
@@ -102,7 +103,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
                 </Wrapper>
               </RightTopButton>
             </div>
-            <AddWallet handleSubmit={this.props.handleAddWalletSubmit} />
+            <AddWallet loading={loading.toJS().creatingWallet} handleSubmit={this.props.handleAddWalletSubmit} />
           </div>
         )}
         {type === 'restore' && (
@@ -138,4 +139,10 @@ AddRestoreWalletModal.propTypes = {
    * Callback  function triggered when modal is closed.
    */
   handleAddWalletSubmit: PropTypes.func,
+
+  /**
+   * loading
+   */
+
+  loading: PropTypes.object,
 };
