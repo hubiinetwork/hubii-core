@@ -23,40 +23,40 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <ContactDeletionModalstyle__Text>
+        <ContactDeletionModal.style__Text>
            Are you sure you want to delete this contact?
-</ContactDeletionModalstyle__Text>,
-        <ContactDeletionModalstyle__TextPrimary>
+</ContactDeletionModal.style__Text>,
+        <ContactDeletionModal.style__TextPrimary>
           <div>
-                    <ContactDeletionModalstyle__SecondaryHeader>
+                    <ContactDeletionModal.style__SecondaryHeader>
                               Name 
-                    </ContactDeletionModalstyle__SecondaryHeader>
+                    </ContactDeletionModal.style__SecondaryHeader>
                      
                     mike
           </div>
           <div>
-                    <ContactDeletionModalstyle__SecondaryHeader>
+                    <ContactDeletionModal.style__SecondaryHeader>
                               Address 
-                    </ContactDeletionModalstyle__SecondaryHeader>
+                    </ContactDeletionModal.style__SecondaryHeader>
                     0x3123123
           </div>
-</ContactDeletionModalstyle__TextPrimary>,
-        <ContactDeletionModalstyle__ParentDiv>
-          <ContactDeletionModalstyle__StyledButton
+</ContactDeletionModal.style__TextPrimary>,
+        <ContactDeletionModal.style__ParentDiv>
+          <ContactDeletionModal.style__StyledButton
                     id="delete"
                     onClick={[Function]}
                     type="primary"
           >
                     Delete
-          </ContactDeletionModalstyle__StyledButton>
-          <ContactDeletionModalstyle__StyledButton
+          </ContactDeletionModal.style__StyledButton>
+          <ContactDeletionModal.style__StyledButton
                     id="cancel"
                     onClick={[Function]}
                     type="primary"
           >
                     Cancel
-          </ContactDeletionModalstyle__StyledButton>
-</ContactDeletionModalstyle__ParentDiv>,
+          </ContactDeletionModal.style__StyledButton>
+</ContactDeletionModal.style__ParentDiv>,
       ],
     },
     "ref": null,
@@ -79,16 +79,16 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <div>
-              <ContactDeletionModalstyle__SecondaryHeader>
+              <ContactDeletionModal.style__SecondaryHeader>
                             Name 
-              </ContactDeletionModalstyle__SecondaryHeader>
+              </ContactDeletionModal.style__SecondaryHeader>
                
               mike
 </div>,
             <div>
-              <ContactDeletionModalstyle__SecondaryHeader>
+              <ContactDeletionModal.style__SecondaryHeader>
                             Address 
-              </ContactDeletionModalstyle__SecondaryHeader>
+              </ContactDeletionModal.style__SecondaryHeader>
               0x3123123
 </div>,
           ],
@@ -101,9 +101,9 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ContactDeletionModalstyle__SecondaryHeader>
+                <ContactDeletionModal.style__SecondaryHeader>
                   Name 
-</ContactDeletionModalstyle__SecondaryHeader>,
+</ContactDeletionModal.style__SecondaryHeader>,
                 " ",
                 "mike",
               ],
@@ -132,9 +132,9 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ContactDeletionModalstyle__SecondaryHeader>
+                <ContactDeletionModal.style__SecondaryHeader>
                   Address 
-</ContactDeletionModalstyle__SecondaryHeader>,
+</ContactDeletionModal.style__SecondaryHeader>,
                 "0x3123123",
               ],
             },
@@ -164,20 +164,20 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <ContactDeletionModalstyle__StyledButton
+            <ContactDeletionModal.style__StyledButton
               id="delete"
               onClick={[Function]}
               type="primary"
 >
               Delete
-</ContactDeletionModalstyle__StyledButton>,
-            <ContactDeletionModalstyle__StyledButton
+</ContactDeletionModal.style__StyledButton>,
+            <ContactDeletionModal.style__StyledButton
               id="cancel"
               onClick={[Function]}
               type="primary"
 >
               Cancel
-</ContactDeletionModalstyle__StyledButton>,
+</ContactDeletionModal.style__StyledButton>,
           ],
         },
         "ref": null,
@@ -223,40 +223,40 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <ContactDeletionModalstyle__Text>
+          <ContactDeletionModal.style__Text>
              Are you sure you want to delete this contact?
-</ContactDeletionModalstyle__Text>,
-          <ContactDeletionModalstyle__TextPrimary>
+</ContactDeletionModal.style__Text>,
+          <ContactDeletionModal.style__TextPrimary>
             <div>
-                        <ContactDeletionModalstyle__SecondaryHeader>
+                        <ContactDeletionModal.style__SecondaryHeader>
                                     Name 
-                        </ContactDeletionModalstyle__SecondaryHeader>
+                        </ContactDeletionModal.style__SecondaryHeader>
                          
                         mike
             </div>
             <div>
-                        <ContactDeletionModalstyle__SecondaryHeader>
+                        <ContactDeletionModal.style__SecondaryHeader>
                                     Address 
-                        </ContactDeletionModalstyle__SecondaryHeader>
+                        </ContactDeletionModal.style__SecondaryHeader>
                         0x3123123
             </div>
-</ContactDeletionModalstyle__TextPrimary>,
-          <ContactDeletionModalstyle__ParentDiv>
-            <ContactDeletionModalstyle__StyledButton
+</ContactDeletionModal.style__TextPrimary>,
+          <ContactDeletionModal.style__ParentDiv>
+            <ContactDeletionModal.style__StyledButton
                         id="delete"
                         onClick={[Function]}
                         type="primary"
             >
                         Delete
-            </ContactDeletionModalstyle__StyledButton>
-            <ContactDeletionModalstyle__StyledButton
+            </ContactDeletionModal.style__StyledButton>
+            <ContactDeletionModal.style__StyledButton
                         id="cancel"
                         onClick={[Function]}
                         type="primary"
             >
                         Cancel
-            </ContactDeletionModalstyle__StyledButton>
-</ContactDeletionModalstyle__ParentDiv>,
+            </ContactDeletionModal.style__StyledButton>
+</ContactDeletionModal.style__ParentDiv>,
         ],
       },
       "ref": null,
@@ -279,16 +279,16 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <div>
-                <ContactDeletionModalstyle__SecondaryHeader>
+                <ContactDeletionModal.style__SecondaryHeader>
                                 Name 
-                </ContactDeletionModalstyle__SecondaryHeader>
+                </ContactDeletionModal.style__SecondaryHeader>
                  
                 mike
 </div>,
               <div>
-                <ContactDeletionModalstyle__SecondaryHeader>
+                <ContactDeletionModal.style__SecondaryHeader>
                                 Address 
-                </ContactDeletionModalstyle__SecondaryHeader>
+                </ContactDeletionModal.style__SecondaryHeader>
                 0x3123123
 </div>,
             ],
@@ -301,9 +301,9 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <ContactDeletionModalstyle__SecondaryHeader>
+                  <ContactDeletionModal.style__SecondaryHeader>
                     Name 
-</ContactDeletionModalstyle__SecondaryHeader>,
+</ContactDeletionModal.style__SecondaryHeader>,
                   " ",
                   "mike",
                 ],
@@ -332,9 +332,9 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <ContactDeletionModalstyle__SecondaryHeader>
+                  <ContactDeletionModal.style__SecondaryHeader>
                     Address 
-</ContactDeletionModalstyle__SecondaryHeader>,
+</ContactDeletionModal.style__SecondaryHeader>,
                   "0x3123123",
                 ],
               },
@@ -364,20 +364,20 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <ContactDeletionModalstyle__StyledButton
+              <ContactDeletionModal.style__StyledButton
                 id="delete"
                 onClick={[Function]}
                 type="primary"
 >
                 Delete
-</ContactDeletionModalstyle__StyledButton>,
-              <ContactDeletionModalstyle__StyledButton
+</ContactDeletionModal.style__StyledButton>,
+              <ContactDeletionModal.style__StyledButton
                 id="cancel"
                 onClick={[Function]}
                 type="primary"
 >
                 Cancel
-</ContactDeletionModalstyle__StyledButton>,
+</ContactDeletionModal.style__StyledButton>,
             ],
           },
           "ref": null,

@@ -47,28 +47,28 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <EditContactModalstyle__WrapperIcon>
+        <EditContactModal.style__WrapperIcon>
           <Icon
                     type="info-circle-o"
           />
-          <EditContactModalstyle__Text>
+          <EditContactModal.style__Text>
                     Please be sure that all the information is correct. Once a transaction is made, it can not be changed.
-          </EditContactModalstyle__Text>
-</EditContactModalstyle__WrapperIcon>,
+          </EditContactModal.style__Text>
+</EditContactModal.style__WrapperIcon>,
         <Form
           hideRequiredMark={false}
           layout="vertical"
           onSubmit={[Function]}
           prefixCls="ant-form"
 >
-          <Modalstyle__ModalFormItem
+          <Modal.style__ModalFormItem
                     label={
-                              <Modalstyle__ModalFormLabel>
+                              <Modal.style__ModalFormLabel>
                                         Name
-                              </Modalstyle__ModalFormLabel>
+                              </Modal.style__ModalFormLabel>
                     }
           >
-                    <Modalstyle__ModalFormInput
+                    <Modal.style__ModalFormInput
                               data-__field={
                                         Object {
                                                   "name": "name",
@@ -109,15 +109,15 @@ ShallowWrapper {
                               onChange={[Function]}
                               value="mike"
                     />
-          </Modalstyle__ModalFormItem>
-          <Modalstyle__ModalFormItem
+          </Modal.style__ModalFormItem>
+          <Modal.style__ModalFormItem
                     label={
-                              <Modalstyle__ModalFormLabel>
+                              <Modal.style__ModalFormLabel>
                                         Valid Ethereum Address
-                              </Modalstyle__ModalFormLabel>
+                              </Modal.style__ModalFormLabel>
                     }
           >
-                    <Modalstyle__ModalFormInput
+                    <Modal.style__ModalFormInput
                               data-__field={
                                         Object {
                                                   "name": "address",
@@ -168,9 +168,9 @@ ShallowWrapper {
                               onChange={[Function]}
                               value="0x12312313"
                     />
-          </Modalstyle__ModalFormItem>
-          <EditContactModalstyle__ParentDiv>
-                    <EditContactModalstyle__StyledButton1
+          </Modal.style__ModalFormItem>
+          <EditContactModal.style__ParentDiv>
+                    <EditContactModal.style__StyledButton1
                               htmlType="submit"
                               id="button"
                               type="primary"
@@ -179,8 +179,8 @@ ShallowWrapper {
                                         type="plus"
                               />
                               Edit Contact
-                    </EditContactModalstyle__StyledButton1>
-          </EditContactModalstyle__ParentDiv>
+                    </EditContactModal.style__StyledButton1>
+          </EditContactModal.style__ParentDiv>
 </Form>,
       ],
     },
@@ -195,9 +195,9 @@ ShallowWrapper {
             <Icon
               type="info-circle-o"
 />,
-            <EditContactModalstyle__Text>
+            <EditContactModal.style__Text>
               Please be sure that all the information is correct. Once a transaction is made, it can not be changed.
-</EditContactModalstyle__Text>,
+</EditContactModal.style__Text>,
           ],
         },
         "ref": null,
@@ -233,14 +233,14 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Modalstyle__ModalFormItem
+            <Modal.style__ModalFormItem
               label={
-                            <Modalstyle__ModalFormLabel>
+                            <Modal.style__ModalFormLabel>
                                           Name
-                            </Modalstyle__ModalFormLabel>
+                            </Modal.style__ModalFormLabel>
               }
 >
-              <Modalstyle__ModalFormInput
+              <Modal.style__ModalFormInput
                             data-__field={
                                           Object {
                                                         "name": "name",
@@ -281,15 +281,15 @@ ShallowWrapper {
                             onChange={[Function]}
                             value="mike"
               />
-</Modalstyle__ModalFormItem>,
-            <Modalstyle__ModalFormItem
+</Modal.style__ModalFormItem>,
+            <Modal.style__ModalFormItem
               label={
-                            <Modalstyle__ModalFormLabel>
+                            <Modal.style__ModalFormLabel>
                                           Valid Ethereum Address
-                            </Modalstyle__ModalFormLabel>
+                            </Modal.style__ModalFormLabel>
               }
 >
-              <Modalstyle__ModalFormInput
+              <Modal.style__ModalFormInput
                             data-__field={
                                           Object {
                                                         "name": "address",
@@ -340,9 +340,9 @@ ShallowWrapper {
                             onChange={[Function]}
                             value="0x12312313"
               />
-</Modalstyle__ModalFormItem>,
-            <EditContactModalstyle__ParentDiv>
-              <EditContactModalstyle__StyledButton1
+</Modal.style__ModalFormItem>,
+            <EditContactModal.style__ParentDiv>
+              <EditContactModal.style__StyledButton1
                             htmlType="submit"
                             id="button"
                             type="primary"
@@ -351,8 +351,8 @@ ShallowWrapper {
                                           type="plus"
                             />
                             Edit Contact
-              </EditContactModalstyle__StyledButton1>
-</EditContactModalstyle__ParentDiv>,
+              </EditContactModal.style__StyledButton1>
+</EditContactModal.style__ParentDiv>,
           ],
           "hideRequiredMark": false,
           "layout": "vertical",
@@ -366,7 +366,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <Modalstyle__ModalFormInput
+              "children": <Modal.style__ModalFormInput
                 data-__field={
                                 Object {
                                                 "name": "name",
@@ -407,9 +407,9 @@ ShallowWrapper {
                 onChange={[Function]}
                 value="mike"
 />,
-              "label": <Modalstyle__ModalFormLabel>
+              "label": <Modal.style__ModalFormLabel>
                 Name
-</Modalstyle__ModalFormLabel>,
+</Modal.style__ModalFormLabel>,
             },
             "ref": null,
             "rendered": Object {
@@ -464,7 +464,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <Modalstyle__ModalFormInput
+              "children": <Modal.style__ModalFormInput
                 data-__field={
                                 Object {
                                                 "name": "address",
@@ -515,9 +515,9 @@ ShallowWrapper {
                 onChange={[Function]}
                 value="0x12312313"
 />,
-              "label": <Modalstyle__ModalFormLabel>
+              "label": <Modal.style__ModalFormLabel>
                 Valid Ethereum Address
-</Modalstyle__ModalFormLabel>,
+</Modal.style__ModalFormLabel>,
             },
             "ref": null,
             "rendered": Object {
@@ -582,7 +582,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <EditContactModalstyle__StyledButton1
+              "children": <EditContactModal.style__StyledButton1
                 htmlType="submit"
                 id="button"
                 type="primary"
@@ -591,7 +591,7 @@ ShallowWrapper {
                                 type="plus"
                 />
                 Edit Contact
-</EditContactModalstyle__StyledButton1>,
+</EditContactModal.style__StyledButton1>,
             },
             "ref": null,
             "rendered": Object {
@@ -641,28 +641,28 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <EditContactModalstyle__WrapperIcon>
+          <EditContactModal.style__WrapperIcon>
             <Icon
                         type="info-circle-o"
             />
-            <EditContactModalstyle__Text>
+            <EditContactModal.style__Text>
                         Please be sure that all the information is correct. Once a transaction is made, it can not be changed.
-            </EditContactModalstyle__Text>
-</EditContactModalstyle__WrapperIcon>,
+            </EditContactModal.style__Text>
+</EditContactModal.style__WrapperIcon>,
           <Form
             hideRequiredMark={false}
             layout="vertical"
             onSubmit={[Function]}
             prefixCls="ant-form"
 >
-            <Modalstyle__ModalFormItem
+            <Modal.style__ModalFormItem
                         label={
-                                    <Modalstyle__ModalFormLabel>
+                                    <Modal.style__ModalFormLabel>
                                                 Name
-                                    </Modalstyle__ModalFormLabel>
+                                    </Modal.style__ModalFormLabel>
                         }
             >
-                        <Modalstyle__ModalFormInput
+                        <Modal.style__ModalFormInput
                                     data-__field={
                                                 Object {
                                                             "name": "name",
@@ -703,15 +703,15 @@ ShallowWrapper {
                                     onChange={[Function]}
                                     value="mike"
                         />
-            </Modalstyle__ModalFormItem>
-            <Modalstyle__ModalFormItem
+            </Modal.style__ModalFormItem>
+            <Modal.style__ModalFormItem
                         label={
-                                    <Modalstyle__ModalFormLabel>
+                                    <Modal.style__ModalFormLabel>
                                                 Valid Ethereum Address
-                                    </Modalstyle__ModalFormLabel>
+                                    </Modal.style__ModalFormLabel>
                         }
             >
-                        <Modalstyle__ModalFormInput
+                        <Modal.style__ModalFormInput
                                     data-__field={
                                                 Object {
                                                             "name": "address",
@@ -762,9 +762,9 @@ ShallowWrapper {
                                     onChange={[Function]}
                                     value="0x12312313"
                         />
-            </Modalstyle__ModalFormItem>
-            <EditContactModalstyle__ParentDiv>
-                        <EditContactModalstyle__StyledButton1
+            </Modal.style__ModalFormItem>
+            <EditContactModal.style__ParentDiv>
+                        <EditContactModal.style__StyledButton1
                                     htmlType="submit"
                                     id="button"
                                     type="primary"
@@ -773,8 +773,8 @@ ShallowWrapper {
                                                 type="plus"
                                     />
                                     Edit Contact
-                        </EditContactModalstyle__StyledButton1>
-            </EditContactModalstyle__ParentDiv>
+                        </EditContactModal.style__StyledButton1>
+            </EditContactModal.style__ParentDiv>
 </Form>,
         ],
       },
@@ -789,9 +789,9 @@ ShallowWrapper {
               <Icon
                 type="info-circle-o"
 />,
-              <EditContactModalstyle__Text>
+              <EditContactModal.style__Text>
                 Please be sure that all the information is correct. Once a transaction is made, it can not be changed.
-</EditContactModalstyle__Text>,
+</EditContactModal.style__Text>,
             ],
           },
           "ref": null,
@@ -827,14 +827,14 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Modalstyle__ModalFormItem
+              <Modal.style__ModalFormItem
                 label={
-                                <Modalstyle__ModalFormLabel>
+                                <Modal.style__ModalFormLabel>
                                                 Name
-                                </Modalstyle__ModalFormLabel>
+                                </Modal.style__ModalFormLabel>
                 }
 >
-                <Modalstyle__ModalFormInput
+                <Modal.style__ModalFormInput
                                 data-__field={
                                                 Object {
                                                                 "name": "name",
@@ -875,15 +875,15 @@ ShallowWrapper {
                                 onChange={[Function]}
                                 value="mike"
                 />
-</Modalstyle__ModalFormItem>,
-              <Modalstyle__ModalFormItem
+</Modal.style__ModalFormItem>,
+              <Modal.style__ModalFormItem
                 label={
-                                <Modalstyle__ModalFormLabel>
+                                <Modal.style__ModalFormLabel>
                                                 Valid Ethereum Address
-                                </Modalstyle__ModalFormLabel>
+                                </Modal.style__ModalFormLabel>
                 }
 >
-                <Modalstyle__ModalFormInput
+                <Modal.style__ModalFormInput
                                 data-__field={
                                                 Object {
                                                                 "name": "address",
@@ -934,9 +934,9 @@ ShallowWrapper {
                                 onChange={[Function]}
                                 value="0x12312313"
                 />
-</Modalstyle__ModalFormItem>,
-              <EditContactModalstyle__ParentDiv>
-                <EditContactModalstyle__StyledButton1
+</Modal.style__ModalFormItem>,
+              <EditContactModal.style__ParentDiv>
+                <EditContactModal.style__StyledButton1
                                 htmlType="submit"
                                 id="button"
                                 type="primary"
@@ -945,8 +945,8 @@ ShallowWrapper {
                                                 type="plus"
                                 />
                                 Edit Contact
-                </EditContactModalstyle__StyledButton1>
-</EditContactModalstyle__ParentDiv>,
+                </EditContactModal.style__StyledButton1>
+</EditContactModal.style__ParentDiv>,
             ],
             "hideRequiredMark": false,
             "layout": "vertical",
@@ -960,7 +960,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <Modalstyle__ModalFormInput
+                "children": <Modal.style__ModalFormInput
                   data-__field={
                                     Object {
                                                       "name": "name",
@@ -1001,9 +1001,9 @@ ShallowWrapper {
                   onChange={[Function]}
                   value="mike"
 />,
-                "label": <Modalstyle__ModalFormLabel>
+                "label": <Modal.style__ModalFormLabel>
                   Name
-</Modalstyle__ModalFormLabel>,
+</Modal.style__ModalFormLabel>,
               },
               "ref": null,
               "rendered": Object {
@@ -1058,7 +1058,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <Modalstyle__ModalFormInput
+                "children": <Modal.style__ModalFormInput
                   data-__field={
                                     Object {
                                                       "name": "address",
@@ -1109,9 +1109,9 @@ ShallowWrapper {
                   onChange={[Function]}
                   value="0x12312313"
 />,
-                "label": <Modalstyle__ModalFormLabel>
+                "label": <Modal.style__ModalFormLabel>
                   Valid Ethereum Address
-</Modalstyle__ModalFormLabel>,
+</Modal.style__ModalFormLabel>,
               },
               "ref": null,
               "rendered": Object {
@@ -1176,7 +1176,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <EditContactModalstyle__StyledButton1
+                "children": <EditContactModal.style__StyledButton1
                   htmlType="submit"
                   id="button"
                   type="primary"
@@ -1185,7 +1185,7 @@ ShallowWrapper {
                                     type="plus"
                   />
                   Edit Contact
-</EditContactModalstyle__StyledButton1>,
+</EditContactModal.style__StyledButton1>,
               },
               "ref": null,
               "rendered": Object {
