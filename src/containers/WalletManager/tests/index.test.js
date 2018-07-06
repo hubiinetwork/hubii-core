@@ -23,10 +23,13 @@ describe('WalletManager', () => {
       errors: fromJS(errors),
     };
     let createNewWalletSpy;
+    let createWalletFromPrivateKeySpy;
     let dom;
     beforeEach(() => {
       createNewWalletSpy = jest.fn();
       params.createNewWallet = createNewWalletSpy;
+      createWalletFromPrivateKeySpy = jest.fn();
+      params.createWalletFromPrivateKey = createWalletFromPrivateKeySpy;
 
       dom = shallow(
         <WalletManager

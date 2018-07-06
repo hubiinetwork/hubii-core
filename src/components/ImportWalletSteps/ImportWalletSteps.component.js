@@ -12,7 +12,7 @@ import {
 import DerivationPath from "./DerivationPath";
 import ImportWallet from './ImportWallet';
 import ImportWalletNameForm from './ImportWalletNameForm';
-import ImportWalletPasswordForm from './ImportWalletPasswordForm';
+import ImportWalletMetamaskForm from './ImportWalletMetamaskForm';
 import FormSteps from '../FormSteps';
 
 const paths = [
@@ -147,7 +147,7 @@ export default class ImportWalletSteps extends React.Component {
         {
           title: 'Last',
           content: (
-            <ImportWalletPasswordForm
+            <ImportWalletMetamaskForm
               wallet={selectedWallet}
               handleBack={this.handleBack}
               handleNext={this.handleNext}

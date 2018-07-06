@@ -14,7 +14,7 @@ import {
   TRANSFER_ETHER,
   TRANSFER_ERC20,
   TRANSFER_SUCCESS,
-  IMPORT_WALLET_BY_PRIVATE_KEY,
+  CREATE_WALLET_BY_PRIVATE_KEY,
 } from './constants';
 
 import {
@@ -51,8 +51,10 @@ export function* createWalletFromPrivateKey({ privateKey, name, password }) {
     if (!name || !privateKey || !password) throw new Error('invalid param');
     const decryptedWallet = new Wallet(privateKey);
     const encryptedWallet = yield call((...args) => decryptedWallet.encrypt(...args), password);
+    yield put(notify('success', `Successfully imported ${name}`));
     yield put(createNewWalletSuccess(name, encryptedWallet, decryptedWallet));
   } catch (e) {
+    yield put(notify('error', `Failed to import wallet: ${e}`));
     yield put(createNewWalletFailed(e));
   }
 }
@@ -160,5 +162,5 @@ export default function* walletManager() {
   yield takeEvery(TRANSFER_ERC20, transferERC20);
   yield takeEvery(TRANSFER_SUCCESS, waitTransactionHash);
 
-  yield takeEvery(IMPORT_WALLET_BY_PRIVATE_KEY, createWalletFromPrivateKey);
+  yield takeEvery(CREATE_WALLET_BY_PRIVATE_KEY, createWalletFromPrivateKey);
 }

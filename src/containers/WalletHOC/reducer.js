@@ -13,8 +13,9 @@ import {
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
-  CREATE_NEW_WALLET_SUCCESS,
   CREATE_NEW_WALLET,
+  CREATE_WALLET_BY_PRIVATE_KEY,
+  CREATE_NEW_WALLET_SUCCESS,
   CREATE_NEW_WALLET_FAILURE,
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
@@ -63,6 +64,10 @@ function walletManagerReducer(state = initialState, action) {
         .setIn(['loading', 'creatingWallet'], true)
         .setIn(['errors', 'creatingWalletError'], null)
         .set('progress', 0);
+    case CREATE_WALLET_BY_PRIVATE_KEY:
+      return state
+        .setIn(['loading', 'creatingWallet'], true)
+        .setIn(['errors', 'creatingWalletError'], null);
     case CREATE_NEW_WALLET_SUCCESS:
       return state
         .setIn(['loading', 'creatingWallet'], false)

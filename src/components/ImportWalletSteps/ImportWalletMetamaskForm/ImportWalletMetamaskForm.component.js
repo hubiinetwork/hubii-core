@@ -15,9 +15,9 @@ import {
   StyledBackButton,
   StyledButton,
   StyledSpan,
-} from './ImportWalletPasswordForm.style';
+} from './ImportWalletMetamaskForm.style';
 import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
-class ImportWalletNameForm extends React.Component {
+class ImportWalletMetamaskForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleFinish = this.handleFinish.bind(this);
@@ -94,7 +94,7 @@ class ImportWalletNameForm extends React.Component {
                     required: true,
                   },
                 ],
-              })(<ModalFormInput />)}
+              })(<ModalFormInput type="password" />)}
             </ModalFormItem>
             <ModalFormItem
               label={
@@ -108,7 +108,7 @@ class ImportWalletNameForm extends React.Component {
                     required: true,
                   },
                 ],
-              })(<ModalFormInput />)}
+              })(<ModalFormInput type="password" />)}
             </ModalFormItem>
             <ButtonDiv>
               <StyledBackButton type={"primary"} onClick={this.props.handleBack}>
@@ -124,4 +124,4 @@ class ImportWalletNameForm extends React.Component {
     );
   }
 }
-export default Form.create()(ImportWalletNameForm);
+export default Form.create()(ImportWalletMetamaskForm);
