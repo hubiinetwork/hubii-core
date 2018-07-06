@@ -71,12 +71,6 @@ export class WalletManager extends React.PureComponent {
     }
     this.hideModal();
   }
-  toTitleCase(str) {
-    return str.replace(
-        /\w\S*/g,
-        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-    );
-  }
 
   showModal(type) {
     this.setState({
