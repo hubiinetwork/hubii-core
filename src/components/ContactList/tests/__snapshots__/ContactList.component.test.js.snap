@@ -36,7 +36,7 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <ContactList.style__StyledList
+        <ContactListstyle__StyledList
           dataSource={
                     Array [
                               Object {
@@ -53,7 +53,7 @@ ShallowWrapper {
           renderItem={[Function]}
           size="small"
 />,
-        <Modal.style
+        <Modalstyle
           destroyOnClose={true}
           footer={null}
           maskClosable={true}
@@ -78,7 +78,7 @@ ShallowWrapper {
                     onEdit={[Function]}
                     validateEdit={[Function]}
           />
-</Modal.style>,
+</Modalstyle>,
       ],
     },
     "ref": null,
@@ -159,7 +159,7 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <ContactList.style__StyledList
+          <ContactListstyle__StyledList
             dataSource={
                         Array [
                                     Object {
@@ -176,7 +176,7 @@ ShallowWrapper {
             renderItem={[Function]}
             size="small"
 />,
-          <Modal.style
+          <Modalstyle
             destroyOnClose={true}
             footer={null}
             maskClosable={true}
@@ -201,7 +201,7 @@ ShallowWrapper {
                         onEdit={[Function]}
                         validateEdit={[Function]}
             />
-</Modal.style>,
+</Modalstyle>,
         ],
       },
       "ref": null,

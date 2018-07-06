@@ -52,7 +52,7 @@ WalletTransfer.propTypes = {
   currentWalletDetails: PropTypes.object.isRequired,
   transfer: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
-  contacts: PropTypes.object,
+  contacts: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
