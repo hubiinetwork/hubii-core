@@ -17,8 +17,12 @@ import {
 import { AddWallet } from './AddWallet';
 import { RestoreWallet } from './RestoreWallet';
 import ImportWalletSteps from '../ImportWalletSteps';
+
+import metamaskImg from '../../../public/Images/metamask_wallet.png';
+import ledgerImg from '../../../public/Images/ledger_wallet.png';
+
 /**
- * This component shows options for modals to  be opened.
+ * This component shows options for modals to be opened.
  */
 export default class AddRestoreWalletModal extends React.PureComponent {
   constructor(props) {
@@ -129,12 +133,11 @@ export default class AddRestoreWalletModal extends React.PureComponent {
             <ImportWalletSteps
               wallets={[
                 {
-                  src:
-                    'https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png',
+                  src: ledgerImg,
                   name: 'ledger',
                 },
                 {
-                  src: 'https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png',
+                  src: metamaskImg,
                   name: 'metamask',
                 },
               ]}
