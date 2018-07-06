@@ -14,10 +14,11 @@ import AddNewContactModal from 'components/AddNewContactModal';
 import { Modal } from 'components/ui/Modal';
 import { makeSelectContacts } from 'containers/ContactBook/selectors';
 
-import { createNewWallet } from 'containers/WalletHOC/actions';
+import { createWalletFromMnemonic, createWalletFromPrivateKey } from 'containers/WalletHOC/actions';
 import { makeSelectLoading, makeSelectErrors } from 'containers/WalletHOC/selectors';
 import { createContact,
  } from '../ContactBook/actions';
+
 
 import {
   Wrapper,
@@ -42,6 +43,7 @@ export class WalletManager extends React.PureComponent {
     this.hideModal = this.hideModal.bind(this);
     this.showModal = this.showModal.bind(this);
     this.handleAddWalletSubmit = this.handleAddWalletSubmit.bind(this);
+    this.handleImportWalletSubmit = this.handleImportWalletSubmit.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -71,12 +73,6 @@ export class WalletManager extends React.PureComponent {
     }
     this.hideModal();
   }
-  toTitleCase(str) {
-    return str.replace(
-        /\w\S*/g,
-        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-    );
-  }
 
   showModal(type) {
     this.setState({
@@ -92,12 +88,18 @@ export class WalletManager extends React.PureComponent {
   }
 
   handleAddWalletSubmit(params) {
-    this.props.createNewWallet(params.name, params.mnemonic, params.derivationPath, params.password);
+    this.props.createWalletFromMnemonic(params.name, params.mnemonic, params.derivationPath, params.password);
+  }
+
+  handleImportWalletSubmit(data) {
+    if (data[0].walletType === 'metamask') {
+      const { privateKey, name, password } = data[1];
+      this.props.createWalletFromPrivateKey(privateKey, name, password);
+    }
   }
 
   render() {
-    const { history, match, contacts } = this.props;
-
+    const { history, match, contacts, loading } = this.props;
     let modal;
     switch (this.state.type) {
       case 'addContact':
@@ -110,6 +112,8 @@ export class WalletManager extends React.PureComponent {
         modal = (<AddRestoreWalletModal
           goBack={this.state.visible}
           handleAddWalletSubmit={this.handleAddWalletSubmit}
+          handleImportWalletSubmit={this.handleImportWalletSubmit}
+          loading={loading}
         />);
     }
 
@@ -167,6 +171,7 @@ export class WalletManager extends React.PureComponent {
           history.location.pathname === match.url &&
           <Redirect from={match.url} to={`${match.url}/overview`} push />
         }
+
       </Wrapper>
     );
   }
@@ -175,7 +180,8 @@ export class WalletManager extends React.PureComponent {
 WalletManager.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
-  createNewWallet: PropTypes.func.isRequired,
+  createWalletFromMnemonic: PropTypes.func.isRequired,
+  createWalletFromPrivateKey: PropTypes.func.isRequired,
   loading: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   createContact: PropTypes.func,
@@ -192,7 +198,8 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    createNewWallet: (...args) => dispatch(createNewWallet(...args)),
+    createWalletFromMnemonic: (...args) => dispatch(createWalletFromMnemonic(...args)),
+    createWalletFromPrivateKey: (...args) => dispatch(createWalletFromPrivateKey(...args)),
     createContact: (...args) => dispatch(createContact(...args)),
   };
 }

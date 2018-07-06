@@ -13,9 +13,10 @@ import {
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
-  CREATE_NEW_WALLET_SUCCESS,
-  CREATE_NEW_WALLET,
-  CREATE_NEW_WALLET_FAILURE,
+  CREATE_WALLET_FROM_MNEMONIC,
+  CREATE_WALLET_FROM_PRIVATE_KEY,
+  CREATE_WALLET_SUCCESS,
+  CREATE_WALLET_FAILURE,
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
@@ -68,17 +69,17 @@ abiDecoder.addABI(ERC20ABI);
 
 function walletHocReducer(state = initialState, action) {
   switch (action.type) {
-    case CREATE_NEW_WALLET:
+    case CREATE_WALLET_FROM_MNEMONIC:
+    case CREATE_WALLET_FROM_PRIVATE_KEY:
       return state
         .setIn(['loading', 'creatingWallet'], true)
-        .setIn(['errors', 'creatingWalletError'], null)
-        .set('progress', 0);
-    case CREATE_NEW_WALLET_SUCCESS:
+        .setIn(['errors', 'creatingWalletError'], null);
+    case CREATE_WALLET_SUCCESS:
       return state
         .setIn(['loading', 'creatingWallet'], false)
         .setIn(['inputs', 'password'], '')
         .setIn(['wallets', 'software', action.name], fromJS(action.newWallet));
-    case CREATE_NEW_WALLET_FAILURE:
+    case CREATE_WALLET_FAILURE:
       return state
         .setIn(['loading', 'creatingWallet'], false)
         .setIn(['errors', 'creatingWalletError'], action.error);

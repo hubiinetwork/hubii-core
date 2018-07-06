@@ -15,7 +15,8 @@ import { fromJS } from 'immutable';
 import { notify } from 'containers/App/actions';
 
 import walletHoc, {
-  createWallet,
+  createWalletFromMnemonic,
+  createWalletFromPrivateKey,
   decryptWallet,
   loadWalletBalancesSaga,
   initWalletsBalances,
@@ -26,11 +27,13 @@ import walletHoc, {
   transferEther,
   ledgerSync,
   waitTransactionHash,
+  hookNewWalletCreated,
 } from '../saga';
 
 import {
-  CREATE_NEW_WALLET,
+  CREATE_WALLET_FROM_MNEMONIC,
   DECRYPT_WALLET,
+  CREATE_WALLET_FROM_PRIVATE_KEY,
   LOAD_WALLET_BALANCES,
   LOAD_WALLETS_SUCCESS,
   POLL_LEDGER,
@@ -43,11 +46,12 @@ import {
   TRANSFER_SUCCESS,
   LEDGER_ERROR,
   LEDGER_DETECTED,
+  CREATE_WALLET_SUCCESS,
 } from '../constants';
 
 import {
-  createNewWalletSuccess,
-  createNewWalletFailed,
+  createWalletSuccess,
+  createWalletFailed,
   decryptWalletSuccess,
   decryptWalletFailed,
   showDecryptWalletModal,
@@ -64,9 +68,10 @@ import {
   stopLedgerSync,
   fetchedLedgerAddress,
   startLedgerSync,
+  createWalletFromPrivateKey as createWalletFromPrivateKeyAction,
 } from '../actions';
 
-describe('createWallet saga', () => {
+describe('createWalletFromMnemonic saga', () => {
   let mnemonic = 'movie viable write punch mango arrest cotton page grass dad document practice';
   let derivationPath = 'm/44\'/60\'/0\'/0/0';
   const decryptedWallet = Wallet.fromMnemonic(mnemonic, derivationPath);
@@ -81,63 +86,97 @@ describe('createWallet saga', () => {
     encryptedWallet = '{"address":"a0eccd7605bb117dd2a4cd55979c720cf00f7fa4","id":"f17128a6-c5f0-4af0-a168-67cf6d3d8552","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"6167c13fe3cd195b4ce9312a9f9399ce"},"ciphertext":"2434b52afa29851edea2acb7f33dd854fc7e7b036ad6a2c3614f3d61ef0e19ce","kdf":"scrypt","kdfparams":{"salt":"b0662c8968389207137be9f346fb1cfba604f9d214e95012881025b7ebc5b9da","n":131072,"dklen":32,"p":1,"r":8},"mac":"256bd09baf3341e9f7df675b8a8cc551b86dfd0dfdf1aa8df2596882f3751496"},"x-ethers":{"client":"ethers.js","gethFilename":"UTC--2018-06-19T04-19-27.0Z--a0eccd7605bb117dd2a4cd55979c720cf00f7fa4","mnemonicCounter":"20da552ff9e584fc89194af19543a096","mnemonicCiphertext":"ff46b728607532d5be86a0647b169a18","version":"0.1"}}';
   });
 
-  it('should dispatch the createNewWalletSuccess action if successful', () => {
-    const createWalletGenerator = createWallet({ name, mnemonic, derivationPath, password });
+  it('should dispatch the createWalletSuccess action if successful', () => {
+    const createWalletGenerator = createWalletFromMnemonic({ name, mnemonic, derivationPath, password });
     createWalletGenerator.next();
     const putDescriptor = createWalletGenerator.next(encryptedWallet).value;
-    expect(JSON.stringify(putDescriptor)).toEqual(JSON.stringify(put(createNewWalletSuccess(name, encryptedWallet, decryptedWallet))));
+    expect(JSON.stringify(putDescriptor)).toEqual(JSON.stringify(put(createWalletSuccess(name, encryptedWallet, decryptedWallet))));
   });
 
-  it('should dispatch the createNewWalletFailed action if bad mnemonic', () => {
+  it('should dispatch the createWalletFailed action if bad mnemonic', () => {
     mnemonic = 'rubbish';
-    const createWalletGenerator = createWallet({ name, mnemonic, derivationPath, password });
+    const createWalletGenerator = createWalletFromMnemonic({ name, mnemonic, derivationPath, password });
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invalid mnemonic');
-    expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+    expect(putDescriptor).toEqual(put(createWalletFailed(error)));
   });
 
-  it('should dispatch the createNewWalletFailed action if bad derivationPath', () => {
+  it('should dispatch the createWalletFailed action if bad derivationPath', () => {
     derivationPath = 'm/0.0';
-    const createWalletGenerator = createWallet({ name, mnemonic, derivationPath, password });
+    const createWalletGenerator = createWalletFromMnemonic({ name, mnemonic, derivationPath, password });
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invlaid path component - 0.0');
-    expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+    expect(putDescriptor).toEqual(put(createWalletFailed(error)));
   });
 
-  it('should dispatch the createNewWalletFailed action if invalid mnemonic password', () => {
+  it('should dispatch the createWalletFailed action if invalid mnemonic password', () => {
     mnemonic = 'rubbish';
-    const createWalletGenerator = createWallet({ name, mnemonic, derivationPath, password });
+    const createWalletGenerator = createWalletFromMnemonic({ name, mnemonic, derivationPath, password });
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invalid mnemonic');
-    expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+    expect(putDescriptor).toEqual(put(createWalletFailed(error)));
   });
 
-  it('should dispatch createNewWalletFailed action if name is undefined', () => {
-    const createWalletGenerator = createWallet({ mnemonic, derivationPath, password });
+  it('should dispatch createWalletFailed action if name is undefined', () => {
+    const createWalletGenerator = createWalletFromMnemonic({ mnemonic, derivationPath, password });
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invalid param');
-    expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+    expect(putDescriptor).toEqual(put(createWalletFailed(error)));
   });
 
-  it('should dispatch createNewWalletFailed action if mnemonic is undefined', () => {
-    const createWalletGenerator = createWallet({ name, derivationPath, password });
+  it('should dispatch createWalletFailed action if mnemonic is undefined', () => {
+    const createWalletGenerator = createWalletFromMnemonic({ name, derivationPath, password });
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invalid param');
-    expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+    expect(putDescriptor).toEqual(put(createWalletFailed(error)));
   });
 
-  it('should dispatch createNewWalletFailed action if derivationPath is undefined', () => {
-    const createWalletGenerator = createWallet({ mnemonic, name, password });
+  it('should dispatch createWalletFailed action if derivationPath is undefined', () => {
+    const createWalletGenerator = createWalletFromMnemonic({ mnemonic, name, password });
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invalid param');
-    expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+    expect(putDescriptor).toEqual(put(createWalletFailed(error)));
   });
 
-  it('should dispatch createNewWalletFailed action if password is undefined', () => {
-    const createWalletGenerator = createWallet({ mnemonic, name, derivationPath });
+  it('should dispatch createWalletFailed action if password is undefined', () => {
+    const createWalletGenerator = createWalletFromMnemonic({ mnemonic, name, derivationPath });
     const putDescriptor = createWalletGenerator.next().value;
     const error = new Error('invalid param');
-    expect(putDescriptor).toEqual(put(createNewWalletFailed(error)));
+    expect(putDescriptor).toEqual(put(createWalletFailed(error)));
+  });
+
+  describe('create wallet by private key', () => {
+    const privateKey = '0x409300caf64bdf96a92d7f99547a5d67702fbdd759bbea4ca19b11a21d9c8528';
+    const encrypted = '{"address":"a0eccd7605bb117dd2a4cd55979c720cf00f7fa4","id":"72b4922e-3785-4f0d-8c8c-b18c45ee431a","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"673d20bb45325d1f9cff0803b6fc9bd4"},"ciphertext":"6d72b87ed428d191730880ec10b24e10024d6fcccc51d0d306a111af35d9e557","kdf":"scrypt","kdfparams":{"salt":"1b62a7c98ca890b8f87a8dc06d958a8361057e2739f865691e6fb19c969f9d0c","n":131072,"dklen":32,"p":1,"r":8},"mac":"56569c22a1008b6a55e15758a4d3165bf1dbbdd3cb525ba42a0ee444394f1993"}}';
+    const pwd = 'test';
+    it('should dispatch createWalletSuccess', async () => expectSaga(walletHoc, { privateKey, name, password: pwd })
+        .provide({
+          call() {
+            return encrypted;
+          },
+        })
+        .put.like({
+          action: {
+            type: CREATE_WALLET_SUCCESS,
+            name,
+            newWallet: {
+              encrypted,
+            },
+          },
+        })
+        .dispatch(createWalletFromPrivateKeyAction(privateKey, name, pwd))
+        .run({ silenceTimeout: true }));
+    describe('exceptions', () => {
+      it('when private key is invalid', () => expectSaga(createWalletFromPrivateKey, { privateKey: null, name, password: pwd })
+          .put(createWalletFailed(new Error('invalid param')))
+          .run({ silenceTimeout: true }));
+      it('when name is not given', () => expectSaga(createWalletFromPrivateKey, { privateKey, name: null, password: pwd })
+          .put(createWalletFailed(new Error('invalid param')))
+          .run({ silenceTimeout: true }));
+      it('when password is not given', () => expectSaga(createWalletFromPrivateKey, { privateKey, name, password: null })
+          .put(createWalletFailed(new Error('invalid param')))
+          .run({ silenceTimeout: true }));
+    });
   });
 });
 
@@ -287,6 +326,15 @@ describe('load wallets saga', () => {
         },
       })
       .put(loadWalletBalancesError(walletName, error))
+      .run({ silenceTimeout: true });
+  });
+
+  it('should trigger action loadWalletBalances when createWalletSuccess action is dispatch', () => {
+    const decryptedWallet = { address: 'abcd' };
+    const encryptedWallet = 'json';
+    return expectSaga(walletHoc)
+      .put(loadWalletBalances(name, decryptedWallet.address))
+      .dispatch(createWalletSuccess(name, encryptedWallet, decryptedWallet))
       .run({ silenceTimeout: true });
   });
 
@@ -536,9 +584,9 @@ describe('load wallets saga', () => {
 describe('root Saga', () => {
   const walletHocSaga = walletHoc();
 
-  it('should start task to watch for CREATE_NEW_WALLET action', () => {
+  it('should start task to watch for CREATE_WALLET_FROM_MNEMONIC action', () => {
     const takeDescriptor = walletHocSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(CREATE_NEW_WALLET, createWallet));
+    expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_FROM_MNEMONIC, createWalletFromMnemonic));
   });
 
   it('should start task to watch for DECRYPT_WALLET action', () => {
@@ -584,6 +632,16 @@ describe('root Saga', () => {
   it('should start task to watch for TRANSFER_SUCCESS action', () => {
     const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(TRANSFER_SUCCESS, waitTransactionHash));
+  });
+
+  it('should wait for the CREATE_WALLET_FROM_PRIVATE_KEY action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey));
+  });
+
+  it('should wait for the CREATE_WALLET_SUCCESS action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated));
   });
 
   it('should wait for the START_LEDGER_SYNC action', () => {

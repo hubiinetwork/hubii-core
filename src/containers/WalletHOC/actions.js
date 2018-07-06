@@ -5,9 +5,10 @@
  */
 
 import {
-  CREATE_NEW_WALLET,
-  CREATE_NEW_WALLET_FAILURE,
-  CREATE_NEW_WALLET_SUCCESS,
+  CREATE_WALLET_FROM_MNEMONIC,
+  CREATE_WALLET_FROM_PRIVATE_KEY,
+  CREATE_WALLET_FAILURE,
+  CREATE_WALLET_SUCCESS,
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
@@ -37,9 +38,9 @@ import {
 
 import getFriendlyError from '../../utils/ledger/friendlyErrors';
 
-export function createNewWallet(name, mnemonic, derivationPath, password) {
+export function createWalletFromMnemonic(name, mnemonic, derivationPath, password) {
   return {
-    type: CREATE_NEW_WALLET,
+    type: CREATE_WALLET_FROM_MNEMONIC,
     name,
     mnemonic,
     derivationPath,
@@ -47,9 +48,18 @@ export function createNewWallet(name, mnemonic, derivationPath, password) {
   };
 }
 
-export function createNewWalletSuccess(name, encryptedWallet, decryptedWallet) {
+export function createWalletFromPrivateKey(privateKey, name, password) {
   return {
-    type: CREATE_NEW_WALLET_SUCCESS,
+    type: CREATE_WALLET_FROM_PRIVATE_KEY,
+    privateKey,
+    name,
+    password,
+  };
+}
+
+export function createWalletSuccess(name, encryptedWallet, decryptedWallet) {
+  return {
+    type: CREATE_WALLET_SUCCESS,
     name,
     newWallet: {
       encrypted: encryptedWallet,
@@ -58,9 +68,9 @@ export function createNewWalletSuccess(name, encryptedWallet, decryptedWallet) {
   };
 }
 
-export function createNewWalletFailed(error) {
+export function createWalletFailed(error) {
   return {
-    type: CREATE_NEW_WALLET_FAILURE,
+    type: CREATE_WALLET_FAILURE,
     error,
   };
 }

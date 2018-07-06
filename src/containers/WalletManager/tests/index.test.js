@@ -22,13 +22,16 @@ describe('WalletManager', () => {
       loading: fromJS(loading),
       errors: fromJS(errors),
     };
-    let createNewWalletSpy;
+    let createWalletFromMnemonicSpy;
+    let createWalletFromPrivateKeySpy;
     let createContactSpy;
 
     let dom;
     beforeEach(() => {
-      createNewWalletSpy = jest.fn();
-      params.createNewWallet = createNewWalletSpy;
+      createWalletFromMnemonicSpy = jest.fn();
+      params.createWalletFromMnemonic = createWalletFromMnemonicSpy;
+      createWalletFromPrivateKeySpy = jest.fn();
+      params.createWalletFromPrivateKey = createWalletFromPrivateKeySpy;
 
       createContactSpy = jest.fn();
       params.createContact = createContactSpy;
@@ -164,7 +167,7 @@ describe('WalletManager', () => {
         instance.onCreateContact(args);
         expect(createContactSpy).toBeCalledWith(newName, args.address);
       });
-      it('#handleAddWalletSubmit should call createNewWallet action', () => {
+      it('#handleAddWalletSubmit should call createWalletFromMnemonic action', () => {
         dom = shallow(
           <WalletManager
             {...params}
@@ -178,7 +181,24 @@ describe('WalletManager', () => {
           password: 'pwd',
         };
         instance.handleAddWalletSubmit(args);
-        expect(createNewWalletSpy).toBeCalledWith(args.name, args.mnemonic, args.derivationPath, args.password);
+        expect(createWalletFromMnemonicSpy).toBeCalledWith(args.name, args.mnemonic, args.derivationPath, args.password);
+      });
+      it('#handleAddWalletSubmit should call createWalletFromMnemonic action', () => {
+        dom = shallow(
+          <WalletManager
+            {...params}
+          />
+        );
+        const instance = dom.instance();
+        const args = [{
+          walletType: 'metamask',
+        }, {
+          privateKey: 'privateKey',
+          name: 'name',
+          password: 'pwd',
+        }];
+        instance.handleImportWalletSubmit(args);
+        expect(createWalletFromPrivateKeySpy).toBeCalledWith(args[1].privateKey, args[1].name, args[1].password);
       });
     });
     describe('#mapDispatchToProps', () => {
