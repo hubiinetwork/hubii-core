@@ -7,6 +7,9 @@ import TransferForm from 'components/TransferForm';
 import {
   makeSelectCurrentWalletDetails,
 } from 'containers/WalletHOC/selectors';
+import {
+  makeSelectContacts,
+} from 'containers/ContactBook/selectors';
 import { transfer } from 'containers/WalletHOC/actions';
 
 export class WalletTransfer extends React.PureComponent {
@@ -26,36 +29,35 @@ export class WalletTransfer extends React.PureComponent {
   }
 
   render() {
+    const { contacts } = this.props;
     const currentWallet = this.props.currentWalletDetails;
     if (!currentWallet || !currentWallet.balances) {
       return (null);
     }
 
+
     return (
       <TransferForm
         address="0xf400db37c54c535febca1b470fd1d23d30acdd11"
-        recipients={[
-          { name: 'Jacobo', address: '0xf400db37c54c535febca1b470fd1d23d30ac12wd' },
-          { name: 'Liam', address: '0xf400db37c54c535febca1b470fd1d23d30acdd11' },
-          { name: 'Kata', address: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a' },
-        ]}
+        recipients={contacts.toJS()}
         currencies={currentWallet.balances}
         onSend={this.onSend}
         onCancel={this.onCancel}
       />
     );
   }
-
 }
 
 WalletTransfer.propTypes = {
   currentWalletDetails: PropTypes.object.isRequired,
   transfer: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  contacts: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   currentWalletDetails: makeSelectCurrentWalletDetails(),
+  contacts: makeSelectContacts(),
 });
 
 export function mapDispatchToProps(dispatch) {

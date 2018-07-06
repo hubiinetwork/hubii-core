@@ -1,6 +1,8 @@
 import { fromJS } from 'immutable';
 
 import { initialState as walletHocInitialState } from 'containers/WalletHOC/reducer';
+import { initialState as contactsInitialState } from 'containers/ContactBook/reducer';
+
 
 export const loadState = () => {
   try {
@@ -14,7 +16,7 @@ export const loadState = () => {
   }
 };
 
-export const saveState = (state) => {
+export const saveState = (state, filterPersistedState) => {
   try {
     const persistedState = filterPersistedState(state);
     const serializedPersistedState = JSON.stringify(persistedState);
@@ -39,16 +41,21 @@ export const filterPersistedState = (state) => {
    */
 
   // Start with clean initialState
-  persistedState = persistedState.set('walletManager', walletHocInitialState);
+  persistedState = persistedState.set('contacts', contactsInitialState);
+  persistedState = persistedState.set('walletHoc', walletHocInitialState);
 
   // Get software wallets ensuring the decrypted property is filtered out
   const sanitizedSoftwareWallets = state
-    .getIn(['walletManager', 'wallets', 'software'])
+    .getIn(['walletHoc', 'wallets', 'software'])
     .map(((w) => w.set('decrypted', null)));
-
   // Save sanitized software wallets to the persisted state
   persistedState = persistedState
-    .setIn(['walletManager', 'wallets', 'software'], sanitizedSoftwareWallets);
+    .setIn(['walletHoc', 'wallets', 'software'], sanitizedSoftwareWallets);
 
+  /**
+   * Persist contact book state
+   */
+  persistedState = persistedState
+    .set('contacts', state.get('contacts'));
   return persistedState;
 };

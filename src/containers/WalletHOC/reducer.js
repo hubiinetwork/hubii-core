@@ -1,6 +1,6 @@
 /*
  *
- * WalletManager reducer
+ * WalletHoc reducer
  *
  */
 
@@ -57,7 +57,7 @@ export const initialState = fromJS({
 
 abiDecoder.addABI(ERC20ABI);
 
-function walletManagerReducer(state = initialState, action) {
+function walletHocReducer(state = initialState, action) {
   switch (action.type) {
     case CREATE_NEW_WALLET:
       return state
@@ -169,4 +169,4 @@ function walletManagerReducer(state = initialState, action) {
   }
 }
 
-export default walletManagerReducer;
+export default walletHocReducer;

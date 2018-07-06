@@ -17,7 +17,7 @@ import {
   LOAD_WALLETS,
 } from '../constants';
 
-describe('WalletManager actions', () => {
+describe('WalletHoc actions', () => {
   describe('createNewWallet Action', () => {
     const name = 'Wallet8';
     const mnemonic = 'word word word';

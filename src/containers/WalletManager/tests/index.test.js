@@ -24,6 +24,8 @@ describe('WalletManager', () => {
     };
     let createNewWalletSpy;
     let createWalletFromPrivateKeySpy;
+    let createContactSpy;
+
     let dom;
     beforeEach(() => {
       createNewWalletSpy = jest.fn();
@@ -31,6 +33,8 @@ describe('WalletManager', () => {
       createWalletFromPrivateKeySpy = jest.fn();
       params.createWalletFromPrivateKey = createWalletFromPrivateKeySpy;
 
+      createContactSpy = jest.fn();
+      params.createContact = createContactSpy;
       dom = shallow(
         <WalletManager
           {...params}
@@ -145,6 +149,24 @@ describe('WalletManager', () => {
           expect(instance.state.visible).toEqual(true);
         });
       });
+      it('#onCreateContact should call createContact action', () => {
+        dom = shallow(
+          <WalletManager
+            {...params}
+          />
+        );
+        const instance = dom.instance();
+        const args = {
+          name: 'mike',
+          address: '0x12312',
+        };
+        const newName = args.name.replace(
+          /\w\S*/g,
+          (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+        );
+        instance.onCreateContact(args);
+        expect(createContactSpy).toBeCalledWith(newName, args.address);
+      });
       it('#handleAddWalletSubmit should call createNewWallet action', () => {
         dom = shallow(
           <WalletManager
@@ -160,6 +182,23 @@ describe('WalletManager', () => {
         };
         instance.handleAddWalletSubmit(args);
         expect(createNewWalletSpy).toBeCalledWith(args.name, args.mnemonic, args.derivationPath, args.password);
+      });
+      it('#handleAddWalletSubmit should call createNewWallet action', () => {
+        dom = shallow(
+          <WalletManager
+            {...params}
+          />
+        );
+        const instance = dom.instance();
+        const args = [{
+          walletType: 'metamask'
+        }, {
+          privateKey: 'privateKey',
+          name: 'name',
+          password: 'pwd'
+        }];
+        instance.handleImportWalletSubmit(args);
+        expect(createWalletFromPrivateKeySpy).toBeCalledWith(args[1].privateKey, args[1].name, args[1].password);
       });
     });
     describe('#mapDispatchToProps', () => {

@@ -1,6 +1,6 @@
 /*
  *
- * WalletManager actions
+ * WalletHoc actions
  *
  */
 

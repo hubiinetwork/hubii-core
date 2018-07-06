@@ -1,5 +1,5 @@
 /**
- * WalletManager sagas
+ * WalletHoc sagas
  */
 
 /* eslint-disable redux-saga/yield-effects */
@@ -7,11 +7,11 @@ import { takeEvery, put } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
 import request from 'utils/request';
 import { Wallet, utils } from 'ethers';
-import walletManagerReducer from 'containers/WalletHOC/reducer';
+import walletHocReducer from 'containers/WalletHOC/reducer';
 import { fromJS } from 'immutable';
 import { notify } from 'containers/App/actions';
 
-import walletManager, {
+import walletHoc, {
   createWallet,
   createWalletFromPrivateKey,
   decryptWallet,
@@ -121,7 +121,7 @@ describe('createWallet saga', () => {
     const privateKey = '0x409300caf64bdf96a92d7f99547a5d67702fbdd759bbea4ca19b11a21d9c8528';
     const encrypted = '{"address":"a0eccd7605bb117dd2a4cd55979c720cf00f7fa4","id":"72b4922e-3785-4f0d-8c8c-b18c45ee431a","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"673d20bb45325d1f9cff0803b6fc9bd4"},"ciphertext":"6d72b87ed428d191730880ec10b24e10024d6fcccc51d0d306a111af35d9e557","kdf":"scrypt","kdfparams":{"salt":"1b62a7c98ca890b8f87a8dc06d958a8361057e2739f865691e6fb19c969f9d0c","n":131072,"dklen":32,"p":1,"r":8},"mac":"56569c22a1008b6a55e15758a4d3165bf1dbbdd3cb525ba42a0ee444394f1993"}}';
     const pwd = 'test';
-    it('should dispatch createNewWalletSuccess', async () => expectSaga(walletManager, { privateKey, name, password: pwd })
+    it('should dispatch createNewWalletSuccess', async () => expectSaga(walletHoc, { privateKey, name, password: pwd })
         .provide({
           call() {
             return encrypted;
@@ -233,7 +233,7 @@ describe('load wallets saga', () => {
     // listen for confirmation
     // update pending txn in store
     const storeState = {
-      walletManager: {
+      walletHoc: {
         wallets: {
           software: {
             t1: {
@@ -293,7 +293,7 @@ describe('load wallets saga', () => {
       wallet: { decrypted: {} },
     };
     let called = 0;
-    return expectSaga(walletManager)
+    return expectSaga(walletHoc)
       .provide({
         call(effect, next) {
           called += 1;
@@ -306,18 +306,18 @@ describe('load wallets saga', () => {
           return next();
         },
       })
-      .withReducer((state, action) => state.set('walletManager', walletManagerReducer(state.get('walletManager'), action)), fromJS(storeState))
+      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
       .dispatch(transferAction(params))
       .put(transferSuccess(signedTransaction, 'ETH'))// send signed transaction
       .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
       // .run({ silenceTimeout: true })
       .run({ silenceTimeout: true })
       .then((result) => {
-        const walletManagerState = result.storeState.get('walletManager');
-        expect(walletManagerState.getIn(['pendingTransactions']).count()).toEqual(0);
-        expect(walletManagerState.getIn(['confirmedTransactions']).count()).toEqual(1);
+        const walletHocState = result.storeState.get('walletHoc');
+        expect(walletHocState.getIn(['pendingTransactions']).count()).toEqual(0);
+        expect(walletHocState.getIn(['confirmedTransactions']).count()).toEqual(1);
         formatedTransaction.value = parseFloat(utils.formatEther(formatedTransaction.value));
-        expect(walletManagerState.getIn(['confirmedTransactions']).get(0).toJS()).toEqual(formatedTransaction);
+        expect(walletHocState.getIn(['confirmedTransactions']).get(0).toJS()).toEqual(formatedTransaction);
       });
   });
 
@@ -327,7 +327,7 @@ describe('load wallets saga', () => {
     // listen for confirmation
     // update pending txn in store
     const storeState = {
-      walletManager: {
+      walletHoc: {
         wallets: {
           software: {
             t1: {
@@ -387,7 +387,7 @@ describe('load wallets saga', () => {
       contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
     };
     let called = 0;
-    return expectSaga(walletManager)
+    return expectSaga(walletHoc)
       .provide({
         call(effect, next) {
           called += 1;
@@ -400,17 +400,17 @@ describe('load wallets saga', () => {
           return next();
         },
       })
-      .withReducer((state, action) => state.set('walletManager', walletManagerReducer(state.get('walletManager'), action)), fromJS(storeState))
+      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
       .dispatch(transferAction(params))
       .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
       .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
       .run({ silenceTimeout: true })
       // .run(500000)
       .then((result) => {
-        const walletManagerState = result.storeState.get('walletManager');
-        expect(walletManagerState.getIn(['pendingTransactions']).count()).toEqual(0);
-        expect(walletManagerState.getIn(['confirmedTransactions']).count()).toEqual(1);
-        expect(walletManagerState.getIn(['confirmedTransactions']).get(0)).toEqual(fromJS(formatedTransaction));
+        const walletHocState = result.storeState.get('walletHoc');
+        expect(walletHocState.getIn(['pendingTransactions']).count()).toEqual(0);
+        expect(walletHocState.getIn(['confirmedTransactions']).count()).toEqual(1);
+        expect(walletHocState.getIn(['confirmedTransactions']).get(0)).toEqual(fromJS(formatedTransaction));
       });
   });
 
@@ -419,7 +419,7 @@ describe('load wallets saga', () => {
       { name: '1', address: '0x1' },
       { name: '2', address: '0x2' },
     ];
-    return expectSaga(walletManager)
+    return expectSaga(walletHoc)
       .provide({
         select() {
           return walletList;
@@ -471,25 +471,25 @@ describe('load wallets saga', () => {
 });
 
 describe('root Saga', () => {
-  const walletManagerSaga = walletManager();
+  const walletHocSaga = walletHoc();
 
   it('should start task to watch for CREATE_NEW_WALLET action', () => {
-    const takeDescriptor = walletManagerSaga.next().value;
+    const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(CREATE_NEW_WALLET, createWallet));
   });
 
   it('should start task to watch for DECRYPT_WALLET action', () => {
-    const takeDescriptor = walletManagerSaga.next().value;
+    const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(DECRYPT_WALLET, decryptWallet));
   });
 
   it('should start task to watch for LOAD_WALLETS_SUCCESS action', () => {
-    const takeDescriptor = walletManagerSaga.next().value;
+    const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances));
   });
 
   it('should start task to watch for LOAD_WALLET_BALANCES action', () => {
-    const takeDescriptor = walletManagerSaga.next().value;
+    const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga));
   });
 });
