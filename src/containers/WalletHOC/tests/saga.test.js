@@ -353,7 +353,7 @@ describe('load wallets saga', () => {
       amount: 0.0001,
       gasPrice: 30000,
       gasLimit: 21000,
-      wallet: { decrypted: {} },
+      wallet: { encrypted: {}, decrypted: {} },
     };
     let called = 0;
     return expectSaga(walletHoc)
@@ -446,7 +446,7 @@ describe('load wallets saga', () => {
       amount: 0.0001,
       gasPrice: 3000000,
       gasLimit: 210000,
-      wallet: { decrypted: {} },
+      wallet: { encrypted: {}, decrypted: {} },
       contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
     };
     let called = 0;

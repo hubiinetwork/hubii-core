@@ -100,6 +100,13 @@ export function* loadWalletBalancesSaga({ name, walletAddress }) {
 }
 
 export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit, contractAddress }) {
+  if (!wallet.encrypted && !wallet.decrypted) {
+    yield put(showDecryptWalletModal(wallet.name));
+    return;
+  }
+
+  yield put(notify('info', 'Sending transaction...'));
+
   // Transfering from a Ledger
   if (!wallet.encrypted) {
     // Build raw transaction
@@ -117,20 +124,14 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
     } catch (e) {
       yield put(ledgerError('Error making transaction: ', e));
     }
-  }
-
-  // Transfering from a software wallet
-  if (!wallet.decrypted) {
-    yield put(showDecryptWalletModal(wallet.name));
-    return;
-  }
-  yield put(notify('info', 'Sending transaction...'));
-
-  const wei = utils.parseEther(amount.toString());
-  if (token === 'ETH') {
-    yield put(transferEtherAction({ toAddress, amount: wei, gasPrice, gasLimit }));
-  } else if (contractAddress) {
-    yield put(transferERC20Action({ token, toAddress, amount: wei, gasPrice, gasLimit, contractAddress }));
+  } else {
+    // Transfering from a software wallet
+    const wei = utils.parseEther(amount.toString());
+    if (token === 'ETH') {
+      yield put(transferEtherAction({ toAddress, amount: wei, gasPrice, gasLimit }));
+    } else if (contractAddress) {
+      yield put(transferERC20Action({ token, toAddress, amount: wei, gasPrice, gasLimit, contractAddress }));
+    }
   }
 }
 
