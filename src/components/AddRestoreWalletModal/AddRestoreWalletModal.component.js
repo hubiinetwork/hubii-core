@@ -9,7 +9,7 @@ import {
   Arrow,
   IconWrapper,
   TextWhite,
-  RightTopButton,
+  // RightTopButton,
   DescriptionWrapper,
   TextGrey,
   Info,
@@ -92,7 +92,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
                   onClick={() => this.switchModals('main')}
                 />New Hubii Wallet
               </IconWrapper>
-              <RightTopButton
+              {/* <RightTopButton
                 onClick={() => this.switchModals('import')}
                 type="primary"
               >
@@ -100,7 +100,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
                   <Icon type="download" />
                   <TextWhite>Import Wallet</TextWhite>
                 </Wrapper>
-              </RightTopButton>
+              </RightTopButton> */}
             </div>
             <AddWallet handleSubmit={this.props.handleAddWalletSubmit} />
           </div>

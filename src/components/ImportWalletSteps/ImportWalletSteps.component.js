@@ -168,11 +168,11 @@ export default class ImportWalletSteps extends React.Component {
           <LeftArrow type="arrow-left" onClick={() => onBackIcon()} />
           <SpanText>Importing {data[0] && data[0].coin} Wallet</SpanText>
         </Flex>
-        <div>
+        {/* <div>
           <CreateButton>
             <Icon type="plus" />Create new wallet
             </CreateButton>
-        </div>
+        </div> */}
       </Between>
     );
     const steps = this.getSteps()
