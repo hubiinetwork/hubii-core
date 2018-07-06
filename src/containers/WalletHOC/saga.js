@@ -1,6 +1,7 @@
 import { delay } from 'redux-saga';
 import { takeEvery, put, call, select, fork, take, cancel } from 'redux-saga/effects';
 import Eth from '@ledgerhq/hw-app-eth';
+import Web3 from 'web3';
 import { Wallet, utils, providers, Contract } from 'ethers';
 
 import { notify } from 'containers/App/actions';
@@ -49,6 +50,7 @@ import {
   transactionConfirmed,
   hideDecryptWalletModal,
 } from './actions';
+import generateRawTx from '../../utils/generateRawTx';
 
 // Creates a new software wallet
 export function* createWallet({ name, mnemonic, derivationPath, password }) {
@@ -98,6 +100,26 @@ export function* loadWalletBalancesSaga({ name, walletAddress }) {
 }
 
 export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit, contractAddress }) {
+  // Transfering from a Ledger
+  if (!wallet.encrypted) {
+    // Build raw transaction
+    const rawTx = generateRawTx({ toAddress, amount, gasPrice, gasLimit });
+
+    // Sign raw transaction
+    try {
+      yield put(notify('info', 'Verify transaction details on your Ledger'));
+      const signedTx = ledgerSignTxn(rawTx);
+
+    // Broadcast signed transaction
+      const web3 = new Web3('http://geth-ropsten.dev.hubii.net/');
+      const txHash = yield web3.eth.sendRawTransaction(signedTx);
+      yield put(transferSuccess(txHash, 'ETH'));
+    } catch (e) {
+      yield put(ledgerError('Error making transaction: ', e));
+    }
+  }
+
+  // Transfering from a software wallet
   if (!wallet.decrypted) {
     yield put(showDecryptWalletModal(wallet.name));
     return;
@@ -156,6 +178,21 @@ export function* waitTransactionHash({ transaction }) {
 /*
  * Ledger sagas
  */
+
+// Sign a transaction with a Ledger
+export function* ledgerSignTxn({ derivationPath, rawTx }) {
+  try {
+    yield put(stopLedgerSync());
+    const transport = yield LedgerTransport.create();
+    const eth = new Eth(transport);
+    return yield eth.signTransaction(derivationPath, rawTx);
+  } catch (e) {
+    yield put(ledgerError('Error signing transaction: ', e));
+    return -1;
+  } finally {
+    yield put(startLedgerSync());
+  }
+}
 
 // Will continuously poll the ledger, keeping the connection status up to date
 export function* ledgerSync() {
