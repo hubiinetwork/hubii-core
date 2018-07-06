@@ -36,7 +36,6 @@ class AddWallet extends React.PureComponent {
       mnemonic: mnemonic.toString(),
       derivationPath: 'm/44\'/60\'/0\'/0/0',
       confirmPasswordsMatch: false,
-      loading: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
@@ -73,9 +72,6 @@ class AddWallet extends React.PureComponent {
         value.mnemonic = this.state.mnemonic;
         value.derivationPath = this.state.derivationPath;
         this.props.handleSubmit(value);
-        this.setState({
-          loading: true,
-        });
       }
     });
   }
@@ -86,7 +82,7 @@ class AddWallet extends React.PureComponent {
   }
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { loading } = this.state;
+    const { loading } = this.props;
     return (
       <div>
         <CenterWrapper>
@@ -185,7 +181,7 @@ class AddWallet extends React.PureComponent {
                 </SeedWrapper>
               </ModalFormItem>
               <CenterWrapper>
-                {this.state.loading ? (
+                {loading ? (
                   <StyledSpin
                     delay={0}
                     tip="Creating Wallet..."
@@ -214,6 +210,12 @@ AddWallet.propTypes = {
    * This prop is passed by  Form component to  use  validation.
    */
   form: PropTypes.object,
+
+  /**
+   * loading
+   */
+
+  loading: PropTypes.bool,
 };
 
 export default Form.create()(AddWallet);

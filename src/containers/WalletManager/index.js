@@ -91,8 +91,7 @@ export class WalletManager extends React.PureComponent {
   }
 
   render() {
-    const { history, match, contacts } = this.props;
-
+    const { history, match, contacts, loading } = this.props;
     let modal;
     switch (this.state.type) {
       case 'addContact':
@@ -105,6 +104,7 @@ export class WalletManager extends React.PureComponent {
         modal = (<AddRestoreWalletModal
           goBack={this.state.visible}
           handleAddWalletSubmit={this.handleAddWalletSubmit}
+          loading={loading}
         />);
     }
 
