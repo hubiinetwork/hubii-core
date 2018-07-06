@@ -7,6 +7,7 @@ import { ERC20ABI, EthNetworkProvider } from '../../utils/wallet';
 
 import {
   CREATE_WALLET_FROM_MNEMONIC,
+  CREATE_WALLET_SUCCESS,
   DECRYPT_WALLET,
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
@@ -150,6 +151,9 @@ export function* waitTransactionHash({ transaction }) {
   yield put(notify('success', 'Transaction confirmed'));
 }
 
+export function* hookNewWalletCreated({ name, newWallet }) {
+  yield put(loadWalletBalances(name, newWallet.decrypted.address));
+}
 
 // Root watcher
 export default function* walletHoc() {
@@ -163,4 +167,5 @@ export default function* walletHoc() {
   yield takeEvery(TRANSFER_SUCCESS, waitTransactionHash);
 
   yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
+  yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
 }

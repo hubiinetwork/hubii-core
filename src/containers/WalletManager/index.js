@@ -19,6 +19,7 @@ import { makeSelectLoading, makeSelectErrors } from 'containers/WalletHOC/select
 import { createContact,
  } from '../ContactBook/actions';
 
+
 import {
   Wrapper,
   TabsLayout,
@@ -72,12 +73,6 @@ export class WalletManager extends React.PureComponent {
     }
     this.hideModal();
   }
-  toTitleCase(str) {
-    return str.replace(
-        /\w\S*/g,
-        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-    );
-  }
 
   showModal(type) {
     this.setState({
@@ -104,8 +99,7 @@ export class WalletManager extends React.PureComponent {
   }
 
   render() {
-    const { history, match, contacts } = this.props;
-
+    const { history, match, contacts, loading } = this.props;
     let modal;
     switch (this.state.type) {
       case 'addContact':
@@ -119,6 +113,7 @@ export class WalletManager extends React.PureComponent {
           goBack={this.state.visible}
           handleAddWalletSubmit={this.handleAddWalletSubmit}
           handleImportWalletSubmit={this.handleImportWalletSubmit}
+          loading={loading}
         />);
     }
 
@@ -176,6 +171,7 @@ export class WalletManager extends React.PureComponent {
           history.location.pathname === match.url &&
           <Redirect from={match.url} to={`${match.url}/overview`} push />
         }
+
       </Wrapper>
     );
   }

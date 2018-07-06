@@ -16,6 +16,9 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Route } from 'react-router';
 import createHistory from 'history/createBrowserHistory';
 
+// import semantic ui styles
+import 'semantic-ui-css/semantic.min.css';
+
 // Import root app
 import App from 'containers/App';
 
@@ -28,7 +31,6 @@ import dark from 'themes/darkTheme';
 import LanguageProvider from 'containers/LanguageProvider';
 
 import configureStore from './configureStore';
-
 
 // Import i18n messages
 import { translationMessages } from './i18n';
