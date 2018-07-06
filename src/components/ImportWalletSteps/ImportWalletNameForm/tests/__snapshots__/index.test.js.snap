@@ -5,6 +5,8 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Form(ImportWalletNameForm)
+    handleBack={[Function]}
+    handleNext={[Function]}
     wallet={
         Object {
             "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
@@ -45,6 +47,8 @@ ShallowWrapper {
         "validateFields": [Function],
         "validateFieldsAndScroll": [Function],
       },
+      "handleBack": [Function],
+      "handleNext": [Function],
       "wallet": Object {
         "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
         "value": "digitalBitbox1",
@@ -81,6 +85,8 @@ ShallowWrapper {
           "validateFields": [Function],
           "validateFieldsAndScroll": [Function],
         },
+        "handleBack": [Function],
+        "handleNext": [Function],
         "wallet": Object {
           "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
           "value": "digitalBitbox1",

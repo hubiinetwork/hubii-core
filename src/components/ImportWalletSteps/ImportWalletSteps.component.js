@@ -1,13 +1,11 @@
 /* eslint-disable */
 import React from 'react';
-import { Icon } from 'antd';
 import PropTypes from 'prop-types';
 import {
   Flex,
   Between,
   SpanText,
   LeftArrow,
-  CreateButton,
 } from './ImportWalletSteps.style';
 import DerivationPath from "./DerivationPath";
 import ImportWallet from './ImportWallet';
@@ -168,11 +166,6 @@ export default class ImportWalletSteps extends React.Component {
           <LeftArrow type="arrow-left" onClick={() => onBackIcon()} />
           <SpanText>Importing {data[0] && data[0].coin} Wallet</SpanText>
         </Flex>
-        {/* <div>
-          <CreateButton>
-            <Icon type="plus" />Create new wallet
-            </CreateButton>
-        </div> */}
       </Between>
     );
     const steps = this.getSteps()

@@ -18,8 +18,8 @@ const FormSteps = ({ steps, currentStep, beforeContent, afterContent }) => (
   </SpaceBetween>
   );
 FormSteps.propTypes = {
-  steps: PropTypes.array,
-  currentStep: PropTypes.number,
+  steps: PropTypes.array.isRequired,
+  currentStep: PropTypes.number.isRequired,
   beforeContent: PropTypes.node,
   afterContent: PropTypes.node,
 };

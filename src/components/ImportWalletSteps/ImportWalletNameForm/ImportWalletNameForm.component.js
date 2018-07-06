@@ -60,7 +60,7 @@ class ImportWalletNameForm extends React.Component {
                 </StyledModalFormLabel>
               }
             >
-              {getFieldDecorator('Name', {
+              {getFieldDecorator('name', {
                 rules: [
                   {
                     message: 'Name is required.',
@@ -88,15 +88,15 @@ ImportWalletNameForm.propTypes = {
   /**
    * Wallet object to be shown.
    */
-  wallet: PropTypes.object,
+  wallet: PropTypes.object.isRequired,
   /**
    * Function to be executed when back button is pressed
    */
-  handleBack: PropTypes.func,
+  handleBack: PropTypes.func.isRequired,
   /**
    * Function to be executed when next is clicked.
    */
-  handleNext: PropTypes.func,
+  handleNext: PropTypes.func.isRequired,
     /**
    * ant design form
    */

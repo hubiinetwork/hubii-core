@@ -60,7 +60,7 @@ ImportWallet.propTypes = {
    */
   wallets: PropTypes.array.isRequired,
     /**
-   * Function to be executed when back button is pressed
+   * Function to be executed when next button is pressed
    */
   handleNext: PropTypes.func,
 

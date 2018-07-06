@@ -44,10 +44,6 @@ class DerivationPath extends React.Component {
     this.state = { path: this.props.paths[3].title, address: '' };
     this.handlePath = this.handlePath.bind(this);
     this.handleNext = this.handleNext.bind(this);
-    this.handleBack = this.handleBack.bind(this);
-  }
-  handleBack() {
-    this.props.handleBack();
   }
 
   handleNext(e) {
@@ -144,7 +140,7 @@ class DerivationPath extends React.Component {
           <PreviousAddresses type="primary">Previous Addresses</PreviousAddresses>
         </FormDiv>
         <ButtonDiv>
-          <StyledBackButton type="primary" onClick={this.handleBack}>
+          <StyledBackButton type="primary" onClick={this.props.handleBack}>
             <StyledSpan>Back</StyledSpan>
           </StyledBackButton>
           <StyledButton type={'primary'} htmlType="submit">
