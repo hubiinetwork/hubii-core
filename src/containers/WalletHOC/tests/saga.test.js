@@ -190,6 +190,15 @@ describe('load wallets saga', () => {
       .run({ silenceTimeout: true });
   });
 
+  it('should trigger action loadWalletBalances when createNewWalletSuccess action is dispatch', () => {
+    const decryptedWallet = { address: 'abcd' };
+    const encryptedWallet = 'json';
+    return expectSaga(walletHoc)
+      .put(loadWalletBalances(name, decryptedWallet.address))
+      .dispatch(createNewWalletSuccess(name, encryptedWallet, decryptedWallet))
+      .run({ silenceTimeout: true });
+  });
+
   it('sign transaction for eth payment', () => {
     // create txn hash
     // should save pending txn hash in store and localstorage
