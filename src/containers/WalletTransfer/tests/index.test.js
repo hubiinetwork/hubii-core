@@ -1,11 +1,25 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { fromJS } from 'immutable';
 import { WalletTransfer, mapDispatchToProps } from '../index';
 
 describe('WalletTransfer', () => {
   describe('shallow mount', () => {
     const params = {
-
+      contacts: fromJS([
+        {
+          name: 'mike',
+          address: '0x123123',
+        },
+        {
+          name: 'john',
+          address: '0x1231323',
+        },
+        {
+          name: 'hayley',
+          address: '0x112312123',
+        },
+      ]),
       currentWalletDetails: {
         balances: [
           { balance: '100', decimals: 2, price: { USD: '1' } },
