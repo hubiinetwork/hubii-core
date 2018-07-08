@@ -1,4 +1,5 @@
-import { takeEvery, put, call, select } from 'redux-saga/effects';
+import { takeEvery, put, call, select, take } from 'redux-saga/effects';
+import { eventChannel } from 'redux-saga';
 import { Wallet, utils, providers, Contract } from 'ethers';
 import { notify } from 'containers/App/actions';
 import { makeSelectWalletList, makeSelectCurrentWalletDetails } from './selectors';
@@ -11,6 +12,7 @@ import {
   DECRYPT_WALLET,
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
+  LISTEN_TOKEN_BALANCES,
   TRANSFER,
   TRANSFER_ETHER,
   TRANSFER_ERC20,
@@ -26,6 +28,8 @@ import {
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
+  updateBalances as updateBalancesAction,
+  listenBalances as listenBalancesAction,
   showDecryptWalletModal,
   transferSuccess,
   transferError,
@@ -89,8 +93,35 @@ export function* loadWalletBalancesSaga({ name, walletAddress }) {
   try {
     const returnData = yield call(request, requestPath);
     yield put(loadWalletBalancesSuccess(name, returnData));
+    yield put(listenBalancesAction(name));
   } catch (err) {
     yield put(loadWalletBalancesError(name, err));
+  }
+}
+
+
+export function* listenBalances({ walletName }) {
+  const walletList = yield select(makeSelectWalletList());
+  const wallet = walletList.find((wal) => wal.name === walletName);
+  if (!wallet) {
+    return;
+  }
+  const chan = yield call((addr) => eventChannel((emitter) => {
+    EthNetworkProvider.on(addr, (newBalance) => {
+      if (!newBalance) {
+        return;
+      }
+      emitter({ newBalance });
+    });
+
+    return () => {
+      EthNetworkProvider.removeListener(addr);
+    };
+  }
+  ), wallet.address);
+  while (true) {
+    const updates = yield take(chan);
+    yield put(updateBalancesAction(walletName, { symbol: 'ETH', balance: updates.newBalance.toString() }));
   }
 }
 
@@ -168,4 +199,5 @@ export default function* walletHoc() {
 
   yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
   yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
+  yield takeEvery(LISTEN_TOKEN_BALANCES, listenBalances);
 }
