@@ -4,6 +4,7 @@
 
 /* eslint-disable redux-saga/yield-effects */
 import { takeEvery, put } from 'redux-saga/effects';
+import { eventChannel } from 'redux-saga';
 import { expectSaga } from 'redux-saga-test-plan';
 import request from 'utils/request';
 import { Wallet, utils } from 'ethers';
@@ -41,7 +42,7 @@ import {
   transferError,
   transactionConfirmed as transactionConfirmedAction,
   transfer as transferAction,
-  createWalletFromPrivateKey as createWalletFromPrivateKeyAction,
+  listenBalances as listenBalancesAction,
 } from '../actions';
 
 describe('createWalletFromMnemonic saga', () => {
@@ -121,7 +122,7 @@ describe('createWalletFromMnemonic saga', () => {
     const privateKey = '0x409300caf64bdf96a92d7f99547a5d67702fbdd759bbea4ca19b11a21d9c8528';
     const encrypted = '{"address":"a0eccd7605bb117dd2a4cd55979c720cf00f7fa4","id":"72b4922e-3785-4f0d-8c8c-b18c45ee431a","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"673d20bb45325d1f9cff0803b6fc9bd4"},"ciphertext":"6d72b87ed428d191730880ec10b24e10024d6fcccc51d0d306a111af35d9e557","kdf":"scrypt","kdfparams":{"salt":"1b62a7c98ca890b8f87a8dc06d958a8361057e2739f865691e6fb19c969f9d0c","n":131072,"dklen":32,"p":1,"r":8},"mac":"56569c22a1008b6a55e15758a4d3165bf1dbbdd3cb525ba42a0ee444394f1993"}}';
     const pwd = 'test';
-    it('should dispatch createWalletSuccess', async () => expectSaga(walletHoc, { privateKey, name, password: pwd })
+    it('should dispatch createWalletSuccess', () => expectSaga(createWalletFromPrivateKey, { privateKey, name, password: pwd })
         .provide({
           call() {
             return encrypted;
@@ -136,7 +137,6 @@ describe('createWalletFromMnemonic saga', () => {
             },
           },
         })
-        .dispatch(createWalletFromPrivateKeyAction(privateKey, name, pwd))
         .run({ silenceTimeout: true }));
     describe('exceptions', () => {
       it('when private key is invalid', () => expectSaga(createWalletFromPrivateKey, { privateKey: null, name, password: pwd })
@@ -438,6 +438,49 @@ describe('load wallets saga', () => {
       .put(loadWalletBalances(walletList[1].name, `${walletList[1].address}`))
       .dispatch({ type: LOAD_WALLETS_SUCCESS })
       .run({ silenceTimeout: true });
+  });
+
+  it('balance should be updated when new balance arrived', () => {
+    const storeState = {
+      walletHoc: {
+        wallets: {
+          software: {
+            t1: {
+              encrypted: '{"address": "686353066E9873F6aC1b7D5dE9536099Cb41f321"}',
+              balances: [
+                { symbol: 'ETH', balance: '1' },
+                { symbol: 'SII', balance: '2' },
+              ],
+            },
+          },
+        },
+      },
+    };
+    const newBalance = '3';
+    return expectSaga(walletHoc)
+      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .provide({
+        call() {
+          return eventChannel((emitter) => {
+            setTimeout(() => {
+              emitter({ newBalance: utils.bigNumberify(3) });
+            }, 100);
+            return () => {};
+          });
+        },
+      })
+      // .put(initWalletsBalances())
+      .dispatch(listenBalancesAction('t1'))
+      .run({ silenceTimeout: true })
+      .then((result) => {
+        const walletHocState = result.storeState.get('walletHoc');
+        expect(
+          walletHocState
+            .getIn(['wallets', 'software', 't1', 'balances'])
+            .find((bal) => bal.get('symbol') === 'ETH')
+            .get('balance')
+        ).toEqual(newBalance);
+      });
   });
 
   describe('transfer', () => {
