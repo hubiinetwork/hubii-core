@@ -153,7 +153,7 @@ export default class TransferForm extends React.PureComponent {
             totalUsd={0}
             transactionFee={(this.state.gasPrice * this.state.gasLimit) / (10 ** 18)}
             amountToSend={this.state.input}
-            recipient={'Jacobo'}
+            recipient={this.state.address}
             totalAmount={totalBalance}
             selectedToken={this.state.selectedToken}
             ethInformation={this.state.ethInformation}
