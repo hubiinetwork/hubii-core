@@ -1,65 +1,67 @@
 /* eslint-disable */
 import React from 'react';
-import { message } from 'antd';
+import PropTypes from 'prop-types';
 import {
-  StyledStep,
-  StyledButton,
-  StyledBackButton,
-  StepsCentered,
-  ButtonDiv,
-  TextDiv,
-  StyledSpan,
-  SpaceBetween,
+  Flex,
+  Between,
+  SpanText,
+  LeftArrow,
 } from './ImportWalletSteps.style';
-import ImportWallet from '../ImportWallet';
-import ImportWalletForm from '../ImportWalletForm';
-import ImportWalletNameForm from '../ImportWalletNameForm';
+import DerivationPath from "./DerivationPath";
+import ImportWallet from './ImportWallet';
+import ImportWalletNameForm from './ImportWalletNameForm';
+import ImportWalletMetamaskForm from './ImportWalletMetamaskForm';
+import FormSteps from '../FormSteps';
 
-const walletData = [
+const paths = [
   {
-    src:
-      'https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png',
-    value: 'ledger',
+    title: 'm/44’/60’/0’/3',
+    subtitle: 'Jaxx, Metamask, Exodus, imToken, TREZOR (ETH) & Digital Bitbox'
   },
   {
-    src: 'https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png',
-    value: 'metamask',
+    title: 'm/44’/60’/0',
+    subtitle: 'Ledger (ETH)'
   },
   {
-    src:
-      'https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png',
-    value: 'parity',
+    title: 'm/44’/60’/0’/5',
+    subtitle: 'TREZOR (ETC)'
   },
   {
-    src: 'https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png',
-    value: 'digitalBitbox',
+    title: 'm/44’/60’/160720’/0’',
+    subtitle: 'Ledger (ETC)'
   },
   {
-    src:
-      'https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png',
-    value: 'ledger1',
+    title: 'm/44’/60’/0’/7',
+    subtitle: 'SingularDTV'
   },
   {
-    src: 'https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png',
-    value: 'metamask1',
+    title: 'm/44’/60’/0’/1',
+    subtitle: 'Network: Testnets'
   },
   {
-    src:
-      'https://cdn-images-1.medium.com/max/1600/1*u3_I95cOdCBd3gBJrBd2Aw.png',
-    value: 'parity1',
+    title: 'm/44’/60’/0’/9',
+    subtitle: 'Network: Expanse'
+  }
+];
+const addressData = [
+  {
+    key: '1',
+    address: '042f500111f0BDc4f6711xFBb1b73C4dcA266ce6Ef',
+    balance: '0.05 ETH',
+    tokenBalance: 123
   },
   {
-    src: 'https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png',
-    value: 'digitalBitbox1',
+    key: '2',
+    address: '03C4f0BDc4xFA266cBb1b7f67dce6Ef42f01111150',
+    balance: '0.05 ETH',
+    tokenBalance: 321
   },
   {
-    src: 'https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png',
-    value: 'digitalBitbox2',
-  },
-  {
-    src: 'https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png',
-    value: 'metamask2',
-  },
+    key: '3',
+    address: '0xFBb150011BDc4f6111b73C4f07dcA266Ef426cef',
+    balance: '0.05 ETH',
+    tokenBalance: 542
+  }
 ];
 
 export default class ImportWalletSteps extends React.Component {
@@ -67,109 +69,114 @@ export default class ImportWalletSteps extends React.Component {
     super(props);
     this.state = {
       current: 0,
-      disabled: true,
-      selectedWallet: { src: '', value: '' },
+      selectedWallet: { src: '', name: '' },
+      data: [],
     };
-    this.changeSelectedWallet = this.changeSelectedWallet.bind(this);
+    this.searchSRC = this.searchSRC.bind(this);
+    this.handleBack = this.handleBack.bind(this);
+    this.handleNext = this.handleNext.bind(this);
   }
 
-  searchSRC = (logoName, myArray) => {
-    for (let i = 0; i < myArray.length; i++) {
-      if (myArray[i].value === logoName) {
-        return myArray[i];
+  searchSRC(logoName, wallets) {
+    return wallets.find((wallet) => wallet.name === logoName);
+  }
+
+  handleBack() {
+    this.setState(({ current }) => ({ current: current - 1 }));
+  }
+
+  handleNext(stepData) {
+    const { wallets } = this.props;
+    this.setState((prev) => {
+      const { data, current } = prev;
+      data[current] = stepData;
+      const steps = this.getSteps()
+      if (current === steps.length - 1) {
+        return this.props.handleSubmit(data);
       }
-    }
-  };
-
-  changeSelectedWallet = (value) => {
-    this.setState({
-      selectedWallet: this.searchSRC(value, walletData),
-      disabled: false,
+      if (current === 0) {
+        const selectedWallet = this.searchSRC(stepData.walletType, wallets);
+        return { data, current: current + 1, selectedWallet };
+      }
+      return { data, current: current + 1 };
     });
-    console.log('Changed State is: ', this.state.selectedWallet);
-  };
+  }
 
-  disbaleAgain = () => {
-    this.setState({ disabled: true, selectedWallet: { src: '', value: '' } });
-  };
-
-  next = () => {
-    const current = this.state.current + 1;
-    this.setState({ current });
-  };
-
-  prev = () => {
-    const current = this.state.current - 1;
-    this.setState({ current });
-    current === 0 && this.disbaleAgain();
-  };
-  render() {
-    const { current } = this.state;
-
+  getSteps () {
+    const {selectedWallet} = this.state
+    const {wallets} = this.props
     const steps = [
       {
         title: 'First',
         content: (
           <ImportWallet
-            changeSelectedWallet={this.changeSelectedWallet}
-            onGoBack={this.disbaleAgain}
-            wallets={walletData}
-          />
-        ),
-      },
-      {
-        title: 'Second',
-        content: <ImportWalletForm wallet={this.state.selectedWallet} />,
-      },
-      {
-        title: 'Last',
-        content: (
-          <ImportWalletNameForm
-            wallet={this.state.selectedWallet}
-            onGoBack={this.prev}
+            handleNext={this.handleNext}
+            wallets={wallets}
           />
         ),
       },
     ];
+    const stepTypes = {
+      ledger: [
+        {
+          title: 'Second',
+          content: (
+            <DerivationPath
+            walletName={'selectedWallet'}
+            paths={paths}
+            addresses={addressData}
+            handleBack={this.handleBack}
+            handleNext={this.handleNext}
+          />
+            ),
+        },
+        {
+          title: 'Last',
+          content: (
+            <ImportWalletNameForm
+              wallet={selectedWallet}
+              handleBack={this.handleBack}
+              handleNext={this.handleNext}
+            />
+          ),
+        },
+      ],
+      metamask: [
+        {
+          title: 'Last',
+          content: (
+            <ImportWalletMetamaskForm
+              wallet={selectedWallet}
+              handleBack={this.handleBack}
+              handleNext={this.handleNext}
+            />
+          ),
+        },
+      ]
+    }
+    return steps.concat(stepTypes[selectedWallet.name || 'metamask'])
+  }
+
+  render() {
+    const { current, data} = this.state;
+    const { onBackIcon, } = this.props;
+    const FormNavigation = (
+      <Between>
+        <Flex>
+          <LeftArrow type="arrow-left" onClick={() => onBackIcon()} />
+          <SpanText>Importing {data[0] && data[0].coin} Wallet</SpanText>
+        </Flex>
+      </Between>
+    );
+    const steps = this.getSteps()
     return (
-      <SpaceBetween>
-        <div>{steps[this.state.current].content}</div>
-        <div>
-          <ButtonDiv>
-            {this.state.current > 0 && (
-              <StyledBackButton type="primary" onClick={() => this.prev()}>
-                <StyledSpan>Back</StyledSpan>
-              </StyledBackButton>
-            )}
-            {this.state.current < steps.length - 1 && (
-              <StyledButton
-                type="primary"
-                onClick={() => this.next()}
-                current={this.state.current}
-                disabled={this.state.disabled}
-              >
-                <StyledSpan>Next</StyledSpan>
-              </StyledButton>
-            )}
-            {this.state.current === steps.length - 1 && (
-              <StyledButton
-                type="primary"
-                onClick={() => message.success('Processing complete!')}
-              >
-                <StyledSpan>Finish</StyledSpan>
-              </StyledButton>
-            )}
-          </ButtonDiv>
-          <TextDiv>
-            Step {this.state.current + 1} of {steps.length}
-          </TextDiv>
-          <StepsCentered current={current}>
-            {steps.map((item) => (
-              <StyledStep key={item.title} title={item.title} />
-            ))}
-          </StepsCentered>
-        </div>
-      </SpaceBetween>
+      <FormSteps steps={steps} currentStep={current} beforeContent={FormNavigation} />
     );
   }
 }
+
+ImportWalletSteps.propTypes = {
+  wallets: PropTypes.array,
+  handleSubmit: PropTypes.func,
+  onBackIcon: PropTypes.func,
+};

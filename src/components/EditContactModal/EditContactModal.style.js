@@ -37,11 +37,7 @@ export const StyledButton1 = styled(Button)`
   min-width: 160px;
   border: 2px solid ${({ theme }) => theme.palette.info3};
 `;
-export const StyledButton2 = styled(Button)`
-  min-width: 160px;
-  margin-left: 39px;
-  border: 2px solid ${({ theme }) => theme.palette.info3};
-`;
+
 export const ParentDiv = styled.div`
   margin-top: 20px;
   display: flex;

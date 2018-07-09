@@ -68,10 +68,10 @@ const SideBarMenu = styled(Menu)`
     .ant-tooltip-open{
     }
   }
-  // .ant-menu-item-selected.menu-logo {
-  //   border-right: none;
-  //   background: ${({ theme }) => theme.palette.dark} !important;
-  // }
+   .ant-menu-item-selected.menu-logo {
+    border-right: none;
+    background: ${({ theme }) => theme.palette.dark} !important;
+  }
 `;
 
 const MenuItemIcon = styled(Icon)`

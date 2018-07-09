@@ -1,18 +1,23 @@
 /*
  *
- * WalletManager reducer
+ * WalletHoc reducer
  *
  */
 
 import { fromJS } from 'immutable';
+import { ERC20ABI } from 'utils/wallet';
+import { utils } from 'ethers';
+import abiDecoder from 'abi-decoder';
+
 import {
-  LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
-  CREATE_NEW_WALLET_SUCCESS,
-  CREATE_NEW_WALLET,
-  CREATE_NEW_WALLET_FAILURE,
+  UPDATE_TOKEN_BALANCES,
+  CREATE_WALLET_FROM_MNEMONIC,
+  CREATE_WALLET_FROM_PRIVATE_KEY,
+  CREATE_WALLET_SUCCESS,
+  CREATE_WALLET_FAILURE,
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
@@ -22,9 +27,10 @@ import {
   TRANSFER,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
+  TRANSACTION_CONFIRMED,
 } from './constants';
 
-const initialState = fromJS({
+export const initialState = fromJS({
   selectedWalletName: '',
   inputs: {
     password: '',
@@ -46,21 +52,25 @@ const initialState = fromJS({
   currentWallet: {
     address: '',
   },
+  pendingTransactions: [],
+  confirmedTransactions: [],
 });
 
-function walletManagerReducer(state = initialState, action) {
+abiDecoder.addABI(ERC20ABI);
+
+function walletHocReducer(state = initialState, action) {
   switch (action.type) {
-    case CREATE_NEW_WALLET:
+    case CREATE_WALLET_FROM_MNEMONIC:
+    case CREATE_WALLET_FROM_PRIVATE_KEY:
       return state
         .setIn(['loading', 'creatingWallet'], true)
-        .setIn(['errors', 'creatingWalletError'], null)
-        .set('progress', 0);
-    case CREATE_NEW_WALLET_SUCCESS:
+        .setIn(['errors', 'creatingWalletError'], null);
+    case CREATE_WALLET_SUCCESS:
       return state
         .setIn(['loading', 'creatingWallet'], false)
         .setIn(['inputs', 'password'], '')
         .setIn(['wallets', 'software', action.name], fromJS(action.newWallet));
-    case CREATE_NEW_WALLET_FAILURE:
+    case CREATE_WALLET_FAILURE:
       return state
         .setIn(['loading', 'creatingWallet'], false)
         .setIn(['errors', 'creatingWalletError'], action.error);
@@ -78,9 +88,6 @@ function walletManagerReducer(state = initialState, action) {
       return state
         .setIn(['loading', 'decryptingWallet'], false)
         .setIn(['errors', 'decryptingWalletError'], action.error);
-    case LOAD_WALLETS_SUCCESS:
-      return state
-        .set('wallets', fromJS(action.wallets));
     case LOAD_WALLET_BALANCES:
       return state
         .setIn(['wallets', 'software', action.name, 'loadingBalances'], true);
@@ -93,6 +100,14 @@ function walletManagerReducer(state = initialState, action) {
       return state
         .setIn(['wallets', 'software', action.name, 'loadingBalances'], false)
         .setIn(['wallets', 'software', action.name, 'loadingBalancesError'], action.error);
+    case UPDATE_TOKEN_BALANCES:
+      return state
+        .updateIn(['wallets', 'software', action.name, 'balances'], (balances) => balances.map((balance) => {
+          if (balance.get('symbol') === action.newBalance.symbol) {
+            return balance.set('balance', action.newBalance.balance);
+          }
+          return balance;
+        }));
     case SHOW_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], true);
@@ -115,15 +130,48 @@ function walletManagerReducer(state = initialState, action) {
       return state
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], null)
-        .setIn(['currentWallet', 'lastTransaction'], fromJS(action.transaction));
+        .setIn(['currentWallet', 'lastTransaction'], fromJS(action.transaction))
+        .updateIn(['pendingTransactions'], (list) => {
+          const transaction = action.transaction;
+          const formatedTransaction = {
+            timestamp: new Date().getTime(),
+            token: action.token,
+            from: transaction.from,
+            to: transaction.to,
+            hash: transaction.hash,
+            value: parseFloat(utils.formatEther(transaction.value)),
+            input: transaction.data,
+            original: transaction,
+          };
+          if (action.token !== 'ETH') {
+            const inputData = abiDecoder.decodeMethod(transaction.data);
+            const toAddress = inputData.params.find((param) => param.name === '_to');
+            const tokens = inputData.params.find((param) => param.name === '_tokens');
+            const wei = utils.bigNumberify(tokens.value);
+            formatedTransaction.to = toAddress.value;
+            formatedTransaction.value = parseFloat(utils.formatEther(wei));
+          }
+          return list.insert(1, fromJS(formatedTransaction));
+        });
     case TRANSFER_ERROR:
       return state
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], action.error.message)
         .setIn(['currentWallet', 'lastTransaction'], null);
+    case TRANSACTION_CONFIRMED:
+      return state
+        .updateIn(['confirmedTransactions'], (list) => {
+          const pendingTxn = state.get('pendingTransactions').filter((txn) => txn.get('hash') === action.transaction.hash).get(0);
+          if (!pendingTxn) {
+            return list;
+          }
+          const confirmedTxn = pendingTxn.set('success', true).set('original', fromJS(action.transaction));
+          return list.insert(1, confirmedTxn);
+        })
+        .updateIn(['pendingTransactions'], (list) => list.filter((txn) => txn.get('hash') !== action.transaction.hash));
     default:
       return state;
   }
 }
 
-export default walletManagerReducer;
+export default walletHocReducer;

@@ -12,14 +12,18 @@ import {
  * This component is used to show percentage of every coin in the wallet.
  */
 const Tokens = (props) => {
-  const sortedData = props.data.sort((a, b) => b.percentage - a.percentage);
+  const sortedData = props.data.filter((item) => item.percentage > 0).sort((a, b) => b.percentage - a.percentage);
   const items = sortedData.map((item) => (
     <FlexItem key={`token-${item.label}`}>
-      <Logo src={`public/asset_images/${item.label}.svg`} />
+      <Logo
+      // eslint-disable-next-line global-require
+        src={require(`../../../../public/asset_images/${item.label}.svg`)}
+      />
       <Label>{item.label}</Label>
       <Percentage>{item.percentage}%</Percentage>
     </FlexItem>
   ));
+
   return <FlexContainer>{items}</FlexContainer>;
 };
 

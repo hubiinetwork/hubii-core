@@ -1,13 +1,14 @@
 /*
  *
- * WalletManager actions
+ * WalletHoc actions
  *
  */
 
 import {
-  CREATE_NEW_WALLET,
-  CREATE_NEW_WALLET_FAILURE,
-  CREATE_NEW_WALLET_SUCCESS,
+  CREATE_WALLET_FROM_MNEMONIC,
+  CREATE_WALLET_FROM_PRIVATE_KEY,
+  CREATE_WALLET_FAILURE,
+  CREATE_WALLET_SUCCESS,
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
@@ -19,14 +20,19 @@ import {
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
+  LISTEN_TOKEN_BALANCES,
+  UPDATE_TOKEN_BALANCES,
   TRANSFER,
+  TRANSFER_ETHER,
+  TRANSFER_ERC20,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
+  TRANSACTION_CONFIRMED,
 } from './constants';
 
-export function createNewWallet(name, mnemonic, derivationPath, password) {
+export function createWalletFromMnemonic(name, mnemonic, derivationPath, password) {
   return {
-    type: CREATE_NEW_WALLET,
+    type: CREATE_WALLET_FROM_MNEMONIC,
     name,
     mnemonic,
     derivationPath,
@@ -34,9 +40,18 @@ export function createNewWallet(name, mnemonic, derivationPath, password) {
   };
 }
 
-export function createNewWalletSuccess(name, encryptedWallet, decryptedWallet) {
+export function createWalletFromPrivateKey(privateKey, name, password) {
   return {
-    type: CREATE_NEW_WALLET_SUCCESS,
+    type: CREATE_WALLET_FROM_PRIVATE_KEY,
+    privateKey,
+    name,
+    password,
+  };
+}
+
+export function createWalletSuccess(name, encryptedWallet, decryptedWallet) {
+  return {
+    type: CREATE_WALLET_SUCCESS,
     name,
     newWallet: {
       encrypted: encryptedWallet,
@@ -45,9 +60,9 @@ export function createNewWalletSuccess(name, encryptedWallet, decryptedWallet) {
   };
 }
 
-export function createNewWalletFailed(error) {
+export function createWalletFailed(error) {
   return {
-    type: CREATE_NEW_WALLET_FAILURE,
+    type: CREATE_WALLET_FAILURE,
     error,
   };
 }
@@ -111,6 +126,12 @@ export function loadWalletsSuccess(wallets) {
   };
 }
 
+export function loadWalletsBalances() {
+  return {
+    type: LOAD_WALLETS_SUCCESS,
+  };
+}
+
 export function loadWalletBalances(name, walletAddress) {
   return {
     type: LOAD_WALLET_BALANCES,
@@ -135,6 +156,21 @@ export function loadWalletBalancesError(name, error) {
   };
 }
 
+export function listenBalances(walletName) {
+  return {
+    type: LISTEN_TOKEN_BALANCES,
+    walletName,
+  };
+}
+
+export function updateBalances(name, newBalance) {
+  return {
+    type: UPDATE_TOKEN_BALANCES,
+    name,
+    newBalance,
+  };
+}
+
 export function transfer(payload) {
   return {
     type: TRANSFER,
@@ -144,12 +180,43 @@ export function transfer(payload) {
     amount: payload.amount,
     gasPrice: payload.gasPrice,
     gasLimit: payload.gasLimit,
+    contractAddress: payload.contractAddress,
   };
 }
 
-export function transferSuccess(transaction) {
+export function transferEther(payload) {
+  return {
+    type: TRANSFER_ETHER,
+    toAddress: payload.toAddress,
+    amount: payload.amount,
+    gasPrice: payload.gasPrice,
+    gasLimit: payload.gasLimit,
+  };
+}
+
+export function transferERC20(payload) {
+  return {
+    type: TRANSFER_ERC20,
+    token: payload.token,
+    contractAddress: payload.contractAddress,
+    toAddress: payload.toAddress,
+    amount: payload.amount,
+    gasPrice: payload.gasPrice,
+    gasLimit: payload.gasLimit,
+  };
+}
+
+export function transferSuccess(transaction, token) {
   return {
     type: TRANSFER_SUCCESS,
+    transaction,
+    token,
+  };
+}
+
+export function transactionConfirmed(transaction) {
+  return {
+    type: TRANSACTION_CONFIRMED,
     transaction,
   };
 }

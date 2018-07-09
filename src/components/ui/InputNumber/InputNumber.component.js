@@ -6,35 +6,40 @@ export default class InputNumber extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      value: props.minValue,
+      value: props.defaultValue || props.min,
     };
     this.onChange = this.onChange.bind(this);
   }
   onChange(event) {
-    const { minValue, maxValue } = this.props;
-
-    if (event.target.value < minValue || event.target.value > maxValue) {
+    const { min, max } = this.props;
+    const value = event.target.value;
+    if (value < min || value > max) {
       return;
     }
+    this.props.handleChange(event);
     this.setState({
       value: event.target.value,
     });
   }
   render() {
-    const { ...rest } = this.props;
+    const { min, max, defaultValue } = this.props;
     return (
       <Input
         value={this.state.value}
         onChange={this.onChange}
         type={'number'}
-        {...rest}
+        min={min}
+        max={max}
+        defaultValue={defaultValue}
       />
     );
   }
-  }
+}
 
 InputNumber.propTypes = {
-  minValue: PropTypes.number,
-  maxValue: PropTypes.number,
+  min: PropTypes.number,
+  max: PropTypes.number,
+  defaultValue: PropTypes.number,
+  handleChange: PropTypes.func.isRequired,
 };
 

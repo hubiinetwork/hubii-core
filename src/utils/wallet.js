@@ -1,12 +1,4 @@
-export function getWalletsLocalStorage() {
-  const defaultState = { software: {}, hardware: {} };
-  try {
-    const wallets = JSON.parse(localStorage.getItem('wallets')) || defaultState;
-    return wallets;
-  } catch (e) {
-    return defaultState;
-  }
-}
+import { providers } from 'ethers';
 
 export function convertWalletsList(walletsState) {
   const walletsJSON = walletsState.toJS();
@@ -18,7 +10,7 @@ export function convertWalletsList(walletsState) {
         wallet.encrypted = JSON.parse(wallet.encrypted);
         wallet.type = type;
         wallet.name = walletName;
-        wallet.address = wallet.encrypted.address;
+        wallet.address = `0x${wallet.encrypted.address}`;
         wallets.push(wallet);
       } catch (e) {
         return e;
@@ -40,3 +32,29 @@ export function getTotalUSDValue(balances) {
   }));
   return assets.reduce((accumulator, current) => accumulator + (parseFloat(current.price.USD, 10) * current.amount), 0);
 }
+
+export const ERC20ABI = [
+  {
+    name: 'transfer',
+    type: 'function',
+    inputs: [
+      {
+        name: '_to',
+        type: 'address',
+      },
+      {
+        type: 'uint256',
+        name: '_tokens',
+      },
+    ],
+    constant: false,
+    outputs: [],
+    payable: false,
+  },
+];
+
+export const EthNetworkProvider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
+
+export const IsAddressMatch = (a, b) => a.toLowerCase() === b.toLowerCase();
+
+export const parseBigNumber = (bignumber, decimals) => parseInt(bignumber, 10) / (10 ** decimals);

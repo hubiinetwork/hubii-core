@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col } from 'antd';
 import PropTypes from 'prop-types';
+import { parseBigNumber } from 'utils/wallet';
 import {
   Row,
   ETHtoDollar,
@@ -10,7 +11,7 @@ import {
   Collapse,
   Panel,
 } from './TransferForm.style';
-import Input from '../ui/Input';
+import InputNumber from '../ui/InputNumber';
 import Select, { Option, OptGroup } from '../ui/Select';
 import { Form, FormItem, FormItemLabel } from '../ui/Form';
 import HelperText from '../ui/HelperText';
@@ -24,7 +25,7 @@ export default class TransferForm extends React.PureComponent {
       input: 0,
       token: this.props.currencies[0].symbol,
       priceInDollar: this.props.currencies[0].rateUSD,
-      address: this.props.recipients[0].address,
+      address: this.props.recipients[0] ? this.props.recipients[0].address : '',
       amount: this.props.currencies[0].amount,
       selectedToken: this.props.currencies[0],
       gasPrice: 30000,
@@ -68,16 +69,13 @@ export default class TransferForm extends React.PureComponent {
   }
 
   handleRecipient(value) {
-    for (let i = 0; i < this.props.recipients.length; i += 1) {
-      if (this.props.recipients[i].name === value) {
-        this.setState({
-          address: this.props.recipients[i].address,
-        });
-      }
-    }
+    this.setState({
+      address: value,
+    });
   }
 
   render() {
+    const totalBalance = parseBigNumber(this.state.selectedToken.balance, this.state.selectedToken.decimals);
     return (
       <Row gutter={24} justify="center">
         <Col xl={16} sm={22}>
@@ -108,13 +106,13 @@ export default class TransferForm extends React.PureComponent {
               help={<HelperText left={this.state.address} />}
             >
               <Select
-                defaultValue={this.props.recipients[0].name}
+                defaultValue={this.props.recipients[0] ? this.props.recipients[0].name : ''}
                 recipient
                 onSelect={this.handleRecipient}
               >
                 <OptGroup label={<OptGroupLabel>Own Addresses</OptGroupLabel>}>
                   {this.props.recipients.map((recipient) => (
-                    <Option value={recipient.name} key={recipient.name}>
+                    <Option value={recipient.address} key={recipient.address}>
                       {recipient.name}
                     </Option>
                   ))}
@@ -126,7 +124,7 @@ export default class TransferForm extends React.PureComponent {
               colon={false}
               help={<HelperText left={(this.state.input * parseFloat(this.state.selectedToken.price.USD)).toLocaleString('en')} right="USD" />}
             >
-              <Input onChange={this.handleChange} type="number" />
+              <InputNumber min={0} max={totalBalance} handleChange={this.handleChange} />
             </FormItem>
             <Collapse bordered={false} defaultActiveKey={['2']}>
               <Panel
@@ -138,10 +136,10 @@ export default class TransferForm extends React.PureComponent {
                   colon={false}
                   help={<HelperText left={((this.state.gasPrice / (10 ** 18)) * parseInt(this.state.ethInformation.price.USD, 10)).toString()} right="USD" />}
                 >
-                  <Input defaultValue={this.state.gasPrice} onChange={this.handleGasPriceChange} type="number" />
+                  <InputNumber min={0} defaultValue={this.state.gasPrice} handleChange={this.handleGasPriceChange} />
                 </FormItem>
                 <FormItem label={<HelperText left="Gas Limit" />} colon={false}>
-                  <Input defaultValue={this.state.gasLimit} onChange={this.handleGasLimitChange} type="number" />
+                  <InputNumber min={0} defaultValue={this.state.gasLimit} handleChange={this.handleGasLimitChange} />
                 </FormItem>
               </Panel>
             </Collapse>
@@ -151,16 +149,16 @@ export default class TransferForm extends React.PureComponent {
           </Form>
         </Col>
         <Col xl={6} sm={22}>
-
           <TransferDescription
             totalUsd={0}
             transactionFee={(this.state.gasPrice * this.state.gasLimit) / (10 ** 18)}
             amountToSend={this.state.input}
-            recipient={'Jacobo'}
-            totalAmount={parseInt(this.state.selectedToken.balance, 10) / (10 ** this.state.selectedToken.decimals)}
+            recipient={this.state.address}
+            totalAmount={totalBalance}
             selectedToken={this.state.selectedToken}
             ethInformation={this.state.ethInformation}
             onSend={this.onSend}
+            onCancel={this.props.onCancel}
           />
         </Col>
       </Row>
@@ -175,5 +173,6 @@ TransferForm.propTypes = {
     address: PropTypes.string,
   })),
   onSend: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
   // gasPriceRate: PropTypes.number,
 };

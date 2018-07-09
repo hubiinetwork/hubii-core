@@ -12,7 +12,7 @@ import { SectionHeading } from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
 
-import {WalletCardsCol} from './style.js'
+import {WalletCardsCol, Wrapper} from './style.js'
 
 export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(...args) {
@@ -104,20 +104,24 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     const walletCards = this.getWalletCardsData(walletList)
     const summary = this.getBreakdown(walletCards)
     return (
-      <Row gutter={16}>
-        <Col span={16} xs={24} md={16}>
-          <SectionHeading>All Wallets</SectionHeading>
-          <Row type="flex" align="top" gutter={16}>
-            {this.renderWalletItems(walletCards)}
-          </Row>
-        </Col>
-        <Col span={8} xs={24} md={8}>
-          {summary.balanceSum && <Breakdown
-            data={summary.breakdown}
-            value={summary.balanceSum}
-          />}
-        </Col>
-      </Row>
+      <Wrapper>
+        <Row gutter={16}>
+          <Col span={16} xs={24} md={16}>
+            <SectionHeading>All Wallets</SectionHeading>
+            <Row type="flex" align="top" gutter={16}>
+              {this.renderWalletItems(walletCards)}
+            </Row>
+          </Col>
+          <Col span={8} xs={24} md={8}>
+            {
+              <Breakdown
+                data={summary.breakdown}
+                value={summary.balanceSum}
+              />
+            }
+          </Col>
+        </Row>
+      </Wrapper>
     );
   }
 }

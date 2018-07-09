@@ -13,11 +13,11 @@ describe('WalletHOC', () => {
       decryptWallet: () => {},
       hideDecryptWalletModal: () => {},
     };
-    let loadWalletsSpy;
+    let loadWalletsBalancesSpy;
     let dom;
     beforeEach(() => {
-      loadWalletsSpy = jest.fn();
-      params.loadWallets = loadWalletsSpy;
+      loadWalletsBalancesSpy = jest.fn();
+      params.loadWalletsBalances = loadWalletsBalancesSpy;
     });
     describe('#WalletHOC', () => {
       it('should return composed component', () => {
@@ -35,7 +35,7 @@ describe('WalletHOC', () => {
         );
         const instance = dom.instance();
         instance.componentDidMount();
-        expect(loadWalletsSpy).toBeCalled();
+        expect(loadWalletsBalancesSpy).toBeCalled();
       });
     });
     describe('#onPasswordChange', () => {

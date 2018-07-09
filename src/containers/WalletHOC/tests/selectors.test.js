@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 import {
-  selectWalletManagerDomain,
+  selectWalletHocDomain,
   makeSelectNewWalletNameInput,
   makeSelectPasswordInput,
   makeSelectSelectedWalletName,
@@ -11,15 +11,15 @@ import {
   makeSelectCurrentWalletDetails,
 } from '../selectors';
 
-describe('selectWalletManagerDomain', () => {
-  it('should select the walletManagerDomain state', () => {
-    const walletManagerState = fromJS({
+describe('selectWalletHocDomain', () => {
+  it('should select the walletHocDomain state', () => {
+    const walletHocState = fromJS({
       test: 1223,
     });
     const mockedState = fromJS({
-      walletManager: walletManagerState,
+      walletHoc: walletHocState,
     });
-    expect(selectWalletManagerDomain(mockedState)).toEqual(walletManagerState);
+    expect(selectWalletHocDomain(mockedState)).toEqual(walletHocState);
   });
 });
 
@@ -28,7 +28,7 @@ describe('makeSelectNewWalletNameInput', () => {
   it('should correctly select newWalletName', () => {
     const newWalletName = 'burgers';
     const mockedState = fromJS({
-      walletManager: {
+      walletHoc: {
         inputs: {
           newWalletName,
         },
@@ -43,7 +43,7 @@ describe('makeSelectPasswordInput', () => {
   it('should correctly select password', () => {
     const password = 'roast_beef';
     const mockedState = fromJS({
-      walletManager: {
+      walletHoc: {
         inputs: {
           password,
         },
@@ -58,7 +58,7 @@ describe('makeSelectDerivationPathInput', () => {
   it('should correctly select derivationPath', () => {
     const derivationPath = 'm/0/0/11';
     const mockedState = fromJS({
-      walletManager: {
+      walletHoc: {
         inputs: {
           derivationPath,
         },
@@ -73,7 +73,7 @@ describe('makeSelectSelectedWalletName', () => {
   it('should correctly select selectedWalletName', () => {
     const selectedWalletName = 'cheese_toasty';
     const mockedState = fromJS({
-      walletManager: {
+      walletHoc: {
         selectedWalletName,
       },
     });
@@ -86,7 +86,7 @@ describe('makeSelectWallets', () => {
   it('should correctly select wallets', () => {
     const wallets = fromJS({ software: { pineapple: { key: '123' } } });
     const mockedState = fromJS({
-      walletManager: {
+      walletHoc: {
         wallets,
       },
     });
@@ -99,7 +99,7 @@ describe('makeSelectLoading', () => {
   it('should correctly select loading state', () => {
     const loading = fromJS({ creatingWallet: true });
     const mockedState = fromJS({
-      walletManager: {
+      walletHoc: {
         loading,
       },
     });
@@ -112,7 +112,7 @@ describe('makeSelectErrors', () => {
   it('should correctly select errors state', () => {
     const errors = fromJS({ creatingWalletError: true });
     const mockedState = fromJS({
-      walletManager: {
+      walletHoc: {
         errors,
       },
     });
@@ -124,13 +124,13 @@ describe('makeSelectCurrentWalletDetails', () => {
   const walletSelector = makeSelectCurrentWalletDetails();
   it('should convert select current wallet details from the wallet list', () => {
     const expected = {
-      address: '2',
+      address: '0x2',
       encrypted: { address: '2' },
       name: 't2',
       type: 'software',
     };
     const mockedState = fromJS({
-      walletManager: {
+      walletHoc: {
         wallets: {
           software: {
             t1: { encrypted: '{"address": "1"}' },

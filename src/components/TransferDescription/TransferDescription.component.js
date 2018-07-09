@@ -33,6 +33,7 @@ export default class TransferDescription extends React.PureComponent {
     } = this.props;
 
     const totalUsd = (parseInt(selectedToken.balance, 10) / (10 ** selectedToken.decimals)) * parseFloat(selectedToken.price.USD);
+    const remainingBalance = totalUsd - (amountToSend * parseFloat(selectedToken.price.USD)) - (transactionFee * parseFloat(ethInformation.price.USD));
     return (
       <WrapperDiv>
         <Row>
@@ -45,7 +46,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={totalAmount}
             labelSymbol={selectedToken.symbol}
-            value={(totalAmount * selectedToken.price.USD).toFixed(2)}
+            value={(totalAmount * selectedToken.price.USD).toLocaleString('en')}
           />
         </Row>
         <Row>
@@ -55,7 +56,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={amountToSend}
             labelSymbol={selectedToken.symbol}
-            value={(amountToSend * selectedToken.price.USD).toFixed(2)}
+            value={(amountToSend * selectedToken.price.USD).toLocaleString('en')}
           />
         </Row>
         <Row>
@@ -71,7 +72,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={transactionFee}
             labelSymbol={selectedToken.symbol}
-            value={(transactionFee * ethInformation.price.USD).toFixed(2)}
+            value={(transactionFee * ethInformation.price.USD).toLocaleString('en')}
           />
         </Row>
         <Row>
@@ -81,7 +82,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={amountToSend + transactionFee}
             labelSymbol={selectedToken.symbol}
-            value={((amountToSend * parseFloat(selectedToken.price.USD)) + (transactionFee * parseFloat(ethInformation.price.USD))).toFixed(2)}
+            value={((amountToSend * parseFloat(selectedToken.price.USD)) + (transactionFee * parseFloat(ethInformation.price.USD))).toLocaleString('en')}
           />
         </Row>
         <Row>
@@ -100,7 +101,7 @@ export default class TransferDescription extends React.PureComponent {
             value={(
               (totalAmount - amountToSend) *
               +selectedToken.price.USD
-            ).toFixed(2)}
+            ).toLocaleString('en')}
           />
         </Row>
         <Row>
@@ -109,18 +110,14 @@ export default class TransferDescription extends React.PureComponent {
         <Row>
           <BalanceCol>
             {currencySymbol}
-            {(
-              totalUsd -
-              ((amountToSend * selectedToken.price.USD) -
-              (transactionFee * ethInformation.price.USD))
-            ).toFixed(2)}
+            {remainingBalance.toLocaleString('en')}
           </BalanceCol>
         </Row>
         <StyledDiv>
           <StyledButtonCancel type="secondary" onClick={onCancel}>
             {'Cancel'}
           </StyledButtonCancel>
-          <StyledButton type="primary" onClick={onSend}>
+          <StyledButton type="primary" onClick={onSend} disabled={Number.isNaN(amountToSend) || amountToSend === 0 || remainingBalance < 0}>
             {buttonLabel}
           </StyledButton>
         </StyledDiv>

@@ -36,6 +36,30 @@ const settingsMenu = () => (
 const WalletItemCard = (props) => (
   <OverflowHidden>
     {props.connected !== undefined && <USBFlag connected={props.connected} />}
+    <SpaceBetween>
+      <CardIcon>
+        <Popover
+          placement="right"
+          trigger="hover"
+          content={
+            <WalletDetailPopoverContent
+              address={props.primaryAddress}
+              type={props.type}
+            />
+            }
+        >
+          <Icon type="info-circle-o" />
+        </Popover>
+      </CardIcon>
+      <CardIconSettings>
+        <Dropdown
+          placement="bottomLeft"
+          overlay={settingsMenu(props.primaryAddress)}
+        >
+          <Icon type="setting" />
+        </Dropdown>
+      </CardIconSettings>
+    </SpaceBetween>
     <OuterWrapper onClick={() => { props.handleCardClick(props.primaryAddress); }}>
       <LeftSideWrapper>
         <p>{props.name}</p>
@@ -49,30 +73,6 @@ const WalletItemCard = (props) => (
         </AssetsWrapper>
       </LeftSideWrapper>
       <TotalBalance>{`$${props.totalBalance.toLocaleString('en')}`}</TotalBalance>
-      <SpaceBetween>
-        <CardIcon>
-          <Popover
-            placement="right"
-            trigger="hover"
-            content={
-              <WalletDetailPopoverContent
-                address={props.primaryAddress}
-                type={props.type}
-              />
-            }
-          >
-            <Icon type="info-circle-o" />
-          </Popover>
-        </CardIcon>
-        <CardIconSettings>
-          <Dropdown
-            placement="bottomLeft"
-            overlay={settingsMenu(props.primaryAddress)}
-          >
-            <Icon type="setting" />
-          </Dropdown>
-        </CardIconSettings>
-      </SpaceBetween>
     </OuterWrapper>
   </OverflowHidden>
 );
