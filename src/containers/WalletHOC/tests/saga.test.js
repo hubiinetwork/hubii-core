@@ -5,7 +5,7 @@
 /* eslint-disable redux-saga/yield-effects */
 import TransportNodeHid from '@ledgerhq/hw-transport-node-hid';
 import { delay } from 'redux-saga';
-import { fork, takeEvery, put, take, cancel } from 'redux-saga/effects';
+import { takeLatest, fork, takeEvery, put, take, cancel } from 'redux-saga/effects';
 import { createMockTask } from 'redux-saga/utils';
 import { expectSaga } from 'redux-saga-test-plan';
 import request from 'utils/request';
@@ -212,6 +212,7 @@ describe('fetchLedgerAddresses Saga', () => {
     const publicAddressKeyPair1 = { address: '12345' };
     const publicAddressKeyPair2 = { address: '67890' };
     fetchLedgerAddressesGenerator.next();
+    fetchLedgerAddressesGenerator.next();
     fetchLedgerAddressesGenerator.next(transport);
     putDescriptor = fetchLedgerAddressesGenerator.next(publicAddressKeyPair1).value;
     expect(putDescriptor).toEqual(put(fetchedLedgerAddress(input.derivationPaths[0], publicAddressKeyPair1.address)));
@@ -225,6 +226,7 @@ describe('fetchLedgerAddresses Saga', () => {
   it('should dispatch ledgerError action if unsuccessful', () => {
     const fetchLedgerAddressesGenerator = fetchLedgerAddresses(input);
     let putDescriptor = fetchLedgerAddressesGenerator.next().value;
+    fetchLedgerAddressesGenerator.next();
     expect(putDescriptor).toEqual(put(stopLedgerSync()));
     fetchLedgerAddressesGenerator.next();
     putDescriptor = fetchLedgerAddressesGenerator.next().value;
@@ -611,7 +613,7 @@ describe('root Saga', () => {
 
   it('should start task to watch for FETCH_LEDGER_ADDRESSES action', () => {
     const takeDescriptor = walletHocSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(FETCH_LEDGER_ADDRESSES, fetchLedgerAddresses));
+    expect(takeDescriptor).toEqual(takeLatest(FETCH_LEDGER_ADDRESSES, fetchLedgerAddresses));
   });
 
   it('should start task to watch for TRANSFER action', () => {

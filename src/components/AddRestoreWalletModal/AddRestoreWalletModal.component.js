@@ -9,7 +9,6 @@ import {
   Arrow,
   IconWrapper,
   TextWhite,
-  // RightTopButton,
   DescriptionWrapper,
   TextGrey,
   Info,
@@ -24,23 +23,23 @@ import ledgerImg from '../../../public/Images/ledger_wallet.png';
 /**
  * This component shows options for modals to be opened.
  */
-export default class AddRestoreWalletModal extends React.PureComponent {
+export default class AddRestoreWalletModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: 'main',
+      modalType: 'main',
     };
     this.switchModals = this.switchModals.bind(this);
   }
   switchModals(selectedType) {
-    this.setState({ type: selectedType });
+    this.setState({ modalType: selectedType });
   }
   render() {
-    const { type } = this.state;
+    const { modalType } = this.state;
     const { loading } = this.props;
     return (
       <div>
-        {type === 'main' && (
+        {modalType === 'main' && (
           <div>
             <TitleDiv>
               Add / Restore Wallet<br />
@@ -82,7 +81,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
             </DescriptionWrapper>
           </div>
         )}
-        {type === 'add' && (
+        {modalType === 'add' && (
           <div>
             <div
               style={{
@@ -97,20 +96,11 @@ export default class AddRestoreWalletModal extends React.PureComponent {
                   onClick={() => this.switchModals('main')}
                 />New Hubii Wallet
               </IconWrapper>
-              {/* <RightTopButton
-                onClick={() => this.switchModals('import')}
-                type="primary"
-              >
-                <Wrapper>
-                  <Icon type="download" />
-                  <TextWhite>Import Wallet</TextWhite>
-                </Wrapper>
-              </RightTopButton> */}
             </div>
             <AddWallet loading={loading.toJS().creatingWallet} handleSubmit={this.props.handleAddWalletSubmit} />
           </div>
         )}
-        {type === 'restore' && (
+        {modalType === 'restore' && (
           <div>
             <div
               style={{
@@ -129,7 +119,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
             <RestoreWallet />
           </div>
         )}
-        {type === 'import' && (
+        {modalType === 'import' && (
           <div>
             <ImportWalletSteps
               wallets={[

@@ -166,11 +166,11 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['errors', 'ledgerError'], null);
     case LEDGER_ERROR:
       return state
-        .set('ledgerNanoSInfo', fromJS({ status: 'disconnected' }))
+        .set('ledgerNanoSInfo', fromJS({ status: 'disconnected', addresses: {} }))
         .setIn(['errors', 'ledgerError'], action.error);
     case SAVE_LEDGER_ADDRESS:
       return state
-        .setIn(['wallets', 'hardware', 'ledger', action.name], fromJS(action.newLedgerWallet));
+        .setIn(['wallets', 'hardware', action.name], fromJS(action.newLedgerWallet));
     case FETCHED_LEDGER_ADDRESS:
       return state
         .setIn(['ledgerNanoSInfo', 'addresses', action.derivationPath], action.address);

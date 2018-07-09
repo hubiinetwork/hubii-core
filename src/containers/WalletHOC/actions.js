@@ -247,11 +247,11 @@ export function fetchedLedgerAddress(derivationPath, address) {
   };
 }
 
-export function saveLedgerAddress(name, address, mnemonic, ledgerId) {
+export function saveLedgerAddress(name, derivationPath, deviceId, address) {
   const newLedgerWallet = {
-    ledgerId,
+    deviceId,
     address,
-    mnemonic,
+    derivationPath,
   };
   return {
     type: SAVE_LEDGER_ADDRESS,

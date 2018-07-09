@@ -19,7 +19,7 @@ import {
   hideDecryptWalletModal,
   ledgerDetected,
 } from '../actions';
-import { LEDGER_ERROR, SAVE_LEDGER_ADDRESS, FETCHED_LEDGER_ADDRESS } from '../constants';
+import { LEDGER_ERROR, FETCHED_LEDGER_ADDRESS } from '../constants';
 
 describe('walletHocReducer', () => {
   let state;
@@ -59,6 +59,41 @@ describe('walletHocReducer', () => {
 
   it('returns the initial state', () => {
     expect(walletHocReducer(undefined, {})).toEqual(state);
+  });
+
+  describe('Ledger Nano S reducers', () => {
+    it('should handle LEDGER_DETECTED action correctly', () => {
+      const id = '893745sjdfhks83';
+      const expected = state
+          .setIn(['ledgerNanoSInfo', 'status'], 'connected')
+          .setIn(['ledgerNanoSInfo', 'id'], id)
+          .setIn(['errors', 'ledgerError'], null);
+      expect(walletHocReducer(state, ledgerDetected(id))).toEqual(expected);
+    });
+
+    it('should handle LEDGER_ERROR action correctly', () => {
+      const error = 'oh no!';
+      const expected = state
+        .set('ledgerNanoSInfo', fromJS({ status: 'disconnected', addresses: {} }))
+        .setIn(['errors', 'ledgerError'], error);
+      expect(walletHocReducer(state, { type: LEDGER_ERROR, error })).toEqual(expected);
+    });
+
+    // it('should handle SAVE_LEDGER_ADDRESS action correctly', () => {
+    //   const name = 'ledger1';
+    //   const newLedgerWallet = { ledger: '123' };
+    //   const expected = state
+    //       .setIn(['wallets', 'hardware', 'ledger', name], fromJS(newLedgerWallet));
+    //   expect(walletHocReducer(state, { type: SAVE_LEDGER_ADDRESS, name, newLedgerWallet })).toEqual(expected);
+    // });
+
+    it('should handle FETCHED_LEDGER_ADDRESS action correctly', () => {
+      const derivationPath = 'm01201010';
+      const address = '0x0000000000000';
+      const expected = state
+          .setIn(['ledgerNanoSInfo', 'addresses', derivationPath], address);
+      expect(walletHocReducer(state, { type: FETCHED_LEDGER_ADDRESS, address, derivationPath })).toEqual(expected);
+    });
   });
 
   describe('software wallet lifecycle reducers', () => {
@@ -137,40 +172,6 @@ describe('walletHocReducer', () => {
       expect(walletHocReducer(state, decryptWalletFailed(error))).toEqual(expected);
     });
 
-    describe('Ledger Nano S reducers', () => {
-      it('should handle LEDGER_DETECTED action correctly', () => {
-        const id = '893745sjdfhks83';
-        const expected = state
-          .setIn(['ledgerNanoSInfo', 'status'], 'connected')
-          .setIn(['ledgerNanoSInfo', 'id'], id)
-          .setIn(['errors', 'ledgerError'], null);
-        expect(walletHocReducer(state, ledgerDetected(id))).toEqual(expected);
-      });
-
-      it('should handle LEDGER_ERROR action correctly', () => {
-        const error = 'oh no!';
-        const expected = state
-          .set('ledgerNanoSInfo', fromJS({ status: 'disconnected' }))
-          .setIn(['errors', 'ledgerError'], error);
-        expect(walletHocReducer(state, { type: LEDGER_ERROR, error })).toEqual(expected);
-      });
-
-      it('should handle SAVE_LEDGER_ADDRESS action correctly', () => {
-        const name = 'ledger1';
-        const newLedgerWallet = { ledger: '123' };
-        const expected = state
-          .setIn(['wallets', 'hardware', 'ledger', name], fromJS(newLedgerWallet));
-        expect(walletHocReducer(state, { type: SAVE_LEDGER_ADDRESS, name, newLedgerWallet })).toEqual(expected);
-      });
-
-      it('should handle FETCHED_LEDGER_ADDRESS action correctly', () => {
-        const derivationPath = 'm01201010';
-        const address = '0x0000000000000';
-        const expected = state
-          .setIn(['ledgerNanoSInfo', 'addresses', derivationPath], address);
-        expect(walletHocReducer(state, { type: FETCHED_LEDGER_ADDRESS, address, derivationPath })).toEqual(expected);
-      });
-    });
 
     describe('load wallet stores', () => {
       xit('load wallets', () => {

@@ -1,5 +1,5 @@
 import { delay } from 'redux-saga';
-import { takeEvery, put, call, select, fork, take, cancel } from 'redux-saga/effects';
+import { takeLatest, takeEvery, put, call, select, fork, take, cancel } from 'redux-saga/effects';
 import Eth from '@ledgerhq/hw-app-eth';
 import Web3 from 'web3';
 import { Wallet, utils, providers, Contract } from 'ethers';
@@ -241,6 +241,7 @@ export function* fetchLedgerAddresses({ derivationPaths }) {
   try {
     // Pause the ledger sync to ensure only one process is accessing it at a time
     yield put(stopLedgerSync());
+    yield delay(1000); // Wait for any ongoing operations to clear
     const transport = yield LedgerTransport.create();
     const eth = new Eth(transport);
 
@@ -269,7 +270,7 @@ export default function* walletHoc() {
   yield takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
   yield takeEvery(POLL_LEDGER, pollLedger);
-  yield takeEvery(FETCH_LEDGER_ADDRESSES, fetchLedgerAddresses);
+  yield takeLatest(FETCH_LEDGER_ADDRESSES, fetchLedgerAddresses);
   yield takeEvery(TRANSFER, transfer);
 
   yield takeEvery(TRANSFER_ETHER, transferEther);
