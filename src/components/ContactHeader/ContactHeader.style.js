@@ -7,7 +7,6 @@ export const StyledDiv = styled.div`
   display: flex;
   font-size: 17px;
   margin-top: -7px;
-  margin-left: 15px;
   justify-content: space-between;
   position: relative;
 `;
@@ -27,5 +26,8 @@ export const StyledTabs = styled(StriimTabs)`
 export const StyledSearch = styled(InputSearch)`
   i {
     color: ${({ theme }) => theme.palette.light};
+  }
+  &&&.ant-input-affix-wrapper .ant-input{
+    height:1.76rem;
   }
 `;

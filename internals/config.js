@@ -28,6 +28,7 @@ const ReactBoilerplate = {
         'ip',
         'minimist',
         'sanitize.css',
+        '@ledgerhq/hw-transport-node-hid',
       ],
 
       /**

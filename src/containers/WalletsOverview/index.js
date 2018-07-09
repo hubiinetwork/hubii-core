@@ -5,35 +5,19 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
-import styled from 'styled-components';
 
-import { makeSelectWallets } from 'containers/WalletManager/selectors';
-import { loadWalletBalances, loadWallets } from 'containers/WalletManager/actions';
+import { makeSelectWalletList } from 'containers/WalletHOC/selectors';
+import { loadWallets } from 'containers/WalletHOC/actions';
 import { SectionHeading } from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
 
-import {WalletCardsCol} from './style.js'
+import {WalletCardsCol, Wrapper} from './style.js'
+
 export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(...args) {
     super(...args);
     this.handleCardClick = this.handleCardClick.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.loadWallets();
-  }
-
-  componentDidUpdate(prevProps) {
-    const {wallets, loadWalletBalances} = this.props
-    if (prevProps.wallets !== wallets) {
-      let walletCardsData = this.convertWalletsList(wallets)
-      walletCardsData.forEach(wallet => {
-        if (!wallet.balances && !wallet.loadingBalancesError && !wallet.loadingBalances) {
-          loadWalletBalances(wallet.name, `0x${wallet.encrypted.address}`)
-        }
-      })
-    }
   }
 
   handleCardClick(address) {
@@ -41,9 +25,8 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     history.push(`/wallet/${address}`);
   }
 
-  getWalletCardsData (walletsState) {
-    const {loadWalletBalances} = this.props
-    return this.convertWalletsList(walletsState).map(wallet => {
+  getWalletCardsData (walletList) {
+    return walletList.map(wallet => {
       let assets, usdValue = 0
       if (wallet.balances) {
         assets = wallet.balances.map(token => {
@@ -70,26 +53,6 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     })
   }
   
-  convertWalletsList(walletsState) {
-    const walletsJSON = walletsState.toJS()
-    const wallets = []
-    Object.keys(walletsJSON).forEach(type => {
-      Object.keys(walletsJSON[type]).forEach(walletName => {
-        try {
-          const wallet = walletsJSON[type][walletName]
-          wallet.encrypted = JSON.parse(wallet.encrypted)
-          wallet.type = type
-          wallet.name = walletName
-          wallets.push(wallet)
-        }catch (e) {
-          return
-        }
-      })
-    })
-
-    return wallets
-  }
-
   getBreakdown(wallets) {
     const tokenValues = {}
     const balanceSum = wallets.reduce((accumulator, current) => {
@@ -137,44 +100,42 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
   }
 
   render() {
-    const {wallets} = this.props
-
-    const walletCards = this.getWalletCardsData(wallets)
+    const {walletList} = this.props
+    const walletCards = this.getWalletCardsData(walletList)
     const summary = this.getBreakdown(walletCards)
     return (
-      <Row gutter={16}>
-        <Col span={16} xs={24} md={16}>
-          <SectionHeading>All Wallets</SectionHeading>
-          <Row type="flex" align="top" gutter={16}>
-            {this.renderWalletItems(walletCards)}
-          </Row>
-        </Col>
-        <Col span={8} xs={24} md={8}>
-          {summary.balanceSum && <Breakdown
-            data={summary.breakdown}
-            value={summary.balanceSum}
-          />}
-        </Col>
-      </Row>
+      <Wrapper>
+        <Row gutter={16}>
+          <Col span={16} xs={24} md={16}>
+            <SectionHeading>All Wallets</SectionHeading>
+            <Row type="flex" align="top" gutter={16}>
+              {this.renderWalletItems(walletCards)}
+            </Row>
+          </Col>
+          <Col span={8} xs={24} md={8}>
+            {
+              <Breakdown
+                data={summary.breakdown}
+                value={summary.balanceSum}
+              />
+            }
+          </Col>
+        </Row>
+      </Wrapper>
     );
   }
 }
 
 WalletsOverview.propTypes = {
-  wallets: PropTypes.object.isRequired,
-  loadWalletBalances: PropTypes.func.isRequired,
-  loadWallets: PropTypes.func.isRequired,
+  walletList: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  wallets: makeSelectWallets(),
+  walletList: makeSelectWalletList(),
 });
 
 export function mapDispatchToProps(dispatch) {
-  return {
-    loadWalletBalances: (...args) => dispatch(loadWalletBalances(...args)),
-    loadWallets: () => dispatch(loadWallets()),
-  };
+  return {};
 }
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

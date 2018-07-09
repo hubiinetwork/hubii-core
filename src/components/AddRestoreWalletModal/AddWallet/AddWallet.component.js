@@ -1,11 +1,14 @@
 import * as React from 'react';
-import { Row, Col, Form, Popover, Spin } from 'antd';
+import { Row, Col, Form, Popover } from 'antd';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import ethers from 'ethers';
 import PropTypes from 'prop-types';
+import Notification from '../../Notification';
+import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../../ui/Modal';
+import hubiiLogo from '../../../../public/asset_images/HBT.svg';
+
 import {
   Info,
-  Loading,
   SeedInfo,
   SeedText,
   WrapperDiv,
@@ -16,12 +19,11 @@ import {
   CenterWrapper,
   HBT,
   HBTtext,
+  StyledSpin,
 } from './AddWallet.style';
-import Notification from '../../Notification';
-import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../../ui/Modal';
-import hubiiLogo from '../../../../public/asset_images/HBT.svg';
+
 /**
- * This component shows form  to add a  wallet..
+ * This component shows form  to add a wallet.
  */
 
 class AddWallet extends React.PureComponent {
@@ -35,10 +37,10 @@ class AddWallet extends React.PureComponent {
       derivationPath: 'm/44\'/60\'/0\'/0/0',
       confirmPasswordsMatch: false,
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
     this.compareToFirstPassword = this.compareToFirstPassword.bind(this);
     this.validateToNextPassword = this.validateToNextPassword.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleConfirmBlur(e) {
     const value = e.target.value;
@@ -80,6 +82,7 @@ class AddWallet extends React.PureComponent {
   }
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { loading } = this.props;
     return (
       <div>
         <CenterWrapper>
@@ -88,7 +91,7 @@ class AddWallet extends React.PureComponent {
         </CenterWrapper>
         <Row justify="center" type="flex">
           <Col span={18}>
-            <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.handleSubmit} disabled>
               <ModalFormItem
                 colon={false}
                 label={<ModalFormLabel>Give your wallet a Name</ModalFormLabel>}
@@ -100,7 +103,7 @@ class AddWallet extends React.PureComponent {
                       message: 'Please enter your wallet name.',
                     },
                   ],
-                })(<ModalFormInput />)}
+                })(<ModalFormInput disabled={loading} />)}
               </ModalFormItem>
               <ModalFormItem
                 colon={false}
@@ -120,7 +123,7 @@ class AddWallet extends React.PureComponent {
                       validator: this.validateToNextPassword,
                     },
                   ],
-                })(<ModalFormInput type="password" />)}
+                })(<ModalFormInput type="password" disabled={loading} />)}
               </ModalFormItem>
               <ModalFormItem
                 colon={false}
@@ -140,6 +143,7 @@ class AddWallet extends React.PureComponent {
                   <ModalFormInput
                     type="password"
                     onBlur={this.handleConfirmBlur}
+                    disabled={loading}
                   />
                 )}
               </ModalFormItem>
@@ -177,8 +181,12 @@ class AddWallet extends React.PureComponent {
                 </SeedWrapper>
               </ModalFormItem>
               <CenterWrapper>
-                {this.props.loading ? (
-                  <Spin indicator={<Loading type="loading" />} delay={2000} />
+                {loading ? (
+                  <StyledSpin
+                    delay={0}
+                    tip="Creating Wallet..."
+                    size="large"
+                  />
                 ) : (
                   <FinishButton type="primary" htmlType="submit">
                     Finish
@@ -194,10 +202,6 @@ class AddWallet extends React.PureComponent {
 }
 AddWallet.propTypes = {
   /**
-   * loading state of the component.
-   */
-  loading: PropTypes.bool,
-  /**
    *  callback  function,  triggered when formissuccessfully submitted.
    */
   handleSubmit: PropTypes.func,
@@ -206,6 +210,12 @@ AddWallet.propTypes = {
    * This prop is passed by  Form component to  use  validation.
    */
   form: PropTypes.object,
+
+  /**
+   * loading
+   */
+
+  loading: PropTypes.bool,
 };
 
 export default Form.create()(AddWallet);

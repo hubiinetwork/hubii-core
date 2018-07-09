@@ -1,58 +1,66 @@
 import { Icon, Tabs } from 'antd';
-import PropTypes from 'prop-types';
 import * as React from 'react';
-import { Redirect } from 'react-router-dom';
-// import WalletsOverview from 'containers/WalletsOverview';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
+import { Route, Redirect } from 'react-router';
 import WalletHeader from 'components/WalletHeader';
+import { getTotalUSDValue } from 'utils/wallet';
+import WalletTransactions from 'containers/WalletTransactions';
+import WalletTransfer from 'containers/WalletTransfer';
+import {
+  makeSelectWalletList,
+  makeSelectCurrentWalletDetails,
+} from 'containers/WalletHOC/selectors';
+import {
+  setCurrentWallet,
+} from 'containers/WalletHOC/actions';
 import Tab from '../../components/ui/Tab';
+
 import {
   Wrapper,
   TabsLayout,
-  // StyledButton,
-  // WalletsTabHeader,
 } from './index.style';
 
 const TabPane = Tabs.TabPane;
 
-export default class WalletDetails extends React.PureComponent {
+export class WalletDetails extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      visible: false,
-    };
-    this.onTabsChange = this.onTabsChange.bind(this);
     this.onHomeClick = this.onHomeClick.bind(this);
-    this.showModal = this.showModal.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
+    this.onTabsChange = this.onTabsChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.setCurrentWallet(null, this.props.match.params.address);
+  }
+
+  onHomeClick() {
+    const { history } = this.props;
+    history.push('/wallets');
   }
 
   onTabsChange(key) {
-    this.props.history.push(key);
-  }
-  onHomeClick() {
-    this.props.history.push('/wallets');
-  }
-  showModal() {
-    this.setState({
-      visible: true,
-    });
-  }
-  handleCancel() {
-    this.setState({
-      visible: false,
-    });
+    const { history } = this.props;
+    history.push(key);
   }
 
   render() {
-    const { history, match } = this.props;
+    const { history, match, currentWalletDetails } = this.props;
+    const currentWallet = currentWalletDetails;
+    if (!currentWallet) {
+      return (null);
+    }
+    const totalUSDValue = getTotalUSDValue(currentWallet.balances);
     return (
       <Wrapper>
         <TabsLayout>
           <WalletHeader
             iconType="home"
-            name="Ledger Nano S"
+            name={currentWallet.name}
             address={`${match.params.address}`}
-            balance={12.34}
+            balance={totalUSDValue}
             onIconClick={this.onHomeClick}
           />
         </TabsLayout>
@@ -65,7 +73,7 @@ export default class WalletDetails extends React.PureComponent {
             }
             key={`${match.url}/overview`}
           >
-            {/* <Route path={`${match.url}/overview`} component={WalletsOverview} /> */}
+            <Route path={`${match.url}/overview`} component={WalletTransactions} />
           </TabPane>
           <TabPane
             tab={
@@ -75,11 +83,12 @@ export default class WalletDetails extends React.PureComponent {
             }
             key={`${match.url}/transfer`}
           >
+            <Route path={`${match.url}/transfer`} component={WalletTransfer} />
           </TabPane>
         </Tab>
         {
           history.location.pathname === match.url &&
-          <Redirect from={match.url} to={`${match.url}/overview`} push />
+          <Redirect from={match.url} to={`${match.url}/transfer`} push />
         }
       </Wrapper>
     );
@@ -90,4 +99,23 @@ export default class WalletDetails extends React.PureComponent {
 WalletDetails.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
+  currentWalletDetails: PropTypes.object.isRequired,
+  setCurrentWallet: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = createStructuredSelector({
+  walletList: makeSelectWalletList(),
+  currentWalletDetails: makeSelectCurrentWalletDetails(),
+});
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
+  };
+}
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+export default compose(
+  withConnect,
+)(WalletDetails);

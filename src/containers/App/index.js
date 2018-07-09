@@ -14,6 +14,9 @@
 import React from 'react';
 import { compose } from 'redux';
 import { Switch, Route } from 'react-router-dom';
+
+import injectSaga from 'utils/injectSaga';
+
 import SideBar from 'components/SideBar';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Striim from 'containers/Striim';
@@ -21,6 +24,9 @@ import WalletManager from 'containers/WalletManager';
 import WalletDetails from 'containers/WalletDetails';
 
 import withExchangeRate from 'containers/ExchangeRateHOC';
+import WalletHOC from 'containers/WalletHOC';
+
+import saga from './saga';
 
 import logoSvg from '../../../public/Images/corerz-logo.svg';
 
@@ -54,4 +60,10 @@ export function App() {
   );
 }
 
-export default compose(withExchangeRate)(App);
+const withSaga = injectSaga({ key: 'app', saga });
+
+export default compose(
+  withSaga,
+  withExchangeRate,
+  WalletHOC,
+)(App);
