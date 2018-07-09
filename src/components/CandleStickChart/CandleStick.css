@@ -14,5 +14,19 @@
 	fill: #78B214;
 }
 .highcharts-background {
-	background-color: #26404D;
+	fill: #26404D
+}
+.highcharts-grid-line {
+	fill:#43616F;
+	stroke:#43616F;
+}
+.highcharts-container {
+	height: 480px !important;
+}
+
+.highcharts-button {
+	fill: #43616F;
+}
+.highcharts-button text {
+	fill: #ffffff !important;
 }

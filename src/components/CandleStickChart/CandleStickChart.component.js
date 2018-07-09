@@ -65,26 +65,26 @@ export default class CandleStickChart extends React.Component {
           events: {
             load() {
                   // set up the updating of the chart each second
-              const series = this.series[0];
-              const columnSeries = this.series[1];
-              let time = Date.now();
-              // debugger;
-              setInterval(() => {
-                const point = [
-                  time,
-                  Math.round(Math.random() * 20000),
-                  Math.round(Math.random() * 20000),
-                  Math.round(Math.random() * 20000),
-                  Math.round(Math.random() * 20000)];
-                // console.log('point', point);
-                series.addPoint(point, true, true);
-                const columnPoint = [
-                  time,
-                  Math.round(Math.random() * 18000000000) + 5000000,
-                ];
-                columnSeries.addPoint(columnPoint, true, true);
-                time += 86400000;
-              }, 5000);
+              // const series = this.series[0];
+              // const columnSeries = this.series[1];
+              // let time = Date.now();
+              // // debugger;
+              // setInterval(() => {
+              //   const point = [
+              //     time,
+                  // Math.round(Math.random() * 20000),
+              //     Math.round(Math.random() * 20000),
+              //     Math.round(Math.random() * 20000),
+              //     Math.round(Math.random() * 20000)];
+              //   // console.log('point', point);
+              //   series.addPoint(point, true, true);
+              //   const columnPoint = [
+              //     time,
+              //     Math.round(Math.random() * 18000000000) + 5000000,
+              //   ];24.87
+              //   columnSeries.addPoint(columnPoint, true, true);
+              //   time += 86400000;
+              // }, 5000);
             },
           },
         },
@@ -96,19 +96,22 @@ export default class CandleStickChart extends React.Component {
         //   enabled: false,
         // },
 
-        title: {
-          text: 'Bitcoin (BTC) Historical Data',
-        },
+        // title: {
+        //   text: 'Bitcoin (BTC) Historical Data',
+        // },
 
         yAxis: [{
           labels: {
             align: 'right',
             x: -3,
+            style: {
+              color: '#ffffff',
+            },
           },
           title: {
             text: 'OHLC',
           },
-          height: '60%',
+          height: '80%',
           lineWidth: 2,
           resize: {
             enabled: true,
@@ -117,15 +120,26 @@ export default class CandleStickChart extends React.Component {
           labels: {
             align: 'right',
             x: -3,
+            style: {
+              color: '#ffffff',
+            },
           },
           title: {
             text: 'Volume',
+
           },
-          top: '65%',
-          height: '35%',
+          top: '80%',
+          height: '20%',
           offset: 0,
           lineWidth: 2,
         }],
+        xAxis: {
+          labels: {
+            style: {
+              color: '#ffffff',
+            },
+          },
+        },
 
         tooltip: {
           split: true,
