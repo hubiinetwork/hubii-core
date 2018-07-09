@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input } from 'antd';
+import Input from '../Input';
 
 export default class InputNumber extends React.PureComponent {
   constructor(props) {
