@@ -92,13 +92,6 @@ export default class CandleStickChart extends React.Component {
         rangeSelector: {
           selected: 1,
         },
-        // exporting: {
-        //   enabled: false,
-        // },
-
-        // title: {
-        //   text: 'Bitcoin (BTC) Historical Data',
-        // },
 
         yAxis: [{
           labels: {
@@ -107,9 +100,6 @@ export default class CandleStickChart extends React.Component {
             style: {
               color: '#ffffff',
             },
-          },
-          title: {
-            text: 'OHLC',
           },
           height: '80%',
           lineWidth: 2,
@@ -123,10 +113,6 @@ export default class CandleStickChart extends React.Component {
             style: {
               color: '#ffffff',
             },
-          },
-          title: {
-            text: 'Volume',
-
           },
           top: '80%',
           height: '20%',
@@ -143,14 +129,6 @@ export default class CandleStickChart extends React.Component {
 
         tooltip: {
           split: true,
-        },
-        plotOptions: {
-          candlestick: {
-            // color: 'green',
-          },
-          column: {
-            // color: 'red',
-          },
         },
 
         series: [
