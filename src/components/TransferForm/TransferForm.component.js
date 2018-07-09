@@ -136,10 +136,10 @@ export default class TransferForm extends React.PureComponent {
                   colon={false}
                   help={<HelperText left={((this.state.gasPrice / (10 ** 18)) * parseInt(this.state.ethInformation.price.USD, 10)).toString()} right="USD" />}
                 >
-                  <InputNumber min={0} defaultValue={this.state.gasPrice} onChange={this.handleGasPriceChange} type="number" />
+                  <InputNumber min={0} defaultValue={this.state.gasPrice} handleChange={this.handleGasPriceChange} />
                 </FormItem>
                 <FormItem label={<HelperText left="Gas Limit" />} colon={false}>
-                  <InputNumber min={0} defaultValue={this.state.gasLimit} onChange={this.handleGasLimitChange} type="number" />
+                  <InputNumber min={0} defaultValue={this.state.gasLimit} handleChange={this.handleGasLimitChange} />
                 </FormItem>
               </Panel>
             </Collapse>
