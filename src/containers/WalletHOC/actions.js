@@ -28,7 +28,22 @@ import {
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
   TRANSACTION_CONFIRMED,
+  DELETE_WALLET,
 } from './constants';
+
+export function deleteWallet(wallets, walletToRemove) {
+  const remainingWallets = wallets.filter(
+    (wallet) =>
+    wallet.address !== walletToRemove.address &&
+    wallet.name !== walletToRemove.name &&
+    wallet.type === walletToRemove.type
+  );
+  return {
+    type: DELETE_WALLET,
+    remainingWallets,
+    walletType: walletToRemove.type,
+  };
+}
 
 export function createWalletFromMnemonic(name, mnemonic, derivationPath, password) {
   return {

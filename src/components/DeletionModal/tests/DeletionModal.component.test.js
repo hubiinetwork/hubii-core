@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ContactDeletionModal from 'components/ContactDeletionModal';
+import ContactDeletionModal from 'components/DeletionModal';
 
 describe('<ContactDeletionModal/>', () => {
   const contact = {
