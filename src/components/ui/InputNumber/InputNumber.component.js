@@ -27,9 +27,9 @@ export default class InputNumber extends React.PureComponent {
       <Input
         value={this.state.value}
         onChange={this.onChange}
-        type={'number'}
         min={min}
         max={max}
+        type={'number'}
         defaultValue={defaultValue}
       />
     );
