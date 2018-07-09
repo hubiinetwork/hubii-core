@@ -35,7 +35,7 @@ export class WalletTransfer extends React.PureComponent {
       return (null);
     }
 
-    
+
     return (
       <TransferForm
         address="0xf400db37c54c535febca1b470fd1d23d30acdd11"
