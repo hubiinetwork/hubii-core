@@ -113,10 +113,12 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
             </Row>
           </Col>
           <Col span={8} xs={24} md={8}>
-            {summary.balanceSum && <Breakdown
-              data={summary.breakdown}
-              value={summary.balanceSum}
-            />}
+            {
+              <Breakdown
+                data={summary.breakdown}
+                value={summary.balanceSum}
+              />
+            }
           </Col>
         </Row>
       </Wrapper>
