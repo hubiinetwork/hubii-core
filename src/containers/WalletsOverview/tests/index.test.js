@@ -79,7 +79,7 @@ describe('WalletsOverview', () => {
         });
       });
       describe('Breakdown', () => {
-        it('Breakdown should be no available when balance is no available', () => {
+        xit('Breakdown should be no available when balance is no available', () => {
           expect(dom.find('Breakdown').length).toEqual(0);
         });
         it('Breakdown should be available when all balances are available', () => {

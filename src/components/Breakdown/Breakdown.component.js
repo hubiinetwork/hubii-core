@@ -22,7 +22,7 @@ const Breakdown = ({ data, value }) => {
   return (
     <div>
       <SectionHeading>Breakdown</SectionHeading>
-      {value && (
+      {(
         <div>
           <Title>Total Value</Title>
           <TotalAmount>${value.toLocaleString('en')}</TotalAmount>

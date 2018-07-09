@@ -56,3 +56,5 @@ export const ERC20ABI = [
 export const EthNetworkProvider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
 
 export const IsAddressMatch = (a, b) => a.toLowerCase() === b.toLowerCase();
+
+export const parseBigNumber = (bignumber, decimals) => parseInt(bignumber, 10) / (10 ** decimals);

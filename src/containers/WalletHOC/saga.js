@@ -1,4 +1,4 @@
-import { delay } from 'redux-saga';
+import { eventChannel, delay } from 'redux-saga';
 import { takeLatest, takeEvery, put, call, select, fork, take, cancel } from 'redux-saga/effects';
 import Eth from '@ledgerhq/hw-app-eth';
 import Web3 from 'web3';
@@ -17,6 +17,7 @@ import {
   DECRYPT_WALLET,
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
+  LISTEN_TOKEN_BALANCES,
   TRANSFER,
   TRANSFER_ETHER,
   TRANSFER_ERC20,
@@ -38,6 +39,8 @@ import {
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
+  updateBalances as updateBalancesAction,
+  listenBalances as listenBalancesAction,
   showDecryptWalletModal,
   transferSuccess,
   transferError,
@@ -108,8 +111,35 @@ export function* loadWalletBalancesSaga({ name, walletAddress }) {
   try {
     const returnData = yield call(request, requestPath);
     yield put(loadWalletBalancesSuccess(name, returnData));
+    yield put(listenBalancesAction(name));
   } catch (err) {
     yield put(loadWalletBalancesError(name, err));
+  }
+}
+
+
+export function* listenBalances({ walletName }) {
+  const walletList = yield select(makeSelectWalletList());
+  const wallet = walletList.find((wal) => wal.name === walletName);
+  if (!wallet) {
+    return;
+  }
+  const chan = yield call((addr) => eventChannel((emitter) => {
+    EthNetworkProvider.on(addr, (newBalance) => {
+      if (!newBalance) {
+        return;
+      }
+      emitter({ newBalance });
+    });
+
+    return () => {
+      EthNetworkProvider.removeListener(addr);
+    };
+  }
+  ), wallet.address);
+  while (true) {
+    const updates = yield take(chan);
+    yield put(updateBalancesAction(walletName, { symbol: 'ETH', balance: updates.newBalance.toString() }));
   }
 }
 
@@ -278,6 +308,7 @@ export default function* walletHoc() {
   yield takeEvery(TRANSFER_SUCCESS, waitTransactionHash);
   yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
   yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
+  yield takeEvery(LISTEN_TOKEN_BALANCES, listenBalances);
 
   // Handles the Ledger auto polling lifecycle
   // START_LEDGER_SYNC activates ledgerSync saga

@@ -20,6 +20,8 @@ import {
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
+  LISTEN_TOKEN_BALANCES,
+  UPDATE_TOKEN_BALANCES,
   TRANSFER,
   TRANSFER_ETHER,
   TRANSFER_ERC20,
@@ -161,6 +163,21 @@ export function loadWalletBalancesError(name, error) {
     type: LOAD_WALLET_BALANCES_ERROR,
     name,
     error,
+  };
+}
+
+export function listenBalances(walletName) {
+  return {
+    type: LISTEN_TOKEN_BALANCES,
+    walletName,
+  };
+}
+
+export function updateBalances(name, newBalance) {
+  return {
+    type: UPDATE_TOKEN_BALANCES,
+    name,
+    newBalance,
   };
 }
 
