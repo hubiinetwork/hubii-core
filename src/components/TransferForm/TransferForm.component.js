@@ -25,7 +25,7 @@ export default class TransferForm extends React.PureComponent {
       input: 0,
       token: this.props.currencies[0].symbol,
       priceInDollar: this.props.currencies[0].rateUSD,
-      address: this.props.recipients[0].address,
+      address: this.props.recipients[0] ? this.props.recipients[0].address : '',
       amount: this.props.currencies[0].amount,
       selectedToken: this.props.currencies[0],
       gasPrice: 30000,
@@ -106,7 +106,7 @@ export default class TransferForm extends React.PureComponent {
               help={<HelperText left={this.state.address} />}
             >
               <Select
-                defaultValue={this.props.recipients[0].name}
+                defaultValue={this.props.recipients[0] ? this.props.recipients[0].name : ''}
                 recipient
                 onSelect={this.handleRecipient}
               >

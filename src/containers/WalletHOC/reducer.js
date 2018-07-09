@@ -13,6 +13,7 @@ import {
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
+  UPDATE_TOKEN_BALANCES,
   CREATE_WALLET_FROM_MNEMONIC,
   CREATE_WALLET_FROM_PRIVATE_KEY,
   CREATE_WALLET_SUCCESS,
@@ -99,6 +100,14 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['wallets', 'software', action.name, 'loadingBalances'], false)
         .setIn(['wallets', 'software', action.name, 'loadingBalancesError'], action.error);
+    case UPDATE_TOKEN_BALANCES:
+      return state
+        .updateIn(['wallets', 'software', action.name, 'balances'], (balances) => balances.map((balance) => {
+          if (balance.get('symbol') === action.newBalance.symbol) {
+            return balance.set('balance', action.newBalance.balance);
+          }
+          return balance;
+        }));
     case SHOW_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], true);
