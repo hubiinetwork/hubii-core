@@ -10,6 +10,10 @@ export const SpaceBetween = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: absolute;
+  right: 0;
+  margin-right: 1.65rem;
+  margin-top: 1.2rem;
 `;
 
 export const AssetWrapper = styled.div`
@@ -23,11 +27,9 @@ export const AssetWrapper = styled.div`
 export const CardIcon = styled.div`
   color: ${({ theme }) => theme.palette.secondary1};
   font-size: 20px;
-  margin-left: 8px;
   &:hover {
     color: ${({ theme }) => theme.palette.info};
     font-size: 20px;
-    margin-left: 8px;
   }
 `;
 
@@ -37,13 +39,12 @@ export const OverflowHidden = styled.div`
 `;
 
 export const CardIconSettings = styled.div`
+  margin-top: 3.6rem;
   color: ${({ theme }) => theme.palette.secondary1};
   font-size: 20px;
-  margin-left: 8px;
   &:hover {
     color: ${({ theme }) => theme.palette.info};
     font-size: 20px;
-    margin-left: 8px;
   }
 `;
 
