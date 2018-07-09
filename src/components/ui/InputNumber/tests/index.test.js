@@ -6,11 +6,11 @@ import darkTheme from '../../../../themes/darkTheme';
 
 describe('<InputNumber />', () => {
   it('should render correctly', () => {
-    const wrapper = shallow(<InputNumber />);
+    const wrapper = shallow(<InputNumber handleChange={() => {}} />);
     expect(wrapper).toMatchSnapshot();
   });
   it('should have correct props', () => {
-    const wrapper = shallow(<InputNumber minValue={20} maxValue={30} />);
+    const wrapper = shallow(<InputNumber minValue={20} maxValue={30} handleChange={() => {}} />);
     const wrapperProps = wrapper.instance().props;
     expect(wrapperProps.minValue).toEqual(20);
     expect(wrapperProps.maxValue).toEqual(30);
@@ -18,7 +18,7 @@ describe('<InputNumber />', () => {
   it('onchange should run', () => {
     const component = mount(
       <ThemeProvider theme={darkTheme}>
-        <InputNumber />
+        <InputNumber handleChange={() => {}} />
       </ThemeProvider>
     );
     const input = component.find('.ant-input');
@@ -28,7 +28,7 @@ describe('<InputNumber />', () => {
   it('should render correctly', () => {
     const component = mount(
       <ThemeProvider theme={darkTheme}>
-        <InputNumber />
+        <InputNumber handleChange={() => {}} />
       </ThemeProvider>
     );
     const input = component.find('.ant-input');
