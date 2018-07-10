@@ -119,7 +119,7 @@ export function* listenBalances({ walletName }) {
     };
   }
   ), wallet.address);
-  while (true) {
+  while (true) { // eslint-disable-line no-constant-condition
     const updates = yield take(chan);
     yield put(updateBalancesAction(walletName, { symbol: 'ETH', balance: updates.newBalance.toString() }));
   }

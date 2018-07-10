@@ -58,7 +58,7 @@ const makeSelectCurrentWalletDetails = () => createSelector(
   makeSelectWalletList(),
   makeSelectCurrentWallet(),
   (walletList, currentWallet) => {
-    const walletDetails = walletList.find((wallet) => `0x${wallet.encrypted.address}` === currentWallet.toJS().address);
+    const walletDetails = walletList.find((wallet) => wallet.name === currentWallet.get('name'));
     return walletDetails || {};
   }
 );

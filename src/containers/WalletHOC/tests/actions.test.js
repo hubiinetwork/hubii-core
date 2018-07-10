@@ -49,6 +49,8 @@ describe('WalletHoc actions', () => {
         type: CREATE_WALLET_SUCCESS,
         name,
         newWallet: {
+          name,
+          type: 'software',
           encrypted: encryptedWallet,
           decrypted: decryptedWallet,
         },

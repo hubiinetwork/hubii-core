@@ -243,18 +243,16 @@ describe('load wallets saga', () => {
     // update pending txn in store
     const storeState = {
       walletHoc: {
-        wallets: {
-          software: {
-            t1: {
-              encrypted: '{"address": "abcd"}',
-              decrypted: {
-                privateKey: '0xf2249b753523f2f7c79a07c1b7557763af0606fb503d935734617bb7abaf06db',
-              },
-            },
+        wallets: [{
+          name: 't1',
+          type: 'software',
+          encrypted: '{"address": "abcd"}',
+          decrypted: {
+            privateKey: '0x40c2ebcaf1c719f746bc57feb85c56b6143c906d849adb30d62990c4454b2f15',
           },
-        },
+        }],
         currentWallet: {
-          address: '0xabcd',
+          name: 't1',
         },
         pendingTransactions: [],
         confirmedTransactions: [],
@@ -319,7 +317,6 @@ describe('load wallets saga', () => {
       .dispatch(transferAction(params))
       .put(transferSuccess(signedTransaction, 'ETH'))// send signed transaction
       .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
-      // .run({ silenceTimeout: true })
       .run({ silenceTimeout: true })
       .then((result) => {
         const walletHocState = result.storeState.get('walletHoc');
@@ -337,18 +334,16 @@ describe('load wallets saga', () => {
     // update pending txn in store
     const storeState = {
       walletHoc: {
-        wallets: {
-          software: {
-            t1: {
-              encrypted: '{"address": "abcd"}',
-              decrypted: {
-                privateKey: '0x40c2ebcaf1c719f746bc57feb85c56b6143c906d849adb30d62990c4454b2f15',
-              },
-            },
+        wallets: [{
+          name: 't1',
+          type: 'software',
+          encrypted: '{"address": "abcd"}',
+          decrypted: {
+            privateKey: '0x40c2ebcaf1c719f746bc57feb85c56b6143c906d849adb30d62990c4454b2f15',
           },
-        },
+        }],
         currentWallet: {
-          address: '0xabcd',
+          name: 't1',
         },
         pendingTransactions: [],
         confirmedTransactions: [],
@@ -443,17 +438,14 @@ describe('load wallets saga', () => {
   it('balance should be updated when new balance arrived', () => {
     const storeState = {
       walletHoc: {
-        wallets: {
-          software: {
-            t1: {
-              encrypted: '{"address": "686353066E9873F6aC1b7D5dE9536099Cb41f321"}',
-              balances: [
+        wallets: [{
+          name: 't1',
+          encrypted: '{"address": "686353066E9873F6aC1b7D5dE9536099Cb41f321"}',
+          balances: [
                 { symbol: 'ETH', balance: '1' },
                 { symbol: 'SII', balance: '2' },
-              ],
-            },
-          },
-        },
+          ],
+        }],
       },
     };
     const newBalance = '3';
@@ -474,9 +466,10 @@ describe('load wallets saga', () => {
       .run({ silenceTimeout: true })
       .then((result) => {
         const walletHocState = result.storeState.get('walletHoc');
+        const index = walletHocState.get('wallets').findIndex((wallet) => wallet.name === 't1');
         expect(
           walletHocState
-            .getIn(['wallets', 'software', 't1', 'balances'])
+            .getIn(['wallets', index, 'balances'])
             .find((bal) => bal.get('symbol') === 'ETH')
             .get('balance')
         ).toEqual(newBalance);

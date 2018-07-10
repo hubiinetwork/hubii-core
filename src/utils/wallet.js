@@ -1,25 +1,17 @@
 import { providers } from 'ethers';
 
 export function convertWalletsList(walletsState) {
-  const walletsJSON = walletsState.toJS();
-  const wallets = [];
-  Object.keys(walletsJSON).forEach((type) => {
-    Object.keys(walletsJSON[type]).forEach((walletName) => {
-      try {
-        const wallet = walletsJSON[type][walletName];
-        wallet.encrypted = JSON.parse(wallet.encrypted);
-        wallet.type = type;
-        wallet.name = walletName;
-        wallet.address = `0x${wallet.encrypted.address}`;
-        wallets.push(wallet);
-      } catch (e) {
-        return e;
-      }
-      return walletName;
-    });
-    return type;
+  const walletsObject = walletsState.toJS();
+  const processedWallets = [];
+  walletsObject.forEach((wallet) => {
+    const curWallet = { ...wallet };
+    if (wallet.type === 'software') {
+      curWallet.encrypted = JSON.parse(wallet.encrypted);
+      curWallet.address = `0x${curWallet.encrypted.address}`;
+    }
+    processedWallets.push(curWallet);
   });
-  return wallets;
+  return processedWallets;
 }
 
 export function getTotalUSDValue(balances) {
