@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { getAbsolutePath } from 'utils/electron';
 import {
   TransactionHistoryType,
   TransactionHistoryAddress,
@@ -35,7 +36,7 @@ const TransactionHistoryDetail = (props) => (
           <Left>
             {!(props.type === 'received' || props.type === 'sent') && (
             <Image
-              src={`../../../public/asset_images/${props.toCoin}.svg`}
+              src={getAbsolutePath(`public/asset_images/${props.toCoin}.svg`)}
             />
               )}
             <TransactionHistoryItemCardIcon

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getAbsolutePath } from 'utils/electron';
 import {
   TransactionHistoryItemCard,
   TransactionHistoryItemDate,
@@ -26,9 +27,9 @@ export const TransactionHistoryItem = (props) => {
       </TransactionHistoryItemDate>
       <TransactionHistoryItemCard>
         <Image
-          src={`../../../public/asset_images/${
+          src={getAbsolutePath(`public/asset_images/${
             type === 'exchange' ? data.fromCoin : data.coin
-          }.svg`}
+          }.svg`)}
         />
         <TransactionHistoryDetail
           type={type}

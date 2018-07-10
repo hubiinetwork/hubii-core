@@ -15,6 +15,7 @@ import React from 'react';
 import { compose } from 'redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
+import { getAbsolutePath } from 'utils/electron';
 import injectSaga from 'utils/injectSaga';
 
 import SideBar from 'components/SideBar';
@@ -26,8 +27,6 @@ import withExchangeRate from 'containers/ExchangeRateHOC';
 import WalletHOC from 'containers/WalletHOC';
 
 import saga from './saga';
-
-import logoSvg from '../../../public/Images/corerz-logo.svg';
 
 export function App() {
   const menuItems = [
@@ -48,7 +47,7 @@ export function App() {
     },
   ];
   return (
-    <SideBar menuItems={menuItems} logoSrc={logoSvg}>
+    <SideBar menuItems={menuItems} logoSrc={getAbsolutePath('public/Images/corerz-logo.svg')}>
       <Switch>
         <Route path="/wallets" component={WalletManager} />
         <Route path="/wallet/:address" component={WalletDetails} />

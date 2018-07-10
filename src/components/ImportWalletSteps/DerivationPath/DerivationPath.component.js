@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { getAbsolutePath } from 'utils/electron';
 import { Form } from 'antd';
 import {
   Tick,
@@ -22,7 +23,6 @@ import {
   StyledRadioGroup as RadioGroup,
 } from './DerivationPath.style';
 import { ModalFormInput } from '../../ui/Modal';
-import Open from '../../../../public/Images/open-new.svg';
 const columns = [
   {
     title: <Address>Your Address</Address>,
@@ -70,7 +70,7 @@ class DerivationPath extends React.Component {
         oldAddresses[i].tokenBalance = (
           <img
             style={{ width: 14, height: 14, marginLeft: 35 }}
-            src={Open}
+            src={getAbsolutePath('public/Images/open-new.svg')}
             alt="tokenBalance"
           />
         );
