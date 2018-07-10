@@ -27,12 +27,12 @@
 .highcharts-button {
 	fill: #43616F;
 }
-.highcharts-button text,
-.highcharts-range-label text,
 .highcharts-range-selector-buttons text
  {
 	fill: #ffffff !important;
 }
-.highcharts-range-input text {
-	fill: #ffffff !important	
+.highcharts-axis-line, 
+.highcharts-tick,
+.highcharts-navigator-outline{
+	opacity: 0.7;
 }

@@ -89,6 +89,10 @@ export default class CandleStickChart extends React.Component {
 
         rangeSelector: {
           selected: 1,
+          inputEnabled: false,
+        },
+        scrollbar: {
+          enabled: false,
         },
 
         yAxis: [{
@@ -97,6 +101,7 @@ export default class CandleStickChart extends React.Component {
             x: -3,
             style: {
               color: '#ffffff',
+              opacity: 0.7,
             },
           },
           height: '80%',
@@ -110,6 +115,7 @@ export default class CandleStickChart extends React.Component {
             x: -3,
             style: {
               color: '#ffffff',
+              opacity: 0.7,
             },
           },
           top: '80%',
@@ -121,6 +127,7 @@ export default class CandleStickChart extends React.Component {
           labels: {
             style: {
               color: '#ffffff',
+              opacity: 0.7,
             },
           },
         },
