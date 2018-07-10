@@ -9,7 +9,6 @@ describe('WalletsOverview', () => {
   describe('shallow mount', () => {
     const wallets = [{ name: 'test1', type: 'software', encrypted: '{"address": "abcd1"}' }, { name: 'test2', type: 'software', encrypted: '{"address": "abcd2"}' }];
     const state = fromJS({ walletHoc: { wallets } });
-    const test2Index = state.getIn(['walletHoc', 'wallets']).findIndex((wallet) => wallet.name === 'test2');
     const test1Index = state.getIn(['walletHoc', 'wallets']).findIndex((wallet) => wallet.name === 'test1');
     const balances = [
       [
@@ -74,10 +73,10 @@ describe('WalletsOverview', () => {
         xit('Breakdown should be no available when balance is no available', () => {
           expect(dom.find('Breakdown').length).toEqual(0);
         });
-        xit('Breakdown should be available when all balances are available', () => {
+        it('Breakdown should be available when all balances are available', () => {
           const walletsState = state
-            .setIn(['walletHoc', 'wallets', test1Index, 'balances'], balances[0])
-            .setIn(['walletHoc', 'wallets', test2Index, 'balances'], balances[1]);
+            .setIn(['walletHoc', 'wallets', 0, 'balances'], balances[0])
+            .setIn(['walletHoc', 'wallets', 1, 'balances'], balances[1]);
 
           const walletsList = makeSelectWalletList()(walletsState);
           const overviewDom = shallow(
