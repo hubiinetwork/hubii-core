@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Icon } from 'antd';
 import PropTypes from 'prop-types';
-import {getAbsolutePath} from 'utils/electron'
+import { getAbsolutePath } from 'utils/electron';
 
 import {
   ButtonDiv,
