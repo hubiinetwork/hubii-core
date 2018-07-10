@@ -81,7 +81,7 @@ function walletHocReducer(state = initialState, action) {
         .set('progress', 0);
     case DECRYPT_WALLET_SUCCESS:
       {
-        const index = state.get('wallets').findIndex((wallet) => wallet.name === action.name);
+        const index = state.get('wallets').findIndex((wallet) => wallet.get('name') === action.name);
         return state
           .setIn(['loading', 'decryptingWallet'], false)
           .setIn(['inputs', 'password'], '')
@@ -93,13 +93,13 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['errors', 'decryptingWalletError'], action.error);
     case LOAD_WALLET_BALANCES:
       {
-        const index = state.get('wallets').findIndex((wallet) => wallet.name === action.name);
+        const index = state.get('wallets').findIndex((wallet) => wallet.get('name') === action.name);
         return state
           .setIn(['wallets', index, 'loadingBalances'], true);
       }
     case LOAD_WALLET_BALANCES_SUCCESS:
       {
-        const index = state.get('wallets').findIndex((wallet) => wallet.name === action.name);
+        const index = state.get('wallets').findIndex((wallet) => wallet.get('name') === action.name);
         return state
           .setIn(['wallets', index, 'loadingBalances'], false)
           .setIn(['wallets', index, 'loadingBalancesError'], null)
@@ -107,14 +107,14 @@ function walletHocReducer(state = initialState, action) {
       }
     case LOAD_WALLET_BALANCES_ERROR:
       {
-        const index = state.get('wallets').findIndex((wallet) => wallet.name === action.name);
+        const index = state.get('wallets').findIndex((wallet) => wallet.get('name') === action.name);
         return state
           .setIn(['wallets', index, 'loadingBalances'], false)
           .setIn(['wallets', index, 'loadingBalancesError'], action.error);
       }
     case UPDATE_TOKEN_BALANCES:
       {
-        const index = state.get('wallets').findIndex((wallet) => wallet.name === action.name);
+        const index = state.get('wallets').findIndex((wallet) => wallet.get('name') === action.name);
         return state
         .updateIn(['wallets', index, 'balances'], (balances) => balances.map((balance) => {
           if (balance.get('symbol') === action.newBalance.symbol) {
@@ -164,8 +164,11 @@ function walletHocReducer(state = initialState, action) {
         })
         .updateIn(['pendingTransactions'], (list) => list.filter((txn) => txn.get('hash') !== action.transaction.hash));
     case DELETE_WALLET:
-      return state
-        .removeIn(['wallets', action.walletType, action.name]);
+      {
+        const index = state.get('wallets').findIndex((wallet) => wallet.get('name') === action.name);
+        return state
+          .deleteIn(['wallets', index]);
+      }
     default:
       return state;
   }

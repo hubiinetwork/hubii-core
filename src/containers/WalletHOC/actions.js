@@ -37,7 +37,6 @@ export function deleteWallet(walletToRemove) {
   return {
     type: DELETE_WALLET,
     name: walletToRemove.name,
-    walletType: walletToRemove.type,
   };
 }
 
