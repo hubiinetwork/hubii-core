@@ -2,16 +2,16 @@
 
 .highcharts-candlestick-series .highcharts-point-down {
 
-	stroke: #FF5A5A;
-	fill: #FF5A5A;
+	stroke: #eb4d5b;
+	fill: #eb4d5b;
 }
 .highcharts-candlestick-series .highcharts-point-up {
-	stroke: #78B214;
-	fill: #78B214;
+	stroke: #53b987;
+	fill: #53b987;
 }
 .highcharts-column-series .highcharts-point {
-	stroke: #78B214 !important;
-	fill: #78B214;
+	stroke: #1f5354 !important;
+	fill: #1f5354;
 }
 .highcharts-background {
 	fill: #26404D
