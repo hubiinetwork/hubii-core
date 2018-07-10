@@ -20,11 +20,9 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "defaultValue": undefined,
-      "disabled": false,
       "max": undefined,
       "min": undefined,
       "onChange": [Function],
-      "prefixCls": "ant-input",
       "type": "number",
       "value": undefined,
     },
@@ -39,11 +37,9 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "defaultValue": undefined,
-        "disabled": false,
         "max": undefined,
         "min": undefined,
         "onChange": [Function],
-        "prefixCls": "ant-input",
         "type": "number",
         "value": undefined,
       },

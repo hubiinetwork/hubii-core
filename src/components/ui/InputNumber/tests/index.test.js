@@ -23,7 +23,7 @@ describe('<InputNumber />', () => {
     );
     const input = component.find('.ant-input');
     input.simulate('change');
-    expect(input.props().className).toHaveLength(9);
+    expect(input.props().className).toHaveLength(35);
   });
   it('should render correctly', () => {
     const component = mount(
