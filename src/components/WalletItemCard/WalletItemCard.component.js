@@ -56,24 +56,6 @@ export class WalletItemCard extends React.PureComponent {
   render() {
     return (
       <OverflowHidden>
-        <Modal
-          footer={null}
-          width={'585px'}
-          maskClosable
-          maskStyle={{ background: 'rgba(232,237,239,.65)' }}
-          style={{ marginTop: '20px' }}
-          visible={this.state.modalVisibility}
-          onCancel={() => this.setState({ modalVisibility: false })}
-          destroyOnClose
-        >
-          <DeletionModal
-            type="wallet"
-            onCancel={() => this.setState({ modalVisibility: false })}
-            onDelete={this.handleDeleteWallet}
-            name={this.props.name}
-            address={this.props.primaryAddress}
-          />
-        </Modal>
         {this.props.connected !== undefined && <USBFlag connected={this.props.connected} />}
         <SpaceBetween>
           <CardIcon>
@@ -113,6 +95,24 @@ export class WalletItemCard extends React.PureComponent {
           </LeftSideWrapper>
           <TotalBalance>{`$${this.props.totalBalance.toLocaleString('en')}`}</TotalBalance>
         </OuterWrapper>
+        <Modal
+          footer={null}
+          width={'585px'}
+          maskClosable
+          maskStyle={{ background: 'rgba(232,237,239,.65)' }}
+          style={{ marginTop: '20px' }}
+          visible={this.state.modalVisibility}
+          onCancel={() => this.setState({ modalVisibility: false })}
+          destroyOnClose
+        >
+          <DeletionModal
+            type="wallet"
+            onCancel={() => this.setState({ modalVisibility: false })}
+            onDelete={this.handleDeleteWallet}
+            name={this.props.name}
+            address={this.props.primaryAddress}
+          />
+        </Modal>
       </OverflowHidden>
 
     );

@@ -80,7 +80,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
   }
 
   renderWalletItems(walletCards) {
-    const {walletList} = this.props;
+    const { walletList } = this.props;
     return walletCards.map((card, i) => (
       <WalletCardsCol
         span={12}
@@ -113,7 +113,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
   }
 
   render() {
-    const {walletList, } = this.props;
+    const { walletList } = this.props;
     const walletCards = this.getWalletCardsData(walletList);
     const summary = this.getBreakdown(walletCards);
     return (
