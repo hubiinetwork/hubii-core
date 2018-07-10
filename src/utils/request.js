@@ -1,25 +1,20 @@
 import 'whatwg-fetch';
 import jwt from 'jsonwebtoken';
 
-const defaultDevEndpoint = 'https://api2.dev.hubii.net/';
-const defaultProdEndpoint = 'https://api2.prod.hubii.net/';
-
-// Inserts the dev or prod endpoint for the striim api server
-function getDefaultEndpoint() {
-  /* istanbul ignore next */
-  return process.env.NODE_ENV === 'development' ? defaultDevEndpoint : defaultProdEndpoint;
+// Requests a URL, returning a promise. By default uses striim endpoint
+export default function request(path, opts = {}, endpoint) {
+  return fetch(endpoint + path, opts)
+    .then(checkStatus)
+    .then(parseJSON);
 }
 
-// Requests a URL, returning a promise. By default uses striim endpoint
-export default function request(path, opts = {}, endpoint = getDefaultEndpoint()) {
+export function requestWalletAPI(path, opts = {}, endpoint = process.env.WALLET_API) {
   const options = opts;
   const token = jwt.sign({ exp: Math.floor((new Date().getTime() / 1000) + 10) }, '***REMOVED***');
   options.headers = {
     Authorization: `Bearer ${token}`,
   };
-  return fetch(endpoint + path, options)
-    .then(checkStatus)
-    .then(parseJSON);
+  return request(path, options, endpoint);
 }
 
 // Checks if a network request came back fine, and throws an error if not

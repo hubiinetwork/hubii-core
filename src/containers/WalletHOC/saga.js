@@ -3,7 +3,7 @@ import { eventChannel } from 'redux-saga';
 import { Wallet, utils, providers, Contract } from 'ethers';
 import { notify } from 'containers/App/actions';
 import { makeSelectWalletList, makeSelectCurrentWalletDetails } from './selectors';
-import request from '../../utils/request';
+import { requestWalletAPI } from '../../utils/request';
 import { ERC20ABI, EthNetworkProvider } from '../../utils/wallet';
 
 import {
@@ -91,7 +91,7 @@ export function* initWalletsBalances() {
 export function* loadWalletBalancesSaga({ name, walletAddress }) {
   const requestPath = `ethereum/wallets/${walletAddress}/balance`;
   try {
-    const returnData = yield call(request, requestPath);
+    const returnData = yield call(requestWalletAPI, requestPath);
     yield put(loadWalletBalancesSuccess(name, returnData));
     yield put(listenBalancesAction(name));
   } catch (err) {
