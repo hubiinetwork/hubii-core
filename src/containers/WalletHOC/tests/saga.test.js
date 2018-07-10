@@ -253,6 +253,7 @@ describe('load wallets saga', () => {
         }],
         currentWallet: {
           name: 't1',
+          address: '0xabcd',
         },
         pendingTransactions: [],
         confirmedTransactions: [],
@@ -344,6 +345,7 @@ describe('load wallets saga', () => {
         }],
         currentWallet: {
           name: 't1',
+          address: '0xabcd',
         },
         pendingTransactions: [],
         confirmedTransactions: [],

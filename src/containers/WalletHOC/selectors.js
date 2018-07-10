@@ -58,7 +58,7 @@ const makeSelectCurrentWalletDetails = () => createSelector(
   makeSelectWalletList(),
   makeSelectCurrentWallet(),
   (walletList, currentWallet) => {
-    const walletDetails = walletList.find((wallet) => wallet.name === currentWallet.get('name'));
+    const walletDetails = walletList.find((wallet) => wallet.address === currentWallet.get('address'));
     return walletDetails || {};
   }
 );
