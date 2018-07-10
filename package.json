@@ -29,7 +29,7 @@
     "build:clean": "rimraf ./build",
     "build:dll": "node ./internals/scripts/dependencies.js",
     "start:electron": "electron-rebuild --force --module_dir . -w node-hid && json-server --watch fake-db.json --port 8000 | cross-env NODE_ENV=development TARGET=electron node server",
-    "start": "json-server --watch fake-db.json --port 8000 | cross-env NODE_ENV=development node server",
+    "start": "json-server --watch fake-db.json --port 8000 | cross-env NODE_ENV=development WALLET_API=https://api2.dev.hubii.net/ node server",
     "start:tunnel": "json-server --watch fake-db.json --port 8000 | cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "start:production": "npm run test && npm run build && npm run start:prod",
     "start:prod": "cross-env NODE_ENV=production node server",
