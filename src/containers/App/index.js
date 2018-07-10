@@ -13,12 +13,11 @@
 
 import React from 'react';
 import { compose } from 'redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import injectSaga from 'utils/injectSaga';
 
 import SideBar from 'components/SideBar';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Striim from 'containers/Striim';
 import WalletManager from 'containers/WalletManager';
 import WalletDetails from 'containers/WalletDetails';
@@ -54,7 +53,7 @@ export function App() {
         <Route path="/wallets" component={WalletManager} />
         <Route path="/wallet/:address" component={WalletDetails} />
         <Route path="/striim" component={Striim} />
-        <Route component={NotFoundPage} />
+        <Redirect from="/" to="/wallets" />
       </Switch>
     </SideBar>
   );
