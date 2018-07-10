@@ -17,6 +17,7 @@ import {
   transfer,
   showDecryptWalletModal,
   hideDecryptWalletModal,
+  deleteWallet,
 } from '../actions';
 describe('walletHocReducer', () => {
   let state;
@@ -45,6 +46,19 @@ describe('walletHocReducer', () => {
       },
       pendingTransactions: [],
       confirmedTransactions: [],
+    });
+  });
+
+  describe('removeWallet', () => {
+    it('should remove a wallet', () => {
+      const wallet = {
+        123: {
+          address: '0x324234',
+        },
+      };
+      const expected = { ...state };
+      state.set('wallets', fromJS(wallet));
+      expect(walletHocReducer(state, deleteWallet(wallet))).toEqual(expected);
     });
   });
 

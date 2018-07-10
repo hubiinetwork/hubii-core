@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ContactList from 'components/ContactList';
-import ContactDeletionModal from 'components/ContactDeletionModal';
+import DeletionModal from 'components/DeletionModal';
 import EditContactModal from 'components/EditContactModal';
 
 describe('<ContactList/>', () => {
@@ -72,7 +72,7 @@ describe('<ContactList/>', () => {
       it('when the modalType is delete <ContactDeletionModal/> should be rendered', () => {
         const modalType = 'delete';
         wrapper.setState({ modalType });
-        expect(wrapper.find(ContactDeletionModal).length).toEqual(1);
+        expect(wrapper.find(DeletionModal).length).toEqual(1);
       });
 
       it('when the modalType is anything else <EditContactModal/> should be rendered', () => {

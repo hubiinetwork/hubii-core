@@ -81,7 +81,6 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
   renderWalletItems(walletCards) {
     const {walletList} = this.props;
-    console.log(walletList);
     return walletCards.map((card, i) => (
       <WalletCardsCol
         span={12}

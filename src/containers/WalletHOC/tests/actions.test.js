@@ -6,6 +6,7 @@ import {
   decryptWalletFailed,
   decryptWalletSuccess,
   loadWallets,
+  deleteWallet,
 } from '../actions';
 import {
   CREATE_WALLET_FROM_MNEMONIC,
@@ -15,9 +16,28 @@ import {
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
   LOAD_WALLETS,
+  DELETE_WALLET,
 } from '../constants';
 
 describe('WalletHoc actions', () => {
+  describe('deleteWallet Action', () => {
+    const walletToRemove = {
+      name: 'Wallet8',
+      address: '0x2323123213',
+      walletType: 'software',
+    };
+    it('returns expected output', () => {
+      const expected = {
+        type: DELETE_WALLET,
+        name: walletToRemove.name,
+        walletType: walletToRemove.type,
+      };
+      expect(deleteWallet(
+        walletToRemove
+      )).toEqual(expected);
+    });
+  });
+
   describe('createWalletFromMnemonic Action', () => {
     const name = 'Wallet8';
     const mnemonic = 'word word word';
