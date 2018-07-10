@@ -31,16 +31,10 @@ import {
   DELETE_WALLET,
 } from './constants';
 
-export function deleteWallet(wallets, walletToRemove) {
-  const remainingWallets = wallets.filter(
-    (wallet) =>
-    wallet.address !== walletToRemove.address &&
-    wallet.name !== walletToRemove.name &&
-    wallet.type === walletToRemove.type
-  );
+export function deleteWallet(walletToRemove) {
   return {
     type: DELETE_WALLET,
-    remainingWallets,
+    name: walletToRemove.name,
     walletType: walletToRemove.type,
   };
 }

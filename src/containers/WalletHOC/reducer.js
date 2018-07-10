@@ -172,7 +172,7 @@ function walletHocReducer(state = initialState, action) {
         .updateIn(['pendingTransactions'], (list) => list.filter((txn) => txn.get('hash') !== action.transaction.hash));
     case DELETE_WALLET:
       return state
-        .setIn(['wallets', action.walletType], action.remainingWallets);
+        .removeIn(['wallets', action.walletType, action.name]);
     default:
       return state;
   }
