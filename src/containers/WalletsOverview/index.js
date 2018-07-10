@@ -11,6 +11,7 @@ import { loadWallets } from 'containers/WalletHOC/actions';
 import { SectionHeading } from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
+import { deleteWallet } from 'containers/WalletHOC/actions';
 
 import {WalletCardsCol, Wrapper} from './style.js'
 
@@ -79,6 +80,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
   }
 
   renderWalletItems(walletCards) {
+    const { walletList } = this.props;
     return walletCards.map((card, i) => (
       <WalletCardsCol
         span={12}
@@ -94,15 +96,26 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           type={card.type}
           assets={card.assets}
           handleCardClick={this.handleCardClick}
+          walletList={this.props.walletList}
+          deleteWallet={
+            () => 
+            this.props.deleteWallet(
+              {
+                name: card.name, 
+                address: card.primaryAddress,
+                type: card.type,
+              } 
+            ) 
+          }
         />
       </WalletCardsCol>
     ));
   }
 
   render() {
-    const {walletList} = this.props
-    const walletCards = this.getWalletCardsData(walletList)
-    const summary = this.getBreakdown(walletCards)
+    const { walletList } = this.props;
+    const walletCards = this.getWalletCardsData(walletList);
+    const summary = this.getBreakdown(walletCards);
     return (
       <Wrapper>
         <Row gutter={16}>
@@ -115,8 +128,8 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           <Col span={8} xs={24} md={8}>
             {
               <Breakdown
-                data={summary.breakdown}
-                value={summary.balanceSum}
+              data={summary.breakdown}
+              value={summary.balanceSum}
               />
             }
           </Col>
@@ -135,7 +148,9 @@ const mapStateToProps = createStructuredSelector({
 });
 
 export function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    deleteWallet: (...args) => dispatch(deleteWallet(...args)),
+  };
 }
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

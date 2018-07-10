@@ -32,3 +32,5 @@ export const TRANSFER_ERC20 = 'src/WalletHOC/TRANSFER_ERC20';
 export const TRANSFER_SUCCESS = 'src/WalletHOC/TRANSFER_SUCCESS';
 export const TRANSFER_ERROR = 'src/WalletHOC/TRANSFER_ERROR';
 export const TRANSACTION_CONFIRMED = 'src/WalletHOC/TRANSACTION_CONFIRMED';
+
+export const DELETE_WALLET = 'src/WalletHOC/DELETE_WALLET';
