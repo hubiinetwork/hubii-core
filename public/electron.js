@@ -10,12 +10,12 @@ const isDev = require('electron-is-dev');
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 1400, height: 680 });
+  mainWindow = new BrowserWindow({ width: 1200, height: 680 });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../index.html')}`);
-  mainWindow.webContents.openDevTools();
   if (isDev) {
     // Need to require this globally so we can keep it as a
     // dev-only dependency
+    mainWindow.webContents.openDevTools();
     const {
       default: installExtension,
       REACT_DEVELOPER_TOOLS,
