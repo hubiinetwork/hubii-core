@@ -74,7 +74,7 @@ describe('walletHocReducer', () => {
     const decryptedWallet = { key: 43 };
     const name = 'Henry';
     const type = 'software';
-    const index = state.get('wallets').findIndex((wallet) => wallet.name === name);
+    const index = state.get('wallets').findIndex((wallet) => wallet.get('name') === name);
     const expected = state
       .setIn(['loading', 'creatingWallet'], false)
       .setIn(['inputs', 'password'], '')
@@ -108,7 +108,7 @@ describe('walletHocReducer', () => {
   it('should handle decryptWalletSuccess action correctly', () => {
     const decryptedWallet = { id: 1234 };
     const name = 'test';
-    const index = state.get('wallets').findIndex((wallet) => wallet.name === name);
+    const index = state.get('wallets').findIndex((wallet) => wallet.get('name') === name);
     const expected = state
           .setIn(['loading', 'decryptingWallet'], false)
           .setIn(['inputs', 'password'], '')
@@ -130,7 +130,7 @@ describe('walletHocReducer', () => {
       const loading = true;
       const walletName = 'testWallet';
       const testState = state.set('wallets', fromJS(wallets));
-      const index = testState.get('wallets').findIndex((wallet) => wallet.name === walletName);
+      const index = testState.get('wallets').findIndex((wallet) => wallet.get('name') === walletName);
       const expected = testState
           .setIn(['wallets', index, 'loadingBalances'], loading);
 
@@ -141,7 +141,7 @@ describe('walletHocReducer', () => {
       const balances = { tokenBalances: { tokens: [] } };
       const walletName = 'testWallet';
       const testState = state.set('wallets', fromJS(wallets));
-      const index = testState.get('wallets').findIndex((wallet) => wallet.name === walletName);
+      const index = testState.get('wallets').findIndex((wallet) => wallet.get('name') === walletName);
       const expected = testState
           .setIn(['wallets', index, 'loadingBalances'], false)
           .setIn(['wallets', index, 'loadingBalancesError'], null)
@@ -154,7 +154,7 @@ describe('walletHocReducer', () => {
       const balances = { tokenBalances: {} };
       const walletName = 'testWallet';
       const testState = state.set('wallets', fromJS(wallets));
-      const index = testState.get('wallets').findIndex((wallet) => wallet.name === walletName);
+      const index = testState.get('wallets').findIndex((wallet) => wallet.get('name') === walletName);
       const expected = testState
           .set('wallets', fromJS(wallets))
           .setIn(['wallets', index, 'loadingBalances'], false)
@@ -168,7 +168,7 @@ describe('walletHocReducer', () => {
       const error = new Error();
       const walletName = 'testWallet';
       const testState = state.set('wallets', fromJS(wallets));
-      const index = testState.get('wallets').findIndex((wallet) => wallet.name === walletName);
+      const index = testState.get('wallets').findIndex((wallet) => wallet.get('name') === walletName);
       const expected = testState
           .setIn(['wallets', index, 'loadingBalances'], false)
           .setIn(['wallets', index, 'loadingBalancesError'], error);
