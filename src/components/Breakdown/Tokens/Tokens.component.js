@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getAbsolutePath } from 'utils/electron';
 import {
   Logo,
   Percentage,
@@ -17,7 +18,7 @@ const Tokens = (props) => {
     <FlexItem key={`token-${item.label}`}>
       <Logo
       // eslint-disable-next-line global-require
-        src={require(`../../../../public/asset_images/${item.label}.svg`)}
+        src={getAbsolutePath(`public/asset_images/${item.label}.svg`)}
       />
       <Label>{item.label}</Label>
       <Percentage>{item.percentage}%</Percentage>

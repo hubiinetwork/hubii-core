@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Icon } from 'antd';
 import PropTypes from 'prop-types';
+import { getAbsolutePath } from 'utils/electron';
+
 import {
   ButtonDiv,
   Wrapper,
@@ -17,9 +19,6 @@ import {
 import { AddWallet } from './AddWallet';
 import { RestoreWallet } from './RestoreWallet';
 import ImportWalletSteps from '../ImportWalletSteps';
-
-import metamaskImg from '../../../public/Images/metamask_wallet.png';
-import ledgerImg from '../../../public/Images/ledger_wallet.png';
 
 /**
  * This component shows options for modals to be opened.
@@ -134,11 +133,11 @@ export default class AddRestoreWalletModal extends React.PureComponent {
             <ImportWalletSteps
               wallets={[
                 {
-                  src: ledgerImg,
+                  src: getAbsolutePath('public/Images/ledger_wallet.png'),
                   name: 'ledger',
                 },
                 {
-                  src: metamaskImg,
+                  src: getAbsolutePath('public/Images/metamask_wallet.png'),
                   name: 'metamask',
                 },
               ]}

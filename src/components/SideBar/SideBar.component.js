@@ -2,6 +2,7 @@ import { Icon, Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getAbsolutePath } from 'utils/electron';
 import { SideBarLayout, SideBarMenu, Styledimg } from './SideBar.style';
 
 const { Sider } = Layout;
@@ -33,7 +34,7 @@ const SideBar = ({ menuItems, logoSrc, children }) => (
                 <div>
                   <Styledimg
                   // eslint-disable-next-line global-require
-                    src={require(`../../../public/Images/${menuItem.icon}.svg`)}
+                    src={getAbsolutePath(`public/Images/${menuItem.icon}.svg`)}
                     alt=""
                   />
                 </div>

@@ -158,6 +158,17 @@ module.exports = (options) => ({
     new CopyWebpackPlugin(
       [
         { from: 'public/', to: 'public/' },
+        {
+          from: 'public/electron.js',
+          to: 'public/electron.js',
+          transform(content) {
+            if (!process.env.DEV_TOOLS) {
+              return content;
+            }
+            const templated = content.toString('utf8').replace('process.env.DEV_TOOLS', parseInt(process.env.DEV_TOOLS, 10));
+            return Buffer.from(templated, 'utf8');
+          },
+        },
       ]
     ),
   ]),
