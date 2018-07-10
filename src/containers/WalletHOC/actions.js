@@ -30,7 +30,16 @@ import {
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
   TRANSACTION_CONFIRMED,
+  DELETE_WALLET,
 } from './constants';
+
+export function deleteWallet(walletToRemove) {
+  return {
+    type: DELETE_WALLET,
+    name: walletToRemove.name,
+    walletType: walletToRemove.type,
+  };
+}
 
 export function createWalletFromMnemonic(name, mnemonic, derivationPath, password) {
   return {

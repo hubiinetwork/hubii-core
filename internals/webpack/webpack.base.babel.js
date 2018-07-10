@@ -151,6 +151,8 @@ module.exports = (options) => ({
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        NETWORK: JSON.stringify(process.env.NETWORK),
+        WALLET_API: JSON.stringify(process.env.WALLET_API),
       },
     }),
     new CopyWebpackPlugin(

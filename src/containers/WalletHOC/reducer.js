@@ -27,6 +27,7 @@ import {
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
   TRANSACTION_CONFIRMED,
+  DELETE_WALLET,
 } from './constants';
 
 export const initialState = fromJS({
@@ -162,6 +163,9 @@ function walletHocReducer(state = initialState, action) {
           return list.unshift(fromJS(confirmedTxn));
         })
         .updateIn(['pendingTransactions'], (list) => list.filter((txn) => txn.get('hash') !== action.transaction.hash));
+    case DELETE_WALLET:
+      return state
+        .removeIn(['wallets', action.walletType, action.name]);
     default:
       return state;
   }

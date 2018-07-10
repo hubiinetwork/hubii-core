@@ -1,10 +1,10 @@
 import React from 'react';
 import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
+import { deleteWallet } from 'containers/WalletHOC/actions';
 import { convertWalletsList } from 'utils/wallet';
 import { makeSelectWalletList } from 'containers/WalletHOC/selectors';
 import { WalletsOverview, mapDispatchToProps } from '../index';
-
 describe('WalletsOverview', () => {
   describe('shallow mount', () => {
     const wallets = [{ name: 'test1', type: 'software', encrypted: '{"address": "abcd1"}' }, { name: 'test2', type: 'software', encrypted: '{"address": "abcd2"}' }];
@@ -167,13 +167,18 @@ describe('WalletsOverview', () => {
         expect(historySpy).toBeCalledWith(`/wallet/${address}`);
       });
     });
-    describe('#mapDispatchToProps', () => {
-      it('should dispatch', () => {
-        const dispatchSpy = jest.fn();
-        const actions = mapDispatchToProps(dispatchSpy);
-        Object.keys(actions).forEach((action, index) => {
-          actions[action]();
-          expect(dispatchSpy).toHaveBeenCalledTimes(index + 1);
+    describe('mapDispatchToProps', () => {
+      describe('deleteWallet', () => {
+        it('should call dispatch', () => {
+          const walletToRemove = {
+            type: 'software',
+            name: '12123',
+            address: '0x234234',
+          };
+          const dispatch = jest.fn();
+          const result = mapDispatchToProps(dispatch);
+          result.deleteWallet(walletToRemove);
+          expect(dispatch).toHaveBeenCalledWith(deleteWallet(walletToRemove));
         });
       });
     });

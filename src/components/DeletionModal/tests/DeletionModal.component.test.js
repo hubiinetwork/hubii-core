@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ContactDeletionModal from 'components/ContactDeletionModal';
+import DeletionModal from 'components/DeletionModal';
 
 describe('<ContactDeletionModal/>', () => {
   const contact = {
     name: 'mike',
     address: '0x3123123',
   };
-
+  const type = 'wallet';
   const onCancel = jest.fn();
   const onDelete = jest.fn();
 
@@ -15,16 +15,17 @@ describe('<ContactDeletionModal/>', () => {
 
   beforeEach(() => {
     wrapper = shallow(
-      <ContactDeletionModal
+      <DeletionModal
         name={contact.name}
         address={contact.address}
         onCancel={onCancel}
         onDelete={onDelete}
+        type={type}
       />
     );
   });
 
-  it('should render <ContactDeletionModal/> correctly', () => {
+  it('should render <DeletionModal/> correctly', () => {
     expect(wrapper).toMatchSnapshot();
   });
 

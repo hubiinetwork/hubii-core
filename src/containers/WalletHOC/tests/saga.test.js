@@ -6,7 +6,7 @@
 import { takeEvery, put } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 import { expectSaga } from 'redux-saga-test-plan';
-import request from 'utils/request';
+import { requestWalletAPI } from 'utils/request';
 import { Wallet, utils } from 'ethers';
 import walletHocReducer from 'containers/WalletHOC/reducer';
 import { fromJS } from 'immutable';
@@ -203,7 +203,7 @@ describe('load wallets saga', () => {
     return expectSaga(loadWalletBalancesSaga, { name: walletName, walletAddress })
       .provide({
         call(effect) {
-          expect(effect.fn).toBe(request);
+          expect(effect.fn).toBe(requestWalletAPI);
           expect(effect.args[0], `ethereum/wallets/${walletAddress}/balance`);
           return response;
         },
@@ -219,7 +219,7 @@ describe('load wallets saga', () => {
     return expectSaga(loadWalletBalancesSaga, { name: walletName, walletAddress })
       .provide({
         call(effect) {
-          expect(effect.fn).toBe(request);
+          expect(effect.fn).toBe(requestWalletAPI);
           throw error;
         },
       })
