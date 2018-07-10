@@ -9,8 +9,8 @@
 	stroke: #78B214;
 	fill: #78B214;
 }
-.highcharts-point {
-	stroke: #78B214;
+.highcharts-column-series .highcharts-point {
+	stroke: #78B214 !important;
 	fill: #78B214;
 }
 .highcharts-background {

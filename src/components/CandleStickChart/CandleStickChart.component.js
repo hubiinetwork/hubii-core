@@ -63,26 +63,26 @@ export default class CandleStickChart extends React.Component {
           events: {
             load() {
                   // set up the updating of the chart each second
-              const series = this.series[0];
-              const columnSeries = this.series[1];
-              let time = Date.now();
-              // debugger;
-              setInterval(() => {
-                const point = [
-                  time,
-                  Math.round(Math.random() * 20000),
-                  Math.round(Math.random() * 20000),
-                  Math.round(Math.random() * 20000),
-                  Math.round(Math.random() * 20000)];
-                // console.log('point', point);
-                series.addPoint(point, true, true);
-                const columnPoint = [
-                  time,
-                  Math.round(Math.random() * 18000000000) + 5000000,
-                ];
-                columnSeries.addPoint(columnPoint, true, true);
-                time += 86400000;
-              }, 5000);
+              // const series = this.series[0];
+              // const columnSeries = this.series[1];
+              // let time = Date.now();
+              // // debugger;
+              // setInterval(() => {
+              //   const point = [
+              //     time,
+              //     Math.round(Math.random() * 20000),
+              //     Math.round(Math.random() * 20000),
+              //     Math.round(Math.random() * 20000),
+              //     Math.round(Math.random() * 20000)];
+              //   // console.log('point', point);
+              //   series.addPoint(point, true, true);
+              //   const columnPoint = [
+              //     time,
+              //     Math.round(Math.random() * 18000000000) + 5000000,
+              //   ];
+              //   columnSeries.addPoint(columnPoint, true, true);
+              //   time += 86400000;
+              // }, 5000);
             },
           },
         },
