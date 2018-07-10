@@ -1,18 +1,19 @@
 
 const electron = require('electron');
+const path = require('path');
+const isDev = require('electron-is-dev');
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
-const path = require('path');
-const isDev = require('electron-is-dev');
+const showDevTools = process.env.DEV_TOOLS;
 
 let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({ width: 1200, height: 680 });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../index.html')}`);
-  if (isDev) {
+  if (showDevTools || isDev) {
     // Need to require this globally so we can keep it as a
     // dev-only dependency
     mainWindow.webContents.openDevTools();
