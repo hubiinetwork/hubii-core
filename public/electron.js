@@ -4,6 +4,7 @@ const path = require('path');
 const isDev = require('electron-is-dev');
 
 const app = electron.app;
+const Menu = electron.Menu;
 const BrowserWindow = electron.BrowserWindow;
 
 const showDevTools = process.env.DEV_TOOLS;
@@ -11,6 +12,27 @@ const showDevTools = process.env.DEV_TOOLS;
 let mainWindow;
 
 function createWindow() {
+  const template = [{
+    label: 'Application',
+    submenu: [
+        { label: 'About Application', selector: 'orderFrontStandardAboutPanel:' },
+        { type: 'separator' },
+        { label: 'Quit', accelerator: 'Command+Q', click() { app.quit(); } },
+    ] }, {
+      label: 'Edit',
+      submenu: [
+        { label: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
+        { label: 'Redo', accelerator: 'Shift+CmdOrCtrl+Z', selector: 'redo:' },
+        { type: 'separator' },
+        { label: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
+        { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
+        { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
+        { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
+      ] },
+  ];
+
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+
   mainWindow = new BrowserWindow({ width: 1200, height: 680 });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../index.html')}`);
   if (showDevTools || isDev) {
@@ -28,6 +50,7 @@ function createWindow() {
       .catch((err) => console.error(`An error occurred loading extension ${name}: `, err)); // eslint-disable-line no-console
     });
   }
+
   mainWindow.on('closed', () => { mainWindow = null; });
 }
 
