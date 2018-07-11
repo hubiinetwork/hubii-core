@@ -188,7 +188,7 @@ WalletItemCard.propTypes = {
   /**
    * props.bool shows connection status  of  wallet if  provided.
    */
-  connected: PropTypes.bool.isRequired,
+  connected: PropTypes.bool,
   /**
    * Function which handles the on card click event
    */
@@ -209,11 +209,11 @@ WalletItemCard.propTypes = {
   /**
    * Wallet's mnemonic
    */
-  mnemonic: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  mnemonic: PropTypes.string,
   /**
    * Wallet's private key
    */
-  privateKey: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  privateKey: PropTypes.string,
 };
 
 export default WalletItemCard;

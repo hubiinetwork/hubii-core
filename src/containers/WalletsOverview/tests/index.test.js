@@ -11,9 +11,11 @@ describe('WalletsOverview', () => {
       software: {
         test1: {
           encrypted: '{"address": "abcd1"}',
+          decrypted: { privateKey: '0x123123123', mnemonic: 'the cat ran over' },
         },
         test2: {
           encrypted: '{"address": "abcd2"}',
+          decrypted: { privateKey: '0x123123223', mnemonic: 'the dog ran over' },
         },
       },
       hardware: {},
@@ -106,7 +108,6 @@ describe('WalletsOverview', () => {
         it('Breakdown should be also available when no all balances are available', () => {
           const walletsState = state.setIn(['walletHoc', 'wallets', 'software', 'test1', 'balances'], balances[0]);
           const walletsList = makeSelectWalletList()(walletsState);
-
           const overviewDom = shallow(
             <WalletsOverview
               {...params}
@@ -125,13 +126,12 @@ describe('WalletsOverview', () => {
       });
     });
     describe('#getWalletCardsData', () => {
-      it('should transform wallets array into cards structure', () => {
+      it('should transform wallets array into cards structure with decrypted information', () => {
         const instance = dom.instance();
         const walletsState = state
           .setIn(['walletHoc', 'wallets', 'software', 'test1', 'balances'], balances[0])
           .setIn(['walletHoc', 'wallets', 'software', 'test2', 'balances'], balances[1]);
         const walletsList = makeSelectWalletList()(walletsState);
-
         const cardsData = instance.getWalletCardsData(walletsList);
         expect(cardsData.length).toEqual(walletsList.length);
         cardsData.forEach((card, index) => {
@@ -141,6 +141,38 @@ describe('WalletsOverview', () => {
           expect(card.name).toEqual(name);
           expect(card.type).toEqual(type);
           expect(card.primaryAddress).toEqual(`0x${JSON.parse(softwareWallets[name].encrypted).address}`);
+          expect(card.isDecrypted).toEqual(true);
+          expect(card.mnemonic).toEqual(softwareWallets[name].decrypted.mnemonic);
+          expect(card.privateKey).toEqual(softwareWallets[name].decrypted.privateKey);
+          expect(card.totalBalance).toEqual(balances[index].reduce((accumulator, current) => accumulator + (parseInt(current.balance, 10) / (10 ** current.decimals)), 0));
+          card.assets.forEach((asset, i) => {
+            expect(asset.name).toEqual(balances[index][i].symbol);
+            expect(asset.amount).toEqual(parseInt(balances[index][i].balance, 10) / (10 ** balances[index][i].decimals));
+            expect(asset.price).toEqual(balances[index][i].price);
+            expect(asset.color).toEqual(balances[index][i].primaryColor);
+          });
+        });
+      });
+      it('should transform wallets array into cards structure with non decrypted information', () => {
+        const instance = dom.instance();
+        const walletsState = state
+          .setIn(['walletHoc', 'wallets', 'software', 'test1', 'balances'], balances[0])
+          .setIn(['walletHoc', 'wallets', 'software', 'test2', 'balances'], balances[1])
+          .setIn(['walletHoc', 'wallets', 'software', 'test1', 'decrypted'], null)
+          .setIn(['walletHoc', 'wallets', 'software', 'test2', 'decrypted'], null);
+        const walletsList = makeSelectWalletList()(walletsState);
+        const cardsData = instance.getWalletCardsData(walletsList);
+        expect(cardsData.length).toEqual(walletsList.length);
+        cardsData.forEach((card, index) => {
+          const type = 'software';
+          const softwareWallets = wallets[type];
+          const name = Object.keys(softwareWallets)[index];
+          expect(card.name).toEqual(name);
+          expect(card.type).toEqual(type);
+          expect(card.primaryAddress).toEqual(`0x${JSON.parse(softwareWallets[name].encrypted).address}`);
+          expect(card.isDecrypted).toEqual(false);
+          expect(card.mnemonic).toEqual(null);
+          expect(card.privateKey).toEqual(null);
           expect(card.totalBalance).toEqual(balances[index].reduce((accumulator, current) => accumulator + (parseInt(current.balance, 10) / (10 ** current.decimals)), 0));
           card.assets.forEach((asset, i) => {
             expect(asset.name).toEqual(balances[index][i].symbol);

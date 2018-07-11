@@ -28,7 +28,6 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
   }
 
   getWalletCardsData (walletList) {
-    console.log(walletList);
     return walletList.map(wallet => {
       let assets, usdValue = 0
       if (wallet.balances) {

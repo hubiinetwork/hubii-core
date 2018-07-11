@@ -125,9 +125,9 @@ ExportPrivateInfo.propTypes = {
   /**
    * Wallet mnemonic
    */
-  mnemonic: PropTypes.string.isRequired,
+  mnemonic: PropTypes.string,
   /**
    * Wallet private key
    */
-  privateKey: PropTypes.string.isRequired,
+  privateKey: PropTypes.string,
 };
