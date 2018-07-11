@@ -496,6 +496,7 @@ describe('load wallets saga', () => {
     const transaction = { hash: '' };
     it('should trigger SHOW_DECRYPT_WALLET_MODAL action when the wallet is not decrypted yet', () => expectSaga(transfer, { wallet: { name: walletName } })
         .put(showDecryptWalletModal(walletName))
+        .put(transferError(new Error('Wallet is encrypted')))
         .run());
     xit('should trigger transferSuccess action', () => expectSaga(transfer, { wallet, token, toAddress, amount, gasPrice, gasLimit })
         .provide({

@@ -26,6 +26,9 @@ describe('WalletTransfer', () => {
           { balance: '100', decimals: 2, price: { USD: '1' } },
         ],
       },
+      currentWallet: fromJS({}),
+      transfer: () => {},
+      history: {},
     };
     let dom;
     describe('#onSend', () => {
@@ -55,6 +58,34 @@ describe('WalletTransfer', () => {
           gasLimit,
         };
         expect(transferSpy).toBeCalledWith(args);
+      });
+    });
+    describe('#componentDidUpdate', () => {
+      it('should trigger #onCancel when tranfered success', () => {
+        const cancelSpy = jest.fn();
+        dom = shallow(
+          <WalletTransfer
+            {...params}
+            currentWallet={fromJS({ transfering: false, transferError: false })}
+          />
+        );
+        const instance = dom.instance();
+        instance.onCancel = cancelSpy;
+        instance.componentDidUpdate({ currentWallet: fromJS({ transfering: true }) });
+        expect(cancelSpy).toBeCalled();
+      });
+      it('should not trigger #onCancel when tranfered error', () => {
+        const cancelSpy = jest.fn();
+        dom = shallow(
+          <WalletTransfer
+            {...params}
+            currentWallet={fromJS({ transfering: false, transferError: true })}
+          />
+        );
+        const instance = dom.instance();
+        instance.onCancel = cancelSpy;
+        instance.componentDidUpdate({ currentWallet: fromJS({ transfering: true }) });
+        expect(cancelSpy).toHaveBeenCalledTimes(0);
       });
     });
     describe('#mapDispatchToProps', () => {

@@ -128,6 +128,7 @@ export function* listenBalances({ walletName }) {
 export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit, contractAddress }) {
   if (!wallet.decrypted) {
     yield put(showDecryptWalletModal(wallet.name));
+    yield put(transferError(new Error('Wallet is encrypted')));
     return;
   }
 

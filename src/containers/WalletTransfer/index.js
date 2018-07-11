@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import TransferForm from 'components/TransferForm';
 import {
+  makeSelectCurrentWallet,
   makeSelectCurrentWalletDetails,
 } from 'containers/WalletHOC/selectors';
 import {
@@ -19,6 +20,14 @@ export class WalletTransfer extends React.PureComponent {
     this.onCancel = this.onCancel.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    const prevCurrentWallet = prevProps.currentWallet.toJS();
+    const currentWallet = this.props.currentWallet.toJS();
+    if (prevCurrentWallet.transfering && !currentWallet.transfering && !currentWallet.transferError) {
+      this.onCancel();
+    }
+  }
+
   onSend(token, toAddress, amount, gasPrice, gasLimit) {
     const wallet = this.props.currentWalletDetails;
     this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit });
@@ -29,9 +38,8 @@ export class WalletTransfer extends React.PureComponent {
   }
 
   render() {
-    const { contacts } = this.props;
-    const currentWallet = this.props.currentWalletDetails;
-    if (!currentWallet || !currentWallet.balances) {
+    const { contacts, currentWallet, currentWalletDetails } = this.props;
+    if (!currentWalletDetails || !currentWalletDetails.balances) {
       return (null);
     }
 
@@ -39,9 +47,10 @@ export class WalletTransfer extends React.PureComponent {
       <TransferForm
         address="0xf400db37c54c535febca1b470fd1d23d30acdd11"
         recipients={contacts.toJS()}
-        currencies={currentWallet.balances}
+        currencies={currentWalletDetails.balances}
         onSend={this.onSend}
         onCancel={this.onCancel}
+        transfering={currentWallet.toJS().transfering}
       />
     );
   }
@@ -49,6 +58,7 @@ export class WalletTransfer extends React.PureComponent {
 
 WalletTransfer.propTypes = {
   currentWalletDetails: PropTypes.object.isRequired,
+  currentWallet: PropTypes.object.isRequired,
   transfer: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
@@ -56,6 +66,7 @@ WalletTransfer.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   currentWalletDetails: makeSelectCurrentWalletDetails(),
+  currentWallet: makeSelectCurrentWallet(),
   contacts: makeSelectContacts(),
 });
 
