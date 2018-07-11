@@ -155,10 +155,10 @@ describe('WalletsOverview', () => {
       it('should transform wallets array into cards structure with non decrypted information', () => {
         const instance = dom.instance();
         const walletsState = state
-          .setIn(['walletHoc', 'wallets', 'software', 'test1', 'balances'], balances[0])
-          .setIn(['walletHoc', 'wallets', 'software', 'test2', 'balances'], balances[1])
-          .setIn(['walletHoc', 'wallets', 'software', 'test1', 'decrypted'], null)
-          .setIn(['walletHoc', 'wallets', 'software', 'test2', 'decrypted'], null);
+          .setIn(['walletHoc', 'wallets', 0, 'balances'], balances[0])
+          .setIn(['walletHoc', 'wallets', 1, 'balances'], balances[1])
+          .setIn(['walletHoc', 'wallets', 0, 'decrypted'], null)
+          .setIn(['walletHoc', 'wallets', 1, 'decrypted'], null);
         const walletsList = makeSelectWalletList()(walletsState);
         const cardsData = instance.getWalletCardsData(walletsList);
         expect(cardsData.length).toEqual(walletsList.length);

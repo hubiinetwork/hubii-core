@@ -110,7 +110,7 @@ describe('walletHocReducer', () => {
     const expected = stateWithWallet
       .setIn(['loading', 'decryptingWallet'], false)
       .setIn(['inputs', 'password'], '')
-      .setIn(['wallets', 0, 'decrypted', fromJS(decryptedWallet)]);
+      .setIn(['wallets', 0, 'decrypted'], fromJS(decryptedWallet));
     expect(walletHocReducer(stateWithWallet, decryptWalletSuccess(decryptedWallet))).toEqual(expected);
   });
 
