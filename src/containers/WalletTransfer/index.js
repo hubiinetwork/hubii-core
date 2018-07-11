@@ -44,7 +44,7 @@ export class WalletTransfer extends React.PureComponent {
     if (currentWalletDetails.loadingBalancesError) {
       return <LoadingError pageType="Striim Accounts" error={currentWalletDetails.loadingBalancesError} id={currentWallet.toJS().address} />;
     }
-    if (!currentWalletDetails || !currentWalletDetails.balances) {
+    if (!currentWalletDetails.balances) {
       return <PageLoadingIndicator pageType="Loading wallet" id={currentWallet.toJS().address} />;
     }
 
