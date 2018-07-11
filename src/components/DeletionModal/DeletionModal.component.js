@@ -7,15 +7,15 @@ import {
   StyledButton,
   ParentDiv,
   SecondaryHeader,
-} from './ContactDeletionModal.style';
+} from './DeletionModal.style';
 
 
 /**
- * ContactDeletionModal
+ * DeletionModal
  */
-const ContactDeletionModal = (props) => (
+const DeletionModal = (props) => (
   <Wrapper>
-    <Text> Are you sure you want to delete this contact?</Text>
+    <Text> Are you sure you want to delete this {props.type}?</Text>
     <TextPrimary>
       <div>
         <SecondaryHeader>Name </SecondaryHeader> {props.name}
@@ -34,7 +34,7 @@ const ContactDeletionModal = (props) => (
     </ParentDiv>
   </Wrapper>
   );
-ContactDeletionModal.propTypes = {
+DeletionModal.propTypes = {
   /**
    * Function to perform action when ok button is clicked
    */
@@ -42,5 +42,6 @@ ContactDeletionModal.propTypes = {
   onDelete: PropTypes.func,
   name: PropTypes.string,
   address: PropTypes.string,
+  type: PropTypes.string.isRequired,
 };
-export default ContactDeletionModal;
+export default DeletionModal;

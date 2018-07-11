@@ -36,9 +36,7 @@ export const saveState = (state, filterPersistedState) => {
 export const filterPersistedState = (state) => {
   let persistedState = fromJS({});
 
-  /*
-   * Start with clean initialStates
-   */
+  // Start with clean initialState
   persistedState = persistedState.set('contacts', contactsInitialState);
   persistedState = persistedState.set('walletHoc', walletHocInitialState);
 
@@ -48,11 +46,11 @@ export const filterPersistedState = (state) => {
 
   // Get software wallets ensuring the decrypted property is filtered out
   const sanitizedSoftwareWallets = state
-    .getIn(['walletHoc', 'wallets', 'software'])
-    .map(((w) => w.set('decrypted', null)));
+    .getIn(['walletHoc', 'wallets'])
+    .map(((w) => w.delete('decrypted', null)));
   // Save sanitized software wallets to the persisted state
   persistedState = persistedState
-    .setIn(['walletHoc', 'wallets', 'software'], sanitizedSoftwareWallets);
+    .setIn(['walletHoc', 'wallets'], sanitizedSoftwareWallets);
 
 
   /**

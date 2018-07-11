@@ -10,6 +10,7 @@ import {
   StyledButton,
   StyledRecipient,
   StyledButtonCancel,
+  StyledSpin,
 } from './TransferDescription.style';
 import TransferDescriptionList from '../TransferDescriptionList';
 
@@ -113,14 +114,23 @@ export default class TransferDescription extends React.PureComponent {
             {remainingBalance.toLocaleString('en')}
           </BalanceCol>
         </Row>
-        <StyledDiv>
-          <StyledButtonCancel type="secondary" onClick={onCancel}>
-            {'Cancel'}
-          </StyledButtonCancel>
-          <StyledButton type="primary" onClick={onSend} disabled={Number.isNaN(amountToSend) || amountToSend === 0 || remainingBalance < 0}>
-            {buttonLabel}
-          </StyledButton>
-        </StyledDiv>
+        {
+            this.props.transfering ?
+            (<StyledSpin
+              delay={0}
+              tip="Sending..."
+              size="large"
+            />) : (
+              <StyledDiv>
+                <StyledButtonCancel type="secondary" onClick={onCancel}>
+                  {'Cancel'}
+                </StyledButtonCancel>
+                <StyledButton type="primary" onClick={onSend} disabled={Number.isNaN(amountToSend) || amountToSend === 0 || remainingBalance < 0}>
+                  {buttonLabel}
+                </StyledButton>
+              </StyledDiv>
+            )
+          }
       </WrapperDiv>
     );
   }
@@ -178,5 +188,6 @@ TransferDescription.propTypes = {
    * onSend function Callback  in the TransferDescription.
    */
   onCancel: PropTypes.func,
+  transfering: PropTypes.bool,
 };
 // export default TransferDescription;

@@ -2683,6 +2683,10 @@ cliui@^4.0.0:
     strip-ansi "^4.0.0"
     wrap-ansi "^2.0.0"
 
+clivas@*:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/clivas/-/clivas-0.2.0.tgz#b8d19188b3243e390f302410bd0cb1622db82649"
+
 clone-buffer@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/clone-buffer/-/clone-buffer-1.0.0.tgz#e3e25b207ac4e701af721e2cb5a16792cac3dc58"
@@ -8023,6 +8027,7 @@ jws@^3.1.5:
     jwa "^1.1.5"
     safe-buffer "^5.0.1"
 
+<<<<<<< HEAD
 keccak@^1.0.2:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/keccak/-/keccak-1.4.0.tgz#572f8a6dbee8e7b3aa421550f9e6408ca2186f80"
@@ -8038,6 +8043,11 @@ keccakjs@^0.2.1:
   dependencies:
     browserify-sha3 "^0.0.1"
     sha3 "^1.1.0"
+=======
+keypress@*:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/keypress/-/keypress-0.2.1.tgz#1e80454250018dbad4c3fe94497d6e67b6269c77"
+>>>>>>> origin
 
 keyv@3.0.0:
   version "3.0.0"
@@ -8780,9 +8790,18 @@ memory-fs@^0.4.0, memory-fs@~0.4.1:
     errno "^0.1.3"
     readable-stream "^2.0.1"
 
+<<<<<<< HEAD
 memorystream@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/memorystream/-/memorystream-0.3.1.tgz#86d7090b30ce455d63fbae12dda51a47ddcaf9b2"
+=======
+menu@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/menu/-/menu-0.2.5.tgz#557297e235c102d62a366b855c1cc5fd11371c21"
+  dependencies:
+    clivas "*"
+    keypress "*"
+>>>>>>> origin
 
 meow@^3.1.0, meow@^3.3.0, meow@^3.5.0, meow@^3.7.0:
   version "3.7.0"

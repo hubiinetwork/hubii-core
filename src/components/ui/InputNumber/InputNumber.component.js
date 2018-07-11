@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input } from 'antd';
+import Input from '../Input';
 
 export default class InputNumber extends React.PureComponent {
   constructor(props) {
@@ -27,9 +27,9 @@ export default class InputNumber extends React.PureComponent {
       <Input
         value={this.state.value}
         onChange={this.onChange}
-        type={'number'}
         min={min}
         max={max}
+        type={'number'}
         defaultValue={defaultValue}
       />
     );

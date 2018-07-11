@@ -2,7 +2,7 @@ import { List } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import ContactDeletionModal from 'components/ContactDeletionModal';
+import DeletionModal from 'components/DeletionModal';
 import EditContactModal from 'components/EditContactModal';
 
 import StyledButton from '../ui/Button';
@@ -84,11 +84,12 @@ export default class ContactList extends React.PureComponent {
     let modal;
     if (modalType === 'delete') {
       modal = (
-        <ContactDeletionModal
+        <DeletionModal
           name={name}
           address={address}
           onCancel={this.handleCancel}
           onDelete={this.handleDelete}
+          type="contact"
         />
       );
     } else {

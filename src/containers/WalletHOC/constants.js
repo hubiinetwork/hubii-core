@@ -44,3 +44,5 @@ export const SAVE_LEDGER_ADDRESS = 'src/WalletHOC/SAVE_LEDGER_ADDRESS';
 export const LEDGER_ERROR = 'src/WalletHOC/LEDGER_ERROR';
 
 export const TRANSACTION_CONFIRMED = 'src/WalletHOC/TRANSACTION_CONFIRMED';
+
+export const DELETE_WALLET = 'src/WalletHOC/DELETE_WALLET';

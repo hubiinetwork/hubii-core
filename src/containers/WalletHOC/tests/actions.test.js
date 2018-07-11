@@ -9,6 +9,7 @@ import {
   pollLedger,
   ledgerDetected,
   ledgerError,
+  deleteWallet,
 } from '../actions';
 import {
   CREATE_WALLET_FROM_MNEMONIC,
@@ -21,11 +22,23 @@ import {
   POLL_LEDGER,
   LEDGER_DETECTED,
   LEDGER_ERROR,
+  DELETE_WALLET,
 } from '../constants';
 
 import getFriendlyError from '../../../utils/ledger/friendlyErrors';
 
 describe('WalletHoc actions', () => {
+  describe('deleteWallet Action', () => {
+    const address = '0x00';
+    it('returns expected output', () => {
+      const expected = {
+        type: DELETE_WALLET,
+        address,
+      };
+      expect(deleteWallet(address)).toEqual(expected);
+    });
+  });
+
   describe('createWalletFromMnemonic Action', () => {
     const name = 'Wallet8';
     const mnemonic = 'word word word';
@@ -50,13 +63,15 @@ describe('WalletHoc actions', () => {
 
   describe('createWalletSuccess Action', () => {
     it('returns expected output', () => {
-      const encryptedWallet = '{ blah: "blah123" }';
+      const encryptedWallet = JSON.stringify({ address: '123' });
       const decryptedWallet = { key: 'twinkletoes' };
       const name = 'George';
       const expected = {
         type: CREATE_WALLET_SUCCESS,
-        name,
         newWallet: {
+          name,
+          address: `0x${JSON.parse(encryptedWallet).address}`,
+          type: 'software',
           encrypted: encryptedWallet,
           decrypted: decryptedWallet,
         },
@@ -91,13 +106,12 @@ describe('WalletHoc actions', () => {
   describe('decryptWalletSuccess Action', () => {
     it('returns expected output', () => {
       const decryptedWallet = { privatekey: '1234' };
-      const name = 'test';
       const expected = {
         type: DECRYPT_WALLET_SUCCESS,
+        address: decryptedWallet.address,
         decryptedWallet,
-        name,
       };
-      expect(decryptWalletSuccess(name, decryptedWallet)).toEqual(expected);
+      expect(decryptWalletSuccess(decryptedWallet)).toEqual(expected);
     });
   });
 

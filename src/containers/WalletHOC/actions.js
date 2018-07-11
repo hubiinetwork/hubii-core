@@ -3,6 +3,8 @@
  * WalletHoc actions
  *
  */
+import { utils } from 'ethers';
+import abiDecoder from 'abi-decoder';
 
 import {
   CREATE_WALLET_FROM_MNEMONIC,
@@ -36,9 +38,17 @@ import {
   FETCHED_LEDGER_ADDRESS,
   SAVE_LEDGER_ADDRESS,
   TRANSACTION_CONFIRMED,
+  DELETE_WALLET,
 } from './constants';
 
 import getFriendlyError from '../../utils/ledger/friendlyErrors';
+
+export function deleteWallet(address) {
+  return {
+    type: DELETE_WALLET,
+    address,
+  };
+}
 
 export function createWalletFromMnemonic(name, mnemonic, derivationPath, password) {
   return {
@@ -62,8 +72,10 @@ export function createWalletFromPrivateKey(privateKey, name, password) {
 export function createWalletSuccess(name, encryptedWallet, decryptedWallet) {
   return {
     type: CREATE_WALLET_SUCCESS,
-    name,
     newWallet: {
+      name,
+      address: `0x${JSON.parse(encryptedWallet).address}`,
+      type: 'software',
       encrypted: encryptedWallet,
       decrypted: decryptedWallet,
     },
@@ -86,10 +98,10 @@ export function decryptWallet(name, encryptedWallet, password) {
   };
 }
 
-export function decryptWalletSuccess(name, decryptedWallet) {
+export function decryptWalletSuccess(decryptedWallet) {
   return {
     type: DECRYPT_WALLET_SUCCESS,
-    name,
+    address: decryptedWallet.address,
     decryptedWallet,
   };
 }
@@ -142,41 +154,40 @@ export function loadWalletsBalances() {
   };
 }
 
-export function loadWalletBalances(name, walletAddress) {
+export function loadWalletBalances(address) {
   return {
     type: LOAD_WALLET_BALANCES,
-    name,
-    walletAddress,
+    address,
   };
 }
 
-export function loadWalletBalancesSuccess(name, tokenBalances) {
+export function loadWalletBalancesSuccess(address, tokenBalances) {
   return {
     type: LOAD_WALLET_BALANCES_SUCCESS,
-    name,
+    address,
     tokenBalances,
   };
 }
 
-export function loadWalletBalancesError(name, error) {
+export function loadWalletBalancesError(address, error) {
   return {
     type: LOAD_WALLET_BALANCES_ERROR,
-    name,
+    address,
     error,
   };
 }
 
-export function listenBalances(walletName) {
+export function listenBalances(address) {
   return {
     type: LISTEN_TOKEN_BALANCES,
-    walletName,
+    address,
   };
 }
 
-export function updateBalances(name, newBalance) {
+export function updateBalances(address, newBalance) {
   return {
     type: UPDATE_TOKEN_BALANCES,
-    name,
+    address,
     newBalance,
   };
 }
@@ -217,10 +228,27 @@ export function transferERC20(payload) {
 }
 
 export function transferSuccess(transaction, token) {
+  const formatedTransaction = {
+    timestamp: new Date().getTime(),
+    token,
+    from: transaction.from,
+    to: transaction.to,
+    hash: transaction.hash,
+    value: parseFloat(utils.formatEther(transaction.value)),
+    input: transaction.data,
+    original: transaction,
+  };
+  if (token !== 'ETH') {
+    const inputData = abiDecoder.decodeMethod(transaction.data);
+    const toAddress = inputData.params.find((param) => param.name === '_to');
+    const tokens = inputData.params.find((param) => param.name === '_tokens');
+    const wei = utils.bigNumberify(tokens.value);
+    formatedTransaction.to = toAddress.value;
+    formatedTransaction.value = parseFloat(utils.formatEther(wei));
+  }
   return {
     type: TRANSFER_SUCCESS,
-    transaction,
-    token,
+    transaction: formatedTransaction,
   };
 }
 

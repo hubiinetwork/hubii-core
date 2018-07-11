@@ -1,21 +1,44 @@
 
 const electron = require('electron');
-
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
-
 const path = require('path');
 const isDev = require('electron-is-dev');
+
+const app = electron.app;
+const Menu = electron.Menu;
+const BrowserWindow = electron.BrowserWindow;
+
+const showDevTools = process.env.DEV_TOOLS;
 
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 1400, height: 680 });
+  const template = [{
+    label: 'Application',
+    submenu: [
+        { label: 'About Application', selector: 'orderFrontStandardAboutPanel:' },
+        { type: 'separator' },
+        { label: 'Quit', accelerator: 'Command+Q', click() { app.quit(); } },
+    ] }, {
+      label: 'Edit',
+      submenu: [
+        { label: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
+        { label: 'Redo', accelerator: 'Shift+CmdOrCtrl+Z', selector: 'redo:' },
+        { type: 'separator' },
+        { label: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
+        { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
+        { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
+        { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
+      ] },
+  ];
+
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+
+  mainWindow = new BrowserWindow({ width: 1200, height: 680 });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../index.html')}`);
-  mainWindow.webContents.openDevTools();
-  if (isDev) {
+  if (showDevTools || isDev) {
     // Need to require this globally so we can keep it as a
     // dev-only dependency
+    mainWindow.webContents.openDevTools();
     const {
       default: installExtension,
       REACT_DEVELOPER_TOOLS,
@@ -27,6 +50,7 @@ function createWindow() {
       .catch((err) => console.error(`An error occurred loading extension ${name}: `, err)); // eslint-disable-line no-console
     });
   }
+
   mainWindow.on('closed', () => { mainWindow = null; });
 }
 
