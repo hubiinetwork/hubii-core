@@ -26,7 +26,6 @@ import {
   DECRYPT_WALLET,
   LOAD_WALLET_BALANCES,
   LOAD_WALLETS_SUCCESS,
-  CREATE_WALLET_SUCCESS,
 } from '../constants';
 
 import {
@@ -44,6 +43,7 @@ import {
   transfer as transferAction,
   listenBalances as listenBalancesAction,
 } from '../actions';
+import { findWalletIndex } from '../../../utils/wallet';
 
 describe('createWalletFromMnemonic saga', () => {
   let mnemonic = 'movie viable write punch mango arrest cotton page grass dad document practice';
@@ -129,13 +129,7 @@ describe('createWalletFromMnemonic saga', () => {
           },
         })
         .put.like({
-          action: {
-            type: CREATE_WALLET_SUCCESS,
-            name,
-            newWallet: {
-              encrypted,
-            },
-          },
+          action: createWalletSuccess(name, encrypted, { privateKey }),
         })
         .run({ silenceTimeout: true }));
     describe('exceptions', () => {
@@ -168,7 +162,7 @@ describe('decryptWallet saga', () => {
     decryptWalletGenerator.next();
     decryptWalletGenerator.next();
     let putDescriptor = decryptWalletGenerator.next(decryptedWallet).value;
-    expect(JSON.stringify(putDescriptor)).toEqual(JSON.stringify(put(decryptWalletSuccess(name, decryptedWallet))));
+    expect(JSON.stringify(putDescriptor)).toEqual(JSON.stringify(put(decryptWalletSuccess(decryptedWallet))));
     putDescriptor = decryptWalletGenerator.next().value;
     expect(putDescriptor).toEqual(put(notify('success', `Successfully decrypted ${name}`)));
   });
@@ -198,40 +192,38 @@ describe('decryptWallet saga', () => {
 describe('load wallets saga', () => {
   it('#loadWalletBalances should load balances and dispatch loadWalletBalancesSuccess', () => {
     const response = { tokens: [] };
-    const walletName = 'test';
-    const walletAddress = 'abcd';
-    return expectSaga(loadWalletBalancesSaga, { name: walletName, walletAddress })
+    const address = 'abcd';
+    return expectSaga(loadWalletBalancesSaga, { address })
       .provide({
         call(effect) {
           expect(effect.fn).toBe(requestWalletAPI);
-          expect(effect.args[0], `ethereum/wallets/${walletAddress}/balance`);
+          expect(effect.args[0], `ethereum/wallets/${address}/balance`);
           return response;
         },
       })
-      .put(loadWalletBalancesSuccess(walletName, response))
+      .put(loadWalletBalancesSuccess(address, response))
       .run({ silenceTimeout: true });
   });
 
   it('#loadWalletBalances should dispatch loadWalletBalancesError when error throws in request', () => {
-    const walletName = 'test';
-    const walletAddress = 'abcd';
+    const address = 'abcd';
     const error = new Error();
-    return expectSaga(loadWalletBalancesSaga, { name: walletName, walletAddress })
+    return expectSaga(loadWalletBalancesSaga, { address })
       .provide({
         call(effect) {
           expect(effect.fn).toBe(requestWalletAPI);
           throw error;
         },
       })
-      .put(loadWalletBalancesError(walletName, error))
+      .put(loadWalletBalancesError(address, error))
       .run({ silenceTimeout: true });
   });
 
   it('should trigger action loadWalletBalances when createWalletSuccess action is dispatch', () => {
-    const decryptedWallet = { address: 'abcd' };
-    const encryptedWallet = 'json';
+    const decryptedWallet = { address: '0x123' };
+    const encryptedWallet = JSON.stringify({ address: '123' });
     return expectSaga(walletHoc)
-      .put(loadWalletBalances(name, decryptedWallet.address))
+      .put(loadWalletBalances(decryptedWallet.address))
       .dispatch(createWalletSuccess(name, encryptedWallet, decryptedWallet))
       .run({ silenceTimeout: true });
   });
@@ -431,8 +423,8 @@ describe('load wallets saga', () => {
           return walletList;
         },
       })
-      .put(loadWalletBalances(walletList[0].name, `${walletList[0].address}`))
-      .put(loadWalletBalances(walletList[1].name, `${walletList[1].address}`))
+      .put(loadWalletBalances(`${walletList[0].address}`))
+      .put(loadWalletBalances(`${walletList[1].address}`))
       .dispatch({ type: LOAD_WALLETS_SUCCESS })
       .run({ silenceTimeout: true });
   });
@@ -442,6 +434,7 @@ describe('load wallets saga', () => {
       walletHoc: {
         wallets: [{
           name: 't1',
+          address: '0x00',
           encrypted: '{"address": "686353066E9873F6aC1b7D5dE9536099Cb41f321"}',
           balances: [
                 { symbol: 'ETH', balance: '1' },
@@ -463,15 +456,13 @@ describe('load wallets saga', () => {
           });
         },
       })
-      // .put(initWalletsBalances())
-      .dispatch(listenBalancesAction('t1'))
+      .dispatch(listenBalancesAction('0x00'))
       .run({ silenceTimeout: true })
       .then((result) => {
         const walletHocState = result.storeState.get('walletHoc');
-        const index = walletHocState.get('wallets').findIndex((wallet) => wallet.name === 't1');
         expect(
           walletHocState
-            .getIn(['wallets', index, 'balances'])
+            .getIn(['wallets', findWalletIndex(walletHocState, '0x00'), 'balances'])
             .find((bal) => bal.get('symbol') === 'ETH')
             .get('balance')
         ).toEqual(newBalance);

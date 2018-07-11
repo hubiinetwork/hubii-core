@@ -5,7 +5,7 @@
  */
 
 import { fromJS } from 'immutable';
-import { ERC20ABI } from 'utils/wallet';
+import { ERC20ABI, findWalletIndex } from 'utils/wallet';
 import abiDecoder from 'abi-decoder';
 
 import {
@@ -80,48 +80,35 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['errors', 'decryptingWalletError'], null)
         .set('progress', 0);
     case DECRYPT_WALLET_SUCCESS:
-      {
-        const index = state.get('wallets').findIndex((wallet) => wallet.get('name') === action.name);
-        return state
+      return state
           .setIn(['loading', 'decryptingWallet'], false)
           .setIn(['inputs', 'password'], '')
-          .setIn(['wallets', index, 'decrypted', fromJS(action.decryptedWallet)]);
-      }
+          .setIn(['wallets', findWalletIndex(state, action.address), 'decrypted', fromJS(action.decryptedWallet)]);
     case DECRYPT_WALLET_FAILURE:
       return state
         .setIn(['loading', 'decryptingWallet'], false)
         .setIn(['errors', 'decryptingWalletError'], action.error);
     case LOAD_WALLET_BALANCES:
-      {
-        const index = state.get('wallets').findIndex((wallet) => wallet.get('name') === action.name);
-        return state
-          .setIn(['wallets', index, 'loadingBalances'], true);
-      }
+      return state
+        .setIn(['wallets', findWalletIndex(state, action.address), 'loadingBalances'], true);
     case LOAD_WALLET_BALANCES_SUCCESS:
-      {
-        const index = state.get('wallets').findIndex((wallet) => wallet.get('name') === action.name);
-        return state
-          .setIn(['wallets', index, 'loadingBalances'], false)
-          .setIn(['wallets', index, 'loadingBalancesError'], null)
-          .setIn(['wallets', index, 'balances'], fromJS(action.tokenBalances.tokens || []));
-      }
+      return state
+        .setIn(['wallets', findWalletIndex(state, action.address), 'loadingBalances'], false)
+        .setIn(['wallets', findWalletIndex(state, action.address), 'loadingBalancesError'], null)
+        .setIn(['wallets', findWalletIndex(state, action.address), 'balances'], fromJS(action.tokenBalances.tokens || []));
     case LOAD_WALLET_BALANCES_ERROR:
-      {
-        const index = state.get('wallets').findIndex((wallet) => wallet.get('name') === action.name);
-        return state
-          .setIn(['wallets', index, 'loadingBalances'], false)
-          .setIn(['wallets', index, 'loadingBalancesError'], action.error);
-      }
+      return state
+        .setIn(['wallets', findWalletIndex(state, action.address), 'loadingBalances'], false)
+        .setIn(['wallets', findWalletIndex(state, action.address), 'loadingBalancesError'], action.error);
     case UPDATE_TOKEN_BALANCES:
       {
-        const index = state.get('wallets').findIndex((wallet) => wallet.get('name') === action.name);
         return state
-        .updateIn(['wallets', index, 'balances'], (balances) => balances.map((balance) => {
-          if (balance.get('symbol') === action.newBalance.symbol) {
-            return balance.set('balance', action.newBalance.balance);
-          }
-          return balance;
-        }));
+          .updateIn(['wallets', findWalletIndex(state, action.address), 'balances'], (balances) => balances.map((balance) => {
+            if (balance.get('symbol') === action.newBalance.symbol) {
+              return balance.set('balance', action.newBalance.balance);
+            }
+            return balance;
+          }));
       }
     case SHOW_DECRYPT_WALLET_MODAL:
       return state
@@ -164,11 +151,8 @@ function walletHocReducer(state = initialState, action) {
         })
         .updateIn(['pendingTransactions'], (list) => list.filter((txn) => txn.get('hash') !== action.transaction.hash));
     case DELETE_WALLET:
-      {
-        const index = state.get('wallets').findIndex((wallet) => wallet.get('name') === action.name);
-        return state
-          .deleteIn(['wallets', index]);
-      }
+      return state
+        .deleteIn(['wallets', findWalletIndex(state, action.address)]);
     default:
       return state;
   }
