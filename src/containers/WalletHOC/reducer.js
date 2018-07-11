@@ -15,7 +15,7 @@ import {
   UPDATE_TOKEN_BALANCES,
   CREATE_WALLET_FROM_MNEMONIC,
   CREATE_WALLET_FROM_PRIVATE_KEY,
-  CREATE_WALLET_SUCCESS,
+  ADD_NEW_WALLET,
   CREATE_WALLET_FAILURE,
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
@@ -72,7 +72,7 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['loading', 'creatingWallet'], true)
         .setIn(['errors', 'creatingWalletError'], null);
-    case CREATE_WALLET_SUCCESS:
+    case ADD_NEW_WALLET:
       return state
         .setIn(['loading', 'creatingWallet'], false)
         .setIn(['inputs', 'password'], '')

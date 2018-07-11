@@ -5,7 +5,6 @@ import { findWalletIndex } from '../../../utils/wallet';
 import {
   createWalletFromMnemonic,
   createWalletFailed,
-  createWalletSuccess,
   decryptWallet,
   decryptWalletSuccess,
   loadWalletBalances,
@@ -14,10 +13,11 @@ import {
   setCurrentWallet,
   transferError,
   transfer,
-  deleteWallet,
   showDecryptWalletModal,
   hideDecryptWalletModal,
   ledgerDetected,
+  deleteWallet,
+  addNewWallet,
 } from '../actions';
 
 import { LEDGER_ERROR, FETCHED_LEDGER_ADDRESS } from '../constants';
@@ -129,10 +129,7 @@ describe('walletHocReducer', () => {
         );
       expect(walletHocReducer(
       state,
-      createWalletSuccess(
-        name,
-        encrypted,
-        decrypted)))
+      addNewWallet(newWallet)))
       .toEqual(expected);
     });
 

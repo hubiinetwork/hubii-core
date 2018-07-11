@@ -71,6 +71,7 @@ import {
   fetchedLedgerAddress,
   startLedgerSync,
   listenBalances as listenBalancesAction,
+  addNewWallet as addNewWalletAction,
 } from '../actions';
 import { findWalletIndex } from '../../../utils/wallet';
 
@@ -251,6 +252,68 @@ describe('ledgerSync Saga', () => {
     expect(putDescriptor).toEqual(put(pollLedgerAction()));
   });
 });
+describe('CREATE_WALLET_SUCCESS', () => {
+  it('should add wallet to the store', () => {
+    const storeState = {
+      walletHoc: {
+        wallets: [],
+      },
+    };
+    const address = '01';
+    const newWallet = { name: 'name', address: `0x${address}`, encrypted: `{"address":"${address}"}`, decrypted: {} };
+    return expectSaga(hookNewWalletCreated, { newWallet })
+      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .put(addNewWalletAction(newWallet))
+      .put(loadWalletBalances(`0x${address}`))
+      .run({ silenceTimeout: true })
+      .then((result) => {
+        const wallets = result.storeState.getIn(['walletHoc', 'wallets']);
+        const wallet = fromJS(newWallet).set('loadingBalances', true);
+        expect(wallets.count()).toEqual(1);
+        expect(wallets.get(0)).toEqual(wallet);
+      });
+  });
+  it('should not add wallet with same address', () => {
+    const address = '01';
+    const existWallet = { name: 'name', address: `0x${address}`, encrypted: `{"address":"${address}"}`, decrypted: {} };
+    const storeState = {
+      walletHoc: {
+        wallets: [existWallet],
+      },
+    };
+    const newWallet = Object.assign({}, existWallet);
+    newWallet.name = 'new name';
+    return expectSaga(hookNewWalletCreated, { newWallet })
+      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .put(notify('error', `Wallet ${existWallet.address} already exists`))
+      .run({ silenceTimeout: true })
+      .then((result) => {
+        const wallets = result.storeState.getIn(['walletHoc', 'wallets']);
+        expect(wallets.count()).toEqual(1);
+        expect(wallets.get(0).get('name')).toEqual(existWallet.name);
+      });
+  });
+  it('should not add wallet with same name', () => {
+    const address = '01';
+    const existWallet = { name: 'name', address: `0x${address}`, encrypted: `{"address":"${address}"}`, decrypted: {} };
+    const storeState = {
+      walletHoc: {
+        wallets: [existWallet],
+      },
+    };
+    const newWallet = Object.assign({}, existWallet);
+    newWallet.address = '0x02';
+    return expectSaga(hookNewWalletCreated, { newWallet })
+      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .put(notify('error', `Wallet ${existWallet.name} already exists`))
+      .run({ silenceTimeout: true })
+      .then((result) => {
+        const wallets = result.storeState.getIn(['walletHoc', 'wallets']);
+        expect(wallets.count()).toEqual(1);
+        expect(wallets.get(0).get('address')).toEqual(existWallet.address);
+      });
+  });
+});
 
 describe('decryptWallet saga', () => {
   const encryptedWallet = '{"address":"a0eccd7605bb117dd2a4cd55979c720cf00f7fa4","id":"f17128a6-c5f0-4af0-a168-67cf6d3d8552","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"6167c13fe3cd195b4ce9312a9f9399ce"},"ciphertext":"2434b52afa29851edea2acb7f33dd854fc7e7b036ad6a2c3614f3d61ef0e19ce","kdf":"scrypt","kdfparams":{"salt":"b0662c8968389207137be9f346fb1cfba604f9d214e95012881025b7ebc5b9da","n":131072,"dklen":32,"p":1,"r":8},"mac":"256bd09baf3341e9f7df675b8a8cc551b86dfd0dfdf1aa8df2596882f3751496"},"x-ethers":{"client":"ethers.js","gethFilename":"UTC--2018-06-19T04-19-27.0Z--a0eccd7605bb117dd2a4cd55979c720cf00f7fa4","mnemonicCounter":"20da552ff9e584fc89194af19543a096","mnemonicCiphertext":"ff46b728607532d5be86a0647b169a18","version":"0.1"}}';
@@ -329,6 +392,11 @@ describe('load wallets saga', () => {
     const decryptedWallet = { address: '0x123' };
     const encryptedWallet = JSON.stringify({ address: '123' });
     return expectSaga(walletHoc)
+      .provide({
+        select() {
+          return fromJS([]);
+        },
+      })
       .put(loadWalletBalances(decryptedWallet.address))
       .dispatch(createWalletSuccess(name, encryptedWallet, decryptedWallet))
       .run({ silenceTimeout: true });
