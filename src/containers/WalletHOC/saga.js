@@ -72,7 +72,7 @@ export function* decryptWallet({ name, encryptedWallet, password }) {
     const res = yield Wallet.fromEncryptedWallet(encryptedWallet, password);
     if (!res.privateKey) throw res;
     const decryptedWallet = res;
-    yield put(decryptWalletSuccess(name, decryptedWallet));
+    yield put(decryptWalletSuccess(decryptedWallet));
     yield put(notify('success', `Successfully decrypted ${name}`));
     yield put(hideDecryptWalletModal());
   } catch (e) {
@@ -84,28 +84,25 @@ export function* decryptWallet({ name, encryptedWallet, password }) {
 export function* initWalletsBalances() {
   const walletList = yield select(makeSelectWalletList());
   for (let i = 0; i < walletList.length; i += 1) {
-    yield put(loadWalletBalances(walletList[i].name, `${walletList[i].address}`));
+    yield put(loadWalletBalances(walletList[i].address));
   }
 }
 
-export function* loadWalletBalancesSaga({ name, walletAddress }) {
-  const requestPath = `ethereum/wallets/${walletAddress}/balance`;
+export function* loadWalletBalancesSaga({ address }) {
+  const requestPath = `ethereum/wallets/${address}/balance`;
   try {
     const returnData = yield call(requestWalletAPI, requestPath);
-    yield put(loadWalletBalancesSuccess(name, returnData));
-    yield put(listenBalancesAction(name));
+    yield put(loadWalletBalancesSuccess(address, returnData));
+    yield put(listenBalancesAction(address));
   } catch (err) {
-    yield put(loadWalletBalancesError(name, err));
+    yield put(loadWalletBalancesError(address, err));
   }
 }
 
 
-export function* listenBalances({ walletName }) {
-  const walletList = yield select(makeSelectWalletList());
-  const wallet = walletList.find((wal) => wal.name === walletName);
-  if (!wallet) {
-    return;
-  }
+export function* listenBalances({ address }) {
+  let walletList = yield select(makeSelectWalletList());
+  let wallet = walletList.find((wal) => wal.address === address);
   const chan = yield call((addr) => eventChannel((emitter) => {
     EthNetworkProvider.on(addr, (newBalance) => {
       if (!newBalance) {
@@ -119,9 +116,16 @@ export function* listenBalances({ walletName }) {
     };
   }
   ), wallet.address);
-  while (true) {
+  while (true) { // eslint-disable-line no-constant-condition
     const updates = yield take(chan);
-    yield put(updateBalancesAction(walletName, { symbol: 'ETH', balance: updates.newBalance.toString() }));
+
+    // If wallet has been deleted since listening, do nothing
+    walletList = yield select(makeSelectWalletList());
+    wallet = walletList.find((wal) => wal.address === address);
+    if (!wallet) {
+      return;
+    }
+    yield put(updateBalancesAction(address, { symbol: 'ETH', balance: updates.newBalance.toString() }));
   }
 }
 
@@ -185,8 +189,8 @@ export function* waitTransactionHash({ transaction }) {
   yield put(notify('success', 'Transaction confirmed'));
 }
 
-export function* hookNewWalletCreated({ name, newWallet }) {
-  yield put(loadWalletBalances(name, newWallet.decrypted.address));
+export function* hookNewWalletCreated({ newWallet }) {
+  yield put(loadWalletBalances(newWallet.address));
 }
 
 // Root watcher

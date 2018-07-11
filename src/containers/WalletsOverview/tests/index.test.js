@@ -7,18 +7,9 @@ import { makeSelectWalletList } from 'containers/WalletHOC/selectors';
 import { WalletsOverview, mapDispatchToProps } from '../index';
 describe('WalletsOverview', () => {
   describe('shallow mount', () => {
-    const wallets = {
-      software: {
-        test1: {
-          encrypted: '{"address": "abcd1"}',
-        },
-        test2: {
-          encrypted: '{"address": "abcd2"}',
-        },
-      },
-      hardware: {},
-    };
+    const wallets = [{ name: 'test1', type: 'software', encrypted: '{"address": "abcd1"}' }, { name: 'test2', type: 'software', encrypted: '{"address": "abcd2"}' }];
     const state = fromJS({ walletHoc: { wallets } });
+    const test1Index = state.getIn(['walletHoc', 'wallets']).findIndex((wallet) => wallet.name === 'test1');
     const balances = [
       [
         {
@@ -75,7 +66,7 @@ describe('WalletsOverview', () => {
     describe('render', () => {
       describe('WalletItemCard', () => {
         it('number of WalletItemCard should be same as the number of wallets in state', () => {
-          expect(dom.find('WalletItemCard').length).toEqual(Object.keys(wallets.software).length);
+          expect(dom.find('WalletItemCard').length).toEqual(wallets.length);
         });
       });
       describe('Breakdown', () => {
@@ -84,8 +75,8 @@ describe('WalletsOverview', () => {
         });
         it('Breakdown should be available when all balances are available', () => {
           const walletsState = state
-            .setIn(['walletHoc', 'wallets', 'software', 'test1', 'balances'], balances[0])
-            .setIn(['walletHoc', 'wallets', 'software', 'test2', 'balances'], balances[1]);
+            .setIn(['walletHoc', 'wallets', 0, 'balances'], balances[0])
+            .setIn(['walletHoc', 'wallets', 1, 'balances'], balances[1]);
 
           const walletsList = makeSelectWalletList()(walletsState);
           const overviewDom = shallow(
@@ -104,7 +95,7 @@ describe('WalletsOverview', () => {
           ]);
         });
         it('Breakdown should be also available when no all balances are available', () => {
-          const walletsState = state.setIn(['walletHoc', 'wallets', 'software', 'test1', 'balances'], balances[0]);
+          const walletsState = state.setIn(['walletHoc', 'wallets', test1Index, 'balances'], balances[0]);
           const walletsList = makeSelectWalletList()(walletsState);
 
           const overviewDom = shallow(
@@ -128,20 +119,16 @@ describe('WalletsOverview', () => {
       it('should transform wallets array into cards structure', () => {
         const instance = dom.instance();
         const walletsState = state
-          .setIn(['walletHoc', 'wallets', 'software', 'test1', 'balances'], balances[0])
-          .setIn(['walletHoc', 'wallets', 'software', 'test2', 'balances'], balances[1]);
+          .setIn(['walletHoc', 'wallets', 0, 'balances'], balances[0])
+          .setIn(['walletHoc', 'wallets', 1, 'balances'], balances[1]);
         const walletsList = makeSelectWalletList()(walletsState);
-
         const cardsData = instance.getWalletCardsData(walletsList);
         expect(cardsData.length).toEqual(walletsList.length);
         cardsData.forEach((card, index) => {
-          const type = 'software';
-          const softwareWallets = wallets[type];
-          const name = Object.keys(softwareWallets)[index];
-          expect(card.name).toEqual(name);
-          expect(card.type).toEqual(type);
-          expect(card.primaryAddress).toEqual(`0x${JSON.parse(softwareWallets[name].encrypted).address}`);
-          expect(card.totalBalance).toEqual(balances[index].reduce((accumulator, current) => accumulator + (parseInt(current.balance, 10) / (10 ** current.decimals)), 0));
+          expect(card.name).toEqual(walletsList[index].name);
+          expect(card.type).toEqual(walletsList[index].type);
+          expect(card.primaryAddress).toEqual(`0x${walletsList[index].encrypted.address}`);
+          expect(card.totalBalance).toEqual(walletsList[index].balances.reduce((accumulator, current) => accumulator + (parseInt(current.balance, 10) / (10 ** current.decimals)), 0));
           card.assets.forEach((asset, i) => {
             expect(asset.name).toEqual(balances[index][i].symbol);
             expect(asset.amount).toEqual(parseInt(balances[index][i].balance, 10) / (10 ** balances[index][i].decimals));
@@ -156,12 +143,10 @@ describe('WalletsOverview', () => {
         const cardsData = instance.getWalletCardsData(walletsList);
         expect(cardsData.length).toEqual(walletsList.length);
         cardsData.forEach((card, index) => {
-          const type = 'software';
-          const softwareWallets = wallets[type];
-          const name = Object.keys(softwareWallets)[index];
+          const name = wallets[index].name;
           expect(card.name).toEqual(name);
-          expect(card.type).toEqual(type);
-          expect(card.primaryAddress).toEqual(`0x${JSON.parse(softwareWallets[name].encrypted).address}`);
+          expect(card.type).toEqual(wallets[index].type);
+          expect(card.primaryAddress).toEqual(`0x${JSON.parse(wallets[index].encrypted).address}`);
           expect(card.totalBalance).toEqual(0);
           expect(card.assets).toEqual([]);
         });

@@ -26,7 +26,6 @@ import {
   DECRYPT_WALLET,
   LOAD_WALLET_BALANCES,
   LOAD_WALLETS_SUCCESS,
-  CREATE_WALLET_SUCCESS,
 } from '../constants';
 
 import {
@@ -44,6 +43,7 @@ import {
   transfer as transferAction,
   listenBalances as listenBalancesAction,
 } from '../actions';
+import { findWalletIndex } from '../../../utils/wallet';
 
 describe('createWalletFromMnemonic saga', () => {
   let mnemonic = 'movie viable write punch mango arrest cotton page grass dad document practice';
@@ -129,13 +129,7 @@ describe('createWalletFromMnemonic saga', () => {
           },
         })
         .put.like({
-          action: {
-            type: CREATE_WALLET_SUCCESS,
-            name,
-            newWallet: {
-              encrypted,
-            },
-          },
+          action: createWalletSuccess(name, encrypted, { privateKey }),
         })
         .run({ silenceTimeout: true }));
     describe('exceptions', () => {
@@ -168,7 +162,7 @@ describe('decryptWallet saga', () => {
     decryptWalletGenerator.next();
     decryptWalletGenerator.next();
     let putDescriptor = decryptWalletGenerator.next(decryptedWallet).value;
-    expect(JSON.stringify(putDescriptor)).toEqual(JSON.stringify(put(decryptWalletSuccess(name, decryptedWallet))));
+    expect(JSON.stringify(putDescriptor)).toEqual(JSON.stringify(put(decryptWalletSuccess(decryptedWallet))));
     putDescriptor = decryptWalletGenerator.next().value;
     expect(putDescriptor).toEqual(put(notify('success', `Successfully decrypted ${name}`)));
   });
@@ -198,40 +192,38 @@ describe('decryptWallet saga', () => {
 describe('load wallets saga', () => {
   it('#loadWalletBalances should load balances and dispatch loadWalletBalancesSuccess', () => {
     const response = { tokens: [] };
-    const walletName = 'test';
-    const walletAddress = 'abcd';
-    return expectSaga(loadWalletBalancesSaga, { name: walletName, walletAddress })
+    const address = 'abcd';
+    return expectSaga(loadWalletBalancesSaga, { address })
       .provide({
         call(effect) {
           expect(effect.fn).toBe(requestWalletAPI);
-          expect(effect.args[0], `ethereum/wallets/${walletAddress}/balance`);
+          expect(effect.args[0], `ethereum/wallets/${address}/balance`);
           return response;
         },
       })
-      .put(loadWalletBalancesSuccess(walletName, response))
+      .put(loadWalletBalancesSuccess(address, response))
       .run({ silenceTimeout: true });
   });
 
   it('#loadWalletBalances should dispatch loadWalletBalancesError when error throws in request', () => {
-    const walletName = 'test';
-    const walletAddress = 'abcd';
+    const address = 'abcd';
     const error = new Error();
-    return expectSaga(loadWalletBalancesSaga, { name: walletName, walletAddress })
+    return expectSaga(loadWalletBalancesSaga, { address })
       .provide({
         call(effect) {
           expect(effect.fn).toBe(requestWalletAPI);
           throw error;
         },
       })
-      .put(loadWalletBalancesError(walletName, error))
+      .put(loadWalletBalancesError(address, error))
       .run({ silenceTimeout: true });
   });
 
   it('should trigger action loadWalletBalances when createWalletSuccess action is dispatch', () => {
-    const decryptedWallet = { address: 'abcd' };
-    const encryptedWallet = 'json';
+    const decryptedWallet = { address: '0x123' };
+    const encryptedWallet = JSON.stringify({ address: '123' });
     return expectSaga(walletHoc)
-      .put(loadWalletBalances(name, decryptedWallet.address))
+      .put(loadWalletBalances(decryptedWallet.address))
       .dispatch(createWalletSuccess(name, encryptedWallet, decryptedWallet))
       .run({ silenceTimeout: true });
   });
@@ -243,17 +235,16 @@ describe('load wallets saga', () => {
     // update pending txn in store
     const storeState = {
       walletHoc: {
-        wallets: {
-          software: {
-            t1: {
-              encrypted: '{"address": "abcd"}',
-              decrypted: {
-                privateKey: '0xf2249b753523f2f7c79a07c1b7557763af0606fb503d935734617bb7abaf06db',
-              },
-            },
+        wallets: [{
+          name: 't1',
+          type: 'software',
+          encrypted: '{"address": "abcd"}',
+          decrypted: {
+            privateKey: '0x40c2ebcaf1c719f746bc57feb85c56b6143c906d849adb30d62990c4454b2f15',
           },
-        },
+        }],
         currentWallet: {
+          name: 't1',
           address: '0xabcd',
         },
         pendingTransactions: [],
@@ -319,7 +310,6 @@ describe('load wallets saga', () => {
       .dispatch(transferAction(params))
       .put(transferSuccess(signedTransaction, 'ETH'))// send signed transaction
       .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
-      // .run({ silenceTimeout: true })
       .run({ silenceTimeout: true })
       .then((result) => {
         const walletHocState = result.storeState.get('walletHoc');
@@ -337,17 +327,16 @@ describe('load wallets saga', () => {
     // update pending txn in store
     const storeState = {
       walletHoc: {
-        wallets: {
-          software: {
-            t1: {
-              encrypted: '{"address": "abcd"}',
-              decrypted: {
-                privateKey: '0x40c2ebcaf1c719f746bc57feb85c56b6143c906d849adb30d62990c4454b2f15',
-              },
-            },
+        wallets: [{
+          name: 't1',
+          type: 'software',
+          encrypted: '{"address": "abcd"}',
+          decrypted: {
+            privateKey: '0x40c2ebcaf1c719f746bc57feb85c56b6143c906d849adb30d62990c4454b2f15',
           },
-        },
+        }],
         currentWallet: {
+          name: 't1',
           address: '0xabcd',
         },
         pendingTransactions: [],
@@ -434,8 +423,8 @@ describe('load wallets saga', () => {
           return walletList;
         },
       })
-      .put(loadWalletBalances(walletList[0].name, `${walletList[0].address}`))
-      .put(loadWalletBalances(walletList[1].name, `${walletList[1].address}`))
+      .put(loadWalletBalances(`${walletList[0].address}`))
+      .put(loadWalletBalances(`${walletList[1].address}`))
       .dispatch({ type: LOAD_WALLETS_SUCCESS })
       .run({ silenceTimeout: true });
   });
@@ -443,17 +432,15 @@ describe('load wallets saga', () => {
   it('balance should be updated when new balance arrived', () => {
     const storeState = {
       walletHoc: {
-        wallets: {
-          software: {
-            t1: {
-              encrypted: '{"address": "686353066E9873F6aC1b7D5dE9536099Cb41f321"}',
-              balances: [
+        wallets: [{
+          name: 't1',
+          address: '0x00',
+          encrypted: '{"address": "686353066E9873F6aC1b7D5dE9536099Cb41f321"}',
+          balances: [
                 { symbol: 'ETH', balance: '1' },
                 { symbol: 'SII', balance: '2' },
-              ],
-            },
-          },
-        },
+          ],
+        }],
       },
     };
     const newBalance = '3';
@@ -469,14 +456,13 @@ describe('load wallets saga', () => {
           });
         },
       })
-      // .put(initWalletsBalances())
-      .dispatch(listenBalancesAction('t1'))
+      .dispatch(listenBalancesAction('0x00'))
       .run({ silenceTimeout: true })
       .then((result) => {
         const walletHocState = result.storeState.get('walletHoc');
         expect(
           walletHocState
-            .getIn(['wallets', 'software', 't1', 'balances'])
+            .getIn(['wallets', findWalletIndex(walletHocState, '0x00'), 'balances'])
             .find((bal) => bal.get('symbol') === 'ETH')
             .get('balance')
         ).toEqual(newBalance);
