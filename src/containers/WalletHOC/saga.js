@@ -2,7 +2,11 @@ import { takeEvery, put, call, select, take } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 import { Wallet, utils, providers, Contract } from 'ethers';
 import { notify } from 'containers/App/actions';
-import { makeSelectWalletList, makeSelectCurrentWalletDetails } from './selectors';
+import {
+  makeSelectWalletList,
+  makeSelectCurrentWalletDetails,
+  makeSelectWallets,
+} from './selectors';
 import { requestWalletAPI } from '../../utils/request';
 import { ERC20ABI, EthNetworkProvider } from '../../utils/wallet';
 
@@ -21,6 +25,7 @@ import {
 } from './constants';
 
 import {
+  addNewWallet,
   createWalletFailed,
   createWalletSuccess,
   decryptWalletFailed,
@@ -56,7 +61,6 @@ export function* createWalletFromPrivateKey({ privateKey, name, password }) {
     if (!name || !privateKey || !password) throw new Error('invalid param');
     const decryptedWallet = new Wallet(privateKey);
     const encryptedWallet = yield call((...args) => decryptedWallet.encrypt(...args), password);
-    yield put(notify('success', `Successfully imported ${name}`));
     yield put(createWalletSuccess(name, encryptedWallet, decryptedWallet));
   } catch (e) {
     yield put(notify('error', `Failed to import wallet: ${e}`));
@@ -190,7 +194,18 @@ export function* waitTransactionHash({ transaction }) {
 }
 
 export function* hookNewWalletCreated({ newWallet }) {
+  const wallets = yield select(makeSelectWallets());
+  const existAddress = wallets.find((wallet) => wallet.get('address') === newWallet.address);
+  const existName = wallets.find((wallet) => wallet.get('name') === newWallet.name);
+  if (existAddress) {
+    return yield put(notify('error', `Wallet ${newWallet.address} already exists`));
+  }
+  if (existName) {
+    return yield put(notify('error', `Wallet ${newWallet.name} already exists`));
+  }
+  yield put(addNewWallet(newWallet));
   yield put(loadWalletBalances(newWallet.address));
+  return yield put(notify('success', `Successfully created ${newWallet.name}`));
 }
 
 // Root watcher

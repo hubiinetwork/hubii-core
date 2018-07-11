@@ -5,7 +5,6 @@ import { findWalletIndex } from '../../../utils/wallet';
 import {
   createWalletFromMnemonic,
   createWalletFailed,
-  createWalletSuccess,
   decryptWallet,
   decryptWalletFailed,
   decryptWalletSuccess,
@@ -18,6 +17,7 @@ import {
   showDecryptWalletModal,
   hideDecryptWalletModal,
   deleteWallet,
+  addNewWallet,
 } from '../actions';
 
 const wallet = {
@@ -85,10 +85,7 @@ describe('walletHocReducer', () => {
         );
     expect(walletHocReducer(
       state,
-      createWalletSuccess(
-        name,
-        encrypted,
-        decrypted)))
+      addNewWallet(newWallet)))
       .toEqual(expected);
   });
 
