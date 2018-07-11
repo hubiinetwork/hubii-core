@@ -2,9 +2,11 @@ import { Icon, Dropdown, Popover } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import DeletionModal from 'components/DeletionModal';
+import ExportPrivateInfo from 'components/ExportPrivateInfo';
 import WalletDetailPopoverContent from './WalletDetailPopoverContent';
 import AssetAmountBubble from './AssetAmountBubble';
 import USBFlag from '../USBFlag';
+
 import {
   AssetsWrapper,
   AssetWrapper,
@@ -19,7 +21,6 @@ import {
   OverflowHidden,
   SpaceBetween,
 } from './WalletItemCard.style';
-
 import { Modal } from '../ui/Modal';
 /**
  * This component shows details of a wallet in the card.
@@ -31,21 +32,29 @@ export class WalletItemCard extends React.PureComponent {
     super(props);
     this.state = {
       modalVisibility: false,
+      modalType: '',
     };
     this.settingsMenu = this.settingsMenu.bind(this);
     this.handleDeleteWallet = this.handleDeleteWallet.bind(this);
+    this.handleExportSeedWords = this.handleExportSeedWords.bind(this);
   }
 
   settingsMenu() {
     return (
       <Menu>
-        <MenuItem onClick={() => this.setState({ modalVisibility: true })}>Export Seed Words</MenuItem>
+        <MenuItem onClick={this.handleExportSeedWords}>Export Private Infomation</MenuItem>
         <MenuDivider />
-        <MenuItem>Export Password</MenuItem>
-        <MenuDivider />
-        <MenuItem onClick={() => this.setState({ modalVisibility: true })}>Delete Wallet</MenuItem>
+        <MenuItem onClick={() => this.setState({ modalVisibility: true, modalType: 'deleteWallet' })}>Delete Wallet</MenuItem>
       </Menu>
     );
+  }
+
+  async handleExportSeedWords() {
+    this.setState({ modalVisibility: true, modalType: 'exportSeedWords' });
+    if (!this.props.isDecrypted) {
+      await this.props.setCurrentWallet();
+      this.props.showDecryptWalletModal();
+    }
   }
 
   handleDeleteWallet() {
@@ -54,9 +63,48 @@ export class WalletItemCard extends React.PureComponent {
   }
 
   render() {
+    const {
+      primaryAddress,
+      name,
+      connected,
+      type,
+      handleCardClick,
+      totalBalance,
+      isDecrypted,
+      assets,
+      mnemonic,
+      privateKey,
+    } = this.props;
+
+    const { modalVisibility, modalType } = this.state;
+
+    let modal;
+    switch (modalType) {
+      case 'deleteWallet':
+        modal =
+          (<DeletionModal
+            type="wallet"
+            onCancel={() => this.setState({ modalVisibility: false })}
+            onDelete={this.handleDeleteWallet}
+            name={name}
+            address={primaryAddress}
+          />);
+        break;
+      default:
+        modal =
+          (<ExportPrivateInfo
+            onExit={() => this.setState({ modalVisibility: false })}
+            onDelete={this.handleDeleteWallet}
+            name={name}
+            address={primaryAddress}
+            mnemonic={mnemonic}
+            privateKey={privateKey}
+          />);
+    }
+
     return (
       <OverflowHidden>
-        {this.props.connected !== undefined && <USBFlag connected={this.props.connected} />}
+        {connected !== undefined && <USBFlag connected={connected} />}
         <SpaceBetween>
           <CardIcon>
             <Popover
@@ -64,8 +112,8 @@ export class WalletItemCard extends React.PureComponent {
               trigger="hover"
               content={
                 <WalletDetailPopoverContent
-                  address={this.props.primaryAddress}
-                  type={this.props.type}
+                  address={primaryAddress}
+                  type={type}
                 />
               }
             >
@@ -81,37 +129,31 @@ export class WalletItemCard extends React.PureComponent {
             </Dropdown>
           </CardIconSettings>
         </SpaceBetween>
-        <OuterWrapper onClick={() => { this.props.handleCardClick(this.props.primaryAddress); }}>
+        <OuterWrapper onClick={() => { handleCardClick(primaryAddress); }}>
           <LeftSideWrapper>
-            <p>{this.props.name}</p>
+            <p>{name}</p>
             <AssetsWrapper>
-              {this.props.assets &&
-              this.props.assets.map((asset) => (
+              {assets &&
+              assets.map((asset) => (
                 <AssetWrapper key={asset.name}>
                   <AssetAmountBubble name={asset.name} amount={asset.amount} />
                 </AssetWrapper>
               ))}
             </AssetsWrapper>
           </LeftSideWrapper>
-          <TotalBalance>{`$${this.props.totalBalance.toLocaleString('en')}`}</TotalBalance>
+          <TotalBalance>{`$${totalBalance.toLocaleString('en')}`}</TotalBalance>
         </OuterWrapper>
         <Modal
           footer={null}
-          width={'585px'}
+          width={modalType === 'deleteWallet' ? '520px' : '700px'}
           maskClosable
           maskStyle={{ background: 'rgba(232,237,239,.65)' }}
           style={{ marginTop: '20px' }}
-          visible={this.state.modalVisibility}
+          visible={(isDecrypted && modalVisibility) || (modalVisibility && modalType === 'deleteWallet')}
           onCancel={() => this.setState({ modalVisibility: false })}
           destroyOnClose
         >
-          <DeletionModal
-            type="wallet"
-            onCancel={() => this.setState({ modalVisibility: false })}
-            onDelete={this.handleDeleteWallet}
-            name={this.props.name}
-            address={this.props.primaryAddress}
-          />
+          {modal}
         </Modal>
       </OverflowHidden>
 
@@ -148,9 +190,14 @@ WalletItemCard.propTypes = {
   /**
    * props.bool shows connection status  of  wallet if  provided.
    */
-  connected: PropTypes.bool,
-  handleCardClick: PropTypes.func,
-  deleteWallet: PropTypes.func,
+  connected: PropTypes.bool.isRequired,
+  handleCardClick: PropTypes.func.isRequired,
+  deleteWallet: PropTypes.func.isRequired,
+  showDecryptWalletModal: PropTypes.func.isRequired,
+  // setCurrentWallet: PropTypes.func.isRequired,
+  isDecrypted: PropTypes.bool.isRequired,
+  mnemonic: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  privateKey: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
 };
 
 export default WalletItemCard;
