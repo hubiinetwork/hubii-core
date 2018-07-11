@@ -152,18 +152,6 @@ describe('walletHocReducer', () => {
         .setIn(['wallets', findWalletIndex(stateWithWallet, address), 'balances'], fromJS([]));
 
       expect(walletHocReducer(stateWithWallet, loadWalletBalancesSuccess(address, balances.tokenBalances))).toEqual(expected);
-      // const wallets = [{ name: 'testWallet', encrypted: '{"address": "abcd1"}' }, { name: 'test2', encrypted: '{"address": "abcd2"}' }];
-      // const balances = { tokenBalances: {} };
-      // const walletName = 'testWallet';
-      // const testState = state.set('wallets', fromJS(wallets));
-      // const index = testState.get('wallets').findIndex((wallet) => wallet.get('name') === walletName);
-      // const expected = testState
-      //     .set('wallets', fromJS(wallets))
-      //     .setIn(['wallets', index, 'loadingBalances'], false)
-      //     .setIn(['wallets', index, 'loadingBalancesError'], null)
-      //     .setIn(['wallets', index, 'balances'], fromJS([]));
-
-      // expect(walletHocReducer(testState, loadWalletBalancesSuccess(walletName, balances.tokenBalances))).toEqual(expected);
     });
     it('load wallet balances error', () => {
       const address = '0x00';
