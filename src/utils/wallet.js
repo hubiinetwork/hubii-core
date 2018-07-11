@@ -1,4 +1,5 @@
 import { providers } from 'ethers';
+import fatalError from './fatalError';
 
 export function convertWalletsList(walletsState) {
   const walletsObject = walletsState.toJS();
@@ -44,6 +45,18 @@ export const ERC20ABI = [
     payable: false,
   },
 ];
+
+// A short and safe way of finding the index of a wallet stored in wallet state
+// using it's address
+export const findWalletIndex = (state, address, scopedFatalError = fatalError) => {
+  try {
+    const index = state.get('wallets').findIndex((w) => w.get('address') === address);
+    if (index < 0) throw new Error('Tried to find index of non-existent wallet');
+    return index;
+  } catch (e) {
+    return scopedFatalError(e);
+  }
+};
 
 export const EthNetworkProvider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
 
