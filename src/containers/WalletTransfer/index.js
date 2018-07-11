@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import TransferForm from 'components/TransferForm';
+import LoadingError from 'components/LoadingError';
+import PageLoadingIndicator from 'components/PageLoadingIndicator';
 import {
   makeSelectCurrentWallet,
   makeSelectCurrentWalletDetails,
@@ -39,8 +41,11 @@ export class WalletTransfer extends React.PureComponent {
 
   render() {
     const { contacts, currentWallet, currentWalletDetails } = this.props;
+    if (currentWalletDetails.loadingBalancesError) {
+      return <LoadingError pageType="Striim Accounts" error={currentWalletDetails.loadingBalancesError} id={currentWallet.toJS().address} />;
+    }
     if (!currentWalletDetails || !currentWalletDetails.balances) {
-      return (null);
+      return <PageLoadingIndicator pageType="Loading wallet" id={currentWallet.toJS().address} />;
     }
 
     return (
