@@ -102,19 +102,11 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           mnemonic={card.mnemonic}
           privateKey={card.privateKey}
           handleCardClick={this.handleCardClick}
-          deleteWallet={
-            () => 
-            this.props.deleteWallet(
-              {
-                name: card.name, 
-                address: card.primaryAddress,
-                type: card.type,
-              } 
-            ) 
-          }
           isDecrypted={card.isDecrypted}
           showDecryptWalletModal={() => this.props.showDecryptWalletModal(card.name)}
           setCurrentWallet={() => this.props.setCurrentWallet(card.name, card.primaryAddress)}
+          walletList={this.props.walletList}
+          deleteWallet={() => this.props.deleteWallet(card.primaryAddress)}
         />
       </WalletCardsCol>
     ));

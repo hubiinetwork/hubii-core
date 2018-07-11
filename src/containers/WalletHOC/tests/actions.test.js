@@ -21,20 +21,13 @@ import {
 
 describe('WalletHoc actions', () => {
   describe('deleteWallet Action', () => {
-    const walletToRemove = {
-      name: 'Wallet8',
-      address: '0x2323123213',
-      walletType: 'software',
-    };
+    const address = '0x00';
     it('returns expected output', () => {
       const expected = {
         type: DELETE_WALLET,
-        name: walletToRemove.name,
-        walletType: walletToRemove.type,
+        address,
       };
-      expect(deleteWallet(
-        walletToRemove
-      )).toEqual(expected);
+      expect(deleteWallet(address)).toEqual(expected);
     });
   });
 
@@ -62,13 +55,15 @@ describe('WalletHoc actions', () => {
 
   describe('createWalletSuccess Action', () => {
     it('returns expected output', () => {
-      const encryptedWallet = '{ blah: "blah123" }';
+      const encryptedWallet = JSON.stringify({ address: '123' });
       const decryptedWallet = { key: 'twinkletoes' };
       const name = 'George';
       const expected = {
         type: CREATE_WALLET_SUCCESS,
-        name,
         newWallet: {
+          name,
+          address: `0x${JSON.parse(encryptedWallet).address}`,
+          type: 'software',
           encrypted: encryptedWallet,
           decrypted: decryptedWallet,
         },
@@ -103,13 +98,12 @@ describe('WalletHoc actions', () => {
   describe('decryptWalletSuccess Action', () => {
     it('returns expected output', () => {
       const decryptedWallet = { privatekey: '1234' };
-      const name = 'test';
       const expected = {
         type: DECRYPT_WALLET_SUCCESS,
+        address: decryptedWallet.address,
         decryptedWallet,
-        name,
       };
-      expect(decryptWalletSuccess(name, decryptedWallet)).toEqual(expected);
+      expect(decryptWalletSuccess(decryptedWallet)).toEqual(expected);
     });
   });
 
