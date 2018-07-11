@@ -11,6 +11,7 @@ import {
   CREATE_WALLET_FROM_PRIVATE_KEY,
   CREATE_WALLET_FAILURE,
   CREATE_WALLET_SUCCESS,
+  ADD_NEW_WALLET,
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
@@ -37,6 +38,13 @@ export function deleteWallet(address) {
   return {
     type: DELETE_WALLET,
     address,
+  };
+}
+
+export function addNewWallet(newWallet) {
+  return {
+    type: ADD_NEW_WALLET,
+    newWallet,
   };
 }
 
