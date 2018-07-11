@@ -36,12 +36,24 @@ const DeletionModal = (props) => (
   );
 DeletionModal.propTypes = {
   /**
-   * Function to perform action when ok button is clicked
+   * Function to perform action when cancel button is clicked
    */
   onCancel: PropTypes.func,
+  /**
+   * Function to perform action when delete button is clicked
+   */
   onDelete: PropTypes.func,
+  /**
+   * Name
+   */
   name: PropTypes.string,
+  /**
+   * Address
+   */
   address: PropTypes.string,
+  /**
+   * Type of Deletion (i.e "wallet", "contact")
+   */
   type: PropTypes.string.isRequired,
 };
 export default DeletionModal;

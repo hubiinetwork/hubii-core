@@ -7,7 +7,20 @@ import { makeSelectWalletList } from 'containers/WalletHOC/selectors';
 import { WalletsOverview, mapDispatchToProps } from '../index';
 describe('WalletsOverview', () => {
   describe('shallow mount', () => {
-    const wallets = [{ name: 'test1', type: 'software', encrypted: '{"address": "abcd1"}' }, { name: 'test2', type: 'software', encrypted: '{"address": "abcd2"}' }];
+    const wallets = [
+      {
+        name: 'test1',
+        type: 'software',
+        encrypted: '{"address": "abcd1"}',
+        decrypted: { privateKey: '0x123123123', mnemonic: 'the cat ran over' },
+      },
+      {
+        name: 'test2',
+        type: 'software',
+        encrypted: '{"address": "abcd2"}',
+        decrypted: { privateKey: '0x123123223', mnemonic: 'the dog ran over' },
+      },
+    ];
     const state = fromJS({ walletHoc: { wallets } });
     const test1Index = state.getIn(['walletHoc', 'wallets']).findIndex((wallet) => wallet.name === 'test1');
     const balances = [
@@ -97,7 +110,6 @@ describe('WalletsOverview', () => {
         it('Breakdown should be also available when no all balances are available', () => {
           const walletsState = state.setIn(['walletHoc', 'wallets', test1Index, 'balances'], balances[0]);
           const walletsList = makeSelectWalletList()(walletsState);
-
           const overviewDom = shallow(
             <WalletsOverview
               {...params}
@@ -116,7 +128,7 @@ describe('WalletsOverview', () => {
       });
     });
     describe('#getWalletCardsData', () => {
-      it('should transform wallets array into cards structure', () => {
+      it('should transform wallets array into cards structure with decrypted information', () => {
         const instance = dom.instance();
         const walletsState = state
           .setIn(['walletHoc', 'wallets', 0, 'balances'], balances[0])
@@ -125,6 +137,35 @@ describe('WalletsOverview', () => {
         const cardsData = instance.getWalletCardsData(walletsList);
         expect(cardsData.length).toEqual(walletsList.length);
         cardsData.forEach((card, index) => {
+          expect(card.isDecrypted).toEqual(true);
+          expect(card.mnemonic).toEqual(walletsList[index].decrypted.mnemonic);
+          expect(card.privateKey).toEqual(walletsList[index].decrypted.privateKey);
+          expect(card.name).toEqual(walletsList[index].name);
+          expect(card.type).toEqual(walletsList[index].type);
+          expect(card.primaryAddress).toEqual(`0x${walletsList[index].encrypted.address}`);
+          expect(card.totalBalance).toEqual(walletsList[index].balances.reduce((accumulator, current) => accumulator + (parseInt(current.balance, 10) / (10 ** current.decimals)), 0));
+          card.assets.forEach((asset, i) => {
+            expect(asset.name).toEqual(balances[index][i].symbol);
+            expect(asset.amount).toEqual(parseInt(balances[index][i].balance, 10) / (10 ** balances[index][i].decimals));
+            expect(asset.price).toEqual(balances[index][i].price);
+            expect(asset.color).toEqual(balances[index][i].primaryColor);
+          });
+        });
+      });
+      it('should transform wallets array into cards structure with non decrypted information', () => {
+        const instance = dom.instance();
+        const walletsState = state
+          .setIn(['walletHoc', 'wallets', 0, 'balances'], balances[0])
+          .setIn(['walletHoc', 'wallets', 1, 'balances'], balances[1])
+          .setIn(['walletHoc', 'wallets', 0, 'decrypted'], null)
+          .setIn(['walletHoc', 'wallets', 1, 'decrypted'], null);
+        const walletsList = makeSelectWalletList()(walletsState);
+        const cardsData = instance.getWalletCardsData(walletsList);
+        expect(cardsData.length).toEqual(walletsList.length);
+        cardsData.forEach((card, index) => {
+          expect(card.isDecrypted).toEqual(false);
+          expect(card.mnemonic).toEqual(null);
+          expect(card.privateKey).toEqual(null);
           expect(card.name).toEqual(walletsList[index].name);
           expect(card.type).toEqual(walletsList[index].type);
           expect(card.primaryAddress).toEqual(`0x${walletsList[index].encrypted.address}`);
