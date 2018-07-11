@@ -60,19 +60,18 @@ describe('localStorage', () => {
       const state = fromJS(
         {
           walletHoc: {
-            wallets: {
-              software: {
-                wallet1: {
-                  encrypted: 'encrypted data',
-                  decrypted: 'privatekey',
-                },
+            wallets: [
+              {
+                name: 'hello',
+                encrypted: 'encrypted data',
+                decrypted: 'privatekey',
               },
-            },
+            ],
           },
         }
       );
       const persistedState = filterPersistedState(state);
-      expect(persistedState.getIn(['walletHoc', 'wallets', 'software', 'wallet1', 'decrypted'])).toBeNull();
+      expect(persistedState.getIn(['walletHoc', 'wallets', 0, 'decrypted'])).toBeUndefined();
     });
   });
 });

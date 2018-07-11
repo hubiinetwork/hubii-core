@@ -97,16 +97,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           assets={card.assets}
           handleCardClick={this.handleCardClick}
           walletList={this.props.walletList}
-          deleteWallet={
-            () => 
-            this.props.deleteWallet(
-              {
-                name: card.name, 
-                address: card.primaryAddress,
-                type: card.type,
-              } 
-            ) 
-          }
+          deleteWallet={() => this.props.deleteWallet(card.primaryAddress)}
         />
       </WalletCardsCol>
     ));

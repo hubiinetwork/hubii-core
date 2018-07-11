@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable';
+
 import {
   selectWalletHocDomain,
   makeSelectNewWalletNameInput,
@@ -131,13 +132,12 @@ describe('makeSelectCurrentWalletDetails', () => {
     };
     const mockedState = fromJS({
       walletHoc: {
-        wallets: {
-          software: {
-            t1: { encrypted: '{"address": "1"}' },
-            t2: { encrypted: '{"address": "2"}' },
-          },
-        },
+        wallets: [
+          { name: 't1', type: 'software', encrypted: '{"address": "1"}' },
+          { name: 't2', type: 'software', encrypted: '{"address": "2"}' },
+        ],
         currentWallet: {
+          name: 't2',
           address: '0x2',
         },
       },
