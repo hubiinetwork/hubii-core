@@ -14,6 +14,7 @@ import Breakdown from 'components/Breakdown';
 import { deleteWallet } from 'containers/WalletHOC/actions';
 
 import {WalletCardsCol, Wrapper} from './style.js'
+import { showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHOC/actions';
 
 export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(...args) {
@@ -50,6 +51,9 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
         totalBalance: usdValue,
         loadingAssets: wallet.loadingBalances,
         loadingAssetsError: wallet.loadingBalancesError,
+        isDecrypted: wallet.decrypted ? true : false,
+        mnemonic: wallet.decrypted ? wallet.decrypted.mnemonic : null,
+        privateKey: wallet.decrypted ? wallet.decrypted.privateKey : null,
       };
     })
   }
@@ -95,7 +99,12 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           primaryAddress={`${card.primaryAddress}`}
           type={card.type}
           assets={card.assets}
+          mnemonic={card.mnemonic}
+          privateKey={card.privateKey}
           handleCardClick={this.handleCardClick}
+          isDecrypted={card.isDecrypted}
+          showDecryptWalletModal={() => this.props.showDecryptWalletModal(card.name)}
+          setCurrentWallet={() => this.props.setCurrentWallet(card.name, card.primaryAddress)}
           walletList={this.props.walletList}
           deleteWallet={() => this.props.deleteWallet(card.primaryAddress)}
         />
@@ -141,6 +150,9 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     deleteWallet: (...args) => dispatch(deleteWallet(...args)),
+    decryptWallet: (...args) => dispatch(decryptWallet(...args)),
+    showDecryptWalletModal: (...args) => dispatch(showDecryptWalletModal(...args)),
+    setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
   };
 }
 

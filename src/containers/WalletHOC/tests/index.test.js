@@ -67,6 +67,38 @@ describe('WalletHOC', () => {
         expect(instance.state.password).toEqual(password);
       });
     });
+    describe('#handleKeyPress', () => {
+      it('should run the decryptWallet when "enter" key is pressed', () => {
+        const Hoc = getComponentHOC('div');
+        dom = shallow(
+          <Hoc
+            {...props}
+          />
+        );
+        const event = {
+          key: 'Enter',
+        };
+        const instance = dom.instance();
+        const spy = jest.spyOn(instance, 'decryptWallet');
+        instance.handleKeyPress(event);
+        expect(spy).toHaveBeenCalledTimes(1);
+      });
+      it('should not run the decryptWallet when "enter" key is pressed', () => {
+        const Hoc = getComponentHOC('div');
+        dom = shallow(
+          <Hoc
+            {...props}
+          />
+        );
+        const event = {
+          key: '',
+        };
+        const instance = dom.instance();
+        const spy = jest.spyOn(instance, 'decryptWallet');
+        instance.handleKeyPress(event);
+        expect(spy).toHaveBeenCalledTimes(0);
+      });
+    });
     describe('#decryptWallet', () => {
       it('should trigger decryptWallet action', () => {
         const decryptWalletSpy = jest.fn();

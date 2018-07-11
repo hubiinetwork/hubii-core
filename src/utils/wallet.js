@@ -50,7 +50,7 @@ export const ERC20ABI = [
 // using it's address
 export const findWalletIndex = (state, address, scopedFatalError = fatalError) => {
   try {
-    const index = state.get('wallets').findIndex((w) => w.get('address') === address);
+    const index = state.get('wallets').findIndex((w) => w.get('address') === address.toLowerCase());
     if (index < 0) throw new Error('Tried to find index of non-existent wallet');
     return index;
   } catch (e) {
