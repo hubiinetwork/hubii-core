@@ -1,11 +1,13 @@
 import { Icon, Dropdown, Popover } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+
 import DeletionModal from 'components/DeletionModal';
 import ExportPrivateInfo from 'components/ExportPrivateInfo';
 import WalletDetailPopoverContent from './WalletDetailPopoverContent';
 import AssetAmountBubble from './AssetAmountBubble';
 import USBFlag from '../USBFlag';
+import { Modal } from '../ui/Modal';
 
 import {
   AssetsWrapper,
@@ -21,12 +23,9 @@ import {
   OverflowHidden,
   SpaceBetween,
 } from './WalletItemCard.style';
-import { Modal } from '../ui/Modal';
 /**
  * This component shows details of a wallet in the card.
  */
-
-
 export class WalletItemCard extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -101,7 +100,6 @@ export class WalletItemCard extends React.PureComponent {
             privateKey={privateKey}
           />);
     }
-
     return (
       <OverflowHidden>
         {connected !== undefined && <USBFlag connected={connected} />}
@@ -191,12 +189,30 @@ WalletItemCard.propTypes = {
    * props.bool shows connection status  of  wallet if  provided.
    */
   connected: PropTypes.bool.isRequired,
+  /**
+   * Function which handles the on card click event
+   */
   handleCardClick: PropTypes.func.isRequired,
+  /**
+   * Function whichDeletes a wallet
+   */
   deleteWallet: PropTypes.func.isRequired,
+  /**
+   * Function which decrypts wallet
+   */
   showDecryptWalletModal: PropTypes.func.isRequired,
   // setCurrentWallet: PropTypes.func.isRequired,
+  /**
+   * Indicates, as a boolean, whether wallet is decrypted or not
+   */
   isDecrypted: PropTypes.bool.isRequired,
+  /**
+   * Wallet's mnemonic
+   */
   mnemonic: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  /**
+   * Wallet's private key
+   */
   privateKey: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
 };
 
