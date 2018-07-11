@@ -151,8 +151,10 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
     const transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
 
     yield put(transferSuccess(transaction, 'ETH'));
+    yield put(notify('success', 'Transaction sent'));
   } catch (error) {
     yield put(transferError(error));
+    yield put(notify('error', `Failed to send transaction: ${error}`));
   }
 }
 
