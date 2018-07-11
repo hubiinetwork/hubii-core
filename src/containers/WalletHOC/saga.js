@@ -101,11 +101,8 @@ export function* loadWalletBalancesSaga({ address }) {
 
 
 export function* listenBalances({ address }) {
-  const walletList = yield select(makeSelectWalletList());
-  const wallet = walletList.find((wal) => wal.address === address);
-  if (!wallet) {
-    return;
-  }
+  let walletList = yield select(makeSelectWalletList());
+  let wallet = walletList.find((wal) => wal.address === address);
   const chan = yield call((addr) => eventChannel((emitter) => {
     EthNetworkProvider.on(addr, (newBalance) => {
       if (!newBalance) {
@@ -121,6 +118,13 @@ export function* listenBalances({ address }) {
   ), wallet.address);
   while (true) { // eslint-disable-line no-constant-condition
     const updates = yield take(chan);
+
+    // If wallet has been deleted since listening, do nothing
+    walletList = yield select(makeSelectWalletList());
+    wallet = walletList.find((wal) => wal.address === address);
+    if (!wallet) {
+      return;
+    }
     yield put(updateBalancesAction(address, { symbol: 'ETH', balance: updates.newBalance.toString() }));
   }
 }
