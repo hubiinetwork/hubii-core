@@ -1,4 +1,4 @@
-import { Col } from 'antd';
+import { Col, Spin } from 'antd';
 import styled from 'styled-components';
 import Button from '../ui/Button';
 
@@ -69,4 +69,11 @@ export const BalanceCol = styled(Col)`
 `;
 export const WrapperDiv = styled.div`
   width: 300px;
+`;
+export const StyledSpin = styled(Spin)`
+  margin-top: 2rem;
+  &.ant-spin.ant-spin-show-text .ant-spin-text{
+    margin-top:1.5rem;
+  }
+  color: white;
 `;

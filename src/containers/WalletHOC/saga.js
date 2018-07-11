@@ -132,6 +132,7 @@ export function* listenBalances({ address }) {
 export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit, contractAddress }) {
   if (!wallet.decrypted) {
     yield put(showDecryptWalletModal(wallet.name));
+    yield put(transferError(new Error('Wallet is encrypted')));
     return;
   }
 
@@ -155,8 +156,10 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
     const transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
 
     yield put(transferSuccess(transaction, 'ETH'));
+    yield put(notify('success', 'Transaction sent'));
   } catch (error) {
     yield put(transferError(error));
+    yield put(notify('error', `Failed to send transaction: ${error}`));
   }
 }
 
