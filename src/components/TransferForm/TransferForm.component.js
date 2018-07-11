@@ -2,6 +2,7 @@ import React from 'react';
 import { Col } from 'antd';
 import PropTypes from 'prop-types';
 import { parseBigNumber } from 'utils/wallet';
+import { getAbsolutePath } from 'utils/electron';
 import {
   Row,
   ETHtoDollar,
@@ -86,7 +87,7 @@ export default class TransferForm extends React.PureComponent {
             >
               <Image>
                 <img
-                  src={`../../../public/asset_images/${this.state.selectedToken.symbol}.svg`}
+                  src={getAbsolutePath(`public/asset_images/${this.state.selectedToken.symbol}.svg`)}
                   width="32px"
                   height="32px"
                   alt="logo"
