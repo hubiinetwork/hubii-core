@@ -14,7 +14,11 @@ import AddNewContactModal from 'components/AddNewContactModal';
 import { Modal } from 'components/ui/Modal';
 import { makeSelectContacts } from 'containers/ContactBook/selectors';
 
-import { createWalletFromMnemonic, createWalletFromPrivateKey } from 'containers/WalletHOC/actions';
+import {
+  createWalletFromMnemonic,
+  saveLedgerAddress,
+  createWalletFromPrivateKey,
+} from 'containers/WalletHOC/actions';
 import { makeSelectLoading, makeSelectWallets } from 'containers/WalletHOC/selectors';
 import { createContact,
  } from '../ContactBook/actions';
@@ -88,6 +92,11 @@ export class WalletManager extends React.PureComponent {
     if (data[0].walletType === 'metamask') {
       const { privateKey, name, password } = data[1];
       this.props.createWalletFromPrivateKey(privateKey, name, password);
+    } else if (data[0].walletType === 'ledger') {
+      const { derivationPath, deviceId, address } = data[1];
+      const { name } = data[2];
+      this.props.saveLedgerAddress(name, derivationPath, deviceId, address);
+      this.hideModal();
     }
   }
 
@@ -174,6 +183,7 @@ WalletManager.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   createWalletFromMnemonic: PropTypes.func.isRequired,
+  saveLedgerAddress: PropTypes.func,
   createWalletFromPrivateKey: PropTypes.func.isRequired,
   loading: PropTypes.object.isRequired,
   createContact: PropTypes.func,
@@ -191,6 +201,7 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
+    saveLedgerAddress: (...args) => dispatch(saveLedgerAddress(...args)),
     createWalletFromMnemonic: (...args) => dispatch(createWalletFromMnemonic(...args)),
     createWalletFromPrivateKey: (...args) => dispatch(createWalletFromPrivateKey(...args)),
     createContact: (...args) => dispatch(createContact(...args)),

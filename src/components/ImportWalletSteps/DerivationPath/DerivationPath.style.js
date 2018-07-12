@@ -125,12 +125,13 @@ export const StyledTable = styled(Table)`
       }
     }
     tr:hover {
+      cursor: pointer;
       background-color: ${({ theme }) => theme.palette.secondary6} !important;
     }
   }
   th,
   td {
-    padding: 6px 0px !important;
+    padding: 6px 6px !important;
     span .ant-radio-wrapper-checked {
       span span::after {
         background-color: ${({ theme }) => theme.palette.info} !important;
@@ -205,13 +206,6 @@ export const StyledButton = styled(Button)`
   }
 `;
 
-export const StyledBackButton = styled(Button)`
-  height: 40px;
-  width: 70px;
-  margin-right: 8px;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.palette.light};
-`;
 
 export const StyledSpan = styled.span`
   font-size: 12px;

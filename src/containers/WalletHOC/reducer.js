@@ -27,12 +27,15 @@ import {
   TRANSFER,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
+  LEDGER_DETECTED,
+  LEDGER_ERROR,
+  FETCHED_LEDGER_ADDRESS,
+  SAVE_LEDGER_ADDRESS,
   TRANSACTION_CONFIRMED,
   DELETE_WALLET,
 } from './constants';
 
 export const initialState = fromJS({
-  selectedWalletName: '',
   inputs: {
     password: '',
     newWalletName: '',
@@ -45,10 +48,16 @@ export const initialState = fromJS({
   errors: {
     creatingWalletError: null,
     decryptingWalletError: null,
+    ledgerError: 'Initialising, please try again in a few seconds...',
   },
   wallets: [],
   currentWallet: {
     address: '',
+  },
+  ledgerNanoSInfo: {
+    status: 'disconnected',
+    addresses: {},
+    id: null,
   },
   pendingTransactions: [],
   confirmedTransactions: [],
@@ -121,7 +130,6 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['currentWallet', 'showDecryptModal'], false);
     case SET_CURRENT_WALLET:
       return state
-        .setIn(['currentWallet', 'name'], action.name)
         .setIn(['currentWallet', 'address'], action.address)
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], null)
@@ -142,6 +150,21 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], action.error.message)
         .setIn(['currentWallet', 'lastTransaction'], null);
+    case LEDGER_DETECTED:
+      return state
+        .setIn(['ledgerNanoSInfo', 'status'], 'connected')
+        .setIn(['ledgerNanoSInfo', 'id'], action.id)
+        .setIn(['errors', 'ledgerError'], null);
+    case LEDGER_ERROR:
+      return state
+        .set('ledgerNanoSInfo', fromJS({ status: 'disconnected', addresses: {} }))
+        .setIn(['errors', 'ledgerError'], action.error);
+    case SAVE_LEDGER_ADDRESS:
+      return state
+        .setIn(['wallets', 'hardware', action.name], fromJS(action.newLedgerWallet));
+    case FETCHED_LEDGER_ADDRESS:
+      return state
+        .setIn(['ledgerNanoSInfo', 'addresses', action.derivationPath], action.address);
     case TRANSACTION_CONFIRMED:
       return state
         .updateIn(['confirmedTransactions'], (list) => {

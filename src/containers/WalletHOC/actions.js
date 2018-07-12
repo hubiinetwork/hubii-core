@@ -30,9 +30,18 @@ import {
   TRANSFER_ERC20,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
+  POLL_LEDGER,
+  LEDGER_DETECTED,
+  LEDGER_ERROR,
+  START_LEDGER_SYNC,
+  STOP_LEDGER_SYNC,
+  FETCH_LEDGER_ADDRESSES,
+  FETCHED_LEDGER_ADDRESS,
   TRANSACTION_CONFIRMED,
   DELETE_WALLET,
 } from './constants';
+
+import getFriendlyError from '../../utils/ledger/friendlyErrors';
 
 export function deleteWallet(address) {
   return {
@@ -72,7 +81,7 @@ export function createWalletSuccess(name, encryptedWallet, decryptedWallet) {
     type: CREATE_WALLET_SUCCESS,
     newWallet: {
       name,
-      address: `0x${JSON.parse(encryptedWallet).address}`,
+      address: decryptedWallet.address,
       type: 'software',
       encrypted: encryptedWallet,
       decrypted: decryptedWallet,
@@ -87,19 +96,19 @@ export function createWalletFailed(error) {
   };
 }
 
-export function decryptWallet(name, encryptedWallet, password) {
+export function decryptWallet(address, encryptedWallet, password) {
   return {
     type: DECRYPT_WALLET,
-    name,
     encryptedWallet,
+    address,
     password,
   };
 }
 
-export function decryptWalletSuccess(decryptedWallet) {
+export function decryptWalletSuccess(address, decryptedWallet) {
   return {
     type: DECRYPT_WALLET_SUCCESS,
-    address: decryptedWallet.address,
+    address,
     decryptedWallet,
   };
 }
@@ -125,10 +134,9 @@ export function hideDecryptWalletModal(walletName) {
   };
 }
 
-export function setCurrentWallet(name, address) {
+export function setCurrentWallet(address) {
   return {
     type: SET_CURRENT_WALLET,
-    name,
     address,
   };
 }
@@ -254,6 +262,68 @@ export function transactionConfirmed(transaction) {
   return {
     type: TRANSACTION_CONFIRMED,
     transaction,
+  };
+}
+
+export function pollLedger() {
+  return {
+    type: POLL_LEDGER,
+  };
+}
+
+export function startLedgerSync() {
+  return {
+    type: START_LEDGER_SYNC,
+  };
+}
+
+export function stopLedgerSync() {
+  return {
+    type: STOP_LEDGER_SYNC,
+  };
+}
+
+export function fetchLedgerAddresses(derivationPaths) {
+  return {
+    type: FETCH_LEDGER_ADDRESSES,
+    derivationPaths,
+  };
+}
+
+export function fetchedLedgerAddress(derivationPath, address) {
+  return {
+    type: FETCHED_LEDGER_ADDRESS,
+    derivationPath,
+    address,
+  };
+}
+
+export function saveLedgerAddress(name, derivationPath, deviceId, address) {
+  const newWallet = {
+    deviceId,
+    address,
+    type: 'lns',
+    name,
+    derivationPath,
+  };
+  return {
+    type: ADD_NEW_WALLET,
+    newWallet,
+  };
+}
+
+export function ledgerDetected(id) {
+  return {
+    type: LEDGER_DETECTED,
+    id,
+  };
+}
+
+export function ledgerError(rawError) {
+  const friendlyError = getFriendlyError(rawError);
+  return {
+    type: LEDGER_ERROR,
+    error: friendlyError,
   };
 }
 

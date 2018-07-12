@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import { Modal } from 'components/ui/Modal';
 import { FormItem, FormItemLabel } from 'components/ui/Form';
+
 import Input from 'components/ui/Input';
 import Button from 'components/ui/Button';
 
@@ -20,6 +21,7 @@ import {
 import {
   decryptWallet,
   hideDecryptWalletModal,
+  startLedgerSync,
   loadWalletsBalances,
 } from './actions';
 
@@ -55,6 +57,7 @@ export function getComponentHOC(Component) {
 
 
     componentDidMount() {
+      this.props.startLedgerSync();
       this.props.loadWalletsBalances();
     }
 
@@ -71,7 +74,7 @@ export function getComponentHOC(Component) {
 
     decryptWallet() {
       const { currentWalletDetails } = this.props;
-      this.props.decryptWallet(currentWalletDetails.name, JSON.stringify(currentWalletDetails.encrypted), this.state.password);
+      this.props.decryptWallet(currentWalletDetails.address, JSON.stringify(currentWalletDetails.encrypted), this.state.password);
     }
 
     render() {
@@ -105,6 +108,7 @@ export function getComponentHOC(Component) {
   HOC.propTypes = {
     currentWallet: PropTypes.object.isRequired,
     currentWalletDetails: PropTypes.object.isRequired,
+    startLedgerSync: PropTypes.func.isRequired,
     loadWalletsBalances: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
@@ -114,6 +118,7 @@ export function getComponentHOC(Component) {
 
 export function mapDispatchToProps(dispatch) {
   return {
+    startLedgerSync: () => dispatch(startLedgerSync()),
     hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
     decryptWallet: (...args) => dispatch(decryptWallet(...args)),
     loadWalletsBalances: (...args) => dispatch(loadWalletsBalances(...args)),

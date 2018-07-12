@@ -5,19 +5,21 @@ import WalletHOC, { getComponentHOC, mapDispatchToProps } from '../index';
 
 describe('WalletHOC', () => {
   describe('shallow mount', () => {
-    const params = {
+    const loadWalletsBalancesSpy = jest.fn();
+    const startLedgerSyncSpy = jest.fn();
+    const props = {
       currentWallet: fromJS({
         showDecryptModal: false,
       }),
       currentWalletDetails: {},
       decryptWallet: () => {},
       hideDecryptWalletModal: () => {},
+      loadWalletsBalances: loadWalletsBalancesSpy,
+      startLedgerSync: startLedgerSyncSpy,
     };
-    let loadWalletsBalancesSpy;
     let dom;
-    beforeEach(() => {
-      loadWalletsBalancesSpy = jest.fn();
-      params.loadWalletsBalances = loadWalletsBalancesSpy;
+    afterEach(() => {
+      jest.clearAllMocks();
     });
     describe('#WalletHOC', () => {
       it('should return composed component', () => {
@@ -26,11 +28,11 @@ describe('WalletHOC', () => {
       });
     });
     describe('#componentDidMount', () => {
-      it('should loadWallets action', () => {
+      it('should call loadWallets prop when called', () => {
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
-            {...params}
+            {...props}
           />
         );
         const instance = dom.instance();
@@ -38,12 +40,25 @@ describe('WalletHOC', () => {
         expect(loadWalletsBalancesSpy).toBeCalled();
       });
     });
+    describe('#componentDidMount', () => {
+      it('should call startLedgerSync prop when called', () => {
+        const Hoc = getComponentHOC('div');
+        dom = shallow(
+          <Hoc
+            {...props}
+          />
+        );
+        const instance = dom.instance();
+        instance.componentDidMount();
+        expect(startLedgerSyncSpy).toBeCalled();
+      });
+    });
     describe('#onPasswordChange', () => {
       it('should update password to temporary state', () => {
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
-            {...params}
+            {...props}
           />
         );
         const instance = dom.instance();
@@ -57,7 +72,7 @@ describe('WalletHOC', () => {
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
-            {...params}
+            {...props}
           />
         );
         const event = {
@@ -72,7 +87,7 @@ describe('WalletHOC', () => {
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
-            {...params}
+            {...props}
           />
         );
         const event = {
@@ -88,14 +103,14 @@ describe('WalletHOC', () => {
       it('should trigger decryptWallet action', () => {
         const decryptWalletSpy = jest.fn();
         const currentWalletDetails = {
-          name: 'wallet',
+          address: '0x00',
           encrypted: {},
         };
         const password = '123';
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
-            {...params}
+            {...props}
             decryptWallet={decryptWalletSpy}
             currentWalletDetails={currentWalletDetails}
           />
@@ -103,7 +118,7 @@ describe('WalletHOC', () => {
         const instance = dom.instance();
         instance.setState({ password });
         instance.decryptWallet();
-        expect(decryptWalletSpy).toBeCalledWith(currentWalletDetails.name, JSON.stringify(currentWalletDetails.encrypted), password);
+        expect(decryptWalletSpy).toBeCalledWith(currentWalletDetails.address, JSON.stringify(currentWalletDetails.encrypted), password);
       });
     });
     describe('#mapDispatchToProps', () => {

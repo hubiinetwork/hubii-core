@@ -33,6 +33,18 @@ export const TRANSFER_ETHER = 'src/WalletHOC/TRANSFER_ETHER';
 export const TRANSFER_ERC20 = 'src/WalletHOC/TRANSFER_ERC20';
 export const TRANSFER_SUCCESS = 'src/WalletHOC/TRANSFER_SUCCESS';
 export const TRANSFER_ERROR = 'src/WalletHOC/TRANSFER_ERROR';
+
+// Ledger Nano S constants
+export const POLL_LEDGER = 'src/WalletHOC/POLL_LEDGER';
+export const START_LEDGER_SYNC = 'src/WalletHOC/START_LEDGER_SYNC';
+export const STOP_LEDGER_SYNC = 'src/WalletHOC/STOP_LEDGER_SYNC';
+export const LEDGER_DETECTED = 'src/WalletHOC/LEDGER_DETECTED';
+export const FETCH_LEDGER_ADDRESSES = 'src/WalletHOC/FETCH_LEDGER_ADDRESSES';
+export const FETCHED_LEDGER_ADDRESS = 'src/WalletHOC/FETCHED_LEDGER_ADDRESS';
+export const SAVE_LEDGER_ADDRESS = 'src/WalletHOC/SAVE_LEDGER_ADDRESS';
+
+export const LEDGER_ERROR = 'src/WalletHOC/LEDGER_ERROR';
+
 export const TRANSACTION_CONFIRMED = 'src/WalletHOC/TRANSACTION_CONFIRMED';
 
 export const DELETE_WALLET = 'src/WalletHOC/DELETE_WALLET';

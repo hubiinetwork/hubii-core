@@ -30,7 +30,7 @@ describe('WalletDetails', () => {
         );
         const instance = dom.instance();
         instance.componentDidMount();
-        expect(setCurrentWalletSpy).toBeCalledWith(null, params.match.params.address);
+        expect(setCurrentWalletSpy).toBeCalledWith(params.match.params.address);
       });
     });
     describe('#onHomeClick', () => {

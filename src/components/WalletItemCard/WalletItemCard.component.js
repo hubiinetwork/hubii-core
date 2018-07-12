@@ -61,9 +61,10 @@ export class WalletItemCard extends React.PureComponent {
     this.setState({ modalVisibility: false });
   }
 
+
   render() {
     const {
-      primaryAddress,
+      address,
       name,
       connected,
       type,
@@ -86,7 +87,7 @@ export class WalletItemCard extends React.PureComponent {
             onCancel={() => this.setState({ modalVisibility: false })}
             onDelete={this.handleDeleteWallet}
             name={name}
-            address={primaryAddress}
+            address={address}
           />);
         break;
       default:
@@ -95,14 +96,14 @@ export class WalletItemCard extends React.PureComponent {
             onExit={() => this.setState({ modalVisibility: false })}
             onDelete={this.handleDeleteWallet}
             name={name}
-            address={primaryAddress}
+            address={address}
             mnemonic={mnemonic}
             privateKey={privateKey}
           />);
     }
     return (
       <OverflowHidden>
-        {connected !== undefined && <USBFlag connected={connected} />}
+        {type === 'lns' && <USBFlag connected={connected} />}
         <SpaceBetween>
           <CardIcon>
             <Popover
@@ -110,7 +111,7 @@ export class WalletItemCard extends React.PureComponent {
               trigger="hover"
               content={
                 <WalletDetailPopoverContent
-                  address={primaryAddress}
+                  address={address}
                   type={type}
                 />
               }
@@ -127,7 +128,7 @@ export class WalletItemCard extends React.PureComponent {
             </Dropdown>
           </CardIconSettings>
         </SpaceBetween>
-        <OuterWrapper onClick={() => { handleCardClick(primaryAddress); }}>
+        <OuterWrapper onClick={() => { handleCardClick(address); }}>
           <LeftSideWrapper>
             <p>{name}</p>
             <AssetsWrapper>
@@ -180,7 +181,7 @@ WalletItemCard.propTypes = {
   /**
    * primary Address of the wallet.
    */
-  primaryAddress: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
   /**
    * props.type type of the wallet.
    */

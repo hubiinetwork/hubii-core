@@ -1,101 +1,73 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { getAbsolutePath } from 'utils/electron';
 import { Form } from 'antd';
 import {
   Tick,
   Radios,
-  Address,
-  FormItem,
   FormDiv,
-  ButtonDiv,
   PathTitle,
   RadioTitle,
-  StyledSpan,
   PathWrapper,
   PathSubtitle,
-  StyledButton,
-  StyledBackButton,
-  PreviousAddresses,
   RadioButtonWrapper,
   StyledTable as Table,
   StyledRadio as RadioButton,
   StyledRadioGroup as RadioGroup,
 } from './DerivationPath.style';
-import { ModalFormInput } from '../../ui/Modal';
-const columns = [
+
+const derivationPathBases = [
   {
-    title: <Address>Your Address</Address>,
-    dataIndex: 'address',
+    title: 'm/44\'/60\'/0\'/0',
+    subtitle: 'Hubii Core, Jaxx, Metamask, Exodus, TREZOR (ETH), Digital Bitbox',
   },
   {
-    title: 'Balance',
-    dataIndex: 'balance',
+    title: 'm/44\'/60\'/0\'',
+    subtitle: 'Ledger (ETH)',
   },
   {
-    title: 'Token Balance',
-    dataIndex: 'tokenBalance',
+    title: 'm/44\'/60\'/160720\'/0\'',
+    subtitle: 'Ledger (ETC)',
+  },
+  {
+    title: 'm/44\'/61\'/0\'/0',
+    subtitle: 'TREZOR (ETC)',
   },
 ];
 
+const columns = [{
+  title: 'Index',
+  dataIndex: 'index',
+  key: 'index',
+},
+{
+  title: 'Address',
+  dataIndex: 'address',
+  key: 'address',
+},
+{
+  title: 'ETH Balance',
+  dataIndex: 'ethBalance',
+  key: 'ethBalance',
+}];
+
 class DerivationPath extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { path: this.props.paths[3].title, address: '' };
-    this.handlePath = this.handlePath.bind(this);
-    this.handleNext = this.handleNext.bind(this);
-  }
-
-  handleNext(e) {
-    const { form, handleNext } = this.props;
-    let data;
-    e.preventDefault();
-    form.validateFields((err, values) => {
-      if (!err) {
-        data = { values, path: this.state.path, address: this.state.address };
-        handleNext(data);
-      }
-    });
-  }
-
-  handlePath(e) {
-    this.setState({ path: e.target.value });
-  }
-
   render() {
-    const { paths, addresses } = this.props;
-    const newAddresses = (oldAddresses) => {
-      for (let i = 0; i < oldAddresses.length; i += 1) {
-        /* eslint-disable no-param-reassign */
-        oldAddresses[i].tokenBalance = (
-          <img
-            style={{ width: 14, height: 14, marginLeft: 35 }}
-            src={getAbsolutePath('public/Images/open-new.svg')}
-            alt="tokenBalance"
-          />
-        );
-      }
-      return oldAddresses;
-    };
-    const { getFieldDecorator } = this.props.form;
-    const rowSelection = {
-      onChange: (selectedRowKeys, selectedRows) => {
-        this.setState({ address: selectedRows[0].address });
-      },
-      type: 'radio',
-    };
-
+    const {
+      pathBase,
+      addresses,
+      onChangePathBase,
+    } = this.props;
     return (
       <Form onSubmit={this.handleNext}>
         <FormDiv>
           <Radios>
             <RadioTitle>Select HD derivation path</RadioTitle>
             <RadioGroup
-              defaultValue={this.state.path}
+              defaultValue={pathBase}
               size="small"
-              onChange={this.handlePath}
+              onChange={onChangePathBase}
             >
-              {paths.map((path) => (
+              {derivationPathBases.map((path) => (
                 <RadioButtonWrapper key={path.title}>
                   <RadioButton value={path.title}>
                     <Tick type="check" />
@@ -106,42 +78,21 @@ class DerivationPath extends React.Component {
                   </PathWrapper>
                 </RadioButtonWrapper>
             ))}
-              <RadioButtonWrapper>
-                <RadioButton value="custom">
-                  <Tick type="check" />
-                </RadioButton>
-                <PathWrapper>
-                  <PathSubtitle>Your Custom Path</PathSubtitle>
-                  <FormItem colon={false}>
-                    {getFieldDecorator('customPath')(<ModalFormInput />)}
-                  </FormItem>
-                </PathWrapper>
-              </RadioButtonWrapper>
             </RadioGroup>
           </Radios>
 
-          <div>
-            <RadioTitle>
+          <RadioTitle>
             Please select the address you want to interact with
           </RadioTitle>
-            <Table
-              rowSelection={rowSelection}
-              columns={columns}
-              dataSource={newAddresses(addresses)}
-              size="small"
-              pagination={false}
-            />
-          </div>
-          <PreviousAddresses type="primary">Previous Addresses</PreviousAddresses>
+          <Table
+            onRow={(record) => ({
+              onClick: () => this.props.onSelectAddress(record.index),
+            })}
+            columns={columns}
+            dataSource={addresses}
+            size="small"
+          />
         </FormDiv>
-        <ButtonDiv>
-          <StyledBackButton type="primary" onClick={this.props.handleBack}>
-            <StyledSpan>Back</StyledSpan>
-          </StyledBackButton>
-          <StyledButton type={'primary'} htmlType="submit">
-            <StyledSpan>Next</StyledSpan>
-          </StyledButton>
-        </ButtonDiv>
       </Form>
     );
   }
@@ -149,25 +100,24 @@ class DerivationPath extends React.Component {
 
 DerivationPath.propTypes = {
   /**
-   * paths in shape of array of object.
+   * derivation path base
    */
-  paths: PropTypes.arrayOf(PropTypes.object),
+  pathBase: PropTypes.string.isRequired,
+
   /**
-   * addresses in shape of array of object.
+   * addresses avaliable for selection
    */
-  addresses: PropTypes.arrayOf(PropTypes.object),
+  addresses: PropTypes.array.isRequired,
+
   /**
-   * callback triggerred when data  is  submitted.
+   * callback when user changes the path base
    */
-  handleNext: PropTypes.func,
+  onChangePathBase: PropTypes.func.isRequired,
+
   /**
-   * callback triggerred when back arrow iss clicked.
+   * callback when user changes the path base
    */
-  handleBack: PropTypes.func,
-  /**
-   * object  of form validation by ant.design.
-   */
-  form: PropTypes.object,
+  onSelectAddress: PropTypes.func.isRequired,
 };
 
-export default Form.create()(DerivationPath);
+export default DerivationPath;

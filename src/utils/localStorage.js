@@ -52,10 +52,20 @@ export const filterPersistedState = (state) => {
   persistedState = persistedState
     .setIn(['walletHoc', 'wallets'], sanitizedSoftwareWallets);
 
+
   /**
-   * Persist contact book state
+   * Saved hardware wallets
+   */
+  persistedState = persistedState
+    .setIn(['walletHoc', 'wallets', 'hardware'], state.getIn(['walletHoc', 'wallets', 'hardware']));
+
+
+  /**
+   * Contacts
    */
   persistedState = persistedState
     .set('contacts', state.get('contacts'));
+
+
   return persistedState;
 };

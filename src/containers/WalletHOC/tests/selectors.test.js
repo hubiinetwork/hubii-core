@@ -134,7 +134,7 @@ describe('makeSelectCurrentWalletDetails', () => {
       walletHoc: {
         wallets: [
           { name: 't1', type: 'software', encrypted: '{"address": "1"}' },
-          { name: 't2', type: 'software', encrypted: '{"address": "2"}' },
+          { address: '0x2', name: 't2', type: 'software', encrypted: '{"address": "2"}' },
         ],
         currentWallet: {
           name: 't2',
