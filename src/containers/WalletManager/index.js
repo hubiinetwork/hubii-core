@@ -15,7 +15,7 @@ import { Modal } from 'components/ui/Modal';
 import { makeSelectContacts } from 'containers/ContactBook/selectors';
 
 import { createWalletFromMnemonic, createWalletFromPrivateKey } from 'containers/WalletHOC/actions';
-import { makeSelectLoading, makeSelectErrors } from 'containers/WalletHOC/selectors';
+import { makeSelectLoading, makeSelectWallets } from 'containers/WalletHOC/selectors';
 import { createContact,
  } from '../ContactBook/actions';
 
@@ -47,14 +47,7 @@ export class WalletManager extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const lastLoadingProps = prevProps.loading.toJS();
-    const currentLoadingProps = this.props.loading.toJS();
-    const currentErrorsProps = this.props.errors.toJS();
-
-    if (lastLoadingProps.creatingWallet &&
-        !currentLoadingProps.creatingWallet &&
-        !currentErrorsProps.creatingWalletError
-    ) {
+    if (prevProps.wallets.count() < this.props.wallets.count()) {
       this.hideModal();
     }
   }
@@ -183,17 +176,17 @@ WalletManager.propTypes = {
   createWalletFromMnemonic: PropTypes.func.isRequired,
   createWalletFromPrivateKey: PropTypes.func.isRequired,
   loading: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
   createContact: PropTypes.func,
   contacts: PropTypes.oneOfType(
     [PropTypes.arrayOf(PropTypes.object), PropTypes.object]
   ),
+  wallets: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
-  errors: makeSelectErrors(),
   contacts: makeSelectContacts(),
+  wallets: makeSelectWallets(),
 });
 
 export function mapDispatchToProps(dispatch) {
