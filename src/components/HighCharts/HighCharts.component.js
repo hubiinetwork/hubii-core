@@ -6,6 +6,24 @@ const DepthChart = () => {
     chart: {
       type: 'area',
       inverted: true,
+      events: {
+        load() {
+              // set up the updating of the chart each second
+          const series = this.series[0];
+          const columnSeries = this.series[1];
+          let point = [870.46, 55];
+          let columnPoint = [860.51, 58];
+          setInterval(() => {
+            // console.log('point', point);
+            point = [columnPoint[0] - (Math.random() * 2), columnPoint[1] - 1];
+
+            series.addPoint(point, true, true);
+            columnPoint = [columnPoint[0] - (Math.random() * 2), columnPoint[1] + 1];
+            // // debugger;
+            columnSeries.addPoint(columnPoint, true, true);
+          }, 5000);
+        },
+      },
     },
     title: {
       text: '',
@@ -50,10 +68,10 @@ const DepthChart = () => {
       {
         name: 'BTC',
         color: {
-          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1.1 },
           stops: [
              [0, 'grey'],
-             [1, '#FF5A5A'],
+             [1, '#fc519a'],
           ],
         },
         step: 'right',
@@ -75,10 +93,10 @@ const DepthChart = () => {
       }, {
         name: 'Hubii',
         color: {
-          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1.1 },
           stops: [
              [0, 'grey'],
-             [1, '#78B214'],
+             [1, '#44d169'],
           ],
         },
         step: 'left',
