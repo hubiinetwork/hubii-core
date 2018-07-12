@@ -163,6 +163,7 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
   // Transfering from a Ledger
   if (!wallet.encrypted) {
     // Build raw transaction
+    yield put(notify('error', 'Sending transactions from a LNS is not supported in this version of Hubii Core, please check back soon!'));
     // const rawTx = generateRawTx({ toAddress, amount, gasPrice, gasLimit });
 
     // // Sign raw transaction
