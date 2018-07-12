@@ -9,15 +9,31 @@ ShallowWrapper {
         Immutable.List [
             Immutable.Map {
                 name: "mike",
-                address: "0x3123123",
+                address: "0x324234",
             },
             Immutable.Map {
-                name: "joe",
-                address: "0x123123123",
+                name: "john",
+                address: "04234",
+            },
+            Immutable.Map {
+                name: "ester",
+                address: "0x344234",
             },
         ]
     }
     editContact={[Function]}
+    recentContacts={
+        Immutable.List [
+            Immutable.Map {
+                name: "mike",
+                address: "0x324234",
+            },
+            Immutable.Map {
+                name: "john",
+                address: "04234",
+            },
+        ]
+    }
     removeContact={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
@@ -60,12 +76,12 @@ ShallowWrapper {
                                         data={
                                                   Array [
                                                             Object {
-                                                              "address": "0x3123123",
+                                                              "address": "0x324234",
                                                               "name": "mike",
                                                             },
                                                             Object {
-                                                              "address": "0x123123123",
-                                                              "name": "joe",
+                                                              "address": "04234",
+                                                              "name": "john",
                                                             },
                                                           ]
                                         }
@@ -85,18 +101,22 @@ ShallowWrapper {
                               title="All Contacts"
                     />
                     <index.style__Border
-                              contactsLength={2}
+                              contactsLength={3}
                     >
                               <ContactList
                                         data={
                                                   Array [
                                                             Object {
-                                                              "address": "0x3123123",
+                                                              "address": "0x324234",
                                                               "name": "mike",
                                                             },
                                                             Object {
-                                                              "address": "0x123123123",
-                                                              "name": "joe",
+                                                              "address": "04234",
+                                                              "name": "john",
+                                                            },
+                                                            Object {
+                                                              "address": "0x344234",
+                                                              "name": "ester",
                                                             },
                                                           ]
                                         }
@@ -178,12 +198,12 @@ ShallowWrapper {
                                           data={
                                                         Array [
                                                                       Object {
-                                                                        "address": "0x3123123",
+                                                                        "address": "0x324234",
                                                                         "name": "mike",
                                                                       },
                                                                       Object {
-                                                                        "address": "0x123123123",
-                                                                        "name": "joe",
+                                                                        "address": "04234",
+                                                                        "name": "john",
                                                                       },
                                                                     ]
                                           }
@@ -203,18 +223,22 @@ ShallowWrapper {
                             title="All Contacts"
               />
               <index.style__Border
-                            contactsLength={2}
+                            contactsLength={3}
               >
                             <ContactList
                                           data={
                                                         Array [
                                                                       Object {
-                                                                        "address": "0x3123123",
+                                                                        "address": "0x324234",
                                                                         "name": "mike",
                                                                       },
                                                                       Object {
-                                                                        "address": "0x123123123",
-                                                                        "name": "joe",
+                                                                        "address": "04234",
+                                                                        "name": "john",
+                                                                      },
+                                                                      Object {
+                                                                        "address": "0x344234",
+                                                                        "name": "ester",
                                                                       },
                                                                     ]
                                           }
@@ -249,12 +273,12 @@ ShallowWrapper {
                                     data={
                                                       Array [
                                                                         Object {
-                                                                          "address": "0x3123123",
+                                                                          "address": "0x324234",
                                                                           "name": "mike",
                                                                         },
                                                                         Object {
-                                                                          "address": "0x123123123",
-                                                                          "name": "joe",
+                                                                          "address": "04234",
+                                                                          "name": "john",
                                                                         },
                                                                       ]
                                     }
@@ -292,12 +316,12 @@ ShallowWrapper {
                     data={
                                         Array [
                                                             Object {
-                                                              "address": "0x3123123",
+                                                              "address": "0x324234",
                                                               "name": "mike",
                                                             },
                                                             Object {
-                                                              "address": "0x123123123",
-                                                              "name": "joe",
+                                                              "address": "04234",
+                                                              "name": "john",
                                                             },
                                                           ]
                     }
@@ -317,12 +341,12 @@ ShallowWrapper {
                   "props": Object {
                     "data": Array [
                       Object {
-                        "address": "0x3123123",
+                        "address": "0x324234",
                         "name": "mike",
                       },
                       Object {
-                        "address": "0x123123123",
-                        "name": "joe",
+                        "address": "04234",
+                        "name": "john",
                       },
                     ],
                     "layout": "horizontal",
@@ -353,18 +377,22 @@ ShallowWrapper {
                   title="All Contacts"
 />,
                 <index.style__Border
-                  contactsLength={2}
+                  contactsLength={3}
 >
                   <ContactList
                                     data={
                                                       Array [
                                                                         Object {
-                                                                          "address": "0x3123123",
+                                                                          "address": "0x324234",
                                                                           "name": "mike",
                                                                         },
                                                                         Object {
-                                                                          "address": "0x123123123",
-                                                                          "name": "joe",
+                                                                          "address": "04234",
+                                                                          "name": "john",
+                                                                        },
+                                                                        Object {
+                                                                          "address": "0x344234",
+                                                                          "name": "ester",
                                                                         },
                                                                       ]
                                     }
@@ -402,12 +430,16 @@ ShallowWrapper {
                     data={
                                         Array [
                                                             Object {
-                                                              "address": "0x3123123",
+                                                              "address": "0x324234",
                                                               "name": "mike",
                                                             },
                                                             Object {
-                                                              "address": "0x123123123",
-                                                              "name": "joe",
+                                                              "address": "04234",
+                                                              "name": "john",
+                                                            },
+                                                            Object {
+                                                              "address": "0x344234",
+                                                              "name": "ester",
                                                             },
                                                           ]
                     }
@@ -417,7 +449,7 @@ ShallowWrapper {
                     onEdit={[Function]}
                     size="small"
 />,
-                  "contactsLength": 2,
+                  "contactsLength": 3,
                 },
                 "ref": null,
                 "rendered": Object {
@@ -427,12 +459,16 @@ ShallowWrapper {
                   "props": Object {
                     "data": Array [
                       Object {
-                        "address": "0x3123123",
+                        "address": "0x324234",
                         "name": "mike",
                       },
                       Object {
-                        "address": "0x123123123",
-                        "name": "joe",
+                        "address": "04234",
+                        "name": "john",
+                      },
+                      Object {
+                        "address": "0x344234",
+                        "name": "ester",
                       },
                     ],
                     "layout": "horizontal",
@@ -490,12 +526,12 @@ ShallowWrapper {
                                                 data={
                                                             Array [
                                                                         Object {
-                                                                          "address": "0x3123123",
+                                                                          "address": "0x324234",
                                                                           "name": "mike",
                                                                         },
                                                                         Object {
-                                                                          "address": "0x123123123",
-                                                                          "name": "joe",
+                                                                          "address": "04234",
+                                                                          "name": "john",
                                                                         },
                                                                       ]
                                                 }
@@ -515,18 +551,22 @@ ShallowWrapper {
                                     title="All Contacts"
                         />
                         <index.style__Border
-                                    contactsLength={2}
+                                    contactsLength={3}
                         >
                                     <ContactList
                                                 data={
                                                             Array [
                                                                         Object {
-                                                                          "address": "0x3123123",
+                                                                          "address": "0x324234",
                                                                           "name": "mike",
                                                                         },
                                                                         Object {
-                                                                          "address": "0x123123123",
-                                                                          "name": "joe",
+                                                                          "address": "04234",
+                                                                          "name": "john",
+                                                                        },
+                                                                        Object {
+                                                                          "address": "0x344234",
+                                                                          "name": "ester",
                                                                         },
                                                                       ]
                                                 }
@@ -608,12 +648,12 @@ ShallowWrapper {
                                                 data={
                                                                 Array [
                                                                                 Object {
-                                                                                  "address": "0x3123123",
+                                                                                  "address": "0x324234",
                                                                                   "name": "mike",
                                                                                 },
                                                                                 Object {
-                                                                                  "address": "0x123123123",
-                                                                                  "name": "joe",
+                                                                                  "address": "04234",
+                                                                                  "name": "john",
                                                                                 },
                                                                               ]
                                                 }
@@ -633,18 +673,22 @@ ShallowWrapper {
                                 title="All Contacts"
                 />
                 <index.style__Border
-                                contactsLength={2}
+                                contactsLength={3}
                 >
                                 <ContactList
                                                 data={
                                                                 Array [
                                                                                 Object {
-                                                                                  "address": "0x3123123",
+                                                                                  "address": "0x324234",
                                                                                   "name": "mike",
                                                                                 },
                                                                                 Object {
-                                                                                  "address": "0x123123123",
-                                                                                  "name": "joe",
+                                                                                  "address": "04234",
+                                                                                  "name": "john",
+                                                                                },
+                                                                                Object {
+                                                                                  "address": "0x344234",
+                                                                                  "name": "ester",
                                                                                 },
                                                                               ]
                                                 }
@@ -679,12 +723,12 @@ ShallowWrapper {
                                         data={
                                                             Array [
                                                                                 Object {
-                                                                                  "address": "0x3123123",
+                                                                                  "address": "0x324234",
                                                                                   "name": "mike",
                                                                                 },
                                                                                 Object {
-                                                                                  "address": "0x123123123",
-                                                                                  "name": "joe",
+                                                                                  "address": "04234",
+                                                                                  "name": "john",
                                                                                 },
                                                                               ]
                                         }
@@ -722,12 +766,12 @@ ShallowWrapper {
                       data={
                                             Array [
                                                                   Object {
-                                                                    "address": "0x3123123",
+                                                                    "address": "0x324234",
                                                                     "name": "mike",
                                                                   },
                                                                   Object {
-                                                                    "address": "0x123123123",
-                                                                    "name": "joe",
+                                                                    "address": "04234",
+                                                                    "name": "john",
                                                                   },
                                                                 ]
                       }
@@ -747,12 +791,12 @@ ShallowWrapper {
                     "props": Object {
                       "data": Array [
                         Object {
-                          "address": "0x3123123",
+                          "address": "0x324234",
                           "name": "mike",
                         },
                         Object {
-                          "address": "0x123123123",
-                          "name": "joe",
+                          "address": "04234",
+                          "name": "john",
                         },
                       ],
                       "layout": "horizontal",
@@ -783,18 +827,22 @@ ShallowWrapper {
                     title="All Contacts"
 />,
                   <index.style__Border
-                    contactsLength={2}
+                    contactsLength={3}
 >
                     <ContactList
                                         data={
                                                             Array [
                                                                                 Object {
-                                                                                  "address": "0x3123123",
+                                                                                  "address": "0x324234",
                                                                                   "name": "mike",
                                                                                 },
                                                                                 Object {
-                                                                                  "address": "0x123123123",
-                                                                                  "name": "joe",
+                                                                                  "address": "04234",
+                                                                                  "name": "john",
+                                                                                },
+                                                                                Object {
+                                                                                  "address": "0x344234",
+                                                                                  "name": "ester",
                                                                                 },
                                                                               ]
                                         }
@@ -832,12 +880,16 @@ ShallowWrapper {
                       data={
                                             Array [
                                                                   Object {
-                                                                    "address": "0x3123123",
+                                                                    "address": "0x324234",
                                                                     "name": "mike",
                                                                   },
                                                                   Object {
-                                                                    "address": "0x123123123",
-                                                                    "name": "joe",
+                                                                    "address": "04234",
+                                                                    "name": "john",
+                                                                  },
+                                                                  Object {
+                                                                    "address": "0x344234",
+                                                                    "name": "ester",
                                                                   },
                                                                 ]
                       }
@@ -847,7 +899,7 @@ ShallowWrapper {
                       onEdit={[Function]}
                       size="small"
 />,
-                    "contactsLength": 2,
+                    "contactsLength": 3,
                   },
                   "ref": null,
                   "rendered": Object {
@@ -857,12 +909,16 @@ ShallowWrapper {
                     "props": Object {
                       "data": Array [
                         Object {
-                          "address": "0x3123123",
+                          "address": "0x324234",
                           "name": "mike",
                         },
                         Object {
-                          "address": "0x123123123",
-                          "name": "joe",
+                          "address": "04234",
+                          "name": "john",
+                        },
+                        Object {
+                          "address": "0x344234",
+                          "name": "ester",
                         },
                       ],
                       "layout": "horizontal",
