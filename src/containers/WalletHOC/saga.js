@@ -336,7 +336,7 @@ export default function* walletHoc() {
   // Handles the Ledger auto polling lifecycle
   // START_LEDGER_SYNC activates ledgerSync saga
   // STOP_LEDGER_SYNC causes ledgerSync saga to drop what it's doing
-  // and immidietly enter its 'finally' block
+  // and immediately enter its 'finally' block
   while (yield take(START_LEDGER_SYNC)) {
     const bgSyncTask = yield fork(ledgerSync);
 
