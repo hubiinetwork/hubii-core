@@ -1,7 +1,7 @@
 import { eventChannel, delay } from 'redux-saga';
 import { takeLatest, takeEvery, put, call, select, fork, take, cancel } from 'redux-saga/effects';
 import Eth from '@ledgerhq/hw-app-eth';
-import Web3 from 'web3';
+// import Web3 from 'web3';
 import { Wallet, utils, providers, Contract } from 'ethers';
 
 import { notify } from 'containers/App/actions';
@@ -60,7 +60,7 @@ import {
   transactionConfirmed,
   hideDecryptWalletModal,
 } from './actions';
-import generateRawTx from '../../utils/generateRawTx';
+// import generateRawTx from '../../utils/generateRawTx';
 
 // Creates a new software wallet
 export function* createWalletFromMnemonic({ name, mnemonic, derivationPath, password }) {
@@ -163,20 +163,20 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
   // Transfering from a Ledger
   if (!wallet.encrypted) {
     // Build raw transaction
-    const rawTx = generateRawTx({ toAddress, amount, gasPrice, gasLimit });
+    // const rawTx = generateRawTx({ toAddress, amount, gasPrice, gasLimit });
 
-    // Sign raw transaction
-    try {
-      yield put(notify('info', 'Verify transaction details on your Ledger'));
-      const signedTx = ledgerSignTxn(rawTx);
+    // // Sign raw transaction
+    // try {
+    //   yield put(notify('info', 'Verify transaction details on your Ledger'));
+    //   const signedTx = ledgerSignTxn(rawTx);
 
-    // Broadcast signed transaction
-      const web3 = new Web3('http://geth-ropsten.dev.hubii.net/');
-      const txHash = yield web3.eth.sendRawTransaction(signedTx);
-      yield put(transferSuccess(txHash, 'ETH'));
-    } catch (e) {
-      yield put(ledgerError('Error making transaction: ', e));
-    }
+    // // Broadcast signed transaction
+    //   const web3 = new Web3('http://geth-ropsten.dev.hubii.net/');
+    //   const txHash = yield web3.eth.sendRawTransaction(signedTx);
+    //   yield put(transferSuccess(txHash, 'ETH'));
+    // } catch (e) {
+    //   yield put(ledgerError('Error making transaction: ', e));
+    // }
   } else {
     // Transfering from a software wallet
     const wei = utils.parseEther(amount.toString());

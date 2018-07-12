@@ -295,7 +295,6 @@
     "styled-components": "2.3.0",
     "victory": "0.27.0",
     "warning": "3.0.0",
-    "web3": "0.2.3",
     "whatwg-fetch": "2.0.4"
   },
   "devDependencies": {
