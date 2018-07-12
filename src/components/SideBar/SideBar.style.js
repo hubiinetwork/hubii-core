@@ -27,8 +27,9 @@ const SideBarMenu = styled(Menu)`
   .menu-wallet {
     min-height: 70px;
     padding: 0px 20px !important;
-    .wallet-icon {
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .menu-setting {
     bottom: 0px;
@@ -40,6 +41,7 @@ const SideBarMenu = styled(Menu)`
     position: absolute !important;
     .setting-icon {
       font-size: 32px !important;
+      color: ${({ theme }) => theme.palette.info};
     }
   }
   .ant-menu-item a {
@@ -64,11 +66,7 @@ const SideBarMenu = styled(Menu)`
     background: ${({ theme }) => theme.palette.dark1} !important;
     border-right: 2px solid ${({ theme }) => theme.palette.info};
   }
-  .ant-tooltip-open{
-    .ant-tooltip-open{
-    }
-  }
-   .ant-menu-item-selected.menu-logo {
+  .ant-menu-item-selected.menu-logo {
     border-right: none;
     background: ${({ theme }) => theme.palette.dark} !important;
   }
