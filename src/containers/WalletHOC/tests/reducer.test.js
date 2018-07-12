@@ -5,6 +5,7 @@ import { findWalletIndex } from '../../../utils/wallet';
 import {
   createWalletFromMnemonic,
   createWalletFailed,
+  createWalletSuccess,
   decryptWallet,
   decryptWalletFailed,
   decryptWalletSuccess,
@@ -71,14 +72,12 @@ describe('walletHocReducer', () => {
     expect(walletHocReducer(state, createWalletFromMnemonic())).toEqual(expected);
   });
 
-  it('should handle createWalletSuccess action correctly', () => {
+  it('should handle addNewWallet action correctly', () => {
     const encrypted = JSON.stringify({ address: 123 });
     const decrypted = { key: 43 };
     const name = 'Henry';
     const newWallet = { name, address: '0x123', type: 'software', encrypted, decrypted };
     const expected = state
-      .setIn(['loading', 'creatingWallet'], false)
-      .setIn(['inputs', 'password'], '')
         .set('wallets', state
           .get('wallets')
           .push(fromJS(newWallet))
@@ -86,6 +85,19 @@ describe('walletHocReducer', () => {
     expect(walletHocReducer(
       state,
       addNewWallet(newWallet)))
+      .toEqual(expected);
+  });
+
+  it('should handle CREATE_WALLET_SUCCESS type correctly', () => {
+    const initState = state
+      .setIn(['loading', 'creatingWallet'], true)
+      .setIn(['inputs', 'password'], 'test');
+    const expected = state
+      .setIn(['loading', 'creatingWallet'], false)
+      .setIn(['inputs', 'password'], '');
+    expect(walletHocReducer(
+      initState,
+      createWalletSuccess('', '{"address":"123"}')))
       .toEqual(expected);
   });
 
