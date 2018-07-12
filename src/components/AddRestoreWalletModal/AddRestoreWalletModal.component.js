@@ -16,7 +16,6 @@ import {
   Info,
 } from './AddRestoreWalletModal.style';
 import { AddWallet } from './AddWallet';
-import { RestoreWallet } from './RestoreWallet';
 import ImportWalletSteps from '../ImportWalletSteps';
 
 /**
@@ -59,16 +58,6 @@ export default class AddRestoreWalletModal extends React.Component {
               </Wrapper>
             </ButtonDiv>
 
-            <ButtonDiv
-              onClick={() => this.switchModals('restore')}
-              type="primary"
-            >
-              <Wrapper>
-                <Icon type="sync" />
-                <TextWhite>Restore Wallet</TextWhite>
-              </Wrapper>
-            </ButtonDiv>
-
             <DescriptionWrapper>
               <div style={{ display: 'flex', width: '47%' }}>
                 <Info type="info-circle-o" />
@@ -97,25 +86,6 @@ export default class AddRestoreWalletModal extends React.Component {
               </IconWrapper>
             </div>
             <AddWallet loading={loading.toJS().creatingWallet} handleSubmit={this.props.handleAddWalletSubmit} />
-          </div>
-        )}
-        {modalType === 'restore' && (
-          <div>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <IconWrapper>
-                <Arrow
-                  type="arrow-left"
-                  onClick={() => this.switchModals('main')}
-                />Restore Wallet
-              </IconWrapper>
-            </div>
-            <RestoreWallet />
           </div>
         )}
         {modalType === 'import' && (
