@@ -11,13 +11,11 @@ import {
   Arrow,
   IconWrapper,
   TextWhite,
-  // RightTopButton,
   DescriptionWrapper,
   TextGrey,
   Info,
 } from './AddRestoreWalletModal.style';
 import { AddWallet } from './AddWallet';
-import { RestoreWallet } from './RestoreWallet';
 import ImportWalletSteps from '../ImportWalletSteps';
 
 /**
@@ -60,16 +58,6 @@ export default class AddRestoreWalletModal extends React.PureComponent {
               </Wrapper>
             </ButtonDiv>
 
-            <ButtonDiv
-              onClick={() => this.switchModals('restore')}
-              type="primary"
-            >
-              <Wrapper>
-                <Icon type="sync" />
-                <TextWhite>Restore Wallet</TextWhite>
-              </Wrapper>
-            </ButtonDiv>
-
             <DescriptionWrapper>
               <div style={{ display: 'flex', width: '47%' }}>
                 <Info type="info-circle-o" />
@@ -96,36 +84,8 @@ export default class AddRestoreWalletModal extends React.PureComponent {
                   onClick={() => this.switchModals('main')}
                 />New Hubii Wallet
               </IconWrapper>
-              {/* <RightTopButton
-                onClick={() => this.switchModals('import')}
-                type="primary"
-              >
-                <Wrapper>
-                  <Icon type="download" />
-                  <TextWhite>Import Wallet</TextWhite>
-                </Wrapper>
-              </RightTopButton> */}
             </div>
             <AddWallet loading={loading.toJS().creatingWallet} handleSubmit={this.props.handleAddWalletSubmit} />
-          </div>
-        )}
-        {type === 'restore' && (
-          <div>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <IconWrapper>
-                <Arrow
-                  type="arrow-left"
-                  onClick={() => this.switchModals('main')}
-                />Restore Wallet
-              </IconWrapper>
-            </div>
-            <RestoreWallet />
           </div>
         )}
         {type === 'import' && (
