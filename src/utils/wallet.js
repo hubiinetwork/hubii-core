@@ -8,7 +8,6 @@ export function convertWalletsList(walletsState) {
     const curWallet = { ...wallet };
     if (wallet.type === 'software') {
       curWallet.encrypted = JSON.parse(wallet.encrypted);
-      curWallet.address = `0x${curWallet.encrypted.address}`;
     }
     processedWallets.push(curWallet);
   });
@@ -50,8 +49,8 @@ export const ERC20ABI = [
 // using it's address
 export const findWalletIndex = (state, address, scopedFatalError = fatalError) => {
   try {
-    const index = state.get('wallets').findIndex((w) => w.get('address') === address.toLowerCase());
-    if (index < 0) throw new Error('Tried to find index of non-existent wallet');
+    const index = state.get('wallets').findIndex((w) => w.get('address') === address);
+    if (index < 0) throw new Error(`Tried to find index of non-existent wallet with address ${address}`);
     return index;
   } catch (e) {
     return scopedFatalError(e);

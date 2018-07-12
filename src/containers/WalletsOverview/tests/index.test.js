@@ -10,12 +10,14 @@ describe('WalletsOverview', () => {
     const wallets = [
       {
         name: 'test1',
+        address: '0x00',
         type: 'software',
         encrypted: '{"address": "abcd1"}',
         decrypted: { privateKey: '0x123123123', mnemonic: 'the cat ran over' },
       },
       {
         name: 'test2',
+        address: '0x00',
         type: 'software',
         encrypted: '{"address": "abcd2"}',
         decrypted: { privateKey: '0x123123223', mnemonic: 'the dog ran over' },
@@ -59,6 +61,7 @@ describe('WalletsOverview', () => {
     ];
     const params = {
       walletList: convertWalletsList(fromJS(wallets)),
+      ledgerNanoSInfo: { id: '123' },
     };
     let loadWalletsSpy;
     let loadWalletsBalancesSpy;
@@ -142,7 +145,7 @@ describe('WalletsOverview', () => {
           expect(card.privateKey).toEqual(walletsList[index].decrypted.privateKey);
           expect(card.name).toEqual(walletsList[index].name);
           expect(card.type).toEqual(walletsList[index].type);
-          expect(card.primaryAddress).toEqual(`0x${walletsList[index].encrypted.address}`);
+          expect(card.address).toEqual(walletsList[index].address);
           expect(card.totalBalance).toEqual(walletsList[index].balances.reduce((accumulator, current) => accumulator + (parseInt(current.balance, 10) / (10 ** current.decimals)), 0));
           card.assets.forEach((asset, i) => {
             expect(asset.name).toEqual(balances[index][i].symbol);
@@ -168,7 +171,7 @@ describe('WalletsOverview', () => {
           expect(card.privateKey).toEqual(null);
           expect(card.name).toEqual(walletsList[index].name);
           expect(card.type).toEqual(walletsList[index].type);
-          expect(card.primaryAddress).toEqual(`0x${walletsList[index].encrypted.address}`);
+          expect(card.address).toEqual(walletsList[index].address);
           expect(card.totalBalance).toEqual(walletsList[index].balances.reduce((accumulator, current) => accumulator + (parseInt(current.balance, 10) / (10 ** current.decimals)), 0));
           card.assets.forEach((asset, i) => {
             expect(asset.name).toEqual(balances[index][i].symbol);
@@ -187,7 +190,7 @@ describe('WalletsOverview', () => {
           const name = wallets[index].name;
           expect(card.name).toEqual(name);
           expect(card.type).toEqual(wallets[index].type);
-          expect(card.primaryAddress).toEqual(`0x${JSON.parse(wallets[index].encrypted).address}`);
+          expect(card.address).toEqual(walletsList[index].address);
           expect(card.totalBalance).toEqual(0);
           expect(card.assets).toEqual([]);
         });
@@ -203,7 +206,7 @@ describe('WalletsOverview', () => {
         />);
         const instance = overviewDom.instance();
         const address = '0xabcd';
-        instance.handleCardClick(address);
+        instance.handleCardClick({ address });
         expect(historySpy).toBeCalledWith(`/wallet/${address}`);
       });
     });

@@ -87,19 +87,19 @@ export function* createWalletFromPrivateKey({ privateKey, name, password }) {
 }
 
 // Decrypt a software wallet using a password
-export function* decryptWallet({ name, encryptedWallet, password }) {
+export function* decryptWallet({ address, encryptedWallet, password }) {
   try {
-    yield put(notify('info', `Decrypting wallet ${name}`));
-    if (!name) throw new Error('name undefined');
+    yield put(notify('info', 'Unlocking wallet...'));
+    if (!address) throw new Error('Address undefined');
     const res = yield Wallet.fromEncryptedWallet(encryptedWallet, password);
     if (!res.privateKey) throw res;
     const decryptedWallet = res;
-    yield put(decryptWalletSuccess(decryptedWallet));
-    yield put(notify('success', `Successfully decrypted ${name}`));
+    yield put(decryptWalletSuccess(address, decryptedWallet));
+    yield put(notify('success', 'Wallet unlocked!'));
     yield put(hideDecryptWalletModal());
   } catch (e) {
     yield put(decryptWalletFailed(e));
-    yield put(notify('error', `Failed to decrypt wallet: ${e}`));
+    yield put(notify('error', `Failed to unlock wallet: ${e}`));
   }
 }
 
@@ -152,7 +152,7 @@ export function* listenBalances({ address }) {
 }
 
 export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit, contractAddress }) {
-  if (!wallet.encrypted && !wallet.decrypted) {
+  if (wallet.encrypted && !wallet.decrypted) {
     yield put(showDecryptWalletModal(wallet.name));
     yield put(transferError(new Error('Wallet is encrypted')));
     return;

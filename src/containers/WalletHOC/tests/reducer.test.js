@@ -32,7 +32,6 @@ describe('walletHocReducer', () => {
   let stateWithWallet;
   beforeEach(() => {
     state = fromJS({
-      selectedWalletName: '',
       inputs: {
         password: '',
         newWalletName: '',
@@ -83,14 +82,6 @@ describe('walletHocReducer', () => {
         .setIn(['errors', 'ledgerError'], error);
       expect(walletHocReducer(state, { type: LEDGER_ERROR, error })).toEqual(expected);
     });
-
-    // it('should handle SAVE_LEDGER_ADDRESS action correctly', () => {
-    //   const name = 'ledger1';
-    //   const newLedgerWallet = { ledger: '123' };
-    //   const expected = state
-    //       .setIn(['wallets', 'hardware', 'ledger', name], fromJS(newLedgerWallet));
-    //   expect(walletHocReducer(state, { type: SAVE_LEDGER_ADDRESS, name, newLedgerWallet })).toEqual(expected);
-    // });
 
     it('should handle FETCHED_LEDGER_ADDRESS action correctly', () => {
       const derivationPath = 'm01201010';
@@ -157,12 +148,13 @@ describe('walletHocReducer', () => {
     });
 
     it('should handle decryptWalletSuccess action correctly', () => {
+      const address = '0x00';
       const decryptedWallet = { address: '0x00', id: 1234 };
       const expected = stateWithWallet
       .setIn(['loading', 'decryptingWallet'], false)
       .setIn(['inputs', 'password'], '')
       .setIn(['wallets', 0, 'decrypted'], fromJS(decryptedWallet));
-      expect(walletHocReducer(stateWithWallet, decryptWalletSuccess(decryptedWallet))).toEqual(expected);
+      expect(walletHocReducer(stateWithWallet, decryptWalletSuccess(address, decryptedWallet))).toEqual(expected);
     });
 
     it('should handle decryptWallet action correctly', () => {
@@ -214,11 +206,9 @@ describe('walletHocReducer', () => {
 
   describe('currentWallet', () => {
     it('SET_CURRENT_WALLET', () => {
-      const walletName = 'testWallet';
       const address = 'abcd';
       const currentWallet = {
         address,
-        name: walletName,
         transfering: false,
         transferError: null,
         lastTransaction: null,
@@ -226,7 +216,7 @@ describe('walletHocReducer', () => {
       const expected = state
           .set('currentWallet', fromJS(currentWallet));
 
-      expect(walletHocReducer(state, setCurrentWallet(walletName, address))).toEqual(expected);
+      expect(walletHocReducer(state, setCurrentWallet(address))).toEqual(expected);
     });
     it('TRANSFER', () => {
       const currentWallet = {

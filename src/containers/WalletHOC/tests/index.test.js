@@ -103,7 +103,7 @@ describe('WalletHOC', () => {
       it('should trigger decryptWallet action', () => {
         const decryptWalletSpy = jest.fn();
         const currentWalletDetails = {
-          name: 'wallet',
+          address: '0x00',
           encrypted: {},
         };
         const password = '123';
@@ -118,7 +118,7 @@ describe('WalletHOC', () => {
         const instance = dom.instance();
         instance.setState({ password });
         instance.decryptWallet();
-        expect(decryptWalletSpy).toBeCalledWith(currentWalletDetails.name, JSON.stringify(currentWalletDetails.encrypted), password);
+        expect(decryptWalletSpy).toBeCalledWith(currentWalletDetails.address, JSON.stringify(currentWalletDetails.encrypted), password);
       });
     });
     describe('#mapDispatchToProps', () => {

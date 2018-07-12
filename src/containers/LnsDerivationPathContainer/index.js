@@ -18,7 +18,6 @@ import {
 import {
   makeSelectLedgerNanoSInfo,
   makeSelectErrors,
-  makeSelectWallets,
 } from 'containers/WalletHOC/selectors';
 
 
@@ -126,7 +125,6 @@ LnsDerivationPathContainer.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   ledgerNanoSInfo: makeSelectLedgerNanoSInfo(),
-  wallets: makeSelectWallets(),
   errors: makeSelectErrors(),
 });
 

@@ -35,7 +35,6 @@ import {
 } from './constants';
 
 export const initialState = fromJS({
-  selectedWalletName: '',
   inputs: {
     password: '',
     newWalletName: '',
@@ -128,7 +127,6 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['currentWallet', 'showDecryptModal'], false);
     case SET_CURRENT_WALLET:
       return state
-        .setIn(['currentWallet', 'name'], action.name)
         .setIn(['currentWallet', 'address'], action.address)
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], null)

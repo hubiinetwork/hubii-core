@@ -33,7 +33,7 @@ export class WalletDetails extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.props.setCurrentWallet(null, this.props.match.params.address);
+    this.props.setCurrentWallet(this.props.match.params.address);
   }
 
   onHomeClick() {

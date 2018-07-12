@@ -37,7 +37,6 @@ import {
   STOP_LEDGER_SYNC,
   FETCH_LEDGER_ADDRESSES,
   FETCHED_LEDGER_ADDRESS,
-  SAVE_LEDGER_ADDRESS,
   TRANSACTION_CONFIRMED,
   DELETE_WALLET,
 } from './constants';
@@ -82,7 +81,7 @@ export function createWalletSuccess(name, encryptedWallet, decryptedWallet) {
     type: CREATE_WALLET_SUCCESS,
     newWallet: {
       name,
-      address: `0x${JSON.parse(encryptedWallet).address}`,
+      address: decryptedWallet.address,
       type: 'software',
       encrypted: encryptedWallet,
       decrypted: decryptedWallet,
@@ -97,19 +96,19 @@ export function createWalletFailed(error) {
   };
 }
 
-export function decryptWallet(name, encryptedWallet, password) {
+export function decryptWallet(address, encryptedWallet, password) {
   return {
     type: DECRYPT_WALLET,
-    name,
     encryptedWallet,
+    address,
     password,
   };
 }
 
-export function decryptWalletSuccess(decryptedWallet) {
+export function decryptWalletSuccess(address, decryptedWallet) {
   return {
     type: DECRYPT_WALLET_SUCCESS,
-    address: decryptedWallet.address,
+    address,
     decryptedWallet,
   };
 }
@@ -135,10 +134,9 @@ export function hideDecryptWalletModal(walletName) {
   };
 }
 
-export function setCurrentWallet(name, address) {
+export function setCurrentWallet(address) {
   return {
     type: SET_CURRENT_WALLET,
-    name,
     address,
   };
 }
@@ -301,15 +299,16 @@ export function fetchedLedgerAddress(derivationPath, address) {
 }
 
 export function saveLedgerAddress(name, derivationPath, deviceId, address) {
-  const newLedgerWallet = {
+  const newWallet = {
     deviceId,
     address,
+    type: 'lns',
+    name,
     derivationPath,
   };
   return {
-    type: SAVE_LEDGER_ADDRESS,
-    name,
-    newLedgerWallet,
+    type: ADD_NEW_WALLET,
+    newWallet,
   };
 }
 
