@@ -38,12 +38,16 @@ export class WalletItemCard extends React.PureComponent {
     this.handleExportSeedWords = this.handleExportSeedWords.bind(this);
   }
 
-  settingsMenu() {
+  settingsMenu(walletType) {
+    const menuItems = [];
+    menuItems.push(<MenuItem key='1' onClick={() => this.setState({ modalVisibility: true, modalType: 'deleteWallet' })}>Delete Wallet</MenuItem>);
+    if (walletType === 'software') {
+      menuItems.push(<MenuDivider key='2' />);
+      menuItems.push(<MenuItem key='3' onClick={this.handleExportSeedWords}>Export Private Infomation</MenuItem>);
+    }
     return (
       <Menu>
-        <MenuItem onClick={this.handleExportSeedWords}>Export Private Infomation</MenuItem>
-        <MenuDivider />
-        <MenuItem onClick={() => this.setState({ modalVisibility: true, modalType: 'deleteWallet' })}>Delete Wallet</MenuItem>
+        {menuItems.map((item) => item)}
       </Menu>
     );
   }
@@ -122,7 +126,7 @@ export class WalletItemCard extends React.PureComponent {
           <CardIconSettings>
             <Dropdown
               placement="bottomLeft"
-              overlay={this.settingsMenu()}
+              overlay={this.settingsMenu(type)}
             >
               <Icon type="setting" />
             </Dropdown>
