@@ -40,10 +40,10 @@ export class WalletItemCard extends React.PureComponent {
 
   settingsMenu(walletType) {
     const menuItems = [];
-    menuItems.push(<MenuItem key='1' onClick={() => this.setState({ modalVisibility: true, modalType: 'deleteWallet' })}>Delete Wallet</MenuItem>);
+    menuItems.push(<MenuItem key="1" onClick={() => this.setState({ modalVisibility: true, modalType: 'deleteWallet' })}>Delete Wallet</MenuItem>);
     if (walletType === 'software') {
-      menuItems.push(<MenuDivider key='2' />);
-      menuItems.push(<MenuItem key='3' onClick={this.handleExportSeedWords}>Export Private Infomation</MenuItem>);
+      menuItems.push(<MenuDivider key="2" />);
+      menuItems.push(<MenuItem key="3" onClick={this.handleExportSeedWords}>Export Private Infomation</MenuItem>);
     }
     return (
       <Menu>
