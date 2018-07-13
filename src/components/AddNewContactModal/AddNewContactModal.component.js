@@ -14,7 +14,7 @@ import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 /**
  * This component is used to add a new contact in ContactBook.
  */
-class AddNewContactModal extends React.Component {
+export class AddNewContactModal extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,16 +28,16 @@ class AddNewContactModal extends React.Component {
       if (checkType === 'inuse') {
         const sameAddressList = contacts.filter((person) => person.address === value.trim());
         if (sameAddressList.length) {
-          callback('You have already saved this address');
+          return callback('You have already saved this address');
         }
       }
       if (checkType === 'invalid') {
         if (!isValidAddress(value.trim())) {
-          callback('invalid Address');
+          return callback('invalid Address');
         }
       }
     }
-    callback();
+    return callback();
   }
 
   handleSubmit(e) {
