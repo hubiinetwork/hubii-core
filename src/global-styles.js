@@ -144,4 +144,8 @@ injectGlobal`
   label {
     line-height: 1.5em;
   }
+
+  .ant-tooltip {
+    display: none;
+  }
 `;
