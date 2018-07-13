@@ -307,7 +307,7 @@ export function saveLedgerAddress(name, derivationPath, deviceId, address) {
     derivationPath,
   };
   return {
-    type: ADD_NEW_WALLET,
+    type: CREATE_WALLET_SUCCESS,
     newWallet,
   };
 }

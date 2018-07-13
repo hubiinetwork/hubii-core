@@ -69,8 +69,8 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
             <Border contactsLength={recentContacts.length}>
               <ContactList
                 data={this.filterSearchText(recentContacts, 'recentFilterText')}
-                onEdit={(newContact, oldContact) => this.props.editContact(contacts, newContact, oldContact)}
-                onDelete={(contact) => this.props.removeContact(contacts, contact)}
+                onEdit={(newContact, oldContact) => this.props.editContact(contacts, recentContacts, newContact, oldContact)}
+                onDelete={(contact) => this.props.removeContact(contacts, recentContacts, contact)}
               />
             </Border>
           </InnerWrapper1>
@@ -83,8 +83,8 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
             <Border contactsLength={contacts.length}>
               <ContactList
                 data={this.filterSearchText(contacts, 'fullFilterText')}
-                onEdit={(newContact, oldContact) => this.props.editContact(contacts, newContact, oldContact)}
-                onDelete={(data) => this.props.removeContact(contacts, data)}
+                onEdit={(newContact, oldContact) => this.props.editContact(contacts, recentContacts, newContact, oldContact)}
+                onDelete={(data) => this.props.removeContact(contacts, recentContacts, data)}
               />
             </Border>
           </InnerWrapper2>
