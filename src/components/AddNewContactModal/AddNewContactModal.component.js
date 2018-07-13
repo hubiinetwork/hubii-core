@@ -6,7 +6,7 @@ import {
   Wrapper,
   WrapperIcon,
   StyledButton,
-  ButtonWrapper
+  ButtonWrapper,
 } from './AddNewContactModal.style';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 
@@ -15,15 +15,34 @@ import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
  */
 
 class AddNewContactModal extends React.Component {
-  handleSubmit = e => {
-    const self = this;
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.validateAddress = this.validateField.bind(this);
+  }
+
+  validateField(rule, value, callback) {
+    const { contacts } = this.props;
+    // can add more validation for name if required
+    if (rule.field === 'address') {
+      const sameAddressList = contacts.filter((person) => person.address === value.trim());
+      if (sameAddressList.length) {
+        callback('You have already saved this address');
+      }
+    }
+    callback();
+  }
+
+  handleSubmit(e) {
+    const { onSubmit } = this.props;
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields((err, value) => {
       if (!err) {
-        self.props.onSubmit(values);
+        onSubmit({ address: value.address.trim(), name: value.name.trim() });
       }
     });
-  };
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -37,25 +56,32 @@ class AddNewContactModal extends React.Component {
         </WrapperIcon>
         <Form onSubmit={this.handleSubmit} layout="vertical">
           <ModalFormItem label={<ModalFormLabel>Name</ModalFormLabel>}>
-            {getFieldDecorator('Name', {
+            {getFieldDecorator('name', {
               rules: [
                 {
                   message: 'Name is required.',
-                  required: true
-                }
-              ]
+                  required: true,
+                  whitespace: true,
+                },
+              ],
             })(<ModalFormInput placeholder="John Doe" />)}
           </ModalFormItem>
           <ModalFormItem
             label={<ModalFormLabel>Valid Ethereum Address</ModalFormLabel>}
           >
-            {getFieldDecorator('Valid Ethereum Address', {
+            {getFieldDecorator('address', {
               rules: [
                 {
                   message: 'Address is required.',
-                  required: true
-                }
-              ]
+                  required: true,
+                  whitespace: true,
+                },
+                {
+                  message: 'Address is already in use.',
+                  required: true,
+                  validator: (rule, value, callback) => this.validateField(rule, value, callback),
+                },
+              ],
             })(
               <ModalFormInput
                 type="textarea"
@@ -78,7 +104,9 @@ AddNewContactModal.propTypes = {
   /**
    * function to handle onSubmit.
    */
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  form: PropTypes.object,
+  contacts: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Form.create()(AddNewContactModal);

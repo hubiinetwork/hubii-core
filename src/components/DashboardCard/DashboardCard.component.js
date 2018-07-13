@@ -5,14 +5,14 @@ import {
   StyledCard,
   Wrapper,
   IconSpan,
-  TitleSpan
+  TitleSpan,
 } from './DashboardCard.style';
 
 /**
  * This component shows app's features as options on the main screen.
  */
 
-const DashboardCard = ({ iconType, to, title }) => (
+const DashboardCard = ({ iconType, title }) => (
   <Wrapper>
     <StyledCard>
       <IconSpan>
@@ -30,6 +30,6 @@ DashboardCard.propTypes = {
   /**
    * icon to show on dashboard card with title.
    */
-  iconType: PropTypes.string.isRequired
+  iconType: PropTypes.string.isRequired,
 };
 export default DashboardCard;

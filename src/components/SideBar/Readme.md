@@ -9,8 +9,13 @@ const menuItems = [
   },
   {
     to: '/wallet',
-    icon: 'wallet',
-    name: 'Wallet detail'
+    icon: 'striim',
+    name: 'striim detail'
+  },
+  {
+    to: '/dex',
+    icon: 'dex',
+    name: 'dex detail'
   }
 ];
 <SideBar menuItems={menuItems} logoSrc="../../../public/Images/corerz-logo.svg">

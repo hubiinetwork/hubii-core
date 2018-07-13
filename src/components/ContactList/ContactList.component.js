@@ -1,41 +1,124 @@
 import { List } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import StyledButton from '../ui/Button';
-import { StyledDiv, StyledList } from './ContactList.style';
-import Notification from '../Notification';
-import { Modal } from '../ui/Modal';
-import EditContactModal from '../EditContactModal';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import DeletionModal from 'components/DeletionModal';
+import EditContactModal from 'components/EditContactModal';
 
-/** The props of ContactList Component
- * @param {object[]} props.data contact list to populate.
- * @param {default" | "small" | "large} [props.size="small"] enum of the size of List.
- * @param {string} [props.layout="horizontal"] layout direction of the List.
- * @param {string} [props.message="There are no contacts added yet."] message to show when list is empty.
+import StyledButton from '../ui/Button';
+import { Modal } from '../ui/Modal';
+import Notification from '../Notification';
+import { StyledDiv, StyledList } from './ContactList.style';
+
+/**
+ * The ContactList Component shows list of contacts.
  */
-
 export default class ContactList extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false,
+      modalVisibility: false,
       name: '',
-      address: ''
+      address: '',
+      modalType: null,
     };
+    this.showNotification = this.showNotification.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.validateEdit = this.validateEdit.bind(this);
   }
+
+  onChange(input, type) {
+    this.setState({
+      [type]: input,
+    });
+  }
+
+  showNotification() {
+    const success = true;
+    const message = 'Address copied to clipboard.';
+    Notification(success, message);
+  }
+
+  showModal(item, modalType) {
+    this.setState({
+      modalVisibility: true,
+      name: item.name,
+      address: item.address,
+      modalType,
+    });
+  }
+
+  handleCancel() {
+    this.setState({
+      modalVisibility: false,
+    });
+  }
+
+  handleDelete() {
+    const { name, address } = this.state;
+    this.setState({ modalVisibility: false });
+    this.props.onDelete({ name, address });
+  }
+
+  validateEdit(address, oldAddress) {
+    const { data } = this.props;
+    const sameAddressList = data.filter((person) => person.address === address);
+    // can implement function to do additional validation
+    return sameAddressList.length && address !== oldAddress;
+  }
+
+  handleEdit(oldContact) {
+    const { onEdit } = this.props;
+    const { name, address } = this.state;
+    this.setState({ modalVisibility: false });
+    onEdit({ name, address }, oldContact);
+  }
+
   render() {
     const { size, layout, data } = this.props;
-    const Item = item => (
+    const { name, address, modalType } = this.state;
+    let modal;
+    if (modalType === 'delete') {
+      modal = (
+        <DeletionModal
+          name={name}
+          address={address}
+          onCancel={this.handleCancel}
+          onDelete={this.handleDelete}
+          type="contact"
+        />
+      );
+    } else {
+      modal = (
+        <EditContactModal
+          name={name}
+          address={address}
+          onEdit={(e) => this.handleEdit(e)}
+          onChange={(input, type) => this.onChange(input, type)}
+          validateEdit={(newAddress, oldAddress) => this.validateEdit(newAddress, oldAddress)}
+        />
+      );
+    }
+    const Item = (item) => (
       <List.Item
         actions={[
           <StyledButton
             type="primary"
             shape="circle"
+            icon="delete"
+            size={'small'}
+            onClick={() => this.showModal(item, 'delete')}
+          />,
+          <StyledButton
+            type="primary"
+            shape="circle"
             icon="edit"
             size={'small'}
-            onClick={() => this.showModal(item)}
-            key={1}
+            onClick={() => this.showModal(item, 'edit')}
           />,
           <CopyToClipboard text={item.address} key={2}>
             <StyledButton
@@ -44,9 +127,8 @@ export default class ContactList extends React.PureComponent {
               icon="copy"
               size={'small'}
               onClick={this.showNotification}
-              key={2}
             />
-          </CopyToClipboard>
+          </CopyToClipboard>,
         ]}
       >
         <List.Item.Meta title={item.name} description={item.address} />
@@ -63,62 +145,51 @@ export default class ContactList extends React.PureComponent {
         <Modal
           footer={null}
           width={'585px'}
-          maskClosable={false}
+          maskClosable
           maskStyle={{ background: 'rgba(232,237,239,.65)' }}
           style={{ marginTop: '20px' }}
-          visible={this.state.visible}
+          visible={this.state.modalVisibility}
           onCancel={this.handleCancel}
+          destroyOnClose
         >
-          <EditContactModal
-            name={this.state.name}
-            address={this.state.address}
-          />
+          {modal}
         </Modal>
       </div>
     ) : (
       <StyledDiv>{this.props.message}</StyledDiv>
     );
   }
-  showNotification = () => {
-    const success = true;
-    const meassage = 'Address copied to clipboard.';
-    Notification(success, meassage);
-  };
-  showModal = item => {
-    this.setState({
-      visible: true,
-      name: item.name,
-      address: item.address
-    });
-  };
-  handleCancel = () => {
-    this.setState({
-      visible: false
-    });
-  };
 }
 
 ContactList.defaultProps = {
   size: 'small',
   layout: 'horizontal',
-  message: 'There are no contacts added yet.'
+  message: 'There are no contacts added yet.',
 };
 
 ContactList.propTypes = {
   /**
-   * title of the ContactHeader.
+   * Array of contacts whose list is to be shown.
    */
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   /**
-   * title of the ContactHeader.
+   * Antd prop layout of list
    */
   layout: PropTypes.string,
   /**
-   * title of the ContactHeader.
+   * Message to shown if list is empty
    */
   message: PropTypes.string,
   /**
-   * title of the ContactHeader.
+   * size of antd list component
    */
-  size: PropTypes.oneOf(['default', 'small', 'large'])
+  size: PropTypes.oneOf(['default', 'small', 'large']),
+  /**
+   * Function to be executed when edit button of modal is pressed
+   */
+  onEdit: PropTypes.func.isRequired,
+  /**
+   * Function to be executed when delete button of modal is pressed
+   */
+  onDelete: PropTypes.func.isRequired,
 };

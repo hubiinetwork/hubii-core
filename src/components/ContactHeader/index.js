@@ -1,2 +1,2 @@
-import ContactHeader from "./ContactHeader.component";
+import ContactHeader from './ContactHeader.component';
 export default ContactHeader;

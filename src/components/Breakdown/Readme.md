@@ -1,7 +1,7 @@
 A variant of Breakdown component:
 
 ```js
-<div style={{ backgroundColor: 'rgba(0,0,0,0.65)', padding: 25 }}>
+<div style={{ backgroundColor: '#26404D', padding: 25 }}>
   <Breakdown
     data={[
       { label: 'ICX', percentage: 16, color: '#3df5cd' },

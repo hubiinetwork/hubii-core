@@ -1,23 +1,53 @@
-import * as React from "react";
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { InputSearch } from "../ui/Input";
-import { StyledDiv, Wrapper } from "./ContactHeader.style";
+import {
+  StyledDiv,
+  Wrapper,
+  StyledTabs,
+  StyledSearch,
+} from './ContactHeader.style';
+import { TabPane } from '../ui/StriimTabs';
 
-/*** The props of ContactHeader Component
- * @param {string} [props.title="All Contacts"] title of the ContactHeader component to shown at top the list.
- * @param {string} [props.placeholder="Filter"] placeholder to be shown in the search area.
- * @param {boolean} [props.showSearch=false] whether to show search bar or not.
+/** *
+ * The header of contact list component
  */
 
 export default class ContactHeader extends React.PureComponent {
-   render() {
-    const { title, placeholder, showSearch } = this.props;
+  constructor(props) {
+    super(props);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(value) {
+    this.props.onChange(value);
+  }
+
+  render() {
+    const {
+      title,
+      placeholder,
+      showSearch,
+      titleTabs,
+      onTabChange,
+    } = this.props;
     return (
       <StyledDiv>
         {title}
+        {titleTabs && (
+          <StyledTabs
+            defaultActiveKey={titleTabs[0].title}
+            onChange={onTabChange}
+          >
+            {titleTabs.map(({ title: tabTitle, TabContent }) => (
+              <TabPane tab={tabTitle} key={tabTitle} style={{ color: 'white' }}>
+                {TabContent}
+              </TabPane>
+            ))}
+          </StyledTabs>
+        )}
         {showSearch ? (
           <Wrapper>
-            <InputSearch placeholder={placeholder} enterButton />
+            <StyledSearch placeholder={placeholder} onChange={(e) => this.onChange(e.target.value)} />
           </Wrapper>
         ) : null}
       </StyledDiv>
@@ -26,25 +56,38 @@ export default class ContactHeader extends React.PureComponent {
 }
 
 ContactHeader.defaultProps = {
-  title: "All Contacts",
-  placeholder: "Filter",
-  showSearch: false
+  placeholder: 'Filter',
+  showSearch: false,
 };
 
 ContactHeader.propTypes = {
-
-    /**
+  /**
    * title of the ContactHeader.
    */
   title: PropTypes.string,
-    /**
+  /**
    * placeHolder of the search.
    */
   placeholder: PropTypes.string,
-    /**
+  /**
    * show of the search Bar or not.
    */
-  showSearch: PropTypes.boolean,
-
-
+  showSearch: PropTypes.bool,
+  /**
+   * Array of objects which contains title of tab and Tabcontent which is react component.
+   */
+  titleTabs: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      TabContent: PropTypes.node.isRequired,
+    }).isRequired
+  ),
+  /**
+   * Function executed when tab is changed
+   */
+  onTabChange: PropTypes.func,
+  /**
+   * Function triggered as text is inputted
+   */
+  onChange: PropTypes.func.isRequired,
 };

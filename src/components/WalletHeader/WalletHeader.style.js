@@ -3,9 +3,12 @@ import StyledButton from '../ui/Button';
 
 const Address = styled.span`
   display: flex;
-  color: ${({ theme }) => theme.palette.secondary};
+  color: ${({ theme }) => theme.palette.secondary6};
   font-size: 12px;
+  font-weight: 500;
   align-items: center;
+  line-height: 14px;
+  margin-top: 5px;
 `;
 
 const Balance = styled.span`
@@ -17,7 +20,7 @@ const Balance = styled.span`
 const CopyButton = styled(StyledButton)`
   margin-left: 8px;
   color: ${({ theme }) => theme.palette.secondary1};
-  background: ${({ theme }) => theme.palette.primary2};
+  background-color: ${({ theme }) => theme.palette.primary};
   border-color: ${({ theme }) => theme.palette.primary2};
   &:hover {
     color: ${({ theme }) => theme.palette.info} !important;
@@ -47,13 +50,20 @@ const HeaderDetail = styled.div`
 const Name = styled.span`
   color: white;
   font-size: 18px;
-  font-weight: 400;
+  line-height: 21px;
+  font-weight: 500;
 `;
 
 const WalletHeaderWrapper = styled.div`
   display: flex;
   background-color: ${({ theme }) => theme.palette.primary4};
   height: 72px;
+`;
+
+const OverflowHidden = styled.div`
+  overflow: hidden;
+  flex: 1;
+  display: flex;
 `;
 
 export {
@@ -63,5 +73,6 @@ export {
   DetailWrapper,
   CopyButton,
   Balance,
-  Address
+  Address,
+  OverflowHidden,
 };

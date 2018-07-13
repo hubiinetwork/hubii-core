@@ -2,7 +2,8 @@ import { Icon, Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SideBarLayout, SideBarMenu, MenuItemIcon } from './SideBar.style';
+import { getAbsolutePath } from 'utils/electron';
+import { SideBarLayout, SideBarMenu, Styledimg } from './SideBar.style';
 
 const { Sider } = Layout;
 
@@ -12,7 +13,7 @@ const { Sider } = Layout;
 
 const SideBar = ({ menuItems, logoSrc, children }) => (
   <SideBarLayout style={{ minHeight: '100vh' }}>
-    <Sider collapsed={true} collapsedWidth="72" trigger={null}>
+    <Sider collapsed collapsedWidth="72" trigger={null}>
       <SideBarMenu defaultSelectedKeys={['/']} mode="inline">
         <Menu.Item key="/" className="menu-logo">
           <Link to="/">
@@ -27,12 +28,15 @@ const SideBar = ({ menuItems, logoSrc, children }) => (
           </Link>
         </Menu.Item>
         {menuItems &&
-          menuItems.map(menuItem => (
+          menuItems.map((menuItem) => (
             <Menu.Item key={menuItem.to} className="menu-wallet">
               <Link to={menuItem.to}>
                 <div>
-                  <MenuItemIcon type={menuItem.icon} />
-                  <span>{menuItem.name}</span>
+                  <Styledimg
+                  // eslint-disable-next-line global-require
+                    src={getAbsolutePath(`public/Images/${menuItem.icon}.svg`)}
+                    alt=""
+                  />
                 </div>
               </Link>
             </Menu.Item>
@@ -58,7 +62,7 @@ SideBar.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       icon: PropTypes.string.isRequired,
-      to: PropTypes.string.isRequired
+      to: PropTypes.string.isRequired,
     })
   ),
   /**
@@ -67,8 +71,8 @@ SideBar.propTypes = {
   logoSrc: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default SideBar;
