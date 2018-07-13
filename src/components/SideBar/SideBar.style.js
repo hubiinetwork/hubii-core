@@ -70,6 +70,10 @@ const SideBarMenu = styled(Menu)`
     border-right: none;
     background: ${({ theme }) => theme.palette.dark} !important;
   }
+
+  .ant-tooltip {
+    display: none;
+  }
 `;
 
 const MenuItemIcon = styled(Icon)`

@@ -126,7 +126,3 @@ input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
-.ant-tooltip {
-  display: none;
-}

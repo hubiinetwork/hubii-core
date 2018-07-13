@@ -14,7 +14,7 @@ const { Sider } = Layout;
 const SideBar = ({ menuItems, logoSrc, children }) => (
   <SideBarLayout style={{ minHeight: '100vh' }}>
     <Sider collapsed collapsedWidth="72" trigger={null}>
-      <SideBarMenu defaultSelectedKeys={['/']} mode="inline">
+      <SideBarMenu defaultSelectedKeys={[menuItems[0].to]} mode="inline">
         <Menu.Item key="/" className="menu-logo">
           <Link to="/">
             <div>
@@ -45,7 +45,7 @@ const SideBar = ({ menuItems, logoSrc, children }) => (
                     />
                   )}
                   {menuItem.icon === 'striim' && (
-                    <SvgIcon viewBox="0 0 19 24" size="24">
+                    <SvgIcon viewBox="0 0 19 24">
                       <path
                         fill="#3df5cd"
                         fillRule="evenodd"

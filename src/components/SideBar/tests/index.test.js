@@ -30,7 +30,7 @@ describe('<SideBar />', () => {
   };
 
   it('should render correctly', () => {
-    const wrapper = shallow(<SideBar {...props} />);
+    const wrapper = shallow(<SideBar {...props}><div /></SideBar>);
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -38,7 +38,9 @@ describe('<SideBar />', () => {
     const wrapper = mount(
       <Router>
         <ThemeProvider theme={dark}>
-          <SideBar {...props} />
+          <SideBar {...props}>
+            <div></div>
+          </SideBar>
         </ThemeProvider>
       </Router>
     );
