@@ -43,11 +43,25 @@ describe('<ContactBook />', () => {
     contacts: fromJS([
       {
         name: 'mike',
-        address: '0x3123123',
+        address: '0x324234',
       },
       {
-        name: 'joe',
-        address: '0x123123123',
+        name: 'john',
+        address: '04234',
+      },
+      {
+        name: 'ester',
+        address: '0x344234',
+      },
+    ]),
+    recentContacts: fromJS([
+      {
+        name: 'mike',
+        address: '0x324234',
+      },
+      {
+        name: 'john',
+        address: '04234',
       },
     ]),
     removeContact: jest.fn(),
@@ -160,4 +174,3 @@ describe('<ContactBook />', () => {
     });
   });
 });
-
