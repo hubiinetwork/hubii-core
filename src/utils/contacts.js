@@ -1,6 +1,5 @@
 const MAX_RECENT_CONTACTS_LENGTH = 5;
 
-
 export function updateRecentContacts(allContacts, recentContacts, transaction) {
   const index = allContacts.findIndex((contact) => contact.address === transaction.to);
   if (index < 0) {

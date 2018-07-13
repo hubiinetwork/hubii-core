@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Form, Icon } from 'antd';
 import PropTypes from 'prop-types';
+import { isValidAddress } from 'ethereumjs-util';
 import {
   Text,
   Wrapper,
@@ -13,21 +14,27 @@ import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 /**
  * This component is used to add a new contact in ContactBook.
  */
-
 class AddNewContactModal extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.validateAddress = this.validateField.bind(this);
+    this.validateField = this.validateField.bind(this);
   }
 
-  validateField(rule, value, callback) {
+  validateField(rule, checkType, value, callback) {
     const { contacts } = this.props;
     // can add more validation for name if required
     if (rule.field === 'address') {
-      const sameAddressList = contacts.filter((person) => person.address === value.trim());
-      if (sameAddressList.length) {
-        callback('You have already saved this address');
+      if (checkType === 'inuse') {
+        const sameAddressList = contacts.filter((person) => person.address === value.trim());
+        if (sameAddressList.length) {
+          callback('You have already saved this address');
+        }
+      }
+      if (checkType === 'invalid') {
+        if (!isValidAddress(value.trim())) {
+          callback('invalid Address');
+        }
       }
     }
     callback();
@@ -79,7 +86,12 @@ class AddNewContactModal extends React.Component {
                 {
                   message: 'Address is already in use.',
                   required: true,
-                  validator: (rule, value, callback) => this.validateField(rule, value, callback),
+                  validator: (rule, value, callback) => this.validateField(rule, 'inuse', value, callback),
+                },
+                {
+                  message: 'Address is invalid.',
+                  required: true,
+                  validator: (rule, value, callback) => this.validateField(rule, 'invalid', value, callback),
                 },
               ],
             })(
@@ -102,10 +114,16 @@ class AddNewContactModal extends React.Component {
 }
 AddNewContactModal.propTypes = {
   /**
-   * function to handle onSubmit.
+   * Function to handle onSubmit.
    */
   onSubmit: PropTypes.func,
+  /**
+   * Form
+   */
   form: PropTypes.object,
+  /**
+   * Contacts array
+   */
   contacts: PropTypes.arrayOf(PropTypes.object),
 };
 

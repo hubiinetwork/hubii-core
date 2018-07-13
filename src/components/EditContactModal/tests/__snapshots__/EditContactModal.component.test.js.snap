@@ -141,6 +141,11 @@ ShallowWrapper {
                                                       "required": true,
                                                       "validator": [Function],
                                                     },
+                                                    Object {
+                                                      "message": "Address is invalid.",
+                                                      "required": true,
+                                                      "validator": [Function],
+                                                    },
                                                   ],
                                                   "trigger": "onChange",
                                                   "validate": Array [
@@ -152,6 +157,11 @@ ShallowWrapper {
                                                         },
                                                         Object {
                                                           "message": "This address is already under use",
+                                                          "required": true,
+                                                          "validator": [Function],
+                                                        },
+                                                        Object {
+                                                          "message": "Address is invalid.",
                                                           "required": true,
                                                           "validator": [Function],
                                                         },
@@ -313,6 +323,11 @@ ShallowWrapper {
                                                             "required": true,
                                                             "validator": [Function],
                                                           },
+                                                          Object {
+                                                            "message": "Address is invalid.",
+                                                            "required": true,
+                                                            "validator": [Function],
+                                                          },
                                                         ],
                                                         "trigger": "onChange",
                                                         "validate": Array [
@@ -324,6 +339,11 @@ ShallowWrapper {
                                                               },
                                                               Object {
                                                                 "message": "This address is already under use",
+                                                                "required": true,
+                                                                "validator": [Function],
+                                                              },
+                                                              Object {
+                                                                "message": "Address is invalid.",
                                                                 "required": true,
                                                                 "validator": [Function],
                                                               },
@@ -488,6 +508,11 @@ ShallowWrapper {
                                                     "required": true,
                                                     "validator": [Function],
                                                   },
+                                                  Object {
+                                                    "message": "Address is invalid.",
+                                                    "required": true,
+                                                    "validator": [Function],
+                                                  },
                                                 ],
                                                 "trigger": "onChange",
                                                 "validate": Array [
@@ -499,6 +524,11 @@ ShallowWrapper {
                                                       },
                                                       Object {
                                                         "message": "This address is already under use",
+                                                        "required": true,
+                                                        "validator": [Function],
+                                                      },
+                                                      Object {
+                                                        "message": "Address is invalid.",
                                                         "required": true,
                                                         "validator": [Function],
                                                       },
@@ -545,6 +575,11 @@ ShallowWrapper {
                       "required": true,
                       "validator": [Function],
                     },
+                    Object {
+                      "message": "Address is invalid.",
+                      "required": true,
+                      "validator": [Function],
+                    },
                   ],
                   "trigger": "onChange",
                   "validate": Array [
@@ -556,6 +591,11 @@ ShallowWrapper {
                         },
                         Object {
                           "message": "This address is already under use",
+                          "required": true,
+                          "validator": [Function],
+                        },
+                        Object {
+                          "message": "Address is invalid.",
                           "required": true,
                           "validator": [Function],
                         },
@@ -735,6 +775,11 @@ ShallowWrapper {
                                                                 "required": true,
                                                                 "validator": [Function],
                                                               },
+                                                              Object {
+                                                                "message": "Address is invalid.",
+                                                                "required": true,
+                                                                "validator": [Function],
+                                                              },
                                                             ],
                                                             "trigger": "onChange",
                                                             "validate": Array [
@@ -746,6 +791,11 @@ ShallowWrapper {
                                                                   },
                                                                   Object {
                                                                     "message": "This address is already under use",
+                                                                    "required": true,
+                                                                    "validator": [Function],
+                                                                  },
+                                                                  Object {
+                                                                    "message": "Address is invalid.",
                                                                     "required": true,
                                                                     "validator": [Function],
                                                                   },
@@ -907,6 +957,11 @@ ShallowWrapper {
                                                                     "required": true,
                                                                     "validator": [Function],
                                                                   },
+                                                                  Object {
+                                                                    "message": "Address is invalid.",
+                                                                    "required": true,
+                                                                    "validator": [Function],
+                                                                  },
                                                                 ],
                                                                 "trigger": "onChange",
                                                                 "validate": Array [
@@ -918,6 +973,11 @@ ShallowWrapper {
                                                                       },
                                                                       Object {
                                                                         "message": "This address is already under use",
+                                                                        "required": true,
+                                                                        "validator": [Function],
+                                                                      },
+                                                                      Object {
+                                                                        "message": "Address is invalid.",
                                                                         "required": true,
                                                                         "validator": [Function],
                                                                       },
@@ -1082,6 +1142,11 @@ ShallowWrapper {
                                                           "required": true,
                                                           "validator": [Function],
                                                         },
+                                                        Object {
+                                                          "message": "Address is invalid.",
+                                                          "required": true,
+                                                          "validator": [Function],
+                                                        },
                                                       ],
                                                       "trigger": "onChange",
                                                       "validate": Array [
@@ -1093,6 +1158,11 @@ ShallowWrapper {
                                                             },
                                                             Object {
                                                               "message": "This address is already under use",
+                                                              "required": true,
+                                                              "validator": [Function],
+                                                            },
+                                                            Object {
+                                                              "message": "Address is invalid.",
                                                               "required": true,
                                                               "validator": [Function],
                                                             },
@@ -1139,6 +1209,11 @@ ShallowWrapper {
                         "required": true,
                         "validator": [Function],
                       },
+                      Object {
+                        "message": "Address is invalid.",
+                        "required": true,
+                        "validator": [Function],
+                      },
                     ],
                     "trigger": "onChange",
                     "validate": Array [
@@ -1150,6 +1225,11 @@ ShallowWrapper {
                           },
                           Object {
                             "message": "This address is already under use",
+                            "required": true,
+                            "validator": [Function],
+                          },
+                          Object {
+                            "message": "Address is invalid.",
                             "required": true,
                             "validator": [Function],
                           },
