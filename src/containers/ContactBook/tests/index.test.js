@@ -10,19 +10,21 @@ describe('<ContactBook />', () => {
     describe('removeContact', () => {
       it('should call dispatch', () => {
         const contacts = [];
+        const recentContacts = [];
         const contact = {
           name: 'mike',
           address: '0x3424',
         };
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
-        result.removeContact(contacts, contact);
-        expect(dispatch).toHaveBeenCalledWith(removeContact(contacts, contact));
+        result.removeContact(contacts, recentContacts, contact);
+        expect(dispatch).toHaveBeenCalledWith(removeContact(contacts, recentContacts, contact));
       });
     });
     describe('editContact', () => {
       it('should call dispatch', () => {
         const contacts = [];
+        const recentContacts = [];
         const newContact = {
           name: 'mike',
           address: '0x3424',
@@ -33,8 +35,8 @@ describe('<ContactBook />', () => {
         };
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
-        result.editContact(contacts, newContact, oldContact);
-        expect(dispatch).toHaveBeenCalledWith(editContact(contacts, newContact, oldContact));
+        result.editContact(contacts, recentContacts, newContact, oldContact);
+        expect(dispatch).toHaveBeenCalledWith(editContact(contacts, recentContacts, newContact, oldContact));
       });
     });
   });
