@@ -41,7 +41,17 @@ export class LnsDerivationPathContainer extends React.Component { // eslint-disa
   }
 
   componentDidMount() {
-    this.fetchAddresses();
+    if (this.props.ledgerNanoSInfo.get('status') === 'connected') {
+      this.fetchAddresses();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const prevLedgerStatus = prevProps.ledgerNanoSInfo.get('status');
+    const curLedgerStatus = this.props.ledgerNanoSInfo.get('status');
+    if (prevLedgerStatus === 'disconnected' && curLedgerStatus === 'connected') {
+      this.fetchAddresses();
+    }
   }
 
   onChangePathBase(e) {
