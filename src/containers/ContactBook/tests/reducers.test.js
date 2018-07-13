@@ -45,6 +45,14 @@ describe('ContactBook reducer', () => {
       address: '0x342s32',
     },
   ];
+
+  const recentContacts = [
+    {
+      name: 'mike',
+      address: '0x342432',
+    },
+  ];
+
   it('should handle the remove contact success action', () => {
     const contact = {
       name: 'mike',
@@ -56,29 +64,37 @@ describe('ContactBook reducer', () => {
         address: '0x342s32',
       },
     ]));
-    expect(contactsReducer(state, removeContact(contacts, contact))).toEqual(expectedResult);
+    expect(contactsReducer(state, removeContact(contacts, recentContacts, contact))).toEqual(expectedResult);
   });
   it('should handle the edit contact success action', () => {
     const oldContact = {
       name: 'mike',
       address: '0x342432',
     };
+
     const newContact = {
       name: 'tim',
       address: '0x342s32',
     };
 
-    const expectedNewContactList = state.set('contacts', fromJS([
-      {
-        name: 'tim',
-        address: '0x342s32',
-      },
-      {
-        name: 'joe',
-        address: '0x342s32',
-      },
-    ]));
-    expect(contactsReducer(state, editContact(contacts, newContact, oldContact))).toEqual(expectedNewContactList);
+    const expectedNewContactList = state
+      .set('contacts', fromJS([
+        {
+          name: 'tim',
+          address: '0x342s32',
+        },
+        {
+          name: 'joe',
+          address: '0x342s32',
+        },
+      ]))
+      .set('recentContacts', fromJS([
+        {
+          name: 'tim',
+          address: '0x342s32',
+        },
+      ]));
+    expect(contactsReducer(state, editContact(contacts, recentContacts, newContact, oldContact))).toEqual(expectedNewContactList);
   });
   it('should handle the transfer success action', () => {
     const transaction = {

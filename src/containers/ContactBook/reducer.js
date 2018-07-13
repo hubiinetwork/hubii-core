@@ -31,10 +31,12 @@ function contactsReducer(state = initialState, action) {
       .update('contacts', (contacts) => contacts.push(fromJS(action.contactDetails)));
     case REMOVE_CONTACT:
       return state
-        .set('contacts', fromJS(action.remainingContacts));
+        .set('contacts', fromJS(action.remainingContacts))
+        .set('recentContacts', fromJS(action.remainingRecentContacts));
     case EDIT_CONTACT:
       return state
-        .set('contacts', fromJS(action.newContactsList));
+        .set('contacts', fromJS(action.newContactsList))
+        .set('recentContacts', fromJS(action.newRecentContactsList));
     case TRANSFER_SUCCESS: {
       const recentContacts = updateRecentContacts(state.get('contacts').toJS(), state.get('recentContacts').toJS(), action.transaction);
       return state
