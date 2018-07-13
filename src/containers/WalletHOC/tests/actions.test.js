@@ -24,7 +24,6 @@ import {
   LEDGER_DETECTED,
   LEDGER_ERROR,
   DELETE_WALLET,
-  ADD_NEW_WALLET,
 } from '../constants';
 
 import getFriendlyError from '../../../utils/ledger/friendlyErrors';
@@ -179,7 +178,7 @@ describe('WalletHoc actions', () => {
         derivationPath,
       };
       const expected = {
-        type: ADD_NEW_WALLET,
+        type: CREATE_WALLET_SUCCESS,
         newWallet,
       };
       expect(saveLedgerAddress(name, derivationPath, deviceId, address)).toEqual(expected);
