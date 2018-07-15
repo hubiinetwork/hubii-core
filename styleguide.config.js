@@ -6,6 +6,6 @@ module.exports = {
   styleguideComponents: {
     Wrapper: path.join(__dirname, 'src/themes/Wrapper.js'),
   },
-  require: ['antd/dist/antd.css', path.join(__dirname, 'public/index.css')],
+  require: [path.resolve(__dirname, 'internals/scripts/styleguide-setup.js'), 'antd/dist/antd.css', path.join(__dirname, 'public/index.css')],
   webpackConfig,
 };
