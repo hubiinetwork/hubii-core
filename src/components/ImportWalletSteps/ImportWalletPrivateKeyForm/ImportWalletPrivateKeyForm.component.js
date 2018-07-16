@@ -29,7 +29,6 @@ class ImportWalletPrivateKey extends React.Component {
     e.preventDefault();
     form.validateFields((err, values) => {
       if (!err && handleNext) {
-        console.log(values);
         handleNext(values);
       }
     });
