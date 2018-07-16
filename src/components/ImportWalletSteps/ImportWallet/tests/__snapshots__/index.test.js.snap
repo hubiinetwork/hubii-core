@@ -12,8 +12,7 @@ ShallowWrapper {
               "src": "https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png",
             },
             Object {
-              "name": "metamask",
-              "src": "https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png",
+              "name": "Private Key",
             },
           ]
     }
@@ -44,12 +43,12 @@ ShallowWrapper {
                     </ImportWallet.style__Center>
           </ImportWallet.style__CoinButton>
           <ImportWallet.style__CoinButton
-                    value="metamask"
+                    value="Private Key"
           >
                     <ImportWallet.style__Center>
-                              <ImportWallet.style__Image
-                                        src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                              />
+                              <ImportWallet.style__OptionText>
+                                        Private Key
+                              </ImportWallet.style__OptionText>
                     </ImportWallet.style__Center>
           </ImportWallet.style__CoinButton>
 </ImportWallet.style__Coins>,
@@ -84,12 +83,12 @@ ShallowWrapper {
               </ImportWallet.style__Center>
 </ImportWallet.style__CoinButton>,
             <ImportWallet.style__CoinButton
-              value="metamask"
+              value="Private Key"
 >
               <ImportWallet.style__Center>
-                            <ImportWallet.style__Image
-                                          src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                            />
+                            <ImportWallet.style__OptionText>
+                                          Private Key
+                            </ImportWallet.style__OptionText>
               </ImportWallet.style__Center>
 </ImportWallet.style__CoinButton>,
           ],
@@ -137,15 +136,15 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": "metamask",
+            "key": "Private Key",
             "nodeType": "class",
             "props": Object {
               "children": <ImportWallet.style__Center>
-                <ImportWallet.style__Image
-                                src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                />
+                <ImportWallet.style__OptionText>
+                                Private Key
+                </ImportWallet.style__OptionText>
 </ImportWallet.style__Center>,
-              "value": "metamask",
+              "value": "Private Key",
             },
             "ref": null,
             "rendered": Object {
@@ -153,9 +152,9 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <ImportWallet.style__Image
-                  src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-/>,
+                "children": <ImportWallet.style__OptionText>
+                  Private Key
+</ImportWallet.style__OptionText>,
               },
               "ref": null,
               "rendered": Object {
@@ -163,10 +162,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "src": "https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png",
+                  "children": "Private Key",
                 },
                 "ref": null,
-                "rendered": null,
+                "rendered": "Private Key",
                 "type": [Function],
               },
               "type": [Function],
@@ -243,12 +242,12 @@ ShallowWrapper {
                         </ImportWallet.style__Center>
             </ImportWallet.style__CoinButton>
             <ImportWallet.style__CoinButton
-                        value="metamask"
+                        value="Private Key"
             >
                         <ImportWallet.style__Center>
-                                    <ImportWallet.style__Image
-                                                src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                                    />
+                                    <ImportWallet.style__OptionText>
+                                                Private Key
+                                    </ImportWallet.style__OptionText>
                         </ImportWallet.style__Center>
             </ImportWallet.style__CoinButton>
 </ImportWallet.style__Coins>,
@@ -283,12 +282,12 @@ ShallowWrapper {
                 </ImportWallet.style__Center>
 </ImportWallet.style__CoinButton>,
               <ImportWallet.style__CoinButton
-                value="metamask"
+                value="Private Key"
 >
                 <ImportWallet.style__Center>
-                                <ImportWallet.style__Image
-                                                src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                                />
+                                <ImportWallet.style__OptionText>
+                                                Private Key
+                                </ImportWallet.style__OptionText>
                 </ImportWallet.style__Center>
 </ImportWallet.style__CoinButton>,
             ],
@@ -336,15 +335,15 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "metamask",
+              "key": "Private Key",
               "nodeType": "class",
               "props": Object {
                 "children": <ImportWallet.style__Center>
-                  <ImportWallet.style__Image
-                                    src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-                  />
+                  <ImportWallet.style__OptionText>
+                                    Private Key
+                  </ImportWallet.style__OptionText>
 </ImportWallet.style__Center>,
-                "value": "metamask",
+                "value": "Private Key",
               },
               "ref": null,
               "rendered": Object {
@@ -352,9 +351,9 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": <ImportWallet.style__Image
-                    src="https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png"
-/>,
+                  "children": <ImportWallet.style__OptionText>
+                    Private Key
+</ImportWallet.style__OptionText>,
                 },
                 "ref": null,
                 "rendered": Object {
@@ -362,10 +361,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "src": "https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png",
+                    "children": "Private Key",
                   },
                   "ref": null,
-                  "rendered": null,
+                  "rendered": "Private Key",
                   "type": [Function],
                 },
                 "type": [Function],

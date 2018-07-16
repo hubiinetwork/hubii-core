@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
 `;
 
 export const InnerWrapper1 = styled.div`
+  display: ${(props) => props.contactsPresent ? 'block' : 'none'};
   color: white;
   min-width: 30rem;
 `;

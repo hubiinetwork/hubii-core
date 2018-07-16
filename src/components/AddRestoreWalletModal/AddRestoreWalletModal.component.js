@@ -97,8 +97,7 @@ export default class AddRestoreWalletModal extends React.Component {
                   name: 'ledger',
                 },
                 {
-                  src: getAbsolutePath('public/Images/metamask_wallet.png'),
-                  name: 'metamask',
+                  name: 'Private Key',
                 },
               ]}
               onBackIcon={() => this.switchModals('main')}

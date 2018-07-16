@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -13,7 +12,7 @@ import {
 
 import ImportWallet from './ImportWallet';
 import ImportWalletNameForm from './ImportWalletNameForm';
-import ImportWalletMetamaskForm from './ImportWalletMetamaskForm';
+import ImportWalletPrivateKeyForm from './ImportWalletPrivateKeyForm';
 import FormSteps from '../FormSteps';
 
 export default class ImportWalletSteps extends React.Component {
@@ -29,34 +28,9 @@ export default class ImportWalletSteps extends React.Component {
     this.handleNext = this.handleNext.bind(this);
   }
 
-  searchSRC(logoName, wallets) {
-    return wallets.find((wallet) => wallet.name === logoName);
-  }
-
-  handleBack() {
-    this.setState(({ current }) => ({ current: current - 1 }));
-  }
-
-  handleNext(stepData) {
+  getSteps() {
+    const { selectedWallet } = this.state;
     const { wallets } = this.props;
-    this.setState((prev) => {
-      const { data, current } = prev;
-      data[current] = stepData;
-      const steps = this.getSteps()
-      if (current === steps.length - 1) {
-        return this.props.handleSubmit(data);
-      }
-      if (current === 0) {
-        const selectedWallet = this.searchSRC(stepData.walletType, wallets);
-        return { data, current: current + 1, selectedWallet };
-      }
-      return { data, current: current + 1 };
-    });
-  }
-
-  getSteps () {
-    const {selectedWallet} = this.state
-    const {wallets} = this.props
     const steps = [
       {
         title: 'First',
@@ -76,7 +50,7 @@ export default class ImportWalletSteps extends React.Component {
             <LnsDerivationPathContainer
               handleBack={this.handleBack}
               handleNext={this.handleNext}
-          />
+            />
             ),
         },
         {
@@ -90,25 +64,50 @@ export default class ImportWalletSteps extends React.Component {
           ),
         },
       ],
-      metamask: [
+      'Private Key': [
         {
           title: 'Last',
           content: (
-            <ImportWalletMetamaskForm
+            <ImportWalletPrivateKeyForm
               wallet={selectedWallet}
               handleBack={this.handleBack}
               handleNext={this.handleNext}
             />
           ),
         },
-      ]
-    }
-    return steps.concat(stepTypes[selectedWallet.name || 'metamask'])
+      ],
+    };
+    return steps.concat(stepTypes[selectedWallet.name || 'Private Key']);
+  }
+
+  searchSRC(logoName, wallets) {
+    return wallets.find((wallet) => wallet.name === logoName);
+  }
+
+  handleBack() {
+    this.setState(({ current }) => ({ current: current - 1 }));
+  }
+
+  handleNext(stepData) {
+    const { wallets } = this.props;
+    this.setState((prev) => {
+      const { data, current } = prev;
+      data[current] = stepData;
+      const steps = this.getSteps();
+      if (current === steps.length - 1) {
+        return this.props.handleSubmit(data);
+      }
+      if (current === 0) {
+        const selectedWallet = this.searchSRC(stepData.walletType, wallets);
+        return { data, current: current + 1, selectedWallet };
+      }
+      return { data, current: current + 1 };
+    });
   }
 
   render() {
-    const { current, data} = this.state;
-    const { onBackIcon, } = this.props;
+    const { current, data } = this.state;
+    const { onBackIcon } = this.props;
     const FormNavigation = (
       <Between>
         <Flex>
@@ -117,7 +116,7 @@ export default class ImportWalletSteps extends React.Component {
         </Flex>
       </Between>
     );
-    const steps = this.getSteps()
+    const steps = this.getSteps();
     return (
       <FormSteps steps={steps} currentStep={current} beforeContent={FormNavigation} />
     );
