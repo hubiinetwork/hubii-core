@@ -12,8 +12,6 @@ Omphalos UI is a multiplatform desktop application built with Electron, React, R
 
 * NodeJS LTS
 * Yarn LTS
-* Python v2.7.10 (used by node-gyp to build native Nodejs addons for hardware wallet support)
-* A C++ compiler
 
 ## Install
 
