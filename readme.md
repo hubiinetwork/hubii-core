@@ -132,4 +132,6 @@ Once the backend API is ready, we will use it instead of json-server.
 
 ## Folders
 
+*Section WIP*
+
 *public*: We use [copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin) to copy the files to `build/public`. This folder would hold the assets such as images/fonts. These asset files can be referenced by path `/public/[path_of_asset_file]`.
