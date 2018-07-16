@@ -15,9 +15,10 @@ import {
   StyledBackButton,
   StyledButton,
   StyledSpan,
-} from './ImportWalletMetamaskForm.style';
+} from './ImportWalletPrivateKeyForm.style';
 import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
-class ImportWalletMetamaskForm extends React.Component {
+
+class ImportWalletPrivateKey extends React.Component {
   constructor(props) {
     super(props);
     this.handleFinish = this.handleFinish.bind(this);
@@ -28,6 +29,7 @@ class ImportWalletMetamaskForm extends React.Component {
     e.preventDefault();
     form.validateFields((err, values) => {
       if (!err && handleNext) {
+        console.log(values);
         handleNext(values);
       }
     });
@@ -37,13 +39,11 @@ class ImportWalletMetamaskForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-        <IconDiv>
-          <Image src={this.props.wallet.src} />
-        </IconDiv>
         <Form
           onSubmit={this.handleFinish}
           layout="vertical"
           style={{
+            marginTop: '5rem',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -53,14 +53,14 @@ class ImportWalletMetamaskForm extends React.Component {
             <ModalFormItem
               label={
                 <StyledModalFormLabel>
-                  Give your Wallet a Name
+                  Name
                 </StyledModalFormLabel>
               }
             >
               {getFieldDecorator('name', {
                 rules: [
                   {
-                    message: 'Name is required.',
+                    message: 'Required field',
                     required: true,
                   },
                 ],
@@ -69,14 +69,14 @@ class ImportWalletMetamaskForm extends React.Component {
             <ModalFormItem
               label={
                 <StyledModalFormLabel>
-                  Wallet Private Key
+                  Private Key
                 </StyledModalFormLabel>
               }
             >
               {getFieldDecorator('privateKey', {
                 rules: [
                   {
-                    message: 'Private Key is required.',
+                    message: 'Required field',
                     required: true,
                   },
                 ],
@@ -84,13 +84,13 @@ class ImportWalletMetamaskForm extends React.Component {
             </ModalFormItem>
             <ModalFormItem
               label={
-                <StyledModalFormLabel>Set a password</StyledModalFormLabel>
+                <StyledModalFormLabel>Password</StyledModalFormLabel>
               }
             >
               {getFieldDecorator('password', {
                 rules: [
                   {
-                    message: 'password is required.',
+                    message: 'Required field',
                     required: true,
                   },
                 ],
@@ -104,7 +104,7 @@ class ImportWalletMetamaskForm extends React.Component {
               {getFieldDecorator('repeatPassword', {
                 rules: [
                   {
-                    message: 'Repeat password is required.',
+                    message: 'Required field',
                     required: true,
                   },
                 ],
@@ -124,4 +124,4 @@ class ImportWalletMetamaskForm extends React.Component {
     );
   }
 }
-export default Form.create()(ImportWalletMetamaskForm);
+export default Form.create()(ImportWalletPrivateKey);

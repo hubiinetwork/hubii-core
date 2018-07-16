@@ -8,6 +8,7 @@ import {
   CoinButton,
   StyledSpan,
   StyledButton,
+  OptionText,
 } from './ImportWallet.style';
 
 class ImportWallet extends React.Component {
@@ -39,7 +40,13 @@ class ImportWallet extends React.Component {
           {this.props.wallets.map((wallet) => (
             <CoinButton value={wallet.name} key={wallet.name}>
               <Center>
-                <Image src={wallet.src} />
+                {
+                  wallet.src
+                  ?
+                    <Image src={wallet.src} />
+                  :
+                    <OptionText>{wallet.name}</OptionText>
+                }
               </Center>
             </CoinButton>
           ))}

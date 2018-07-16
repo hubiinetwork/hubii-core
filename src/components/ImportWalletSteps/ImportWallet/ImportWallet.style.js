@@ -14,7 +14,12 @@ export const Coins = styled(Radio.Group)`
   }
 `;
 const RadioButton = Radio.Button;
+
 export const CoinButton = styled(RadioButton)`
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 15px;
   padding-top: 8px;
   background-color: transparent;
@@ -31,6 +36,11 @@ export const Flex = styled.div`
 export const Image = styled.img`
   width: 90px;
   height: 30px;
+`;
+
+export const OptionText = styled.h3`
+  color: white;
+  vertical-align: center;
 `;
 
 export const Center = styled.div`
