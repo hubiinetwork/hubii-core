@@ -51,7 +51,7 @@ export class EditContactModal extends React.Component {
     if (rule.field === 'address') {
       if (checkType === 'inuse') {
         const sameAddressList = contacts.filter((person) => person.address === value.trim());
-        if (sameAddressList.length && this.props.address !== this.state.oldAddress) {
+        if (sameAddressList.length && value.trim() !== this.state.oldAddress) {
           callback('You have already saved this address');
         }
       }
@@ -98,14 +98,14 @@ export class EditContactModal extends React.Component {
                   required: true,
                 },
                 {
-                  message: 'This address is already under use',
-                  required: true,
-                  validator: (rule, value, callback) => this.validateField(rule, 'inuse', value, callback),
-                },
-                {
                   message: 'Address is invalid.',
                   required: true,
                   validator: (rule, value, callback) => this.validateField(rule, 'invalid', value, callback),
+                },
+                {
+                  message: 'This address is already under use',
+                  required: true,
+                  validator: (rule, value, callback) => this.validateField(rule, 'inuse', value, callback),
                 },
               ],
               initialValue: this.props.address,
@@ -130,11 +130,11 @@ EditContactModal.propTypes = {
   /**
    * Name of contact.
    */
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   /**
    * Address of contact.
    */
-  address: PropTypes.string.isRequired,
+  address: PropTypes.string,
   /**
    * Function to be executed when edit button is pressed
    */
