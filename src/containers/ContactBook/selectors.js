@@ -7,10 +7,16 @@ const selectContactsDomain = (state) => state.get('contacts');
 
 const makeSelectContacts = () => createSelector(
   selectContactsDomain,
-  (contactsDomain) => contactsDomain
+  (contactsDomain) => contactsDomain.get('contacts')
+);
+
+const makeSelectRecentContacts = () => createSelector(
+  selectContactsDomain,
+  (contactsDomain) => contactsDomain.get('recentContacts')
 );
 
 export {
   makeSelectContacts,
+  makeSelectRecentContacts,
   selectContactsDomain,
 };

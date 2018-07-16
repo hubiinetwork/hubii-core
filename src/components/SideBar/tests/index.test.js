@@ -11,26 +11,30 @@ describe('<SideBar />', () => {
     {
       to: '/wallets',
       icon: 'wallet',
-      name: 'Wallet Manager',
+      name: 'Wallet Manager'
     },
     {
       to: '/wallet',
       icon: 'striim',
-      name: 'striim detail',
+      name: 'striim detail'
     },
     {
       to: '/dex',
       icon: 'dex',
-      name: 'dex detail',
-    },
+      name: 'dex detail'
+    }
   ];
   const props = {
     menuItems,
-    logoSrc: '../../../public/Images/corerz-logo.svg',
+    logoSrc: '../../../public/Images/corerz-logo.svg'
   };
 
   it('should render correctly', () => {
-    const wrapper = shallow(<SideBar {...props} />);
+    const wrapper = shallow(
+      <SideBar {...props}>
+        <div />
+      </SideBar>
+    );
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -38,7 +42,9 @@ describe('<SideBar />', () => {
     const wrapper = mount(
       <Router>
         <ThemeProvider theme={dark}>
-          <SideBar {...props} />
+          <SideBar {...props}>
+            <div />
+          </SideBar>
         </ThemeProvider>
       </Router>
     );

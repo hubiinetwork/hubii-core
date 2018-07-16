@@ -14,7 +14,7 @@ const { Sider } = Layout;
 const SideBar = ({ menuItems, logoSrc, children }) => (
   <SideBarLayout style={{ minHeight: '100vh' }}>
     <Sider collapsed collapsedWidth="72" trigger={null}>
-      <SideBarMenu defaultSelectedKeys={['/']} mode="inline">
+      <SideBarMenu defaultSelectedKeys={[menuItems[0].to]} mode="inline">
         <Menu.Item key="/" className="menu-logo">
           <Link to="/">
             <div>
@@ -28,14 +28,14 @@ const SideBar = ({ menuItems, logoSrc, children }) => (
           </Link>
         </Menu.Item>
         {menuItems &&
-          menuItems.map((menuItem) => (
+          menuItems.map(menuItem => (
             <Menu.Item key={menuItem.to} className="menu-wallet">
               <Link to={menuItem.to}>
                 <div
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    alignItems: 'center',
+                    alignItems: 'center'
                   }}
                 >
                   {menuItem.icon === 'wallet' && (
@@ -45,7 +45,7 @@ const SideBar = ({ menuItems, logoSrc, children }) => (
                     />
                   )}
                   {menuItem.icon === 'striim' && (
-                    <SvgIcon viewBox="0 0 19 24" size="24">
+                    <SvgIcon viewBox="0 0 19 24">
                       <path
                         fill="#3df5cd"
                         fillRule="evenodd"
@@ -95,7 +95,7 @@ SideBar.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       icon: PropTypes.string.isRequired,
-      to: PropTypes.string.isRequired,
+      to: PropTypes.string.isRequired
     })
   ),
   /**
@@ -104,8 +104,8 @@ SideBar.propTypes = {
   logoSrc: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
+    PropTypes.node
+  ]).isRequired
 };
 
 export default SideBar;
