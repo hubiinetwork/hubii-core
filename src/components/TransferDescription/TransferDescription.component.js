@@ -125,7 +125,7 @@ export default class TransferDescription extends React.PureComponent {
                 <StyledButtonCancel type="secondary" onClick={onCancel}>
                   {'Cancel'}
                 </StyledButtonCancel>
-                <StyledButton type="primary" onClick={onSend} >
+                <StyledButton type="primary" onClick={onSend} disabled>
                   {buttonLabel}
                 </StyledButton>
               </StyledDiv>
