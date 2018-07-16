@@ -148,7 +148,7 @@ describe('WalletManager', () => {
         );
         const instance = dom.instance();
         const args = [{
-          walletType: 'metamask',
+          walletType: 'Private Key',
         }, {
           privateKey: 'privateKey',
           name: 'name',
