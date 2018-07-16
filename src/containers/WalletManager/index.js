@@ -89,7 +89,7 @@ export class WalletManager extends React.PureComponent {
   }
 
   handleImportWalletSubmit(data) {
-    if (data[0].walletType === 'metamask') {
+    if (data[0].walletType === 'Private Key') {
       const { privateKey, name, password } = data[1];
       this.props.createWalletFromPrivateKey(privateKey, name, password);
     } else if (data[0].walletType === 'ledger') {

@@ -9,8 +9,7 @@ const walletData = [
     name: 'ledger',
   },
   {
-    src: 'https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png',
-    name: 'metamask',
+    name: 'Private Key',
   },
 ];
 
