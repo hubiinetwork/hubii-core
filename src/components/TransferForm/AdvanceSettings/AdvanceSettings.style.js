@@ -17,6 +17,9 @@ const styledCollapse = styled(Collapse)`
   .ant-collapse-item {
     border-bottom: none !important;
   }
+  .ant-collapse-header{
+    width: fit-content;
+  }
   .ant-collapse-content {
     padding-right: 0px !important;
   }
