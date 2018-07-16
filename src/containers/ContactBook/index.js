@@ -60,7 +60,7 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
         </Helmet>
 
         <Wrapper>
-          <InnerWrapper1>
+          <InnerWrapper1 contactsPresent={contacts.length}>
             <ContactHeader
               title={'Recent Contacts'}
               showSearch
@@ -71,6 +71,7 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
                 data={this.filterSearchText(recentContacts, 'recentFilterText')}
                 onEdit={(newContact, oldContact) => this.props.editContact(contacts, recentContacts, newContact, oldContact)}
                 onDelete={(contact) => this.props.removeContact(contacts, recentContacts, contact)}
+                message={'You have no recent contacts.'}
               />
             </Border>
           </InnerWrapper1>
