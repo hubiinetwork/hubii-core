@@ -57,6 +57,7 @@ export const StyledTitle = styled(Col)`
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
+  white-space: nowrap;
 `;
 export const StyledCol = styled(Col)`
   color: ${({ theme }) => theme.palette.secondary};
