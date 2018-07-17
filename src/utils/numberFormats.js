@@ -3,4 +3,5 @@ export const formatFiat = (amount, currency) => new Intl.NumberFormat('en-US', {
   currency,
 }).format(amount);
 
-export const formatEth = (amount) => amount.toFixed(5);
+// Accurate within 1 cent USD worth of Eth as of July 2018
+export const approxEth = (amount) => Number(amount.toFixed(5));
