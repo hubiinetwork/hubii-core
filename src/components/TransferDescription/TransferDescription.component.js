@@ -13,6 +13,7 @@ import {
   StyledSpin,
 } from './TransferDescription.style';
 import TransferDescriptionList from '../TransferDescriptionList';
+import { formatFiat } from '../../utils/numberFormats';
 
 /**
  * The TransferDescription Component
@@ -28,7 +29,6 @@ export default class TransferDescription extends React.PureComponent {
       selectedToken,
       transactionFee,
       ethInformation,
-      currencySymbol,
       onSend,
       onCancel,
     } = this.props;
@@ -47,7 +47,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={totalAmount}
             labelSymbol={selectedToken.symbol}
-            value={(totalAmount * selectedToken.price.USD).toLocaleString('en', { currency: 'USD' })}
+            value={formatFiat(totalAmount * selectedToken.price.USD, 'USD')}
           />
         </Row>
         <Row>
@@ -57,7 +57,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={amountToSend}
             labelSymbol={selectedToken.symbol}
-            value={(amountToSend * selectedToken.price.USD).toLocaleString('en', { currency: 'USD' })}
+            value={formatFiat(amountToSend * selectedToken.price.USD, 'USD')}
           />
         </Row>
         <Row>
@@ -73,7 +73,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={transactionFee}
             labelSymbol={selectedToken.symbol}
-            value={(transactionFee * ethInformation.price.USD).toLocaleString('en', { currency: 'USD' })}
+            value={formatFiat(transactionFee * ethInformation.price.USD, 'USD')}
           />
         </Row>
         <Row>
@@ -83,7 +83,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={amountToSend + transactionFee}
             labelSymbol={selectedToken.symbol}
-            value={((amountToSend * parseFloat(selectedToken.price.USD)) + (transactionFee * parseFloat(ethInformation.price.USD))).toLocaleString('en', { currency: 'USD' })}
+            value={formatFiat((amountToSend * parseFloat(selectedToken.price.USD)) + (transactionFee * parseFloat(ethInformation.price.USD)), 'USD')}
           />
         </Row>
         <Row>
@@ -99,10 +99,10 @@ export default class TransferDescription extends React.PureComponent {
                 : totalAmount - amountToSend
             }
             labelSymbol={selectedToken.symbol}
-            value={(
+            value={formatFiat(
               (totalAmount - amountToSend) *
               +selectedToken.price.USD
-            ).toLocaleString('en', { currency: 'USD' })}
+            , 'USD')}
           />
         </Row>
         <Row>
@@ -110,8 +110,7 @@ export default class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           <BalanceCol>
-            {currencySymbol}
-            {remainingBalance.toLocaleString('en', { currency: 'USD' })}
+            {formatFiat(remainingBalance, 'USD')}
           </BalanceCol>
         </Row>
         {
@@ -138,7 +137,6 @@ export default class TransferDescription extends React.PureComponent {
 
 TransferDescription.defaultProps = {
   title: 'Transaction Description',
-  currencySymbol: '$',
   buttonLabel: 'Send',
 };
 
@@ -151,10 +149,6 @@ TransferDescription.propTypes = {
    * button label of the TransferDescription.
    */
   buttonLabel: PropTypes.string,
-  /**
-   * currency sign of the TransferDescription.
-   */
-  currencySymbol: PropTypes.string,
   /**
    * receipient of the TransferDescription.
    */

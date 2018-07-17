@@ -14,6 +14,7 @@ import {
 import USBFlag from '../USBFlag';
 import Notification from '../Notification';
 import WalletHeaderIcon from './WalletHeaderIcon';
+import { formatFiat } from '../../utils/numberFormats';
 
 /**
  * The WalletHeader Component
@@ -54,7 +55,7 @@ const WalletHeader = (props) => {
             </Address>
           </DetailWrapper>
           <DetailWrapper>
-            <Balance>${props.balance.toLocaleString('en', { currency: 'USD' })}</Balance>
+            <Balance>${formatFiat(props.balance, 'USD')}</Balance>
           </DetailWrapper>
         </HeaderDetail>
       </OverflowHidden>
