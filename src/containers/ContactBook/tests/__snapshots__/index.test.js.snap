@@ -62,7 +62,9 @@ ShallowWrapper {
           />
 </HelmetWrapper>,
         <index.style__Wrapper>
-          <index.style__InnerWrapper1>
+          <index.style__InnerWrapper1
+                    contactsPresent={3}
+          >
                     <ContactHeader
                               onChange={[Function]}
                               placeholder="Filter"
@@ -86,7 +88,7 @@ ShallowWrapper {
                                                           ]
                                         }
                                         layout="horizontal"
-                                        message="There are no contacts added yet."
+                                        message="You have no recent contacts."
                                         onDelete={[Function]}
                                         onEdit={[Function]}
                                         size="small"
@@ -121,7 +123,7 @@ ShallowWrapper {
                                                           ]
                                         }
                                         layout="horizontal"
-                                        message="There are no contacts added yet."
+                                        message="You have not added any contacts."
                                         onDelete={[Function]}
                                         onEdit={[Function]}
                                         size="small"
@@ -184,7 +186,9 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <index.style__InnerWrapper1>
+            <index.style__InnerWrapper1
+              contactsPresent={3}
+>
               <ContactHeader
                             onChange={[Function]}
                             placeholder="Filter"
@@ -208,7 +212,7 @@ ShallowWrapper {
                                                                     ]
                                           }
                                           layout="horizontal"
-                                          message="There are no contacts added yet."
+                                          message="You have no recent contacts."
                                           onDelete={[Function]}
                                           onEdit={[Function]}
                                           size="small"
@@ -243,7 +247,7 @@ ShallowWrapper {
                                                                     ]
                                           }
                                           layout="horizontal"
-                                          message="There are no contacts added yet."
+                                          message="You have not added any contacts."
                                           onDelete={[Function]}
                                           onEdit={[Function]}
                                           size="small"
@@ -283,13 +287,14 @@ ShallowWrapper {
                                                                       ]
                                     }
                                     layout="horizontal"
-                                    message="There are no contacts added yet."
+                                    message="You have no recent contacts."
                                     onDelete={[Function]}
                                     onEdit={[Function]}
                                     size="small"
                   />
 </index.style__Border>,
               ],
+              "contactsPresent": 3,
             },
             "ref": null,
             "rendered": Array [
@@ -326,7 +331,7 @@ ShallowWrapper {
                                                           ]
                     }
                     layout="horizontal"
-                    message="There are no contacts added yet."
+                    message="You have no recent contacts."
                     onDelete={[Function]}
                     onEdit={[Function]}
                     size="small"
@@ -350,7 +355,7 @@ ShallowWrapper {
                       },
                     ],
                     "layout": "horizontal",
-                    "message": "There are no contacts added yet.",
+                    "message": "You have no recent contacts.",
                     "onDelete": [Function],
                     "onEdit": [Function],
                     "size": "small",
@@ -397,7 +402,7 @@ ShallowWrapper {
                                                                       ]
                                     }
                                     layout="horizontal"
-                                    message="There are no contacts added yet."
+                                    message="You have not added any contacts."
                                     onDelete={[Function]}
                                     onEdit={[Function]}
                                     size="small"
@@ -444,7 +449,7 @@ ShallowWrapper {
                                                           ]
                     }
                     layout="horizontal"
-                    message="There are no contacts added yet."
+                    message="You have not added any contacts."
                     onDelete={[Function]}
                     onEdit={[Function]}
                     size="small"
@@ -472,7 +477,7 @@ ShallowWrapper {
                       },
                     ],
                     "layout": "horizontal",
-                    "message": "There are no contacts added yet.",
+                    "message": "You have not added any contacts.",
                     "onDelete": [Function],
                     "onEdit": [Function],
                     "size": "small",
@@ -512,7 +517,9 @@ ShallowWrapper {
             />
 </HelmetWrapper>,
           <index.style__Wrapper>
-            <index.style__InnerWrapper1>
+            <index.style__InnerWrapper1
+                        contactsPresent={3}
+            >
                         <ContactHeader
                                     onChange={[Function]}
                                     placeholder="Filter"
@@ -536,7 +543,7 @@ ShallowWrapper {
                                                                       ]
                                                 }
                                                 layout="horizontal"
-                                                message="There are no contacts added yet."
+                                                message="You have no recent contacts."
                                                 onDelete={[Function]}
                                                 onEdit={[Function]}
                                                 size="small"
@@ -571,7 +578,7 @@ ShallowWrapper {
                                                                       ]
                                                 }
                                                 layout="horizontal"
-                                                message="There are no contacts added yet."
+                                                message="You have not added any contacts."
                                                 onDelete={[Function]}
                                                 onEdit={[Function]}
                                                 size="small"
@@ -634,7 +641,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <index.style__InnerWrapper1>
+              <index.style__InnerWrapper1
+                contactsPresent={3}
+>
                 <ContactHeader
                                 onChange={[Function]}
                                 placeholder="Filter"
@@ -658,7 +667,7 @@ ShallowWrapper {
                                                                               ]
                                                 }
                                                 layout="horizontal"
-                                                message="There are no contacts added yet."
+                                                message="You have no recent contacts."
                                                 onDelete={[Function]}
                                                 onEdit={[Function]}
                                                 size="small"
@@ -693,7 +702,7 @@ ShallowWrapper {
                                                                               ]
                                                 }
                                                 layout="horizontal"
-                                                message="There are no contacts added yet."
+                                                message="You have not added any contacts."
                                                 onDelete={[Function]}
                                                 onEdit={[Function]}
                                                 size="small"
@@ -733,13 +742,14 @@ ShallowWrapper {
                                                                               ]
                                         }
                                         layout="horizontal"
-                                        message="There are no contacts added yet."
+                                        message="You have no recent contacts."
                                         onDelete={[Function]}
                                         onEdit={[Function]}
                                         size="small"
                     />
 </index.style__Border>,
                 ],
+                "contactsPresent": 3,
               },
               "ref": null,
               "rendered": Array [
@@ -776,7 +786,7 @@ ShallowWrapper {
                                                                 ]
                       }
                       layout="horizontal"
-                      message="There are no contacts added yet."
+                      message="You have no recent contacts."
                       onDelete={[Function]}
                       onEdit={[Function]}
                       size="small"
@@ -800,7 +810,7 @@ ShallowWrapper {
                         },
                       ],
                       "layout": "horizontal",
-                      "message": "There are no contacts added yet.",
+                      "message": "You have no recent contacts.",
                       "onDelete": [Function],
                       "onEdit": [Function],
                       "size": "small",
@@ -847,7 +857,7 @@ ShallowWrapper {
                                                                               ]
                                         }
                                         layout="horizontal"
-                                        message="There are no contacts added yet."
+                                        message="You have not added any contacts."
                                         onDelete={[Function]}
                                         onEdit={[Function]}
                                         size="small"
@@ -894,7 +904,7 @@ ShallowWrapper {
                                                                 ]
                       }
                       layout="horizontal"
-                      message="There are no contacts added yet."
+                      message="You have not added any contacts."
                       onDelete={[Function]}
                       onEdit={[Function]}
                       size="small"
@@ -922,7 +932,7 @@ ShallowWrapper {
                         },
                       ],
                       "layout": "horizontal",
-                      "message": "There are no contacts added yet.",
+                      "message": "You have not added any contacts.",
                       "onDelete": [Function],
                       "onEdit": [Function],
                       "size": "small",

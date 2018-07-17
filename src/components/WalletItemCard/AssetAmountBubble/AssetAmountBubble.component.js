@@ -7,7 +7,7 @@ import { Wrapper, Span, Image } from './AssetAmountBubble.style';
  */
 const AssetAmountBubble = (props) => (
   <Wrapper>
-    <Image src={getAbsolutePath(`public/asset_images/${props.name}.svg`)} />
+    <Image src={getAbsolutePath(`public/images/assets/${props.name}.svg`)} />
     <Span>{props.amount}</Span>
   </Wrapper>
   );

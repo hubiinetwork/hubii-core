@@ -5,7 +5,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <SideBar
-    logoSrc="../../../public/Images/corerz-logo.svg"
+    logoSrc="../../../public/images/hubii-core-logo.svg"
     menuItems={
         Array [
             Object {
@@ -72,7 +72,7 @@ ShallowWrapper {
                                                   <img
                                                             alt="logo"
                                                             className="anticon anticon-wallet logo-icon"
-                                                            src="../../../public/Images/corerz-logo.svg"
+                                                            src="../../../public/images/hubii-core-logo.svg"
                                                   />
                                                   <span>
                                                             hubii core
@@ -228,7 +228,7 @@ ShallowWrapper {
                                                 <img
                                                             alt="logo"
                                                             className="anticon anticon-wallet logo-icon"
-                                                            src="../../../public/Images/corerz-logo.svg"
+                                                            src="../../../public/images/hubii-core-logo.svg"
                                                 />
                                                 <span>
                                                             hubii core
@@ -380,7 +380,7 @@ ShallowWrapper {
                                                 <img
                                                                 alt="logo"
                                                                 className="anticon anticon-wallet logo-icon"
-                                                                src="../../../public/Images/corerz-logo.svg"
+                                                                src="../../../public/images/hubii-core-logo.svg"
                                                 />
                                                 <span>
                                                                 hubii core
@@ -525,7 +525,7 @@ ShallowWrapper {
                                     <img
                                                       alt="logo"
                                                       className="anticon anticon-wallet logo-icon"
-                                                      src="../../../public/Images/corerz-logo.svg"
+                                                      src="../../../public/images/hubii-core-logo.svg"
                                     />
                                     <span>
                                                       hubii core
@@ -544,7 +544,7 @@ ShallowWrapper {
                     <img
                                         alt="logo"
                                         className="anticon anticon-wallet logo-icon"
-                                        src="../../../public/Images/corerz-logo.svg"
+                                        src="../../../public/images/hubii-core-logo.svg"
                     />
                     <span>
                                         hubii core
@@ -563,7 +563,7 @@ ShallowWrapper {
                       <img
                         alt="logo"
                         className="anticon anticon-wallet logo-icon"
-                        src="../../../public/Images/corerz-logo.svg"
+                        src="../../../public/images/hubii-core-logo.svg"
 />,
                       <span>
                         hubii core
@@ -579,7 +579,7 @@ ShallowWrapper {
                       "props": Object {
                         "alt": "logo",
                         "className": "anticon anticon-wallet logo-icon",
-                        "src": "../../../public/Images/corerz-logo.svg",
+                        "src": "../../../public/images/hubii-core-logo.svg",
                       },
                       "ref": null,
                       "rendered": null,
@@ -1187,7 +1187,7 @@ ShallowWrapper {
                                                             <img
                                                                         alt="logo"
                                                                         className="anticon anticon-wallet logo-icon"
-                                                                        src="../../../public/Images/corerz-logo.svg"
+                                                                        src="../../../public/images/hubii-core-logo.svg"
                                                             />
                                                             <span>
                                                                         hubii core
@@ -1343,7 +1343,7 @@ ShallowWrapper {
                                                         <img
                                                                       alt="logo"
                                                                       className="anticon anticon-wallet logo-icon"
-                                                                      src="../../../public/Images/corerz-logo.svg"
+                                                                      src="../../../public/images/hubii-core-logo.svg"
                                                         />
                                                         <span>
                                                                       hubii core
@@ -1495,7 +1495,7 @@ ShallowWrapper {
                                                       <img
                                                                         alt="logo"
                                                                         className="anticon anticon-wallet logo-icon"
-                                                                        src="../../../public/Images/corerz-logo.svg"
+                                                                        src="../../../public/images/hubii-core-logo.svg"
                                                       />
                                                       <span>
                                                                         hubii core
@@ -1640,7 +1640,7 @@ ShallowWrapper {
                                         <img
                                                             alt="logo"
                                                             className="anticon anticon-wallet logo-icon"
-                                                            src="../../../public/Images/corerz-logo.svg"
+                                                            src="../../../public/images/hubii-core-logo.svg"
                                         />
                                         <span>
                                                             hubii core
@@ -1659,7 +1659,7 @@ ShallowWrapper {
                       <img
                                             alt="logo"
                                             className="anticon anticon-wallet logo-icon"
-                                            src="../../../public/Images/corerz-logo.svg"
+                                            src="../../../public/images/hubii-core-logo.svg"
                       />
                       <span>
                                             hubii core
@@ -1678,7 +1678,7 @@ ShallowWrapper {
                         <img
                           alt="logo"
                           className="anticon anticon-wallet logo-icon"
-                          src="../../../public/Images/corerz-logo.svg"
+                          src="../../../public/images/hubii-core-logo.svg"
 />,
                         <span>
                           hubii core
@@ -1694,7 +1694,7 @@ ShallowWrapper {
                         "props": Object {
                           "alt": "logo",
                           "className": "anticon anticon-wallet logo-icon",
-                          "src": "../../../public/Images/corerz-logo.svg",
+                          "src": "../../../public/images/hubii-core-logo.svg",
                         },
                         "ref": null,
                         "rendered": null,

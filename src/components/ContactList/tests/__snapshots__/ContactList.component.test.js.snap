@@ -18,7 +18,7 @@ ShallowWrapper {
           ]
     }
     layout="horizontal"
-    message="There are no contacts added yet."
+    message="You have not added any contacts."
     onDelete={[Function]}
     onEdit={[Function]}
     size="small"
@@ -355,7 +355,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <ContactList
     data={Array []}
     layout="horizontal"
-    message="There are no contacts added yet."
+    message="You have not added any contacts."
     onDelete={[Function]}
     onEdit={[Function]}
     size="small"
@@ -372,10 +372,10 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": "There are no contacts added yet.",
+      "children": "You have not added any contacts.",
     },
     "ref": null,
-    "rendered": "There are no contacts added yet.",
+    "rendered": "You have not added any contacts.",
     "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
@@ -384,10 +384,10 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": "There are no contacts added yet.",
+        "children": "You have not added any contacts.",
       },
       "ref": null,
-      "rendered": "There are no contacts added yet.",
+      "rendered": "You have not added any contacts.",
       "type": [Function],
     },
   ],

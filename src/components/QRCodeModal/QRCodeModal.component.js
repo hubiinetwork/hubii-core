@@ -9,7 +9,7 @@ const QRCodeModal = ({ qrCodeValue }) => (
   <div>
     <Text>
       Connect with{' '}
-      <Logo alt="hubii film logo" src="public/Images/hubii_film_logo.png" />
+      <Logo alt="hubii film logo" src="public/images/hubii_film_logo.png" />
     </Text>
     <Wrapper>
       <StyledQRCode value={qrCodeValue} />

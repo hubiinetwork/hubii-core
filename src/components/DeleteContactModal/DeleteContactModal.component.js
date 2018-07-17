@@ -52,7 +52,7 @@ class DeleteContactModal extends React.Component {
     return (
       <div>
         <LogoWrapper>
-          <img src={getAbsolutePath('public/Images/striim-logo.png')} alt="Striim  logo" />
+          <img src={getAbsolutePath('public/images/striim-logo.png')} alt="Striim  logo" />
         </LogoWrapper>
         <StyledForm>
 

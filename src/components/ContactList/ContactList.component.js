@@ -156,7 +156,7 @@ export default class ContactList extends React.PureComponent {
 ContactList.defaultProps = {
   size: 'small',
   layout: 'horizontal',
-  message: 'There are no contacts added yet.',
+  message: 'You have not added any contacts.',
 };
 
 ContactList.propTypes = {
