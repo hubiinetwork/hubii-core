@@ -5,9 +5,9 @@ import { EditContactModal } from '../EditContactModal.component';
 describe('EditContactModal', () => {
   describe('shallow mount', () => {
     let dom;
-    let params;
+    let props;
     beforeEach(() => {
-      params = {
+      props = {
         form: {
           getFieldDecorator: () => jest.fn(),
           validateFields: jest.fn(),
@@ -20,7 +20,7 @@ describe('EditContactModal', () => {
         const contacts = [{ address: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a' }];
         dom = shallow(
           <EditContactModal
-            {...params}
+            {...props}
             contacts={contacts}
           />
         );
@@ -37,7 +37,7 @@ describe('EditContactModal', () => {
         const contacts = [{ address: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a' }];
         dom = shallow(
           <EditContactModal
-            {...params}
+            {...props}
             contacts={contacts}
           />
         );
@@ -53,7 +53,7 @@ describe('EditContactModal', () => {
       it('address is invalid', () => {
         dom = shallow(
           <EditContactModal
-            {...params}
+            {...props}
           />
         );
         const instance = dom.instance();
@@ -65,7 +65,7 @@ describe('EditContactModal', () => {
       it('valid address', () => {
         dom = shallow(
           <EditContactModal
-            {...params}
+            {...props}
           />
         );
         const instance = dom.instance();
@@ -83,7 +83,7 @@ describe('EditContactModal', () => {
       it('should set the oldAddress and oldName on mount', () => {
         dom = shallow(
           <EditContactModal
-            {...params}
+            {...props}
             {...contact}
           />
         );
@@ -101,13 +101,13 @@ describe('EditContactModal', () => {
       it('should run the propform validateFields function', () => {
         dom = shallow(
           <EditContactModal
-            {...params}
+            {...props}
           />
         );
         const instance = dom.instance();
         instance.handleEdit(e);
         expect(e.preventDefault).toHaveBeenCalledTimes(1);
-        expect(params.form.validateFields).toHaveBeenCalledTimes(1);
+        expect(props.form.validateFields).toHaveBeenCalledTimes(1);
       });
     });
   });
