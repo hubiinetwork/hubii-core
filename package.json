@@ -20,6 +20,7 @@
     ]
   },
   "scripts": {
+    "release": "electron-builder -lwm -p always",
     "electron-dev": "concurrently \"BROWSER=none yarn start:electron\" \"wait-on http://localhost:3000 && electron .\"",
     "electron-build": "cross-env WALLET_API=https://api2.dev.hubii.net/ npm run build:electron && DEBUG=electron-builder electron-builder --publish never",
     "electron-pack": "cross-env DEV_TOOLS=1 WALLET_API=https://api2.dev.hubii.net/ npm run build:electron && electron-builder --dir",
