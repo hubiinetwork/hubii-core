@@ -17,14 +17,7 @@ import {
 class ImportWalletNameForm extends React.Component {
   constructor(props) {
     super(props);
-    this.handleBack = this.handleBack.bind(this);
     this.handleFinish = this.handleFinish.bind(this);
-  }
-  handleBack() {
-    const { handleBack } = this.props;
-    if (handleBack) {
-      handleBack();
-    }
   }
 
   handleFinish(e) {
@@ -38,6 +31,7 @@ class ImportWalletNameForm extends React.Component {
   }
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { handleBack } = this.props;
     return (
       <div>
         <IconDiv>
@@ -70,7 +64,7 @@ class ImportWalletNameForm extends React.Component {
               })(<FormInput />)}
             </FormItem>
             <ButtonDiv>
-              <StyledBackButton type={"primary"} onClick={this.handleBack}>
+              <StyledBackButton type={"primary"} onClick={handleBack}>
                 <StyledSpan>Back</StyledSpan>
               </StyledBackButton>
               <StyledButton type={"primary"} htmlType="submit">

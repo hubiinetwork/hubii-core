@@ -15,17 +15,17 @@ import {
   StyledBackButton,
   StyledButton,
   StyledSpan,
-} from './ImportWalletPrivateKeyForm.style';
+} from './ImportWalletMnemonicForm.style';
 import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
 
 class ImportWalletPrivateKey extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      password: null,
-    }
     this.handleFinish = this.handleFinish.bind(this);
     this.compareToFirstPassword = this.compareToFirstPassword.bind(this);
+    this.state = {
+      derivationPath: 'm/44\'/60\'/0\'/0/0',
+    }
   }
 
   handleFinish(e) {
@@ -33,7 +33,7 @@ class ImportWalletPrivateKey extends React.Component {
     e.preventDefault();
     form.validateFields((err, values) => {
       if (!err && handleNext) {
-        handleNext(values);
+        handleNext({...values, derivationPath: this.state.derivationPath});
       }
     });
   }
@@ -82,11 +82,11 @@ class ImportWalletPrivateKey extends React.Component {
             <ModalFormItem
               label={
                 <StyledModalFormLabel>
-                  Private Key
+                  Mnemonic
                 </StyledModalFormLabel>
               }
             >
-              {getFieldDecorator('privateKey', {
+              {getFieldDecorator('mnemonic', {
                 rules: [
                   {
                     message: 'Required field',
