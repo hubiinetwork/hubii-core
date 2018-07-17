@@ -25,7 +25,7 @@ const Breakdown = ({ data, value }) => {
       {(
         <div>
           <Title>Total Value</Title>
-          <TotalAmount>${value.toLocaleString('en')}</TotalAmount>
+          <TotalAmount>${value.toLocaleString('en', { currency: 'USD' })}</TotalAmount>
         </div>
       )}
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>

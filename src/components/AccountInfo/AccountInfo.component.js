@@ -14,7 +14,7 @@ const AccountInfoItem = ({ accountName, amount }) => (
   <Wrapper>
     <div>
       <TextPrimary className="white">{accountName}</TextPrimary>
-      <Text>{`$${amount.toLocaleString('en')}`} </Text>
+      <Text>{`$${amount.toLocaleString('en', { currency: 'USD' })}`} </Text>
     </div>
   </Wrapper>
 );

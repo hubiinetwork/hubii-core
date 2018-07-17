@@ -47,7 +47,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={totalAmount}
             labelSymbol={selectedToken.symbol}
-            value={(totalAmount * selectedToken.price.USD).toLocaleString('en')}
+            value={(totalAmount * selectedToken.price.USD).toLocaleString('en', { currency: 'USD' })}
           />
         </Row>
         <Row>
@@ -57,7 +57,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={amountToSend}
             labelSymbol={selectedToken.symbol}
-            value={(amountToSend * selectedToken.price.USD).toLocaleString('en')}
+            value={(amountToSend * selectedToken.price.USD).toLocaleString('en', { currency: 'USD' })}
           />
         </Row>
         <Row>
@@ -73,7 +73,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={transactionFee}
             labelSymbol={selectedToken.symbol}
-            value={(transactionFee * ethInformation.price.USD).toLocaleString('en')}
+            value={(transactionFee * ethInformation.price.USD).toLocaleString('en', { currency: 'USD' })}
           />
         </Row>
         <Row>
@@ -83,7 +83,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={amountToSend + transactionFee}
             labelSymbol={selectedToken.symbol}
-            value={((amountToSend * parseFloat(selectedToken.price.USD)) + (transactionFee * parseFloat(ethInformation.price.USD))).toLocaleString('en')}
+            value={((amountToSend * parseFloat(selectedToken.price.USD)) + (transactionFee * parseFloat(ethInformation.price.USD))).toLocaleString('en', { currency: 'USD' })}
           />
         </Row>
         <Row>
@@ -102,7 +102,7 @@ export default class TransferDescription extends React.PureComponent {
             value={(
               (totalAmount - amountToSend) *
               +selectedToken.price.USD
-            ).toLocaleString('en')}
+            ).toLocaleString('en', { currency: 'USD' })}
           />
         </Row>
         <Row>
@@ -111,7 +111,7 @@ export default class TransferDescription extends React.PureComponent {
         <Row>
           <BalanceCol>
             {currencySymbol}
-            {remainingBalance.toLocaleString('en')}
+            {remainingBalance.toLocaleString('en', { currency: 'USD' })}
           </BalanceCol>
         </Row>
         {

@@ -5,7 +5,7 @@ const Price = (props) => (
   <span>
     {props.loading && 'Loading'}
     {props.error && 'No available'}
-    {props.price && `$${(props.price * props.amount).toLocaleString('en')}`}
+    {props.price && `$${(props.price * props.amount).toLocaleString('en', { currency: 'USD' })}`}
   </span>
 );
 

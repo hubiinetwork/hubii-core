@@ -54,7 +54,7 @@ const WalletHeader = (props) => {
             </Address>
           </DetailWrapper>
           <DetailWrapper>
-            <Balance>${props.balance.toLocaleString('en')}</Balance>
+            <Balance>${props.balance.toLocaleString('en', { currency: 'USD' })}</Balance>
           </DetailWrapper>
         </HeaderDetail>
       </OverflowHidden>

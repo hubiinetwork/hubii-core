@@ -144,7 +144,7 @@ export class WalletItemCard extends React.PureComponent {
               ))}
             </AssetsWrapper>
           </LeftSideWrapper>
-          <TotalBalance>{`$${totalBalance.toLocaleString('en')}`}</TotalBalance>
+          <TotalBalance>{`$${totalBalance.toLocaleString('en', { currency: 'USD' })}`}</TotalBalance>
         </OuterWrapper>
         <Modal
           footer={null}

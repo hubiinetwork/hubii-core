@@ -123,7 +123,7 @@ export default class TransferForm extends React.PureComponent {
             <FormItem
               label={<FormItemLabel>Amount</FormItemLabel>}
               colon={false}
-              help={<HelperText left={(this.state.input * parseFloat(this.state.selectedToken.price.USD)).toLocaleString('en')} right="USD" />}
+              help={<HelperText left={(this.state.input * parseFloat(this.state.selectedToken.price.USD)).toLocaleString('en', { currency: 'USD' })} right="USD" />}
             >
               <InputNumber min={0} max={totalBalance} handleChange={this.handleChange} />
             </FormItem>
@@ -145,7 +145,7 @@ export default class TransferForm extends React.PureComponent {
               </Panel>
             </Collapse>
             <ETHtoDollar>
-              1 {this.state.selectedToken.symbol} = ${parseFloat(this.state.selectedToken.price.USD).toLocaleString('en')}
+              1 {this.state.selectedToken.symbol} = ${parseFloat(this.state.selectedToken.price.USD).toLocaleString('en', { currency: 'USD' })}
             </ETHtoDollar>
           </Form>
         </Col>
