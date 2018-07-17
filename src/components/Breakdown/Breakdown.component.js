@@ -4,6 +4,7 @@ import { VictoryPie, VictoryContainer, VictoryTooltip } from 'victory';
 import { SectionHeading } from '../ui/SectionHeading';
 import { TotalAmount, Title } from './Breakdown.style';
 import Tokens from './Tokens';
+import { formatFiat } from '../../utils/numberFormats';
 
 /**
  * This component shows user's total coins' convertion in dollar and a relative chart.
@@ -25,7 +26,7 @@ const Breakdown = ({ data, value }) => {
       {(
         <div>
           <Title>Total Value</Title>
-          <TotalAmount>${value.toLocaleString('en')}</TotalAmount>
+          <TotalAmount>{formatFiat(value, 'USD')}</TotalAmount>
         </div>
       )}
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>
