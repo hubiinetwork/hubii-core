@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactHighstock from 'react-highcharts/ReactHighstock';
+import EventEmitter from 'eventemitter3';
 import './CandleStick.css';
+
+const EE = new EventEmitter();
 
 export default class CandleStickChart extends React.Component {
   constructor(props) {
@@ -10,6 +13,9 @@ export default class CandleStickChart extends React.Component {
     };
   }
   componentDidMount() {
+    // setInterval(() => {
+    //   EE.emit('CandleStick-update');
+    // }, 1000);
     this.updateData();
   }
   updateData() {
@@ -63,26 +69,28 @@ export default class CandleStickChart extends React.Component {
           events: {
             load() {
                   // set up the updating of the chart each second
-              // const series = this.series[0];
-              // const columnSeries = this.series[1];
-              // let time = Date.now();
-              // // debugger;
-              // setInterval(() => {
-              //   const point = [
-              //     time,
-              //     Math.round(Math.random() * 20000),
-              //     Math.round(Math.random() * 20000),
-              //     Math.round(Math.random() * 20000),
-              //     Math.round(Math.random() * 20000)];
-              //   // console.log('point', point);
-              //   series.addPoint(point, true, true);
-              //   const columnPoint = [
-              //     time,
-              //     Math.round(Math.random() * 18000000000) + 5000000,
-              //   ];
-              //   columnSeries.addPoint(columnPoint, true, true);
-              //   time += 86400000;
-              // }, 5000);
+              const series = this.series[0];
+              const columnSeries = this.series[1];
+              let time = Date.now();
+                // debugger;
+              EE.on('CandleStick-update', () => {
+                // debugger;
+                const point = [
+                  time,
+                  Math.round(Math.random() * 20000),
+                  Math.round(Math.random() * 20000),
+                  Math.round(Math.random() * 20000),
+                  Math.round(Math.random() * 20000),
+                ];
+                // console.log('point', point);
+                series.addPoint(point, true, true);
+                const columnPoint = [
+                  time,
+                  Math.round(Math.random() * 18000000000) + 5000000,
+                ];
+                columnSeries.addPoint(columnPoint, true, true);
+                time += 86400000;
+              });
             },
           },
         },
@@ -102,6 +110,7 @@ export default class CandleStickChart extends React.Component {
             style: {
               color: '#ffffff',
               opacity: 0.7,
+              width: '150px',
             },
           },
           height: '80%',
@@ -131,26 +140,36 @@ export default class CandleStickChart extends React.Component {
             },
           },
         },
-
         tooltip: {
-          split: true,
+          backgroundColor: 'red',
+          borderWidth: 0,
+          borderRadius: 0,
+          style: {
+            color: '#ffffff',
+          },
+          followTouchMove: false,
+          crosshairs: false,
+          positioner: () => ({ x: 10, y: 35 }),
+          shadow: false,
+          split: false,
         },
 
-        series: [
-          {
-            type: 'candlestick',
-            name: '<b>Bitcoin</b> Historical Data in <b>USD</b>',
-            data: ohlc,
-          },
-          {
-            type: 'column',
-            name: 'Volume',
-            data: volume,
-            yAxis: 1,
-          },
+        series: [{
+          type: 'candlestick',
+          name: '<b>Bitcoin</b> Historical Data in <b>USD</b>',
+          data: ohlc,
+        },
+        {
+          type: 'column',
+          name: 'Volume',
+          data: volume,
+          yAxis: 1,
+        },
         ],
       };
-      this.setState({ config });
+      this.setState({
+        config,
+      });
     })
     .catch((err) => {
       console.log('error', err);
