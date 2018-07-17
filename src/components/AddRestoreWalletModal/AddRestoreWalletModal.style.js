@@ -14,7 +14,7 @@ export const DescriptionWrapper = styled.div`
   display: flex;
   color: ${({ theme }) => theme.palette.secondary4};
   align-items: center;
-  margin-top: 120px;
+  margin-top: 3rem;
   justify-content: center;
 `;
 
