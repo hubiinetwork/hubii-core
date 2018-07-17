@@ -93,7 +93,7 @@ export default class AddRestoreWalletModal extends React.Component {
             <ImportWalletSteps
               wallets={[
                 {
-                  src: getAbsolutePath('public/Images/ledger_wallet.png'),
+                  src: getAbsolutePath('public/images/ledger-logo.png'),
                   name: 'ledger',
                 },
                 {
