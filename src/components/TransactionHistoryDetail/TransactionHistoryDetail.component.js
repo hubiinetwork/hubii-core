@@ -37,7 +37,7 @@ const TransactionHistoryDetail = (props) => (
           <Left>
             {!(props.type === 'received' || props.type === 'sent') && (
             <Image
-              src={getAbsolutePath(`public/asset_images/${props.toCoin}.svg`)}
+              src={getAbsolutePath(`public/images/assets/${props.toCoin}.svg`)}
             />
               )}
             <TransactionHistoryItemCardIcon
