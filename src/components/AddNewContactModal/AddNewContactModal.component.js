@@ -18,27 +18,26 @@ export class AddNewContactModal extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.validateField = this.validateField.bind(this);
+    this.validateInUse = this.validateInUse.bind(this);
+    this.validateInvalid = this.validateInvalid.bind(this);
   }
 
-  validateField(rule, checkType, value, callback) {
+  validateInUse(rule, value, callback) {
     const { contacts } = this.props;
-    // can add more validation for name if required
-    if (rule.field === 'address') {
-      if (checkType === 'inuse') {
-        const sameAddressList = contacts.filter((person) => person.address === value.trim());
-        if (sameAddressList.length) {
-          return callback('You have already saved this address');
-        }
-      }
-      if (checkType === 'invalid') {
-        if (!isValidAddress(value.trim())) {
-          return callback('invalid Address');
-        }
-      }
+    const sameAddressList = contacts.filter((person) => person.address === value.trim());
+    if (sameAddressList.length) {
+      callback('You have already saved this address');
     }
-    return callback();
+    callback();
   }
+
+  validateInvalid(rule, value, callback) {
+    if (!isValidAddress(value.trim())) {
+      callback('invalid Address');
+    }
+    callback();
+  }
+
 
   handleSubmit(e) {
     const { onSubmit } = this.props;
@@ -86,12 +85,12 @@ export class AddNewContactModal extends React.Component {
                 {
                   message: 'Address is already in use.',
                   required: true,
-                  validator: (rule, value, callback) => this.validateField(rule, 'inuse', value, callback),
+                  validator: (rule, value, callback) => this.validateInUse(rule, value, callback),
                 },
                 {
                   message: 'Address is invalid.',
                   required: true,
-                  validator: (rule, value, callback) => this.validateField(rule, 'invalid', value, callback),
+                  validator: (rule, value, callback) => this.validateInvalid(rule, value, callback),
                 },
               ],
             })(

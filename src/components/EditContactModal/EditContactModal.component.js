@@ -23,7 +23,8 @@ export class EditContactModal extends React.Component {
       oldAddress: null,
     };
 
-    this.validateField = this.validateField.bind(this);
+    this.validateInUse = this.validateInUse.bind(this);
+    this.validateInvalid = this.validateInvalid.bind(this);
   }
 
   componentWillMount() {
@@ -45,24 +46,22 @@ export class EditContactModal extends React.Component {
     });
   }
 
-  validateField(rule, checkType, value, callback) {
+  validateInUse(rule, value, callback) {
     const { contacts } = this.props;
-    // can add more validation for name if required
-    if (rule.field === 'address') {
-      if (checkType === 'inuse') {
-        const sameAddressList = contacts.filter((person) => person.address === value.trim());
-        if (sameAddressList.length && value.trim() !== this.state.oldAddress) {
-          callback('You have already saved this address');
-        }
-      }
-      if (checkType === 'invalid') {
-        if (!isValidAddress(value.trim())) {
-          callback('invalid Address');
-        }
-      }
+    const sameAddressList = contacts.filter((person) => person.address === value.trim());
+    if (sameAddressList.length && value.trim() !== this.state.oldAddress) {
+      callback('You have already saved this address');
     }
     callback();
   }
+
+  validateInvalid(rule, value, callback) {
+    if (!isValidAddress(value.trim())) {
+      callback('invalid Address');
+    }
+    callback();
+  }
+
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -100,12 +99,12 @@ export class EditContactModal extends React.Component {
                 {
                   message: 'Address is invalid.',
                   required: true,
-                  validator: (rule, value, callback) => this.validateField(rule, 'invalid', value, callback),
+                  validator: (rule, value, callback) => this.validateInvalid(rule, value, callback),
                 },
                 {
                   message: 'This address is already under use',
                   required: true,
-                  validator: (rule, value, callback) => this.validateField(rule, 'inuse', value, callback),
+                  validator: (rule, value, callback) => this.validateInUse(rule, value, callback),
                 },
               ],
               initialValue: this.props.address,

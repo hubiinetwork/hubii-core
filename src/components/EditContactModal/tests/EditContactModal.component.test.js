@@ -27,11 +27,10 @@ describe('EditContactModal', () => {
         const instance = dom.instance();
         const callbackSpy = jest.fn();
         const rule = { field: 'address' };
-        const checkType = 'inuse';
         instance.setState({
           oldAddress: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a',
         });
-        instance.validateField(rule, checkType, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
+        instance.validateInUse(rule, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
         expect(callbackSpy).toBeCalled();
       });
       it('already has the address and the old address is not the same as the edited', () => {
@@ -45,11 +44,10 @@ describe('EditContactModal', () => {
         const instance = dom.instance();
         const callbackSpy = jest.fn();
         const rule = { field: 'address' };
-        const checkType = 'inuse';
         instance.setState({
           oldAddress: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f13a',
         });
-        instance.validateField(rule, checkType, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
+        instance.validateInUse(rule, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
         expect(callbackSpy).toBeCalledWith('You have already saved this address');
       });
       it('address is invalid', () => {
@@ -61,8 +59,7 @@ describe('EditContactModal', () => {
         const instance = dom.instance();
         const callbackSpy = jest.fn();
         const rule = { field: 'address' };
-        const checkType = 'invalid';
-        instance.validateField(rule, checkType, '123', callbackSpy);
+        instance.validateInvalid(rule, '123', callbackSpy);
         expect(callbackSpy).toBeCalledWith('invalid Address');
       });
       it('valid address', () => {
@@ -74,8 +71,7 @@ describe('EditContactModal', () => {
         const instance = dom.instance();
         const callbackSpy = jest.fn();
         const rule = { field: 'address' };
-        const checkType = 'invalid';
-        instance.validateField(rule, checkType, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
+        instance.validateInvalid(rule, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
         expect(callbackSpy).toBeCalledWith();
       });
     });

@@ -44,8 +44,7 @@ describe('AddNewContactModal', () => {
         const instance = dom.instance();
         const callbackSpy = jest.fn();
         const rule = { field: 'address' };
-        const checkType = 'inuse';
-        instance.validateField(rule, checkType, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
+        instance.validateInUse(rule, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
         expect(callbackSpy).toBeCalledWith('You have already saved this address');
       });
       it('address is invalid', () => {
@@ -57,8 +56,7 @@ describe('AddNewContactModal', () => {
         const instance = dom.instance();
         const callbackSpy = jest.fn();
         const rule = { field: 'address' };
-        const checkType = 'invalid';
-        instance.validateField(rule, checkType, '123', callbackSpy);
+        instance.validateInvalid(rule, '123', callbackSpy);
         expect(callbackSpy).toBeCalledWith('invalid Address');
       });
       it('valid address', () => {
@@ -70,8 +68,7 @@ describe('AddNewContactModal', () => {
         const instance = dom.instance();
         const callbackSpy = jest.fn();
         const rule = { field: 'address' };
-        const checkType = 'invalid';
-        instance.validateField(rule, checkType, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
+        instance.validateInvalid(rule, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
         expect(callbackSpy).toBeCalledWith();
       });
     });
