@@ -34,7 +34,7 @@ function createWindow() {
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
   mainWindow = new BrowserWindow({ width: 1200, height: 680 });
-  mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+  mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../index.html')}`);
   if (showDevTools || isDev) {
     // Need to require this globally so we can keep it as a
     // dev-only dependency
