@@ -42,6 +42,9 @@ export const styledCollapse = styled(Collapse)`
   .ant-collapse-content {
     padding-right: 0px !important;
   }
+  .ant-collapse-header{
+    width: fit-content;
+  }
   .ant-collapse-content-box {
     padding-right: 0px !important;
   }
