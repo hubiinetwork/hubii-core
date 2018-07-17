@@ -28,7 +28,7 @@ export const TransactionHistoryItem = (props) => {
       </TransactionHistoryItemDate>
       <TransactionHistoryItemCard>
         <Image
-          src={getAbsolutePath(`public/asset_images/${
+          src={getAbsolutePath(`public/images/assets/${
             type === 'exchange' ? data.fromCoin : data.coin
           }.svg`)}
         />

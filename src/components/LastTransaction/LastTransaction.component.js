@@ -25,7 +25,7 @@ const LastTransaction = (props) => (
     <TransactionInfo>
       <StyledRow>
         <FlexWrapper>
-          <Image src={getAbsolutePath(`public/asset_images/${props.coin}.svg`)} alt="icon" />
+          <Image src={getAbsolutePath(`public/images/assets/${props.coin}.svg`)} alt="icon" />
           <Text>{props.coinAmount}</Text>
           {'  '}
           <TextPrimary>{props.coin}</TextPrimary>
