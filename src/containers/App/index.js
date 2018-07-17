@@ -47,7 +47,7 @@ export function App() {
     },
   ];
   return (
-    <SideBar menuItems={menuItems} logoSrc={getAbsolutePath('public/Images/corerz-logo.svg')}>
+    <SideBar menuItems={menuItems} logoSrc={getAbsolutePath('public/images/hubii-core-logo.svg')}>
       <Switch>
         <Route path="/wallets" component={WalletManager} />
         <Route path="/wallet/:address" component={WalletDetails} />

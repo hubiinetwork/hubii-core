@@ -13,7 +13,7 @@ import PaymentHistoryDetail from '../PaymentHistoryDetail';
 export const PaymentHistoryItem = (props) => (
   <Wrapper>
     <PaymentHistoryItemCard>
-      <Image src={getAbsolutePath(`public/asset_images/${props.data.coin}.svg`)} />
+      <Image src={getAbsolutePath(`public/images/assets/${props.data.coin}.svg`)} />
       <PaymentHistoryDetail data={props.data} />
     </PaymentHistoryItemCard>
   </Wrapper>

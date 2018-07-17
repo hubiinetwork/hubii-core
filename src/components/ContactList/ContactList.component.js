@@ -28,7 +28,6 @@ export default class ContactList extends React.PureComponent {
     this.handleDelete = this.handleDelete.bind(this);
     this.onChange = this.onChange.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
-    this.validateEdit = this.validateEdit.bind(this);
   }
 
   onChange(input, type) {
@@ -64,13 +63,6 @@ export default class ContactList extends React.PureComponent {
     this.props.onDelete({ name, address });
   }
 
-  validateEdit(address, oldAddress) {
-    const { data } = this.props;
-    const sameAddressList = data.filter((person) => person.address === address);
-    // can implement function to do additional validation
-    return sameAddressList.length && address !== oldAddress;
-  }
-
   handleEdit(oldContact) {
     const { onEdit } = this.props;
     const { name, address } = this.state;
@@ -99,7 +91,7 @@ export default class ContactList extends React.PureComponent {
           address={address}
           onEdit={(e) => this.handleEdit(e)}
           onChange={(input, type) => this.onChange(input, type)}
-          validateEdit={(newAddress, oldAddress) => this.validateEdit(newAddress, oldAddress)}
+          contacts={data}
         />
       );
     }
@@ -164,7 +156,7 @@ export default class ContactList extends React.PureComponent {
 ContactList.defaultProps = {
   size: 'small',
   layout: 'horizontal',
-  message: 'There are no contacts added yet.',
+  message: 'You have not added any contacts.',
 };
 
 ContactList.propTypes = {
