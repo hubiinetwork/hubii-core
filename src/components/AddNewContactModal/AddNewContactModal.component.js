@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Form, Icon } from 'antd';
 import PropTypes from 'prop-types';
+import { isValidAddress } from 'ethereumjs-util';
 import {
   Text,
   Wrapper,
@@ -13,25 +14,30 @@ import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 /**
  * This component is used to add a new contact in ContactBook.
  */
-
-class AddNewContactModal extends React.Component {
+export class AddNewContactModal extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.validateAddress = this.validateField.bind(this);
+    this.validateInUse = this.validateInUse.bind(this);
+    this.validateInvalid = this.validateInvalid.bind(this);
   }
 
-  validateField(rule, value, callback) {
+  validateInUse(rule, value, callback) {
     const { contacts } = this.props;
-    // can add more validation for name if required
-    if (rule.field === 'address') {
-      const sameAddressList = contacts.filter((person) => person.address === value.trim());
-      if (sameAddressList.length) {
-        callback('You have already saved this address');
-      }
+    const sameAddressList = contacts.filter((person) => person.address === value.trim());
+    if (sameAddressList.length) {
+      callback('You have already saved this address');
     }
     callback();
   }
+
+  validateInvalid(rule, value, callback) {
+    if (!isValidAddress(value.trim())) {
+      callback('invalid Address');
+    }
+    callback();
+  }
+
 
   handleSubmit(e) {
     const { onSubmit } = this.props;
@@ -50,8 +56,7 @@ class AddNewContactModal extends React.Component {
         <WrapperIcon>
           <Icon type="info-circle-o" />
           <Text>
-            Please be sure that all the information is correct. Once a
-            transaction is made, it can not be changed.
+            Please ensure that all the information is correct.
           </Text>
         </WrapperIcon>
         <Form onSubmit={this.handleSubmit} layout="vertical">
@@ -79,7 +84,12 @@ class AddNewContactModal extends React.Component {
                 {
                   message: 'Address is already in use.',
                   required: true,
-                  validator: (rule, value, callback) => this.validateField(rule, value, callback),
+                  validator: (rule, value, callback) => this.validateInUse(rule, value, callback),
+                },
+                {
+                  message: 'Address is invalid.',
+                  required: true,
+                  validator: (rule, value, callback) => this.validateInvalid(rule, value, callback),
                 },
               ],
             })(
@@ -102,10 +112,16 @@ class AddNewContactModal extends React.Component {
 }
 AddNewContactModal.propTypes = {
   /**
-   * function to handle onSubmit.
+   * Function to handle onSubmit.
    */
   onSubmit: PropTypes.func,
+  /**
+   * Form
+   */
   form: PropTypes.object,
+  /**
+   * Contacts array
+   */
   contacts: PropTypes.arrayOf(PropTypes.object),
 };
 

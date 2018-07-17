@@ -50,7 +50,7 @@ class CreateStriimModal extends React.Component {
       <div>
         <TextLight>New Striim Account</TextLight>
         <LogoWrapper>
-          <img src="/public/Images/striim-logo.png" alt="Striim  logo" />
+          <img src="/public/images/striim-logo.png" alt="Striim  logo" />
         </LogoWrapper>
         <StyledForm onSubmit={this.handleSubmit}>
           <ModalFormItem
@@ -95,7 +95,7 @@ class CreateStriimModal extends React.Component {
             <FlexWrapper>
               <div>
                 <IconSelectWrapper>
-                  <Image src={`/public/asset_images/${name}.svg`} alt="coin" />
+                  <Image src={`/public/images/assets/${name}.svg`} alt="coin" />
                   {getFieldDecorator('coin', {
                     initialValue: currencies[0].name,
                     rules: [

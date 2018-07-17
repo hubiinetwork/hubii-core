@@ -26,7 +26,7 @@ describe('<SideBar />', () => {
   ];
   const props = {
     menuItems,
-    logoSrc: '../../../public/Images/corerz-logo.svg'
+    logoSrc: '../../../public/images/hubii-core-logo.svg'
   };
 
   it('should render correctly', () => {
