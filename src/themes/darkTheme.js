@@ -2,6 +2,7 @@
 
 const white = '#ffffff';
 const dullWhite = '#E1E7EB';
+const paleBlue = '#C0CDD3';
 
 // ****** teal ****** //
 
@@ -31,6 +32,7 @@ const grey50 = 'rgba(140,165,177,.5)';
 const grey8C = '#8CA5B1';
 const grey6F = '#43616F';
 const grey40 = '#406171';
+const grey58 = '#587786';
 
 // ****** black ****** //
 
@@ -83,6 +85,7 @@ export default {
     secondary6: grey8C,
     secondary7: grey6F,
     secondary8: grey40,
+    secondary9: grey58,
 
     dark: black,
     dark1: blackLight,
@@ -91,6 +94,7 @@ export default {
 
     light: white,
     light1: dullWhite,
+    light2: paleBlue,
 
     info: seaGreen,
     info1: seaGreenLight,
