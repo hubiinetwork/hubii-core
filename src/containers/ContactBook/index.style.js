@@ -12,13 +12,13 @@ export const Wrapper = styled.div`
 export const InnerWrapper1 = styled.div`
   display: ${(props) => props.contactsPresent ? 'block' : 'none'};
   color: white;
-  min-width: 30rem;
+  min-width: 35rem;
 `;
 
 export const InnerWrapper2 = styled.div`
   color: white;
-  min-width: 30rem;
-  margin-left: 1rem;
+  min-width: 35rem;
+  margin-left: 2rem;
 `;
 
 export const Border = styled.div`

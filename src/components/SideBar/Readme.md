@@ -18,7 +18,7 @@ const menuItems = [
     name: 'dex detail'
   }
 ];
-<SideBar menuItems={menuItems} logoSrc="../../../public/Images/corerz-logo.svg">
+<SideBar menuItems={menuItems} logoSrc="../../../public/images/hubii-core-logo.svg">
   <p>children</p>
 </SideBar>;
 ```
