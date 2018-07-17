@@ -13,8 +13,10 @@
     ]
   },
   "scripts": {
-    "electron-dev": "concurrently \"BROWSER=none yarn start:electron\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron-build": "cross-env WALLET_API=https://api2.dev.hubii.net/ npm run build:electron && DEBUG=electron-builder electron-builder --publish never",
+    "electron-dev": "concurrently \"BROWSER=none TARGET=electron yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "preelectron-dev": "mkdir -p build/public && cp public/electron.js build/public && electron-rebuild --force --module_dir . -w node-hid",
+    "electron-build": "cross-env TARGET=electron WALLET_API=https://api2.dev.hubii.net/ npm run build && DEBUG=electron-builder electron-builder --publish never",
+    "preelectron-build": "electron-rebuild --force --module_dir . -w node-hid",
     "electron-pack": "cross-env DEV_TOOLS=1 WALLET_API=https://api2.dev.hubii.net/ npm run build:electron && electron-builder --dir",
     "precommit": "npm run lint:staged",
     "analyze:clean": "rimraf stats.json",
@@ -26,10 +28,8 @@
     "postinstall": "npm run build:dll",
     "prebuild": "npm run build:clean",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
-    "build:electron": "electron-rebuild --force --module_dir . -w node-hid && electron-builder install-app-deps && cross-env TARGET=electron NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
     "build:clean": "rimraf ./build",
     "build:dll": "node ./internals/scripts/dependencies.js",
-    "start:electron": "electron-rebuild --force --module_dir . -w node-hid && json-server --watch fake-db.json --port 8000 | cross-env WALLET_API=https://api2.dev.hubii.net/ NODE_ENV=development TARGET=electron node server",
     "start": "json-server --watch fake-db.json --port 8000 | cross-env NODE_ENV=development WALLET_API=https://api2.dev.hubii.net/ node server",
     "start:tunnel": "json-server --watch fake-db.json --port 8000 | cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "start:production": "npm run test && npm run build && npm run start:prod",
