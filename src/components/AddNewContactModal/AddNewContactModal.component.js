@@ -50,8 +50,7 @@ class AddNewContactModal extends React.Component {
         <WrapperIcon>
           <Icon type="info-circle-o" />
           <Text>
-            Please be sure that all the information is correct. Once a
-            transaction is made, it can not be changed.
+            Please ensure that all the information is correct.
           </Text>
         </WrapperIcon>
         <Form onSubmit={this.handleSubmit} layout="vertical">
