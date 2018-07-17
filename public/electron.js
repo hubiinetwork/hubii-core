@@ -63,7 +63,7 @@ function setupAutoUpdater() {
       buttons: ['Restart', 'Later'],
       title: 'Application Update',
       message: process.platform === 'win32' ? releaseNotes : releaseName,
-      detail: 'A new version has been downloaded. Restart the application to apply the updates.',
+      detail: 'A new version has been downloaded.',
     };
 
     dialog.showMessageBox(dialogOpts, (response) => {
