@@ -9,6 +9,20 @@ export const StyledButton = styled(Button)`
   font-family: 'SF Text';
   border: 2px solid ${({ theme }) => theme.palette.info3};
   border-radius: 4px;
+  background-color: ${({ disabled: white }) =>
+    white && 'transparent !important'};
+  border: ${({ disabled: white, theme }) =>
+    white && `2px solid ${theme.palette.secondary4} !important`};
+  color: ${({ disabled: white, theme }) =>
+    white
+      ? `${theme.palette.secondary4} !important`
+      : `${theme.palette.light} !important`};
+  &:hover {
+    background-color: ${({ disabled: white }) =>
+      white && 'transparent !important'};
+    border: ${({ disabled: white, theme }) =>
+      white && `2px solid ${theme.palette.secondary4} !important`};
+  }
 `;
 export const StyledButtonCancel = styled(Button)`
   height: 40px;
