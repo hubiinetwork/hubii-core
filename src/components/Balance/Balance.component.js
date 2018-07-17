@@ -16,7 +16,7 @@ const Balance = (props) => (
     {props.coin && (
     <ImageWrapper>
       <Image
-        src={getAbsolutePath(`public/asset_images/${props.coin}.svg`)}
+        src={getAbsolutePath(`public/images/assets/${props.coin}.svg`)}
       />
       {props.caret && <Caret />}
     </ImageWrapper>

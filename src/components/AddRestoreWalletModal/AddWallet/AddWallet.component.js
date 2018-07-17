@@ -86,7 +86,7 @@ class AddWallet extends React.PureComponent {
     return (
       <div>
         <CenterWrapper>
-          <HBT src={getAbsolutePath('public/asset_images/HBT.svg')} alt="hubii logo" />
+          <HBT src={getAbsolutePath('public/images/assets/HBT.svg')} alt="hubii logo" />
           <HBTtext>Hubii</HBTtext>
         </CenterWrapper>
         <Row justify="center" type="flex">

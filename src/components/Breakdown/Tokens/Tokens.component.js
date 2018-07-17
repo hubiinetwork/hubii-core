@@ -18,7 +18,7 @@ const Tokens = (props) => {
     <FlexItem key={`token-${item.label}`}>
       <Logo
       // eslint-disable-next-line global-require
-        src={getAbsolutePath(`public/asset_images/${item.label}.svg`)}
+        src={getAbsolutePath(`public/images/assets/${item.label}.svg`)}
       />
       <Label>{item.label}</Label>
       <Percentage>{item.percentage}%</Percentage>
