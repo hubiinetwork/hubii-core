@@ -8,13 +8,14 @@ import {
   Wrapper,
   StyledSelect,
 } from './AccountInfo.style';
+import { formatFiat } from '../../utils/numberFormats';
 
 const Option = Select.Option;
 const AccountInfoItem = ({ accountName, amount }) => (
   <Wrapper>
     <div>
       <TextPrimary className="white">{accountName}</TextPrimary>
-      <Text>{`$${amount.toLocaleString('en')}`} </Text>
+      <Text>{`${formatFiat(amount, 'USD')}`} </Text>
     </div>
   </Wrapper>
 );
