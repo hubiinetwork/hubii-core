@@ -74,12 +74,12 @@ function setupAutoUpdater() {
   autoUpdater.on('error', (err) => {
     log.error('auto updater:', err);
   });
+  autoUpdater.checkForUpdatesAndNotify();
 }
 
 app.on('ready', () => {
   createWindow();
   setupAutoUpdater();
-  autoUpdater.checkForUpdatesAndNotify();
 });
 
 app.on('window-all-closed', () => {
