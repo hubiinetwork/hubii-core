@@ -58,6 +58,8 @@ export const TotalBalance = styled.span`
   color: ${({ theme }) => theme.palette.info};
   font-size: 18px;
   margin-right: 25px;
+  word-wrap: break-word;
+  max-width: 150px;
 `;
 
 export const OuterWrapper = styled.div`
