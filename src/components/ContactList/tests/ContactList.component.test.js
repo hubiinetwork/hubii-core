@@ -93,19 +93,6 @@ describe('<ContactList/>', () => {
       expect(contactList.props.onDelete).toHaveBeenCalledTimes(1);
     });
 
-    describe('validateEdit function', () => {
-      it('should return false from the validateEdit function', () => {
-        const address = '0x324234234';
-        const oldAddress = '0x213123123';
-        expect(contactList.validateEdit(address, oldAddress)).toBeFalsy();
-      });
-      it('should return true from the validateEdit function', () => {
-        const address = '0x123123123';
-        const oldAddress = '0x213123123';
-        expect(contactList.validateEdit(address, oldAddress)).toBeTruthy();
-      });
-    });
-
     it('should execute the onChange function', () => {
       const input = 'mike';
       const type = 'address';
