@@ -2,7 +2,11 @@
   "name": "hubii-core",
   "version": "0.1.0",
   "private": true,
-  "author": "Hubii team",
+  "author": {
+    "name": "hubii",
+    "email": "info@hubii.com",
+    "url": "https://hubii.com"
+  },
   "license": "MIT",
   "main": "build/public/electron.js",
   "homepage": "https://github.com/hubiinetwork/omphalos-ui",
@@ -10,7 +14,12 @@
     "appId": "com.hubii.electron-hubii-core",
     "files": [
       "build/**/*"
-    ]
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    } 
   },
   "scripts": {
     "electron-dev": "concurrently \"BROWSER=none yarn start:electron\" \"wait-on http://localhost:3000 && electron .\"",

@@ -33,7 +33,7 @@ function createWindow() {
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
-  mainWindow = new BrowserWindow({ width: 1200, height: 680 });
+  mainWindow = new BrowserWindow({ width: 1200, height: 680, icon: path.join(__dirname, '../icon.png') });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../index.html')}`);
   if (showDevTools || isDev) {
     // Need to require this globally so we can keep it as a
