@@ -22,6 +22,7 @@ import {
 } from '../actions';
 
 import { LEDGER_ERROR, FETCHED_LEDGER_ADDRESS } from '../constants';
+import { disconnectedErrorMsg } from '../../../utils/ledger/friendlyErrors';
 
 const wallet = {
   name: 'testwallet',
@@ -45,7 +46,7 @@ describe('walletHocReducer', () => {
       errors: {
         creatingWalletError: null,
         decryptingWalletError: null,
-        ledgerError: 'Initialising, please try again in a few seconds...',
+        ledgerError: disconnectedErrorMsg,
       },
       wallets: [],
       currentWallet: {

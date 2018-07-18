@@ -257,7 +257,6 @@
     "@fortawesome/react-fontawesome": "0.0.20",
     "@ledgerhq/hw-app-eth": "4.15.0",
     "@ledgerhq/hw-transport-node-hid": "4.16.0",
-    "@ledgerhq/hw-transport-u2f": "4.15.0",
     "@ledgerhq/web3-subprovider": "^4.15.0",
     "abi-decoder": "1.1.0",
     "antd": "3.6.2",

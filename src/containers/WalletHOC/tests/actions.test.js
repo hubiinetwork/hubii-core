@@ -6,11 +6,11 @@ import {
   decryptWalletFailed,
   decryptWalletSuccess,
   loadWallets,
-  pollLedger,
   ledgerDetected,
   ledgerError,
   deleteWallet,
   saveLedgerAddress,
+  initLedger,
 } from '../actions';
 import {
   CREATE_WALLET_FROM_MNEMONIC,
@@ -20,10 +20,10 @@ import {
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
   LOAD_WALLETS,
-  POLL_LEDGER,
   LEDGER_DETECTED,
   LEDGER_ERROR,
   DELETE_WALLET,
+  INIT_LEDGER,
 } from '../constants';
 
 import getFriendlyError from '../../../utils/ledger/friendlyErrors';
@@ -143,12 +143,12 @@ describe('WalletHoc actions', () => {
     });
   });
 
-  describe('pollLedger Action', () => {
+  describe('initLedger Action', () => {
     it('returns expected output', () => {
       const expected = {
-        type: POLL_LEDGER,
+        type: INIT_LEDGER,
       };
-      expect(pollLedger()).toEqual(expected);
+      expect(initLedger()).toEqual(expected);
     });
   });
 

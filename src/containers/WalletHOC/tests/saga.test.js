@@ -3,10 +3,8 @@
  */
 
 /* eslint-disable redux-saga/yield-effects */
-import TransportNodeHid from '@ledgerhq/hw-transport-node-hid';
-import { eventChannel, delay } from 'redux-saga';
-import { takeLatest, fork, takeEvery, put, take, cancel } from 'redux-saga/effects';
-import { createMockTask } from 'redux-saga/utils';
+import { eventChannel } from 'redux-saga';
+import { takeLatest, takeEvery, put } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
 import { requestWalletAPI } from 'utils/request';
 import { Wallet, utils } from 'ethers';
@@ -21,14 +19,13 @@ import walletHoc, {
   loadWalletBalancesSaga,
   initWalletsBalances,
   transfer,
-  pollLedger,
   fetchLedgerAddresses,
   transferERC20,
   transferEther,
-  ledgerSync,
   waitTransactionHash,
   hookNewWalletCreated,
   listenBalances,
+  initLedger,
 } from '../saga';
 
 import {
@@ -37,18 +34,14 @@ import {
   CREATE_WALLET_FROM_PRIVATE_KEY,
   LOAD_WALLET_BALANCES,
   LOAD_WALLETS_SUCCESS,
-  POLL_LEDGER,
   FETCH_LEDGER_ADDRESSES,
   TRANSFER,
   TRANSFER_ETHER,
   TRANSFER_ERC20,
-  START_LEDGER_SYNC,
-  STOP_LEDGER_SYNC,
   TRANSFER_SUCCESS,
-  LEDGER_ERROR,
-  LEDGER_DETECTED,
   CREATE_WALLET_SUCCESS,
   LISTEN_TOKEN_BALANCES,
+  INIT_LEDGER,
 } from '../constants';
 
 import {
@@ -60,16 +53,10 @@ import {
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
-  ledgerDetected,
-  ledgerError,
   transferSuccess,
-  pollLedger as pollLedgerAction,
   transferError,
   transactionConfirmed as transactionConfirmedAction,
   transfer as transferAction,
-  stopLedgerSync,
-  fetchedLedgerAddress,
-  startLedgerSync,
   listenBalances as listenBalancesAction,
   addNewWallet as addNewWalletAction,
 } from '../actions';
@@ -178,81 +165,6 @@ describe('createWalletFromMnemonic saga', () => {
   });
 });
 
-describe('pollLedger Saga', () => {
-  it('should dispatch the ledgerDetected action if successful', () => {
-    const transport = new TransportNodeHid();
-    const address = { publicKey: '4321' };
-    const id = '4321';
-    const pollLedgerGenerator = pollLedger();
-    pollLedgerGenerator.next();
-    pollLedgerGenerator.next(transport);
-    const putDescriptor = pollLedgerGenerator.next(address).value;
-    expect(putDescriptor).toEqual(put(ledgerDetected(id)));
-  });
-
-  it('should dispatch the ledgerError action on error', () => {
-    const error = new Error('some error');
-    const pollLedgerGenerator = pollLedger();
-    pollLedgerGenerator.next();
-    const putDescriptor = pollLedgerGenerator.next(error).value;
-    expect(putDescriptor).toEqual(put(ledgerError(error)));
-  });
-});
-
-describe('fetchLedgerAddresses Saga', () => {
-  const input = { derivationPaths: ['1', '2'] };
-
-  it('should dispatch the fetchedLedgerAddress action with correct params if successful', () => {
-    const fetchLedgerAddressesGenerator = fetchLedgerAddresses(input);
-    let putDescriptor = fetchLedgerAddressesGenerator.next().value;
-    expect(putDescriptor).toEqual(put(stopLedgerSync()));
-    const transport = new TransportNodeHid();
-    const publicAddressKeyPair1 = { address: '12345' };
-    const publicAddressKeyPair2 = { address: '67890' };
-    fetchLedgerAddressesGenerator.next();
-    fetchLedgerAddressesGenerator.next();
-    fetchLedgerAddressesGenerator.next(transport);
-    putDescriptor = fetchLedgerAddressesGenerator.next(publicAddressKeyPair1).value;
-    expect(putDescriptor).toEqual(put(fetchedLedgerAddress(input.derivationPaths[0], publicAddressKeyPair1.address)));
-    fetchLedgerAddressesGenerator.next();
-    putDescriptor = fetchLedgerAddressesGenerator.next(publicAddressKeyPair2).value;
-    expect(putDescriptor).toEqual(put(fetchedLedgerAddress(input.derivationPaths[1], publicAddressKeyPair2.address)));
-    putDescriptor = fetchLedgerAddressesGenerator.next().value;
-    expect(putDescriptor).toEqual(put(startLedgerSync()));
-  });
-
-  it('should dispatch ledgerError action if unsuccessful', () => {
-    const fetchLedgerAddressesGenerator = fetchLedgerAddresses(input);
-    let putDescriptor = fetchLedgerAddressesGenerator.next().value;
-    fetchLedgerAddressesGenerator.next();
-    expect(putDescriptor).toEqual(put(stopLedgerSync()));
-    fetchLedgerAddressesGenerator.next();
-    putDescriptor = fetchLedgerAddressesGenerator.next().value;
-    expect(putDescriptor).toEqual(put(startLedgerSync()));
-  });
-
-  it('should dispatch the ledgerError action on error', () => {
-    const error = new Error('some error');
-    const pollLedgerGenerator = pollLedger();
-    pollLedgerGenerator.next();
-    const putDescriptor = pollLedgerGenerator.next(error).value;
-    expect(putDescriptor).toEqual(put(ledgerError(error)));
-  });
-});
-
-describe('ledgerSync Saga', () => {
-  const ledgerSyncGenerator = ledgerSync();
-  it('should continuously dispatch the pollLedger action, after pollLedger action completes', () => {
-    let putDescriptor = ledgerSyncGenerator.next().value;
-    expect(putDescriptor).toEqual(put(pollLedgerAction()));
-    const takeDescriptor = ledgerSyncGenerator.next().value;
-    expect(takeDescriptor).toEqual(take([LEDGER_ERROR, LEDGER_DETECTED]));
-    const delayDescriptor = ledgerSyncGenerator.next().value;
-    expect(JSON.stringify(delayDescriptor)).toEqual(JSON.stringify(delay(2500)));
-    putDescriptor = ledgerSyncGenerator.next().value;
-    expect(putDescriptor).toEqual(put(pollLedgerAction()));
-  });
-});
 describe('CREATE_WALLET_SUCCESS', () => {
   it('should add wallet to the store', () => {
     const storeState = {
@@ -711,11 +623,6 @@ describe('root Saga', () => {
     expect(takeDescriptor).toEqual(takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga));
   });
 
-  it('should start task to watch for POLL_LEDGER action', () => {
-    const takeDescriptor = walletHocSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(POLL_LEDGER, pollLedger));
-  });
-
   it('should start task to watch for FETCH_LEDGER_ADDRESSES action', () => {
     const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeLatest(FETCH_LEDGER_ADDRESSES, fetchLedgerAddresses));
@@ -756,24 +663,8 @@ describe('root Saga', () => {
     expect(takeDescriptor).toEqual(takeEvery(LISTEN_TOKEN_BALANCES, listenBalances));
   });
 
-  it('should wait for the START_LEDGER_SYNC action', () => {
+  it('should wait for the INIT_LEDGER action', () => {
     const takeDescriptor = walletHocSaga.next().value;
-    expect(takeDescriptor).toEqual(take(START_LEDGER_SYNC));
-  });
-
-  it('forks the ledgerSync service', () => {
-    const expected = fork(ledgerSync);
-    const mockedAction = { type: START_LEDGER_SYNC };
-    expect(walletHocSaga.next(mockedAction).value).toEqual(expected);
-  });
-
-  it('waits for stopLedgerSync action and then cancels the ledgerSync service', () => {
-    const mockTask = createMockTask();
-
-    const expectedTakeYield = take(STOP_LEDGER_SYNC);
-    expect(walletHocSaga.next(mockTask).value).toEqual(expectedTakeYield);
-
-    const expectedCancelYield = cancel(mockTask);
-    expect(walletHocSaga.next().value).toEqual(expectedCancelYield);
+    expect(takeDescriptor).toEqual(takeEvery(INIT_LEDGER, initLedger));
   });
 });

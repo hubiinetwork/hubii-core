@@ -30,15 +30,13 @@ import {
   TRANSFER_ERC20,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
-  POLL_LEDGER,
   LEDGER_DETECTED,
   LEDGER_ERROR,
-  START_LEDGER_SYNC,
-  STOP_LEDGER_SYNC,
   FETCH_LEDGER_ADDRESSES,
   FETCHED_LEDGER_ADDRESS,
   TRANSACTION_CONFIRMED,
   DELETE_WALLET,
+  INIT_LEDGER,
 } from './constants';
 
 import getFriendlyError from '../../utils/ledger/friendlyErrors';
@@ -265,21 +263,9 @@ export function transactionConfirmed(transaction) {
   };
 }
 
-export function pollLedger() {
+export function initLedger() {
   return {
-    type: POLL_LEDGER,
-  };
-}
-
-export function startLedgerSync() {
-  return {
-    type: START_LEDGER_SYNC,
-  };
-}
-
-export function stopLedgerSync() {
-  return {
-    type: STOP_LEDGER_SYNC,
+    type: INIT_LEDGER,
   };
 }
 

@@ -1,6 +1,7 @@
 import { eventChannel, delay } from 'redux-saga';
-import { takeLatest, takeEvery, put, call, select, fork, take, cancel } from 'redux-saga/effects';
+import { takeLatest, takeEvery, put, call, select, race, take } from 'redux-saga/effects';
 import Eth from '@ledgerhq/hw-app-eth';
+import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 // import Web3 from 'web3';
 import { Wallet, utils, providers, Contract } from 'ethers';
 
@@ -13,7 +14,6 @@ import {
 } from './selectors';
 import { requestWalletAPI } from '../../utils/request';
 import { ERC20ABI, EthNetworkProvider } from '../../utils/wallet';
-import LedgerTransport from '../../utils/ledger/Transport';
 
 import {
   CREATE_WALLET_FROM_MNEMONIC,
@@ -26,13 +26,9 @@ import {
   TRANSFER_ETHER,
   TRANSFER_ERC20,
   TRANSFER_SUCCESS,
-  POLL_LEDGER,
-  START_LEDGER_SYNC,
-  STOP_LEDGER_SYNC,
-  LEDGER_ERROR,
-  LEDGER_DETECTED,
   FETCH_LEDGER_ADDRESSES,
   CREATE_WALLET_FROM_PRIVATE_KEY,
+  INIT_LEDGER,
 } from './constants';
 
 import {
@@ -51,9 +47,6 @@ import {
   transferError,
   ledgerDetected,
   ledgerError,
-  pollLedger as pollLedgerAction,
-  stopLedgerSync,
-  startLedgerSync,
   fetchedLedgerAddress,
   transferEther as transferEtherAction,
   transferERC20 as transferERC20Action,
@@ -253,53 +246,70 @@ export function* hookNewWalletCreated({ newWallet }) {
  */
 
 // Sign a transaction with a Ledger
-export function* ledgerSignTxn({ derivationPath, rawTx }) {
-  try {
-    yield put(stopLedgerSync());
-    const transport = yield LedgerTransport.create();
-    const eth = new Eth(transport);
-    return yield eth.signTransaction(derivationPath, rawTx);
-  } catch (e) {
-    yield put(ledgerError('Error signing transaction: ', e));
-    return -1;
-  } finally {
-    yield put(startLedgerSync());
-  }
-}
+// export function* ledgerSignTxn({ derivationPath, rawTx }) {
+//   try {
+//     yield put(stopLedgerSync());
+//     const transport = yield LedgerTransport.create();
+//     const eth = new Eth(transport);
+//     return yield eth.signTransaction(derivationPath, rawTx);
+//   } catch (e) {
+//     yield put(ledgerError('Error signing transaction: ', e));
+//     return -1;
+//   } finally {
+//     yield put(startLedgerSync());
+//   }
+// }
 
-// Will continuously poll the ledger, keeping the connection status up to date
-export function* ledgerSync() {
-  try {
-    while (true) { // eslint-disable-line no-constant-condition
-      yield put(pollLedgerAction());
-      yield take([LEDGER_ERROR, LEDGER_DETECTED]);
-      yield delay(2500);
+// Creates an eventChannel to listen to Ledger events
+export const ledgerChannel = () => eventChannel((listener) => {
+  const sub = LedgerTransport.listen({
+    next: (e) => listener(e),
+    error: (e) => listener(e),
+    complete: (e) => listener(e),
+  });
+  return () => { sub.unsubscribe(); };
+});
+
+export function* initLedger() {
+  const supported = yield LedgerTransport.isSupported();
+  if (!supported) {
+    yield put(ledgerError(Error('Failed to open connection with USB port')));
+    return;
+  }
+
+  const chan = yield call(ledgerChannel);
+
+  // Changing of the physical ledger state (changing app, toggling browser support etc)
+  // emits a 'remove', then shortly after 'add' event. If 'remove' is emited and no 'add'
+  // afterwards we know the device is disconnected. Every change of the ledger state,
+  // try to look into it's Eth state. If it fails, we dispatch the appropriate error
+  // message
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const msg = yield take(chan);
+      if (msg.type === 'remove') {
+        const { timeout } = yield race({
+          msg: take(chan),
+          timeout: call(delay, 1000),
+        });
+        if (timeout) {
+          throw new Error('Disconnected');
+        }
+      }
+      const transport = yield LedgerTransport.create(500, 500);
+      const eth = new Eth(transport);
+      const address = yield eth.getAddress("m/44'/60'/0'/0");
+      const id = address.publicKey;
+      yield put(ledgerDetected(id));
+    } catch (e) {
+      yield put(ledgerError(e));
     }
-  } finally {
-    // sync cancelled
-  }
-}
-
-// Keeps connection status of Ledger Nano S up to date
-export function* pollLedger() {
-  try {
-    const transport = yield LedgerTransport.create();
-    const eth = new Eth(transport);
-    // Ledger ID is its default address's public key
-    const address = yield eth.getAddress("m/44'/60'/0'/0");
-    const id = address.publicKey;
-    yield put(ledgerDetected(id));
-  } catch (e) {
-    yield put(ledgerError(e));
   }
 }
 
 // Dispatches the address for every derivation path in the input
 export function* fetchLedgerAddresses({ derivationPaths }) {
   try {
-    // Pause the ledger sync to ensure only one process is accessing it at a time
-    yield put(stopLedgerSync());
-    yield delay(1000); // Wait for any ongoing operations to clear
     const transport = yield LedgerTransport.create();
     const eth = new Eth(transport);
 
@@ -311,9 +321,6 @@ export function* fetchLedgerAddresses({ derivationPaths }) {
     }
   } catch (error) {
     put(ledgerError('Error fetching address'));
-  } finally {
-    // Start ledger sync back up
-    yield put(startLedgerSync());
   }
 }
 
@@ -323,25 +330,13 @@ export default function* walletHoc() {
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
   yield takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
-  yield takeEvery(POLL_LEDGER, pollLedger);
   yield takeLatest(FETCH_LEDGER_ADDRESSES, fetchLedgerAddresses);
   yield takeEvery(TRANSFER, transfer);
-
   yield takeEvery(TRANSFER_ETHER, transferEther);
   yield takeEvery(TRANSFER_ERC20, transferERC20);
   yield takeEvery(TRANSFER_SUCCESS, waitTransactionHash);
   yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
   yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
   yield takeEvery(LISTEN_TOKEN_BALANCES, listenBalances);
-
-  // Handles the Ledger auto polling lifecycle
-  // START_LEDGER_SYNC activates ledgerSync saga
-  // STOP_LEDGER_SYNC causes ledgerSync saga to drop what it's doing
-  // and immediately enter its 'finally' block
-  while (yield take(START_LEDGER_SYNC)) {
-    const bgSyncTask = yield fork(ledgerSync);
-
-    yield take(STOP_LEDGER_SYNC);
-    yield cancel(bgSyncTask);
-  }
+  yield takeEvery(INIT_LEDGER, initLedger);
 }

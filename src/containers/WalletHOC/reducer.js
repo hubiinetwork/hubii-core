@@ -34,6 +34,7 @@ import {
   TRANSACTION_CONFIRMED,
   DELETE_WALLET,
 } from './constants';
+import { disconnectedErrorMsg } from '../../utils/ledger/friendlyErrors';
 
 export const initialState = fromJS({
   inputs: {
@@ -48,7 +49,7 @@ export const initialState = fromJS({
   errors: {
     creatingWalletError: null,
     decryptingWalletError: null,
-    ledgerError: 'Initialising, please try again in a few seconds...',
+    ledgerError: disconnectedErrorMsg,
   },
   wallets: [],
   currentWallet: {
