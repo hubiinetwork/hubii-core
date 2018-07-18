@@ -22,6 +22,8 @@ class ImportWalletPrivateKey extends React.Component {
   constructor(props) {
     super(props);
     this.handleFinish = this.handleFinish.bind(this);
+    this.compareToFirstPassword = this.compareToFirstPassword.bind(this);
+    this.validateToNextPassword = this.validateToNextPassword.bind(this);
   }
 
   compareToFirstPassword(rule, value, callback) {
@@ -112,9 +114,9 @@ class ImportWalletPrivateKey extends React.Component {
                       min: 6,
                       message: 'The required minimum is 6 characters.',
                     },
-                    {
-                      validator: this.validateToNextPassword,
-                    },
+                    // {
+                    //   validator: this.validateToNextPassword,
+                    // },
                   ],
                 })(<ModalFormInput type="password" />)}
             </ModalFormItem>
@@ -123,7 +125,7 @@ class ImportWalletPrivateKey extends React.Component {
                 <StyledModalFormLabel>Repeat password</StyledModalFormLabel>
               }
             >
-            {getFieldDecorator('repeatPassword', {
+            {getFieldDecorator('confirm', {
                   rules: [
                     {
                       required: true,
@@ -133,7 +135,7 @@ class ImportWalletPrivateKey extends React.Component {
                       validator: this.compareToFirstPassword,
                     },
                   ],
-                })(<ModalFormInput type="password" />)}
+                })(<ModalFormInput type="password"/>)}
             </ModalFormItem>
             <ButtonDiv>
               <StyledBackButton type={"primary"} onClick={this.props.handleBack}>
