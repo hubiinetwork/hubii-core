@@ -24,6 +24,22 @@ class ImportWalletPrivateKey extends React.Component {
     this.handleFinish = this.handleFinish.bind(this);
   }
 
+  compareToFirstPassword(rule, value, callback) {
+    const form = this.props.form;
+    if (value && value !== form.getFieldValue('password')) {
+      callback('The passwords do not match!');
+    } else {
+      callback();
+    }
+  }
+  validateToNextPassword(rule, value, callback) {
+    const form = this.props.form;
+    if (value && this.state.confirmPasswordsMatch) {
+      form.validateFields(['confirm'], { force: true });
+    }
+    callback();
+  }
+
   handleFinish(e) {
     const { form, handleNext } = this.props;
     e.preventDefault();
@@ -87,27 +103,37 @@ class ImportWalletPrivateKey extends React.Component {
               }
             >
               {getFieldDecorator('password', {
-                rules: [
-                  {
-                    message: 'Required field',
-                    required: true,
-                  },
-                ],
-              })(<ModalFormInput type="password" />)}
+                  rules: [
+                    {
+                      required: true,
+                      message: 'Please enter your password!',
+                    },
+                    {
+                      min: 6,
+                      message: 'The required minimum is 6 characters.',
+                    },
+                    {
+                      validator: this.validateToNextPassword,
+                    },
+                  ],
+                })(<ModalFormInput type="password" />)}
             </ModalFormItem>
             <ModalFormItem
               label={
                 <StyledModalFormLabel>Repeat password</StyledModalFormLabel>
               }
             >
-              {getFieldDecorator('repeatPassword', {
-                rules: [
-                  {
-                    message: 'Required field',
-                    required: true,
-                  },
-                ],
-              })(<ModalFormInput type="password" />)}
+            {getFieldDecorator('repeatPassword', {
+                  rules: [
+                    {
+                      required: true,
+                      message: 'Please confirm your password!',
+                    },
+                    {
+                      validator: this.compareToFirstPassword,
+                    },
+                  ],
+                })(<ModalFormInput type="password" />)}
             </ModalFormItem>
             <ButtonDiv>
               <StyledBackButton type={"primary"} onClick={this.props.handleBack}>
