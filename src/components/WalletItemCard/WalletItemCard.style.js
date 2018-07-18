@@ -50,7 +50,6 @@ export const CardIconSettings = styled.div`
 
 export const LeftSideWrapper = styled.div`
   display: flex;
-  flex: 1;
   flex-direction: column;
 `;
 
@@ -61,6 +60,7 @@ export const TotalBalance = styled.span`
   word-wrap: break-word;
   min-width: 150px;
   text-align: right;
+  flex: 1;
 `;
 
 export const OuterWrapper = styled.div`
