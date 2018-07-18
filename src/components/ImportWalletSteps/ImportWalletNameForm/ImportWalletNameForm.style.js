@@ -16,7 +16,8 @@ export const FormItem = styled(ModalFormItem)`
   .ant-form-item-label{
     display: flex;
     align-self: start;
-    margin-left: 3.6rem;}
+    margin-left: -13px;
+  }
 `;
 
 export const Image = styled.img`
