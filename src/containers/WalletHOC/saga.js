@@ -33,6 +33,8 @@ import {
   LEDGER_DETECTED,
   FETCH_LEDGER_ADDRESSES,
   CREATE_WALLET_FROM_PRIVATE_KEY,
+  LOAD_PRICES,
+  LOAD_SUPPORTED_TOKENS,
 } from './constants';
 
 import {
@@ -46,8 +48,10 @@ import {
   loadWalletBalancesError,
   updateBalances as updateBalancesAction,
   listenBalances as listenBalancesAction,
+  loadSupportedTokens as loadSupportedTokensAction,
   loadSupportedTokensSuccess,
   loadSupportedTokensError,
+  loadPrices as loadPricesAction,
   loadPricesSuccess,
   loadPricesError,
   showDecryptWalletModal,
@@ -112,6 +116,8 @@ export function* initWalletsBalances() {
   for (let i = 0; i < walletList.length; i += 1) {
     yield put(loadWalletBalances(walletList[i].address));
   }
+  yield put(loadSupportedTokensAction());
+  yield put(loadPricesAction());
 }
 
 export function* loadWalletBalancesSaga({ address }) {
@@ -368,4 +374,7 @@ export default function* walletHoc() {
     yield take(STOP_LEDGER_SYNC);
     yield cancel(bgSyncTask);
   }
+
+  yield takeLatest(LOAD_PRICES, loadPrices);
+  yield takeLatest(LOAD_SUPPORTED_TOKENS, loadSupportedTokens);
 }

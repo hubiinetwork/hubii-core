@@ -62,8 +62,10 @@ import {
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
+  loadSupportedTokens,
   loadSupportedTokensSuccess,
   loadSupportedTokensError,
+  loadPrices,
   loadPricesSuccess,
   loadPricesError,
   ledgerDetected,
@@ -746,6 +748,8 @@ describe('load wallets saga', () => {
       })
       .put(loadWalletBalances(`${walletList[0].address}`))
       .put(loadWalletBalances(`${walletList[1].address}`))
+      .put(loadSupportedTokens())
+      .put(loadPrices())
       .dispatch({ type: LOAD_WALLETS_SUCCESS })
       .run({ silenceTimeout: true });
   });
