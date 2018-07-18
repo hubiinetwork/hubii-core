@@ -57,9 +57,10 @@ export const LeftSideWrapper = styled.div`
 export const TotalBalance = styled.span`
   color: ${({ theme }) => theme.palette.info};
   font-size: 18px;
-  margin-right: 25px;
+  margin-right: 30px;
   word-wrap: break-word;
-  max-width: 150px;
+  min-width: 150px;
+  text-align: right;
 `;
 
 export const OuterWrapper = styled.div`
