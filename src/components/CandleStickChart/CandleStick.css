@@ -40,7 +40,7 @@
 .highcharts-axis-line, 
 .highcharts-tick,
 .highcharts-navigator-outline{
-	opacity: 0.7;
+	opacity: 1;
 }
 
 .highcharts-tooltip-box {

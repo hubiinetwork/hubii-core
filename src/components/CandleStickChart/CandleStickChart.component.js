@@ -112,7 +112,7 @@ export default class CandleStickChart extends React.Component {
             x: -3,
             style: {
               color: '#ffffff',
-              opacity: 0.7,
+              opacity: 0.6,
               width: '150px',
             },
           },
@@ -127,7 +127,7 @@ export default class CandleStickChart extends React.Component {
             x: -3,
             style: {
               color: '#ffffff',
-              opacity: 0.7,
+              opacity: 0.6,
             },
           },
           top: '80%',
@@ -139,7 +139,7 @@ export default class CandleStickChart extends React.Component {
           labels: {
             style: {
               color: '#ffffff',
-              opacity: 0.7,
+              opacity: 0.6,
             },
           },
         },
