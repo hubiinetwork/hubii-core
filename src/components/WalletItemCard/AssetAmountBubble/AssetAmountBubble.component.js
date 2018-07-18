@@ -2,13 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { getAbsolutePath } from 'utils/electron';
 import { Wrapper, Span, Image } from './AssetAmountBubble.style';
+import { approxEth } from '../../../utils/numberFormats';
 /**
  * This Component  is useful  to show  name  and  amount of  a  wallet's  balance.
  */
 const AssetAmountBubble = (props) => (
   <Wrapper>
     <Image src={getAbsolutePath(`public/images/assets/${props.name}.svg`)} />
-    <Span>{props.amount}</Span>
+    <Span>{approxEth(props.amount)}</Span>
   </Wrapper>
   );
 

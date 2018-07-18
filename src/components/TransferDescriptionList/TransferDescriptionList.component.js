@@ -6,26 +6,20 @@ import { Label, Value, Wrapper } from './TransferDescriptionList.style';
  * @param {number} props.label label of the TransferDescriptionList.
  * @param {string} props.labelSymbol currency symbol of label of the TransferDescriptionList like ETH.
  * @param {string} props.value value of the key TransferDescriptionList.
- * @param {string} [props.currencySymbol="$"] currency symbol of the key TransferDescriptionList.
  */
 
 const TransferDescriptionList = (props) => {
-  const { label, labelSymbol, value, currencySymbol } = props;
+  const { label, labelSymbol, value } = props;
   return (
     <Wrapper>
       <Label>
         {label} {labelSymbol}
       </Label>
       <Value>
-        {currencySymbol}
         {value}
       </Value>
     </Wrapper>
   );
-};
-
-TransferDescriptionList.defaultProps = {
-  currencySymbol: '$',
 };
 
 TransferDescriptionList.propTypes = {
@@ -41,10 +35,6 @@ TransferDescriptionList.propTypes = {
    * value of the key TransferDescriptionList.
    */
   value: PropTypes.string.isRequired,
-  /**
-   * currency symbol of the key TransferDescriptionList.
-   */
-  currencySymbol: PropTypes.string,
 };
 
 export default TransferDescriptionList;
