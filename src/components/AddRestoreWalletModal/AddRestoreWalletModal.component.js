@@ -105,6 +105,7 @@ export default class AddRestoreWalletModal extends React.Component {
               ]}
               onBackIcon={() => this.switchModals('main')}
               handleSubmit={this.props.handleImportWalletSubmit}
+              loading={loading.toJS().creatingWallet}
             />
           </div>
         )}

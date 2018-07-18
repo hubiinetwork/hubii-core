@@ -28,3 +28,4 @@ describe('<ImportWalletNameForm />', () => {
     expect(wrapper.text()).toContain('');
   });
 });
+

@@ -1,4 +1,4 @@
-Variants of ImportWalletNameForm:
+Variants of ImportWalletMnemonicForm:
 
 ```js
 <div
@@ -9,11 +9,9 @@ Variants of ImportWalletNameForm:
     height: 576
   }}
 >
-  <ImportWalletNameForm
-    wallet={{
-      src: 'https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png',
-      value: 'digitalBitbox1'
-    }}
+  <ImportWalletMnemonicForm
+    handleNext={() => console.log("handleNext")}
+    handleNext={() => console.log("handleBack")}
   />
 </div>
 ```

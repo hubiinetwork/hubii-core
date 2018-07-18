@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'antd';
+import { handleFinish } from 'utils/forms';
 import {
   Image,
   IconDiv,
@@ -17,28 +18,18 @@ import {
 class ImportWalletNameForm extends React.Component {
   constructor(props) {
     super(props);
-    this.handleFinish = this.handleFinish.bind(this);
   }
 
-  handleFinish(e) {
-    const { form, handleNext } = this.props;
-    e.preventDefault();
-    form.validateFields((err, values) => {
-      if (!err && handleNext) {
-        handleNext(values);
-      }
-    });
-  }
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { handleBack } = this.props;
+    const { form, handleNext, handleBack } = this.props;
     return (
       <div>
         <IconDiv>
           <Image src={this.props.wallet.src} />
         </IconDiv>
         <Form
-          onSubmit={this.handleFinish}
+          onSubmit={(e) => handleFinish(e, form, handleNext)}
           layout="vertical"
           style={{
             display: 'flex',

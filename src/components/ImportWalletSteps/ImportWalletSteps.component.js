@@ -31,7 +31,7 @@ export default class ImportWalletSteps extends React.Component {
 
   getSteps() {
     const { selectedWallet } = this.state;
-    const { wallets } = this.props;
+    const { wallets, loading } = this.props;
     const steps = [
       {
         title: 'First',
@@ -61,6 +61,7 @@ export default class ImportWalletSteps extends React.Component {
               wallet={selectedWallet}
               handleBack={this.handleBack}
               handleNext={this.handleNext}
+              loading={loading}
             />
           ),
         },
@@ -74,6 +75,7 @@ export default class ImportWalletSteps extends React.Component {
               wallet={selectedWallet}
               handleBack={this.handleBack}
               handleNext={this.handleNext}
+              loading={loading}
             />
           ),
         },
@@ -83,9 +85,9 @@ export default class ImportWalletSteps extends React.Component {
           title: 'Last',
           content: (
             <ImportWalletMnemonicForm
-              wallet={selectedWallet}
               handleBack={this.handleBack}
               handleNext={this.handleNext}
+              loading={loading}
             />
           ),
         },
@@ -142,4 +144,5 @@ ImportWalletSteps.propTypes = {
   wallets: PropTypes.array,
   handleSubmit: PropTypes.func,
   onBackIcon: PropTypes.func,
+  loading: PropTypes.bool,
 };

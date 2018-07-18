@@ -1,2 +1,2 @@
-import ImportWalletPrivateKeyForm from './ImportWalletMnemonicForm.component';
-export default ImportWalletPrivateKeyForm;
+import ImportWalletMnemonicForm from './ImportWalletMnemonicForm.component';
+export default ImportWalletMnemonicForm;

@@ -1,6 +1,7 @@
 /* eslint-disable */
 import * as React from 'react';
 import { Form, Icon } from 'antd';
+import PropTypes from 'prop-types';
 import {
   Flex,
   Image,
@@ -17,6 +18,7 @@ import {
   StyledSpan,
 } from './ImportWalletPrivateKeyForm.style';
 import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
+import { handleFinish, compareToFirstPassword} from 'utils/forms';
 
 class ImportWalletPrivateKey extends React.Component {
   constructor(props) {
@@ -24,35 +26,15 @@ class ImportWalletPrivateKey extends React.Component {
     this.state = {
       password: null,
     }
-    this.handleFinish = this.handleFinish.bind(this);
-    this.compareToFirstPassword = this.compareToFirstPassword.bind(this);
-  }
-
-  handleFinish(e) {
-    const { form, handleNext } = this.props;
-    e.preventDefault();
-    form.validateFields((err, values) => {
-      if (!err && handleNext) {
-        handleNext(values);
-      }
-    });
-  }
-
-  compareToFirstPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
-    } else {
-      callback();
-    }
   }
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const {form, handleNext} = this.props;
     return (
       <div>
         <Form
-          onSubmit={this.handleFinish}
+          onSubmit={(e) => handleFinish(e, form, handleNext)}
           layout="vertical"
           style={{
             marginTop: '5rem',
@@ -124,7 +106,7 @@ class ImportWalletPrivateKey extends React.Component {
                     message: 'Please confirm your password!',
                   }, 
                   {
-                    validator: this.compareToFirstPassword,
+                    validator: (rule, value, callback) => compareToFirstPassword(form, rule, value, callback),
                   }
                 ],
               })(<ModalFormInput type="password" />)}
@@ -143,4 +125,20 @@ class ImportWalletPrivateKey extends React.Component {
     );
   }
 }
+
+ImportWalletPrivateKey.propTypes = {
+  /**
+   * Function to be executed when back button is pressed
+   */
+  handleBack: PropTypes.func.isRequired,
+  /**
+   * Function to be executed when next is clicked.
+   */
+  handleNext: PropTypes.func.isRequired,
+    /**
+   * ant design form
+   */
+  form: PropTypes.object,
+};
+
 export default Form.create()(ImportWalletPrivateKey);

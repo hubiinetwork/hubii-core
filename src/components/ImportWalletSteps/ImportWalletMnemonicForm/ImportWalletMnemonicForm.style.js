@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Button from 'components/ui/Button';
 import { ModalFormLabel } from 'components/ui/Modal';
+import { Spin } from 'antd';
 
 export const Between = styled.div`
   display: flex;
@@ -10,6 +11,13 @@ export const Between = styled.div`
     align-self: start;
     margin-left: -13px;
   }
+`;
+
+export const StyledSpin = styled(Spin)`
+  &.ant-spin.ant-spin-show-text .ant-spin-text{
+    margin-top:1.5rem;
+  }
+  color: white;
 `;
 
 export const Image = styled.img`
@@ -46,9 +54,10 @@ export const StyledTitle = styled.span`
 export const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: ${(props) => props.loading ? '25px' : '50px'};
   margin-bottom: 26px;
 `;
+
 export const StyledButton = styled(Button)`
   background-color: ${({ disabled: white }) =>
     white && 'transparent !important'};
