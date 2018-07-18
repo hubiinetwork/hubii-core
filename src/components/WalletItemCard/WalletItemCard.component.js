@@ -22,6 +22,7 @@ import {
   CardIconSettings,
   OverflowHidden,
   SpaceBetween,
+  WalletName
 } from './WalletItemCard.style';
 /**
  * This component shows details of a wallet in the card.
@@ -31,7 +32,7 @@ export class WalletItemCard extends React.PureComponent {
     super(props);
     this.state = {
       modalVisibility: false,
-      modalType: '',
+      modalType: ''
     };
     this.settingsMenu = this.settingsMenu.bind(this);
     this.handleDeleteWallet = this.handleDeleteWallet.bind(this);
@@ -40,16 +41,25 @@ export class WalletItemCard extends React.PureComponent {
 
   settingsMenu(walletType) {
     const menuItems = [];
-    menuItems.push(<MenuItem key="1" onClick={() => this.setState({ modalVisibility: true, modalType: 'deleteWallet' })}>Delete Wallet</MenuItem>);
+    menuItems.push(
+      <MenuItem
+        key="1"
+        onClick={() =>
+          this.setState({ modalVisibility: true, modalType: 'deleteWallet' })
+        }
+      >
+        Delete Wallet
+      </MenuItem>
+    );
     if (walletType === 'software') {
       menuItems.push(<MenuDivider key="2" />);
-      menuItems.push(<MenuItem key="3" onClick={this.handleExportSeedWords}>Export Private Infomation</MenuItem>);
+      menuItems.push(
+        <MenuItem key="3" onClick={this.handleExportSeedWords}>
+          Export Private Infomation
+        </MenuItem>
+      );
     }
-    return (
-      <Menu>
-        {menuItems.map((item) => item)}
-      </Menu>
-    );
+    return <Menu>{menuItems.map(item => item)}</Menu>;
   }
 
   async handleExportSeedWords() {
@@ -65,7 +75,6 @@ export class WalletItemCard extends React.PureComponent {
     this.setState({ modalVisibility: false });
   }
 
-
   render() {
     const {
       address,
@@ -77,7 +86,7 @@ export class WalletItemCard extends React.PureComponent {
       isDecrypted,
       assets,
       mnemonic,
-      privateKey,
+      privateKey
     } = this.props;
 
     const { modalVisibility, modalType } = this.state;
@@ -85,25 +94,27 @@ export class WalletItemCard extends React.PureComponent {
     let modal;
     switch (modalType) {
       case 'deleteWallet':
-        modal =
-          (<DeletionModal
+        modal = (
+          <DeletionModal
             type="wallet"
             onCancel={() => this.setState({ modalVisibility: false })}
             onDelete={this.handleDeleteWallet}
             name={name}
             address={address}
-          />);
+          />
+        );
         break;
       default:
-        modal =
-          (<ExportPrivateInfo
+        modal = (
+          <ExportPrivateInfo
             onExit={() => this.setState({ modalVisibility: false })}
             onDelete={this.handleDeleteWallet}
             name={name}
             address={address}
             mnemonic={mnemonic}
             privateKey={privateKey}
-          />);
+          />
+        );
     }
     return (
       <OverflowHidden>
@@ -114,37 +125,37 @@ export class WalletItemCard extends React.PureComponent {
               placement="right"
               trigger="hover"
               content={
-                <WalletDetailPopoverContent
-                  address={address}
-                  type={type}
-                />
+                <WalletDetailPopoverContent address={address} type={type} />
               }
             >
               <Icon type="info-circle-o" />
             </Popover>
           </CardIcon>
           <CardIconSettings>
-            <Dropdown
-              placement="bottomLeft"
-              overlay={this.settingsMenu(type)}
-            >
-              <Icon type="setting" />
+            <Dropdown placement="bottomLeft" overlay={this.settingsMenu(type)}>
+              <Icon type="setting" style={{ marginBottom: '132%' }} />
             </Dropdown>
           </CardIconSettings>
         </SpaceBetween>
-        <OuterWrapper onClick={() => { handleCardClick(address); }}>
+        <OuterWrapper
+          onClick={() => {
+            handleCardClick(address);
+          }}
+        >
           <LeftSideWrapper>
-            <p>{name}</p>
-            <AssetsWrapper>
-              {assets &&
-              assets.map((asset) => (
+            <WalletName>{name}</WalletName>
+            <TotalBalance>{`$${totalBalance.toLocaleString(
+              'en'
+            )}`}</TotalBalance>
+          </LeftSideWrapper>
+          <AssetsWrapper>
+            {assets &&
+              assets.map(asset => (
                 <AssetWrapper key={asset.name}>
                   <AssetAmountBubble name={asset.name} amount={asset.amount} />
                 </AssetWrapper>
               ))}
-            </AssetsWrapper>
-          </LeftSideWrapper>
-          <TotalBalance>{`$${totalBalance.toLocaleString('en')}`}</TotalBalance>
+          </AssetsWrapper>
         </OuterWrapper>
         <Modal
           footer={null}
@@ -152,14 +163,16 @@ export class WalletItemCard extends React.PureComponent {
           maskClosable
           maskStyle={{ background: 'rgba(232,237,239,.65)' }}
           style={{ marginTop: '20px' }}
-          visible={(isDecrypted && modalVisibility) || (modalVisibility && modalType === 'deleteWallet')}
+          visible={
+            (isDecrypted && modalVisibility) ||
+            (modalVisibility && modalType === 'deleteWallet')
+          }
           onCancel={() => this.setState({ modalVisibility: false })}
           destroyOnClose
         >
           {modal}
         </Modal>
       </OverflowHidden>
-
     );
   }
 }
@@ -179,7 +192,7 @@ WalletItemCard.propTypes = {
   assets: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
-      amount: PropTypes.number,
+      amount: PropTypes.number
     })
   ),
   /**
@@ -218,7 +231,7 @@ WalletItemCard.propTypes = {
   /**
    * Wallet's private key
    */
-  privateKey: PropTypes.string,
+  privateKey: PropTypes.string
 };
 
 export default WalletItemCard;

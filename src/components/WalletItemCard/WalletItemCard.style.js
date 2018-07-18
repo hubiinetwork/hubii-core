@@ -8,6 +8,7 @@ export const AssetsWrapper = styled.div`
 
 export const SpaceBetween = styled.div`
   display: flex;
+  height: 100%;
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
@@ -39,7 +40,9 @@ export const OverflowHidden = styled.div`
 `;
 
 export const CardIconSettings = styled.div`
-  margin-top: 3.6rem;
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
   color: ${({ theme }) => theme.palette.secondary1};
   font-size: 20px;
   &:hover {
@@ -50,7 +53,7 @@ export const CardIconSettings = styled.div`
 
 export const LeftSideWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 `;
 
 export const TotalBalance = styled.span`
@@ -63,8 +66,14 @@ export const TotalBalance = styled.span`
   flex: 1;
 `;
 
+export const WalletName = styled.p`
+  min-width: 70px;
+  word-wrap: break-word;
+`;
+
 export const OuterWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   flex: 1;
   justify-content: space-between;
   min-height: 120px;
