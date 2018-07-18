@@ -114,9 +114,9 @@ class ImportWalletPrivateKey extends React.Component {
                       min: 6,
                       message: 'The required minimum is 6 characters.',
                     },
-                    // {
-                    //   validator: this.validateToNextPassword,
-                    // },
+                    {
+                      validator: this.validateToNextPassword,
+                    },
                   ],
                 })(<ModalFormInput type="password" />)}
             </ModalFormItem>
