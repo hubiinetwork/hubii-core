@@ -8,6 +8,7 @@ import WalletDetailPopoverContent from './WalletDetailPopoverContent';
 import AssetAmountBubble from './AssetAmountBubble';
 import USBFlag from '../USBFlag';
 import { Modal } from '../ui/Modal';
+import { formatFiat } from '../../utils/numberFormats';
 
 import {
   AssetsWrapper,
@@ -144,9 +145,7 @@ export class WalletItemCard extends React.PureComponent {
         >
           <LeftSideWrapper>
             <WalletName>{name}</WalletName>
-            <TotalBalance>{`$${totalBalance.toLocaleString(
-              'en'
-            )}`}</TotalBalance>
+            <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
           </LeftSideWrapper>
           <AssetsWrapper>
             {assets &&
