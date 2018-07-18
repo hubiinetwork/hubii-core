@@ -1,6 +1,5 @@
 import { eventChannel, delay } from 'redux-saga';
 import { takeLatest, takeEvery, put, call, select, race, take } from 'redux-saga/effects';
-import Eth from '@ledgerhq/hw-app-eth';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 // import Web3 from 'web3';
 import { Wallet, utils, providers, Contract } from 'ethers';
@@ -53,6 +52,7 @@ import {
   transactionConfirmed,
   hideDecryptWalletModal,
 } from './actions';
+import { createTransport, newEth } from '../../utils/ledger/comms';
 // import generateRawTx from '../../utils/generateRawTx';
 
 // Creates a new software wallet
@@ -271,9 +271,9 @@ export const ledgerChannel = () => eventChannel((listener) => {
 });
 
 export function* initLedger() {
-  const supported = yield LedgerTransport.isSupported();
+  const supported = yield call(LedgerTransport.isSupported);
   if (!supported) {
-    yield put(ledgerError(Error('Failed to open connection with USB port')));
+    yield put(ledgerError(Error('NoSupport')));
     return;
   }
 
@@ -296,9 +296,9 @@ export function* initLedger() {
           throw new Error('Disconnected');
         }
       }
-      const transport = yield LedgerTransport.create(500, 500);
-      const eth = new Eth(transport);
-      const address = yield eth.getAddress("m/44'/60'/0'/0");
+      const transport = yield call(createTransport);
+      const eth = yield call(newEth, transport);
+      const address = yield call(eth.getAddress, "m/44'/60'/0'/0");
       const id = address.publicKey;
       yield put(ledgerDetected(id));
     } catch (e) {
@@ -310,13 +310,13 @@ export function* initLedger() {
 // Dispatches the address for every derivation path in the input
 export function* fetchLedgerAddresses({ derivationPaths }) {
   try {
-    const transport = yield LedgerTransport.create();
-    const eth = new Eth(transport);
+    const transport = yield call(createTransport);
+    const eth = yield call(newEth, transport);
 
     let i;
     for (i = 0; i < derivationPaths.length; i += 1) {
       const path = derivationPaths[i];
-      const publicAddressKeyPair = yield eth.getAddress(path);
+      const publicAddressKeyPair = yield call(eth.getAddress, path);
       yield put(fetchedLedgerAddress(path, publicAddressKeyPair.address));
     }
   } catch (error) {

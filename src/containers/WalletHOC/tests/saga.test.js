@@ -4,8 +4,10 @@
 
 /* eslint-disable redux-saga/yield-effects */
 import { eventChannel } from 'redux-saga';
-import { takeLatest, takeEvery, put } from 'redux-saga/effects';
+import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
+import { takeLatest, takeEvery, put, call } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
+import * as matchers from 'redux-saga-test-plan/matchers';
 import { requestWalletAPI } from 'utils/request';
 import { Wallet, utils } from 'ethers';
 import walletHocReducer from 'containers/WalletHOC/reducer';
@@ -26,6 +28,7 @@ import walletHoc, {
   hookNewWalletCreated,
   listenBalances,
   initLedger,
+  ledgerChannel,
 } from '../saga';
 
 import {
@@ -52,6 +55,7 @@ import {
   showDecryptWalletModal,
   loadWalletBalances,
   loadWalletBalancesSuccess,
+  initLedger as initLedgerAction,
   loadWalletBalancesError,
   transferSuccess,
   transferError,
@@ -59,8 +63,12 @@ import {
   transfer as transferAction,
   listenBalances as listenBalancesAction,
   addNewWallet as addNewWalletAction,
+  ledgerError,
+  ledgerDetected,
 } from '../actions';
 import { findWalletIndex } from '../../../utils/wallet';
+import { transportMock, addressMock, ethMock, channelMock } from './mocks/ledgerMocks';
+import { createTransport, newEth } from '../../../utils/ledger/comms';
 
 describe('createWalletFromMnemonic saga', () => {
   let mnemonic = 'movie viable write punch mango arrest cotton page grass dad document practice';
@@ -270,6 +278,41 @@ describe('decryptWallet saga', () => {
     putDescriptor = decryptWalletGenerator.next().value;
     expect(putDescriptor).toEqual(put(notify('error', `Failed to unlock wallet: ${error}`)));
   });
+});
+
+describe('initLedger saga', () => {
+  it('should dispatch ledgerError if cannot establish Transport', () => expectSaga(initLedger)
+    .provide([
+      [call(LedgerTransport.isSupported), false],
+    ])
+    .put(ledgerError(Error('NoSupport')))
+    .dispatch(initLedgerAction())
+    .run()
+  );
+
+  // redux-saga-test-plan has issues running inside infinite loops
+  // skipping this test until it's clear how to handle
+  // see https://github.com/jfairbank/redux-saga-test-plan/issues/74
+  xit('should dispatch ledgerDetected if Ledger successfully connected', () => expectSaga(initLedger)
+    .provide([
+      [call(LedgerTransport.isSupported), true],
+      [matchers.call.fn(ledgerChannel), channelMock],
+      [matchers.call.fn(createTransport), transportMock],
+      [matchers.call.fn(newEth), ethMock],
+      [matchers.call.fn(ethMock.getAddress), addressMock],
+      {
+        take({ channel }, next) {
+          if (channel === channelMock) {
+            return { type: 'add' };
+          }
+          return next();
+        },
+      },
+    ])
+      .put(ledgerDetected(addressMock.publicKey))
+      .dispatch(initLedgerAction())
+      .run()
+    );
 });
 
 describe('load wallets saga', () => {
