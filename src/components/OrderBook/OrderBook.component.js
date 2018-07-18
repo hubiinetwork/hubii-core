@@ -1,70 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Icon } from 'antd';
+import { TabPane } from '../ui/StriimTabs';
 import {
-  StyledTable,
-  TitleLeft,
-  TitleRight,
-  PrimaryText,
-  DangerText,
-  SuccessText,
-  AmountWrapper,
-  SecondaryText,
+  Heading,
+  Tabs,
+  Wrapper,
 } from './OrderBook.style';
+import OrderBookTable from './OrderBookTable';
 
-const OrderBook = ({ data }) => {
-  const sucessColumns = [{
-    title: <div><TitleLeft>Price </TitleLeft><TitleRight>HBT</TitleRight></div>,
-    dataIndex: 'priceHBT',
-    key: 'priceHBT',
-    render: (amount) => <SuccessText>{amount}</SuccessText>,
-    width: '33.3%',
-  },
-  {
-    title: <div><TitleLeft>Amount </TitleLeft><TitleRight>ETH</TitleRight></div>,
-    dataIndex: 'amountETH',
-    key: 'amountETH',
-    render: (amount) => <PrimaryText>{amount}</PrimaryText>,
-    width: '33.3%',
-  },
-  {
-    title: <div><TitleLeft>Total </TitleLeft><TitleRight>HBT</TitleRight></div>,
-    dataIndex: 'totalHBT',
-    key: 'totalHBT',
-    render: (amount) => <PrimaryText>{amount}</PrimaryText>,
-    width: '33.3%',
-  }];
+const OrderBook = ({ incrementedData, decrementedData }) => (
+  <Wrapper>
+    <Heading>Order Book</Heading>
+    <Tabs defaultActiveKey="1">
+      <TabPane tab={<Icon type="arrow-down" style={{ color: 'green' }} />} key="1" style={{ color: 'white' }}>
+        <OrderBookTable incrementedData={incrementedData} decrementedData={decrementedData} />
+      </TabPane>
+      <TabPane tab={<Icon type="arrow-up" style={{ color: 'red' }} />} key="2" style={{ color: 'white' }}>
+        <OrderBookTable incrementedData={incrementedData} decrementedData={decrementedData} />
+      </TabPane>
+      <TabPane tab={<Icon type="apple" />} key="3" style={{ color: 'white' }}>
+        <OrderBookTable incrementedData={incrementedData} decrementedData={decrementedData} />
+      </TabPane>
+    </Tabs>
+  </Wrapper>
+);
 
-  const dataSource = data.map(({ priceHBT, amountETH }, i) => ({
-    key: i,
-    priceHBT,
-    amountETH,
-    totalHBT: priceHBT * amountETH,
-  }));
-  const columns = sucessColumns.map((column) => ({ ...column }));
-  columns[0].render = (amount) => <DangerText>{amount}</DangerText>;
-  return (
-    <div>
-      <StyledTable
-        dataSource={dataSource}
-        pagination={false}
-        columns={sucessColumns}
-        size="small"
-      />
-      <AmountWrapper><SecondaryText>843.59 USD</SecondaryText></AmountWrapper>
-      <StyledTable
-        showHeader={false}
-        dataSource={dataSource}
-        pagination={false}
-        columns={columns}
-        size="small"
-      />
-    </div>
-  );
-};
 OrderBook.propTypes = {
   /**
-   * Antd table prop which contains data of the table
+   * Table data of incremented values
    */
-  data: PropTypes.array,
+  incrementedData: PropTypes.array,
+  /**
+   * Table data of decremented values
+   */
+  decrementedData: PropTypes.array,
 };
 export default OrderBook;

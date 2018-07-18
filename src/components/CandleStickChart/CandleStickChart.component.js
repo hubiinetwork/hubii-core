@@ -18,6 +18,9 @@ export default class CandleStickChart extends React.Component {
     // }, 1000);
     this.updateData();
   }
+  componentWillUnmount() {
+    EE.removeAllListeners('CandleStick-update');
+  }
   updateData() {
     fetch('https://raw.githubusercontent.com/smartvikisogn/cryptocurrency/master/bitcoin.json')
     .then((res) => res.json())

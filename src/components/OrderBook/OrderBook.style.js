@@ -1,6 +1,7 @@
 
 import styled from 'styled-components';
 import Table from '../ui/Table';
+import StriimTabs from '../ui/StriimTabs';
 
 export const TitleLeft = styled.span`
   color: ${({ theme }) => theme.palette.secondary9} !important;
@@ -29,14 +30,51 @@ export const DangerText = styled.span`
   color: ${({ theme }) => theme.palette.danger} !important;
 `;
 
+export const Heading = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  color: ${({ theme }) => theme.palette.light};
+  position: absolute;
+  top: 5px;
+  padding-left: 8px;
+`;
+
 export const AmountWrapper = styled.div`
-backgroud-color: ${({ theme }) => theme.palette.secondary10};
-display:flex;
-justify-content: center;
+  background-color: ${({ theme }) => theme.palette.secondary10};
+  display:flex;
+  justify-content: center;
 `;
 
 export const StyledTable = styled(Table)`
   td {
     color: ${({ theme }) => theme.palette.light};
   }
+  th,
+  td {
+    text-align: center !important;
+  }
+`;
+
+export const Tabs = styled(StriimTabs)`
+  .ant-tabs-nav-container {
+    width: 109px;
+  }
+  .ant-tabs-nav .ant-tabs-tab {
+    padding: 6px 5px !important;
+    font-size: 17px;
+    flex: 0;
+  }
+  .ant-tabs-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 13px;
+    padding-top: 5px
+  }
+`;
+
+export const Wrapper = styled.div`
+  position: relative;
+  background-color: ${({ theme }) => theme.palette.primary3};
+  width: 251px;
 `;
