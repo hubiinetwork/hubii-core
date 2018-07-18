@@ -4,7 +4,7 @@ import { Table } from 'antd';
 export default styled(Table)`
   th,
   td {
-    padding: 1px 15px !important;
+    padding: 1px 2px !important;
     border: 0px !important;
     font-weight: 500;
     background: none !important;

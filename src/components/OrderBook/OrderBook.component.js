@@ -17,18 +17,21 @@ const OrderBook = ({ data }) => {
     dataIndex: 'priceHBT',
     key: 'priceHBT',
     render: (amount) => <SuccessText>{amount}</SuccessText>,
+    width: '33.3%',
   },
   {
     title: <div><TitleLeft>Amount </TitleLeft><TitleRight>ETH</TitleRight></div>,
     dataIndex: 'amountETH',
     key: 'amountETH',
     render: (amount) => <PrimaryText>{amount}</PrimaryText>,
+    width: '33.3%',
   },
   {
     title: <div><TitleLeft>Total </TitleLeft><TitleRight>HBT</TitleRight></div>,
     dataIndex: 'totalHBT',
     key: 'totalHBT',
     render: (amount) => <PrimaryText>{amount}</PrimaryText>,
+    width: '33.3%',
   }];
 
   const dataSource = data.map(({ priceHBT, amountETH }, i) => ({
@@ -49,7 +52,7 @@ const OrderBook = ({ data }) => {
       />
       <AmountWrapper><SecondaryText>843.59 USD</SecondaryText></AmountWrapper>
       <StyledTable
-        // showHeader={false}
+        showHeader={false}
         dataSource={dataSource}
         pagination={false}
         columns={columns}

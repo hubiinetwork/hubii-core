@@ -33,6 +33,7 @@ const grey8C = '#8CA5B1';
 const grey6F = '#43616F';
 const grey40 = '#406171';
 const grey58 = '#587786';
+const grey2D = '#2D444F';
 
 // ****** black ****** //
 
@@ -86,6 +87,7 @@ export default {
     secondary7: grey6F,
     secondary8: grey40,
     secondary9: grey58,
+    secondary10: grey2D,
 
     dark: black,
     dark1: blackLight,

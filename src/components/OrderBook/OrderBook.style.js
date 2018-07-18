@@ -30,6 +30,7 @@ export const DangerText = styled.span`
 `;
 
 export const AmountWrapper = styled.div`
+backgroud-color: ${({ theme }) => theme.palette.secondary10};
 display:flex;
 justify-content: center;
 `;
