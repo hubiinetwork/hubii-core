@@ -54,9 +54,54 @@ const makeSelectCurrentWallet = () => createSelector(
   (walletHocDomain) => walletHocDomain.get('currentWallet')
 );
 
+const makeSelectBalances = () => createSelector(
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('balances')
+);
+
+const makeSelectPrices = () => createSelector(
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('prices')
+);
+
+const makeSelectSupportedTokens = () => createSelector(
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('supportedTokens')
+);
+
 const makeSelectWalletList = () => createSelector(
   makeSelectWallets(),
-  (walletsState) => convertWalletsList(walletsState)
+  makeSelectBalances(),
+  makeSelectPrices(),
+  makeSelectSupportedTokens(),
+  (wallets, balances, prices, supportedTokens) => {
+    const walletList = convertWalletsList(wallets);
+    return walletList.map((wallet) => {
+      let walletBalances = balances.getIn([wallet.address]);
+      if (!walletBalances) {
+        return { ...wallet, balances: { tokens: [] } };
+      }
+      if (!walletBalances.tokens) {
+        return { ...wallet, balances: walletBalances };
+      }
+      walletBalances = walletBalances.tokens.map((balance) => {
+        const pri = prices.find((price) => price.currency === balance.currency);
+        const tkn = supportedTokens.find((token) => token.currency === balance.currency);
+        return {
+          symbol: tkn.symbol,
+          balance: balance.balance,
+          decimals: tkn.decimals,
+          price: {
+            usd: pri.usd,
+            eth: pri.eth,
+            btc: pri.btc,
+          },
+          color: tkn.color,
+        };
+      });
+      return { ...wallet, balances: walletBalances };
+    });
+  }
 );
 
 const makeSelectCurrentWalletDetails = () => createSelector(

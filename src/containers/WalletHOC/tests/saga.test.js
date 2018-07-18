@@ -475,12 +475,6 @@ describe('load wallets saga', () => {
     });
   });
   describe('load balances', () => {
-    it('should trigger loadSupportedTokens action when no available in store', () => {
-
-    });
-    it('should trigger loadPrices action when no available in store', () => {
-
-    });
     it('should save loaded balances in store by wallet address', () => {
       const response = [
         {
@@ -726,7 +720,6 @@ describe('load wallets saga', () => {
       .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
       .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
       .run({ silenceTimeout: true })
-      // .run(500000)
       .then((result) => {
         const walletHocState = result.storeState.get('walletHoc');
         expect(walletHocState.getIn(['pendingTransactions']).count()).toEqual(0);
