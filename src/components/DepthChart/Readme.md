@@ -38,5 +38,5 @@ Examples:
       amountETH: 2.795,
     },
   ];
-<DepthChart incrementedData={data} decrementedData={data} />
+<DepthChart incrementedData={data} decrementedData={data} amountUSD={843.59} />
 ```

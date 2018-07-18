@@ -138,11 +138,11 @@ class DepthChart extends React.Component {
 
       ],
     };
-    const { incrementedData, decrementedData } = this.props;
+    const { incrementedData, decrementedData, amountUSD } = this.props;
     return (
       <Wrapper>
         <ReactHighcharts config={config} />
-        <OrderBook incrementedData={incrementedData} decrementedData={decrementedData} />
+        <OrderBook incrementedData={incrementedData} decrementedData={decrementedData} amountUSD={amountUSD} />
       </Wrapper>
     );
   }
@@ -156,5 +156,6 @@ DepthChart.propTypes = {
    * Table data of decremented values
    */
   decrementedData: PropTypes.array,
+  amountUSD: PropTypes.number,
 };
 export default DepthChart;

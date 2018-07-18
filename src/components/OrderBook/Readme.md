@@ -40,6 +40,6 @@ const data = [
     },
 ];
 <div style={{ width:251}}>
-<OrderBook incrementedData={data} decrementedData={data} />
+<OrderBook incrementedData={data} decrementedData={data} amountUSD={843.59} />
 </div>
 ```

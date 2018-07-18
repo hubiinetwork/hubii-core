@@ -11,7 +11,7 @@ import {
   SecondaryText,
 } from './OrderBook.style';
 
-const OrderBookTable = ({ incrementedData, decrementedData }) => {
+const OrderBookTable = ({ incrementedData, decrementedData, amountUSD }) => {
   const sucessColumns = [{
     title: <div><TitleLeft>Price </TitleLeft><TitleRight>HBT</TitleRight></div>,
     dataIndex: 'priceHBT',
@@ -59,7 +59,7 @@ const OrderBookTable = ({ incrementedData, decrementedData }) => {
         columns={sucessColumns}
         size="small"
       />
-      <AmountWrapper><SecondaryText>843.59 USD</SecondaryText></AmountWrapper>
+      <AmountWrapper><SecondaryText>{amountUSD} USD</SecondaryText></AmountWrapper>
       <StyledTable
         showHeader={false}
         dataSource={decrementedDataSource}
@@ -80,6 +80,7 @@ OrderBookTable.propTypes = {
    * Table data of decremented values
    */
   decrementedData: PropTypes.array,
+  amountUSD: PropTypes.number,
 };
 export default OrderBookTable
 ;
