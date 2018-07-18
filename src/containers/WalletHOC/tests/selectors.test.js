@@ -145,3 +145,15 @@ describe('makeSelectCurrentWalletDetails', () => {
     expect(walletSelector(mockedState)).toEqual(expected);
   });
 });
+
+describe('makeSelectWalletList', () => {
+  it('should piece together balances/token to the wallet', () => {
+
+  });
+  it('should mark balance loading when the balance for a wallet address is in loading', () => {
+
+  });
+  it('should mark balance error when there are errors when loading a balance', () => {
+
+  });
+});

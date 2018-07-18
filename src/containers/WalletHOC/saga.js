@@ -46,6 +46,8 @@ import {
   loadWalletBalancesError,
   updateBalances as updateBalancesAction,
   listenBalances as listenBalancesAction,
+  loadSupportedTokensSuccess,
+  loadSupportedTokensError,
   showDecryptWalletModal,
   transferSuccess,
   transferError,
@@ -148,6 +150,16 @@ export function* listenBalances({ address }) {
       return;
     }
     yield put(updateBalancesAction(address, { symbol: 'ETH', balance: updates.newBalance.toString() }));
+  }
+}
+
+export function* loadSupportedTokens() {
+  const requestPath = 'ethereum/supported-tokens';
+  try {
+    const returnData = yield call(requestWalletAPI, requestPath);
+    yield put(loadSupportedTokensSuccess(returnData));
+  } catch (err) {
+    yield put(loadSupportedTokensError(err));
   }
 }
 

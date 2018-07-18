@@ -13,6 +13,8 @@ import {
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
   UPDATE_TOKEN_BALANCES,
+  LOAD_SUCCESS_TOKENS_SUCCESS,
+  LOAD_SUCCESS_TOKENS_ERROR,
   CREATE_WALLET_FROM_MNEMONIC,
   CREATE_WALLET_FROM_PRIVATE_KEY,
   CREATE_WALLET_SUCCESS,
@@ -61,6 +63,12 @@ export const initialState = fromJS({
   },
   pendingTransactions: [],
   confirmedTransactions: [],
+  supportedTokens: {
+    loading: false,
+    error: null,
+    tokens: [],
+  },
+  balances: {},
 });
 
 abiDecoder.addABI(ERC20ABI);
@@ -102,16 +110,16 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['errors', 'decryptingWalletError'], action.error);
     case LOAD_WALLET_BALANCES:
       return state
-        .setIn(['wallets', findWalletIndex(state, action.address), 'loadingBalances'], true);
+        .setIn(['balances', action.address, 'loading'], true);
     case LOAD_WALLET_BALANCES_SUCCESS:
       return state
-        .setIn(['wallets', findWalletIndex(state, action.address), 'loadingBalances'], false)
-        .setIn(['wallets', findWalletIndex(state, action.address), 'loadingBalancesError'], null)
-        .setIn(['wallets', findWalletIndex(state, action.address), 'balances'], fromJS(action.tokenBalances.tokens || []));
+        .setIn(['balances', action.address, 'loading'], false)
+        .setIn(['balances', action.address, 'error'], null)
+        .setIn(['balances', action.address, 'tokens'], fromJS(action.tokens || []));
     case LOAD_WALLET_BALANCES_ERROR:
       return state
-        .setIn(['wallets', findWalletIndex(state, action.address), 'loadingBalances'], false)
-        .setIn(['wallets', findWalletIndex(state, action.address), 'loadingBalancesError'], action.error);
+        .setIn(['balances', action.address, 'loading'], false)
+        .setIn(['balances', action.address, 'error'], action.error);
     case UPDATE_TOKEN_BALANCES:
       {
         return state
@@ -122,6 +130,15 @@ function walletHocReducer(state = initialState, action) {
             return balance;
           }));
       }
+    case LOAD_SUCCESS_TOKENS_SUCCESS:
+      return state
+        .setIn(['supportedTokens', 'loading'], false)
+        .setIn(['supportedTokens', 'error'], null)
+        .setIn(['supportedTokens', 'tokens'], fromJS(action.tokens));
+    case LOAD_SUCCESS_TOKENS_ERROR:
+      return state
+        .setIn(['supportedTokens', 'loading'], false)
+        .setIn(['supportedTokens', 'error'], action.error);
     case SHOW_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], true);

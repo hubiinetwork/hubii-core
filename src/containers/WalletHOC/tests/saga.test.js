@@ -10,7 +10,7 @@ import { createMockTask } from 'redux-saga/utils';
 import { expectSaga } from 'redux-saga-test-plan';
 import { requestWalletAPI } from 'utils/request';
 import { Wallet, utils } from 'ethers';
-import walletHocReducer from 'containers/WalletHOC/reducer';
+import walletHocReducer, { initialState } from 'containers/WalletHOC/reducer';
 import { fromJS } from 'immutable';
 import { notify } from 'containers/App/actions';
 
@@ -29,6 +29,7 @@ import walletHoc, {
   waitTransactionHash,
   hookNewWalletCreated,
   listenBalances,
+  loadSupportedTokens as loadSupportedTokensSaga,
 } from '../saga';
 
 import {
@@ -60,6 +61,8 @@ import {
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
+  loadSupportedTokensSuccess,
+  loadSupportedTokensError,
   ledgerDetected,
   ledgerError,
   transferSuccess,
@@ -75,6 +78,8 @@ import {
 } from '../actions';
 import { findWalletIndex } from '../../../utils/wallet';
 
+const withReducer = (state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action));
+
 describe('createWalletFromMnemonic saga', () => {
   let mnemonic = 'movie viable write punch mango arrest cotton page grass dad document practice';
   let derivationPath = 'm/44\'/60\'/0\'/0/0';
@@ -82,6 +87,7 @@ describe('createWalletFromMnemonic saga', () => {
   const name = 'wallet8';
   let encryptedWallet;
   let password;
+
 
   beforeEach(() => {
     password = 'dogs';
@@ -255,23 +261,21 @@ describe('ledgerSync Saga', () => {
 });
 describe('CREATE_WALLET_SUCCESS', () => {
   it('should add wallet to the store', () => {
-    const storeState = {
-      walletHoc: {
-        wallets: [],
-      },
-    };
+    const state = fromJS({ walletHoc: initialState });
     const address = '01';
     const newWallet = { name: 'name', address: `0x${address}`, encrypted: `{"address":"${address}"}`, decrypted: {} };
     return expectSaga(hookNewWalletCreated, { newWallet })
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .withReducer(withReducer, state)
       .put(addNewWalletAction(newWallet))
       .put(loadWalletBalances(`0x${address}`))
       .run({ silenceTimeout: true })
       .then((result) => {
         const wallets = result.storeState.getIn(['walletHoc', 'wallets']);
-        const wallet = fromJS(newWallet).set('loadingBalances', true);
+        const balances = result.storeState.getIn(['walletHoc', 'balances', newWallet.address]);
         expect(wallets.count()).toEqual(1);
-        expect(wallets.get(0)).toEqual(wallet);
+        expect(wallets.get(0)).toEqual(fromJS(newWallet));
+        expect(wallets.get(0)).toEqual(fromJS(newWallet));
+        expect(balances.get('loading')).toEqual(true);
       });
   });
   it('should not add wallet with same address', () => {
@@ -285,7 +289,7 @@ describe('CREATE_WALLET_SUCCESS', () => {
     const newWallet = Object.assign({}, existWallet);
     newWallet.name = 'new name';
     return expectSaga(hookNewWalletCreated, { newWallet })
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .withReducer(withReducer, fromJS(storeState))
       .put(notify('error', `Wallet ${existWallet.address} already exists`))
       .run({ silenceTimeout: true })
       .then((result) => {
@@ -305,7 +309,7 @@ describe('CREATE_WALLET_SUCCESS', () => {
     const newWallet = Object.assign({}, existWallet);
     newWallet.address = '0x02';
     return expectSaga(hookNewWalletCreated, { newWallet })
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .withReducer(withReducer, fromJS(storeState))
       .put(notify('error', `Wallet ${existWallet.name} already exists`))
       .run({ silenceTimeout: true })
       .then((result) => {
@@ -361,47 +365,125 @@ describe('decryptWallet saga', () => {
 });
 
 describe('load wallets saga', () => {
-  it('#loadWalletBalances should load balances and dispatch loadWalletBalancesSuccess', () => {
-    const response = { tokens: [] };
-    const address = 'abcd';
-    return expectSaga(loadWalletBalancesSaga, { address })
-      .provide({
-        call(effect) {
-          expect(effect.fn).toBe(requestWalletAPI);
-          expect(effect.args[0], `ethereum/wallets/${address}/balance`);
-          return response;
-        },
-      })
-      .put(loadWalletBalancesSuccess(address, response))
-      .run({ silenceTimeout: true });
+  describe('supported tokens', () => {
+    it('should load supported tokens when not exist in the store', () => {
+      const tokens = [
+        { currency: '0x8899544F1fc4E0D570f3c998cC7e5857140dC322',
+          symbol: 'My20',
+          decimals: 18,
+          color: 'FFAA00' },
+        { currency: '0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a',
+          symbol: 'HBT',
+          decimals: 15,
+          color: '0063A5' },
+      ];
+      return expectSaga(loadSupportedTokensSaga)
+        .withReducer(withReducer, initialState)
+        .provide({
+          call(effect) {
+            expect(effect.fn).toBe(requestWalletAPI);
+            expect(effect.args[0], 'ethereum/supported-tokens');
+            return tokens;
+          },
+        })
+        .put(loadSupportedTokensSuccess(tokens))
+        .run({ silenceTimeout: true })
+        .then((result) => {
+          const supportedTokens = result.storeState.getIn(['walletHoc', 'supportedTokens']);
+          expect(supportedTokens.get('loading')).toEqual(false);
+          expect(supportedTokens.get('error')).toEqual(null);
+          expect(supportedTokens.get('tokens')).toEqual(fromJS(tokens));
+        });
+    });
+    it('should handle request error', () => {
+      const error = new Error();
+      return expectSaga(loadSupportedTokensSaga)
+        .withReducer(withReducer, initialState)
+        .provide({
+          call(effect) {
+            expect(effect.fn).toBe(requestWalletAPI);
+            expect(effect.args[0], 'ethereum/supported-tokens');
+            throw error;
+          },
+        })
+        .put(loadSupportedTokensError(error))
+        .run({ silenceTimeout: true })
+        .then((result) => {
+          const supportedTokens = result.storeState.getIn(['walletHoc', 'supportedTokens']);
+          expect(supportedTokens.get('loading')).toEqual(false);
+          expect(supportedTokens.get('error')).toEqual(error);
+        });
+    });
   });
-
-  it('#loadWalletBalances should dispatch loadWalletBalancesError when error throws in request', () => {
-    const address = 'abcd';
-    const error = new Error();
-    return expectSaga(loadWalletBalancesSaga, { address })
-      .provide({
-        call(effect) {
-          expect(effect.fn).toBe(requestWalletAPI);
-          throw error;
+  describe('load balances', () => {
+    it('should trigger loadSupportedTokens action when no supported token data loaded yet', () => {
+    });
+    it('should save loaded balances in store by wallet address', () => {
+      const response = [
+        {
+          address: '0xbfdc0c8e54af5719872a2edef8e65c9f4a3eae88',
+          currency: 'ETH',
+          balance: '179312830516700000',
         },
-      })
-      .put(loadWalletBalancesError(address, error))
-      .run({ silenceTimeout: true });
-  });
-
-  it('should trigger action loadWalletBalances when createWalletSuccess action is dispatch', () => {
-    const decryptedWallet = { address: '0x123' };
-    const encryptedWallet = JSON.stringify({ address: '123' });
-    return expectSaga(walletHoc)
-      .provide({
-        select() {
-          return fromJS([]);
+        {
+          address: '0xbfdc0c8e54af5719872a2edef8e65c9f4a3eae88',
+          currency: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
+          balance: '6100000000000000',
         },
-      })
-      .put(loadWalletBalances(decryptedWallet.address))
-      .dispatch(createWalletSuccess(name, encryptedWallet, decryptedWallet))
-      .run({ silenceTimeout: true });
+      ];
+      const address = 'abcd';
+      return expectSaga(loadWalletBalancesSaga, { address })
+        .withReducer(withReducer, initialState)
+        .provide({
+          call(effect) {
+            expect(effect.fn).toBe(requestWalletAPI);
+            expect(effect.args[0], `ethereum/wallets/${address}/balances`);
+            return response;
+          },
+        })
+        .put(loadWalletBalancesSuccess(address, response))
+        .run({ silenceTimeout: true })
+        .then((result) => {
+          const walletBalances = result.storeState.getIn(['walletHoc', 'balances', address]);
+          expect(walletBalances.get('loading')).toEqual(false);
+          expect(walletBalances.get('error')).toEqual(null);
+          expect(walletBalances.get('tokens')).toEqual(fromJS(response));
+        });
+    });
+
+    it('#loadWalletBalances should dispatch loadWalletBalancesError when error throws in request', () => {
+      const address = 'abcd';
+      const error = new Error();
+      return expectSaga(loadWalletBalancesSaga, { address })
+        .withReducer(withReducer, initialState)
+        .provide({
+          call(effect) {
+            expect(effect.fn).toBe(requestWalletAPI);
+            throw error;
+          },
+        })
+        .put(loadWalletBalancesError(address, error))
+        .run({ silenceTimeout: true })
+        .then((result) => {
+          const walletBalances = result.storeState.getIn(['walletHoc', 'balances', address]);
+          expect(walletBalances.get('loading')).toEqual(false);
+          expect(walletBalances.get('error')).toEqual(error);
+        });
+    });
+
+    it('should trigger action loadWalletBalances when createWalletSuccess action is dispatch', () => {
+      const decryptedWallet = { address: '0x123' };
+      const encryptedWallet = JSON.stringify({ address: '123' });
+      return expectSaga(walletHoc)
+        .provide({
+          select() {
+            return fromJS([]);
+          },
+        })
+        .put(loadWalletBalances(decryptedWallet.address))
+        .dispatch(createWalletSuccess(name, encryptedWallet, decryptedWallet))
+        .run({ silenceTimeout: true });
+    });
   });
 
   it('sign transaction for eth payment', () => {
@@ -483,7 +565,7 @@ describe('load wallets saga', () => {
           return next();
         },
       })
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .withReducer(withReducer, fromJS(storeState))
       .dispatch(transferAction(params))
       .put(transferSuccess(signedTransaction, 'ETH'))// send signed transaction
       .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
@@ -576,7 +658,7 @@ describe('load wallets saga', () => {
           return next();
         },
       })
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .withReducer(withReducer, fromJS(storeState))
       .dispatch(transferAction(params))
       .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
       .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
@@ -623,7 +705,7 @@ describe('load wallets saga', () => {
     };
     const newBalance = '3';
     return expectSaga(walletHoc)
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .withReducer(withReducer, fromJS(storeState))
       .provide({
         call() {
           return eventChannel((emitter) => {
