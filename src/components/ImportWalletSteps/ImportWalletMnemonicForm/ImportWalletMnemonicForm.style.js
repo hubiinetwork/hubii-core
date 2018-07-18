@@ -6,6 +6,7 @@ import { ModalFormLabel } from 'components/ui/Modal';
 export const Between = styled.div`
   display: flex;
   align-items: center;
+<<<<<<< HEAD:src/components/ImportWalletSteps/ImportWalletMnemonicForm/ImportWalletMnemonicForm.style.js
   justify-content: space-between;
 `;
 
@@ -25,6 +26,13 @@ export const LeftArrow = styled(Icon)`
   font-size: 20px;
   margin-right: 7px;
   cursor: pointer;
+=======
+  .ant-form-item-label{
+    display: flex;
+    align-self: start;
+    margin-left: -13px;
+  }
+>>>>>>> develop:src/components/ImportWalletSteps/ImportWalletNameForm/ImportWalletNameForm.style.js
 `;
 
 export const Image = styled.img`
