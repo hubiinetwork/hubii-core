@@ -13,8 +13,12 @@ import {
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
   UPDATE_TOKEN_BALANCES,
-  LOAD_SUCCESS_TOKENS_SUCCESS,
-  LOAD_SUCCESS_TOKENS_ERROR,
+  LOAD_SUPPORTED_TOKENS,
+  LOAD_SUPPORTED_TOKENS_SUCCESS,
+  LOAD_SUPPORTED_TOKENS_ERROR,
+  LOAD_PRICES,
+  LOAD_PRICES_SUCCESS,
+  LOAD_PRICES_ERROR,
   CREATE_WALLET_FROM_MNEMONIC,
   CREATE_WALLET_FROM_PRIVATE_KEY,
   CREATE_WALLET_SUCCESS,
@@ -64,6 +68,11 @@ export const initialState = fromJS({
   pendingTransactions: [],
   confirmedTransactions: [],
   supportedTokens: {
+    loading: false,
+    error: null,
+    tokens: [],
+  },
+  prices: {
     loading: false,
     error: null,
     tokens: [],
@@ -130,15 +139,30 @@ function walletHocReducer(state = initialState, action) {
             return balance;
           }));
       }
-    case LOAD_SUCCESS_TOKENS_SUCCESS:
+    case LOAD_SUPPORTED_TOKENS:
+      return state
+        .setIn(['supportedTokens', 'loading'], true);
+    case LOAD_SUPPORTED_TOKENS_SUCCESS:
       return state
         .setIn(['supportedTokens', 'loading'], false)
         .setIn(['supportedTokens', 'error'], null)
         .setIn(['supportedTokens', 'tokens'], fromJS(action.tokens));
-    case LOAD_SUCCESS_TOKENS_ERROR:
+    case LOAD_SUPPORTED_TOKENS_ERROR:
       return state
         .setIn(['supportedTokens', 'loading'], false)
         .setIn(['supportedTokens', 'error'], action.error);
+    case LOAD_PRICES:
+      return state
+        .setIn(['prices', 'loading'], true);
+    case LOAD_PRICES_SUCCESS:
+      return state
+        .setIn(['prices', 'loading'], false)
+        .setIn(['prices', 'error'], null)
+        .setIn(['prices', 'tokens'], fromJS(action.prices));
+    case LOAD_PRICES_ERROR:
+      return state
+        .setIn(['prices', 'loading'], false)
+        .setIn(['prices', 'error'], action.error);
     case SHOW_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], true);

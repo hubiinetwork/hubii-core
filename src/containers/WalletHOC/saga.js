@@ -48,6 +48,8 @@ import {
   listenBalances as listenBalancesAction,
   loadSupportedTokensSuccess,
   loadSupportedTokensError,
+  loadPricesSuccess,
+  loadPricesError,
   showDecryptWalletModal,
   transferSuccess,
   transferError,
@@ -160,6 +162,16 @@ export function* loadSupportedTokens() {
     yield put(loadSupportedTokensSuccess(returnData));
   } catch (err) {
     yield put(loadSupportedTokensError(err));
+  }
+}
+
+export function* loadPrices() {
+  const requestPath = 'ethereum/prices';
+  try {
+    const returnData = yield call(requestWalletAPI, requestPath);
+    yield put(loadPricesSuccess(returnData));
+  } catch (err) {
+    yield put(loadPricesError(err));
   }
 }
 

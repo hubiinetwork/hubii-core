@@ -30,6 +30,7 @@ import walletHoc, {
   hookNewWalletCreated,
   listenBalances,
   loadSupportedTokens as loadSupportedTokensSaga,
+  loadPrices as loadPricesSaga,
 } from '../saga';
 
 import {
@@ -63,6 +64,8 @@ import {
   loadWalletBalancesError,
   loadSupportedTokensSuccess,
   loadSupportedTokensError,
+  loadPricesSuccess,
+  loadPricesError,
   ledgerDetected,
   ledgerError,
   transferSuccess,
@@ -366,7 +369,7 @@ describe('decryptWallet saga', () => {
 
 describe('load wallets saga', () => {
   describe('supported tokens', () => {
-    it('should load supported tokens when not exist in the store', () => {
+    it('should load supported tokens', () => {
       const tokens = [
         { currency: '0x8899544F1fc4E0D570f3c998cC7e5857140dC322',
           symbol: 'My20',
@@ -415,8 +418,66 @@ describe('load wallets saga', () => {
         });
     });
   });
+  describe('prices', () => {
+    it('should load prices when not exist in the store', () => {
+      const response = [
+        {
+          currency: '0x8899544F1fc4E0D570f3c998cC7e5857140dC322',
+          eth: 1,
+          btc: 1,
+          usd: 1,
+        },
+        {
+          currency: '0x8899544F1fc4E0D570f3c998cC7e5857140dC323',
+          eth: 1,
+          btc: 1,
+          usd: 1,
+        },
+      ];
+      return expectSaga(loadPricesSaga)
+        .withReducer(withReducer, initialState)
+        .provide({
+          call(effect) {
+            expect(effect.fn).toBe(requestWalletAPI);
+            expect(effect.args[0], 'ethereum/prices');
+            return response;
+          },
+        })
+        .put(loadPricesSuccess(response))
+        .run({ silenceTimeout: true })
+        .then((result) => {
+          const prices = result.storeState.getIn(['walletHoc', 'prices']);
+          expect(prices.get('loading')).toEqual(false);
+          expect(prices.get('error')).toEqual(null);
+          expect(prices.get('tokens')).toEqual(fromJS(response));
+        });
+    });
+    it('should handle request error', () => {
+      const error = new Error();
+      return expectSaga(loadPricesSaga)
+        .withReducer(withReducer, initialState)
+        .provide({
+          call(effect) {
+            expect(effect.fn).toBe(requestWalletAPI);
+            expect(effect.args[0], 'ethereum/prices');
+            throw error;
+          },
+        })
+        .put(loadPricesError(error))
+        .run({ silenceTimeout: true })
+        .then((result) => {
+          const prices = result.storeState.getIn(['walletHoc', 'prices']);
+          expect(prices.get('loading')).toEqual(false);
+          expect(prices.get('error')).toEqual(error);
+        });
+    });
+  });
   describe('load balances', () => {
-    it('should trigger loadSupportedTokens action when no supported token data loaded yet', () => {
+    it('should trigger loadSupportedTokens action when no available in store', () => {
+
+    });
+    it('should trigger loadPrices action when no available in store', () => {
+
     });
     it('should save loaded balances in store by wallet address', () => {
       const response = [

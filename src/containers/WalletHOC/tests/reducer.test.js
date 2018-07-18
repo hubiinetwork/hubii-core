@@ -10,6 +10,8 @@ import {
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
+  loadPrices,
+  loadSupportedTokens,
   setCurrentWallet,
   transferError,
   transfer,
@@ -58,6 +60,11 @@ describe('walletHocReducer', () => {
       pendingTransactions: [],
       confirmedTransactions: [],
       supportedTokens: {
+        loading: false,
+        error: null,
+        tokens: [],
+      },
+      prices: {
         loading: false,
         error: null,
         tokens: [],
@@ -219,6 +226,24 @@ describe('walletHocReducer', () => {
         .setIn(['balances', address, 'error'], error);
 
       expect(walletHocReducer(stateWithWallet, loadWalletBalancesError(address, error))).toEqual(expected);
+    });
+  });
+
+  describe('supported tokens', () => {
+    it('load supported tokens', () => {
+      const expected = stateWithWallet
+        .setIn(['supportedTokens', 'loading'], true);
+
+      expect(walletHocReducer(stateWithWallet, loadSupportedTokens())).toEqual(expected);
+    });
+  });
+
+  describe('prices', () => {
+    it('load prices', () => {
+      const expected = stateWithWallet
+        .setIn(['prices', 'loading'], true);
+
+      expect(walletHocReducer(stateWithWallet, loadPrices())).toEqual(expected);
     });
   });
 

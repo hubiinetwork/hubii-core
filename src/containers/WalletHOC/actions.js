@@ -25,8 +25,12 @@ import {
   LOAD_WALLET_BALANCES_ERROR,
   LISTEN_TOKEN_BALANCES,
   UPDATE_TOKEN_BALANCES,
-  LOAD_SUCCESS_TOKENS_SUCCESS,
-  LOAD_SUCCESS_TOKENS_ERROR,
+  LOAD_SUPPORTED_TOKENS,
+  LOAD_SUPPORTED_TOKENS_SUCCESS,
+  LOAD_SUPPORTED_TOKENS_ERROR,
+  LOAD_PRICES,
+  LOAD_PRICES_SUCCESS,
+  LOAD_PRICES_ERROR,
   TRANSFER,
   TRANSFER_ETHER,
   TRANSFER_ERC20,
@@ -200,16 +204,42 @@ export function updateBalances(address, newBalance) {
   };
 }
 
+export function loadSupportedTokens() {
+  return {
+    type: LOAD_SUPPORTED_TOKENS,
+  };
+}
+
 export function loadSupportedTokensSuccess(tokens) {
   return {
-    type: LOAD_SUCCESS_TOKENS_SUCCESS,
+    type: LOAD_SUPPORTED_TOKENS_SUCCESS,
     tokens,
   };
 }
 
 export function loadSupportedTokensError(error) {
   return {
-    type: LOAD_SUCCESS_TOKENS_ERROR,
+    type: LOAD_SUPPORTED_TOKENS_ERROR,
+    error,
+  };
+}
+
+export function loadPrices() {
+  return {
+    type: LOAD_PRICES,
+  };
+}
+
+export function loadPricesSuccess(prices) {
+  return {
+    type: LOAD_PRICES_SUCCESS,
+    prices,
+  };
+}
+
+export function loadPricesError(error) {
+  return {
+    type: LOAD_PRICES_ERROR,
     error,
   };
 }
