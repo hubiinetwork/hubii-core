@@ -20,7 +20,7 @@ export default (type, title) => {
     iconType = 'info-circle-o';
   }
   notification.open({
-    duration: 2,
+    duration: 4,
     icon: <StyledIcon type={iconType} />,
     message: <StyledTitle>{title}</StyledTitle>,
     description: '',
