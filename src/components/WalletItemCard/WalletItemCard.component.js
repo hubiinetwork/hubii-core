@@ -23,6 +23,7 @@ import {
   OverflowHidden,
   SpaceBetween,
 } from './WalletItemCard.style';
+import { formatFiat } from '../../utils/numberFormats';
 /**
  * This component shows details of a wallet in the card.
  */
@@ -144,7 +145,7 @@ export class WalletItemCard extends React.PureComponent {
               ))}
             </AssetsWrapper>
           </LeftSideWrapper>
-          <TotalBalance>{`$${totalBalance.toLocaleString('en')}`}</TotalBalance>
+          <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
         </OuterWrapper>
         <Modal
           footer={null}

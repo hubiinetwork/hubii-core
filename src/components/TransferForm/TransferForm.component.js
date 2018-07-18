@@ -17,6 +17,7 @@ import Select, { Option, OptGroup } from '../ui/Select';
 import { Form, FormItem, FormItemLabel } from '../ui/Form';
 import HelperText from '../ui/HelperText';
 import TransferDescription from '../TransferDescription';
+import { formatFiat } from '../../utils/numberFormats';
 
 // TODO: This component is buggy. Just merging because a lot of eslint issue have been resolved in this branch
 export default class TransferForm extends React.PureComponent {
@@ -123,7 +124,7 @@ export default class TransferForm extends React.PureComponent {
             <FormItem
               label={<FormItemLabel>Amount</FormItemLabel>}
               colon={false}
-              help={<HelperText left={(this.state.input * parseFloat(this.state.selectedToken.price.USD)).toLocaleString('en')} right="USD" />}
+              help={<HelperText left={formatFiat(this.state.input * parseFloat(this.state.selectedToken.price.USD), 'USD')} right="USD" />}
             >
               <InputNumber min={0} max={totalBalance} handleChange={this.handleChange} />
             </FormItem>
@@ -145,7 +146,7 @@ export default class TransferForm extends React.PureComponent {
               </Panel>
             </Collapse>
             <ETHtoDollar>
-              1 {this.state.selectedToken.symbol} = ${parseFloat(this.state.selectedToken.price.USD).toLocaleString('en')}
+              {`1 ${this.state.selectedToken.symbol} = ${formatFiat(parseFloat(this.state.selectedToken.price.USD), 'USD')}`}
             </ETHtoDollar>
           </Form>
         </Col>

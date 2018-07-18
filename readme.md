@@ -18,7 +18,6 @@ Omphalos UI is a multiplatform desktop application built with Electron, React, R
 
 ```bash
 yarn # install dependencies
-yarn electorn-build # step will not be necesarry after issue #207 is resolved
 ```
 
 ## Run in Electron (recommended)
