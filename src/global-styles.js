@@ -118,6 +118,10 @@ injectGlobal`
     font-style: italic;
     src: url(${UltrathinItalic});
   }
+  
+  .ant-tooltip {
+       display: none;
+     }
 
   html * {
     font-family: "SF Text";
