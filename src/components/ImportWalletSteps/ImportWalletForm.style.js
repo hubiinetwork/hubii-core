@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import { Spin } from 'antd';
 import Button from 'components/ui/Button';
-import { ModalFormLabel } from 'components/ui/Modal';
+import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
 
 /**
- * Generalised ImportWalletFormStyling
+ * General styling for ImportWalletForms
  */
-
 export const StyledSpin = styled(Spin)`
   &.ant-spin.ant-spin-show-text .ant-spin-text{
     margin-top:1.5rem;
@@ -68,6 +67,27 @@ export const StyledSpan = styled.span`
   font-weight: 500;
   line-height: 14px;
   text-align: center;
+`;
+
+/**
+ * Specific styling for ImportWalletNameForm
+ */
+export const FormInput = styled(ModalFormInput)`
+  height: 46px;
+  width: 410px;
+  border: 1px solid #43616F;
+  border-radius: 4px;
+`;
+
+export const FormItem = styled(ModalFormItem)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .ant-form-item-label{
+    display: flex;
+    align-self: start;
+    margin-left: -13px;
+  }
 `;
 
 export const IconDiv = styled.div`
