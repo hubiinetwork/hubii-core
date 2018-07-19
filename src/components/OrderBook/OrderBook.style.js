@@ -1,5 +1,6 @@
 
 import styled from 'styled-components';
+import { Icon } from 'antd';
 import Table from '../ui/Table';
 import StriimTabs from '../ui/StriimTabs';
 
@@ -20,6 +21,7 @@ export const SecondaryText = styled.span`
   font-size: 13px;
   font-weight: 500;
   line-height: 15px;
+  padding: 4px 0;
 `;
 
 export const SuccessText = styled.span`
@@ -36,8 +38,8 @@ export const Heading = styled.div`
   line-height: 16px;
   color: ${({ theme }) => theme.palette.light};
   position: absolute;
-  top: 5px;
-  padding-left: 8px;
+  top: 15px;
+  padding-left: 15px;
 `;
 
 export const AmountWrapper = styled.div`
@@ -61,7 +63,7 @@ export const Tabs = styled(StriimTabs)`
     width: 109px;
   }
   .ant-tabs-nav .ant-tabs-tab {
-    padding: 6px 5px !important;
+    padding: 6px 9px !important;
     font-size: 17px;
     flex: 0;
   }
@@ -77,4 +79,8 @@ export const Wrapper = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.palette.primary3};
   width: 251px;
+`;
+
+export const StyledIcon = styled(Icon)`
+  margin-right: 0 !important;
 `;
