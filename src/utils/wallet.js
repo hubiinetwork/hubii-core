@@ -57,6 +57,12 @@ export const findWalletIndex = (state, address, scopedFatalError = fatalError) =
   }
 };
 
+export const humanFriendlyWalletType = (type) => {
+  if (type === 'lns') return 'Ledger Nano S';
+  if (type === 'software') return 'Software Wallet';
+  return type;
+};
+
 export const EthNetworkProvider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
 
 export const IsAddressMatch = (a, b) => a.toLowerCase() === b.toLowerCase();

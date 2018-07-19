@@ -2,7 +2,12 @@
   "name": "hubii-core",
   "version": "0.1.0",
   "private": true,
-  "author": "Hubii team",
+  "author": {
+    "name": "hubii",
+    "email": "info@hubii.com",
+    "url": "https://hubii.com"
+  },
+  "description": "Send, recieve and trade Ethereum assets trustlessly without compromise. Powered by striim",
   "license": "MIT",
   "main": "build/public/electron.js",
   "homepage": "https://github.com/hubiinetwork/omphalos-ui",
@@ -23,7 +28,7 @@
     "release": "electron-builder -lwm -p always",
     "electron-dev": "concurrently \"BROWSER=none TARGET=electron yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "preelectron-dev": "mkdir -p build/public && cp public/electron.js build/public && electron-rebuild --force --module_dir . -w node-hid",
-    "electron-build": "cross-env TARGET=electron WALLET_API=https://api2.dev.hubii.net/ npm run build && DEBUG=electron-builder electron-builder --publish never",
+    "electron-build": "cross-env TARGET=electron WALLET_API=https://api2.dev.hubii.net/ npm run build && cross-env DEBUG=electron-builder electron-builder --publish never",
     "preelectron-build": "electron-rebuild --force --module_dir . -w node-hid",
     "electron-pack": "cross-env DEV_TOOLS=1 WALLET_API=https://api2.dev.hubii.net/ npm run build:electron && electron-builder --dir",
     "precommit": "npm run lint:staged",
