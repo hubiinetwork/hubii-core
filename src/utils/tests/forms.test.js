@@ -31,7 +31,6 @@ describe('Form Helper Functions', () => {
     });
   });
 
-
   describe('handleFinish function', () => {
     const form = {
       getFieldValue: jest.fn(),
