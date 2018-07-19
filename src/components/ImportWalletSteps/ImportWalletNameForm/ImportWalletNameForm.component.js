@@ -13,8 +13,9 @@ import {
   StyledButton,
   StyledBackButton,
   FormInput,
-  FormItem
-} from './ImportWalletNameForm.style';
+  FormItem,
+  StyledSpin,
+} from '../ImportWalletForm.style';
 class ImportWalletNameForm extends React.Component {
   constructor(props) {
     super(props);
@@ -54,14 +55,28 @@ class ImportWalletNameForm extends React.Component {
                 ],
               })(<FormInput />)}
             </FormItem>
-            <ButtonDiv>
-              <StyledBackButton type={"primary"} onClick={handleBack}>
-                <StyledSpan>Back</StyledSpan>
-              </StyledBackButton>
-              <StyledButton type={"primary"} htmlType="submit">
-                <StyledSpan>Finish</StyledSpan>
-              </StyledButton>
-            </ButtonDiv>
+            {loading ?
+              (
+                <ButtonDiv loading={loading}>
+                  <StyledSpin
+                  delay={0}
+                  tip="Importing Wallet..."
+                  size="large"
+                  />
+                </ButtonDiv>
+              ) 
+              :
+              (
+                <ButtonDiv>
+                  <StyledBackButton type={"primary"} onClick={this.props.handleBack}>
+                    <StyledSpan>Back</StyledSpan>
+                  </StyledBackButton>
+                  <StyledButton type={"primary"} htmlType="submit">
+                    <StyledSpan>Finish</StyledSpan>
+                  </StyledButton>
+                </ButtonDiv>
+              )
+            }
           </WidthEighty>
         </Form>
       </div>

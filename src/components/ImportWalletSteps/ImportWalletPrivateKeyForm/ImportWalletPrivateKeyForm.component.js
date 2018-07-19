@@ -3,20 +3,14 @@ import * as React from 'react';
 import { Form, Icon } from 'antd';
 import PropTypes from 'prop-types';
 import {
-  Flex,
-  Image,
-  Between,
-  IconDiv,
-  LeftArrow,
   WidthEighty,
-  StyledTitle,
-  CreateButton,
   StyledModalFormLabel,
   ButtonDiv,
   StyledBackButton,
   StyledButton,
   StyledSpan,
-} from './ImportWalletPrivateKeyForm.style';
+  StyledSpin,
+} from '../ImportWalletForm.style';
 import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
 import { handleFinish, compareToFirstPassword} from 'utils/forms';
 
@@ -30,7 +24,7 @@ class ImportWalletPrivateKey extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const {form, handleNext} = this.props;
+    const { form, handleNext, loading } = this.props;
     return (
       <div>
         <Form
@@ -59,7 +53,7 @@ class ImportWalletPrivateKey extends React.Component {
                     whitespace: true,
                   },
                 ],
-              })(<ModalFormInput />)}
+              })(<ModalFormInput disabled={loading}/>)}
             </ModalFormItem>
             <ModalFormItem
               label={
@@ -76,7 +70,7 @@ class ImportWalletPrivateKey extends React.Component {
                     whitespace: true,
                   },
                 ],
-              })(<ModalFormInput />)}
+              })(<ModalFormInput disabled={loading}/>)}
             </ModalFormItem>
             <ModalFormItem
               label={
@@ -109,16 +103,30 @@ class ImportWalletPrivateKey extends React.Component {
                     validator: (rule, value, callback) => compareToFirstPassword(form, rule, value, callback),
                   }
                 ],
-              })(<ModalFormInput type="password" />)}
+              })(<ModalFormInput type="password" disabled={loading}/>)}
             </ModalFormItem>
-            <ButtonDiv>
-              <StyledBackButton type={"primary"} onClick={this.props.handleBack}>
-                <StyledSpan>Back</StyledSpan>
-              </StyledBackButton>
-              <StyledButton type={"primary"} htmlType="submit">
-                <StyledSpan>Finish</StyledSpan>
-              </StyledButton>
-            </ButtonDiv>
+            {loading ?
+              (
+                <ButtonDiv loading={loading}>
+                  <StyledSpin
+                  delay={0}
+                  tip="Importing Wallet..."
+                  size="large"
+                  />
+                </ButtonDiv>
+              ) 
+              :
+              (
+                <ButtonDiv>
+                  <StyledBackButton type={"primary"} onClick={this.props.handleBack}>
+                    <StyledSpan>Back</StyledSpan>
+                  </StyledBackButton>
+                  <StyledButton type={"primary"} htmlType="submit">
+                    <StyledSpan>Finish</StyledSpan>
+                  </StyledButton>
+                </ButtonDiv>
+              )
+            }
           </WidthEighty>
         </Form>
       </div>
@@ -139,6 +147,10 @@ ImportWalletPrivateKey.propTypes = {
    * ant design form
    */
   form: PropTypes.object,
+  /**
+   * loading
+   */
+  loading: PropTypes.bool,
 };
 
 export default Form.create()(ImportWalletPrivateKey);

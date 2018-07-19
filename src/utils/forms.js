@@ -14,6 +14,9 @@ export function handleFinish(e, form, handleNext, extraValues = {}) {
   e.preventDefault();
   form.validateFields((err, values) => {
     if (!err && handleNext) {
+      Object.entries(values).forEach(
+        ([key, value]) => values[key] === value.trim()
+      );
       handleNext({ ...values, ...extraValues });
     }
   });

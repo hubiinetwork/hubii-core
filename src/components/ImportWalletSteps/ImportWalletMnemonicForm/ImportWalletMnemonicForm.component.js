@@ -7,21 +7,14 @@ import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
 import { handleFinish, compareToFirstPassword} from 'utils/forms';
 
 import {
-  Flex,
-  Image,
-  Between,
-  IconDiv,
-  LeftArrow,
   WidthEighty,
-  StyledTitle,
-  CreateButton,
   StyledModalFormLabel,
   ButtonDiv,
   StyledBackButton,
   StyledButton,
   StyledSpan,
   StyledSpin,
-} from './ImportWalletMnemonicForm.style';
+} from '../ImportWalletForm.style';
 
 class ImportWalletMnemonic extends React.Component {
   constructor(props) {
