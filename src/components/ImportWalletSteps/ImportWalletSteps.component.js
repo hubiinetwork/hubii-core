@@ -142,7 +142,7 @@ export default class ImportWalletSteps extends React.Component {
 
 ImportWalletSteps.propTypes = {
   wallets: PropTypes.array,
-  handleSubmit: PropTypes.func,
-  onBackIcon: PropTypes.func,
-  loading: PropTypes.bool,
+  handleSubmit: PropTypes.func.isRequired,
+  onBackIcon: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };

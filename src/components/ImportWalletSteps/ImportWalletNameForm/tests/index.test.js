@@ -10,12 +10,16 @@ const wallet = {
 };
 
 describe('<ImportWalletNameForm />', () => {
-  it('should render correctly', () => {
-    const wrapper = shallow(<ImportWalletNameForm wallet={wallet} handleBack={() => {}} handleNext={() => {}} />);
+  it('should render correctly when loading is false', () => {
+    const wrapper = shallow(<ImportWalletNameForm loading={false} wallet={wallet} handleBack={() => {}} handleNext={() => {}} />);
+    expect(wrapper).toMatchSnapshot();
+  });
+  it('should render correctly when loading is true', () => {
+    const wrapper = shallow(<ImportWalletNameForm loading wallet={wallet} handleBack={() => {}} handleNext={() => {}} />);
     expect(wrapper).toMatchSnapshot();
   });
   it('should have correct props', () => {
-    const wrapper = shallow(<ImportWalletNameForm wallet={wallet} handleBack={() => {}} handleNext={() => {}} />);
+    const wrapper = shallow(<ImportWalletNameForm loading={false} wallet={wallet} handleBack={() => {}} handleNext={() => {}} />);
     const wrapperProps = wrapper.instance().props;
     expect(wrapperProps.wallet).toEqual(wallet);
   });
@@ -23,7 +27,7 @@ describe('<ImportWalletNameForm />', () => {
   it('should not renders any text', () => {
     const wrapper = render(
       <ThemeProvider theme={darkTheme}>
-        <ImportWalletNameForm wallet={wallet} handleBack={() => {}} handleNext={() => {}} />
+        <ImportWalletNameForm wallet={wallet} loading={false} handleBack={() => {}} handleNext={() => {}} />
       </ThemeProvider>);
     expect(wrapper.text()).toContain('');
   });

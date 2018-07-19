@@ -16,7 +16,7 @@ import {
   StyledSpin,
 } from '../ImportWalletForm.style';
 
-class ImportWalletMnemonic extends React.Component {
+class ImportWalletMnemonicForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -137,7 +137,7 @@ class ImportWalletMnemonic extends React.Component {
   }
 }
 
-ImportWalletMnemonic.propTypes = {
+ImportWalletMnemonicForm.propTypes = {
   /**
    * Function to be executed when back button is pressed
    */
@@ -153,7 +153,7 @@ ImportWalletMnemonic.propTypes = {
   /**
    * loading
    */
-  loading: PropTypes.bool,
+  loading: PropTypes.bool.isRequired,
 };
 
-export default Form.create()(ImportWalletMnemonic);
+export default Form.create()(ImportWalletMnemonicForm);

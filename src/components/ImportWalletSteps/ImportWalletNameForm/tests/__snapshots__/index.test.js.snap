@@ -1,12 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ImportWalletNameForm /> should render correctly 1`] = `
+exports[`<ImportWalletNameForm /> should render correctly when loading is false 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Form(ImportWalletNameForm)
     handleBack={[Function]}
     handleNext={[Function]}
+    loading={false}
     wallet={
         Object {
             "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
@@ -49,6 +50,7 @@ ShallowWrapper {
       },
       "handleBack": [Function],
       "handleNext": [Function],
+      "loading": false,
       "wallet": Object {
         "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
         "value": "digitalBitbox1",
@@ -87,6 +89,117 @@ ShallowWrapper {
         },
         "handleBack": [Function],
         "handleNext": [Function],
+        "loading": false,
+        "wallet": Object {
+          "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
+          "value": "digitalBitbox1",
+        },
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<ImportWalletNameForm /> should render correctly when loading is true 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Form(ImportWalletNameForm)
+    handleBack={[Function]}
+    handleNext={[Function]}
+    loading={true}
+    wallet={
+        Object {
+            "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
+            "value": "digitalBitbox1",
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "form": Object {
+        "getFieldDecorator": [Function],
+        "getFieldError": [Function],
+        "getFieldInstance": [Function],
+        "getFieldProps": [Function],
+        "getFieldValue": [Function],
+        "getFieldsError": [Function],
+        "getFieldsValue": [Function],
+        "isFieldTouched": [Function],
+        "isFieldValidating": [Function],
+        "isFieldsTouched": [Function],
+        "isFieldsValidating": [Function],
+        "isSubmitting": [Function],
+        "resetFields": [Function],
+        "setFields": [Function],
+        "setFieldsInitialValue": [Function],
+        "setFieldsValue": [Function],
+        "submit": [Function],
+        "validateFields": [Function],
+        "validateFieldsAndScroll": [Function],
+      },
+      "handleBack": [Function],
+      "handleNext": [Function],
+      "loading": true,
+      "wallet": Object {
+        "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
+        "value": "digitalBitbox1",
+      },
+    },
+    "ref": null,
+    "rendered": null,
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "form": Object {
+          "getFieldDecorator": [Function],
+          "getFieldError": [Function],
+          "getFieldInstance": [Function],
+          "getFieldProps": [Function],
+          "getFieldValue": [Function],
+          "getFieldsError": [Function],
+          "getFieldsValue": [Function],
+          "isFieldTouched": [Function],
+          "isFieldValidating": [Function],
+          "isFieldsTouched": [Function],
+          "isFieldsValidating": [Function],
+          "isSubmitting": [Function],
+          "resetFields": [Function],
+          "setFields": [Function],
+          "setFieldsInitialValue": [Function],
+          "setFieldsValue": [Function],
+          "submit": [Function],
+          "validateFields": [Function],
+          "validateFieldsAndScroll": [Function],
+        },
+        "handleBack": [Function],
+        "handleNext": [Function],
+        "loading": true,
         "wallet": Object {
           "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
           "value": "digitalBitbox1",

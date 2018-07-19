@@ -5,14 +5,18 @@ import darkTheme from '../../../../themes/darkTheme';
 import ImportWalletMnemonicForm from '../index';
 
 describe('<ImportWalletMnemonicForm />', () => {
-  it('should render correctly', () => {
-    const wrapper = shallow(<ImportWalletMnemonicForm handleBack={() => {}} handleNext={() => {}} />);
+  it('should render correctly when loading is false', () => {
+    const wrapper = shallow(<ImportWalletMnemonicForm loading={false} handleBack={() => {}} handleNext={() => {}} />);
+    expect(wrapper).toMatchSnapshot();
+  });
+  it('should render correctly when loading is true', () => {
+    const wrapper = shallow(<ImportWalletMnemonicForm loading handleBack={() => {}} handleNext={() => {}} />);
     expect(wrapper).toMatchSnapshot();
   });
   it('should not renders any text', () => {
     const wrapper = render(
       <ThemeProvider theme={darkTheme}>
-        <ImportWalletMnemonicForm handleBack={() => {}} handleNext={() => {}} />
+        <ImportWalletMnemonicForm loading={false} handleBack={() => {}} handleNext={() => {}} />
       </ThemeProvider>);
     expect(wrapper.text()).toContain('');
   });

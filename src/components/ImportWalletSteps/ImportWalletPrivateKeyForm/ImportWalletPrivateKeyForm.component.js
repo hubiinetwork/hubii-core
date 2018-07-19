@@ -14,7 +14,7 @@ import {
 import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
 import { handleFinish, compareToFirstPassword} from 'utils/forms';
 
-class ImportWalletPrivateKey extends React.Component {
+class ImportWalletPrivateKeyForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -134,7 +134,7 @@ class ImportWalletPrivateKey extends React.Component {
   }
 }
 
-ImportWalletPrivateKey.propTypes = {
+ImportWalletPrivateKeyForm.propTypes = {
   /**
    * Function to be executed when back button is pressed
    */
@@ -150,7 +150,7 @@ ImportWalletPrivateKey.propTypes = {
   /**
    * loading
    */
-  loading: PropTypes.bool,
+  loading: PropTypes.bool.isRequired,
 };
 
-export default Form.create()(ImportWalletPrivateKey);
+export default Form.create()(ImportWalletPrivateKeyForm);

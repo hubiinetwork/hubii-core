@@ -124,5 +124,5 @@ AddRestoreWalletModal.propTypes = {
    * loading
    */
 
-  loading: PropTypes.object,
+  loading: PropTypes.object.isRequired,
 };

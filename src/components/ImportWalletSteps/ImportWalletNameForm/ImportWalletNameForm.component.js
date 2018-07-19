@@ -23,7 +23,7 @@ class ImportWalletNameForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { form, handleNext, handleBack } = this.props;
+    const { form, handleNext, handleBack, loading } = this.props;
     return (
       <div>
         <IconDiv>
@@ -101,6 +101,10 @@ ImportWalletNameForm.propTypes = {
    * ant design form
    */
   form: PropTypes.object,
+  /**
+   * loading
+   */
+  loading: PropTypes.bool.isRequired,
 };
 
 export default Form.create()(ImportWalletNameForm);
