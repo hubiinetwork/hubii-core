@@ -310,6 +310,7 @@ export function* initLedger() {
 // Dispatches the address for every derivation path in the input
 export function* fetchLedgerAddresses({ derivationPaths }) {
   try {
+    yield delay(1000); // Wait for any ongoing operations to clear
     const transport = yield call(createTransport);
     const eth = yield call(newEth, transport);
 
