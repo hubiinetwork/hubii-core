@@ -11,22 +11,22 @@ describe('<SideBar />', () => {
     {
       to: '/wallets',
       icon: 'wallet',
-      name: 'Wallet Manager'
+      name: 'Wallet Manager',
     },
     {
       to: '/wallet',
       icon: 'striim',
-      name: 'striim detail'
+      name: 'striim detail',
     },
     {
       to: '/dex',
       icon: 'dex',
-      name: 'dex detail'
-    }
+      name: 'dex detail',
+    },
   ];
   const props = {
     menuItems,
-    logoSrc: '../../../public/images/hubii-core-logo.svg'
+    logoSrc: '../../../public/images/hubii-core-logo.svg',
   };
 
   it('should render correctly', () => {
