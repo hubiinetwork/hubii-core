@@ -6,21 +6,26 @@ export default (type, title) => {
   // If unknown type default to info
   let color;
   let iconType;
+  let duration;
   if (type === 'success') {
     color = '#51b651';
     iconType = 'check-circle-o';
+    duration = 4;
   } else if (type === 'error') {
     color = '#ef3f20';
     iconType = 'close-circle-o';
+    duration = 10;
   } else if (type === 'warning') {
     color = '#f0ad4e';
     iconType = 'exclamation-circle-o';
+    duration = 10;
   } else {
     color = '#5bc0de';
     iconType = 'info-circle-o';
+    duration = 4;
   }
   notification.open({
-    duration: 4,
+    duration,
     icon: <StyledIcon type={iconType} />,
     message: <StyledTitle>{title}</StyledTitle>,
     description: '',
