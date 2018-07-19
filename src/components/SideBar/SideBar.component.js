@@ -28,14 +28,14 @@ const SideBar = ({ menuItems, logoSrc, children }) => (
           </Link>
         </Menu.Item>
         {menuItems &&
-          menuItems.map(menuItem => (
+          menuItems.map((menuItem) => (
             <Menu.Item key={menuItem.to} className="menu-wallet">
               <Link to={menuItem.to}>
                 <div
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    alignItems: 'center'
+                    alignItems: 'center',
                   }}
                 >
                   {menuItem.icon === 'wallet' && (
@@ -95,7 +95,7 @@ SideBar.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       icon: PropTypes.string.isRequired,
-      to: PropTypes.string.isRequired
+      to: PropTypes.string.isRequired,
     })
   ),
   /**
@@ -104,8 +104,8 @@ SideBar.propTypes = {
   logoSrc: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default SideBar;

@@ -23,7 +23,7 @@ import {
   CardIconSettings,
   OverflowHidden,
   SpaceBetween,
-  WalletName
+  WalletName,
 } from './WalletItemCard.style';
 /**
  * This component shows details of a wallet in the card.
@@ -33,7 +33,7 @@ export class WalletItemCard extends React.PureComponent {
     super(props);
     this.state = {
       modalVisibility: false,
-      modalType: ''
+      modalType: '',
     };
     this.settingsMenu = this.settingsMenu.bind(this);
     this.handleDeleteWallet = this.handleDeleteWallet.bind(this);
@@ -60,7 +60,7 @@ export class WalletItemCard extends React.PureComponent {
         </MenuItem>
       );
     }
-    return <Menu>{menuItems.map(item => item)}</Menu>;
+    return <Menu>{menuItems.map((item) => item)}</Menu>;
   }
 
   async handleExportSeedWords() {
@@ -87,7 +87,7 @@ export class WalletItemCard extends React.PureComponent {
       isDecrypted,
       assets,
       mnemonic,
-      privateKey
+      privateKey,
     } = this.props;
 
     const { modalVisibility, modalType } = this.state;
@@ -149,7 +149,7 @@ export class WalletItemCard extends React.PureComponent {
           </LeftSideWrapper>
           <AssetsWrapper>
             {assets &&
-              assets.map(asset => (
+              assets.map((asset) => (
                 <AssetWrapper key={asset.name}>
                   <AssetAmountBubble name={asset.name} amount={asset.amount} />
                 </AssetWrapper>
@@ -191,7 +191,7 @@ WalletItemCard.propTypes = {
   assets: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
-      amount: PropTypes.number
+      amount: PropTypes.number,
     })
   ),
   /**
@@ -230,7 +230,7 @@ WalletItemCard.propTypes = {
   /**
    * Wallet's private key
    */
-  privateKey: PropTypes.string
+  privateKey: PropTypes.string,
 };
 
 export default WalletItemCard;
