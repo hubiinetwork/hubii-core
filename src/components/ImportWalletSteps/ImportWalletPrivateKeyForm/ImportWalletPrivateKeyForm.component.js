@@ -21,11 +21,21 @@ import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
 class ImportWalletPrivateKey extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      confirmPasswordsMatch: false,
+    };
     this.handleFinish = this.handleFinish.bind(this);
+    this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
     this.compareToFirstPassword = this.compareToFirstPassword.bind(this);
     this.validateToNextPassword = this.validateToNextPassword.bind(this);
   }
 
+  handleConfirmBlur(e) {
+    const value = e.target.value;
+    this.setState({
+      confirmPasswordsMatch: this.state.confirmPasswordsMatch || !!value,
+    });
+  }
   compareToFirstPassword(rule, value, callback) {
     const form = this.props.form;
     if (value && value !== form.getFieldValue('password')) {
@@ -135,7 +145,7 @@ class ImportWalletPrivateKey extends React.Component {
                       validator: this.compareToFirstPassword,
                     },
                   ],
-                })(<ModalFormInput type="password"/>)}
+                })(<ModalFormInput type="password" onBlur={this.handleConfirmBlur}/>)}
             </ModalFormItem>
             <ButtonDiv>
               <StyledBackButton type={"primary"} onClick={this.props.handleBack}>
