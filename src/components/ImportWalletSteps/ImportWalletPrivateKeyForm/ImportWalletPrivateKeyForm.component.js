@@ -26,7 +26,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
   handleConfirmBlur(e) {
     const value = e.target.value;
     this.setState({
-      confirmDirty: this.state.confirmPasswordsMatch || !!value,
+      confirmDirty: this.state.confirmDirty || !!value,
     });
   }
 
