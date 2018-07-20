@@ -55,10 +55,15 @@ export function getComponentHOC(Component) {
       this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
-
     componentDidMount() {
       this.props.startLedgerSync();
       this.props.loadWalletsBalances();
+    }
+
+    componentWillReceiveProps(prevProps) {
+      if (!prevProps.currentWallet.toJS().showDecryptModal && this.props.currentWallet.toJS().showDecryptModal) {
+        this.setState({ password: null });
+      }
     }
 
     onPasswordChange(e) {
@@ -95,9 +100,9 @@ export function getComponentHOC(Component) {
               label={<FormItemLabel>Please enter wallet password to proceed</FormItemLabel>}
               colon={false}
             >
-              <Input onChange={this.onPasswordChange} type="password" onKeyPress={(e) => this.handleKeyPress(e)} />
+              <Input value={this.state.password} onChange={this.onPasswordChange} type="password" onKeyPress={(e) => this.handleKeyPress(e)} />
             </FormItem>
-            <Button type="primary" onClick={this.decryptWallet}>
+            <Button type="primary" onClick={this.decryptWallet} disabled={!this.state.password}>
               Confirm
             </Button>
           </Modal>
