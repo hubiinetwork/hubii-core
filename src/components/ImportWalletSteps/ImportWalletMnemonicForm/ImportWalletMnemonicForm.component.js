@@ -1,10 +1,9 @@
-/* eslint-disable */
 import * as React from 'react';
-import { Form, Icon } from 'antd';
+import { Form } from 'antd';
 import PropTypes from 'prop-types';
 
 import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
-import { handleFinish, compareToFirstPassword} from 'utils/forms';
+import { handleFinish, compareToFirstPassword } from 'utils/forms';
 
 import {
   WidthEighty,
@@ -21,7 +20,7 @@ class ImportWalletMnemonicForm extends React.Component {
     super(props);
     this.state = {
       derivationPath: 'm/44\'/60\'/0\'/0/0',
-    }
+    };
   }
 
   render() {
@@ -56,7 +55,7 @@ class ImportWalletMnemonicForm extends React.Component {
                     whitespace: true,
                   },
                 ],
-              })(<ModalFormInput disabled={loading}/>)}
+              })(<ModalFormInput disabled={loading} />)}
             </ModalFormItem>
             <ModalFormItem
               label={
@@ -73,7 +72,7 @@ class ImportWalletMnemonicForm extends React.Component {
                     whitespace: true,
                   },
                 ],
-              })(<ModalFormInput disabled={loading}/>)}
+              })(<ModalFormInput disabled={loading} />)}
             </ModalFormItem>
             <ModalFormItem
               label={
@@ -88,7 +87,7 @@ class ImportWalletMnemonicForm extends React.Component {
                     whitespace: true,
                   },
                 ],
-              })(<ModalFormInput type="password" disabled={loading}/>)}
+              })(<ModalFormInput type="password" disabled={loading} />)}
             </ModalFormItem>
             <ModalFormItem
               label={
@@ -98,33 +97,33 @@ class ImportWalletMnemonicForm extends React.Component {
               {getFieldDecorator('repeatPassword', {
                 rules: [
                   {
-                    required: true, 
+                    required: true,
                     whitespace: true,
                     message: 'Please confirm your password',
-                  }, 
+                  },
                   {
                     validator: (rule, value, callback) => compareToFirstPassword(form, rule, value, callback),
-                  }
+                  },
                 ],
-              })(<ModalFormInput type="password" disabled={loading}/>)}
+              })(<ModalFormInput type="password" disabled={loading} />)}
             </ModalFormItem>
             {loading ?
               (
                 <ButtonDiv loading={loading}>
                   <StyledSpin
-                  delay={0}
-                  tip="Importing Wallet..."
-                  size="large"
+                    delay={0}
+                    tip="Importing Wallet..."
+                    size="large"
                   />
                 </ButtonDiv>
-              ) 
+              )
               :
               (
                 <ButtonDiv>
-                  <StyledBackButton type={"primary"} onClick={this.props.handleBack}>
+                  <StyledBackButton type={'primary'} onClick={this.props.handleBack}>
                     <StyledSpan>Back</StyledSpan>
                   </StyledBackButton>
-                  <StyledButton type={"primary"} htmlType="submit">
+                  <StyledButton type={'primary'} htmlType="submit">
                     <StyledSpan>Finish</StyledSpan>
                   </StyledButton>
                 </ButtonDiv>
