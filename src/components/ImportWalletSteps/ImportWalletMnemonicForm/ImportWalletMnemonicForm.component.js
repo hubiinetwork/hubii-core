@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Form } from 'antd';
 import PropTypes from 'prop-types';
+
 import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
 import { handleFinish, compareToFirstPassword } from 'utils/forms';
+
 import {
   WidthEighty,
   StyledModalFormLabel,
@@ -13,38 +15,22 @@ import {
   StyledSpin,
 } from '../ImportWalletForm.style';
 
-class ImportWalletPrivateKeyForm extends React.Component {
+class ImportWalletMnemonicForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      confirmDirty: false,
+      derivationPath: 'm/44\'/60\'/0\'/0/0',
     };
-    this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
-    this.validateToNextPassword = this.validateToNextPassword.bind(this);
-  }
-
-  handleConfirmBlur(e) {
-    const value = e.target.value;
-    this.setState({
-      confirmDirty: this.state.confirmDirty || value,
-    });
-  }
-
-  validateToNextPassword(rule, value, callback) {
-    const form = this.props.form;
-    if (value && this.state.confirmDirty) {
-      form.validateFields(['confirm'], { force: true });
-    }
-    callback();
   }
 
   render() {
     const { getFieldDecorator } = this.props.form;
     const { form, handleNext, loading } = this.props;
+    const { derivationPath } = this.state;
     return (
       <div>
         <Form
-          onSubmit={(e) => handleFinish(e, form, handleNext)}
+          onSubmit={(e) => handleFinish(e, form, handleNext, { derivationPath })}
           layout="vertical"
           style={{
             marginTop: '5rem',
@@ -74,11 +60,11 @@ class ImportWalletPrivateKeyForm extends React.Component {
             <ModalFormItem
               label={
                 <StyledModalFormLabel>
-                  Private Key
+                  Mnemonic
                 </StyledModalFormLabel>
               }
             >
-              {getFieldDecorator('privateKey', {
+              {getFieldDecorator('mnemonic', {
                 rules: [
                   {
                     message: 'Required field',
@@ -96,16 +82,9 @@ class ImportWalletPrivateKeyForm extends React.Component {
               {getFieldDecorator('password', {
                 rules: [
                   {
+                    message: 'Required field',
                     required: true,
                     whitespace: true,
-                    message: 'Please enter a password',
-                  },
-                  {
-                    min: 6,
-                    message: 'Password must be at least 6 characters',
-                  },
-                  {
-                    validator: this.validateToNextPassword,
                   },
                 ],
               })(<ModalFormInput type="password" disabled={loading} />)}
@@ -115,7 +94,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
                 <StyledModalFormLabel>Repeat password</StyledModalFormLabel>
               }
             >
-              {getFieldDecorator('confirm', {
+              {getFieldDecorator('repeatPassword', {
                 rules: [
                   {
                     required: true,
@@ -126,7 +105,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
                     validator: (rule, value, callback) => compareToFirstPassword(form, rule, value, callback),
                   },
                 ],
-              })(<ModalFormInput disabled={loading} type="password" onBlur={this.handleConfirmBlur} />)}
+              })(<ModalFormInput type="password" disabled={loading} />)}
             </ModalFormItem>
             {loading ?
               (
@@ -157,7 +136,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
   }
 }
 
-ImportWalletPrivateKeyForm.propTypes = {
+ImportWalletMnemonicForm.propTypes = {
   /**
    * Function to be executed when back button is pressed
    */
@@ -176,4 +155,4 @@ ImportWalletPrivateKeyForm.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
-export default Form.create()(ImportWalletPrivateKeyForm);
+export default Form.create()(ImportWalletMnemonicForm);

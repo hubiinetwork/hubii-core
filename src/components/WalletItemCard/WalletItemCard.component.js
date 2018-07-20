@@ -25,6 +25,7 @@ import {
   SpaceBetween,
   WalletName,
 } from './WalletItemCard.style';
+
 /**
  * This component shows details of a wallet in the card.
  */

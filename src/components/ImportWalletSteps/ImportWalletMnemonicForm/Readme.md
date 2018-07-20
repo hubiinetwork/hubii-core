@@ -1,4 +1,4 @@
-Variants of ImportWalletPrivateKeyForm:
+Variants of ImportWalletMnemonicForm:
 
 ```js
 <div
@@ -9,7 +9,7 @@ Variants of ImportWalletPrivateKeyForm:
     height: 576
   }}
 >
-  <ImportWalletPrivateKeyForm
+  <ImportWalletMnemonicForm
     handleNext={() => console.log("handleNext")}
     handleNext={() => console.log("handleBack")}
     loading={false}
@@ -26,7 +26,7 @@ Variants of ImportWalletPrivateKeyForm:
     height: 576
   }}
 >
-  <ImportWalletPrivateKeyForm
+  <ImportWalletMnemonicForm
     handleNext={() => console.log("handleNext")}
     handleNext={() => console.log("handleBack")}
     loading

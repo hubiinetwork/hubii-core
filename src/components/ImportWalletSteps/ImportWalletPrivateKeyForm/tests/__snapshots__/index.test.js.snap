@@ -1,19 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ImportWalletNameForm /> should render correctly when loading is false 1`] = `
+exports[`<ImportWalletMnemonicForm /> should render correctly when loading is false 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Form(ImportWalletNameForm)
+  Symbol(enzyme.__unrendered__): <Form(ImportWalletPrivateKeyForm)
     handleBack={[Function]}
     handleNext={[Function]}
     loading={false}
-    wallet={
-        Object {
-            "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
-            "value": "digitalBitbox1",
-          }
-    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -51,10 +45,6 @@ ShallowWrapper {
       "handleBack": [Function],
       "handleNext": [Function],
       "loading": false,
-      "wallet": Object {
-        "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
-        "value": "digitalBitbox1",
-      },
     },
     "ref": null,
     "rendered": null,
@@ -90,10 +80,6 @@ ShallowWrapper {
         "handleBack": [Function],
         "handleNext": [Function],
         "loading": false,
-        "wallet": Object {
-          "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
-          "value": "digitalBitbox1",
-        },
       },
       "ref": null,
       "rendered": null,
@@ -110,20 +96,14 @@ ShallowWrapper {
 }
 `;
 
-exports[`<ImportWalletNameForm /> should render correctly when loading is true 1`] = `
+exports[`<ImportWalletMnemonicForm /> should render correctly when loading is true 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Form(ImportWalletNameForm)
+  Symbol(enzyme.__unrendered__): <Form(ImportWalletPrivateKeyForm)
     handleBack={[Function]}
     handleNext={[Function]}
     loading={true}
-    wallet={
-        Object {
-            "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
-            "value": "digitalBitbox1",
-          }
-    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -161,10 +141,6 @@ ShallowWrapper {
       "handleBack": [Function],
       "handleNext": [Function],
       "loading": true,
-      "wallet": Object {
-        "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
-        "value": "digitalBitbox1",
-      },
     },
     "ref": null,
     "rendered": null,
@@ -200,10 +176,6 @@ ShallowWrapper {
         "handleBack": [Function],
         "handleNext": [Function],
         "loading": true,
-        "wallet": Object {
-          "src": "https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png",
-          "value": "digitalBitbox1",
-        },
       },
       "ref": null,
       "rendered": null,

@@ -67,9 +67,10 @@ export function* createWalletFromMnemonic({ name, mnemonic, derivationPath, pass
   try {
     if (!name || !derivationPath || !password || !mnemonic) throw new Error('invalid param');
     const decryptedWallet = Wallet.fromMnemonic(mnemonic, derivationPath);
-    const encryptedWallet = yield decryptedWallet.encrypt(password);
+    const encryptedWallet = yield call((...args) => decryptedWallet.encrypt(...args), password);
     yield put(createWalletSuccess(name, encryptedWallet, decryptedWallet));
   } catch (e) {
+    yield put(notify('error', `Failed to import wallet: ${e}`));
     yield put(createWalletFailed(e));
   }
 }
