@@ -29,59 +29,32 @@ export default class ExportPrivateInfo extends React.PureComponent {
   }
 
   render() {
-    const { name, address, mnemonic, privateKey, onExit } = this.props;
+    const { mnemonic, privateKey, onExit } = this.props;
     return (
       <Wrapper>
-        <Text> Export Private Information?</Text>
+        <Text>Never share this information with anyone</Text>
+        <Text>Always keep a physical backup in a safe location</Text>
         <TextPrimary>
-          <div>
-            <SecondaryHeader>
-              Wallet Name
-            <CopyToClipboard text={name}>
-              <StyledIcon
-                type="primary"
-                shape="circle"
-                icon="copy"
-                size={'small'}
-                onClick={() => this.showNotification('Wallet Name')}
-                id="name"
-              />
-            </CopyToClipboard>
-            </SecondaryHeader>
-            {name}
-          </div>
-          <div>
-            <SecondaryHeader>
-              Primary Address
-            <CopyToClipboard text={address}>
-              <StyledIcon
-                type="primary"
-                shape="circle"
-                icon="copy"
-                size={'small'}
-                onClick={() => this.showNotification('Address')}
-                id="address"
-              />
-            </CopyToClipboard>
-            </SecondaryHeader>
-            {address}
-          </div>
-          <div>
-            <SecondaryHeader>
-              Mnemonic
-            <CopyToClipboard text={mnemonic} >
-              <StyledIcon
-                type="primary"
-                shape="circle"
-                icon="copy"
-                size={'small'}
-                onClick={() => this.showNotification('Mnemonic')}
-                id="mnemonic"
-              />
-            </CopyToClipboard>
-            </SecondaryHeader>
-            {mnemonic}
-          </div>
+          {
+              mnemonic ?
+
+                <div>
+                  <SecondaryHeader>
+                    Mnemonic
+                    <CopyToClipboard text={mnemonic} >
+                      <StyledIcon
+                        type="primary"
+                        shape="circle"
+                        icon="copy"
+                        size={'small'}
+                        onClick={() => this.showNotification('Mnemonic')}
+                        id="mnemonic"
+                      />
+                    </CopyToClipboard>
+                  </SecondaryHeader>
+                  {mnemonic}
+                </div> : null
+            }
           <div>
             <SecondaryHeader>
               Private Key
@@ -101,7 +74,7 @@ export default class ExportPrivateInfo extends React.PureComponent {
         </TextPrimary>
         <ParentDiv>
           <StyledButton type="primary" onClick={onExit} id="exit">
-            Exit
+            Close
           </StyledButton>
         </ParentDiv>
       </Wrapper>
@@ -114,14 +87,6 @@ ExportPrivateInfo.propTypes = {
    * Function to perform action when exit button is clicked
    */
   onExit: PropTypes.func.isRequired,
-  /**
-   * Wallet Name
-   */
-  name: PropTypes.string.isRequired,
-  /**
-   * Wallet Primary Address
-   */
-  address: PropTypes.string.isRequired,
   /**
    * Wallet mnemonic
    */
