@@ -56,7 +56,7 @@ const SideBarMenu = styled(Menu)`
     opacity: 1;
     color: ${({ theme }) => theme.palette.info} !important;
   }
-  .ant-menu-item.menu-logo {
+  .ant-menu-item.menu-logo a {
     opacity: 1;
     color: ${({ theme }) => theme.palette.dark2};
   }
