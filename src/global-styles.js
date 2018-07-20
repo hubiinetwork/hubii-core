@@ -152,4 +152,8 @@ injectGlobal`
   .ant-tooltip {
     display: none;
   }
+  .ant-popover-inner-content,
+  .ant-popover-arrow {
+    background-color: #26404d;
+  }
 `;
