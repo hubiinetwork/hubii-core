@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'antd';
+import { handleFinish } from 'utils/forms';
 import {
   Image,
   IconDiv,
@@ -12,39 +13,24 @@ import {
   StyledButton,
   StyledBackButton,
   FormInput,
-  FormItem
-} from './ImportWalletNameForm.style';
+  FormItem,
+  StyledSpin,
+} from '../ImportWalletForm.style';
 class ImportWalletNameForm extends React.Component {
   constructor(props) {
     super(props);
-    this.handleBack = this.handleBack.bind(this);
-    this.handleFinish = this.handleFinish.bind(this);
-  }
-  handleBack() {
-    const { handleBack } = this.props;
-    if (handleBack) {
-      handleBack();
-    }
   }
 
-  handleFinish(e) {
-    const { form, handleNext } = this.props;
-    e.preventDefault();
-    form.validateFields((err, values) => {
-      if (!err && handleNext) {
-        handleNext(values);
-      }
-    });
-  }
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { form, handleNext, handleBack, loading } = this.props;
     return (
       <div>
         <IconDiv>
           <Image src={this.props.wallet.src} />
         </IconDiv>
         <Form
-          onSubmit={this.handleFinish}
+          onSubmit={(e) => handleFinish(e, form, handleNext)}
           layout="vertical"
           style={{
             display: 'flex',
@@ -69,14 +55,28 @@ class ImportWalletNameForm extends React.Component {
                 ],
               })(<FormInput />)}
             </FormItem>
-            <ButtonDiv>
-              <StyledBackButton type={"primary"} onClick={this.handleBack}>
-                <StyledSpan>Back</StyledSpan>
-              </StyledBackButton>
-              <StyledButton type={"primary"} htmlType="submit">
-                <StyledSpan>Finish</StyledSpan>
-              </StyledButton>
-            </ButtonDiv>
+            {loading ?
+              (
+                <ButtonDiv loading={loading}>
+                  <StyledSpin
+                  delay={0}
+                  tip="Importing Wallet..."
+                  size="large"
+                  />
+                </ButtonDiv>
+              ) 
+              :
+              (
+                <ButtonDiv>
+                  <StyledBackButton type={"primary"} onClick={this.props.handleBack}>
+                    <StyledSpan>Back</StyledSpan>
+                  </StyledBackButton>
+                  <StyledButton type={"primary"} htmlType="submit">
+                    <StyledSpan>Finish</StyledSpan>
+                  </StyledButton>
+                </ButtonDiv>
+              )
+            }
           </WidthEighty>
         </Form>
       </div>
@@ -101,6 +101,10 @@ ImportWalletNameForm.propTypes = {
    * ant design form
    */
   form: PropTypes.object,
+  /**
+   * loading
+   */
+  loading: PropTypes.bool.isRequired,
 };
 
 export default Form.create()(ImportWalletNameForm);
