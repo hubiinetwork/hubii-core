@@ -19,7 +19,7 @@ describe('Form Helper Functions', () => {
       compareToFirstPassword(form, rule, value, callback);
       expect(form.getFieldValue).toHaveBeenCalledTimes(1);
       expect(callback).toHaveBeenCalledTimes(1);
-      expect(callback).toHaveBeenCalledWith('Two passwords that you enter is inconsistent!');
+      expect(callback).toHaveBeenCalledWith('Entered passwords do not match');
     });
     it('should run compareToFirstPassword with valid password', () => {
       value = '123123';
