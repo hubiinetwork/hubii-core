@@ -81,6 +81,7 @@ export function* createWalletFromPrivateKey({ privateKey, name, password }) {
     const decryptedWallet = new Wallet(privateKey);
     const encryptedWallet = yield call((...args) => decryptedWallet.encrypt(...args), password);
     yield put(createWalletSuccess(name, encryptedWallet, decryptedWallet));
+    yield put(notify('warning', 'Wallets imported by private key are difficult to backup. It is recommended to sweep your funds into a mnemonic based wallet, which allows backup by a word phrase rather than a long hex string'));
   } catch (e) {
     yield put(notify('error', `Failed to import wallet: ${e}`));
     yield put(createWalletFailed(e));
