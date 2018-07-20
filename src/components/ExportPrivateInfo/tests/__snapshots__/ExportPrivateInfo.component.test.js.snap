@@ -78,7 +78,7 @@ ShallowWrapper {
                     onClick={[Function]}
                     type="primary"
           >
-                    Exit
+                    Close
           </ExportPrivateInfo.style__StyledButton>
 </ExportPrivateInfo.style__ParentDiv>,
       ],
@@ -364,7 +364,7 @@ ShallowWrapper {
             onClick={[Function]}
             type="primary"
 >
-            Exit
+            Close
 </ExportPrivateInfo.style__StyledButton>,
         },
         "ref": null,
@@ -373,13 +373,13 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "Exit",
+            "children": "Close",
             "id": "exit",
             "onClick": [Function],
             "type": "primary",
           },
           "ref": null,
-          "rendered": "Exit",
+          "rendered": "Close",
           "type": [Function],
         },
         "type": [Function],
@@ -448,7 +448,7 @@ ShallowWrapper {
                         onClick={[Function]}
                         type="primary"
             >
-                        Exit
+                        Close
             </ExportPrivateInfo.style__StyledButton>
 </ExportPrivateInfo.style__ParentDiv>,
         ],
@@ -734,7 +734,7 @@ ShallowWrapper {
               onClick={[Function]}
               type="primary"
 >
-              Exit
+              Close
 </ExportPrivateInfo.style__StyledButton>,
           },
           "ref": null,
@@ -743,13 +743,13 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Exit",
+              "children": "Close",
               "id": "exit",
               "onClick": [Function],
               "type": "primary",
             },
             "ref": null,
-            "rendered": "Exit",
+            "rendered": "Close",
             "type": [Function],
           },
           "type": [Function],
