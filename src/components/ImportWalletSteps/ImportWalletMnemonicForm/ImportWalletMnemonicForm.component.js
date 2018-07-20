@@ -2,6 +2,10 @@
 import * as React from 'react';
 import { Form, Icon } from 'antd';
 import PropTypes from 'prop-types';
+
+import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
+import { handleFinish, compareToFirstPassword} from 'utils/forms';
+
 import {
   WidthEighty,
   StyledModalFormLabel,
@@ -11,24 +15,23 @@ import {
   StyledSpan,
   StyledSpin,
 } from '../ImportWalletForm.style';
-import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
-import { handleFinish, compareToFirstPassword} from 'utils/forms';
 
-class ImportWalletPrivateKeyForm extends React.Component {
+class ImportWalletMnemonicForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      password: null,
+      derivationPath: 'm/44\'/60\'/0\'/0/0',
     }
   }
 
   render() {
     const { getFieldDecorator } = this.props.form;
     const { form, handleNext, loading } = this.props;
+    const { derivationPath } = this.state;
     return (
       <div>
         <Form
-          onSubmit={(e) => handleFinish(e, form, handleNext)}
+          onSubmit={(e) => handleFinish(e, form, handleNext, { derivationPath })}
           layout="vertical"
           style={{
             marginTop: '5rem',
@@ -58,11 +61,11 @@ class ImportWalletPrivateKeyForm extends React.Component {
             <ModalFormItem
               label={
                 <StyledModalFormLabel>
-                  Private Key
+                  Mnemonic
                 </StyledModalFormLabel>
               }
             >
-              {getFieldDecorator('privateKey', {
+              {getFieldDecorator('mnemonic', {
                 rules: [
                   {
                     message: 'Required field',
@@ -85,7 +88,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
                     whitespace: true,
                   },
                 ],
-              })(<ModalFormInput type="password" />)}
+              })(<ModalFormInput type="password" disabled={loading}/>)}
             </ModalFormItem>
             <ModalFormItem
               label={
@@ -134,7 +137,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
   }
 }
 
-ImportWalletPrivateKeyForm.propTypes = {
+ImportWalletMnemonicForm.propTypes = {
   /**
    * Function to be executed when back button is pressed
    */
@@ -153,4 +156,4 @@ ImportWalletPrivateKeyForm.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
-export default Form.create()(ImportWalletPrivateKeyForm);
+export default Form.create()(ImportWalletMnemonicForm);
