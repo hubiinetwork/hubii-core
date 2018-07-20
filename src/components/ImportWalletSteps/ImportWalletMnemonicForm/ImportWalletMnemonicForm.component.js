@@ -44,7 +44,7 @@ class ImportWalletMnemonicForm extends React.Component {
             <ModalFormItem
               label={
                 <StyledModalFormLabel>
-                  Name
+                  Wallet Name
                 </StyledModalFormLabel>
               }
             >
@@ -100,7 +100,7 @@ class ImportWalletMnemonicForm extends React.Component {
                   {
                     required: true, 
                     whitespace: true,
-                    message: 'Please confirm your password!',
+                    message: 'Please confirm your password',
                   }, 
                   {
                     validator: (rule, value, callback) => compareToFirstPassword(form, rule, value, callback),
