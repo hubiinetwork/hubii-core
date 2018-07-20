@@ -22,7 +22,7 @@ class ImportWalletPrivateKey extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      confirmPasswordsMatch: false,
+      confirmDirty: false,
     };
     this.handleFinish = this.handleFinish.bind(this);
     this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
@@ -33,20 +33,20 @@ class ImportWalletPrivateKey extends React.Component {
   handleConfirmBlur(e) {
     const value = e.target.value;
     this.setState({
-      confirmPasswordsMatch: this.state.confirmPasswordsMatch || !!value,
+      confirmDirty: this.state.confirmPasswordsMatch || !!value,
     });
   }
   compareToFirstPassword(rule, value, callback) {
     const form = this.props.form;
     if (value && value !== form.getFieldValue('password')) {
-      callback('The passwords do not match!');
+      callback('Entered passwords do not match');
     } else {
       callback();
     }
   }
   validateToNextPassword(rule, value, callback) {
     const form = this.props.form;
-    if (value && this.state.confirmPasswordsMatch) {
+    if (value && this.state.confirmDirty) {
       form.validateFields(['confirm'], { force: true });
     }
     callback();
@@ -118,11 +118,11 @@ class ImportWalletPrivateKey extends React.Component {
                   rules: [
                     {
                       required: true,
-                      message: 'Please enter your password!',
+                      message: 'Please enter a password',
                     },
                     {
                       min: 6,
-                      message: 'The required minimum is 6 characters.',
+                      message: 'Password must be at least 6 characters',
                     },
                     {
                       validator: this.validateToNextPassword,
@@ -139,7 +139,7 @@ class ImportWalletPrivateKey extends React.Component {
                   rules: [
                     {
                       required: true,
-                      message: 'Please confirm your password!',
+                      message: 'Please confirm your password',
                     },
                     {
                       validator: this.compareToFirstPassword,
