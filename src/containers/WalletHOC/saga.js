@@ -78,7 +78,9 @@ export function* createWalletFromMnemonic({ name, mnemonic, derivationPath, pass
 export function* createWalletFromPrivateKey({ privateKey, name, password }) {
   try {
     if (!name || !privateKey || !password) throw new Error('invalid param');
-    const decryptedWallet = new Wallet(privateKey);
+    let prefixedPrivateKey = privateKey;
+    if (!prefixedPrivateKey.startsWith('0x')) prefixedPrivateKey = `0x${privateKey}`;
+    const decryptedWallet = new Wallet(prefixedPrivateKey);
     const encryptedWallet = yield call((...args) => decryptedWallet.encrypt(...args), password);
     yield put(createWalletSuccess(name, encryptedWallet, decryptedWallet));
   } catch (e) {
