@@ -20,8 +20,7 @@ import {
   createWalletFromPrivateKey,
 } from 'containers/WalletHOC/actions';
 import { makeSelectLoading, makeSelectWallets } from 'containers/WalletHOC/selectors';
-import { createContact,
- } from '../ContactBook/actions';
+import { createContact } from '../ContactBook/actions';
 
 
 import {
@@ -29,6 +28,7 @@ import {
   TabsLayout,
   StyledButton,
   WalletsTabHeader,
+  Heading,
 } from './index.style';
 
 const TabPane = Tabs.TabPane;
@@ -126,7 +126,7 @@ export class WalletManager extends React.PureComponent {
       <Wrapper>
         <TabsLayout>
           <WalletsTabHeader>
-            <h2 className="heading">All Wallets</h2>
+            <Heading>Wallet Manager</Heading>
             <StyledButton
               type="primary"
               onClick={() => this.showModal(history.location.pathname === `${match.url}/overview` ? 'addWallet' : 'addContact')}
