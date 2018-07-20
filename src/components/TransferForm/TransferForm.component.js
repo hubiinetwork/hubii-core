@@ -48,13 +48,9 @@ export default class TransferForm extends React.PureComponent {
   }
 
   handleChange(e) {
-    console.log('here', parseFloat(e.target.value));
-    console.log('123', (isNaN(parseFloat(e.target.value))));
-    if ((isNaN(parseFloat(e.target.value)))) {
-      this.setState({ input: parseFloat(e.target.value) });
-    } else {
-      this.setState({ input: 0 });
-    }
+    const { value } = e.target;
+    const input = isNaN(value) ? 0 : value;
+    this.setState({ input });
   }
 
   handleGasPriceChange(e) {
@@ -132,7 +128,7 @@ export default class TransferForm extends React.PureComponent {
               colon={false}
               help={<HelperText left={formatFiat(this.state.input * parseFloat(this.state.selectedToken.price.USD), 'USD')} right="USD" />}
             >
-              <InputNumber min={0} max={totalBalance} value={this.state.input} handleChange={this.handleChange} />
+              <InputNumber min={0} max={totalBalance} handleChange={this.handleChange} />
             </FormItem>
             <Collapse bordered={false} defaultActiveKey={['2']}>
               <Panel
