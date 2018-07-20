@@ -4,7 +4,7 @@
 
 export function compareToFirstPassword(form, rule, value, callback) {
   if (value && value !== form.getFieldValue('password')) {
-    callback('Two passwords that you enter is inconsistent!');
+    callback('Entered passwords do not match');
   } else {
     callback();
   }
