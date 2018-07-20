@@ -100,6 +100,7 @@ export const RightSideWrapper = styled.div`
 
 export const IconMenu = styled(Menu)`
   background-color: ${({ theme }) => theme.palette.primary3};
+    padding: 0;
 `;
 
 export const MenuItem = styled(Menu.Item)`
@@ -112,4 +113,5 @@ export const MenuItem = styled(Menu.Item)`
 
 export const MenuDivider = styled(Menu.Divider)`
   background-color: ${({ theme }) => theme.palette.secondary1};
+  margin: 0;
 `;
