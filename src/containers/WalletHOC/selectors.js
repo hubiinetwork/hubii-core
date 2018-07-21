@@ -93,20 +93,18 @@ const makeSelectAllTransactions = () => createSelector(
 
 const makeSelectLedgerNanoS = () => createSelector(
   selectWalletHocDomain,
-  (walletHocDomain) => {
-    return walletHocDomain.getIn(['hardwareWallets', 'ledgerNanoS'])
-  }
-)
+  (walletHocDomain) => walletHocDomain.getIn(['hardwareWallets', 'ledgerNanoS'])
+);
 
 const makeSelectIsLedgerConnected = () => createSelector(
   makeSelectLedgerNanoS(),
   (ledgerNanoS) => {
     if (!ledgerNanoS) {
-      return
+      return;
     }
-    return ledgerNanoS.get('connected')
+    return ledgerNanoS.get('connected');
   }
-)
+);
 
 export {
   selectWalletHocDomain,
