@@ -27,6 +27,8 @@ import {
   TRANSFER,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
+  LEDGER_CONNECTED,
+  LEDGER_DISCONNECTED,
   LEDGER_DETECTED,
   LEDGER_ERROR,
   FETCHED_LEDGER_ADDRESS,
@@ -156,6 +158,14 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['ledgerNanoSInfo', 'status'], 'connected')
         .setIn(['ledgerNanoSInfo', 'id'], action.id)
         .setIn(['errors', 'ledgerError'], null);
+    case LEDGER_CONNECTED:
+      return state
+        .setIn(['hardwareWallets', 'ledgerNanoS', 'connected'], true)
+        .setIn(['hardwareWallets', 'ledgerNanoS', 'descriptor'], action.descriptor)
+    case LEDGER_DISCONNECTED:
+      return state
+        .setIn(['hardwareWallets', 'ledgerNanoS', 'connected'], false)
+        .setIn(['hardwareWallets', 'ledgerNanoS', 'descriptor'], null)
     case LEDGER_ERROR:
       return state
         .set('ledgerNanoSInfo', fromJS({ status: 'disconnected', addresses: {} }))

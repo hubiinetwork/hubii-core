@@ -30,6 +30,8 @@ import {
   TRANSFER_ERC20,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
+  LEDGER_CONNECTED,
+  LEDGER_DISCONNECTED,
   LEDGER_DETECTED,
   LEDGER_ERROR,
   FETCH_LEDGER_ADDRESSES,
@@ -295,6 +297,20 @@ export function saveLedgerAddress(name, derivationPath, deviceId, address) {
   return {
     type: CREATE_WALLET_SUCCESS,
     newWallet,
+  };
+}
+
+export function ledgerConnected(descriptor) {
+  return {
+    type: LEDGER_CONNECTED,
+    descriptor,
+  };
+}
+
+export function ledgerDisconnected(descriptor) {
+  return {
+    type: LEDGER_DISCONNECTED,
+    descriptor,
   };
 }
 

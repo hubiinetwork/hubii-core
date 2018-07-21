@@ -1,4 +1,4 @@
-import { eventChannel, delay } from 'redux-saga';
+import { eventChannel, delay, END } from 'redux-saga';
 import { takeLatest, takeEvery, put, call, select, race, take } from 'redux-saga/effects';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 // import Web3 from 'web3';
@@ -10,6 +10,7 @@ import {
   makeSelectWalletList,
   makeSelectCurrentWalletDetails,
   makeSelectWallets,
+  makeSelectIsLedgerConnected,
 } from './selectors';
 import { requestWalletAPI } from '../../utils/request';
 import { ERC20ABI, EthNetworkProvider } from '../../utils/wallet';
@@ -28,6 +29,8 @@ import {
   FETCH_LEDGER_ADDRESSES,
   CREATE_WALLET_FROM_PRIVATE_KEY,
   INIT_LEDGER,
+  LEDGER_CONNECTED,
+  LEDGER_DISCONNECTED,
 } from './constants';
 
 import {
@@ -44,6 +47,8 @@ import {
   showDecryptWalletModal,
   transferSuccess,
   transferError,
+  ledgerConnected,
+  ledgerDisconnected,
   ledgerDetected,
   ledgerError,
   fetchedLedgerAddress,
@@ -54,6 +59,8 @@ import {
 } from './actions';
 import { createTransport, newEth } from '../../utils/ledger/comms';
 // import generateRawTx from '../../utils/generateRawTx';
+
+const ethChannels = {}
 
 // Creates a new software wallet
 export function* createWalletFromMnemonic({ name, mnemonic, derivationPath, password }) {
@@ -263,12 +270,92 @@ export function* hookNewWalletCreated({ newWallet }) {
 // Creates an eventChannel to listen to Ledger events
 export const ledgerChannel = () => eventChannel((listener) => {
   const sub = LedgerTransport.listen({
-    next: (e) => listener(e),
-    error: (e) => listener(e),
-    complete: (e) => listener(e),
+    next: (e) => {
+      console.log('chan next', new Date(), e)
+      return listener(e)
+    },
+    error: (e) => {
+      console.log('chan error', new Date(), e)
+      return listener(e)
+    },
+    complete: (e) => {
+      console.log('chan complete', new Date(), e)
+      return listener(e)
+    },
   });
   return () => { sub.unsubscribe(); };
 });
+
+export const ledgerEthChannel = (descriptor) => eventChannel((listener) => {
+  console.log('init eth channel')
+  let opened = false
+  let eth, transport
+  const iv = setInterval(() => {
+    //check connection status from store
+    //if the ledger with the descriptor disconnected, end this channel
+    
+    if (eth) {
+      eth.getAddress("m/44'/60'/0'/0").then(addr => {
+        listener(addr)
+      }).catch(err => {
+        console.log('eth', err)
+        eth = null
+        // transport = null
+      })
+      return
+    }
+    LedgerTransport.open(descriptor).then(trans => {
+      transport = trans
+      console.log('transport')
+      eth = newEth(transport);
+      
+    }).catch(err => {
+      console.log('open transport', err)
+      // listener(false)
+    })
+    // const address = yield call(eth.getAddress, "m/44'/60'/0'/0");
+    // const id = address.publicKey;
+    // yield put(ledgerDetected(id));
+  }, 2000)
+  return () => {
+    console.log('close eth channel')
+    clearInterval(iv)
+  }
+})
+
+export function* pollEthApp({descriptor}) {
+  const chan = ethChannels[descriptor]
+  if (chan) {
+    console.log('close channel with same descriptor')
+    chan.close()
+  }
+  const channel = yield call(ledgerEthChannel, descriptor);
+  ethChannels[descriptor] = channel
+  while (true) {
+    try {
+      const id = yield take(channel)
+      console.log('eth id', new Date(), id)
+      // let connected = yield select(makeSelectIsLedgerConnected());
+      // console.log('connected', connected)
+      // if (!connected) {
+      //   console.log('close channel')
+      //   chan.close()
+      // }
+      
+      //yield put eth open
+    } catch (error) {
+      //yield put eth closed
+      console.log('poll', error)
+    }
+  }
+}
+
+export function* hookLedgerDisconnected({descriptor}) {
+  const channel = ethChannels[descriptor]
+  channel && channel.close()
+  delete ethChannels[descriptor]
+  //yield put ledger eth app closed
+}
 
 export function* initLedger() {
   const supported = yield call(LedgerTransport.isSupported);
@@ -293,15 +380,25 @@ export function* initLedger() {
           timeout: call(delay, 1000),
         });
         if (timeout) {
-          throw new Error('Disconnected');
+          // console.log('close chan')
+          // chan.close()
+          yield put(ledgerDisconnected(msg.descriptor))
+          continue
+          // throw new Error('Disconnected');
         }
       }
-      const transport = yield call(createTransport);
-      const eth = yield call(newEth, transport);
-      const address = yield call(eth.getAddress, "m/44'/60'/0'/0");
-      const id = address.publicKey;
-      yield put(ledgerDetected(id));
+
+      // const ethchan = yield call(ledgerEthChannel, msg.descriptor);
+      yield put(ledgerConnected(msg.descriptor));
+      // const transport = yield call(createTransport);
+      console.log('listen')
+      // const eth = yield call(newEth, transport);
+      // const address = yield call(eth.getAddress, "m/44'/60'/0'/0");
+      // const id = address.publicKey;
+      // yield put(ledgerDetected(id));
+      // yield put(ledgerDetected());
     } catch (e) {
+      console.log('error', e)
       yield put(ledgerError(e));
     }
   }
@@ -340,4 +437,6 @@ export default function* walletHoc() {
   yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
   yield takeEvery(LISTEN_TOKEN_BALANCES, listenBalances);
   yield takeEvery(INIT_LEDGER, initLedger);
+  yield takeEvery(LEDGER_CONNECTED, pollEthApp);
+  yield takeEvery(LEDGER_DISCONNECTED, hookLedgerDisconnected);
 }
