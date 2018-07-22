@@ -16,7 +16,7 @@ import {
   transfer,
   showDecryptWalletModal,
   hideDecryptWalletModal,
-  ledgerDetected,
+  ledgerEthAppConnected,
   deleteWallet,
   addNewWallet,
 } from '../actions';
@@ -68,13 +68,13 @@ describe('walletHocReducer', () => {
   });
 
   describe('Ledger Nano S reducers', () => {
-    it('should handle LEDGER_DETECTED action correctly', () => {
+    it('should handle LEDGER_ETH_CONNECTED action correctly', () => {
       const id = '893745sjdfhks83';
       const expected = state
           .setIn(['ledgerNanoSInfo', 'status'], 'connected')
           .setIn(['ledgerNanoSInfo', 'id'], id)
           .setIn(['errors', 'ledgerError'], null);
-      expect(walletHocReducer(state, ledgerDetected(id))).toEqual(expected);
+      expect(walletHocReducer(state, ledgerEthAppConnected(id))).toEqual(expected);
     });
 
     it('should handle LEDGER_ERROR action correctly', () => {

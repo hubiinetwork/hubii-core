@@ -32,7 +32,8 @@ import {
   TRANSFER_ERROR,
   LEDGER_CONNECTED,
   LEDGER_DISCONNECTED,
-  LEDGER_DETECTED,
+  LEDGER_ETH_CONNECTED,
+  LEDGER_ETH_DISCONNECTED,
   LEDGER_ERROR,
   FETCH_LEDGER_ADDRESSES,
   FETCHED_LEDGER_ADDRESS,
@@ -271,10 +272,11 @@ export function initLedger() {
   };
 }
 
-export function fetchLedgerAddresses(derivationPaths) {
+export function fetchLedgerAddresses(derivationPaths, ethTransport) {
   return {
     type: FETCH_LEDGER_ADDRESSES,
     derivationPaths,
+    ethTransport,
   };
 }
 
@@ -314,10 +316,18 @@ export function ledgerDisconnected(descriptor) {
   };
 }
 
-export function ledgerDetected(id) {
+export function ledgerEthAppConnected(descriptor, id) {
   return {
-    type: LEDGER_DETECTED,
+    type: LEDGER_ETH_CONNECTED,
+    descriptor,
     id,
+  };
+}
+
+export function ledgerEthAppDisconnected(descriptor) {
+  return {
+    type: LEDGER_ETH_DISCONNECTED,
+    descriptor,
   };
 }
 

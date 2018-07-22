@@ -6,7 +6,7 @@ import {
   decryptWalletFailed,
   decryptWalletSuccess,
   loadWallets,
-  ledgerDetected,
+  ledgerEthAppConnected,
   ledgerError,
   deleteWallet,
   saveLedgerAddress,
@@ -20,7 +20,7 @@ import {
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
   LOAD_WALLETS,
-  LEDGER_DETECTED,
+  LEDGER_ETH_CONNECTED,
   LEDGER_ERROR,
   DELETE_WALLET,
   INIT_LEDGER,
@@ -152,14 +152,14 @@ describe('WalletHoc actions', () => {
     });
   });
 
-  describe('ledgerDetected Action', () => {
+  describe('ledgerEthAppConnected Action', () => {
     it('returns expected output', () => {
       const id = '048ncjdh39';
       const expected = {
-        type: LEDGER_DETECTED,
+        type: LEDGER_ETH_CONNECTED,
         id,
       };
-      expect(ledgerDetected(id)).toEqual(expected);
+      expect(ledgerEthAppConnected(id)).toEqual(expected);
     });
   });
 
