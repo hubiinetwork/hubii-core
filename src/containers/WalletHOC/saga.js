@@ -62,8 +62,6 @@ import {
 import { createTransport, newEth, createEthTransportActivity } from '../../utils/ledger/comms';
 // import generateRawTx from '../../utils/generateRawTx';
 
-const ethChannels = {};
-
 // Creates a new software wallet
 export function* createWalletFromMnemonic({ name, mnemonic, derivationPath, password }) {
   try {
@@ -288,6 +286,18 @@ export const ledgerChannel = () => eventChannel((listener) => {
   return () => { sub.unsubscribe(); };
 });
 
+const ethChannels = {};
+export const addEthChannel = (descriptor, channel) => {
+  removeEthChannel(descriptor);
+  ethChannels[descriptor] = channel;
+};
+
+export const removeEthChannel = (descriptor) => {
+  const channel = ethChannels[descriptor];
+  channel && channel.close();
+  delete ethChannels[descriptor];
+};
+
 export const ledgerEthChannel = (descriptor) => eventChannel((listener) => {
   console.log('init eth channel');
   const opened = false;
@@ -311,19 +321,13 @@ export const ledgerEthChannel = (descriptor) => eventChannel((listener) => {
 });
 
 export function* pollEthApp({ descriptor }) {
-  const chan = ethChannels[descriptor];
-  if (chan) {
-    console.log('close channel with same descriptor');
-    chan.close();
-  }
   const channel = yield call(ledgerEthChannel, descriptor);
-  ethChannels[descriptor] = channel;
+  addEthChannel(descriptor, channel);
   while (true) {
     try {
       const status = yield take(channel);
-      console.log('eth status', new Date(), status.connected);
       if (status.connected) {
-        channel.close();
+        removeEthChannel(descriptor);
         yield put(ledgerEthAppConnected(descriptor, status.address.publicKey));
 
         const paths = [];
@@ -334,26 +338,14 @@ export function* pollEthApp({ descriptor }) {
       } else {
         yield put(ledgerEthAppDisconnected(descriptor));
       }
-      // let connected = yield select(makeSelectIsLedgerConnected());
-      // console.log('connected', connected)
-      // if (!connected) {
-      //   console.log('close channel')
-      //   chan.close()
-      // }
-
-      // yield put eth open
     } catch (error) {
-      // yield put eth closed
       console.log('poll', error);
     }
   }
 }
 
 export function* hookLedgerDisconnected({ descriptor }) {
-  const channel = ethChannels[descriptor];
-  channel && channel.close();
-  delete ethChannels[descriptor];
-  // yield put ledger eth app closed
+  removeEthChannel(descriptor);
 }
 
 export function* initLedger() {
