@@ -96,16 +96,6 @@ const makeSelectLedgerNanoS = () => createSelector(
   (walletHocDomain) => walletHocDomain.getIn(['hardwareWallets', 'ledgerNanoS'])
 );
 
-const makeSelectIsLedgerConnected = () => createSelector(
-  makeSelectLedgerNanoS(),
-  (ledgerNanoS) => {
-    if (!ledgerNanoS) {
-      return;
-    }
-    return ledgerNanoS.get('connected');
-  }
-);
-
 export {
   selectWalletHocDomain,
   makeSelectLedgerNanoSInfo,
@@ -121,5 +111,4 @@ export {
   makeSelectCurrentWalletDetails,
   makeSelectAllTransactions,
   makeSelectLedgerNanoS,
-  makeSelectIsLedgerConnected,
 };

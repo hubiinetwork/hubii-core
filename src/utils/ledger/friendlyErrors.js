@@ -8,7 +8,7 @@ export default (error) => {
   return `Unknown error occured: ${error}`;
 };
 
-export const disconnectedErrorMsg = 'Ledger could not be detected, please check your connection and ensure you have entered your PIN.';
 export const noTransportErrorMsg = 'Failed to open connection with USB port';
 export const ethAppNotOpenErrorMsg = 'Ledger connected but does not appear to have the Ethereum app open. Please download the Ethereum app from the Ledger Manager and open it on your device.';
 export const browserSupportErrorMsg = `Ledger connected but does not appear to have 'Browser support' set to ${isElectron ? '\'No\'' : '\'Yes\''}, please ${isElectron ? 'disable' : 'enable'} browser support in the Ethereum app settings.`;
+export const disconnectedErrorMsg = `Ledger could not be detected, please check your connection and ensure you have entered your PIN. Also check if ${browserSupportErrorMsg}`;

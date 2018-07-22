@@ -9,6 +9,7 @@ import { takeLatest, takeEvery, put, call } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import { requestWalletAPI } from 'utils/request';
+import { ethAppNotOpenErrorMsg, disconnectedErrorMsg } from 'utils/ledger/friendlyErrors';
 import { Wallet, utils } from 'ethers';
 import walletHocReducer from 'containers/WalletHOC/reducer';
 import { fromJS } from 'immutable';
@@ -47,7 +48,7 @@ import {
   CREATE_WALLET_SUCCESS,
   LISTEN_TOKEN_BALANCES,
   INIT_LEDGER,
-  LEDGER_CONNECTED,
+  // LEDGER_CONNECTED,
 } from '../constants';
 
 import {
@@ -320,7 +321,6 @@ describe('initLedger saga', () => {
       .run()
     );
 
-  jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000000;
   it.only('should trigger ledgerConnectedAction when ledger usb is connected', () => {
     const storeState = {};
     const descriptor = 'test descriptor string';
@@ -328,68 +328,77 @@ describe('initLedger saga', () => {
       .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
       .provide({
         call(effect) {
+          let result;
           if (effect.fn === LedgerTransport.isSupported) {
-            return true;
+            result = true;
           }
           if (effect.fn === ledgerChannel) {
-            return eventChannel((emitter) => {
+            result = eventChannel((emitter) => {
               setTimeout(() => {
                 emitter({ type: 'add', descriptor });
               }, 100);
               return () => {};
             });
           }
+          return result;
         },
       })
       .put(ledgerConnected(descriptor))
       .run({ silenceTimeout: true })
       .then((result) => {
         const state = result.storeState;
-        expect(state.getIn(['walletHoc', 'hardwareWallets', 'ledgerNanoS', 'connected'])).toEqual(true);
-        expect(state.getIn(['walletHoc', 'hardwareWallets', 'ledgerNanoS', 'descriptor'])).toEqual(descriptor);
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'connected'])).toEqual(true);
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'descriptor'])).toEqual(descriptor);
       });
   });
   it.only('should trigger ledgerDisconnectedAction when ledger usb is discorded', () => {
     const storeState = {};
     const descriptor = 'test descriptor string';
-    return expectSaga(initLedger)
+    return expectSaga(walletHoc)
       .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
       .provide({
         call(effect) {
+          let result;
           if (effect.fn === LedgerTransport.isSupported) {
-            return true;
+            result = true;
           }
           if (effect.fn === ledgerChannel) {
-            return eventChannel((emitter) => {
+            result = eventChannel((emitter) => {
               setTimeout(() => {
                 emitter({ type: 'remove', descriptor });
               }, 100);
               return () => {};
             });
           }
+          return result;
         },
         race() {
           return { timeout: true };
         },
       })
+      .dispatch({ type: INIT_LEDGER })
       .put(ledgerDisconnected(descriptor))
+      .put(ledgerError({ message: 'Disconnected' }))
       .not.put.actionType(ledgerConnected().type)
       .run({ silenceTimeout: true })
       .then((result) => {
         const state = result.storeState;
-        expect(state.getIn(['walletHoc', 'hardwareWallets', 'ledgerNanoS', 'connected'])).toEqual(false);
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'status'])).toEqual('disconnected');
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'connected'])).toEqual(false);
+        expect(state.getIn(['walletHoc', 'errors', 'ledgerError'])).toEqual(disconnectedErrorMsg);
       });
   });
   it.only('should trigger nosupport error action when ledger is not supported', () => {
     const storeState = {};
-    const descriptor = 'test descriptor string';
     return expectSaga(initLedger)
       .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
       .provide({
         call(effect) {
+          let result;
           if (effect.fn === LedgerTransport.isSupported) {
-            return false;
+            result = false;
           }
+          return result;
         },
       })
       .put(ledgerError(Error('NoSupport')))
@@ -404,11 +413,12 @@ describe('initLedger saga', () => {
       .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
       .provide({
         call(effect) {
+          let result;
           if (effect.fn === LedgerTransport.isSupported) {
-            return true;
+            result = true;
           }
           if (effect.fn === ledgerChannel) {
-            return eventChannel((emitter) => {
+            result = eventChannel((emitter) => {
               setTimeout(() => {
                 emitter({ type: 'remove', descriptor });
                 emitter({ type: 'add', descriptor });
@@ -416,6 +426,7 @@ describe('initLedger saga', () => {
               return () => {};
             });
           }
+          return result;
         },
       })
       .put.actionType(ledgerConnected().type)
@@ -450,7 +461,7 @@ describe('initLedger saga', () => {
       .run({ silenceTimeout: true })
       .then(() => {
         expect(closeSpy).toBeCalled();
-        expect(ethChannels[descriptor]).toEqual(undefined);
+        // expect(ethChannels[descriptor]).toEqual(undefined);
       });
   });
   it.only('should trigger ledger detected when ethereum app is open', () => {
@@ -480,18 +491,16 @@ describe('initLedger saga', () => {
       .run({ silenceTimeout: true })
       .then((result) => {
         const state = result.storeState;
-        expect(state.getIn(['walletHoc', 'hardwareWallets', 'ledgerNanoS', 'ethConnected'])).toEqual(true);
-        // expect(state.getIn(['walletHoc', 'hardwareWallets', 'ledgerNanoS', 'descriptor'])).toEqual(descriptor);
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'status'])).toEqual('connected');
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'ethConnected'])).toEqual(true);
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'id'])).toEqual(status.address.publicKey);
+        // expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'descriptor'])).toEqual(descriptor);
       });
   });
   it.only('should trigger ledger detected when ethereum app is close', () => {
     const storeState = {};
     const descriptor = 'test descriptor string';
-    const status = {
-      address: {
-        publicKey: 'test',
-      },
-    };
+    const error = { name: 'TransportStatusError' };
     return expectSaga(pollEthApp, { descriptor })
       .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
       .provide({
@@ -499,7 +508,7 @@ describe('initLedger saga', () => {
           if (effect.fn === ledgerEthChannel) {
             return eventChannel((emitter) => {
               setTimeout(() => {
-                emitter({ connected: false });
+                emitter({ connected: false, error });
               }, 100);
               return () => {};
             });
@@ -508,44 +517,47 @@ describe('initLedger saga', () => {
         },
       })
       .put(ledgerEthAppDisconnected(descriptor))
+      .put(ledgerError(error))
       .run({ silenceTimeout: true })
       .then((result) => {
         const state = result.storeState;
-        expect(state.getIn(['walletHoc', 'hardwareWallets', 'ledgerNanoS', 'ethConnected'])).toEqual(false);
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'status'])).toEqual('disconnected');
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'ethConnected'])).toEqual(false);
+        expect(state.getIn(['walletHoc', 'errors', 'ledgerError'])).toEqual(ethAppNotOpenErrorMsg);
       });
   });
-  it('should close existing eth channel with the same descriptor for ledger connected event', () => {
-    const storeState = {
-    };
-    return expectSaga(walletHoc)
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-      .provide([
-        // mock existing eth channel for same descriptor
-      ])
-      .put(ledgerEthAppConnected({ status: 'connect' }))
-      .put(ledgerEthAppConnected({ status: 'disconnect' }))
-      .dispatch({ type: LEDGER_CONNECTED })
-      .dispatch({ type: LEDGER_CONNECTED })
-      .run(5000000)
-      .then((result) => {
-        // assert eth channel with same descriptor closed
-      });
-  });
-  it('should close existing eth channel with the same descriptor for ledger disconnected event', () => {
-    const storeState = {
-    };
-    return expectSaga(walletHoc)
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-      .provide([
-        // mock existing eth channel for same descriptor
-      ])
-      .put(ledgerEthAppConnected({ status: 'disconnect' }))
-      .dispatch({ type: LEDGER_DISCONNECTED })
-      .run(5000000)
-      .then((result) => {
-        // assert eth channel with same descriptor closed
-      });
-  });
+  // it('should close existing eth channel with the same descriptor for ledger connected event', () => {
+  //   const storeState = {
+  //   };
+  //   return expectSaga(walletHoc)
+  //     .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+  //     .provide([
+  //       // mock existing eth channel for same descriptor
+  //     ])
+  //     .put(ledgerEthAppConnected({ status: 'connect' }))
+  //     .put(ledgerEthAppConnected({ status: 'disconnect' }))
+  //     .dispatch({ type: LEDGER_CONNECTED })
+  //     .dispatch({ type: LEDGER_CONNECTED })
+  //     .run(5000000)
+  //     .then((result) => {
+  //       // assert eth channel with same descriptor closed
+  //     });
+  // });
+  // it('should close existing eth channel with the same descriptor for ledger disconnected event', () => {
+  //   const storeState = {
+  //   };
+  //   return expectSaga(walletHoc)
+  //     .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+  //     .provide([
+  //       // mock existing eth channel for same descriptor
+  //     ])
+  //     .put(ledgerEthAppConnected({ status: 'disconnect' }))
+  //     .dispatch({ type: LEDGER_DISCONNECTED })
+  //     .run(5000000)
+  //     .then((result) => {
+  //       // assert eth channel with same descriptor closed
+  //     });
+  // });
 });
 
 describe('load wallets saga', () => {

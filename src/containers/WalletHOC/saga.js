@@ -1,4 +1,4 @@
-import { eventChannel, delay, END } from 'redux-saga';
+import { eventChannel, delay } from 'redux-saga';
 import { takeLatest, takeEvery, put, call, select, race, take } from 'redux-saga/effects';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 // import Web3 from 'web3';
@@ -10,7 +10,7 @@ import {
   makeSelectWalletList,
   makeSelectCurrentWalletDetails,
   makeSelectWallets,
-  makeSelectLedgerNanoS,
+  makeSelectLedgerNanoSInfo,
 } from './selectors';
 import { requestWalletAPI } from '../../utils/request';
 import { ERC20ABI, EthNetworkProvider } from '../../utils/wallet';
@@ -52,14 +52,13 @@ import {
   ledgerEthAppConnected,
   ledgerEthAppDisconnected,
   ledgerError,
-  fetchLedgerAddresses as fetchLedgerAddressesAction,
   fetchedLedgerAddress,
   transferEther as transferEtherAction,
   transferERC20 as transferERC20Action,
   transactionConfirmed,
   hideDecryptWalletModal,
 } from './actions';
-import { createTransport, newEth, createEthTransportActivity } from '../../utils/ledger/comms';
+import { createEthTransportActivity } from '../../utils/ledger/comms';
 // import generateRawTx from '../../utils/generateRawTx';
 
 // Creates a new software wallet
@@ -294,15 +293,14 @@ export const addEthChannel = (descriptor, channel) => {
 
 export const removeEthChannel = (descriptor) => {
   const channel = ethChannels[descriptor];
-  channel && channel.close();
-  delete ethChannels[descriptor];
+  if (channel) {
+    channel.close();
+    delete ethChannels[descriptor];
+  }
 };
 
 export const ledgerEthChannel = (descriptor) => eventChannel((listener) => {
   console.log('init eth channel');
-  const opened = false;
-  let eth,
-    transport;
   const iv = setInterval(() => {
     // check connection status from store
     // if the ledger with the descriptor disconnected, end this channel
@@ -311,7 +309,7 @@ export const ledgerEthChannel = (descriptor) => eventChannel((listener) => {
       listener({ connected: true, address });
     }).catch((err) => {
       console.log('eth act', err);
-      listener({ connected: false });
+      listener({ connected: false, error: err });
     });
   }, 2000);
   return () => {
@@ -330,13 +328,14 @@ export function* pollEthApp({ descriptor }) {
         removeEthChannel(descriptor);
         yield put(ledgerEthAppConnected(descriptor, status.address.publicKey));
 
-        const paths = [];
-        for (let i = 0; i < 20; i++) {
-          paths.push(`m/44\'/60\'/0\'/${i}`);
-        }
-        yield put(fetchLedgerAddressesAction(paths, status.ethTransport));
+        // const paths = [];
+        // for (let i = 0; i < 20; i++) {
+        //   paths.push(`m/44\'/60\'/0\'/${i}`);
+        // }
+        // yield put(fetchLedgerAddressesAction(paths, status.ethTransport));
       } else {
         yield put(ledgerEthAppDisconnected(descriptor));
+        yield put(ledgerError(status.error));
       }
     } catch (error) {
       console.log('poll', error);
@@ -346,6 +345,7 @@ export function* pollEthApp({ descriptor }) {
 
 export function* hookLedgerDisconnected({ descriptor }) {
   removeEthChannel(descriptor);
+  yield put(ledgerError({ message: 'Disconnected' }));
 }
 
 export function* initLedger() {
@@ -365,6 +365,7 @@ export function* initLedger() {
   while (true) { // eslint-disable-line no-constant-condition
     try {
       const msg = yield take(chan);
+      console.log('msg', msg);
       if (msg.type === 'remove') {
         const { timeout } = yield race({
           msg: take(chan),
@@ -374,7 +375,7 @@ export function* initLedger() {
           // console.log('close chan')
           // chan.close()
           yield put(ledgerDisconnected(msg.descriptor));
-          continue;
+          continue; // eslint-disable-line no-continue
           // throw new Error('Disconnected');
         }
       }
@@ -395,20 +396,20 @@ export function* initLedger() {
 }
 
 // Dispatches the address for every derivation path in the input
-export function* fetchLedgerAddresses({ derivationPaths, ethTransport }) {
+export function* fetchLedgerAddresses({ derivationPaths }) {
   try {
     // yield delay(1000); // Wait for any ongoing operations to clear
     // transport = yield call(createTransport);
     // const eth = yield call(newEth, transport);
-    const ledgerStatus = yield select(makeSelectLedgerNanoS());
+    const ledgerStatus = yield select(makeSelectLedgerNanoSInfo());
     if (!ledgerStatus.get('descriptor')) {
       throw new Error('no descriptor available');
     }
     const descriptor = ledgerStatus.get('descriptor');
     for (let i = 0; i < derivationPaths.length; i += 1) {
       const path = derivationPaths[i];
-      const publicAddressKeyPair = yield createEthTransportActivity(descriptor, async (ethTransport) => await ethTransport.getAddress(path));
-      console.log(path, publicAddressKeyPair);
+      const publicAddressKeyPair = yield createEthTransportActivity(descriptor, async (ethTransport) => ethTransport.getAddress(path));
+      console.log(path, publicAddressKeyPair.address);
       yield put(fetchedLedgerAddress(path, publicAddressKeyPair.address));
     }
   } catch (error) {
