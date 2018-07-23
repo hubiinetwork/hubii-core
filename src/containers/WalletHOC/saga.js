@@ -59,7 +59,7 @@ import {
   hideDecryptWalletModal,
 } from './actions';
 import { createEthTransportActivity } from '../../utils/ledger/comms';
-// import generateRawTx from '../../utils/generateRawTx';
+import generateRawTx from '../../utils/generateRawTx';
 
 // Creates a new software wallet
 export function* createWalletFromMnemonic({ name, mnemonic, derivationPath, password }) {
@@ -164,7 +164,6 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
     // Build raw transaction
     yield put(notify('error', 'Sending transactions from a LNS is not supported in this version of Hubii Core, please check back soon!'));
     // const rawTx = generateRawTx({ toAddress, amount, gasPrice, gasLimit });
-
     // // Sign raw transaction
     // try {
     //   yield put(notify('info', 'Verify transaction details on your Ledger'));
@@ -189,13 +188,64 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
 }
 
 export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
+  let transaction
+  const options = { gasPrice, gasLimit };
   const walletDetails = yield select(makeSelectCurrentWalletDetails());
-  const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
-  etherWallet.provider = EthNetworkProvider;
-
+  
   try {
-    const options = { gasPrice, gasLimit };
-    const transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
+    if (walletDetails.type === 'lns') {
+      let rawTxHex, rawTx
+      console.log('lns')
+      try {
+        const nonce = yield EthNetworkProvider.getTransactionCount(walletDetails.address)
+        rawTx = generateRawTx({ 
+          toAddress, 
+          amount, 
+          gasPrice, 
+          gasLimit, 
+          nonce, 
+          chainId: EthNetworkProvider.chainId 
+        });
+        rawTx.raw[6] = Buffer.from([3]) // v
+        rawTx.raw[7] = Buffer.from([]) // r
+        rawTx.raw[8] = Buffer.from([]) // s
+        console.log('raw tx', rawTx)
+        rawTxHex = rawTx.serialize().toString('hex')
+        console.log(rawTxHex)
+      }catch(err) {
+        console.log(err)
+      }
+      // Sign raw transaction
+      try {
+        yield put(notify('info', 'Verify transaction details on your Ledger'));
+        console.log(walletDetails)
+        // const signedTx = ledgerSignTxn(rawTx);
+
+        let signedTx = yield createEthTransportActivity(
+          walletDetails.ledgerNanoSInfo.descriptor, 
+          (ethTransport) => ethTransport.signTransaction(walletDetails.derivationPath, rawTxHex)
+        )
+        rawTx.v = Buffer.from(signedTx.v, 'hex')
+        rawTx.r = Buffer.from(signedTx.r, 'hex')
+        rawTx.s = Buffer.from(signedTx.s, 'hex')
+        const txString = `0x${rawTx.serialize().toString('hex')}`
+        console.log('chain id', EthNetworkProvider.chainId)
+        console.log('sign tx', txString)
+        const txHash = yield EthNetworkProvider.sendTransaction(txString);
+        // Broadcast signed transaction
+        // const web3 = new Web3('http://geth-ropsten.dev.hubii.net/');
+        // const txHash = yield web3.eth.sendRawTransaction(signedTx);
+        console.log('tx hash', txHash)
+        yield put(transferSuccess(txHash, 'ETH'));
+      } catch (e) {
+        console.log(e)
+        yield put(ledgerError('Error making transaction: ', e));
+      }
+    } else {
+      const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
+      etherWallet.provider = EthNetworkProvider;
+      transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
+    }
 
     yield put(transferSuccess(transaction, 'ETH'));
     yield put(notify('success', 'Transaction sent'));

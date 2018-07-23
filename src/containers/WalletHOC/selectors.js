@@ -62,9 +62,13 @@ const makeSelectWalletList = () => createSelector(
 const makeSelectCurrentWalletDetails = () => createSelector(
   makeSelectWalletList(),
   makeSelectCurrentWallet(),
-  (walletList, currentWallet) => {
-    const walletDetails = walletList.find((wallet) => wallet.address === currentWallet.get('address'));
-    return walletDetails || {};
+  makeSelectLedgerNanoSInfo(),
+  (walletList, currentWallet, ledgerNanoSInfo) => {
+    const walletDetails = walletList.find((wallet) => wallet.address === currentWallet.get('address')) || {};
+    if (walletDetails.type === 'lns') {
+      walletDetails.ledgerNanoSInfo = ledgerNanoSInfo.toJS()
+    }
+    return walletDetails;
   }
 );
 
@@ -91,11 +95,6 @@ const makeSelectAllTransactions = () => createSelector(
   }
 );
 
-const makeSelectLedgerNanoS = () => createSelector(
-  selectWalletHocDomain,
-  (walletHocDomain) => walletHocDomain.getIn(['hardwareWallets', 'ledgerNanoS'])
-);
-
 export {
   selectWalletHocDomain,
   makeSelectLedgerNanoSInfo,
@@ -110,5 +109,4 @@ export {
   makeSelectWalletList,
   makeSelectCurrentWalletDetails,
   makeSelectAllTransactions,
-  makeSelectLedgerNanoS,
 };

@@ -186,7 +186,6 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['wallets', 'hardware', action.name], fromJS(action.newLedgerWallet));
     case FETCHED_LEDGER_ADDRESS:
-      console.log(action.derivationPath, action.address, state.toJS().ledgerNanoSInfo);
       return state
         .setIn(['ledgerNanoSInfo', 'addresses', action.derivationPath], action.address);
     case TRANSACTION_CONFIRMED:
