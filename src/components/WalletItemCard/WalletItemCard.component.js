@@ -57,11 +57,11 @@ export class WalletItemCard extends React.PureComponent {
       menuItems.push(<MenuDivider key="2" />);
       menuItems.push(
         <MenuItem key="3" onClick={this.handleExportSeedWords}>
-          Export Private Infomation
+          Backup / Export Wallet
         </MenuItem>
       );
     }
-    return <Menu>{menuItems.map((item) => item)}</Menu>;
+    return <Menu singleitem={(menuItems.length === 1).toString()}>{menuItems.map((item) => item)}</Menu>;
   }
 
   async handleExportSeedWords() {

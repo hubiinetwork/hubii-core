@@ -4,9 +4,6 @@ import styled from 'styled-components';
 export default styled(Tabs)`
   margin-bottom: 0px;
   flex: 1;
-  .ant-tabs-nav-container {
-    border-bottom: 2px solid ${({ theme }) => theme.palette.primary4};
-  }
   .ant-tabs-nav .ant-tabs-tab {
     margin: 0 0px 0 0 !important;
     padding: 12px 16px !important;

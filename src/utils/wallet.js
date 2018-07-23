@@ -63,6 +63,17 @@ export const humanFriendlyWalletType = (type) => {
   return type;
 };
 
+export const isValidPrivateKey = (str) => {
+  let filteredStr = str;
+  if (str.startsWith('0x')) {
+    filteredStr = str.substr(2);
+  }
+  if (filteredStr.match('-?[0-9a-fA-F]+') && filteredStr.length === 64) return true;
+  return false;
+};
+
+export const gweiToWei = (gwei) => (gwei * (10 ** 9));
+
 export const EthNetworkProvider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
 
 export const IsAddressMatch = (a, b) => a.toLowerCase() === b.toLowerCase();

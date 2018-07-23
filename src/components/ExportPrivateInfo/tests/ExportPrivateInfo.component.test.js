@@ -34,23 +34,13 @@ describe('<ExportPrivateInfo/>', () => {
     expect(onExit).toHaveBeenCalledTimes(1);
   });
   describe('showNotification function', () => {
-    it('should run the showNoftification function when the Icon to copy a wallet name is clicked', () => {
-      const button = wrapper.find('#name');
-      const spy = jest.spyOn(wrapper.instance(), 'showNotification');
-      button.simulate('click');
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
-    it('should run the showNoftification function when the Icon to copy a wallet address is clicked', () => {
-      const button = wrapper.find('#address');
-      const spy = jest.spyOn(wrapper.instance(), 'showNotification');
-      button.simulate('click');
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
     it('should run the showNoftification function when the Icon to copy a wallet mnemonic is clicked', () => {
       const button = wrapper.find('#mnemonic');
-      const spy = jest.spyOn(wrapper.instance(), 'showNotification');
-      button.simulate('click');
-      expect(spy).toHaveBeenCalledTimes(1);
+      if (button) {
+        const spy = jest.spyOn(wrapper.instance(), 'showNotification');
+        button.simulate('click');
+        expect(spy).toHaveBeenCalledTimes(1);
+      }
     });
     it('should run the showNoftification function when the Icon to copy a wallet private key is clicked', () => {
       const button = wrapper.find('#privateKey');

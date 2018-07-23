@@ -100,6 +100,14 @@ export const RightSideWrapper = styled.div`
 
 export const IconMenu = styled(Menu)`
   background-color: ${({ theme }) => theme.palette.primary3};
+  padding: 0;
+  .ant-dropdown-menu-item:first-child:hover {
+    border-radius: 4px 4px 0 0;
+  }
+  .ant-dropdown-menu-item:last-child:hover {
+  border-radius: ${(props) => props.singleitem === 'true' ? '4px 4px' : '0 0'} 4px 4px;
+  }
+
 `;
 
 export const MenuItem = styled(Menu.Item)`
@@ -112,4 +120,5 @@ export const MenuItem = styled(Menu.Item)`
 
 export const MenuDivider = styled(Menu.Divider)`
   background-color: ${({ theme }) => theme.palette.secondary1};
+  margin: 0;
 `;
