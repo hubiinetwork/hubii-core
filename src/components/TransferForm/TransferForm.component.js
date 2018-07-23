@@ -180,5 +180,5 @@ TransferForm.propTypes = {
   onSend: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   transfering: PropTypes.bool,
-  decrypted: PropTypes.bool,
+  decrypted: PropTypes.bool.isRequired,
 };
