@@ -24,7 +24,6 @@ ShallowWrapper {
         <DashboardCard.style__AntdIcon
           type="setting"
 />,
-        "s",
         <DashboardCard.style__Title>
           Settings
 </DashboardCard.style__Title>,
@@ -44,7 +43,6 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
-      "s",
       Object {
         "instance": null,
         "key": undefined,
@@ -69,7 +67,6 @@ ShallowWrapper {
           <DashboardCard.style__AntdIcon
             type="setting"
 />,
-          "s",
           <DashboardCard.style__Title>
             Settings
 </DashboardCard.style__Title>,
@@ -89,7 +86,6 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
-        "s",
         Object {
           "instance": null,
           "key": undefined,
@@ -139,7 +135,6 @@ ShallowWrapper {
         <DashboardCard.style__CustomIcon
           src="\\\\public\\\\images\\\\dex-icon-green.png"
 />,
-        "s",
         <DashboardCard.style__Title>
           DEX
 </DashboardCard.style__Title>,
@@ -159,7 +154,6 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
-      "s",
       Object {
         "instance": null,
         "key": undefined,
@@ -184,7 +178,6 @@ ShallowWrapper {
           <DashboardCard.style__CustomIcon
             src="\\\\public\\\\images\\\\dex-icon-green.png"
 />,
-          "s",
           <DashboardCard.style__Title>
             DEX
 </DashboardCard.style__Title>,
@@ -204,7 +197,6 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
-        "s",
         Object {
           "instance": null,
           "key": undefined,
