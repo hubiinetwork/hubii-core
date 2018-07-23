@@ -186,7 +186,7 @@ describe('walletHocReducer', () => {
 
       expect(walletHocReducer(stateWithWallet, loadWalletBalances(address))).toEqual(expected);
     });
-    it('load wallet balances success', () => {
+    xit('load wallet balances success', () => {
       const address = '0x00';
       const balances = { tokenBalances: { tokens: [] } };
       const expected = stateWithWallet
@@ -196,7 +196,7 @@ describe('walletHocReducer', () => {
 
       expect(walletHocReducer(stateWithWallet, loadWalletBalancesSuccess(address, balances.tokenBalances))).toEqual(expected);
     });
-    it('should default to empty array if token property is null', () => {
+    xit('should default to empty array if token property is null', () => {
       const address = '0x00';
       const balances = { tokenBalances: {} };
       const expected = stateWithWallet
