@@ -45,7 +45,7 @@ describe('WalletHOC', () => {
         dom = shallow(
           <Hoc
             {...props}
-            {...{ loading: fromJS({ decryptingWallet: true }) }}
+            loading={fromJS({ decryptingWallet: true })}
           />
         );
         expect(dom).toMatchSnapshot();

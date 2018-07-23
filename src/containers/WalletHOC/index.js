@@ -89,8 +89,7 @@ export function getComponentHOC(Component) {
     }
 
     render() {
-      let { loading } = this.props;
-      loading = loading.toJS().decryptingWallet;
+      const loading = this.props.loading.get('decryptingWallet');
 
       return (
         <div>
@@ -101,7 +100,7 @@ export function getComponentHOC(Component) {
             maskClosable
             maskStyle={{ background: 'rgba(232,237,239,.65)' }}
             style={{ marginTop: '20px' }}
-            visible={this.props.currentWallet.toJS().showDecryptModal}
+            visible={this.props.currentWallet.get('showDecryptModal')}
             onCancel={this.props.hideDecryptWalletModal}
             destroyOnClose
           >
