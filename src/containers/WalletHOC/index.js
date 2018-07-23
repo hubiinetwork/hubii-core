@@ -49,7 +49,7 @@ export function getComponentHOC(Component) {
   class HOC extends React.Component {
     constructor(...args) {
       super(...args);
-      this.state = {};
+      this.state = { password: '' };
       this.onPasswordChange = this.onPasswordChange.bind(this);
       this.decryptWallet = this.decryptWallet.bind(this);
       this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -97,7 +97,7 @@ export function getComponentHOC(Component) {
             >
               <Input onChange={this.onPasswordChange} type="password" onKeyPress={(e) => this.handleKeyPress(e)} />
             </FormItem>
-            <Button type="primary" onClick={this.decryptWallet}>
+            <Button type="primary" onClick={this.decryptWallet} disabled={this.state.password.length === 0} >
               Confirm
             </Button>
           </Modal>
