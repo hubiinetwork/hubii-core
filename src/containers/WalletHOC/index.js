@@ -55,7 +55,7 @@ export function getComponentHOC(Component) {
   class HOC extends React.Component {
     constructor(...args) {
       super(...args);
-      this.state = {};
+      this.state = { password: null };
       this.onPasswordChange = this.onPasswordChange.bind(this);
       this.decryptWallet = this.decryptWallet.bind(this);
       this.handleKeyPress = this.handleKeyPress.bind(this);
