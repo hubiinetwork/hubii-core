@@ -133,7 +133,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <DashboardCard.style__CustomIcon
-          src="\\\\public\\\\images\\\\dex-icon-green.png"
+          src="/public/images/dex-icon-green.png"
 />,
         <DashboardCard.style__Title>
           DEX
@@ -148,7 +148,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "src": "\\\\public\\\\images\\\\dex-icon-green.png",
+          "src": "/public/images/dex-icon-green.png",
         },
         "ref": null,
         "rendered": null,
