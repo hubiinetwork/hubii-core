@@ -163,6 +163,7 @@ export default class TransferForm extends React.PureComponent {
             onSend={this.onSend}
             onCancel={this.props.onCancel}
             transfering={this.props.transfering}
+            decrypted={this.props.decrypted}
           />
         </Col>
       </Row>
@@ -179,4 +180,5 @@ TransferForm.propTypes = {
   onSend: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   transfering: PropTypes.bool,
+  decrypted: PropTypes.bool,
 };

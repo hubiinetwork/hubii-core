@@ -47,7 +47,6 @@ export class WalletTransfer extends React.PureComponent {
     if (!currentWalletDetails.balances) {
       return <PageLoadingIndicator pageType="Loading wallet" id={currentWallet.toJS().address} />;
     }
-
     return (
       <TransferForm
         address="0xf400db37c54c535febca1b470fd1d23d30acdd11"
@@ -56,6 +55,7 @@ export class WalletTransfer extends React.PureComponent {
         onSend={this.onSend}
         onCancel={this.onCancel}
         transfering={currentWallet.toJS().transfering}
+        decrypted={!!currentWalletDetails.decrypted}
       />
     );
   }
