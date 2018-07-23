@@ -72,6 +72,8 @@ export const isValidPrivateKey = (str) => {
   return false;
 };
 
+export const gweiToWei = (gwei) => (gwei * (10 ** 9));
+
 export const EthNetworkProvider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
 
 export const IsAddressMatch = (a, b) => a.toLowerCase() === b.toLowerCase();

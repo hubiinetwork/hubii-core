@@ -194,11 +194,11 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
 }
 
 export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
-  const walletDetails = yield select(makeSelectCurrentWalletDetails());
-  const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
-  etherWallet.provider = EthNetworkProvider;
-
   try {
+    const walletDetails = yield select(makeSelectCurrentWalletDetails());
+    const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
+    etherWallet.provider = EthNetworkProvider;
+
     const options = { gasPrice, gasLimit };
     const transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
 
