@@ -66,8 +66,8 @@ export function getComponentHOC(Component) {
       this.props.loadWalletsBalances();
     }
 
-    componentWillReceiveProps(prevProps) {
-      if (!prevProps.currentWallet.toJS().showDecryptModal && this.props.currentWallet.toJS().showDecryptModal) {
+    componentWillReceiveProps(nextProps) {
+      if (nextProps.currentWallet.toJS().showDecryptModal && !this.props.currentWallet.toJS().showDecryptModal) {
         this.setState({ password: null });
       }
     }
