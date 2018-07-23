@@ -95,7 +95,9 @@ ShallowWrapper {
                               />
                     </index.style__Border>
           </index.style__InnerWrapper1>
-          <index.style__InnerWrapper2>
+          <index.style__InnerWrapper2
+                    contactsPresent={3}
+          >
                     <ContactHeader
                               onChange={[Function]}
                               placeholder="Filter"
@@ -219,7 +221,9 @@ ShallowWrapper {
                             />
               </index.style__Border>
 </index.style__InnerWrapper1>,
-            <index.style__InnerWrapper2>
+            <index.style__InnerWrapper2
+              contactsPresent={3}
+>
               <ContactHeader
                             onChange={[Function]}
                             placeholder="Filter"
@@ -409,6 +413,7 @@ ShallowWrapper {
                   />
 </index.style__Border>,
               ],
+              "contactsPresent": 3,
             },
             "ref": null,
             "rendered": Array [
@@ -550,7 +555,9 @@ ShallowWrapper {
                                     />
                         </index.style__Border>
             </index.style__InnerWrapper1>
-            <index.style__InnerWrapper2>
+            <index.style__InnerWrapper2
+                        contactsPresent={3}
+            >
                         <ContactHeader
                                     onChange={[Function]}
                                     placeholder="Filter"
@@ -674,7 +681,9 @@ ShallowWrapper {
                                 />
                 </index.style__Border>
 </index.style__InnerWrapper1>,
-              <index.style__InnerWrapper2>
+              <index.style__InnerWrapper2
+                contactsPresent={3}
+>
                 <ContactHeader
                                 onChange={[Function]}
                                 placeholder="Filter"
@@ -864,6 +873,7 @@ ShallowWrapper {
                     />
 </index.style__Border>,
                 ],
+                "contactsPresent": 3,
               },
               "ref": null,
               "rendered": Array [
