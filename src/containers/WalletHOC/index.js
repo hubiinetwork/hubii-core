@@ -17,6 +17,7 @@ import saga from './saga';
 import {
   makeSelectCurrentWallet,
   makeSelectCurrentWalletDetails,
+  makeSelectLoading,
 } from './selectors';
 import {
   decryptWallet,
@@ -25,12 +26,17 @@ import {
   loadWalletsBalances,
 } from './actions';
 
+import {
+  StyledSpin,
+} from './WalletHOC.style';
+
 export default function WalletHOC(Component) {
   const HOC = getComponentHOC(Component);
 
   const mapStateToProps = createStructuredSelector({
     currentWallet: makeSelectCurrentWallet(),
     currentWalletDetails: makeSelectCurrentWalletDetails(),
+    loading: makeSelectLoading(),
   });
 
   const withConnect = connect(mapStateToProps, mapDispatchToProps);
@@ -83,6 +89,9 @@ export function getComponentHOC(Component) {
     }
 
     render() {
+      let { loading } = this.props;
+      loading = loading.toJS().decryptingWallet;
+
       return (
         <div>
           <Component {...this.props} />
@@ -102,9 +111,17 @@ export function getComponentHOC(Component) {
             >
               <Input value={this.state.password} onChange={this.onPasswordChange} type="password" onKeyPress={(e) => this.handleKeyPress(e)} />
             </FormItem>
-            <Button type="primary" onClick={this.decryptWallet} disabled={!this.state.password}>
-              Confirm
-            </Button>
+
+            {loading ? (
+              <StyledSpin
+                delay={0}
+                tip="Decrypting Wallet..."
+              />
+                ) : (
+                  <Button type="primary" onClick={this.decryptWallet} disabled={!this.state.password}>
+                   Confirm
+                  </Button>
+                )}
           </Modal>
         </div>
       );
@@ -117,6 +134,7 @@ export function getComponentHOC(Component) {
     loadWalletsBalances: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
+    loading: PropTypes.object,
   };
   return HOC;
 }
