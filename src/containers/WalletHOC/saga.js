@@ -115,7 +115,7 @@ export function* initWalletsBalances() {
 }
 
 export function* loadWalletBalancesSaga({ address }) {
-  const requestPath = `ethereum/wallets/${address}/balance`;
+  const requestPath = `ethereum/wallets/${address}/balances`;
   try {
     const returnData = yield call(requestWalletAPI, requestPath);
     yield put(loadWalletBalancesSuccess(address, returnData));
@@ -151,7 +151,7 @@ export function* listenBalances({ address }) {
     if (!wallet) {
       return;
     }
-    yield put(updateBalancesAction(address, { symbol: 'ETH', balance: updates.newBalance.toString() }));
+    yield put(updateBalancesAction(address, { currency: 'ETH', balance: updates.newBalance.toString() }));
   }
 }
 
