@@ -18,6 +18,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { getAbsolutePath } from 'utils/electron';
 import injectSaga from 'utils/injectSaga';
 
+import HomeScreen from 'components/HomeScreen';
 import SideBar from 'components/SideBar';
 import Striim from 'containers/Striim';
 import WalletManager from 'containers/WalletManager';
@@ -49,6 +50,7 @@ export function App() {
   return (
     <SideBar menuItems={menuItems} logoSrc={getAbsolutePath('public/images/hubii-core-logo.svg')}>
       <Switch>
+        <Route exact path="/" component={HomeScreen} />
         <Route path="/wallets" component={WalletManager} />
         <Route path="/wallet/:address" component={WalletDetails} />
         <Route path="/striim" component={Striim} />
