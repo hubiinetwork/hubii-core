@@ -27,8 +27,7 @@ export default class TransferDescription extends React.PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { decrypted } = nextProps;
-    if (decrypted && !this.props.decrypted) {
+    if (nextProps.decrypted && !this.props.decrypted) {
       this.props.onSend();
     }
   }
