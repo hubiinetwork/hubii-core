@@ -3,6 +3,7 @@ import { Form } from 'antd';
 import PropTypes from 'prop-types';
 import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
 import { handleFinish, compareToFirstPassword } from 'utils/forms';
+import { isValidPrivateKey } from 'utils/wallet';
 import {
   WidthEighty,
   StyledModalFormLabel,
@@ -23,6 +24,14 @@ class ImportWalletPrivateKeyForm extends React.Component {
     this.validateToNextPassword = this.validateToNextPassword.bind(this);
   }
 
+  validatePrivateKey(rule, value, callback) {
+    if (value && !isValidPrivateKey(value)) {
+      callback('Invalid key');
+    } else {
+      callback();
+    }
+  }
+
   handleConfirmBlur(e) {
     const value = e.target.value;
     this.setState({
@@ -34,8 +43,9 @@ class ImportWalletPrivateKeyForm extends React.Component {
     const form = this.props.form;
     if (value && this.state.confirmDirty) {
       form.validateFields(['confirm'], { force: true });
+    } else {
+      callback();
     }
-    callback();
   }
 
   render() {
@@ -84,6 +94,9 @@ class ImportWalletPrivateKeyForm extends React.Component {
                     message: 'Required field',
                     required: true,
                     whitespace: true,
+                  },
+                  {
+                    validator: this.validatePrivateKey,
                   },
                 ],
               })(<ModalFormInput disabled={loading} />)}
