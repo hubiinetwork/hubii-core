@@ -7,6 +7,11 @@ export default styled(Button)`
   line-height: 1.5;
   font-weight: 400;
   border-radius: 0.3rem;
+  ${(props) => props.disabled ? `
+    pointer-events: none;
+    background-color: rgba(245, 245, 245, 0.1);
+    border: 0;
+  ` : null}
   ${({ theme, type }) => {
     if (type === 'primary') {
       return `
