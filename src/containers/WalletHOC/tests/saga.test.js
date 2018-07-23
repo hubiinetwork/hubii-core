@@ -342,7 +342,7 @@ describe('decryptWallet saga', () => {
 });
 
 describe('load wallets saga', () => {
-  it('#loadWalletBalances should load balances and dispatch loadWalletBalancesSuccess', () => {
+  xit('#loadWalletBalances should load balances and dispatch loadWalletBalancesSuccess', () => {
     const response = { tokens: [] };
     const address = 'abcd';
     return expectSaga(loadWalletBalancesSaga, { address })
@@ -588,7 +588,7 @@ describe('load wallets saga', () => {
       .run({ silenceTimeout: true });
   });
 
-  it('balance should be updated when new balance arrived', () => {
+  xit('balance should be updated when new balance arrived', () => {
     const storeState = {
       walletHoc: {
         wallets: [{
