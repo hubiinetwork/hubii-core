@@ -25,13 +25,14 @@ export default class TransferDescription extends React.PureComponent {
       recipient,
       totalAmount,
       buttonLabel,
-      amountToSend,
+      amountToSend: amount,
       selectedToken,
       transactionFee,
       ethInformation,
       onSend,
       onCancel,
     } = this.props;
+    const amountToSend = isNaN(amount) || amount === '' ? 0 : amount;
 
     const totalUsd = (parseInt(selectedToken.balance, 10) / (10 ** selectedToken.decimals)) * parseFloat(selectedToken.price.USD);
     const remainingBalance = totalUsd - (amountToSend * parseFloat(selectedToken.price.USD)) - (transactionFee * parseFloat(ethInformation.price.USD));

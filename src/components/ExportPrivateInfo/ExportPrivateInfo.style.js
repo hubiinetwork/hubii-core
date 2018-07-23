@@ -9,16 +9,17 @@ export const Wrapper = styled.div`
 export const Text = styled.div`
   color: ${({ theme }) => theme.palette.info};
   font-size: large;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 `;
 
 export const SecondaryHeader = styled.div`
   color: ${({ theme }) => theme.palette.info};
-  font-size: large;
+  font-size: medium;
   margin: 0.5rem 0 0.5rem 2rem;
 `;
 export const TextPrimary = styled.div`
   color: ${({ theme }) => theme.palette.light};
+  margin-top: 1rem;
   text-align: center;
 `;
 export const StyledIcon = styled(Button)`
