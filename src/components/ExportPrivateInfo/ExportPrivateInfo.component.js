@@ -11,6 +11,7 @@ import {
   SecondaryHeader,
   StyledButton,
   StyledIcon,
+  PrimaryHeader,
 } from './ExportPrivateInfo.style';
 
 /**
@@ -53,7 +54,13 @@ export default class ExportPrivateInfo extends React.PureComponent {
                     </CopyToClipboard>
                   </SecondaryHeader>
                   {mnemonic}
-                </div> : null
+                </div> :
+                <div>
+                  <PrimaryHeader>
+                    Mnemonic
+                  </PrimaryHeader>
+                  This wallet was imported using a Private Key and as such does not have a mnemonic.
+                </div>
             }
           <div>
             <SecondaryHeader>
