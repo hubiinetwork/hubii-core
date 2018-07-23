@@ -8,6 +8,7 @@ export const AssetsWrapper = styled.div`
 
 export const SpaceBetween = styled.div`
   display: flex;
+  height: 100%;
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
@@ -39,7 +40,9 @@ export const OverflowHidden = styled.div`
 `;
 
 export const CardIconSettings = styled.div`
-  margin-top: 3.6rem;
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
   color: ${({ theme }) => theme.palette.secondary1};
   font-size: 20px;
   &:hover {
@@ -50,20 +53,28 @@ export const CardIconSettings = styled.div`
 
 export const LeftSideWrapper = styled.div`
   display: flex;
-  flex: 1;
-  flex-direction: column;
+  flex-direction: row;
 `;
 
 export const TotalBalance = styled.span`
   color: ${({ theme }) => theme.palette.info};
   font-size: 18px;
-  margin-right: 25px;
+  margin-right: 30px;
+  word-wrap: break-word;
+  min-width: 150px;
+  text-align: right;
+  flex: 1;
+`;
+
+export const WalletName = styled.p`
+  min-width: 70px;
+  word-wrap: break-word;
 `;
 
 export const OuterWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   flex: 1;
-  justify-content: space-between;
   min-height: 120px;
   padding: 18px 24px;
   background-color: ${({ theme }) => theme.palette.primary4};
@@ -89,6 +100,14 @@ export const RightSideWrapper = styled.div`
 
 export const IconMenu = styled(Menu)`
   background-color: ${({ theme }) => theme.palette.primary3};
+  padding: 0;
+  .ant-dropdown-menu-item:first-child:hover {
+    border-radius: 4px 4px 0 0;
+  }
+  .ant-dropdown-menu-item:last-child:hover {
+  border-radius: ${(props) => props.singleitem === 'true' ? '4px 4px' : '0 0'} 4px 4px;
+  }
+
 `;
 
 export const MenuItem = styled(Menu.Item)`
@@ -101,4 +120,5 @@ export const MenuItem = styled(Menu.Item)`
 
 export const MenuDivider = styled(Menu.Divider)`
   background-color: ${({ theme }) => theme.palette.secondary1};
+  margin: 0;
 `;

@@ -1,4 +1,4 @@
-Variants of ImportWalletNameForm:
+Variants of ImportWalletPrivateKeyForm:
 
 ```js
 <div
@@ -9,11 +9,27 @@ Variants of ImportWalletNameForm:
     height: 576
   }}
 >
-  <ImportWalletNameForm
-    wallet={{
-      src: 'https://pbs.twimg.com/media/Cxy4iJVXcAMJr9y.png',
-      value: 'digitalBitbox1'
-    }}
+  <ImportWalletPrivateKeyForm
+    handleNext={() => console.log("handleNext")}
+    handleNext={() => console.log("handleBack")}
+    loading={false}
+  />
+</div>
+```
+
+```js
+<div
+  style={{
+    backgroundColor: '#2f4d5c',
+    padding: 25,
+    width: 576,
+    height: 576
+  }}
+>
+  <ImportWalletPrivateKeyForm
+    handleNext={() => console.log("handleNext")}
+    handleNext={() => console.log("handleBack")}
+    loading
   />
 </div>
 ```

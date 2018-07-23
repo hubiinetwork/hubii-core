@@ -75,9 +75,10 @@ export function* createWalletFromMnemonic({ name, mnemonic, derivationPath, pass
   try {
     if (!name || !derivationPath || !password || !mnemonic) throw new Error('invalid param');
     const decryptedWallet = Wallet.fromMnemonic(mnemonic, derivationPath);
-    const encryptedWallet = yield decryptedWallet.encrypt(password);
+    const encryptedWallet = yield call((...args) => decryptedWallet.encrypt(...args), password);
     yield put(createWalletSuccess(name, encryptedWallet, decryptedWallet));
   } catch (e) {
+    yield put(notify('error', `Failed to import wallet: ${e}`));
     yield put(createWalletFailed(e));
   }
 }
@@ -85,9 +86,12 @@ export function* createWalletFromMnemonic({ name, mnemonic, derivationPath, pass
 export function* createWalletFromPrivateKey({ privateKey, name, password }) {
   try {
     if (!name || !privateKey || !password) throw new Error('invalid param');
-    const decryptedWallet = new Wallet(privateKey);
+    let prefixedPrivateKey = privateKey;
+    if (!prefixedPrivateKey.startsWith('0x')) prefixedPrivateKey = `0x${privateKey}`;
+    const decryptedWallet = new Wallet(prefixedPrivateKey);
     const encryptedWallet = yield call((...args) => decryptedWallet.encrypt(...args), password);
     yield put(createWalletSuccess(name, encryptedWallet, decryptedWallet));
+    yield put(notify('warning', 'Wallets imported by private key are difficult to backup. It is recommended to sweep your funds into a mnemonic based wallet, which allows backup by a word phrase rather than a long hex string'));
   } catch (e) {
     yield put(notify('error', `Failed to import wallet: ${e}`));
     yield put(createWalletFailed(e));
@@ -220,11 +224,11 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
 }
 
 export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
-  const walletDetails = yield select(makeSelectCurrentWalletDetails());
-  const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
-  etherWallet.provider = EthNetworkProvider;
-
   try {
+    const walletDetails = yield select(makeSelectCurrentWalletDetails());
+    const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
+    etherWallet.provider = EthNetworkProvider;
+
     const options = { gasPrice, gasLimit };
     const transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
 

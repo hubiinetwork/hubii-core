@@ -99,9 +99,13 @@ export default class AddRestoreWalletModal extends React.Component {
                 {
                   name: 'Private Key',
                 },
+                {
+                  name: 'Mnemonic',
+                },
               ]}
               onBackIcon={() => this.switchModals('main')}
               handleSubmit={this.props.handleImportWalletSubmit}
+              loading={loading.toJS().creatingWallet}
             />
           </div>
         )}
@@ -120,5 +124,5 @@ AddRestoreWalletModal.propTypes = {
    * loading
    */
 
-  loading: PropTypes.object,
+  loading: PropTypes.object.isRequired,
 };

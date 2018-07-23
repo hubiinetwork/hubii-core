@@ -20,8 +20,7 @@ import {
   createWalletFromPrivateKey,
 } from 'containers/WalletHOC/actions';
 import { makeSelectLoading, makeSelectWallets } from 'containers/WalletHOC/selectors';
-import { createContact,
- } from '../ContactBook/actions';
+import { createContact } from '../ContactBook/actions';
 
 
 import {
@@ -29,6 +28,7 @@ import {
   TabsLayout,
   StyledButton,
   WalletsTabHeader,
+  Heading,
 } from './index.style';
 
 const TabPane = Tabs.TabPane;
@@ -92,11 +92,14 @@ export class WalletManager extends React.PureComponent {
     if (data[0].walletType === 'Private Key') {
       const { privateKey, name, password } = data[1];
       this.props.createWalletFromPrivateKey(privateKey, name, password);
-    } else if (data[0].walletType === 'ledger') {
+    } if (data[0].walletType === 'ledger') {
       const { derivationPath, deviceId, address } = data[1];
       const { name } = data[2];
       this.props.saveLedgerAddress(name, derivationPath, deviceId, address);
       this.hideModal();
+    } else if (data[0].walletType === 'Mnemonic') {
+      const { mnemonic, derivationPath, password, name } = data[1];
+      this.props.createWalletFromMnemonic(name, mnemonic, derivationPath, password);
     }
   }
 
@@ -123,7 +126,7 @@ export class WalletManager extends React.PureComponent {
       <Wrapper>
         <TabsLayout>
           <WalletsTabHeader>
-            <h2 className="heading">All Wallets</h2>
+            <Heading>Wallet Manager</Heading>
             <StyledButton
               type="primary"
               onClick={() => this.showModal(history.location.pathname === `${match.url}/overview` ? 'addWallet' : 'addContact')}
