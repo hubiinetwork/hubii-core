@@ -14,6 +14,7 @@ import {
 const DashboardCard = ({ className, iconType, title, iconSrc }) => (
   <Wrapper className={className}>
     {iconSrc ? <Icon src={iconSrc} /> : <AntdIcon type={iconType} />}
+    s
     <Title>{title}</Title>
   </Wrapper>
   );
