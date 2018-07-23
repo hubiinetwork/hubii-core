@@ -61,7 +61,7 @@ export class WalletItemCard extends React.PureComponent {
         </MenuItem>
       );
     }
-    return <Menu singleItem={menuItems.length === 1}>{menuItems.map((item) => item)}</Menu>;
+    return <Menu singleitem={(menuItems.length === 1).toString()}>{menuItems.map((item) => item)}</Menu>;
   }
 
   async handleExportSeedWords() {
