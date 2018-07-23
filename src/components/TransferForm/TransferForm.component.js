@@ -49,7 +49,7 @@ export default class TransferForm extends React.PureComponent {
 
   handleChange(e) {
     const { value } = e.target;
-    const input = isNaN(value) ? 0 : value;
+    const input = parseFloat(isNaN(value) || value === '' ? 0 : value);
     this.setState({ input });
   }
 
