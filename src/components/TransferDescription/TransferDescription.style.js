@@ -66,6 +66,7 @@ export const StyledCol = styled(Col)`
   line-height: 14px;
   margin-top: 20px;
   margin-bottom: 6px;
+  white-space: nowrap;
 `;
 export const StyledRecipient = styled(Col)`
   color: ${({ theme }) => theme.palette.light};
