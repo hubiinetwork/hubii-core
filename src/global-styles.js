@@ -11,6 +11,7 @@ import Semibold from '../public/fonts/SF-UI-Text-Semibold.otf';
 import SemiboldItalic from '../public/fonts/SF-UI-Text-SemiboldItalic.otf';
 import Ultrathin from '../public/fonts/SF-UI-Text-Ultrathin.otf';
 import UltrathinItalic from '../public/fonts/SF-UI-Text-UltrathinItalic.otf';
+import darkTheme from './themes/darkTheme';
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
@@ -154,6 +155,6 @@ injectGlobal`
   }
   .ant-popover-inner-content,
   .ant-popover-arrow {
-    background-color: #26404d;
+    background-color: ${darkTheme.palette.primary1};
   }
 `;
