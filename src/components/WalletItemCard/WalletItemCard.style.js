@@ -105,7 +105,7 @@ export const IconMenu = styled(Menu)`
     border-radius: 4px 4px 0 0;
   }
   .ant-dropdown-menu-item:last-child:hover {
-    border-radius: 0 0 4px 4px;
+  border-radius: ${(props) => props.singleItem ? '4px 4px' : '0 0'} 4px 4px;
   }
 
 `;
