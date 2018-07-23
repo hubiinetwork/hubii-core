@@ -65,7 +65,7 @@ export const initialState = fromJS({
   },
   pendingTransactions: [],
   confirmedTransactions: [],
-  hardwareWallets: { ledgerNanoS: { id: null, addresses: {} } },
+  // hardwareWallets: { ledgerNanoS: { id: null, addresses: {} } },
 });
 
 abiDecoder.addABI(ERC20ABI);

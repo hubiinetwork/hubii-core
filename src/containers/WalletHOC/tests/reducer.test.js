@@ -70,19 +70,22 @@ describe('walletHocReducer', () => {
   describe('Ledger Nano S reducers', () => {
     it('should handle LEDGER_ETH_CONNECTED action correctly', () => {
       const id = '893745sjdfhks83';
+      const descriptor = 'desc';
       const expected = state
           .setIn(['ledgerNanoSInfo', 'status'], 'connected')
           .setIn(['ledgerNanoSInfo', 'id'], id)
+          .setIn(['ledgerNanoSInfo', 'ethConnected'], true)
           .setIn(['errors', 'ledgerError'], null);
-      expect(walletHocReducer(state, ledgerEthAppConnected(id))).toEqual(expected);
+      expect(walletHocReducer(state, ledgerEthAppConnected(descriptor, id))).toEqual(expected);
     });
 
     it('should handle LEDGER_ERROR action correctly', () => {
       const error = 'oh no!';
+      const id = '123'
       const expected = state
-        .set('ledgerNanoSInfo', fromJS({ status: 'disconnected', addresses: {} }))
+        .set('ledgerNanoSInfo', fromJS({ status: 'disconnected', addresses: {}, id}))
         .setIn(['errors', 'ledgerError'], error);
-      expect(walletHocReducer(state, { type: LEDGER_ERROR, error })).toEqual(expected);
+      expect(walletHocReducer(state.setIn(['ledgerNanoSInfo', 'id'], id), { type: LEDGER_ERROR, error })).toEqual(expected);
     });
 
     it('should handle FETCHED_LEDGER_ADDRESS action correctly', () => {
