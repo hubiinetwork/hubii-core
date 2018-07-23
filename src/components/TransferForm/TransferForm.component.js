@@ -48,7 +48,9 @@ export default class TransferForm extends React.PureComponent {
   }
 
   handleChange(e) {
-    this.setState({ input: parseFloat(e.target.value) });
+    const { value } = e.target;
+    const input = parseFloat(isNaN(value) || value === '' ? 0 : value);
+    this.setState({ input });
   }
 
   handleGasPriceChange(e) {
