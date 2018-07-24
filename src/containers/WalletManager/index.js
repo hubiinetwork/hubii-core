@@ -14,10 +14,13 @@ import AddNewContactModal from 'components/AddNewContactModal';
 import { Modal } from 'components/ui/Modal';
 import { makeSelectContacts } from 'containers/ContactBook/selectors';
 
-import { createWalletFromMnemonic, createWalletFromPrivateKey } from 'containers/WalletHOC/actions';
-import { makeSelectLoading, makeSelectErrors } from 'containers/WalletHOC/selectors';
-import { createContact,
- } from '../ContactBook/actions';
+import {
+  createWalletFromMnemonic,
+  saveLedgerAddress,
+  createWalletFromPrivateKey,
+} from 'containers/WalletHOC/actions';
+import { makeSelectLoading, makeSelectWallets } from 'containers/WalletHOC/selectors';
+import { createContact } from '../ContactBook/actions';
 
 
 import {
@@ -25,6 +28,7 @@ import {
   TabsLayout,
   StyledButton,
   WalletsTabHeader,
+  Heading,
 } from './index.style';
 
 const TabPane = Tabs.TabPane;
@@ -47,14 +51,7 @@ export class WalletManager extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const lastLoadingProps = prevProps.loading.toJS();
-    const currentLoadingProps = this.props.loading.toJS();
-    const currentErrorsProps = this.props.errors.toJS();
-
-    if (lastLoadingProps.creatingWallet &&
-        !currentLoadingProps.creatingWallet &&
-        !currentErrorsProps.creatingWalletError
-    ) {
+    if (prevProps.wallets.count() < this.props.wallets.count()) {
       this.hideModal();
     }
   }
@@ -92,9 +89,17 @@ export class WalletManager extends React.PureComponent {
   }
 
   handleImportWalletSubmit(data) {
-    if (data[0].walletType === 'metamask') {
+    if (data[0].walletType === 'Private Key') {
       const { privateKey, name, password } = data[1];
       this.props.createWalletFromPrivateKey(privateKey, name, password);
+    } if (data[0].walletType === 'ledger') {
+      const { derivationPath, deviceId, address } = data[1];
+      const { name } = data[2];
+      this.props.saveLedgerAddress(name, derivationPath, deviceId, address);
+      this.hideModal();
+    } else if (data[0].walletType === 'Mnemonic') {
+      const { mnemonic, derivationPath, password, name } = data[1];
+      this.props.createWalletFromMnemonic(name, mnemonic, derivationPath, password);
     }
   }
 
@@ -121,7 +126,7 @@ export class WalletManager extends React.PureComponent {
       <Wrapper>
         <TabsLayout>
           <WalletsTabHeader>
-            <h2 className="heading">All Wallets</h2>
+            <Heading>Wallet Manager</Heading>
             <StyledButton
               type="primary"
               onClick={() => this.showModal(history.location.pathname === `${match.url}/overview` ? 'addWallet' : 'addContact')}
@@ -181,23 +186,25 @@ WalletManager.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   createWalletFromMnemonic: PropTypes.func.isRequired,
+  saveLedgerAddress: PropTypes.func,
   createWalletFromPrivateKey: PropTypes.func.isRequired,
   loading: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
   createContact: PropTypes.func,
   contacts: PropTypes.oneOfType(
     [PropTypes.arrayOf(PropTypes.object), PropTypes.object]
   ),
+  wallets: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
-  errors: makeSelectErrors(),
   contacts: makeSelectContacts(),
+  wallets: makeSelectWallets(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
+    saveLedgerAddress: (...args) => dispatch(saveLedgerAddress(...args)),
     createWalletFromMnemonic: (...args) => dispatch(createWalletFromMnemonic(...args)),
     createWalletFromPrivateKey: (...args) => dispatch(createWalletFromPrivateKey(...args)),
     createContact: (...args) => dispatch(createContact(...args)),

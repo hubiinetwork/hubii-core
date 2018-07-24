@@ -25,6 +25,7 @@ describe('ContactBook actions', () => {
   });
 
   let contacts;
+  let recentContacts;
   beforeEach(() => {
     contacts = [
       {
@@ -34,6 +35,16 @@ describe('ContactBook actions', () => {
       {
         name: 'john',
         address: '0x13123123',
+      },
+      {
+        name: 'joe',
+        address: '0x21231sd23',
+      },
+    ];
+    recentContacts = [
+      {
+        name: 'mike',
+        address: '0x2123123',
       },
       {
         name: 'joe',
@@ -58,11 +69,19 @@ describe('ContactBook actions', () => {
           address: '0x21231sd23',
         },
       ];
+
+      const expectedRecentRemainingList = [
+        {
+          name: 'joe',
+          address: '0x21231sd23',
+        },
+      ];
       const expected = {
         type: REMOVE_CONTACT,
         remainingContacts: expectedRemainingList,
+        remainingRecentContacts: expectedRecentRemainingList,
       };
-      expect(removeContact(contacts, contact)).toEqual(expected);
+      expect(removeContact(contacts, recentContacts, contact)).toEqual(expected);
     });
     it('has the correct type and invalid contact to delete', () => {
       const contact = {
@@ -83,11 +102,22 @@ describe('ContactBook actions', () => {
           address: '0x21231sd23',
         },
       ];
+      const expectedRecentContactsList = [
+        {
+          name: 'mike',
+          address: '0x2123123',
+        },
+        {
+          name: 'joe',
+          address: '0x21231sd23',
+        },
+      ];
       const expected = {
         type: REMOVE_CONTACT,
         remainingContacts: expectedRemainingList,
+        remainingRecentContacts: expectedRecentContactsList,
       };
-      expect(removeContact(contacts, contact)).toEqual(expected);
+      expect(removeContact(contacts, recentContacts, contact)).toEqual(expected);
     });
   });
 
@@ -115,11 +145,22 @@ describe('ContactBook actions', () => {
           address: '0x21231sd23',
         },
       ];
+      const expectedNewRecentContactsList = [
+        {
+          name: 'mitchell',
+          address: '0x321231',
+        },
+        {
+          name: 'joe',
+          address: '0x21231sd23',
+        },
+      ];
       const expected = {
         type: EDIT_CONTACT,
         newContactsList: expectedNewContactsList,
+        newRecentContactsList: expectedNewRecentContactsList,
       };
-      expect(editContact(contacts, newContact, oldContact)).toEqual(expected);
+      expect(editContact(contacts, recentContacts, newContact, oldContact)).toEqual(expected);
     });
     it('has the correct type does not replace an invalid old contact with the new', () => {
       const newContact = {
@@ -147,8 +188,9 @@ describe('ContactBook actions', () => {
       const expected = {
         type: EDIT_CONTACT,
         newContactsList: expectedNewContactsList,
+        newRecentContactsList: recentContacts,
       };
-      expect(editContact(contacts, newContact, oldContact)).toEqual(expected);
+      expect(editContact(contacts, recentContacts, newContact, oldContact)).toEqual(expected);
     });
   });
 });

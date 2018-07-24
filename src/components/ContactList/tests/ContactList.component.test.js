@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ContactList from 'components/ContactList';
-import ContactDeletionModal from 'components/ContactDeletionModal';
+import DeletionModal from 'components/DeletionModal';
 import EditContactModal from 'components/EditContactModal';
 
 describe('<ContactList/>', () => {
@@ -72,7 +72,7 @@ describe('<ContactList/>', () => {
       it('when the modalType is delete <ContactDeletionModal/> should be rendered', () => {
         const modalType = 'delete';
         wrapper.setState({ modalType });
-        expect(wrapper.find(ContactDeletionModal).length).toEqual(1);
+        expect(wrapper.find(DeletionModal).length).toEqual(1);
       });
 
       it('when the modalType is anything else <EditContactModal/> should be rendered', () => {
@@ -91,19 +91,6 @@ describe('<ContactList/>', () => {
       contactList.handleDelete();
       expect(contactList.state.modalVisibility).toBe(false);
       expect(contactList.props.onDelete).toHaveBeenCalledTimes(1);
-    });
-
-    describe('validateEdit function', () => {
-      it('should return false from the validateEdit function', () => {
-        const address = '0x324234234';
-        const oldAddress = '0x213123123';
-        expect(contactList.validateEdit(address, oldAddress)).toBeFalsy();
-      });
-      it('should return true from the validateEdit function', () => {
-        const address = '0x123123123';
-        const oldAddress = '0x213123123';
-        expect(contactList.validateEdit(address, oldAddress)).toBeTruthy();
-      });
     });
 
     it('should execute the onChange function', () => {

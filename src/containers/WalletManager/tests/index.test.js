@@ -21,6 +21,7 @@ describe('WalletManager', () => {
       history,
       loading: fromJS(loading),
       errors: fromJS(errors),
+      wallets: fromJS([{}]),
     };
     let createWalletFromMnemonicSpy;
     let createWalletFromPrivateKeySpy;
@@ -78,7 +79,7 @@ describe('WalletManager', () => {
         expect(pushSpy).toBeCalledWith(key);
       });
       describe('componentDidUpdate', () => {
-        it('#componentDidUpdate should hide modal when creatingWallet finished', () => {
+        it('#componentDidUpdate should hide modal when new wallet is added', () => {
           dom = shallow(
             <WalletManager
               {...params}
@@ -87,11 +88,11 @@ describe('WalletManager', () => {
           const instance = dom.instance();
           instance.showModal();
           expect(instance.state.visible).toEqual(true);
-          const lastProps = { loading: fromJS({ creatingWallet: true }) };
+          const lastProps = { wallets: fromJS([]) };
           instance.componentDidUpdate(lastProps);
           expect(instance.state.visible).toEqual(false);
         });
-        it('#componentDidUpdate should not trigger to hide modal when last creatingWallet props is false', () => {
+        it('#componentDidUpdate should not trigger to hide modal when wallets count remain the same', () => {
           dom = shallow(
             <WalletManager
               {...params}
@@ -100,51 +101,7 @@ describe('WalletManager', () => {
           const instance = dom.instance();
           instance.showModal();
           expect(instance.state.visible).toEqual(true);
-          const lastProps = { loading: fromJS({ creatingWallet: false }) };
-          instance.componentDidUpdate(lastProps);
-          expect(instance.state.visible).toEqual(true);
-        });
-        it('#componentDidUpdate should not hide modal when it is creatingWallet', () => {
-          const mockLoading = {
-            creatingWallet: true,
-          };
-          const mockErrors = {
-            creatingWalletError: null,
-          };
-          dom = shallow(
-            <WalletManager
-              {...params}
-              loading={fromJS(mockLoading)}
-              errors={fromJS(mockErrors)}
-            />
-          );
-          const instance = dom.instance();
-          instance.showModal();
-          expect(instance.state.visible).toEqual(true);
-
-          const lastProps = { loading: fromJS({ creatingWallet: true }) };
-          instance.componentDidUpdate(lastProps);
-          expect(instance.state.visible).toEqual(true);
-        });
-        it('#componentDidUpdate should not hide modal when it has error', () => {
-          const mockLoading = {
-            creatingWallet: false,
-          };
-          const mockErrors = {
-            creatingWalletError: new Error(),
-          };
-          dom = shallow(
-            <WalletManager
-              {...params}
-              loading={fromJS(mockLoading)}
-              errors={fromJS(mockErrors)}
-            />
-          );
-          const instance = dom.instance();
-          instance.showModal();
-          expect(instance.state.visible).toEqual(true);
-
-          const lastProps = { loading: fromJS({ creatingWallet: true }) };
+          const lastProps = { wallets: params.wallets };
           instance.componentDidUpdate(lastProps);
           expect(instance.state.visible).toEqual(true);
         });
@@ -191,7 +148,7 @@ describe('WalletManager', () => {
         );
         const instance = dom.instance();
         const args = [{
-          walletType: 'metamask',
+          walletType: 'Private Key',
         }, {
           privateKey: 'privateKey',
           name: 'name',

@@ -10,8 +10,10 @@ import {
   StyledButton,
   StyledRecipient,
   StyledButtonCancel,
+  StyledSpin,
 } from './TransferDescription.style';
 import TransferDescriptionList from '../TransferDescriptionList';
+import { formatFiat } from '../../utils/numberFormats';
 
 /**
  * The TransferDescription Component
@@ -23,14 +25,14 @@ export default class TransferDescription extends React.PureComponent {
       recipient,
       totalAmount,
       buttonLabel,
-      amountToSend,
+      amountToSend: amount,
       selectedToken,
       transactionFee,
       ethInformation,
-      currencySymbol,
       onSend,
       onCancel,
     } = this.props;
+    const amountToSend = isNaN(amount) || amount === '' ? 0 : amount;
 
     const totalUsd = (parseInt(selectedToken.balance, 10) / (10 ** selectedToken.decimals)) * parseFloat(selectedToken.price.USD);
     const remainingBalance = totalUsd - (amountToSend * parseFloat(selectedToken.price.USD)) - (transactionFee * parseFloat(ethInformation.price.USD));
@@ -46,7 +48,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={totalAmount}
             labelSymbol={selectedToken.symbol}
-            value={(totalAmount * selectedToken.price.USD).toLocaleString('en')}
+            value={formatFiat(totalAmount * selectedToken.price.USD, 'USD')}
           />
         </Row>
         <Row>
@@ -56,7 +58,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={amountToSend}
             labelSymbol={selectedToken.symbol}
-            value={(amountToSend * selectedToken.price.USD).toLocaleString('en')}
+            value={formatFiat(amountToSend * selectedToken.price.USD, 'USD')}
           />
         </Row>
         <Row>
@@ -72,7 +74,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={transactionFee}
             labelSymbol={selectedToken.symbol}
-            value={(transactionFee * ethInformation.price.USD).toLocaleString('en')}
+            value={formatFiat(transactionFee * ethInformation.price.USD, 'USD')}
           />
         </Row>
         <Row>
@@ -82,7 +84,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={amountToSend + transactionFee}
             labelSymbol={selectedToken.symbol}
-            value={((amountToSend * parseFloat(selectedToken.price.USD)) + (transactionFee * parseFloat(ethInformation.price.USD))).toLocaleString('en')}
+            value={formatFiat((amountToSend * parseFloat(selectedToken.price.USD)) + (transactionFee * parseFloat(ethInformation.price.USD)), 'USD')}
           />
         </Row>
         <Row>
@@ -98,10 +100,10 @@ export default class TransferDescription extends React.PureComponent {
                 : totalAmount - amountToSend
             }
             labelSymbol={selectedToken.symbol}
-            value={(
+            value={formatFiat(
               (totalAmount - amountToSend) *
               +selectedToken.price.USD
-            ).toLocaleString('en')}
+            , 'USD')}
           />
         </Row>
         <Row>
@@ -109,18 +111,26 @@ export default class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           <BalanceCol>
-            {currencySymbol}
-            {remainingBalance.toLocaleString('en')}
+            {formatFiat(remainingBalance, 'USD')}
           </BalanceCol>
         </Row>
-        <StyledDiv>
-          <StyledButtonCancel type="secondary" onClick={onCancel}>
-            {'Cancel'}
-          </StyledButtonCancel>
-          <StyledButton type="primary" onClick={onSend} disabled={Number.isNaN(amountToSend) || amountToSend === 0 || remainingBalance < 0}>
-            {buttonLabel}
-          </StyledButton>
-        </StyledDiv>
+        {
+            this.props.transfering ?
+            (<StyledSpin
+              delay={0}
+              tip="Sending..."
+              size="large"
+            />) : (
+              <StyledDiv>
+                <StyledButtonCancel type="secondary" onClick={onCancel}>
+                  {'Cancel'}
+                </StyledButtonCancel>
+                <StyledButton type="primary" onClick={onSend} disabled={Number.isNaN(amountToSend) || amountToSend === 0 || remainingBalance < 0}>
+                  {buttonLabel}
+                </StyledButton>
+              </StyledDiv>
+            )
+          }
       </WrapperDiv>
     );
   }
@@ -128,7 +138,6 @@ export default class TransferDescription extends React.PureComponent {
 
 TransferDescription.defaultProps = {
   title: 'Transaction Description',
-  currencySymbol: '$',
   buttonLabel: 'Send',
 };
 
@@ -141,10 +150,6 @@ TransferDescription.propTypes = {
    * button label of the TransferDescription.
    */
   buttonLabel: PropTypes.string,
-  /**
-   * currency sign of the TransferDescription.
-   */
-  currencySymbol: PropTypes.string,
   /**
    * receipient of the TransferDescription.
    */
@@ -178,5 +183,6 @@ TransferDescription.propTypes = {
    * onSend function Callback  in the TransferDescription.
    */
   onCancel: PropTypes.func,
+  transfering: PropTypes.bool,
 };
 // export default TransferDescription;

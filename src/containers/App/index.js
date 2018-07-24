@@ -13,12 +13,13 @@
 
 import React from 'react';
 import { compose } from 'redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
+import { getAbsolutePath } from 'utils/electron';
 import injectSaga from 'utils/injectSaga';
 
+import HomeScreen from 'components/HomeScreen';
 import SideBar from 'components/SideBar';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Striim from 'containers/Striim';
 import WalletManager from 'containers/WalletManager';
 import WalletDetails from 'containers/WalletDetails';
@@ -27,8 +28,6 @@ import withExchangeRate from 'containers/ExchangeRateHOC';
 import WalletHOC from 'containers/WalletHOC';
 
 import saga from './saga';
-
-import logoSvg from '../../../public/Images/corerz-logo.svg';
 
 export function App() {
   const menuItems = [
@@ -49,12 +48,13 @@ export function App() {
     },
   ];
   return (
-    <SideBar menuItems={menuItems} logoSrc={logoSvg}>
+    <SideBar menuItems={menuItems} logoSrc={getAbsolutePath('public/images/hubii-core-logo.svg')}>
       <Switch>
+        <Route exact path="/" component={HomeScreen} />
         <Route path="/wallets" component={WalletManager} />
         <Route path="/wallet/:address" component={WalletDetails} />
         <Route path="/striim" component={Striim} />
-        <Route component={NotFoundPage} />
+        <Redirect from="/" to="/wallets" />
       </Switch>
     </SideBar>
   );

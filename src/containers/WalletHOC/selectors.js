@@ -14,6 +14,11 @@ const makeSelectPasswordInput = () => createSelector(
   (walletHocDomain) => walletHocDomain.getIn(['inputs', 'password'])
 );
 
+const makeSelectLedgerNanoSInfo = () => createSelector(
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('ledgerNanoSInfo')
+);
+
 const makeSelectDerivationPathInput = () => createSelector(
   selectWalletHocDomain,
   (walletHocDomain) => walletHocDomain.getIn(['inputs', 'derivationPath'])
@@ -58,7 +63,7 @@ const makeSelectCurrentWalletDetails = () => createSelector(
   makeSelectWalletList(),
   makeSelectCurrentWallet(),
   (walletList, currentWallet) => {
-    const walletDetails = walletList.find((wallet) => `0x${wallet.encrypted.address}` === currentWallet.toJS().address);
+    const walletDetails = walletList.find((wallet) => wallet.address === currentWallet.get('address'));
     return walletDetails || {};
   }
 );
@@ -88,6 +93,7 @@ const makeSelectAllTransactions = () => createSelector(
 
 export {
   selectWalletHocDomain,
+  makeSelectLedgerNanoSInfo,
   makeSelectNewWalletNameInput,
   makeSelectPasswordInput,
   makeSelectSelectedWalletName,

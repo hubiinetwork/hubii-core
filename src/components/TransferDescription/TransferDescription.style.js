@@ -1,4 +1,4 @@
-import { Col } from 'antd';
+import { Col, Spin } from 'antd';
 import styled from 'styled-components';
 import Button from '../ui/Button';
 
@@ -9,6 +9,20 @@ export const StyledButton = styled(Button)`
   font-family: 'SF Text';
   border: 2px solid ${({ theme }) => theme.palette.info3};
   border-radius: 4px;
+  background-color: ${({ disabled: white }) =>
+    white && 'transparent !important'};
+  border: ${({ disabled: white, theme }) =>
+    white && `2px solid ${theme.palette.secondary4} !important`};
+  color: ${({ disabled: white, theme }) =>
+    white
+      ? `${theme.palette.secondary4} !important`
+      : `${theme.palette.light} !important`};
+  &:hover {
+    background-color: ${({ disabled: white }) =>
+      white && 'transparent !important'};
+    border: ${({ disabled: white, theme }) =>
+      white && `2px solid ${theme.palette.secondary4} !important`};
+  }
 `;
 export const StyledButtonCancel = styled(Button)`
   height: 40px;
@@ -43,14 +57,16 @@ export const StyledTitle = styled(Col)`
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
+  white-space: nowrap;
 `;
 export const StyledCol = styled(Col)`
-  color: ${({ theme }) => theme.palette.secondary};
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
   margin-top: 20px;
   margin-bottom: 6px;
+  white-space: nowrap;
+  color: ${({ theme }) => theme.palette.secondary};
 `;
 export const StyledRecipient = styled(Col)`
   color: ${({ theme }) => theme.palette.light};
@@ -69,4 +85,11 @@ export const BalanceCol = styled(Col)`
 `;
 export const WrapperDiv = styled.div`
   width: 300px;
+`;
+export const StyledSpin = styled(Spin)`
+  margin-top: 2rem;
+  &.ant-spin.ant-spin-show-text .ant-spin-text{
+    margin-top:1.5rem;
+  }
+  color: white;
 `;

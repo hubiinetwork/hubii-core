@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Tooltip } from 'antd';
 
 import { Slanted, USB, TextWhite } from './USBFlag.style';
-import USBConnected from '../../usb-icon.svg';
-import USBDisconnected from '../../usb-icon-white.svg';
+import USBConnected from '../../../public/images/usb-icon.svg';
+import USBDisconnected from '../../../public/images/usb-icon-white.svg';
 
 /**
  * This component shows status of the user's API connection with wallet by showing connected flag.

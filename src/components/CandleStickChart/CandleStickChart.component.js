@@ -5,6 +5,7 @@ import './CandleStick.css';
 
 const EE = new EventEmitter();
 
+/*eslint-disable */
 export default class CandleStickChart extends React.Component {
   constructor(props) {
     super(props);
@@ -152,9 +153,24 @@ export default class CandleStickChart extends React.Component {
           },
           followTouchMove: false,
           crosshairs: false,
-          positioner: () => ({ x: 10, y: 35 }),
+          positioner: function () {
+            return { x: 10, y: 35 };
+          },
           shadow: false,
           split: false,
+          useHTML: true,
+          formatter: function () {
+            const {high, low, close, open, volume, y} = this.point;
+            if (!high) {
+              return 
+            }
+            return `<div>
+                      H <span class="candlestickchart-tooltip-value">${high}</span> 
+                      L <span class="candlestickchart-tooltip-value">${low}</span>
+                      C <span class="candlestickchart-tooltip-value">${close}</span>
+                      O <span class="candlestickchart-tooltip-value">${open}</span>
+                    </div>`
+          }
         },
 
         series: [{

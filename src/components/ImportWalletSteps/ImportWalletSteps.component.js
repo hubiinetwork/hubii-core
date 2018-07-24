@@ -1,68 +1,20 @@
-/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import LnsDerivationPathContainer from 'containers/LnsDerivationPathContainer';
+
 import {
   Flex,
   Between,
   SpanText,
   LeftArrow,
 } from './ImportWalletSteps.style';
-import DerivationPath from "./DerivationPath";
+
 import ImportWallet from './ImportWallet';
 import ImportWalletNameForm from './ImportWalletNameForm';
-import ImportWalletMetamaskForm from './ImportWalletMetamaskForm';
+import ImportWalletPrivateKeyForm from './ImportWalletPrivateKeyForm';
+import ImportWalletMnemonicForm from './ImportWalletMnemonicForm';
 import FormSteps from '../FormSteps';
-
-const paths = [
-  {
-    title: 'm/44’/60’/0’/3',
-    subtitle: 'Jaxx, Metamask, Exodus, imToken, TREZOR (ETH) & Digital Bitbox'
-  },
-  {
-    title: 'm/44’/60’/0',
-    subtitle: 'Ledger (ETH)'
-  },
-  {
-    title: 'm/44’/60’/0’/5',
-    subtitle: 'TREZOR (ETC)'
-  },
-  {
-    title: 'm/44’/60’/160720’/0’',
-    subtitle: 'Ledger (ETC)'
-  },
-  {
-    title: 'm/44’/60’/0’/7',
-    subtitle: 'SingularDTV'
-  },
-  {
-    title: 'm/44’/60’/0’/1',
-    subtitle: 'Network: Testnets'
-  },
-  {
-    title: 'm/44’/60’/0’/9',
-    subtitle: 'Network: Expanse'
-  }
-];
-const addressData = [
-  {
-    key: '1',
-    address: '042f500111f0BDc4f6711xFBb1b73C4dcA266ce6Ef',
-    balance: '0.05 ETH',
-    tokenBalance: 123
-  },
-  {
-    key: '2',
-    address: '03C4f0BDc4xFA266cBb1b7f67dce6Ef42f01111150',
-    balance: '0.05 ETH',
-    tokenBalance: 321
-  },
-  {
-    key: '3',
-    address: '0xFBb150011BDc4f6111b73C4f07dcA266Ef426cef',
-    balance: '0.05 ETH',
-    tokenBalance: 542
-  }
-];
 
 export default class ImportWalletSteps extends React.Component {
   constructor(props) {
@@ -77,34 +29,9 @@ export default class ImportWalletSteps extends React.Component {
     this.handleNext = this.handleNext.bind(this);
   }
 
-  searchSRC(logoName, wallets) {
-    return wallets.find((wallet) => wallet.name === logoName);
-  }
-
-  handleBack() {
-    this.setState(({ current }) => ({ current: current - 1 }));
-  }
-
-  handleNext(stepData) {
-    const { wallets } = this.props;
-    this.setState((prev) => {
-      const { data, current } = prev;
-      data[current] = stepData;
-      const steps = this.getSteps()
-      if (current === steps.length - 1) {
-        return this.props.handleSubmit(data);
-      }
-      if (current === 0) {
-        const selectedWallet = this.searchSRC(stepData.walletType, wallets);
-        return { data, current: current + 1, selectedWallet };
-      }
-      return { data, current: current + 1 };
-    });
-  }
-
-  getSteps () {
-    const {selectedWallet} = this.state
-    const {wallets} = this.props
+  getSteps() {
+    const { selectedWallet } = this.state;
+    const { wallets, loading } = this.props;
     const steps = [
       {
         title: 'First',
@@ -121,13 +48,10 @@ export default class ImportWalletSteps extends React.Component {
         {
           title: 'Second',
           content: (
-            <DerivationPath
-            walletName={'selectedWallet'}
-            paths={paths}
-            addresses={addressData}
-            handleBack={this.handleBack}
-            handleNext={this.handleNext}
-          />
+            <LnsDerivationPathContainer
+              handleBack={this.handleBack}
+              handleNext={this.handleNext}
+            />
             ),
         },
         {
@@ -137,29 +61,70 @@ export default class ImportWalletSteps extends React.Component {
               wallet={selectedWallet}
               handleBack={this.handleBack}
               handleNext={this.handleNext}
+              loading={loading}
+            />
+          ),
+        },
+
+      ],
+      'Private Key': [
+        {
+          title: 'Last',
+          content: (
+            <ImportWalletPrivateKeyForm
+              wallet={selectedWallet}
+              handleBack={this.handleBack}
+              handleNext={this.handleNext}
+              loading={loading}
             />
           ),
         },
       ],
-      metamask: [
+      Mnemonic: [
         {
           title: 'Last',
           content: (
-            <ImportWalletMetamaskForm
-              wallet={selectedWallet}
+            <ImportWalletMnemonicForm
               handleBack={this.handleBack}
               handleNext={this.handleNext}
+              loading={loading}
             />
           ),
         },
-      ]
-    }
-    return steps.concat(stepTypes[selectedWallet.name || 'metamask'])
+      ],
+    };
+    return steps.concat(stepTypes[selectedWallet.name || 'Private Key' || 'Mnemonic']);
+  }
+
+  searchSRC(logoName, wallets) {
+    return wallets.find((wallet) => wallet.name === logoName);
+  }
+
+  handleBack() {
+    this.setState(({ current }) => ({ current: current - 1 }));
+  }
+
+  handleNext(stepData) {
+    const { wallets } = this.props;
+    this.setState((prev) => {
+      const { data, current } = prev;
+      data[current] = stepData;
+      const steps = this.getSteps();
+      if (current === steps.length - 1) {
+        return this.props.handleSubmit(data);
+      }
+      if (current === 0) {
+        const selectedWallet = this.searchSRC(stepData.walletType, wallets);
+        return { data, current: current + 1, selectedWallet };
+      }
+      return { data, current: current + 1 };
+    });
   }
 
   render() {
-    const { current, data} = this.state;
-    const { onBackIcon, } = this.props;
+    const { current, data } = this.state;
+    const { onBackIcon } = this.props;
+
     const FormNavigation = (
       <Between>
         <Flex>
@@ -168,7 +133,7 @@ export default class ImportWalletSteps extends React.Component {
         </Flex>
       </Between>
     );
-    const steps = this.getSteps()
+    const steps = this.getSteps();
     return (
       <FormSteps steps={steps} currentStep={current} beforeContent={FormNavigation} />
     );
@@ -177,6 +142,7 @@ export default class ImportWalletSteps extends React.Component {
 
 ImportWalletSteps.propTypes = {
   wallets: PropTypes.array,
-  handleSubmit: PropTypes.func,
-  onBackIcon: PropTypes.func,
+  handleSubmit: PropTypes.func.isRequired,
+  onBackIcon: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };

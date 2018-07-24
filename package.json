@@ -1,8 +1,13 @@
 {
-  "name": "hubii-core-ui",
+  "name": "hubii-core",
   "version": "0.1.0",
   "private": true,
-  "author": "Hubii team",
+  "author": {
+    "name": "hubii",
+    "email": "info@hubii.com",
+    "url": "https://hubii.com"
+  },
+  "description": "Send, recieve and trade Ethereum assets trustlessly without compromise. Powered by striim",
   "license": "MIT",
   "main": "build/public/electron.js",
   "homepage": "https://github.com/hubiinetwork/omphalos-ui",
@@ -10,11 +15,22 @@
     "appId": "com.hubii.electron-hubii-core",
     "files": [
       "build/**/*"
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "hubiinetwork",
+        "repo": "omphalos-ui"
+      }
     ]
   },
   "scripts": {
-    "electron-dev": "concurrently \"BROWSER=none yarn start:electron\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron-build": "npm run build:electron && DEBUG=electron-builder electron-builder --publish never",
+    "release": "electron-builder -lwm -p always",
+    "electron-dev": "concurrently \"BROWSER=none TARGET=electron yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "preelectron-dev": "mkdir -p build/public && cp public/electron.js build/public && electron-rebuild --force --module_dir . -w node-hid",
+    "electron-build": "cross-env TARGET=electron WALLET_API=https://api2.dev.hubii.net/ npm run build && cross-env DEBUG=electron-builder electron-builder --publish never",
+    "preelectron-build": "electron-rebuild --force --module_dir . -w node-hid",
+    "electron-pack": "cross-env DEV_TOOLS=1 WALLET_API=https://api2.dev.hubii.net/ npm run build:electron && electron-builder --dir",
     "precommit": "npm run lint:staged",
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
@@ -25,11 +41,9 @@
     "postinstall": "npm run build:dll",
     "prebuild": "npm run build:clean",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
-    "build:electron": "electron-rebuild --force --module_dir . -w node-hid && electron-builder install-app-deps && cross-env TARGET=electron NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
     "build:clean": "rimraf ./build",
     "build:dll": "node ./internals/scripts/dependencies.js",
-    "start:electron": "electron-rebuild --force --module_dir . -w node-hid && json-server --watch fake-db.json --port 8000 | cross-env NODE_ENV=development TARGET=electron node server",
-    "start": "json-server --watch fake-db.json --port 8000 | cross-env NODE_ENV=development node server",
+    "start": "json-server --watch fake-db.json --port 8000 | cross-env NODE_ENV=development WALLET_API=https://api2.dev.hubii.net/ node server",
     "start:tunnel": "json-server --watch fake-db.json --port 8000 | cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "start:production": "npm run test && npm run build && npm run start:prod",
     "start:prod": "cross-env NODE_ENV=production node server",
@@ -246,10 +260,11 @@
     "@fortawesome/fontawesome": "1.1.8",
     "@fortawesome/fontawesome-free-solid": "5.0.13",
     "@fortawesome/react-fontawesome": "0.0.20",
-    "abi-decoder": "1.1.0",
     "@ledgerhq/hw-app-eth": "4.15.0",
     "@ledgerhq/hw-transport-node-hid": "4.16.0",
     "@ledgerhq/hw-transport-u2f": "4.15.0",
+    "@ledgerhq/web3-subprovider": "^4.15.0",
+    "abi-decoder": "1.1.0",
     "antd": "3.6.2",
     "babel-polyfill": "6.26.0",
     "chalk": "2.3.2",
@@ -257,6 +272,10 @@
     "cross-env": "5.1.4",
     "date-fns": "1.29.0",
     "electron-is-dev": "0.3.0",
+    "electron-log": "^2.2.16",
+    "electron-updater": "^3.0.1",
+    "ethereumjs-tx": "^1.3.6",
+    "ethereumjs-util": "^5.2.0",
     "ethers": "3.0.22",
     "express": "4.16.3",
     "fontfaceobserver": "2.0.13",
@@ -322,7 +341,7 @@
     "coveralls": "2.13.1",
     "css-loader": "0.28.11",
     "electron": "2.0.2",
-    "electron-builder": "20.14.7",
+    "electron-builder": "20.20.4",
     "electron-devtools-installer": "2.2.4",
     "electron-rebuild": "1.7.3",
     "enzyme": "3.3.0",

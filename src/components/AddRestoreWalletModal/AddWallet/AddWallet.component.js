@@ -3,9 +3,9 @@ import { Row, Col, Form, Popover } from 'antd';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import ethers from 'ethers';
 import PropTypes from 'prop-types';
+import { getAbsolutePath } from 'utils/electron';
 import Notification from '../../Notification';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../../ui/Modal';
-import hubiiLogo from '../../../../public/asset_images/HBT.svg';
 
 import {
   Info,
@@ -86,7 +86,7 @@ class AddWallet extends React.PureComponent {
     return (
       <div>
         <CenterWrapper>
-          <HBT src={hubiiLogo} alt="hubii logo" />
+          <HBT src={getAbsolutePath('public/images/assets/HBT.svg')} alt="hubii logo" />
           <HBTtext>Hubii</HBTtext>
         </CenterWrapper>
         <Row justify="center" type="flex">

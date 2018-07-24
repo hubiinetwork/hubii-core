@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Icon } from 'antd';
 import PropTypes from 'prop-types';
+import { getAbsolutePath } from 'utils/electron';
+
 import {
   ButtonDiv,
   Wrapper,
@@ -9,38 +11,33 @@ import {
   Arrow,
   IconWrapper,
   TextWhite,
-  // RightTopButton,
   DescriptionWrapper,
   TextGrey,
   Info,
 } from './AddRestoreWalletModal.style';
 import { AddWallet } from './AddWallet';
-import { RestoreWallet } from './RestoreWallet';
 import ImportWalletSteps from '../ImportWalletSteps';
-
-import metamaskImg from '../../../public/Images/metamask_wallet.png';
-import ledgerImg from '../../../public/Images/ledger_wallet.png';
 
 /**
  * This component shows options for modals to be opened.
  */
-export default class AddRestoreWalletModal extends React.PureComponent {
+export default class AddRestoreWalletModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: 'main',
+      modalType: 'main',
     };
     this.switchModals = this.switchModals.bind(this);
   }
   switchModals(selectedType) {
-    this.setState({ type: selectedType });
+    this.setState({ modalType: selectedType });
   }
   render() {
-    const { type } = this.state;
+    const { modalType } = this.state;
     const { loading } = this.props;
     return (
       <div>
-        {type === 'main' && (
+        {modalType === 'main' && (
           <div>
             <TitleDiv>
               Add / Restore Wallet<br />
@@ -61,16 +58,6 @@ export default class AddRestoreWalletModal extends React.PureComponent {
               </Wrapper>
             </ButtonDiv>
 
-            <ButtonDiv
-              onClick={() => this.switchModals('restore')}
-              type="primary"
-            >
-              <Wrapper>
-                <Icon type="sync" />
-                <TextWhite>Restore Wallet</TextWhite>
-              </Wrapper>
-            </ButtonDiv>
-
             <DescriptionWrapper>
               <div style={{ display: 'flex', width: '47%' }}>
                 <Info type="info-circle-o" />
@@ -82,7 +69,7 @@ export default class AddRestoreWalletModal extends React.PureComponent {
             </DescriptionWrapper>
           </div>
         )}
-        {type === 'add' && (
+        {modalType === 'add' && (
           <div>
             <div
               style={{
@@ -97,53 +84,28 @@ export default class AddRestoreWalletModal extends React.PureComponent {
                   onClick={() => this.switchModals('main')}
                 />New Hubii Wallet
               </IconWrapper>
-              {/* <RightTopButton
-                onClick={() => this.switchModals('import')}
-                type="primary"
-              >
-                <Wrapper>
-                  <Icon type="download" />
-                  <TextWhite>Import Wallet</TextWhite>
-                </Wrapper>
-              </RightTopButton> */}
             </div>
             <AddWallet loading={loading.toJS().creatingWallet} handleSubmit={this.props.handleAddWalletSubmit} />
           </div>
         )}
-        {type === 'restore' && (
-          <div>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <IconWrapper>
-                <Arrow
-                  type="arrow-left"
-                  onClick={() => this.switchModals('main')}
-                />Restore Wallet
-              </IconWrapper>
-            </div>
-            <RestoreWallet />
-          </div>
-        )}
-        {type === 'import' && (
+        {modalType === 'import' && (
           <div>
             <ImportWalletSteps
               wallets={[
                 {
-                  src: ledgerImg,
+                  src: getAbsolutePath('public/images/ledger-logo.png'),
                   name: 'ledger',
                 },
                 {
-                  src: metamaskImg,
-                  name: 'metamask',
+                  name: 'Private Key',
+                },
+                {
+                  name: 'Mnemonic',
                 },
               ]}
               onBackIcon={() => this.switchModals('main')}
               handleSubmit={this.props.handleImportWalletSubmit}
+              loading={loading.toJS().creatingWallet}
             />
           </div>
         )}
@@ -162,5 +124,5 @@ AddRestoreWalletModal.propTypes = {
    * loading
    */
 
-  loading: PropTypes.object,
+  loading: PropTypes.object.isRequired,
 };

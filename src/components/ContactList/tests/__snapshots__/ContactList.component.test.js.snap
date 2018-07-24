@@ -18,7 +18,7 @@ ShallowWrapper {
           ]
     }
     layout="horizontal"
-    message="There are no contacts added yet."
+    message="You have not added any contacts."
     onDelete={[Function]}
     onEdit={[Function]}
     size="small"
@@ -73,10 +73,21 @@ ShallowWrapper {
 >
           <Form(EditContactModal)
                     address=""
+                    contacts={
+                              Array [
+                                        Object {
+                                          "address": "0x3123123",
+                                          "name": "mike",
+                                        },
+                                        Object {
+                                          "address": "0x123123123",
+                                          "name": "joe",
+                                        },
+                                      ]
+                    }
                     name=""
                     onChange={[Function]}
                     onEdit={[Function]}
-                    validateEdit={[Function]}
           />
 </Modal.style>,
       ],
@@ -113,10 +124,21 @@ ShallowWrapper {
         "props": Object {
           "children": <Form(EditContactModal)
             address=""
+            contacts={
+                        Array [
+                                    Object {
+                                      "address": "0x3123123",
+                                      "name": "mike",
+                                    },
+                                    Object {
+                                      "address": "0x123123123",
+                                      "name": "joe",
+                                    },
+                                  ]
+            }
             name=""
             onChange={[Function]}
             onEdit={[Function]}
-            validateEdit={[Function]}
 />,
           "destroyOnClose": true,
           "footer": null,
@@ -138,10 +160,19 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "address": "",
+            "contacts": Array [
+              Object {
+                "address": "0x3123123",
+                "name": "mike",
+              },
+              Object {
+                "address": "0x123123123",
+                "name": "joe",
+              },
+            ],
             "name": "",
             "onChange": [Function],
             "onEdit": [Function],
-            "validateEdit": [Function],
           },
           "ref": null,
           "rendered": null,
@@ -196,10 +227,21 @@ ShallowWrapper {
 >
             <Form(EditContactModal)
                         address=""
+                        contacts={
+                                    Array [
+                                                Object {
+                                                  "address": "0x3123123",
+                                                  "name": "mike",
+                                                },
+                                                Object {
+                                                  "address": "0x123123123",
+                                                  "name": "joe",
+                                                },
+                                              ]
+                        }
                         name=""
                         onChange={[Function]}
                         onEdit={[Function]}
-                        validateEdit={[Function]}
             />
 </Modal.style>,
         ],
@@ -236,10 +278,21 @@ ShallowWrapper {
           "props": Object {
             "children": <Form(EditContactModal)
               address=""
+              contacts={
+                            Array [
+                                          Object {
+                                            "address": "0x3123123",
+                                            "name": "mike",
+                                          },
+                                          Object {
+                                            "address": "0x123123123",
+                                            "name": "joe",
+                                          },
+                                        ]
+              }
               name=""
               onChange={[Function]}
               onEdit={[Function]}
-              validateEdit={[Function]}
 />,
             "destroyOnClose": true,
             "footer": null,
@@ -261,10 +314,19 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "address": "",
+              "contacts": Array [
+                Object {
+                  "address": "0x3123123",
+                  "name": "mike",
+                },
+                Object {
+                  "address": "0x123123123",
+                  "name": "joe",
+                },
+              ],
               "name": "",
               "onChange": [Function],
               "onEdit": [Function],
-              "validateEdit": [Function],
             },
             "ref": null,
             "rendered": null,
@@ -293,7 +355,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <ContactList
     data={Array []}
     layout="horizontal"
-    message="There are no contacts added yet."
+    message="You have not added any contacts."
     onDelete={[Function]}
     onEdit={[Function]}
     size="small"
@@ -310,10 +372,10 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": "There are no contacts added yet.",
+      "children": "You have not added any contacts.",
     },
     "ref": null,
-    "rendered": "There are no contacts added yet.",
+    "rendered": "You have not added any contacts.",
     "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
@@ -322,10 +384,10 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": "There are no contacts added yet.",
+        "children": "You have not added any contacts.",
       },
       "ref": null,
-      "rendered": "There are no contacts added yet.",
+      "rendered": "You have not added any contacts.",
       "type": [Function],
     },
   ],

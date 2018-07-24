@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { getAbsolutePath } from 'utils/electron';
+import { EthNetworkProvider } from 'utils/wallet';
 import {
   TransactionHistoryType,
   TransactionHistoryAddress,
@@ -35,7 +37,7 @@ const TransactionHistoryDetail = (props) => (
           <Left>
             {!(props.type === 'received' || props.type === 'sent') && (
             <Image
-              src={`../../../public/asset_images/${props.toCoin}.svg`}
+              src={getAbsolutePath(`public/images/assets/${props.toCoin}.svg`)}
             />
               )}
             <TransactionHistoryItemCardIcon
@@ -87,7 +89,9 @@ const TransactionHistoryDetail = (props) => (
     >
       <div>
         <TransactionHistoryAddressLink
-          href={`https://etherscan.io/tx/${props.txnId}`}
+          href={
+            EthNetworkProvider.name === 'ropsten' ? `https://ropsten.etherscan.io/tx/${props.txnId}` : `https://etherscan.io/tx/${props.txnId}`
+          }
           target="_blank"
         >
           {props.txnId}

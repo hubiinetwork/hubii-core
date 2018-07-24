@@ -1,12 +1,15 @@
-import { Card } from 'antd';
+import { Card, Icon } from 'antd';
 import styled from 'styled-components';
 
-const StyledCard = styled(Card)`
-  min-width: 370px;
-  height: 113px;
+export const Wrapper = styled(Card)`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  min-width: 23rem;
+  height: 9rem;
   border-radius: 8px;
-  text-align: left;
-  padding: 0px 29px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   background-color: ${({ theme }) => theme.palette.primary4};
   border: 1px solid ${({ theme }) => theme.palette.primary4} !important;
@@ -18,32 +21,27 @@ const StyledCard = styled(Card)`
     text-decoration: none;
   }
   .ant-card-body {
-    padding: 13px 24px;
+    display: flex;
+    flex-direction: center;
+    align-items: center;
   }
 `;
 
-const IconSpan = styled.span`
-  top: 5px;
-  font-size: 48px;
-  position: relative;
+export const AntdIcon = styled(Icon)`
+  font-size: 3.5rem;
   color: ${({ theme }) => theme.palette.info};
 `;
 
-const TitleSpan = styled.span`
-  top: -7px;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 21px;
-  position: relative;
-  padding-left: 20px;
-  color: ${({ theme }) => theme.palette.light};
+export const CustomIcon = styled.img` 
+  max-height: 3rem;
+  max-width: 4rem;
 `;
 
-const Wrapper = styled.div`
-  font-size: 20px;
-  margin-top: 20px;
-  margin-right: 15px;
-  display: inline-flex;
-  cursor: pointer;
+export const Title = styled.span`
+  font-family: "SF Text";
+  font-weight: 500;
+  margin: 0;
+  padding-left: 1.5rem;
+  color: ${({ theme }) => theme.palette.light};
+  font-size: 1.5rem;
 `;
-export { Wrapper, StyledCard, IconSpan, TitleSpan };

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import { Modal } from 'components/ui/Modal';
 import { FormItem, FormItemLabel } from 'components/ui/Form';
+
 import Input from 'components/ui/Input';
 import Button from 'components/ui/Button';
 
@@ -16,12 +17,18 @@ import saga from './saga';
 import {
   makeSelectCurrentWallet,
   makeSelectCurrentWalletDetails,
+  makeSelectLoading,
 } from './selectors';
 import {
   decryptWallet,
   hideDecryptWalletModal,
+  startLedgerSync,
   loadWalletsBalances,
 } from './actions';
+
+import {
+  StyledSpin,
+} from './WalletHOC.style';
 
 export default function WalletHOC(Component) {
   const HOC = getComponentHOC(Component);
@@ -29,6 +36,7 @@ export default function WalletHOC(Component) {
   const mapStateToProps = createStructuredSelector({
     currentWallet: makeSelectCurrentWallet(),
     currentWalletDetails: makeSelectCurrentWalletDetails(),
+    loading: makeSelectLoading(),
   });
 
   const withConnect = connect(mapStateToProps, mapDispatchToProps);
@@ -47,25 +55,42 @@ export function getComponentHOC(Component) {
   class HOC extends React.Component {
     constructor(...args) {
       super(...args);
-      this.state = {};
+      this.state = { password: null };
       this.onPasswordChange = this.onPasswordChange.bind(this);
       this.decryptWallet = this.decryptWallet.bind(this);
+      this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     componentDidMount() {
+      this.props.startLedgerSync();
       this.props.loadWalletsBalances();
+    }
+
+    componentWillReceiveProps(nextProps) {
+      if (nextProps.currentWallet.toJS().showDecryptModal && !this.props.currentWallet.toJS().showDecryptModal) {
+        this.setState({ password: null });
+      }
     }
 
     onPasswordChange(e) {
       this.setState({ password: e.target.value });
     }
 
+    handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        return this.decryptWallet();
+      }
+      return null;
+    }
+
     decryptWallet() {
       const { currentWalletDetails } = this.props;
-      this.props.decryptWallet(currentWalletDetails.name, JSON.stringify(currentWalletDetails.encrypted), this.state.password);
+      this.props.decryptWallet(currentWalletDetails.address, JSON.stringify(currentWalletDetails.encrypted), this.state.password);
     }
 
     render() {
+      const loading = this.props.loading.get('decryptingWallet');
+
       return (
         <div>
           <Component {...this.props} />
@@ -75,7 +100,7 @@ export function getComponentHOC(Component) {
             maskClosable
             maskStyle={{ background: 'rgba(232,237,239,.65)' }}
             style={{ marginTop: '20px' }}
-            visible={this.props.currentWallet.toJS().showDecryptModal}
+            visible={this.props.currentWallet.get('showDecryptModal')}
             onCancel={this.props.hideDecryptWalletModal}
             destroyOnClose
           >
@@ -83,11 +108,19 @@ export function getComponentHOC(Component) {
               label={<FormItemLabel>Please enter wallet password to proceed</FormItemLabel>}
               colon={false}
             >
-              <Input onChange={this.onPasswordChange} type="password" />
+              <Input value={this.state.password} onChange={this.onPasswordChange} type="password" onKeyPress={(e) => this.handleKeyPress(e)} />
             </FormItem>
-            <Button type="primary" onClick={this.decryptWallet}>
-              Confirm
-            </Button>
+
+            {loading ? (
+              <StyledSpin
+                delay={0}
+                tip="Decrypting Wallet..."
+              />
+                ) : (
+                  <Button type="primary" onClick={this.decryptWallet} disabled={!this.state.password}>
+                   Confirm
+                  </Button>
+                )}
           </Modal>
         </div>
       );
@@ -96,15 +129,18 @@ export function getComponentHOC(Component) {
   HOC.propTypes = {
     currentWallet: PropTypes.object.isRequired,
     currentWalletDetails: PropTypes.object.isRequired,
+    startLedgerSync: PropTypes.func.isRequired,
     loadWalletsBalances: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
+    loading: PropTypes.object,
   };
   return HOC;
 }
 
 export function mapDispatchToProps(dispatch) {
   return {
+    startLedgerSync: () => dispatch(startLedgerSync()),
     hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
     decryptWallet: (...args) => dispatch(decryptWallet(...args)),
     loadWalletsBalances: (...args) => dispatch(loadWalletsBalances(...args)),

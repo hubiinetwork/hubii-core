@@ -15,7 +15,7 @@ import { createStructuredSelector } from 'reselect';
 import ContactList from 'components/ContactList';
 import ContactHeader from 'components/ContactHeader';
 import { removeContact, editContact } from './actions';
-import { makeSelectContacts } from './selectors';
+import { makeSelectContacts, makeSelectRecentContacts } from './selectors';
 
 import {
   Wrapper,
@@ -48,8 +48,10 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
   }
 
   render() {
-    let { contacts } = this.props;
+    let { contacts, recentContacts } = this.props;
     contacts = contacts.toJS();
+    recentContacts = recentContacts.toJS();
+
     return (
       <div>
         <Helmet>
@@ -58,17 +60,18 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
         </Helmet>
 
         <Wrapper>
-          <InnerWrapper1>
+          <InnerWrapper1 contactsPresent={contacts.length}>
             <ContactHeader
-              title={'Recent Contacts'}
+              title={'Recently Used Contacts'}
               showSearch
               onChange={((value) => this.setState({ recentFilterText: value }))}
             />
-            <Border contactsLength={contacts.length}>
+            <Border contactsLength={recentContacts.length}>
               <ContactList
-                data={this.filterSearchText(contacts || [], 'recentFilterText')}
-                onEdit={(newContact, oldContact) => this.props.editContact(contacts, newContact, oldContact)}
-                onDelete={(contact) => this.props.removeContact(contacts, contact)}
+                data={this.filterSearchText(recentContacts, 'recentFilterText')}
+                onEdit={(newContact, oldContact) => this.props.editContact(contacts, recentContacts, newContact, oldContact)}
+                onDelete={(contact) => this.props.removeContact(contacts, recentContacts, contact)}
+                message={'You have no recently used contacts.'}
               />
             </Border>
           </InnerWrapper1>
@@ -80,9 +83,9 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
             />
             <Border contactsLength={contacts.length}>
               <ContactList
-                data={this.filterSearchText(contacts || [], 'fullFilterText')}
-                onEdit={(newContact, oldContact) => this.props.editContact(contacts, newContact, oldContact)}
-                onDelete={(data) => this.props.removeContact(contacts, data)}
+                data={this.filterSearchText(contacts, 'fullFilterText')}
+                onEdit={(newContact, oldContact) => this.props.editContact(contacts, recentContacts, newContact, oldContact)}
+                onDelete={(data) => this.props.removeContact(contacts, recentContacts, data)}
               />
             </Border>
           </InnerWrapper2>
@@ -97,11 +100,16 @@ ContactBook.propTypes = {
     [PropTypes.arrayOf(PropTypes.object), PropTypes.object]
   ),
   removeContact: PropTypes.func,
+  recentContacts: PropTypes.oneOfType(
+    [PropTypes.arrayOf(PropTypes.object), PropTypes.object]
+  ),
   editContact: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   contacts: makeSelectContacts(),
+  recentContacts: makeSelectRecentContacts(),
+
 });
 
 export function mapDispatchToProps(dispatch) {

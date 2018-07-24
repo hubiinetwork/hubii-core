@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Form, Icon } from 'antd';
 import PropTypes from 'prop-types';
+import { isValidAddress } from 'ethereumjs-util';
 import {
   Text,
   Wrapper,
@@ -9,7 +10,6 @@ import {
   ParentDiv,
 } from './EditContactModal.style';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
-
 /**
  * Modal component for editing a contact.
  */
@@ -18,13 +18,13 @@ export class EditContactModal extends React.Component {
   constructor(props) {
     super(props);
     this.handleEdit = this.handleEdit.bind(this);
-    this.validateEdit = this.validateEdit.bind(this);
     this.state = {
       oldName: null,
       oldAddress: null,
     };
 
-    this.validateEdit = this.validateEdit.bind(this);
+    this.validateInUse = this.validateInUse.bind(this);
+    this.validateInvalid = this.validateInvalid.bind(this);
   }
 
   componentWillMount() {
@@ -46,15 +46,22 @@ export class EditContactModal extends React.Component {
     });
   }
 
-  validateEdit(rule, value, callback) {
-    const { validateEdit } = this.props;
-    const error = validateEdit(value, this.state.oldAddress);
-    if (error) {
+  validateInUse(rule, value, callback) {
+    const { contacts } = this.props;
+    const sameAddressList = contacts.filter((person) => person.address === value.trim());
+    if (sameAddressList.length && value.trim() !== this.state.oldAddress) {
       callback('You have already saved this address');
-    } else {
-      callback();
     }
+    callback();
   }
+
+  validateInvalid(rule, value, callback) {
+    if (!isValidAddress(value.trim())) {
+      callback('invalid Address');
+    }
+    callback();
+  }
+
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -90,9 +97,14 @@ export class EditContactModal extends React.Component {
                   required: true,
                 },
                 {
+                  message: 'Address is invalid.',
+                  required: true,
+                  validator: (rule, value, callback) => this.validateInvalid(rule, value, callback),
+                },
+                {
                   message: 'This address is already under use',
                   required: true,
-                  validator: (rule, value, callback) => this.validateEdit(rule, value, callback),
+                  validator: (rule, value, callback) => this.validateInUse(rule, value, callback),
                 },
               ],
               initialValue: this.props.address,
@@ -114,17 +126,27 @@ export class EditContactModal extends React.Component {
   }
 }
 EditContactModal.propTypes = {
-  /** Name of contact. */
-  name: PropTypes.string.isRequired,
-  /** Address of contact. */
-  address: PropTypes.string.isRequired,
-  /** Function to be executed when edit button is pressed */
+  /**
+   * Name of contact.
+   */
+  name: PropTypes.string,
+  /**
+   * Address of contact.
+   */
+  address: PropTypes.string,
+  /**
+   * Function to be executed when edit button is pressed
+   */
   onEdit: PropTypes.func,
   form: PropTypes.object,
-  /** Function to be executed when input is changed */
+  /**
+   * Function to be executed when input is changed
+   */
   onChange: PropTypes.func,
-  /** Function which  validates Input */
-  validateEdit: PropTypes.func,
+  /**
+   * Contacts array
+   */
+  contacts: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Form.create()(EditContactModal);

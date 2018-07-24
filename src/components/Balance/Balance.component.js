@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getAbsolutePath } from 'utils/electron';
 import {
   FlexWrapper,
   ImageWrapper,
@@ -15,8 +16,7 @@ const Balance = (props) => (
     {props.coin && (
     <ImageWrapper>
       <Image
-      // eslint-disable-next-line global-require
-        src={require(`../../../public/asset_images/${props.coin}.svg`)}
+        src={getAbsolutePath(`public/images/assets/${props.coin}.svg`)}
       />
       {props.caret && <Caret />}
     </ImageWrapper>

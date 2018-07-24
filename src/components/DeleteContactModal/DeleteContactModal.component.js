@@ -7,6 +7,7 @@
 import React from 'react';
 import { Select } from 'antd';
 import PropTypes from 'prop-types';
+import { getAbsolutePath } from 'utils/electron';
 import {
   LogoWrapper,
   StyledSelect,
@@ -51,7 +52,7 @@ class DeleteContactModal extends React.Component {
     return (
       <div>
         <LogoWrapper>
-          <img src="/public/Images/striim-logo.png" alt="Striim  logo" />
+          <img src={getAbsolutePath('public/images/striim-logo.png')} alt="Striim  logo" />
         </LogoWrapper>
         <StyledForm>
 

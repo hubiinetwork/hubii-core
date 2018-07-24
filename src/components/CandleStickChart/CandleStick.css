@@ -48,3 +48,7 @@
 	fill-opacity: 0.6;
 	stroke-width: 0;
 }
+
+.candlestickchart-tooltip-value {
+	color: #3df5cd
+}

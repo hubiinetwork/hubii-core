@@ -5,19 +5,24 @@ import WalletHOC, { getComponentHOC, mapDispatchToProps } from '../index';
 
 describe('WalletHOC', () => {
   describe('shallow mount', () => {
-    const params = {
+    const loadWalletsBalancesSpy = jest.fn();
+    const startLedgerSyncSpy = jest.fn();
+    const props = {
       currentWallet: fromJS({
         showDecryptModal: false,
       }),
       currentWalletDetails: {},
       decryptWallet: () => {},
       hideDecryptWalletModal: () => {},
+      loadWalletsBalances: loadWalletsBalancesSpy,
+      startLedgerSync: startLedgerSyncSpy,
+      loading: fromJS({
+        decryptingWallet: false,
+      }),
     };
-    let loadWalletsBalancesSpy;
     let dom;
-    beforeEach(() => {
-      loadWalletsBalancesSpy = jest.fn();
-      params.loadWalletsBalances = loadWalletsBalancesSpy;
+    afterEach(() => {
+      jest.clearAllMocks();
     });
     describe('#WalletHOC', () => {
       it('should return composed component', () => {
@@ -25,12 +30,71 @@ describe('WalletHOC', () => {
         expect(hoc.WrappedComponent).toBeDefined();
       });
     });
-    describe('#componentDidMount', () => {
-      it('should loadWallets action', () => {
+    describe('#Hoc rendering', () => {
+      it('renders correctly when loading is false', () => {
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
-            {...params}
+            {...props}
+          />
+        );
+        expect(dom).toMatchSnapshot();
+      });
+      it('renders correctly when loading is true', () => {
+        const Hoc = getComponentHOC('div');
+        dom = shallow(
+          <Hoc
+            {...props}
+            loading={fromJS({ decryptingWallet: true })}
+          />
+        );
+        expect(dom).toMatchSnapshot();
+      });
+    });
+    describe('#componentWillReceiveProps', () => {
+      it('should set the password state to null if prev modal display was false and new is true', () => {
+        const Hoc = getComponentHOC('div');
+        dom = shallow(
+          <Hoc
+            {...props}
+          />
+        );
+        const nextProps = {
+          currentWallet: fromJS({
+            showDecryptModal: true,
+          }),
+        };
+        const instance = dom.instance();
+        instance.setState({ password: 'password' });
+        instance.componentWillReceiveProps(nextProps);
+        const expectedPassword = null;
+        expect(instance.state.password).toEqual(expectedPassword);
+      });
+      it('should not set the password state to null if prev modal display was false and new is false', () => {
+        const Hoc = getComponentHOC('div');
+        dom = shallow(
+          <Hoc
+            {...props}
+          />
+        );
+        const nextProps = {
+          currentWallet: fromJS({
+            showDecryptModal: false,
+          }),
+        };
+        const instance = dom.instance();
+        instance.setState({ password: 'password' });
+        instance.componentWillReceiveProps(nextProps);
+        const expectedPassword = 'password';
+        expect(instance.state.password).toEqual(expectedPassword);
+      });
+    });
+    describe('#componentDidMount', () => {
+      it('should call loadWallets prop when called', () => {
+        const Hoc = getComponentHOC('div');
+        dom = shallow(
+          <Hoc
+            {...props}
           />
         );
         const instance = dom.instance();
@@ -38,12 +102,25 @@ describe('WalletHOC', () => {
         expect(loadWalletsBalancesSpy).toBeCalled();
       });
     });
+    describe('#componentDidMount', () => {
+      it('should call startLedgerSync prop when called', () => {
+        const Hoc = getComponentHOC('div');
+        dom = shallow(
+          <Hoc
+            {...props}
+          />
+        );
+        const instance = dom.instance();
+        instance.componentDidMount();
+        expect(startLedgerSyncSpy).toBeCalled();
+      });
+    });
     describe('#onPasswordChange', () => {
       it('should update password to temporary state', () => {
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
-            {...params}
+            {...props}
           />
         );
         const instance = dom.instance();
@@ -52,18 +129,50 @@ describe('WalletHOC', () => {
         expect(instance.state.password).toEqual(password);
       });
     });
+    describe('#handleKeyPress', () => {
+      it('should run the decryptWallet when "enter" key is pressed', () => {
+        const Hoc = getComponentHOC('div');
+        dom = shallow(
+          <Hoc
+            {...props}
+          />
+        );
+        const event = {
+          key: 'Enter',
+        };
+        const instance = dom.instance();
+        const spy = jest.spyOn(instance, 'decryptWallet');
+        instance.handleKeyPress(event);
+        expect(spy).toHaveBeenCalledTimes(1);
+      });
+      it('should not run the decryptWallet when "enter" key is pressed', () => {
+        const Hoc = getComponentHOC('div');
+        dom = shallow(
+          <Hoc
+            {...props}
+          />
+        );
+        const event = {
+          key: '',
+        };
+        const instance = dom.instance();
+        const spy = jest.spyOn(instance, 'decryptWallet');
+        instance.handleKeyPress(event);
+        expect(spy).toHaveBeenCalledTimes(0);
+      });
+    });
     describe('#decryptWallet', () => {
       it('should trigger decryptWallet action', () => {
         const decryptWalletSpy = jest.fn();
         const currentWalletDetails = {
-          name: 'wallet',
+          address: '0x00',
           encrypted: {},
         };
         const password = '123';
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
-            {...params}
+            {...props}
             decryptWallet={decryptWalletSpy}
             currentWalletDetails={currentWalletDetails}
           />
@@ -71,7 +180,7 @@ describe('WalletHOC', () => {
         const instance = dom.instance();
         instance.setState({ password });
         instance.decryptWallet();
-        expect(decryptWalletSpy).toBeCalledWith(currentWalletDetails.name, JSON.stringify(currentWalletDetails.encrypted), password);
+        expect(decryptWalletSpy).toBeCalledWith(currentWalletDetails.address, JSON.stringify(currentWalletDetails.encrypted), password);
       });
     });
     describe('#mapDispatchToProps', () => {

@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getAbsolutePath } from 'utils/electron';
+import { IsAddressMatch } from 'utils/wallet';
 import {
   TransactionHistoryItemCard,
   TransactionHistoryItemDate,
@@ -15,7 +17,7 @@ export const TransactionHistoryItem = (props) => {
   const locale = 'en-us';
   const type = !data.address
     ? 'exchange'
-    : data.address === data.to
+    : IsAddressMatch(data.address, data.to)
       ? 'received'
       : 'sent';
   const month = data.time.toLocaleString(locale, { month: 'short' });
@@ -26,9 +28,9 @@ export const TransactionHistoryItem = (props) => {
       </TransactionHistoryItemDate>
       <TransactionHistoryItemCard>
         <Image
-          src={`../../../public/asset_images/${
+          src={getAbsolutePath(`public/images/assets/${
             type === 'exchange' ? data.fromCoin : data.coin
-          }.svg`}
+          }.svg`)}
         />
         <TransactionHistoryDetail
           type={type}

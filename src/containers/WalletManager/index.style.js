@@ -8,24 +8,28 @@ export const Wrapper = styled.div`
   background: ${({ theme }) => theme.palette.primary1};
 `;
 
+export const Heading = styled.h2`
+  display: flex;
+  font-family: "SF Text";
+  font-weight: 500;
+  margin: 0;
+  color: ${({ theme }) => theme.palette.light};
+  font-size: 18px;
+`;
+
 export const TabsLayout = styled(Layout)`
   background: ${({ theme }) => theme.palette.primary3};
-  .heading {
-    color: ${({ theme }) => theme.palette.light};
-    font-size: 18px;
-    padding-top: 7px;
-    display: inline-flex;
-  }
 `;
 
 export const StyledButton = styled(Button)`
-  float: right;
-  margin-top: 17px;
+  margin-left: auto;
   border-width: 2px;
   padding: 0.5rem 1rem;
 `;
 
 export const WalletsTabHeader = styled(Header)`
+  display: flex;
+  align-items: center;
   height: 74px;
   padding: 0 28px;
   background: ${({ theme }) => theme.palette.primary4};

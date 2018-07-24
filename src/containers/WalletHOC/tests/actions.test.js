@@ -6,6 +6,11 @@ import {
   decryptWalletFailed,
   decryptWalletSuccess,
   loadWallets,
+  pollLedger,
+  ledgerDetected,
+  ledgerError,
+  deleteWallet,
+  saveLedgerAddress,
 } from '../actions';
 import {
   CREATE_WALLET_FROM_MNEMONIC,
@@ -15,9 +20,26 @@ import {
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
   LOAD_WALLETS,
+  POLL_LEDGER,
+  LEDGER_DETECTED,
+  LEDGER_ERROR,
+  DELETE_WALLET,
 } from '../constants';
 
+import getFriendlyError from '../../../utils/ledger/friendlyErrors';
+
 describe('WalletHoc actions', () => {
+  describe('deleteWallet Action', () => {
+    const address = '0x00';
+    it('returns expected output', () => {
+      const expected = {
+        type: DELETE_WALLET,
+        address,
+      };
+      expect(deleteWallet(address)).toEqual(expected);
+    });
+  });
+
   describe('createWalletFromMnemonic Action', () => {
     const name = 'Wallet8';
     const mnemonic = 'word word word';
@@ -42,13 +64,15 @@ describe('WalletHoc actions', () => {
 
   describe('createWalletSuccess Action', () => {
     it('returns expected output', () => {
-      const encryptedWallet = '{ blah: "blah123" }';
-      const decryptedWallet = { key: 'twinkletoes' };
+      const encryptedWallet = JSON.stringify({ address: '123' });
+      const decryptedWallet = { address: '0x000' };
       const name = 'George';
       const expected = {
         type: CREATE_WALLET_SUCCESS,
-        name,
         newWallet: {
+          name,
+          address: decryptedWallet.address,
+          type: 'software',
           encrypted: encryptedWallet,
           decrypted: decryptedWallet,
         },
@@ -73,23 +97,29 @@ describe('WalletHoc actions', () => {
 
   describe('decryptWallet Action', () => {
     it('returns expected output', () => {
+      const encryptedWallet = { add: '12' };
+      const password = 'pass';
+      const address = '0x12';
       const expected = {
         type: DECRYPT_WALLET,
+        encryptedWallet,
+        address,
+        password,
       };
-      expect(decryptWallet()).toEqual(expected);
+      expect(decryptWallet(address, encryptedWallet, password)).toEqual(expected);
     });
   });
 
   describe('decryptWalletSuccess Action', () => {
     it('returns expected output', () => {
       const decryptedWallet = { privatekey: '1234' };
-      const name = 'test';
+      const address = '0x00';
       const expected = {
         type: DECRYPT_WALLET_SUCCESS,
+        address,
         decryptedWallet,
-        name,
       };
-      expect(decryptWalletSuccess(name, decryptedWallet)).toEqual(expected);
+      expect(decryptWalletSuccess(address, decryptedWallet)).toEqual(expected);
     });
   });
 
@@ -105,11 +135,65 @@ describe('WalletHoc actions', () => {
   });
 
   describe('loadWallets Action', () => {
-    it('loadWallets', () => {
+    it('returns expected output', () => {
       const expected = {
         type: LOAD_WALLETS,
       };
       expect(loadWallets()).toEqual(expected);
+    });
+  });
+
+  describe('pollLedger Action', () => {
+    it('returns expected output', () => {
+      const expected = {
+        type: POLL_LEDGER,
+      };
+      expect(pollLedger()).toEqual(expected);
+    });
+  });
+
+  describe('ledgerDetected Action', () => {
+    it('returns expected output', () => {
+      const id = '048ncjdh39';
+      const expected = {
+        type: LEDGER_DETECTED,
+        id,
+      };
+      expect(ledgerDetected(id)).toEqual(expected);
+    });
+  });
+
+  // should dispatch new add wallet action
+  describe('saveLedgerAddress Action', () => {
+    it('returns expected output', () => {
+      const deviceId = '0x0028342093';
+      const address = '0x000';
+      const name = 'wallet12';
+      const derivationPath = 'm/0/0123';
+      const newWallet = {
+        deviceId,
+        address,
+        type: 'lns',
+        name,
+        derivationPath,
+      };
+      const expected = {
+        type: CREATE_WALLET_SUCCESS,
+        newWallet,
+      };
+      expect(saveLedgerAddress(name, derivationPath, deviceId, address)).toEqual(expected);
+    });
+  });
+
+  describe('ledgerError Action', () => {
+    it('converts error and returns expected output', () => {
+      const error = { id: 'ListenTimeout' };
+      const friendlyError = getFriendlyError(error);
+      const expected = {
+        type: LEDGER_ERROR,
+        error: friendlyError,
+      };
+      expect(ledgerError(error)).toEqual(expected);
     });
   });
 });

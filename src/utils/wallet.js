@@ -1,25 +1,17 @@
 import { providers } from 'ethers';
+import fatalError from './fatalError';
 
 export function convertWalletsList(walletsState) {
-  const walletsJSON = walletsState.toJS();
-  const wallets = [];
-  Object.keys(walletsJSON).forEach((type) => {
-    Object.keys(walletsJSON[type]).forEach((walletName) => {
-      try {
-        const wallet = walletsJSON[type][walletName];
-        wallet.encrypted = JSON.parse(wallet.encrypted);
-        wallet.type = type;
-        wallet.name = walletName;
-        wallet.address = `0x${wallet.encrypted.address}`;
-        wallets.push(wallet);
-      } catch (e) {
-        return e;
-      }
-      return walletName;
-    });
-    return type;
+  const walletsObject = walletsState.toJS();
+  const processedWallets = [];
+  walletsObject.forEach((wallet) => {
+    const curWallet = { ...wallet };
+    if (wallet.type === 'software') {
+      curWallet.encrypted = JSON.parse(wallet.encrypted);
+    }
+    processedWallets.push(curWallet);
   });
-  return wallets;
+  return processedWallets;
 }
 
 export function getTotalUSDValue(balances) {
@@ -52,6 +44,35 @@ export const ERC20ABI = [
     payable: false,
   },
 ];
+
+// A short and safe way of finding the index of a wallet stored in wallet state
+// using it's address
+export const findWalletIndex = (state, address, scopedFatalError = fatalError) => {
+  try {
+    const index = state.get('wallets').findIndex((w) => w.get('address') === address);
+    if (index < 0) throw new Error(`Tried to find index of non-existent wallet with address ${address}`);
+    return index;
+  } catch (e) {
+    return scopedFatalError(e);
+  }
+};
+
+export const humanFriendlyWalletType = (type) => {
+  if (type === 'lns') return 'Ledger Nano S';
+  if (type === 'software') return 'Software Wallet';
+  return type;
+};
+
+export const isValidPrivateKey = (str) => {
+  let filteredStr = str;
+  if (str.startsWith('0x')) {
+    filteredStr = str.substr(2);
+  }
+  if (filteredStr.match('-?[0-9a-fA-F]+') && filteredStr.length === 64) return true;
+  return false;
+};
+
+export const gweiToWei = (gwei) => (gwei * (10 ** 9));
 
 export const EthNetworkProvider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getAbsolutePath } from 'utils/electron';
 import {
   PaymentHistoryItemCard,
   Wrapper,
@@ -12,7 +13,7 @@ import PaymentHistoryDetail from '../PaymentHistoryDetail';
 export const PaymentHistoryItem = (props) => (
   <Wrapper>
     <PaymentHistoryItemCard>
-      <Image src={`../../../public/asset_images/${props.data.coin}.svg`} />
+      <Image src={getAbsolutePath(`public/images/assets/${props.data.coin}.svg`)} />
       <PaymentHistoryDetail data={props.data} />
     </PaymentHistoryItemCard>
   </Wrapper>
