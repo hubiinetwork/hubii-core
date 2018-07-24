@@ -155,11 +155,11 @@ describe('WalletHoc actions', () => {
   describe('ledgerEthAppConnected Action', () => {
     it('returns expected output', () => {
       const id = '048ncjdh39';
-      const descriptor = 'desc'
+      const descriptor = 'desc';
       const expected = {
         type: LEDGER_ETH_CONNECTED,
         id,
-        descriptor
+        descriptor,
       };
       expect(ledgerEthAppConnected(descriptor, id)).toEqual(expected);
     });

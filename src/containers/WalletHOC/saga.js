@@ -237,18 +237,9 @@ export function* hookNewWalletCreated({ newWallet }) {
 // Creates an eventChannel to listen to Ledger events
 export const ledgerChannel = () => eventChannel((listener) => {
   const sub = LedgerTransport.listen({
-    next: (e) => {
-      console.log('chan next', new Date(), e);
-      return listener(e);
-    },
-    error: (e) => {
-      console.log('chan error', new Date(), e);
-      return listener(e);
-    },
-    complete: (e) => {
-      console.log('chan complete', new Date(), e);
-      return listener(e);
-    },
+    next: (e) => listener(e),
+    error: (e) => listener(e),
+    complete: (e) => listener(e),
   });
   return () => { sub.unsubscribe(); };
 });
@@ -283,9 +274,9 @@ export const ledgerEthChannel = (descriptor) => eventChannel((listener) => {
 export function* pollEthApp({ descriptor }) {
   const channel = yield call(ledgerEthChannel, descriptor);
   addEthChannel(descriptor, channel);
-  while (true) {
+  while (true) { // eslint-disable-line no-constant-condition
+    const status = yield take(channel);
     try {
-      const status = yield take(channel);
       if (status.connected) {
         removeEthChannel(descriptor);
         yield put(ledgerEthAppConnected(descriptor, status.address.publicKey));
@@ -294,7 +285,7 @@ export function* pollEthApp({ descriptor }) {
         yield put(ledgerError(status.error));
       }
     } catch (error) {
-      console.log('poll', error);
+      removeEthChannel(descriptor);
     }
   }
 }
@@ -350,7 +341,6 @@ export function* fetchLedgerAddresses({ derivationPaths }) {
     for (let i = 0; i < derivationPaths.length; i += 1) {
       const path = derivationPaths[i];
       const publicAddressKeyPair = yield createEthTransportActivity(descriptor, async (ethTransport) => ethTransport.getAddress(path));
-      console.log(path, publicAddressKeyPair.address);
       yield put(fetchedLedgerAddress(path, publicAddressKeyPair.address));
     }
   } catch (error) {

@@ -66,7 +66,7 @@ const makeSelectCurrentWalletDetails = () => createSelector(
   (walletList, currentWallet, ledgerNanoSInfo) => {
     const walletDetails = walletList.find((wallet) => wallet.address === currentWallet.get('address')) || {};
     if (walletDetails.type === 'lns') {
-      walletDetails.ledgerNanoSInfo = ledgerNanoSInfo.toJS()
+      walletDetails.ledgerNanoSInfo = ledgerNanoSInfo.toJS();
     }
     return walletDetails;
   }
