@@ -833,7 +833,7 @@ describe('load wallets saga', () => {
           })
           .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
           .not.put.actionType(LEDGER_ERROR)
-          .run({silenceTimeout: true})
+          .run({ silenceTimeout: true })
           .then(() => {
             expect(signedTxHex).toEqual(expectedSignedTxHex);
           });

@@ -163,26 +163,6 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
 
   yield put(notify('info', 'Sending transaction...'));
 
-  // Transfering from a Ledger
-  // if (!wallet.encrypted) {
-  //   // Build raw transaction
-  //   yield put(notify('error', 'Sending transactions from a LNS is not supported in this version of Hubii Core, please check back soon!'));
-  //   // const rawTx = generateRawTx({ toAddress, amount, gasPrice, gasLimit });
-  //   // // Sign raw transaction
-  //   // try {
-  //   //   yield put(notify('info', 'Verify transaction details on your Ledger'));
-  //   //   const signedTx = ledgerSignTxn(rawTx);
-
-  //   // // Broadcast signed transaction
-  //   //   const web3 = new Web3('http://geth-ropsten.dev.hubii.net/');
-  //   //   const txHash = yield web3.eth.sendRawTransaction(signedTx);
-  //   //   yield put(transferSuccess(txHash, 'ETH'));
-  //   // } catch (e) {
-  //   //   yield put(ledgerError('Error making transaction: ', e));
-  //   // }
-  // } else {
-  //   // Transfering from a software wallet
-  // }
   const wei = utils.parseEther(amount.toString());
   if (token === 'ETH') {
     yield put(transferEtherAction({ toAddress, amount: wei, gasPrice, gasLimit }));
@@ -204,7 +184,6 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
       etherWallet.provider = EthNetworkProvider;
       transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
     }
-    console.log('tx', transaction);
     yield put(transferSuccess(transaction, 'ETH'));
     yield put(notify('success', 'Transaction sent'));
   } catch (error) {
@@ -255,25 +234,6 @@ export function* hookNewWalletCreated({ newWallet }) {
 }
 
 
-/*
- * Ledger sagas
- */
-
-// Sign a transaction with a Ledger
-// export function* ledgerSignTxn({ derivationPath, rawTx }) {
-//   try {
-//     yield put(stopLedgerSync());
-//     const transport = yield LedgerTransport.create();
-//     const eth = new Eth(transport);
-//     return yield eth.signTransaction(derivationPath, rawTx);
-//   } catch (e) {
-//     yield put(ledgerError('Error signing transaction: ', e));
-//     return -1;
-//   } finally {
-//     yield put(startLedgerSync());
-//   }
-// }
-
 // Creates an eventChannel to listen to Ledger events
 export const ledgerChannel = () => eventChannel((listener) => {
   const sub = LedgerTransport.listen({
@@ -308,20 +268,14 @@ export const removeEthChannel = (descriptor) => {
 };
 
 export const ledgerEthChannel = (descriptor) => eventChannel((listener) => {
-  console.log('init eth channel');
   const iv = setInterval(() => {
-    // check connection status from store
-    // if the ledger with the descriptor disconnected, end this channel
-
     createEthTransportActivity(descriptor, (ethTransport) => ethTransport.getAddress('m/44\'/60\'/0\'/0')).then((address) => {
       listener({ connected: true, address });
     }).catch((err) => {
-      console.log('eth act', err);
       listener({ connected: false, error: err });
     });
   }, 2000);
   return () => {
-    console.log('close eth channel');
     clearInterval(iv);
   };
 });
@@ -335,12 +289,6 @@ export function* pollEthApp({ descriptor }) {
       if (status.connected) {
         removeEthChannel(descriptor);
         yield put(ledgerEthAppConnected(descriptor, status.address.publicKey));
-
-        // const paths = [];
-        // for (let i = 0; i < 20; i++) {
-        //   paths.push(`m/44\'/60\'/0\'/${i}`);
-        // }
-        // yield put(fetchLedgerAddressesAction(paths, status.ethTransport));
       } else {
         yield put(ledgerEthAppDisconnected(descriptor));
         yield put(ledgerError(status.error));
@@ -373,31 +321,19 @@ export function* initLedger() {
   while (true) { // eslint-disable-line no-constant-condition
     try {
       const msg = yield take(chan);
-      console.log('msg', msg);
       if (msg.type === 'remove') {
         const { timeout } = yield race({
           msg: take(chan),
           timeout: call(delay, 1000),
         });
         if (timeout) {
-          // console.log('close chan')
-          // chan.close()
           yield put(ledgerDisconnected(msg.descriptor));
           continue; // eslint-disable-line no-continue
-          // throw new Error('Disconnected');
         }
       }
 
-      // const ethchan = yield call(ledgerEthChannel, msg.descriptor);
       yield put(ledgerConnected(msg.descriptor));
-      // const transport = yield call(createTransport);
-      // const eth = yield call(newEth, transport);
-      // const address = yield call(eth.getAddress, "m/44'/60'/0'/0");
-      // const id = address.publicKey;
-      // yield put(ledgerEthAppConnected(id));
-      // yield put(ledgerEthAppConnected());
     } catch (e) {
-      console.log('error', e);
       yield put(ledgerError(e));
     }
   }
@@ -406,9 +342,6 @@ export function* initLedger() {
 // Dispatches the address for every derivation path in the input
 export function* fetchLedgerAddresses({ derivationPaths }) {
   try {
-    // yield delay(1000); // Wait for any ongoing operations to clear
-    // transport = yield call(createTransport);
-    // const eth = yield call(newEth, transport);
     const ledgerStatus = yield select(makeSelectLedgerNanoSInfo());
     if (!ledgerStatus.get('descriptor')) {
       throw new Error('no descriptor available');
@@ -421,7 +354,6 @@ export function* fetchLedgerAddresses({ derivationPaths }) {
       yield put(fetchedLedgerAddress(path, publicAddressKeyPair.address));
     }
   } catch (error) {
-    console.log('fetch address error', error);
     put(ledgerError('Error fetching address'));
   }
 }
@@ -454,9 +386,9 @@ export function* sendTransactionByLedger({ toAddress, amount, gasPrice, gasLimit
       (ethTransport) => ethTransport.signTransaction(walletDetails.derivationPath, rawTxHex)
     );
   } catch (e) {
-    console.log(e.message);
-    yield put(ledgerError('Error making transaction: ', e));
-    throw e;
+    const refinedError = ledgerError(e);
+    yield put(refinedError);
+    throw new Error(refinedError.error);
   }
 
   // update raw tx with signed data

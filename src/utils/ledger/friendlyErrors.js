@@ -5,6 +5,7 @@ export default (error) => {
   if (error.name === 'TransportStatusError') return ethAppNotOpenErrorMsg;
   if (error.name === 'TransportError') return browserSupportErrorMsg;
   if (error.message === 'NoSupport') return noTransportErrorMsg;
+  if (error.message && error.message.includes('cannot open device with path')) return disconnectedErrorMsg;
   return `Unknown error occured: ${error}`;
 };
 

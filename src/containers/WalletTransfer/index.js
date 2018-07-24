@@ -9,6 +9,7 @@ import PageLoadingIndicator from 'components/PageLoadingIndicator';
 import {
   makeSelectCurrentWallet,
   makeSelectCurrentWalletDetails,
+  makeSelectErrors,
 } from 'containers/WalletHOC/selectors';
 import {
   makeSelectContacts,
@@ -50,7 +51,6 @@ export class WalletTransfer extends React.PureComponent {
 
     return (
       <TransferForm
-        address="0xf400db37c54c535febca1b470fd1d23d30acdd11"
         recipients={contacts.toJS()}
         currencies={currentWalletDetails.balances}
         onSend={this.onSend}
@@ -73,6 +73,7 @@ const mapStateToProps = createStructuredSelector({
   currentWalletDetails: makeSelectCurrentWalletDetails(),
   currentWallet: makeSelectCurrentWallet(),
   contacts: makeSelectContacts(),
+  errors: makeSelectErrors(),
 });
 
 export function mapDispatchToProps(dispatch) {
