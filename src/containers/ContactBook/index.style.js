@@ -31,6 +31,7 @@ export const InnerWrapper2 = styled.div`
       margin-top: 2.5rem;
     `
   }
+  margin-left: ${(props) => props.contactsPresent ? '2rem' : '0rem'};
 `;
 
 export const Border = styled.div`
