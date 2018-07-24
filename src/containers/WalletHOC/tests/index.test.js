@@ -16,6 +16,9 @@ describe('WalletHOC', () => {
       hideDecryptWalletModal: () => {},
       loadWalletsBalances: loadWalletsBalancesSpy,
       startLedgerSync: startLedgerSyncSpy,
+      loading: fromJS({
+        decryptingWallet: false,
+      }),
     };
     let dom;
     afterEach(() => {
@@ -25,6 +28,65 @@ describe('WalletHOC', () => {
       it('should return composed component', () => {
         const hoc = WalletHOC('div');
         expect(hoc.WrappedComponent).toBeDefined();
+      });
+    });
+    describe('#Hoc rendering', () => {
+      it('renders correctly when loading is false', () => {
+        const Hoc = getComponentHOC('div');
+        dom = shallow(
+          <Hoc
+            {...props}
+          />
+        );
+        expect(dom).toMatchSnapshot();
+      });
+      it('renders correctly when loading is true', () => {
+        const Hoc = getComponentHOC('div');
+        dom = shallow(
+          <Hoc
+            {...props}
+            loading={fromJS({ decryptingWallet: true })}
+          />
+        );
+        expect(dom).toMatchSnapshot();
+      });
+    });
+    describe('#componentWillReceiveProps', () => {
+      it('should set the password state to null if prev modal display was false and new is true', () => {
+        const Hoc = getComponentHOC('div');
+        dom = shallow(
+          <Hoc
+            {...props}
+          />
+        );
+        const nextProps = {
+          currentWallet: fromJS({
+            showDecryptModal: true,
+          }),
+        };
+        const instance = dom.instance();
+        instance.setState({ password: 'password' });
+        instance.componentWillReceiveProps(nextProps);
+        const expectedPassword = null;
+        expect(instance.state.password).toEqual(expectedPassword);
+      });
+      it('should not set the password state to null if prev modal display was false and new is false', () => {
+        const Hoc = getComponentHOC('div');
+        dom = shallow(
+          <Hoc
+            {...props}
+          />
+        );
+        const nextProps = {
+          currentWallet: fromJS({
+            showDecryptModal: false,
+          }),
+        };
+        const instance = dom.instance();
+        instance.setState({ password: 'password' });
+        instance.componentWillReceiveProps(nextProps);
+        const expectedPassword = 'password';
+        expect(instance.state.password).toEqual(expectedPassword);
       });
     });
     describe('#componentDidMount', () => {
