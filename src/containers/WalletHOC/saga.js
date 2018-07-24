@@ -440,7 +440,7 @@ export function* sendTransactionByLedger({ toAddress, amount, gasPrice, gasLimit
     chainId: EthNetworkProvider.chainId,
   });
   // changes to the raw tx before signing by ledger nano
-  rawTx.raw[6] = Buffer.from([3]);
+  rawTx.raw[6] = Buffer.from([EthNetworkProvider.chainId]);
   rawTx.raw[7] = Buffer.from([]);
   rawTx.raw[8] = Buffer.from([]);
   const rawTxHex = rawTx.serialize().toString('hex');
