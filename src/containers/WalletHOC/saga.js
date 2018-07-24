@@ -198,49 +198,7 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
 
   try {
     if (walletDetails.type === 'lns') {
-      let rawTxHex;
-      let rawTx;
-      console.log('lns');
-      try {
-        const nonce = yield call(getTransactionCount, walletDetails.address);
-        console.log('nonce', nonce, walletDetails.address);
-        rawTx = generateRawTx({
-          toAddress,
-          amount,
-          gasPrice,
-          gasLimit,
-          nonce,
-          chainId: EthNetworkProvider.chainId,
-        });
-        rawTx.raw[6] = Buffer.from([3]); // v
-        rawTx.raw[7] = Buffer.from([]); // r
-        rawTx.raw[8] = Buffer.from([]); // s
-        console.log('raw tx', rawTx);
-        rawTxHex = rawTx.serialize().toString('hex');
-        console.log(rawTxHex);
-      } catch (err) {
-        console.log(err);
-      }
-      // Sign raw transaction
-      try {
-        yield put(notify('info', 'Verify transaction details on your Ledger'));
-
-        const signedTx = yield call(
-          createEthTransportActivity,
-          walletDetails.ledgerNanoSInfo.descriptor,
-          (ethTransport) => ethTransport.signTransaction(walletDetails.derivationPath, rawTxHex)
-        );
-        rawTx.v = Buffer.from(signedTx.v, 'hex');
-        rawTx.r = Buffer.from(signedTx.r, 'hex');
-        rawTx.s = Buffer.from(signedTx.s, 'hex');
-        const txHex = `0x${rawTx.serialize().toString('hex')}`;
-        const txHash = yield call(sendTransaction, txHex);
-        console.log('tx hash', txHash);
-        transaction = yield call(getTransaction, txHash);
-      } catch (e) {
-        console.log(e.message);
-        yield put(ledgerError('Error making transaction: ', e));
-      }
+      transaction = yield call(sendTransactionByLedger, { toAddress, amount, gasPrice, gasLimit });
     } else {
       const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
       etherWallet.provider = EthNetworkProvider;
@@ -466,6 +424,52 @@ export function* fetchLedgerAddresses({ derivationPaths }) {
     console.log('fetch address error', error);
     put(ledgerError('Error fetching address'));
   }
+}
+
+export function* sendTransactionByLedger({ toAddress, amount, gasPrice, gasLimit }) {
+  const walletDetails = yield select(makeSelectCurrentWalletDetails());
+
+  const nonce = yield call(getTransactionCount, walletDetails.address);
+  // generate raw tx for ledger nano to sign
+  const rawTx = generateRawTx({
+    toAddress,
+    amount,
+    gasPrice,
+    gasLimit,
+    nonce,
+    chainId: EthNetworkProvider.chainId,
+  });
+  // changes to the raw tx before signing by ledger nano
+  rawTx.raw[6] = Buffer.from([3]);
+  rawTx.raw[7] = Buffer.from([]);
+  rawTx.raw[8] = Buffer.from([]);
+  const rawTxHex = rawTx.serialize().toString('hex');
+
+  let signedTx;
+  try {
+    yield put(notify('info', 'Verify transaction details on your Ledger'));
+    signedTx = yield call(
+      createEthTransportActivity,
+      walletDetails.ledgerNanoSInfo.descriptor,
+      (ethTransport) => ethTransport.signTransaction(walletDetails.derivationPath, rawTxHex)
+    );
+  } catch (e) {
+    console.log(e.message);
+    yield put(ledgerError('Error making transaction: ', e));
+    throw e;
+  }
+
+  // update raw tx with signed data
+  rawTx.v = Buffer.from(signedTx.v, 'hex');
+  rawTx.r = Buffer.from(signedTx.r, 'hex');
+  rawTx.s = Buffer.from(signedTx.s, 'hex');
+
+  // regenerate tx hex string
+  const txHex = `0x${rawTx.serialize().toString('hex')}`;
+  // broadcast transaction
+  const txHash = yield call(sendTransaction, txHex);
+  // get transaction details
+  return yield call(getTransaction, txHash);
 }
 
 

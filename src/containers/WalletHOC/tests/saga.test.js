@@ -33,6 +33,7 @@ import walletHoc, {
   ledgerChannel,
   ledgerEthChannel,
   pollEthApp,
+  sendTransactionByLedger,
 } from '../saga';
 
 import {
@@ -49,6 +50,7 @@ import {
   CREATE_WALLET_SUCCESS,
   LISTEN_TOKEN_BALANCES,
   INIT_LEDGER,
+  LEDGER_ERROR,
   // LEDGER_CONNECTED,
 } from '../constants';
 
@@ -776,7 +778,7 @@ describe('load wallets saga', () => {
     });
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
     describe('hardware wallet: ledger', () => {
-      it.only('sign transaction for eth', () => {
+      it.only('#sendTransactionByLedger', () => {
         const storeState = {
           walletHoc: {
             wallets: [{
@@ -799,10 +801,9 @@ describe('load wallets saga', () => {
         const params = {
           token: 'ETH',
           toAddress: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
-          amount: 0.0001,
+          amount: utils.parseEther('0.0001'),
           gasPrice: 30000,
           gasLimit: 21000,
-          wallet: { encrypted: {}, decrypted: {} },
         };
         const nonce = 16;
         const signedTx = {
@@ -810,8 +811,9 @@ describe('load wallets saga', () => {
           r: '7140f2dbd69f235c5ba229da1651a8c30062213a8a3a27f424a177cc01189fd8',
           s: '1b7384730b63b8a70bababc3999c00bd99ed7fbd4c5c7e74cabcfa4d3133d119',
         };
-        const signedTxHex = '0xf8671082753082520894bfdc0c8e54af5719872a2edef8e65c9f4a3eae88865af3107a4000802aa07140f2dbd69f235c5ba229da1651a8c30062213a8a3a27f424a177cc01189fd8a01b7384730b63b8a70bababc3999c00bd99ed7fbd4c5c7e74cabcfa4d3133d119';
-        return expectSaga(walletHoc)
+        const expectedSignedTxHex = '0xf8671082753082520894bfdc0c8e54af5719872a2edef8e65c9f4a3eae88865af3107a4000802aa07140f2dbd69f235c5ba229da1651a8c30062213a8a3a27f424a177cc01189fd8a01b7384730b63b8a70bababc3999c00bd99ed7fbd4c5c7e74cabcfa4d3133d119';
+        let signedTxHex;
+        return expectSaga(sendTransactionByLedger, params)
           .provide({
             call(effect) {
               if (effect.fn === createEthTransportActivity) {
@@ -821,7 +823,7 @@ describe('load wallets saga', () => {
                 return nonce;
               }
               if (effect.fn === sendTransaction) {
-                expect(effect.args[0]).toEqual(signedTxHex);
+                signedTxHex = effect.args[0];
                 return 'hash';
               }
               if (effect.fn === getTransaction) {
@@ -831,9 +833,11 @@ describe('load wallets saga', () => {
             },
           })
           .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-          .dispatch(transferAction(params))
-          .put.actionType(TRANSFER_SUCCESS)
-          .run({ silenceTimeout: true });
+          .not.put.actionType(LEDGER_ERROR)
+          .run({ silenceTimeout: true })
+          .then(() => {
+            expect(signedTxHex).toEqual(expectedSignedTxHex);
+          });
       });
       it('handle ledger nano errors during signing a transaction', () => {
         // no pin code/disconnected: [cannot open device with path IOService]
