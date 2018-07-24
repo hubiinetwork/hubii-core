@@ -776,9 +776,8 @@ describe('load wallets saga', () => {
           });
       });
     });
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
     describe('hardware wallet: ledger', () => {
-      it.only('#sendTransactionByLedger', () => {
+      it('#sendTransactionByLedger should sign tx and output a hex correctly', () => {
         const storeState = {
           walletHoc: {
             wallets: [{
@@ -834,7 +833,7 @@ describe('load wallets saga', () => {
           })
           .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
           .not.put.actionType(LEDGER_ERROR)
-          .run({ silenceTimeout: true })
+          .run({silenceTimeout: true})
           .then(() => {
             expect(signedTxHex).toEqual(expectedSignedTxHex);
           });

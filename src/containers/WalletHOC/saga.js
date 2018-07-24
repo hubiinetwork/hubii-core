@@ -164,30 +164,30 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
   yield put(notify('info', 'Sending transaction...'));
 
   // Transfering from a Ledger
-  if (!wallet.encrypted) {
-    // Build raw transaction
-    yield put(notify('error', 'Sending transactions from a LNS is not supported in this version of Hubii Core, please check back soon!'));
-    // const rawTx = generateRawTx({ toAddress, amount, gasPrice, gasLimit });
-    // // Sign raw transaction
-    // try {
-    //   yield put(notify('info', 'Verify transaction details on your Ledger'));
-    //   const signedTx = ledgerSignTxn(rawTx);
+  // if (!wallet.encrypted) {
+  //   // Build raw transaction
+  //   yield put(notify('error', 'Sending transactions from a LNS is not supported in this version of Hubii Core, please check back soon!'));
+  //   // const rawTx = generateRawTx({ toAddress, amount, gasPrice, gasLimit });
+  //   // // Sign raw transaction
+  //   // try {
+  //   //   yield put(notify('info', 'Verify transaction details on your Ledger'));
+  //   //   const signedTx = ledgerSignTxn(rawTx);
 
-    // // Broadcast signed transaction
-    //   const web3 = new Web3('http://geth-ropsten.dev.hubii.net/');
-    //   const txHash = yield web3.eth.sendRawTransaction(signedTx);
-    //   yield put(transferSuccess(txHash, 'ETH'));
-    // } catch (e) {
-    //   yield put(ledgerError('Error making transaction: ', e));
-    // }
-  } else {
-    // Transfering from a software wallet
-    const wei = utils.parseEther(amount.toString());
-    if (token === 'ETH') {
-      yield put(transferEtherAction({ toAddress, amount: wei, gasPrice, gasLimit }));
-    } else if (contractAddress) {
-      yield put(transferERC20Action({ token, toAddress, amount: wei, gasPrice, gasLimit, contractAddress }));
-    }
+  //   // // Broadcast signed transaction
+  //   //   const web3 = new Web3('http://geth-ropsten.dev.hubii.net/');
+  //   //   const txHash = yield web3.eth.sendRawTransaction(signedTx);
+  //   //   yield put(transferSuccess(txHash, 'ETH'));
+  //   // } catch (e) {
+  //   //   yield put(ledgerError('Error making transaction: ', e));
+  //   // }
+  // } else {
+  //   // Transfering from a software wallet
+  // }
+  const wei = utils.parseEther(amount.toString());
+  if (token === 'ETH') {
+    yield put(transferEtherAction({ toAddress, amount: wei, gasPrice, gasLimit }));
+  } else if (contractAddress) {
+    yield put(transferERC20Action({ token, toAddress, amount: wei, gasPrice, gasLimit, contractAddress }));
   }
 }
 
