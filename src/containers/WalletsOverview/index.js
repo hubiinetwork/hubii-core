@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -6,15 +5,14 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
 
-import { makeSelectWalletList } from 'containers/WalletHOC/selectors';
+import { deleteWallet, showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHOC/actions';
+import { makeSelectLedgerNanoSInfo, makeSelectWalletList } from 'containers/WalletHOC/selectors';
+
 import { SectionHeading } from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
-import { deleteWallet } from 'containers/WalletHOC/actions';
 
-import {WalletCardsCol, Wrapper} from './style.js'
-import { showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHOC/actions';
-import { makeSelectLedgerNanoSInfo } from '../WalletHOC/selectors.js';
+import { WalletCardsCol, Wrapper } from './style';
 
 export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(...args) {
@@ -22,30 +20,22 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     this.handleCardClick = this.handleCardClick.bind(this);
   }
 
-  handleCardClick(card) {
-    const { history } = this.props;
-    history.push(`/wallet/${card.address}`);
-  }
-
-  getWalletCardsData (walletList) {
-    return walletList.map(wallet => {
-      let assets, usdValue = 0
+  getWalletCardsData(walletList) {
+    return walletList.map((wallet) => {
+      let assets;
+      let usdValue = 0;
       let connected;
       if (wallet.balances) {
-        assets = wallet.balances.map(token => {
-          return {
-            name: token.symbol,
-            amount: parseInt(token.balance) / Math.pow(10, token.decimals),
-            price: token.price,
-            color: token.primaryColor
-          }
-        })
-        usdValue = assets.reduce((accumulator, current) => {
-          return accumulator + parseFloat(current.price.USD) * current.amount
-        }, 0)
+        assets = wallet.balances.map((token) => ({
+          name: token.symbol,
+          amount: parseInt(token.balance, 10) / (10 ** token.decimals),
+          price: token.price,
+          color: token.primaryColor,
+        }));
+        usdValue = assets.reduce((accumulator, current) => accumulator + (parseFloat(current.price.USD) * current.amount), 0);
       }
       if (wallet.type === 'lns') {
-        connected = this.props.ledgerNanoSInfo.get('id') === wallet.deviceId; 
+        connected = this.props.ledgerNanoSInfo.get('id') === wallet.deviceId;
       }
       return {
         name: wallet.name,
@@ -56,43 +46,45 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
         connected,
         loadingAssets: wallet.loadingBalances,
         loadingAssetsError: wallet.loadingBalancesError,
-        isDecrypted: wallet.decrypted ? true : false,
+        isDecrypted: wallet.decrypted,
         mnemonic: wallet.decrypted ? wallet.decrypted.mnemonic : null,
         privateKey: wallet.decrypted ? wallet.decrypted.privateKey : null,
       };
-    })
+    });
   }
-  
+
   getBreakdown(wallets) {
-    const tokenValues = {}
-    const balanceSum = wallets.reduce((accumulator, current) => {
-      return accumulator + current.totalBalance
-    }, 0)
+    const tokenValues = {};
+    const balanceSum = wallets.reduce((accumulator, current) => accumulator + current.totalBalance, 0);
 
-    wallets.forEach(wallet => {
-      wallet.assets.forEach(asset => {
-        tokenValues[asset.name] = tokenValues[asset.name] || {value: 0}
-        tokenValues[asset.name].value += asset.amount * parseFloat(asset.price.USD)
-        tokenValues[asset.name].color = asset.color
-      })
-    })
+    wallets.forEach((wallet) => {
+      wallet.assets.forEach((asset) => {
+        tokenValues[asset.name] = tokenValues[asset.name] || { value: 0 };
+        tokenValues[asset.name].value += asset.amount * parseFloat(asset.price.USD);
+        tokenValues[asset.name].color = asset.color;
+      });
+    });
 
-    const breakdown = Object.keys(tokenValues).map(token => {
-      return {
-        label: token,
-        percentage: tokenValues[token].value / balanceSum * 100,
-        color: tokenValues[token].color
-      }
-    })
+    const breakdown = Object.keys(tokenValues).map((token) => ({
+      label: token,
+      percentage: (tokenValues[token].value / balanceSum) * 100,
+      color: tokenValues[token].color,
+    }));
 
-    return {balanceSum, breakdown}
+    return { balanceSum, breakdown };
   }
+
+  handleCardClick(card) {
+    const { history } = this.props;
+    history.push(`/wallet/${card.address}`);
+  }
+
 
   renderWalletItems(walletCards) {
-    return walletCards.map((card, i) => (
+    return walletCards.map((card) => (
       <WalletCardsCol
         span={12}
-        key={`${card.name}-${i}`}
+        key={card.name}
         xs={24}
         sm={24}
         lg={12}
@@ -133,8 +125,8 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           <Col span={8} xs={24} md={8}>
             {
               <Breakdown
-              data={summary.breakdown}
-              value={summary.balanceSum}
+                data={summary.breakdown}
+                value={summary.balanceSum}
               />
             }
           </Col>
@@ -146,6 +138,10 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
 WalletsOverview.propTypes = {
   walletList: PropTypes.array.isRequired,
+  showDecryptWalletModal: PropTypes.func.isRequired,
+  setCurrentWallet: PropTypes.func.isRequired,
+  deleteWallet: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
   ledgerNanoSInfo: PropTypes.object.isRequired,
 };
 
@@ -157,7 +153,6 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     deleteWallet: (...args) => dispatch(deleteWallet(...args)),
-    decryptWallet: (...args) => dispatch(decryptWallet(...args)),
     showDecryptWalletModal: (...args) => dispatch(showDecryptWalletModal(...args)),
     setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
   };
