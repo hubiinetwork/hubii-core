@@ -23,8 +23,6 @@ import {
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
-  LISTEN_TOKEN_BALANCES,
-  UPDATE_TOKEN_BALANCES,
   LOAD_SUPPORTED_TOKENS,
   LOAD_SUPPORTED_TOKENS_SUCCESS,
   LOAD_SUPPORTED_TOKENS_ERROR,
@@ -43,7 +41,6 @@ import {
   STOP_LEDGER_SYNC,
   FETCH_LEDGER_ADDRESSES,
   FETCHED_LEDGER_ADDRESS,
-  TRANSACTION_CONFIRMED,
   DELETE_WALLET,
 } from './constants';
 
@@ -189,21 +186,6 @@ export function loadWalletBalancesError(address, error) {
   };
 }
 
-export function listenBalances(address) {
-  return {
-    type: LISTEN_TOKEN_BALANCES,
-    address,
-  };
-}
-
-export function updateBalances(address, newBalance) {
-  return {
-    type: UPDATE_TOKEN_BALANCES,
-    address,
-    newBalance,
-  };
-}
-
 export function loadSupportedTokens() {
   return {
     type: LOAD_SUPPORTED_TOKENS,
@@ -301,13 +283,6 @@ export function transferSuccess(transaction, token) {
   return {
     type: TRANSFER_SUCCESS,
     transaction: formatedTransaction,
-  };
-}
-
-export function transactionConfirmed(transaction) {
-  return {
-    type: TRANSACTION_CONFIRMED,
-    transaction,
   };
 }
 

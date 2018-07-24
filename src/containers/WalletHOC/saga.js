@@ -1,5 +1,5 @@
-import { eventChannel, delay } from 'redux-saga';
-import { takeLatest, takeEvery, put, call, select, fork, take, cancel } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+import { takeLatest, takeEvery, put, call, select, take } from 'redux-saga/effects';
 import Eth from '@ledgerhq/hw-app-eth';
 // import Web3 from 'web3';
 import { Wallet, utils, providers, Contract } from 'ethers';
@@ -21,14 +21,11 @@ import {
   DECRYPT_WALLET,
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
-  LISTEN_TOKEN_BALANCES,
   TRANSFER,
   TRANSFER_ETHER,
   TRANSFER_ERC20,
   TRANSFER_SUCCESS,
   POLL_LEDGER,
-  START_LEDGER_SYNC,
-  STOP_LEDGER_SYNC,
   LEDGER_ERROR,
   LEDGER_DETECTED,
   FETCH_LEDGER_ADDRESSES,
@@ -46,7 +43,6 @@ import {
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
-  updateBalances as updateBalancesAction,
   listenBalances as listenBalancesAction,
   loadSupportedTokens as loadSupportedTokensAction,
   loadSupportedTokensSuccess,
@@ -125,9 +121,10 @@ export function* initWalletsBalances() {
 }
 
 export function* loadWalletBalancesSaga({ address }) {
-  const requestPath = `ethereum/wallets/${address}/balance`;
+  const requestPath = `ethereum/wallets/${address}/balances`;
   try {
     const returnData = yield call(requestWalletAPI, requestPath);
+    console.log('Balances: ', returnData);
     yield put(loadWalletBalancesSuccess(address, returnData));
     yield put(listenBalancesAction(address));
   } catch (err) {
@@ -135,40 +132,11 @@ export function* loadWalletBalancesSaga({ address }) {
   }
 }
 
-
-export function* listenBalances({ address }) {
-  let walletList = yield select(makeSelectWalletList());
-  let wallet = walletList.find((wal) => wal.address === address);
-  const chan = yield call((addr) => eventChannel((emitter) => {
-    EthNetworkProvider.on(addr, (newBalance) => {
-      if (!newBalance) {
-        return;
-      }
-      emitter({ newBalance });
-    });
-
-    return () => {
-      EthNetworkProvider.removeListener(addr);
-    };
-  }
-  ), wallet.address);
-  while (true) { // eslint-disable-line no-constant-condition
-    const updates = yield take(chan);
-
-    // If wallet has been deleted since listening, do nothing
-    walletList = yield select(makeSelectWalletList());
-    wallet = walletList.find((wal) => wal.address === address);
-    if (!wallet) {
-      return;
-    }
-    yield put(updateBalancesAction(address, { symbol: 'ETH', balance: updates.newBalance.toString() }));
-  }
-}
-
 export function* loadSupportedTokens() {
   const requestPath = 'ethereum/supported-tokens';
   try {
     const returnData = yield call(requestWalletAPI, requestPath);
+    console.log('Supported tokens: ', returnData);
     yield put(loadSupportedTokensSuccess(returnData));
   } catch (err) {
     yield put(loadSupportedTokensError(err));
@@ -179,6 +147,7 @@ export function* loadPrices() {
   const requestPath = 'ethereum/prices';
   try {
     const returnData = yield call(requestWalletAPI, requestPath);
+    console.log('Prices: ', returnData);
     yield put(loadPricesSuccess(returnData));
   } catch (err) {
     yield put(loadPricesError(err));
@@ -364,20 +333,9 @@ export default function* walletHoc() {
   yield takeEvery(TRANSFER_ETHER, transferEther);
   yield takeEvery(TRANSFER_ERC20, transferERC20);
   yield takeEvery(TRANSFER_SUCCESS, waitTransactionHash);
+
   yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
   yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
-  yield takeEvery(LISTEN_TOKEN_BALANCES, listenBalances);
-
-  // Handles the Ledger auto polling lifecycle
-  // START_LEDGER_SYNC activates ledgerSync saga
-  // STOP_LEDGER_SYNC causes ledgerSync saga to drop what it's doing
-  // and immediately enter its 'finally' block
-  while (yield take(START_LEDGER_SYNC)) {
-    const bgSyncTask = yield fork(ledgerSync);
-
-    yield take(STOP_LEDGER_SYNC);
-    yield cancel(bgSyncTask);
-  }
 
   yield takeLatest(LOAD_PRICES, loadPrices);
   yield takeLatest(LOAD_SUPPORTED_TOKENS, loadSupportedTokens);
