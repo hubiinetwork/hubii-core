@@ -13,7 +13,7 @@ import {
   makeSelectLedgerNanoSInfo,
 } from './selectors';
 import { requestWalletAPI } from '../../utils/request';
-import { ERC20ABI, EthNetworkProvider } from '../../utils/wallet';
+import { ERC20ABI, EthNetworkProvider, getTransaction, getTransactionCount, sendTransaction } from '../../utils/wallet';
 
 import {
   CREATE_WALLET_FROM_MNEMONIC,
@@ -202,7 +202,8 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
       let rawTx;
       console.log('lns');
       try {
-        const nonce = yield EthNetworkProvider.getTransactionCount(walletDetails.address);
+        const nonce = yield call(getTransactionCount, walletDetails.address);
+        console.log('nonce', nonce, walletDetails.address);
         rawTx = generateRawTx({
           toAddress,
           amount,
@@ -223,27 +224,21 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
       // Sign raw transaction
       try {
         yield put(notify('info', 'Verify transaction details on your Ledger'));
-        console.log(walletDetails);
-        // const signedTx = ledgerSignTxn(rawTx);
 
-        const signedTx = yield createEthTransportActivity(
+        const signedTx = yield call(
+          createEthTransportActivity,
           walletDetails.ledgerNanoSInfo.descriptor,
           (ethTransport) => ethTransport.signTransaction(walletDetails.derivationPath, rawTxHex)
         );
         rawTx.v = Buffer.from(signedTx.v, 'hex');
         rawTx.r = Buffer.from(signedTx.r, 'hex');
         rawTx.s = Buffer.from(signedTx.s, 'hex');
-        const txString = `0x${rawTx.serialize().toString('hex')}`;
-        console.log('chain id', EthNetworkProvider.chainId);
-        console.log('sign tx', txString);
-        const txHash = yield EthNetworkProvider.sendTransaction(txString);
-        // Broadcast signed transaction
-        // const web3 = new Web3('http://geth-ropsten.dev.hubii.net/');
-        // const txHash = yield web3.eth.sendRawTransaction(signedTx);
+        const txHex = `0x${rawTx.serialize().toString('hex')}`;
+        const txHash = yield call(sendTransaction, txHex);
         console.log('tx hash', txHash);
-        yield put(transferSuccess(txHash, 'ETH'));
+        transaction = yield call(getTransaction, txHash);
       } catch (e) {
-        console.log(e);
+        console.log(e.message);
         yield put(ledgerError('Error making transaction: ', e));
       }
     } else {
@@ -251,7 +246,7 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
       etherWallet.provider = EthNetworkProvider;
       transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
     }
-
+    console.log('tx', transaction);
     yield put(transferSuccess(transaction, 'ETH'));
     yield put(notify('success', 'Transaction sent'));
   } catch (error) {
@@ -472,6 +467,7 @@ export function* fetchLedgerAddresses({ derivationPaths }) {
     put(ledgerError('Error fetching address'));
   }
 }
+
 
 // Root watcher
 export default function* walletHoc() {

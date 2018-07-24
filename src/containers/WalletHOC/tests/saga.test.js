@@ -9,6 +9,7 @@ import { takeLatest, takeEvery, put, call } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
 // import * as matchers from 'redux-saga-test-plan/matchers';
 import { requestWalletAPI } from 'utils/request';
+import { createEthTransportActivity } from 'utils/ledger/comms';
 import { ethAppNotOpenErrorMsg, disconnectedErrorMsg } from 'utils/ledger/friendlyErrors';
 import { Wallet, utils } from 'ethers';
 import walletHocReducer from 'containers/WalletHOC/reducer';
@@ -73,7 +74,7 @@ import {
   ledgerConnected,
   ledgerDisconnected,
 } from '../actions';
-import { findWalletIndex } from '../../../utils/wallet';
+import { findWalletIndex, getTransactionCount, sendTransaction, getTransaction } from '../../../utils/wallet';
 // import { transportMock, addressMock, ethMock, channelMock } from './mocks/ledgerMocks';
 // import { createTransport, newEth } from '../../../utils/ledger/comms';
 import { privateKeyMock, encryptedMock, addressMock, privateKeyNoPrefixMock } from '../../../mocks/wallet';
@@ -773,9 +774,9 @@ describe('load wallets saga', () => {
           });
       });
     });
-    // jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000
-    xdescribe('hardware wallet: ledger', () => {
-      it('sign transaction for eth', () => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
+    describe('hardware wallet: ledger', () => {
+      it.only('sign transaction for eth', () => {
         const storeState = {
           walletHoc: {
             wallets: [{
@@ -803,32 +804,42 @@ describe('load wallets saga', () => {
           gasLimit: 21000,
           wallet: { encrypted: {}, decrypted: {} },
         };
-        // const called = 0;
+        const nonce = 16;
+        const signedTx = {
+          v: '2a',
+          r: '7140f2dbd69f235c5ba229da1651a8c30062213a8a3a27f424a177cc01189fd8',
+          s: '1b7384730b63b8a70bababc3999c00bd99ed7fbd4c5c7e74cabcfa4d3133d119',
+        };
+        const signedTxHex = '0xf8671082753082520894bfdc0c8e54af5719872a2edef8e65c9f4a3eae88865af3107a4000802aa07140f2dbd69f235c5ba229da1651a8c30062213a8a3a27f424a177cc01189fd8a01b7384730b63b8a70bababc3999c00bd99ed7fbd4c5c7e74cabcfa4d3133d119';
         return expectSaga(walletHoc)
-          // .provide({
-          //   call(effect, next) {
-          //     called += 1;
-          //     if (called === 1) {
-          //       return signedTransaction;
-          //     }
-          //     if (called === 2) {
-          //       return confirmedTransaction;
-          //     }
-          //     return next();
-          //   },
-          // })
+          .provide({
+            call(effect) {
+              if (effect.fn === createEthTransportActivity) {
+                return signedTx;
+              }
+              if (effect.fn === getTransactionCount) {
+                return nonce;
+              }
+              if (effect.fn === sendTransaction) {
+                expect(effect.args[0]).toEqual(signedTxHex);
+                return 'hash';
+              }
+              if (effect.fn === getTransaction) {
+                return { value: 1 };
+              }
+              return {};
+            },
+          })
           .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
           .dispatch(transferAction(params))
-          .put(transferSuccess({ value: 1 }, 'ETH'))// send signed transaction
-          // .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
-          .run(100000000)
-          .then((result) => {
-            const walletHocState = result.storeState.get('walletHoc');
-            expect(walletHocState.getIn(['pendingTransactions']).count()).toEqual(0);
-            expect(walletHocState.getIn(['confirmedTransactions']).count()).toEqual(1);
-            // formatedTransaction.value = parseFloat(utils.formatEther(formatedTransaction.value));
-            // expect(walletHocState.getIn(['confirmedTransactions']).get(0).toJS()).toEqual(formatedTransaction);
-          });
+          .put.actionType(TRANSFER_SUCCESS)
+          .run({ silenceTimeout: true });
+      });
+      it('handle ledger nano errors during signing a transaction', () => {
+        // no pin code/disconnected: [cannot open device with path IOService]
+        // no eth open: [Ledger device: Incorrect length]
+        // eth browser support set to yes: [Invalid channel]
+        // denied tx confirmation by user: [Ledger device: Condition of use not satisfied (denied by the user?)]
       });
     });
   });
