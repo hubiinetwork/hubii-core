@@ -81,9 +81,9 @@ describe('walletHocReducer', () => {
 
     it('should handle LEDGER_ERROR action correctly', () => {
       const error = 'oh no!';
-      const id = '123'
+      const id = '123';
       const expected = state
-        .set('ledgerNanoSInfo', fromJS({ status: 'disconnected', addresses: {}, id}))
+        .set('ledgerNanoSInfo', fromJS({ status: 'disconnected', addresses: {}, id }))
         .setIn(['errors', 'ledgerError'], error);
       expect(walletHocReducer(state.setIn(['ledgerNanoSInfo', 'id'], id), { type: LEDGER_ERROR, error })).toEqual(expected);
     });
