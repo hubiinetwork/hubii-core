@@ -75,7 +75,7 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
               />
             </Border>
           </InnerWrapper1>
-          <InnerWrapper2>
+          <InnerWrapper2 contactsPresent={contacts.length}>
             <ContactHeader
               title={'All Contacts'}
               showSearch

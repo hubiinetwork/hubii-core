@@ -18,7 +18,7 @@ export const InnerWrapper1 = styled.div`
 export const InnerWrapper2 = styled.div`
   color: white;
   min-width: 35rem;
-  margin-left: 2rem;
+  margin-left: ${(props) => props.contactsPresent ? '2rem' : '0rem'};
 `;
 
 export const Border = styled.div`
