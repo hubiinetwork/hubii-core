@@ -169,10 +169,14 @@ export function loadWalletBalances(address) {
 }
 
 export function loadWalletBalancesSuccess(address, tokenBalances) {
+  const ethBalance = tokenBalances[0];
+  const legacyTokenBalances = { tokens: [
+    { symbol: 'ETH', balance: ethBalance.balance, price: { USD: 487.23 }, primaryColor: 'grey', decimals: 18 },
+  ] };
   return {
     type: LOAD_WALLET_BALANCES_SUCCESS,
     address,
-    tokenBalances,
+    tokenBalances: legacyTokenBalances,
   };
 }
 

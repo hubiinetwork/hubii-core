@@ -1,45 +1,60 @@
-/* eslint-disable */
 import * as React from 'react';
-import { Form, Icon } from 'antd';
+import { Form } from 'antd';
+import PropTypes from 'prop-types';
+import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
+import { handleFinish, compareToFirstPassword } from 'utils/forms';
+import { isValidPrivateKey } from 'utils/wallet';
 import {
-  Flex,
-  Image,
-  Between,
-  IconDiv,
-  LeftArrow,
   WidthEighty,
-  StyledTitle,
-  CreateButton,
   StyledModalFormLabel,
   ButtonDiv,
   StyledBackButton,
   StyledButton,
   StyledSpan,
-} from './ImportWalletPrivateKeyForm.style';
-import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
+  StyledSpin,
+} from '../ImportWalletForm.style';
 
-class ImportWalletPrivateKey extends React.Component {
+class ImportWalletPrivateKeyForm extends React.Component {
   constructor(props) {
     super(props);
-    this.handleFinish = this.handleFinish.bind(this);
+    this.state = {
+      confirmDirty: false,
+    };
+    this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
+    this.validateToNextPassword = this.validateToNextPassword.bind(this);
   }
 
-  handleFinish(e) {
-    const { form, handleNext } = this.props;
-    e.preventDefault();
-    form.validateFields((err, values) => {
-      if (!err && handleNext) {
-        handleNext(values);
-      }
+  validatePrivateKey(rule, value, callback) {
+    if (value && !isValidPrivateKey(value)) {
+      callback('Invalid key');
+    } else {
+      callback();
+    }
+  }
+
+  handleConfirmBlur(e) {
+    const value = e.target.value;
+    this.setState({
+      confirmDirty: this.state.confirmDirty || value,
     });
+  }
+
+  validateToNextPassword(rule, value, callback) {
+    const form = this.props.form;
+    if (value && this.state.confirmDirty) {
+      form.validateFields(['confirm'], { force: true });
+    } else {
+      callback();
+    }
   }
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { form, handleNext, loading } = this.props;
     return (
       <div>
         <Form
-          onSubmit={this.handleFinish}
+          onSubmit={(e) => handleFinish(e, form, handleNext)}
           layout="vertical"
           style={{
             marginTop: '5rem',
@@ -52,7 +67,7 @@ class ImportWalletPrivateKey extends React.Component {
             <ModalFormItem
               label={
                 <StyledModalFormLabel>
-                  Name
+                  Wallet Name
                 </StyledModalFormLabel>
               }
             >
@@ -61,9 +76,10 @@ class ImportWalletPrivateKey extends React.Component {
                   {
                     message: 'Required field',
                     required: true,
+                    whitespace: true,
                   },
                 ],
-              })(<ModalFormInput />)}
+              })(<ModalFormInput disabled={loading} />)}
             </ModalFormItem>
             <ModalFormItem
               label={
@@ -77,9 +93,13 @@ class ImportWalletPrivateKey extends React.Component {
                   {
                     message: 'Required field',
                     required: true,
+                    whitespace: true,
+                  },
+                  {
+                    validator: this.validatePrivateKey,
                   },
                 ],
-              })(<ModalFormInput />)}
+              })(<ModalFormInput disabled={loading} />)}
             </ModalFormItem>
             <ModalFormItem
               label={
@@ -89,38 +109,84 @@ class ImportWalletPrivateKey extends React.Component {
               {getFieldDecorator('password', {
                 rules: [
                   {
-                    message: 'Required field',
                     required: true,
+                    whitespace: true,
+                    message: 'Please enter a password',
+                  },
+                  {
+                    min: 6,
+                    message: 'Password must be at least 6 characters',
+                  },
+                  {
+                    validator: this.validateToNextPassword,
                   },
                 ],
-              })(<ModalFormInput type="password" />)}
+              })(<ModalFormInput type="password" disabled={loading} />)}
             </ModalFormItem>
             <ModalFormItem
               label={
                 <StyledModalFormLabel>Repeat password</StyledModalFormLabel>
               }
             >
-              {getFieldDecorator('repeatPassword', {
+              {getFieldDecorator('confirm', {
                 rules: [
                   {
-                    message: 'Required field',
                     required: true,
+                    whitespace: true,
+                    message: 'Please confirm your password',
+                  },
+                  {
+                    validator: (rule, value, callback) => compareToFirstPassword(form, rule, value, callback),
                   },
                 ],
-              })(<ModalFormInput type="password" />)}
+              })(<ModalFormInput disabled={loading} type="password" onBlur={this.handleConfirmBlur} />)}
             </ModalFormItem>
-            <ButtonDiv>
-              <StyledBackButton type={"primary"} onClick={this.props.handleBack}>
-                <StyledSpan>Back</StyledSpan>
-              </StyledBackButton>
-              <StyledButton type={"primary"} htmlType="submit">
-                <StyledSpan>Finish</StyledSpan>
-              </StyledButton>
-            </ButtonDiv>
+            {loading ?
+              (
+                <ButtonDiv loading={loading}>
+                  <StyledSpin
+                    delay={0}
+                    tip="Importing Wallet..."
+                    size="large"
+                  />
+                </ButtonDiv>
+              )
+              :
+              (
+                <ButtonDiv>
+                  <StyledBackButton type={'primary'} onClick={this.props.handleBack}>
+                    <StyledSpan>Back</StyledSpan>
+                  </StyledBackButton>
+                  <StyledButton type={'primary'} htmlType="submit">
+                    <StyledSpan>Finish</StyledSpan>
+                  </StyledButton>
+                </ButtonDiv>
+              )
+            }
           </WidthEighty>
         </Form>
       </div>
     );
   }
 }
-export default Form.create()(ImportWalletPrivateKey);
+
+ImportWalletPrivateKeyForm.propTypes = {
+  /**
+   * Function to be executed when back button is pressed
+   */
+  handleBack: PropTypes.func.isRequired,
+  /**
+   * Function to be executed when next is clicked.
+   */
+  handleNext: PropTypes.func.isRequired,
+    /**
+   * ant design form
+   */
+  form: PropTypes.object,
+  /**
+   * loading
+   */
+  loading: PropTypes.bool.isRequired,
+};
+
+export default Form.create()(ImportWalletPrivateKeyForm);

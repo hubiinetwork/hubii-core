@@ -66,9 +66,10 @@ export function* createWalletFromMnemonic({ name, mnemonic, derivationPath, pass
   try {
     if (!name || !derivationPath || !password || !mnemonic) throw new Error('invalid param');
     const decryptedWallet = Wallet.fromMnemonic(mnemonic, derivationPath);
-    const encryptedWallet = yield decryptedWallet.encrypt(password);
+    const encryptedWallet = yield call((...args) => decryptedWallet.encrypt(...args), password);
     yield put(createWalletSuccess(name, encryptedWallet, decryptedWallet));
   } catch (e) {
+    yield put(notify('error', `Failed to import wallet: ${e}`));
     yield put(createWalletFailed(e));
   }
 }
@@ -76,9 +77,12 @@ export function* createWalletFromMnemonic({ name, mnemonic, derivationPath, pass
 export function* createWalletFromPrivateKey({ privateKey, name, password }) {
   try {
     if (!name || !privateKey || !password) throw new Error('invalid param');
-    const decryptedWallet = new Wallet(privateKey);
+    let prefixedPrivateKey = privateKey;
+    if (!prefixedPrivateKey.startsWith('0x')) prefixedPrivateKey = `0x${privateKey}`;
+    const decryptedWallet = new Wallet(prefixedPrivateKey);
     const encryptedWallet = yield call((...args) => decryptedWallet.encrypt(...args), password);
     yield put(createWalletSuccess(name, encryptedWallet, decryptedWallet));
+    yield put(notify('warning', 'Wallets imported by private key are difficult to backup. It is recommended to sweep your funds into a mnemonic based wallet, which allows backup by a word phrase rather than a long hex string'));
   } catch (e) {
     yield put(notify('error', `Failed to import wallet: ${e}`));
     yield put(createWalletFailed(e));
@@ -110,7 +114,7 @@ export function* initWalletsBalances() {
 }
 
 export function* loadWalletBalancesSaga({ address }) {
-  const requestPath = `ethereum/wallets/${address}/balance`;
+  const requestPath = `ethereum/wallets/${address}/balances`;
   try {
     const returnData = yield call(requestWalletAPI, requestPath);
     yield put(loadWalletBalancesSuccess(address, returnData));
@@ -146,7 +150,7 @@ export function* listenBalances({ address }) {
     if (!wallet) {
       return;
     }
-    yield put(updateBalancesAction(address, { symbol: 'ETH', balance: updates.newBalance.toString() }));
+    yield put(updateBalancesAction(address, { currency: 'ETH', balance: updates.newBalance.toString() }));
   }
 }
 

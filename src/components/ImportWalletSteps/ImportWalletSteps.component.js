@@ -13,6 +13,7 @@ import {
 import ImportWallet from './ImportWallet';
 import ImportWalletNameForm from './ImportWalletNameForm';
 import ImportWalletPrivateKeyForm from './ImportWalletPrivateKeyForm';
+import ImportWalletMnemonicForm from './ImportWalletMnemonicForm';
 import FormSteps from '../FormSteps';
 
 export default class ImportWalletSteps extends React.Component {
@@ -30,7 +31,7 @@ export default class ImportWalletSteps extends React.Component {
 
   getSteps() {
     const { selectedWallet } = this.state;
-    const { wallets } = this.props;
+    const { wallets, loading } = this.props;
     const steps = [
       {
         title: 'First',
@@ -60,9 +61,11 @@ export default class ImportWalletSteps extends React.Component {
               wallet={selectedWallet}
               handleBack={this.handleBack}
               handleNext={this.handleNext}
+              loading={loading}
             />
           ),
         },
+
       ],
       'Private Key': [
         {
@@ -72,12 +75,25 @@ export default class ImportWalletSteps extends React.Component {
               wallet={selectedWallet}
               handleBack={this.handleBack}
               handleNext={this.handleNext}
+              loading={loading}
+            />
+          ),
+        },
+      ],
+      Mnemonic: [
+        {
+          title: 'Last',
+          content: (
+            <ImportWalletMnemonicForm
+              handleBack={this.handleBack}
+              handleNext={this.handleNext}
+              loading={loading}
             />
           ),
         },
       ],
     };
-    return steps.concat(stepTypes[selectedWallet.name || 'Private Key']);
+    return steps.concat(stepTypes[selectedWallet.name || 'Private Key' || 'Mnemonic']);
   }
 
   searchSRC(logoName, wallets) {
@@ -108,6 +124,7 @@ export default class ImportWalletSteps extends React.Component {
   render() {
     const { current, data } = this.state;
     const { onBackIcon } = this.props;
+
     const FormNavigation = (
       <Between>
         <Flex>
@@ -125,6 +142,7 @@ export default class ImportWalletSteps extends React.Component {
 
 ImportWalletSteps.propTypes = {
   wallets: PropTypes.array,
-  handleSubmit: PropTypes.func,
-  onBackIcon: PropTypes.func,
+  handleSubmit: PropTypes.func.isRequired,
+  onBackIcon: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
