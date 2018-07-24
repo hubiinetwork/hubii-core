@@ -89,7 +89,7 @@ export class LnsDerivationPathContainer extends React.Component { // eslint-disa
     if (status === 'disconnected') {
       return (
         <ErrorWrapper>
-          <ErrorText>{error}</ErrorText>
+          <ErrorText>{error || 'Loading...'}</ErrorText>
         </ErrorWrapper>
       );
     }
