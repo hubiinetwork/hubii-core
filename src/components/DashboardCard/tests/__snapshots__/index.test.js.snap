@@ -116,7 +116,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <DashboardCard
-    iconSrc="\\\\public\\\\images\\\\dex-icon-green.png"
+    iconSrc="/public/images/dex-icon-green.png"
     title="DEX"
 />,
   Symbol(enzyme.__renderer__): Object {
@@ -176,7 +176,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <DashboardCard.style__CustomIcon
-            src="\\\\public\\\\images\\\\dex-icon-green.png"
+            src="/public/images/dex-icon-green.png"
 />,
           <DashboardCard.style__Title>
             DEX
@@ -191,7 +191,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "src": "\\\\public\\\\images\\\\dex-icon-green.png",
+            "src": "/public/images/dex-icon-green.png",
           },
           "ref": null,
           "rendered": null,
