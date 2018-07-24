@@ -281,30 +281,6 @@ describe('initLedger saga', () => {
     .run()
   );
 
-  // redux-saga-test-plan has issues running inside infinite loops
-  // skipping this test until it's clear how to handle
-  // see https://github.com/jfairbank/redux-saga-test-plan/issues/74
-  // xit('should dispatch ledgerEthAppConnected if Ledger successfully connected', () => expectSaga(initLedger)
-  //   .provide([
-  //     [call(LedgerTransport.isSupported), true],
-  //     [matchers.call.fn(ledgerChannel), channelMock],
-  //     [matchers.call.fn(createTransport), transportMock],
-  //     [matchers.call.fn(newEth), ethMock],
-  //     [matchers.call.fn(ethMock.getAddress), addressMock],
-  //     {
-  //       take({ channel }, next) {
-  //         if (channel === channelMock) {
-  //           return { type: 'add' };
-  //         }
-  //         return next();
-  //       },
-  //     },
-  //   ])
-  //     .put(ledgerEthAppConnected(addressMock.publicKey))
-  //     .dispatch(initLedgerAction())
-  //     .run()
-  //   );
-
   it('should trigger ledgerConnectedAction when ledger usb is connected', () => {
     const storeState = {};
     const descriptor = 'test descriptor string';
@@ -417,37 +393,6 @@ describe('initLedger saga', () => {
       .not.put.actionType(ledgerDisconnected().type)
       .run({ silenceTimeout: true });
   });
-  xit('should close eth channel when ledger disconnected', () => {
-    const storeState = {};
-    const descriptor = 'test descriptor string';
-    const closeSpy = jest.fn();
-    // removeEthChannel =
-    return expectSaga(walletHoc)
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-      // .provide({
-      //   call(effect) {
-      //     if (effect.fn === LedgerTransport.isSupported) {
-      //       return true;
-      //     }
-      //     if (effect.fn === ledgerChannel) {
-      //       return eventChannel((emitter) => {
-      //         setTimeout(() => {
-      //           emitter({ type: 'remove', descriptor });
-      //           emitter({ type: 'add', descriptor });
-      //         }, 100);
-      //         return () => {};
-      //       });
-      //     }
-      //   },
-      // .put.actionType(ledgerConnected().type)
-      // .not.put.actionType(ledgerDisconnected().type)
-      .dispatch(ledgerDisconnected(descriptor))
-      .run({ silenceTimeout: true })
-      .then(() => {
-        expect(closeSpy).toBeCalled();
-        // expect(ethChannels[descriptor]).toEqual(undefined);
-      });
-  });
   it('should trigger ledger detected when ethereum app is open', () => {
     const storeState = {};
     const descriptor = 'test descriptor string';
@@ -510,38 +455,6 @@ describe('initLedger saga', () => {
         expect(state.getIn(['walletHoc', 'errors', 'ledgerError'])).toEqual(ethAppNotOpenErrorMsg);
       });
   });
-  // it('should close existing eth channel with the same descriptor for ledger connected event', () => {
-  //   const storeState = {
-  //   };
-  //   return expectSaga(walletHoc)
-  //     .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-  //     .provide([
-  //       // mock existing eth channel for same descriptor
-  //     ])
-  //     .put(ledgerEthAppConnected({ status: 'connect' }))
-  //     .put(ledgerEthAppConnected({ status: 'disconnect' }))
-  //     .dispatch({ type: LEDGER_CONNECTED })
-  //     .dispatch({ type: LEDGER_CONNECTED })
-  //     .run(5000000)
-  //     .then((result) => {
-  //       // assert eth channel with same descriptor closed
-  //     });
-  // });
-  // it('should close existing eth channel with the same descriptor for ledger disconnected event', () => {
-  //   const storeState = {
-  //   };
-  //   return expectSaga(walletHoc)
-  //     .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-  //     .provide([
-  //       // mock existing eth channel for same descriptor
-  //     ])
-  //     .put(ledgerEthAppConnected({ status: 'disconnect' }))
-  //     .dispatch({ type: LEDGER_DISCONNECTED })
-  //     .run(5000000)
-  //     .then((result) => {
-  //       // assert eth channel with same descriptor closed
-  //     });
-  // });
 });
 
 describe('load wallets saga', () => {
@@ -837,12 +750,6 @@ describe('load wallets saga', () => {
           .then(() => {
             expect(signedTxHex).toEqual(expectedSignedTxHex);
           });
-      });
-      it('handle ledger nano errors during signing a transaction', () => {
-        // no pin code/disconnected: [cannot open device with path IOService]
-        // no eth open: [Ledger device: Incorrect length]
-        // eth browser support set to yes: [Invalid channel]
-        // denied tx confirmation by user: [Ledger device: Condition of use not satisfied (denied by the user?)]
       });
     });
   });
