@@ -9,8 +9,8 @@ import { takeLatest, takeEvery, put, call } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
 // import * as matchers from 'redux-saga-test-plan/matchers';
 import { requestWalletAPI } from 'utils/request';
-import { createEthTransportActivity } from 'utils/ledger/comms';
 import { ethAppNotOpenErrorMsg, disconnectedErrorMsg } from 'utils/ledger/friendlyErrors';
+import { createEthTransportActivity } from 'utils/ledger/comms';
 import { Wallet, utils } from 'ethers';
 import walletHocReducer from 'containers/WalletHOC/reducer';
 import { fromJS } from 'immutable';
@@ -34,6 +34,7 @@ import walletHoc, {
   ledgerEthChannel,
   pollEthApp,
   sendTransactionByLedger,
+  tryCreateEthTransportActivity,
 } from '../saga';
 
 import {
@@ -728,7 +729,7 @@ describe('load wallets saga', () => {
         return expectSaga(sendTransactionByLedger, params)
           .provide({
             call(effect) {
-              if (effect.fn === createEthTransportActivity) {
+              if (effect.fn === tryCreateEthTransportActivity) {
                 return signedTx;
               }
               if (effect.fn === getTransactionCount) {
@@ -750,6 +751,25 @@ describe('load wallets saga', () => {
           .then(() => {
             expect(signedTxHex).toEqual(expectedSignedTxHex);
           });
+      });
+      // this test throws error msg in the console, need to update this test once the lib is able to suppress the error
+      // https://github.com/jfairbank/redux-saga-test-plan/issues/147
+      it('#tryCreateEthTransportActivity should start pollEthApp when throws exception', (done) => {
+        const error = new Error();
+        const descriptor = 'test';
+        expectSaga(tryCreateEthTransportActivity, descriptor)
+          .provide({
+            call(effect) {
+              expect(effect.fn).toEqual(createEthTransportActivity);
+              throw error;
+            },
+            spawn(effect) {
+              expect(effect.fn).toEqual(pollEthApp);
+              expect(effect.args[0]).toEqual({ descriptor });
+              done();
+            },
+          })
+          .run({ silenceTimeout: true });
       });
     });
   });

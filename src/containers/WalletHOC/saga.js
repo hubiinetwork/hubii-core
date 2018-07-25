@@ -1,5 +1,5 @@
 import { eventChannel, delay } from 'redux-saga';
-import { takeLatest, takeEvery, put, call, select, race, take } from 'redux-saga/effects';
+import { takeLatest, takeEvery, put, call, select, race, take, spawn } from 'redux-saga/effects';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 // import Web3 from 'web3';
 import { Wallet, utils, providers, Contract } from 'ethers';
@@ -340,11 +340,20 @@ export function* fetchLedgerAddresses({ derivationPaths }) {
     const descriptor = ledgerStatus.get('descriptor');
     for (let i = 0; i < derivationPaths.length; i += 1) {
       const path = derivationPaths[i];
-      const publicAddressKeyPair = yield createEthTransportActivity(descriptor, async (ethTransport) => ethTransport.getAddress(path));
+      const publicAddressKeyPair = yield tryCreateEthTransportActivity(descriptor, async (ethTransport) => ethTransport.getAddress(path));
       yield put(fetchedLedgerAddress(path, publicAddressKeyPair.address));
     }
   } catch (error) {
-    put(ledgerError('Error fetching address'));
+    yield put(ledgerError(error));
+  }
+}
+
+export function* tryCreateEthTransportActivity(descriptor, func) {
+  try {
+    return yield call(createEthTransportActivity, descriptor, func);
+  } catch (error) {
+    yield spawn(pollEthApp, { descriptor });
+    throw error;
   }
 }
 
@@ -369,10 +378,19 @@ export function* sendTransactionByLedger({ toAddress, amount, gasPrice, gasLimit
 
   let signedTx;
   try {
+    const descriptor = walletDetails.ledgerNanoSInfo.descriptor;
+
+    // check if the eth app is opened
+    yield call(
+      tryCreateEthTransportActivity,
+      descriptor,
+      async (ethTransport) => ethTransport.getAddress(walletDetails.derivationPath)
+    );
     yield put(notify('info', 'Verify transaction details on your Ledger'));
+
     signedTx = yield call(
-      createEthTransportActivity,
-      walletDetails.ledgerNanoSInfo.descriptor,
+      tryCreateEthTransportActivity,
+      descriptor,
       (ethTransport) => ethTransport.signTransaction(walletDetails.derivationPath, rawTxHex)
     );
   } catch (e) {
