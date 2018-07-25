@@ -72,7 +72,9 @@ import {
   startLedgerSync,
   listenBalances as listenBalancesAction,
   addNewWallet as addNewWalletAction,
+  resetDecryptWalletCallback,
 } from '../actions';
+
 import { findWalletIndex } from '../../../utils/wallet';
 import { privateKeyMock, encryptedMock, addressMock, privateKeyNoPrefixMock } from '../../../mocks/wallet';
 
@@ -302,25 +304,30 @@ describe('decryptWallet saga', () => {
   const password = 'dogs';
   const address = '0x00';
   const decryptedWallet = { privateKey: '0x409300caf64bdf96a92d7f99547a5d67702fbdd759bbea4ca19b11a21d9c8528', defaultGasLimit: 1500000, address: '0xA0EcCD7605Bb117DD2A4Cd55979C720Cf00F7fa4', mnemonic: 'movie viable write punch mango arrest cotton page grass dad document practice', path: "m/44'/60'/0'/0/0" };
+  // const callbackAction = { type: 'TRANSFER' };
 
-  it('should first dispatch notify action', () => {
-    const decryptWalletGenerator = decryptWallet({ name, encryptedWallet, password });
+  it('should dispatch notify action', () => {
+    const decryptWalletGenerator = decryptWallet({ address, encryptedWallet, password });
+    decryptWalletGenerator.next();
     const putDescriptor = decryptWalletGenerator.next(decryptedWallet).value;
     expect(putDescriptor).toEqual(put(notify('info', 'Unlocking wallet...')));
   });
 
-  it('should dispatch the decryptWalletSuccess and notify action if successful', () => {
+  it('should dispatch the decryptWalletSuccess, notify action, and run the callback function if there is one, if successful', () => {
     const decryptWalletGenerator = decryptWallet({ address, encryptedWallet, password });
+    decryptWalletGenerator.next();
     decryptWalletGenerator.next();
     decryptWalletGenerator.next();
     let putDescriptor = decryptWalletGenerator.next(decryptedWallet).value;
     expect(JSON.stringify(putDescriptor)).toEqual(JSON.stringify(put(decryptWalletSuccess(address, decryptedWallet))));
     putDescriptor = decryptWalletGenerator.next().value;
     expect(putDescriptor).toEqual(put(notify('success', 'Wallet unlocked!')));
+    decryptWalletGenerator.next();
   });
 
   it('should dispatch decryptWalletFailed and notify action if address is undefined', () => {
     const decryptWalletGenerator = decryptWallet({ encryptedWallet, password });
+    decryptWalletGenerator.next();
     decryptWalletGenerator.next();
     let putDescriptor = decryptWalletGenerator.next().value;
     const error = new Error('Address undefined');
@@ -333,11 +340,14 @@ describe('decryptWallet saga', () => {
     const decryptWalletGenerator = decryptWallet({ address, encryptedWallet, password });
     decryptWalletGenerator.next();
     decryptWalletGenerator.next();
+    decryptWalletGenerator.next();
     const error = new Error('some error occured');
     let putDescriptor = decryptWalletGenerator.next(error).value;
     expect(putDescriptor).toEqual(put(decryptWalletFailed(error)));
     putDescriptor = decryptWalletGenerator.next().value;
     expect(putDescriptor).toEqual(put(notify('error', `Failed to unlock wallet: ${error}`)));
+    putDescriptor = decryptWalletGenerator.next().value;
+    expect(putDescriptor).toEqual(put(resetDecryptWalletCallback()));
   });
 });
 
@@ -640,8 +650,9 @@ describe('load wallets saga', () => {
     const gasPrice = 30000;
     const gasLimit = 21000;
     const transaction = { hash: '' };
+
     it('should trigger SHOW_DECRYPT_WALLET_MODAL action when the wallet is not decrypted yet', () => expectSaga(transfer, { wallet: lockedWallet })
-        .put(showDecryptWalletModal(walletName))
+        .put(showDecryptWalletModal(transferAction({ wallet: lockedWallet })))
         .put(transferError(new Error('Wallet is encrypted')))
         .run());
     xit('should trigger transferSuccess action', () => expectSaga(transfer, { wallet, token, toAddress, amount, gasPrice, gasLimit })

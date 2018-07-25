@@ -26,11 +26,11 @@ export default class TransferDescription extends React.PureComponent {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.decrypted && !this.props.decrypted) {
-      this.props.onSend();
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.decrypted && !this.props.decrypted) {
+  //     this.props.onSend();
+  //   }
+  // }
 
   render() {
     const {
@@ -200,9 +200,5 @@ TransferDescription.propTypes = {
    * if the wallet is transfering the transaction
    */
   transfering: PropTypes.bool,
-  /**
-   * If the wallet has been decrypted or not
-   */
-  decrypted: PropTypes.bool.isRequired,
 };
 // export default TransferDescription;

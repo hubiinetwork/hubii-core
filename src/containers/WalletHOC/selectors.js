@@ -78,6 +78,11 @@ const makeSelectConfirmedTransactions = () => createSelector(
   (walletHocDomain) => walletHocDomain.get('confirmedTransactions')
 );
 
+const makeSelectCurrentDecryptionCallback = () => createSelector(
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('currentDecryptionCallback')
+);
+
 const makeSelectAllTransactions = () => createSelector(
   makeSelectCurrentWalletDetails(),
   makeSelectPendingTransactions(),
@@ -105,4 +110,5 @@ export {
   makeSelectWalletList,
   makeSelectCurrentWalletDetails,
   makeSelectAllTransactions,
+  makeSelectCurrentDecryptionCallback,
 };

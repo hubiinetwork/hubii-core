@@ -11,6 +11,8 @@ import {
   ledgerError,
   deleteWallet,
   saveLedgerAddress,
+  showDecryptWalletModal,
+  resetDecryptWalletCallback,
 } from '../actions';
 import {
   CREATE_WALLET_FROM_MNEMONIC,
@@ -24,6 +26,9 @@ import {
   LEDGER_DETECTED,
   LEDGER_ERROR,
   DELETE_WALLET,
+  SHOW_DECRYPT_WALLET_MODAL,
+  TRANSFER,
+  RESET_DECRYPT_WALLET_CALLBACK,
 } from '../constants';
 
 import getFriendlyError from '../../../utils/ledger/friendlyErrors';
@@ -194,6 +199,28 @@ describe('WalletHoc actions', () => {
         error: friendlyError,
       };
       expect(ledgerError(error)).toEqual(expected);
+    });
+  });
+
+  describe('showDecryptWalletModal Action', () => {
+    it('returns expected output with callback action', () => {
+      const callbackAction = {
+        type: TRANSFER,
+      };
+      const expected = {
+        type: SHOW_DECRYPT_WALLET_MODAL,
+        callbackAction,
+      };
+      expect(showDecryptWalletModal(callbackAction)).toEqual(expected);
+    });
+  });
+
+  describe('resetDecryptWalletCallback Action', () => {
+    it('returns expected output', () => {
+      const expected = {
+        type: RESET_DECRYPT_WALLET_CALLBACK,
+      };
+      expect(resetDecryptWalletCallback()).toEqual(expected);
     });
   });
 });

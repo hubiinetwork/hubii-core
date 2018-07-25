@@ -33,6 +33,7 @@ import {
   SAVE_LEDGER_ADDRESS,
   TRANSACTION_CONFIRMED,
   DELETE_WALLET,
+  RESET_DECRYPT_WALLET_CALLBACK,
 } from './constants';
 
 export const initialState = fromJS({
@@ -61,6 +62,7 @@ export const initialState = fromJS({
   },
   pendingTransactions: [],
   confirmedTransactions: [],
+  currentDecryptionCallback: null,
 });
 
 abiDecoder.addABI(ERC20ABI);
@@ -124,7 +126,11 @@ function walletHocReducer(state = initialState, action) {
       }
     case SHOW_DECRYPT_WALLET_MODAL:
       return state
-        .setIn(['currentWallet', 'showDecryptModal'], true);
+        .setIn(['currentWallet', 'showDecryptModal'], true)
+        .set('currentDecryptionCallback', fromJS(action.callbackAction));
+    case RESET_DECRYPT_WALLET_CALLBACK:
+      return state
+        .setIn('currentDecryptionCallback', null);
     case HIDE_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], false);

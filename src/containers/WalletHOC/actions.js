@@ -39,9 +39,16 @@ import {
   FETCHED_LEDGER_ADDRESS,
   TRANSACTION_CONFIRMED,
   DELETE_WALLET,
+  RESET_DECRYPT_WALLET_CALLBACK,
 } from './constants';
 
 import getFriendlyError from '../../utils/ledger/friendlyErrors';
+
+export function resetDecryptWalletCallback() {
+  return {
+    type: RESET_DECRYPT_WALLET_CALLBACK,
+  };
+}
 
 export function deleteWallet(address) {
   return {
@@ -120,10 +127,10 @@ export function decryptWalletFailed(error) {
   };
 }
 
-export function showDecryptWalletModal(walletName) {
+export function showDecryptWalletModal(callbackAction = null) {
   return {
     type: SHOW_DECRYPT_WALLET_MODAL,
-    walletName,
+    callbackAction,
   };
 }
 

@@ -10,6 +10,7 @@ import {
   makeSelectWalletList,
   makeSelectCurrentWalletDetails,
   makeSelectWallets,
+  makeSelectCurrentDecryptionCallback,
 } from './selectors';
 import { requestWalletAPI } from '../../utils/request';
 import { ERC20ABI, EthNetworkProvider } from '../../utils/wallet';
@@ -59,6 +60,8 @@ import {
   transferERC20 as transferERC20Action,
   transactionConfirmed,
   hideDecryptWalletModal,
+  transfer as transferAction,
+  resetDecryptWalletCallback,
 } from './actions';
 // import generateRawTx from '../../utils/generateRawTx';
 
@@ -92,6 +95,7 @@ export function* createWalletFromPrivateKey({ privateKey, name, password }) {
 
 // Decrypt a software wallet using a password
 export function* decryptWallet({ address, encryptedWallet, password }) {
+  let callbackAction = yield select(makeSelectCurrentDecryptionCallback());
   try {
     yield put(notify('info', 'Unlocking wallet...'));
     if (!address) throw new Error('Address undefined');
@@ -101,9 +105,16 @@ export function* decryptWallet({ address, encryptedWallet, password }) {
     yield put(decryptWalletSuccess(address, decryptedWallet));
     yield put(notify('success', 'Wallet unlocked!'));
     yield put(hideDecryptWalletModal());
+    if (callbackAction) {
+      callbackAction = callbackAction.toJS();
+      callbackAction.wallet.decrypted = decryptedWallet;
+      yield put(callbackAction);
+      yield put(resetDecryptWalletCallback());
+    }
   } catch (e) {
     yield put(decryptWalletFailed(e));
     yield put(notify('error', `Failed to unlock wallet: ${e}`));
+    yield put(resetDecryptWalletCallback());
   }
 }
 
@@ -157,13 +168,12 @@ export function* listenBalances({ address }) {
 
 export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit, contractAddress }) {
   if (wallet.encrypted && !wallet.decrypted) {
-    yield put(showDecryptWalletModal(wallet.name));
+    yield put(showDecryptWalletModal(transferAction({ wallet, token, toAddress, amount, gasPrice, gasLimit })));
     yield put(transferError(new Error('Wallet is encrypted')));
     return;
   }
 
   yield put(notify('info', 'Sending transaction...'));
-
   // Transfering from a Ledger
   if (!wallet.encrypted) {
     // Build raw transaction
