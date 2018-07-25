@@ -193,10 +193,10 @@ export function loadSupportedTokens() {
 }
 
 export function loadSupportedTokensSuccess(tokens) {
-  const assets = tokens.push({ currency: 'ETH', symbol: 'ETH', decimals: 18, color: 'grey' });
+  tokens.push({ currency: 'ETH', symbol: 'ETH', decimals: 18, color: 'grey' });
   return {
     type: LOAD_SUPPORTED_TOKENS_SUCCESS,
-    assets,
+    assets: tokens,
   };
 }
 
@@ -214,10 +214,10 @@ export function loadPrices() {
 }
 
 export function loadPricesSuccess(prices) {
-  const pricesWithEth = prices.push({ currency: 'ETH', eth: 1, btc: 0.01, usd: 412 });
+  prices.push({ currency: 'ETH', eth: 1, btc: 0.01, usd: 412 });
   return {
     type: LOAD_PRICES_SUCCESS,
-    prices: pricesWithEth,
+    prices,
   };
 }
 

@@ -134,7 +134,7 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['supportedAssets', 'loading'], false)
         .setIn(['supportedAssets', 'error'], null)
-        .setIn(['supportedAssets', ''], fromJS(action.tokens));
+        .setIn(['supportedAssets', 'assets'], fromJS(action.assets));
     case LOAD_SUPPORTED_TOKENS_ERROR:
       return state
         .setIn(['supportedAssets', 'loading'], false)

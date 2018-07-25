@@ -62,20 +62,30 @@ const makeSelectBalances = () => createSelector(
 
 const makeSelectTotalBalances = () => createSelector(
   makeSelectBalances(),
+  makeSelectPrices(),
   makeSelectSupportedAssets(),
-  (balances, supportedAssets) => {
+  (balances, prices, supportedAssets) => {
+    // Caclulate total amount of each asset
     let totalBalances = fromJS({});
-    // console.log(balances.valueSeq());
     balances.valueSeq().forEach((address) => {
+      if (!address || address.get('loading')) return;
       address.get('assets').forEach((balance) => {
-        console.log(supportedAssets.toJS());
         const currency = balance.get('currency');
-        totalBalances = totalBalances
-          .set(currency, totalBalances.get(currency) + balance.get('balance'));
+        const decimals = supportedAssets.get('assets').find((asset) => asset.get('currency') === currency).get('decimals');
+
+        const newAmount = ((totalBalances.get(currency) || 0) + (balance.get('balance') / (10 ** decimals)));
+        totalBalances = totalBalances.set(currency, newAmount);
       });
     });
 
-    console.log(totalBalances.toJS());
+    // Calculate USD value
+    totalBalances.keySeq().forEach((currency) => {
+      if (currency === 'USD') return;
+      const amount = totalBalances.get(currency);
+      const price = prices.get('assets').find((p) => p.get('currency') === currency).get('usd');
+      const value = amount * price;
+      totalBalances = totalBalances.set('usd', (totalBalances.get('usd') || 0) + value);
+    });
     return totalBalances;
   }
 );
