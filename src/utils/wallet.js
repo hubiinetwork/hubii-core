@@ -44,6 +44,11 @@ export const findWalletIndex = (state, address, scopedFatalError = fatalError) =
   }
 };
 
+export const getCurrencySymbol = (supportedAssets, currency) => supportedAssets
+  .get('assets')
+  .find((a) => a.get('currency') === currency)
+  .get('symbol');
+
 export const referenceCurrencies = ['eth', 'btc', 'usd'];
 
 export const humanFriendlyWalletType = (type) => {

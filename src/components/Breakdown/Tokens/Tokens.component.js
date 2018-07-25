@@ -13,7 +13,8 @@ import {
  * This component is used to show percentage of every coin in the wallet.
  */
 const Tokens = (props) => {
-  const sortedData = props.data.filter((item) => item.percentage > 0).sort((a, b) => b.percentage - a.percentage);
+  const sortedData = props.data.filter((item) => item.percentage >= 0).sort((a, b) => b.percentage - a.percentage);
+  console.log(sortedData);
   const items = sortedData.map((item) => (
     <FlexItem key={`token-${item.label}`}>
       <Logo

@@ -16,11 +16,11 @@ const Breakdown = ({ data, value }) => {
     label: `${item.label}: ${item.percentage}%`,
   }));
   const colors = data.map((item) => item.color);
-  console.log(chartData);
   const labels = data.map((item) => ({
     label: item.label,
     percentage: item.percentage,
   }));
+  // console.log(labels);
   return (
     <div>
       <SectionHeading>Breakdown</SectionHeading>

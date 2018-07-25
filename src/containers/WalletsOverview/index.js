@@ -18,6 +18,7 @@ import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
 
 import { WalletCardsCol, Wrapper } from './style';
+import { getCurrencySymbol } from '../../utils/wallet';
 
 export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(...args) {
@@ -30,9 +31,8 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
   getBreakdown() {
     const { totalBalances, supportedAssets } = this.props;
     const totalUsd = totalBalances.get('totalUsd');
-    // console.log(supportedAssets.toJS());
     return totalBalances.get('assets').keySeq().map((asset) => ({
-      label: asset,
+      label: getCurrencySymbol(supportedAssets, asset),
       percentage: (totalBalances.getIn(['assets', asset, 'usdValue']) / totalUsd) * 100,
       color: supportedAssets.get('assets').find((a) => a.get('currency') === asset).get('color'),
     })).toJS();
