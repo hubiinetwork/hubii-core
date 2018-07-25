@@ -65,26 +65,26 @@ const makeSelectTotalBalances = () => createSelector(
   makeSelectPrices(),
   makeSelectSupportedAssets(),
   (balances, prices, supportedAssets) => {
-    // Caclulate total amount of each asset
-    let totalBalances = fromJS({});
+    // Caclulate total amount and value of each asset
+    let totalBalances = fromJS({ assets: {} });
     balances.valueSeq().forEach((address) => {
       if (!address || address.get('loading')) return;
       address.get('assets').forEach((balance) => {
         const currency = balance.get('currency');
         const decimals = supportedAssets.get('assets').find((asset) => asset.get('currency') === currency).get('decimals');
 
-        const newAmount = ((totalBalances.get(currency) || 0) + (balance.get('balance') / (10 ** decimals)));
-        totalBalances = totalBalances.set(currency, newAmount);
+        const newAmount = ((totalBalances.getIn(['assets', currency, 'amount']) || 0) + (balance.get('balance') / (10 ** decimals)));
+        const price = prices.get('assets').find((p) => p.get('currency') === balance.get('currency')).get('usd');
+        totalBalances = totalBalances.setIn(['assets', currency], fromJS({ amount: newAmount, usdValue: newAmount * price }));
       });
     });
 
     // Calculate USD value
-    totalBalances.keySeq().forEach((currency) => {
-      if (currency === 'USD') return;
-      const amount = totalBalances.get(currency);
+    totalBalances.get('assets').keySeq().forEach((currency) => {
+      const amount = totalBalances.getIn(['assets', currency, 'amount']);
       const price = prices.get('assets').find((p) => p.get('currency') === currency).get('usd');
       const value = amount * price;
-      totalBalances = totalBalances.set('usd', (totalBalances.get('usd') || 0) + value);
+      totalBalances = totalBalances.set('totalUsd', (totalBalances.get('totalUsd') || 0) + value);
     });
     return totalBalances;
   }
@@ -211,6 +211,7 @@ export {
   makeSelectNewWalletNameInput,
   makeSelectPasswordInput,
   makeSelectSelectedWalletName,
+  makeSelectSupportedAssets,
   makeSelectWallets,
   makeSelectDerivationPathInput,
   makeSelectLoading,

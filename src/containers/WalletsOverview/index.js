@@ -6,7 +6,12 @@ import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
 
 import { deleteWallet, showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHOC/actions';
-import { makeSelectLedgerNanoSInfo, makeSelectTotalBalances, makeSelectWalletsWithInfo } from 'containers/WalletHOC/selectors';
+import {
+  makeSelectLedgerNanoSInfo,
+  makeSelectSupportedAssets,
+  makeSelectTotalBalances,
+  makeSelectWalletsWithInfo,
+} from 'containers/WalletHOC/selectors';
 
 import { SectionHeading } from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
@@ -18,66 +23,25 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
   constructor(...args) {
     super(...args);
     this.renderWalletCards = this.renderWalletCards.bind(this);
+    this.handleCardClick = this.handleCardClick.bind(this);
+    this.getBreakdown = this.getBreakdown.bind(this);
   }
 
-  // getWalletCardsData(walletList) {
-  //   return walletList.map((wallet) => {
-  //     let assets;
-  //     let usdValue = 0;
-  //     let connected;
-  //     if (wallet.balances) {
-  //       assets = wallet.balances.map((token) => ({
-  //         name: token.symbol,
-  //         amount: parseInt(token.balance, 10) / (10 ** token.decimals),
-  //         price: token.price,
-  //         color: token.primaryColor,
-  //       }));
-  //       usdValue = assets.reduce((accumulator, current) => accumulator + (parseFloat(current.price.USD) * current.amount), 0);
-  //     }
-  //     if (wallet.type === 'lns') {
-  //       connected = this.props.ledgerNanoSInfo.get('id') === wallet.deviceId;
-  //     }
-  //     return {
-  //       name: wallet.name,
-  //       type: wallet.type,
-  //       address: wallet.address,
-  //       assets: assets || [],
-  //       totalBalance: usdValue,
-  //       connected,
-  //       loadingAssets: wallet.loadingBalances,
-  //       loadingAssetsError: wallet.loadingBalancesError,
-  //       isDecrypted: wallet.decrypted,
-  //       mnemonic: wallet.decrypted ? wallet.decrypted.mnemonic : null,
-  //       privateKey: wallet.decrypted ? wallet.decrypted.privateKey : null,
-  //     };
-  //   });
-  // }
+  getBreakdown() {
+    const { totalBalances, supportedAssets } = this.props;
+    const totalUsd = totalBalances.get('totalUsd');
+    // console.log(supportedAssets.toJS());
+    return totalBalances.get('assets').keySeq().map((asset) => ({
+      label: asset,
+      percentage: (totalBalances.getIn(['assets', asset, 'usdValue']) / totalUsd) * 100,
+      color: supportedAssets.get('assets').find((a) => a.get('currency') === asset).get('color'),
+    })).toJS();
+  }
 
-  // getBreakdown(wallets) {
-  //   const tokenValues = {};
-  //   const balanceSum = wallets.reduce((accumulator, current) => accumulator + current.totalBalance, 0);
-
-  //   wallets.forEach((wallet) => {
-  //     wallet.assets.forEach((asset) => {
-  //       tokenValues[asset.name] = tokenValues[asset.name] || { value: 0 };
-  //       tokenValues[asset.name].value += asset.amount * parseFloat(asset.price.USD);
-  //       tokenValues[asset.name].color = asset.color;
-  //     });
-  //   });
-
-  //   const breakdown = Object.keys(tokenValues).map((token) => ({
-  //     label: token,
-  //     percentage: (tokenValues[token].value / balanceSum) * 100,
-  //     color: tokenValues[token].color,
-  //   }));
-
-  //   return { balanceSum, breakdown };
-  // }
-
-  // handleCardClick(card) {
-  //   const { history } = this.props;
-  //   history.push(`/wallet/${card.address}`);
-  // }
+  handleCardClick(card) {
+    const { history } = this.props;
+    history.push(`/wallet/${card.address}`);
+  }
 
 
   renderWalletCards() {
@@ -112,29 +76,25 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
   }
 
   render() {
-    // const { walletList } = this.props;
-    // const walletCards = this.getWalletCardsData(walletList);
-    // const summary = this.getBreakdown(walletCards);
     return (
-      <div>{this.renderWalletCards()}</div>
-      // <Wrapper>
-      //   <Row gutter={16}>
-      //     <Col span={16} xs={24} md={16}>
-      //       <SectionHeading>All Wallets</SectionHeading>
-      //       <Row type="flex" align="top" gutter={16}>
-      //         {this.renderWalletItems(walletCards)}
-      //       </Row>
-      //     </Col>
-      //     <Col span={8} xs={24} md={8}>
-      //       {
-      //         <Breakdown
-      //           data={summary.breakdown}
-      //           value={summary.balanceSum}
-      //         />
-      //       }
-      //     </Col>
-      //   </Row>
-      // </Wrapper>
+      <Wrapper>
+        <Row gutter={16}>
+          <Col span={16} xs={24} md={16}>
+            <SectionHeading>All Wallets</SectionHeading>
+            <Row type="flex" align="top" gutter={16}>
+              {this.renderWalletCards()}
+            </Row>
+          </Col>
+          <Col span={8} xs={24} md={8}>
+            {
+              <Breakdown
+                data={this.getBreakdown()}
+                value={this.props.totalBalances.get('totalUsd')}
+              />
+            }
+          </Col>
+        </Row>
+      </Wrapper>
     );
   }
 }
@@ -146,12 +106,14 @@ WalletsOverview.propTypes = {
   history: PropTypes.object.isRequired,
   ledgerNanoSInfo: PropTypes.object.isRequired,
   totalBalances: PropTypes.object.isRequired,
+  supportedAssets: PropTypes.object.isRequired,
   walletsWithInfo: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   walletsWithInfo: makeSelectWalletsWithInfo(),
   totalBalances: makeSelectTotalBalances(),
+  supportedAssets: makeSelectSupportedAssets(),
   ledgerNanoSInfo: makeSelectLedgerNanoSInfo(),
 });
 

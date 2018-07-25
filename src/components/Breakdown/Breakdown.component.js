@@ -16,6 +16,7 @@ const Breakdown = ({ data, value }) => {
     label: `${item.label}: ${item.percentage}%`,
   }));
   const colors = data.map((item) => item.color);
+  console.log(chartData);
   const labels = data.map((item) => ({
     label: item.label,
     percentage: item.percentage,
@@ -56,7 +57,7 @@ const Breakdown = ({ data, value }) => {
           }
         />
       </div>
-      <SectionHeading>Tokens</SectionHeading>
+      <SectionHeading>Assets</SectionHeading>
       <Tokens data={labels} />
     </div>
   );
