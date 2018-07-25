@@ -355,7 +355,7 @@ export function* sendTransactionByLedger({ toAddress, amount, gasPrice, gasLimit
   // generate raw tx for ledger nano to sign
   const rawTx = generateRawTx({
     toAddress,
-    amount,
+    amount: amount.toHexString(),
     gasPrice,
     gasLimit,
     nonce,
