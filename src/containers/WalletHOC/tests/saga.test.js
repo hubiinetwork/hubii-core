@@ -356,6 +356,8 @@ describe('load wallets saga', () => {
           decimals: 15,
           color: '0063A5' },
       ];
+      const assets = tokens.push({ currency: 'ETH', symbol: 'ETH', decimals: 18, color: 'grey' });
+
       return expectSaga(loadSupportedTokensSaga)
         .withReducer(withReducer, initialState)
         .provide({
@@ -368,10 +370,10 @@ describe('load wallets saga', () => {
         .put(loadSupportedTokensSuccess(tokens))
         .run({ silenceTimeout: true })
         .then((result) => {
-          const supportedTokens = result.storeState.getIn(['walletHoc', 'supportedTokens']);
-          expect(supportedTokens.get('loading')).toEqual(false);
-          expect(supportedTokens.get('error')).toEqual(null);
-          expect(supportedTokens.get('tokens')).toEqual(fromJS(tokens));
+          const supportedAssets = result.storeState.getIn(['walletHoc', 'supportedAssets']);
+          expect(supportedAssets.get('loading')).toEqual(false);
+          expect(supportedAssets.get('error')).toEqual(null);
+          expect(supportedAssets.get('assets')).toEqual(fromJS(assets));
         });
     });
     it('should handle request error', () => {
@@ -388,9 +390,9 @@ describe('load wallets saga', () => {
         .put(loadSupportedTokensError(error))
         .run({ silenceTimeout: true })
         .then((result) => {
-          const supportedTokens = result.storeState.getIn(['walletHoc', 'supportedTokens']);
-          expect(supportedTokens.get('loading')).toEqual(false);
-          expect(supportedTokens.get('error')).toEqual(error);
+          const supportedAssets = result.storeState.getIn(['walletHoc', 'supportedAssets']);
+          expect(supportedAssets.get('loading')).toEqual(false);
+          expect(supportedAssets.get('error')).toEqual(error);
         });
     });
   });

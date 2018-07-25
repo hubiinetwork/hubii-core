@@ -12,7 +12,7 @@ import {
   makeSelectCurrentWalletDetails,
   makeSelectWalletsWithInfo,
 } from '../selectors';
-import { walletsMock, balancesMock, supportedTokensLoadedMock, walletsWithInfoMock, pricesLoadedMock, address1Mock } from './mocks';
+import { walletsMock, balancesMock, supportedAssetsLoadedMock, walletsWithInfoMock, pricesLoadedMock, address1Mock } from './mocks';
 
 describe('selectWalletHocDomain', () => {
   it('should select the walletHocDomain state', () => {
@@ -153,14 +153,14 @@ describe('makeSelectWalletsWithInfo', () => {
   it('should piece together balances/token to the wallet', () => {
     const wallets = walletsMock;
     const balances = balancesMock;
-    const supportedTokens = supportedTokensLoadedMock;
+    const supportedAssets = supportedAssetsLoadedMock;
     const expected = walletsWithInfoMock;
     const prices = pricesLoadedMock;
     const mockedState = fromJS({
       walletHoc: {
         wallets,
         balances,
-        supportedTokens,
+        supportedAssets,
         prices,
       },
     });
@@ -170,14 +170,14 @@ describe('makeSelectWalletsWithInfo', () => {
   it('should mark balances as loading when loading', () => {
     const wallets = walletsMock;
     const balances = balancesMock.setIn([address1Mock, 'loading'], true);
-    const supportedTokens = supportedTokensLoadedMock;
+    const supportedAssets = supportedAssetsLoadedMock;
     const prices = pricesLoadedMock;
     const expected = true;
     const mockedState = fromJS({
       walletHoc: {
         wallets,
         balances,
-        supportedTokens,
+        supportedAssets,
         prices,
       },
     });
@@ -187,14 +187,14 @@ describe('makeSelectWalletsWithInfo', () => {
   it('should set balances to [] if they don\'t exist', () => {
     const wallets = walletsMock;
     const balances = balancesMock.delete(address1Mock);
-    const supportedTokens = supportedTokensLoadedMock;
+    const supportedAssets = supportedAssetsLoadedMock;
     const prices = pricesLoadedMock;
     const expected = [];
     const mockedState = fromJS({
       walletHoc: {
         wallets,
         balances,
-        supportedTokens,
+        supportedAssets,
         prices,
       },
     });

@@ -59,7 +59,7 @@ describe('walletHocReducer', () => {
       },
       pendingTransactions: [],
       confirmedTransactions: [],
-      supportedTokens: {
+      supportedAssets: {
         loading: true,
         error: null,
         tokens: [],
@@ -232,7 +232,7 @@ describe('walletHocReducer', () => {
   describe('supported tokens', () => {
     it('load supported tokens', () => {
       const expected = stateWithWallet
-        .setIn(['supportedTokens', 'loading'], true);
+        .setIn(['supportedAssets', 'loading'], true);
 
       expect(walletHocReducer(stateWithWallet, loadSupportedTokens())).toEqual(expected);
     });

@@ -60,22 +60,42 @@ const makeSelectBalances = () => createSelector(
   (walletHocDomain) => walletHocDomain.get('balances')
 );
 
+const makeSelectTotalBalances = () => createSelector(
+  makeSelectBalances(),
+  makeSelectSupportedAssets(),
+  (balances, supportedAssets) => {
+    let totalBalances = fromJS({});
+    // console.log(balances.valueSeq());
+    balances.valueSeq().forEach((address) => {
+      address.get('assets').forEach((balance) => {
+        console.log(supportedAssets.toJS());
+        const currency = balance.get('currency');
+        totalBalances = totalBalances
+          .set(currency, totalBalances.get(currency) + balance.get('balance'));
+      });
+    });
+
+    console.log(totalBalances.toJS());
+    return totalBalances;
+  }
+);
+
 const makeSelectPrices = () => createSelector(
   selectWalletHocDomain,
   (walletHocDomain) => walletHocDomain.get('prices')
 );
 
-const makeSelectSupportedTokens = () => createSelector(
+const makeSelectSupportedAssets = () => createSelector(
   selectWalletHocDomain,
-  (walletHocDomain) => walletHocDomain.get('supportedTokens')
+  (walletHocDomain) => walletHocDomain.get('supportedAssets')
 );
 
 const makeSelectWalletsWithInfo = () => createSelector(
   makeSelectWallets(),
   makeSelectBalances(),
   makeSelectPrices(),
-  makeSelectSupportedTokens(),
-  (wallets, balances, prices, supportedTokens) => {
+  makeSelectSupportedAssets(),
+  (wallets, balances, prices, supportedAssets) => {
     const walletsWithInfo = wallets.map((wallet) => {
       let walletWithInfo = wallet;
 
@@ -86,52 +106,45 @@ const makeSelectWalletsWithInfo = () => createSelector(
       } else if (walletBalances.get('loading')) {
         walletBalances = walletBalances.set('loading', true);
       } else {
-        walletBalances = walletBalances.set('assets', walletBalances.get('assets').map((token) => {
-          let walletToken = token;
-          const supportedTokenIndex = supportedTokens
-          .get('tokens')
-          .findIndex((t) => t.get('currency') === token.get('currency'));
+        walletBalances = walletBalances.set('assets', walletBalances.get('assets').map((asset) => {
+          let walletAsset = asset;
+          const supportedAssetIndex = supportedAssets
+            .get('assets')
+            .findIndex((t) => t.get('currency') === asset.get('currency'));
 
           const priceIndex = prices
-          .get('tokens')
-          .findIndex((t) => t.get('currency') === token.get('currency'));
+            .get('assets')
+            .findIndex((t) => t.get('currency') === asset.get('currency'));
 
-          // Currently ETH supported info not returned, mock it
-          const supportedTokenInfo =
-          supportedTokenIndex !== -1
-            ? supportedTokens.getIn(['tokens', supportedTokenIndex])
-            : fromJS({ symbol: 'ETH', decimals: 18, color: 'grey' });
 
-          // Currently ETH price info not returned, mock it
-          const priceInfo =
-          priceIndex !== -1
-            ? prices.getIn(['tokens', priceIndex])
-            : fromJS({ eth: 1, btc: 0.01, usd: 412 });
+          const supportedAssetInfo = supportedAssets.getIn(['assets', supportedAssetIndex]);
+
+          const priceInfo = prices.getIn(['assets', priceIndex]);
 
           // Remove redundant value
-          walletToken = walletToken.delete('address');
+          walletAsset = walletAsset.delete('address');
 
           // Get real balance
-          const realBalance = walletToken.get('balance') / (10 ** supportedTokenInfo.get('decimals'));
-          walletToken = walletToken.set('balance', realBalance);
+          const realBalance = walletAsset.get('balance') / (10 ** supportedAssetInfo.get('decimals'));
+          walletAsset = walletAsset.set('balance', realBalance);
 
-          // Add symbol for each token
-          const symbol = supportedTokenInfo.get('symbol');
-          walletToken = walletToken.set('symbol', symbol);
+          // Add symbol for each asset
+          const symbol = supportedAssetInfo.get('symbol');
+          walletAsset = walletAsset.set('symbol', symbol);
 
-          // Add reference currency values for each token
+          // Add reference currency values for each asset
           referenceCurrencies.forEach((currency) => {
-            walletToken = walletToken
-            .setIn(['value', currency], priceInfo.get(currency) * walletToken.get('balance'));
+            walletAsset = walletAsset
+            .setIn(['value', currency], priceInfo.get(currency) * walletAsset.get('balance'));
           });
 
-          return walletToken;
+          return walletAsset;
         }));
 
         // Add total balance info for each wallet
         referenceCurrencies.forEach((currency) => {
           walletBalances = walletBalances
-          .setIn(['total', currency], walletBalances.get('assets').reduce((acc, token) => acc + token.getIn(['value', currency]), 0));
+            .setIn(['total', currency], walletBalances.get('assets').reduce((acc, asset) => acc + asset.getIn(['value', currency]), 0));
         });
       }
 
@@ -181,6 +194,7 @@ const makeSelectAllTransactions = () => createSelector(
 export {
   selectWalletHocDomain,
   makeSelectLedgerNanoSInfo,
+  makeSelectTotalBalances,
   makeSelectNewWalletNameInput,
   makeSelectPasswordInput,
   makeSelectSelectedWalletName,

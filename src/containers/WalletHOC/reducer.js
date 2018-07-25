@@ -65,15 +65,15 @@ export const initialState = fromJS({
   },
   pendingTransactions: [],
   confirmedTransactions: [],
-  supportedTokens: {
+  supportedAssets: {
     loading: true,
     error: null,
-    tokens: [],
+    assets: [],
   },
   prices: {
     loading: true,
     error: null,
-    tokens: [],
+    assets: [],
   },
   balances: {},
 });
@@ -129,16 +129,16 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['balances', action.address, 'error'], action.error);
     case LOAD_SUPPORTED_TOKENS:
       return state
-        .setIn(['supportedTokens', 'loading'], true);
+        .setIn(['supportedAssets', 'loading'], true);
     case LOAD_SUPPORTED_TOKENS_SUCCESS:
       return state
-        .setIn(['supportedTokens', 'loading'], false)
-        .setIn(['supportedTokens', 'error'], null)
-        .setIn(['supportedTokens', 'tokens'], fromJS(action.tokens));
+        .setIn(['supportedAssets', 'loading'], false)
+        .setIn(['supportedAssets', 'error'], null)
+        .setIn(['supportedAssets', ''], fromJS(action.tokens));
     case LOAD_SUPPORTED_TOKENS_ERROR:
       return state
-        .setIn(['supportedTokens', 'loading'], false)
-        .setIn(['supportedTokens', 'error'], action.error);
+        .setIn(['supportedAssets', 'loading'], false)
+        .setIn(['supportedAssets', 'error'], action.error);
     case LOAD_PRICES:
       return state
         .setIn(['prices', 'loading'], true);
@@ -146,7 +146,7 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['prices', 'loading'], false)
         .setIn(['prices', 'error'], null)
-        .setIn(['prices', 'tokens'], fromJS(action.prices));
+        .setIn(['prices', 'assets'], fromJS(action.prices));
     case LOAD_PRICES_ERROR:
       return state
         .setIn(['prices', 'loading'], false)
