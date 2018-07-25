@@ -56,6 +56,8 @@ export class WalletTransfer extends React.PureComponent {
         onSend={this.onSend}
         onCancel={this.onCancel}
         transfering={currentWallet.toJS().transfering}
+        errors={this.props.errors}
+        currentWalletDetails={this.props.currentWalletDetails}
       />
     );
   }
@@ -67,6 +69,7 @@ WalletTransfer.propTypes = {
   transfer: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

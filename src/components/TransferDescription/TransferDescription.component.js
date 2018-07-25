@@ -11,6 +11,7 @@ import {
   StyledRecipient,
   StyledButtonCancel,
   StyledSpin,
+  StyledErrorCol,
 } from './TransferDescription.style';
 import TransferDescriptionList from '../TransferDescriptionList';
 import { formatFiat } from '../../utils/numberFormats';
@@ -21,6 +22,7 @@ import { formatFiat } from '../../utils/numberFormats';
 export default class TransferDescription extends React.PureComponent {
   render() {
     const {
+      currentWalletDetails,
       title,
       recipient,
       totalAmount,
@@ -36,6 +38,8 @@ export default class TransferDescription extends React.PureComponent {
 
     const totalUsd = (parseInt(selectedToken.balance, 10) / (10 ** selectedToken.decimals)) * parseFloat(selectedToken.price.USD);
     const remainingBalance = totalUsd - (amountToSend * parseFloat(selectedToken.price.USD)) - (transactionFee * parseFloat(ethInformation.price.USD));
+    const disableSendButton = Number.isNaN(amountToSend) || amountToSend === 0 || remainingBalance < 0;
+    const lnsDisconnected = currentWalletDetails.type === 'lns' && currentWalletDetails.ledgerNanoSInfo.status !== 'connected';
     return (
       <WrapperDiv>
         <Row>
@@ -114,7 +118,8 @@ export default class TransferDescription extends React.PureComponent {
             {formatFiat(remainingBalance, 'USD')}
           </BalanceCol>
         </Row>
-        {
+        <Row>
+          {
             this.props.transfering ?
             (<StyledSpin
               delay={0}
@@ -125,12 +130,16 @@ export default class TransferDescription extends React.PureComponent {
                 <StyledButtonCancel type="secondary" onClick={onCancel}>
                   {'Cancel'}
                 </StyledButtonCancel>
-                <StyledButton type="primary" onClick={onSend} disabled={Number.isNaN(amountToSend) || amountToSend === 0 || remainingBalance < 0}>
+                <StyledButton type="primary" onClick={onSend} disabled={disableSendButton || lnsDisconnected}>
                   {buttonLabel}
                 </StyledButton>
               </StyledDiv>
             )
           }
+        </Row>
+        <Row>
+          <StyledErrorCol span={24}>{this.props.errors.get('ledgerError')}</StyledErrorCol>
+        </Row>
       </WrapperDiv>
     );
   }
@@ -184,5 +193,7 @@ TransferDescription.propTypes = {
    */
   onCancel: PropTypes.func,
   transfering: PropTypes.bool,
+  currentWalletDetails: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 // export default TransferDescription;
