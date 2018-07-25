@@ -9,7 +9,7 @@ import {
   makeSelectDerivationPathInput,
   makeSelectLoading,
   makeSelectErrors,
-  makeSelectCurrentWalletDetails,
+  makeSelectCurrentWalletWithInfo,
   makeSelectWalletsWithInfo,
 } from '../selectors';
 import { walletsMock, balancesMock, supportedAssetsLoadedMock, walletsWithInfoMock, pricesLoadedMock, address1Mock } from './mocks';
@@ -123,8 +123,8 @@ describe('makeSelectErrors', () => {
   });
 });
 
-describe('makeSelectCurrentWalletDetails', () => {
-  const walletSelector = makeSelectCurrentWalletDetails();
+describe('makeSelectCurrentWalletWithInfo', () => {
+  const walletSelector = makeSelectCurrentWalletWithInfo();
   it('should convert select current wallet details from the wallet list', () => {
     const expected = fromJS({
       address: '0x2',

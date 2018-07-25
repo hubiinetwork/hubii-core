@@ -20,7 +20,7 @@ const Breakdown = ({ data, value }) => {
     label: item.label,
     percentage: item.percentage,
   }));
-  // console.log(labels);
+
   return (
     <div>
       <SectionHeading>Breakdown</SectionHeading>

@@ -10,7 +10,7 @@ import { getTotalUSDValue } from 'utils/wallet';
 import WalletTransactions from 'containers/WalletTransactions';
 import WalletTransfer from 'containers/WalletTransfer';
 import {
-  makeSelectCurrentWalletDetails,
+  makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHOC/selectors';
 import {
   setCurrentWallet,
@@ -103,7 +103,7 @@ WalletDetails.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  currentWalletDetails: makeSelectCurrentWalletDetails(),
+  currentWalletDetails: makeSelectCurrentWalletWithInfo(),
 });
 
 export function mapDispatchToProps(dispatch) {

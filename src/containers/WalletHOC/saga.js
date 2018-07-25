@@ -10,7 +10,7 @@ import { ERC20ABI, EthNetworkProvider } from 'utils/wallet';
 import LedgerTransport from 'utils/ledger/Transport';
 
 import {
-  makeSelectCurrentWalletDetails,
+  makeSelectCurrentWalletWithInfo,
   makeSelectWallets,
 } from './selectors';
 
@@ -186,7 +186,7 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
 
 export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
   try {
-    const walletDetails = yield select(makeSelectCurrentWalletDetails());
+    const walletDetails = yield select(makeSelectCurrentWalletWithInfo());
     const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
     etherWallet.provider = EthNetworkProvider;
 
@@ -204,7 +204,7 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
 export function* transferERC20({ token, contractAddress, toAddress, amount, gasPrice, gasLimit }) {
   const contractAbiFragment = ERC20ABI;
 
-  const walletDetails = yield select(makeSelectCurrentWalletDetails());
+  const walletDetails = yield select(makeSelectCurrentWalletWithInfo());
   const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
   etherWallet.provider = EthNetworkProvider;
 

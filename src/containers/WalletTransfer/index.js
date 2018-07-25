@@ -8,7 +8,7 @@ import LoadingError from 'components/LoadingError';
 import PageLoadingIndicator from 'components/PageLoadingIndicator';
 import {
   makeSelectCurrentWallet,
-  makeSelectCurrentWalletDetails,
+  makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHOC/selectors';
 import {
   makeSelectContacts,
@@ -31,28 +31,28 @@ export class WalletTransfer extends React.PureComponent {
   }
 
   onSend(token, toAddress, amount, gasPrice, gasLimit) {
-    const wallet = this.props.currentWalletDetails;
+    const wallet = this.props.currentWalletWithInfo;
     this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit });
   }
 
   onCancel() {
-    this.props.history.push(`/wallet/${this.props.currentWalletDetails.address}/overview`);
+    this.props.history.push(`/wallet/${this.props.currentWalletWithInfo.address}/overview`);
   }
 
   render() {
-    const { contacts, currentWallet, currentWalletDetails } = this.props;
-    if (currentWalletDetails.loadingBalancesError) {
-      return <LoadingError pageType="Striim Accounts" error={currentWalletDetails.loadingBalancesError} id={currentWallet.toJS().address} />;
+    const { contacts, currentWallet, currentWalletWithInfo } = this.props;
+    if (currentWalletWithInfo.loadingBalancesError) {
+      return <LoadingError pageType="Striim Accounts" error={currentWalletWithInfo.loadingBalancesError} id={currentWallet.toJS().address} />;
     }
-    if (!currentWalletDetails.balances) {
-      return <PageLoadingIndicator pageType="Loading wallet" id={currentWallet.toJS().address} />;
+    if (!currentWalletWithInfo.balances) {
+      return <PageLoadingIndicator pageType=" wallet balance" id={currentWallet.toJS().address} />;
     }
 
     return (
       <TransferForm
         address="0xf400db37c54c535febca1b470fd1d23d30acdd11"
         recipients={contacts.toJS()}
-        currencies={currentWalletDetails.balances}
+        currencies={currentWalletWithInfo.balances}
         onSend={this.onSend}
         onCancel={this.onCancel}
         transfering={currentWallet.toJS().transfering}
@@ -62,7 +62,7 @@ export class WalletTransfer extends React.PureComponent {
 }
 
 WalletTransfer.propTypes = {
-  currentWalletDetails: PropTypes.object.isRequired,
+  currentWalletWithInfo: PropTypes.object.isRequired,
   currentWallet: PropTypes.object.isRequired,
   transfer: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
@@ -70,7 +70,7 @@ WalletTransfer.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  currentWalletDetails: makeSelectCurrentWalletDetails(),
+  currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
   currentWallet: makeSelectCurrentWallet(),
   contacts: makeSelectContacts(),
 });

@@ -16,7 +16,7 @@ import reducer from './reducer';
 import saga from './saga';
 import {
   makeSelectCurrentWallet,
-  makeSelectCurrentWalletDetails,
+  makeSelectCurrentWalletWithInfo,
 } from './selectors';
 import {
   decryptWallet,
@@ -30,7 +30,7 @@ export default function WalletHOC(Component) {
 
   const mapStateToProps = createStructuredSelector({
     currentWallet: makeSelectCurrentWallet(),
-    currentWalletDetails: makeSelectCurrentWalletDetails(),
+    currentWalletDetails: makeSelectCurrentWalletWithInfo(),
   });
 
   const withConnect = connect(mapStateToProps, mapDispatchToProps);

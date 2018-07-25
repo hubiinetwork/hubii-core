@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { referenceCurrencies, IsAddressMatch } from 'utils/wallet';
+import { referenceCurrencies } from 'utils/wallet';
 import { fromJS } from 'immutable';
 
 /**
@@ -115,7 +115,9 @@ const makeSelectWalletsWithInfo = () => createSelector(
         walletBalances = fromJS({ loading: true });
       }
 
-      if (walletBalances.get('loading')) {
+      if (prices.get('loading')) {
+        walletBalances = fromJS({ loading: true });
+      } else if (walletBalances.get('loading')) {
         walletBalances = walletBalances.set('loading', true);
         walletBalances = walletBalances.set('total', fromJS({ usd: 0, eth: 0, btc: 0 }));
       } else {
@@ -169,8 +171,8 @@ const makeSelectWalletsWithInfo = () => createSelector(
   }
 );
 
-const makeSelectCurrentWalletDetails = () => createSelector(
-  makeSelectWallets(),
+const makeSelectCurrentWalletWithInfo = () => createSelector(
+  makeSelectWalletsWithInfo(),
   makeSelectCurrentWallet(),
   (wallets, currentWallet) => {
     const currentWalletIndex = wallets.findIndex((w) => w.get('address') === currentWallet.get('address'));
@@ -181,28 +183,28 @@ const makeSelectCurrentWalletDetails = () => createSelector(
   }
 );
 
-const makeSelectPendingTransactions = () => createSelector(
-  selectWalletHocDomain,
-  (walletHocDomain) => walletHocDomain.get('pendingTransactions')
-);
+// const makeSelectPendingTransactions = () => createSelector(
+//   selectWalletHocDomain,
+//   (walletHocDomain) => walletHocDomain.get('pendingTransactions')
+// );
 
-const makeSelectConfirmedTransactions = () => createSelector(
-  selectWalletHocDomain,
-  (walletHocDomain) => walletHocDomain.get('confirmedTransactions')
-);
+// const makeSelectConfirmedTransactions = () => createSelector(
+//   selectWalletHocDomain,
+//   (walletHocDomain) => walletHocDomain.get('confirmedTransactions')
+// );
 
-const makeSelectAllTransactions = () => createSelector(
-  makeSelectCurrentWalletDetails(),
-  makeSelectPendingTransactions(),
-  makeSelectConfirmedTransactions(),
-  (currentWalletDetails, pendingTxns, confirmedTxns) => {
-    const txns = [].concat(pendingTxns.toJS()).concat(confirmedTxns.toJS());
-    return txns.filter((txn) => {
-      const address = currentWalletDetails.address;
-      return IsAddressMatch(txn.from, address) || IsAddressMatch(txn.to, address);
-    }).sort((a, b) => b.timestamp - a.timestamp);
-  }
-);
+// const makeSelectAllTransactions = () => createSelector(
+//   makeSelectWalletsWithInfo(),
+//   makeSelectPendingTransactions(),
+//   makeSelectConfirmedTransactions(),
+//   (currentWalletDetails, pendingTxns, confirmedTxns) => {
+//     const txns = [].concat(pendingTxns.toJS()).concat(confirmedTxns.toJS());
+//     return txns.filter((txn) => {
+//       const address = currentWalletDetails.address;
+//       return IsAddressMatch(txn.from, address) || IsAddressMatch(txn.to, address);
+//     }).sort((a, b) => b.timestamp - a.timestamp);
+//   }
+// );
 
 export {
   selectWalletHocDomain,
@@ -218,6 +220,6 @@ export {
   makeSelectErrors,
   makeSelectCurrentWallet,
   makeSelectWalletsWithInfo,
-  makeSelectCurrentWalletDetails,
-  makeSelectAllTransactions,
+  makeSelectCurrentWalletWithInfo,
+  // makeSelectAllTransactions,
 };
