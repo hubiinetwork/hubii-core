@@ -2,8 +2,8 @@ import { injectGlobal } from 'styled-components';
 import Bold from '../public/fonts/SF-UI-Text-Bold.otf';
 import BoldItalic from '../public/fonts/SF-UI-Text-BoldItalic.otf';
 import HeavyItalic from '../public/fonts/SF-UI-Text-HeavyItalic.otf';
-import Medium from '../public/fonts/SF-UI-Text-Medium.otf';
-import MediumItalic from '../public/fonts/SF-UI-Text-MediumItalic.otf';
+// import Medium from '../public/fonts/SF-UI-Text-Medium.otf';
+// import MediumItalic from '../public/fonts/SF-UI-Text-MediumItalic.otf';
 import Regular from '../public/fonts/SF-UI-Text-Regular.otf';
 import RegularItalic from '../public/fonts/SF-UI-Text-RegularItalic.otf';
 import Light from '../public/fonts/SF-UI-Text-Light.otf';
@@ -64,7 +64,7 @@ injectGlobal`
   @font-face {
     font-family: "SF Text";
     font-weight: 500;
-    src: url(${Medium});
+    src: url(${Regular});
   }
 
   /** Medium Italic */
@@ -72,7 +72,7 @@ injectGlobal`
     font-family: "SF Text";
     font-weight: 500;
     font-style: italic;
-    src: url(${MediumItalic});
+    src: url(${RegularItalic});
   }
 
   /** Regular */
