@@ -6,11 +6,9 @@
 import { eventChannel } from 'redux-saga';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 import { takeLatest, takeEvery, put, call } from 'redux-saga/effects';
-import { expectSaga } from 'redux-saga-test-plan';
-// import * as matchers from 'redux-saga-test-plan/matchers';
+import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import { requestWalletAPI } from 'utils/request';
 import { ethAppNotOpenErrorMsg, disconnectedErrorMsg } from 'utils/ledger/friendlyErrors';
-import { createEthTransportActivity } from 'utils/ledger/comms';
 import { Wallet, utils } from 'ethers';
 import walletHocReducer from 'containers/WalletHOC/reducer';
 import { fromJS } from 'immutable';
@@ -52,7 +50,6 @@ import {
   LISTEN_TOKEN_BALANCES,
   INIT_LEDGER,
   LEDGER_ERROR,
-  // LEDGER_CONNECTED,
 } from '../constants';
 
 import {
@@ -78,8 +75,6 @@ import {
   ledgerDisconnected,
 } from '../actions';
 import { findWalletIndex, getTransactionCount, sendTransaction, getTransaction } from '../../../utils/wallet';
-// import { transportMock, addressMock, ethMock, channelMock } from './mocks/ledgerMocks';
-// import { createTransport, newEth } from '../../../utils/ledger/comms';
 import { privateKeyMock, encryptedMock, addressMock, privateKeyNoPrefixMock } from '../../../mocks/wallet';
 
 describe('createWalletFromMnemonic saga', () => {
@@ -752,24 +747,23 @@ describe('load wallets saga', () => {
             expect(signedTxHex).toEqual(expectedSignedTxHex);
           });
       });
-      // this test throws error msg in the console, need to update this test once the lib is able to suppress the error
-      // https://github.com/jfairbank/redux-saga-test-plan/issues/147
-      it('#tryCreateEthTransportActivity should start pollEthApp when throws exception', (done) => {
+      it('#tryCreateEthTransportActivity should start pollEthApp and rethrow the error to outer scope when throws exception', (done) => {
         const error = new Error();
         const descriptor = 'test';
-        expectSaga(tryCreateEthTransportActivity, descriptor)
-          .provide({
-            call(effect) {
-              expect(effect.fn).toEqual(createEthTransportActivity);
-              throw error;
-            },
-            spawn(effect) {
-              expect(effect.fn).toEqual(pollEthApp);
-              expect(effect.args[0]).toEqual({ descriptor });
-              done();
-            },
-          })
-          .run({ silenceTimeout: true });
+        const saga = testSaga(tryCreateEthTransportActivity, descriptor);
+        try {
+          saga
+            .next()
+
+            .throw(error)
+            .spawn(pollEthApp, { descriptor })
+
+            .next()
+            .isDone();
+        } catch (err) {
+          expect(err).toEqual(error);
+          done();
+        }
       });
     });
   });
