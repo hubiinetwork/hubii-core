@@ -14,7 +14,6 @@ import {
  */
 const Tokens = (props) => {
   const sortedData = props.data.filter((item) => item.percentage >= 0).sort((a, b) => b.percentage - a.percentage);
-  console.log(sortedData);
   const items = sortedData.map((item) => (
     <FlexItem key={`token-${item.label}`}>
       <Logo

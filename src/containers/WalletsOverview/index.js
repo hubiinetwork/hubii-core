@@ -63,7 +63,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           connected={wallet.type === 'lns' ? this.props.ledgerNanoSInfo.get('id') === wallet.deviceId : null}
           assets={wallet.balances.assets}
           mnemonic={wallet.mnemonic}
-          privateKey={wallet.privateKey}
+          privateKey={wallet.decrypted ? wallet.decrypted.privateKey : null}
           isDecrypted={!!wallet.decrypted}
           showDecryptWalletModal={() => this.props.showDecryptWalletModal(wallet.name)}
           setCurrentWallet={() => this.props.setCurrentWallet(wallet.address)}
