@@ -360,7 +360,7 @@ export function* tryCreateEthTransportActivity(descriptor, func) {
 export function* sendTransactionByLedger({ toAddress, amount, gasPrice, gasLimit }) {
   const walletDetails = yield select(makeSelectCurrentWalletDetails());
 
-  const nonce = yield call(getTransactionCount, walletDetails.address);
+  const nonce = yield call(getTransactionCount, walletDetails.address, 'pending');
   // generate raw tx for ledger nano to sign
   const rawTx = generateRawTx({
     toAddress,
