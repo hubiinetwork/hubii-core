@@ -60,12 +60,12 @@ describe('walletHocReducer', () => {
       pendingTransactions: [],
       confirmedTransactions: [],
       supportedTokens: {
-        loading: false,
+        loading: true,
         error: null,
         tokens: [],
       },
       prices: {
-        loading: false,
+        loading: true,
         error: null,
         tokens: [],
       },
@@ -204,7 +204,7 @@ describe('walletHocReducer', () => {
       const expected = stateWithWallet
         .setIn(['balances', address, 'loading'], false)
         .setIn(['balances', address, 'error'], null)
-        .setIn(['balances', address, 'tokens'], fromJS(balances));
+        .setIn(['balances', address, 'assets'], fromJS(balances));
 
       expect(walletHocReducer(stateWithWallet, loadWalletBalancesSuccess(address, balances))).toEqual(expected);
     });
@@ -214,7 +214,7 @@ describe('walletHocReducer', () => {
       const expected = stateWithWallet
         .setIn(['balances', address, 'loading'], false)
         .setIn(['balances', address, 'error'], null)
-        .setIn(['balances', address, 'tokens'], fromJS([]));
+        .setIn(['balances', address, 'assets'], fromJS([]));
 
       expect(walletHocReducer(stateWithWallet, loadWalletBalancesSuccess(address, balances))).toEqual(expected);
     });
