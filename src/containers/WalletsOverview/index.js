@@ -93,19 +93,19 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
         <WalletItemCard
           name={wallet.name}
           totalBalance={wallet.balances.total.usd}
+          balancesLoading={wallet.balances.loading}
           address={wallet.address}
           type={wallet.type}
-  //       connected = this.props.ledgerNanoSInfo.get('id') === wallet.deviceId;
           connected={wallet.type === 'lns' ? this.props.ledgerNanoSInfo.get('id') === wallet.deviceId : null}
-          assets={card.assets}
-          mnemonic={card.mnemonic}
-          privateKey={card.privateKey}
-          isDecrypted={card.isDecrypted}
-          showDecryptWalletModal={() => this.props.showDecryptWalletModal(card.name)}
-          setCurrentWallet={() => this.props.setCurrentWallet(card.address)}
-          handleCardClick={() => this.handleCardClick(card)}
-          walletList={this.props.walletList}
-          deleteWallet={() => this.props.deleteWallet(card.address)}
+          assets={wallet.balances.assets}
+          mnemonic={wallet.mnemonic}
+          privateKey={wallet.privateKey}
+          isDecrypted={!!wallet.decrypted}
+          showDecryptWalletModal={() => this.props.showDecryptWalletModal(wallet.name)}
+          setCurrentWallet={() => this.props.setCurrentWallet(wallet.address)}
+          handleCardClick={() => this.handleCardClick(wallet)}
+          walletList={wallets}
+          deleteWallet={() => this.props.deleteWallet(wallet.address)}
         />
       </WalletCardsCol>
     ));
@@ -117,7 +117,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     // const walletCards = this.getWalletCardsData(walletList);
     // const summary = this.getBreakdown(walletCards);
     return (
-      <div>hello</div>
+      <div>{this.renderWalletCards()}</div>
       // <Wrapper>
       //   <Row gutter={16}>
       //     <Col span={16} xs={24} md={16}>

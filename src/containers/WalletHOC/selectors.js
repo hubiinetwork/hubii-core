@@ -112,9 +112,12 @@ const makeSelectWalletsWithInfo = () => createSelector(
       // Add balance info for each token
       let walletBalances = balances.get(wallet.get('address'));
       if (!walletBalances) {
-        walletBalances = [];
-      } else if (walletBalances.get('loading')) {
+        walletBalances = fromJS({ loading: true });
+      }
+
+      if (walletBalances.get('loading')) {
         walletBalances = walletBalances.set('loading', true);
+        walletBalances = walletBalances.set('total', fromJS({ usd: 0, eth: 0, btc: 0 }));
       } else {
         walletBalances = walletBalances.set('assets', walletBalances.get('assets').map((asset) => {
           let walletAsset = asset;

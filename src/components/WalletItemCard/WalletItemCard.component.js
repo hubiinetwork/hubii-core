@@ -81,6 +81,7 @@ export class WalletItemCard extends React.PureComponent {
     const {
       address,
       name,
+      balancesLoading,
       connected,
       type,
       handleCardClick,
@@ -149,10 +150,10 @@ export class WalletItemCard extends React.PureComponent {
             <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
           </LeftSideWrapper>
           <AssetsWrapper>
-            {assets &&
+            {!balancesLoading &&
               assets.map((asset) => (
                 <AssetWrapper key={asset.name}>
-                  <AssetAmountBubble name={asset.name} amount={asset.amount} />
+                  <AssetAmountBubble name={asset.currency} amount={asset.balance} />
                 </AssetWrapper>
               ))}
           </AssetsWrapper>
