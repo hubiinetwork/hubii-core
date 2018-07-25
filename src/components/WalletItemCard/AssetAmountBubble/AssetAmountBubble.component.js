@@ -6,12 +6,15 @@ import { approxEth } from '../../../utils/numberFormats';
 /**
  * This Component  is useful  to show  name  and  amount of  a  wallet's  balance.
  */
-const AssetAmountBubble = (props) => (
-  <Wrapper>
-    <Image src={getAbsolutePath(`public/images/assets/${props.name}.svg`)} />
-    <Span>{approxEth(props.amount)}</Span>
-  </Wrapper>
+const AssetAmountBubble = (props) => {
+  console.log(props);
+  return (
+    <Wrapper>
+      <Image src={getAbsolutePath(`public/images/assets/${props.name}.svg`)} />
+      <Span>{approxEth(props.amount)}</Span>
+    </Wrapper>
   );
+};
 
 AssetAmountBubble.propTypes = {
   /**

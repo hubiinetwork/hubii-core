@@ -150,9 +150,9 @@ export class WalletItemCard extends React.PureComponent {
             <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
           </LeftSideWrapper>
           <AssetsWrapper>
-            {!balancesLoading &&
+            {balancesLoading ? <WalletName>Balance Loading...</WalletName> :
               assets.map((asset) => (
-                <AssetWrapper key={asset.name}>
+                <AssetWrapper key={asset.currency}>
                   <AssetAmountBubble name={asset.currency} amount={asset.balance} />
                 </AssetWrapper>
               ))}

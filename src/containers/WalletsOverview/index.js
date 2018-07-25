@@ -112,7 +112,6 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
   }
 
   render() {
-    console.log(this.props.walletsWithInfo.toJS());
     // const { walletList } = this.props;
     // const walletCards = this.getWalletCardsData(walletList);
     // const summary = this.getBreakdown(walletCards);
