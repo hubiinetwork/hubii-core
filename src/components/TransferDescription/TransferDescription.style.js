@@ -68,6 +68,14 @@ export const StyledCol = styled(Col)`
   white-space: nowrap;
   color: ${({ theme }) => theme.palette.secondary};
 `;
+export const StyledErrorCol = styled(Col)`
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  color: ${({ theme }) => theme.palette.secondary};
+`;
 export const StyledRecipient = styled(Col)`
   color: ${({ theme }) => theme.palette.light};
 `;

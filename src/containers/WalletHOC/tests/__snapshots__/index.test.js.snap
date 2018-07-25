@@ -13,6 +13,7 @@ ShallowWrapper {
     currentWalletDetails={Object {}}
     decryptWallet={[Function]}
     hideDecryptWalletModal={[Function]}
+    initLedger={[Function]}
     loadWalletsBalances={[Function]}
     loading={
         Immutable.Map {
@@ -43,6 +44,7 @@ ShallowWrapper {
           currentWalletDetails={Object {}}
           decryptWallet={[Function]}
           hideDecryptWalletModal={[Function]}
+          initLedger={[Function]}
           loadWalletsBalances={[Function]}
           loading={
                     Immutable.Map {
@@ -107,6 +109,7 @@ ShallowWrapper {
           "currentWalletDetails": Object {},
           "decryptWallet": [Function],
           "hideDecryptWalletModal": [Function],
+          "initLedger": [Function],
           "loadWalletsBalances": [Function],
           "loading": Immutable.Map {
             decryptingWallet: false,
@@ -230,6 +233,7 @@ ShallowWrapper {
             currentWalletDetails={Object {}}
             decryptWallet={[Function]}
             hideDecryptWalletModal={[Function]}
+            initLedger={[Function]}
             loadWalletsBalances={[Function]}
             loading={
                         Immutable.Map {
@@ -294,6 +298,7 @@ ShallowWrapper {
             "currentWalletDetails": Object {},
             "decryptWallet": [Function],
             "hideDecryptWalletModal": [Function],
+            "initLedger": [Function],
             "loadWalletsBalances": [Function],
             "loading": Immutable.Map {
               decryptingWallet: false,
@@ -425,6 +430,7 @@ ShallowWrapper {
     currentWalletDetails={Object {}}
     decryptWallet={[Function]}
     hideDecryptWalletModal={[Function]}
+    initLedger={[Function]}
     loadWalletsBalances={[Function]}
     loading={
         Immutable.Map {
@@ -455,6 +461,7 @@ ShallowWrapper {
           currentWalletDetails={Object {}}
           decryptWallet={[Function]}
           hideDecryptWalletModal={[Function]}
+          initLedger={[Function]}
           loadWalletsBalances={[Function]}
           loading={
                     Immutable.Map {
@@ -516,6 +523,7 @@ ShallowWrapper {
           "currentWalletDetails": Object {},
           "decryptWallet": [Function],
           "hideDecryptWalletModal": [Function],
+          "initLedger": [Function],
           "loadWalletsBalances": [Function],
           "loading": Immutable.Map {
             decryptingWallet: true,
@@ -634,6 +642,7 @@ ShallowWrapper {
             currentWalletDetails={Object {}}
             decryptWallet={[Function]}
             hideDecryptWalletModal={[Function]}
+            initLedger={[Function]}
             loadWalletsBalances={[Function]}
             loading={
                         Immutable.Map {
@@ -695,6 +704,7 @@ ShallowWrapper {
             "currentWalletDetails": Object {},
             "decryptWallet": [Function],
             "hideDecryptWalletModal": [Function],
+            "initLedger": [Function],
             "loadWalletsBalances": [Function],
             "loading": Immutable.Map {
               decryptingWallet: true,
