@@ -1,19 +1,18 @@
 import { delay } from 'redux-saga';
 import { takeLatest, takeEvery, put, call, select, take } from 'redux-saga/effects';
 import Eth from '@ledgerhq/hw-app-eth';
-// import Web3 from 'web3';
-import { Wallet, utils, providers, Contract } from 'ethers';
+import { Wallet, utils, Contract } from 'ethers';
 
 import { notify } from 'containers/App/actions';
 
+import { requestWalletAPI } from 'utils/request';
+import { ERC20ABI, EthNetworkProvider } from 'utils/wallet';
+import LedgerTransport from 'utils/ledger/Transport';
+
 import {
-  makeSelectWalletList,
   makeSelectCurrentWalletDetails,
   makeSelectWallets,
 } from './selectors';
-import { requestWalletAPI } from '../../utils/request';
-import { ERC20ABI, EthNetworkProvider } from '../../utils/wallet';
-import LedgerTransport from '../../utils/ledger/Transport';
 
 import {
   CREATE_WALLET_FROM_MNEMONIC,
@@ -24,7 +23,6 @@ import {
   TRANSFER,
   TRANSFER_ETHER,
   TRANSFER_ERC20,
-  TRANSFER_SUCCESS,
   POLL_LEDGER,
   LEDGER_ERROR,
   LEDGER_DETECTED,
@@ -43,7 +41,6 @@ import {
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
-  listenBalances as listenBalancesAction,
   loadSupportedTokens as loadSupportedTokensAction,
   loadSupportedTokensSuccess,
   loadSupportedTokensError,
@@ -61,10 +58,8 @@ import {
   fetchedLedgerAddress,
   transferEther as transferEtherAction,
   transferERC20 as transferERC20Action,
-  transactionConfirmed,
   hideDecryptWalletModal,
 } from './actions';
-// import generateRawTx from '../../utils/generateRawTx';
 
 // Creates a new software wallet
 export function* createWalletFromMnemonic({ name, mnemonic, derivationPath, password }) {
@@ -112,9 +107,9 @@ export function* decryptWallet({ address, encryptedWallet, password }) {
 }
 
 export function* initWalletsBalances() {
-  const walletList = yield select(makeSelectWalletList());
-  for (let i = 0; i < walletList.length; i += 1) {
-    yield put(loadWalletBalances(walletList[i].address));
+  const wallets = yield select(makeSelectWallets());
+  for (let i = 0; i < wallets.size; i += 1) {
+    yield put(loadWalletBalances(wallets.getIn([i, 'address'])));
   }
   yield put(loadSupportedTokensAction());
   yield put(loadPricesAction());
@@ -124,9 +119,8 @@ export function* loadWalletBalancesSaga({ address }) {
   const requestPath = `ethereum/wallets/${address}/balances`;
   try {
     const returnData = yield call(requestWalletAPI, requestPath);
-    console.log('Balances: ', returnData);
+
     yield put(loadWalletBalancesSuccess(address, returnData));
-    yield put(listenBalancesAction(address));
   } catch (err) {
     yield put(loadWalletBalancesError(address, err));
   }
@@ -136,7 +130,6 @@ export function* loadSupportedTokens() {
   const requestPath = 'ethereum/supported-tokens';
   try {
     const returnData = yield call(requestWalletAPI, requestPath);
-    console.log('Supported tokens: ', returnData);
     yield put(loadSupportedTokensSuccess(returnData));
   } catch (err) {
     yield put(loadSupportedTokensError(err));
@@ -147,7 +140,6 @@ export function* loadPrices() {
   const requestPath = 'ethereum/prices';
   try {
     const returnData = yield call(requestWalletAPI, requestPath);
-    console.log('Prices: ', returnData);
     yield put(loadPricesSuccess(returnData));
   } catch (err) {
     yield put(loadPricesError(err));
@@ -226,13 +218,6 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
     yield put(transferError(error));
     yield put(notify('error', `Failed to send transaction: ${error}`));
   }
-}
-
-export function* waitTransactionHash({ transaction }) {
-  const provider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
-  const confirmedTxn = yield call((...args) => provider.waitForTransaction(...args), transaction.hash);
-  yield put(transactionConfirmed(confirmedTxn));
-  yield put(notify('success', 'Transaction confirmed'));
 }
 
 export function* hookNewWalletCreated({ newWallet }) {
@@ -332,7 +317,6 @@ export default function* walletHoc() {
 
   yield takeEvery(TRANSFER_ETHER, transferEther);
   yield takeEvery(TRANSFER_ERC20, transferERC20);
-  yield takeEvery(TRANSFER_SUCCESS, waitTransactionHash);
 
   yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
   yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);

@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
-import { convertWalletsList, IsAddressMatch } from 'utils/wallet';
+import { referenceCurrencies, IsAddressMatch } from 'utils/wallet';
+import { fromJS } from 'immutable';
 
 /**
  * Direct selector to the walletHoc state domain
@@ -69,47 +70,88 @@ const makeSelectSupportedTokens = () => createSelector(
   (walletHocDomain) => walletHocDomain.get('supportedTokens')
 );
 
-const makeSelectWalletList = () => createSelector(
+const makeSelectWalletsWithInfo = () => createSelector(
   makeSelectWallets(),
   makeSelectBalances(),
   makeSelectPrices(),
   makeSelectSupportedTokens(),
   (wallets, balances, prices, supportedTokens) => {
-    const walletList = convertWalletsList(wallets);
-    return walletList.map((wallet) => {
-      let walletBalances = balances.getIn([wallet.address]);
+    const walletsWithInfo = wallets.map((wallet) => {
+      let walletWithInfo = wallet;
+
+      // Add balance info for each token
+      let walletBalances = balances.get(wallet.get('address'));
       if (!walletBalances) {
-        return { ...wallet, balances: { tokens: [] } };
+        walletBalances = [];
+      } else if (walletBalances.get('loading')) {
+        walletBalances = walletBalances.set('loading', true);
+      } else {
+        walletBalances = walletBalances.set('assets', walletBalances.get('assets').map((token) => {
+          let walletToken = token;
+          const supportedTokenIndex = supportedTokens
+          .get('tokens')
+          .findIndex((t) => t.get('currency') === token.get('currency'));
+
+          const priceIndex = prices
+          .get('tokens')
+          .findIndex((t) => t.get('currency') === token.get('currency'));
+
+          // Currently ETH supported info not returned, mock it
+          const supportedTokenInfo =
+          supportedTokenIndex !== -1
+            ? supportedTokens.getIn(['tokens', supportedTokenIndex])
+            : fromJS({ symbol: 'ETH', decimals: 18, color: 'grey' });
+
+          // Currently ETH price info not returned, mock it
+          const priceInfo =
+          priceIndex !== -1
+            ? prices.getIn(['tokens', priceIndex])
+            : fromJS({ eth: 1, btc: 0.01, usd: 412 });
+
+          // Remove redundant value
+          walletToken = walletToken.delete('address');
+
+          // Get real balance
+          const realBalance = walletToken.get('balance') / (10 ** supportedTokenInfo.get('decimals'));
+          walletToken = walletToken.set('balance', realBalance);
+
+          // Add symbol for each token
+          const symbol = supportedTokenInfo.get('symbol');
+          walletToken = walletToken.set('symbol', symbol);
+
+          // Add reference currency values for each token
+          referenceCurrencies.forEach((currency) => {
+            walletToken = walletToken
+            .setIn(['value', currency], priceInfo.get(currency) * walletToken.get('balance'));
+          });
+
+          return walletToken;
+        }));
+
+        // Add total balance info for each wallet
+        referenceCurrencies.forEach((currency) => {
+          walletBalances = walletBalances
+          .setIn(['total', currency], walletBalances.get('assets').reduce((acc, token) => acc + token.getIn(['value', currency]), 0));
+        });
       }
-      if (!walletBalances.tokens) {
-        return { ...wallet, balances: walletBalances };
-      }
-      walletBalances = walletBalances.tokens.map((balance) => {
-        const pri = prices.find((price) => price.currency === balance.currency);
-        const tkn = supportedTokens.find((token) => token.currency === balance.currency);
-        return {
-          symbol: tkn.symbol,
-          balance: balance.balance,
-          decimals: tkn.decimals,
-          price: {
-            usd: pri.usd,
-            eth: pri.eth,
-            btc: pri.btc,
-          },
-          color: tkn.color,
-        };
-      });
-      return { ...wallet, balances: walletBalances };
+
+      walletWithInfo = walletWithInfo.set('balances', walletBalances);
+      return walletWithInfo;
     });
+
+    return walletsWithInfo;
   }
 );
 
 const makeSelectCurrentWalletDetails = () => createSelector(
-  makeSelectWalletList(),
+  makeSelectWallets(),
   makeSelectCurrentWallet(),
-  (walletList, currentWallet) => {
-    const walletDetails = walletList.find((wallet) => wallet.address === currentWallet.get('address'));
-    return walletDetails || {};
+  (wallets, currentWallet) => {
+    const currentWalletIndex = wallets.findIndex((w) => w.get('address') === currentWallet.get('address'));
+    if (currentWalletIndex === -1) return {};
+
+    const walletDetails = wallets.get(currentWalletIndex);
+    return walletDetails;
   }
 );
 
@@ -147,7 +189,7 @@ export {
   makeSelectLoading,
   makeSelectErrors,
   makeSelectCurrentWallet,
-  makeSelectWalletList,
+  makeSelectWalletsWithInfo,
   makeSelectCurrentWalletDetails,
   makeSelectAllTransactions,
 };

@@ -10,8 +10,9 @@ import {
   makeSelectLoading,
   makeSelectErrors,
   makeSelectCurrentWalletDetails,
-  makeSelectWalletList,
+  makeSelectWalletsWithInfo,
 } from '../selectors';
+import { walletsMock, balancesMock, supportedTokensLoadedMock, walletsWithInfoMock, pricesLoadedMock, address1Mock } from './mocks';
 
 describe('selectWalletHocDomain', () => {
   it('should select the walletHocDomain state', () => {
@@ -125,12 +126,12 @@ describe('makeSelectErrors', () => {
 describe('makeSelectCurrentWalletDetails', () => {
   const walletSelector = makeSelectCurrentWalletDetails();
   it('should convert select current wallet details from the wallet list', () => {
-    const expected = {
+    const expected = fromJS({
       address: '0x2',
-      encrypted: { address: '2' },
       name: 't2',
       type: 'software',
-    };
+      encrypted: '{"address": "2"}',
+    });
     const mockedState = fromJS({
       walletHoc: {
         wallets: [
@@ -147,93 +148,56 @@ describe('makeSelectCurrentWalletDetails', () => {
   });
 });
 
-describe('makeSelectWalletList', () => {
-  it.only('should piece together balances/token to the wallet', () => {
-    const walletList = makeSelectWalletList();
-    const address = '0x2';
-    const balances = [
-      {
-        address,
-        currency: 'ETH',
-        balance: '179312830516700000',
-      },
-      {
-        address,
-        currency: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
-        balance: '6100000000000000',
-      },
-    ];
-    const prices = [
-      {
-        currency: 'ETH',
-        eth: 1,
-        btc: 1,
-        usd: 1,
-      },
-      {
-        currency: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
-        eth: 2,
-        btc: 2,
-        usd: 2,
-      },
-    ];
-    const tokens = [
-      { currency: '0x8899544F1fc4E0D570f3c998cC7e5857140dC322',
-        symbol: 'My20',
-        decimals: 18,
-        color: 'FFAA00' },
-      { currency: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
-        symbol: 'HBT',
-        decimals: 15,
-        color: '0063A5' },
-    ];
-    const clonedBalances = balances.slice(0).map((balance) => {
-      const pri = prices.find((price) => price.currency === balance.currency);
-      const tkn = tokens.find((token) => token.currency === balance.currency);
-      return {
-        symbol: tkn.symbol,
-        balance: balance.balance,
-        decimals: tkn.decimals,
-        price: {
-          usd: pri.usd,
-          eth: pri.eth,
-          btc: pri.btc,
-        },
-        primaryColor: tkn.color,
-      };
-    });
-    const expected = [{
-      address,
-      encrypted: { address: '2' },
-      name: 't2',
-      type: 'software',
-      balances: clonedBalances,
-    }];
+describe('makeSelectWalletsWithInfo', () => {
+  const walletsWithInfoSelector = makeSelectWalletsWithInfo();
+  it('should piece together balances/token to the wallet', () => {
+    const wallets = walletsMock;
+    const balances = balancesMock;
+    const supportedTokens = supportedTokensLoadedMock;
+    const expected = walletsWithInfoMock;
+    const prices = pricesLoadedMock;
     const mockedState = fromJS({
       walletHoc: {
-        wallets: [
-          { name: 't1', type: 'software', encrypted: '{"address": "1"}' },
-          { address, name: 't2', type: 'software', encrypted: '{"address": "2"}' },
-        ],
-        balances: {
-          [address]: {
-            tokens: balances,
-          },
-        },
-        supportedTokens: {
-          tokens,
-        },
-        prices: {
-          tokens: prices,
-        },
+        wallets,
+        balances,
+        supportedTokens,
+        prices,
       },
     });
-    expect(walletList(mockedState)).toEqual(expected);
+    expect(walletsWithInfoSelector(mockedState)).toEqual(expected);
   });
-  it('should mark balance loading when the balance for a wallet address is in loading', () => {
 
+  it('should mark balances as loading when loading', () => {
+    const wallets = walletsMock;
+    const balances = balancesMock.setIn([address1Mock, 'loading'], true);
+    const supportedTokens = supportedTokensLoadedMock;
+    const prices = pricesLoadedMock;
+    const expected = true;
+    const mockedState = fromJS({
+      walletHoc: {
+        wallets,
+        balances,
+        supportedTokens,
+        prices,
+      },
+    });
+    expect(walletsWithInfoSelector(mockedState).getIn([0, 'balances', 'loading'])).toEqual(expected);
   });
-  it('should mark balance error when there are errors when loading a balance', () => {
 
+  it('should set balances to [] if they don\'t exist', () => {
+    const wallets = walletsMock;
+    const balances = balancesMock.delete(address1Mock);
+    const supportedTokens = supportedTokensLoadedMock;
+    const prices = pricesLoadedMock;
+    const expected = [];
+    const mockedState = fromJS({
+      walletHoc: {
+        wallets,
+        balances,
+        supportedTokens,
+        prices,
+      },
+    });
+    expect(walletsWithInfoSelector(mockedState).getIn([0, 'balances'])).toEqual(expected);
   });
 });

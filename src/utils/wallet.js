@@ -1,19 +1,6 @@
 import { providers } from 'ethers';
 import fatalError from './fatalError';
 
-export function convertWalletsList(walletsState) {
-  const walletsObject = walletsState.toJS();
-  const processedWallets = [];
-  walletsObject.forEach((wallet) => {
-    const curWallet = { ...wallet };
-    if (wallet.type === 'software') {
-      curWallet.encrypted = JSON.parse(wallet.encrypted);
-    }
-    processedWallets.push(curWallet);
-  });
-  return processedWallets;
-}
-
 export function getTotalUSDValue(balances) {
   if (!balances) {
     return 0;
@@ -56,6 +43,8 @@ export const findWalletIndex = (state, address, scopedFatalError = fatalError) =
     return scopedFatalError(e);
   }
 };
+
+export const referenceCurrencies = ['eth', 'btc', 'usd'];
 
 export const humanFriendlyWalletType = (type) => {
   if (type === 'lns') return 'Ledger Nano S';

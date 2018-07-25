@@ -66,12 +66,12 @@ export const initialState = fromJS({
   pendingTransactions: [],
   confirmedTransactions: [],
   supportedTokens: {
-    loading: false,
+    loading: true,
     error: null,
     tokens: [],
   },
   prices: {
-    loading: false,
+    loading: true,
     error: null,
     tokens: [],
   },
@@ -122,7 +122,7 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['balances', action.address, 'loading'], false)
         .setIn(['balances', action.address, 'error'], null)
-        .setIn(['balances', action.address, 'tokens'], fromJS(action.tokens || []));
+        .setIn(['balances', action.address, 'assets'], fromJS(action.assets || []));
     case LOAD_WALLET_BALANCES_ERROR:
       return state
         .setIn(['balances', action.address, 'loading'], false)

@@ -170,11 +170,11 @@ export function loadWalletBalances(address) {
   };
 }
 
-export function loadWalletBalancesSuccess(address, tokens) {
+export function loadWalletBalancesSuccess(address, assets) {
   return {
     type: LOAD_WALLET_BALANCES_SUCCESS,
     address,
-    tokens,
+    assets,
   };
 }
 

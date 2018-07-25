@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
 
 import { deleteWallet, showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHOC/actions';
-import { makeSelectLedgerNanoSInfo, makeSelectWalletList } from 'containers/WalletHOC/selectors';
+import { makeSelectLedgerNanoSInfo, makeSelectWalletsWithInfo } from 'containers/WalletHOC/selectors';
 
 import { SectionHeading } from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
@@ -146,7 +146,7 @@ WalletsOverview.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  walletList: makeSelectWalletList(),
+  walletsWithInfo: makeSelectWalletsWithInfo(),
   ledgerNanoSInfo: makeSelectLedgerNanoSInfo(),
 });
 
