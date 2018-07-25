@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { convertWalletsList, IsAddressMatch } from 'utils/wallet';
+import { fromJS } from 'immutable';
 
 /**
  * Direct selector to the walletHoc state domain
@@ -64,7 +65,10 @@ const makeSelectCurrentWalletDetails = () => createSelector(
   makeSelectCurrentWallet(),
   makeSelectLedgerNanoSInfo(),
   (walletList, currentWallet, ledgerNanoSInfo) => {
-    const walletDetails = walletList.find((wallet) => wallet.address === currentWallet.get('address')) || {};
+    let walletDetails = walletList.find((wallet) => wallet.address === currentWallet.get('address')) || {};
+    // force reset so the component can pick up all the updates to the nested properties.
+    // TODO: refactor this to immutable object
+    walletDetails = fromJS(walletDetails).toJS();
     if (walletDetails.type === 'lns') {
       walletDetails.ledgerNanoSInfo = ledgerNanoSInfo.toJS();
     }

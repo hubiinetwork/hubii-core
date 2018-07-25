@@ -22,6 +22,7 @@ import { formatFiat } from '../../utils/numberFormats';
 export default class TransferDescription extends React.PureComponent {
   render() {
     const {
+      errors,
       currentWalletDetails,
       title,
       recipient,
@@ -38,8 +39,8 @@ export default class TransferDescription extends React.PureComponent {
 
     const totalUsd = (parseInt(selectedToken.balance, 10) / (10 ** selectedToken.decimals)) * parseFloat(selectedToken.price.USD);
     const remainingBalance = totalUsd - (amountToSend * parseFloat(selectedToken.price.USD)) - (transactionFee * parseFloat(ethInformation.price.USD));
-    const disableSendButton = Number.isNaN(amountToSend) || amountToSend === 0 || remainingBalance < 0;
     const lnsDisconnected = currentWalletDetails.type === 'lns' && currentWalletDetails.ledgerNanoSInfo.status !== 'connected';
+    const disableSendButton = Number.isNaN(amountToSend) || amountToSend === 0 || remainingBalance < 0 || lnsDisconnected;
     return (
       <WrapperDiv>
         <Row>
@@ -130,7 +131,7 @@ export default class TransferDescription extends React.PureComponent {
                 <StyledButtonCancel type="secondary" onClick={onCancel}>
                   {'Cancel'}
                 </StyledButtonCancel>
-                <StyledButton type="primary" onClick={onSend} disabled={disableSendButton || lnsDisconnected}>
+                <StyledButton type="primary" onClick={onSend} disabled={disableSendButton}>
                   {buttonLabel}
                 </StyledButton>
               </StyledDiv>
@@ -138,7 +139,7 @@ export default class TransferDescription extends React.PureComponent {
           }
         </Row>
         <Row>
-          <StyledErrorCol span={24}>{this.props.errors.get('ledgerError')}</StyledErrorCol>
+          <StyledErrorCol span={24}>{errors.get('ledgerError')}</StyledErrorCol>
         </Row>
       </WrapperDiv>
     );
