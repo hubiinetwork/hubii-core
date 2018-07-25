@@ -6,13 +6,13 @@ import {
   decryptWalletFailed,
   decryptWalletSuccess,
   loadWallets,
-  pollLedger,
-  ledgerDetected,
+  ledgerEthAppConnected,
   ledgerError,
   deleteWallet,
   saveLedgerAddress,
   showDecryptWalletModal,
   resetDecryptWalletCallback,
+  initLedger,
 } from '../actions';
 import {
   CREATE_WALLET_FROM_MNEMONIC,
@@ -22,13 +22,13 @@ import {
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
   LOAD_WALLETS,
-  POLL_LEDGER,
-  LEDGER_DETECTED,
+  LEDGER_ETH_CONNECTED,
   LEDGER_ERROR,
   DELETE_WALLET,
   SHOW_DECRYPT_WALLET_MODAL,
   TRANSFER,
   RESET_DECRYPT_WALLET_CALLBACK,
+  INIT_LEDGER,
 } from '../constants';
 
 import getFriendlyError from '../../../utils/ledger/friendlyErrors';
@@ -148,23 +148,25 @@ describe('WalletHoc actions', () => {
     });
   });
 
-  describe('pollLedger Action', () => {
+  describe('initLedger Action', () => {
     it('returns expected output', () => {
       const expected = {
-        type: POLL_LEDGER,
+        type: INIT_LEDGER,
       };
-      expect(pollLedger()).toEqual(expected);
+      expect(initLedger()).toEqual(expected);
     });
   });
 
-  describe('ledgerDetected Action', () => {
+  describe('ledgerEthAppConnected Action', () => {
     it('returns expected output', () => {
       const id = '048ncjdh39';
+      const descriptor = 'desc';
       const expected = {
-        type: LEDGER_DETECTED,
+        type: LEDGER_ETH_CONNECTED,
         id,
+        descriptor,
       };
-      expect(ledgerDetected(id)).toEqual(expected);
+      expect(ledgerEthAppConnected(descriptor, id)).toEqual(expected);
     });
   });
 

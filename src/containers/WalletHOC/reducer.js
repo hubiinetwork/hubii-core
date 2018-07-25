@@ -27,7 +27,10 @@ import {
   TRANSFER,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
-  LEDGER_DETECTED,
+  LEDGER_CONNECTED,
+  LEDGER_DISCONNECTED,
+  LEDGER_ETH_CONNECTED,
+  LEDGER_ETH_DISCONNECTED,
   LEDGER_ERROR,
   FETCHED_LEDGER_ADDRESS,
   SAVE_LEDGER_ADDRESS,
@@ -35,6 +38,7 @@ import {
   DELETE_WALLET,
   RESET_DECRYPT_WALLET_CALLBACK,
 } from './constants';
+import { disconnectedErrorMsg } from '../../utils/ledger/friendlyErrors';
 
 export const initialState = fromJS({
   inputs: {
@@ -49,7 +53,7 @@ export const initialState = fromJS({
   errors: {
     creatingWalletError: null,
     decryptingWalletError: null,
-    ledgerError: 'Initialising, please try again in a few seconds...',
+    ledgerError: disconnectedErrorMsg,
   },
   wallets: [],
   currentWallet: {
@@ -63,6 +67,7 @@ export const initialState = fromJS({
   pendingTransactions: [],
   confirmedTransactions: [],
   currentDecryptionCallback: null,
+  // hardwareWallets: { ledgerNanoS: { id: null, addresses: {} } },
 });
 
 abiDecoder.addABI(ERC20ABI);
@@ -156,14 +161,33 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], action.error.message)
         .setIn(['currentWallet', 'lastTransaction'], null);
-    case LEDGER_DETECTED:
+    case LEDGER_ETH_CONNECTED:
       return state
         .setIn(['ledgerNanoSInfo', 'status'], 'connected')
         .setIn(['ledgerNanoSInfo', 'id'], action.id)
+        .setIn(['errors', 'ledgerError'], null)
+        .setIn(['ledgerNanoSInfo', 'ethConnected'], true);
+    case LEDGER_ETH_DISCONNECTED:
+      return state
+        .setIn(['ledgerNanoSInfo', 'status'], 'disconnected')
+        .setIn(['ledgerNanoSInfo', 'id'], action.id)
+        .setIn(['ledgerNanoSInfo', 'ethConnected'], false);
+    case LEDGER_CONNECTED:
+      return state
+        .setIn(['ledgerNanoSInfo', 'connected'], true)
+        .setIn(['ledgerNanoSInfo', 'descriptor'], action.descriptor)
         .setIn(['errors', 'ledgerError'], null);
+    case LEDGER_DISCONNECTED:
+      return state
+        .setIn(['ledgerNanoSInfo', 'status'], 'disconnected')
+        .setIn(['ledgerNanoSInfo', 'ethConnected'], false)
+        .setIn(['ledgerNanoSInfo', 'connected'], false)
+        .setIn(['ledgerNanoSInfo', 'descriptor'], null);
+        // .setIn(['errors', 'ledgerError'], 'ledger disconnected')
     case LEDGER_ERROR:
       return state
-        .set('ledgerNanoSInfo', fromJS({ status: 'disconnected', addresses: {} }))
+        .setIn(['ledgerNanoSInfo', 'status'], 'disconnected')
+        .setIn(['ledgerNanoSInfo', 'addresses'], fromJS({}))
         .setIn(['errors', 'ledgerError'], action.error);
     case SAVE_LEDGER_ADDRESS:
       return state
