@@ -2,7 +2,7 @@ import React from 'react';
 import { Col } from 'antd';
 import PropTypes from 'prop-types';
 import { gweiToWei } from 'utils/wallet';
-import { formatFiat } from 'utils/numberFormats';
+import { formatFiat, formatEthAmount } from 'utils/numberFormats';
 import { getAbsolutePath } from 'utils/electron';
 import {
   Row,
@@ -18,23 +18,22 @@ import Select, { Option, OptGroup } from '../ui/Select';
 import { Form, FormItem, FormItemLabel } from '../ui/Form';
 import HelperText from '../ui/HelperText';
 import TransferDescription from '../TransferDescription';
+import Input from '../ui/Input';
 
 // TODO: This component is buggy. Just merging because a lot of eslint issue have been resolved in this branch
 export default class TransferForm extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      input: 0,
-      priceInDollar: this.props.currencies[0].rateUSD,
+      amountToSendInput: '0',
+      amountToSend: 0,
       address: this.props.recipients[0] ? this.props.recipients[0].address : '',
-      amount: this.props.currencies[0].amount,
-      selectedToken: this.props.currencies[0],
+      assetToSend: this.props.assets[0],
       gasPriceGwei: 3,
       gasLimit: 21000,
     };
-    this.state.ethInformation = this.props.currencies.find((currency) => currency.symbol === 'ETH');
-    this.handleChange = this.handleChange.bind(this);
-    this.handleTokenChange = this.handleTokenChange.bind(this);
+    this.handleAmountToSendChange = this.handleAmountToSendChange.bind(this);
+    this.handleAssetChange = this.handleAssetChange.bind(this);
     this.onSend = this.onSend.bind(this);
     this.handleRecipient = this.handleRecipient.bind(this);
     this.handleGasPriceChange = this.handleGasPriceChange.bind(this);
@@ -42,14 +41,25 @@ export default class TransferForm extends React.PureComponent {
   }
 
   onSend() {
-    const { token, address, input, gasPriceGwei, gasLimit } = this.state;
-    this.props.onSend(token, address, input, gweiToWei(gasPriceGwei), gasLimit);
+    const { assetToSend, address, amountToSend, gasPriceGwei, gasLimit } = this.state;
+    this.props.onSend(assetToSend.symbol, address, amountToSend, gweiToWei(gasPriceGwei), gasLimit);
   }
 
-  handleChange(e) {
+  handleAmountToSendChange(e) {
     const { value } = e.target;
-    const input = parseFloat(isNaN(value) || value === '' ? 0 : value);
-    this.setState({ input });
+    if (value === '' || value.endsWith('.') || value.endsWith('0')) {
+      if (!value.match('[^0.]')) {
+        this.setState({ amountToSend: 0 });
+      }
+      this.setState({ amountToSendInput: value });
+      return;
+    }
+
+    if (isNaN(value)) {
+      return;
+    }
+
+    this.setState({ amountToSendInput: formatEthAmount(Number(value)).toString(), amountToSend: formatEthAmount(Number(value)) });
   }
 
   handleGasPriceChange(e) {
@@ -60,12 +70,11 @@ export default class TransferForm extends React.PureComponent {
     this.setState({ gasLimit: parseFloat(e.target.value) });
   }
 
-  handleTokenChange(newSymbol) {
-    for (let i = 0; i < this.props.currencies.length; i += 1) {
-      if (this.props.currencies[i].symbol === newSymbol) {
+  handleAssetChange(newSymbol) {
+    for (let i = 0; i < this.props.assets.length; i += 1) {
+      if (this.props.assets[i].symbol === newSymbol) {
         this.setState({
-          priceInDollar: this.props.currencies[i].rateUSD,
-          selectedToken: this.props.currencies[i],
+          assetToSend: this.props.assets[i],
         });
       }
     }
@@ -78,28 +87,47 @@ export default class TransferForm extends React.PureComponent {
   }
 
   render() {
-    const { selectedToken, address, gasLimit, input, gasPriceGwei, ethInformation } = this.state;
-    const { currencies, recipients } = this.props;
+    const { assetToSend, address, gasLimit, amountToSend, amountToSendInput, gasPriceGwei } = this.state;
+    const { assets, prices, recipients } = this.props;
 
-    const totalBalance = selectedToken.balance;
+    const assetToSendUsdValue = prices.assets.find((a) => a.currency === assetToSend.currency).usd;
+    const usdValueToSend = amountToSend * assetToSendUsdValue;
+    const ethUsdValue = prices.assets.find((a) => a.currency === 'ETH').usd;
+
+
+    const ethBalance = this.props.assets.find((currency) => currency.symbol === 'ETH');
+
+    const transactionFee = { amount: (gasPriceGwei * gasLimit) / (10 ** 9), usdValue: ((gasPriceGwei * gasLimit) / (10 ** 9)) * ethUsdValue };
+    // const totalBalance = assetToSend.balance;
+    const assetBalanceBefore = { amount: assetToSend.balance, usdValue: assetToSend.balance * assetToSendUsdValue };
+    const assetBalanceAfter = { amount: assetBalanceBefore - amountToSend, usdValue: (assetBalanceBefore - amountToSend) * assetToSendUsdValue };
+    const ethBalanceBefore = { amount: ethBalance.balance, usdValue: ethBalance.balance * ethUsdValue };
+    const ethBalanceAfter = {
+      amount: assetToSend.symbol === 'ETH'
+        ? ethBalanceBefore.amount - amountToSend - transactionFee
+        : ethBalanceBefore.amount - transactionFee,
+      usdValue: assetToSend.symbol === 'ETH'
+        ? (ethBalanceBefore.amount - amountToSend - transactionFee) * ethUsdValue
+        : (ethBalanceBefore.amount - transactionFee.amount) * ethUsdValue,
+    };
     return (
       <Row gutter={24} justify="center">
         <Col xl={16} sm={22}>
           <Form>
             <FormItem
-              label={<FormItemLabel>Select Currency</FormItemLabel>}
+              label={<FormItemLabel>Asset</FormItemLabel>}
               colon={false}
             >
               <Image>
                 <img
-                  src={getAbsolutePath(`public/images/assets/${selectedToken.symbol}.svg`)}
+                  src={getAbsolutePath(`public/images/assets/${assetToSend.symbol}.svg`)}
                   width="32px"
                   height="32px"
                   alt="logo"
                 />
               </Image>
-              <Select defaultValue={selectedToken.symbol} onSelect={this.handleTokenChange}>
-                {currencies.map((currency) => (
+              <Select defaultValue={assetToSend.symbol} onSelect={this.handleTokenChange}>
+                {assets.map((currency) => (
                   <Option value={currency.symbol} key={currency.symbol}>
                     {currency.symbol}
                   </Option>
@@ -128,9 +156,9 @@ export default class TransferForm extends React.PureComponent {
             <FormItem
               label={<FormItemLabel>Amount</FormItemLabel>}
               colon={false}
-              help={<HelperText left={formatFiat(input * parseFloat(selectedToken.value.usd), 'USD')} right="USD" />}
+              help={<HelperText left={formatFiat(usdValueToSend, 'USD')} right="USD" />}
             >
-              <InputNumber min={0} max={totalBalance} handleChange={this.handleChange} />
+              <Input defaultValue={amountToSendInput} value={amountToSendInput} onChange={this.handleAmountToSendChange} />
             </FormItem>
             <Collapse bordered={false} defaultActiveKey={['2']}>
               <Panel
@@ -149,19 +177,22 @@ export default class TransferForm extends React.PureComponent {
               </Panel>
             </Collapse>
             <ETHtoDollar>
-              {`1 ${selectedToken.symbol} = ${formatFiat(parseFloat(selectedToken.value.usd), 'USD')}`}
+              {`1 ${assetToSend.symbol} = ${formatFiat(assetToSendUsdValue, 'USD')}`}
             </ETHtoDollar>
           </Form>
         </Col>
         <Col xl={6} sm={22}>
           <TransferDescription
-            totalUsd={0}
-            transactionFee={(gasPriceGwei * gasLimit) / (10 ** 9)}
-            amountToSend={input}
+            transactionFee={transactionFee}
+            amountToSend={amountToSend}
+            assetToSend={assetToSend}
+            ethBalanceBefore={ethBalanceBefore}
+            ethBalanceAfter={ethBalanceAfter}
+            assetBalanceBefore={assetBalanceBefore}
+            assetBalanceAfter={assetBalanceAfter}
+            walletUsdValueBefore={10}
+            walletUsdValueAfter={5}
             recipient={address}
-            totalAmount={totalBalance}
-            selectedToken={selectedToken}
-            ethInformation={ethInformation}
             onSend={this.onSend}
             onCancel={this.props.onCancel}
             transfering={this.props.transfering}
@@ -172,8 +203,8 @@ export default class TransferForm extends React.PureComponent {
   }
 }
 TransferForm.propTypes = {
-  address: PropTypes.string,
-  currencies: PropTypes.array.isRequired,
+  assets: PropTypes.array.isRequired,
+  prices: PropTypes.object.isRequired,
   recipients: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     address: PropTypes.string,

@@ -68,7 +68,7 @@ const makeSelectTotalBalances = () => createSelector(
     // Caclulate total amount and value of each asset
     let totalBalances = fromJS({ assets: {} });
     balances.valueSeq().forEach((address) => {
-      if (!address || address.get('loading')) return;
+      if (!address || address.get('loading') || !supportedAssets || supportedAssets.get('loading')) return;
       address.get('assets').forEach((balance) => {
         const currency = balance.get('currency');
         const decimals = supportedAssets.get('assets').find((asset) => asset.get('currency') === currency).get('decimals');
@@ -208,6 +208,7 @@ export {
   makeSelectPasswordInput,
   makeSelectSelectedWalletName,
   makeSelectSupportedAssets,
+  makeSelectPrices,
   makeSelectWallets,
   makeSelectDerivationPathInput,
   makeSelectLoading,

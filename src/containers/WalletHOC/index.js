@@ -74,7 +74,7 @@ export function getComponentHOC(Component) {
 
     decryptWallet() {
       const { currentWalletDetails } = this.props;
-      this.props.decryptWallet(currentWalletDetails.address, JSON.stringify(currentWalletDetails.encrypted), this.state.password);
+      this.props.decryptWallet(currentWalletDetails.get('address'), currentWalletDetails.get('encrypted'), this.state.password);
     }
 
     render() {

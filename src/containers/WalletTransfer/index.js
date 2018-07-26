@@ -9,6 +9,7 @@ import PageLoadingIndicator from 'components/PageLoadingIndicator';
 import {
   makeSelectCurrentWallet,
   makeSelectCurrentWalletWithInfo,
+  makeSelectPrices,
 } from 'containers/WalletHOC/selectors';
 import {
   makeSelectContacts,
@@ -31,7 +32,7 @@ export class WalletTransfer extends React.PureComponent {
   }
 
   onSend(token, toAddress, amount, gasPrice, gasLimit) {
-    const wallet = this.props.currentWalletWithInfo;
+    const wallet = this.props.currentWalletWithInfo.toJS();
     this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit });
   }
 
@@ -40,7 +41,7 @@ export class WalletTransfer extends React.PureComponent {
   }
 
   render() {
-    const { contacts, currentWallet, currentWalletWithInfo } = this.props;
+    const { contacts, currentWallet, prices, currentWalletWithInfo } = this.props;
     if (currentWalletWithInfo.get('loadingBalancesError')) {
       return <LoadingError pageType="Striim Accounts" error={currentWalletWithInfo.get('loadingBalancesError')} id={currentWalletWithInfo.get('address')} />;
     }
@@ -50,9 +51,9 @@ export class WalletTransfer extends React.PureComponent {
 
     return (
       <TransferForm
-        address="0xf400db37c54c535febca1b470fd1d23d30acdd11"
+        prices={prices.toJS()}
         recipients={contacts.toJS()}
-        currencies={currentWalletWithInfo.getIn(['balances', 'assets']).toJS()}
+        assets={currentWalletWithInfo.getIn(['balances', 'assets']).toJS()}
         onSend={this.onSend}
         onCancel={this.onCancel}
         transfering={currentWallet.toJS().transfering}
@@ -66,12 +67,14 @@ WalletTransfer.propTypes = {
   currentWallet: PropTypes.object.isRequired,
   transfer: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  prices: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
   currentWallet: makeSelectCurrentWallet(),
+  prices: makeSelectPrices(),
   contacts: makeSelectContacts(),
 });
 
