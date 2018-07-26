@@ -21,12 +21,16 @@ export const CREATE_WALLET_FAILURE = 'src/WalletHOC/CREATE_WALLET_FAILURE';
 
 export const ADD_NEW_WALLET = 'src/WalletHOC/ADD_NEW_WALLET';
 
+export const DELETE_WALLET = 'src/WalletHOC/DELETE_WALLET';
+
 export const DECRYPT_WALLET = 'src/WalletHOC/DECRYPT_WALLET';
 export const DECRYPT_WALLET_SUCCESS = 'src/WalletHOC/DECRYPT_WALLET_SUCCESS';
 export const DECRYPT_WALLET_FAILURE = 'src/WalletHOC/DECRYPT_WALLET_FAILURE';
 
 export const SHOW_DECRYPT_WALLET_MODAL = 'src/WalletHOC/SHOW_DECRYPT_WALLET_MODAL';
 export const HIDE_DECRYPT_WALLET_MODAL = 'src/WalletHOC/HIDE_DECRYPT_WALLET_MODAL';
+
+export const TRANSACTION_CONFIRMED = 'src/WalletHOC/TRANSACTION_CONFIRMED';
 
 export const TRANSFER = 'src/WalletHOC/TRANSFER';
 export const TRANSFER_ETHER = 'src/WalletHOC/TRANSFER_ETHER';
@@ -35,16 +39,12 @@ export const TRANSFER_SUCCESS = 'src/WalletHOC/TRANSFER_SUCCESS';
 export const TRANSFER_ERROR = 'src/WalletHOC/TRANSFER_ERROR';
 
 // Ledger Nano S constants
-export const POLL_LEDGER = 'src/WalletHOC/POLL_LEDGER';
-export const START_LEDGER_SYNC = 'src/WalletHOC/START_LEDGER_SYNC';
-export const STOP_LEDGER_SYNC = 'src/WalletHOC/STOP_LEDGER_SYNC';
-export const LEDGER_DETECTED = 'src/WalletHOC/LEDGER_DETECTED';
+export const LEDGER_CONNECTED = 'src/WalletHOC/LEDGER_CONNECTED';
+export const LEDGER_DISCONNECTED = 'src/WalletHOC/LEDGER_DISCONNECTED';
+export const LEDGER_ETH_CONNECTED = 'src/WalletHOC/LEDGER_ETH_CONNECTED';
+export const LEDGER_ETH_DISCONNECTED = 'src/WalletHOC/LEDGER_ETH_DISCONNECTED';
 export const FETCH_LEDGER_ADDRESSES = 'src/WalletHOC/FETCH_LEDGER_ADDRESSES';
 export const FETCHED_LEDGER_ADDRESS = 'src/WalletHOC/FETCHED_LEDGER_ADDRESS';
 export const SAVE_LEDGER_ADDRESS = 'src/WalletHOC/SAVE_LEDGER_ADDRESS';
-
+export const INIT_LEDGER = 'src/WalletHOC/INIT_LEDGER';
 export const LEDGER_ERROR = 'src/WalletHOC/LEDGER_ERROR';
-
-export const TRANSACTION_CONFIRMED = 'src/WalletHOC/TRANSACTION_CONFIRMED';
-
-export const DELETE_WALLET = 'src/WalletHOC/DELETE_WALLET';

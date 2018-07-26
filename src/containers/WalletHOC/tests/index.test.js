@@ -6,6 +6,7 @@ import WalletHOC, { getComponentHOC, mapDispatchToProps } from '../index';
 describe('WalletHOC', () => {
   describe('shallow mount', () => {
     const loadWalletsBalancesSpy = jest.fn();
+    const initLedgerSpy = jest.fn();
     const startLedgerSyncSpy = jest.fn();
     const props = {
       currentWallet: fromJS({
@@ -15,6 +16,7 @@ describe('WalletHOC', () => {
       decryptWallet: () => {},
       hideDecryptWalletModal: () => {},
       loadWalletsBalances: loadWalletsBalancesSpy,
+      initLedger: initLedgerSpy,
       startLedgerSync: startLedgerSyncSpy,
       loading: fromJS({
         decryptingWallet: false,
@@ -103,7 +105,7 @@ describe('WalletHOC', () => {
       });
     });
     describe('#componentDidMount', () => {
-      it('should call startLedgerSync prop when called', () => {
+      it('should call initLedger', () => {
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
@@ -112,7 +114,7 @@ describe('WalletHOC', () => {
         );
         const instance = dom.instance();
         instance.componentDidMount();
-        expect(startLedgerSyncSpy).toBeCalled();
+        expect(initLedgerSpy).toBeCalled();
       });
     });
     describe('#onPasswordChange', () => {
