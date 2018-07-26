@@ -110,11 +110,11 @@ const makeSelectWalletsWithInfo = () => createSelector(
       let walletWithInfo = wallet;
 
       // Add balance info for each asset
-      let walletBalances = balances.get(wallet.get('address'));
-
-      if (!walletBalances || !prices || prices.get('loading') || walletBalances.get('loading')) {
+      let walletBalances;
+      if (!balances || balances.get('loading') || !prices || prices.get('loading')) {
         walletBalances = fromJS({ loading: true, total: { usd: 0, eth: 0, btc: 0 } });
       } else {
+        walletBalances = balances.get(wallet.get('address'));
         walletBalances = walletBalances.set('assets', walletBalances.get('assets').map((asset) => {
           let walletAsset = asset;
           const supportedAssetIndex = supportedAssets

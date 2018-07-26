@@ -71,13 +71,9 @@ export default class TransferForm extends React.PureComponent {
   }
 
   handleAssetChange(newSymbol) {
-    for (let i = 0; i < this.props.assets.length; i += 1) {
-      if (this.props.assets[i].symbol === newSymbol) {
-        this.setState({
-          assetToSend: this.props.assets[i],
-        });
-      }
-    }
+    this.setState({
+      assetToSend: this.props.assets.find((a) => a.symbol === newSymbol),
+    });
   }
 
   handleRecipient(value) {
@@ -88,7 +84,7 @@ export default class TransferForm extends React.PureComponent {
 
   render() {
     const { assetToSend, address, gasLimit, amountToSend, amountToSendInput, gasPriceGwei } = this.state;
-    const { assets, prices, recipients } = this.props;
+    const { currentWalletUsdBalance, assets, prices, recipients } = this.props;
 
     const assetToSendUsdValue = prices.assets.find((a) => a.currency === assetToSend.currency).usd;
     const usdValueToSend = amountToSend * assetToSendUsdValue;
@@ -98,18 +94,20 @@ export default class TransferForm extends React.PureComponent {
     const ethBalance = this.props.assets.find((currency) => currency.symbol === 'ETH');
 
     const transactionFee = { amount: (gasPriceGwei * gasLimit) / (10 ** 9), usdValue: ((gasPriceGwei * gasLimit) / (10 ** 9)) * ethUsdValue };
-    // const totalBalance = assetToSend.balance;
     const assetBalanceBefore = { amount: assetToSend.balance, usdValue: assetToSend.balance * assetToSendUsdValue };
-    const assetBalanceAfter = { amount: assetBalanceBefore - amountToSend, usdValue: (assetBalanceBefore - amountToSend) * assetToSendUsdValue };
+    const assetBalanceAfter = { amount: assetBalanceBefore.amount - amountToSend, usdValue: (assetBalanceBefore.amount - amountToSend) * assetToSendUsdValue };
     const ethBalanceBefore = { amount: ethBalance.balance, usdValue: ethBalance.balance * ethUsdValue };
+
+    const ethBalanceAfterAmount = assetToSend.symbol === 'ETH'
+        ? ethBalanceBefore.amount - amountToSend - transactionFee.amount
+        : ethBalanceBefore.amount - transactionFee.amount;
     const ethBalanceAfter = {
-      amount: assetToSend.symbol === 'ETH'
-        ? ethBalanceBefore.amount - amountToSend - transactionFee
-        : ethBalanceBefore.amount - transactionFee,
-      usdValue: assetToSend.symbol === 'ETH'
-        ? (ethBalanceBefore.amount - amountToSend - transactionFee) * ethUsdValue
-        : (ethBalanceBefore.amount - transactionFee.amount) * ethUsdValue,
+      amount: ethBalanceAfterAmount,
+      usdValue: ethBalanceAfterAmount * ethUsdValue,
     };
+
+    const walletUsdValueAfter = currentWalletUsdBalance - (usdValueToSend + transactionFee.usdValue);
+
     return (
       <Row gutter={24} justify="center">
         <Col xl={16} sm={22}>
@@ -126,7 +124,7 @@ export default class TransferForm extends React.PureComponent {
                   alt="logo"
                 />
               </Image>
-              <Select defaultValue={assetToSend.symbol} onSelect={this.handleTokenChange}>
+              <Select defaultValue={assetToSend.symbol} onSelect={this.handleAssetChange}>
                 {assets.map((currency) => (
                   <Option value={currency.symbol} key={currency.symbol}>
                     {currency.symbol}
@@ -186,12 +184,13 @@ export default class TransferForm extends React.PureComponent {
             transactionFee={transactionFee}
             amountToSend={amountToSend}
             assetToSend={assetToSend}
+            usdValueToSend={usdValueToSend}
             ethBalanceBefore={ethBalanceBefore}
             ethBalanceAfter={ethBalanceAfter}
             assetBalanceBefore={assetBalanceBefore}
             assetBalanceAfter={assetBalanceAfter}
-            walletUsdValueBefore={10}
-            walletUsdValueAfter={5}
+            walletUsdValueBefore={currentWalletUsdBalance}
+            walletUsdValueAfter={walletUsdValueAfter}
             recipient={address}
             onSend={this.onSend}
             onCancel={this.props.onCancel}
@@ -204,6 +203,7 @@ export default class TransferForm extends React.PureComponent {
 }
 TransferForm.propTypes = {
   assets: PropTypes.array.isRequired,
+  currentWalletUsdBalance: PropTypes.number.isRequired,
   prices: PropTypes.object.isRequired,
   recipients: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,

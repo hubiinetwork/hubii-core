@@ -27,9 +27,10 @@ export default class TransferDescription extends React.PureComponent {
       ethBalanceBefore,
       ethBalanceAfter,
       assetBalanceAfter,
-      // assetBalanceBefore,
+      assetBalanceBefore,
       walletUsdValueBefore,
       walletUsdValueAfter,
+      usdValueToSend,
       transactionFee,
       onSend,
       onCancel,
@@ -45,9 +46,9 @@ export default class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           <TransferDescriptionList
-            label={amountToSend.amount}
+            label={amountToSend}
             labelSymbol={assetToSend.symbol}
-            value={formatFiat(amountToSend.usdValue, 'USD')}
+            value={formatFiat(usdValueToSend, 'USD')}
           />
         </Row>
         <Row>
@@ -88,6 +89,32 @@ export default class TransferDescription extends React.PureComponent {
             value={formatFiat(ethBalanceAfter.usdValue, 'USD')}
           />
         </Row>
+        {assetToSend.symbol !== 'ETH' &&
+        <div>
+          <Row>
+            <StyledCol span={12}>{assetToSend.symbol} Balance before</StyledCol>
+          </Row>
+          <Row>
+            <TransferDescriptionList
+              label={assetBalanceBefore.amount}
+              labelSymbol={assetToSend.symbol}
+              value={formatFiat(assetBalanceBefore.usdValue, 'USD')}
+            />
+          </Row>
+          <Row>
+            <StyledCol span={12}>
+              { assetToSend.symbol } Balance after
+          </StyledCol>
+          </Row>
+          <Row>
+            <TransferDescriptionList
+              label={assetBalanceAfter.amount}
+              labelSymbol={assetToSend.symbol}
+              value={formatFiat(assetBalanceAfter.usdValue, 'USD')}
+            />
+          </Row>
+        </div>
+      }
         <Row>
           <StyledCol span={12}>Total wallet value before</StyledCol>
         </Row>
@@ -115,7 +142,7 @@ export default class TransferDescription extends React.PureComponent {
                 <StyledButtonCancel type="secondary" onClick={onCancel}>
                   {'Cancel'}
                 </StyledButtonCancel>
-                <StyledButton type="primary" onClick={onSend} disabled={Number.isNaN(amountToSend) || amountToSend === 0 || assetBalanceAfter < 0}>
+                <StyledButton type="primary" onClick={onSend} >
                   Send
                 </StyledButton>
               </StyledDiv>
@@ -155,7 +182,7 @@ TransferDescription.propTypes = {
   /**
    * amount of the asset remaining before the txn
    */
-  // assetBalanceBefore: PropTypes.object.isRequired,
+  assetBalanceBefore: PropTypes.object.isRequired,
 
   /**
    * amount of the eth remaining after the txn
@@ -176,6 +203,11 @@ TransferDescription.propTypes = {
    * wallet's total USD value before the txn
    */
   walletUsdValueBefore: PropTypes.number.isRequired,
+
+  /**
+   * amount sending to recipient
+   */
+  usdValueToSend: PropTypes.number.isRequired,
 
   /**
    * onSend function Callback in the TransferDescription.
