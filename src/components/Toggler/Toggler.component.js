@@ -19,11 +19,12 @@ export default class Toggler extends React.PureComponent {
       <StyledDiv style={{ width: '330px' }}>
         {titleTabs && (
           <StriimTabs
+            size="large"
             defaultActiveKey={titleTabs[0].title}
             onChange={onTabChange}
           >
             {titleTabs.map(({ title: tabTitle }) => (
-              <TabPane tab={tabTitle} key={tabTitle} style={{ color: 'white' }} />
+              <TabPane tab={tabTitle} key={tabTitle} />
             ))}
           </StriimTabs>
         )}

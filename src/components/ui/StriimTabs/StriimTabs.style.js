@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export default styled(Tabs)`
   margin-bottom: 0px;
   flex: 1;
-
+  
   .ant-tabs-nav-container {
     border: 1px solid ${({ theme }) => theme.palette.light};
     border-radius: 4px;
@@ -27,7 +27,7 @@ export default styled(Tabs)`
     font-family: 'SF Text';
     font-size: 11px;
     font-weight: 500;
-    line-height: 13px;
+    line-height: ${(props) => props.size === 'large' ? '18px' : '13px'};
     flex: 1;
     display: flex;
     justify-content: center;
