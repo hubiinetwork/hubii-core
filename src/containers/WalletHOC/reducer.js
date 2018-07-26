@@ -65,6 +65,7 @@ export const initialState = fromJS({
   },
   pendingTransactions: [],
   confirmedTransactions: [],
+  currentDecryptionCallback: null,
   // hardwareWallets: { ledgerNanoS: { id: null, addresses: {} } },
 });
 
@@ -129,7 +130,8 @@ function walletHocReducer(state = initialState, action) {
       }
     case SHOW_DECRYPT_WALLET_MODAL:
       return state
-        .setIn(['currentWallet', 'showDecryptModal'], true);
+        .setIn(['currentWallet', 'showDecryptModal'], true)
+        .set('currentDecryptionCallback', fromJS(action.callbackAction));
     case HIDE_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], false);

@@ -121,10 +121,10 @@ export function decryptWalletFailed(error) {
   };
 }
 
-export function showDecryptWalletModal(walletName) {
+export function showDecryptWalletModal(callbackAction = null) {
   return {
     type: SHOW_DECRYPT_WALLET_MODAL,
-    walletName,
+    callbackAction,
   };
 }
 

@@ -52,6 +52,7 @@ describe('walletHocReducer', () => {
       currentWallet: {
         address: '',
       },
+      currentDecryptionCallback: null,
       ledgerNanoSInfo: {
         status: 'disconnected',
         addresses: {},
@@ -265,10 +266,12 @@ describe('walletHocReducer', () => {
         address: '',
         showDecryptModal: true,
       };
+      const decryptionCallback = { type: 'TRANSFER' };
       const expected = state
-          .set('currentWallet', fromJS(currentWallet));
+          .set('currentWallet', fromJS(currentWallet))
+          .set('currentDecryptionCallback', fromJS(decryptionCallback));
 
-      expect(walletHocReducer(state, showDecryptWalletModal())).toEqual(expected);
+      expect(walletHocReducer(state, showDecryptWalletModal(decryptionCallback))).toEqual(expected);
     });
     it('HIDE_DECRYPT_WALLET_MODAL', () => {
       const currentWallet = {

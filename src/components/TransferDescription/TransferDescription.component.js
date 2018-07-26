@@ -193,8 +193,17 @@ TransferDescription.propTypes = {
    * onSend function Callback  in the TransferDescription.
    */
   onCancel: PropTypes.func,
+  /**
+   * if the wallet is transfering the transaction
+   */
   transfering: PropTypes.bool,
+  /**
+   * Current wallet details
+   */
   currentWalletDetails: PropTypes.object.isRequired,
+  /**
+   * Errors
+   */
   errors: PropTypes.object.isRequired,
 };
 // export default TransferDescription;

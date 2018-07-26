@@ -48,7 +48,6 @@ export class WalletTransfer extends React.PureComponent {
     if (!currentWalletDetails.balances) {
       return <PageLoadingIndicator pageType="Loading wallet" id={currentWallet.toJS().address} />;
     }
-
     return (
       <TransferForm
         recipients={contacts.toJS()}
