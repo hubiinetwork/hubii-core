@@ -182,7 +182,7 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
     if (walletDetails.type === 'lns') {
       transaction = yield call(sendTransactionByLedger, { toAddress, amount, gasPrice, gasLimit });
     } else {
-      const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
+      const etherWallet = new Wallet(walletDetails.get('decrypted').privateKey);
       etherWallet.provider = EthNetworkProvider;
       transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
     }
@@ -198,7 +198,7 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
   const contractAbiFragment = ERC20ABI;
 
   const walletDetails = yield select(makeSelectCurrentWalletWithInfo());
-  const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
+  const etherWallet = new Wallet(walletDetails.get('decrypted').privateKey);
   etherWallet.provider = EthNetworkProvider;
 
   try {

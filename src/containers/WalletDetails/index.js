@@ -56,7 +56,7 @@ export class WalletDetails extends React.PureComponent {
           <WalletHeader
             iconType="home"
             name={currentWallet.get('name')}
-            address={`${match.params.address}`}
+            address={currentWallet.get('address')}
             balance={currentWallet.getIn(['balances', 'total', 'usd'])}
             onIconClick={this.onHomeClick}
           />
