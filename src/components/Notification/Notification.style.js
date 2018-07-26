@@ -8,7 +8,7 @@ export const StyledIcon = styled(Icon)`
 export const StyledTitle = styled.div`
   color: white;
   width:250px;
-  // white-space: nowrap;
   overflow: hidden;
+  // white-space: nowrap;
   text-overflow: ellipsis
 `;
