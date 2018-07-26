@@ -79,12 +79,13 @@ export default class CandleStickChart extends React.Component {
                 // debugger;
               EE.on('CandleStick-update', () => {
                 // debugger;
+                const randNum = Math.round(Math.random() * 20000);
                 const point = [
                   time,
-                  Math.round(Math.random() * 20000),
-                  Math.round(Math.random() * 20000),
-                  Math.round(Math.random() * 20000),
-                  Math.round(Math.random() * 20000),
+                  randNum + Math.round(Math.random() * 1000),
+                  randNum + Math.round(Math.random() * 4000),
+                  randNum + Math.round(Math.random() * 1000),
+                  randNum + Math.round(Math.random() * 1000),
                 ];
                 // console.log('point', point);
                 series.addPoint(point, true, true);
@@ -116,6 +117,11 @@ export default class CandleStickChart extends React.Component {
               opacity: 0.6,
               width: '150px',
             },
+            formatter: function() {
+              console.log(this.value, this.x, this.y, this);
+              return `<div style="padding-left:20px;">${this.value}</div>`;
+            },
+            useHTML: true
           },
           height: '80%',
           lineWidth: 2,
