@@ -6,7 +6,8 @@ export default (payload) => {
     value: payload.amount,
     gasPrice: payload.gasPrice,
     gasLimit: payload.gasLimit,
-    nonce: 0,
+    nonce: payload.nonce,
+    chainId: payload.chainId,
   };
   return new EthereumTx(txParams);
 };

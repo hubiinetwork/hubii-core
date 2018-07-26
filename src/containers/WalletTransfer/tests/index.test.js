@@ -29,6 +29,7 @@ describe('WalletTransfer', () => {
       currentWallet: fromJS({ address: '1' }),
       transfer: () => {},
       history: {},
+      errors: {},
     };
     let dom;
     describe('#onSend', () => {

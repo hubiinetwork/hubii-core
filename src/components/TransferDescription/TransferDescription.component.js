@@ -11,6 +11,7 @@ import {
   StyledRecipient,
   StyledButtonCancel,
   StyledSpin,
+  StyledErrorCol,
 } from './TransferDescription.style';
 import TransferDescriptionList from '../TransferDescriptionList';
 import { formatFiat } from '../../utils/numberFormats';
@@ -23,6 +24,8 @@ export default class TransferDescription extends React.PureComponent {
     const {
       recipient,
       assetToSend,
+      lnsDisconnected,
+      errors,
       amountToSend,
       ethBalanceBefore,
       ethBalanceAfter,
@@ -36,6 +39,7 @@ export default class TransferDescription extends React.PureComponent {
       onCancel,
     } = this.props;
 
+    const disableSendButton = amountToSend <= 0 || ethBalanceAfter <= 0 || assetBalanceAfter <= 0 || lnsDisconnected;
     return (
       <WrapperDiv>
         <Row>
@@ -131,7 +135,8 @@ export default class TransferDescription extends React.PureComponent {
             {formatFiat(walletUsdValueAfter, 'USD')}
           </BalanceCol>
         </Row>
-        {
+        <Row>
+          {
             this.props.transfering ?
             (<StyledSpin
               delay={0}
@@ -142,12 +147,16 @@ export default class TransferDescription extends React.PureComponent {
                 <StyledButtonCancel type="secondary" onClick={onCancel}>
                   {'Cancel'}
                 </StyledButtonCancel>
-                <StyledButton type="primary" onClick={onSend} >
+                <StyledButton type="primary" onClick={onSend} disabled={disableSendButton}>
                   Send
                 </StyledButton>
               </StyledDiv>
             )
           }
+        </Row>
+        <Row>
+          <StyledErrorCol span={24}>{errors.get('ledgerError')}</StyledErrorCol>
+        </Row>
       </WrapperDiv>
     );
   }
@@ -218,6 +227,16 @@ TransferDescription.propTypes = {
    * onSend function Callback  in the TransferDescription.
    */
   onCancel: PropTypes.func,
+  /**
+   * if the wallet is transfering the transaction
+   */
   transfering: PropTypes.bool,
+  /**
+   * Errors
+   */
+  errors: PropTypes.object.isRequired,
+  /**
+   * lns disconnected
+   */
+  lnsDisconnected: PropTypes.bool.isRequired,
 };
-// export default TransferDescription;

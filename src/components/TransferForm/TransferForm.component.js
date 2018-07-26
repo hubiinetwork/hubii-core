@@ -195,6 +195,8 @@ export default class TransferForm extends React.PureComponent {
             onSend={this.onSend}
             onCancel={this.props.onCancel}
             transfering={this.props.transfering}
+            currentWalletDetails={this.props.currentWalletDetails}
+            errors={this.props.errors}
           />
         </Col>
       </Row>
@@ -202,14 +204,21 @@ export default class TransferForm extends React.PureComponent {
   }
 }
 TransferForm.propTypes = {
+<<<<<<< HEAD
   assets: PropTypes.array.isRequired,
   currentWalletUsdBalance: PropTypes.number.isRequired,
   prices: PropTypes.object.isRequired,
+=======
+  address: PropTypes.string,
+  currentWalletDetails: PropTypes.object.isRequired,
+  currencies: PropTypes.array.isRequired,
+>>>>>>> c0466e5e4efe2487145624387af3cb3353a94517
   recipients: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     address: PropTypes.string,
   })),
   onSend: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
   transfering: PropTypes.bool,
 };

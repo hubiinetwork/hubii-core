@@ -17,13 +17,18 @@ import saga from './saga';
 import {
   makeSelectCurrentWallet,
   makeSelectCurrentWalletWithInfo,
+  makeSelectLoading,
 } from './selectors';
 import {
   decryptWallet,
   hideDecryptWalletModal,
-  startLedgerSync,
+  initLedger,
   loadWalletsBalances,
 } from './actions';
+
+import {
+  StyledSpin,
+} from './WalletHOC.style';
 
 export default function WalletHOC(Component) {
   const HOC = getComponentHOC(Component);
@@ -31,6 +36,7 @@ export default function WalletHOC(Component) {
   const mapStateToProps = createStructuredSelector({
     currentWallet: makeSelectCurrentWallet(),
     currentWalletDetails: makeSelectCurrentWalletWithInfo(),
+    loading: makeSelectLoading(),
   });
 
   const withConnect = connect(mapStateToProps, mapDispatchToProps);
@@ -49,16 +55,21 @@ export function getComponentHOC(Component) {
   class HOC extends React.Component {
     constructor(...args) {
       super(...args);
-      this.state = { password: '' };
+      this.state = { password: null };
       this.onPasswordChange = this.onPasswordChange.bind(this);
       this.decryptWallet = this.decryptWallet.bind(this);
       this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
-
     componentDidMount() {
-      this.props.startLedgerSync();
+      this.props.initLedger();
       this.props.loadWalletsBalances();
+    }
+
+    componentWillReceiveProps(nextProps) {
+      if (nextProps.currentWallet.toJS().showDecryptModal && !this.props.currentWallet.toJS().showDecryptModal) {
+        this.setState({ password: null });
+      }
     }
 
     onPasswordChange(e) {
@@ -78,6 +89,8 @@ export function getComponentHOC(Component) {
     }
 
     render() {
+      const loading = this.props.loading.get('decryptingWallet');
+
       return (
         <div>
           <Component {...this.props} />
@@ -87,7 +100,7 @@ export function getComponentHOC(Component) {
             maskClosable
             maskStyle={{ background: 'rgba(232,237,239,.65)' }}
             style={{ marginTop: '20px' }}
-            visible={this.props.currentWallet.toJS().showDecryptModal}
+            visible={this.props.currentWallet.get('showDecryptModal')}
             onCancel={this.props.hideDecryptWalletModal}
             destroyOnClose
           >
@@ -95,11 +108,19 @@ export function getComponentHOC(Component) {
               label={<FormItemLabel>Please enter wallet password to proceed</FormItemLabel>}
               colon={false}
             >
-              <Input onChange={this.onPasswordChange} type="password" onKeyPress={(e) => this.handleKeyPress(e)} />
+              <Input value={this.state.password} onChange={this.onPasswordChange} type="password" onKeyPress={(e) => this.handleKeyPress(e)} />
             </FormItem>
-            <Button type="primary" onClick={this.decryptWallet} disabled={this.state.password.length === 0} >
-              Confirm
-            </Button>
+
+            {loading ? (
+              <StyledSpin
+                delay={0}
+                tip="Decrypting Wallet..."
+              />
+                ) : (
+                  <Button type="primary" onClick={this.decryptWallet} disabled={!this.state.password}>
+                    Confirm
+                  </Button>
+                )}
           </Modal>
         </div>
       );
@@ -108,17 +129,18 @@ export function getComponentHOC(Component) {
   HOC.propTypes = {
     currentWallet: PropTypes.object.isRequired,
     currentWalletDetails: PropTypes.object.isRequired,
-    startLedgerSync: PropTypes.func.isRequired,
+    initLedger: PropTypes.func.isRequired,
     loadWalletsBalances: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
+    loading: PropTypes.object,
   };
   return HOC;
 }
 
 export function mapDispatchToProps(dispatch) {
   return {
-    startLedgerSync: () => dispatch(startLedgerSync()),
+    initLedger: () => dispatch(initLedger()),
     hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
     decryptWallet: (...args) => dispatch(decryptWallet(...args)),
     loadWalletsBalances: (...args) => dispatch(loadWalletsBalances(...args)),

@@ -177,6 +177,24 @@ const makeSelectCurrentWalletWithInfo = () => createSelector(
   }
 );
 
+const makeSelectCurrentDecryptionCallback = () => createSelector(
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('currentDecryptionCallback')
+);
+
+// const makeSelectAllTransactions = () => createSelector(
+//   makeSelectCurrentWalletDetails(),
+//   makeSelectPendingTransactions(),
+//   makeSelectConfirmedTransactions(),
+//   (currentWalletDetails, pendingTxns, confirmedTxns) => {
+//     const txns = [].concat(pendingTxns.toJS()).concat(confirmedTxns.toJS());
+//     return txns.filter((txn) => {
+//       const address = currentWalletDetails.address;
+//       return IsAddressMatch(txn.from, address) || IsAddressMatch(txn.to, address);
+//     }).sort((a, b) => b.timestamp - a.timestamp);
+//   }
+// );
+
 // const makeSelectPendingTransactions = () => createSelector(
 //   selectWalletHocDomain,
 //   (walletHocDomain) => walletHocDomain.get('pendingTransactions')
@@ -216,5 +234,5 @@ export {
   makeSelectCurrentWallet,
   makeSelectWalletsWithInfo,
   makeSelectCurrentWalletWithInfo,
-  // makeSelectAllTransactions,
+  makeSelectCurrentDecryptionCallback,
 };

@@ -62,3 +62,9 @@ export const EthNetworkProvider = providers.getDefaultProvider(process.env.NETWO
 export const IsAddressMatch = (a, b) => a.toLowerCase() === b.toLowerCase();
 
 export const parseBigNumber = (bignumber, decimals) => parseInt(bignumber, 10) / (10 ** decimals);
+
+export const getTransactionCount = (...args) => EthNetworkProvider.getTransactionCount(...args);
+
+export const sendTransaction = (...args) => EthNetworkProvider.sendTransaction(...args);
+
+export const getTransaction = (...args) => EthNetworkProvider.getTransaction(...args);

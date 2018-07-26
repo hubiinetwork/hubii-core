@@ -10,6 +10,7 @@ import {
   makeSelectCurrentWallet,
   makeSelectCurrentWalletWithInfo,
   makeSelectPrices,
+  makeSelectErrors,
 } from 'containers/WalletHOC/selectors';
 import {
   makeSelectContacts,
@@ -48,7 +49,6 @@ export class WalletTransfer extends React.PureComponent {
     if (!currentWalletWithInfo.get('balances') || currentWalletWithInfo.getIn(['balances', 'loading'])) {
       return <PageLoadingIndicator pageType=" wallet balance" id={currentWalletWithInfo.get('address')} />;
     }
-
     return (
       <TransferForm
         currentWalletUsdBalance={currentWalletWithInfo.getIn(['balances', 'total', 'usd'])}
@@ -58,6 +58,8 @@ export class WalletTransfer extends React.PureComponent {
         onSend={this.onSend}
         onCancel={this.onCancel}
         transfering={currentWallet.toJS().transfering}
+        errors={this.props.errors}
+        currentWalletDetails={this.props.currentWalletWithInfo}
       />
     );
   }
@@ -70,6 +72,7 @@ WalletTransfer.propTypes = {
   history: PropTypes.object.isRequired,
   prices: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -77,6 +80,7 @@ const mapStateToProps = createStructuredSelector({
   currentWallet: makeSelectCurrentWallet(),
   prices: makeSelectPrices(),
   contacts: makeSelectContacts(),
+  errors: makeSelectErrors(),
 });
 
 export function mapDispatchToProps(dispatch) {
