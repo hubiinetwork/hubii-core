@@ -10,6 +10,7 @@ import {
   ledgerError,
   deleteWallet,
   saveLedgerAddress,
+  showDecryptWalletModal,
   initLedger,
 } from '../actions';
 import {
@@ -23,6 +24,8 @@ import {
   LEDGER_ETH_CONNECTED,
   LEDGER_ERROR,
   DELETE_WALLET,
+  SHOW_DECRYPT_WALLET_MODAL,
+  TRANSFER,
   INIT_LEDGER,
 } from '../constants';
 
@@ -196,6 +199,19 @@ describe('WalletHoc actions', () => {
         error: friendlyError,
       };
       expect(ledgerError(error)).toEqual(expected);
+    });
+  });
+
+  describe('showDecryptWalletModal Action', () => {
+    it('returns expected output with callback action', () => {
+      const callbackAction = {
+        type: TRANSFER,
+      };
+      const expected = {
+        type: SHOW_DECRYPT_WALLET_MODAL,
+        callbackAction,
+      };
+      expect(showDecryptWalletModal(callbackAction)).toEqual(expected);
     });
   });
 });
