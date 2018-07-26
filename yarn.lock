@@ -132,13 +132,6 @@
     "@ledgerhq/hw-transport" "^4.15.0"
     node-hid "^0.7.2"
 
-"@ledgerhq/hw-transport-u2f@4.15.0":
-  version "4.15.0"
-  resolved "https://registry.yarnpkg.com/@ledgerhq/hw-transport-u2f/-/hw-transport-u2f-4.15.0.tgz#642f754522f1ee0f95c8cf3e7b71e56fbc6267d5"
-  dependencies:
-    "@ledgerhq/hw-transport" "^4.15.0"
-    u2f-api "0.2.7"
-
 "@ledgerhq/hw-transport-u2f@^4.20.0":
   version "4.20.0"
   resolved "https://registry.yarnpkg.com/@ledgerhq/hw-transport-u2f/-/hw-transport-u2f-4.20.0.tgz#4118ace4dce55e0630db6c69972d8a88c87ed674"
