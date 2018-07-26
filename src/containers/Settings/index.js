@@ -8,7 +8,7 @@ import Toggler from 'components/Toggler';
 import {
   Wrapper,
   TabsLayout,
-  // StyledButton,
+  StyledButton,
   WalletsTabHeader,
   Heading,
   StyledSwitch,
@@ -26,7 +26,7 @@ const titleTabs = [
   },
 ];
 
-export const WalletManager = () => (
+export const Settings = () => (
   <Wrapper>
     <TabsLayout>
       <WalletsTabHeader>
@@ -71,12 +71,26 @@ export const WalletManager = () => (
           }}
         />
       </div>
+      <div style={{ display: 'flex', flexDirection: 'column', marginTop: '3rem' }}>
+        <StyledButton>
+          Register for Striim Airdrop
+        </StyledButton>
+        <StyledButton>
+          Register for Striim Airdrop
+        </StyledButton>
+        <StyledButton>
+          Register for Striim Airdrop
+        </StyledButton>
+        <StyledButton>
+          Register for Striim Airdrop
+        </StyledButton>
+      </div>
+
     </div>
   </Wrapper>
     );
 
-
-WalletManager.propTypes = {
+Settings.propTypes = {
 
 };
 
@@ -96,4 +110,4 @@ WalletManager.propTypes = {
 //   withConnect,
 // )(WalletManager);
 
-export default WalletManager;
+export default Settings;

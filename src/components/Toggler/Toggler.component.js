@@ -2,9 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
   StyledDiv,
-  StyledTabs,
 } from './Toggler.style';
-import { TabPane } from '../ui/StriimTabs';
+import StriimTabs, { TabPane } from '../ui/StriimTabs';
 
 /** *
  * The header of contact list component
@@ -17,16 +16,16 @@ export default class Toggler extends React.PureComponent {
       onTabChange,
     } = this.props;
     return (
-      <StyledDiv>
+      <StyledDiv style={{ width: '330px' }}>
         {titleTabs && (
-          <StyledTabs
+          <StriimTabs
             defaultActiveKey={titleTabs[0].title}
             onChange={onTabChange}
           >
             {titleTabs.map(({ title: tabTitle }) => (
               <TabPane tab={tabTitle} key={tabTitle} style={{ color: 'white' }} />
             ))}
-          </StyledTabs>
+          </StriimTabs>
         )}
       </StyledDiv>
     );

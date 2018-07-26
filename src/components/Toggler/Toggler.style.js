@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import StriimTabs from '../ui/StriimTabs';
 import { InputSearch } from '../ui/Input';
 
 export const StyledDiv = styled.div`
@@ -14,12 +13,6 @@ export const Wrapper = styled.div`
   margin-right: 10px;
   position: absolute;
   right: 0;
-`;
-
-export const StyledTabs = styled(StriimTabs)`
-  .ant-tabs-nav-container {
-    max-width: 270px;
-  }
 `;
 
 export const StyledSearch = styled(InputSearch)`
