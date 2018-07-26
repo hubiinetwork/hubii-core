@@ -34,8 +34,8 @@ export default class TransferDescription extends React.PureComponent {
     } = this.props;
     const amountToSend = isNaN(amount) || amount === '' ? 0 : amount;
 
-    const totalUsd = (parseInt(selectedToken.balance, 10) / (10 ** selectedToken.decimals)) * parseFloat(selectedToken.price.USD);
-    const remainingBalance = totalUsd - (amountToSend * parseFloat(selectedToken.price.USD)) - (transactionFee * parseFloat(ethInformation.price.USD));
+    const totalUsd = (selectedToken.balance) * parseFloat(selectedToken.value.usd);
+    const remainingBalance = totalUsd - (amountToSend * parseFloat(selectedToken.value.usd)) - (transactionFee * parseFloat(ethInformation.value.usd));
     return (
       <WrapperDiv>
         <Row>
@@ -48,7 +48,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={totalAmount}
             labelSymbol={selectedToken.symbol}
-            value={formatFiat(totalAmount * selectedToken.price.USD, 'USD')}
+            value={formatFiat(totalAmount * selectedToken.value.usd, 'USD')}
           />
         </Row>
         <Row>
@@ -58,7 +58,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={amountToSend}
             labelSymbol={selectedToken.symbol}
-            value={formatFiat(amountToSend * selectedToken.price.USD, 'USD')}
+            value={formatFiat(amountToSend * selectedToken.value.usd, 'USD')}
           />
         </Row>
         <Row>
@@ -74,7 +74,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={transactionFee}
             labelSymbol={selectedToken.symbol}
-            value={formatFiat(transactionFee * ethInformation.price.USD, 'USD')}
+            value={formatFiat(transactionFee * ethInformation.value.usd, 'USD')}
           />
         </Row>
         <Row>
@@ -84,7 +84,7 @@ export default class TransferDescription extends React.PureComponent {
           <TransferDescriptionList
             label={amountToSend + transactionFee}
             labelSymbol={selectedToken.symbol}
-            value={formatFiat((amountToSend * parseFloat(selectedToken.price.USD)) + (transactionFee * parseFloat(ethInformation.price.USD)), 'USD')}
+            value={formatFiat((amountToSend * parseFloat(selectedToken.value.usd)), 'USD')}
           />
         </Row>
         <Row>
@@ -102,7 +102,7 @@ export default class TransferDescription extends React.PureComponent {
             labelSymbol={selectedToken.symbol}
             value={formatFiat(
               (totalAmount - amountToSend) *
-              +selectedToken.price.USD
+              +selectedToken.value.usd
             , 'USD')}
           />
         </Row>

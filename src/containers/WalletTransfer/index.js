@@ -41,18 +41,18 @@ export class WalletTransfer extends React.PureComponent {
 
   render() {
     const { contacts, currentWallet, currentWalletWithInfo } = this.props;
-    if (currentWalletWithInfo.loadingBalancesError) {
-      return <LoadingError pageType="Striim Accounts" error={currentWalletWithInfo.loadingBalancesError} id={currentWallet.toJS().address} />;
+    if (currentWalletWithInfo.get('loadingBalancesError')) {
+      return <LoadingError pageType="Striim Accounts" error={currentWalletWithInfo.get('loadingBalancesError')} id={currentWalletWithInfo.get('address')} />;
     }
-    if (!currentWalletWithInfo.balances) {
-      return <PageLoadingIndicator pageType=" wallet balance" id={currentWallet.toJS().address} />;
+    if (!currentWalletWithInfo.get('balances') || currentWalletWithInfo.getIn(['balances', 'loading'])) {
+      return <PageLoadingIndicator pageType=" wallet balance" id={currentWalletWithInfo.get('address')} />;
     }
 
     return (
       <TransferForm
         address="0xf400db37c54c535febca1b470fd1d23d30acdd11"
         recipients={contacts.toJS()}
-        currencies={currentWalletWithInfo.balances}
+        currencies={currentWalletWithInfo.getIn(['balances', 'assets']).toJS()}
         onSend={this.onSend}
         onCancel={this.onCancel}
         transfering={currentWallet.toJS().transfering}

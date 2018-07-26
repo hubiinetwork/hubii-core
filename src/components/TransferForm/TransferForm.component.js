@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col } from 'antd';
 import PropTypes from 'prop-types';
-import { parseBigNumber, gweiToWei } from 'utils/wallet';
+import { gweiToWei } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
 import { getAbsolutePath } from 'utils/electron';
 import {
@@ -25,7 +25,6 @@ export default class TransferForm extends React.PureComponent {
     super(props);
     this.state = {
       input: 0,
-      token: this.props.currencies[0].symbol,
       priceInDollar: this.props.currencies[0].rateUSD,
       address: this.props.recipients[0] ? this.props.recipients[0].address : '',
       amount: this.props.currencies[0].amount,
@@ -61,15 +60,15 @@ export default class TransferForm extends React.PureComponent {
     this.setState({ gasLimit: parseFloat(e.target.value) });
   }
 
-  handleTokenChange(value) {
+  handleTokenChange(newSymbol) {
     for (let i = 0; i < this.props.currencies.length; i += 1) {
-      if (this.props.currencies[i].coin === value) {
+      if (this.props.currencies[i].symbol === newSymbol) {
         this.setState({
           priceInDollar: this.props.currencies[i].rateUSD,
+          selectedToken: this.props.currencies[i],
         });
       }
     }
-    this.setState({ token: value });
   }
 
   handleRecipient(value) {
@@ -79,7 +78,10 @@ export default class TransferForm extends React.PureComponent {
   }
 
   render() {
-    const totalBalance = parseBigNumber(this.state.selectedToken.balance, this.state.selectedToken.decimals);
+    const { selectedToken, address, gasLimit, input, gasPriceGwei, ethInformation } = this.state;
+    const { currencies, recipients } = this.props;
+
+    const totalBalance = selectedToken.balance;
     return (
       <Row gutter={24} justify="center">
         <Col xl={16} sm={22}>
@@ -90,14 +92,14 @@ export default class TransferForm extends React.PureComponent {
             >
               <Image>
                 <img
-                  src={getAbsolutePath(`public/images/assets/${this.state.selectedToken.symbol}.svg`)}
+                  src={getAbsolutePath(`public/images/assets/${selectedToken.symbol}.svg`)}
                   width="32px"
                   height="32px"
                   alt="logo"
                 />
               </Image>
-              <Select defaultValue={this.state.selectedToken.symbol} onSelect={this.handleTokenChange}>
-                {this.props.currencies.map((currency) => (
+              <Select defaultValue={selectedToken.symbol} onSelect={this.handleTokenChange}>
+                {currencies.map((currency) => (
                   <Option value={currency.symbol} key={currency.symbol}>
                     {currency.symbol}
                   </Option>
@@ -107,10 +109,10 @@ export default class TransferForm extends React.PureComponent {
             <FormItem
               label={<FormItemLabel>Recipient</FormItemLabel>}
               colon={false}
-              help={<HelperText left={this.state.address} />}
+              help={<HelperText left={address} />}
             >
               <Select
-                defaultValue={this.props.recipients[0] ? this.props.recipients[0].name : ''}
+                defaultValue={recipients[0] ? recipients[0].name : ''}
                 recipient
                 onSelect={this.handleRecipient}
               >
@@ -126,7 +128,7 @@ export default class TransferForm extends React.PureComponent {
             <FormItem
               label={<FormItemLabel>Amount</FormItemLabel>}
               colon={false}
-              help={<HelperText left={formatFiat(this.state.input * parseFloat(this.state.selectedToken.price.USD), 'USD')} right="USD" />}
+              help={<HelperText left={formatFiat(input * parseFloat(selectedToken.value.usd), 'USD')} right="USD" />}
             >
               <InputNumber min={0} max={totalBalance} handleChange={this.handleChange} />
             </FormItem>
@@ -139,27 +141,27 @@ export default class TransferForm extends React.PureComponent {
                   label={<FormItemLabel>Gas Price (Gwei)</FormItemLabel>}
                   colon={false}
                 >
-                  <InputNumber min={0} defaultValue={this.state.gasPriceGwei} value={this.state.gasPriceGwei} handleChange={this.handleGasPriceChange} />
+                  <InputNumber min={0} defaultValue={gasPriceGwei} value={gasPriceGwei} handleChange={this.handleGasPriceChange} />
                 </FormItem>
                 <FormItem label={<FormItemLabel>Gas Limit</FormItemLabel>} colon={false}>
-                  <InputNumber min={0} defaultValue={this.state.gasLimit} handleChange={this.handleGasLimitChange} />
+                  <InputNumber min={0} defaultValue={gasLimit} handleChange={this.handleGasLimitChange} />
                 </FormItem>
               </Panel>
             </Collapse>
             <ETHtoDollar>
-              {`1 ${this.state.selectedToken.symbol} = ${formatFiat(parseFloat(this.state.selectedToken.price.USD), 'USD')}`}
+              {`1 ${selectedToken.symbol} = ${formatFiat(parseFloat(selectedToken.value.usd), 'USD')}`}
             </ETHtoDollar>
           </Form>
         </Col>
         <Col xl={6} sm={22}>
           <TransferDescription
             totalUsd={0}
-            transactionFee={(this.state.gasPriceGwei * this.state.gasLimit) / (10 ** 9)}
-            amountToSend={this.state.input}
-            recipient={this.state.address}
+            transactionFee={(gasPriceGwei * gasLimit) / (10 ** 9)}
+            amountToSend={input}
+            recipient={address}
             totalAmount={totalBalance}
-            selectedToken={this.state.selectedToken}
-            ethInformation={this.state.ethInformation}
+            selectedToken={selectedToken}
+            ethInformation={ethInformation}
             onSend={this.onSend}
             onCancel={this.props.onCancel}
             transfering={this.props.transfering}

@@ -109,17 +109,11 @@ const makeSelectWalletsWithInfo = () => createSelector(
     const walletsWithInfo = wallets.map((wallet) => {
       let walletWithInfo = wallet;
 
-      // Add balance info for each token
+      // Add balance info for each asset
       let walletBalances = balances.get(wallet.get('address'));
-      if (!walletBalances) {
-        walletBalances = fromJS({ loading: true });
-      }
 
-      if (prices.get('loading')) {
-        walletBalances = fromJS({ loading: true });
-      } else if (walletBalances.get('loading')) {
-        walletBalances = walletBalances.set('loading', true);
-        walletBalances = walletBalances.set('total', fromJS({ usd: 0, eth: 0, btc: 0 }));
+      if (!walletBalances || !prices || prices.get('loading') || walletBalances.get('loading')) {
+        walletBalances = fromJS({ loading: true, total: { usd: 0, eth: 0, btc: 0 } });
       } else {
         walletBalances = walletBalances.set('assets', walletBalances.get('assets').map((asset) => {
           let walletAsset = asset;
@@ -176,7 +170,7 @@ const makeSelectCurrentWalletWithInfo = () => createSelector(
   makeSelectCurrentWallet(),
   (wallets, currentWallet) => {
     const currentWalletIndex = wallets.findIndex((w) => w.get('address') === currentWallet.get('address'));
-    if (currentWalletIndex === -1) return {};
+    if (currentWalletIndex === -1) return fromJS({});
 
     const walletDetails = wallets.get(currentWalletIndex);
     return walletDetails;

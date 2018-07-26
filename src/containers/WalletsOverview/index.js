@@ -56,7 +56,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
       >
         <WalletItemCard
           name={wallet.name}
-          totalBalance={wallet.balances.total.usd}
+          totalBalance={wallet.balances.loading ? 0 : wallet.balances.total.usd}
           balancesLoading={wallet.balances.loading}
           address={wallet.address}
           type={wallet.type}
