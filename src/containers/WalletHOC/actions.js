@@ -18,7 +18,6 @@ import {
   SHOW_DECRYPT_WALLET_MODAL,
   HIDE_DECRYPT_WALLET_MODAL,
   SET_CURRENT_WALLET,
-  LOAD_WALLETS,
   LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
@@ -142,19 +141,6 @@ export function setCurrentWallet(address) {
   return {
     type: SET_CURRENT_WALLET,
     address,
-  };
-}
-
-export function loadWallets() {
-  return {
-    type: LOAD_WALLETS,
-  };
-}
-
-export function loadWalletsSuccess(wallets) {
-  return {
-    type: LOAD_WALLETS_SUCCESS,
-    wallets,
   };
 }
 
