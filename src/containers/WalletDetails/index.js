@@ -6,7 +6,6 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Route, Redirect } from 'react-router';
 import WalletHeader from 'components/WalletHeader';
-import { getTotalUSDValue } from 'utils/wallet';
 import WalletTransactions from 'containers/WalletTransactions';
 import WalletTransfer from 'containers/WalletTransfer';
 import {
@@ -51,15 +50,14 @@ export class WalletDetails extends React.PureComponent {
     if (!currentWallet) {
       return (null);
     }
-    const totalUSDValue = getTotalUSDValue(currentWallet.balances);
     return (
       <Wrapper>
         <TabsLayout>
           <WalletHeader
             iconType="home"
-            name={currentWallet.name}
+            name={currentWallet.get('name')}
             address={`${match.params.address}`}
-            balance={totalUSDValue}
+            balance={currentWallet.getIn(['balances', 'total', 'usd'])}
             onIconClick={this.onHomeClick}
           />
         </TabsLayout>
