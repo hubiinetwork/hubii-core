@@ -1,10 +1,12 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { MemoryRouter as Router } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
-import dark from '../../../themes/darkTheme';
+import { shallow } from 'enzyme';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
-import SideBar from '../index';
+import HomeScreen from 'components/HomeScreen';
+import Striim from 'containers/Striim';
+import WalletManager from 'containers/WalletManager';
+import WalletDetails from 'containers/WalletDetails';
+import { SideBar } from '../SideBar.component';
 
 describe('<SideBar />', () => {
   const menuItems = [
@@ -26,29 +28,22 @@ describe('<SideBar />', () => {
   ];
   const props = {
     menuItems,
+    location: { pathname: 'hello/world' },
     logoSrc: '../../../public/images/hubii-core-logo.svg',
   };
 
   it('should render correctly', () => {
     const wrapper = shallow(
       <SideBar {...props}>
-        <div />
+        <Switch>
+          <Route exact path="/" component={HomeScreen} />
+          <Route path="/wallets" component={WalletManager} />
+          <Route path="/wallet/:address" component={WalletDetails} />
+          <Route path="/striim" component={Striim} />
+          <Redirect from="/" to="/wallets" />
+        </Switch>
       </SideBar>
     );
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should mount correctly', () => {
-    const wrapper = mount(
-      <Router>
-        <ThemeProvider theme={dark}>
-          <SideBar {...props}>
-            <div />
-          </SideBar>
-        </ThemeProvider>
-      </Router>
-    );
-    const sidebar = wrapper.find('.ant-layout-sider');
-    expect(sidebar.props().className).toHaveLength(65);
   });
 });

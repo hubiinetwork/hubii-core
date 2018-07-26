@@ -12,7 +12,7 @@ const { Sider } = Layout;
  * Side bar component to show features on a long, usually left, bar.
  */
 
-class SideBar extends React.Component {
+export class SideBar extends React.Component {
   getroute() {
     const { location } = this.props;
     const arr = location.pathname.split('/');
