@@ -5,13 +5,21 @@ import {
   decryptWallet,
   decryptWalletFailed,
   decryptWalletSuccess,
-  loadWallets,
   ledgerEthAppConnected,
   ledgerError,
   deleteWallet,
   saveLedgerAddress,
   showDecryptWalletModal,
   initLedger,
+  loadWalletBalances,
+  loadWalletBalancesSuccess,
+  loadWalletBalancesError,
+  loadSupportedTokens,
+  loadSupportedTokensSuccess,
+  loadSupportedTokensError,
+  loadPrices,
+  loadPricesSuccess,
+  loadPricesError,
 } from '../actions';
 import {
   CREATE_WALLET_FROM_MNEMONIC,
@@ -20,13 +28,21 @@ import {
   DECRYPT_WALLET,
   DECRYPT_WALLET_FAILURE,
   DECRYPT_WALLET_SUCCESS,
-  LOAD_WALLETS,
   LEDGER_ETH_CONNECTED,
   LEDGER_ERROR,
   DELETE_WALLET,
   SHOW_DECRYPT_WALLET_MODAL,
   TRANSFER,
   INIT_LEDGER,
+  LOAD_WALLET_BALANCES,
+  LOAD_WALLET_BALANCES_SUCCESS,
+  LOAD_WALLET_BALANCES_ERROR,
+  LOAD_SUPPORTED_TOKENS,
+  LOAD_SUPPORTED_TOKENS_SUCCESS,
+  LOAD_SUPPORTED_TOKENS_ERROR,
+  LOAD_PRICES,
+  LOAD_PRICES_SUCCESS,
+  LOAD_PRICES_ERROR,
 } from '../constants';
 
 import getFriendlyError from '../../../utils/ledger/friendlyErrors';
@@ -98,6 +114,105 @@ describe('WalletHoc actions', () => {
     });
   });
 
+  describe('loadWalletBalances Action', () => {
+    it('returns expected output', () => {
+      const address = '123';
+      const expected = {
+        type: LOAD_WALLET_BALANCES,
+        address,
+      };
+      expect(loadWalletBalances(address)).toEqual(expected);
+    });
+  });
+
+  describe('loadWalletBalancesSuccess Action', () => {
+    it('returns expected output', () => {
+      const address = '123';
+      const assets = [1, 2, 5];
+      const expected = {
+        type: LOAD_WALLET_BALANCES_SUCCESS,
+        address,
+        assets,
+      };
+      expect(loadWalletBalancesSuccess(address, assets)).toEqual(expected);
+    });
+  });
+
+  describe('loadWalletBalancesError Action', () => {
+    it('returns expected output', () => {
+      const address = '123';
+      const error = 'error';
+      const expected = {
+        type: LOAD_WALLET_BALANCES_ERROR,
+        address,
+        error,
+      };
+      expect(loadWalletBalancesError(address, error)).toEqual(expected);
+    });
+  });
+
+  describe('loadSupportedTokens Action', () => {
+    it('returns expected output', () => {
+      const expected = {
+        type: LOAD_SUPPORTED_TOKENS,
+      };
+      expect(loadSupportedTokens()).toEqual(expected);
+    });
+  });
+
+  describe('loadSupportedTokensSuccess Action', () => {
+    it('returns expected output', () => {
+      const tokens = [1, 2, 5];
+      const expected = {
+        type: LOAD_SUPPORTED_TOKENS_SUCCESS,
+        assets: [...tokens, { currency: 'ETH', symbol: 'ETH', decimals: 18, color: 'grey' }],
+      };
+      expect(loadSupportedTokensSuccess(tokens)).toEqual(expected);
+    });
+  });
+
+  describe('loadSupportedTokensError Action', () => {
+    it('returns expected output', () => {
+      const error = 'error';
+      const expected = {
+        type: LOAD_SUPPORTED_TOKENS_ERROR,
+        error,
+      };
+      expect(loadSupportedTokensError(error)).toEqual(expected);
+    });
+  });
+
+  describe('loadPrices Action', () => {
+    it('returns expected output', () => {
+      const expected = {
+        type: LOAD_PRICES,
+      };
+      expect(loadPrices()).toEqual(expected);
+    });
+  });
+
+  describe('loadPricesSuccess Action', () => {
+    it('returns expected output', () => {
+      const prices = [1, 2, 5];
+      const expected = {
+        type: LOAD_PRICES_SUCCESS,
+        prices: [...prices, { currency: 'ETH', eth: 1, btc: 0.01, usd: 412 }],
+      };
+      expect(loadPricesSuccess(prices)).toEqual(expected);
+    });
+  });
+
+  describe('loadPricesError Action', () => {
+    it('returns expected output', () => {
+      const error = 'error';
+      const expected = {
+        type: LOAD_PRICES_ERROR,
+        error,
+      };
+      expect(loadPricesError(error)).toEqual(expected);
+    });
+  });
+
   describe('decryptWallet Action', () => {
     it('returns expected output', () => {
       const encryptedWallet = { add: '12' };
@@ -134,15 +249,6 @@ describe('WalletHoc actions', () => {
         error,
       };
       expect(decryptWalletFailed(error)).toEqual(expected);
-    });
-  });
-
-  describe('loadWallets Action', () => {
-    it('returns expected output', () => {
-      const expected = {
-        type: LOAD_WALLETS,
-      };
-      expect(loadWallets()).toEqual(expected);
     });
   });
 
