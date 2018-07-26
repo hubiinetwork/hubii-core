@@ -30,15 +30,16 @@ import {
   TRANSFER_ERC20,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
-  POLL_LEDGER,
-  LEDGER_DETECTED,
+  LEDGER_CONNECTED,
+  LEDGER_DISCONNECTED,
+  LEDGER_ETH_CONNECTED,
+  LEDGER_ETH_DISCONNECTED,
   LEDGER_ERROR,
-  START_LEDGER_SYNC,
-  STOP_LEDGER_SYNC,
   FETCH_LEDGER_ADDRESSES,
   FETCHED_LEDGER_ADDRESS,
   TRANSACTION_CONFIRMED,
   DELETE_WALLET,
+  INIT_LEDGER,
 } from './constants';
 
 import getFriendlyError from '../../utils/ledger/friendlyErrors';
@@ -120,10 +121,10 @@ export function decryptWalletFailed(error) {
   };
 }
 
-export function showDecryptWalletModal(walletName) {
+export function showDecryptWalletModal(callbackAction = null) {
   return {
     type: SHOW_DECRYPT_WALLET_MODAL,
-    walletName,
+    callbackAction,
   };
 }
 
@@ -269,28 +270,17 @@ export function transactionConfirmed(transaction) {
   };
 }
 
-export function pollLedger() {
+export function initLedger() {
   return {
-    type: POLL_LEDGER,
+    type: INIT_LEDGER,
   };
 }
 
-export function startLedgerSync() {
-  return {
-    type: START_LEDGER_SYNC,
-  };
-}
-
-export function stopLedgerSync() {
-  return {
-    type: STOP_LEDGER_SYNC,
-  };
-}
-
-export function fetchLedgerAddresses(derivationPaths) {
+export function fetchLedgerAddresses(derivationPaths, ethTransport) {
   return {
     type: FETCH_LEDGER_ADDRESSES,
     derivationPaths,
+    ethTransport,
   };
 }
 
@@ -316,10 +306,32 @@ export function saveLedgerAddress(name, derivationPath, deviceId, address) {
   };
 }
 
-export function ledgerDetected(id) {
+export function ledgerConnected(descriptor) {
   return {
-    type: LEDGER_DETECTED,
+    type: LEDGER_CONNECTED,
+    descriptor,
+  };
+}
+
+export function ledgerDisconnected(descriptor) {
+  return {
+    type: LEDGER_DISCONNECTED,
+    descriptor,
+  };
+}
+
+export function ledgerEthAppConnected(descriptor, id) {
+  return {
+    type: LEDGER_ETH_CONNECTED,
+    descriptor,
     id,
+  };
+}
+
+export function ledgerEthAppDisconnected(descriptor) {
+  return {
+    type: LEDGER_ETH_DISCONNECTED,
+    descriptor,
   };
 }
 

@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { convertWalletsList, IsAddressMatch } from 'utils/wallet';
+import { fromJS } from 'immutable';
 
 /**
  * Direct selector to the walletHoc state domain
@@ -62,9 +63,16 @@ const makeSelectWalletList = () => createSelector(
 const makeSelectCurrentWalletDetails = () => createSelector(
   makeSelectWalletList(),
   makeSelectCurrentWallet(),
-  (walletList, currentWallet) => {
-    const walletDetails = walletList.find((wallet) => wallet.address === currentWallet.get('address'));
-    return walletDetails || {};
+  makeSelectLedgerNanoSInfo(),
+  (walletList, currentWallet, ledgerNanoSInfo) => {
+    let walletDetails = walletList.find((wallet) => wallet.address === currentWallet.get('address')) || {};
+    // force reset so the component can pick up all the updates to the nested properties.
+    // TODO: refactor this to immutable object
+    walletDetails = fromJS(walletDetails).toJS();
+    if (walletDetails.type === 'lns') {
+      walletDetails.ledgerNanoSInfo = ledgerNanoSInfo.toJS();
+    }
+    return walletDetails;
   }
 );
 
@@ -76,6 +84,11 @@ const makeSelectPendingTransactions = () => createSelector(
 const makeSelectConfirmedTransactions = () => createSelector(
   selectWalletHocDomain,
   (walletHocDomain) => walletHocDomain.get('confirmedTransactions')
+);
+
+const makeSelectCurrentDecryptionCallback = () => createSelector(
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('currentDecryptionCallback')
 );
 
 const makeSelectAllTransactions = () => createSelector(
@@ -105,4 +118,5 @@ export {
   makeSelectWalletList,
   makeSelectCurrentWalletDetails,
   makeSelectAllTransactions,
+  makeSelectCurrentDecryptionCallback,
 };
