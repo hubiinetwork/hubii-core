@@ -10,7 +10,7 @@ import { TabPane } from '../ui/StriimTabs';
  * The header of contact list component
  */
 
-export default class ContactHeader extends React.PureComponent {
+export default class Toggler extends React.PureComponent {
   render() {
     const {
       titleTabs,
@@ -33,19 +33,13 @@ export default class ContactHeader extends React.PureComponent {
   }
 }
 
-ContactHeader.defaultProps = {
-  placeholder: 'Filter',
-  showSearch: false,
-};
-
-ContactHeader.propTypes = {
+Toggler.propTypes = {
   /**
    * Array of objects which contains title of tab and Tabcontent which is react component.
    */
   titleTabs: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
-      TabContent: PropTypes.node.isRequired,
     }).isRequired
   ),
   /**

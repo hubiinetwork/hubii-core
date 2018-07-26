@@ -19,12 +19,10 @@ const Option = Select.Option;
 
 const titleTabs = [
   {
-    title: 'All Contacts',
-    TabContent: <div>Simple</div>,
+    title: 'Simple',
   },
   {
-    title: 'Striim Contacts',
-    TabContent: <div>Advanced</div>,
+    title: 'Advanced',
   },
 ];
 
@@ -41,32 +39,30 @@ export const WalletManager = () => (
     <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
       <div style={{ marginTop: '30px' }}>
         <div style={{ fontSize: '14px', marginBottom: '8px' }} >
-              hello there
-          </div>
+          hello there
+        </div>
         <Select defaultValue="lucy" style={{ width: '330px' }} onChange={() => console.log('hello')}>
           <Option value="jack">Jack</Option>
           <Option value="lucy">Lucy</Option>
           <Option value="disabled" disabled>Disabled</Option>
           <Option value="Yiminghe">yiminghe</Option>
         </Select>
-
       </div>
       <div style={{ marginTop: '30px' }}>
         <div style={{ fontSize: '14px', marginBottom: '8px' }} >
-              hello there
-            </div>
+          hello there
+        </div>
         <Select defaultValue="lucy" style={{ width: '330px' }} onChange={() => console.log('hello')}>
           <Option value="jack">Jack</Option>
           <Option value="lucy">Lucy</Option>
           <Option value="disabled" disabled>Disabled</Option>
           <Option value="Yiminghe">yiminghe</Option>
         </Select>
-
       </div>
       <div style={{ marginTop: '2rem' }}>
         <div style={{ fontSize: '14px', marginBottom: '8px' }} >
-              hello there
-            </div>
+          hello there
+        </div>
         <Toggler
           titleTabs={titleTabs}
           showSearch
