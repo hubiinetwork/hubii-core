@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from 'react';
+import { shell } from 'electron';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -23,7 +24,9 @@ export class WalletsTransactions extends React.PureComponent { // eslint-disable
       <Row gutter={16}>
         <Col span={20} xs={20} md={16}>
           <SectionHeading>All Transactions</SectionHeading>
-          <p>Transaction history coming soon</p>
+          <h2 style={{color: 'white'}}>Transaction history coming soon</h2>
+          <p style={{color: 'white'}}>{`In the mean time, you can check your wallet's transaction history on Etherscan `}</p>
+          <a onClick={()=> shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletDetails.get('address')}`)} >{`https://ropsten.etherscan.io/address/${currentWalletDetails.get('address')}`}</a>
           {/* {transactions.map((txn, index) => {
             const balance = currentWalletDetails.balances.find(bal => bal.symbol === txn.token)
             const price = !balance ? NaN : parseFloat(balance.price.USD)
@@ -60,7 +63,7 @@ WalletsTransactions.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   // transactions: makeSelectAllTransactions(),
-  // currentWalletDetails: makeSelectCurrentWalletWithInfo(),
+  currentWalletDetails: makeSelectCurrentWalletWithInfo(),
 });
 
 export function mapDispatchToProps(dispatch) {
