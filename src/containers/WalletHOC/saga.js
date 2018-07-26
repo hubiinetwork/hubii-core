@@ -179,7 +179,7 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
     const options = { gasPrice, gasLimit };
     const walletDetails = yield select(makeSelectCurrentWalletWithInfo());
 
-    if (walletDetails.type === 'lns') {
+    if (walletDetails.get('type') === 'lns') {
       transaction = yield call(sendTransactionByLedger, { toAddress, amount, gasPrice, gasLimit });
     } else {
       const etherWallet = new Wallet(walletDetails.get('decrypted').privateKey);
@@ -354,6 +354,7 @@ export function* tryCreateEthTransportActivity(descriptor, func) {
 
 export function* sendTransactionByLedger({ toAddress, amount, gasPrice, gasLimit }) {
   const currentWalletWithInfo = yield select(makeSelectCurrentWalletWithInfo());
+  const ledgerNanoSInfo = yield select(makeSelectLedgerNanoSInfo());
   const walletDetails = currentWalletWithInfo.toJS();
 
   const nonce = yield call(getTransactionCount, walletDetails.address, 'pending');
@@ -374,7 +375,7 @@ export function* sendTransactionByLedger({ toAddress, amount, gasPrice, gasLimit
 
   let signedTx;
   try {
-    const descriptor = walletDetails.ledgerNanoSInfo.descriptor;
+    const descriptor = ledgerNanoSInfo.get('descriptor');
 
     // check if the eth app is opened
     yield call(
