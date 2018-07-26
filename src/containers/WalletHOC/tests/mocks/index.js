@@ -292,6 +292,10 @@ export const supportedAssetsLoadedMock = fromJS({
   ],
 });
 
+export const currentWalletMock = fromJS({
+  address: '0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0',
+});
+
 export const walletsWithInfoMock = fromJS([
   {
     name: '1',

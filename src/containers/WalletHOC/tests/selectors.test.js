@@ -12,7 +12,7 @@ import {
   makeSelectCurrentWalletWithInfo,
   makeSelectWalletsWithInfo,
 } from '../selectors';
-import { walletsMock, balancesMock, supportedAssetsLoadedMock, walletsWithInfoMock, pricesLoadedMock, address1Mock } from './mocks';
+import { walletsMock, balancesMock, supportedAssetsLoadedMock, walletsWithInfoMock, pricesLoadedMock, address1Mock, currentWalletMock } from './mocks';
 
 describe('selectWalletHocDomain', () => {
   it('should select the walletHocDomain state', () => {
@@ -124,27 +124,33 @@ describe('makeSelectErrors', () => {
 });
 
 describe('makeSelectCurrentWalletWithInfo', () => {
-  const walletSelector = makeSelectCurrentWalletWithInfo();
-  it('should convert select current wallet details from the wallet list', () => {
-    const expected = fromJS({
-      address: '0x2',
-      name: 't2',
-      type: 'software',
-      encrypted: '{"address": "2"}',
-    });
+  const currentWalletWithInfoSelector = makeSelectCurrentWalletWithInfo();
+  it('should return the wallet from walletsWithInfo if exists', () => {
     const mockedState = fromJS({
       walletHoc: {
-        wallets: [
-          { name: 't1', type: 'software', encrypted: '{"address": "1"}' },
-          { address: '0x2', name: 't2', type: 'software', encrypted: '{"address": "2"}' },
-        ],
-        currentWallet: {
-          name: 't2',
-          address: '0x2',
-        },
+        wallets: walletsMock,
+        currentWallet: currentWalletMock,
+        supportedAssets: supportedAssetsLoadedMock,
+        balances: balancesMock,
+        prices: pricesLoadedMock,
       },
     });
-    expect(walletSelector(mockedState)).toEqual(expected);
+    const expected = walletsWithInfoMock.get(0);
+    expect(currentWalletWithInfoSelector(mockedState)).toEqual(expected);
+  });
+
+  it('should return empty {} if wallet doesn\t exist', () => {
+    const mockedState = fromJS({
+      walletHoc: {
+        wallets: walletsMock,
+        currentWallet: fromJS({ address: 'doesn\'t exisit!' }),
+        supportedAssets: supportedAssetsLoadedMock,
+        balances: balancesMock,
+        prices: pricesLoadedMock,
+      },
+    });
+    const expected = fromJS({});
+    expect(currentWalletWithInfoSelector(mockedState)).toEqual(expected);
   });
 });
 
