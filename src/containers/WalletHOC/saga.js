@@ -133,6 +133,10 @@ export function* loadWalletBalancesSaga({ address }) {
     yield put(loadWalletBalancesSuccess(address, returnData));
   } catch (err) {
     yield put(loadWalletBalancesError(address, err));
+  } finally {
+    const FIVE_SEC_IN_MS = 1000 * 5;
+    yield delay(FIVE_SEC_IN_MS);
+    yield put(loadWalletBalances(address));
   }
 }
 
@@ -153,6 +157,10 @@ export function* loadPrices() {
     yield put(loadPricesSuccess(returnData));
   } catch (err) {
     yield put(loadPricesError(err));
+  } finally {
+    const ONE_MINUTE_IN_MS = 1000 * 60;
+    yield delay(ONE_MINUTE_IN_MS);
+    yield put(loadPricesAction());
   }
 }
 

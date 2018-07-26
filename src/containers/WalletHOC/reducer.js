@@ -9,13 +9,11 @@ import { ERC20ABI, findWalletIndex } from 'utils/wallet';
 import abiDecoder from 'abi-decoder';
 
 import {
-  LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
   LOAD_SUPPORTED_TOKENS,
   LOAD_SUPPORTED_TOKENS_SUCCESS,
   LOAD_SUPPORTED_TOKENS_ERROR,
-  LOAD_PRICES,
   LOAD_PRICES_SUCCESS,
   LOAD_PRICES_ERROR,
   CREATE_WALLET_FROM_MNEMONIC,
@@ -120,9 +118,6 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['loading', 'decryptingWallet'], false)
         .setIn(['errors', 'decryptingWalletError'], action.error);
-    case LOAD_WALLET_BALANCES:
-      return state
-        .setIn(['balances', action.address, 'loading'], true);
     case LOAD_WALLET_BALANCES_SUCCESS:
       return state
         .setIn(['balances', action.address, 'loading'], false)
@@ -144,9 +139,6 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['supportedAssets', 'loading'], false)
         .setIn(['supportedAssets', 'error'], action.error);
-    case LOAD_PRICES:
-      return state
-        .setIn(['prices', 'loading'], true);
     case LOAD_PRICES_SUCCESS:
       return state
         .setIn(['prices', 'loading'], false)
