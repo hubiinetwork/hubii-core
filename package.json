@@ -26,8 +26,8 @@
   },
   "scripts": {
     "release": "electron-builder -lwm -p always",
-    "electron-dev": "concurrently \"BROWSER=none TARGET=electron yarn start\" \"wait-on http://localhost:3000 && electron .\"",
-    "preelectron-dev": "mkdir -p build/public && cp public/electron.js build/public && electron-rebuild --force --module_dir . -w node-hid",
+    "electron-dev": "concurrently \"cross-env BROWSER=none TARGET=electron yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "preelectron-dev": "node ./internals/scripts/use-latest-electronjs.js && electron-rebuild --force --module_dir . -w node-hid",
     "electron-build": "cross-env TARGET=electron WALLET_API=https://api2.dev.hubii.net/ npm run build && cross-env DEBUG=electron-builder electron-builder --publish never",
     "preelectron-build": "electron-rebuild --force --module_dir . -w node-hid",
     "electron-pack": "cross-env DEV_TOOLS=1 WALLET_API=https://api2.dev.hubii.net/ npm run build:electron && electron-builder --dir",
