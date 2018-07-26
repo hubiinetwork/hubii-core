@@ -22,7 +22,7 @@ import {
 import {
   decryptWallet,
   hideDecryptWalletModal,
-  startLedgerSync,
+  initLedger,
   loadWalletsBalances,
 } from './actions';
 
@@ -62,7 +62,7 @@ export function getComponentHOC(Component) {
     }
 
     componentDidMount() {
-      this.props.startLedgerSync();
+      this.props.initLedger();
       this.props.loadWalletsBalances();
     }
 
@@ -129,7 +129,7 @@ export function getComponentHOC(Component) {
   HOC.propTypes = {
     currentWallet: PropTypes.object.isRequired,
     currentWalletDetails: PropTypes.object.isRequired,
-    startLedgerSync: PropTypes.func.isRequired,
+    initLedger: PropTypes.func.isRequired,
     loadWalletsBalances: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
@@ -140,7 +140,7 @@ export function getComponentHOC(Component) {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    startLedgerSync: () => dispatch(startLedgerSync()),
+    initLedger: () => dispatch(initLedger()),
     hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
     decryptWallet: (...args) => dispatch(decryptWallet(...args)),
     loadWalletsBalances: (...args) => dispatch(loadWalletsBalances(...args)),

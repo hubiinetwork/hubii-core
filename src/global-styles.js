@@ -134,6 +134,10 @@ injectGlobal`
     width: 100%;
     margin: 0;
     padding: 0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    font-weight: 500;
   }
 
   body {

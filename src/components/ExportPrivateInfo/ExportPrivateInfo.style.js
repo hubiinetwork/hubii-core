@@ -17,6 +17,13 @@ export const SecondaryHeader = styled.div`
   font-size: medium;
   margin: 0.5rem 0 0.5rem 2rem;
 `;
+
+export const PrimaryHeader = styled.div`
+  color: ${({ theme }) => theme.palette.info};
+  font-size: medium;
+  margin: 0.5rem 0 0.5rem 0rem;
+`;
+
 export const TextPrimary = styled.div`
   color: ${({ theme }) => theme.palette.light};
   margin-top: 1rem;
