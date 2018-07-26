@@ -45,7 +45,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
         }, 0)
       }
       if (wallet.type === 'lns') {
-        connected = this.props.ledgerNanoSInfo.get('id') === wallet.deviceId; 
+        connected = this.props.ledgerNanoSInfo.get('id') === wallet.deviceId && this.props.ledgerNanoSInfo.get('status') === 'connected'; 
       }
       return {
         name: wallet.name,
