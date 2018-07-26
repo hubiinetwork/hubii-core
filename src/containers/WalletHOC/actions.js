@@ -39,17 +39,10 @@ import {
   FETCHED_LEDGER_ADDRESS,
   TRANSACTION_CONFIRMED,
   DELETE_WALLET,
-  RESET_DECRYPT_WALLET_CALLBACK,
   INIT_LEDGER,
 } from './constants';
 
 import getFriendlyError from '../../utils/ledger/friendlyErrors';
-
-export function resetDecryptWalletCallback() {
-  return {
-    type: RESET_DECRYPT_WALLET_CALLBACK,
-  };
-}
 
 export function deleteWallet(address) {
   return {

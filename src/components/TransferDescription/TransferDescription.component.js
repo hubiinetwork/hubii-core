@@ -20,19 +20,6 @@ import { formatFiat } from '../../utils/numberFormats';
  * The TransferDescription Component
  */
 export default class TransferDescription extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hasSent: false,
-    };
-  }
-
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.decrypted && !this.props.decrypted) {
-  //     this.props.onSend();
-  //   }
-  // }
-
   render() {
     const {
       errors,
@@ -210,7 +197,13 @@ TransferDescription.propTypes = {
    * if the wallet is transfering the transaction
    */
   transfering: PropTypes.bool,
+  /**
+   * Current wallet details
+   */
   currentWalletDetails: PropTypes.object.isRequired,
+  /**
+   * Errors
+   */
   errors: PropTypes.object.isRequired,
 };
 // export default TransferDescription;

@@ -11,7 +11,6 @@ import {
   deleteWallet,
   saveLedgerAddress,
   showDecryptWalletModal,
-  resetDecryptWalletCallback,
   initLedger,
 } from '../actions';
 import {
@@ -27,7 +26,6 @@ import {
   DELETE_WALLET,
   SHOW_DECRYPT_WALLET_MODAL,
   TRANSFER,
-  RESET_DECRYPT_WALLET_CALLBACK,
   INIT_LEDGER,
 } from '../constants';
 
@@ -214,15 +212,6 @@ describe('WalletHoc actions', () => {
         callbackAction,
       };
       expect(showDecryptWalletModal(callbackAction)).toEqual(expected);
-    });
-  });
-
-  describe('resetDecryptWalletCallback Action', () => {
-    it('returns expected output', () => {
-      const expected = {
-        type: RESET_DECRYPT_WALLET_CALLBACK,
-      };
-      expect(resetDecryptWalletCallback()).toEqual(expected);
     });
   });
 });

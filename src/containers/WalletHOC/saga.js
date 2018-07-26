@@ -59,7 +59,6 @@ import {
   transactionConfirmed,
   hideDecryptWalletModal,
   transfer as transferAction,
-  resetDecryptWalletCallback,
 } from './actions';
 import { createEthTransportActivity } from '../../utils/ledger/comms';
 import generateRawTx from '../../utils/generateRawTx';
@@ -108,12 +107,10 @@ export function* decryptWallet({ address, encryptedWallet, password }) {
       callbackAction = callbackAction.toJS();
       callbackAction.wallet.decrypted = decryptedWallet;
       yield put(callbackAction);
-      yield put(resetDecryptWalletCallback());
     }
   } catch (e) {
     yield put(decryptWalletFailed(e));
     yield put(notify('error', `Failed to unlock wallet: ${e}`));
-    yield put(resetDecryptWalletCallback());
   }
 }
 
@@ -422,7 +419,6 @@ export function* sendTransactionByLedger({ toAddress, amount, gasPrice, gasLimit
   // get transaction details
   return yield call(getTransaction, txHash);
 }
-
 
 // Root watcher
 export default function* walletHoc() {
