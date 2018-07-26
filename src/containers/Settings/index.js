@@ -12,6 +12,8 @@ import {
   WalletsTabHeader,
   Heading,
   StyledSwitch,
+  ButtonDiv,
+  TextWhite,
 } from './index.style';
 
 const Option = Select.Option;
@@ -81,9 +83,12 @@ export const Settings = () => (
         <StyledButton>
           Register for Striim Airdrop
         </StyledButton>
-        <StyledButton>
-          Register for Striim Airdrop
-        </StyledButton>
+        <ButtonDiv onClick={() => this.switchModals('import')} type="primary">
+          <Wrapper>
+            <Icon type="download" />
+            <TextWhite>Import Wallet</TextWhite>
+          </Wrapper>
+        </ButtonDiv>
       </div>
 
     </div>

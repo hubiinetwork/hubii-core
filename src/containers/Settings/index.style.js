@@ -47,3 +47,63 @@ export const WalletsTabHeader = styled(Header)`
   padding: 0 28px;
   background: ${({ theme }) => theme.palette.primary4};
 `;
+
+//
+
+// export const Wrapper = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   max-width: 130px;
+//   color: ${({ theme }) => theme.palette.light};
+//   margin: auto;
+//   i {
+//     display: flex;
+//     align-items: center;
+//     font-size: 14px;
+//     color: ${({ theme }) => theme.palette.info};
+//   }
+// `;
+
+export const TextWhite = styled.span`
+  color: ${({ theme }) => theme.palette.light};
+  height: 14px;
+  width: 112.39px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  text-align: center;
+  font-family: 'SF Text';
+`;
+
+
+export const ButtonDiv = styled(Button)`
+  margin: auto;
+  display: block;
+  min-width: 250px;
+  height: 40px;
+  margin-top: 24px;
+  margin-bottom: 20px;
+  border-width: 1.2px;
+  border-color: ${({ theme }) => theme.palette.light} !important;
+  span {
+    color: ${({ theme }) => theme.palette.light};
+  }
+  &:hover {
+    color: ${({ theme }) => theme.palette.info};
+    opacity: 0.9;
+    border-color: ${({ theme }) => theme.palette.light} !important;
+    background: none !important;
+  }
+  &:focus {
+    color: ${({ theme }) => theme.palette.info};
+    opacity: 0.9;
+    border-color: ${({ theme }) => theme.palette.light} !important;
+    background: transparent !important;
+  }
+  &:active {
+    color: ${({ theme }) => theme.palette.info};
+    opacity: 0.9;
+    border-color: ${({ theme }) => theme.palette.light} !important;
+    background: transparent !important;
+  }
+`;
