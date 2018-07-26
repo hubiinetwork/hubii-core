@@ -1,56 +1,103 @@
-/**
- *
- * Settings
- *
- */
+import { Icon, Select } from 'antd';
+import * as React from 'react';
+// import PropTypes from 'prop-types';
+// import { compose } from 'redux';
+// import { connect } from 'react-redux';
+import Toggler from 'components/Toggler';
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
+import {
+  Wrapper,
+  TabsLayout,
+  // StyledButton,
+  WalletsTabHeader,
+  Heading,
+  StyledSwitch,
+} from './index.style';
 
-import injectSaga from 'utils/injectSaga';
-import injectReducer from 'utils/injectReducer';
-import makeSelectSettings from './selectors';
-import reducer from './reducer';
-import saga from './saga';
+const Option = Select.Option;
 
-export class Settings extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  render() {
-    return (
-      <div>
-        <Helmet>
-          <title>Settings</title>
-          <meta name="description" content="Description of Settings" />
-        </Helmet>
+
+const titleTabs = [
+  {
+    title: 'All Contacts',
+    TabContent: <div>Simple</div>,
+  },
+  {
+    title: 'Striim Contacts',
+    TabContent: <div>Advanced</div>,
+  },
+];
+
+export const WalletManager = () => (
+  <Wrapper>
+    <TabsLayout>
+      <WalletsTabHeader>
+        <Heading>Settings</Heading>
+        <Icon type="aliwangwang" style={{ marginLeft: 'auto' }} />
+        <StyledSwitch defaultChecked onChange={() => console.log('hello')} />
+        <Icon type="meh-o" />
+      </WalletsTabHeader>
+    </TabsLayout>
+    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+      <div style={{ marginTop: '30px' }}>
+        <div style={{ fontSize: '14px', marginBottom: '8px' }} >
+              hello there
+          </div>
+        <Select defaultValue="lucy" style={{ width: '330px' }} onChange={() => console.log('hello')}>
+          <Option value="jack">Jack</Option>
+          <Option value="lucy">Lucy</Option>
+          <Option value="disabled" disabled>Disabled</Option>
+          <Option value="Yiminghe">yiminghe</Option>
+        </Select>
+
       </div>
-    );
-  }
-}
+      <div style={{ marginTop: '30px' }}>
+        <div style={{ fontSize: '14px', marginBottom: '8px' }} >
+              hello there
+            </div>
+        <Select defaultValue="lucy" style={{ width: '330px' }} onChange={() => console.log('hello')}>
+          <Option value="jack">Jack</Option>
+          <Option value="lucy">Lucy</Option>
+          <Option value="disabled" disabled>Disabled</Option>
+          <Option value="Yiminghe">yiminghe</Option>
+        </Select>
 
-Settings.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+      </div>
+      <div style={{ marginTop: '2rem' }}>
+        <div style={{ fontSize: '14px', marginBottom: '8px' }} >
+              hello there
+            </div>
+        <Toggler
+          titleTabs={titleTabs}
+          showSearch
+          onTabChange={() => {
+            console.log('Tab changed');
+          }}
+        />
+      </div>
+    </div>
+  </Wrapper>
+    );
+
+
+WalletManager.propTypes = {
+
 };
 
-const mapStateToProps = createStructuredSelector({
-  settings: makeSelectSettings(),
-});
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
+// export function mapDispatchToProps(dispatch) {
+//   return {
+//     saveLedgerAddress: (...args) => dispatch(saveLedgerAddress(...args)),
+//     createWalletFromMnemonic: (...args) => dispatch(createWalletFromMnemonic(...args)),
+//     createWalletFromPrivateKey: (...args) => dispatch(createWalletFromPrivateKey(...args)),
+//     createContact: (...args) => dispatch(createContact(...args)),
+//   };
+// }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+// const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'settings', reducer });
-const withSaga = injectSaga({ key: 'settings', saga });
+// export default compose(
+//   withConnect,
+// )(WalletManager);
 
-export default compose(
-  withReducer,
-  withSaga,
-  withConnect,
-)(Settings);
+export default WalletManager;
