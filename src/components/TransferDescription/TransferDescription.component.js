@@ -24,7 +24,6 @@ export default class TransferDescription extends React.PureComponent {
     const {
       recipient,
       assetToSend,
-      lnsDisconnected,
       errors,
       amountToSend,
       ethBalanceBefore,
@@ -36,10 +35,15 @@ export default class TransferDescription extends React.PureComponent {
       usdValueToSend,
       transactionFee,
       onSend,
+      lnsCheck,
       onCancel,
     } = this.props;
 
-    const disableSendButton = amountToSend <= 0 || ethBalanceAfter <= 0 || assetBalanceAfter <= 0 || lnsDisconnected;
+    const disableSendButton =
+      amountToSend <= 0 ||
+      ethBalanceAfter <= 0 ||
+      assetBalanceAfter <= 0 ||
+      (lnsCheck && errors.get('ledgerError'));
     return (
       <WrapperDiv>
         <Row>
@@ -155,7 +159,10 @@ export default class TransferDescription extends React.PureComponent {
           }
         </Row>
         <Row>
-          <StyledErrorCol span={24}>{errors.get('ledgerError')}</StyledErrorCol>
+          {
+            lnsCheck &&
+              <StyledErrorCol span={24}>{errors.get('ledgerError')}</StyledErrorCol>
+          }
         </Row>
       </WrapperDiv>
     );
@@ -236,7 +243,7 @@ TransferDescription.propTypes = {
    */
   errors: PropTypes.object.isRequired,
   /**
-   * lns disconnected
+   * lns check
    */
-  lnsDisconnected: PropTypes.bool.isRequired,
+  lnsCheck: PropTypes.bool.isRequired,
 };

@@ -111,7 +111,7 @@ const makeSelectWalletsWithInfo = () => createSelector(
 
       // Add balance info for each asset
       let walletBalances;
-      if (!balances || balances.get('loading') || !prices || prices.get('loading')) {
+      if (!supportedAssets || supportedAssets.get('loading') || !balances || balances.get('loading') || !prices || prices.get('loading') || !balances.get(wallet.get('address')) || balances.getIn([wallet.get('address'), 'loading'])) {
         walletBalances = fromJS({ loading: true, total: { usd: 0, eth: 0, btc: 0 } });
       } else {
         walletBalances = balances.get(wallet.get('address'));
