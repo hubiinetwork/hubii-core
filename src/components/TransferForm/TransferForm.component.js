@@ -59,7 +59,7 @@ export default class TransferForm extends React.PureComponent {
       return;
     }
 
-    this.setState({ amountToSendInput: formatEthAmount(Number(value)).toString(), amountToSend: formatEthAmount(Number(value)) });
+    this.setState({ amountToSendInput: formatEthAmount(Number(value)).toFixed(value.length - 2), amountToSend: formatEthAmount(Number(value)) });
   }
 
   handleGasPriceChange(e) {
