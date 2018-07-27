@@ -115,6 +115,15 @@ export const walletsMock = fromJS([
   },
 ]);
 
+export const totalBalancesMock = fromJS({
+  assets: {
+    ETH: { amount: 0.9996016988499999, usdValue: 411.8358999262 },
+    '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { amount: 1, usdValue: 0 },
+  },
+  loading: false,
+  totalUsd: 411.8358999262,
+});
+
 export const balancesMock = fromJS({
   '0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0': {
     loading: false,

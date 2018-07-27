@@ -65,10 +65,14 @@ const makeSelectTotalBalances = () => createSelector(
   makeSelectPrices(),
   makeSelectSupportedAssets(),
   (balances, prices, supportedAssets) => {
+    if (supportedAssets.get('loading')) {
+      return fromJS({ assets: {}, loading: true });
+    }
+
     // Caclulate total amount and value of each asset
-    let totalBalances = fromJS({ assets: {} });
+    let totalBalances = fromJS({ assets: {}, loading: false });
     balances.valueSeq().forEach((address) => {
-      if (!address || address.get('loading') || !supportedAssets || supportedAssets.get('loading')) return;
+      if (address.get('loading')) return;
       address.get('assets').forEach((balance) => {
         const currency = balance.get('currency');
         const decimals = supportedAssets.get('assets').find((asset) => asset.get('currency') === currency).get('decimals');
