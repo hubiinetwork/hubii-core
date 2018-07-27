@@ -93,7 +93,7 @@ export const Settings = () => (
         </StyledButton>
       </div>
       <SubtitleText>
-        Last Backup 03-02-2018
+        Last Backup
       </SubtitleText>
       <div>
         <RedButton
