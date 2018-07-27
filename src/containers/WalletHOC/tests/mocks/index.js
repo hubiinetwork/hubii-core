@@ -189,13 +189,7 @@ export const balancesMock = fromJS({
   },
 });
 
-export const pricesLoadingMock = fromJS({
-  loading: true,
-  error: null,
-  tokens: [],
-});
-
-export const pricesLoadedMock = fromJS({
+export const pricesMock = fromJS({
   loading: false,
   error: null,
   assets: [
@@ -243,13 +237,7 @@ export const pricesLoadedMock = fromJS({
   ],
 });
 
-export const supportedAssetsLoadingMock = fromJS({
-  loading: true,
-  error: null,
-  assets: [],
-});
-
-export const supportedAssetsLoadedMock = fromJS({
+export const supportedAssetsMock = fromJS({
   loading: false,
   error: null,
   assets: [

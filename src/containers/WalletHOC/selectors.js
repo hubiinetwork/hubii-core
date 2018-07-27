@@ -109,11 +109,11 @@ const makeSelectWalletsWithInfo = () => createSelector(
     const walletsWithInfo = wallets.map((wallet) => {
       let walletWithInfo = wallet;
 
-      // Add balance info for each asset
-      let walletBalances;
-      if (!supportedAssets || supportedAssets.get('loading') || !balances || balances.get('loading') || !prices || prices.get('loading') || !balances.get(wallet.get('address')) || balances.getIn([wallet.get('address'), 'loading'])) {
-        walletBalances = fromJS({ loading: true, total: { usd: 0, eth: 0, btc: 0 } });
-      } else {
+      // Set default 'loading' state
+      let walletBalances = fromJS({ loading: true, total: { usd: 0, eth: 0, btc: 0 } });
+
+      // Only leave default loading state if everything required is loaded
+      if (!supportedAssets.get('loading') && !prices.get('loading') && balances.get(wallet.get('address')) && !balances.getIn([wallet.get('address'), 'loading'])) {
         walletBalances = balances.get(wallet.get('address'));
         walletBalances = walletBalances.set('assets', walletBalances.get('assets').map((asset) => {
           let walletAsset = asset;
