@@ -23,6 +23,10 @@ export class SideBar extends React.Component {
     const { menuItems, logoSrc, children } = this.props;
     const { info, dark2 } = darkTheme.palette;
     const currentRoute = this.getroute();
+    let selectedKeys = [currentRoute];
+    if (currentRoute === '/wallet') {
+      selectedKeys = ['/wallets'];
+    }
     return (
       <SideBarLayout style={{ minHeight: '100vh' }}>
         <Sider collapsed collapsedWidth="72" trigger={null}>
@@ -30,7 +34,7 @@ export class SideBar extends React.Component {
             defaultSelectedKeys={[menuItems[0].to]}
             mode="inline"
             onSelect={this.handleChange}
-            selectedKeys={[currentRoute]}
+            selectedKeys={selectedKeys}
           >
             <Menu.Item key="/" className="menu-logo">
               <Link to="/">
@@ -59,7 +63,7 @@ export class SideBar extends React.Component {
                       <SvgIcon>
                         <path
                           d="M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z"
-                          fill={currentRoute === menuItem.to ? info : dark2}
+                          fill={currentRoute === menuItem.to || currentRoute === '/wallet' ? info : dark2}
                         />
                       </SvgIcon>
                     )}
