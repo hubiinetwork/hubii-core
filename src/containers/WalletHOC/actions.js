@@ -180,10 +180,9 @@ export function loadSupportedTokens() {
 }
 
 export function loadSupportedTokensSuccess(tokens) {
-  tokens.push({ currency: 'ETH', symbol: 'ETH', decimals: 18, color: 'grey' });
   return {
     type: LOAD_SUPPORTED_TOKENS_SUCCESS,
-    assets: tokens,
+    assets: [...tokens, { currency: 'ETH', symbol: 'ETH', decimals: 18, color: 'grey' }],
   };
 }
 
@@ -201,10 +200,9 @@ export function loadPrices() {
 }
 
 export function loadPricesSuccess(prices) {
-  prices.push({ currency: 'ETH', eth: 1, btc: 0.01, usd: 412 });
   return {
     type: LOAD_PRICES_SUCCESS,
-    prices,
+    prices: [...prices, { currency: 'ETH', eth: 1, btc: 0.01, usd: 412 }],
   };
 }
 
