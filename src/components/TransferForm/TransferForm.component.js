@@ -60,11 +60,12 @@ export default class TransferForm extends React.PureComponent {
     }
 
     if (Number(value).toString().includes('e-')) {
-      const len = value.length - 2 < 20 ? value.length - 2 : 20;
+      const len = value.length + 2 < 20 ? value.length - 2 : 20;
       this.setState({ amountToSendInput: formatEthAmount(Number(value)).toFixed(len) });
     } else {
       this.setState({ amountToSendInput: formatEthAmount(Number(value)).toString() });
     }
+
     this.setState({ amountToSend: formatEthAmount(Number(value)) });
   }
 
