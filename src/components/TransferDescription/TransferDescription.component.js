@@ -41,8 +41,8 @@ export default class TransferDescription extends React.PureComponent {
 
     const disableSendButton =
       amountToSend <= 0 ||
-      ethBalanceAfter <= 0 ||
-      assetBalanceAfter <= 0 ||
+      ethBalanceAfter.amount <= 0 ||
+      assetBalanceAfter.amount <= 0 ||
       (lnsCheck && errors.get('ledgerError'));
     return (
       <WrapperDiv>
