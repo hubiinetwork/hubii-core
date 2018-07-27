@@ -61,19 +61,21 @@ const makeSelectBalances = () => createSelector(
 );
 
 const makeSelectTotalBalances = () => createSelector(
+  makeSelectWallets(),
   makeSelectBalances(),
   makeSelectPrices(),
   makeSelectSupportedAssets(),
-  (balances, prices, supportedAssets) => {
+  (wallets, balances, prices, supportedAssets) => {
     if (supportedAssets.get('loading')) {
       return fromJS({ assets: {}, loading: true });
     }
 
     // Caclulate total amount and value of each asset
-    let totalBalances = fromJS({ assets: {}, loading: false });
-    balances.valueSeq().forEach((address) => {
-      if (address.get('loading')) return;
-      address.get('assets').forEach((balance) => {
+    let totalBalances = fromJS({ assets: {}, loading: false, totalUsd: 0 });
+    balances.keySeq().forEach((address) => {
+      const addressBalances = balances.get(address);
+      if (addressBalances.get('loading') || !wallets.find((w) => w.get('address') === address)) return;
+      addressBalances.get('assets').forEach((balance) => {
         const currency = balance.get('currency');
         const decimals = supportedAssets.get('assets').find((asset) => asset.get('currency') === currency).get('decimals');
 
