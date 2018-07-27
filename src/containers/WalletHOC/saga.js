@@ -166,7 +166,7 @@ export function* loadPrices() {
 
 export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit, contractAddress }) {
   if (wallet.encrypted && !wallet.decrypted) {
-    yield put(showDecryptWalletModal(transferAction({ wallet, token, toAddress, amount, gasPrice, gasLimit })));
+    yield put(showDecryptWalletModal(transferAction({ wallet, token, toAddress, amount, gasPrice, gasLimit, contractAddress })));
     yield put(transferError(new Error('Wallet is encrypted')));
     return;
   }
