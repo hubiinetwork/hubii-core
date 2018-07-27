@@ -85,3 +85,4 @@ export const getTransactionCount = (...args) => EthNetworkProvider.getTransactio
 export const sendTransaction = (...args) => EthNetworkProvider.sendTransaction(...args);
 
 export const getTransaction = (...args) => EthNetworkProvider.getTransaction(...args);
+

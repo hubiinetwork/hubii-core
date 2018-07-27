@@ -33,6 +33,7 @@ import walletHoc, {
   pollEthApp,
   sendTransactionByLedger,
   tryCreateEthTransportActivity,
+  generateERC20Transaction,
 } from '../saga';
 
 import {
@@ -751,6 +752,78 @@ describe('load wallets saga', () => {
           .then(() => {
             expect(signedTxHex).toEqual(expectedSignedTxHex);
           });
+      });
+      it('#generateERC20Transaction should generate transaction object using etherjs contract', async () => {
+        const nonce = 1;
+        const gas = {
+          gasPrice: 30000000,
+          gasLimit: 2100000,
+        };
+        const amount = 0.000001;
+        const expectedTx = {
+          ...gas,
+          nonce,
+          to: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
+          data: '0xa9059cbb000000000000000000000000bfdc0c8e54af5719872a2edef8e65c9f4a3eae88000000000000000000000000000000000000000000000000000000e8d4a51000',
+        };
+        const options = {
+          ...gas,
+          nonce, // override the nonce so etherjs wont call #getTransactionCount for testing
+        };
+        const tx = await generateERC20Transaction({
+          contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
+          walletAddress: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
+          toAddress: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+          amount: utils.parseEther(amount.toString()),
+        }, options);
+        expect(tx).toEqual(expectedTx);
+      });
+      it('transfer erc20 should pass params correctly to sendTransactionByLedger', () => {
+        const storeState = {
+          walletHoc: {
+            wallets: [{
+              name: 't1',
+              type: 'lns',
+              address: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
+              derivationPath: 'm/44\'/60\'/0\'/0',
+            }],
+            currentWallet: {
+              name: 't1',
+              address: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
+            },
+            pendingTransactions: [],
+            confirmedTransactions: [],
+            ledgerNanoSInfo: {
+              descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC1@14/XHC1@14000000/PRT2@14200000/Nano S@14200000/Nano S@0/IOUSBHostHIDDevice@14200000,0',
+            },
+          },
+        };
+        const params = {};
+        const tx = {
+          gasPrice: 30000000,
+          gasLimit: 2100000,
+          to: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
+          data: '0xa9059cbb000000000000000000000000bfdc0c8e54af5719872a2edef8e65c9f4a3eae88000000000000000000000000000000000000000000000000000000e8d4a51000',
+          nonce: 39,
+        };
+        const sentTx = { value: 1, data: '0xa9059cbb000000000000000000000000994c3de8cc5bc781183205a3dd6e175be1e6f14a00000000000000000000000000000000000000000000000000005af3107a4000' };
+        return expectSaga(transferERC20, params)
+          .provide({
+            call(effect, next) {
+              if (effect.fn === generateERC20Transaction) {
+                return tx;
+              }
+              if (effect.fn === sendTransactionByLedger) {
+                expect(effect.args[0].toAddress).toEqual(tx.to);
+                expect(effect.args[0].amount).toEqual(tx.value);
+                return sentTx;
+              }
+              return next();
+            },
+          })
+          .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+          .put.actionType(transferSuccess(sentTx).type)// send signed transaction
+          .run(500000);
       });
       it('#tryCreateEthTransportActivity should start pollEthApp and rethrow the error to outer scope when throws exception', (done) => {
         const error = new Error();
