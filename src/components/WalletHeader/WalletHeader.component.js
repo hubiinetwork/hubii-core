@@ -24,7 +24,7 @@ import { formatFiat } from '../../utils/numberFormats';
 const WalletHeader = (props) => {
   const showNotification = () => {
     const success = true;
-    const message = 'Address copied to clipboard.';
+    const message = 'Address copied to clipboard';
     Notification(success, message);
   };
   return (
@@ -55,7 +55,7 @@ const WalletHeader = (props) => {
             </Address>
           </DetailWrapper>
           <DetailWrapper>
-            <Balance>${formatFiat(props.balance, 'USD')}</Balance>
+            <Balance>{formatFiat(props.balance, 'USD')}</Balance>
           </DetailWrapper>
         </HeaderDetail>
       </OverflowHidden>

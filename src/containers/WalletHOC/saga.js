@@ -1,37 +1,36 @@
-import { eventChannel, delay } from 'redux-saga';
-import { takeLatest, takeEvery, put, call, select, race, take, spawn } from 'redux-saga/effects';
+import { delay, eventChannel } from 'redux-saga';
+import { takeLatest, takeEvery, put, call, select, take, race, spawn } from 'redux-saga/effects';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
-// import Web3 from 'web3';
-import { Wallet, utils, providers, Contract } from 'ethers';
+import { Wallet, utils, Contract } from 'ethers';
 
 import { notify } from 'containers/App/actions';
 
+import { requestWalletAPI } from 'utils/request';
+import { ERC20ABI, EthNetworkProvider, getTransaction, getTransactionCount, sendTransaction } from 'utils/wallet';
+
 import {
-  makeSelectWalletList,
-  makeSelectCurrentWalletDetails,
+  makeSelectCurrentWalletWithInfo,
   makeSelectWallets,
   makeSelectCurrentDecryptionCallback,
   makeSelectLedgerNanoSInfo,
 } from './selectors';
-import { requestWalletAPI } from '../../utils/request';
-import { ERC20ABI, EthNetworkProvider, getTransaction, getTransactionCount, sendTransaction } from '../../utils/wallet';
 
 import {
   CREATE_WALLET_FROM_MNEMONIC,
   CREATE_WALLET_SUCCESS,
   DECRYPT_WALLET,
-  LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
-  LISTEN_TOKEN_BALANCES,
   TRANSFER,
   TRANSFER_ETHER,
   TRANSFER_ERC20,
-  TRANSFER_SUCCESS,
   FETCH_LEDGER_ADDRESSES,
   CREATE_WALLET_FROM_PRIVATE_KEY,
+  LOAD_PRICES,
+  LOAD_SUPPORTED_TOKENS,
   INIT_LEDGER,
   LEDGER_CONNECTED,
   LEDGER_DISCONNECTED,
+  INIT_WALLETS_BALANCES,
 } from './constants';
 
 import {
@@ -43,8 +42,12 @@ import {
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
-  updateBalances as updateBalancesAction,
-  listenBalances as listenBalancesAction,
+  loadSupportedTokens as loadSupportedTokensAction,
+  loadSupportedTokensSuccess,
+  loadSupportedTokensError,
+  loadPrices as loadPricesAction,
+  loadPricesSuccess,
+  loadPricesError,
   showDecryptWalletModal,
   transferSuccess,
   transferError,
@@ -56,7 +59,6 @@ import {
   fetchedLedgerAddress,
   transferEther as transferEtherAction,
   transferERC20 as transferERC20Action,
-  transactionConfirmed,
   hideDecryptWalletModal,
   transfer as transferAction,
 } from './actions';
@@ -115,50 +117,50 @@ export function* decryptWallet({ address, encryptedWallet, password }) {
 }
 
 export function* initWalletsBalances() {
-  const walletList = yield select(makeSelectWalletList());
-  for (let i = 0; i < walletList.length; i += 1) {
-    yield put(loadWalletBalances(walletList[i].address));
+  const wallets = yield select(makeSelectWallets());
+  for (let i = 0; i < wallets.size; i += 1) {
+    yield put(loadWalletBalances(wallets.getIn([i, 'address'])));
   }
+  yield put(loadSupportedTokensAction());
+  yield put(loadPricesAction());
 }
 
 export function* loadWalletBalancesSaga({ address }) {
   const requestPath = `ethereum/wallets/${address}/balances`;
   try {
     const returnData = yield call(requestWalletAPI, requestPath);
+
     yield put(loadWalletBalancesSuccess(address, returnData));
-    yield put(listenBalancesAction(address));
   } catch (err) {
     yield put(loadWalletBalancesError(address, err));
+  } finally {
+    const FIVE_SEC_IN_MS = 1000 * 5;
+    yield delay(FIVE_SEC_IN_MS);
+    yield put(loadWalletBalances(address));
   }
 }
 
-
-export function* listenBalances({ address }) {
-  let walletList = yield select(makeSelectWalletList());
-  let wallet = walletList.find((wal) => wal.address === address);
-  const chan = yield call((addr) => eventChannel((emitter) => {
-    EthNetworkProvider.on(addr, (newBalance) => {
-      if (!newBalance) {
-        return;
-      }
-      emitter({ newBalance });
-    });
-
-    return () => {
-      EthNetworkProvider.removeListener(addr);
-    };
+export function* loadSupportedTokens() {
+  const requestPath = 'ethereum/supported-tokens';
+  try {
+    const returnData = yield call(requestWalletAPI, requestPath);
+    yield put(loadSupportedTokensSuccess(returnData));
+  } catch (err) {
+    yield put(loadSupportedTokensError(err));
   }
-  ), wallet.address);
-  while (true) { // eslint-disable-line no-constant-condition
-    const updates = yield take(chan);
+}
 
-    // If wallet has been deleted since listening, do nothing
-    walletList = yield select(makeSelectWalletList());
-    wallet = walletList.find((wal) => wal.address === address);
-    if (!wallet) {
-      return;
-    }
-    yield put(updateBalancesAction(address, { currency: 'ETH', balance: updates.newBalance.toString() }));
+export function* loadPrices() {
+  const requestPath = 'ethereum/prices';
+  try {
+    const returnData = yield call(requestWalletAPI, requestPath);
+    yield put(loadPricesSuccess(returnData));
+  } catch (err) {
+    yield put(loadPricesError(err));
+  } finally {
+    const ONE_MINUTE_IN_MS = 1000 * 60;
+    yield delay(ONE_MINUTE_IN_MS);
+    yield put(loadPricesAction());
   }
 }
 
@@ -180,15 +182,15 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
 }
 
 export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
-  let transaction;
-  const options = { gasPrice, gasLimit };
-  const walletDetails = yield select(makeSelectCurrentWalletDetails());
-
   try {
-    if (walletDetails.type === 'lns') {
+    let transaction;
+    const options = { gasPrice, gasLimit };
+    const walletDetails = yield select(makeSelectCurrentWalletWithInfo());
+
+    if (walletDetails.get('type') === 'lns') {
       transaction = yield call(sendTransactionByLedger, { toAddress, amount, gasPrice, gasLimit });
     } else {
-      const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
+      const etherWallet = new Wallet(walletDetails.get('decrypted').privateKey);
       etherWallet.provider = EthNetworkProvider;
       transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
     }
@@ -203,8 +205,8 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
 export function* transferERC20({ token, contractAddress, toAddress, amount, gasPrice, gasLimit }) {
   const contractAbiFragment = ERC20ABI;
 
-  const walletDetails = yield select(makeSelectCurrentWalletDetails());
-  const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
+  const walletDetails = yield select(makeSelectCurrentWalletWithInfo());
+  const etherWallet = new Wallet(walletDetails.get('decrypted').privateKey);
   etherWallet.provider = EthNetworkProvider;
 
   try {
@@ -217,13 +219,6 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
     yield put(transferError(error));
     yield put(notify('error', `Failed to send transaction: ${error}`));
   }
-}
-
-export function* waitTransactionHash({ transaction }) {
-  const provider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
-  const confirmedTxn = yield call((...args) => provider.waitForTransaction(...args), transaction.hash);
-  yield put(transactionConfirmed(confirmedTxn));
-  yield put(notify('success', 'Transaction confirmed'));
 }
 
 export function* hookNewWalletCreated({ newWallet }) {
@@ -366,7 +361,9 @@ export function* tryCreateEthTransportActivity(descriptor, func) {
 }
 
 export function* sendTransactionByLedger({ toAddress, amount, gasPrice, gasLimit }) {
-  const walletDetails = yield select(makeSelectCurrentWalletDetails());
+  const currentWalletWithInfo = yield select(makeSelectCurrentWalletWithInfo());
+  const ledgerNanoSInfo = yield select(makeSelectLedgerNanoSInfo());
+  const walletDetails = currentWalletWithInfo.toJS();
 
   const nonce = yield call(getTransactionCount, walletDetails.address, 'pending');
   // generate raw tx for ledger nano to sign
@@ -386,7 +383,7 @@ export function* sendTransactionByLedger({ toAddress, amount, gasPrice, gasLimit
 
   let signedTx;
   try {
-    const descriptor = walletDetails.ledgerNanoSInfo.descriptor;
+    const descriptor = ledgerNanoSInfo.get('descriptor');
 
     // check if the eth app is opened
     yield call(
@@ -424,16 +421,18 @@ export function* sendTransactionByLedger({ toAddress, amount, gasPrice, gasLimit
 export default function* walletHoc() {
   yield takeEvery(CREATE_WALLET_FROM_MNEMONIC, createWalletFromMnemonic);
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
-  yield takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances);
+  yield takeEvery(INIT_WALLETS_BALANCES, initWalletsBalances);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
   yield takeLatest(FETCH_LEDGER_ADDRESSES, fetchLedgerAddresses);
   yield takeEvery(TRANSFER, transfer);
   yield takeEvery(TRANSFER_ETHER, transferEther);
   yield takeEvery(TRANSFER_ERC20, transferERC20);
-  yield takeEvery(TRANSFER_SUCCESS, waitTransactionHash);
+
   yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
   yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
-  yield takeEvery(LISTEN_TOKEN_BALANCES, listenBalances);
+
+  yield takeLatest(LOAD_PRICES, loadPrices);
+  yield takeLatest(LOAD_SUPPORTED_TOKENS, loadSupportedTokens);
   yield takeEvery(INIT_LEDGER, initLedger);
   yield takeEvery(LEDGER_CONNECTED, pollEthApp);
   yield takeEvery(LEDGER_DISCONNECTED, hookLedgerDisconnected);

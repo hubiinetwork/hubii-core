@@ -2,30 +2,27 @@ import React from 'react';
 import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
 import WalletHOC, { getComponentHOC, mapDispatchToProps } from '../index';
+import { walletsWithInfoMock, currentWalletMock } from './mocks';
 
 describe('WalletHOC', () => {
+  const initWalletsBalancesSpy = jest.fn();
+  const initLedgerSpy = jest.fn();
+  const props = {
+    currentWallet: currentWalletMock,
+    currentWalletWithInfo: walletsWithInfoMock.get(0),
+    initLedger: initLedgerSpy,
+    initWalletsBalances: initWalletsBalancesSpy,
+    decryptWallet: () => {},
+    hideDecryptWalletModal: () => {},
+    loading: fromJS({
+      decryptingWallet: false,
+    }),
+  };
+  let dom;
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
   describe('shallow mount', () => {
-    const loadWalletsBalancesSpy = jest.fn();
-    const initLedgerSpy = jest.fn();
-    const startLedgerSyncSpy = jest.fn();
-    const props = {
-      currentWallet: fromJS({
-        showDecryptModal: false,
-      }),
-      currentWalletDetails: {},
-      decryptWallet: () => {},
-      hideDecryptWalletModal: () => {},
-      loadWalletsBalances: loadWalletsBalancesSpy,
-      initLedger: initLedgerSpy,
-      startLedgerSync: startLedgerSyncSpy,
-      loading: fromJS({
-        decryptingWallet: false,
-      }),
-    };
-    let dom;
-    afterEach(() => {
-      jest.clearAllMocks();
-    });
     describe('#WalletHOC', () => {
       it('should return composed component', () => {
         const hoc = WalletHOC('div');
@@ -92,7 +89,7 @@ describe('WalletHOC', () => {
       });
     });
     describe('#componentDidMount', () => {
-      it('should call loadWallets prop when called', () => {
+      it('should call initWalletsBalances prop when called', () => {
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
@@ -101,7 +98,7 @@ describe('WalletHOC', () => {
         );
         const instance = dom.instance();
         instance.componentDidMount();
-        expect(loadWalletsBalancesSpy).toBeCalled();
+        expect(initWalletsBalancesSpy).toBeCalled();
       });
     });
     describe('#componentDidMount', () => {
@@ -166,23 +163,23 @@ describe('WalletHOC', () => {
     describe('#decryptWallet', () => {
       it('should trigger decryptWallet action', () => {
         const decryptWalletSpy = jest.fn();
-        const currentWalletDetails = {
+        const currentWalletWithInfo = fromJS({
           address: '0x00',
           encrypted: {},
-        };
+        });
         const password = '123';
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
             {...props}
             decryptWallet={decryptWalletSpy}
-            currentWalletDetails={currentWalletDetails}
+            currentWalletWithInfo={currentWalletWithInfo}
           />
         );
         const instance = dom.instance();
         instance.setState({ password });
         instance.decryptWallet();
-        expect(decryptWalletSpy).toBeCalledWith(currentWalletDetails.address, JSON.stringify(currentWalletDetails.encrypted), password);
+        expect(decryptWalletSpy).toBeCalledWith(currentWalletWithInfo.get('address'), currentWalletWithInfo.get('encrypted'), password);
       });
     });
     describe('#mapDispatchToProps', () => {

@@ -16,14 +16,14 @@ import reducer from './reducer';
 import saga from './saga';
 import {
   makeSelectCurrentWallet,
-  makeSelectCurrentWalletDetails,
+  makeSelectCurrentWalletWithInfo,
   makeSelectLoading,
 } from './selectors';
 import {
   decryptWallet,
   hideDecryptWalletModal,
   initLedger,
-  loadWalletsBalances,
+  initWalletsBalances,
 } from './actions';
 
 import {
@@ -35,7 +35,7 @@ export default function WalletHOC(Component) {
 
   const mapStateToProps = createStructuredSelector({
     currentWallet: makeSelectCurrentWallet(),
-    currentWalletDetails: makeSelectCurrentWalletDetails(),
+    currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
     loading: makeSelectLoading(),
   });
 
@@ -63,7 +63,7 @@ export function getComponentHOC(Component) {
 
     componentDidMount() {
       this.props.initLedger();
-      this.props.loadWalletsBalances();
+      this.props.initWalletsBalances();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -84,8 +84,8 @@ export function getComponentHOC(Component) {
     }
 
     decryptWallet() {
-      const { currentWalletDetails } = this.props;
-      this.props.decryptWallet(currentWalletDetails.address, JSON.stringify(currentWalletDetails.encrypted), this.state.password);
+      const { currentWalletWithInfo } = this.props;
+      this.props.decryptWallet(currentWalletWithInfo.get('address'), currentWalletWithInfo.get('encrypted'), this.state.password);
     }
 
     render() {
@@ -118,7 +118,7 @@ export function getComponentHOC(Component) {
               />
                 ) : (
                   <Button type="primary" onClick={this.decryptWallet} disabled={!this.state.password}>
-                   Confirm
+                    Confirm
                   </Button>
                 )}
           </Modal>
@@ -128,9 +128,9 @@ export function getComponentHOC(Component) {
   }
   HOC.propTypes = {
     currentWallet: PropTypes.object.isRequired,
-    currentWalletDetails: PropTypes.object.isRequired,
+    currentWalletWithInfo: PropTypes.object.isRequired,
     initLedger: PropTypes.func.isRequired,
-    loadWalletsBalances: PropTypes.func.isRequired,
+    initWalletsBalances: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
     loading: PropTypes.object,
@@ -143,7 +143,7 @@ export function mapDispatchToProps(dispatch) {
     initLedger: () => dispatch(initLedger()),
     hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
     decryptWallet: (...args) => dispatch(decryptWallet(...args)),
-    loadWalletsBalances: (...args) => dispatch(loadWalletsBalances(...args)),
+    initWalletsBalances: (...args) => dispatch(initWalletsBalances(...args)),
   };
 }
 

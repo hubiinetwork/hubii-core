@@ -24,6 +24,7 @@ import Striim from 'containers/Striim';
 import WalletManager from 'containers/WalletManager';
 import WalletDetails from 'containers/WalletDetails';
 import Dex from 'containers/Dex';
+import Settings from 'containers/Settings';
 
 import withExchangeRate from 'containers/ExchangeRateHOC';
 import WalletHOC from 'containers/WalletHOC';
@@ -56,6 +57,7 @@ export function App() {
         <Route path="/wallet/:address" component={WalletDetails} />
         <Route path="/striim" component={Striim} />
         <Route path="/dex" component={Dex} />
+        <Route path="/settings" component={Settings} />
         <Redirect from="/" to="/wallets" />
       </Switch>
     </SideBar>

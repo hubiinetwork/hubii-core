@@ -81,6 +81,7 @@ export class WalletItemCard extends React.PureComponent {
     const {
       address,
       name,
+      balancesLoading,
       connected,
       type,
       handleCardClick,
@@ -149,10 +150,10 @@ export class WalletItemCard extends React.PureComponent {
             <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
           </LeftSideWrapper>
           <AssetsWrapper>
-            {assets &&
+            {balancesLoading ? <WalletName>Balance Loading...</WalletName> :
               assets.map((asset) => (
-                <AssetWrapper key={asset.name}>
-                  <AssetAmountBubble name={asset.name} amount={asset.amount} />
+                <AssetWrapper key={asset.currency}>
+                  <AssetAmountBubble name={asset.symbol} amount={asset.balance} />
                 </AssetWrapper>
               ))}
           </AssetsWrapper>
@@ -199,6 +200,10 @@ WalletItemCard.propTypes = {
    * primary Address of the wallet.
    */
   address: PropTypes.string.isRequired,
+  /**
+   * if balances are loading
+   */
+  balancesLoading: PropTypes.bool.isRequired,
   /**
    * props.type type of the wallet.
    */

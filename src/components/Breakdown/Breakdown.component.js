@@ -20,6 +20,7 @@ const Breakdown = ({ data, value }) => {
     label: item.label,
     percentage: item.percentage,
   }));
+
   return (
     <div>
       <SectionHeading>Breakdown</SectionHeading>
@@ -56,7 +57,7 @@ const Breakdown = ({ data, value }) => {
           }
         />
       </div>
-      <SectionHeading>Tokens</SectionHeading>
+      <SectionHeading>Assets</SectionHeading>
       <Tokens data={labels} />
     </div>
   );
