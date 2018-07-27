@@ -182,7 +182,7 @@ export function loadSupportedTokens() {
 export function loadSupportedTokensSuccess(tokens) {
   return {
     type: LOAD_SUPPORTED_TOKENS_SUCCESS,
-    assets: [...tokens, { currency: 'ETH', symbol: 'ETH', decimals: 18, color: 'grey' }],
+    assets: [...tokens, { currency: 'ETH', symbol: 'ETH', decimals: 18, color: '5C78E4' }],
   };
 }
 
