@@ -91,12 +91,6 @@ ShallowWrapper {
             error: null,
             assets: Immutable.List [
                 Immutable.Map {
-                    currency: "ETH",
-                    eth: 1,
-                    btc: 0.01,
-                    usd: 412,
-                },
-                Immutable.Map {
                     currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
                     eth: 0,
                     btc: 0,
@@ -130,6 +124,12 @@ ShallowWrapper {
                     btc: 0,
                     usd: 0,
                     timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "ETH",
+                    eth: 1,
+                    btc: 0.01,
+                    usd: 412,
                 },
             ],
         }
@@ -216,12 +216,6 @@ ShallowWrapper {
       "prices": Object {
         "assets": Array [
           Object {
-            "btc": 0.01,
-            "currency": "ETH",
-            "eth": 1,
-            "usd": 412,
-          },
-          Object {
             "btc": 0,
             "currency": "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
             "eth": 0,
@@ -255,6 +249,12 @@ ShallowWrapper {
             "eth": 0,
             "timestamp": "2018-07-25T01:33:34.908Z",
             "usd": 0,
+          },
+          Object {
+            "btc": 0.01,
+            "currency": "ETH",
+            "eth": 1,
+            "usd": 412,
           },
         ],
         "error": null,
@@ -354,12 +354,6 @@ ShallowWrapper {
         "prices": Object {
           "assets": Array [
             Object {
-              "btc": 0.01,
-              "currency": "ETH",
-              "eth": 1,
-              "usd": 412,
-            },
-            Object {
               "btc": 0,
               "currency": "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
               "eth": 0,
@@ -393,6 +387,12 @@ ShallowWrapper {
               "eth": 0,
               "timestamp": "2018-07-25T01:33:34.908Z",
               "usd": 0,
+            },
+            Object {
+              "btc": 0.01,
+              "currency": "ETH",
+              "eth": 1,
+              "usd": 412,
             },
           ],
           "error": null,
@@ -520,12 +520,6 @@ ShallowWrapper {
             error: null,
             assets: Immutable.List [
                 Immutable.Map {
-                    currency: "ETH",
-                    eth: 1,
-                    btc: 0.01,
-                    usd: 412,
-                },
-                Immutable.Map {
                     currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
                     eth: 0,
                     btc: 0,
@@ -559,6 +553,12 @@ ShallowWrapper {
                     btc: 0,
                     usd: 0,
                     timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "ETH",
+                    eth: 1,
+                    btc: 0.01,
+                    usd: 412,
                 },
             ],
         }

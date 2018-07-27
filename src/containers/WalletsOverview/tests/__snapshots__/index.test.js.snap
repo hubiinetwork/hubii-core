@@ -24,12 +24,6 @@ ShallowWrapper {
             error: null,
             assets: Immutable.List [
                 Immutable.Map {
-                    currency: "ETH",
-                    symbol: "ETH",
-                    decimals: 18,
-                    color: "grey",
-                },
-                Immutable.Map {
                     currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
                     symbol: "My20",
                     decimals: 18,
@@ -58,6 +52,12 @@ ShallowWrapper {
                     symbol: "BOKKY",
                     decimals: 18,
                     color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "ETH",
+                    symbol: "ETH",
+                    decimals: 18,
+                    color: "grey",
                 },
             ],
         }
