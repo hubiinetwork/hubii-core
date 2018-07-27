@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import TransferForm from 'components/TransferForm';
-import LoadingError from 'components/LoadingError';
 import PageLoadingIndicator from 'components/PageLoadingIndicator';
 import {
   makeSelectCurrentWallet,
-  makeSelectCurrentWalletDetails,
+  makeSelectCurrentWalletWithInfo,
+  makeSelectPrices,
   makeSelectErrors,
 } from 'containers/WalletHOC/selectors';
 import {
@@ -32,48 +32,49 @@ export class WalletTransfer extends React.PureComponent {
   }
 
   onSend(token, toAddress, amount, gasPrice, gasLimit) {
-    const wallet = this.props.currentWalletDetails;
+    const wallet = this.props.currentWalletWithInfo.toJS();
     this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit });
   }
 
   onCancel() {
-    this.props.history.push(`/wallet/${this.props.currentWalletDetails.address}/overview`);
+    this.props.history.push(`/wallet/${this.props.currentWalletWithInfo.address}/overview`);
   }
 
   render() {
-    const { contacts, currentWallet, currentWalletDetails } = this.props;
-    if (currentWalletDetails.loadingBalancesError) {
-      return <LoadingError pageType="Striim Accounts" error={currentWalletDetails.loadingBalancesError} id={currentWallet.toJS().address} />;
-    }
-    if (!currentWalletDetails.balances) {
-      return <PageLoadingIndicator pageType="Loading wallet" id={currentWallet.toJS().address} />;
+    const { contacts, currentWallet, prices, currentWalletWithInfo } = this.props;
+    if (currentWalletWithInfo.getIn(['balances', 'loading'])) {
+      return <PageLoadingIndicator pageType="wallet" id={currentWalletWithInfo.get('address')} />;
     }
     return (
       <TransferForm
+        currentWalletUsdBalance={currentWalletWithInfo.getIn(['balances', 'total', 'usd'])}
+        prices={prices.toJS()}
         recipients={contacts.toJS()}
-        currencies={currentWalletDetails.balances}
+        assets={currentWalletWithInfo.getIn(['balances', 'assets']).toJS()}
         onSend={this.onSend}
         onCancel={this.onCancel}
         transfering={currentWallet.toJS().transfering}
         errors={this.props.errors}
-        currentWalletDetails={this.props.currentWalletDetails}
+        currentWalletDetails={this.props.currentWalletWithInfo}
       />
     );
   }
 }
 
 WalletTransfer.propTypes = {
-  currentWalletDetails: PropTypes.object.isRequired,
+  currentWalletWithInfo: PropTypes.object.isRequired,
   currentWallet: PropTypes.object.isRequired,
   transfer: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  prices: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  currentWalletDetails: makeSelectCurrentWalletDetails(),
+  currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
   currentWallet: makeSelectCurrentWallet(),
+  prices: makeSelectPrices(),
   contacts: makeSelectContacts(),
   errors: makeSelectErrors(),
 });

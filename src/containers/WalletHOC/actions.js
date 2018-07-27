@@ -18,13 +18,15 @@ import {
   SHOW_DECRYPT_WALLET_MODAL,
   HIDE_DECRYPT_WALLET_MODAL,
   SET_CURRENT_WALLET,
-  LOAD_WALLETS,
-  LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
-  LISTEN_TOKEN_BALANCES,
-  UPDATE_TOKEN_BALANCES,
+  LOAD_SUPPORTED_TOKENS,
+  LOAD_SUPPORTED_TOKENS_SUCCESS,
+  LOAD_SUPPORTED_TOKENS_ERROR,
+  LOAD_PRICES,
+  LOAD_PRICES_SUCCESS,
+  LOAD_PRICES_ERROR,
   TRANSFER,
   TRANSFER_ETHER,
   TRANSFER_ERC20,
@@ -37,9 +39,9 @@ import {
   LEDGER_ERROR,
   FETCH_LEDGER_ADDRESSES,
   FETCHED_LEDGER_ADDRESS,
-  TRANSACTION_CONFIRMED,
   DELETE_WALLET,
   INIT_LEDGER,
+  INIT_WALLETS_BALANCES,
 } from './constants';
 
 import getFriendlyError from '../../utils/ledger/friendlyErrors';
@@ -142,22 +144,9 @@ export function setCurrentWallet(address) {
   };
 }
 
-export function loadWallets() {
+export function initWalletsBalances() {
   return {
-    type: LOAD_WALLETS,
-  };
-}
-
-export function loadWalletsSuccess(wallets) {
-  return {
-    type: LOAD_WALLETS_SUCCESS,
-    wallets,
-  };
-}
-
-export function loadWalletsBalances() {
-  return {
-    type: LOAD_WALLETS_SUCCESS,
+    type: INIT_WALLETS_BALANCES,
   };
 }
 
@@ -168,15 +157,11 @@ export function loadWalletBalances(address) {
   };
 }
 
-export function loadWalletBalancesSuccess(address, tokenBalances) {
-  const ethBalance = tokenBalances[0];
-  const legacyTokenBalances = { tokens: [
-    { symbol: 'ETH', balance: ethBalance.balance, price: { USD: 487.23 }, primaryColor: 'grey', decimals: 18 },
-  ] };
+export function loadWalletBalancesSuccess(address, assets) {
   return {
     type: LOAD_WALLET_BALANCES_SUCCESS,
     address,
-    tokenBalances: legacyTokenBalances,
+    assets,
   };
 }
 
@@ -188,18 +173,43 @@ export function loadWalletBalancesError(address, error) {
   };
 }
 
-export function listenBalances(address) {
+export function loadSupportedTokens() {
   return {
-    type: LISTEN_TOKEN_BALANCES,
-    address,
+    type: LOAD_SUPPORTED_TOKENS,
   };
 }
 
-export function updateBalances(address, newBalance) {
+export function loadSupportedTokensSuccess(tokens) {
   return {
-    type: UPDATE_TOKEN_BALANCES,
-    address,
-    newBalance,
+    type: LOAD_SUPPORTED_TOKENS_SUCCESS,
+    assets: [...tokens, { currency: 'ETH', symbol: 'ETH', decimals: 18, color: '5C78E4' }],
+  };
+}
+
+export function loadSupportedTokensError(error) {
+  return {
+    type: LOAD_SUPPORTED_TOKENS_ERROR,
+    error,
+  };
+}
+
+export function loadPrices() {
+  return {
+    type: LOAD_PRICES,
+  };
+}
+
+export function loadPricesSuccess(prices) {
+  return {
+    type: LOAD_PRICES_SUCCESS,
+    prices: [...prices, { currency: 'ETH', eth: 1, btc: 0.01, usd: 412 }],
+  };
+}
+
+export function loadPricesError(error) {
+  return {
+    type: LOAD_PRICES_ERROR,
+    error,
   };
 }
 
@@ -260,13 +270,6 @@ export function transferSuccess(transaction, token) {
   return {
     type: TRANSFER_SUCCESS,
     transaction: formatedTransaction,
-  };
-}
-
-export function transactionConfirmed(transaction) {
-  return {
-    type: TRANSACTION_CONFIRMED,
-    transaction,
   };
 }
 
