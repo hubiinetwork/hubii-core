@@ -59,7 +59,7 @@ export default class TransferForm extends React.PureComponent {
       return;
     }
 
-    this.setState({ amountToSendInput: formatEthAmount(Number(value)).toString(), amountToSend: formatEthAmount(Number(value)) });
+    this.setState({ amountToSendInput: formatEthAmount(Number(value)).toFixed(value.length - 2), amountToSend: formatEthAmount(Number(value)) });
   }
 
   handleGasPriceChange(e) {
@@ -84,7 +84,7 @@ export default class TransferForm extends React.PureComponent {
 
   render() {
     const { assetToSend, address, gasLimit, amountToSend, amountToSendInput, gasPriceGwei } = this.state;
-    const { currentWalletUsdBalance, assets, prices, recipients } = this.props;
+    const { currentWalletUsdBalance, assets, prices, recipients, transfering } = this.props;
 
     const assetToSendUsdValue = prices.assets.find((a) => a.currency === assetToSend.currency).usd;
     const usdValueToSend = amountToSend * assetToSendUsdValue;
@@ -124,7 +124,7 @@ export default class TransferForm extends React.PureComponent {
                   alt="logo"
                 />
               </Image>
-              <Select defaultValue={assetToSend.symbol} onSelect={this.handleAssetChange}>
+              <Select disabled={transfering} defaultValue={assetToSend.symbol} onSelect={this.handleAssetChange}>
                 {assets.map((currency) => (
                   <Option value={currency.symbol} key={currency.symbol}>
                     {currency.symbol}
@@ -138,6 +138,7 @@ export default class TransferForm extends React.PureComponent {
               help={<HelperText left={address} />}
             >
               <Select
+                disabled={transfering}
                 defaultValue={recipients[0] ? recipients[0].name : ''}
                 recipient
                 onSelect={this.handleRecipient}
@@ -156,7 +157,7 @@ export default class TransferForm extends React.PureComponent {
               colon={false}
               help={<HelperText left={formatFiat(usdValueToSend, 'USD')} right="USD" />}
             >
-              <Input defaultValue={amountToSendInput} value={amountToSendInput} onChange={this.handleAmountToSendChange} />
+              <Input disabled={transfering} defaultValue={amountToSendInput} value={amountToSendInput} onChange={this.handleAmountToSendChange} />
             </FormItem>
             <Collapse bordered={false} defaultActiveKey={['2']}>
               <Panel
@@ -167,10 +168,10 @@ export default class TransferForm extends React.PureComponent {
                   label={<FormItemLabel>Gas Price (Gwei)</FormItemLabel>}
                   colon={false}
                 >
-                  <InputNumber min={0} defaultValue={gasPriceGwei} value={gasPriceGwei} handleChange={this.handleGasPriceChange} />
+                  <InputNumber disabled={transfering} min={0} defaultValue={gasPriceGwei} value={gasPriceGwei} handleChange={this.handleGasPriceChange} />
                 </FormItem>
                 <FormItem label={<FormItemLabel>Gas Limit</FormItemLabel>} colon={false}>
-                  <InputNumber min={0} defaultValue={gasLimit} handleChange={this.handleGasLimitChange} />
+                  <InputNumber disabled={transfering} min={0} defaultValue={gasLimit} handleChange={this.handleGasLimitChange} />
                 </FormItem>
               </Panel>
             </Collapse>

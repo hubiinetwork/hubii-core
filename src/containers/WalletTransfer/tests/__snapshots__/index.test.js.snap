@@ -34,7 +34,7 @@ ShallowWrapper {
                     price: Immutable.Map {
                         USD: 487.23,
                     },
-                    primaryColor: "grey",
+                    primaryColor: "5C78E4",
                     decimals: 18,
                 },
             ],
@@ -463,7 +463,7 @@ ShallowWrapper {
                     price: Immutable.Map {
                         USD: 487.23,
                     },
-                    primaryColor: "grey",
+                    primaryColor: "5C78E4",
                     decimals: 18,
                 },
             ],

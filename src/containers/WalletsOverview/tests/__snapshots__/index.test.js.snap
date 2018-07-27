@@ -57,7 +57,7 @@ ShallowWrapper {
                     currency: "ETH",
                     symbol: "ETH",
                     decimals: 18,
-                    color: "grey",
+                    color: "5C78E4",
                 },
             ],
         }
@@ -1674,7 +1674,7 @@ ShallowWrapper {
                         data={
                                 Array [
                                         Object {
-                                          "color": "grey",
+                                          "color": "5C78E4",
                                           "label": "ETH",
                                           "percentage": 100,
                                         },
@@ -3087,7 +3087,7 @@ ShallowWrapper {
                         data={
                                     Array [
                                                 Object {
-                                                  "color": "grey",
+                                                  "color": "5C78E4",
                                                   "label": "ETH",
                                                   "percentage": 100,
                                                 },
@@ -8649,7 +8649,7 @@ ShallowWrapper {
               data={
                             Array [
                                           Object {
-                                            "color": "grey",
+                                            "color": "5C78E4",
                                             "label": "ETH",
                                             "percentage": 100,
                                           },
@@ -8674,7 +8674,7 @@ ShallowWrapper {
             "props": Object {
               "data": Array [
                 Object {
-                  "color": "grey",
+                  "color": "5C78E4",
                   "label": "ETH",
                   "percentage": 100,
                 },
@@ -10096,7 +10096,7 @@ ShallowWrapper {
                               data={
                                         Array [
                                                   Object {
-                                                    "color": "grey",
+                                                    "color": "5C78E4",
                                                     "label": "ETH",
                                                     "percentage": 100,
                                                   },
@@ -11509,7 +11509,7 @@ ShallowWrapper {
                             data={
                                           Array [
                                                         Object {
-                                                          "color": "grey",
+                                                          "color": "5C78E4",
                                                           "label": "ETH",
                                                           "percentage": 100,
                                                         },
@@ -17071,7 +17071,7 @@ ShallowWrapper {
                 data={
                                 Array [
                                                 Object {
-                                                  "color": "grey",
+                                                  "color": "5C78E4",
                                                   "label": "ETH",
                                                   "percentage": 100,
                                                 },
@@ -17096,7 +17096,7 @@ ShallowWrapper {
               "props": Object {
                 "data": Array [
                   Object {
-                    "color": "grey",
+                    "color": "5C78E4",
                     "label": "ETH",
                     "percentage": 100,
                   },
