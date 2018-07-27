@@ -37,7 +37,6 @@ export class WalletTransfer extends React.PureComponent {
     if (token !== 'ETH') {
       const asset = wallet.balances.assets.find((ast) => ast.symbol === token);
       contractAddress = asset.currency;
-      console.log(wallet, asset);
     }
     this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit, contractAddress });
   }

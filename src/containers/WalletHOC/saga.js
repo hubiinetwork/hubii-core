@@ -171,6 +171,11 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
     return;
   }
 
+  if (wallet.type === 'lns') {
+    yield put(transferError(new Error('Ledger nano support is coming soon')));
+    return;
+  }
+
   yield put(notify('info', 'Sending transaction...'));
 
   const wei = utils.parseEther(amount.toString());
