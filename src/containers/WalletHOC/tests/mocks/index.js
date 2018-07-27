@@ -2,6 +2,21 @@ import { fromJS } from 'immutable';
 
 export const address1Mock = '0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0';
 
+export const contactsMock = fromJS([
+  {
+    name: 'mike',
+    address: '0x123123',
+  },
+  {
+    name: 'john',
+    address: '0x1231323',
+  },
+  {
+    name: 'hayley',
+    address: '0x112312123',
+  },
+]);
+
 export const walletsMock = fromJS([
   {
     name: '1',

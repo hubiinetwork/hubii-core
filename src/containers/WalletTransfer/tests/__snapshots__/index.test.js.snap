@@ -1,0 +1,609 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WalletTransfer should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <WalletTransfer
+    contacts={
+        Immutable.List [
+            Immutable.Map {
+                name: "mike",
+                address: "0x123123",
+            },
+            Immutable.Map {
+                name: "john",
+                address: "0x1231323",
+            },
+            Immutable.Map {
+                name: "hayley",
+                address: "0x112312123",
+            },
+        ]
+    }
+    currentWallet={
+        Immutable.Map {
+            name: "1",
+            address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+            type: "software",
+            encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+            balances: Immutable.List [
+                Immutable.Map {
+                    symbol: "ETH",
+                    balance: "299727698850000000",
+                    price: Immutable.Map {
+                        USD: 487.23,
+                    },
+                    primaryColor: "grey",
+                    decimals: 18,
+                },
+            ],
+            loadingBalances: false,
+            loadingBalancesError: null,
+        }
+    }
+    currentWalletWithInfo={
+        Immutable.Map {
+            name: "1",
+            address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+            type: "software",
+            encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+            balances: Immutable.Map {
+                loading: false,
+                error: null,
+                assets: Immutable.List [
+                    Immutable.Map {
+                        balance: 0.29972769885,
+                        currency: "ETH",
+                        symbol: "ETH",
+                        value: Immutable.Map {
+                            eth: 0.29972769885,
+                            btc: 0.0029972769885000003,
+                            usd: 123.4878119262,
+                        },
+                    },
+                    Immutable.Map {
+                        balance: 1,
+                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                        symbol: "BOKKY",
+                        value: Immutable.Map {
+                            eth: 0,
+                            btc: 0,
+                            usd: 0,
+                        },
+                    },
+                ],
+                total: Immutable.Map {
+                    eth: 0.29972769885,
+                    btc: 0.0029972769885000003,
+                    usd: 123.4878119262,
+                },
+            },
+            loadingBalances: false,
+            loadingBalancesError: null,
+        }
+    }
+    errors={Object {}}
+    history={Object {}}
+    prices={
+        Immutable.Map {
+            loading: false,
+            error: null,
+            assets: Immutable.List [
+                Immutable.Map {
+                    currency: "ETH",
+                    eth: 1,
+                    btc: 0.01,
+                    usd: 412,
+                },
+                Immutable.Map {
+                    currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+            ],
+        }
+    }
+    transfer={[Function]}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "assets": Array [
+        Object {
+          "balance": 0.29972769885,
+          "currency": "ETH",
+          "symbol": "ETH",
+          "value": Object {
+            "btc": 0.0029972769885000003,
+            "eth": 0.29972769885,
+            "usd": 123.4878119262,
+          },
+        },
+        Object {
+          "balance": 1,
+          "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+          "symbol": "BOKKY",
+          "value": Object {
+            "btc": 0,
+            "eth": 0,
+            "usd": 0,
+          },
+        },
+      ],
+      "currentWalletDetails": Immutable.Map {
+        name: "1",
+        address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+        type: "software",
+        encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+        balances: Immutable.Map {
+                loading: false,
+                error: null,
+                assets: Immutable.List [
+                        Immutable.Map {
+                                balance: 0.29972769885,
+                                currency: "ETH",
+                                symbol: "ETH",
+                                value: Immutable.Map {
+                                        eth: 0.29972769885,
+                                        btc: 0.0029972769885000003,
+                                        usd: 123.4878119262,
+                                },
+                        },
+                        Immutable.Map {
+                                balance: 1,
+                                currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                symbol: "BOKKY",
+                                value: Immutable.Map {
+                                        eth: 0,
+                                        btc: 0,
+                                        usd: 0,
+                                },
+                        },
+                ],
+                total: Immutable.Map {
+                        eth: 0.29972769885,
+                        btc: 0.0029972769885000003,
+                        usd: 123.4878119262,
+                },
+        },
+        loadingBalances: false,
+        loadingBalancesError: null,
+},
+      "currentWalletUsdBalance": 123.4878119262,
+      "errors": Object {},
+      "onCancel": [Function],
+      "onSend": [Function],
+      "prices": Object {
+        "assets": Array [
+          Object {
+            "btc": 0.01,
+            "currency": "ETH",
+            "eth": 1,
+            "usd": 412,
+          },
+          Object {
+            "btc": 0,
+            "currency": "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+            "eth": 0,
+            "timestamp": "2018-07-25T01:33:34.908Z",
+            "usd": 0,
+          },
+          Object {
+            "btc": 0,
+            "currency": "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+            "eth": 0,
+            "timestamp": "2018-07-25T01:33:34.908Z",
+            "usd": 0,
+          },
+          Object {
+            "btc": 0,
+            "currency": "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+            "eth": 0,
+            "timestamp": "2018-07-25T01:33:34.908Z",
+            "usd": 0,
+          },
+          Object {
+            "btc": 0,
+            "currency": "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+            "eth": 0,
+            "timestamp": "2018-07-25T01:33:34.908Z",
+            "usd": 0,
+          },
+          Object {
+            "btc": 0,
+            "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+            "eth": 0,
+            "timestamp": "2018-07-25T01:33:34.908Z",
+            "usd": 0,
+          },
+        ],
+        "error": null,
+        "loading": false,
+      },
+      "recipients": Array [
+        Object {
+          "address": "0x123123",
+          "name": "mike",
+        },
+        Object {
+          "address": "0x1231323",
+          "name": "john",
+        },
+        Object {
+          "address": "0x112312123",
+          "name": "hayley",
+        },
+      ],
+      "transfering": undefined,
+    },
+    "ref": null,
+    "rendered": null,
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "assets": Array [
+          Object {
+            "balance": 0.29972769885,
+            "currency": "ETH",
+            "symbol": "ETH",
+            "value": Object {
+              "btc": 0.0029972769885000003,
+              "eth": 0.29972769885,
+              "usd": 123.4878119262,
+            },
+          },
+          Object {
+            "balance": 1,
+            "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+            "symbol": "BOKKY",
+            "value": Object {
+              "btc": 0,
+              "eth": 0,
+              "usd": 0,
+            },
+          },
+        ],
+        "currentWalletDetails": Immutable.Map {
+          name: "1",
+          address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+          type: "software",
+          encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+          balances: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                              Immutable.Map {
+                                        balance: 0.29972769885,
+                                        currency: "ETH",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                  eth: 0.29972769885,
+                                                  btc: 0.0029972769885000003,
+                                                  usd: 123.4878119262,
+                                        },
+                              },
+                              Immutable.Map {
+                                        balance: 1,
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                  eth: 0,
+                                                  btc: 0,
+                                                  usd: 0,
+                                        },
+                              },
+                    ],
+                    total: Immutable.Map {
+                              eth: 0.29972769885,
+                              btc: 0.0029972769885000003,
+                              usd: 123.4878119262,
+                    },
+          },
+          loadingBalances: false,
+          loadingBalancesError: null,
+},
+        "currentWalletUsdBalance": 123.4878119262,
+        "errors": Object {},
+        "onCancel": [Function],
+        "onSend": [Function],
+        "prices": Object {
+          "assets": Array [
+            Object {
+              "btc": 0.01,
+              "currency": "ETH",
+              "eth": 1,
+              "usd": 412,
+            },
+            Object {
+              "btc": 0,
+              "currency": "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+              "eth": 0,
+              "timestamp": "2018-07-25T01:33:34.908Z",
+              "usd": 0,
+            },
+            Object {
+              "btc": 0,
+              "currency": "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+              "eth": 0,
+              "timestamp": "2018-07-25T01:33:34.908Z",
+              "usd": 0,
+            },
+            Object {
+              "btc": 0,
+              "currency": "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+              "eth": 0,
+              "timestamp": "2018-07-25T01:33:34.908Z",
+              "usd": 0,
+            },
+            Object {
+              "btc": 0,
+              "currency": "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+              "eth": 0,
+              "timestamp": "2018-07-25T01:33:34.908Z",
+              "usd": 0,
+            },
+            Object {
+              "btc": 0,
+              "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+              "eth": 0,
+              "timestamp": "2018-07-25T01:33:34.908Z",
+              "usd": 0,
+            },
+          ],
+          "error": null,
+          "loading": false,
+        },
+        "recipients": Array [
+          Object {
+            "address": "0x123123",
+            "name": "mike",
+          },
+          Object {
+            "address": "0x1231323",
+            "name": "john",
+          },
+          Object {
+            "address": "0x112312123",
+            "name": "hayley",
+          },
+        ],
+        "transfering": undefined,
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`WalletTransfer should render correctly when balances are loading 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <WalletTransfer
+    contacts={
+        Immutable.List [
+            Immutable.Map {
+                name: "mike",
+                address: "0x123123",
+            },
+            Immutable.Map {
+                name: "john",
+                address: "0x1231323",
+            },
+            Immutable.Map {
+                name: "hayley",
+                address: "0x112312123",
+            },
+        ]
+    }
+    currentWallet={
+        Immutable.Map {
+            name: "1",
+            address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+            type: "software",
+            encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+            balances: Immutable.List [
+                Immutable.Map {
+                    symbol: "ETH",
+                    balance: "299727698850000000",
+                    price: Immutable.Map {
+                        USD: 487.23,
+                    },
+                    primaryColor: "grey",
+                    decimals: 18,
+                },
+            ],
+            loadingBalances: false,
+            loadingBalancesError: null,
+        }
+    }
+    currentWalletWithInfo={
+        Immutable.Map {
+            name: "1",
+            address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+            type: "software",
+            encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+            balances: Immutable.Map {
+                loading: true,
+                error: null,
+                assets: Immutable.List [
+                    Immutable.Map {
+                        balance: 0.29972769885,
+                        currency: "ETH",
+                        symbol: "ETH",
+                        value: Immutable.Map {
+                            eth: 0.29972769885,
+                            btc: 0.0029972769885000003,
+                            usd: 123.4878119262,
+                        },
+                    },
+                    Immutable.Map {
+                        balance: 1,
+                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                        symbol: "BOKKY",
+                        value: Immutable.Map {
+                            eth: 0,
+                            btc: 0,
+                            usd: 0,
+                        },
+                    },
+                ],
+                total: Immutable.Map {
+                    eth: 0.29972769885,
+                    btc: 0.0029972769885000003,
+                    usd: 123.4878119262,
+                },
+            },
+            loadingBalances: false,
+            loadingBalancesError: null,
+        }
+    }
+    errors={Object {}}
+    history={Object {}}
+    prices={
+        Immutable.Map {
+            loading: false,
+            error: null,
+            assets: Immutable.List [
+                Immutable.Map {
+                    currency: "ETH",
+                    eth: 1,
+                    btc: 0.01,
+                    usd: 412,
+                },
+                Immutable.Map {
+                    currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+            ],
+        }
+    }
+    transfer={[Function]}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "id": "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+      "pageType": "wallet",
+    },
+    "ref": null,
+    "rendered": null,
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "id": "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+        "pageType": "wallet",
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
