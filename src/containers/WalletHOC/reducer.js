@@ -137,7 +137,7 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['supportedAssets', 'assets'], fromJS(action.assets));
     case LOAD_SUPPORTED_TOKENS_ERROR:
       return state
-        .setIn(['supportedAssets', 'loading'], false)
+        .setIn(['supportedAssets', 'loading'], true)
         .setIn(['supportedAssets', 'error'], action.error);
     case LOAD_PRICES_SUCCESS:
       return state
@@ -146,7 +146,7 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['prices', 'assets'], fromJS(action.prices));
     case LOAD_PRICES_ERROR:
       return state
-        .setIn(['prices', 'loading'], false)
+        .setIn(['prices', 'loading'], true)
         .setIn(['prices', 'error'], action.error);
     case SHOW_DECRYPT_WALLET_MODAL:
       return state

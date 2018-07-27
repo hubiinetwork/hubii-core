@@ -218,12 +218,6 @@ export const pricesMock = fromJS({
   error: null,
   assets: [
     {
-      currency: 'ETH',
-      eth: 1,
-      btc: 0.01,
-      usd: 412,
-    },
-    {
       currency: '0x8899544F1fc4E0D570f3c998cC7e5857140dC322',
       eth: 0,
       btc: 0,
@@ -258,19 +252,52 @@ export const pricesMock = fromJS({
       usd: 0,
       timestamp: '2018-07-25T01:33:34.908Z',
     },
+    {
+      currency: 'ETH',
+      eth: 1,
+      btc: 0.01,
+      usd: 412,
+    },
   ],
 });
+
+export const supportedTokensMock = [
+  {
+    currency: '0x8899544F1fc4E0D570f3c998cC7e5857140dC322',
+    symbol: 'My20',
+    decimals: 18,
+    color: 'FFAA00',
+  },
+  {
+    currency: '0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a',
+    symbol: 'HBT',
+    decimals: 15,
+    color: '0063A5',
+  },
+  {
+    currency: '0xcda3f98783d8ee980ee21f548bfe42965d13d64d',
+    symbol: 'SBT',
+    decimals: 18,
+    color: 'FFAA00',
+  },
+  {
+    currency: '0xc00fd9820cd2898cc4c054b7bf142de637ad129a',
+    symbol: 'WETH',
+    decimals: 18,
+    color: 'FFAA00',
+  },
+  {
+    currency: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
+    symbol: 'BOKKY',
+    decimals: 18,
+    color: 'FFAA00',
+  },
+];
 
 export const supportedAssetsMock = fromJS({
   loading: false,
   error: null,
   assets: [
-    {
-      currency: 'ETH',
-      symbol: 'ETH',
-      decimals: 18,
-      color: 'grey',
-    },
     {
       currency: '0x8899544F1fc4E0D570f3c998cC7e5857140dC322',
       symbol: 'My20',
@@ -300,6 +327,12 @@ export const supportedAssetsMock = fromJS({
       symbol: 'BOKKY',
       decimals: 18,
       color: 'FFAA00',
+    },
+    {
+      currency: 'ETH',
+      symbol: 'ETH',
+      decimals: 18,
+      color: 'grey',
     },
   ],
 });

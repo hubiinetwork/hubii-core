@@ -28,7 +28,7 @@ import {
   lnsExpectedSignedTxHex,
 } from '../../../mocks/wallet';
 
-import { balancesMock, address1Mock, walletsMock, pricesMock, supportedAssetsMock } from './mocks';
+import { balancesMock, address1Mock, walletsMock, pricesMock, supportedAssetsMock, supportedTokensMock } from './mocks';
 
 import walletHoc, {
   createWalletFromMnemonic,
@@ -477,17 +477,8 @@ describe('initLedger saga', () => {
 describe('load wallets saga', () => {
   describe('supported tokens', () => {
     it('should load supported tokens', () => {
-      const tokens = [
-        { currency: '0x8899544F1fc4E0D570f3c998cC7e5857140dC322',
-          symbol: 'My20',
-          decimals: 18,
-          color: 'FFAA00' },
-        { currency: '0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a',
-          symbol: 'HBT',
-          decimals: 15,
-          color: '0063A5' },
-      ];
-      const assets = [...tokens, { currency: 'ETH', symbol: 'ETH', decimals: 18, color: 'grey' }];
+      const tokens = supportedTokensMock;
+      const assets = supportedAssetsMock;
 
       return expectSaga(loadSupportedTokensSaga)
         .withReducer(withReducer, initialState)
