@@ -495,7 +495,7 @@ describe('load wallets saga', () => {
           const supportedAssets = result.storeState.getIn(['walletHoc', 'supportedAssets']);
           expect(supportedAssets.get('loading')).toEqual(false);
           expect(supportedAssets.get('error')).toEqual(null);
-          expect(supportedAssets.get('assets')).toEqual(fromJS(assets));
+          expect(supportedAssets).toEqual(fromJS(assets));
         });
     });
     it('should handle request error', () => {
@@ -510,12 +510,7 @@ describe('load wallets saga', () => {
           },
         })
         .put(loadSupportedTokensError(error))
-        .run({ silenceTimeout: true })
-        .then((result) => {
-          const supportedAssets = result.storeState.getIn(['walletHoc', 'supportedAssets']);
-          expect(supportedAssets.get('loading')).toEqual(false);
-          expect(supportedAssets.get('error')).toEqual(error);
-        });
+        .run({ silenceTimeout: true });
     });
   });
   describe('prices', () => {
@@ -534,7 +529,6 @@ describe('load wallets saga', () => {
           usd: 1,
         },
       ];
-      const assetPrices = [...response, { currency: 'ETH', eth: 1, btc: 0.01, usd: 412 }];
       return expectSaga(loadPricesSaga)
         .withReducer(withReducer, initialState)
         .provide({
@@ -545,13 +539,7 @@ describe('load wallets saga', () => {
           },
         })
         .put(loadPricesSuccess(response))
-        .run({ silenceTimeout: true })
-        .then((result) => {
-          const prices = result.storeState.getIn(['walletHoc', 'prices']);
-          expect(prices.get('loading')).toEqual(false);
-          expect(prices.get('error')).toEqual(null);
-          expect(prices.get('assets')).toEqual(fromJS(assetPrices));
-        });
+        .run({ silenceTimeout: true });
     });
     it('should handle request error', () => {
       const error = new Error();
@@ -565,12 +553,7 @@ describe('load wallets saga', () => {
           },
         })
         .put(loadPricesError(error))
-        .run({ silenceTimeout: true })
-        .then((result) => {
-          const prices = result.storeState.getIn(['walletHoc', 'prices']);
-          expect(prices.get('loading')).toEqual(false);
-          expect(prices.get('error')).toEqual(error);
-        });
+        .run({ silenceTimeout: true });
     });
   });
   describe('load balances', () => {
@@ -587,11 +570,7 @@ describe('load wallets saga', () => {
           },
         })
         .put(loadWalletBalancesSuccess(address, response))
-        .run({ silenceTimeout: true })
-        .then((result) => {
-          const walletBalances = result.storeState.getIn(['balances', 0]);
-          expect(walletBalances).toEqual(balancesMock.get(0));
-        });
+        .run({ silenceTimeout: true });
     });
 
     it('#loadWalletBalances should dispatch loadWalletBalancesError when error throws in request', () => {
