@@ -11,6 +11,9 @@ import {
   makeSelectErrors,
   makeSelectCurrentWalletWithInfo,
   makeSelectWalletsWithInfo,
+  makeSelectSupportedAssets,
+  makeSelectPrices,
+  makeSelectBalances,
 } from '../selectors';
 import { walletsMock, balancesMock, supportedAssetsMock, walletsWithInfoMock, pricesMock, currentWalletMock, address1Mock } from './mocks';
 
@@ -120,6 +123,42 @@ describe('makeSelectErrors', () => {
       },
     });
     expect(errorsSelector(mockedState)).toEqual(errors);
+  });
+});
+
+describe('makeSelectSupportedAssets', () => {
+  const supportedAssetsSelector = makeSelectSupportedAssets();
+  it('should correctly select supportedAssets state', () => {
+    const mockedState = fromJS({
+      walletHoc: {
+        supportedAssets: supportedAssetsMock,
+      },
+    });
+    expect(supportedAssetsSelector(mockedState)).toEqual(supportedAssetsMock);
+  });
+});
+
+describe('makeSelectPrices', () => {
+  const pricesSelector = makeSelectPrices();
+  it('should correctly select prices state', () => {
+    const mockedState = fromJS({
+      walletHoc: {
+        prices: pricesMock,
+      },
+    });
+    expect(pricesSelector(mockedState)).toEqual(pricesMock);
+  });
+});
+
+describe('makeSelectBalances', () => {
+  const balancesSelector = makeSelectBalances();
+  it('should correctly select balances state', () => {
+    const mockedState = fromJS({
+      walletHoc: {
+        balances: balancesMock,
+      },
+    });
+    expect(balancesSelector(mockedState)).toEqual(balancesMock);
   });
 });
 

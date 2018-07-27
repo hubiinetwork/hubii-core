@@ -229,6 +229,7 @@ export {
   makeSelectPrices,
   makeSelectWallets,
   makeSelectDerivationPathInput,
+  makeSelectBalances,
   makeSelectLoading,
   makeSelectErrors,
   makeSelectCurrentWallet,
