@@ -23,7 +23,7 @@ import {
   decryptWallet,
   hideDecryptWalletModal,
   initLedger,
-  loadWalletsBalances,
+  initWalletsBalances,
 } from './actions';
 
 import {
@@ -63,7 +63,7 @@ export function getComponentHOC(Component) {
 
     componentDidMount() {
       this.props.initLedger();
-      this.props.loadWalletsBalances();
+      this.props.initWalletsBalances();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -130,7 +130,7 @@ export function getComponentHOC(Component) {
     currentWallet: PropTypes.object.isRequired,
     currentWalletDetails: PropTypes.object.isRequired,
     initLedger: PropTypes.func.isRequired,
-    loadWalletsBalances: PropTypes.func.isRequired,
+    initWalletsBalances: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
     loading: PropTypes.object,
@@ -143,7 +143,7 @@ export function mapDispatchToProps(dispatch) {
     initLedger: () => dispatch(initLedger()),
     hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
     decryptWallet: (...args) => dispatch(decryptWallet(...args)),
-    loadWalletsBalances: (...args) => dispatch(loadWalletsBalances(...args)),
+    initWalletsBalances: (...args) => dispatch(initWalletsBalances(...args)),
   };
 }
 

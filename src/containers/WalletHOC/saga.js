@@ -19,7 +19,6 @@ import {
   CREATE_WALLET_FROM_MNEMONIC,
   CREATE_WALLET_SUCCESS,
   DECRYPT_WALLET,
-  LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
   TRANSFER,
   TRANSFER_ETHER,
@@ -31,6 +30,7 @@ import {
   INIT_LEDGER,
   LEDGER_CONNECTED,
   LEDGER_DISCONNECTED,
+  INIT_WALLETS_BALANCES,
 } from './constants';
 
 import {
@@ -421,7 +421,7 @@ export function* sendTransactionByLedger({ toAddress, amount, gasPrice, gasLimit
 export default function* walletHoc() {
   yield takeEvery(CREATE_WALLET_FROM_MNEMONIC, createWalletFromMnemonic);
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
-  yield takeEvery(LOAD_WALLETS_SUCCESS, initWalletsBalances);
+  yield takeEvery(INIT_WALLETS_BALANCES, initWalletsBalances);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
   yield takeLatest(FETCH_LEDGER_ADDRESSES, fetchLedgerAddresses);
   yield takeEvery(TRANSFER, transfer);

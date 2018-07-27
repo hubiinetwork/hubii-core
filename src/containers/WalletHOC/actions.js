@@ -18,7 +18,6 @@ import {
   SHOW_DECRYPT_WALLET_MODAL,
   HIDE_DECRYPT_WALLET_MODAL,
   SET_CURRENT_WALLET,
-  LOAD_WALLETS_SUCCESS,
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
@@ -42,6 +41,7 @@ import {
   FETCHED_LEDGER_ADDRESS,
   DELETE_WALLET,
   INIT_LEDGER,
+  INIT_WALLETS_BALANCES,
 } from './constants';
 
 import getFriendlyError from '../../utils/ledger/friendlyErrors';
@@ -144,9 +144,9 @@ export function setCurrentWallet(address) {
   };
 }
 
-export function loadWalletsBalances() {
+export function initWalletsBalances() {
   return {
-    type: LOAD_WALLETS_SUCCESS,
+    type: INIT_WALLETS_BALANCES,
   };
 }
 
