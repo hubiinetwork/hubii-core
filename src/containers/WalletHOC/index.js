@@ -35,7 +35,7 @@ export default function WalletHOC(Component) {
 
   const mapStateToProps = createStructuredSelector({
     currentWallet: makeSelectCurrentWallet(),
-    currentWalletDetails: makeSelectCurrentWalletWithInfo(),
+    currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
     loading: makeSelectLoading(),
   });
 
@@ -84,8 +84,8 @@ export function getComponentHOC(Component) {
     }
 
     decryptWallet() {
-      const { currentWalletDetails } = this.props;
-      this.props.decryptWallet(currentWalletDetails.get('address'), currentWalletDetails.get('encrypted'), this.state.password);
+      const { currentWalletWithInfo } = this.props;
+      this.props.decryptWallet(currentWalletWithInfo.get('address'), currentWalletWithInfo.get('encrypted'), this.state.password);
     }
 
     render() {
@@ -128,7 +128,7 @@ export function getComponentHOC(Component) {
   }
   HOC.propTypes = {
     currentWallet: PropTypes.object.isRequired,
-    currentWalletDetails: PropTypes.object.isRequired,
+    currentWalletWithInfo: PropTypes.object.isRequired,
     initLedger: PropTypes.func.isRequired,
     initWalletsBalances: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,

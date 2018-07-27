@@ -7,20 +7,59 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <HOC
     currentWallet={
         Immutable.Map {
-            showDecryptModal: false,
+            address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
         }
     }
-    currentWalletDetails={Object {}}
+    currentWalletWithInfo={
+        Immutable.Map {
+            name: "1",
+            address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+            type: "software",
+            encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+            balances: Immutable.Map {
+                loading: false,
+                error: null,
+                assets: Immutable.List [
+                    Immutable.Map {
+                        balance: 0.29972769885,
+                        currency: "ETH",
+                        symbol: "ETH",
+                        value: Immutable.Map {
+                            eth: 0.29972769885,
+                            btc: 0.0029972769885000003,
+                            usd: 123.4878119262,
+                        },
+                    },
+                    Immutable.Map {
+                        balance: 1,
+                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                        symbol: "BOKKY",
+                        value: Immutable.Map {
+                            eth: 0,
+                            btc: 0,
+                            usd: 0,
+                        },
+                    },
+                ],
+                total: Immutable.Map {
+                    eth: 0.29972769885,
+                    btc: 0.0029972769885000003,
+                    usd: 123.4878119262,
+                },
+            },
+            loadingBalances: false,
+            loadingBalancesError: null,
+        }
+    }
     decryptWallet={[Function]}
     hideDecryptWalletModal={[Function]}
     initLedger={[Function]}
-    loadWalletsBalances={[Function]}
+    initWalletsBalances={[Function]}
     loading={
         Immutable.Map {
             decryptingWallet: false,
         }
     }
-    startLedgerSync={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -38,20 +77,59 @@ ShallowWrapper {
         <div
           currentWallet={
                     Immutable.Map {
-                              showDecryptModal: false,
+                              address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
                     }
           }
-          currentWalletDetails={Object {}}
+          currentWalletWithInfo={
+                    Immutable.Map {
+                              name: "1",
+                              address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+                              type: "software",
+                              encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+                              balances: Immutable.Map {
+                                        loading: false,
+                                        error: null,
+                                        assets: Immutable.List [
+                                                  Immutable.Map {
+                                                            balance: 0.29972769885,
+                                                            currency: "ETH",
+                                                            symbol: "ETH",
+                                                            value: Immutable.Map {
+                                                                      eth: 0.29972769885,
+                                                                      btc: 0.0029972769885000003,
+                                                                      usd: 123.4878119262,
+                                                            },
+                                                  },
+                                                  Immutable.Map {
+                                                            balance: 1,
+                                                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                            symbol: "BOKKY",
+                                                            value: Immutable.Map {
+                                                                      eth: 0,
+                                                                      btc: 0,
+                                                                      usd: 0,
+                                                            },
+                                                  },
+                                        ],
+                                        total: Immutable.Map {
+                                                  eth: 0.29972769885,
+                                                  btc: 0.0029972769885000003,
+                                                  usd: 123.4878119262,
+                                        },
+                              },
+                              loadingBalances: false,
+                              loadingBalancesError: null,
+                    }
+          }
           decryptWallet={[Function]}
           hideDecryptWalletModal={[Function]}
           initLedger={[Function]}
-          loadWalletsBalances={[Function]}
+          initWalletsBalances={[Function]}
           loading={
                     Immutable.Map {
                               decryptingWallet: false,
                     }
           }
-          startLedgerSync={[Function]}
 />,
         <Modal.style
           destroyOnClose={true}
@@ -68,7 +146,7 @@ ShallowWrapper {
                               "marginTop": "20px",
                             }
           }
-          visible={false}
+          visible={undefined}
           width="585px"
 >
           <Form.style__FormItem
@@ -104,17 +182,54 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "currentWallet": Immutable.Map {
-            showDecryptModal: false,
+            address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
 },
-          "currentWalletDetails": Object {},
+          "currentWalletWithInfo": Immutable.Map {
+            name: "1",
+            address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+            type: "software",
+            encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+            balances: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                    Immutable.Map {
+                                                balance: 0.29972769885,
+                                                currency: "ETH",
+                                                symbol: "ETH",
+                                                value: Immutable.Map {
+                                                            eth: 0.29972769885,
+                                                            btc: 0.0029972769885000003,
+                                                            usd: 123.4878119262,
+                                                },
+                                    },
+                                    Immutable.Map {
+                                                balance: 1,
+                                                currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                symbol: "BOKKY",
+                                                value: Immutable.Map {
+                                                            eth: 0,
+                                                            btc: 0,
+                                                            usd: 0,
+                                                },
+                                    },
+                        ],
+                        total: Immutable.Map {
+                                    eth: 0.29972769885,
+                                    btc: 0.0029972769885000003,
+                                    usd: 123.4878119262,
+                        },
+            },
+            loadingBalances: false,
+            loadingBalancesError: null,
+},
           "decryptWallet": [Function],
           "hideDecryptWalletModal": [Function],
           "initLedger": [Function],
-          "loadWalletsBalances": [Function],
+          "initWalletsBalances": [Function],
           "loading": Immutable.Map {
             decryptingWallet: false,
 },
-          "startLedgerSync": [Function],
         },
         "ref": null,
         "rendered": null,
@@ -159,7 +274,7 @@ ShallowWrapper {
           "style": Object {
             "marginTop": "20px",
           },
-          "visible": false,
+          "visible": undefined,
           "width": "585px",
         },
         "ref": null,
@@ -227,20 +342,59 @@ ShallowWrapper {
           <div
             currentWallet={
                         Immutable.Map {
-                                    showDecryptModal: false,
+                                    address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
                         }
             }
-            currentWalletDetails={Object {}}
+            currentWalletWithInfo={
+                        Immutable.Map {
+                                    name: "1",
+                                    address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+                                    type: "software",
+                                    encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+                                    balances: Immutable.Map {
+                                                loading: false,
+                                                error: null,
+                                                assets: Immutable.List [
+                                                            Immutable.Map {
+                                                                        balance: 0.29972769885,
+                                                                        currency: "ETH",
+                                                                        symbol: "ETH",
+                                                                        value: Immutable.Map {
+                                                                                    eth: 0.29972769885,
+                                                                                    btc: 0.0029972769885000003,
+                                                                                    usd: 123.4878119262,
+                                                                        },
+                                                            },
+                                                            Immutable.Map {
+                                                                        balance: 1,
+                                                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                                        symbol: "BOKKY",
+                                                                        value: Immutable.Map {
+                                                                                    eth: 0,
+                                                                                    btc: 0,
+                                                                                    usd: 0,
+                                                                        },
+                                                            },
+                                                ],
+                                                total: Immutable.Map {
+                                                            eth: 0.29972769885,
+                                                            btc: 0.0029972769885000003,
+                                                            usd: 123.4878119262,
+                                                },
+                                    },
+                                    loadingBalances: false,
+                                    loadingBalancesError: null,
+                        }
+            }
             decryptWallet={[Function]}
             hideDecryptWalletModal={[Function]}
             initLedger={[Function]}
-            loadWalletsBalances={[Function]}
+            initWalletsBalances={[Function]}
             loading={
                         Immutable.Map {
                                     decryptingWallet: false,
                         }
             }
-            startLedgerSync={[Function]}
 />,
           <Modal.style
             destroyOnClose={true}
@@ -257,7 +411,7 @@ ShallowWrapper {
                                     "marginTop": "20px",
                                   }
             }
-            visible={false}
+            visible={undefined}
             width="585px"
 >
             <Form.style__FormItem
@@ -293,17 +447,54 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "currentWallet": Immutable.Map {
-              showDecryptModal: false,
+              address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
 },
-            "currentWalletDetails": Object {},
+            "currentWalletWithInfo": Immutable.Map {
+              name: "1",
+              address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+              type: "software",
+              encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+              balances: Immutable.Map {
+                            loading: false,
+                            error: null,
+                            assets: Immutable.List [
+                                          Immutable.Map {
+                                                        balance: 0.29972769885,
+                                                        currency: "ETH",
+                                                        symbol: "ETH",
+                                                        value: Immutable.Map {
+                                                                      eth: 0.29972769885,
+                                                                      btc: 0.0029972769885000003,
+                                                                      usd: 123.4878119262,
+                                                        },
+                                          },
+                                          Immutable.Map {
+                                                        balance: 1,
+                                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                        symbol: "BOKKY",
+                                                        value: Immutable.Map {
+                                                                      eth: 0,
+                                                                      btc: 0,
+                                                                      usd: 0,
+                                                        },
+                                          },
+                            ],
+                            total: Immutable.Map {
+                                          eth: 0.29972769885,
+                                          btc: 0.0029972769885000003,
+                                          usd: 123.4878119262,
+                            },
+              },
+              loadingBalances: false,
+              loadingBalancesError: null,
+},
             "decryptWallet": [Function],
             "hideDecryptWalletModal": [Function],
             "initLedger": [Function],
-            "loadWalletsBalances": [Function],
+            "initWalletsBalances": [Function],
             "loading": Immutable.Map {
               decryptingWallet: false,
 },
-            "startLedgerSync": [Function],
           },
           "ref": null,
           "rendered": null,
@@ -348,7 +539,7 @@ ShallowWrapper {
             "style": Object {
               "marginTop": "20px",
             },
-            "visible": false,
+            "visible": undefined,
             "width": "585px",
           },
           "ref": null,
@@ -424,20 +615,59 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <HOC
     currentWallet={
         Immutable.Map {
-            showDecryptModal: false,
+            address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
         }
     }
-    currentWalletDetails={Object {}}
+    currentWalletWithInfo={
+        Immutable.Map {
+            name: "1",
+            address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+            type: "software",
+            encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+            balances: Immutable.Map {
+                loading: false,
+                error: null,
+                assets: Immutable.List [
+                    Immutable.Map {
+                        balance: 0.29972769885,
+                        currency: "ETH",
+                        symbol: "ETH",
+                        value: Immutable.Map {
+                            eth: 0.29972769885,
+                            btc: 0.0029972769885000003,
+                            usd: 123.4878119262,
+                        },
+                    },
+                    Immutable.Map {
+                        balance: 1,
+                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                        symbol: "BOKKY",
+                        value: Immutable.Map {
+                            eth: 0,
+                            btc: 0,
+                            usd: 0,
+                        },
+                    },
+                ],
+                total: Immutable.Map {
+                    eth: 0.29972769885,
+                    btc: 0.0029972769885000003,
+                    usd: 123.4878119262,
+                },
+            },
+            loadingBalances: false,
+            loadingBalancesError: null,
+        }
+    }
     decryptWallet={[Function]}
     hideDecryptWalletModal={[Function]}
     initLedger={[Function]}
-    loadWalletsBalances={[Function]}
+    initWalletsBalances={[Function]}
     loading={
         Immutable.Map {
             decryptingWallet: true,
         }
     }
-    startLedgerSync={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -455,20 +685,59 @@ ShallowWrapper {
         <div
           currentWallet={
                     Immutable.Map {
-                              showDecryptModal: false,
+                              address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
                     }
           }
-          currentWalletDetails={Object {}}
+          currentWalletWithInfo={
+                    Immutable.Map {
+                              name: "1",
+                              address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+                              type: "software",
+                              encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+                              balances: Immutable.Map {
+                                        loading: false,
+                                        error: null,
+                                        assets: Immutable.List [
+                                                  Immutable.Map {
+                                                            balance: 0.29972769885,
+                                                            currency: "ETH",
+                                                            symbol: "ETH",
+                                                            value: Immutable.Map {
+                                                                      eth: 0.29972769885,
+                                                                      btc: 0.0029972769885000003,
+                                                                      usd: 123.4878119262,
+                                                            },
+                                                  },
+                                                  Immutable.Map {
+                                                            balance: 1,
+                                                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                            symbol: "BOKKY",
+                                                            value: Immutable.Map {
+                                                                      eth: 0,
+                                                                      btc: 0,
+                                                                      usd: 0,
+                                                            },
+                                                  },
+                                        ],
+                                        total: Immutable.Map {
+                                                  eth: 0.29972769885,
+                                                  btc: 0.0029972769885000003,
+                                                  usd: 123.4878119262,
+                                        },
+                              },
+                              loadingBalances: false,
+                              loadingBalancesError: null,
+                    }
+          }
           decryptWallet={[Function]}
           hideDecryptWalletModal={[Function]}
           initLedger={[Function]}
-          loadWalletsBalances={[Function]}
+          initWalletsBalances={[Function]}
           loading={
                     Immutable.Map {
                               decryptingWallet: true,
                     }
           }
-          startLedgerSync={[Function]}
 />,
         <Modal.style
           destroyOnClose={true}
@@ -485,7 +754,7 @@ ShallowWrapper {
                               "marginTop": "20px",
                             }
           }
-          visible={false}
+          visible={undefined}
           width="585px"
 >
           <Form.style__FormItem
@@ -518,17 +787,54 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "currentWallet": Immutable.Map {
-            showDecryptModal: false,
+            address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
 },
-          "currentWalletDetails": Object {},
+          "currentWalletWithInfo": Immutable.Map {
+            name: "1",
+            address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+            type: "software",
+            encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+            balances: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                    Immutable.Map {
+                                                balance: 0.29972769885,
+                                                currency: "ETH",
+                                                symbol: "ETH",
+                                                value: Immutable.Map {
+                                                            eth: 0.29972769885,
+                                                            btc: 0.0029972769885000003,
+                                                            usd: 123.4878119262,
+                                                },
+                                    },
+                                    Immutable.Map {
+                                                balance: 1,
+                                                currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                symbol: "BOKKY",
+                                                value: Immutable.Map {
+                                                            eth: 0,
+                                                            btc: 0,
+                                                            usd: 0,
+                                                },
+                                    },
+                        ],
+                        total: Immutable.Map {
+                                    eth: 0.29972769885,
+                                    btc: 0.0029972769885000003,
+                                    usd: 123.4878119262,
+                        },
+            },
+            loadingBalances: false,
+            loadingBalancesError: null,
+},
           "decryptWallet": [Function],
           "hideDecryptWalletModal": [Function],
           "initLedger": [Function],
-          "loadWalletsBalances": [Function],
+          "initWalletsBalances": [Function],
           "loading": Immutable.Map {
             decryptingWallet: true,
 },
-          "startLedgerSync": [Function],
         },
         "ref": null,
         "rendered": null,
@@ -570,7 +876,7 @@ ShallowWrapper {
           "style": Object {
             "marginTop": "20px",
           },
-          "visible": false,
+          "visible": undefined,
           "width": "585px",
         },
         "ref": null,
@@ -636,20 +942,59 @@ ShallowWrapper {
           <div
             currentWallet={
                         Immutable.Map {
-                                    showDecryptModal: false,
+                                    address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
                         }
             }
-            currentWalletDetails={Object {}}
+            currentWalletWithInfo={
+                        Immutable.Map {
+                                    name: "1",
+                                    address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+                                    type: "software",
+                                    encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+                                    balances: Immutable.Map {
+                                                loading: false,
+                                                error: null,
+                                                assets: Immutable.List [
+                                                            Immutable.Map {
+                                                                        balance: 0.29972769885,
+                                                                        currency: "ETH",
+                                                                        symbol: "ETH",
+                                                                        value: Immutable.Map {
+                                                                                    eth: 0.29972769885,
+                                                                                    btc: 0.0029972769885000003,
+                                                                                    usd: 123.4878119262,
+                                                                        },
+                                                            },
+                                                            Immutable.Map {
+                                                                        balance: 1,
+                                                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                                        symbol: "BOKKY",
+                                                                        value: Immutable.Map {
+                                                                                    eth: 0,
+                                                                                    btc: 0,
+                                                                                    usd: 0,
+                                                                        },
+                                                            },
+                                                ],
+                                                total: Immutable.Map {
+                                                            eth: 0.29972769885,
+                                                            btc: 0.0029972769885000003,
+                                                            usd: 123.4878119262,
+                                                },
+                                    },
+                                    loadingBalances: false,
+                                    loadingBalancesError: null,
+                        }
+            }
             decryptWallet={[Function]}
             hideDecryptWalletModal={[Function]}
             initLedger={[Function]}
-            loadWalletsBalances={[Function]}
+            initWalletsBalances={[Function]}
             loading={
                         Immutable.Map {
                                     decryptingWallet: true,
                         }
             }
-            startLedgerSync={[Function]}
 />,
           <Modal.style
             destroyOnClose={true}
@@ -666,7 +1011,7 @@ ShallowWrapper {
                                     "marginTop": "20px",
                                   }
             }
-            visible={false}
+            visible={undefined}
             width="585px"
 >
             <Form.style__FormItem
@@ -699,17 +1044,54 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "currentWallet": Immutable.Map {
-              showDecryptModal: false,
+              address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
 },
-            "currentWalletDetails": Object {},
+            "currentWalletWithInfo": Immutable.Map {
+              name: "1",
+              address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+              type: "software",
+              encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+              balances: Immutable.Map {
+                            loading: false,
+                            error: null,
+                            assets: Immutable.List [
+                                          Immutable.Map {
+                                                        balance: 0.29972769885,
+                                                        currency: "ETH",
+                                                        symbol: "ETH",
+                                                        value: Immutable.Map {
+                                                                      eth: 0.29972769885,
+                                                                      btc: 0.0029972769885000003,
+                                                                      usd: 123.4878119262,
+                                                        },
+                                          },
+                                          Immutable.Map {
+                                                        balance: 1,
+                                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                        symbol: "BOKKY",
+                                                        value: Immutable.Map {
+                                                                      eth: 0,
+                                                                      btc: 0,
+                                                                      usd: 0,
+                                                        },
+                                          },
+                            ],
+                            total: Immutable.Map {
+                                          eth: 0.29972769885,
+                                          btc: 0.0029972769885000003,
+                                          usd: 123.4878119262,
+                            },
+              },
+              loadingBalances: false,
+              loadingBalancesError: null,
+},
             "decryptWallet": [Function],
             "hideDecryptWalletModal": [Function],
             "initLedger": [Function],
-            "loadWalletsBalances": [Function],
+            "initWalletsBalances": [Function],
             "loading": Immutable.Map {
               decryptingWallet: true,
 },
-            "startLedgerSync": [Function],
           },
           "ref": null,
           "rendered": null,
@@ -751,7 +1133,7 @@ ShallowWrapper {
             "style": Object {
               "marginTop": "20px",
             },
-            "visible": false,
+            "visible": undefined,
             "width": "585px",
           },
           "ref": null,
