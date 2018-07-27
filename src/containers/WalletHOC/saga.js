@@ -4,9 +4,14 @@ import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 import { Wallet, utils, Contract } from 'ethers';
 
 import { notify } from 'containers/App/actions';
-
 import { requestWalletAPI } from 'utils/request';
-import { ERC20ABI, EthNetworkProvider, getTransaction, getTransactionCount, sendTransaction } from 'utils/wallet';
+import {
+  ERC20ABI,
+  EthNetworkProvider,
+  getTransaction,
+  getTransactionCount,
+  sendTransaction,
+} from 'utils/wallet';
 
 import {
   makeSelectCurrentWalletWithInfo,
@@ -171,13 +176,7 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
     return;
   }
 
-  if (wallet.type === 'lns') {
-    yield put(transferError(new Error('Ledger nano support is coming soon')));
-    return;
-  }
-
   yield put(notify('info', 'Sending transaction...'));
-
   const wei = utils.parseEther(amount.toString());
   if (token === 'ETH') {
     yield put(transferEtherAction({ toAddress, amount: wei, gasPrice, gasLimit }));
@@ -190,12 +189,12 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
   try {
     let transaction;
     const options = { gasPrice, gasLimit };
-    const walletDetails = yield select(makeSelectCurrentWalletWithInfo());
+    const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
 
-    if (walletDetails.get('type') === 'lns') {
+    if (walletDetails.type === 'lns') {
       transaction = yield call(sendTransactionByLedger, { toAddress, amount, gasPrice, gasLimit });
     } else {
-      const etherWallet = new Wallet(walletDetails.get('decrypted').privateKey);
+      const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
       etherWallet.provider = EthNetworkProvider;
       transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
     }
@@ -209,15 +208,29 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
 
 export function* transferERC20({ token, contractAddress, toAddress, amount, gasPrice, gasLimit }) {
   const contractAbiFragment = ERC20ABI;
-
-  const walletDetails = yield select(makeSelectCurrentWalletWithInfo());
-  const etherWallet = new Wallet(walletDetails.get('decrypted').privateKey);
-  etherWallet.provider = EthNetworkProvider;
-
+  const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
+  let transaction;
   try {
     const options = { gasPrice, gasLimit };
-    const contract = new Contract(contractAddress, contractAbiFragment, etherWallet);
-    const transaction = yield call((...args) => contract.transfer(...args), toAddress, amount, options);
+    if (walletDetails.type === 'lns') {
+      const tx = yield call(generateERC20Transaction, {
+        contractAddress,
+        walletAddress: walletDetails.address,
+        toAddress,
+        amount,
+      }, options);
+      transaction = yield call(sendTransactionByLedger, { ...tx, amount: tx.value, toAddress: tx.to });
+    } else {
+      const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
+      etherWallet.provider = EthNetworkProvider;
+      const contract = new Contract(contractAddress, contractAbiFragment, etherWallet);
+      transaction = yield call((...args) => contract.transfer(...args), toAddress, amount, options);
+    }
+
+    if (!transaction) {
+      throw new Error('Failed to send transaction');
+    }
+
     yield put(transferSuccess(transaction, token));
     yield put(notify('success', 'Transaction sent'));
   } catch (error) {
@@ -225,6 +238,27 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
     yield put(notify('error', `Failed to send transaction: ${error}`));
   }
 }
+
+// hook into etherjs's sign function get generated erc20 transaction object for further process
+export function generateERC20Transaction({ contractAddress, walletAddress, toAddress, amount }, options) {
+  return new Promise((resolve) => {
+    const contract = new Contract(contractAddress, ERC20ABI, {
+      provider: EthNetworkProvider,
+      getAddress: () => walletAddress,
+      sign: (tx) => {
+        resolve(tx);
+      },
+    });
+    contract.transfer(toAddress, amount, options).catch(() => {});
+  });
+}
+
+// export function* waitTransactionHash({ transaction }) {
+//   const provider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
+//   const confirmedTxn = yield call((...args) => provider.waitForTransaction(...args), transaction.hash);
+//   yield put(transactionConfirmed(confirmedTxn));
+//   yield put(notify('success', 'Transaction confirmed'));
+// }
 
 export function* hookNewWalletCreated({ newWallet }) {
   const wallets = yield select(makeSelectWallets());
@@ -365,19 +399,26 @@ export function* tryCreateEthTransportActivity(descriptor, func) {
   }
 }
 
-export function* sendTransactionByLedger({ toAddress, amount, gasPrice, gasLimit }) {
+export function* sendTransactionByLedger({ toAddress, amount, data, nonce, gasPrice, gasLimit }) {
   const currentWalletWithInfo = yield select(makeSelectCurrentWalletWithInfo());
-  const ledgerNanoSInfo = yield select(makeSelectLedgerNanoSInfo());
   const walletDetails = currentWalletWithInfo.toJS();
-
-  const nonce = yield call(getTransactionCount, walletDetails.address, 'pending');
+  const ledgerNanoSInfo = yield select(makeSelectLedgerNanoSInfo());
+  let nonceValue = nonce;
+  let value = amount;
+  if (!nonceValue) {
+    nonceValue = yield call(getTransactionCount, walletDetails.address, 'pending');
+  }
+  if (value) {
+    value = value.toHexString();
+  }
   // generate raw tx for ledger nano to sign
   const rawTx = generateRawTx({
     toAddress,
-    amount: amount.toHexString(),
+    amount: value,
     gasPrice,
     gasLimit,
-    nonce,
+    nonce: nonceValue,
+    data,
     chainId: EthNetworkProvider.chainId,
   });
   // changes to the raw tx before signing by ledger nano
