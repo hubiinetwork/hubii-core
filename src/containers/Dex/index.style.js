@@ -22,7 +22,7 @@ export const Heading = styled.h2`
 `;
 
 export const Title = styled.div`
-  margin-top: 5rem;
+  margin-top: 2rem;
   font-size: 2rem;
   color: ${({ theme }) => theme.palette.light};
   margin-bottom: 2rem;

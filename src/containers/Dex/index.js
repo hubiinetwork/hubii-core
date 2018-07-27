@@ -20,10 +20,10 @@ export const Dex = () => (
       <Heading>Dex</Heading>
     </TopHeader>
     <Container>
-      <Title>
-        Coming soon to Hubii Core...
-      </Title>
       <Logo src={getAbsolutePath('public/images/hubii-core-logo-wtext.svg')} />
+      <Title>
+        DEX Coming Soon.
+      </Title>
     </Container>
   </Wrapper>
     );
