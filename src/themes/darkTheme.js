@@ -51,6 +51,7 @@ const yellow = '#F5A623';
 // ****** red ****** //
 
 const red = 'tomato';
+const redLight = '#FF5A5A';
 
 // ****** shadows ****** //
 
@@ -101,5 +102,6 @@ export default {
     success1: greenLight,
     warning: yellow,
     danger: red,
+    alert: redLight,
   },
 };

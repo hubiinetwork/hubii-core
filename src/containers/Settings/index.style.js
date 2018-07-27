@@ -3,16 +3,23 @@ import { Layout, Switch, Select } from 'antd';
 import Toggler from 'components/Toggler';
 import Button from '../../components/ui/Button';
 const { Header } = Layout;
+
 export const Wrapper = styled.div`
   width: 100%;
   background: ${({ theme }) => theme.palette.primary1};
+`;
+
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export const Heading = styled.h2`
   display: flex;
   font-weight: 500;
   color: ${({ theme }) => theme.palette.light};
-  font-size: 18px;
+  font-size: 1.125rem;
   margin: 0;
 `;
 
@@ -20,44 +27,39 @@ export const StyledToggler = styled(Toggler)`
   margin-top: 5rem;
 `;
 
-export const TabsLayout = styled(Layout)`
-  background: ${({ theme }) => theme.palette.primary3};
-`;
-
 export const StyledButton = styled(Button)`
   width: 330px;
   margin-top: 1.5rem;
-  border-width: 2px;
+  border-width: 0.125rem;
   padding: 0.5rem 1rem;
 `;
 
 export const StyledHeader = styled.div`
-  height: 14px;
+  height: 0.875rem;
   color: ${({ theme }) => theme.palette.light};
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 300;
-  line-height: 14px;
+  line-height: 0.875rem;
   margin-bottom: 0.5rem;
 `;
 
 export const RedButton = styled(Button)`
   width: 330px;
   margin-top: 1.5rem;
-  border-width: 0px;
+  border-width: 0rem;
   padding: 0.5rem 1rem;
-  background-color: #FF5A5A;
-  
+  background-color: ${({ theme }) => theme.palette.alert};
   color: ${({ theme }) => theme.palette.light};
 `;
 
 export const SubtitleText = styled.div`
   margin-top: 0.7rem;
-  height: 14px;
-  width: 306px;
-  color: #8CA5B1;
-  font-size: 12px;
+  height: 0.875rem;
+  width: 19.125rem;
+  color: ${({ theme }) => theme.palette.secondary6};
+  font-size: 0.75rem;
   font-style: italic;
-  line-height: 14px;
+  line-height: 0.875rem;
   text-align: center;
 `;
 
@@ -66,12 +68,12 @@ export const StyledSelect = styled(Select)`
     background-color: transparent;
     color: ${({ theme }) => theme.palette.light};
   }
-  /* border: 1px solid #43616F; */
+  width: 330px;
 `;
 
 export const StyledSwitch = styled(Switch)`
-  border-width: 2px;
-  margin-left: 0.5rem;
+  border-width: 0.125rem;
+  margin-left: auto;
   margin-right: 0.5rem;
   width: 1rem;
   min-width: 2.9rem;
@@ -81,21 +83,14 @@ export const StyledSwitch = styled(Switch)`
   }
 `;
 
-export const WalletsTabHeader = styled(Header)`
+export const TopHeader = styled(Header)`
   align-items: center;
   display: flex;
-  height: 74px;
-  padding: 0 28px;
+  height: 4.625rem;
+  padding: 0 1.75rem;
   background: ${({ theme }) => theme.palette.primary4};
 `;
 
-export const TextWhite = styled.span`
-  color: ${({ theme }) => theme.palette.light};
-  height: 14px;
-  width: 112.39px;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 14px;
-  text-align: center;
-  font-family: 'SF Text';
+export const Segment = styled.div`
+  margin-top: 2rem;
 `;

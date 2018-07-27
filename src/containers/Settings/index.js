@@ -1,4 +1,4 @@
-import { Icon, Select } from 'antd';
+import { Select } from 'antd';
 import * as React from 'react';
 // import PropTypes from 'prop-types';
 // import { compose } from 'redux';
@@ -7,19 +7,19 @@ import Toggler from 'components/Toggler';
 
 import {
   Wrapper,
-  TabsLayout,
   StyledButton,
-  WalletsTabHeader,
+  TopHeader,
   Heading,
   StyledSwitch,
   RedButton,
   SubtitleText,
   StyledHeader,
   StyledSelect,
+  Segment,
+  Container,
 } from './index.style';
 
 const Option = Select.Option;
-
 
 const titleTabs = [
   {
@@ -32,67 +32,62 @@ const titleTabs = [
 
 export const Settings = () => (
   <Wrapper>
-    <TabsLayout>
-      <WalletsTabHeader>
-        <Heading>Settings</Heading>
-        <Icon type="aliwangwang" style={{ marginLeft: 'auto' }} />
-        <StyledSwitch defaultChecked onChange={() => console.log('hello')} />
-        <Icon type="meh-o" />
-      </WalletsTabHeader>
-    </TabsLayout>
-    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-      <div style={{ marginTop: '30px' }}>
+    <TopHeader>
+      <Heading>Settings</Heading>
+      <StyledSwitch disabled defaultChecked onChange={() => {}} />
+    </TopHeader>
+    <Container>
+      <Segment>
         <StyledHeader >
           Language
         </StyledHeader>
-        <StyledSelect defaultValue="lucy" style={{ width: '330px' }} onChange={() => console.log('hello')}>
-          <Option value="jack"><Icon type="phone" />Jack</Option>
-          <Option value="lucy">Lucy</Option>
-          <Option value="disabled" disabled>Disabled</Option>
-          <Option value="Yiminghe">yiminghe</Option>
+        <StyledSelect defaultValue="English" disabled onChange={() => {}}>
+          <Option value="English">English</Option>
+          <Option value="Japanese">Japanese</Option>
+          <Option value="Mandarin" disabled>Mandarin</Option>
+          <Option value="Russian">Russian</Option>
         </StyledSelect>
-      </div>
-      <div style={{ marginTop: '30px' }}>
+      </Segment>
+      <Segment>
         <StyledHeader >
           Fiat Currency
         </StyledHeader>
-        <Select defaultValue="lucy" style={{ width: '330px' }} onChange={() => console.log('hello')}>
-          <Option value="jack">Jack</Option>
-          <Option value="lucy">Lucy</Option>
-          <Option value="disabled" disabled>Disabled</Option>
-          <Option value="Yiminghe">yiminghe</Option>
-        </Select>
-      </div>
-      <div style={{ marginTop: '2rem' }}>
+        <StyledSelect defaultValue="US" disabled onChange={() => {}}>
+          <Option value="US">US</Option>
+        </StyledSelect>
+      </Segment>
+      <Segment>
         <StyledHeader>
           User Interface
         </StyledHeader>
         <Toggler
           titleTabs={titleTabs}
           showSearch
-          onTabChange={() => {
-            console.log('Tab changed');
-          }}
+          onTabChange={() => {}}
         />
-      </div>
+      </Segment>
       <div style={{ display: 'flex', flexDirection: 'column', marginTop: '2rem' }}>
         <StyledButton
           type="primary"
+          disabled
         >
           Register for Striim Airdrop
         </StyledButton>
         <StyledButton
           type="primary"
+          disabled
         >
           Manage Hubii Core Password
         </StyledButton>
         <StyledButton
           type="primary"
+          disabled
         >
           Multi Device Autosync
         </StyledButton>
         <StyledButton
           type="primary"
+          disabled
         >
           Backup Local Data
         </StyledButton>
@@ -100,10 +95,10 @@ export const Settings = () => (
       <SubtitleText>
         Last Backup 03-02-2018
       </SubtitleText>
-
       <div>
         <RedButton
           type="primary"
+          disabled
         >
           Delete All Local Data
         </RedButton>
@@ -111,29 +106,12 @@ export const Settings = () => (
       <SubtitleText>
         Warning! This cannot be undone, procceed with caution.
       </SubtitleText>
-
-    </div>
+    </Container>
   </Wrapper>
     );
 
 Settings.propTypes = {
 
 };
-
-
-// export function mapDispatchToProps(dispatch) {
-//   return {
-//     saveLedgerAddress: (...args) => dispatch(saveLedgerAddress(...args)),
-//     createWalletFromMnemonic: (...args) => dispatch(createWalletFromMnemonic(...args)),
-//     createWalletFromPrivateKey: (...args) => dispatch(createWalletFromPrivateKey(...args)),
-//     createContact: (...args) => dispatch(createContact(...args)),
-//   };
-// }
-
-// const withConnect = connect(mapStateToProps, mapDispatchToProps);
-
-// export default compose(
-//   withConnect,
-// )(WalletManager);
 
 export default Settings;
