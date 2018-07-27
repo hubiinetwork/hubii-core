@@ -169,6 +169,7 @@ describe('makeSelectTotalBalances', () => {
     const mockedState = fromJS({
       walletHoc: {
         balances: balancesMock,
+        wallets: walletsMock,
         prices: pricesMock,
         supportedAssets: supportedAssetsMock,
       },
