@@ -65,7 +65,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           mnemonic={wallet.mnemonic}
           privateKey={wallet.decrypted ? wallet.decrypted.privateKey : null}
           isDecrypted={!!wallet.decrypted}
-          showDecryptWalletModal={() => this.props.showDecryptWalletModal(wallet.name)}
+          showDecryptWalletModal={() => this.props.showDecryptWalletModal()}
           setCurrentWallet={() => this.props.setCurrentWallet(wallet.address)}
           handleCardClick={() => this.handleCardClick(wallet)}
           walletList={wallets}
