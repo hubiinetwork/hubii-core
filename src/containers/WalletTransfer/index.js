@@ -32,8 +32,13 @@ export class WalletTransfer extends React.PureComponent {
   }
 
   onSend(token, toAddress, amount, gasPrice, gasLimit) {
+    let contractAddress;
     const wallet = this.props.currentWalletWithInfo.toJS();
-    this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit });
+    if (token !== 'ETH') {
+      const asset = wallet.balances.assets.find((ast) => ast.symbol === token);
+      contractAddress = asset.currency;
+    }
+    this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit, contractAddress });
   }
 
   onCancel() {
@@ -42,6 +47,9 @@ export class WalletTransfer extends React.PureComponent {
 
   render() {
     const { contacts, currentWallet, prices, currentWalletWithInfo } = this.props;
+    if (!currentWalletWithInfo.getIn(['balances', 'assets'])) {
+      return null;
+    }
     if (currentWalletWithInfo.getIn(['balances', 'loading'])) {
       return <PageLoadingIndicator pageType="wallet" id={currentWalletWithInfo.get('address')} />;
     }

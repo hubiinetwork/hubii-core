@@ -46,7 +46,7 @@ describe('WalletTransfer', () => {
         />
         );
       const instance = wrapper.instance();
-      const token = 'token';
+      const token = 'BOKKY';
       const toAddress = 'abcd';
       const amount = 1;
       const gasPrice = 1;
@@ -59,6 +59,7 @@ describe('WalletTransfer', () => {
         amount,
         gasPrice,
         gasLimit,
+        contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
       };
       expect(transferSpy).toBeCalledWith(args);
     });
