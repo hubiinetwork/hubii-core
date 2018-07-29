@@ -15,6 +15,7 @@ import {
   makeSelectContacts,
 } from 'containers/ContactBook/selectors';
 import { transfer } from 'containers/WalletHOC/actions';
+import LoadingError from '../../components/LoadingError';
 
 export class WalletTransfer extends React.PureComponent {
   constructor(props) {
@@ -44,6 +45,8 @@ export class WalletTransfer extends React.PureComponent {
     const { contacts, currentWallet, prices, currentWalletWithInfo } = this.props;
     if (currentWalletWithInfo.getIn(['balances', 'loading'])) {
       return <PageLoadingIndicator pageType="wallet" id={currentWalletWithInfo.get('address')} />;
+    } else if (currentWalletWithInfo.getIn(['balances', 'error'])) {
+      return <LoadingError pageType="wallet" error="Failed to fetch wallet data" id={currentWalletWithInfo.get('address')} />;
     }
     return (
       <TransferForm

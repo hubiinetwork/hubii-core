@@ -251,7 +251,7 @@ describe('walletHocReducer', () => {
     it('handle LOAD_SUPPORTED_TOKENS_ERROR correctly', () => {
       const error = 'error';
       const expected = stateWithWallet
-        .setIn(['supportedAssets', 'loading'], true)
+        .setIn(['supportedAssets', 'loading'], false)
         .setIn(['supportedAssets', 'error'], error);
 
       expect(walletHocReducer(stateWithWallet, loadSupportedTokensError(error))).toEqual(expected);
