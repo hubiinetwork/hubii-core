@@ -55,9 +55,10 @@ const makeSelectCurrentWallet = () => createSelector(
   (walletHocDomain) => walletHocDomain.get('currentWallet')
 );
 
+// returns balances state OR a placeholder if the app state is from an old version and needs to reinitialise
 const makeSelectBalances = () => createSelector(
   selectWalletHocDomain,
-  (walletHocDomain) => walletHocDomain.get('balances')
+  (walletHocDomain) => walletHocDomain.get('balances') || fromJS({})
 );
 
 const makeSelectTotalBalances = () => createSelector(
@@ -107,14 +108,16 @@ const makeSelectTotalBalances = () => createSelector(
   }
 );
 
+// returns prices state OR a placeholder if the app state is from an old version and needs to reinitialise
 const makeSelectPrices = () => createSelector(
   selectWalletHocDomain,
-  (walletHocDomain) => walletHocDomain.get('prices')
+  (walletHocDomain) => walletHocDomain.get('prices') || fromJS({ loading: true })
 );
 
+// returns supportedAssets state OR a placeholder if the app state is from an old version and needs to reinitialise
 const makeSelectSupportedAssets = () => createSelector(
   selectWalletHocDomain,
-  (walletHocDomain) => walletHocDomain.get('supportedAssets')
+  (walletHocDomain) => walletHocDomain.get('supportedAssets') || fromJS({ loading: true })
 );
 
 const makeSelectWalletsWithInfo = () => createSelector(
