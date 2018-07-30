@@ -135,8 +135,8 @@ export class WalletItemCard extends React.PureComponent {
             </Popover>
           </CardIcon>
           <CardIconSettings>
-            <Dropdown placement="bottomLeft" overlay={this.settingsMenu(type)}>
-              <Icon type="setting" style={{ marginBottom: '132%' }} />
+            <Dropdown trigger="hover" placement="bottomLeft" overlay={this.settingsMenu(type)}>
+              <Icon type="setting" style={{ marginTop: 65, position: 'absolute' }} />
             </Dropdown>
           </CardIconSettings>
         </SpaceBetween>

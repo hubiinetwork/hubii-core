@@ -8,7 +8,7 @@ export const AssetsWrapper = styled.div`
 
 export const SpaceBetween = styled.div`
   display: flex;
-  height: 100%;
+  height: 0%;
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
