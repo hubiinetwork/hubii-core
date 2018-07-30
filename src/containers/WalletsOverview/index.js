@@ -58,6 +58,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           name={wallet.name}
           totalBalance={wallet.balances.loading ? 0 : wallet.balances.total.usd}
           balancesLoading={wallet.balances.loading}
+          balancesError={!!wallet.balances.error}
           address={wallet.address}
           type={wallet.type}
           connected={wallet.type === 'lns' ? this.props.ledgerNanoSInfo.get('id') === wallet.deviceId : null}

@@ -15,6 +15,7 @@ import {
   makeSelectContacts,
 } from 'containers/ContactBook/selectors';
 import { transfer } from 'containers/WalletHOC/actions';
+import LoadingError from '../../components/LoadingError';
 
 export class WalletTransfer extends React.PureComponent {
   constructor(props) {
@@ -32,8 +33,13 @@ export class WalletTransfer extends React.PureComponent {
   }
 
   onSend(token, toAddress, amount, gasPrice, gasLimit) {
+    let contractAddress;
     const wallet = this.props.currentWalletWithInfo.toJS();
-    this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit });
+    if (token !== 'ETH') {
+      const asset = wallet.balances.assets.find((ast) => ast.symbol === token);
+      contractAddress = asset.currency;
+    }
+    this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit, contractAddress });
   }
 
   onCancel() {
@@ -42,8 +48,13 @@ export class WalletTransfer extends React.PureComponent {
 
   render() {
     const { contacts, currentWallet, prices, currentWalletWithInfo } = this.props;
+    if (!currentWalletWithInfo.getIn(['balances', 'assets'])) {
+      return null;
+    }
     if (currentWalletWithInfo.getIn(['balances', 'loading'])) {
       return <PageLoadingIndicator pageType="wallet" id={currentWalletWithInfo.get('address')} />;
+    } else if (currentWalletWithInfo.getIn(['balances', 'error'])) {
+      return <LoadingError pageType="wallet" error="Failed to fetch wallet data" id={currentWalletWithInfo.get('address')} />;
     }
     return (
       <TransferForm

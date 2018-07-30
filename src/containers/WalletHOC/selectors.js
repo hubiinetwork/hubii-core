@@ -66,7 +66,12 @@ const makeSelectTotalBalances = () => createSelector(
   makeSelectPrices(),
   makeSelectSupportedAssets(),
   (wallets, balances, prices, supportedAssets) => {
-    if (supportedAssets.get('loading')) {
+    if (
+      supportedAssets.get('loading') ||
+      prices.get('loading') ||
+      supportedAssets.get('error') ||
+      prices.get('error')
+    ) {
       return fromJS({ assets: {}, loading: true });
     }
 
@@ -74,7 +79,13 @@ const makeSelectTotalBalances = () => createSelector(
     let totalBalances = fromJS({ assets: {}, loading: false, totalUsd: 0 });
     balances.keySeq().forEach((address) => {
       const addressBalances = balances.get(address);
-      if (addressBalances.get('loading') || !wallets.find((w) => w.get('address') === address)) return;
+      if (
+        !addressBalances ||
+        addressBalances.get('error') ||
+        addressBalances.get('loading') ||
+        !wallets.find((w) => w.get('address') === address)
+      ) return;
+
       addressBalances.get('assets').forEach((balance) => {
         const currency = balance.get('currency');
         const decimals = supportedAssets.get('assets').find((asset) => asset.get('currency') === currency).get('decimals');
@@ -114,12 +125,26 @@ const makeSelectWalletsWithInfo = () => createSelector(
   (wallets, balances, prices, supportedAssets) => {
     const walletsWithInfo = wallets.map((wallet) => {
       let walletWithInfo = wallet;
+      const walletAddress = wallet.get('address');
+      let walletBalances;
 
-      // Set default 'loading' state
-      let walletBalances = fromJS({ loading: true, total: { usd: 0, eth: 0, btc: 0 } });
-
-      // Only leave default loading state if everything required is loaded
-      if (!supportedAssets.get('loading') && !prices.get('loading') && balances.get(wallet.get('address')) && !balances.getIn([wallet.get('address'), 'loading'])) {
+      // Check if waiting on a response from the API, wallet balance should appear in 'loading' state
+      if (
+        supportedAssets.get('loading') ||
+        prices.get('loading') ||
+        !balances.get(walletAddress) ||
+        balances.getIn([walletAddress, 'loading'])
+      ) {
+        walletBalances = fromJS({ loading: true, total: { usd: 0, eth: 0, btc: 0 } });
+      } else if (
+        // Check if recieved an error from any of the critical API responses
+        supportedAssets.get('error') ||
+        prices.get('error') ||
+        balances.getIn([walletAddress, 'error'])
+      ) {
+        walletBalances = fromJS({ loading: false, error: true, total: { usd: 0, eth: 0, btc: 0 } });
+      } else {
+        // Have all information needed to construct walletWithInfo balance
         walletBalances = balances.get(wallet.get('address'));
         walletBalances = walletBalances.set('assets', walletBalances.get('assets').map((asset) => {
           let walletAsset = asset;
