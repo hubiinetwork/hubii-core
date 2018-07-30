@@ -329,6 +329,7 @@ ShallowWrapper {
                                                         },
                                                       ]
                                         }
+                                        balancesError={false}
                                         balancesLoading={false}
                                         connected={null}
                                         deleteWallet={[Function]}
@@ -555,6 +556,7 @@ ShallowWrapper {
                                                         },
                                                       ]
                                         }
+                                        balancesError={false}
                                         balancesLoading={false}
                                         connected={null}
                                         deleteWallet={[Function]}
@@ -781,6 +783,7 @@ ShallowWrapper {
                                                         },
                                                       ]
                                         }
+                                        balancesError={false}
                                         balancesLoading={false}
                                         connected={null}
                                         deleteWallet={[Function]}
@@ -1007,6 +1010,7 @@ ShallowWrapper {
                                                         },
                                                       ]
                                         }
+                                        balancesError={false}
                                         balancesLoading={false}
                                         connected={false}
                                         deleteWallet={[Function]}
@@ -1233,6 +1237,7 @@ ShallowWrapper {
                                                         },
                                                       ]
                                         }
+                                        balancesError={false}
                                         balancesLoading={false}
                                         connected={null}
                                         deleteWallet={[Function]}
@@ -1459,6 +1464,7 @@ ShallowWrapper {
                                                         },
                                                       ]
                                         }
+                                        balancesError={false}
                                         balancesLoading={false}
                                         connected={false}
                                         deleteWallet={[Function]}
@@ -1742,6 +1748,7 @@ ShallowWrapper {
                                                                         },
                                                                       ]
                                                 }
+                                                balancesError={false}
                                                 balancesLoading={false}
                                                 connected={null}
                                                 deleteWallet={[Function]}
@@ -1968,6 +1975,7 @@ ShallowWrapper {
                                                                         },
                                                                       ]
                                                 }
+                                                balancesError={false}
                                                 balancesLoading={false}
                                                 connected={null}
                                                 deleteWallet={[Function]}
@@ -2194,6 +2202,7 @@ ShallowWrapper {
                                                                         },
                                                                       ]
                                                 }
+                                                balancesError={false}
                                                 balancesLoading={false}
                                                 connected={null}
                                                 deleteWallet={[Function]}
@@ -2420,6 +2429,7 @@ ShallowWrapper {
                                                                         },
                                                                       ]
                                                 }
+                                                balancesError={false}
                                                 balancesLoading={false}
                                                 connected={false}
                                                 deleteWallet={[Function]}
@@ -2646,6 +2656,7 @@ ShallowWrapper {
                                                                         },
                                                                       ]
                                                 }
+                                                balancesError={false}
                                                 balancesLoading={false}
                                                 connected={null}
                                                 deleteWallet={[Function]}
@@ -2872,6 +2883,7 @@ ShallowWrapper {
                                                                         },
                                                                       ]
                                                 }
+                                                balancesError={false}
                                                 balancesLoading={false}
                                                 connected={false}
                                                 deleteWallet={[Function]}
@@ -3152,6 +3164,7 @@ ShallowWrapper {
                                                                                 },
                                                                               ]
                                                 }
+                                                balancesError={false}
                                                 balancesLoading={false}
                                                 connected={null}
                                                 deleteWallet={[Function]}
@@ -3378,6 +3391,7 @@ ShallowWrapper {
                                                                                 },
                                                                               ]
                                                 }
+                                                balancesError={false}
                                                 balancesLoading={false}
                                                 connected={null}
                                                 deleteWallet={[Function]}
@@ -3604,6 +3618,7 @@ ShallowWrapper {
                                                                                 },
                                                                               ]
                                                 }
+                                                balancesError={false}
                                                 balancesLoading={false}
                                                 connected={null}
                                                 deleteWallet={[Function]}
@@ -3830,6 +3845,7 @@ ShallowWrapper {
                                                                                 },
                                                                               ]
                                                 }
+                                                balancesError={false}
                                                 balancesLoading={false}
                                                 connected={false}
                                                 deleteWallet={[Function]}
@@ -4056,6 +4072,7 @@ ShallowWrapper {
                                                                                 },
                                                                               ]
                                                 }
+                                                balancesError={false}
                                                 balancesLoading={false}
                                                 connected={null}
                                                 deleteWallet={[Function]}
@@ -4282,6 +4299,7 @@ ShallowWrapper {
                                                                                 },
                                                                               ]
                                                 }
+                                                balancesError={false}
                                                 balancesLoading={false}
                                                 connected={false}
                                                 deleteWallet={[Function]}
@@ -4544,6 +4562,7 @@ ShallowWrapper {
                                                                                 },
                                                                               ]
                                         }
+                                        balancesError={false}
                                         balancesLoading={false}
                                         connected={null}
                                         deleteWallet={[Function]}
@@ -4770,6 +4789,7 @@ ShallowWrapper {
                                                                                 },
                                                                               ]
                                         }
+                                        balancesError={false}
                                         balancesLoading={false}
                                         connected={null}
                                         deleteWallet={[Function]}
@@ -4996,6 +5016,7 @@ ShallowWrapper {
                                                                                 },
                                                                               ]
                                         }
+                                        balancesError={false}
                                         balancesLoading={false}
                                         connected={null}
                                         deleteWallet={[Function]}
@@ -5222,6 +5243,7 @@ ShallowWrapper {
                                                                                 },
                                                                               ]
                                         }
+                                        balancesError={false}
                                         balancesLoading={false}
                                         connected={false}
                                         deleteWallet={[Function]}
@@ -5448,6 +5470,7 @@ ShallowWrapper {
                                                                                 },
                                                                               ]
                                         }
+                                        balancesError={false}
                                         balancesLoading={false}
                                         connected={null}
                                         deleteWallet={[Function]}
@@ -5674,6 +5697,7 @@ ShallowWrapper {
                                                                                 },
                                                                               ]
                                         }
+                                        balancesError={false}
                                         balancesLoading={false}
                                         connected={false}
                                         deleteWallet={[Function]}
@@ -5915,6 +5939,7 @@ ShallowWrapper {
                                                                   },
                                                                 ]
                       }
+                      balancesError={false}
                       balancesLoading={false}
                       connected={null}
                       deleteWallet={[Function]}
@@ -6152,6 +6177,7 @@ ShallowWrapper {
                           },
                         },
                       ],
+                      "balancesError": false,
                       "balancesLoading": false,
                       "connected": null,
                       "deleteWallet": [Function],
@@ -6380,6 +6406,7 @@ ShallowWrapper {
                                                                   },
                                                                 ]
                       }
+                      balancesError={false}
                       balancesLoading={false}
                       connected={null}
                       deleteWallet={[Function]}
@@ -6607,6 +6634,7 @@ ShallowWrapper {
                           },
                         },
                       ],
+                      "balancesError": false,
                       "balancesLoading": false,
                       "connected": null,
                       "deleteWallet": [Function],
@@ -6835,6 +6863,7 @@ ShallowWrapper {
                                                                   },
                                                                 ]
                       }
+                      balancesError={false}
                       balancesLoading={false}
                       connected={null}
                       deleteWallet={[Function]}
@@ -7062,6 +7091,7 @@ ShallowWrapper {
                           },
                         },
                       ],
+                      "balancesError": false,
                       "balancesLoading": false,
                       "connected": null,
                       "deleteWallet": [Function],
@@ -7290,6 +7320,7 @@ ShallowWrapper {
                                                                   },
                                                                 ]
                       }
+                      balancesError={false}
                       balancesLoading={false}
                       connected={false}
                       deleteWallet={[Function]}
@@ -7517,6 +7548,7 @@ ShallowWrapper {
                           },
                         },
                       ],
+                      "balancesError": false,
                       "balancesLoading": false,
                       "connected": false,
                       "deleteWallet": [Function],
@@ -7745,6 +7777,7 @@ ShallowWrapper {
                                                                   },
                                                                 ]
                       }
+                      balancesError={false}
                       balancesLoading={false}
                       connected={null}
                       deleteWallet={[Function]}
@@ -7972,6 +8005,7 @@ ShallowWrapper {
                           },
                         },
                       ],
+                      "balancesError": false,
                       "balancesLoading": false,
                       "connected": null,
                       "deleteWallet": [Function],
@@ -8200,6 +8234,7 @@ ShallowWrapper {
                                                                   },
                                                                 ]
                       }
+                      balancesError={false}
                       balancesLoading={false}
                       connected={false}
                       deleteWallet={[Function]}
@@ -8427,6 +8462,7 @@ ShallowWrapper {
                           },
                         },
                       ],
+                      "balancesError": false,
                       "balancesLoading": false,
                       "connected": false,
                       "deleteWallet": [Function],
@@ -8751,6 +8787,7 @@ ShallowWrapper {
                                                                       },
                                                                     ]
                                                   }
+                                                  balancesError={false}
                                                   balancesLoading={false}
                                                   connected={null}
                                                   deleteWallet={[Function]}
@@ -8977,6 +9014,7 @@ ShallowWrapper {
                                                                       },
                                                                     ]
                                                   }
+                                                  balancesError={false}
                                                   balancesLoading={false}
                                                   connected={null}
                                                   deleteWallet={[Function]}
@@ -9203,6 +9241,7 @@ ShallowWrapper {
                                                                       },
                                                                     ]
                                                   }
+                                                  balancesError={false}
                                                   balancesLoading={false}
                                                   connected={null}
                                                   deleteWallet={[Function]}
@@ -9429,6 +9468,7 @@ ShallowWrapper {
                                                                       },
                                                                     ]
                                                   }
+                                                  balancesError={false}
                                                   balancesLoading={false}
                                                   connected={false}
                                                   deleteWallet={[Function]}
@@ -9655,6 +9695,7 @@ ShallowWrapper {
                                                                       },
                                                                     ]
                                                   }
+                                                  balancesError={false}
                                                   balancesLoading={false}
                                                   connected={null}
                                                   deleteWallet={[Function]}
@@ -9881,6 +9922,7 @@ ShallowWrapper {
                                                                       },
                                                                     ]
                                                   }
+                                                  balancesError={false}
                                                   balancesLoading={false}
                                                   connected={false}
                                                   deleteWallet={[Function]}
@@ -10164,6 +10206,7 @@ ShallowWrapper {
                                                                                     },
                                                                                   ]
                                                         }
+                                                        balancesError={false}
                                                         balancesLoading={false}
                                                         connected={null}
                                                         deleteWallet={[Function]}
@@ -10390,6 +10433,7 @@ ShallowWrapper {
                                                                                     },
                                                                                   ]
                                                         }
+                                                        balancesError={false}
                                                         balancesLoading={false}
                                                         connected={null}
                                                         deleteWallet={[Function]}
@@ -10616,6 +10660,7 @@ ShallowWrapper {
                                                                                     },
                                                                                   ]
                                                         }
+                                                        balancesError={false}
                                                         balancesLoading={false}
                                                         connected={null}
                                                         deleteWallet={[Function]}
@@ -10842,6 +10887,7 @@ ShallowWrapper {
                                                                                     },
                                                                                   ]
                                                         }
+                                                        balancesError={false}
                                                         balancesLoading={false}
                                                         connected={false}
                                                         deleteWallet={[Function]}
@@ -11068,6 +11114,7 @@ ShallowWrapper {
                                                                                     },
                                                                                   ]
                                                         }
+                                                        balancesError={false}
                                                         balancesLoading={false}
                                                         connected={null}
                                                         deleteWallet={[Function]}
@@ -11294,6 +11341,7 @@ ShallowWrapper {
                                                                                     },
                                                                                   ]
                                                         }
+                                                        balancesError={false}
                                                         balancesLoading={false}
                                                         connected={false}
                                                         deleteWallet={[Function]}
@@ -11574,6 +11622,7 @@ ShallowWrapper {
                                                                                           },
                                                                                         ]
                                                       }
+                                                      balancesError={false}
                                                       balancesLoading={false}
                                                       connected={null}
                                                       deleteWallet={[Function]}
@@ -11800,6 +11849,7 @@ ShallowWrapper {
                                                                                           },
                                                                                         ]
                                                       }
+                                                      balancesError={false}
                                                       balancesLoading={false}
                                                       connected={null}
                                                       deleteWallet={[Function]}
@@ -12026,6 +12076,7 @@ ShallowWrapper {
                                                                                           },
                                                                                         ]
                                                       }
+                                                      balancesError={false}
                                                       balancesLoading={false}
                                                       connected={null}
                                                       deleteWallet={[Function]}
@@ -12252,6 +12303,7 @@ ShallowWrapper {
                                                                                           },
                                                                                         ]
                                                       }
+                                                      balancesError={false}
                                                       balancesLoading={false}
                                                       connected={false}
                                                       deleteWallet={[Function]}
@@ -12478,6 +12530,7 @@ ShallowWrapper {
                                                                                           },
                                                                                         ]
                                                       }
+                                                      balancesError={false}
                                                       balancesLoading={false}
                                                       connected={null}
                                                       deleteWallet={[Function]}
@@ -12704,6 +12757,7 @@ ShallowWrapper {
                                                                                           },
                                                                                         ]
                                                       }
+                                                      balancesError={false}
                                                       balancesLoading={false}
                                                       connected={false}
                                                       deleteWallet={[Function]}
@@ -12966,6 +13020,7 @@ ShallowWrapper {
                                                                                         },
                                                                                       ]
                                             }
+                                            balancesError={false}
                                             balancesLoading={false}
                                             connected={null}
                                             deleteWallet={[Function]}
@@ -13192,6 +13247,7 @@ ShallowWrapper {
                                                                                         },
                                                                                       ]
                                             }
+                                            balancesError={false}
                                             balancesLoading={false}
                                             connected={null}
                                             deleteWallet={[Function]}
@@ -13418,6 +13474,7 @@ ShallowWrapper {
                                                                                         },
                                                                                       ]
                                             }
+                                            balancesError={false}
                                             balancesLoading={false}
                                             connected={null}
                                             deleteWallet={[Function]}
@@ -13644,6 +13701,7 @@ ShallowWrapper {
                                                                                         },
                                                                                       ]
                                             }
+                                            balancesError={false}
                                             balancesLoading={false}
                                             connected={false}
                                             deleteWallet={[Function]}
@@ -13870,6 +13928,7 @@ ShallowWrapper {
                                                                                         },
                                                                                       ]
                                             }
+                                            balancesError={false}
                                             balancesLoading={false}
                                             connected={null}
                                             deleteWallet={[Function]}
@@ -14096,6 +14155,7 @@ ShallowWrapper {
                                                                                         },
                                                                                       ]
                                             }
+                                            balancesError={false}
                                             balancesLoading={false}
                                             connected={false}
                                             deleteWallet={[Function]}
@@ -14337,6 +14397,7 @@ ShallowWrapper {
                                                                         },
                                                                       ]
                         }
+                        balancesError={false}
                         balancesLoading={false}
                         connected={null}
                         deleteWallet={[Function]}
@@ -14574,6 +14635,7 @@ ShallowWrapper {
                             },
                           },
                         ],
+                        "balancesError": false,
                         "balancesLoading": false,
                         "connected": null,
                         "deleteWallet": [Function],
@@ -14802,6 +14864,7 @@ ShallowWrapper {
                                                                         },
                                                                       ]
                         }
+                        balancesError={false}
                         balancesLoading={false}
                         connected={null}
                         deleteWallet={[Function]}
@@ -15029,6 +15092,7 @@ ShallowWrapper {
                             },
                           },
                         ],
+                        "balancesError": false,
                         "balancesLoading": false,
                         "connected": null,
                         "deleteWallet": [Function],
@@ -15257,6 +15321,7 @@ ShallowWrapper {
                                                                         },
                                                                       ]
                         }
+                        balancesError={false}
                         balancesLoading={false}
                         connected={null}
                         deleteWallet={[Function]}
@@ -15484,6 +15549,7 @@ ShallowWrapper {
                             },
                           },
                         ],
+                        "balancesError": false,
                         "balancesLoading": false,
                         "connected": null,
                         "deleteWallet": [Function],
@@ -15712,6 +15778,7 @@ ShallowWrapper {
                                                                         },
                                                                       ]
                         }
+                        balancesError={false}
                         balancesLoading={false}
                         connected={false}
                         deleteWallet={[Function]}
@@ -15939,6 +16006,7 @@ ShallowWrapper {
                             },
                           },
                         ],
+                        "balancesError": false,
                         "balancesLoading": false,
                         "connected": false,
                         "deleteWallet": [Function],
@@ -16167,6 +16235,7 @@ ShallowWrapper {
                                                                         },
                                                                       ]
                         }
+                        balancesError={false}
                         balancesLoading={false}
                         connected={null}
                         deleteWallet={[Function]}
@@ -16394,6 +16463,7 @@ ShallowWrapper {
                             },
                           },
                         ],
+                        "balancesError": false,
                         "balancesLoading": false,
                         "connected": null,
                         "deleteWallet": [Function],
@@ -16622,6 +16692,7 @@ ShallowWrapper {
                                                                         },
                                                                       ]
                         }
+                        balancesError={false}
                         balancesLoading={false}
                         connected={false}
                         deleteWallet={[Function]}
@@ -16849,6 +16920,7 @@ ShallowWrapper {
                             },
                           },
                         ],
+                        "balancesError": false,
                         "balancesLoading": false,
                         "connected": false,
                         "deleteWallet": [Function],
