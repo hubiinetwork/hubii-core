@@ -177,11 +177,16 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
   }
 
   yield put(notify('info', 'Sending transaction...'));
-  const wei = utils.parseEther(amount.toString());
-  if (token === 'ETH') {
-    yield put(transferEtherAction({ toAddress, amount: wei, gasPrice, gasLimit }));
-  } else if (contractAddress) {
-    yield put(transferERC20Action({ token, toAddress, amount: wei, gasPrice, gasLimit, contractAddress }));
+  try {
+    const wei = utils.parseEther(amount.toString());
+    if (token === 'ETH') {
+      yield put(transferEtherAction({ toAddress, amount: wei, gasPrice, gasLimit }));
+    } else if (contractAddress) {
+      yield put(transferERC20Action({ token, toAddress, amount: wei, gasPrice, gasLimit, contractAddress }));
+    }
+  } catch (error) {
+    yield put(transferError(error));
+    yield put(notify('error', `Failed to send transaction: ${error}`));
   }
 }
 
