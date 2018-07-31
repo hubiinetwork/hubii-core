@@ -12,7 +12,8 @@ Omphalos UI is a multiplatform desktop application built with Electron, React, R
 
 * NodeJS LTS
 * Yarn LTS
-* A C++ compiler (for example gcc)
+* Python
+* A C++ compiler
 
 ## Install
 
