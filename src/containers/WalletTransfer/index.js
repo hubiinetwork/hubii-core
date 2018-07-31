@@ -58,7 +58,7 @@ export class WalletTransfer extends React.PureComponent {
     }
     return (
       <TransferForm
-        currentWalletUsdBalance={currentWalletWithInfo.getIn(['balances', 'total', 'usd'])}
+        currentWalletUsdBalance={currentWalletWithInfo.getIn(['balances', 'total', 'usd']).toNumber()}
         prices={prices.toJS()}
         recipients={contacts.toJS()}
         assets={currentWalletWithInfo.getIn(['balances', 'assets']).toJS()}
@@ -66,7 +66,7 @@ export class WalletTransfer extends React.PureComponent {
         onCancel={this.onCancel}
         transfering={currentWallet.toJS().transfering}
         errors={this.props.errors}
-        currentWalletDetails={this.props.currentWalletWithInfo}
+        currentWalletWithInfo={this.props.currentWalletWithInfo}
       />
     );
   }

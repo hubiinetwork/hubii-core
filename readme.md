@@ -70,6 +70,10 @@ yarn styleguide
 
 Please obey by established Gitflow principles. Details can be obtained in post by Vincent Driessen or in Atlassian's Gitflow Workflow tutorial. Driessen's git-flow git extension is indispensable.
 
+### Working with numbers
+
+During blockchain development, you'll often find yourself working with very small and very large numbers. When dealing with these types of numbers (notably Ether or token amounts), use the BigNumber library to ensure precision isn't lost. If you're interested to read more see [this](https://hackernoon.com/a-note-on-numbers-in-ethereum-and-javascript-3e6ac3b2fad9) article for a concise explination.
+
 ### Test Driven Development
 
 Here is a [video](https://www.infoq.com/presentations/testing-communication) about TDD, introducing the motivations behind writing good unit tests.

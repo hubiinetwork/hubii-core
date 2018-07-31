@@ -198,13 +198,13 @@ export default class TransferForm extends React.PureComponent {
             assetBalanceBefore={assetBalanceBefore}
             assetBalanceAfter={assetBalanceAfter}
             walletUsdValueBefore={currentWalletUsdBalance}
-            lnsCheck={this.props.currentWalletDetails.get('type') === 'lns'}
+            lnsCheck={this.props.currentWalletWithInfo.get('type') === 'lns'}
             walletUsdValueAfter={walletUsdValueAfter}
             recipient={address}
             onSend={this.onSend}
             onCancel={this.props.onCancel}
             transfering={this.props.transfering}
-            currentWalletDetails={this.props.currentWalletDetails}
+            currentWalletWithInfo={this.props.currentWalletWithInfo}
             errors={this.props.errors}
           />
         </Col>
@@ -216,7 +216,7 @@ TransferForm.propTypes = {
   assets: PropTypes.array.isRequired,
   currentWalletUsdBalance: PropTypes.number.isRequired,
   prices: PropTypes.object.isRequired,
-  currentWalletDetails: PropTypes.object.isRequired,
+  currentWalletWithInfo: PropTypes.object.isRequired,
   recipients: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     address: PropTypes.string,

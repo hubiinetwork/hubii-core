@@ -67,7 +67,7 @@ Breakdown.propTypes = {
   /**
    * Total  value in dollars.
    */
-  value: PropTypes.node,
+  value: PropTypes.string.isRequired,
   /**
    * data  to populate  the Breakdowwn Component.
    */

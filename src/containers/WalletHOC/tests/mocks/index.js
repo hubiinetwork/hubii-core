@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable';
+import BigNumber from 'bignumber.js';
 
 export const address1Mock = '0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0';
 
@@ -132,11 +133,11 @@ export const walletsMock = fromJS([
 
 export const totalBalancesMock = fromJS({
   assets: {
-    ETH: { amount: 0.9996016988499999, usdValue: 411.8358999262 },
-    '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { amount: 1, usdValue: 0 },
+    ETH: { amount: new BigNumber('0.99960169885'), usdValue: new BigNumber('411.8358999262') },
+    '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { amount: new BigNumber('1'), usdValue: new BigNumber('0') },
   },
   loading: false,
-  totalUsd: 411.8358999262,
+  totalUsd: new BigNumber('411.8358999262'),
 });
 
 export const balancesMock = fromJS({
@@ -353,26 +354,26 @@ export const walletsWithInfoMock = fromJS([
       error: null,
       assets: [
         {
-          balance: 0.29972769885,
+          balance: new BigNumber('0.29972769885'),
           currency: 'ETH',
           symbol: 'ETH',
           value: {
-            eth: 0.29972769885,
-            btc: 0.0029972769885000003,
-            usd: 123.4878119262,
+            eth: new BigNumber('0.29972769885'),
+            btc: new BigNumber('0.0029972769885'),
+            usd: new BigNumber('123.4878119262'),
           },
         },
         {
-          balance: 1,
+          balance: new BigNumber('1'),
           currency: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
           symbol: 'BOKKY',
-          value: { eth: 0, btc: 0, usd: 0 },
+          value: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') },
         },
       ],
       total: {
-        eth: 0.29972769885,
-        btc: 0.0029972769885000003,
-        usd: 123.4878119262,
+        eth: new BigNumber('0.29972769885'),
+        btc: new BigNumber('0.0029972769885'),
+        usd: new BigNumber('123.4878119262'),
       },
     },
     loadingBalances: false,
@@ -389,13 +390,13 @@ export const walletsWithInfoMock = fromJS([
       error: null,
       assets: [
         {
-          balance: 0.500937,
+          balance: new BigNumber('0.500937'),
           currency: 'ETH',
           symbol: 'ETH',
-          value: { eth: 0.500937, btc: 0.00500937, usd: 206.386044 },
+          value: { eth: new BigNumber('0.500937'), btc: new BigNumber('0.00500937'), usd: new BigNumber('206.386044') },
         },
       ],
-      total: { eth: 0.500937, btc: 0.00500937, usd: 206.386044 },
+      total: { eth: new BigNumber('0.500937'), btc: new BigNumber('0.00500937'), usd: new BigNumber('206.386044') },
     },
     loadingBalances: false,
     loadingBalancesError: null,
@@ -411,13 +412,13 @@ export const walletsWithInfoMock = fromJS([
       error: null,
       assets: [
         {
-          balance: 0,
+          balance: new BigNumber('0'),
           currency: 'ETH',
           symbol: 'ETH',
-          value: { eth: 0, btc: 0, usd: 0 },
+          value: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') },
         },
       ],
-      total: { eth: 0, btc: 0, usd: 0 },
+      total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') },
     },
     loadingBalances: false,
     loadingBalancesError: null,
@@ -436,13 +437,13 @@ export const walletsWithInfoMock = fromJS([
       error: null,
       assets: [
         {
-          balance: 0,
+          balance: new BigNumber('0'),
           currency: 'ETH',
           symbol: 'ETH',
-          value: { eth: 0, btc: 0, usd: 0 },
+          value: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') },
         },
       ],
-      total: { eth: 0, btc: 0, usd: 0 },
+      total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') },
     },
   },
   {
@@ -456,13 +457,13 @@ export const walletsWithInfoMock = fromJS([
       error: null,
       assets: [
         {
-          balance: 0,
+          balance: new BigNumber('0'),
           currency: 'ETH',
           symbol: 'ETH',
-          value: { eth: 0, btc: 0, usd: 0 },
+          value: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') },
         },
       ],
-      total: { eth: 0, btc: 0, usd: 0 },
+      total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') },
     },
     loadingBalances: false,
     loadingBalancesError: null,
@@ -481,13 +482,13 @@ export const walletsWithInfoMock = fromJS([
       error: null,
       assets: [
         {
-          balance: 0.198937,
+          balance: new BigNumber('0.198937'),
           currency: 'ETH',
           symbol: 'ETH',
-          value: { eth: 0.198937, btc: 0.00198937, usd: 81.962044 },
+          value: { eth: new BigNumber('0.198937'), btc: new BigNumber('0.00198937'), usd: new BigNumber('81.962044') },
         },
       ],
-      total: { eth: 0.198937, btc: 0.00198937, usd: 81.962044 },
+      total: { eth: new BigNumber('0.198937'), btc: new BigNumber('0.00198937'), usd: new BigNumber('81.962044') },
     },
   },
 ]);
