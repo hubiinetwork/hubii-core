@@ -9,7 +9,7 @@ import { formatFiat } from '../../utils/numberFormats';
 /**
  * This component shows user's total coins' convertion in dollar and a relative chart.
  */
-const Breakdown = ({ data, value }) => {
+const Breakdown = ({ data = [], value }) => {
   const chartData = data.map((item) => ({
     x: item.percentage,
     y: 2 * item.percentage,
@@ -20,7 +20,9 @@ const Breakdown = ({ data, value }) => {
     label: item.label,
     percentage: item.percentage,
   }));
-
+  if (chartData.length === 0 || parseFloat(value) === parseFloat(0)) {
+    return <div />;
+  }
   return (
     <div>
       <SectionHeading>Breakdown</SectionHeading>
@@ -67,7 +69,7 @@ Breakdown.propTypes = {
   /**
    * Total  value in dollars.
    */
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
   /**
    * data  to populate  the Breakdowwn Component.
    */

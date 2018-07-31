@@ -20,7 +20,14 @@ A variant of Breakdown component:
       { label: 'QSP', percentage: 2.24, color: '#454545' },
       { label: 'ZRX', percentage: 1.65, color: '#FFFFFF' }
     ]}
-    value={`24,891.7`}
+    value={24891.7}
+  />
+</div>
+```
+```js
+<div style={{ backgroundColor: '#26404D', padding: 25 }}>
+  <Breakdown
+    value={24891.7}
   />
 </div>
 ```
