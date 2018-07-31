@@ -1,8 +1,9 @@
 import React from 'react';
 import { Col } from 'antd';
+// import BigNumber from 'bignumber.js';
 import PropTypes from 'prop-types';
 import { gweiToWei } from 'utils/wallet';
-import { formatFiat, formatEthAmount } from 'utils/numberFormats';
+import { formatFiat } from 'utils/numberFormats';
 import { getAbsolutePath } from 'utils/electron';
 import {
   Row,
@@ -24,11 +25,25 @@ import Input from '../ui/Input';
 export default class TransferForm extends React.PureComponent {
   constructor(props) {
     super(props);
+
+    // max decimals possible for current asset
+    const amountInputMaxDecimals = this.props.supportedAssets
+      .get('assets')
+      .find((a) => a.get('currency') === this.props.assets[0].currency)
+      .get('decimals');
+
+    // regex for amount input
+    // only allow one dot and integers, and not more decimal places than possible for the
+    // current asset
+    // https://stackoverflow.com/questions/30435918/regex-pattern-to-have-only-one-dot-and-match-integer-and-decimal-numbers
+    const amountInputRegex = new RegExp(`^\\d+(\\.\\d{0,${amountInputMaxDecimals}})?$`);
+
     this.state = {
       amountToSendInput: '0',
       amountToSend: 0,
       address: this.props.recipients[0] ? this.props.recipients[0].address : '',
       assetToSend: this.props.assets[0],
+      amountInputRegex,
       gasPriceGwei: 3,
       gasLimit: 21000,
     };
@@ -47,26 +62,22 @@ export default class TransferForm extends React.PureComponent {
 
   handleAmountToSendChange(e) {
     const { value } = e.target;
-    if (value === '' || value.endsWith('.') || value.endsWith('0')) {
-      if (!value.match('[^0.]')) {
-        this.setState({ amountToSend: 0 });
-      }
-      this.setState({ amountToSendInput: value });
-      return;
+    const { amountInputRegex } = this.state;
+
+    // allow an empty input to represent 0
+    if (value === '') {
+      this.setState({ amountToSendInput: '', amountToSend: 0 });
     }
 
-    if (isNaN(value)) {
-      return;
-    }
+    if (!amountInputRegex.test(value)) return;
 
-    if (Number(value).toString().includes('e-')) {
-      const len = value.length + 2 < 20 ? value.length - 2 : 20;
-      this.setState({ amountToSendInput: formatEthAmount(Number(value)).toFixed(len) });
-    } else {
-      this.setState({ amountToSendInput: formatEthAmount(Number(value)).toString() });
-    }
+    // update the input (this could be an invalid number, such as '12.')
+    this.setState({ amountToSendInput: value });
 
-    this.setState({ amountToSend: formatEthAmount(Number(value)) });
+    // update amount to send if it's a real number
+    if (!isNaN(value)) {
+      this.setState({ amountToSend: Number(value) });
+    }
   }
 
   handleGasPriceChange(e) {
@@ -78,8 +89,23 @@ export default class TransferForm extends React.PureComponent {
   }
 
   handleAssetChange(newSymbol) {
+    const assetToSend = this.props.assets.find((a) => a.symbol === newSymbol);
+
+    // max decimals possible for current asset
+    const amountInputMaxDecimals = this.props.supportedAssets
+      .get('assets')
+      .find((a) => a.get('currency') === assetToSend.currency)
+      .get('decimals');
+
+    // regex for amount input
+    // only allow one dot and integers, and not more decimal places than possible for the
+    // current asset
+    // https://stackoverflow.com/questions/30435918/regex-pattern-to-have-only-one-dot-and-match-integer-and-decimal-numbers
+    const amountInputRegex = new RegExp(`^\\d+(\\.\\d{0,${amountInputMaxDecimals}})?$`);
+
     this.setState({
-      assetToSend: this.props.assets.find((a) => a.symbol === newSymbol),
+      assetToSend,
+      amountInputRegex,
     });
   }
 
@@ -216,6 +242,7 @@ TransferForm.propTypes = {
   assets: PropTypes.array.isRequired,
   currentWalletUsdBalance: PropTypes.number.isRequired,
   prices: PropTypes.object.isRequired,
+  supportedAssets: PropTypes.object.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,
   recipients: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
