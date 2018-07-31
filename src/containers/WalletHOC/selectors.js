@@ -151,18 +151,13 @@ const makeSelectWalletsWithInfo = () => createSelector(
         walletBalances = balances.get(wallet.get('address'));
         walletBalances = walletBalances.set('assets', walletBalances.get('assets').map((asset) => {
           let walletAsset = asset;
-          const supportedAssetIndex = supportedAssets
+
+          const supportedAssetInfo = supportedAssets
             .get('assets')
-            .findIndex((t) => t.get('currency') === asset.get('currency'));
-
-          const priceIndex = prices
+            .find((a) => a.get('currency') === asset.get('currency'));
+          const priceInfo = prices
             .get('assets')
-            .findIndex((t) => t.get('currency') === asset.get('currency'));
-
-
-          const supportedAssetInfo = supportedAssets.getIn(['assets', supportedAssetIndex]);
-
-          const priceInfo = prices.getIn(['assets', priceIndex]);
+            .find((p) => p.get('currency') === asset.get('currency'));
 
           // Remove redundant value
           walletAsset = walletAsset.delete('address');
