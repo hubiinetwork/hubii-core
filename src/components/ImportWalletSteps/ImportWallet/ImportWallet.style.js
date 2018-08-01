@@ -5,6 +5,8 @@ import Button from '../../ui/Button';
 export const Coins = styled(Radio.Group)`
   margin-top: 40px;
   margin-bottom: 50px;
+  padding-left: 27px;
+  padding-right: 27px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
