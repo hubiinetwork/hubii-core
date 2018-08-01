@@ -17,8 +17,6 @@ import {
   FinishButton,
   SeedWrapper,
   CenterWrapper,
-  HBT,
-  HBTtext,
   StyledSpin,
 } from './AddWallet.style';
 
@@ -86,8 +84,7 @@ class AddWallet extends React.PureComponent {
     return (
       <div>
         <CenterWrapper>
-          <HBT src={getAbsolutePath('public/images/assets/HBT.svg')} alt="hubii logo" />
-          <HBTtext>Hubii</HBTtext>
+          <img src={getAbsolutePath('public/images/hubiit-token-with-text.svg')} alt="hubii logo" />
         </CenterWrapper>
         <Row justify="center" type="flex">
           <Col span={18}>
