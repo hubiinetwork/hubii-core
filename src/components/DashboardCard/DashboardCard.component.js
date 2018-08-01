@@ -22,7 +22,7 @@ DashboardCard.propTypes = {
   /**
    * title to show on dashboard card.
    */
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
 
   /**
    * antd icon to show on dashboard card with title.
