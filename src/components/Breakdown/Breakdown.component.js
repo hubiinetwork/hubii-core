@@ -36,7 +36,7 @@ const Breakdown = ({ data, value }) => {
             <VictoryTooltip
               flyoutStyle={{ stroke: 'transparent', fill: 'rgba(0,0,0,0.5)' }}
               style={{ fill: 'white' }}
-              width={95}
+              width={90}
             />
           }
           innerRadius={90}
