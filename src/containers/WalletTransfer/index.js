@@ -55,7 +55,7 @@ export class WalletTransfer extends React.PureComponent {
     if (currentWalletWithInfo.getIn(['balances', 'loading'])) {
       return <PageLoadingIndicator pageType="wallet" id={currentWalletWithInfo.get('address')} />;
     } else if (currentWalletWithInfo.getIn(['balances', 'error'])) {
-      return <LoadingError pageType="wallet" error="Failed to fetch wallet data" id={currentWalletWithInfo.get('address')} />;
+      return <LoadingError pageType="wallet" error={{ message: 'Failed to fetch wallet data' }} id={currentWalletWithInfo.get('address')} />;
     }
     return (
       <TransferForm
