@@ -2,12 +2,13 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { fromJS } from 'immutable';
 import { WalletTransfer, mapDispatchToProps } from '../index';
-import { pricesMock, walletsWithInfoMock, walletsMock, contactsMock } from '../../WalletHOC/tests/mocks';
+import { pricesMock, walletsWithInfoMock, walletsMock, contactsMock, supportedAssetsMock } from '../../WalletHOC/tests/mocks';
 
 describe('WalletTransfer', () => {
   const props = {
     prices: pricesMock,
     currentWallet: walletsMock.get(0),
+    supportedAssets: supportedAssetsMock,
     currentWalletWithInfo: walletsWithInfoMock.get(0),
     contacts: contactsMock,
     transfer: () => {},
@@ -29,6 +30,16 @@ describe('WalletTransfer', () => {
       <WalletTransfer
         {...props}
         currentWalletWithInfo={walletsWithInfoMock.get(0).setIn(['balances', 'loading'], true)}
+      />
+        );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when balances are in an error state', () => {
+    const wrapper = shallow(
+      <WalletTransfer
+        {...props}
+        currentWalletWithInfo={walletsWithInfoMock.get(0).setIn(['balances', 'error'], { message: 'some error' })}
       />
         );
     expect(wrapper).toMatchSnapshot();
