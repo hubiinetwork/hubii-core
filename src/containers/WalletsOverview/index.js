@@ -56,8 +56,9 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
       >
         <WalletItemCard
           name={wallet.name}
-          totalBalance={wallet.balances.loading ? 0 : wallet.balances.total.usd}
+          totalBalance={(wallet.balances.loading || wallet.balances.error) ? 0 : wallet.balances.total.usd.toNumber()}
           balancesLoading={wallet.balances.loading}
+          balancesError={!!wallet.balances.error}
           address={wallet.address}
           type={wallet.type}
           connected={wallet.type === 'lns' ? this.props.ledgerNanoSInfo.get('id') === wallet.deviceId : null}
@@ -89,7 +90,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
             {
               <Breakdown
                 data={this.getBreakdown()}
-                value={this.props.totalBalances.get('totalUsd')}
+                value={(+this.props.totalBalances.get('totalUsd').toFixed(6)).toString()}
               />
             }
           </Col>

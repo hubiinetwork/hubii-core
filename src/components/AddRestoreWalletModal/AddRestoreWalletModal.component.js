@@ -11,9 +11,7 @@ import {
   Arrow,
   IconWrapper,
   TextWhite,
-  DescriptionWrapper,
-  TextGrey,
-  Info,
+  Container,
 } from './AddRestoreWalletModal.style';
 import { AddWallet } from './AddWallet';
 import ImportWalletSteps from '../ImportWalletSteps';
@@ -38,7 +36,7 @@ export default class AddRestoreWalletModal extends React.Component {
     return (
       <div>
         {modalType === 'main' && (
-          <div>
+          <Container>
             <TitleDiv>
               Add / Restore Wallet<br />
               <Description>Please select what you want to do</Description>
@@ -57,17 +55,7 @@ export default class AddRestoreWalletModal extends React.Component {
                 <TextWhite>Create New Wallet</TextWhite>
               </Wrapper>
             </ButtonDiv>
-
-            <DescriptionWrapper>
-              <div style={{ display: 'flex', width: '47%' }}>
-                <Info type="info-circle-o" />
-                <TextGrey>
-                  Description of what each option do, lorem ipsum dolor sit amet
-                  lorem ipsum dolor sit amet.
-                </TextGrey>
-              </div>
-            </DescriptionWrapper>
-          </div>
+          </Container>
         )}
         {modalType === 'add' && (
           <div>
@@ -82,7 +70,7 @@ export default class AddRestoreWalletModal extends React.Component {
                 <Arrow
                   type="arrow-left"
                   onClick={() => this.switchModals('main')}
-                />New Hubii Wallet
+                />Create a wallet
               </IconWrapper>
             </div>
             <AddWallet loading={loading.toJS().creatingWallet} handleSubmit={this.props.handleAddWalletSubmit} />

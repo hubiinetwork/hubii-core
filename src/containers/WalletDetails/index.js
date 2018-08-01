@@ -2,6 +2,7 @@ import { Icon, Tabs } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { fromJS } from 'immutable';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Route, Redirect } from 'react-router';
@@ -47,7 +48,7 @@ export class WalletDetails extends React.PureComponent {
   render() {
     const { history, match, currentWalletDetails } = this.props;
     const currentWallet = currentWalletDetails;
-    if (!currentWallet) {
+    if (!currentWallet || currentWallet === fromJS({})) {
       return (null);
     }
     return (
@@ -57,7 +58,7 @@ export class WalletDetails extends React.PureComponent {
             iconType="home"
             name={currentWallet.get('name')}
             address={currentWallet.get('address')}
-            balance={currentWallet.getIn(['balances', 'total', 'usd'])}
+            balance={currentWallet.getIn(['balances', 'total', 'usd']).toNumber()}
             onIconClick={this.onHomeClick}
           />
         </TabsLayout>

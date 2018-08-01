@@ -3,11 +3,13 @@ import styled from 'styled-components';
 
 export default styled(Modal)`
   .ant-modal-content {
+    padding-top: 5px;
     border-radius: 8px;
     background-color: ${({ theme }) => theme.palette.primary3};
     color: ${({ theme }) => theme.palette.light};
   }
   .ant-modal-close-x {
+    padding-top: 5px;
     color: ${({ theme }) => theme.palette.info};
     font-size: 24px;
     &:hover {

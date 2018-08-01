@@ -2,12 +2,13 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { fromJS } from 'immutable';
 import { WalletTransfer, mapDispatchToProps } from '../index';
-import { pricesMock, walletsWithInfoMock, walletsMock, contactsMock } from '../../WalletHOC/tests/mocks';
+import { pricesMock, walletsWithInfoMock, walletsMock, contactsMock, supportedAssetsMock } from '../../WalletHOC/tests/mocks';
 
 describe('WalletTransfer', () => {
   const props = {
     prices: pricesMock,
     currentWallet: walletsMock.get(0),
+    supportedAssets: supportedAssetsMock,
     currentWalletWithInfo: walletsWithInfoMock.get(0),
     contacts: contactsMock,
     transfer: () => {},
@@ -34,6 +35,16 @@ describe('WalletTransfer', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('should render correctly when balances are in an error state', () => {
+    const wrapper = shallow(
+      <WalletTransfer
+        {...props}
+        currentWalletWithInfo={walletsWithInfoMock.get(0).setIn(['balances', 'error'], { message: 'some error' })}
+      />
+        );
+    expect(wrapper).toMatchSnapshot();
+  });
+
   describe('#onSend', () => {
     it('should trigger transfer action', () => {
       const transferSpy = jest.fn();
@@ -46,7 +57,7 @@ describe('WalletTransfer', () => {
         />
         );
       const instance = wrapper.instance();
-      const token = 'token';
+      const token = 'BOKKY';
       const toAddress = 'abcd';
       const amount = 1;
       const gasPrice = 1;
@@ -59,6 +70,7 @@ describe('WalletTransfer', () => {
         amount,
         gasPrice,
         gasLimit,
+        contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
       };
       expect(transferSpy).toBeCalledWith(args);
     });

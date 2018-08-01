@@ -1,4 +1,5 @@
 import { providers } from 'ethers';
+import BigNumber from 'bignumber.js';
 import fatalError from './fatalError';
 
 export const ERC20ABI = [
@@ -55,7 +56,10 @@ export const isValidPrivateKey = (str) => {
   return false;
 };
 
-export const gweiToWei = (gwei) => (gwei * (10 ** 9));
+// input and output are BigNumber
+export const gweiToWei = (gwei) => (gwei.times(new BigNumber('10').pow('9')));
+
+export const gweiToEther = (gwei) => (gwei.times(new BigNumber('10').pow('-9')));
 
 export const EthNetworkProvider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
 
@@ -68,3 +72,4 @@ export const getTransactionCount = (...args) => EthNetworkProvider.getTransactio
 export const sendTransaction = (...args) => EthNetworkProvider.sendTransaction(...args);
 
 export const getTransaction = (...args) => EthNetworkProvider.getTransaction(...args);
+

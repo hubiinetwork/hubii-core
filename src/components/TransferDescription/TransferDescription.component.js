@@ -13,7 +13,7 @@ import {
   StyledSpin,
   StyledErrorCol,
 } from './TransferDescription.style';
-import TransferDescriptionList from '../TransferDescriptionList';
+import TransferDescriptionItem from '../TransferDescriptionItem';
 import { formatFiat } from '../../utils/numberFormats';
 
 /**
@@ -40,9 +40,9 @@ export default class TransferDescription extends React.PureComponent {
     } = this.props;
 
     const disableSendButton =
-      amountToSend <= 0 ||
-      ethBalanceAfter.amount <= 0 ||
-      assetBalanceAfter.amount <= 0 ||
+      amountToSend.isNegative() ||
+      ethBalanceAfter.amount.isNegative() ||
+      assetBalanceAfter.amount.isNegative() ||
       (lnsCheck && errors.get('ledgerError'));
     return (
       <WrapperDiv>
@@ -53,10 +53,9 @@ export default class TransferDescription extends React.PureComponent {
           <StyledCol span={12}>Send</StyledCol>
         </Row>
         <Row>
-          <TransferDescriptionList
-            label={amountToSend}
-            labelSymbol={assetToSend.symbol}
-            value={formatFiat(usdValueToSend, 'USD')}
+          <TransferDescriptionItem
+            main={`${amountToSend.toString()} ${assetToSend.symbol}`}
+            subtitle={formatFiat(usdValueToSend.toNumber(), 'USD')}
           />
         </Row>
         <Row>
@@ -69,20 +68,18 @@ export default class TransferDescription extends React.PureComponent {
           <StyledCol span={12}>Fee</StyledCol>
         </Row>
         <Row>
-          <TransferDescriptionList
-            label={transactionFee.amount}
-            labelSymbol="ETH"
-            value={formatFiat(transactionFee.usdValue, 'USD')}
+          <TransferDescriptionItem
+            main={`${transactionFee.amount.toString()} ETH`}
+            subtitle={formatFiat(transactionFee.usdValue.toNumber(), 'USD')}
           />
         </Row>
         <Row>
           <StyledCol span={12}>ETH Balance before</StyledCol>
         </Row>
         <Row>
-          <TransferDescriptionList
-            label={ethBalanceBefore.amount}
-            labelSymbol="ETH"
-            value={formatFiat(ethBalanceBefore.usdValue, 'USD')}
+          <TransferDescriptionItem
+            main={`${ethBalanceBefore.amount.toString()} ETH`}
+            subtitle={formatFiat(ethBalanceBefore.usdValue.toNumber(), 'USD')}
           />
         </Row>
         <Row>
@@ -91,10 +88,9 @@ export default class TransferDescription extends React.PureComponent {
           </StyledCol>
         </Row>
         <Row>
-          <TransferDescriptionList
-            label={ethBalanceAfter.amount}
-            labelSymbol="ETH"
-            value={formatFiat(ethBalanceAfter.usdValue, 'USD')}
+          <TransferDescriptionItem
+            main={`${ethBalanceAfter.amount} ETH`}
+            subtitle={formatFiat(ethBalanceAfter.usdValue.toNumber(), 'USD')}
           />
         </Row>
         {assetToSend.symbol !== 'ETH' &&
@@ -103,10 +99,9 @@ export default class TransferDescription extends React.PureComponent {
             <StyledCol span={12}>{assetToSend.symbol} Balance before</StyledCol>
           </Row>
           <Row>
-            <TransferDescriptionList
-              label={assetBalanceBefore.amount}
-              labelSymbol={assetToSend.symbol}
-              value={formatFiat(assetBalanceBefore.usdValue, 'USD')}
+            <TransferDescriptionItem
+              main={`${assetBalanceBefore.amount} ${assetToSend.symbol}`}
+              subtitle={formatFiat(assetBalanceBefore.usdValue.toNumber(), 'USD')}
             />
           </Row>
           <Row>
@@ -115,10 +110,9 @@ export default class TransferDescription extends React.PureComponent {
           </StyledCol>
           </Row>
           <Row>
-            <TransferDescriptionList
-              label={assetBalanceAfter.amount}
-              labelSymbol={assetToSend.symbol}
-              value={formatFiat(assetBalanceAfter.usdValue, 'USD')}
+            <TransferDescriptionItem
+              main={`${assetBalanceAfter.amount} ${assetToSend.symbol}`}
+              subtitle={formatFiat(assetBalanceAfter.usdValue.toNumber(), 'USD')}
             />
           </Row>
         </div>
@@ -178,7 +172,7 @@ TransferDescription.propTypes = {
   /**
    * amount to send in the TransferDescription.
    */
-  amountToSend: PropTypes.number.isRequired,
+  amountToSend: PropTypes.object.isRequired,
 
   /**
    * transactionFee
@@ -223,7 +217,7 @@ TransferDescription.propTypes = {
   /**
    * amount sending to recipient
    */
-  usdValueToSend: PropTypes.number.isRequired,
+  usdValueToSend: PropTypes.object.isRequired,
 
   /**
    * onSend function Callback in the TransferDescription.

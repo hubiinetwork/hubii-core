@@ -7,6 +7,7 @@ import TransferForm from 'components/TransferForm';
 import PageLoadingIndicator from 'components/PageLoadingIndicator';
 import {
   makeSelectCurrentWallet,
+  makeSelectSupportedAssets,
   makeSelectCurrentWalletWithInfo,
   makeSelectPrices,
   makeSelectErrors,
@@ -15,6 +16,7 @@ import {
   makeSelectContacts,
 } from 'containers/ContactBook/selectors';
 import { transfer } from 'containers/WalletHOC/actions';
+import LoadingError from '../../components/LoadingError';
 
 export class WalletTransfer extends React.PureComponent {
   constructor(props) {
@@ -32,8 +34,13 @@ export class WalletTransfer extends React.PureComponent {
   }
 
   onSend(token, toAddress, amount, gasPrice, gasLimit) {
+    let contractAddress;
     const wallet = this.props.currentWalletWithInfo.toJS();
-    this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit });
+    if (token !== 'ETH') {
+      const asset = wallet.balances.assets.find((ast) => ast.symbol === token);
+      contractAddress = asset.currency;
+    }
+    this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit, contractAddress });
   }
 
   onCancel() {
@@ -42,12 +49,18 @@ export class WalletTransfer extends React.PureComponent {
 
   render() {
     const { contacts, currentWallet, prices, currentWalletWithInfo } = this.props;
+    if (!currentWalletWithInfo.getIn(['balances', 'assets'])) {
+      return null;
+    }
     if (currentWalletWithInfo.getIn(['balances', 'loading'])) {
       return <PageLoadingIndicator pageType="wallet" id={currentWalletWithInfo.get('address')} />;
+    } else if (currentWalletWithInfo.getIn(['balances', 'error'])) {
+      return <LoadingError pageType="wallet" error={{ message: 'Failed to fetch wallet data' }} id={currentWalletWithInfo.get('address')} />;
     }
     return (
       <TransferForm
-        currentWalletUsdBalance={currentWalletWithInfo.getIn(['balances', 'total', 'usd'])}
+        currentWalletUsdBalance={currentWalletWithInfo.getIn(['balances', 'total', 'usd']).toNumber()}
+        supportedAssets={this.props.supportedAssets}
         prices={prices.toJS()}
         recipients={contacts.toJS()}
         assets={currentWalletWithInfo.getIn(['balances', 'assets']).toJS()}
@@ -55,7 +68,7 @@ export class WalletTransfer extends React.PureComponent {
         onCancel={this.onCancel}
         transfering={currentWallet.toJS().transfering}
         errors={this.props.errors}
-        currentWalletDetails={this.props.currentWalletWithInfo}
+        currentWalletWithInfo={this.props.currentWalletWithInfo}
       />
     );
   }
@@ -64,6 +77,7 @@ export class WalletTransfer extends React.PureComponent {
 WalletTransfer.propTypes = {
   currentWalletWithInfo: PropTypes.object.isRequired,
   currentWallet: PropTypes.object.isRequired,
+  supportedAssets: PropTypes.object.isRequired,
   transfer: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   prices: PropTypes.object.isRequired,
@@ -74,6 +88,7 @@ WalletTransfer.propTypes = {
 const mapStateToProps = createStructuredSelector({
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
   currentWallet: makeSelectCurrentWallet(),
+  supportedAssets: makeSelectSupportedAssets(),
   prices: makeSelectPrices(),
   contacts: makeSelectContacts(),
   errors: makeSelectErrors(),
