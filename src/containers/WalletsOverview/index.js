@@ -17,7 +17,7 @@ import { SectionHeading } from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
 
-import { WalletCardsCol, Wrapper } from './style';
+import { WalletCardsCol, Wrapper, WalletPlaceHolder } from './style';
 import { getCurrencySymbol } from '../../utils/wallet';
 
 export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -46,6 +46,13 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
   renderWalletCards() {
     const wallets = this.props.walletsWithInfo.toJS();
+    if (wallets.length === 0) {
+      return (
+        <WalletPlaceHolder>
+          No wallets available currently. Please click &apos;Add / Restore Wallet&apos; button to add wallets.
+        </WalletPlaceHolder>
+      );
+    }
     return wallets.map((wallet) => (
       <WalletCardsCol
         span={12}

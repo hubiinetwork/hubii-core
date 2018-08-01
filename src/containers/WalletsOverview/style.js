@@ -8,3 +8,6 @@ export const WalletCardsCol = styled(Col)`
 export const Wrapper = styled.div`
   margin-left: 2rem;
 `;
+export const WalletPlaceHolder = styled.div`
+  color: ${({ theme }) => theme.palette.secondary};
+`;
