@@ -85,5 +85,5 @@ const Styledimg = styled.img`
 const StriimImage = styled.img`
   height: 30px;
   width: 35px;
-`
+`;
 export { SideBarLayout, SideBarMenu, MenuItemIcon, Styledimg, StriimImage };
