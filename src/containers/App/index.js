@@ -13,6 +13,7 @@
 
 import React from 'react';
 import { compose } from 'redux';
+import Helmet from 'react-helmet';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { getAbsolutePath } from 'utils/electron';
@@ -51,6 +52,9 @@ export function App() {
   ];
   return (
     <SideBar menuItems={menuItems} logoSrc={getAbsolutePath('public/images/hubii-core-logo.svg')}>
+      <Helmet>
+        <title>hubii core</title>
+      </Helmet>
       <Switch>
         <Route exact path="/" component={HomeScreen} />
         <Route path="/wallets" component={WalletManager} />
