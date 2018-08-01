@@ -6,6 +6,7 @@
 import { eventChannel } from 'redux-saga';
 import { takeLatest, takeEvery, call, put } from 'redux-saga/effects';
 import { expectSaga, testSaga } from 'redux-saga-test-plan';
+import BigNumber from 'bignumber.js';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 
 import { requestWalletAPI } from 'utils/request';
@@ -21,7 +22,8 @@ import {
   encryptedMock,
   addressMock,
   privateKeyNoPrefixMock,
-  transferActionParamsMock,
+  transferEthActionParamsMock,
+  transferErc20ActionParamsMock,
   softwareSignedTransactionMock,
   confirmedTransactionMock,
   lnsSignedTxMock,
@@ -655,25 +657,6 @@ describe('load wallets saga', () => {
       transactionIndex: 9,
       raw: 'raw',
     };
-    // const formatedTransaction = {
-    //   timestamp,
-    //   token: 'ETH',
-    //   from: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a',
-    //   to: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
-    //   hash: '0x3c63ecb423263552cfc3e373778bf8244d490b06823b4b2f3203343ecb8f0518',
-    //   value: 1,
-    //   input: '0x',
-    //   success: true,
-    //   original: confirmedTransaction,
-    // };
-    const params = {
-      token: 'ETH',
-      toAddress: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
-      amount: 0.0001,
-      gasPrice: 30000,
-      gasLimit: 21000,
-      wallet: { encrypted: {}, decrypted: {} },
-    };
     let called = 0;
     return expectSaga(walletHoc)
       .provide({
@@ -689,7 +672,7 @@ describe('load wallets saga', () => {
         },
       })
       .withReducer(withReducer, fromJS(storeState))
-      .dispatch(transferAction(params))
+      .dispatch(transferAction(transferEthActionParamsMock))
       .put(transferSuccess(signedTransaction, 'ETH'))// send signed transaction
       // .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
       .run({ silenceTimeout: true });
@@ -748,26 +731,6 @@ describe('load wallets saga', () => {
       transactionIndex: 9,
       raw: 'raw',
     };
-    // const formatedTransaction = {
-    //   timestamp: new Date().getTime(),
-    //   token: 'BOKKY',
-    //   from: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
-    //   to: '0x994c3de8cc5bc781183205a3dd6e175be1e6f14a',
-    //   hash: '0x3c63ecb423263552cfc3e373778bf8244d490b06823b4b2f3203343ecb8f0518',
-    //   value: 0.0001,
-    //   input: signedTransaction.data,
-    //   success: true,
-    //   original: confirmedTransaction,
-    // };
-    const params = {
-      token: 'BOKKY',
-      toAddress: '0x994c3de8cc5bc781183205a3dd6e175be1e6f14a',
-      amount: 0.0001,
-      gasPrice: 3000000,
-      gasLimit: 210000,
-      wallet: { encrypted: {}, decrypted: {} },
-      contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
-    };
     let called = 0;
     return expectSaga(walletHoc)
       .provide({
@@ -783,16 +746,9 @@ describe('load wallets saga', () => {
         },
       })
       .withReducer(withReducer, fromJS(storeState))
-      .dispatch(transferAction(params))
+      .dispatch(transferAction(transferErc20ActionParamsMock))
       .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
-      // .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
       .run({ silenceTimeout: true });
-      // .then((result) => {
-      //   const walletHocState = result.storeState.get('walletHoc');
-      //   expect(walletHocState.getIn(['pendingTransactions']).count()).toEqual(0);
-      //   expect(walletHocState.getIn(['confirmedTransactions']).count()).toEqual(1);
-      //   expect(walletHocState.getIn(['confirmedTransactions']).get(0)).toEqual(fromJS(formatedTransaction));
-      // });
   });
 
   describe('payment transfer', () => {
@@ -839,7 +795,7 @@ describe('load wallets saga', () => {
             },
           })
           .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-          .dispatch(transferAction(transferActionParamsMock))
+          .dispatch(transferAction(transferEthActionParamsMock))
           .put(transferSuccess(softwareSignedTransactionMock, 'ETH'))// send signed transaction
           .run({ silenceTimeout: true });
       });
@@ -903,8 +859,8 @@ describe('load wallets saga', () => {
         const params = {
           token: 'BOKKY',
           toAddress: '0x994c3de8cc5bc781183205a3dd6e175be1e6f14a',
-          amount: 0.0001,
-          gasPrice: 3000000,
+          amount: new BigNumber(10238918899999),
+          gasPrice: new BigNumber(3000000),
           gasLimit: 210000,
           wallet: { encrypted: {}, decrypted: {} },
           contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
@@ -963,7 +919,11 @@ describe('load wallets saga', () => {
         });
         const nonce = 16;
         let signedTxHex;
-        const params = { ...transferActionParamsMock, amount: utils.parseEther(transferActionParamsMock.amount.toString()) };
+        const params = {
+          ...transferErc20ActionParamsMock,
+          gasPrice: utils.parseEther(transferErc20ActionParamsMock.gasPrice.toString()),
+          amount: utils.parseEther(transferErc20ActionParamsMock.amount.toString()),
+        };
         return expectSaga(sendTransactionByLedger, params)
           .provide({
             call(effect) {

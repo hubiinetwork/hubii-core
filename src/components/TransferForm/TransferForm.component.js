@@ -2,7 +2,7 @@ import React from 'react';
 import { Col } from 'antd';
 import BigNumber from 'bignumber.js';
 import PropTypes from 'prop-types';
-import { gweiToWei } from 'utils/wallet';
+import { gweiToWei, gweiToEther } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
 import { getAbsolutePath } from 'utils/electron';
 import {
@@ -30,7 +30,7 @@ export default class TransferForm extends React.PureComponent {
     super(props);
 
     // max decimals possible for current asset
-    const amountInputMaxDecimals = this.props.supportedAssets
+    const assetToSendMaxDecimals = this.props.supportedAssets
       .get('assets')
       .find((a) => a.get('currency') === this.props.assets[0].currency)
       .get('decimals');
@@ -39,16 +39,17 @@ export default class TransferForm extends React.PureComponent {
     // only allow one dot and integers, and not more decimal places than possible for the
     // current asset
     // https://stackoverflow.com/questions/30435918/regex-pattern-to-have-only-one-dot-and-match-integer-and-decimal-numbers
-    const amountInputRegex = new RegExp(`^\\d+(\\.\\d{0,${amountInputMaxDecimals}})?$`);
+    const amountToSendInputRegex = new RegExp(`^\\d+(\\.\\d{0,${assetToSendMaxDecimals}})?$`);
 
     this.state = {
       amountToSendInput: '0',
-      amountToSend: 0,
+      amountToSend: new BigNumber('0'),
       address: this.props.recipients[0] ? this.props.recipients[0].address : '',
       assetToSend: this.props.assets[0],
-      amountInputRegex,
+      assetToSendMaxDecimals,
+      amountToSendInputRegex,
       gasPriceGweiInput: '3',
-      gasPriceGwei: 3,
+      gasPriceGwei: new BigNumber('3'),
       gasLimit: 21000,
     };
     this.handleAmountToSendChange = this.handleAmountToSendChange.bind(this);
@@ -60,28 +61,31 @@ export default class TransferForm extends React.PureComponent {
   }
 
   onSend() {
-    const { assetToSend, address, amountToSend, gasPriceGwei, gasLimit } = this.state;
-    this.props.onSend(assetToSend.symbol, address, amountToSend, gweiToWei(new BigNumber(gasPriceGwei)).toNumber(), gasLimit);
+    const { assetToSend, address, amountToSend, gasPriceGwei, gasLimit, assetToSendMaxDecimals } = this.state;
+
+    // convert amountToSend into wei or equivilent for an ERC20 token
+    const amountToSendWeiOrEquivilent = amountToSend.times(new BigNumber('10').pow(assetToSendMaxDecimals));
+    this.props.onSend(assetToSend.symbol, address, amountToSendWeiOrEquivilent, gweiToWei(gasPriceGwei), gasLimit);
   }
 
   handleAmountToSendChange(e) {
     const { value } = e.target;
-    const { amountInputRegex } = this.state;
+    const { amountToSendInputRegex } = this.state;
 
     // allow an empty input to represent 0
     if (value === '') {
-      this.setState({ amountToSendInput: '', amountToSend: 0 });
+      this.setState({ amountToSendInput: '', amountToSend: new BigNumber('0') });
     }
 
     // don't update if invalid regex (numbers followed by at most 1 . followed by max possible decimals)
-    if (!amountInputRegex.test(value)) return;
+    if (!amountToSendInputRegex.test(value)) return;
 
     // don't update if is an infeasible amount of Ether (> 100x entire circulating supply as of Aug 2018)
     if (!isNaN(value) && Number(value) > 10000000000) return;
 
     // update amount to send if it's a real number
     if (!isNaN(value)) {
-      this.setState({ amountToSend: Number(value) });
+      this.setState({ amountToSend: new BigNumber(value) });
     }
 
     // update the input (this could be an invalid number, such as '12.')
@@ -92,7 +96,7 @@ export default class TransferForm extends React.PureComponent {
     const { value } = e.target;
     // allow an empty input to represent 0
     if (value === '') {
-      this.setState({ gasPriceGwei: 0, gasPriceGweiInput: '' });
+      this.setState({ gasPriceGwei: new BigNumber('0'), gasPriceGweiInput: '' });
     }
 
     // don't update if invalid regex
@@ -108,7 +112,7 @@ export default class TransferForm extends React.PureComponent {
 
     // update actual gwei if it's a real number
     if (!isNaN(value)) {
-      this.setState({ gasPriceGwei: value });
+      this.setState({ gasPriceGwei: new BigNumber(value) });
     }
   }
 
@@ -120,7 +124,7 @@ export default class TransferForm extends React.PureComponent {
     const assetToSend = this.props.assets.find((a) => a.symbol === newSymbol);
 
     // max decimals possible for current asset
-    const amountInputMaxDecimals = this.props.supportedAssets
+    const assetToSendMaxDecimals = this.props.supportedAssets
       .get('assets')
       .find((a) => a.get('currency') === assetToSend.currency)
       .get('decimals');
@@ -129,11 +133,12 @@ export default class TransferForm extends React.PureComponent {
     // only allow one dot and integers, and not more decimal places than possible for the
     // current asset
     // https://stackoverflow.com/questions/30435918/regex-pattern-to-have-only-one-dot-and-match-integer-and-decimal-numbers
-    const amountInputRegex = new RegExp(`^\\d+(\\.\\d{0,${amountInputMaxDecimals}})?$`);
+    const amountToSendInputRegex = new RegExp(`^\\d+(\\.\\d{0,${assetToSendMaxDecimals}})?$`);
 
     this.setState({
       assetToSend,
-      amountInputRegex,
+      amountToSendInputRegex,
+      assetToSendMaxDecimals,
     });
   }
 
@@ -148,30 +153,50 @@ export default class TransferForm extends React.PureComponent {
     const { currentWalletUsdBalance, assets, prices, recipients, transfering } = this.props;
 
     const assetToSendUsdValue = prices.assets.find((a) => a.currency === assetToSend.currency).usd;
-    const usdValueToSend = amountToSend * assetToSendUsdValue;
+    const usdValueToSend = amountToSend.times(assetToSendUsdValue);
     const ethUsdValue = prices.assets.find((a) => a.currency === 'ETH').usd;
 
 
     const ethBalance = this.props.assets.find((currency) => currency.symbol === 'ETH');
 
-    const transactionFee = { amount: (gasPriceGwei * gasLimit) / (10 ** 9), usdValue: ((gasPriceGwei * gasLimit) / (10 ** 9)) * ethUsdValue };
-    const assetBalanceBefore = { amount: assetToSend.balance, usdValue: assetToSend.balance * assetToSendUsdValue };
-    const assetBalanceAfter = { amount: assetBalanceBefore.amount - amountToSend, usdValue: (assetBalanceBefore.amount - amountToSend) * assetToSendUsdValue };
-    const ethBalanceBefore = { amount: ethBalance.balance, usdValue: ethBalance.balance * ethUsdValue };
-
-    const ethBalanceAfterAmount = assetToSend.symbol === 'ETH'
-        ? ethBalanceBefore.amount - amountToSend - transactionFee.amount
-        : ethBalanceBefore.amount - transactionFee.amount;
-    const ethBalanceAfter = {
-      amount: ethBalanceAfterAmount,
-      usdValue: ethBalanceAfterAmount * ethUsdValue,
+    // construct tx fee info
+    const txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit);
+    const txFeeUsdValue = txFeeAmt.times(ethUsdValue);
+    const transactionFee = {
+      amount: txFeeAmt,
+      usdValue: txFeeUsdValue,
     };
 
-    const walletUsdValueAfter = currentWalletUsdBalance - (usdValueToSend + transactionFee.usdValue);
+    // construct asset before and after balances
+    const assetBalanceBefore = {
+      amount: assetToSend.balance,
+      usdValue: assetToSend.balance.times(assetToSendUsdValue),
+    };
+    const assetBalAfterAmt = assetBalanceBefore.amount.minus(amountToSend);
+    const assetBalanceAfter = {
+      amount: assetBalAfterAmt,
+      usdValue: assetBalAfterAmt.times(assetToSendUsdValue),
+    };
+
+    // constuct ether before and after balances
+    const ethBalanceBefore = {
+      amount: ethBalance.balance,
+      usdValue: ethBalance.balance.times(ethUsdValue),
+    };
+
+    const ethBalanceAfterAmount = assetToSend.symbol === 'ETH'
+        ? ethBalanceBefore.amount.minus(amountToSend).minus(transactionFee.amount)
+        : ethBalanceBefore.amount.minus(transactionFee.amount);
+    const ethBalanceAfter = {
+      amount: ethBalanceAfterAmount,
+      usdValue: ethBalanceAfterAmount.times(ethUsdValue),
+    };
+
+    const walletUsdValueAfter = currentWalletUsdBalance - (usdValueToSend.plus(transactionFee.usdValue)).toNumber();
 
     return (
       <Row gutter={24} justify="center">
-        <Col xl={16} sm={22}>
+        <Col xl={14} sm={22}>
           <Form>
             <FormItem
               label={<FormItemLabel>Asset</FormItemLabel>}
@@ -241,7 +266,7 @@ export default class TransferForm extends React.PureComponent {
             </ETHtoDollar>
           </Form>
         </Col>
-        <Col xl={6} sm={22}>
+        <Col xl={9} sm={22}>
           <TransferDescription
             transactionFee={transactionFee}
             amountToSend={amountToSend}
