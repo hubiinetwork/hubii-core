@@ -1,0 +1,2484 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SideBar /> should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SideBar
+    location={
+        Object {
+            "pathname": "hello/world",
+          }
+    }
+    logoSrc="../../../public/images/hubii-core-logo.svg"
+    menuItems={
+        Array [
+            Object {
+              "icon": "wallet",
+              "name": "Wallet Manager",
+              "to": "/wallets",
+            },
+            Object {
+              "icon": "striim",
+              "name": "striim detail",
+              "to": "/wallet",
+            },
+            Object {
+              "icon": "dex",
+              "name": "dex detail",
+              "to": "/dex",
+            },
+          ]
+    }
+>
+    <Switch>
+        <Route
+            component={[Function]}
+            exact={true}
+            path="/"
+        />
+        <Route
+            component={[Function]}
+            path="/wallets"
+        />
+        <Route
+            component={[Function]}
+            path="/wallet/:address"
+        />
+        <Route
+            component={[Function]}
+            path="/striim"
+        />
+        <Redirect
+            from="/"
+            push={false}
+            to="/wallets"
+        />
+    </Switch>
+</SideBar>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Sider
+          collapsed={true}
+          collapsedWidth="72"
+          collapsible={false}
+          defaultCollapsed={false}
+          prefixCls="ant-layout-sider"
+          reverseArrow={false}
+          style={Object {}}
+          theme="dark"
+          trigger={null}
+          width={200}
+>
+          <SideBar.style__SideBarMenu
+                    defaultSelectedKeys={
+                              Array [
+                                        "/wallets",
+                                      ]
+                    }
+                    mode="inline"
+                    onSelect={undefined}
+                    selectedKeys={
+                              Array [
+                                        "/world",
+                                      ]
+                    }
+          >
+                    <MenuItem
+                              className="menu-logo"
+                    >
+                              <Link
+                                        replace={false}
+                                        to="/"
+                              >
+                                        <div>
+                                                  <img
+                                                            alt="logo"
+                                                            className="anticon anticon-wallet logo-icon"
+                                                            src="../../../public/images/hubii-core-logo.svg"
+                                                  />
+                                                  <span>
+                                                            hubii core
+                                                  </span>
+                                        </div>
+                              </Link>
+                    </MenuItem>
+                    <MenuItem
+                              className="menu-wallet"
+                    >
+                              <Link
+                                        replace={false}
+                                        to="/wallets"
+                              >
+                                        <div
+                                                  style={
+                                                            Object {
+                                                                      "alignItems": "center",
+                                                                      "display": "flex",
+                                                                      "justifyContent": "center",
+                                                                    }
+                                                  }
+                                        >
+                                                  <SvgIcon
+                                                            size={24}
+                                                            style={Object {}}
+                                                            viewBox="0 0 24 24"
+                                                  >
+                                                            <path
+                                                                      d="M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z"
+                                                                      fill="#404f56"
+                                                            />
+                                                  </SvgIcon>
+                                        </div>
+                              </Link>
+                    </MenuItem>
+                    <MenuItem
+                              className="menu-wallet"
+                    >
+                              <Link
+                                        replace={false}
+                                        to="/wallet"
+                              >
+                                        <div
+                                                  style={
+                                                            Object {
+                                                                      "alignItems": "center",
+                                                                      "display": "flex",
+                                                                      "justifyContent": "center",
+                                                                    }
+                                                  }
+                                        >
+                                                  <SideBar.style__StriimImage
+                                                            alt="darkImage"
+                                                            src="/public/images/striim-dark.png"
+                                                  />
+                                        </div>
+                              </Link>
+                    </MenuItem>
+                    <MenuItem
+                              className="menu-wallet"
+                    >
+                              <Link
+                                        replace={false}
+                                        to="/dex"
+                              >
+                                        <div
+                                                  style={
+                                                            Object {
+                                                                      "alignItems": "center",
+                                                                      "display": "flex",
+                                                                      "justifyContent": "center",
+                                                                    }
+                                                  }
+                                        >
+                                                  <SvgIcon
+                                                            size={24}
+                                                            style={Object {}}
+                                                            viewBox="0 0 28 16"
+                                                  >
+                                                            <g
+                                                                      fill="none"
+                                                                      fillRule="evenodd"
+                                                                      transform="translate(-2 -8)"
+                                                            >
+                                                                      <polygon
+                                                                                points="0 0 32 0 32 32 0 32"
+                                                                      />
+                                                                      <polygon
+                                                                                fill="#404f56"
+                                                                                fillRule="nonzero"
+                                                                                points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+                                                                      />
+                                                            </g>
+                                                  </SvgIcon>
+                                        </div>
+                              </Link>
+                    </MenuItem>
+                    <MenuItem
+                              className="menu-setting"
+                    >
+                              <Link
+                                        replace={false}
+                                        to="/settings"
+                              >
+                                        <div>
+                                                  <Icon
+                                                            className="setting-icon"
+                                                            type="setting"
+                                                  />
+                                                  <span>
+                                                            Settings
+                                                  </span>
+                                        </div>
+                              </Link>
+                    </MenuItem>
+          </SideBar.style__SideBarMenu>
+</Sider>,
+        <Switch>
+          <Route
+                    component={[Function]}
+                    exact={true}
+                    path="/"
+          />
+          <Route
+                    component={[Function]}
+                    path="/wallets"
+          />
+          <Route
+                    component={[Function]}
+                    path="/wallet/:address"
+          />
+          <Route
+                    component={[Function]}
+                    path="/striim"
+          />
+          <Redirect
+                    from="/"
+                    push={false}
+                    to="/wallets"
+          />
+</Switch>,
+      ],
+      "style": Object {
+        "minHeight": "100vh",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <SideBar.style__SideBarMenu
+            defaultSelectedKeys={
+                        Array [
+                                    "/wallets",
+                                  ]
+            }
+            mode="inline"
+            onSelect={undefined}
+            selectedKeys={
+                        Array [
+                                    "/world",
+                                  ]
+            }
+>
+            <MenuItem
+                        className="menu-logo"
+            >
+                        <Link
+                                    replace={false}
+                                    to="/"
+                        >
+                                    <div>
+                                                <img
+                                                            alt="logo"
+                                                            className="anticon anticon-wallet logo-icon"
+                                                            src="../../../public/images/hubii-core-logo.svg"
+                                                />
+                                                <span>
+                                                            hubii core
+                                                </span>
+                                    </div>
+                        </Link>
+            </MenuItem>
+            <MenuItem
+                        className="menu-wallet"
+            >
+                        <Link
+                                    replace={false}
+                                    to="/wallets"
+                        >
+                                    <div
+                                                style={
+                                                            Object {
+                                                                        "alignItems": "center",
+                                                                        "display": "flex",
+                                                                        "justifyContent": "center",
+                                                                      }
+                                                }
+                                    >
+                                                <SvgIcon
+                                                            size={24}
+                                                            style={Object {}}
+                                                            viewBox="0 0 24 24"
+                                                >
+                                                            <path
+                                                                        d="M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z"
+                                                                        fill="#404f56"
+                                                            />
+                                                </SvgIcon>
+                                    </div>
+                        </Link>
+            </MenuItem>
+            <MenuItem
+                        className="menu-wallet"
+            >
+                        <Link
+                                    replace={false}
+                                    to="/wallet"
+                        >
+                                    <div
+                                                style={
+                                                            Object {
+                                                                        "alignItems": "center",
+                                                                        "display": "flex",
+                                                                        "justifyContent": "center",
+                                                                      }
+                                                }
+                                    >
+                                                <SideBar.style__StriimImage
+                                                            alt="darkImage"
+                                                            src="/public/images/striim-dark.png"
+                                                />
+                                    </div>
+                        </Link>
+            </MenuItem>
+            <MenuItem
+                        className="menu-wallet"
+            >
+                        <Link
+                                    replace={false}
+                                    to="/dex"
+                        >
+                                    <div
+                                                style={
+                                                            Object {
+                                                                        "alignItems": "center",
+                                                                        "display": "flex",
+                                                                        "justifyContent": "center",
+                                                                      }
+                                                }
+                                    >
+                                                <SvgIcon
+                                                            size={24}
+                                                            style={Object {}}
+                                                            viewBox="0 0 28 16"
+                                                >
+                                                            <g
+                                                                        fill="none"
+                                                                        fillRule="evenodd"
+                                                                        transform="translate(-2 -8)"
+                                                            >
+                                                                        <polygon
+                                                                                    points="0 0 32 0 32 32 0 32"
+                                                                        />
+                                                                        <polygon
+                                                                                    fill="#404f56"
+                                                                                    fillRule="nonzero"
+                                                                                    points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+                                                                        />
+                                                            </g>
+                                                </SvgIcon>
+                                    </div>
+                        </Link>
+            </MenuItem>
+            <MenuItem
+                        className="menu-setting"
+            >
+                        <Link
+                                    replace={false}
+                                    to="/settings"
+                        >
+                                    <div>
+                                                <Icon
+                                                            className="setting-icon"
+                                                            type="setting"
+                                                />
+                                                <span>
+                                                            Settings
+                                                </span>
+                                    </div>
+                        </Link>
+            </MenuItem>
+</SideBar.style__SideBarMenu>,
+          "collapsed": true,
+          "collapsedWidth": "72",
+          "collapsible": false,
+          "defaultCollapsed": false,
+          "prefixCls": "ant-layout-sider",
+          "reverseArrow": false,
+          "style": Object {},
+          "theme": "dark",
+          "trigger": null,
+          "width": 200,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <MenuItem
+                className="menu-logo"
+>
+                <Link
+                                replace={false}
+                                to="/"
+                >
+                                <div>
+                                                <img
+                                                                alt="logo"
+                                                                className="anticon anticon-wallet logo-icon"
+                                                                src="../../../public/images/hubii-core-logo.svg"
+                                                />
+                                                <span>
+                                                                hubii core
+                                                </span>
+                                </div>
+                </Link>
+</MenuItem>,
+              Array [
+                <MenuItem
+                  className="menu-wallet"
+>
+                  <Link
+                                    replace={false}
+                                    to="/wallets"
+                  >
+                                    <div
+                                                      style={
+                                                                        Object {
+                                                                                          "alignItems": "center",
+                                                                                          "display": "flex",
+                                                                                          "justifyContent": "center",
+                                                                                        }
+                                                      }
+                                    >
+                                                      <SvgIcon
+                                                                        size={24}
+                                                                        style={Object {}}
+                                                                        viewBox="0 0 24 24"
+                                                      >
+                                                                        <path
+                                                                                          d="M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z"
+                                                                                          fill="#404f56"
+                                                                        />
+                                                      </SvgIcon>
+                                    </div>
+                  </Link>
+</MenuItem>,
+                <MenuItem
+                  className="menu-wallet"
+>
+                  <Link
+                                    replace={false}
+                                    to="/wallet"
+                  >
+                                    <div
+                                                      style={
+                                                                        Object {
+                                                                                          "alignItems": "center",
+                                                                                          "display": "flex",
+                                                                                          "justifyContent": "center",
+                                                                                        }
+                                                      }
+                                    >
+                                                      <SideBar.style__StriimImage
+                                                                        alt="darkImage"
+                                                                        src="/public/images/striim-dark.png"
+                                                      />
+                                    </div>
+                  </Link>
+</MenuItem>,
+                <MenuItem
+                  className="menu-wallet"
+>
+                  <Link
+                                    replace={false}
+                                    to="/dex"
+                  >
+                                    <div
+                                                      style={
+                                                                        Object {
+                                                                                          "alignItems": "center",
+                                                                                          "display": "flex",
+                                                                                          "justifyContent": "center",
+                                                                                        }
+                                                      }
+                                    >
+                                                      <SvgIcon
+                                                                        size={24}
+                                                                        style={Object {}}
+                                                                        viewBox="0 0 28 16"
+                                                      >
+                                                                        <g
+                                                                                          fill="none"
+                                                                                          fillRule="evenodd"
+                                                                                          transform="translate(-2 -8)"
+                                                                        >
+                                                                                          <polygon
+                                                                                                            points="0 0 32 0 32 32 0 32"
+                                                                                          />
+                                                                                          <polygon
+                                                                                                            fill="#404f56"
+                                                                                                            fillRule="nonzero"
+                                                                                                            points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+                                                                                          />
+                                                                        </g>
+                                                      </SvgIcon>
+                                    </div>
+                  </Link>
+</MenuItem>,
+              ],
+              <MenuItem
+                className="menu-setting"
+>
+                <Link
+                                replace={false}
+                                to="/settings"
+                >
+                                <div>
+                                                <Icon
+                                                                className="setting-icon"
+                                                                type="setting"
+                                                />
+                                                <span>
+                                                                Settings
+                                                </span>
+                                </div>
+                </Link>
+</MenuItem>,
+            ],
+            "defaultSelectedKeys": Array [
+              "/wallets",
+            ],
+            "mode": "inline",
+            "onSelect": undefined,
+            "selectedKeys": Array [
+              "/world",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "/",
+              "nodeType": "class",
+              "props": Object {
+                "children": <Link
+                  replace={false}
+                  to="/"
+>
+                  <div>
+                                    <img
+                                                      alt="logo"
+                                                      className="anticon anticon-wallet logo-icon"
+                                                      src="../../../public/images/hubii-core-logo.svg"
+                                    />
+                                    <span>
+                                                      hubii core
+                                    </span>
+                  </div>
+</Link>,
+                "className": "menu-logo",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <div>
+                    <img
+                                        alt="logo"
+                                        className="anticon anticon-wallet logo-icon"
+                                        src="../../../public/images/hubii-core-logo.svg"
+                    />
+                    <span>
+                                        hubii core
+                    </span>
+</div>,
+                  "replace": false,
+                  "to": "/",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <img
+                        alt="logo"
+                        className="anticon anticon-wallet logo-icon"
+                        src="../../../public/images/hubii-core-logo.svg"
+/>,
+                      <span>
+                        hubii core
+</span>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "alt": "logo",
+                        "className": "anticon anticon-wallet logo-icon",
+                        "src": "../../../public/images/hubii-core-logo.svg",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "img",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "hubii core",
+                      },
+                      "ref": null,
+                      "rendered": "hubii core",
+                      "type": "span",
+                    },
+                  ],
+                  "type": "div",
+                },
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "/wallets",
+              "nodeType": "class",
+              "props": Object {
+                "children": <Link
+                  replace={false}
+                  to="/wallets"
+>
+                  <div
+                                    style={
+                                                      Object {
+                                                                        "alignItems": "center",
+                                                                        "display": "flex",
+                                                                        "justifyContent": "center",
+                                                                      }
+                                    }
+                  >
+                                    <SvgIcon
+                                                      size={24}
+                                                      style={Object {}}
+                                                      viewBox="0 0 24 24"
+                                    >
+                                                      <path
+                                                                        d="M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z"
+                                                                        fill="#404f56"
+                                                      />
+                                    </SvgIcon>
+                  </div>
+</Link>,
+                "className": "menu-wallet",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <div
+                    style={
+                                        Object {
+                                                            "alignItems": "center",
+                                                            "display": "flex",
+                                                            "justifyContent": "center",
+                                                          }
+                    }
+>
+                    <SvgIcon
+                                        size={24}
+                                        style={Object {}}
+                                        viewBox="0 0 24 24"
+                    >
+                                        <path
+                                                            d="M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z"
+                                                            fill="#404f56"
+                                        />
+                    </SvgIcon>
+</div>,
+                  "replace": false,
+                  "to": "/wallets",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <SvgIcon
+                        size={24}
+                        style={Object {}}
+                        viewBox="0 0 24 24"
+>
+                        <path
+                                                d="M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z"
+                                                fill="#404f56"
+                        />
+</SvgIcon>,
+                      false,
+                      false,
+                    ],
+                    "style": Object {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "justifyContent": "center",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <path
+                          d="M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z"
+                          fill="#404f56"
+/>,
+                        "size": 24,
+                        "style": Object {},
+                        "viewBox": "0 0 24 24",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "d": "M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z",
+                          "fill": "#404f56",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "path",
+                      },
+                      "type": [Function],
+                    },
+                    false,
+                    false,
+                  ],
+                  "type": "div",
+                },
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "/wallet",
+              "nodeType": "class",
+              "props": Object {
+                "children": <Link
+                  replace={false}
+                  to="/wallet"
+>
+                  <div
+                                    style={
+                                                      Object {
+                                                                        "alignItems": "center",
+                                                                        "display": "flex",
+                                                                        "justifyContent": "center",
+                                                                      }
+                                    }
+                  >
+                                    <SideBar.style__StriimImage
+                                                      alt="darkImage"
+                                                      src="/public/images/striim-dark.png"
+                                    />
+                  </div>
+</Link>,
+                "className": "menu-wallet",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <div
+                    style={
+                                        Object {
+                                                            "alignItems": "center",
+                                                            "display": "flex",
+                                                            "justifyContent": "center",
+                                                          }
+                    }
+>
+                    <SideBar.style__StriimImage
+                                        alt="darkImage"
+                                        src="/public/images/striim-dark.png"
+                    />
+</div>,
+                  "replace": false,
+                  "to": "/wallet",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      false,
+                      <SideBar.style__StriimImage
+                        alt="darkImage"
+                        src="/public/images/striim-dark.png"
+/>,
+                      false,
+                    ],
+                    "style": Object {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "justifyContent": "center",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    false,
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "alt": "darkImage",
+                        "src": "/public/images/striim-dark.png",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    false,
+                  ],
+                  "type": "div",
+                },
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "/dex",
+              "nodeType": "class",
+              "props": Object {
+                "children": <Link
+                  replace={false}
+                  to="/dex"
+>
+                  <div
+                                    style={
+                                                      Object {
+                                                                        "alignItems": "center",
+                                                                        "display": "flex",
+                                                                        "justifyContent": "center",
+                                                                      }
+                                    }
+                  >
+                                    <SvgIcon
+                                                      size={24}
+                                                      style={Object {}}
+                                                      viewBox="0 0 28 16"
+                                    >
+                                                      <g
+                                                                        fill="none"
+                                                                        fillRule="evenodd"
+                                                                        transform="translate(-2 -8)"
+                                                      >
+                                                                        <polygon
+                                                                                          points="0 0 32 0 32 32 0 32"
+                                                                        />
+                                                                        <polygon
+                                                                                          fill="#404f56"
+                                                                                          fillRule="nonzero"
+                                                                                          points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+                                                                        />
+                                                      </g>
+                                    </SvgIcon>
+                  </div>
+</Link>,
+                "className": "menu-wallet",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <div
+                    style={
+                                        Object {
+                                                            "alignItems": "center",
+                                                            "display": "flex",
+                                                            "justifyContent": "center",
+                                                          }
+                    }
+>
+                    <SvgIcon
+                                        size={24}
+                                        style={Object {}}
+                                        viewBox="0 0 28 16"
+                    >
+                                        <g
+                                                            fill="none"
+                                                            fillRule="evenodd"
+                                                            transform="translate(-2 -8)"
+                                        >
+                                                            <polygon
+                                                                                points="0 0 32 0 32 32 0 32"
+                                                            />
+                                                            <polygon
+                                                                                fill="#404f56"
+                                                                                fillRule="nonzero"
+                                                                                points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+                                                            />
+                                        </g>
+                    </SvgIcon>
+</div>,
+                  "replace": false,
+                  "to": "/dex",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      false,
+                      false,
+                      <SvgIcon
+                        size={24}
+                        style={Object {}}
+                        viewBox="0 0 28 16"
+>
+                        <g
+                                                fill="none"
+                                                fillRule="evenodd"
+                                                transform="translate(-2 -8)"
+                        >
+                                                <polygon
+                                                                        points="0 0 32 0 32 32 0 32"
+                                                />
+                                                <polygon
+                                                                        fill="#404f56"
+                                                                        fillRule="nonzero"
+                                                                        points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+                                                />
+                        </g>
+</SvgIcon>,
+                    ],
+                    "style": Object {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "justifyContent": "center",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    false,
+                    false,
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <g
+                          fill="none"
+                          fillRule="evenodd"
+                          transform="translate(-2 -8)"
+>
+                          <polygon
+                                                    points="0 0 32 0 32 32 0 32"
+                          />
+                          <polygon
+                                                    fill="#404f56"
+                                                    fillRule="nonzero"
+                                                    points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+                          />
+</g>,
+                        "size": 24,
+                        "style": Object {},
+                        "viewBox": "0 0 28 16",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            <polygon
+                              points="0 0 32 0 32 32 0 32"
+/>,
+                            <polygon
+                              fill="#404f56"
+                              fillRule="nonzero"
+                              points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+/>,
+                          ],
+                          "fill": "none",
+                          "fillRule": "evenodd",
+                          "transform": "translate(-2 -8)",
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "points": "0 0 32 0 32 32 0 32",
+                            },
+                            "ref": null,
+                            "rendered": null,
+                            "type": "polygon",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "fill": "#404f56",
+                              "fillRule": "nonzero",
+                              "points": "21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8",
+                            },
+                            "ref": null,
+                            "rendered": null,
+                            "type": "polygon",
+                          },
+                        ],
+                        "type": "g",
+                      },
+                      "type": [Function],
+                    },
+                  ],
+                  "type": "div",
+                },
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "/settings",
+              "nodeType": "class",
+              "props": Object {
+                "children": <Link
+                  replace={false}
+                  to="/settings"
+>
+                  <div>
+                                    <Icon
+                                                      className="setting-icon"
+                                                      type="setting"
+                                    />
+                                    <span>
+                                                      Settings
+                                    </span>
+                  </div>
+</Link>,
+                "className": "menu-setting",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <div>
+                    <Icon
+                                        className="setting-icon"
+                                        type="setting"
+                    />
+                    <span>
+                                        Settings
+                    </span>
+</div>,
+                  "replace": false,
+                  "to": "/settings",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <Icon
+                        className="setting-icon"
+                        type="setting"
+/>,
+                      <span>
+                        Settings
+</span>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "className": "setting-icon",
+                        "type": "setting",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Settings",
+                      },
+                      "ref": null,
+                      "rendered": "Settings",
+                      "type": "span",
+                    },
+                  ],
+                  "type": "div",
+                },
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/"
+/>,
+            <Route
+              component={[Function]}
+              path="/wallets"
+/>,
+            <Route
+              component={[Function]}
+              path="/wallet/:address"
+/>,
+            <Route
+              component={[Function]}
+              path="/striim"
+/>,
+            <Redirect
+              from="/"
+              push={false}
+              to="/wallets"
+/>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "component": [Function],
+              "exact": true,
+              "path": "/",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "component": [Function],
+              "path": "/wallets",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "component": [Function],
+              "path": "/wallet/:address",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "component": [Function],
+              "path": "/striim",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "from": "/",
+              "push": false,
+              "to": "/wallets",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Sider
+            collapsed={true}
+            collapsedWidth="72"
+            collapsible={false}
+            defaultCollapsed={false}
+            prefixCls="ant-layout-sider"
+            reverseArrow={false}
+            style={Object {}}
+            theme="dark"
+            trigger={null}
+            width={200}
+>
+            <SideBar.style__SideBarMenu
+                        defaultSelectedKeys={
+                                    Array [
+                                                "/wallets",
+                                              ]
+                        }
+                        mode="inline"
+                        onSelect={undefined}
+                        selectedKeys={
+                                    Array [
+                                                "/world",
+                                              ]
+                        }
+            >
+                        <MenuItem
+                                    className="menu-logo"
+                        >
+                                    <Link
+                                                replace={false}
+                                                to="/"
+                                    >
+                                                <div>
+                                                            <img
+                                                                        alt="logo"
+                                                                        className="anticon anticon-wallet logo-icon"
+                                                                        src="../../../public/images/hubii-core-logo.svg"
+                                                            />
+                                                            <span>
+                                                                        hubii core
+                                                            </span>
+                                                </div>
+                                    </Link>
+                        </MenuItem>
+                        <MenuItem
+                                    className="menu-wallet"
+                        >
+                                    <Link
+                                                replace={false}
+                                                to="/wallets"
+                                    >
+                                                <div
+                                                            style={
+                                                                        Object {
+                                                                                    "alignItems": "center",
+                                                                                    "display": "flex",
+                                                                                    "justifyContent": "center",
+                                                                                  }
+                                                            }
+                                                >
+                                                            <SvgIcon
+                                                                        size={24}
+                                                                        style={Object {}}
+                                                                        viewBox="0 0 24 24"
+                                                            >
+                                                                        <path
+                                                                                    d="M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z"
+                                                                                    fill="#404f56"
+                                                                        />
+                                                            </SvgIcon>
+                                                </div>
+                                    </Link>
+                        </MenuItem>
+                        <MenuItem
+                                    className="menu-wallet"
+                        >
+                                    <Link
+                                                replace={false}
+                                                to="/wallet"
+                                    >
+                                                <div
+                                                            style={
+                                                                        Object {
+                                                                                    "alignItems": "center",
+                                                                                    "display": "flex",
+                                                                                    "justifyContent": "center",
+                                                                                  }
+                                                            }
+                                                >
+                                                            <SideBar.style__StriimImage
+                                                                        alt="darkImage"
+                                                                        src="/public/images/striim-dark.png"
+                                                            />
+                                                </div>
+                                    </Link>
+                        </MenuItem>
+                        <MenuItem
+                                    className="menu-wallet"
+                        >
+                                    <Link
+                                                replace={false}
+                                                to="/dex"
+                                    >
+                                                <div
+                                                            style={
+                                                                        Object {
+                                                                                    "alignItems": "center",
+                                                                                    "display": "flex",
+                                                                                    "justifyContent": "center",
+                                                                                  }
+                                                            }
+                                                >
+                                                            <SvgIcon
+                                                                        size={24}
+                                                                        style={Object {}}
+                                                                        viewBox="0 0 28 16"
+                                                            >
+                                                                        <g
+                                                                                    fill="none"
+                                                                                    fillRule="evenodd"
+                                                                                    transform="translate(-2 -8)"
+                                                                        >
+                                                                                    <polygon
+                                                                                                points="0 0 32 0 32 32 0 32"
+                                                                                    />
+                                                                                    <polygon
+                                                                                                fill="#404f56"
+                                                                                                fillRule="nonzero"
+                                                                                                points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+                                                                                    />
+                                                                        </g>
+                                                            </SvgIcon>
+                                                </div>
+                                    </Link>
+                        </MenuItem>
+                        <MenuItem
+                                    className="menu-setting"
+                        >
+                                    <Link
+                                                replace={false}
+                                                to="/settings"
+                                    >
+                                                <div>
+                                                            <Icon
+                                                                        className="setting-icon"
+                                                                        type="setting"
+                                                            />
+                                                            <span>
+                                                                        Settings
+                                                            </span>
+                                                </div>
+                                    </Link>
+                        </MenuItem>
+            </SideBar.style__SideBarMenu>
+</Sider>,
+          <Switch>
+            <Route
+                        component={[Function]}
+                        exact={true}
+                        path="/"
+            />
+            <Route
+                        component={[Function]}
+                        path="/wallets"
+            />
+            <Route
+                        component={[Function]}
+                        path="/wallet/:address"
+            />
+            <Route
+                        component={[Function]}
+                        path="/striim"
+            />
+            <Redirect
+                        from="/"
+                        push={false}
+                        to="/wallets"
+            />
+</Switch>,
+        ],
+        "style": Object {
+          "minHeight": "100vh",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <SideBar.style__SideBarMenu
+              defaultSelectedKeys={
+                            Array [
+                                          "/wallets",
+                                        ]
+              }
+              mode="inline"
+              onSelect={undefined}
+              selectedKeys={
+                            Array [
+                                          "/world",
+                                        ]
+              }
+>
+              <MenuItem
+                            className="menu-logo"
+              >
+                            <Link
+                                          replace={false}
+                                          to="/"
+                            >
+                                          <div>
+                                                        <img
+                                                                      alt="logo"
+                                                                      className="anticon anticon-wallet logo-icon"
+                                                                      src="../../../public/images/hubii-core-logo.svg"
+                                                        />
+                                                        <span>
+                                                                      hubii core
+                                                        </span>
+                                          </div>
+                            </Link>
+              </MenuItem>
+              <MenuItem
+                            className="menu-wallet"
+              >
+                            <Link
+                                          replace={false}
+                                          to="/wallets"
+                            >
+                                          <div
+                                                        style={
+                                                                      Object {
+                                                                                    "alignItems": "center",
+                                                                                    "display": "flex",
+                                                                                    "justifyContent": "center",
+                                                                                  }
+                                                        }
+                                          >
+                                                        <SvgIcon
+                                                                      size={24}
+                                                                      style={Object {}}
+                                                                      viewBox="0 0 24 24"
+                                                        >
+                                                                      <path
+                                                                                    d="M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z"
+                                                                                    fill="#404f56"
+                                                                      />
+                                                        </SvgIcon>
+                                          </div>
+                            </Link>
+              </MenuItem>
+              <MenuItem
+                            className="menu-wallet"
+              >
+                            <Link
+                                          replace={false}
+                                          to="/wallet"
+                            >
+                                          <div
+                                                        style={
+                                                                      Object {
+                                                                                    "alignItems": "center",
+                                                                                    "display": "flex",
+                                                                                    "justifyContent": "center",
+                                                                                  }
+                                                        }
+                                          >
+                                                        <SideBar.style__StriimImage
+                                                                      alt="darkImage"
+                                                                      src="/public/images/striim-dark.png"
+                                                        />
+                                          </div>
+                            </Link>
+              </MenuItem>
+              <MenuItem
+                            className="menu-wallet"
+              >
+                            <Link
+                                          replace={false}
+                                          to="/dex"
+                            >
+                                          <div
+                                                        style={
+                                                                      Object {
+                                                                                    "alignItems": "center",
+                                                                                    "display": "flex",
+                                                                                    "justifyContent": "center",
+                                                                                  }
+                                                        }
+                                          >
+                                                        <SvgIcon
+                                                                      size={24}
+                                                                      style={Object {}}
+                                                                      viewBox="0 0 28 16"
+                                                        >
+                                                                      <g
+                                                                                    fill="none"
+                                                                                    fillRule="evenodd"
+                                                                                    transform="translate(-2 -8)"
+                                                                      >
+                                                                                    <polygon
+                                                                                                  points="0 0 32 0 32 32 0 32"
+                                                                                    />
+                                                                                    <polygon
+                                                                                                  fill="#404f56"
+                                                                                                  fillRule="nonzero"
+                                                                                                  points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+                                                                                    />
+                                                                      </g>
+                                                        </SvgIcon>
+                                          </div>
+                            </Link>
+              </MenuItem>
+              <MenuItem
+                            className="menu-setting"
+              >
+                            <Link
+                                          replace={false}
+                                          to="/settings"
+                            >
+                                          <div>
+                                                        <Icon
+                                                                      className="setting-icon"
+                                                                      type="setting"
+                                                        />
+                                                        <span>
+                                                                      Settings
+                                                        </span>
+                                          </div>
+                            </Link>
+              </MenuItem>
+</SideBar.style__SideBarMenu>,
+            "collapsed": true,
+            "collapsedWidth": "72",
+            "collapsible": false,
+            "defaultCollapsed": false,
+            "prefixCls": "ant-layout-sider",
+            "reverseArrow": false,
+            "style": Object {},
+            "theme": "dark",
+            "trigger": null,
+            "width": 200,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <MenuItem
+                  className="menu-logo"
+>
+                  <Link
+                                    replace={false}
+                                    to="/"
+                  >
+                                    <div>
+                                                      <img
+                                                                        alt="logo"
+                                                                        className="anticon anticon-wallet logo-icon"
+                                                                        src="../../../public/images/hubii-core-logo.svg"
+                                                      />
+                                                      <span>
+                                                                        hubii core
+                                                      </span>
+                                    </div>
+                  </Link>
+</MenuItem>,
+                Array [
+                  <MenuItem
+                    className="menu-wallet"
+>
+                    <Link
+                                        replace={false}
+                                        to="/wallets"
+                    >
+                                        <div
+                                                            style={
+                                                                                Object {
+                                                                                                    "alignItems": "center",
+                                                                                                    "display": "flex",
+                                                                                                    "justifyContent": "center",
+                                                                                                  }
+                                                            }
+                                        >
+                                                            <SvgIcon
+                                                                                size={24}
+                                                                                style={Object {}}
+                                                                                viewBox="0 0 24 24"
+                                                            >
+                                                                                <path
+                                                                                                    d="M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z"
+                                                                                                    fill="#404f56"
+                                                                                />
+                                                            </SvgIcon>
+                                        </div>
+                    </Link>
+</MenuItem>,
+                  <MenuItem
+                    className="menu-wallet"
+>
+                    <Link
+                                        replace={false}
+                                        to="/wallet"
+                    >
+                                        <div
+                                                            style={
+                                                                                Object {
+                                                                                                    "alignItems": "center",
+                                                                                                    "display": "flex",
+                                                                                                    "justifyContent": "center",
+                                                                                                  }
+                                                            }
+                                        >
+                                                            <SideBar.style__StriimImage
+                                                                                alt="darkImage"
+                                                                                src="/public/images/striim-dark.png"
+                                                            />
+                                        </div>
+                    </Link>
+</MenuItem>,
+                  <MenuItem
+                    className="menu-wallet"
+>
+                    <Link
+                                        replace={false}
+                                        to="/dex"
+                    >
+                                        <div
+                                                            style={
+                                                                                Object {
+                                                                                                    "alignItems": "center",
+                                                                                                    "display": "flex",
+                                                                                                    "justifyContent": "center",
+                                                                                                  }
+                                                            }
+                                        >
+                                                            <SvgIcon
+                                                                                size={24}
+                                                                                style={Object {}}
+                                                                                viewBox="0 0 28 16"
+                                                            >
+                                                                                <g
+                                                                                                    fill="none"
+                                                                                                    fillRule="evenodd"
+                                                                                                    transform="translate(-2 -8)"
+                                                                                >
+                                                                                                    <polygon
+                                                                                                                        points="0 0 32 0 32 32 0 32"
+                                                                                                    />
+                                                                                                    <polygon
+                                                                                                                        fill="#404f56"
+                                                                                                                        fillRule="nonzero"
+                                                                                                                        points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+                                                                                                    />
+                                                                                </g>
+                                                            </SvgIcon>
+                                        </div>
+                    </Link>
+</MenuItem>,
+                ],
+                <MenuItem
+                  className="menu-setting"
+>
+                  <Link
+                                    replace={false}
+                                    to="/settings"
+                  >
+                                    <div>
+                                                      <Icon
+                                                                        className="setting-icon"
+                                                                        type="setting"
+                                                      />
+                                                      <span>
+                                                                        Settings
+                                                      </span>
+                                    </div>
+                  </Link>
+</MenuItem>,
+              ],
+              "defaultSelectedKeys": Array [
+                "/wallets",
+              ],
+              "mode": "inline",
+              "onSelect": undefined,
+              "selectedKeys": Array [
+                "/world",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": "/",
+                "nodeType": "class",
+                "props": Object {
+                  "children": <Link
+                    replace={false}
+                    to="/"
+>
+                    <div>
+                                        <img
+                                                            alt="logo"
+                                                            className="anticon anticon-wallet logo-icon"
+                                                            src="../../../public/images/hubii-core-logo.svg"
+                                        />
+                                        <span>
+                                                            hubii core
+                                        </span>
+                    </div>
+</Link>,
+                  "className": "menu-logo",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <div>
+                      <img
+                                            alt="logo"
+                                            className="anticon anticon-wallet logo-icon"
+                                            src="../../../public/images/hubii-core-logo.svg"
+                      />
+                      <span>
+                                            hubii core
+                      </span>
+</div>,
+                    "replace": false,
+                    "to": "/",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <img
+                          alt="logo"
+                          className="anticon anticon-wallet logo-icon"
+                          src="../../../public/images/hubii-core-logo.svg"
+/>,
+                        <span>
+                          hubii core
+</span>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "alt": "logo",
+                          "className": "anticon anticon-wallet logo-icon",
+                          "src": "../../../public/images/hubii-core-logo.svg",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "img",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "hubii core",
+                        },
+                        "ref": null,
+                        "rendered": "hubii core",
+                        "type": "span",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "/wallets",
+                "nodeType": "class",
+                "props": Object {
+                  "children": <Link
+                    replace={false}
+                    to="/wallets"
+>
+                    <div
+                                        style={
+                                                            Object {
+                                                                                "alignItems": "center",
+                                                                                "display": "flex",
+                                                                                "justifyContent": "center",
+                                                                              }
+                                        }
+                    >
+                                        <SvgIcon
+                                                            size={24}
+                                                            style={Object {}}
+                                                            viewBox="0 0 24 24"
+                                        >
+                                                            <path
+                                                                                d="M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z"
+                                                                                fill="#404f56"
+                                                            />
+                                        </SvgIcon>
+                    </div>
+</Link>,
+                  "className": "menu-wallet",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <div
+                      style={
+                                            Object {
+                                                                  "alignItems": "center",
+                                                                  "display": "flex",
+                                                                  "justifyContent": "center",
+                                                                }
+                      }
+>
+                      <SvgIcon
+                                            size={24}
+                                            style={Object {}}
+                                            viewBox="0 0 24 24"
+                      >
+                                            <path
+                                                                  d="M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z"
+                                                                  fill="#404f56"
+                                            />
+                      </SvgIcon>
+</div>,
+                    "replace": false,
+                    "to": "/wallets",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <SvgIcon
+                          size={24}
+                          style={Object {}}
+                          viewBox="0 0 24 24"
+>
+                          <path
+                                                    d="M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z"
+                                                    fill="#404f56"
+                          />
+</SvgIcon>,
+                        false,
+                        false,
+                      ],
+                      "style": Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "justifyContent": "center",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": <path
+                            d="M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z"
+                            fill="#404f56"
+/>,
+                          "size": 24,
+                          "style": Object {},
+                          "viewBox": "0 0 24 24",
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "d": "M24,20 L24,21.3333333 C24,22.8 22.8,24 21.3333333,24 L2.66666667,24 C1.18666667,24 0,22.8 0,21.3333333 L0,2.66666667 C0,1.2 1.18666667,0 2.66666667,0 L21.3333333,0 C22.8,0 24,1.2 24,2.66666667 L24,4 L12,4 C10.52,4 9.33333333,5.2 9.33333333,6.66666667 L9.33333333,17.3333333 C9.33333333,18.8 10.52,20 12,20 L24,20 Z M12,17.3333333 L25.3333333,17.3333333 L25.3333333,6.66666667 L12,6.66666667 L12,17.3333333 Z M17.3333333,14 C16.2266667,14 15.3333333,13.1066667 15.3333333,12 C15.3333333,10.8933333 16.2266667,10 17.3333333,10 C18.44,10 19.3333333,10.8933333 19.3333333,12 C19.3333333,13.1066667 18.44,14 17.3333333,14 Z",
+                            "fill": "#404f56",
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": "path",
+                        },
+                        "type": [Function],
+                      },
+                      false,
+                      false,
+                    ],
+                    "type": "div",
+                  },
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "/wallet",
+                "nodeType": "class",
+                "props": Object {
+                  "children": <Link
+                    replace={false}
+                    to="/wallet"
+>
+                    <div
+                                        style={
+                                                            Object {
+                                                                                "alignItems": "center",
+                                                                                "display": "flex",
+                                                                                "justifyContent": "center",
+                                                                              }
+                                        }
+                    >
+                                        <SideBar.style__StriimImage
+                                                            alt="darkImage"
+                                                            src="/public/images/striim-dark.png"
+                                        />
+                    </div>
+</Link>,
+                  "className": "menu-wallet",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <div
+                      style={
+                                            Object {
+                                                                  "alignItems": "center",
+                                                                  "display": "flex",
+                                                                  "justifyContent": "center",
+                                                                }
+                      }
+>
+                      <SideBar.style__StriimImage
+                                            alt="darkImage"
+                                            src="/public/images/striim-dark.png"
+                      />
+</div>,
+                    "replace": false,
+                    "to": "/wallet",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        false,
+                        <SideBar.style__StriimImage
+                          alt="darkImage"
+                          src="/public/images/striim-dark.png"
+/>,
+                        false,
+                      ],
+                      "style": Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "justifyContent": "center",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      false,
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "alt": "darkImage",
+                          "src": "/public/images/striim-dark.png",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      false,
+                    ],
+                    "type": "div",
+                  },
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "/dex",
+                "nodeType": "class",
+                "props": Object {
+                  "children": <Link
+                    replace={false}
+                    to="/dex"
+>
+                    <div
+                                        style={
+                                                            Object {
+                                                                                "alignItems": "center",
+                                                                                "display": "flex",
+                                                                                "justifyContent": "center",
+                                                                              }
+                                        }
+                    >
+                                        <SvgIcon
+                                                            size={24}
+                                                            style={Object {}}
+                                                            viewBox="0 0 28 16"
+                                        >
+                                                            <g
+                                                                                fill="none"
+                                                                                fillRule="evenodd"
+                                                                                transform="translate(-2 -8)"
+                                                            >
+                                                                                <polygon
+                                                                                                    points="0 0 32 0 32 32 0 32"
+                                                                                />
+                                                                                <polygon
+                                                                                                    fill="#404f56"
+                                                                                                    fillRule="nonzero"
+                                                                                                    points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+                                                                                />
+                                                            </g>
+                                        </SvgIcon>
+                    </div>
+</Link>,
+                  "className": "menu-wallet",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <div
+                      style={
+                                            Object {
+                                                                  "alignItems": "center",
+                                                                  "display": "flex",
+                                                                  "justifyContent": "center",
+                                                                }
+                      }
+>
+                      <SvgIcon
+                                            size={24}
+                                            style={Object {}}
+                                            viewBox="0 0 28 16"
+                      >
+                                            <g
+                                                                  fill="none"
+                                                                  fillRule="evenodd"
+                                                                  transform="translate(-2 -8)"
+                                            >
+                                                                  <polygon
+                                                                                        points="0 0 32 0 32 32 0 32"
+                                                                  />
+                                                                  <polygon
+                                                                                        fill="#404f56"
+                                                                                        fillRule="nonzero"
+                                                                                        points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+                                                                  />
+                                            </g>
+                      </SvgIcon>
+</div>,
+                    "replace": false,
+                    "to": "/dex",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        false,
+                        false,
+                        <SvgIcon
+                          size={24}
+                          style={Object {}}
+                          viewBox="0 0 28 16"
+>
+                          <g
+                                                    fill="none"
+                                                    fillRule="evenodd"
+                                                    transform="translate(-2 -8)"
+                          >
+                                                    <polygon
+                                                                              points="0 0 32 0 32 32 0 32"
+                                                    />
+                                                    <polygon
+                                                                              fill="#404f56"
+                                                                              fillRule="nonzero"
+                                                                              points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+                                                    />
+                          </g>
+</SvgIcon>,
+                      ],
+                      "style": Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "justifyContent": "center",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      false,
+                      false,
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": <g
+                            fill="none"
+                            fillRule="evenodd"
+                            transform="translate(-2 -8)"
+>
+                            <polygon
+                                                        points="0 0 32 0 32 32 0 32"
+                            />
+                            <polygon
+                                                        fill="#404f56"
+                                                        fillRule="nonzero"
+                                                        points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+                            />
+</g>,
+                          "size": 24,
+                          "style": Object {},
+                          "viewBox": "0 0 28 16",
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [
+                              <polygon
+                                points="0 0 32 0 32 32 0 32"
+/>,
+                              <polygon
+                                fill="#404f56"
+                                fillRule="nonzero"
+                                points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
+/>,
+                            ],
+                            "fill": "none",
+                            "fillRule": "evenodd",
+                            "transform": "translate(-2 -8)",
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "points": "0 0 32 0 32 32 0 32",
+                              },
+                              "ref": null,
+                              "rendered": null,
+                              "type": "polygon",
+                            },
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "fill": "#404f56",
+                                "fillRule": "nonzero",
+                                "points": "21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8",
+                              },
+                              "ref": null,
+                              "rendered": null,
+                              "type": "polygon",
+                            },
+                          ],
+                          "type": "g",
+                        },
+                        "type": [Function],
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "/settings",
+                "nodeType": "class",
+                "props": Object {
+                  "children": <Link
+                    replace={false}
+                    to="/settings"
+>
+                    <div>
+                                        <Icon
+                                                            className="setting-icon"
+                                                            type="setting"
+                                        />
+                                        <span>
+                                                            Settings
+                                        </span>
+                    </div>
+</Link>,
+                  "className": "menu-setting",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <div>
+                      <Icon
+                                            className="setting-icon"
+                                            type="setting"
+                      />
+                      <span>
+                                            Settings
+                      </span>
+</div>,
+                    "replace": false,
+                    "to": "/settings",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <Icon
+                          className="setting-icon"
+                          type="setting"
+/>,
+                        <span>
+                          Settings
+</span>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "function",
+                        "props": Object {
+                          "className": "setting-icon",
+                          "type": "setting",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Settings",
+                        },
+                        "ref": null,
+                        "rendered": "Settings",
+                        "type": "span",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/"
+/>,
+              <Route
+                component={[Function]}
+                path="/wallets"
+/>,
+              <Route
+                component={[Function]}
+                path="/wallet/:address"
+/>,
+              <Route
+                component={[Function]}
+                path="/striim"
+/>,
+              <Redirect
+                from="/"
+                push={false}
+                to="/wallets"
+/>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "exact": true,
+                "path": "/",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "path": "/wallets",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "path": "/wallet/:address",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "path": "/striim",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "from": "/",
+                "push": false,
+                "to": "/wallets",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

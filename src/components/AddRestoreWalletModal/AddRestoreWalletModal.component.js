@@ -70,7 +70,7 @@ export default class AddRestoreWalletModal extends React.Component {
                 <Arrow
                   type="arrow-left"
                   onClick={() => this.switchModals('main')}
-                />New Hubii Wallet
+                />Create a wallet
               </IconWrapper>
             </div>
             <AddWallet loading={loading.toJS().creatingWallet} handleSubmit={this.props.handleAddWalletSubmit} />

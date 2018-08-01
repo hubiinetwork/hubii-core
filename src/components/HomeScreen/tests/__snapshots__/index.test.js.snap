@@ -1,0 +1,545 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomeScreen /> should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HomeScreen />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Logo
+          src="/public/images/hubii-core-logo-wtext.svg"
+/>,
+        <Cards>
+          <StyledLink
+                    to="/wallets"
+          >
+                    <DashboardCard
+                              iconSrc="/public/images/wallet-icon-green.png"
+                              title="My wallets"
+                    />
+          </StyledLink>
+          <StyledLink
+                    to="/striim"
+          >
+                    <DashboardCard
+                              iconSrc="/public/images/striim.png"
+                              title={
+                                        <div>
+                                                  My 
+                                                  <DashboardCard.style__StriimTextColorBlue>
+                                                            Str
+                                                  </DashboardCard.style__StriimTextColorBlue>
+                                                  <DashboardCard.style__StriimTextColorPink>
+                                                            ii
+                                                  </DashboardCard.style__StriimTextColorPink>
+                                                  <DashboardCard.style__StriimTextColorBlue>
+                                                            m
+                                                  </DashboardCard.style__StriimTextColorBlue>
+                                        </div>
+                              }
+                    />
+          </StyledLink>
+          <StyledLink
+                    to="/dex"
+          >
+                    <DashboardCard
+                              iconSrc="/public/images/dex-icon-green.png"
+                              title="DEX"
+                    />
+          </StyledLink>
+          <StyledLink
+                    to="/settings"
+          >
+                    <DashboardCard
+                              iconType="setting"
+                              title="Settings"
+                    />
+          </StyledLink>
+</Cards>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "src": "/public/images/hubii-core-logo-wtext.svg",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <StyledLink
+              to="/wallets"
+>
+              <DashboardCard
+                            iconSrc="/public/images/wallet-icon-green.png"
+                            title="My wallets"
+              />
+</StyledLink>,
+            <StyledLink
+              to="/striim"
+>
+              <DashboardCard
+                            iconSrc="/public/images/striim.png"
+                            title={
+                                          <div>
+                                                        My 
+                                                        <DashboardCard.style__StriimTextColorBlue>
+                                                                      Str
+                                                        </DashboardCard.style__StriimTextColorBlue>
+                                                        <DashboardCard.style__StriimTextColorPink>
+                                                                      ii
+                                                        </DashboardCard.style__StriimTextColorPink>
+                                                        <DashboardCard.style__StriimTextColorBlue>
+                                                                      m
+                                                        </DashboardCard.style__StriimTextColorBlue>
+                                          </div>
+                            }
+              />
+</StyledLink>,
+            <StyledLink
+              to="/dex"
+>
+              <DashboardCard
+                            iconSrc="/public/images/dex-icon-green.png"
+                            title="DEX"
+              />
+</StyledLink>,
+            <StyledLink
+              to="/settings"
+>
+              <DashboardCard
+                            iconType="setting"
+                            title="Settings"
+              />
+</StyledLink>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <DashboardCard
+                iconSrc="/public/images/wallet-icon-green.png"
+                title="My wallets"
+/>,
+              "to": "/wallets",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "iconSrc": "/public/images/wallet-icon-green.png",
+                "title": "My wallets",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <DashboardCard
+                iconSrc="/public/images/striim.png"
+                title={
+                                <div>
+                                                My 
+                                                <DashboardCard.style__StriimTextColorBlue>
+                                                                Str
+                                                </DashboardCard.style__StriimTextColorBlue>
+                                                <DashboardCard.style__StriimTextColorPink>
+                                                                ii
+                                                </DashboardCard.style__StriimTextColorPink>
+                                                <DashboardCard.style__StriimTextColorBlue>
+                                                                m
+                                                </DashboardCard.style__StriimTextColorBlue>
+                                </div>
+                }
+/>,
+              "to": "/striim",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "iconSrc": "/public/images/striim.png",
+                "title": <div>
+                  My 
+                  <DashboardCard.style__StriimTextColorBlue>
+                                    Str
+                  </DashboardCard.style__StriimTextColorBlue>
+                  <DashboardCard.style__StriimTextColorPink>
+                                    ii
+                  </DashboardCard.style__StriimTextColorPink>
+                  <DashboardCard.style__StriimTextColorBlue>
+                                    m
+                  </DashboardCard.style__StriimTextColorBlue>
+</div>,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <DashboardCard
+                iconSrc="/public/images/dex-icon-green.png"
+                title="DEX"
+/>,
+              "to": "/dex",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "iconSrc": "/public/images/dex-icon-green.png",
+                "title": "DEX",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <DashboardCard
+                iconType="setting"
+                title="Settings"
+/>,
+              "to": "/settings",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "iconType": "setting",
+                "title": "Settings",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Logo
+            src="/public/images/hubii-core-logo-wtext.svg"
+/>,
+          <Cards>
+            <StyledLink
+                        to="/wallets"
+            >
+                        <DashboardCard
+                                    iconSrc="/public/images/wallet-icon-green.png"
+                                    title="My wallets"
+                        />
+            </StyledLink>
+            <StyledLink
+                        to="/striim"
+            >
+                        <DashboardCard
+                                    iconSrc="/public/images/striim.png"
+                                    title={
+                                                <div>
+                                                            My 
+                                                            <DashboardCard.style__StriimTextColorBlue>
+                                                                        Str
+                                                            </DashboardCard.style__StriimTextColorBlue>
+                                                            <DashboardCard.style__StriimTextColorPink>
+                                                                        ii
+                                                            </DashboardCard.style__StriimTextColorPink>
+                                                            <DashboardCard.style__StriimTextColorBlue>
+                                                                        m
+                                                            </DashboardCard.style__StriimTextColorBlue>
+                                                </div>
+                                    }
+                        />
+            </StyledLink>
+            <StyledLink
+                        to="/dex"
+            >
+                        <DashboardCard
+                                    iconSrc="/public/images/dex-icon-green.png"
+                                    title="DEX"
+                        />
+            </StyledLink>
+            <StyledLink
+                        to="/settings"
+            >
+                        <DashboardCard
+                                    iconType="setting"
+                                    title="Settings"
+                        />
+            </StyledLink>
+</Cards>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "src": "/public/images/hubii-core-logo-wtext.svg",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <StyledLink
+                to="/wallets"
+>
+                <DashboardCard
+                                iconSrc="/public/images/wallet-icon-green.png"
+                                title="My wallets"
+                />
+</StyledLink>,
+              <StyledLink
+                to="/striim"
+>
+                <DashboardCard
+                                iconSrc="/public/images/striim.png"
+                                title={
+                                                <div>
+                                                                My 
+                                                                <DashboardCard.style__StriimTextColorBlue>
+                                                                                Str
+                                                                </DashboardCard.style__StriimTextColorBlue>
+                                                                <DashboardCard.style__StriimTextColorPink>
+                                                                                ii
+                                                                </DashboardCard.style__StriimTextColorPink>
+                                                                <DashboardCard.style__StriimTextColorBlue>
+                                                                                m
+                                                                </DashboardCard.style__StriimTextColorBlue>
+                                                </div>
+                                }
+                />
+</StyledLink>,
+              <StyledLink
+                to="/dex"
+>
+                <DashboardCard
+                                iconSrc="/public/images/dex-icon-green.png"
+                                title="DEX"
+                />
+</StyledLink>,
+              <StyledLink
+                to="/settings"
+>
+                <DashboardCard
+                                iconType="setting"
+                                title="Settings"
+                />
+</StyledLink>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <DashboardCard
+                  iconSrc="/public/images/wallet-icon-green.png"
+                  title="My wallets"
+/>,
+                "to": "/wallets",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "iconSrc": "/public/images/wallet-icon-green.png",
+                  "title": "My wallets",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <DashboardCard
+                  iconSrc="/public/images/striim.png"
+                  title={
+                                    <div>
+                                                      My 
+                                                      <DashboardCard.style__StriimTextColorBlue>
+                                                                        Str
+                                                      </DashboardCard.style__StriimTextColorBlue>
+                                                      <DashboardCard.style__StriimTextColorPink>
+                                                                        ii
+                                                      </DashboardCard.style__StriimTextColorPink>
+                                                      <DashboardCard.style__StriimTextColorBlue>
+                                                                        m
+                                                      </DashboardCard.style__StriimTextColorBlue>
+                                    </div>
+                  }
+/>,
+                "to": "/striim",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "iconSrc": "/public/images/striim.png",
+                  "title": <div>
+                    My 
+                    <DashboardCard.style__StriimTextColorBlue>
+                                        Str
+                    </DashboardCard.style__StriimTextColorBlue>
+                    <DashboardCard.style__StriimTextColorPink>
+                                        ii
+                    </DashboardCard.style__StriimTextColorPink>
+                    <DashboardCard.style__StriimTextColorBlue>
+                                        m
+                    </DashboardCard.style__StriimTextColorBlue>
+</div>,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <DashboardCard
+                  iconSrc="/public/images/dex-icon-green.png"
+                  title="DEX"
+/>,
+                "to": "/dex",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "iconSrc": "/public/images/dex-icon-green.png",
+                  "title": "DEX",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <DashboardCard
+                  iconType="setting"
+                  title="Settings"
+/>,
+                "to": "/settings",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "iconType": "setting",
+                  "title": "Settings",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
