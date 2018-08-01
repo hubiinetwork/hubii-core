@@ -27,7 +27,10 @@ A variant of Breakdown component:
 ```js
 <div style={{ backgroundColor: '#26404D', padding: 25 }}>
   <Breakdown
-    value={24891.7}
+  // data={[
+  //   { label: 'EOS',  color: 'black' }
+  // ]}
+    value={0.000000000001}
   />
 </div>
 ```

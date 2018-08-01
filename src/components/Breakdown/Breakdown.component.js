@@ -20,7 +20,7 @@ const Breakdown = ({ data = [], value }) => {
     label: item.label,
     percentage: item.percentage,
   }));
-  if (chartData.length === 0 || parseFloat(value) === parseFloat(0)) {
+  if (chartData.length === 0) {
     return <div />;
   }
   return (
@@ -59,8 +59,14 @@ const Breakdown = ({ data = [], value }) => {
           }
         />
       </div>
-      <SectionHeading>Assets</SectionHeading>
-      <Tokens data={labels} />
+      {
+        parseFloat(value) !== parseFloat(0) && (
+          <div>
+            <SectionHeading>Assets</SectionHeading>
+            <Tokens data={labels} />
+          </div>
+      )
+      }
     </div>
   );
 };
