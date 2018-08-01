@@ -175,12 +175,12 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
 "@types/node@*":
-  version "10.5.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.4.tgz#6eccc158504357d1da91434d75e86acde94bb10b"
+  version "10.5.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.5.tgz#8e84d24e896cd77b0d4f73df274027e3149ec2ba"
 
 "@types/node@^8.0.24":
-  version "8.10.22"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.22.tgz#c095d7c668908d48b95ae11fcc4a6d6b1c116a35"
+  version "8.10.23"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.23.tgz#e5ccfdafff42af5397c29669b6d7d65f7d629a00"
 
 "@vxna/mini-html-webpack-template@^0.1.7":
   version "0.1.7"
@@ -2095,8 +2095,8 @@ buffer-from@^0.1.1:
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-0.1.2.tgz#15f4b9bcef012044df31142c14333caf6e0260d0"
 
 buffer-from@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.0.tgz#87fcaa3a298358e0ade6e442cfce840740d1ad04"
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
 
 buffer-indexof@^1.0.0:
   version "1.1.1"
@@ -13337,8 +13337,8 @@ time-stamp@^1.0.0:
   resolved "https://registry.yarnpkg.com/time-stamp/-/time-stamp-1.1.0.tgz#764a5a11af50561921b133f3b44e618687e0f5c3"
 
 time-stamp@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/time-stamp/-/time-stamp-2.0.0.tgz#95c6a44530e15ba8d6f4a3ecb8c3a3fac46da357"
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/time-stamp/-/time-stamp-2.0.1.tgz#708a89359c1fc50bd5e7b1c8aa750d08c9172232"
 
 timed-out@^3.0.0:
   version "3.1.3"

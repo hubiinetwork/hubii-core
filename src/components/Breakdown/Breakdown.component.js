@@ -20,6 +20,7 @@ const Breakdown = ({ data, value }) => {
     label: item.label,
     percentage: item.percentage,
   }));
+
   return (
     <div>
       <SectionHeading>Breakdown</SectionHeading>
@@ -56,7 +57,7 @@ const Breakdown = ({ data, value }) => {
           }
         />
       </div>
-      <SectionHeading>Tokens</SectionHeading>
+      <SectionHeading>Assets</SectionHeading>
       <Tokens data={labels} />
     </div>
   );
@@ -66,7 +67,7 @@ Breakdown.propTypes = {
   /**
    * Total  value in dollars.
    */
-  value: PropTypes.node,
+  value: PropTypes.string.isRequired,
   /**
    * data  to populate  the Breakdowwn Component.
    */

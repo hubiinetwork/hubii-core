@@ -1,29 +1,6 @@
 import { providers } from 'ethers';
+import BigNumber from 'bignumber.js';
 import fatalError from './fatalError';
-
-export function convertWalletsList(walletsState) {
-  const walletsObject = walletsState.toJS();
-  const processedWallets = [];
-  walletsObject.forEach((wallet) => {
-    const curWallet = { ...wallet };
-    if (wallet.type === 'software') {
-      curWallet.encrypted = JSON.parse(wallet.encrypted);
-    }
-    processedWallets.push(curWallet);
-  });
-  return processedWallets;
-}
-
-export function getTotalUSDValue(balances) {
-  if (!balances) {
-    return 0;
-  }
-  const assets = balances.map((token) => ({
-    amount: parseInt(token.balance, 10) / (10 ** token.decimals),
-    price: token.price,
-  }));
-  return assets.reduce((accumulator, current) => accumulator + (parseFloat(current.price.USD, 10) * current.amount), 0);
-}
 
 export const ERC20ABI = [
   {
@@ -57,6 +34,13 @@ export const findWalletIndex = (state, address, scopedFatalError = fatalError) =
   }
 };
 
+export const getCurrencySymbol = (supportedAssets, currency) => supportedAssets
+  .get('assets')
+  .find((a) => a.get('currency') === currency)
+  .get('symbol');
+
+export const referenceCurrencies = ['eth', 'btc', 'usd'];
+
 export const humanFriendlyWalletType = (type) => {
   if (type === 'lns') return 'Ledger Nano S';
   if (type === 'software') return 'Software Wallet';
@@ -72,7 +56,8 @@ export const isValidPrivateKey = (str) => {
   return false;
 };
 
-export const gweiToWei = (gwei) => (gwei * (10 ** 9));
+// input and output are BigNumber
+export const gweiToWei = (gwei) => (gwei.times(new BigNumber('10').pow('9')));
 
 export const EthNetworkProvider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
 
@@ -85,3 +70,4 @@ export const getTransactionCount = (...args) => EthNetworkProvider.getTransactio
 export const sendTransaction = (...args) => EthNetworkProvider.sendTransaction(...args);
 
 export const getTransaction = (...args) => EthNetworkProvider.getTransaction(...args);
+

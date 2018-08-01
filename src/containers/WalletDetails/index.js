@@ -2,16 +2,15 @@ import { Icon, Tabs } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { fromJS } from 'immutable';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Route, Redirect } from 'react-router';
 import WalletHeader from 'components/WalletHeader';
-import { getTotalUSDValue } from 'utils/wallet';
 import WalletTransactions from 'containers/WalletTransactions';
 import WalletTransfer from 'containers/WalletTransfer';
 import {
-  makeSelectWalletList,
-  makeSelectCurrentWalletDetails,
+  makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHOC/selectors';
 import {
   setCurrentWallet,
@@ -49,18 +48,17 @@ export class WalletDetails extends React.PureComponent {
   render() {
     const { history, match, currentWalletDetails } = this.props;
     const currentWallet = currentWalletDetails;
-    if (!currentWallet) {
+    if (!currentWallet || currentWallet === fromJS({})) {
       return (null);
     }
-    const totalUSDValue = getTotalUSDValue(currentWallet.balances);
     return (
       <Wrapper>
         <TabsLayout>
           <WalletHeader
             iconType="home"
-            name={currentWallet.name}
-            address={`${match.params.address}`}
-            balance={totalUSDValue}
+            name={currentWallet.get('name')}
+            address={currentWallet.get('address')}
+            balance={currentWallet.getIn(['balances', 'total', 'usd']).toNumber()}
             onIconClick={this.onHomeClick}
           />
         </TabsLayout>
@@ -104,8 +102,7 @@ WalletDetails.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  walletList: makeSelectWalletList(),
-  currentWalletDetails: makeSelectCurrentWalletDetails(),
+  currentWalletDetails: makeSelectCurrentWalletWithInfo(),
 });
 
 export function mapDispatchToProps(dispatch) {

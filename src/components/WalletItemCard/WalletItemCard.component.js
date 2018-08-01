@@ -81,6 +81,8 @@ export class WalletItemCard extends React.PureComponent {
     const {
       address,
       name,
+      balancesLoading,
+      balancesError,
       connected,
       type,
       handleCardClick,
@@ -149,10 +151,16 @@ export class WalletItemCard extends React.PureComponent {
             <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
           </LeftSideWrapper>
           <AssetsWrapper>
-            {assets &&
+            {
+              balancesError && <WalletName>Error fetching balance</WalletName>
+            }
+            {
+              balancesLoading && <WalletName>Fetching balance...</WalletName>
+            }
+            {!balancesLoading && !balancesError &&
               assets.map((asset) => (
-                <AssetWrapper key={asset.name}>
-                  <AssetAmountBubble name={asset.name} amount={asset.amount} />
+                <AssetWrapper key={asset.currency}>
+                  <AssetAmountBubble name={asset.symbol} amount={asset.balance.toString().substr(0, 6)} />
                 </AssetWrapper>
               ))}
           </AssetsWrapper>
@@ -199,6 +207,14 @@ WalletItemCard.propTypes = {
    * primary Address of the wallet.
    */
   address: PropTypes.string.isRequired,
+  /**
+   * if balances are loading
+   */
+  balancesLoading: PropTypes.bool.isRequired,
+  /**
+   * if unable to display balances due to API error
+   */
+  balancesError: PropTypes.bool.isRequired,
   /**
    * props.type type of the wallet.
    */

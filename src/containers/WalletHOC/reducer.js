@@ -9,10 +9,13 @@ import { ERC20ABI, findWalletIndex } from 'utils/wallet';
 import abiDecoder from 'abi-decoder';
 
 import {
-  LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
-  UPDATE_TOKEN_BALANCES,
+  LOAD_SUPPORTED_TOKENS,
+  LOAD_SUPPORTED_TOKENS_SUCCESS,
+  LOAD_SUPPORTED_TOKENS_ERROR,
+  LOAD_PRICES_SUCCESS,
+  LOAD_PRICES_ERROR,
   CREATE_WALLET_FROM_MNEMONIC,
   CREATE_WALLET_FROM_PRIVATE_KEY,
   CREATE_WALLET_SUCCESS,
@@ -34,7 +37,6 @@ import {
   LEDGER_ERROR,
   FETCHED_LEDGER_ADDRESS,
   SAVE_LEDGER_ADDRESS,
-  TRANSACTION_CONFIRMED,
   DELETE_WALLET,
 } from './constants';
 import { disconnectedErrorMsg } from '../../utils/ledger/friendlyErrors';
@@ -65,8 +67,18 @@ export const initialState = fromJS({
   },
   pendingTransactions: [],
   confirmedTransactions: [],
+  supportedAssets: {
+    loading: true,
+    error: null,
+    assets: [],
+  },
+  prices: {
+    loading: true,
+    error: null,
+    assets: [],
+  },
+  balances: {},
   currentDecryptionCallback: null,
-  // hardwareWallets: { ledgerNanoS: { id: null, addresses: {} } },
 });
 
 abiDecoder.addABI(ERC20ABI);
@@ -106,28 +118,35 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['loading', 'decryptingWallet'], false)
         .setIn(['errors', 'decryptingWalletError'], action.error);
-    case LOAD_WALLET_BALANCES:
-      return state
-        .setIn(['wallets', findWalletIndex(state, action.address), 'loadingBalances'], true);
     case LOAD_WALLET_BALANCES_SUCCESS:
       return state
-        .setIn(['wallets', findWalletIndex(state, action.address), 'loadingBalances'], false)
-        .setIn(['wallets', findWalletIndex(state, action.address), 'loadingBalancesError'], null)
-        .setIn(['wallets', findWalletIndex(state, action.address), 'balances'], fromJS(action.tokenBalances.tokens || []));
+        .setIn(['balances', action.address, 'loading'], false)
+        .setIn(['balances', action.address, 'error'], null)
+        .setIn(['balances', action.address, 'assets'], fromJS(action.assets || []));
     case LOAD_WALLET_BALANCES_ERROR:
       return state
-        .setIn(['wallets', findWalletIndex(state, action.address), 'loadingBalances'], false)
-        .setIn(['wallets', findWalletIndex(state, action.address), 'loadingBalancesError'], action.error);
-    case UPDATE_TOKEN_BALANCES:
-      {
-        return state
-          .updateIn(['wallets', findWalletIndex(state, action.address), 'balances'], (balances) => balances.map((balance) => {
-            if (balance.get('symbol') === action.newBalance.symbol) {
-              return balance.set('balance', action.newBalance.balance);
-            }
-            return balance;
-          }));
-      }
+        .setIn(['balances', action.address, 'loading'], false)
+        .setIn(['balances', action.address, 'error'], action.error);
+    case LOAD_SUPPORTED_TOKENS:
+      return state
+        .setIn(['supportedAssets', 'loading'], true);
+    case LOAD_SUPPORTED_TOKENS_SUCCESS:
+      return state
+        .setIn(['supportedAssets', 'loading'], false)
+        .setIn(['supportedAssets', 'error'], null)
+        .setIn(['supportedAssets', 'assets'], fromJS(action.assets));
+    case LOAD_SUPPORTED_TOKENS_ERROR:
+      return state
+        .setIn(['supportedAssets', 'loading'], false)
+        .setIn(['supportedAssets', 'error'], action.error);
+    case LOAD_PRICES_SUCCESS:
+      return state
+        .setIn(['prices', 'loading'], false)
+        .setIn(['prices', 'error'], null)
+        .setIn(['prices', 'assets'], fromJS(action.prices));
+    case LOAD_PRICES_ERROR:
+      return state
+        .setIn(['prices', 'error'], action.error);
     case SHOW_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], true)
@@ -191,17 +210,6 @@ function walletHocReducer(state = initialState, action) {
     case FETCHED_LEDGER_ADDRESS:
       return state
         .setIn(['ledgerNanoSInfo', 'addresses', action.derivationPath], action.address);
-    case TRANSACTION_CONFIRMED:
-      return state
-        .updateIn(['confirmedTransactions'], (list) => {
-          const pendingTxn = state.get('pendingTransactions').filter((txn) => txn.get('hash') === action.transaction.hash).get(0);
-          if (!pendingTxn) {
-            return list;
-          }
-          const confirmedTxn = pendingTxn.set('success', true).set('original', fromJS(action.transaction));
-          return list.unshift(fromJS(confirmedTxn));
-        })
-        .updateIn(['pendingTransactions'], (list) => list.filter((txn) => txn.get('hash') !== action.transaction.hash));
     case DELETE_WALLET:
       return state
         .deleteIn(['wallets', findWalletIndex(state, action.address)]);

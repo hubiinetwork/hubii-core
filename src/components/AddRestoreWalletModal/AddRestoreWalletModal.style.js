@@ -10,12 +10,8 @@ export const TitleDiv = styled.div`
   font-weight: 500;
 `;
 
-export const DescriptionWrapper = styled.div`
-  display: flex;
-  color: ${({ theme }) => theme.palette.secondary4};
-  align-items: center;
-  margin-top: 3rem;
-  justify-content: center;
+export const Container = styled.div`
+  padding-bottom: 5rem;
 `;
 
 export const TextWhite = styled.span`
@@ -29,16 +25,6 @@ export const TextWhite = styled.span`
   font-family: 'SF Text';
 `;
 
-export const TextGrey = styled.span`
-  color: ${({ theme }) => theme.palette.secondary6};
-  margin-left: 5px;
-  font-family: 'SF Text';
-`;
-
-export const Info = styled(Icon)`
-  font-size: 13px;
-  margin-top: 4px;
-`;
 export const Arrow = styled(Icon)`
   margin-right: 6px;
   display: flex;

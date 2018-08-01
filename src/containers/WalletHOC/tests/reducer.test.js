@@ -1,16 +1,17 @@
-
 import { fromJS } from 'immutable';
+
+import { disconnectedErrorMsg } from 'utils/ledger/friendlyErrors';
+
 import walletHocReducer from '../reducer';
-import { findWalletIndex } from '../../../utils/wallet';
 import {
   createWalletFromMnemonic,
   createWalletFailed,
   createWalletSuccess,
   decryptWallet,
   decryptWalletSuccess,
-  loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
+  loadSupportedTokens,
   setCurrentWallet,
   transferError,
   transfer,
@@ -19,10 +20,14 @@ import {
   ledgerEthAppConnected,
   deleteWallet,
   addNewWallet,
+  loadSupportedTokensSuccess,
+  loadSupportedTokensError,
+  loadPricesSuccess,
+  loadPricesError,
 } from '../actions';
 
 import { LEDGER_ERROR, FETCHED_LEDGER_ADDRESS } from '../constants';
-import { disconnectedErrorMsg } from '../../../utils/ledger/friendlyErrors';
+import { supportedAssetsMock, supportedTokensMock, pricesMock } from './mocks';
 
 const wallet = {
   name: 'testwallet',
@@ -60,6 +65,17 @@ describe('walletHocReducer', () => {
       },
       pendingTransactions: [],
       confirmedTransactions: [],
+      supportedAssets: {
+        loading: true,
+        error: null,
+        assets: [],
+      },
+      prices: {
+        loading: true,
+        error: null,
+        assets: [],
+      },
+      balances: {},
     });
     stateWithWallet = state.setIn(['wallets', 0], fromJS(wallet));
   });
@@ -184,41 +200,82 @@ describe('walletHocReducer', () => {
   });
 
   describe('balances', () => {
-    it('load wallet balances', () => {
+    it('load wallet balances success', () => {
       const address = '0x00';
+      const balances = [];
       const expected = stateWithWallet
-        .setIn(['wallets', findWalletIndex(stateWithWallet, address), 'loadingBalances'], true);
+        .setIn(['balances', address, 'loading'], false)
+        .setIn(['balances', address, 'error'], null)
+        .setIn(['balances', address, 'assets'], fromJS(balances));
 
-      expect(walletHocReducer(stateWithWallet, loadWalletBalances(address))).toEqual(expected);
+      expect(walletHocReducer(stateWithWallet, loadWalletBalancesSuccess(address, balances))).toEqual(expected);
     });
-    xit('load wallet balances success', () => {
+    it('should default to empty array if token property is null', () => {
       const address = '0x00';
-      const balances = { tokenBalances: { tokens: [] } };
+      const balances = null;
       const expected = stateWithWallet
-        .setIn(['wallets', findWalletIndex(stateWithWallet, address), 'loadingBalances'], false)
-        .setIn(['wallets', findWalletIndex(stateWithWallet, address), 'loadingBalancesError'], null)
-        .setIn(['wallets', findWalletIndex(stateWithWallet, address), 'balances'], fromJS(balances.tokenBalances.tokens || []));
+        .setIn(['balances', address, 'loading'], false)
+        .setIn(['balances', address, 'error'], null)
+        .setIn(['balances', address, 'assets'], fromJS([]));
 
-      expect(walletHocReducer(stateWithWallet, loadWalletBalancesSuccess(address, balances.tokenBalances))).toEqual(expected);
-    });
-    xit('should default to empty array if token property is null', () => {
-      const address = '0x00';
-      const balances = { tokenBalances: {} };
-      const expected = stateWithWallet
-        .setIn(['wallets', findWalletIndex(stateWithWallet, address), 'loadingBalances'], false)
-        .setIn(['wallets', findWalletIndex(stateWithWallet, address), 'loadingBalancesError'], null)
-        .setIn(['wallets', findWalletIndex(stateWithWallet, address), 'balances'], fromJS([]));
-
-      expect(walletHocReducer(stateWithWallet, loadWalletBalancesSuccess(address, balances.tokenBalances))).toEqual(expected);
+      expect(walletHocReducer(stateWithWallet, loadWalletBalancesSuccess(address, balances))).toEqual(expected);
     });
     it('load wallet balances error', () => {
       const address = '0x00';
       const error = new Error();
       const expected = stateWithWallet
-        .setIn(['wallets', findWalletIndex(stateWithWallet, address), 'loadingBalances'], false)
-        .setIn(['wallets', findWalletIndex(stateWithWallet, address), 'loadingBalancesError'], error);
+        .setIn(['balances', address, 'loading'], false)
+        .setIn(['balances', address, 'error'], error);
 
       expect(walletHocReducer(stateWithWallet, loadWalletBalancesError(address, error))).toEqual(expected);
+    });
+  });
+
+  describe('supported tokens', () => {
+    it('handle LOAD_SUPPORTED_TOKENS correctly', () => {
+      const expected = stateWithWallet
+        .setIn(['supportedAssets', 'loading'], true);
+
+      expect(walletHocReducer(stateWithWallet, loadSupportedTokens())).toEqual(expected);
+    });
+
+    it('handle LOAD_SUPPORTED_TOKENS_SUCCESS correctly', () => {
+      const expected = stateWithWallet
+        .setIn(['supportedAssets', 'loading'], false)
+        .setIn(['supportedAssets', 'error'], null)
+        .setIn(['supportedAssets', 'assets'], fromJS(supportedAssetsMock.get('assets')));
+
+      expect(walletHocReducer(stateWithWallet, loadSupportedTokensSuccess(supportedTokensMock))).toEqual(expected);
+    });
+
+    it('handle LOAD_SUPPORTED_TOKENS_ERROR correctly', () => {
+      const error = 'error';
+      const expected = stateWithWallet
+        .setIn(['supportedAssets', 'loading'], false)
+        .setIn(['supportedAssets', 'error'], error);
+
+      expect(walletHocReducer(stateWithWallet, loadSupportedTokensError(error))).toEqual(expected);
+    });
+  });
+
+  describe('prices', () => {
+    it('handle LOAD_PRICES_SUCCESS correctly', () => {
+      const prices = pricesMock.get('assets').delete(pricesMock.get('assets').size - 1);
+      const expected = stateWithWallet
+        .setIn(['prices', 'loading'], false)
+        .setIn(['prices', 'error'], null)
+        .setIn(['prices', 'assets'], fromJS(pricesMock.get('assets')));
+
+      expect(walletHocReducer(stateWithWallet, loadPricesSuccess(prices))).toEqual(expected);
+    });
+
+    it('handle LOAD_PRICES_ERROR correctly', () => {
+      const error = 'error';
+      const expected = stateWithWallet
+        .setIn(['prices', 'loading'], true)
+        .setIn(['prices', 'error'], error);
+
+      expect(walletHocReducer(stateWithWallet, loadPricesError(error))).toEqual(expected);
     });
   });
 
