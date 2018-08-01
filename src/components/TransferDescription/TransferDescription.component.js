@@ -40,9 +40,9 @@ export default class TransferDescription extends React.PureComponent {
     } = this.props;
 
     const disableSendButton =
-      amountToSend <= 0 ||
-      ethBalanceAfter.amount <= 0 ||
-      assetBalanceAfter.amount <= 0 ||
+      amountToSend.isNegative() ||
+      ethBalanceAfter.amount.isNegative() ||
+      assetBalanceAfter.amount.isNegative() ||
       (lnsCheck && errors.get('ledgerError'));
     return (
       <WrapperDiv>
@@ -55,7 +55,7 @@ export default class TransferDescription extends React.PureComponent {
         <Row>
           <TransferDescriptionItem
             main={`${amountToSend.toString()} ${assetToSend.symbol}`}
-            subtitle={formatFiat(usdValueToSend, 'USD')}
+            subtitle={formatFiat(usdValueToSend.toNumber(), 'USD')}
           />
         </Row>
         <Row>
@@ -70,7 +70,7 @@ export default class TransferDescription extends React.PureComponent {
         <Row>
           <TransferDescriptionItem
             main={`${transactionFee.amount.toString()} ETH`}
-            subtitle={formatFiat(transactionFee.usdValue, 'USD')}
+            subtitle={formatFiat(transactionFee.usdValue.toNumber(), 'USD')}
           />
         </Row>
         <Row>
@@ -79,7 +79,7 @@ export default class TransferDescription extends React.PureComponent {
         <Row>
           <TransferDescriptionItem
             main={`${ethBalanceBefore.amount.toString()} ETH`}
-            subtitle={formatFiat(ethBalanceBefore.usdValue, 'USD')}
+            subtitle={formatFiat(ethBalanceBefore.usdValue.toNumber(), 'USD')}
           />
         </Row>
         <Row>
@@ -90,7 +90,7 @@ export default class TransferDescription extends React.PureComponent {
         <Row>
           <TransferDescriptionItem
             main={`${ethBalanceAfter.amount} ETH`}
-            subtitle={formatFiat(ethBalanceAfter.usdValue, 'USD')}
+            subtitle={formatFiat(ethBalanceAfter.usdValue.toNumber(), 'USD')}
           />
         </Row>
         {assetToSend.symbol !== 'ETH' &&
@@ -101,7 +101,7 @@ export default class TransferDescription extends React.PureComponent {
           <Row>
             <TransferDescriptionItem
               main={`${assetBalanceBefore.amount} ${assetToSend.symbol}`}
-              subtitle={formatFiat(assetBalanceBefore.usdValue, 'USD')}
+              subtitle={formatFiat(assetBalanceBefore.usdValue.toNumber(), 'USD')}
             />
           </Row>
           <Row>
@@ -112,7 +112,7 @@ export default class TransferDescription extends React.PureComponent {
           <Row>
             <TransferDescriptionItem
               main={`${assetBalanceAfter.amount} ${assetToSend.symbol}`}
-              subtitle={formatFiat(assetBalanceAfter.usdValue, 'USD')}
+              subtitle={formatFiat(assetBalanceAfter.usdValue.toNumber(), 'USD')}
             />
           </Row>
         </div>
@@ -172,7 +172,7 @@ TransferDescription.propTypes = {
   /**
    * amount to send in the TransferDescription.
    */
-  amountToSend: PropTypes.number.isRequired,
+  amountToSend: PropTypes.object.isRequired,
 
   /**
    * transactionFee
@@ -217,7 +217,7 @@ TransferDescription.propTypes = {
   /**
    * amount sending to recipient
    */
-  usdValueToSend: PropTypes.number.isRequired,
+  usdValueToSend: PropTypes.object.isRequired,
 
   /**
    * onSend function Callback in the TransferDescription.
