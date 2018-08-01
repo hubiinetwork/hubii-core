@@ -36,7 +36,7 @@ const Breakdown = ({ data, value }) => {
             <VictoryTooltip
               flyoutStyle={{ stroke: 'transparent', fill: 'rgba(0,0,0,0.5)' }}
               style={{ fill: 'white' }}
-              width={90}
+              width={95}
             />
           }
           innerRadius={90}
@@ -52,7 +52,7 @@ const Breakdown = ({ data, value }) => {
           containerComponent={
             <VictoryContainer
               responsive
-              style={{ marginTop: '-35px', width: '65%' }}
+              style={{ marginTop: '-35px', width: '65%', paddingBottom: '15px' }}
             />
           }
         />
