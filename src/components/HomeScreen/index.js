@@ -27,7 +27,8 @@ function HomeScreen() {
             iconSrc={getAbsolutePath('public/images/striim.png')}
             title={
               <div>
-                My <StriimTextColorBlue>Str</StriimTextColorBlue>
+                My
+                <StriimTextColorBlue> str</StriimTextColorBlue>
                 <StriimTextColorPink>ii</StriimTextColorPink>
                 <StriimTextColorBlue>m</StriimTextColorBlue>
               </div>}

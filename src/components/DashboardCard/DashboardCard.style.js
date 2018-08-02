@@ -33,8 +33,8 @@ export const AntdIcon = styled(Icon)`
 `;
 
 export const CustomIcon = styled.img` 
-  max-height: 3rem;
-  max-width: 4rem;
+  max-width: ${(props) => props.src.includes('striim') ? '4.25' : '4'}rem;
+  max-height: ${(props) => props.src.includes('striim') ? '4' : '3'}rem;
 `;
 
 export const Title = styled.span`
@@ -47,8 +47,8 @@ export const Title = styled.span`
 `;
 
 export const StriimTextColorBlue = styled.span`
-  color: #0063A4;
+  color: #0066A2;
 `;
 export const StriimTextColorPink = styled.span`
-  color: #CE0284;
+  color: #E70085;
 `;
