@@ -37,9 +37,9 @@ ShallowWrapper {
                               iconSrc="/public/images/striim.png"
                               title={
                                         <div>
-                                                  My 
+                                                  My
                                                   <DashboardCard.style__StriimTextColorBlue>
-                                                            Str
+                                                             str
                                                   </DashboardCard.style__StriimTextColorBlue>
                                                   <DashboardCard.style__StriimTextColorPink>
                                                             ii
@@ -104,9 +104,9 @@ ShallowWrapper {
                             iconSrc="/public/images/striim.png"
                             title={
                                           <div>
-                                                        My 
+                                                        My
                                                         <DashboardCard.style__StriimTextColorBlue>
-                                                                      Str
+                                                                       str
                                                         </DashboardCard.style__StriimTextColorBlue>
                                                         <DashboardCard.style__StriimTextColorPink>
                                                                       ii
@@ -173,9 +173,9 @@ ShallowWrapper {
                 iconSrc="/public/images/striim.png"
                 title={
                                 <div>
-                                                My 
+                                                My
                                                 <DashboardCard.style__StriimTextColorBlue>
-                                                                Str
+                                                                 str
                                                 </DashboardCard.style__StriimTextColorBlue>
                                                 <DashboardCard.style__StriimTextColorPink>
                                                                 ii
@@ -196,9 +196,9 @@ ShallowWrapper {
               "props": Object {
                 "iconSrc": "/public/images/striim.png",
                 "title": <div>
-                  My 
+                  My
                   <DashboardCard.style__StriimTextColorBlue>
-                                    Str
+                                     str
                   </DashboardCard.style__StriimTextColorBlue>
                   <DashboardCard.style__StriimTextColorPink>
                                     ii
@@ -298,9 +298,9 @@ ShallowWrapper {
                                     iconSrc="/public/images/striim.png"
                                     title={
                                                 <div>
-                                                            My 
+                                                            My
                                                             <DashboardCard.style__StriimTextColorBlue>
-                                                                        Str
+                                                                         str
                                                             </DashboardCard.style__StriimTextColorBlue>
                                                             <DashboardCard.style__StriimTextColorPink>
                                                                         ii
@@ -365,9 +365,9 @@ ShallowWrapper {
                                 iconSrc="/public/images/striim.png"
                                 title={
                                                 <div>
-                                                                My 
+                                                                My
                                                                 <DashboardCard.style__StriimTextColorBlue>
-                                                                                Str
+                                                                                 str
                                                                 </DashboardCard.style__StriimTextColorBlue>
                                                                 <DashboardCard.style__StriimTextColorPink>
                                                                                 ii
@@ -434,9 +434,9 @@ ShallowWrapper {
                   iconSrc="/public/images/striim.png"
                   title={
                                     <div>
-                                                      My 
+                                                      My
                                                       <DashboardCard.style__StriimTextColorBlue>
-                                                                        Str
+                                                                         str
                                                       </DashboardCard.style__StriimTextColorBlue>
                                                       <DashboardCard.style__StriimTextColorPink>
                                                                         ii
@@ -457,9 +457,9 @@ ShallowWrapper {
                 "props": Object {
                   "iconSrc": "/public/images/striim.png",
                   "title": <div>
-                    My 
+                    My
                     <DashboardCard.style__StriimTextColorBlue>
-                                        Str
+                                         str
                     </DashboardCard.style__StriimTextColorBlue>
                     <DashboardCard.style__StriimTextColorPink>
                                         ii
