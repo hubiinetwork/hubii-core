@@ -52,7 +52,7 @@ const Breakdown = ({ data, value }) => {
           containerComponent={
             <VictoryContainer
               responsive
-              style={{ marginTop: '-35px', width: '65%', paddingBottom: '15px' }}
+              style={{ marginTop: '-35px', width: '65%', paddingBottom: '1rem' }}
             />
           }
         />
