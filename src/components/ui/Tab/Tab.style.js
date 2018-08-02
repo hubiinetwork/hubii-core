@@ -42,4 +42,7 @@ export default styled(Tabs)`
   .ant-tabs-content {
     padding: 0px 26px;
   }
+  svg {
+    margin-right: 0.64rem;
+  }
 `;
