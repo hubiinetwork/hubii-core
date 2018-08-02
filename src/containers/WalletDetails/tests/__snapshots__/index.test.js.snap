@@ -109,9 +109,26 @@ ShallowWrapper {
                     placeholder={null}
                     tab={
                               <span>
-                                        <Icon
-                                                  type="contacts"
-                                        />
+                                        <svg
+                                                  height="16"
+                                                  viewBox="0 0 18 16"
+                                                  width="18"
+                                                  xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                                  <g
+                                                            fill="none"
+                                                            fillRule="evenodd"
+                                                            transform="translate(-5 -4)"
+                                                  >
+                                                            <polygon
+                                                                      points="0 0 24 0 24 24 0 24"
+                                                            />
+                                                            <polygon
+                                                                      fill="rgba(255,255,255,0.5)"
+                                                                      points="5.009 19.714 23 12 5.009 4.286 5 10.286 17.857 12 5 13.714"
+                                                            />
+                                                  </g>
+                                        </svg>
                                         Transfer
                               </span>
                     }
@@ -186,9 +203,26 @@ ShallowWrapper {
               placeholder={null}
               tab={
                             <span>
-                                          <Icon
-                                                        type="contacts"
-                                          />
+                                          <svg
+                                                        height="16"
+                                                        viewBox="0 0 18 16"
+                                                        width="18"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                                        <g
+                                                                      fill="none"
+                                                                      fillRule="evenodd"
+                                                                      transform="translate(-5 -4)"
+                                                        >
+                                                                      <polygon
+                                                                                    points="0 0 24 0 24 24 0 24"
+                                                                      />
+                                                                      <polygon
+                                                                                    fill="rgba(255,255,255,0.5)"
+                                                                                    points="5.009 19.714 23 12 5.009 4.286 5 10.286 17.857 12 5 13.714"
+                                                                      />
+                                                        </g>
+                                          </svg>
                                           Transfer
                             </span>
               }
@@ -246,9 +280,26 @@ ShallowWrapper {
 />,
               "placeholder": null,
               "tab": <span>
-                <Icon
-                                type="contacts"
-                />
+                <svg
+                                height="16"
+                                viewBox="0 0 18 16"
+                                width="18"
+                                xmlns="http://www.w3.org/2000/svg"
+                >
+                                <g
+                                                fill="none"
+                                                fillRule="evenodd"
+                                                transform="translate(-5 -4)"
+                                >
+                                                <polygon
+                                                                points="0 0 24 0 24 24 0 24"
+                                                />
+                                                <polygon
+                                                                fill="rgba(255,255,255,0.5)"
+                                                                points="5.009 19.714 23 12 5.009 4.286 5 10.286 17.857 12 5 13.714"
+                                                />
+                                </g>
+                </svg>
                 Transfer
 </span>,
             },
@@ -315,9 +366,26 @@ ShallowWrapper {
                         placeholder={null}
                         tab={
                                     <span>
-                                                <Icon
-                                                            type="contacts"
-                                                />
+                                                <svg
+                                                            height="16"
+                                                            viewBox="0 0 18 16"
+                                                            width="18"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                            <g
+                                                                        fill="none"
+                                                                        fillRule="evenodd"
+                                                                        transform="translate(-5 -4)"
+                                                            >
+                                                                        <polygon
+                                                                                    points="0 0 24 0 24 24 0 24"
+                                                                        />
+                                                                        <polygon
+                                                                                    fill="rgba(255,255,255,0.5)"
+                                                                                    points="5.009 19.714 23 12 5.009 4.286 5 10.286 17.857 12 5 13.714"
+                                                                        />
+                                                            </g>
+                                                </svg>
                                                 Transfer
                                     </span>
                         }
@@ -392,9 +460,26 @@ ShallowWrapper {
                 placeholder={null}
                 tab={
                                 <span>
-                                                <Icon
-                                                                type="contacts"
-                                                />
+                                                <svg
+                                                                height="16"
+                                                                viewBox="0 0 18 16"
+                                                                width="18"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                                <g
+                                                                                fill="none"
+                                                                                fillRule="evenodd"
+                                                                                transform="translate(-5 -4)"
+                                                                >
+                                                                                <polygon
+                                                                                                points="0 0 24 0 24 24 0 24"
+                                                                                />
+                                                                                <polygon
+                                                                                                fill="rgba(255,255,255,0.5)"
+                                                                                                points="5.009 19.714 23 12 5.009 4.286 5 10.286 17.857 12 5 13.714"
+                                                                                />
+                                                                </g>
+                                                </svg>
                                                 Transfer
                                 </span>
                 }
@@ -452,9 +537,26 @@ ShallowWrapper {
 />,
                 "placeholder": null,
                 "tab": <span>
-                  <Icon
-                                    type="contacts"
-                  />
+                  <svg
+                                    height="16"
+                                    viewBox="0 0 18 16"
+                                    width="18"
+                                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                                    <g
+                                                      fill="none"
+                                                      fillRule="evenodd"
+                                                      transform="translate(-5 -4)"
+                                    >
+                                                      <polygon
+                                                                        points="0 0 24 0 24 24 0 24"
+                                                      />
+                                                      <polygon
+                                                                        fill="rgba(255,255,255,0.5)"
+                                                                        points="5.009 19.714 23 12 5.009 4.286 5 10.286 17.857 12 5 13.714"
+                                                      />
+                                    </g>
+                  </svg>
                   Transfer
 </span>,
               },
