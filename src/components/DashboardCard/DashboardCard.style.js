@@ -45,10 +45,3 @@ export const Title = styled.span`
   color: ${({ theme }) => theme.palette.light};
   font-size: 1.5rem;
 `;
-
-export const StriimTextColorBlue = styled.span`
-  color: #0066A2;
-`;
-export const StriimTextColorPink = styled.span`
-  color: #E70085;
-`;

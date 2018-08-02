@@ -6,7 +6,6 @@
 
 import React from 'react';
 import DashboardCard from 'components/DashboardCard';
-import { StriimTextColorBlue, StriimTextColorPink } from 'components/DashboardCard/DashboardCard.style';
 
 import { getAbsolutePath } from 'utils/electron';
 import StyledLink from './StyledLink';
@@ -25,13 +24,7 @@ function HomeScreen() {
         <StyledLink to="/striim">
           <DashboardCard
             iconSrc={getAbsolutePath('public/images/striim.png')}
-            title={
-              <div>
-                My
-                <StriimTextColorBlue> str</StriimTextColorBlue>
-                <StriimTextColorPink>ii</StriimTextColorPink>
-                <StriimTextColorBlue>m</StriimTextColorBlue>
-              </div>}
+            title={'My striim'}
           />
         </StyledLink>
         <StyledLink to="/dex">
