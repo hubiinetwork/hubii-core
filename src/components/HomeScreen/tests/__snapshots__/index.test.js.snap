@@ -35,20 +35,7 @@ ShallowWrapper {
           >
                     <DashboardCard
                               iconSrc="/public/images/striim.png"
-                              title={
-                                        <div>
-                                                  My
-                                                  <DashboardCard.style__StriimTextColorBlue>
-                                                             str
-                                                  </DashboardCard.style__StriimTextColorBlue>
-                                                  <DashboardCard.style__StriimTextColorPink>
-                                                            ii
-                                                  </DashboardCard.style__StriimTextColorPink>
-                                                  <DashboardCard.style__StriimTextColorBlue>
-                                                            m
-                                                  </DashboardCard.style__StriimTextColorBlue>
-                                        </div>
-                              }
+                              title="My striim"
                     />
           </StyledLink>
           <StyledLink
@@ -102,20 +89,7 @@ ShallowWrapper {
 >
               <DashboardCard
                             iconSrc="/public/images/striim.png"
-                            title={
-                                          <div>
-                                                        My
-                                                        <DashboardCard.style__StriimTextColorBlue>
-                                                                       str
-                                                        </DashboardCard.style__StriimTextColorBlue>
-                                                        <DashboardCard.style__StriimTextColorPink>
-                                                                      ii
-                                                        </DashboardCard.style__StriimTextColorPink>
-                                                        <DashboardCard.style__StriimTextColorBlue>
-                                                                      m
-                                                        </DashboardCard.style__StriimTextColorBlue>
-                                          </div>
-                            }
+                            title="My striim"
               />
 </StyledLink>,
             <StyledLink
@@ -171,20 +145,7 @@ ShallowWrapper {
             "props": Object {
               "children": <DashboardCard
                 iconSrc="/public/images/striim.png"
-                title={
-                                <div>
-                                                My
-                                                <DashboardCard.style__StriimTextColorBlue>
-                                                                 str
-                                                </DashboardCard.style__StriimTextColorBlue>
-                                                <DashboardCard.style__StriimTextColorPink>
-                                                                ii
-                                                </DashboardCard.style__StriimTextColorPink>
-                                                <DashboardCard.style__StriimTextColorBlue>
-                                                                m
-                                                </DashboardCard.style__StriimTextColorBlue>
-                                </div>
-                }
+                title="My striim"
 />,
               "to": "/striim",
             },
@@ -195,18 +156,7 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "iconSrc": "/public/images/striim.png",
-                "title": <div>
-                  My
-                  <DashboardCard.style__StriimTextColorBlue>
-                                     str
-                  </DashboardCard.style__StriimTextColorBlue>
-                  <DashboardCard.style__StriimTextColorPink>
-                                    ii
-                  </DashboardCard.style__StriimTextColorPink>
-                  <DashboardCard.style__StriimTextColorBlue>
-                                    m
-                  </DashboardCard.style__StriimTextColorBlue>
-</div>,
+                "title": "My striim",
               },
               "ref": null,
               "rendered": null,
@@ -296,20 +246,7 @@ ShallowWrapper {
             >
                         <DashboardCard
                                     iconSrc="/public/images/striim.png"
-                                    title={
-                                                <div>
-                                                            My
-                                                            <DashboardCard.style__StriimTextColorBlue>
-                                                                         str
-                                                            </DashboardCard.style__StriimTextColorBlue>
-                                                            <DashboardCard.style__StriimTextColorPink>
-                                                                        ii
-                                                            </DashboardCard.style__StriimTextColorPink>
-                                                            <DashboardCard.style__StriimTextColorBlue>
-                                                                        m
-                                                            </DashboardCard.style__StriimTextColorBlue>
-                                                </div>
-                                    }
+                                    title="My striim"
                         />
             </StyledLink>
             <StyledLink
@@ -363,20 +300,7 @@ ShallowWrapper {
 >
                 <DashboardCard
                                 iconSrc="/public/images/striim.png"
-                                title={
-                                                <div>
-                                                                My
-                                                                <DashboardCard.style__StriimTextColorBlue>
-                                                                                 str
-                                                                </DashboardCard.style__StriimTextColorBlue>
-                                                                <DashboardCard.style__StriimTextColorPink>
-                                                                                ii
-                                                                </DashboardCard.style__StriimTextColorPink>
-                                                                <DashboardCard.style__StriimTextColorBlue>
-                                                                                m
-                                                                </DashboardCard.style__StriimTextColorBlue>
-                                                </div>
-                                }
+                                title="My striim"
                 />
 </StyledLink>,
               <StyledLink
@@ -432,20 +356,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <DashboardCard
                   iconSrc="/public/images/striim.png"
-                  title={
-                                    <div>
-                                                      My
-                                                      <DashboardCard.style__StriimTextColorBlue>
-                                                                         str
-                                                      </DashboardCard.style__StriimTextColorBlue>
-                                                      <DashboardCard.style__StriimTextColorPink>
-                                                                        ii
-                                                      </DashboardCard.style__StriimTextColorPink>
-                                                      <DashboardCard.style__StriimTextColorBlue>
-                                                                        m
-                                                      </DashboardCard.style__StriimTextColorBlue>
-                                    </div>
-                  }
+                  title="My striim"
 />,
                 "to": "/striim",
               },
@@ -456,18 +367,7 @@ ShallowWrapper {
                 "nodeType": "function",
                 "props": Object {
                   "iconSrc": "/public/images/striim.png",
-                  "title": <div>
-                    My
-                    <DashboardCard.style__StriimTextColorBlue>
-                                         str
-                    </DashboardCard.style__StriimTextColorBlue>
-                    <DashboardCard.style__StriimTextColorPink>
-                                        ii
-                    </DashboardCard.style__StriimTextColorPink>
-                    <DashboardCard.style__StriimTextColorBlue>
-                                        m
-                    </DashboardCard.style__StriimTextColorBlue>
-</div>,
+                  "title": "My striim",
                 },
                 "ref": null,
                 "rendered": null,

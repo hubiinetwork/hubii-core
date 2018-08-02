@@ -83,7 +83,7 @@ const Styledimg = styled.img`
   margin-left: 5px;
 `;
 const StriimImage = styled.img`
-  height: 30px;
+  height: 35px;
   width: 35px;
 `;
 export { SideBarLayout, SideBarMenu, MenuItemIcon, Styledimg, StriimImage };
