@@ -10,4 +10,5 @@ export const Wrapper = styled.div`
 `;
 export const WalletPlaceHolder = styled.div`
   color: ${({ theme }) => theme.palette.secondary};
+  font-size: 1.25rem;
 `;

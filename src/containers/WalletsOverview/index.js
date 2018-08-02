@@ -49,7 +49,10 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     if (wallets.length === 0) {
       return (
         <WalletPlaceHolder>
-          No wallets available currently. Please click &apos;Add / Restore Wallet&apos; button to add wallets.
+          {"You haven't added any wallets."}
+          <br />
+          <br />
+          {'Create or import a wallet by clicking "Add / Restore Wallet" in the top right.'}
         </WalletPlaceHolder>
       );
     }
