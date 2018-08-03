@@ -1,3 +1,4 @@
+import BigNumber from 'bignumber.js';
 import { fromJS } from 'immutable';
 
 export const privateKeyMock = '0x409300caf64bdf96a92d7f99547a5d67702fbdd759bbea4ca19b11a21d9c8528';
@@ -37,13 +38,22 @@ export const formatedTransactionMock = {
   success: true,
   original: confirmedTransactionMock,
 };
-export const transferActionParamsMock = {
+export const transferEthActionParamsMock = {
   token: 'ETH',
   toAddress: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
-  amount: 0.0001,
-  gasPrice: 30000,
+  amount: new BigNumber(10050),
+  gasPrice: new BigNumber(30000),
   gasLimit: 21000,
   wallet: fromJS({ encrypted: {}, decrypted: {} }),
+};
+export const transferErc20ActionParamsMock = {
+  token: 'BOKKY',
+  toAddress: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
+  amount: new BigNumber(10050),
+  gasPrice: new BigNumber(30000),
+  gasLimit: 21000,
+  wallet: fromJS({ encrypted: {}, decrypted: {} }),
+  contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
 };
 
 export const lnsSignedTxMock = {
@@ -52,4 +62,4 @@ export const lnsSignedTxMock = {
   s: '1b7384730b63b8a70bababc3999c00bd99ed7fbd4c5c7e74cabcfa4d3133d119',
 };
 
-export const lnsExpectedSignedTxHex = '0xf8671082753082520894bfdc0c8e54af5719872a2edef8e65c9f4a3eae88865af3107a4000802aa07140f2dbd69f235c5ba229da1651a8c30062213a8a3a27f424a177cc01189fd8a01b7384730b63b8a70bababc3999c00bd99ed7fbd4c5c7e74cabcfa4d3133d119';
+export const lnsExpectedSignedTxHex = '0xf873108a065a4da25d3016c0000082520894bfdc0c8e54af5719872a2edef8e65c9f4a3eae888a0220cfc478d163c80000802aa07140f2dbd69f235c5ba229da1651a8c30062213a8a3a27f424a177cc01189fd8a01b7384730b63b8a70bababc3999c00bd99ed7fbd4c5c7e74cabcfa4d3133d119';
