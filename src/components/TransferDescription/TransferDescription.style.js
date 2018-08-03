@@ -92,7 +92,7 @@ export const BalanceCol = styled(Col)`
   line-height: 21px;
 `;
 export const WrapperDiv = styled.div`
-  width: 300px;
+  margin-left: 1rem;
 `;
 export const StyledSpin = styled(Spin)`
   margin-top: 2rem;
