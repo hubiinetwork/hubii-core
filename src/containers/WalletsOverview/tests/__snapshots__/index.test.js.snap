@@ -1,6 +1,636 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`WalletsOverview should render correctly 1`] = `
+exports[`WalletsOverview should render correctly when there are no wallets 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <WalletsOverview
+    deleteWallet={[Function]}
+    history={
+        Object {
+            "push": [Function],
+          }
+    }
+    ledgerNanoSInfo={
+        Immutable.Map {
+            connected: false,
+        }
+    }
+    setCurrentWallet={[Function]}
+    showDecryptWalletModal={[Function]}
+    supportedAssets={
+        Immutable.Map {
+            loading: false,
+            error: null,
+            assets: Immutable.List [
+                Immutable.Map {
+                    currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+                    symbol: "My20",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+                    symbol: "HBT",
+                    decimals: 15,
+                    color: "0063A5",
+                },
+                Immutable.Map {
+                    currency: "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+                    symbol: "SBT",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+                    symbol: "WETH",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                    symbol: "BOKKY",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "ETH",
+                    symbol: "ETH",
+                    decimals: 18,
+                    color: "5C78E4",
+                },
+            ],
+        }
+    }
+    totalBalances={
+        Immutable.Map {
+            assets: Immutable.Map {
+                ETH: Immutable.Map {
+                    amount: "0.99960169885",
+                    usdValue: "411.8358999262",
+                },
+                0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                    amount: "1",
+                    usdValue: "0",
+                },
+            },
+            loading: false,
+            totalUsd: "411.8358999262",
+        }
+    }
+    walletsWithInfo={
+        Immutable.List [
+        ]
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": <Row
+        gutter={16}
+>
+        <Col
+                md={16}
+                span={16}
+                xs={24}
+        >
+                <SectionHeading.style__SectionHeading>
+                        All Wallets
+                </SectionHeading.style__SectionHeading>
+                <Row
+                        align="top"
+                        gutter={16}
+                        type="flex"
+                >
+                        <style__WalletPlaceHolder>
+                                You haven't added any wallets.
+                                <br />
+                                <br />
+                                Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+                        </style__WalletPlaceHolder>
+                </Row>
+        </Col>
+        <Col
+                md={8}
+                span={8}
+                xs={24}
+        >
+                <Breakdown
+                        data={
+                                Array [
+                                        Object {
+                                          "color": "5C78E4",
+                                          "label": "ETH",
+                                          "percentage": 100,
+                                        },
+                                        Object {
+                                          "color": "FFAA00",
+                                          "label": "BOKKY",
+                                          "percentage": 0,
+                                        },
+                                      ]
+                        }
+                        value="411.8359"
+                />
+        </Col>
+</Row>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Col
+            md={16}
+            span={16}
+            xs={24}
+>
+            <SectionHeading.style__SectionHeading>
+                        All Wallets
+            </SectionHeading.style__SectionHeading>
+            <Row
+                        align="top"
+                        gutter={16}
+                        type="flex"
+            >
+                        <style__WalletPlaceHolder>
+                                    You haven't added any wallets.
+                                    <br />
+                                    <br />
+                                    Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+                        </style__WalletPlaceHolder>
+            </Row>
+</Col>,
+          <Col
+            md={8}
+            span={8}
+            xs={24}
+>
+            <Breakdown
+                        data={
+                                    Array [
+                                                Object {
+                                                  "color": "5C78E4",
+                                                  "label": "ETH",
+                                                  "percentage": 100,
+                                                },
+                                                Object {
+                                                  "color": "FFAA00",
+                                                  "label": "BOKKY",
+                                                  "percentage": 0,
+                                                },
+                                              ]
+                        }
+                        value="411.8359"
+            />
+</Col>,
+        ],
+        "gutter": 16,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <SectionHeading.style__SectionHeading>
+                All Wallets
+</SectionHeading.style__SectionHeading>,
+              <Row
+                align="top"
+                gutter={16}
+                type="flex"
+>
+                <style__WalletPlaceHolder>
+                                You haven't added any wallets.
+                                <br />
+                                <br />
+                                Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+                </style__WalletPlaceHolder>
+</Row>,
+            ],
+            "md": 16,
+            "span": 16,
+            "xs": 24,
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "All Wallets",
+              },
+              "ref": null,
+              "rendered": "All Wallets",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "top",
+                "children": <style__WalletPlaceHolder>
+                  You haven't added any wallets.
+                  <br />
+                  <br />
+                  Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+</style__WalletPlaceHolder>,
+                "gutter": 16,
+                "type": "flex",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    "You haven't added any wallets.",
+                    <br />,
+                    <br />,
+                    "Create or import a wallet by clicking \\"Add / Restore Wallet\\" in the top right.",
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  "You haven't added any wallets.",
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": "br",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": "br",
+                  },
+                  "Create or import a wallet by clicking \\"Add / Restore Wallet\\" in the top right.",
+                ],
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Breakdown
+              data={
+                            Array [
+                                          Object {
+                                            "color": "5C78E4",
+                                            "label": "ETH",
+                                            "percentage": 100,
+                                          },
+                                          Object {
+                                            "color": "FFAA00",
+                                            "label": "BOKKY",
+                                            "percentage": 0,
+                                          },
+                                        ]
+              }
+              value="411.8359"
+/>,
+            "md": 8,
+            "span": 8,
+            "xs": 24,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "data": Array [
+                Object {
+                  "color": "5C78E4",
+                  "label": "ETH",
+                  "percentage": 100,
+                },
+                Object {
+                  "color": "FFAA00",
+                  "label": "BOKKY",
+                  "percentage": 0,
+                },
+              ],
+              "value": "411.8359",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <Row
+          gutter={16}
+>
+          <Col
+                    md={16}
+                    span={16}
+                    xs={24}
+          >
+                    <SectionHeading.style__SectionHeading>
+                              All Wallets
+                    </SectionHeading.style__SectionHeading>
+                    <Row
+                              align="top"
+                              gutter={16}
+                              type="flex"
+                    >
+                              <style__WalletPlaceHolder>
+                                        You haven't added any wallets.
+                                        <br />
+                                        <br />
+                                        Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+                              </style__WalletPlaceHolder>
+                    </Row>
+          </Col>
+          <Col
+                    md={8}
+                    span={8}
+                    xs={24}
+          >
+                    <Breakdown
+                              data={
+                                        Array [
+                                                  Object {
+                                                    "color": "5C78E4",
+                                                    "label": "ETH",
+                                                    "percentage": 100,
+                                                  },
+                                                  Object {
+                                                    "color": "FFAA00",
+                                                    "label": "BOKKY",
+                                                    "percentage": 0,
+                                                  },
+                                                ]
+                              }
+                              value="411.8359"
+                    />
+          </Col>
+</Row>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Col
+              md={16}
+              span={16}
+              xs={24}
+>
+              <SectionHeading.style__SectionHeading>
+                            All Wallets
+              </SectionHeading.style__SectionHeading>
+              <Row
+                            align="top"
+                            gutter={16}
+                            type="flex"
+              >
+                            <style__WalletPlaceHolder>
+                                          You haven't added any wallets.
+                                          <br />
+                                          <br />
+                                          Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+                            </style__WalletPlaceHolder>
+              </Row>
+</Col>,
+            <Col
+              md={8}
+              span={8}
+              xs={24}
+>
+              <Breakdown
+                            data={
+                                          Array [
+                                                        Object {
+                                                          "color": "5C78E4",
+                                                          "label": "ETH",
+                                                          "percentage": 100,
+                                                        },
+                                                        Object {
+                                                          "color": "FFAA00",
+                                                          "label": "BOKKY",
+                                                          "percentage": 0,
+                                                        },
+                                                      ]
+                            }
+                            value="411.8359"
+              />
+</Col>,
+          ],
+          "gutter": 16,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <SectionHeading.style__SectionHeading>
+                  All Wallets
+</SectionHeading.style__SectionHeading>,
+                <Row
+                  align="top"
+                  gutter={16}
+                  type="flex"
+>
+                  <style__WalletPlaceHolder>
+                                    You haven't added any wallets.
+                                    <br />
+                                    <br />
+                                    Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+                  </style__WalletPlaceHolder>
+</Row>,
+              ],
+              "md": 16,
+              "span": 16,
+              "xs": 24,
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "All Wallets",
+                },
+                "ref": null,
+                "rendered": "All Wallets",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "align": "top",
+                  "children": <style__WalletPlaceHolder>
+                    You haven't added any wallets.
+                    <br />
+                    <br />
+                    Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+</style__WalletPlaceHolder>,
+                  "gutter": 16,
+                  "type": "flex",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      "You haven't added any wallets.",
+                      <br />,
+                      <br />,
+                      "Create or import a wallet by clicking \\"Add / Restore Wallet\\" in the top right.",
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "You haven't added any wallets.",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": "br",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": "br",
+                    },
+                    "Create or import a wallet by clicking \\"Add / Restore Wallet\\" in the top right.",
+                  ],
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <Breakdown
+                data={
+                                Array [
+                                                Object {
+                                                  "color": "5C78E4",
+                                                  "label": "ETH",
+                                                  "percentage": 100,
+                                                },
+                                                Object {
+                                                  "color": "FFAA00",
+                                                  "label": "BOKKY",
+                                                  "percentage": 0,
+                                                },
+                                              ]
+                }
+                value="411.8359"
+/>,
+              "md": 8,
+              "span": 8,
+              "xs": 24,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "data": Array [
+                  Object {
+                    "color": "5C78E4",
+                    "label": "ETH",
+                    "percentage": 100,
+                  },
+                  Object {
+                    "color": "FFAA00",
+                    "label": "BOKKY",
+                    "percentage": 0,
+                  },
+                ],
+                "value": "411.8359",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`WalletsOverview should render correctly when there are wallets 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],

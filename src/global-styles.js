@@ -157,8 +157,12 @@ injectGlobal`
   .ant-tooltip {
     display: none;
   }
-  .ant-popover-inner-content,
+  .ant-popover-inner,
   .ant-popover-arrow {
     background-color: ${darkTheme.palette.primary1};
+  }
+  .ant-popover-inner{
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.27);
   }
 `;
