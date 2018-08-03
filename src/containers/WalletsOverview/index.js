@@ -17,7 +17,7 @@ import { SectionHeading } from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
 
-import { WalletCardsCol, Wrapper } from './style';
+import { WalletCardsCol, Wrapper, WalletPlaceHolder } from './style';
 import { getCurrencySymbol } from '../../utils/wallet';
 
 export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -46,6 +46,16 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
   renderWalletCards() {
     const wallets = this.props.walletsWithInfo.toJS();
+    if (wallets.length === 0) {
+      return (
+        <WalletPlaceHolder>
+          {"You haven't added any wallets."}
+          <br />
+          <br />
+          {'Create or import a wallet by clicking "Add / Restore Wallet" in the top right.'}
+        </WalletPlaceHolder>
+      );
+    }
     return wallets.map((wallet) => (
       <WalletCardsCol
         span={12}
