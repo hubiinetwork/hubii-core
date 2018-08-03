@@ -57,7 +57,7 @@ const Name = styled.span`
 const WalletHeaderWrapper = styled.div`
   display: flex;
   background-color: ${({ theme }) => theme.palette.primary4};
-  height: 5.14rem;
+  height: 5.29rem;
 `;
 
 const OverflowHidden = styled.div`

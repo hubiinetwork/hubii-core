@@ -82,5 +82,8 @@ const Styledimg = styled.img`
   margin-top: 1.79rem;
   margin-left: 0.36rem;
 `;
-
-export { SideBarLayout, SideBarMenu, MenuItemIcon, Styledimg };
+const StriimImage = styled.img`
+  height: 35px;
+  width: 35px;
+`;
+export { SideBarLayout, SideBarMenu, MenuItemIcon, Styledimg, StriimImage };
