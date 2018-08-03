@@ -42,13 +42,6 @@ const Breakdown = ({ data = [], value }) => {
             />
           }
           innerRadius={90}
-          animate={{
-            onLoad: {
-              duration: 1200,
-              before: () => ({ _y: -1200, label: ' ' }),
-              after: (datum) => ({ _y: datum._y }),
-            },
-          }}
           colorScale={colors}
           data={chartData}
           containerComponent={
@@ -60,12 +53,11 @@ const Breakdown = ({ data = [], value }) => {
         />
       </div>
       {
-        parseFloat(value) !== parseFloat(0) && (
+        value !== '0' &&
           <div>
             <SectionHeading>Assets</SectionHeading>
             <Tokens data={labels} />
           </div>
-      )
       }
     </div>
   );
@@ -75,7 +67,7 @@ Breakdown.propTypes = {
   /**
    * Total  value in dollars.
    */
-  value: PropTypes.number.isRequired,
+  value: PropTypes.string.isRequired,
   /**
    * data  to populate  the Breakdowwn Component.
    */
