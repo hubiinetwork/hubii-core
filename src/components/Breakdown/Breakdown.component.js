@@ -9,7 +9,7 @@ import { formatFiat } from '../../utils/numberFormats';
 /**
  * This component shows user's total coins' convertion in dollar and a relative chart.
  */
-const Breakdown = ({ data, value }) => {
+const Breakdown = ({ data = [], value }) => {
   const chartData = data.map((item) => ({
     x: item.percentage,
     y: 2 * item.percentage,
@@ -20,7 +20,9 @@ const Breakdown = ({ data, value }) => {
     label: item.label,
     percentage: item.percentage,
   }));
-
+  if (chartData.length === 0) {
+    return <div />;
+  }
   return (
     <div>
       <SectionHeading>Breakdown</SectionHeading>
@@ -40,13 +42,6 @@ const Breakdown = ({ data, value }) => {
             />
           }
           innerRadius={90}
-          animate={{
-            onLoad: {
-              duration: 1200,
-              before: () => ({ _y: -1200, label: ' ' }),
-              after: (datum) => ({ _y: datum._y }),
-            },
-          }}
           colorScale={colors}
           data={chartData}
           containerComponent={
@@ -57,8 +52,13 @@ const Breakdown = ({ data, value }) => {
           }
         />
       </div>
-      <SectionHeading>Assets</SectionHeading>
-      <Tokens data={labels} />
+      {
+        value !== '0' &&
+          <div>
+            <SectionHeading>Assets</SectionHeading>
+            <Tokens data={labels} />
+          </div>
+      }
     </div>
   );
 };
