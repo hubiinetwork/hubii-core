@@ -52,7 +52,7 @@ export default class TransferForm extends React.PureComponent {
       amountToSendInputRegex,
       gasPriceGweiInput: '3',
       gasPriceGwei: new BigNumber('3'),
-      gasLimit: 0,
+      gasLimit: 21000,
       gasLimitInput: '21000',
     };
     this.handleAmountToSendChange = this.handleAmountToSendChange.bind(this);
@@ -134,7 +134,7 @@ export default class TransferForm extends React.PureComponent {
     const ONE_HUNDRED_MILLION = 100000000;
     if (value > ONE_HUNDRED_MILLION) return;
 
-    this.setState({ gasLimitInput: value, gasLimit: parseFloat(value) });
+    this.setState({ gasLimitInput: value, gasLimit: parseInt(value, 10) });
   }
 
   handleAssetChange(newSymbol) {
