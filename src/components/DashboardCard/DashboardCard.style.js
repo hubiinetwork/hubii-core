@@ -33,8 +33,8 @@ export const AntdIcon = styled(Icon)`
 `;
 
 export const CustomIcon = styled.img` 
-  max-height: 3rem;
-  max-width: 4rem;
+  max-width: ${(props) => props.src.includes('striim') ? '4.25' : '4'}rem;
+  max-height: ${(props) => props.src.includes('striim') ? '4' : '3'}rem;
 `;
 
 export const Title = styled.span`

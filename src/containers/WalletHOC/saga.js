@@ -176,13 +176,17 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
     return;
   }
 
+  // convert BigNumbers to the etherjs version of BigNumber here so the toHexString() method
+  // can be used later
+  const amountConverted = utils.bigNumberify(amount.toString());
+  const gasPriceConverted = utils.bigNumberify(gasPrice.toString());
+
   yield put(notify('info', 'Sending transaction...'));
   try {
-    const wei = utils.parseEther(amount.toString());
     if (token === 'ETH') {
-      yield put(transferEtherAction({ toAddress, amount: wei, gasPrice, gasLimit }));
+      yield put(transferEtherAction({ toAddress, amount: amountConverted, gasPrice: gasPriceConverted, gasLimit }));
     } else if (contractAddress) {
-      yield put(transferERC20Action({ token, toAddress, amount: wei, gasPrice, gasLimit, contractAddress }));
+      yield put(transferERC20Action({ token, toAddress, amount: amountConverted, gasPrice: gasPriceConverted, gasLimit, contractAddress }));
     }
   } catch (error) {
     yield put(transferError(error));
@@ -409,18 +413,16 @@ export function* sendTransactionByLedger({ toAddress, amount, data, nonce, gasPr
   const walletDetails = currentWalletWithInfo.toJS();
   const ledgerNanoSInfo = yield select(makeSelectLedgerNanoSInfo());
   let nonceValue = nonce;
-  let value = amount;
   if (!nonceValue) {
     nonceValue = yield call(getTransactionCount, walletDetails.address, 'pending');
   }
-  if (value) {
-    value = value.toHexString();
-  }
+  const amountHex = amount ? amount.toHexString() : '0x00';
+
   // generate raw tx for ledger nano to sign
   const rawTx = generateRawTx({
     toAddress,
-    amount: value,
-    gasPrice,
+    amount: amountHex,
+    gasPrice: gasPrice.toHexString(),
     gasLimit,
     nonce: nonceValue,
     data,
