@@ -59,6 +59,8 @@ export const isValidPrivateKey = (str) => {
 // input and output are BigNumber
 export const gweiToWei = (gwei) => (gwei.times(new BigNumber('10').pow('9')));
 
+export const gweiToEther = (gwei) => (gwei.times(new BigNumber('10').pow('-9')));
+
 export const EthNetworkProvider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
 
 export const IsAddressMatch = (a, b) => a.toLowerCase() === b.toLowerCase();

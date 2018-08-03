@@ -27,15 +27,15 @@ ShallowWrapper {
           >
                     <DashboardCard
                               iconSrc="/public/images/wallet-icon-green.png"
-                              title="Wallet Manager"
+                              title="My wallets"
                     />
           </StyledLink>
           <StyledLink
                     to="/striim"
           >
                     <DashboardCard
-                              iconSrc="/public/images/striim-icon-green.png"
-                              title="Striim Manager"
+                              iconSrc="/public/images/striim.png"
+                              title="My striim"
                     />
           </StyledLink>
           <StyledLink
@@ -81,15 +81,15 @@ ShallowWrapper {
 >
               <DashboardCard
                             iconSrc="/public/images/wallet-icon-green.png"
-                            title="Wallet Manager"
+                            title="My wallets"
               />
 </StyledLink>,
             <StyledLink
               to="/striim"
 >
               <DashboardCard
-                            iconSrc="/public/images/striim-icon-green.png"
-                            title="Striim Manager"
+                            iconSrc="/public/images/striim.png"
+                            title="My striim"
               />
 </StyledLink>,
             <StyledLink
@@ -119,7 +119,7 @@ ShallowWrapper {
             "props": Object {
               "children": <DashboardCard
                 iconSrc="/public/images/wallet-icon-green.png"
-                title="Wallet Manager"
+                title="My wallets"
 />,
               "to": "/wallets",
             },
@@ -130,7 +130,7 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "iconSrc": "/public/images/wallet-icon-green.png",
-                "title": "Wallet Manager",
+                "title": "My wallets",
               },
               "ref": null,
               "rendered": null,
@@ -144,8 +144,8 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <DashboardCard
-                iconSrc="/public/images/striim-icon-green.png"
-                title="Striim Manager"
+                iconSrc="/public/images/striim.png"
+                title="My striim"
 />,
               "to": "/striim",
             },
@@ -155,8 +155,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
-                "iconSrc": "/public/images/striim-icon-green.png",
-                "title": "Striim Manager",
+                "iconSrc": "/public/images/striim.png",
+                "title": "My striim",
               },
               "ref": null,
               "rendered": null,
@@ -238,15 +238,15 @@ ShallowWrapper {
             >
                         <DashboardCard
                                     iconSrc="/public/images/wallet-icon-green.png"
-                                    title="Wallet Manager"
+                                    title="My wallets"
                         />
             </StyledLink>
             <StyledLink
                         to="/striim"
             >
                         <DashboardCard
-                                    iconSrc="/public/images/striim-icon-green.png"
-                                    title="Striim Manager"
+                                    iconSrc="/public/images/striim.png"
+                                    title="My striim"
                         />
             </StyledLink>
             <StyledLink
@@ -292,15 +292,15 @@ ShallowWrapper {
 >
                 <DashboardCard
                                 iconSrc="/public/images/wallet-icon-green.png"
-                                title="Wallet Manager"
+                                title="My wallets"
                 />
 </StyledLink>,
               <StyledLink
                 to="/striim"
 >
                 <DashboardCard
-                                iconSrc="/public/images/striim-icon-green.png"
-                                title="Striim Manager"
+                                iconSrc="/public/images/striim.png"
+                                title="My striim"
                 />
 </StyledLink>,
               <StyledLink
@@ -330,7 +330,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <DashboardCard
                   iconSrc="/public/images/wallet-icon-green.png"
-                  title="Wallet Manager"
+                  title="My wallets"
 />,
                 "to": "/wallets",
               },
@@ -341,7 +341,7 @@ ShallowWrapper {
                 "nodeType": "function",
                 "props": Object {
                   "iconSrc": "/public/images/wallet-icon-green.png",
-                  "title": "Wallet Manager",
+                  "title": "My wallets",
                 },
                 "ref": null,
                 "rendered": null,
@@ -355,8 +355,8 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <DashboardCard
-                  iconSrc="/public/images/striim-icon-green.png"
-                  title="Striim Manager"
+                  iconSrc="/public/images/striim.png"
+                  title="My striim"
 />,
                 "to": "/striim",
               },
@@ -366,8 +366,8 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "function",
                 "props": Object {
-                  "iconSrc": "/public/images/striim-icon-green.png",
-                  "title": "Striim Manager",
+                  "iconSrc": "/public/images/striim.png",
+                  "title": "My striim",
                 },
                 "ref": null,
                 "rendered": null,
