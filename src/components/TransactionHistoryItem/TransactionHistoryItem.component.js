@@ -4,7 +4,6 @@ import { getAbsolutePath } from 'utils/electron';
 import { IsAddressMatch } from 'utils/wallet';
 import {
   TransactionHistoryItemCard,
-  TransactionHistoryItemDate,
   Wrapper,
   Image,
 } from './TransactionHistoryItem.style';
@@ -13,19 +12,14 @@ import TransactionHistoryDetail from '../TransactionHistoryDetail';
  * This component shows history of a past transaction's detail.
  */
 export const TransactionHistoryItem = (props) => {
-  const { data, rate } = props;
-  const locale = 'en-us';
+  const { data } = props;
   const type = !data.address
     ? 'exchange'
     : IsAddressMatch(data.address, data.to)
       ? 'received'
       : 'sent';
-  const month = data.time.toLocaleString(locale, { month: 'short' });
   return (
     <Wrapper>
-      <TransactionHistoryItemDate>
-        {month} {data.time.getDate()}
-      </TransactionHistoryItemDate>
       <TransactionHistoryItemCard>
         <Image
           src={getAbsolutePath(`public/images/assets/${
@@ -37,10 +31,10 @@ export const TransactionHistoryItem = (props) => {
           address={type === 'received' ? data.from : data.to}
           txnId={data.txnId}
           amount={data.amount}
-          rate={rate}
+          fiatValue={data.fiatValue}
           toCoin={data.toCoin}
           fromCoin={data.fromCoin}
-          status={data.status}
+          confirmations={data.confirmations}
           time={data.time}
         />
       </TransactionHistoryItemCard>
@@ -59,17 +53,17 @@ TransactionHistoryItem.propTypes = {
      */
     address: PropTypes.string,
     time: PropTypes.object.isRequired,
-    amount: PropTypes.number.isRequired,
+    amount: PropTypes.string.isRequired,
     txnId: PropTypes.string,
     to: PropTypes.string,
     from: PropTypes.string,
     toCoin: PropTypes.string,
     fromCoin: PropTypes.string,
+    fiatValue: PropTypes.string.isRequired,
     coin: PropTypes.string,
     status: PropTypes.bool,
   }).isRequired,
   /**
    * rate of 1ETH or any other currency, in dollars.
    */
-  rate: PropTypes.number.isRequired,
 };

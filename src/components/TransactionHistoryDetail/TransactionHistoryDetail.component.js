@@ -3,26 +3,30 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { getAbsolutePath } from 'utils/electron';
 import { EthNetworkProvider } from 'utils/wallet';
+
 import {
-  TransactionHistoryType,
-  TransactionHistoryAddress,
+  TypeText,
+  GreenTextWrapper,
   Wrapper,
   DetailCollapse,
   DetailPanel,
-  TransactionHistoryAddressLink,
-  TransactionHistoryItemCardIcon,
   Amount,
   Left,
   TransactionStatus,
-} from './TransactionHistoryDetail.style';
-import {
-  SpaceAround,
+  TypeIcon,
+  TransactionId,
   TransactionHistoryTime,
-  TransactionHistoryConversion,
+  FiatValue,
+  DetailsWrapper,
+} from './TransactionHistoryDetail.style';
+
+import {
   Sent,
   Received,
   Image,
 } from '../TransactionHistoryItem/TransactionHistoryItem.style';
+
+import { formatFiat } from '../../utils/numberFormats';
 
 /**
  * This component  shows  the collapsed  area of TransactionHistoryItem.
@@ -35,12 +39,12 @@ const TransactionHistoryDetail = (props) => (
       header={
         <Wrapper>
           <Left>
-            {!(props.type === 'received' || props.type === 'sent') && (
+            {props.type === 'exchange' && (
             <Image
               src={getAbsolutePath(`public/images/assets/${props.toCoin}.svg`)}
             />
               )}
-            <TransactionHistoryItemCardIcon
+            <TypeIcon
               type={
                   props.type === 'received'
                     ? 'download'
@@ -49,7 +53,7 @@ const TransactionHistoryDetail = (props) => (
                       : ' '
                 }
             />
-            <TransactionHistoryType>
+            <TypeText>
               {props.type === 'received' ? (
                   'Recieved from'
                 ) : props.type === 'sent' ? (
@@ -57,53 +61,67 @@ const TransactionHistoryDetail = (props) => (
                 ) : (
                   <div style={{ display: 'flex' }}>
                     Exchanged
-                    <TransactionHistoryAddress>
+                    <GreenTextWrapper>
                       {props.fromCoin}
-                    </TransactionHistoryAddress>
+                    </GreenTextWrapper>
                     to
-                    <TransactionHistoryAddress>
+                    <GreenTextWrapper>
                       {props.toCoin}
-                    </TransactionHistoryAddress>
+                    </GreenTextWrapper>
                   </div>
                 )}
-            </TransactionHistoryType>
-            <TransactionHistoryAddress>
+            </TypeText>
+            <GreenTextWrapper>
               {props.address}
-            </TransactionHistoryAddress>
+            </GreenTextWrapper>
           </Left>
-          <SpaceAround>
-            <TransactionHistoryTime>
-              {moment(props.time).format('h:mm a')}
-            </TransactionHistoryTime>
-            <TransactionHistoryConversion>
+          <DetailsWrapper>
+            <Amount>
               {props.type === 'sent' ? (
                 <Sent>-{props.amount}</Sent>
                 ) : (
                   <Received>+{props.amount}</Received>
                 )}
-            </TransactionHistoryConversion>
-          </SpaceAround>
+            </Amount>
+            <FiatValue>{`(${formatFiat(props.fiatValue, 'USD')})`}</FiatValue>
+            <TransactionHistoryTime>
+              {moment(props.time).calendar()}
+            </TransactionHistoryTime>
+          </DetailsWrapper>
         </Wrapper>
         }
       key="1"
     >
       <div>
-        <TransactionHistoryAddressLink
+        <TransactionId
           href={
             EthNetworkProvider.name === 'ropsten' ? `https://ropsten.etherscan.io/tx/${props.txnId}` : `https://etherscan.io/tx/${props.txnId}`
           }
           target="_blank"
         >
           {props.txnId}
-        </TransactionHistoryAddressLink>
+        </TransactionId>
         <div
-          style={{ display: 'flex', alignItems: 'center', marginBottom: 5 }}
+          style={{ marginBottom: 5 }}
         >
-          <TransactionHistoryAddress>
-            {props.amount}
-          </TransactionHistoryAddress>
-          <TransactionStatus>{props.status ? 'Confirmed' : 'Pending'}</TransactionStatus>
-          <Amount>${props.rate * props.amount}</Amount>
+          {
+            props.confirmations > 0 &&
+              <GreenTextWrapper>
+                {`${props.confirmations} `}
+              </GreenTextWrapper>
+          }
+          {
+            props.confirmations === 0 &&
+              <TransactionStatus>Transaction pending...</TransactionStatus>
+          }
+          {
+            props.confirmations === 1 &&
+              <TransactionStatus>confirmation</TransactionStatus>
+          }
+          {
+            props.confirmations > 1 &&
+              <TransactionStatus> confirmations</TransactionStatus>
+          }
         </div>
       </div>
     </DetailPanel>
@@ -117,7 +135,7 @@ TransactionHistoryDetail.propTypes = {
   /**
    * amount for transactionHistory.
    */
-  amount: PropTypes.number.isRequired,
+  amount: PropTypes.string.isRequired,
   /**
    * txnId to see live transactionHistory.
    */
@@ -129,7 +147,7 @@ TransactionHistoryDetail.propTypes = {
   /**
    * USD price of ETH coin.
    */
-  rate: PropTypes.number.isRequired,
+  fiatValue: PropTypes.string.isRequired,
   /**
    * Short capitalized name of coin that was exchanged to.
    */
@@ -141,8 +159,8 @@ TransactionHistoryDetail.propTypes = {
   /**
    * status code of the transaction.
    */
-  time: PropTypes.object,
-  status: PropTypes.bool,
+  time: PropTypes.object.isRequired,
+  confirmations: PropTypes.number.isRequired,
 };
 
 export default TransactionHistoryDetail;
