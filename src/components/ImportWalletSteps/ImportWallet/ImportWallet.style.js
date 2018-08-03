@@ -61,7 +61,7 @@ export const ButtonDiv = styled.div`
   margin-top: 1rem;
 `;
 export const StyledButton = styled(Button)`
-  margin-top: 80px;
+  margin-top: 35px;
   background-color: ${({ disabled: white }) =>
     white && 'transparent !important'};
   font-size: 12px;
