@@ -18,30 +18,30 @@ export const WidthEighty = styled.div`
 `;
 
 export const StyledModalFormLabel = styled(ModalFormLabel)`
-  height: 14px;
-  font-size: 12px;
+  height: 1rem;
+  font-size: 0.86rem;
   font-weight: 500;
-  line-height: 14px;
+  line-height: 1rem;
 `;
 
 export const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: ${(props) => props.loading ? '25px' : '50px'};
-  margin-bottom: 26px;
+  margin-top: ${(props) => props.loading ? '1.79rem' : '3.57rem'};
+  margin-bottom: 1.86rem;
 `;
 
 export const StyledButton = styled(Button)`
   background-color: ${({ disabled: white }) =>
     white && 'transparent !important'};
-  font-size: 12px;
+  font-size: 0.86rem;
   font-weight: 500;
-  border-width: 2px;
-  height: 40px;
-  width: 162px;
+  border-width: 0.14rem;
+  height: 2.86rem;
+  width: 11.57rem;
   border: ${({ disabled: white, theme }) =>
-    white && `2px solid ${theme.palette.secondary4} !important`};
-  min-width: ${({ current: width }) => (width === 0 ? '260px' : '190px')};
+    white && `0.14rem solid ${theme.palette.secondary4} !important`};
+  min-width: ${({ current: width }) => (width === 0 ? '18.57rem' : '13.57rem')};
   color: ${({ disabled: white, theme }) =>
     white
       ? `${theme.palette.secondary4} !important`
@@ -50,22 +50,22 @@ export const StyledButton = styled(Button)`
     background-color: ${({ disabled: white }) =>
       white && 'transparent !important'};
     border: ${({ disabled: white, theme }) =>
-      white && `2px solid ${theme.palette.secondary4} !important`};
+      white && `0.14rem solid ${theme.palette.secondary4} !important`};
   }
 `;
 
 export const StyledBackButton = styled(Button)`
-  height: 40px;
-  width: 70px;
-  margin-right: 8px;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.palette.light};
+  height: 2.86rem;
+  width: 5rem;
+  margin-right: 0.57rem;
+  border-radius: 0.29rem;
+  border: 0.07rem solid ${({ theme }) => theme.palette.light};
 `;
 
 export const StyledSpan = styled.span`
-  font-size: 12px;
+  font-size: 0.86rem;
   font-weight: 500;
-  line-height: 14px;
+  line-height: 1rem;
   text-align: center;
 `;
 
@@ -73,10 +73,10 @@ export const StyledSpan = styled.span`
  * Specific styling for ImportWalletNameForm
  */
 export const FormInput = styled(ModalFormInput)`
-  height: 46px;
-  width: 410px;
-  border: 1px solid #43616F;
-  border-radius: 4px;
+  height: 3.29rem;
+  width: 29.29rem;
+  border: 0.07rem solid #43616F;
+  border-radius: 0.29rem;
 `;
 
 export const FormItem = styled(ModalFormItem)`
@@ -86,7 +86,7 @@ export const FormItem = styled(ModalFormItem)`
   .ant-form-item-label{
     display: flex;
     align-self: start;
-    margin-left: -13px;
+    margin-left: -0.93rem;
   }
 `;
 
@@ -96,8 +96,8 @@ export const IconDiv = styled.div`
 `;
 
 export const Image = styled.img`
-width: 150px;
-height: 44px;
+width: 10.71rem;
+height: 3.14rem;
 margin-top: 1rem;
 margin-bottom: 1rem;
 `;

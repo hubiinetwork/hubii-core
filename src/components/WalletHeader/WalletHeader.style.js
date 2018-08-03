@@ -4,21 +4,21 @@ import StyledButton from '../ui/Button';
 const Address = styled.span`
   display: flex;
   color: ${({ theme }) => theme.palette.secondary6};
-  font-size: 12px;
+  font-size: 0.86rem;
   font-weight: 500;
   align-items: center;
-  line-height: 14px;
-  margin-top: 5px;
+  line-height: 1rem;
+  margin-top: 0.36rem;
 `;
 
 const Balance = styled.span`
   color: ${({ theme }) => theme.palette.info};
-  font-size: 24px;
-  margin-right: 30px;
+  font-size: 1.71rem;
+  margin-right: 2.14rem;
 `;
 
 const CopyButton = styled(StyledButton)`
-  margin-left: 8px;
+  margin-left: 0.57rem;
   color: ${({ theme }) => theme.palette.secondary1};
   background-color: ${({ theme }) => theme.palette.primary};
   border-color: ${({ theme }) => theme.palette.primary2};
@@ -38,7 +38,7 @@ const DetailWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 30px;
+  margin-left: 2.14rem;
 `;
 
 const HeaderDetail = styled.div`
@@ -49,15 +49,15 @@ const HeaderDetail = styled.div`
 
 const Name = styled.span`
   color: white;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 1.29rem;
+  line-height: 1.5rem;
   font-weight: 500;
 `;
 
 const WalletHeaderWrapper = styled.div`
   display: flex;
   background-color: ${({ theme }) => theme.palette.primary4};
-  height: 72px;
+  height: 5.14rem;
 `;
 
 const OverflowHidden = styled.div`

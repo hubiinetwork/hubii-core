@@ -5,28 +5,28 @@ const Panel = Collapse.Panel;
 export const TransactionHistoryType = styled.div`
   color: ${({ theme }) => theme.palette.light};
   font-family: 'SF Text';
-  font-size: 14px;
+  font-size: 1rem;
 `;
 
 export const TransactionStatus = styled.div`
   color: ${({ theme }) => theme.palette.light};
   font-family: 'SF Text';
-  font-size: 12px;
+  font-size: 0.86rem;
 `;
 
 export const TransactionHistoryItemCardIcon = styled(Icon)`
   color: ${({ theme }) => theme.palette.light};
-  font-size: 20px;
+  font-size: 1.43rem;
   display: flex;
   align-items: center;
-  margin-right: 9px;
+  margin-right: 0.64rem;
 `;
 
 export const Amount = styled.div`
   color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 12px;
+  font-size: 0.86rem;
   font-family: 'SF Text';
-  margin-left: 15px;
+  margin-left: 1.07rem;
 `;
 
 export const Left = styled.div`
@@ -38,15 +38,15 @@ export const Left = styled.div`
 export const TransactionHistoryAddress = styled.div`
   word-break: break-all;
   color: ${({ theme }) => theme.palette.info};
-  margin-left: 3px;
+  margin-left: 0.21rem;
   font-family: 'SF Text';
-  margin-right: 3px;
+  margin-right: 0.21rem;
 `;
 
 export const TransactionHistoryAddressLink = styled.a`
   color: ${({ theme }) => theme.palette.secondary};
   font-family: 'SF Text';
-  font-size: 12px;
+  font-size: 0.86rem;
   word-break: break-all;
   &:active {
     color: ${({ theme }) => theme.palette.info};
@@ -68,32 +68,32 @@ export const Wrapper = styled.div`
 `;
 
 export const DetailCollapse = styled(Collapse)`
-  border-width: 0px;
-  padding: 0px;
+  border-width: 0rem;
+  padding: 0rem;
   background-color: transparent;
   flex: 1;
   display: flex;
   align-items: center;
   .ant-collapse-header {
-    padding: 0px !important;
+    padding: 0rem !important;
   }
   .ant-collapse-content {
-    padding-left: 0px !important;
+    padding-left: 0rem !important;
   }
   .ant-collapse-content-box {
-    padding-top: 8px !important;
-    padding: 0px !important;
+    padding-top: 0.57rem !important;
+    padding: 0rem !important;
   }
 `;
 
 export const DetailPanel = styled(Panel)`
-  padding: 0px;
+  padding: 0rem;
   flex: 1;
 `;
 
 export const HashText = styled.div`
   color: ${({ theme }) => theme.palette.secondary1};
-  margin-bottom: 0px;
-  margin-right: 5px;
+  margin-bottom: 0rem;
+  margin-right: 0.36rem;
   font-weight: bolder;
 `;

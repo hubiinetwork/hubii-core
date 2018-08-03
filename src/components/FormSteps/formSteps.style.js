@@ -10,10 +10,10 @@ export const TextDiv = styled.div`
   display: flex;
   color: ${({ theme }) => theme.palette.secondary1};
   justify-content: center;
-  font-size: 12px;
+  font-size: 0.86rem;
   font-weight: 500;
-  line-height: 14px;
+  line-height: 1rem;
   text-align: center;
-  margin-top: 32px;
-  margin-bottom: 12px;
+  margin-top: 2.29rem;
+  margin-bottom: 0.86rem;
 `;

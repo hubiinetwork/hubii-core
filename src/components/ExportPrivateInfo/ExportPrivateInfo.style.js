@@ -42,15 +42,15 @@ export const StyledIcon = styled(Button)`
 `;
 
 export const StyledButton = styled(Button)`
-  min-width: 150px;
-  border-width: 2px;
+  min-width: 10.71rem;
+  border-width: 0.14rem;
   padding: 0.5rem 1rem;
   margin: 1rem;
   color: ${({ theme }) => theme.palette.light};
 `;
 
 export const ParentDiv = styled.div`
-  margin-top: 20px;
+  margin-top: 1.43rem;
   display: flex;
   justify-content: center;
 `;

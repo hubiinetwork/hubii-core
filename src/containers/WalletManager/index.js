@@ -138,10 +138,10 @@ export class WalletManager extends React.PureComponent {
             </StyledButton>
             <Modal
               footer={null}
-              width={'585px'}
+              width={'41.79rem'}
               maskClosable
               maskStyle={{ background: 'rgba(232,237,239,.65)' }}
-              style={{ marginTop: '20px' }}
+              style={{ marginTop: '1.43rem' }}
               visible={this.state.visible}
               onCancel={this.hideModal}
               destroyOnClose

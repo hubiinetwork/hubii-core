@@ -9,13 +9,13 @@ export const Wrapper = styled(Card)`
   cursor: pointer;
   min-width: 23rem;
   height: 9rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 0.57rem;
+  box-shadow: 0 0.14rem 0.36rem 0 rgba(0, 0, 0, 0.1);
   background-color: ${({ theme }) => theme.palette.primary4};
-  border: 1px solid ${({ theme }) => theme.palette.primary4} !important;
+  border: 0.07rem solid ${({ theme }) => theme.palette.primary4} !important;
   &:hover {
     background-color: ${({ theme }) => theme.palette.primary5};
-    border: 1px solid ${({ theme }) => theme.palette.secondary3} !important;
+    border: 0.07rem solid ${({ theme }) => theme.palette.secondary3} !important;
   }
   &:focus {
     text-decoration: none;

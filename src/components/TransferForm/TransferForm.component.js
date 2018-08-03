@@ -205,8 +205,8 @@ export default class TransferForm extends React.PureComponent {
               <Image>
                 <img
                   src={getAbsolutePath(`public/images/assets/${assetToSend.symbol}.svg`)}
-                  width="32px"
-                  height="32px"
+                  width="2.29rem"
+                  height="2.29rem"
                   alt="logo"
                 />
               </Image>
