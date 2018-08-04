@@ -43,7 +43,7 @@ export class WalletTransfer extends React.PureComponent {
   }
 
   onCancel() {
-    this.props.history.push(`/wallet/${this.props.currentWalletWithInfo.address}/overview`);
+    // this.props.history.push(`/wallet/${this.props.currentWalletWithInfo.address}/overview`);
   }
 
   render() {
@@ -76,7 +76,7 @@ WalletTransfer.propTypes = {
   currentWalletWithInfo: PropTypes.object.isRequired,
   currentWallet: PropTypes.object.isRequired,
   transfer: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
+  // history: PropTypes.object.isRequired,
   prices: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,

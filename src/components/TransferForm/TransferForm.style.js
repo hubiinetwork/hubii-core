@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import { Row, Collapse } from 'antd';
+import Select from 'components/ui/Select';
 
+export const StyledSelect = styled(Select)`
+  .ant-select-selection{
+    box-shadow: none;
+  }
+`;
 
 export const Image = styled.div`
 border-bottom: 1px solid ${({ theme }) => theme.palette.secondary};

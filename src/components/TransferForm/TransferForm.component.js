@@ -3,22 +3,24 @@ import { Col } from 'antd';
 import PropTypes from 'prop-types';
 import { gweiToWei } from 'utils/wallet';
 import { formatFiat, formatEthAmount } from 'utils/numberFormats';
+import { isValidAddress } from 'ethereumjs-util';
 import { getAbsolutePath } from 'utils/electron';
 import {
   Row,
   ETHtoDollar,
   Image,
-  StyledLabel as OptGroupLabel,
   AdvanceSettingsHeader,
   Collapse,
   Panel,
+  StyledSelect,
 } from './TransferForm.style';
 import InputNumber from '../ui/InputNumber';
-import Select, { Option, OptGroup } from '../ui/Select';
+import Select, { Option } from '../ui/Select';
 import { Form, FormItem, FormItemLabel } from '../ui/Form';
 import HelperText from '../ui/HelperText';
 import TransferDescription from '../TransferDescription';
 import Input from '../ui/Input';
+
 
 // TODO: This component is buggy. Just merging because a lot of eslint issue have been resolved in this branch
 export default class TransferForm extends React.PureComponent {
@@ -31,6 +33,9 @@ export default class TransferForm extends React.PureComponent {
       assetToSend: this.props.assets[0],
       gasPriceGwei: 3,
       gasLimit: 21000,
+      selectValue: null,
+      addressInputVisibility: false,
+      options: [],
     };
     this.handleAmountToSendChange = this.handleAmountToSendChange.bind(this);
     this.handleAssetChange = this.handleAssetChange.bind(this);
@@ -38,12 +43,65 @@ export default class TransferForm extends React.PureComponent {
     this.handleRecipient = this.handleRecipient.bind(this);
     this.handleGasPriceChange = this.handleGasPriceChange.bind(this);
     this.handleGasLimitChange = this.handleGasLimitChange.bind(this);
+    this.onInputKeyDown = this.onInputKeyDown.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+  }
+
+  componentWillMount() {
+    this.setState({
+      options: this.props.recipients,
+    });
+  }
+
+  onBlur() {
+    if (isValidAddress(this.state.selectValue)) {
+      this.setState({ address: this.state.selectValue });
+    }
   }
 
   onSend() {
     const { assetToSend, address, amountToSend, gasPriceGwei, gasLimit } = this.state;
     this.props.onSend(assetToSend.symbol, address, amountToSend, gweiToWei(gasPriceGwei), gasLimit);
   }
+
+  onInputKeyDown(event) {
+    const value = event.target.value;
+    if (event.key === 'Enter' && !isValidAddress(value)) {
+      this.setState({ selectValue: 'Invalid Address or Not Found Contact' });
+      return;
+    }
+    if (event.key === 'Enter' && this.state.options.every((item) => item.name !== value)) {
+      this.setState((prevState) => ({
+        options: [...prevState.options, { name: value, address: value }],
+      }));
+    }
+  }
+
+  handleGasPriceChange(e) {
+    this.setState({ gasPriceGwei: parseFloat(e.target.value) });
+  }
+
+  handleGasLimitChange(e) {
+    this.setState({ gasLimit: parseFloat(e.target.value) });
+  }
+
+  handleAssetChange(newSymbol) {
+    this.setState({
+      assetToSend: this.props.assets.find((a) => a.symbol === newSymbol),
+    });
+  }
+
+  handleRecipient(value) {
+    let address = value;
+    if (!isValidAddress(value)) {
+      address = this.state.options.find((option) => option.name === value).address;
+    }
+    this.setState({
+      address,
+      selectValue: value,
+    });
+  }
+
 
   handleAmountToSendChange(e) {
     const { value } = e.target;
@@ -68,27 +126,6 @@ export default class TransferForm extends React.PureComponent {
 
     this.setState({ amountToSend: formatEthAmount(Number(value)) });
   }
-
-  handleGasPriceChange(e) {
-    this.setState({ gasPriceGwei: parseFloat(e.target.value) });
-  }
-
-  handleGasLimitChange(e) {
-    this.setState({ gasLimit: parseFloat(e.target.value) });
-  }
-
-  handleAssetChange(newSymbol) {
-    this.setState({
-      assetToSend: this.props.assets.find((a) => a.symbol === newSymbol),
-    });
-  }
-
-  handleRecipient(value) {
-    this.setState({
-      address: value,
-    });
-  }
-
   render() {
     const { assetToSend, address, gasLimit, amountToSend, amountToSendInput, gasPriceGwei } = this.state;
     const { currentWalletUsdBalance, assets, prices, recipients, transfering } = this.props;
@@ -144,20 +181,23 @@ export default class TransferForm extends React.PureComponent {
               colon={false}
               help={<HelperText left={address} />}
             >
-              <Select
+              <StyledSelect
                 disabled={transfering}
+                showSearch
                 defaultValue={recipients[0] ? recipients[0].name : ''}
                 recipient
+                onInputKeyDown={this.onInputKeyDown}
+                onSearch={(value) => this.setState({ selectValue: value })}
                 onSelect={this.handleRecipient}
+                notFoundContent={this.state.selectValue}
+                onBlur={this.onBlur}
               >
-                <OptGroup label={<OptGroupLabel>Own Addresses</OptGroupLabel>}>
-                  {this.props.recipients.map((recipient) => (
-                    <Option value={recipient.address} key={recipient.address}>
-                      {recipient.name}
-                    </Option>
-                  ))}
-                </OptGroup>
-              </Select>
+                {this.state.options.map((recipient) => (
+                  <Option key={recipient.name} value={recipient.name}>
+                    {recipient.name}
+                  </Option>
+                ))}
+              </StyledSelect>
             </FormItem>
             <FormItem
               label={<FormItemLabel>Amount</FormItemLabel>}
