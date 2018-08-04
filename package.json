@@ -254,8 +254,7 @@
       "raf/polyfill",
       "<rootDir>/internals/testing/enzyme-setup.js"
     ],
-    "testRegex": "tests/.*\\.test\\.js$",
-    "testEnvironment": "node"
+    "testRegex": "tests/.*\\.test\\.js$"
   },
   "dependencies": {
     "@fortawesome/fontawesome": "1.1.8",

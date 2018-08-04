@@ -73,3 +73,4 @@ export const sendTransaction = (...args) => EthNetworkProvider.sendTransaction(.
 
 export const getTransaction = (...args) => EthNetworkProvider.getTransaction(...args);
 
+export const isHardwareWallet = (type) => type === 'lns' || type === 'trezor'

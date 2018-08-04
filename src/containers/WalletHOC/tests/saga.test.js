@@ -49,7 +49,7 @@ import walletHoc, {
   ledgerChannel,
   ledgerEthChannel,
   pollEthApp,
-  sendTransactionByLedger,
+  sendTransactionForHardwareWallet,
   tryCreateEthTransportActivity,
   generateERC20Transaction,
 } from '../saga';
@@ -900,8 +900,8 @@ describe('load wallets saga', () => {
           // });
       });
     });
-    describe('hardware wallet: ledger', () => {
-      it('#sendTransactionByLedger should sign tx and output a hex correctly', () => {
+    describe.only('hardware wallet: ledger', () => {
+      it('#sendTransactionForHardwareWallet should sign tx and output a hex correctly', () => {
         const storeState = fromJS({
           walletHoc: {
             balances: balancesMock,
@@ -931,7 +931,7 @@ describe('load wallets saga', () => {
           gasPrice: utils.parseEther(transferErc20ActionParamsMock.gasPrice.toString()),
           amount: utils.parseEther(transferErc20ActionParamsMock.amount.toString()),
         };
-        return expectSaga(sendTransactionByLedger, params)
+        return expectSaga(sendTransactionForHardwareWallet, params)
           .provide({
             call(effect) {
               if (effect.fn === tryCreateEthTransportActivity) {
@@ -982,7 +982,7 @@ describe('load wallets saga', () => {
         }, options);
         expect(tx).toEqual(expectedTx);
       });
-      it('transfer erc20 should pass params correctly to sendTransactionByLedger', () => {
+      it('transfer erc20 should pass params correctly to sendTransactionForHardwareWallet', () => {
         const storeState = {
           walletHoc: {
             wallets: [{
@@ -1018,7 +1018,7 @@ describe('load wallets saga', () => {
               if (effect.fn === generateERC20Transaction) {
                 return tx;
               }
-              if (effect.fn === sendTransactionByLedger) {
+              if (effect.fn === sendTransactionForHardwareWallet) {
                 expect(effect.args[0].toAddress).toEqual(tx.to);
                 expect(effect.args[0].amount).toEqual(tx.value);
                 return sentTx;
@@ -1135,7 +1135,7 @@ describe('load wallets saga', () => {
             console.log('result')
           });
       });
-      it.only('should trigger fetchedTrezorAddressAction when got address by path', () => {
+      it('should trigger fetchedTrezorAddressAction when got address by path', () => {
         const path = "m/44'/60'/0'/0'/1'"
         const address = 'abcd'
         const deviceId = '9986172B302004F3BEB86C3F';

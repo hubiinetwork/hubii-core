@@ -4,13 +4,14 @@ import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 import { Wallet, utils, Contract } from 'ethers';
 
 import { notify } from 'containers/App/actions';
-import { requestWalletAPI } from 'utils/request';
+import { requestWalletAPI, requestHardwareWalletAPI } from 'utils/request';
 import {
   ERC20ABI,
   EthNetworkProvider,
   getTransaction,
   getTransactionCount,
   sendTransaction,
+  isHardwareWallet,
 } from 'utils/wallet';
 
 import {
@@ -18,6 +19,7 @@ import {
   makeSelectWallets,
   makeSelectCurrentDecryptionCallback,
   makeSelectLedgerNanoSInfo,
+  makeSelectTrezorInfo,
 } from './selectors';
 
 import {
@@ -204,8 +206,8 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
     const options = { gasPrice, gasLimit };
     const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
 
-    if (walletDetails.type === 'lns') {
-      transaction = yield call(sendTransactionByLedger, { toAddress, amount, gasPrice, gasLimit });
+    if (isHardwareWallet(walletDetails.type)) {
+      transaction = yield call(sendTransactionForHardwareWallet, { toAddress, amount, gasPrice, gasLimit });
     } else {
       const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
       etherWallet.provider = EthNetworkProvider;
@@ -225,14 +227,14 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
   let transaction;
   try {
     const options = { gasPrice, gasLimit };
-    if (walletDetails.type === 'lns') {
+    if (isHardwareWallet(walletDetails.type)) {
       const tx = yield call(generateERC20Transaction, {
         contractAddress,
         walletAddress: walletDetails.address,
         toAddress,
         amount,
       }, options);
-      transaction = yield call(sendTransactionByLedger, { ...tx, amount: tx.value, toAddress: tx.to });
+      transaction = yield call(sendTransactionForHardwareWallet, { ...tx, amount: tx.value, toAddress: tx.to });
     } else {
       const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
       etherWallet.provider = EthNetworkProvider;
@@ -412,34 +414,9 @@ export function* tryCreateEthTransportActivity(descriptor, func) {
   }
 }
 
-export function* sendTransactionByLedger({ toAddress, amount, data, nonce, gasPrice, gasLimit }) {
-  const currentWalletWithInfo = yield select(makeSelectCurrentWalletWithInfo());
-  const walletDetails = currentWalletWithInfo.toJS();
-  const ledgerNanoSInfo = yield select(makeSelectLedgerNanoSInfo());
-  let nonceValue = nonce;
-  if (!nonceValue) {
-    nonceValue = yield call(getTransactionCount, walletDetails.address, 'pending');
-  }
-  const amountHex = amount ? amount.toHexString() : '0x00';
-
-  // generate raw tx for ledger nano to sign
-  const rawTx = generateRawTx({
-    toAddress,
-    amount: amountHex,
-    gasPrice: gasPrice.toHexString(),
-    gasLimit,
-    nonce: nonceValue,
-    data,
-    chainId: EthNetworkProvider.chainId,
-  });
-  // changes to the raw tx before signing by ledger nano
-  rawTx.raw[6] = Buffer.from([EthNetworkProvider.chainId]);
-  rawTx.raw[7] = Buffer.from([]);
-  rawTx.raw[8] = Buffer.from([]);
-  const rawTxHex = rawTx.serialize().toString('hex');
-
-  let signedTx;
+export function* signTxByLedger(walletDetails, rawTxHex) {
   try {
+    const ledgerNanoSInfo = yield select(makeSelectLedgerNanoSInfo());
     const descriptor = ledgerNanoSInfo.get('descriptor');
 
     // check if the eth app is opened
@@ -450,15 +427,84 @@ export function* sendTransactionByLedger({ toAddress, amount, data, nonce, gasPr
     );
     yield put(notify('info', 'Verify transaction details on your Ledger'));
 
-    signedTx = yield call(
+    let signedTx = yield call(
       tryCreateEthTransportActivity,
       descriptor,
       (ethTransport) => ethTransport.signTransaction(walletDetails.derivationPath, rawTxHex)
     );
+    return signedTx
   } catch (e) {
     const refinedError = ledgerError(e);
     yield put(refinedError);
     throw new Error(refinedError.error);
+  }
+}
+
+export function* signTxByTrezor(walletDetails, tx) {
+  try {
+    const trezorInfo = yield select(makeSelectTrezorInfo());
+    const deviceId = trezorInfo.get('id');
+    console.log('tx', tx)
+    yield put(notify('info', 'Verify transaction details on your Trezor'));
+    const signedTx = yield call(
+      requestHardwareWalletAPI, 
+      'signtx', 
+      {
+        id: deviceId,
+        path: walletDetails.derivationPath,
+        tx
+      }
+    )
+
+    return signedTx
+  } catch (e) {
+    const refinedError = ledgerError(e);
+    yield put(refinedError);
+    throw new Error(refinedError.error);
+  }
+}
+
+export function* sendTransactionForHardwareWallet({ toAddress, amount, data, nonce, gasPrice, gasLimit }) {
+  const currentWalletWithInfo = yield select(makeSelectCurrentWalletWithInfo());
+  const walletDetails = currentWalletWithInfo.toJS();
+  let nonceValue = nonce;
+  if (!nonceValue) {
+    nonceValue = yield call(getTransactionCount, walletDetails.address, 'pending');
+  }
+  const amountHex = amount ? amount.toHexString() : '0x00';
+  const chainId = EthNetworkProvider.chainId
+  // generate raw tx for ledger nano to sign
+  const rawTx = generateRawTx({
+    toAddress,
+    amount: amountHex,
+    gasPrice: gasPrice.toHexString(),
+    gasLimit,
+    nonce: nonceValue,
+    data,
+    chainId,
+  });
+  // changes to the raw tx before signing by ledger nano
+  rawTx.raw[6] = Buffer.from([chainId]);
+  rawTx.raw[7] = Buffer.from([]);
+  rawTx.raw[8] = Buffer.from([]);
+  
+  let signedTx 
+  if (walletDetails.type === 'lns') {
+    const rawTxHex = rawTx.serialize().toString('hex');
+    signedTx = yield signTxByLedger(walletDetails, rawTxHex)
+  }
+  if (walletDetails.type === 'trezor') {
+    const raw = rawTx.toJSON()
+    const txToSign = {
+      nonce: raw[0], 
+      toAddress: raw[3], 
+      value: raw[4], 
+      data: null, 
+      gasPrice: raw[1], 
+      gasLimit: raw[2], 
+      chainId
+    }
+    signedTx = yield signTxByTrezor(walletDetails, txToSign)
   }
 
   // update raw tx with signed data

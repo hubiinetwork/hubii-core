@@ -56,6 +56,29 @@ function getParams(method, req) {
   }
 }
 
+function parseHDPath(path) {
+  return path
+    .toLowerCase()
+    .split('/')
+    .filter(p => p !== 'm')
+    .map(p => {
+      let hardened = false;
+      let n = parseInt(p, 10);
+      if (p[p.length - 1] === "'") {
+        hardened = true;
+        p = p.substr(0, p.length - 1);
+      }
+      if (isNaN(n)) {
+        throw new Error('Invalid path specified');
+      }
+      if (hardened) {
+        // hardened index
+        n = (n | 0x80000000) >>> 0;
+      }
+      return n;
+    });
+}
+
 function listenHardwareWalletMethods() {
   protocol.registerStringProtocol(PROTOCOL_NAME, async (req, cb) => {
     let res;
@@ -65,25 +88,45 @@ function listenHardwareWalletMethods() {
       console.log('api', method, params)
       const {id, path} = params
       // const data = await handlers[method](params);
-      if (method === 'getaddress') {
-        const hardeningConstant = 0x80000000;
-        const pathArray = path.replace("'").split('/')
-        devices[id].waitForSessionAndRun(function (session) {
-          return session.ethereumGetAddress([
-            (parseInt(pathArray[1]) | hardeningConstant) >>> 0,
-            (parseInt(pathArray[2]) | hardeningConstant) >>> 0,
-            (parseInt(pathArray[3]) | hardeningConstant) >>> 0,
-            parseInt(pathArray[4]),
-            parseInt(pathArray[5])
-          ], false)
-        })
-        .then(function (result) {
-            console.log('Address:', result.message.address);
+      devices[id].waitForSessionAndRun(function (session) {
+        if (method === 'getaddress') {
+          // const hardeningConstant = 0x80000000;
+          // const pathArray = path.replace("'").split('/')
+          return session.ethereumGetAddress(
+            // [
+            // (parseInt(pathArray[1]) | hardeningConstant) >>> 0,
+            // (parseInt(pathArray[2]) | hardeningConstant) >>> 0,
+            // (parseInt(pathArray[3]) | hardeningConstant) >>> 0,
+            // parseInt(pathArray[4]),
+            // parseInt(pathArray[5])
+            // ]
+            parseHDPath(path)
+          , false)
+          .then(function (result) {
             cb(JSON.stringify({path: path, address: result.message.address}));
-        }).catch(e => {
-          console.log('addr err', e)
-        })
-      }
+          })
+        }
+        if (method === 'signtx') {
+          const {path, tx} = params
+          console.log('signtx', path, tx)
+          return session.signEthTx(
+            parseHDPath(path),
+            tx.nonce,
+            tx.gasPrice,
+            tx.gasLimit,
+            tx.toAddress,
+            tx.value,
+            tx.data,
+            tx.chainId
+          ).then(signedTx => {
+            console.log('signed tx', signedTx)
+            cb(JSON.stringify(signedTx));
+          })
+        }
+      })
+      .catch(e => {
+        console.log('addr err', e)
+      })
     } catch (err) {
       console.error(`Request to '${req.url}' failed with error:`, err);
       res = {
