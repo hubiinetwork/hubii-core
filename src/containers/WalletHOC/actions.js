@@ -379,6 +379,20 @@ export function fetchedTrezorAddress(derivationPath, address) {
   };
 }
 
+export function saveTrezorAddress(name, derivationPath, deviceId, address) {
+  const newWallet = {
+    deviceId,
+    address: address.indexOf('0x') === 0 ? address : `0x${address}`,
+    type: 'trezor',
+    name,
+    derivationPath,
+  };
+  return {
+    type: CREATE_WALLET_SUCCESS,
+    newWallet,
+  };
+}
+
 export function transferError(error) {
   return {
     type: TRANSFER_ERROR,

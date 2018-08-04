@@ -222,7 +222,7 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['trezorInfo', 'status'], 'connected')
         .setIn(['trezorInfo', 'id'], action.deviceId)
-        .setIn(['errors', 'ledgerError'], null);
+        .setIn(['errors', 'trezorError'], null);
     case TREZOR_DISCONNECTED:
       return state
         .setIn(['trezorInfo', 'status'], 'disconnected')

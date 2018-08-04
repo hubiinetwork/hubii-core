@@ -17,6 +17,7 @@ import { makeSelectContacts } from 'containers/ContactBook/selectors';
 import {
   createWalletFromMnemonic,
   saveLedgerAddress,
+  saveTrezorAddress,
   createWalletFromPrivateKey,
 } from 'containers/WalletHOC/actions';
 import { makeSelectLoading, makeSelectWallets } from 'containers/WalletHOC/selectors';
@@ -92,12 +93,20 @@ export class WalletManager extends React.PureComponent {
     if (data[0].walletType === 'Private Key') {
       const { privateKey, name, password } = data[1];
       this.props.createWalletFromPrivateKey(privateKey, name, password);
-    } if (data[0].walletType === 'ledger') {
+    } 
+    if (data[0].walletType === 'ledger') {
       const { derivationPath, deviceId, address } = data[1];
       const { name } = data[2];
       this.props.saveLedgerAddress(name, derivationPath, deviceId, address);
       this.hideModal();
-    } else if (data[0].walletType === 'Mnemonic') {
+    }
+    if (data[0].walletType === 'Trezor') {
+      const { derivationPath, deviceId, address } = data[1];
+      const { name } = data[2];
+      this.props.saveTrezorAddress(name, derivationPath, deviceId, address);
+      this.hideModal();
+    }
+    if (data[0].walletType === 'Mnemonic') {
       const { mnemonic, derivationPath, password, name } = data[1];
       this.props.createWalletFromMnemonic(name, mnemonic, derivationPath, password);
     }
@@ -205,6 +214,7 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     saveLedgerAddress: (...args) => dispatch(saveLedgerAddress(...args)),
+    saveTrezorAddress: (...args) => dispatch(saveTrezorAddress(...args)),
     createWalletFromMnemonic: (...args) => dispatch(createWalletFromMnemonic(...args)),
     createWalletFromPrivateKey: (...args) => dispatch(createWalletFromPrivateKey(...args)),
     createContact: (...args) => dispatch(createContact(...args)),
