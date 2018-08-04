@@ -14,20 +14,6 @@ export const WrapperDiv = styled.div`
   justify-content: space-between;
 `;
 
-export const HBT = styled.img`
-  width: 38.4px;
-  height: 38.4px;
-`;
-
-export const HBTtext = styled.div`
-  color: ${({ theme }) => theme.palette.light};
-  font-size: 22.8px;
-  font-style: italic;
-  font-weight: 900;
-  line-height: 27px;
-  margin-left: 8px;
-`;
-
 export const Info = styled(Icon)`
   color: ${({ theme }) => theme.palette.secondary4};
   font-size: 13px;

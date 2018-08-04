@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable';
+import BigNumber from 'bignumber.js';
 
 import {
   selectWalletHocDomain,
@@ -186,7 +187,7 @@ describe('makeSelectTotalBalances', () => {
         supportedAssets: supportedAssetsMock.set('loading', true),
       },
     });
-    const expected = fromJS({ assets: {}, loading: true });
+    const expected = fromJS({ assets: {}, loading: true, totalUsd: new BigNumber('0') });
     expect(totalBalancesSelector(mockedState)).toEqual(expected);
   });
 
@@ -198,7 +199,7 @@ describe('makeSelectTotalBalances', () => {
         supportedAssets: supportedAssetsMock,
       },
     });
-    const expected = fromJS({ assets: {}, loading: true });
+    const expected = fromJS({ assets: {}, loading: true, totalUsd: new BigNumber('0') });
     expect(totalBalancesSelector(mockedState)).toEqual(expected);
   });
 });
@@ -258,7 +259,7 @@ describe('makeSelectWalletsWithInfo', () => {
         prices: pricesMock,
       },
     });
-    const expected = walletsMock.map((w) => w.set('balances', fromJS({ loading: true, total: { usd: 0, eth: 0, btc: 0 } })));
+    const expected = walletsMock.map((w) => w.set('balances', fromJS({ loading: true, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } })));
     expect(walletsWithInfoSelector(mockedState)).toEqual(expected);
   });
 
@@ -271,7 +272,7 @@ describe('makeSelectWalletsWithInfo', () => {
         prices: pricesMock.set('loading', true),
       },
     });
-    const expected = walletsMock.map((w) => w.set('balances', fromJS({ loading: true, total: { usd: 0, eth: 0, btc: 0 } })));
+    const expected = walletsMock.map((w) => w.set('balances', fromJS({ loading: true, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } })));
     expect(walletsWithInfoSelector(mockedState)).toEqual(expected);
   });
 
@@ -284,7 +285,7 @@ describe('makeSelectWalletsWithInfo', () => {
         prices: pricesMock.set('error', true),
       },
     });
-    const expected = walletsMock.map((w) => w.set('balances', fromJS({ loading: false, error: true, total: { usd: 0, eth: 0, btc: 0 } })));
+    const expected = walletsMock.map((w) => w.set('balances', fromJS({ loading: false, error: true, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } })));
     expect(walletsWithInfoSelector(mockedState)).toEqual(expected);
   });
 
@@ -297,7 +298,7 @@ describe('makeSelectWalletsWithInfo', () => {
         prices: pricesMock,
       },
     });
-    const expected = walletsMock.map((w) => w.set('balances', fromJS({ loading: false, error: true, total: { usd: 0, eth: 0, btc: 0 } })));
+    const expected = walletsMock.map((w) => w.set('balances', fromJS({ loading: false, error: true, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } })));
     expect(walletsWithInfoSelector(mockedState)).toEqual(expected);
   });
 

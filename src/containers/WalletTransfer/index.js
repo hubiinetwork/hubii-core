@@ -7,6 +7,7 @@ import TransferForm from 'components/TransferForm';
 import PageLoadingIndicator from 'components/PageLoadingIndicator';
 import {
   makeSelectCurrentWallet,
+  makeSelectSupportedAssets,
   makeSelectCurrentWalletWithInfo,
   makeSelectPrices,
   makeSelectErrors,
@@ -54,11 +55,12 @@ export class WalletTransfer extends React.PureComponent {
     if (currentWalletWithInfo.getIn(['balances', 'loading'])) {
       return <PageLoadingIndicator pageType="wallet" id={currentWalletWithInfo.get('address')} />;
     } else if (currentWalletWithInfo.getIn(['balances', 'error'])) {
-      return <LoadingError pageType="wallet" error="Failed to fetch wallet data" id={currentWalletWithInfo.get('address')} />;
+      return <LoadingError pageType="wallet" error={{ message: 'Failed to fetch wallet data' }} id={currentWalletWithInfo.get('address')} />;
     }
     return (
       <TransferForm
-        currentWalletUsdBalance={currentWalletWithInfo.getIn(['balances', 'total', 'usd'])}
+        currentWalletUsdBalance={currentWalletWithInfo.getIn(['balances', 'total', 'usd']).toNumber()}
+        supportedAssets={this.props.supportedAssets}
         prices={prices.toJS()}
         recipients={contacts.toJS()}
         assets={currentWalletWithInfo.getIn(['balances', 'assets']).toJS()}
@@ -66,7 +68,7 @@ export class WalletTransfer extends React.PureComponent {
         onCancel={this.onCancel}
         transfering={currentWallet.toJS().transfering}
         errors={this.props.errors}
-        currentWalletDetails={this.props.currentWalletWithInfo}
+        currentWalletWithInfo={this.props.currentWalletWithInfo}
       />
     );
   }
@@ -75,6 +77,7 @@ export class WalletTransfer extends React.PureComponent {
 WalletTransfer.propTypes = {
   currentWalletWithInfo: PropTypes.object.isRequired,
   currentWallet: PropTypes.object.isRequired,
+  supportedAssets: PropTypes.object.isRequired,
   transfer: PropTypes.func.isRequired,
   // history: PropTypes.object.isRequired,
   prices: PropTypes.object.isRequired,
@@ -85,6 +88,7 @@ WalletTransfer.propTypes = {
 const mapStateToProps = createStructuredSelector({
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
   currentWallet: makeSelectCurrentWallet(),
+  supportedAssets: makeSelectSupportedAssets(),
   prices: makeSelectPrices(),
   contacts: makeSelectContacts(),
   errors: makeSelectErrors(),

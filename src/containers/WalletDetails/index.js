@@ -2,6 +2,7 @@ import { Icon, Tabs } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { fromJS } from 'immutable';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Route, Redirect } from 'react-router';
@@ -11,10 +12,13 @@ import WalletTransfer from 'containers/WalletTransfer';
 import {
   makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHOC/selectors';
+
 import {
   setCurrentWallet,
 } from 'containers/WalletHOC/actions';
-import Tab from '../../components/ui/Tab';
+
+import SimplexPage from 'components/SimplexPage';
+import Tab from 'components/ui/Tab';
 
 import {
   Wrapper,
@@ -47,7 +51,7 @@ export class WalletDetails extends React.PureComponent {
   render() {
     const { history, match, currentWalletDetails } = this.props;
     const currentWallet = currentWalletDetails;
-    if (!currentWallet) {
+    if (!currentWallet || currentWallet === fromJS({})) {
       return (null);
     }
     return (
@@ -57,7 +61,7 @@ export class WalletDetails extends React.PureComponent {
             iconType="home"
             name={currentWallet.get('name')}
             address={currentWallet.get('address')}
-            balance={currentWallet.getIn(['balances', 'total', 'usd'])}
+            balance={currentWallet.getIn(['balances', 'total', 'usd']).toNumber()}
             onIconClick={this.onHomeClick}
           />
         </TabsLayout>
@@ -81,6 +85,16 @@ export class WalletDetails extends React.PureComponent {
             key={`${match.url}/transfer`}
           >
             <Route path={`${match.url}/transfer`} component={WalletTransfer} />
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <Icon type="shopping-cart" />Buy ETH
+              </span>
+            }
+            key={`${match.url}/buyeth`}
+          >
+            <Route path={`${match.url}/buyeth`} component={SimplexPage} />
           </TabPane>
         </Tab>
         {

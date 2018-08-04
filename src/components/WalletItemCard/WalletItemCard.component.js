@@ -137,7 +137,7 @@ export class WalletItemCard extends React.PureComponent {
           </CardIcon>
           <CardIconSettings>
             <Dropdown placement="bottomLeft" overlay={this.settingsMenu(type)}>
-              <Icon type="setting" style={{ marginBottom: '132%' }} />
+              <Icon type="setting" style={{ marginTop: 65, position: 'absolute' }} />
             </Dropdown>
           </CardIconSettings>
         </SpaceBetween>
@@ -160,7 +160,7 @@ export class WalletItemCard extends React.PureComponent {
             {!balancesLoading && !balancesError &&
               assets.map((asset) => (
                 <AssetWrapper key={asset.currency}>
-                  <AssetAmountBubble name={asset.symbol} amount={asset.balance} />
+                  <AssetAmountBubble name={asset.symbol} amount={asset.balance.toString().substr(0, 6)} />
                 </AssetWrapper>
               ))}
           </AssetsWrapper>

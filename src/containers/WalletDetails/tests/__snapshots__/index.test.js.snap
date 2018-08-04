@@ -16,30 +16,30 @@ ShallowWrapper {
                 error: null,
                 assets: Immutable.List [
                     Immutable.Map {
-                        balance: 0.29972769885,
+                        balance: "0.29972769885",
                         currency: "ETH",
                         symbol: "ETH",
                         value: Immutable.Map {
-                            eth: 0.29972769885,
-                            btc: 0.0029972769885000003,
-                            usd: 123.4878119262,
+                            eth: "0.29972769885",
+                            btc: "0.0029972769885",
+                            usd: "123.4878119262",
                         },
                     },
                     Immutable.Map {
-                        balance: 1,
+                        balance: "1",
                         currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                         symbol: "BOKKY",
                         value: Immutable.Map {
-                            eth: 0,
-                            btc: 0,
-                            usd: 0,
+                            eth: "0",
+                            btc: "0",
+                            usd: "0",
                         },
                     },
                 ],
                 total: Immutable.Map {
-                    eth: 0.29972769885,
-                    btc: 0.0029972769885000003,
-                    usd: 123.4878119262,
+                    eth: "0.29972769885",
+                    btc: "0.0029972769885",
+                    usd: "123.4878119262",
                 },
             },
             loadingBalances: false,
@@ -121,6 +121,22 @@ ShallowWrapper {
                               path="undefined/transfer"
                     />
           </TabPane>
+          <TabPane
+                    placeholder={null}
+                    tab={
+                              <span>
+                                        <Icon
+                                                  type="shopping-cart"
+                                        />
+                                        Buy ETH
+                              </span>
+                    }
+          >
+                    <Route
+                              component={[Function]}
+                              path="undefined/buyeth"
+                    />
+          </TabPane>
 </Tab.style>,
         false,
       ],
@@ -198,6 +214,22 @@ ShallowWrapper {
                             path="undefined/transfer"
               />
 </TabPane>,
+            <TabPane
+              placeholder={null}
+              tab={
+                            <span>
+                                          <Icon
+                                                        type="shopping-cart"
+                                          />
+                                          Buy ETH
+                            </span>
+              }
+>
+              <Route
+                            component={[Function]}
+                            path="undefined/buyeth"
+              />
+</TabPane>,
           ],
           "onChange": [Function],
         },
@@ -267,6 +299,38 @@ ShallowWrapper {
             },
             "type": [Function],
           },
+          Object {
+            "instance": null,
+            "key": "undefined/buyeth",
+            "nodeType": "class",
+            "props": Object {
+              "children": <Route
+                component={[Function]}
+                path="undefined/buyeth"
+/>,
+              "placeholder": null,
+              "tab": <span>
+                <Icon
+                                type="shopping-cart"
+                />
+                Buy ETH
+</span>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "path": "undefined/buyeth",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
         ],
         "type": [Function],
       },
@@ -325,6 +389,22 @@ ShallowWrapper {
                         <Route
                                     component={[Function]}
                                     path="undefined/transfer"
+                        />
+            </TabPane>
+            <TabPane
+                        placeholder={null}
+                        tab={
+                                    <span>
+                                                <Icon
+                                                            type="shopping-cart"
+                                                />
+                                                Buy ETH
+                                    </span>
+                        }
+            >
+                        <Route
+                                    component={[Function]}
+                                    path="undefined/buyeth"
                         />
             </TabPane>
 </Tab.style>,
@@ -404,6 +484,22 @@ ShallowWrapper {
                                 path="undefined/transfer"
                 />
 </TabPane>,
+              <TabPane
+                placeholder={null}
+                tab={
+                                <span>
+                                                <Icon
+                                                                type="shopping-cart"
+                                                />
+                                                Buy ETH
+                                </span>
+                }
+>
+                <Route
+                                component={[Function]}
+                                path="undefined/buyeth"
+                />
+</TabPane>,
             ],
             "onChange": [Function],
           },
@@ -466,6 +562,38 @@ ShallowWrapper {
                 "props": Object {
                   "component": [Function],
                   "path": "undefined/transfer",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "undefined/buyeth",
+              "nodeType": "class",
+              "props": Object {
+                "children": <Route
+                  component={[Function]}
+                  path="undefined/buyeth"
+/>,
+                "placeholder": null,
+                "tab": <span>
+                  <Icon
+                                    type="shopping-cart"
+                  />
+                  Buy ETH
+</span>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "component": [Function],
+                  "path": "undefined/buyeth",
                 },
                 "ref": null,
                 "rendered": null,
