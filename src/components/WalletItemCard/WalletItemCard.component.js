@@ -122,7 +122,7 @@ export class WalletItemCard extends React.PureComponent {
     }
     return (
       <OverflowHidden>
-        {type === 'lns' && <USBFlag connected={connected} />}
+        {(type=== 'lns' || type==='trezor') &&<USBFlag connected={connected} />}
         <SpaceBetween>
           <CardIcon>
             <Popover
