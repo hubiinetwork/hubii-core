@@ -36,6 +36,7 @@ import {
   LEDGER_CONNECTED,
   LEDGER_DISCONNECTED,
   INIT_WALLETS_BALANCES,
+  INIT_TREZOR,
 } from './constants';
 
 import {
@@ -67,6 +68,9 @@ import {
   hideDecryptWalletModal,
   transfer as transferAction,
 } from './actions';
+
+import trezorWatchers, {init as initTrezor} from './HardwareWallets/trezor/saga'
+
 import { createEthTransportActivity } from '../../utils/ledger/comms';
 import generateRawTx from '../../utils/generateRawTx';
 
@@ -489,4 +493,7 @@ export default function* walletHoc() {
   yield takeEvery(INIT_LEDGER, initLedger);
   yield takeEvery(LEDGER_CONNECTED, pollEthApp);
   yield takeEvery(LEDGER_DISCONNECTED, hookLedgerDisconnected);
+
+  yield trezorWatchers()
+  // yield takeEvery(INIT_LEDGER, initTrezor);
 }

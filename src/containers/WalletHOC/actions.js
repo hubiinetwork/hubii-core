@@ -39,6 +39,10 @@ import {
   LEDGER_ERROR,
   FETCH_LEDGER_ADDRESSES,
   FETCHED_LEDGER_ADDRESS,
+  TREZOR_CONNECTED,
+  TREZOR_DISCONNECTED,
+  FETCH_TREZOR_ADDRESSES,
+  FETCHED_TREZOR_ADDRESS,
   DELETE_WALLET,
   INIT_LEDGER,
   INIT_WALLETS_BALANCES,
@@ -343,6 +347,35 @@ export function ledgerError(rawError) {
   return {
     type: LEDGER_ERROR,
     error: friendlyError,
+  };
+}
+
+export function trezorConnected(deviceId) {
+  return {
+    type: TREZOR_CONNECTED,
+    deviceId,
+  };
+}
+
+export function trezorDisconnected(deviceId) {
+  return {
+    type: TREZOR_DISCONNECTED,
+    deviceId,
+  };
+}
+
+export function fetchTrezorAddresses(derivationPaths) {
+  return {
+    type: FETCH_TREZOR_ADDRESSES,
+    derivationPaths,
+  };
+}
+
+export function fetchedTrezorAddress(derivationPath, address) {
+  return {
+    type: FETCHED_TREZOR_ADDRESS,
+    derivationPath,
+    address,
   };
 }
 

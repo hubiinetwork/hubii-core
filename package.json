@@ -254,7 +254,8 @@
       "raf/polyfill",
       "<rootDir>/internals/testing/enzyme-setup.js"
     ],
-    "testRegex": "tests/.*\\.test\\.js$"
+    "testRegex": "tests/.*\\.test\\.js$",
+    "testEnvironment": "node"
   },
   "dependencies": {
     "@fortawesome/fontawesome": "1.1.8",
@@ -308,6 +309,7 @@
     "semantic-ui-react": "0.79.1",
     "shortid": "2.2.8",
     "styled-components": "2.3.0",
+    "trezor.js": "^6.17.6",
     "victory": "0.27.0",
     "warning": "3.0.0",
     "whatwg-fetch": "2.0.4"
