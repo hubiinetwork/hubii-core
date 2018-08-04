@@ -88,7 +88,7 @@ function listenHardwareWalletMethods() {
       console.log('api', method, params)
       const {id, path} = params
       // const data = await handlers[method](params);
-      devices[id].waitForSessionAndRun(function (session) {
+      await devices[id].waitForSessionAndRun(function (session) {
         if (method === 'getaddress') {
           // const hardeningConstant = 0x80000000;
           // const pathArray = path.replace("'").split('/')
@@ -123,9 +123,6 @@ function listenHardwareWalletMethods() {
             cb(JSON.stringify(signedTx));
           })
         }
-      })
-      .catch(e => {
-        console.log('addr err', e)
       })
     } catch (err) {
       console.error(`Request to '${req.url}' failed with error:`, err);

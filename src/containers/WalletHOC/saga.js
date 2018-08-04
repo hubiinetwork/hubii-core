@@ -2,6 +2,7 @@ import { delay, eventChannel } from 'redux-saga';
 import { takeLatest, takeEvery, put, call, select, take, race, spawn } from 'redux-saga/effects';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 import { Wallet, utils, Contract } from 'ethers';
+import { toBuffer, addHexPrefix, bufferToHex, stripHexPrefix, padToEven } from 'ethereumjs-util';
 
 import { notify } from 'containers/App/actions';
 import { requestWalletAPI, requestHardwareWalletAPI } from 'utils/request';
@@ -213,9 +214,11 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
       etherWallet.provider = EthNetworkProvider;
       transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
     }
+    console.log('transaction', transaction)
     yield put(transferSuccess(transaction, 'ETH'));
     yield put(notify('success', 'Transaction sent'));
   } catch (error) {
+    console.log(error)
     yield put(transferError(error));
     yield put(notify('error', `Failed to send transaction: ${error}`));
   }
@@ -492,23 +495,23 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   if (walletDetails.type === 'lns') {
     const rawTxHex = rawTx.serialize().toString('hex');
     signedTx = yield signTxByLedger(walletDetails, rawTxHex)
+    rawTx.v = Buffer.from(signedTx.v, 'hex');
   }
   if (walletDetails.type === 'trezor') {
     const raw = rawTx.toJSON()
     const txToSign = {
-      nonce: raw[0], 
-      toAddress: raw[3], 
-      value: raw[4], 
-      data: null, 
-      gasPrice: raw[1], 
-      gasLimit: raw[2], 
+      nonce: stripHexPrefix(raw[0]), 
+      toAddress: stripHexPrefix(raw[3]), 
+      value: stripHexPrefix(raw[4]), 
+      data: raw[5] === '0x' ? null : stripHexPrefix(bufferToHex(toBuffer(data))), 
+      gasPrice: stripHexPrefix(raw[1]), 
+      gasLimit: stripHexPrefix(raw[2]), 
       chainId
     }
     signedTx = yield signTxByTrezor(walletDetails, txToSign)
+    rawTx.v = Buffer.from(signedTx.v.toString(16), 'hex');
   }
-
   // update raw tx with signed data
-  rawTx.v = Buffer.from(signedTx.v, 'hex');
   rawTx.r = Buffer.from(signedTx.r, 'hex');
   rawTx.s = Buffer.from(signedTx.s, 'hex');
 
