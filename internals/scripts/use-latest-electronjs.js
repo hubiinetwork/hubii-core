@@ -13,9 +13,7 @@ if (!fs.existsSync(buildPublicDir)) {
 
 const sources = [
   'public/electron.js',
-  'public/preload.js',
-  'public/protocol.js',
-  'public/trezor',
+  'public/wallets',
 ]
 
 try {

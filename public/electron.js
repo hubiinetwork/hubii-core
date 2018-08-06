@@ -4,7 +4,7 @@ const log = require('electron-log');
 const { autoUpdater } = require('electron-updater');
 const path = require('path');
 const isDev = require('electron-is-dev');
-const {registerProtocol} = require('./protocol')
+const {registerWalletListeners} = require('./wallets')
 
 const showDevTools = process.env.DEV_TOOLS;
 let mainWindow;
@@ -36,7 +36,7 @@ function createWindow() {
     height: 680, 
     icon: process.platform === 'linux' && path.join(__dirname, '../icon.png'),
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'wallets/preload.js')
     }
   });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../index.html')}`);
@@ -89,7 +89,7 @@ function setupAutoUpdater() {
 app.on('ready', () => {
   createWindow();
   setupAutoUpdater();
-  registerProtocol(mainWindow)
+  registerWalletListeners(mainWindow)
 });
 
 app.on('window-all-closed', () => {

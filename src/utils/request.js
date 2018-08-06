@@ -17,7 +17,7 @@ export function requestWalletAPI(path, opts = {}, endpoint = process.env.WALLET_
   return request(path, options, endpoint);
 }
 
-export function requestHardwareWalletAPI(path, opts = {}, endpoint = 'wallet://') {
+export function requestHardwareWalletAPI(path, opts = {}, endpoint = 'trezor://') {
   return request(path, {
     method: 'POST',
     body: JSON.stringify(opts)
