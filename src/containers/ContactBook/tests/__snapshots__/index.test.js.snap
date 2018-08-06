@@ -46,93 +46,79 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "class",
     "props": Object {
       "children": Array [
-        <HelmetWrapper
-          defer={true}
-          encodeSpecialCharacters={true}
+        <index.style__InnerWrapper1
+          contactsPresent={3}
 >
-          <title>
-                    ContactBook
-          </title>
-          <meta
-                    content="Description of ContactBook"
-                    name="description"
+          <ContactHeader
+                    onChange={[Function]}
+                    placeholder="Filter"
+                    showSearch={true}
+                    title="Recently Used Contacts"
           />
-</HelmetWrapper>,
-        <index.style__Wrapper>
-          <index.style__InnerWrapper1
-                    contactsPresent={3}
+          <index.style__Border
+                    contactsLength={2}
           >
-                    <ContactHeader
-                              onChange={[Function]}
-                              placeholder="Filter"
-                              showSearch={true}
-                              title="Recently Used Contacts"
+                    <ContactList
+                              data={
+                                        Array [
+                                                  Object {
+                                                    "address": "0x324234",
+                                                    "name": "mike",
+                                                  },
+                                                  Object {
+                                                    "address": "04234",
+                                                    "name": "john",
+                                                  },
+                                                ]
+                              }
+                              layout="horizontal"
+                              message="You have no recently used contacts."
+                              onDelete={[Function]}
+                              onEdit={[Function]}
+                              size="small"
                     />
-                    <index.style__Border
-                              contactsLength={2}
-                    >
-                              <ContactList
-                                        data={
-                                                  Array [
-                                                            Object {
-                                                              "address": "0x324234",
-                                                              "name": "mike",
-                                                            },
-                                                            Object {
-                                                              "address": "04234",
-                                                              "name": "john",
-                                                            },
-                                                          ]
-                                        }
-                                        layout="horizontal"
-                                        message="You have no recently used contacts."
-                                        onDelete={[Function]}
-                                        onEdit={[Function]}
-                                        size="small"
-                              />
-                    </index.style__Border>
-          </index.style__InnerWrapper1>
-          <index.style__InnerWrapper2
-                    contactsPresent={3}
+          </index.style__Border>
+</index.style__InnerWrapper1>,
+        <index.style__InnerWrapper2
+          contactsPresent={3}
+>
+          <ContactHeader
+                    onChange={[Function]}
+                    placeholder="Filter"
+                    showSearch={true}
+                    title="All Contacts"
+          />
+          <index.style__Border
+                    contactsLength={3}
           >
-                    <ContactHeader
-                              onChange={[Function]}
-                              placeholder="Filter"
-                              showSearch={true}
-                              title="All Contacts"
+                    <ContactList
+                              data={
+                                        Array [
+                                                  Object {
+                                                    "address": "0x324234",
+                                                    "name": "mike",
+                                                  },
+                                                  Object {
+                                                    "address": "04234",
+                                                    "name": "john",
+                                                  },
+                                                  Object {
+                                                    "address": "0x344234",
+                                                    "name": "ester",
+                                                  },
+                                                ]
+                              }
+                              layout="horizontal"
+                              message="You have not added any contacts."
+                              onDelete={[Function]}
+                              onEdit={[Function]}
+                              size="small"
                     />
-                    <index.style__Border
-                              contactsLength={3}
-                    >
-                              <ContactList
-                                        data={
-                                                  Array [
-                                                            Object {
-                                                              "address": "0x324234",
-                                                              "name": "mike",
-                                                            },
-                                                            Object {
-                                                              "address": "04234",
-                                                              "name": "john",
-                                                            },
-                                                            Object {
-                                                              "address": "0x344234",
-                                                              "name": "ester",
-                                                            },
-                                                          ]
-                                        }
-                                        layout="horizontal"
-                                        message="You have not added any contacts."
-                                        onDelete={[Function]}
-                                        onEdit={[Function]}
-                                        size="small"
-                              />
-                    </index.style__Border>
-          </index.style__InnerWrapper2>
-</index.style__Wrapper>,
+          </index.style__Border>
+</index.style__InnerWrapper2>,
       ],
     },
     "ref": null,
@@ -143,41 +129,107 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <title>
-              ContactBook
-</title>,
-            <meta
-              content="Description of ContactBook"
-              name="description"
+            <ContactHeader
+              onChange={[Function]}
+              placeholder="Filter"
+              showSearch={true}
+              title="Recently Used Contacts"
 />,
+            <index.style__Border
+              contactsLength={2}
+>
+              <ContactList
+                            data={
+                                          Array [
+                                                        Object {
+                                                          "address": "0x324234",
+                                                          "name": "mike",
+                                                        },
+                                                        Object {
+                                                          "address": "04234",
+                                                          "name": "john",
+                                                        },
+                                                      ]
+                            }
+                            layout="horizontal"
+                            message="You have no recently used contacts."
+                            onDelete={[Function]}
+                            onEdit={[Function]}
+                            size="small"
+              />
+</index.style__Border>,
           ],
-          "defer": true,
-          "encodeSpecialCharacters": true,
+          "contactsPresent": 3,
         },
         "ref": null,
         "rendered": Array [
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "class",
             "props": Object {
-              "children": "ContactBook",
+              "onChange": [Function],
+              "placeholder": "Filter",
+              "showSearch": true,
+              "title": "Recently Used Contacts",
             },
             "ref": null,
-            "rendered": "ContactBook",
-            "type": "title",
+            "rendered": null,
+            "type": [Function],
           },
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "class",
             "props": Object {
-              "content": "Description of ContactBook",
-              "name": "description",
+              "children": <ContactList
+                data={
+                                Array [
+                                                Object {
+                                                  "address": "0x324234",
+                                                  "name": "mike",
+                                                },
+                                                Object {
+                                                  "address": "04234",
+                                                  "name": "john",
+                                                },
+                                              ]
+                }
+                layout="horizontal"
+                message="You have no recently used contacts."
+                onDelete={[Function]}
+                onEdit={[Function]}
+                size="small"
+/>,
+              "contactsLength": 2,
             },
             "ref": null,
-            "rendered": null,
-            "type": "meta",
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "data": Array [
+                  Object {
+                    "address": "0x324234",
+                    "name": "mike",
+                  },
+                  Object {
+                    "address": "04234",
+                    "name": "john",
+                  },
+                ],
+                "layout": "horizontal",
+                "message": "You have no recently used contacts.",
+                "onDelete": [Function],
+                "onEdit": [Function],
+                "size": "small",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
           },
         ],
         "type": [Function],
@@ -188,77 +240,41 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <index.style__InnerWrapper1
-              contactsPresent={3}
+            <ContactHeader
+              onChange={[Function]}
+              placeholder="Filter"
+              showSearch={true}
+              title="All Contacts"
+/>,
+            <index.style__Border
+              contactsLength={3}
 >
-              <ContactHeader
-                            onChange={[Function]}
-                            placeholder="Filter"
-                            showSearch={true}
-                            title="Recently Used Contacts"
+              <ContactList
+                            data={
+                                          Array [
+                                                        Object {
+                                                          "address": "0x324234",
+                                                          "name": "mike",
+                                                        },
+                                                        Object {
+                                                          "address": "04234",
+                                                          "name": "john",
+                                                        },
+                                                        Object {
+                                                          "address": "0x344234",
+                                                          "name": "ester",
+                                                        },
+                                                      ]
+                            }
+                            layout="horizontal"
+                            message="You have not added any contacts."
+                            onDelete={[Function]}
+                            onEdit={[Function]}
+                            size="small"
               />
-              <index.style__Border
-                            contactsLength={2}
-              >
-                            <ContactList
-                                          data={
-                                                        Array [
-                                                                      Object {
-                                                                        "address": "0x324234",
-                                                                        "name": "mike",
-                                                                      },
-                                                                      Object {
-                                                                        "address": "04234",
-                                                                        "name": "john",
-                                                                      },
-                                                                    ]
-                                          }
-                                          layout="horizontal"
-                                          message="You have no recently used contacts."
-                                          onDelete={[Function]}
-                                          onEdit={[Function]}
-                                          size="small"
-                            />
-              </index.style__Border>
-</index.style__InnerWrapper1>,
-            <index.style__InnerWrapper2
-              contactsPresent={3}
->
-              <ContactHeader
-                            onChange={[Function]}
-                            placeholder="Filter"
-                            showSearch={true}
-                            title="All Contacts"
-              />
-              <index.style__Border
-                            contactsLength={3}
-              >
-                            <ContactList
-                                          data={
-                                                        Array [
-                                                                      Object {
-                                                                        "address": "0x324234",
-                                                                        "name": "mike",
-                                                                      },
-                                                                      Object {
-                                                                        "address": "04234",
-                                                                        "name": "john",
-                                                                      },
-                                                                      Object {
-                                                                        "address": "0x344234",
-                                                                        "name": "ester",
-                                                                      },
-                                                                    ]
-                                          }
-                                          layout="horizontal"
-                                          message="You have not added any contacts."
-                                          onDelete={[Function]}
-                                          onEdit={[Function]}
-                                          size="small"
-                            />
-              </index.style__Border>
-</index.style__InnerWrapper2>,
+</index.style__Border>,
           ],
+          "contactsPresent": 3,
         },
         "ref": null,
         "rendered": Array [
@@ -267,63 +283,105 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": Array [
-                <ContactHeader
-                  onChange={[Function]}
-                  placeholder="Filter"
-                  showSearch={true}
-                  title="Recently Used Contacts"
-/>,
-                <index.style__Border
-                  contactsLength={2}
->
-                  <ContactList
-                                    data={
-                                                      Array [
-                                                                        Object {
-                                                                          "address": "0x324234",
-                                                                          "name": "mike",
-                                                                        },
-                                                                        Object {
-                                                                          "address": "04234",
-                                                                          "name": "john",
-                                                                        },
-                                                                      ]
-                                    }
-                                    layout="horizontal"
-                                    message="You have no recently used contacts."
-                                    onDelete={[Function]}
-                                    onEdit={[Function]}
-                                    size="small"
-                  />
-</index.style__Border>,
-              ],
-              "contactsPresent": 3,
+              "onChange": [Function],
+              "placeholder": "Filter",
+              "showSearch": true,
+              "title": "All Contacts",
             },
             "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "onChange": [Function],
-                  "placeholder": "Filter",
-                  "showSearch": true,
-                  "title": "Recently Used Contacts",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <ContactList
+                data={
+                                Array [
+                                                Object {
+                                                  "address": "0x324234",
+                                                  "name": "mike",
+                                                },
+                                                Object {
+                                                  "address": "04234",
+                                                  "name": "john",
+                                                },
+                                                Object {
+                                                  "address": "0x344234",
+                                                  "name": "ester",
+                                                },
+                                              ]
+                }
+                layout="horizontal"
+                message="You have not added any contacts."
+                onDelete={[Function]}
+                onEdit={[Function]}
+                size="small"
+/>,
+              "contactsLength": 3,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "data": Array [
+                  Object {
+                    "address": "0x324234",
+                    "name": "mike",
+                  },
+                  Object {
+                    "address": "04234",
+                    "name": "john",
+                  },
+                  Object {
+                    "address": "0x344234",
+                    "name": "ester",
+                  },
+                ],
+                "layout": "horizontal",
+                "message": "You have not added any contacts.",
+                "onDelete": [Function],
+                "onEdit": [Function],
+                "size": "small",
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <ContactList
-                    data={
-                                        Array [
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <index.style__InnerWrapper1
+            contactsPresent={3}
+>
+            <ContactHeader
+                        onChange={[Function]}
+                        placeholder="Filter"
+                        showSearch={true}
+                        title="Recently Used Contacts"
+            />
+            <index.style__Border
+                        contactsLength={2}
+            >
+                        <ContactList
+                                    data={
+                                                Array [
                                                             Object {
                                                               "address": "0x324234",
                                                               "name": "mike",
@@ -333,112 +391,30 @@ ShallowWrapper {
                                                               "name": "john",
                                                             },
                                                           ]
-                    }
-                    layout="horizontal"
-                    message="You have no recently used contacts."
-                    onDelete={[Function]}
-                    onEdit={[Function]}
-                    size="small"
-/>,
-                  "contactsLength": 2,
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "data": Array [
-                      Object {
-                        "address": "0x324234",
-                        "name": "mike",
-                      },
-                      Object {
-                        "address": "04234",
-                        "name": "john",
-                      },
-                    ],
-                    "layout": "horizontal",
-                    "message": "You have no recently used contacts.",
-                    "onDelete": [Function],
-                    "onEdit": [Function],
-                    "size": "small",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-            ],
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": Array [
-                <ContactHeader
-                  onChange={[Function]}
-                  placeholder="Filter"
-                  showSearch={true}
-                  title="All Contacts"
-/>,
-                <index.style__Border
-                  contactsLength={3}
->
-                  <ContactList
-                                    data={
-                                                      Array [
-                                                                        Object {
-                                                                          "address": "0x324234",
-                                                                          "name": "mike",
-                                                                        },
-                                                                        Object {
-                                                                          "address": "04234",
-                                                                          "name": "john",
-                                                                        },
-                                                                        Object {
-                                                                          "address": "0x344234",
-                                                                          "name": "ester",
-                                                                        },
-                                                                      ]
                                     }
                                     layout="horizontal"
-                                    message="You have not added any contacts."
+                                    message="You have no recently used contacts."
                                     onDelete={[Function]}
                                     onEdit={[Function]}
                                     size="small"
-                  />
-</index.style__Border>,
-              ],
-              "contactsPresent": 3,
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "onChange": [Function],
-                  "placeholder": "Filter",
-                  "showSearch": true,
-                  "title": "All Contacts",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <ContactList
-                    data={
-                                        Array [
+                        />
+            </index.style__Border>
+</index.style__InnerWrapper1>,
+          <index.style__InnerWrapper2
+            contactsPresent={3}
+>
+            <ContactHeader
+                        onChange={[Function]}
+                        placeholder="Filter"
+                        showSearch={true}
+                        title="All Contacts"
+            />
+            <index.style__Border
+                        contactsLength={3}
+            >
+                        <ContactList
+                                    data={
+                                                Array [
                                                             Object {
                                                               "address": "0x324234",
                                                               "name": "mike",
@@ -452,147 +428,15 @@ ShallowWrapper {
                                                               "name": "ester",
                                                             },
                                                           ]
-                    }
-                    layout="horizontal"
-                    message="You have not added any contacts."
-                    onDelete={[Function]}
-                    onEdit={[Function]}
-                    size="small"
-/>,
-                  "contactsLength": 3,
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "data": Array [
-                      Object {
-                        "address": "0x324234",
-                        "name": "mike",
-                      },
-                      Object {
-                        "address": "04234",
-                        "name": "john",
-                      },
-                      Object {
-                        "address": "0x344234",
-                        "name": "ester",
-                      },
-                    ],
-                    "layout": "horizontal",
-                    "message": "You have not added any contacts.",
-                    "onDelete": [Function],
-                    "onEdit": [Function],
-                    "size": "small",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-            ],
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-    ],
-    "type": "div",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <HelmetWrapper
-            defer={true}
-            encodeSpecialCharacters={true}
->
-            <title>
-                        ContactBook
-            </title>
-            <meta
-                        content="Description of ContactBook"
-                        name="description"
-            />
-</HelmetWrapper>,
-          <index.style__Wrapper>
-            <index.style__InnerWrapper1
-                        contactsPresent={3}
-            >
-                        <ContactHeader
-                                    onChange={[Function]}
-                                    placeholder="Filter"
-                                    showSearch={true}
-                                    title="Recently Used Contacts"
+                                    }
+                                    layout="horizontal"
+                                    message="You have not added any contacts."
+                                    onDelete={[Function]}
+                                    onEdit={[Function]}
+                                    size="small"
                         />
-                        <index.style__Border
-                                    contactsLength={2}
-                        >
-                                    <ContactList
-                                                data={
-                                                            Array [
-                                                                        Object {
-                                                                          "address": "0x324234",
-                                                                          "name": "mike",
-                                                                        },
-                                                                        Object {
-                                                                          "address": "04234",
-                                                                          "name": "john",
-                                                                        },
-                                                                      ]
-                                                }
-                                                layout="horizontal"
-                                                message="You have no recently used contacts."
-                                                onDelete={[Function]}
-                                                onEdit={[Function]}
-                                                size="small"
-                                    />
-                        </index.style__Border>
-            </index.style__InnerWrapper1>
-            <index.style__InnerWrapper2
-                        contactsPresent={3}
-            >
-                        <ContactHeader
-                                    onChange={[Function]}
-                                    placeholder="Filter"
-                                    showSearch={true}
-                                    title="All Contacts"
-                        />
-                        <index.style__Border
-                                    contactsLength={3}
-                        >
-                                    <ContactList
-                                                data={
-                                                            Array [
-                                                                        Object {
-                                                                          "address": "0x324234",
-                                                                          "name": "mike",
-                                                                        },
-                                                                        Object {
-                                                                          "address": "04234",
-                                                                          "name": "john",
-                                                                        },
-                                                                        Object {
-                                                                          "address": "0x344234",
-                                                                          "name": "ester",
-                                                                        },
-                                                                      ]
-                                                }
-                                                layout="horizontal"
-                                                message="You have not added any contacts."
-                                                onDelete={[Function]}
-                                                onEdit={[Function]}
-                                                size="small"
-                                    />
-                        </index.style__Border>
-            </index.style__InnerWrapper2>
-</index.style__Wrapper>,
+            </index.style__Border>
+</index.style__InnerWrapper2>,
         ],
       },
       "ref": null,
@@ -603,41 +447,107 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <title>
-                ContactBook
-</title>,
-              <meta
-                content="Description of ContactBook"
-                name="description"
+              <ContactHeader
+                onChange={[Function]}
+                placeholder="Filter"
+                showSearch={true}
+                title="Recently Used Contacts"
 />,
+              <index.style__Border
+                contactsLength={2}
+>
+                <ContactList
+                                data={
+                                                Array [
+                                                                Object {
+                                                                  "address": "0x324234",
+                                                                  "name": "mike",
+                                                                },
+                                                                Object {
+                                                                  "address": "04234",
+                                                                  "name": "john",
+                                                                },
+                                                              ]
+                                }
+                                layout="horizontal"
+                                message="You have no recently used contacts."
+                                onDelete={[Function]}
+                                onEdit={[Function]}
+                                size="small"
+                />
+</index.style__Border>,
             ],
-            "defer": true,
-            "encodeSpecialCharacters": true,
+            "contactsPresent": 3,
           },
           "ref": null,
           "rendered": Array [
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "class",
               "props": Object {
-                "children": "ContactBook",
+                "onChange": [Function],
+                "placeholder": "Filter",
+                "showSearch": true,
+                "title": "Recently Used Contacts",
               },
               "ref": null,
-              "rendered": "ContactBook",
-              "type": "title",
+              "rendered": null,
+              "type": [Function],
             },
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "class",
               "props": Object {
-                "content": "Description of ContactBook",
-                "name": "description",
+                "children": <ContactList
+                  data={
+                                    Array [
+                                                      Object {
+                                                        "address": "0x324234",
+                                                        "name": "mike",
+                                                      },
+                                                      Object {
+                                                        "address": "04234",
+                                                        "name": "john",
+                                                      },
+                                                    ]
+                  }
+                  layout="horizontal"
+                  message="You have no recently used contacts."
+                  onDelete={[Function]}
+                  onEdit={[Function]}
+                  size="small"
+/>,
+                "contactsLength": 2,
               },
               "ref": null,
-              "rendered": null,
-              "type": "meta",
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "data": Array [
+                    Object {
+                      "address": "0x324234",
+                      "name": "mike",
+                    },
+                    Object {
+                      "address": "04234",
+                      "name": "john",
+                    },
+                  ],
+                  "layout": "horizontal",
+                  "message": "You have no recently used contacts.",
+                  "onDelete": [Function],
+                  "onEdit": [Function],
+                  "size": "small",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
             },
           ],
           "type": [Function],
@@ -648,77 +558,41 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <index.style__InnerWrapper1
-                contactsPresent={3}
+              <ContactHeader
+                onChange={[Function]}
+                placeholder="Filter"
+                showSearch={true}
+                title="All Contacts"
+/>,
+              <index.style__Border
+                contactsLength={3}
 >
-                <ContactHeader
-                                onChange={[Function]}
-                                placeholder="Filter"
-                                showSearch={true}
-                                title="Recently Used Contacts"
+                <ContactList
+                                data={
+                                                Array [
+                                                                Object {
+                                                                  "address": "0x324234",
+                                                                  "name": "mike",
+                                                                },
+                                                                Object {
+                                                                  "address": "04234",
+                                                                  "name": "john",
+                                                                },
+                                                                Object {
+                                                                  "address": "0x344234",
+                                                                  "name": "ester",
+                                                                },
+                                                              ]
+                                }
+                                layout="horizontal"
+                                message="You have not added any contacts."
+                                onDelete={[Function]}
+                                onEdit={[Function]}
+                                size="small"
                 />
-                <index.style__Border
-                                contactsLength={2}
-                >
-                                <ContactList
-                                                data={
-                                                                Array [
-                                                                                Object {
-                                                                                  "address": "0x324234",
-                                                                                  "name": "mike",
-                                                                                },
-                                                                                Object {
-                                                                                  "address": "04234",
-                                                                                  "name": "john",
-                                                                                },
-                                                                              ]
-                                                }
-                                                layout="horizontal"
-                                                message="You have no recently used contacts."
-                                                onDelete={[Function]}
-                                                onEdit={[Function]}
-                                                size="small"
-                                />
-                </index.style__Border>
-</index.style__InnerWrapper1>,
-              <index.style__InnerWrapper2
-                contactsPresent={3}
->
-                <ContactHeader
-                                onChange={[Function]}
-                                placeholder="Filter"
-                                showSearch={true}
-                                title="All Contacts"
-                />
-                <index.style__Border
-                                contactsLength={3}
-                >
-                                <ContactList
-                                                data={
-                                                                Array [
-                                                                                Object {
-                                                                                  "address": "0x324234",
-                                                                                  "name": "mike",
-                                                                                },
-                                                                                Object {
-                                                                                  "address": "04234",
-                                                                                  "name": "john",
-                                                                                },
-                                                                                Object {
-                                                                                  "address": "0x344234",
-                                                                                  "name": "ester",
-                                                                                },
-                                                                              ]
-                                                }
-                                                layout="horizontal"
-                                                message="You have not added any contacts."
-                                                onDelete={[Function]}
-                                                onEdit={[Function]}
-                                                size="small"
-                                />
-                </index.style__Border>
-</index.style__InnerWrapper2>,
+</index.style__Border>,
             ],
+            "contactsPresent": 3,
           },
           "ref": null,
           "rendered": Array [
@@ -727,110 +601,13 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": Array [
-                  <ContactHeader
-                    onChange={[Function]}
-                    placeholder="Filter"
-                    showSearch={true}
-                    title="Recently Used Contacts"
-/>,
-                  <index.style__Border
-                    contactsLength={2}
->
-                    <ContactList
-                                        data={
-                                                            Array [
-                                                                                Object {
-                                                                                  "address": "0x324234",
-                                                                                  "name": "mike",
-                                                                                },
-                                                                                Object {
-                                                                                  "address": "04234",
-                                                                                  "name": "john",
-                                                                                },
-                                                                              ]
-                                        }
-                                        layout="horizontal"
-                                        message="You have no recently used contacts."
-                                        onDelete={[Function]}
-                                        onEdit={[Function]}
-                                        size="small"
-                    />
-</index.style__Border>,
-                ],
-                "contactsPresent": 3,
+                "onChange": [Function],
+                "placeholder": "Filter",
+                "showSearch": true,
+                "title": "All Contacts",
               },
               "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "onChange": [Function],
-                    "placeholder": "Filter",
-                    "showSearch": true,
-                    "title": "Recently Used Contacts",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": <ContactList
-                      data={
-                                            Array [
-                                                                  Object {
-                                                                    "address": "0x324234",
-                                                                    "name": "mike",
-                                                                  },
-                                                                  Object {
-                                                                    "address": "04234",
-                                                                    "name": "john",
-                                                                  },
-                                                                ]
-                      }
-                      layout="horizontal"
-                      message="You have no recently used contacts."
-                      onDelete={[Function]}
-                      onEdit={[Function]}
-                      size="small"
-/>,
-                    "contactsLength": 2,
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "data": Array [
-                        Object {
-                          "address": "0x324234",
-                          "name": "mike",
-                        },
-                        Object {
-                          "address": "04234",
-                          "name": "john",
-                        },
-                      ],
-                      "layout": "horizontal",
-                      "message": "You have no recently used contacts.",
-                      "onDelete": [Function],
-                      "onEdit": [Function],
-                      "size": "small",
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
-                  "type": [Function],
-                },
-              ],
+              "rendered": null,
               "type": [Function],
             },
             Object {
@@ -838,129 +615,68 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": Array [
-                  <ContactHeader
-                    onChange={[Function]}
-                    placeholder="Filter"
-                    showSearch={true}
-                    title="All Contacts"
+                "children": <ContactList
+                  data={
+                                    Array [
+                                                      Object {
+                                                        "address": "0x324234",
+                                                        "name": "mike",
+                                                      },
+                                                      Object {
+                                                        "address": "04234",
+                                                        "name": "john",
+                                                      },
+                                                      Object {
+                                                        "address": "0x344234",
+                                                        "name": "ester",
+                                                      },
+                                                    ]
+                  }
+                  layout="horizontal"
+                  message="You have not added any contacts."
+                  onDelete={[Function]}
+                  onEdit={[Function]}
+                  size="small"
 />,
-                  <index.style__Border
-                    contactsLength={3}
->
-                    <ContactList
-                                        data={
-                                                            Array [
-                                                                                Object {
-                                                                                  "address": "0x324234",
-                                                                                  "name": "mike",
-                                                                                },
-                                                                                Object {
-                                                                                  "address": "04234",
-                                                                                  "name": "john",
-                                                                                },
-                                                                                Object {
-                                                                                  "address": "0x344234",
-                                                                                  "name": "ester",
-                                                                                },
-                                                                              ]
-                                        }
-                                        layout="horizontal"
-                                        message="You have not added any contacts."
-                                        onDelete={[Function]}
-                                        onEdit={[Function]}
-                                        size="small"
-                    />
-</index.style__Border>,
-                ],
-                "contactsPresent": 3,
+                "contactsLength": 3,
               },
               "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "onChange": [Function],
-                    "placeholder": "Filter",
-                    "showSearch": true,
-                    "title": "All Contacts",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": <ContactList
-                      data={
-                                            Array [
-                                                                  Object {
-                                                                    "address": "0x324234",
-                                                                    "name": "mike",
-                                                                  },
-                                                                  Object {
-                                                                    "address": "04234",
-                                                                    "name": "john",
-                                                                  },
-                                                                  Object {
-                                                                    "address": "0x344234",
-                                                                    "name": "ester",
-                                                                  },
-                                                                ]
-                      }
-                      layout="horizontal"
-                      message="You have not added any contacts."
-                      onDelete={[Function]}
-                      onEdit={[Function]}
-                      size="small"
-/>,
-                    "contactsLength": 3,
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "data": Array [
-                        Object {
-                          "address": "0x324234",
-                          "name": "mike",
-                        },
-                        Object {
-                          "address": "04234",
-                          "name": "john",
-                        },
-                        Object {
-                          "address": "0x344234",
-                          "name": "ester",
-                        },
-                      ],
-                      "layout": "horizontal",
-                      "message": "You have not added any contacts.",
-                      "onDelete": [Function],
-                      "onEdit": [Function],
-                      "size": "small",
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "data": Array [
+                    Object {
+                      "address": "0x324234",
+                      "name": "mike",
                     },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
-                  "type": [Function],
+                    Object {
+                      "address": "04234",
+                      "name": "john",
+                    },
+                    Object {
+                      "address": "0x344234",
+                      "name": "ester",
+                    },
+                  ],
+                  "layout": "horizontal",
+                  "message": "You have not added any contacts.",
+                  "onDelete": [Function],
+                  "onEdit": [Function],
+                  "size": "small",
                 },
-              ],
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
               "type": [Function],
             },
           ],
           "type": [Function],
         },
       ],
-      "type": "div",
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {
