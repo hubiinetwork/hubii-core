@@ -14,7 +14,6 @@ import {
   Collapse,
   Panel,
 } from './TransferForm.style';
-import InputNumber from '../ui/InputNumber';
 import Select, { Option, OptGroup } from '../ui/Select';
 import { Form, FormItem, FormItemLabel } from '../ui/Form';
 import HelperText from '../ui/HelperText';
@@ -23,6 +22,9 @@ import Input from '../ui/Input';
 
 // valid gwei number is numbers, optionally followed by a . at most 9 more numbers
 const gweiRegex = new RegExp('^\\d+(\\.\\d{0,9})?$');
+
+// only match whole numbers
+const gasLimitRegex = new RegExp('^\\d+$');
 
 // TODO: This component is buggy. Just merging because a lot of eslint issue have been resolved in this branch
 export default class TransferForm extends React.PureComponent {
@@ -51,6 +53,7 @@ export default class TransferForm extends React.PureComponent {
       gasPriceGweiInput: '3',
       gasPriceGwei: new BigNumber('3'),
       gasLimit: 21000,
+      gasLimitInput: '21000',
     };
     this.handleAmountToSendChange = this.handleAmountToSendChange.bind(this);
     this.handleAssetChange = this.handleAssetChange.bind(this);
@@ -117,7 +120,21 @@ export default class TransferForm extends React.PureComponent {
   }
 
   handleGasLimitChange(e) {
-    this.setState({ gasLimit: parseFloat(e.target.value) });
+    const { value } = e.target;
+    // allow an empty input to represent 0
+    if (value === '') {
+      this.setState({ gasLimitInput: '', gasLimit: 0 });
+    }
+
+    // only allow whole numbers
+    if (!gasLimitRegex.test(value)) return;
+
+    // don't allow infeasible amount of gas
+    // (gas limit per block almost never exeeds 10 million as of Aug 2018  )
+    const ONE_HUNDRED_MILLION = 100000000;
+    if (value > ONE_HUNDRED_MILLION) return;
+
+    this.setState({ gasLimitInput: value, gasLimit: parseInt(value, 10) });
   }
 
   handleAssetChange(newSymbol) {
@@ -149,15 +166,29 @@ export default class TransferForm extends React.PureComponent {
   }
 
   render() {
-    const { assetToSend, address, gasLimit, amountToSend, amountToSendInput, gasPriceGwei, gasPriceGweiInput } = this.state;
+    const {
+      assetToSend,
+      address,
+      gasLimit,
+      amountToSend,
+      amountToSendInput,
+      gasPriceGwei,
+      gasPriceGweiInput,
+      gasLimitInput,
+    } = this.state;
+
     const { currentWalletUsdBalance, assets, prices, recipients, transfering } = this.props;
 
-    const assetToSendUsdValue = prices.assets.find((a) => a.currency === assetToSend.currency).usd;
-    const usdValueToSend = amountToSend.times(assetToSendUsdValue);
-    const ethUsdValue = prices.assets.find((a) => a.currency === 'ETH').usd;
+    const assetToSendUsdValue = prices.assets
+      .find((a) => a.currency === assetToSend.currency).usd;
+    const usdValueToSend = amountToSend
+      .times(assetToSendUsdValue);
+    const ethUsdValue = prices.assets
+      .find((a) => a.currency === 'ETH').usd;
 
 
-    const ethBalance = this.props.assets.find((currency) => currency.symbol === 'ETH');
+    const ethBalance = this.props.assets
+      .find((currency) => currency.symbol === 'ETH');
 
     // construct tx fee info
     const txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit);
@@ -257,7 +288,7 @@ export default class TransferForm extends React.PureComponent {
                   <Input disabled={transfering} min={0} defaultValue={gasPriceGweiInput} value={gasPriceGweiInput} onChange={this.handleGasPriceChange} />
                 </FormItem>
                 <FormItem label={<FormItemLabel>Gas Limit</FormItemLabel>} colon={false}>
-                  <InputNumber disabled={transfering} min={0} defaultValue={gasLimit} handleChange={this.handleGasLimitChange} />
+                  <Input disabled={transfering} value={gasLimitInput} defaultValue={gasLimitInput} onChange={this.handleGasLimitChange} />
                 </FormItem>
               </Panel>
             </Collapse>

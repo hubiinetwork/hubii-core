@@ -93,7 +93,7 @@ export class WalletManager extends React.PureComponent {
     if (data[0].walletType === 'Private Key') {
       const { privateKey, name, password } = data[1];
       this.props.createWalletFromPrivateKey(privateKey, name, password);
-    } 
+    }
     if (data[0].walletType === 'ledger') {
       const { derivationPath, deviceId, address } = data[1];
       const { name } = data[2];
@@ -196,6 +196,7 @@ WalletManager.propTypes = {
   match: PropTypes.object.isRequired,
   createWalletFromMnemonic: PropTypes.func.isRequired,
   saveLedgerAddress: PropTypes.func,
+  saveTrezorAddress: PropTypes.func,
   createWalletFromPrivateKey: PropTypes.func.isRequired,
   loading: PropTypes.object.isRequired,
   createContact: PropTypes.func,

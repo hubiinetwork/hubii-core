@@ -4,7 +4,8 @@ import Button from '../../ui/Button';
 
 export const Coins = styled(Radio.Group)`
   margin-top: 40px;
-  margin-bottom: 50px;
+  padding-left: 27px;
+  padding-right: 27px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -60,7 +61,7 @@ export const ButtonDiv = styled.div`
   margin-top: 1rem;
 `;
 export const StyledButton = styled(Button)`
-  margin-top: 80px;
+  margin-top: 35px;
   background-color: ${({ disabled: white }) =>
     white && 'transparent !important'};
   font-size: 12px;

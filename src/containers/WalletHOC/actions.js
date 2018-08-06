@@ -382,7 +382,7 @@ export function fetchedTrezorAddress(derivationPath, address) {
 export function saveTrezorAddress(name, derivationPath, deviceId, address) {
   const newWallet = {
     deviceId,
-    address: address.indexOf('0x') === 0 ? address : `0x${address}`,
+    address: (address && address.startsWith('0x')) ? address : `0x${address}`,
     type: 'trezor',
     name,
     derivationPath,

@@ -1,78 +1,72 @@
-const {DeviceList} = require('trezor.js')
-const showPrompt = require('./showPrompt')
+const { DeviceList } = require('trezor.js');
+const showPrompt = require('./showPrompt');
 
-const PROTOCOL_NAME = 'trezor'
+const PROTOCOL_NAME = 'trezor';
 
-const devices = {}
+const devices = {};
 
-function deviceEventListener (mainWindow) {
-  const deviceList = new DeviceList({debug: false});
-  console.log('device event listener')
-  deviceList.on('connect', function (device) {
-    const deviceId = device.features.device_id
-    devices[deviceId] = device
-    console.log("Connected device " + device.features.label);
+function deviceEventListener(mainWindow) {
+  const deviceList = new DeviceList({ debug: false });
+  deviceList.on('connect', (device) => {
+    const deviceId = device.features.device_id;
+    devices[deviceId] = device;
     device.on('pin', (_, cb) => {
+      console.log('pin');
       showPrompt('pin')
-        .then(pin => {
+        .then((pin) => {
           cb(undefined, pin);
         })
-        .catch(err => {
-          console.error('PIN entry failed', err);
+        .catch((err) => {
           cb(err);
         });
     });
 
-    let passphraseCache
+    let passphraseCache;
     device.on('passphrase', (cb) => {
       if (passphraseCache) {
-        return cb(undefined, passphraseCache)
+        cb(undefined, passphraseCache);
+      } else {
+        showPrompt('passphrase')
+          .then((passphrase) => {
+            cb(undefined, passphrase);
+            // cache passphrase for immediate subsequence calls to trezor
+            passphraseCache = passphrase;
+            setTimeout(() => {
+              passphraseCache = null;
+            }, 5000);
+          })
+          .catch((err) => {
+            cb(err);
+          });
       }
-      
-      showPrompt('passphrase')
-        .then(passphrase => {
-          cb(undefined, passphrase);
-          //cache passphrase for immediate subsequence calls to trezor
-          passphraseCache = passphrase
-          setTimeout(() => {
-            passphraseCache = null
-          }, 5000)
-        })
-        .catch(err => {
-          console.error('Passphrase entry failed', err);
-          cb(err);
-        });
-      
     });
 
     // For convenience, device emits 'disconnect' event on disconnection.
-    device.on('disconnect', function () {
-      delete devices[deviceId]
-      mainWindow.webContents.send ('status', {deviceId, status:'disconnected'});
+    device.on('disconnect', () => {
+      delete devices[deviceId];
+      mainWindow.webContents.send('status', { deviceId, status: 'disconnected' });
     });
-    mainWindow.webContents.send ('status', {deviceId, status:'connected'});
-  })
+    mainWindow.webContents.send('status', { deviceId, status: 'connected' });
+  });
 
-  process.on('exit', function() {
+  process.on('exit', () => {
     deviceList.onbeforeunload();
   });
 }
 
-async function listenWalletMethods(method, params, cb) {
-  const {id, path} = params
-  await devices[id].waitForSessionAndRun(function (session) {
+async function execWalletMethods(method, params, cb) {
+  const { id, path } = params;
+
+  await devices[id].waitForSessionAndRun(async (session) => {
     if (method === 'getaddress') {
-      return session.ethereumGetAddress(
+      const result = await session.ethereumGetAddress(
         parseHDPath(path)
-      , false)
-      .then(function (result) {
-        cb(JSON.stringify({path: path, address: result.message.address}));
-      })
+      , false);
+      cb(JSON.stringify({ path, address: result.message.address }));
     }
     if (method === 'signtx') {
-      const {tx} = params
-      console.log('signtx', path, tx)
-      return session.signEthTx(
+      const { tx } = params;
+      const signedTx = await session.signEthTx(
         parseHDPath(path),
         tx.nonce,
         tx.gasPrice,
@@ -81,31 +75,30 @@ async function listenWalletMethods(method, params, cb) {
         tx.value,
         tx.data,
         tx.chainId
-      ).then(signedTx => {
-        console.log('signed tx', signedTx)
-        cb(JSON.stringify(signedTx));
-      })
+      );
+      cb(JSON.stringify(signedTx));
     }
-  })
+  });
 }
 
 function parseHDPath(path) {
   return path
     .toLowerCase()
     .split('/')
-    .filter(p => p !== 'm')
-    .map(p => {
+    .filter((p) => p !== 'm')
+    .map((p) => {
       let hardened = false;
       let n = parseInt(p, 10);
       if (p[p.length - 1] === "'") {
         hardened = true;
+        // eslint-disable-next-line no-param-reassign
         p = p.substr(0, p.length - 1);
       }
       if (isNaN(n)) {
         throw new Error('Invalid path specified');
       }
       if (hardened) {
-        // hardened index
+        // eslint-disable-next-line no-bitwise
         n = (n | 0x80000000) >>> 0;
       }
       return n;
@@ -113,7 +106,7 @@ function parseHDPath(path) {
 }
 
 module.exports = {
-  PROTOCOL_NAME: PROTOCOL_NAME,
-  deviceEventListener: deviceEventListener,
-  listenWalletMethods: listenWalletMethods,
-}
+  PROTOCOL_NAME,
+  deviceEventListener,
+  execWalletMethods,
+};

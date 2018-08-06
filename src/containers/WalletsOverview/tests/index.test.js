@@ -10,15 +10,27 @@ describe('WalletsOverview', () => {
     showDecryptWalletModal: () => {},
     deleteWallet: () => {},
     ledgerNanoSInfo: fromJS({ connected: false }),
+    trezorInfo: fromJS({ connected: false }),
     setCurrentWallet: () => {},
     totalBalances: totalBalancesMock,
     supportedAssets: supportedAssetsMock,
     history: { push: () => {} },
   };
-  it('should render correctly', () => {
+
+  it('should render correctly when there are wallets', () => {
     const wrapper = shallow(
       <WalletsOverview
         {...props}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when there are no wallets', () => {
+    const wrapper = shallow(
+      <WalletsOverview
+        {...props}
+        walletsWithInfo={fromJS([])}
       />
     );
     expect(wrapper).toMatchSnapshot();

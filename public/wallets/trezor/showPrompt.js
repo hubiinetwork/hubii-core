@@ -1,11 +1,11 @@
-const { BrowserWindow, ipcMain} = require('electron');
+const { BrowserWindow, ipcMain } = require('electron');
 
-const path = require('path')
-const fs = require('fs')
+const path = require('path');
+const fs = require('fs');
 
 module.exports = function showPrompt(event) {
   return new Promise((resolve, reject) => {
-    const pinTemplate = fs.readFileSync(path.resolve(__dirname, `${event}.html`), 'utf8')
+    const pinTemplate = fs.readFileSync(path.resolve(__dirname, `${event}.html`), 'utf8');
     const scriptNonce = Math.floor(Math.random() * 1000000000000);
     const html = pinTemplate
       .replace(/\$scriptNonce/g, scriptNonce.toString())
@@ -18,7 +18,7 @@ module.exports = function showPrompt(event) {
       height: 380,
       frame: false,
       backgroundColor: '#21252B',
-      darkTheme: true
+      darkTheme: true,
     });
 
     window.on('closed', () => {
@@ -34,10 +34,6 @@ module.exports = function showPrompt(event) {
         hasResolved = true;
         window.close();
       } catch (e) {
-        /**
-         * @desc The window.close call sometimes fails
-         *  if the window has already been destroyed.
-         */
         console.error(e);
       }
     });
@@ -46,4 +42,4 @@ module.exports = function showPrompt(event) {
     window.show();
     window.focus();
   });
-}
+};

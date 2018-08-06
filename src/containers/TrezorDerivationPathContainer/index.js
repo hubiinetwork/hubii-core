@@ -17,7 +17,6 @@ import {
 
 import {
   makeSelectTrezorInfo,
-  makeSelectErrors,
 } from 'containers/WalletHOC/selectors';
 
 
@@ -65,7 +64,6 @@ export class TrezorDerivationPathContainer extends React.Component { // eslint-d
     const derivationPath = `${this.state.pathBase}/${index}`;
     const id = this.props.trezorInfo.get('id');
     const address = this.props.trezorInfo.getIn(['addresses', derivationPath]);
-    console.log(address, derivationPath, id)
     this.props.handleNext({ address, derivationPath, deviceId: id });
   }
 
@@ -84,8 +82,7 @@ export class TrezorDerivationPathContainer extends React.Component { // eslint-d
   }
 
   render() {
-    const { trezorInfo, errors } = this.props;
-    const error = errors.get('trezorError');
+    const { trezorInfo } = this.props;
     const { status, addresses } = trezorInfo.toJS();
     if (status === 'disconnected') {
       return (
@@ -128,7 +125,6 @@ export class TrezorDerivationPathContainer extends React.Component { // eslint-d
 
 TrezorDerivationPathContainer.propTypes = {
   trezorInfo: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
   fetchTrezorAddresses: PropTypes.func.isRequired,
   handleBack: PropTypes.func.isRequired,
   handleNext: PropTypes.func.isRequired,
@@ -136,7 +132,6 @@ TrezorDerivationPathContainer.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   trezorInfo: makeSelectTrezorInfo(),
-  errors: makeSelectErrors(),
 });
 
 function mapDispatchToProps(dispatch) {

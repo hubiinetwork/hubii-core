@@ -2,7 +2,7 @@ import { delay, eventChannel } from 'redux-saga';
 import { takeLatest, takeEvery, put, call, select, take, race, spawn } from 'redux-saga/effects';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 import { Wallet, utils, Contract } from 'ethers';
-import { toBuffer, addHexPrefix, bufferToHex, stripHexPrefix, padToEven } from 'ethereumjs-util';
+import { toBuffer, bufferToHex, stripHexPrefix } from 'ethereumjs-util';
 
 import { notify } from 'containers/App/actions';
 import { requestWalletAPI, requestHardwareWalletAPI } from 'utils/request';
@@ -40,7 +40,6 @@ import {
   LEDGER_CONNECTED,
   LEDGER_DISCONNECTED,
   INIT_WALLETS_BALANCES,
-  INIT_TREZOR,
 } from './constants';
 
 import {
@@ -73,7 +72,7 @@ import {
   transfer as transferAction,
 } from './actions';
 
-import trezorWatchers, {init as initTrezor} from './HardwareWallets/trezor/saga'
+import trezorWatchers from './HardwareWallets/trezor/saga';
 
 import { createEthTransportActivity } from '../../utils/ledger/comms';
 import generateRawTx from '../../utils/generateRawTx';
@@ -215,11 +214,11 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
       etherWallet.provider = EthNetworkProvider;
       transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
     }
-    console.log('transaction', transaction)
+    console.log('transaction', transaction);
     yield put(transferSuccess(transaction, 'ETH'));
     yield put(notify('success', 'Transaction sent'));
   } catch (error) {
-    console.log(error)
+    console.log(error);
     yield put(transferError(error));
     yield put(notify('error', `Failed to send transaction: ${error}`));
   }
@@ -431,12 +430,12 @@ export function* signTxByLedger(walletDetails, rawTxHex) {
     );
     yield put(notify('info', 'Verify transaction details on your Ledger'));
 
-    let signedTx = yield call(
+    const signedTx = yield call(
       tryCreateEthTransportActivity,
       descriptor,
       (ethTransport) => ethTransport.signTransaction(walletDetails.derivationPath, rawTxHex)
     );
-    return signedTx
+    return signedTx;
   } catch (e) {
     const refinedError = ledgerError(e);
     yield put(refinedError);
@@ -448,23 +447,23 @@ export function* signTxByTrezor(walletDetails, tx) {
   try {
     const trezorInfo = yield select(makeSelectTrezorInfo());
     const deviceId = trezorInfo.get('id');
-    const path = walletDetails.derivationPath
-    const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', {id: deviceId, path})
+    const path = walletDetails.derivationPath;
+    const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
     if (!IsAddressMatch(`0x${publicAddressKeyPair.address}`, walletDetails.address)) {
-      throw new Error('Current wallet address does not match to the Trezor\'s address. Please make sure you entered the correct passphrase.')
+      throw new Error('Current wallet address does not match to the Trezor\'s address. Please make sure you entered the correct passphrase.');
     }
     yield put(notify('info', 'Verify transaction details on your Trezor'));
     const signedTx = yield call(
-      requestHardwareWalletAPI, 
-      'signtx', 
+      requestHardwareWalletAPI,
+      'signtx',
       {
         id: deviceId,
         path,
-        tx
+        tx,
       }
-    )
+    );
 
-    return signedTx
+    return signedTx;
   } catch (e) {
     const refinedError = ledgerError(e);
     yield put(refinedError);
@@ -480,7 +479,7 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
     nonceValue = yield call(getTransactionCount, walletDetails.address, 'pending');
   }
   const amountHex = amount ? amount.toHexString() : '0x00';
-  const chainId = EthNetworkProvider.chainId
+  const chainId = EthNetworkProvider.chainId;
   // generate raw tx for ledger nano to sign
   const rawTx = generateRawTx({
     toAddress,
@@ -495,25 +494,25 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   rawTx.raw[6] = Buffer.from([chainId]);
   rawTx.raw[7] = Buffer.from([]);
   rawTx.raw[8] = Buffer.from([]);
-  
-  let signedTx 
+
+  let signedTx;
   if (walletDetails.type === 'lns') {
     const rawTxHex = rawTx.serialize().toString('hex');
-    signedTx = yield signTxByLedger(walletDetails, rawTxHex)
+    signedTx = yield signTxByLedger(walletDetails, rawTxHex);
     rawTx.v = Buffer.from(signedTx.v, 'hex');
   }
   if (walletDetails.type === 'trezor') {
-    const raw = rawTx.toJSON()
+    const raw = rawTx.toJSON();
     const txToSign = {
-      nonce: stripHexPrefix(raw[0]), 
-      toAddress: stripHexPrefix(raw[3]), 
-      value: stripHexPrefix(raw[4]), 
-      data: raw[5] === '0x' ? null : stripHexPrefix(bufferToHex(toBuffer(data))), 
-      gasPrice: stripHexPrefix(raw[1]), 
-      gasLimit: stripHexPrefix(raw[2]), 
-      chainId
-    }
-    signedTx = yield signTxByTrezor(walletDetails, txToSign)
+      nonce: stripHexPrefix(raw[0]),
+      toAddress: stripHexPrefix(raw[3]),
+      value: stripHexPrefix(raw[4]),
+      data: raw[5] === '0x' ? null : stripHexPrefix(bufferToHex(toBuffer(data))),
+      gasPrice: stripHexPrefix(raw[1]),
+      gasLimit: stripHexPrefix(raw[2]),
+      chainId,
+    };
+    signedTx = yield signTxByTrezor(walletDetails, txToSign);
     rawTx.v = Buffer.from(signedTx.v.toString(16), 'hex');
   }
   // update raw tx with signed data
@@ -548,6 +547,6 @@ export default function* walletHoc() {
   yield takeEvery(LEDGER_CONNECTED, pollEthApp);
   yield takeEvery(LEDGER_DISCONNECTED, hookLedgerDisconnected);
 
-  yield trezorWatchers()
+  yield trezorWatchers();
   // yield takeEvery(INIT_LEDGER, initTrezor);
 }

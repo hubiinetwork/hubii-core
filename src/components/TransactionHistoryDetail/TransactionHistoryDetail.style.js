@@ -2,19 +2,20 @@ import styled from 'styled-components';
 import { Collapse, Icon } from 'antd';
 const Panel = Collapse.Panel;
 
-export const TransactionHistoryType = styled.div`
+export const TypeText = styled.div`
   color: ${({ theme }) => theme.palette.light};
   font-family: 'SF Text';
+  margin-right: 4px;
   font-size: 14px;
 `;
 
-export const TransactionStatus = styled.div`
+export const TransactionStatus = styled.span`
   color: ${({ theme }) => theme.palette.light};
   font-family: 'SF Text';
   font-size: 12px;
 `;
 
-export const TransactionHistoryItemCardIcon = styled(Icon)`
+export const TypeIcon = styled(Icon)`
   color: ${({ theme }) => theme.palette.light};
   font-size: 20px;
   display: flex;
@@ -22,28 +23,26 @@ export const TransactionHistoryItemCardIcon = styled(Icon)`
   margin-right: 9px;
 `;
 
-export const Amount = styled.div`
+export const FiatValue = styled.div`
   color: ${({ theme }) => theme.palette.secondary1};
   font-size: 12px;
+  margin-left: 0.5rem;
   font-family: 'SF Text';
-  margin-left: 15px;
 `;
 
 export const Left = styled.div`
   display: flex;
   align-items: center;
-  flex: 1;
+  flex: 1; 
 `;
 
-export const TransactionHistoryAddress = styled.div`
+export const GreenTextWrapper = styled.span`
   word-break: break-all;
   color: ${({ theme }) => theme.palette.info};
-  margin-left: 3px;
   font-family: 'SF Text';
-  margin-right: 3px;
 `;
 
-export const TransactionHistoryAddressLink = styled.a`
+export const TransactionId = styled.a`
   color: ${({ theme }) => theme.palette.secondary};
   font-family: 'SF Text';
   font-size: 12px;
@@ -75,7 +74,10 @@ export const DetailCollapse = styled(Collapse)`
   display: flex;
   align-items: center;
   .ant-collapse-header {
-    padding: 0px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
   }
   .ant-collapse-content {
     padding-left: 0px !important;
@@ -96,4 +98,23 @@ export const HashText = styled.div`
   margin-bottom: 0px;
   margin-right: 5px;
   font-weight: bolder;
+`;
+
+export const Amount = styled.span`
+  font-size: 14px;
+  font-family: 'SF Text';
+  word-break: break-all;
+  color: ${({ theme }) => theme.palette.success};
+`;
+
+export const TransactionHistoryTime = styled.span`
+  color: ${({ theme }) => theme.palette.secondary1};
+  font-size: 12px;
+  margin-left: 1rem;
+  font-family: 'SF Text';
+`;
+
+export const DetailsWrapper = styled.div`
+  display: flex;
+  margin-right: 10px;
 `;

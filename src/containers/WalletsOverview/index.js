@@ -18,7 +18,7 @@ import { SectionHeading } from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
 
-import { WalletCardsCol, Wrapper } from './style';
+import { WalletCardsCol, Wrapper, WalletPlaceHolder } from './style';
 import { getCurrencySymbol } from '../../utils/wallet';
 
 export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -47,41 +47,54 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
   renderWalletCards() {
     const wallets = this.props.walletsWithInfo.toJS();
+    if (wallets.length === 0) {
+      return (
+        <WalletPlaceHolder>
+          {"You haven't added any wallets."}
+          <br />
+          <br />
+          {'Create or import a wallet by clicking "Add / Restore Wallet" in the top right.'}
+        </WalletPlaceHolder>
+      );
+    }
     return wallets.map((wallet) => {
-      let connected = false
+      let connected = false;
       if (wallet.type === 'lns' && this.props.ledgerNanoSInfo.get('id') === wallet.deviceId) {
-        connected = true
+        connected = true;
       }
       if (wallet.type === 'trezor' && this.props.trezorInfo.get('id') === wallet.deviceId) {
-        connected = true
+        connected = true;
       }
-      return (<WalletCardsCol
-        span={12}
-        key={wallet.name}
-        xs={24}
-        sm={24}
-        lg={12}
-      >
-        <WalletItemCard
-          name={wallet.name}
-          totalBalance={(wallet.balances.loading || wallet.balances.error) ? 0 : wallet.balances.total.usd.toNumber()}
-          balancesLoading={wallet.balances.loading}
-          balancesError={!!wallet.balances.error}
-          address={wallet.address}
-          type={wallet.type}
-          connected={connected}
-          assets={wallet.balances.assets}
-          mnemonic={wallet.mnemonic}
-          privateKey={wallet.decrypted ? wallet.decrypted.privateKey : null}
-          isDecrypted={!!wallet.decrypted}
-          showDecryptWalletModal={() => this.props.showDecryptWalletModal()}
-          setCurrentWallet={() => this.props.setCurrentWallet(wallet.address)}
-          handleCardClick={() => this.handleCardClick(wallet)}
-          walletList={wallets}
-          deleteWallet={() => this.props.deleteWallet(wallet.address)}
-        />
-      </WalletCardsCol>)
-    });
+      return (
+        <WalletCardsCol
+          span={12}
+          key={wallet.name}
+          xs={24}
+          sm={24}
+          lg={12}
+        >
+          <WalletItemCard
+            name={wallet.name}
+            totalBalance={(wallet.balances.loading || wallet.balances.error) ? 0 : wallet.balances.total.usd.toNumber()}
+            balancesLoading={wallet.balances.loading}
+            balancesError={!!wallet.balances.error}
+            address={wallet.address}
+            type={wallet.type}
+            connected={connected}
+            assets={wallet.balances.assets}
+            mnemonic={wallet.mnemonic}
+            privateKey={wallet.decrypted ? wallet.decrypted.privateKey : null}
+            isDecrypted={!!wallet.decrypted}
+            showDecryptWalletModal={() => this.props.showDecryptWalletModal()}
+            setCurrentWallet={() => this.props.setCurrentWallet(wallet.address)}
+            handleCardClick={() => this.handleCardClick(wallet)}
+            walletList={wallets}
+            deleteWallet={() => this.props.deleteWallet(wallet.address)}
+          />
+        </WalletCardsCol>
+      );
+    }
+    );
   }
 
   render() {
