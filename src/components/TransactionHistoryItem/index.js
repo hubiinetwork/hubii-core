@@ -1,1 +1,1 @@
-export { TransactionHistoryItem } from './TransactionHistoryItem.component';
+export default './index';
