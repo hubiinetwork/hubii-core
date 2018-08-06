@@ -121,8 +121,8 @@ injectGlobal`
   }
   
   .ant-tooltip {
-       display: none;
-     }
+    display: none;
+  }
 
   html * {
     font-family: "SF Text";
@@ -165,4 +165,25 @@ injectGlobal`
     border-radius: 8px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.27);
   }
+
+  .ant-pagination-item-active:focus, 
+  .ant-pagination-item-active:hover,
+  .ant-pagination-item-active {
+    border-color: ${darkTheme.palette.info};
+    background: transparent;
+  }
+
+  .ant-pagination-item:hover,
+  .ant-pagination-item:focus {
+    a {
+      color: ${darkTheme.palette.info};
+    }
+  }
+
+  .ant-pagination-item>a,
+  .ant-pagination-item-link::after {
+    color: ${darkTheme.palette.light};
+  }
+
+}
 `;
