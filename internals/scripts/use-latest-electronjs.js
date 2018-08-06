@@ -1,5 +1,5 @@
 
-const fs = require('fs');
+const fs = require('fs-extra');
 const buildDir = './build/public';
 const buildPublicDir = './build/public';
 
@@ -11,12 +11,17 @@ if (!fs.existsSync(buildPublicDir)) {
   fs.mkdirSync(buildPublicDir);
 }
 
-fs.copyFileSync('./public/electron.js', './build/public/electron.js', (e) => {
-  if (e) throw e;
-});
-fs.copyFileSync('./public/preload.js', './build/public/preload.js', (e) => {
-  if (e) throw e;
-});
-fs.copyFileSync('./public/protocol.js', './build/public/protocol.js', (e) => {
-  if (e) throw e;
-});
+const sources = [
+  'public/electron.js',
+  'public/preload.js',
+  'public/protocol.js',
+  'public/trezor',
+]
+
+try {
+  sources.forEach(path => {
+    fs.copySync(`./${path}`, `./build/${path}`)
+  })
+}catch(e) {
+  console.log(e)
+}

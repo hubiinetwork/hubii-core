@@ -1,6 +1,8 @@
 const { protocol, BrowserWindow } = require('electron');
 const {DeviceList} = require('trezor.js')
 
+const showPinPrompt = require('./trezor/showPinPrompt')
+
 const PROTOCOL_NAME = 'wallet'
 protocol.registerStandardSchemes([PROTOCOL_NAME]);
 
@@ -12,8 +14,17 @@ async function listenHardwareWallets (mainWindow) {
     devices[deviceId] = device
     console.log("Connected device " + device.features.label);
     // What to do on user interactions:
-    device.on('pin', () => {});
-    
+    device.on('pin', (_, cb) => {
+      showPinPrompt()
+        .then(pin => {
+          cb(undefined, pin);
+        })
+        .catch(err => {
+          console.error('PIN entry failed', err);
+          cb(err);
+        });
+    });
+
     // For convenience, device emits 'disconnect' event on disconnection.
     device.on('disconnect', function () {
       console.log('Disconnected an opened device');
