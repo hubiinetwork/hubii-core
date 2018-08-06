@@ -13,6 +13,7 @@ import {
   getTransactionCount,
   sendTransaction,
   isHardwareWallet,
+  IsAddressMatch,
 } from 'utils/wallet';
 
 import {
@@ -447,14 +448,18 @@ export function* signTxByTrezor(walletDetails, tx) {
   try {
     const trezorInfo = yield select(makeSelectTrezorInfo());
     const deviceId = trezorInfo.get('id');
-    console.log('tx', tx)
+    const path = walletDetails.derivationPath
+    const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', {id: deviceId, path})
+    if (!IsAddressMatch(`0x${publicAddressKeyPair.address}`, walletDetails.address)) {
+      throw new Error('Current wallet address does not match to the Trezor\'s address. Please make sure you entered the correct passphrase.')
+    }
     yield put(notify('info', 'Verify transaction details on your Trezor'));
     const signedTx = yield call(
       requestHardwareWalletAPI, 
       'signtx', 
       {
         id: deviceId,
-        path: walletDetails.derivationPath,
+        path,
         tx
       }
     )

@@ -2,11 +2,10 @@ const { BrowserWindow, ipcMain} = require('electron');
 
 const path = require('path')
 const fs = require('fs')
-const pinTemplate = fs.readFileSync(path.resolve(__dirname, 'pin.html'), 'utf8')
 
-module.exports = function showPinPrompt() {
-  const event = 'pin'
+module.exports = function showPrompt(event) {
   return new Promise((resolve, reject) => {
+    const pinTemplate = fs.readFileSync(path.resolve(__dirname, `${event}.html`), 'utf8')
     const scriptNonce = Math.floor(Math.random() * 1000000000000);
     const html = pinTemplate
       .replace(/\$scriptNonce/g, scriptNonce.toString())

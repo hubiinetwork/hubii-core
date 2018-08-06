@@ -55,35 +55,6 @@ export function* getAddress({derivationPaths}) {
       console.log('address', publicAddressKeyPair)
       yield put(fetchedTrezorAddress(publicAddressKeyPair.path, publicAddressKeyPair.address));
     }
-    // const requestPath = 'getAddress';
-    // const returnData = yield call(requestHardwareWalletAPI, requestPath, {id, path});
-    // const data = yield returnData.json()
-    // console.log('return data', data)
-    // return yield device.waitForSessionAndRun(function (session) {
-    //   let promise = Promise.resolve()
-    //   for (let i=0; i<paths.length; i++) {
-    //     const pathArray = paths[i].replace("'").split('/')
-    //     promise = promise.then(() => {
-    //       return session.ethereumGetAddress([
-    //         (parseInt(pathArray[1]) | hardeningConstant) >>> 0,
-    //         (parseInt(pathArray[2]) | hardeningConstant) >>> 0,
-    //         (parseInt(pathArray[3]) | hardeningConstant) >>> 0,
-    //         parseInt(pathArray[4]),
-    //         parseInt(pathArray[5])
-    //       ], false)
-    //       .then(function (result) {
-    //           console.log('Address:', result.message.address);
-    //       }).catch(e => {
-    //         console.log('addr err', e)
-    //         //Transport stopped when disconnected
-    //       })
-    //     })
-    //   }
-    //   return promise
-    // })
-    // const address = yield device.ethereumGetAddress(path)
-    // console.log('addr', address)
-    // yield put(fetchedLedgerAddress(path, address))
   } catch (e) {
     console.log('err', e)
   }
