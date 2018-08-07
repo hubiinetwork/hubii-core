@@ -34,7 +34,18 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": Array [],
+      "children": Array [
+        <Option
+          value="0x324234"
+>
+          mike
+</Option>,
+        <Option
+          value="0x444224"
+>
+          jake
+</Option>,
+      ],
       "disabled": false,
       "filterOption": [Function],
       "notFoundContent": null,
@@ -47,7 +58,32 @@ ShallowWrapper {
       "value": "mike",
     },
     "ref": null,
-    "rendered": Array [],
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": "mike",
+        "nodeType": "class",
+        "props": Object {
+          "children": "mike",
+          "value": "0x324234",
+        },
+        "ref": null,
+        "rendered": "mike",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "jake",
+        "nodeType": "class",
+        "props": Object {
+          "children": "jake",
+          "value": "0x444224",
+        },
+        "ref": null,
+        "rendered": "jake",
+        "type": [Function],
+      },
+    ],
     "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
@@ -56,7 +92,18 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": Array [],
+        "children": Array [
+          <Option
+            value="0x324234"
+>
+            mike
+</Option>,
+          <Option
+            value="0x444224"
+>
+            jake
+</Option>,
+        ],
         "disabled": false,
         "filterOption": [Function],
         "notFoundContent": null,
@@ -69,7 +116,32 @@ ShallowWrapper {
         "value": "mike",
       },
       "ref": null,
-      "rendered": Array [],
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "mike",
+          "nodeType": "class",
+          "props": Object {
+            "children": "mike",
+            "value": "0x324234",
+          },
+          "ref": null,
+          "rendered": "mike",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "jake",
+          "nodeType": "class",
+          "props": Object {
+            "children": "jake",
+            "value": "0x444224",
+          },
+          "ref": null,
+          "rendered": "jake",
+          "type": [Function],
+        },
+      ],
       "type": [Function],
     },
   ],

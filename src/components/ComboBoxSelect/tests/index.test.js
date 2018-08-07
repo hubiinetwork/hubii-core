@@ -46,7 +46,7 @@ describe('<ComboBoxSelect />', () => {
   it('should correctly render', () => {
     expect(wrapper).toMatchSnapshot();
   });
-  describe('#componentWillReceiveProps', () => {
+  describe('#componentDidUpdate', () => {
     it('should update the options if the props have changed', () => {
       const newOptions = [
         {
@@ -54,8 +54,15 @@ describe('<ComboBoxSelect />', () => {
           value: '0x324234',
         },
       ];
-      instance.componentWillReceiveProps({ options: newOptions });
+      wrapper.setProps({ options: newOptions });
+      instance.componentDidUpdate({ options: props.options });
       expect(instance.state.options).toEqual(newOptions);
+    });
+  });
+  describe('#componentDidMount', () => {
+    it('should set the options state', () => {
+      instance.componentWillMount();
+      expect(instance.state.options).toEqual(props.options);
     });
   });
   describe('#onBlur', () => {
