@@ -6,10 +6,11 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
+import {EthNetworkProvider} from 'utils/wallet';
 
-import { makeSelectAllTransactions, makeSelectCurrentWalletWithInfo} from 'containers/WalletHOC/selectors';
+import { makeSelectCurrentWalletWithInfo} from 'containers/WalletHOC/selectors';
 import { SectionHeading } from 'components/ui/SectionHeading';
-import {TransactionHistoryItem} from 'components/TransactionHistoryItem';
+import Transaction from 'components/Transaction';
 
 export class WalletsTransactions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   // constructor(...args) {
@@ -27,27 +28,21 @@ export class WalletsTransactions extends React.PureComponent { // eslint-disable
           <h2 style={{color: 'white'}}>Transaction history coming soon</h2>
           <p style={{color: 'white'}}>{`In the mean time, you can check your wallet's transaction history on Etherscan `}</p>
           <a onClick={()=> shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletDetails.get('address')}`)} >{`https://ropsten.etherscan.io/address/${currentWalletDetails.get('address')}`}</a>
-          {/* {transactions.map((txn, index) => {
-            const balance = currentWalletDetails.balances.find(bal => bal.symbol === txn.token)
-            const price = !balance ? NaN : parseFloat(balance.price.USD)
-            
-            return (
-              <TransactionHistoryItem
-                data={{
-                  address: currentWalletDetails.address,
-                  time: new Date(txn.timestamp),
-                  amount: txn.value,
-                  txnId: txn.hash,
-                  to: txn.to,
-                  from: txn.from,
-                  coin: txn.token,
-                  status: txn.success
-                }}
-                rate={price}
-                key={index}
-              />
-            )
-          })} */}
+
+          <Transaction
+            time={ new Date('January 09, 1995 05:19:09') }
+            counterpartyAddress={'0x000'}
+            amount='0.000000000000000001'
+            fiatEquivilent="$123.34 USD"
+            symbol="UKG"
+            confirmations="204"
+            type="sent"
+            viewOnBlockExplorerClick={
+              EthNetworkProvider.name === 'ropsten' ?
+                () => shell.openExternal(`https://ropsten.etherscan.io/tx/0x00`) :
+                () => shell.openExternal(`https://etherscan.io/tx/0x00`)
+            }
+        />
         </Col>
         <Col span={4} xs={8} md={8}>
         </Col>
