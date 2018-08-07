@@ -214,6 +214,7 @@ ShallowWrapper {
           },
         },
       ],
+      "createContact": undefined,
       "currentWalletUsdBalance": 123.4878119262,
       "currentWalletWithInfo": Immutable.Map {
         name: "1",
@@ -394,6 +395,7 @@ ShallowWrapper {
             },
           },
         ],
+        "createContact": undefined,
         "currentWalletUsdBalance": 123.4878119262,
         "currentWalletWithInfo": Immutable.Map {
           name: "1",

@@ -15,6 +15,9 @@ import {
 import {
   makeSelectContacts,
 } from 'containers/ContactBook/selectors';
+import {
+  createContact,
+} from 'containers/ContactBook/actions';
 import { transfer } from 'containers/WalletHOC/actions';
 import LoadingError from '../../components/LoadingError';
 
@@ -44,7 +47,7 @@ export class WalletTransfer extends React.PureComponent {
   }
 
   onCancel() {
-    // this.props.history.push(`/wallet/${this.props.currentWalletWithInfo.address}/overview`);
+    this.props.history.push(`/wallet/${this.props.currentWalletWithInfo.address}/overview`);
   }
 
   render() {
@@ -69,6 +72,7 @@ export class WalletTransfer extends React.PureComponent {
         transfering={currentWallet.toJS().transfering}
         errors={this.props.errors}
         currentWalletWithInfo={this.props.currentWalletWithInfo}
+        createContact={this.props.createContact}
       />
     );
   }
@@ -79,10 +83,11 @@ WalletTransfer.propTypes = {
   currentWallet: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   transfer: PropTypes.func.isRequired,
-  // history: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   prices: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  createContact: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -97,6 +102,7 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     transfer: (...args) => dispatch(transfer(...args)),
+    createContact: (...args) => dispatch(createContact(...args)),
   };
 }
 

@@ -1,10 +1,13 @@
 import React from 'react';
-import { Col } from 'antd';
+import { Col, Icon } from 'antd';
 import BigNumber from 'bignumber.js';
 import PropTypes from 'prop-types';
 import { isValidAddress } from 'ethereumjs-util';
 import { gweiToWei, gweiToEther } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
+import ComboBoxSelect from 'components/ComboBoxSelect';
+import { Modal } from 'components/ui/Modal';
+import AddNewContactModal from 'components/AddNewContactModal';
 import { getAbsolutePath } from 'utils/electron';
 import {
   Row,
@@ -13,7 +16,7 @@ import {
   AdvanceSettingsHeader,
   Collapse,
   Panel,
-  StyledSelect,
+  StyledButton,
 } from './TransferForm.style';
 import InputNumber from '../ui/InputNumber';
 import Select, { Option } from '../ui/Select';
@@ -21,7 +24,6 @@ import { Form, FormItem, FormItemLabel } from '../ui/Form';
 import HelperText from '../ui/HelperText';
 import TransferDescription from '../TransferDescription';
 import Input from '../ui/Input';
-
 // valid gwei number is numbers, optionally followed by a . at most 9 more numbers
 const gweiRegex = new RegExp('^\\d+(\\.\\d{0,9})?$');
 
@@ -52,9 +54,7 @@ export default class TransferForm extends React.PureComponent {
       gasPriceGweiInput: '3',
       gasPriceGwei: new BigNumber('3'),
       gasLimit: 21000,
-      selectValue: null,
-      addressInputVisibility: false,
-      options: [],
+      addContactModalVisibility: false,
     };
     this.handleAmountToSendChange = this.handleAmountToSendChange.bind(this);
     this.handleAssetChange = this.handleAssetChange.bind(this);
@@ -62,20 +62,9 @@ export default class TransferForm extends React.PureComponent {
     this.handleRecipient = this.handleRecipient.bind(this);
     this.handleGasPriceChange = this.handleGasPriceChange.bind(this);
     this.handleGasLimitChange = this.handleGasLimitChange.bind(this);
-    this.onInputKeyDown = this.onInputKeyDown.bind(this);
-    this.onBlur = this.onBlur.bind(this);
-  }
-
-  componentWillMount() {
-    this.setState({
-      options: this.props.recipients,
-    });
-  }
-
-  onBlur() {
-    if (isValidAddress(this.state.selectValue)) {
-      this.setState({ address: this.state.selectValue });
-    }
+    this.showContactModal = this.showContactModal.bind(this);
+    this.hideContactModal = this.hideContactModal.bind(this);
+    this.onCreateContact = this.onCreateContact.bind(this);
   }
 
   onSend() {
@@ -86,17 +75,15 @@ export default class TransferForm extends React.PureComponent {
     this.props.onSend(assetToSend.symbol, address, amountToSendWeiOrEquivilent, gweiToWei(gasPriceGwei), gasLimit);
   }
 
-  onInputKeyDown(event) {
-    const value = event.target.value;
-    if (event.key === 'Enter' && !isValidAddress(value)) {
-      this.setState({ selectValue: 'Invalid Address or Not Found Contact' });
-      return;
+  onCreateContact(contact) {
+    if (contact) {
+      const name = contact.name.replace(
+        /\w\S*/g,
+        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+      );
+      this.props.createContact(name, contact.address);
     }
-    if (event.key === 'Enter' && this.state.options.every((item) => item.name !== value)) {
-      this.setState((prevState) => ({
-        options: [...prevState.options, { name: value, address: value }],
-      }));
-    }
+    this.hideContactModal();
   }
 
   handleGasPriceChange(e) {
@@ -149,18 +136,6 @@ export default class TransferForm extends React.PureComponent {
     });
   }
 
-  handleRecipient(value) {
-    let address = value;
-    if (!isValidAddress(value)) {
-      address = this.state.options.find((option) => option.name === value).address;
-    }
-    this.setState({
-      address,
-      selectValue: value,
-    });
-  }
-
-
   handleAmountToSendChange(e) {
     const { value } = e.target;
     const { amountToSendInputRegex } = this.state;
@@ -185,8 +160,31 @@ export default class TransferForm extends React.PureComponent {
     this.setState({ amountToSendInput: value });
   }
 
+  showContactModal() {
+    this.setState({ addContactModalVisibility: true });
+  }
+
+  hideContactModal() {
+    this.setState({
+      addContactModalVisibility: false,
+    });
+  }
+
+  handleRecipient(value) {
+    let address = value;
+    const recipientMatch = this.props.recipients.find((option) => option.name.toLowerCase() === value.toLowerCase() || option.address === value);
+    if (recipientMatch && !isValidAddress(value)) {
+      address = recipientMatch.address;
+    } else if (!recipientMatch && !isValidAddress(value)) {
+      address = 'Invalid Address';
+    }
+    this.setState({
+      address,
+    });
+  }
+
   render() {
-    const { assetToSend, address, gasLimit, amountToSend, amountToSendInput, gasPriceGwei, gasPriceGweiInput } = this.state;
+    const { assetToSend, address, gasLimit, amountToSend, amountToSendInput, gasPriceGwei, gasPriceGweiInput, addContactModalVisibility } = this.state;
     const { currentWalletUsdBalance, assets, prices, recipients, transfering } = this.props;
 
     const assetToSendUsdValue = prices.assets.find((a) => a.currency === assetToSend.currency).usd;
@@ -232,102 +230,123 @@ export default class TransferForm extends React.PureComponent {
     const walletUsdValueAfter = currentWalletUsdBalance - (usdValueToSend.plus(transactionFee.usdValue)).toNumber();
 
     return (
-      <Row gutter={24} justify="center">
-        <Col xl={14} sm={22}>
-          <Form>
-            <FormItem
-              label={<FormItemLabel>Asset</FormItemLabel>}
-              colon={false}
-            >
-              <Image>
-                <img
-                  src={getAbsolutePath(`public/images/assets/${assetToSend.symbol}.svg`)}
-                  width="32px"
-                  height="32px"
-                  alt="logo"
-                />
-              </Image>
-              <Select disabled={transfering} defaultValue={assetToSend.symbol} onSelect={this.handleAssetChange}>
-                {assets.map((currency) => (
-                  <Option value={currency.symbol} key={currency.symbol}>
-                    {currency.symbol}
-                  </Option>
-                ))}
-              </Select>
-            </FormItem>
-            <FormItem
-              label={<FormItemLabel>Recipient</FormItemLabel>}
-              colon={false}
-              help={<HelperText left={address} />}
-            >
-              <StyledSelect
-                disabled={transfering}
-                showSearch
-                defaultValue={recipients[0] ? recipients[0].name : ''}
-                recipient
-                onInputKeyDown={this.onInputKeyDown}
-                onSearch={(value) => this.setState({ selectValue: value })}
-                onSelect={this.handleRecipient}
-                notFoundContent={this.state.selectValue}
-                onBlur={this.onBlur}
-              >
-                {this.state.options.map((recipient) => (
-                  <Option key={recipient.name} value={recipient.name}>
-                    {recipient.name}
-                  </Option>
-                ))}
-              </StyledSelect>
-            </FormItem>
-            <FormItem
-              label={<FormItemLabel>Amount</FormItemLabel>}
-              colon={false}
-              help={<HelperText left={formatFiat(usdValueToSend, 'USD')} right="USD" />}
-            >
-              <Input disabled={transfering} defaultValue={amountToSendInput} value={amountToSendInput} onChange={this.handleAmountToSendChange} />
-            </FormItem>
-            <Collapse bordered={false} defaultActiveKey={['2']}>
-              <Panel
-                header={<AdvanceSettingsHeader>Advanced Settings</AdvanceSettingsHeader>}
-                key="1"
-              >
-                <FormItem
-                  label={<FormItemLabel>Gas Price (Gwei)</FormItemLabel>}
-                  colon={false}
-                >
-                  <Input disabled={transfering} min={0} defaultValue={gasPriceGweiInput} value={gasPriceGweiInput} onChange={this.handleGasPriceChange} />
-                </FormItem>
-                <FormItem label={<FormItemLabel>Gas Limit</FormItemLabel>} colon={false}>
-                  <InputNumber disabled={transfering} min={0} defaultValue={gasLimit} handleChange={this.handleGasLimitChange} />
-                </FormItem>
-              </Panel>
-            </Collapse>
-            <ETHtoDollar>
-              {`1 ${assetToSend.symbol} = ${formatFiat(assetToSendUsdValue, 'USD')}`}
-            </ETHtoDollar>
-          </Form>
-        </Col>
-        <Col xl={9} sm={22}>
-          <TransferDescription
-            transactionFee={transactionFee}
-            amountToSend={amountToSend}
-            assetToSend={assetToSend}
-            usdValueToSend={usdValueToSend}
-            ethBalanceBefore={ethBalanceBefore}
-            ethBalanceAfter={ethBalanceAfter}
-            assetBalanceBefore={assetBalanceBefore}
-            assetBalanceAfter={assetBalanceAfter}
-            walletUsdValueBefore={currentWalletUsdBalance}
-            lnsCheck={this.props.currentWalletWithInfo.get('type') === 'lns'}
-            walletUsdValueAfter={walletUsdValueAfter}
-            recipient={address}
-            onSend={this.onSend}
-            onCancel={this.props.onCancel}
-            transfering={this.props.transfering}
-            currentWalletWithInfo={this.props.currentWalletWithInfo}
-            errors={this.props.errors}
+      <div>
+        <Modal
+          footer={null}
+          width={'585px'}
+          maskClosable
+          maskStyle={{ background: 'rgba(232,237,239,.65)' }}
+          style={{ marginTop: '20px' }}
+          visible={addContactModalVisibility}
+          onCancel={this.hideContactModal}
+          destroyOnClose
+        >
+          <AddNewContactModal
+            onSubmit={(contact) => this.onCreateContact(contact)}
+            contacts={recipients}
+            quickAddAddress={address}
           />
-        </Col>
-      </Row>
+        </Modal>
+
+        <Row gutter={24} justify="center">
+          <Col xl={14} sm={22}>
+            <Form>
+              <FormItem
+                label={<FormItemLabel>Asset</FormItemLabel>}
+                colon={false}
+              >
+                <Image>
+                  <img
+                    src={getAbsolutePath(`public/images/assets/${assetToSend.symbol}.svg`)}
+                    width="32px"
+                    height="32px"
+                    alt="logo"
+                  />
+                </Image>
+                <Select disabled={transfering} defaultValue={assetToSend.symbol} onSelect={this.handleAssetChange}>
+                  {assets.map((currency) => (
+                    <Option value={currency.symbol} key={currency.symbol}>
+                      {currency.symbol}
+                    </Option>
+                ))}
+                </Select>
+              </FormItem>
+              <FormItem
+                label={<FormItemLabel>Recipient</FormItemLabel>}
+                colon={false}
+                help={
+                  this.props.recipients.find((recipient) => recipient.address === address) ?
+                    <HelperText left={address} /> :
+                    !isValidAddress(address) ?
+                    null :
+                    <StyledButton
+                      type="primary"
+                      onClick={this.showContactModal}
+                    >
+                      <Icon type="plus" />
+                      Add New Contact
+                  </StyledButton>
+                }
+              >
+                <ComboBoxSelect
+                  disabled={transfering}
+                  options={recipients.map((recipient) => ({ name: recipient.name, value: recipient.address }))}
+                  handleSelect={(value) => this.handleRecipient(value)}
+                  addInputValidator={(value) => isValidAddress(value)}
+                  invalidAdditionMessage={'Invalid Address or Not Found Contact'}
+                />
+              </FormItem>
+              <FormItem
+                label={<FormItemLabel>Amount</FormItemLabel>}
+                colon={false}
+                help={<HelperText left={formatFiat(usdValueToSend, 'USD')} right="USD" />}
+              >
+                <Input disabled={transfering} defaultValue={amountToSendInput} value={amountToSendInput} onChange={this.handleAmountToSendChange} />
+              </FormItem>
+              <Collapse bordered={false} defaultActiveKey={['2']}>
+                <Panel
+                  header={<AdvanceSettingsHeader>Advanced Settings</AdvanceSettingsHeader>}
+                  key="1"
+                >
+                  <FormItem
+                    label={<FormItemLabel>Gas Price (Gwei)</FormItemLabel>}
+                    colon={false}
+                  >
+                    <Input disabled={transfering} min={0} defaultValue={gasPriceGweiInput} value={gasPriceGweiInput} onChange={this.handleGasPriceChange} />
+                  </FormItem>
+                  <FormItem label={<FormItemLabel>Gas Limit</FormItemLabel>} colon={false}>
+                    <InputNumber disabled={transfering} min={0} defaultValue={gasLimit} handleChange={this.handleGasLimitChange} />
+                  </FormItem>
+                </Panel>
+              </Collapse>
+              <ETHtoDollar>
+                {`1 ${assetToSend.symbol} = ${formatFiat(assetToSendUsdValue, 'USD')}`}
+              </ETHtoDollar>
+            </Form>
+          </Col>
+          <Col xl={9} sm={22}>
+            <TransferDescription
+              transactionFee={transactionFee}
+              amountToSend={amountToSend}
+              assetToSend={assetToSend}
+              usdValueToSend={usdValueToSend}
+              ethBalanceBefore={ethBalanceBefore}
+              ethBalanceAfter={ethBalanceAfter}
+              assetBalanceBefore={assetBalanceBefore}
+              assetBalanceAfter={assetBalanceAfter}
+              walletUsdValueBefore={currentWalletUsdBalance}
+              lnsCheck={this.props.currentWalletWithInfo.get('type') === 'lns'}
+              walletUsdValueAfter={walletUsdValueAfter}
+              recipient={address}
+              onSend={this.onSend}
+              onCancel={this.props.onCancel}
+              transfering={this.props.transfering}
+              currentWalletWithInfo={this.props.currentWalletWithInfo}
+              errors={this.props.errors}
+            />
+          </Col>
+        </Row>
+      </div>
     );
   }
 }
@@ -345,4 +364,5 @@ TransferForm.propTypes = {
   onCancel: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   transfering: PropTypes.bool,
+  createContact: PropTypes.func,
 };

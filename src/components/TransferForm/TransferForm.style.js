@@ -1,11 +1,19 @@
 import styled from 'styled-components';
 import { Row, Collapse } from 'antd';
 import Select from 'components/ui/Select';
+import Button from '../../components/ui/Button';
 
 export const StyledSelect = styled(Select)`
   .ant-select-selection{
     box-shadow: none;
   }
+`;
+
+export const StyledButton = styled(Button)`
+  margin-left: auto;
+  border-width: 2px;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
 `;
 
 export const Image = styled.div`
