@@ -93,6 +93,7 @@ ShallowWrapper {
                 </Transaction.style__CollapsableContent>
         </Transaction.style__DetailPanel>
 </Transaction.style__DetailCollapse>,
+      "className": undefined,
     },
     "ref": null,
     "rendered": Object {
@@ -456,6 +457,7 @@ ShallowWrapper {
                     </Transaction.style__CollapsableContent>
           </Transaction.style__DetailPanel>
 </Transaction.style__DetailCollapse>,
+        "className": undefined,
       },
       "ref": null,
       "rendered": Object {
@@ -850,6 +852,7 @@ ShallowWrapper {
                 </Transaction.style__CollapsableContent>
         </Transaction.style__DetailPanel>
 </Transaction.style__DetailCollapse>,
+      "className": undefined,
     },
     "ref": null,
     "rendered": Object {
@@ -1213,6 +1216,7 @@ ShallowWrapper {
                     </Transaction.style__CollapsableContent>
           </Transaction.style__DetailPanel>
 </Transaction.style__DetailCollapse>,
+        "className": undefined,
       },
       "ref": null,
       "rendered": Object {

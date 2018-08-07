@@ -1,50 +1,81 @@
-/* eslint-disable */
 import React from 'react';
 import { shell } from 'electron';
+import uuid from 'uuid/v4';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col } from 'antd';
-import {EthNetworkProvider} from 'utils/wallet';
+import { EthNetworkProvider } from 'utils/wallet';
 
-import { makeSelectCurrentWalletWithInfo} from 'containers/WalletHOC/selectors';
+import { Row, Col, Pagination } from 'antd';
+
+import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHOC/selectors';
 import { SectionHeading } from 'components/ui/SectionHeading';
-import Transaction from 'components/Transaction';
+import { StyledTransaction } from './style';
+import { formatFiat } from '../../utils/numberFormats';
 
-export class WalletsTransactions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  // constructor(...args) {
-  //   super(...args);
-  // }
+export class WalletsTransactions extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { currentPage: 1 };
+    this.onPaginationChange = this.onPaginationChange.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if
+    (
+      (this.props.currentWalletWithInfo.getIn(['transactions', 'transactions']).size ===
+      nextProps.currentWalletWithInfo.getIn(['transactions', 'transactions']).size) &&
+      this.state.currentPage === nextState.currentPage
+    ) return false;
+    return true;
+  }
+
+  onPaginationChange(newPage) {
+    this.setState({ currentPage: newPage });
+  }
 
 
   render() {
-    const {currentWalletDetails, transactions} = this.props
+    const { currentWalletWithInfo } = this.props;
+    const { currentPage } = this.state;
+
+    const start = (currentPage - 1) * 10;
+    const end = start + 10;
+    const txToShow = currentWalletWithInfo.getIn(['transactions', 'transactions'])
+      .toJS()
+      .slice(start, end);
 
     return (
       <Row gutter={16}>
-        <Col span={20} xs={20} md={16}>
-          <SectionHeading>All Transactions</SectionHeading>
-          <h2 style={{color: 'white'}}>Transaction history coming soon</h2>
-          <p style={{color: 'white'}}>{`In the mean time, you can check your wallet's transaction history on Etherscan `}</p>
-          <a onClick={()=> shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletDetails.get('address')}`)} >{`https://ropsten.etherscan.io/address/${currentWalletDetails.get('address')}`}</a>
-
-          <Transaction
-            time={ new Date('January 09, 1995 05:19:09') }
-            counterpartyAddress={'0x000'}
-            amount='0.000000000000000001'
-            fiatEquivilent="$123.34 USD"
-            symbol="UKG"
-            confirmations="204"
-            type="sent"
-            viewOnBlockExplorerClick={
-              EthNetworkProvider.name === 'ropsten' ?
-                () => shell.openExternal(`https://ropsten.etherscan.io/tx/0x00`) :
-                () => shell.openExternal(`https://etherscan.io/tx/0x00`)
-            }
-        />
-        </Col>
-        <Col span={4} xs={8} md={8}>
+        <Col>
+          <SectionHeading>Transaction History</SectionHeading>
+          {txToShow.map((tx) => (
+            <StyledTransaction
+              key={uuid()}
+              time={new Date(tx.block.timestamp)}
+              counterpartyAddress={tx.counterpartyAddress}
+              amount={tx.decimalAmount}
+              fiatEquivilent={formatFiat(tx.fiatValue, 'USD')}
+              symbol={tx.symbol}
+              confirmations={'-1'}
+              type={tx.type}
+              viewOnBlockExplorerClick={
+                EthNetworkProvider.name === 'ropsten' ?
+                  () => shell.openExternal(`https://ropsten.etherscan.io/tx/${tx.hash}`) :
+                  () => shell.openExternal(`https://etherscan.io/tx/${tx.hash}`)
+              }
+            />
+            )
+            )}
+          <Pagination
+            total={currentWalletWithInfo.getIn(['transactions', 'transactions']).size}
+            showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} transactions`}
+            pageSize={10}
+            defaultCurrent={currentPage}
+            current={currentPage}
+            onChange={this.onPaginationChange}
+          />
         </Col>
       </Row>
     );
@@ -52,16 +83,14 @@ export class WalletsTransactions extends React.PureComponent { // eslint-disable
 }
 
 WalletsTransactions.propTypes = {
-  // transactions: PropTypes.array.isRequired,
-  // currentWalletDetails: PropTypes.object.isRequired,
+  currentWalletWithInfo: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  // transactions: makeSelectAllTransactions(),
-  currentWalletDetails: makeSelectCurrentWalletWithInfo(),
+  currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
 });
 
-export function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps() {
   return {};
 }
 

@@ -30,7 +30,7 @@ import {
   lnsExpectedSignedTxHex,
 } from '../../../mocks/wallet';
 
-import { balancesMock, address1Mock, walletsMock, pricesMock, supportedAssetsMock, supportedTokensMock } from './mocks';
+import { balancesMock, address1Mock, walletsMock, pricesMock, supportedAssetsMock, supportedTokensMock, transactionsMock } from './mocks';
 
 import walletHoc, {
   createWalletFromMnemonic,
@@ -52,6 +52,7 @@ import walletHoc, {
   sendTransactionByLedger,
   tryCreateEthTransportActivity,
   generateERC20Transaction,
+  loadTransactions,
 } from '../saga';
 
 import {
@@ -69,6 +70,7 @@ import {
   LOAD_SUPPORTED_TOKENS,
   INIT_LEDGER,
   INIT_WALLETS_BALANCES,
+  LOAD_TRANSACTIONS,
 } from '../constants';
 
 import {
@@ -83,6 +85,7 @@ import {
   loadWalletBalancesError,
   loadSupportedTokens,
   loadSupportedTokensSuccess,
+  loadTransactions as loadTransactionsAction,
   loadSupportedTokensError,
   loadPrices,
   loadPricesSuccess,
@@ -96,6 +99,8 @@ import {
   ledgerEthAppDisconnected,
   ledgerConnected,
   ledgerDisconnected,
+  loadTransactionsSuccess,
+  loadTransactionsError,
 } from '../actions';
 
 const withReducer = (state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action));
@@ -558,6 +563,45 @@ describe('load wallets saga', () => {
         .run({ silenceTimeout: true });
     });
   });
+
+  describe('loadTransactions', () => {
+    it('should call loadTransactionsSuccess on success response and dispatch self', () => {
+      const response = transactionsMock.get(0);
+      const address = address1Mock;
+      return expectSaga(loadTransactions, { address })
+        .provide({
+          call(effect, next) {
+            if (effect.fn === requestWalletAPI) {
+              return response;
+            }
+            next();
+            return null;
+          },
+        })
+        .put(loadTransactionsSuccess(address, response))
+        .put(loadTransactionsAction(address))
+        .run();
+    });
+
+    it('should call loadTransactionsError on error response and dispatch self', () => {
+      const error = new Error('err');
+      const address = address1Mock;
+      return expectSaga(loadTransactions, { address })
+        .provide({
+          call(effect, next) {
+            if (effect.fn === requestWalletAPI) {
+              throw error;
+            }
+            next();
+            return null;
+          },
+        })
+        .put(loadTransactionsError(address, error))
+        .put(loadTransactionsAction(address))
+        .run();
+    });
+  });
+
   describe('load balances', () => {
     it('should save loaded balances in store by wallet address', () => {
       const response = balancesMock.get(0);
@@ -630,8 +674,8 @@ describe('load wallets saga', () => {
           name: 't1',
           address: '0xabcd',
         },
+        transactions: transactionsMock,
         pendingTransactions: [],
-        confirmedTransactions: [],
         supportedAssets: { loading: true },
       },
     };
@@ -706,7 +750,7 @@ describe('load wallets saga', () => {
           address: '0xabcd',
         },
         pendingTransactions: [],
-        confirmedTransactions: [],
+        transactions: transactionsMock,
         supportedAssets: { loading: true },
       },
     };
@@ -774,7 +818,7 @@ describe('load wallets saga', () => {
             prices: pricesMock,
             supportedAssets: supportedAssetsMock,
             pendingTransactions: [],
-            confirmedTransactions: [],
+            transactions: transactionsMock,
           },
         });
         storeState = storeState.setIn(['walletHoc', 'wallets', 0, 'decrypted'], {
@@ -819,8 +863,8 @@ describe('load wallets saga', () => {
               name: 't1',
               address: '0xabcd',
             },
+            transactions: transactionsMock,
             pendingTransactions: [],
-            confirmedTransactions: [],
             supportedAssets: { loading: true },
           },
         };
@@ -900,6 +944,7 @@ describe('load wallets saga', () => {
             balances: balancesMock,
             prices: pricesMock,
             supportedAssets: supportedAssetsMock,
+            transactions: transactionsMock,
             wallets: [{
               name: 't1',
               type: 'lns',
@@ -910,8 +955,6 @@ describe('load wallets saga', () => {
               name: 't1',
               address: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
             },
-            pendingTransactions: [],
-            confirmedTransactions: [],
             ledgerNanoSInfo: {
               descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC@14/XHC@14000000/HS09@14900000/Nano S@14900000/Nano S@0/IOUSBHostHIDDevice@14900000,0',
             },
@@ -988,8 +1031,8 @@ describe('load wallets saga', () => {
               name: 't1',
               address: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
             },
+            transactions: transactionsMock,
             pendingTransactions: [],
-            confirmedTransactions: [],
             ledgerNanoSInfo: {
               descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC1@14/XHC1@14000000/PRT2@14200000/Nano S@14200000/Nano S@0/IOUSBHostHIDDevice@14200000,0',
             },
@@ -1158,6 +1201,11 @@ describe('root Saga', () => {
   it('should start task to watch for LOAD_PRICES action', () => {
     const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeLatest(LOAD_PRICES, loadPricesSaga));
+  });
+
+  it('should start task to watch for LOAD_TRANSACTIONS action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeLatest(LOAD_TRANSACTIONS, loadTransactions));
   });
 
   it('should start task to watch for LOAD_SUPPORTED_TOKENS action', () => {

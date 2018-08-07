@@ -34,6 +34,8 @@ export const FiatValue = styled.div`
 export const TransactionHistoryTime = styled.span`
   color: ${({ theme }) => theme.palette.secondary1};
   font-size: 0.86rem;
+  white-space: nowrap;
+  overflow: hidden;
   margin-left: auto;
   margin-right: 1rem;
   font-family: 'SF Text';

@@ -22,6 +22,7 @@ import {
 const Transaction = (props) => {
   const {
     time,
+    className,
     viewOnBlockExplorerClick,
     counterpartyAddress,
     amount,
@@ -32,7 +33,7 @@ const Transaction = (props) => {
   } = props;
 
   return (
-    <Wrapper>
+    <Wrapper className={className}>
       <DetailCollapse bordered={false}>
         <DetailPanel
           showArrow={false}
@@ -93,6 +94,7 @@ Transaction.propTypes = {
   confirmations: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   viewOnBlockExplorerClick: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };
 
 export default Transaction;
