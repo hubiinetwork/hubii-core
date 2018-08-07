@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import ComboBoxSelect from '../index';
 
 describe('<ComboBoxSelect />', () => {
-  const params = {
+  const props = {
     disabled: false,
     options: [
       {
@@ -23,7 +23,7 @@ describe('<ComboBoxSelect />', () => {
   let wrapper;
   let instance;
   beforeEach(() => {
-    wrapper = shallow(<ComboBoxSelect {...params} />);
+    wrapper = shallow(<ComboBoxSelect {...props} />);
     instance = wrapper.instance();
     instance.setState({
       options: [
