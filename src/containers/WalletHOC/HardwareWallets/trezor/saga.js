@@ -1,7 +1,9 @@
 import { ipcRenderer } from 'electron';
 import { eventChannel } from 'redux-saga';
 import { takeEvery, put, call, select, take } from 'redux-saga/effects';
-import { deriveAddresses, prependHexToAddress } from 'utils/wallet';
+import { toBuffer, bufferToHex, stripHexPrefix } from 'ethereumjs-util';
+import { notify } from 'containers/App/actions';
+import { deriveAddresses, prependHexToAddress, IsAddressMatch } from 'utils/wallet';
 import { requestHardwareWalletAPI } from 'utils/request';
 import { makeSelectTrezorInfo } from '../../selectors';
 import { trezorConnected, trezorDisconnected, fetchedTrezorAddress } from '../../actions';
@@ -42,6 +44,45 @@ export function* getAddresses({ pathBase, count }) {
     }
   } catch (e) {
     console.log('err', e);
+  }
+}
+
+export function* signTxByTrezor(walletDetails, rawTx, chainId) {
+  try {
+    const tx = {
+      nonce: stripHexPrefix(rawTx[0]),
+      toAddress: stripHexPrefix(rawTx[3]),
+      value: stripHexPrefix(rawTx[4]),
+      data: rawTx[5] === '0x' ? null : stripHexPrefix(bufferToHex(toBuffer(data))),
+      gasPrice: stripHexPrefix(rawTx[1]),
+      gasLimit: stripHexPrefix(rawTx[2]),
+      chainId,
+    };
+    const trezorInfo = yield select(makeSelectTrezorInfo());
+    const deviceId = trezorInfo.get('id');
+    const path = walletDetails.derivationPath;
+    const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
+    if (!IsAddressMatch(`0x${publicAddressKeyPair.address}`, walletDetails.address)) {
+      throw new Error('Current wallet address does not match to the Trezor\'s address. Please make sure you entered the correct passphrase.');
+    }
+    yield put(notify('info', 'Verify transaction details on your Trezor'));
+    const signedTx = yield call(
+      requestHardwareWalletAPI,
+      'signtx',
+      {
+        id: deviceId,
+        path,
+        tx,
+      }
+    );
+
+    return signedTx;
+  } catch (e) {
+    // const refinedError = ledgerError(e);
+    // yield put(refinedError);
+    // throw new Error(refinedError.error);
+    console.log(e)
+    throw new Error('Failed to sign transaction by Trezor')
   }
 }
 

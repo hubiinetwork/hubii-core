@@ -9,7 +9,7 @@ import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import BigNumber from 'bignumber.js';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 
-import { requestWalletAPI } from 'utils/request';
+import { requestWalletAPI, requestHardwareWalletAPI } from 'utils/request';
 import { ethAppNotOpenErrorMsg, disconnectedErrorMsg } from 'utils/ledger/friendlyErrors';
 import { Wallet, utils } from 'ethers';
 import walletHocReducer, { initialState } from 'containers/WalletHOC/reducer';
@@ -39,7 +39,6 @@ import walletHoc, {
   loadWalletBalancesSaga,
   initWalletsBalances,
   transfer,
-  fetchLedgerAddresses,
   transferERC20,
   transferEther,
   hookNewWalletCreated,
@@ -48,11 +47,11 @@ import walletHoc, {
   initLedger,
   ledgerChannel,
   ledgerEthChannel,
-  pollEthApp,
   sendTransactionForHardwareWallet,
-  tryCreateEthTransportActivity,
   generateERC20Transaction,
 } from '../saga';
+
+import {tryCreateEthTransportActivity, pollEthApp, fetchLedgerAddresses} from '../HardwareWallets/ledger/saga'
 
 import {
   getAddresses as getTrezorAddresses,
@@ -293,192 +292,6 @@ describe('decryptWallet saga', () => {
     expect(putDescriptor).toEqual(put(decryptWalletFailed(error)));
     putDescriptor = decryptWalletGenerator.next().value;
     expect(putDescriptor).toEqual(put(notify('error', `Failed to unlock wallet: ${error}`)));
-  });
-});
-
-describe('initLedger saga', () => {
-  xit('should dispatch ledgerError if cannot establish Transport', () => expectSaga(initLedger)
-    .provide([
-      [call(LedgerTransport.isSupported), false],
-    ])
-    .put(ledgerError(Error('NoSupport')))
-    .dispatch(initLedgerAction())
-    .run()
-  );
-
-  xit('should trigger ledgerConnectedAction when ledger usb is connected', () => {
-    const storeState = {};
-    const descriptor = 'test descriptor string';
-    return expectSaga(initLedger)
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-      .provide({
-        call(effect) {
-          let result;
-          if (effect.fn === LedgerTransport.isSupported) {
-            result = true;
-          }
-          if (effect.fn === ledgerChannel) {
-            result = eventChannel((emitter) => {
-              setTimeout(() => {
-                emitter({ type: 'add', descriptor });
-              }, 100);
-              return () => {};
-            });
-          }
-          return result;
-        },
-      })
-      .put(ledgerConnected(descriptor))
-      .run({ silenceTimeout: true })
-      .then((result) => {
-        const state = result.storeState;
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'connected'])).toEqual(true);
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'descriptor'])).toEqual(descriptor);
-      });
-  });
-  it('should trigger ledgerDisconnectedAction when ledger usb is discorded', () => {
-    const storeState = {};
-    const descriptor = 'test descriptor string';
-    return expectSaga(walletHoc)
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-      .provide({
-        call(effect) {
-          let result;
-          if (effect.fn === LedgerTransport.isSupported) {
-            result = true;
-          }
-          if (effect.fn === ledgerChannel) {
-            result = eventChannel((emitter) => {
-              setTimeout(() => {
-                emitter({ type: 'remove', descriptor });
-              }, 100);
-              return () => {};
-            });
-          }
-          return result;
-        },
-        race() {
-          return { timeout: true };
-        },
-      })
-      .dispatch({ type: INIT_LEDGER })
-      .put(ledgerDisconnected(descriptor))
-      .put(ledgerError({ message: 'Disconnected' }))
-      .not.put.actionType(ledgerConnected().type)
-      .run({ silenceTimeout: true })
-      .then((result) => {
-        const state = result.storeState;
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'status'])).toEqual('disconnected');
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'connected'])).toEqual(false);
-        expect(state.getIn(['walletHoc', 'errors', 'ledgerError'])).toEqual(disconnectedErrorMsg);
-      });
-  });
-  it('should trigger nosupport error action when ledger is not supported', () => {
-    const storeState = {};
-    return expectSaga(initLedger)
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-      .provide({
-        call(effect) {
-          let result;
-          if (effect.fn === LedgerTransport.isSupported) {
-            result = false;
-          }
-          return result;
-        },
-      })
-      .put(ledgerError(Error('NoSupport')))
-      .not.put.actionType(ledgerDisconnected().type)
-      .not.put.actionType(ledgerConnected().type)
-      .run({ silenceTimeout: true });
-  });
-  it('should debounce remove event if add event follows within a second', () => {
-    const storeState = {};
-    const descriptor = 'test descriptor string';
-    return expectSaga(initLedger)
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-      .provide({
-        call(effect) {
-          let result;
-          if (effect.fn === LedgerTransport.isSupported) {
-            result = true;
-          }
-          if (effect.fn === ledgerChannel) {
-            result = eventChannel((emitter) => {
-              setTimeout(() => {
-                emitter({ type: 'remove', descriptor });
-                emitter({ type: 'add', descriptor });
-              }, 100);
-              return () => {};
-            });
-          }
-          return result;
-        },
-      })
-      .put.actionType(ledgerConnected().type)
-      .not.put.actionType(ledgerDisconnected().type)
-      .run({ silenceTimeout: true });
-  });
-  it('should trigger ledger detected when ethereum app is open', () => {
-    const storeState = {};
-    const descriptor = 'test descriptor string';
-    const status = {
-      address: {
-        publicKey: 'test',
-      },
-    };
-    return expectSaga(pollEthApp, { descriptor })
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-      .provide({
-        call(effect) {
-          if (effect.fn === ledgerEthChannel) {
-            return eventChannel((emitter) => {
-              setTimeout(() => {
-                emitter({ connected: true, address: status.address });
-              }, 100);
-              return () => {};
-            });
-          }
-          return true;
-        },
-      })
-      .put(ledgerEthAppConnected(descriptor, status.address.publicKey))
-      .run({ silenceTimeout: true })
-      .then((result) => {
-        const state = result.storeState;
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'status'])).toEqual('connected');
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'ethConnected'])).toEqual(true);
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'id'])).toEqual(status.address.publicKey);
-        // expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'descriptor'])).toEqual(descriptor);
-      });
-  });
-  it('should trigger ledger detected when ethereum app is close', () => {
-    const storeState = {};
-    const descriptor = 'test descriptor string';
-    const error = { name: 'TransportStatusError' };
-    return expectSaga(pollEthApp, { descriptor })
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-      .provide({
-        call(effect) {
-          if (effect.fn === ledgerEthChannel) {
-            return eventChannel((emitter) => {
-              setTimeout(() => {
-                emitter({ connected: false, error });
-              }, 100);
-              return () => {};
-            });
-          }
-          return true;
-        },
-      })
-      .put(ledgerEthAppDisconnected(descriptor))
-      .put(ledgerError(error))
-      .run({ silenceTimeout: true })
-      .then((result) => {
-        const state = result.storeState;
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'status'])).toEqual('disconnected');
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'ethConnected'])).toEqual(false);
-        expect(state.getIn(['walletHoc', 'errors', 'ledgerError'])).toEqual(ethAppNotOpenErrorMsg);
-      });
   });
 });
 
@@ -898,64 +711,6 @@ describe('load wallets saga', () => {
           //   expect(walletHocState.getIn(['confirmedTransactions']).get(0)).toEqual(fromJS(formatedTransaction));
           // });
       });
-    });
-    describe('hardware wallet: ledger', () => {
-      it('#sendTransactionForHardwareWallet should sign tx and output a hex correctly', () => {
-        const storeState = fromJS({
-          walletHoc: {
-            balances: balancesMock,
-            prices: pricesMock,
-            supportedAssets: supportedAssetsMock,
-            wallets: [{
-              name: 't1',
-              type: 'lns',
-              address: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
-              derivationPath: 'm/44\'/60\'/0\'/0',
-            }],
-            currentWallet: {
-              name: 't1',
-              address: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
-            },
-            pendingTransactions: [],
-            confirmedTransactions: [],
-            ledgerNanoSInfo: {
-              descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC@14/XHC@14000000/HS09@14900000/Nano S@14900000/Nano S@0/IOUSBHostHIDDevice@14900000,0',
-            },
-          },
-        });
-        const nonce = 16;
-        let signedTxHex;
-        const params = {
-          ...transferErc20ActionParamsMock,
-          gasPrice: utils.parseEther(transferErc20ActionParamsMock.gasPrice.toString()),
-          amount: utils.parseEther(transferErc20ActionParamsMock.amount.toString()),
-        };
-        return expectSaga(sendTransactionForHardwareWallet, params)
-          .provide({
-            call(effect) {
-              if (effect.fn === tryCreateEthTransportActivity) {
-                return lnsSignedTxMock;
-              }
-              if (effect.fn === getTransactionCount) {
-                return nonce;
-              }
-              if (effect.fn === sendTransaction) {
-                signedTxHex = effect.args[0];
-                return 'hash';
-              }
-              if (effect.fn === getTransaction) {
-                return { value: 1 };
-              }
-              return {};
-            },
-          })
-          .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-          .not.put.actionType(LEDGER_ERROR)
-          .run({ silenceTimeout: true })
-          .then(() => {
-            expect(signedTxHex).toEqual(lnsExpectedSignedTxHex);
-          });
-      });
       it('#generateERC20Transaction should generate transaction object using etherjs contract', async () => {
         const nonce = 1;
         const gas = {
@@ -1029,178 +784,141 @@ describe('load wallets saga', () => {
           .put.actionType(transferSuccess(sentTx).type)// send signed transaction
           .run({ silenceTimeout: true });
       });
-      it('#tryCreateEthTransportActivity should start pollEthApp and rethrow the error to outer scope when throws exception', (done) => {
-        const error = new Error();
-        const descriptor = 'test';
-        const saga = testSaga(tryCreateEthTransportActivity, descriptor);
-        try {
-          saga
-            .next()
-
-            .throw(error)
-            .spawn(pollEthApp, { descriptor })
-
-            .next()
-            .isDone();
-        } catch (err) {
-          expect(err).toEqual(error);
-          done();
-        }
-      });
-      it('should trigger fetchedLedgerAddressAction when got address by path', () => {
-        const storeState = {
+    });
+    describe('hardware wallet: ledger', () => {
+      it('#sendTransactionForHardwareWallet should sign tx and output a hex correctly', () => {
+        const storeState = fromJS({
           walletHoc: {
+            balances: balancesMock,
+            prices: pricesMock,
+            supportedAssets: supportedAssetsMock,
+            wallets: [{
+              name: 't1',
+              type: 'lns',
+              address: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
+              derivationPath: 'm/44\'/60\'/0\'/0',
+            }],
+            currentWallet: {
+              name: 't1',
+              address: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
+            },
+            pendingTransactions: [],
+            confirmedTransactions: [],
             ledgerNanoSInfo: {
-              descriptor: '123',
+              descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC@14/XHC@14000000/HS09@14900000/Nano S@14900000/Nano S@0/IOUSBHostHIDDevice@14900000,0',
             },
           },
+        });
+        const nonce = 16;
+        let signedTxHex;
+        const params = {
+          ...transferErc20ActionParamsMock,
+          gasPrice: utils.parseEther(transferErc20ActionParamsMock.gasPrice.toString()),
+          amount: utils.parseEther(transferErc20ActionParamsMock.amount.toString()),
         };
-        const key = {
-          address: '0x35cdc7719948Bba8c23834e1E482f84501C1B182',
-          chainCode: '2bb1c3f7487080d8ce50c6768607c96dc5d17ffe31e19457add5be26e6257c7d',
-          publicKey: '04c8429d878d35be22549b5e8d6a2c3af3a145f91823824a9fb602e5dbc0a3cf5212b3609e13427a581736d2afbcf3601ce420968c4abab06b3535899786046603',
-        };
-        const pathBase = 'm/44\'/60\'/0\'';
-        const expectedAddresses = [
-          '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
-          '0x7344328668927e8b25ee00751a072f751cbf4993',
-          '0x003ab49013842d8542ef9f2119a1822b1e9002fe',
-          '0xddce775e7df165a8cd5b65556712d9074afe2ec6',
-          '0x6074a2987aa8a0963d8e0aa618d530fb366f9971',
-        ];
-        const count = 5;
-        return expectSaga(fetchLedgerAddresses, { pathBase, count })
-          .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+        return expectSaga(sendTransactionForHardwareWallet, params)
           .provide({
             call(effect) {
               if (effect.fn === tryCreateEthTransportActivity) {
-                return key;
+                return lnsSignedTxMock;
+              }
+              if (effect.fn === getTransactionCount) {
+                return nonce;
+              }
+              if (effect.fn === sendTransaction) {
+                signedTxHex = effect.args[0];
+                return 'hash';
+              }
+              if (effect.fn === getTransaction) {
+                return { value: 1 };
               }
               return {};
             },
           })
+          .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+          .not.put.actionType(LEDGER_ERROR)
           .run({ silenceTimeout: true })
-          .then((result) => {
-            const state = result.storeState;
-            expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'addresses']).count()).toEqual(count);
-            for (let i = 0; i < expectedAddresses.length; i += 1) {
-              expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'addresses', `${pathBase}/${i}`])).toEqual(expectedAddresses[i]);
-            }
+          .then(() => {
+            expect(signedTxHex).toEqual(lnsExpectedSignedTxHex);
           });
       });
     });
     describe('hardware wallet: trezor', () => {
-      xit('should trigger trezorConnectedAction when trezor usb is connected', () => {
-        const storeState = {};
-        const deviceId = '9986172B302004F3BEB86C3F';
-        return expectSaga(walletHoc)
-          .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-          // .provide({
-          //   call(effect) {
-          //     let result;
-          //     if (effect.fn === LedgerTransport.isSupported) {
-          //       result = true;
-          //     }
-          //     if (effect.fn === ledgerChannel) {
-          //       result = eventChannel((emitter) => {
-          //         setTimeout(() => {
-          //           emitter({ type: 'add', deviceId });
-          //         }, 100);
-          //         return () => {};
-          //       });
-          //     }
-          //     return result;
-          //   },
-          // })
-          .put(trezorConnected(deviceId))
-          .dispatch({ type: INIT_LEDGER })
-          .run(10000)
-          .then((result) => {
-            const state = result.storeState;
-            expect(state.getIn(['walletHoc', 'trezorInfo', 'status'])).toEqual('connected');
-            expect(state.getIn(['walletHoc', 'trezorInfo', 'deviceId'])).toEqual(deviceId);
-          });
-      });
-      xit('should trigger trezorDisconnectedAction when trezor usb is disconnected', () => {
-        const deviceId = '9986172B302004F3BEB86C3F';
-        const storeState = {
+      it('#sendTransactionForHardwareWallet should sign tx and output a hex correctly', () => {
+        const address = 'e1dddbd012f6a9f3f0a346a2b418aecd03b058e7'
+        const storeState = fromJS({
           walletHoc: {
+            balances: balancesMock,
+            prices: pricesMock,
+            supportedAssets: supportedAssetsMock,
+            wallets: [{
+              name: 't1',
+              type: 'trezor',
+              address: `0x${address}`,
+              derivationPath: 'm/44\'/60\'/0\'/0',
+            }],
+            currentWallet: {
+              name: 't1',
+              address: `0x${address}`,
+            },
+            pendingTransactions: [],
+            confirmedTransactions: [],
             trezorInfo: {
-              status: 'connected',
-              deviceId,
+              id: 'test'
             },
           },
+        });
+        const nonce = 8;
+        const rawTx = [
+          "0x08",
+          "0x7530",
+          "0x5208",
+          "0xbfdc0c8e54af5719872a2edef8e65c9f4a3eae88",
+          "0x2742",
+          "0x",
+          "0x03",
+          "0x",
+          "0x",
+        ]
+        const signedTx = {
+          r: "0f7bfadeca8f4a9c022db1ce73b255ca0d3e293367b47231f161f20b91966095",
+          s: "7fb01cb8c9e2f7fdd385e213d653a24436bea63c572c6f8993e4880a66457bbf",
+          v: 42
+        }
+        let expectedSignedTxHex = "0xf8630882753082520894bfdc0c8e54af5719872a2edef8e65c9f4a3eae88822742802aa00f7bfadeca8f4a9c022db1ce73b255ca0d3e293367b47231f161f20b91966095a07fb01cb8c9e2f7fdd385e213d653a24436bea63c572c6f8993e4880a66457bbf"
+        let signedTxHex
+        const params = {
+          ...transferErc20ActionParamsMock,
+          gasPrice: utils.bigNumberify(transferErc20ActionParamsMock.gasPrice.toString()),
+          amount: utils.bigNumberify(transferErc20ActionParamsMock.amount.toString()),
         };
-        return expectSaga(walletHoc)
-          .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-          // .provide({
-          //   call(effect) {
-          //     let result;
-          //     if (effect.fn === LedgerTransport.isSupported) {
-          //       result = true;
-          //     }
-          //     if (effect.fn === ledgerChannel) {
-          //       result = eventChannel((emitter) => {
-          //         setTimeout(() => {
-          //           emitter({ type: 'add', deviceId });
-          //         }, 100);
-          //         return () => {};
-          //       });
-          //     }
-          //     return result;
-          //   },
-          // })
-          .put(trezorDisconnected(deviceId))
-          .dispatch({ type: INIT_LEDGER })
-          .run(10000)
-          .then((result) => {
-            const state = result.storeState;
-            expect(state.getIn(['walletHoc', 'trezorInfo', 'status'])).toEqual('disconnected');
-            expect(state.getIn(['walletHoc', 'trezorInfo', 'deviceId'])).toEqual(null);
-          });
-      });
-      it('should trigger fetchedTrezorAddressAction when got address by path', () => {
-        const deviceId = '123';
-        const storeState = {
-          walletHoc: {
-            trezorInfo: {
-              status: 'connected',
-              deviceId,
-            },
-          },
-        };
-        const key = {
-          node: {
-            chain_code: 'd93e82d55e4eb6afc72143098ae934862a15bd6266ad53a08d3013f6e8e376fe',
-            public_key: '029d4ff641c64992c9ce51bfb2b168d15f3f68c758e80be42612a3c6cc193ed03a',
-          },
-        };
-        const pathBase = 'm/44\'/60\'/0\'/0';
-        const expectedAddresses = [
-          '0xd03c200c7d655e5170e28e61595683c8d7a6494e',
-          '0x9d7b7f53ce6a179274068a8050a15c9b8657a018',
-          '0xfdfa888b8a6b81572444283e694ac78ececb1c24',
-          '0xb501600b8554d3f557ae73fe68fe3a24e11633cb',
-          '0x2cafdc27dad30f8d5192ead09e7a2ee36a771a13',
-        ];
-        const count = 5;
-        return expectSaga(getTrezorAddresses, { pathBase, count })
-          .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+        return expectSaga(sendTransactionForHardwareWallet, params)
           .provide({
             call(effect) {
-              if (effect.args[0] === 'getpublickey') {
-                return key;
+              if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'getaddress') {
+                return {address}
+              }
+              if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'signtx') {
+                return signedTx
+              }
+              if (effect.fn === getTransactionCount) {
+                return nonce;
+              }
+              if (effect.fn === sendTransaction) {
+                signedTxHex = effect.args[0];
+                return 'hash';
+              }
+              if (effect.fn === getTransaction) {
+                return { value: 1 };
               }
               return {};
             },
           })
+          .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+          .not.put.actionType(LEDGER_ERROR)
           .run({ silenceTimeout: true })
-          .then((result) => {
-            const state = result.storeState;
-            expect(state.getIn(['walletHoc', 'trezorInfo', 'addresses']).count()).toEqual(count);
-            for (let i = 0; i < expectedAddresses.length; i += 1) {
-              expect(state.getIn(['walletHoc', 'trezorInfo', 'addresses', `${pathBase}/${i}`])).toEqual(expectedAddresses[i]);
-            }
+          .then(() => {
+            expect(signedTxHex).toEqual(expectedSignedTxHex);
           });
       });
     });
@@ -1287,11 +1005,6 @@ describe('root Saga', () => {
     expect(takeDescriptor).toEqual(takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga));
   });
 
-  it('should start task to watch for FETCH_LEDGER_ADDRESSES action', () => {
-    const takeDescriptor = walletHocSaga.next().value;
-    expect(takeDescriptor).toEqual(takeLatest(FETCH_LEDGER_ADDRESSES, fetchLedgerAddresses));
-  });
-
   it('should start task to watch for TRANSFER action', () => {
     const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(TRANSFER, transfer));
@@ -1325,10 +1038,5 @@ describe('root Saga', () => {
   it('should start task to watch for LOAD_SUPPORTED_TOKENS action', () => {
     const takeDescriptor = walletHocSaga.next().value;
     expect(JSON.stringify(takeDescriptor)).toEqual(JSON.stringify(takeLatest(LOAD_SUPPORTED_TOKENS, loadSupportedTokens)));
-  });
-
-  it('should wait for the INIT_LEDGER action', () => {
-    const takeDescriptor = walletHocSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(INIT_LEDGER, initLedger));
   });
 });

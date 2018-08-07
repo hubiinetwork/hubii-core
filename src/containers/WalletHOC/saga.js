@@ -2,7 +2,6 @@ import { delay, eventChannel } from 'redux-saga';
 import { takeLatest, takeEvery, put, call, select, take, race, spawn } from 'redux-saga/effects';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 import { Wallet, utils, Contract } from 'ethers';
-import { toBuffer, bufferToHex, stripHexPrefix } from 'ethereumjs-util';
 
 import { notify } from 'containers/App/actions';
 import { requestWalletAPI, requestHardwareWalletAPI } from 'utils/request';
@@ -23,7 +22,6 @@ import {
   makeSelectWallets,
   makeSelectCurrentDecryptionCallback,
   makeSelectLedgerNanoSInfo,
-  makeSelectTrezorInfo,
 } from './selectors';
 
 import {
@@ -74,7 +72,8 @@ import {
   transfer as transferAction,
 } from './actions';
 
-import trezorWatchers from './HardwareWallets/trezor/saga';
+import trezorWatchers, {signTxByTrezor} from './HardwareWallets/trezor/saga';
+import ledgerWatchers, {signTxByLedger} from './HardwareWallets/ledger/saga';
 
 import { createEthTransportActivity } from '../../utils/ledger/comms';
 import generateRawTx from '../../utils/generateRawTx';
@@ -294,186 +293,6 @@ export function* hookNewWalletCreated({ newWallet }) {
   return yield put(notify('success', `Successfully created ${newWallet.name}`));
 }
 
-
-// Creates an eventChannel to listen to Ledger events
-export const ledgerChannel = () => eventChannel((listener) => {
-  const sub = LedgerTransport.listen({
-    next: (e) => listener(e),
-    error: (e) => listener(e),
-    complete: (e) => listener(e),
-  });
-  return () => { sub.unsubscribe(); };
-});
-
-const ethChannels = {};
-export const addEthChannel = (descriptor, channel) => {
-  removeEthChannel(descriptor);
-  ethChannels[descriptor] = channel;
-};
-
-export const removeEthChannel = (descriptor) => {
-  const channel = ethChannels[descriptor];
-  if (channel) {
-    channel.close();
-    delete ethChannels[descriptor];
-  }
-};
-
-export const ledgerEthChannel = (descriptor) => eventChannel((listener) => {
-  const iv = setInterval(() => {
-    createEthTransportActivity(descriptor, (ethTransport) => ethTransport.getAddress('m/44\'/60\'/0\'/0')).then((address) => {
-      listener({ connected: true, address });
-    }).catch((err) => {
-      listener({ connected: false, error: err });
-    });
-  }, 2000);
-  return () => {
-    clearInterval(iv);
-  };
-});
-
-export function* pollEthApp({ descriptor }) {
-  const channel = yield call(ledgerEthChannel, descriptor);
-  addEthChannel(descriptor, channel);
-  while (true) { // eslint-disable-line no-constant-condition
-    const status = yield take(channel);
-    try {
-      if (status.connected) {
-        removeEthChannel(descriptor);
-        yield put(ledgerEthAppConnected(descriptor, status.address.publicKey));
-      } else {
-        yield put(ledgerEthAppDisconnected(descriptor));
-        yield put(ledgerError(status.error));
-      }
-    } catch (error) {
-      removeEthChannel(descriptor);
-    }
-  }
-}
-
-export function* hookLedgerDisconnected({ descriptor }) {
-  removeEthChannel(descriptor);
-  yield put(ledgerError({ message: 'Disconnected' }));
-}
-
-export function* initLedger() {
-  const supported = yield call(LedgerTransport.isSupported);
-  if (!supported) {
-    yield put(ledgerError(Error('NoSupport')));
-    return;
-  }
-
-  const chan = yield call(ledgerChannel);
-
-  // Changing of the physical ledger state (changing app, toggling browser support etc)
-  // emits a 'remove', then shortly after 'add' event. If 'remove' is emited and no 'add'
-  // afterwards we know the device is disconnected. Every change of the ledger state,
-  // try to look into it's Eth state. If it fails, we dispatch the appropriate error
-  // message
-  while (true) { // eslint-disable-line no-constant-condition
-    try {
-      const msg = yield take(chan);
-      if (msg.type === 'remove') {
-        const { timeout } = yield race({
-          msg: take(chan),
-          timeout: call(delay, 1000),
-        });
-        if (timeout) {
-          yield put(ledgerDisconnected(msg.descriptor));
-          continue; // eslint-disable-line no-continue
-        }
-      }
-
-      yield put(ledgerConnected(msg.descriptor));
-    } catch (e) {
-      yield put(ledgerError(e));
-    }
-  }
-}
-
-// Dispatches the address for every derivation path in the input
-export function* fetchLedgerAddresses({ pathBase, count }) {
-  try {
-    const ledgerStatus = yield select(makeSelectLedgerNanoSInfo());
-    if (!ledgerStatus.get('descriptor')) {
-      throw new Error('no descriptor available');
-    }
-    const descriptor = ledgerStatus.get('descriptor');
-    const publicAddressKeyPair = yield call(tryCreateEthTransportActivity, descriptor, async (ethTransport) => ethTransport.getAddress(pathBase, false, true));
-    const addresses = deriveAddresses({ publicKey: publicAddressKeyPair.publicKey, chainCode: publicAddressKeyPair.chainCode, count });
-
-    for (let i = 0; i < addresses.length; i += 1) {
-      const address = prependHexToAddress(addresses[i]);
-      yield put(fetchedLedgerAddress(`${pathBase}/${i}`, address));
-    }
-  } catch (error) {
-    yield put(ledgerError(error));
-  }
-}
-
-export function* tryCreateEthTransportActivity(descriptor, func) {
-  try {
-    return yield call(createEthTransportActivity, descriptor, func);
-  } catch (error) {
-    yield spawn(pollEthApp, { descriptor });
-    throw error;
-  }
-}
-
-export function* signTxByLedger(walletDetails, rawTxHex) {
-  try {
-    const ledgerNanoSInfo = yield select(makeSelectLedgerNanoSInfo());
-    const descriptor = ledgerNanoSInfo.get('descriptor');
-
-    // check if the eth app is opened
-    yield call(
-      tryCreateEthTransportActivity,
-      descriptor,
-      async (ethTransport) => ethTransport.getAddress(walletDetails.derivationPath)
-    );
-    yield put(notify('info', 'Verify transaction details on your Ledger'));
-
-    const signedTx = yield call(
-      tryCreateEthTransportActivity,
-      descriptor,
-      (ethTransport) => ethTransport.signTransaction(walletDetails.derivationPath, rawTxHex)
-    );
-    return signedTx;
-  } catch (e) {
-    const refinedError = ledgerError(e);
-    yield put(refinedError);
-    throw new Error(refinedError.error);
-  }
-}
-
-export function* signTxByTrezor(walletDetails, tx) {
-  try {
-    const trezorInfo = yield select(makeSelectTrezorInfo());
-    const deviceId = trezorInfo.get('id');
-    const path = walletDetails.derivationPath;
-    const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
-    if (!IsAddressMatch(`0x${publicAddressKeyPair.address}`, walletDetails.address)) {
-      throw new Error('Current wallet address does not match to the Trezor\'s address. Please make sure you entered the correct passphrase.');
-    }
-    yield put(notify('info', 'Verify transaction details on your Trezor'));
-    const signedTx = yield call(
-      requestHardwareWalletAPI,
-      'signtx',
-      {
-        id: deviceId,
-        path,
-        tx,
-      }
-    );
-
-    return signedTx;
-  } catch (e) {
-    const refinedError = ledgerError(e);
-    yield put(refinedError);
-    throw new Error(refinedError.error);
-  }
-}
-
 export function* sendTransactionForHardwareWallet({ toAddress, amount, data, nonce, gasPrice, gasLimit }) {
   const currentWalletWithInfo = yield select(makeSelectCurrentWalletWithInfo());
   const walletDetails = currentWalletWithInfo.toJS();
@@ -483,6 +302,7 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   }
   const amountHex = amount ? amount.toHexString() : '0x00';
   const chainId = EthNetworkProvider.chainId;
+
   // generate raw tx for ledger nano to sign
   const rawTx = generateRawTx({
     toAddress,
@@ -506,16 +326,8 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   }
   if (walletDetails.type === 'trezor') {
     const raw = rawTx.toJSON();
-    const txToSign = {
-      nonce: stripHexPrefix(raw[0]),
-      toAddress: stripHexPrefix(raw[3]),
-      value: stripHexPrefix(raw[4]),
-      data: raw[5] === '0x' ? null : stripHexPrefix(bufferToHex(toBuffer(data))),
-      gasPrice: stripHexPrefix(raw[1]),
-      gasLimit: stripHexPrefix(raw[2]),
-      chainId,
-    };
-    signedTx = yield signTxByTrezor(walletDetails, txToSign);
+    
+    signedTx = yield signTxByTrezor(walletDetails, raw, chainId);
     rawTx.v = Buffer.from(signedTx.v.toString(16), 'hex');
   }
   // update raw tx with signed data
@@ -536,7 +348,6 @@ export default function* walletHoc() {
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
   yield takeEvery(INIT_WALLETS_BALANCES, initWalletsBalances);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
-  yield takeLatest(FETCH_LEDGER_ADDRESSES, fetchLedgerAddresses);
   yield takeEvery(TRANSFER, transfer);
   yield takeEvery(TRANSFER_ETHER, transferEther);
   yield takeEvery(TRANSFER_ERC20, transferERC20);
@@ -546,10 +357,7 @@ export default function* walletHoc() {
 
   yield takeLatest(LOAD_PRICES, loadPrices);
   yield takeLatest(LOAD_SUPPORTED_TOKENS, loadSupportedTokens);
-  yield takeEvery(INIT_LEDGER, initLedger);
-  yield takeEvery(LEDGER_CONNECTED, pollEthApp);
-  yield takeEvery(LEDGER_DISCONNECTED, hookLedgerDisconnected);
 
   yield trezorWatchers();
-  // yield takeEvery(INIT_LEDGER, initTrezor);
+  yield ledgerWatchers();
 }
