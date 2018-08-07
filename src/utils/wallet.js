@@ -91,3 +91,5 @@ export const sendTransaction = (...args) => EthNetworkProvider.sendTransaction(.
 export const getTransaction = (...args) => EthNetworkProvider.getTransaction(...args);
 
 export const isHardwareWallet = (type) => type === 'lns' || type === 'trezor';
+
+export const prependHexToAddress = (address) => address.startsWith('0x') ? address : `0x${address}`;

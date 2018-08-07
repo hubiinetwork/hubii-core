@@ -14,6 +14,8 @@ import {
   sendTransaction,
   isHardwareWallet,
   IsAddressMatch,
+  deriveAddresses,
+  prependHexToAddress,
 } from 'utils/wallet';
 
 import {
@@ -390,17 +392,19 @@ export function* initLedger() {
 }
 
 // Dispatches the address for every derivation path in the input
-export function* fetchLedgerAddresses({ derivationPaths }) {
+export function* fetchLedgerAddresses({ pathBase, count }) {
   try {
     const ledgerStatus = yield select(makeSelectLedgerNanoSInfo());
     if (!ledgerStatus.get('descriptor')) {
       throw new Error('no descriptor available');
     }
     const descriptor = ledgerStatus.get('descriptor');
-    for (let i = 0; i < derivationPaths.length; i += 1) {
-      const path = derivationPaths[i];
-      const publicAddressKeyPair = yield tryCreateEthTransportActivity(descriptor, async (ethTransport) => ethTransport.getAddress(path));
-      yield put(fetchedLedgerAddress(path, publicAddressKeyPair.address));
+    const publicAddressKeyPair = yield call(tryCreateEthTransportActivity, descriptor, async (ethTransport) => ethTransport.getAddress(pathBase, false, true));
+    const addresses = deriveAddresses({ publicKey: publicAddressKeyPair.publicKey, chainCode: publicAddressKeyPair.chainCode, count });
+
+    for (let i = 0; i < addresses.length; i += 1) {
+      const address = prependHexToAddress(addresses[i]);
+      yield put(fetchedLedgerAddress(`${pathBase}/${i}`, address));
     }
   } catch (error) {
     yield put(ledgerError(error));

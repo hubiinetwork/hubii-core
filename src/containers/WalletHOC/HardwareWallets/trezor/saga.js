@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron';
 import { eventChannel } from 'redux-saga';
 import { takeEvery, put, call, select, take } from 'redux-saga/effects';
-import { deriveAddresses } from 'utils/wallet';
+import { deriveAddresses, prependHexToAddress } from 'utils/wallet';
 import { requestHardwareWalletAPI } from 'utils/request';
 import { makeSelectTrezorInfo } from '../../selectors';
 import { trezorConnected, trezorDisconnected, fetchedTrezorAddress } from '../../actions';
@@ -37,7 +37,8 @@ export function* getAddresses({ pathBase, count }) {
     const key = yield call(requestHardwareWalletAPI, 'getpublickey', { id: trezorInfo.get('id'), path: pathBase });
     const addresses = deriveAddresses({ publicKey: key.node.public_key, chainCode: key.node.chain_code, count });
     for (let i = 0; i < addresses.length; i += 1) {
-      yield put(fetchedTrezorAddress(`${pathBase}/${i}`, addresses[i]));
+      const address = prependHexToAddress(addresses[i]);
+      yield put(fetchedTrezorAddress(`${pathBase}/${i}`, address));
     }
   } catch (e) {
     console.log('err', e);

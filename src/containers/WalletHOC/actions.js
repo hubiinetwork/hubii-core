@@ -290,11 +290,11 @@ export function initTrezor() {
   };
 }
 
-export function fetchLedgerAddresses(derivationPaths, ethTransport) {
+export function fetchLedgerAddresses(pathBase, count) {
   return {
     type: FETCH_LEDGER_ADDRESSES,
-    derivationPaths,
-    ethTransport,
+    pathBase,
+    count,
   };
 }
 
@@ -390,7 +390,7 @@ export function fetchedTrezorAddress(derivationPath, address) {
 export function saveTrezorAddress(name, derivationPath, deviceId, address) {
   const newWallet = {
     deviceId,
-    address: (address && address.startsWith('0x')) ? address : `0x${address}`,
+    address,
     type: 'trezor',
     name,
     derivationPath,
