@@ -9,7 +9,7 @@ ShallowWrapper {
     amount="0.0011"
     confirmations={1}
     fiatValue="671.23"
-    time={1995-12-17T03:24:00.000Z}
+    time={1995-12-17T12:24:00.000Z}
     txnId="0xb2682160c482eB985EC9F3e364eEc0a904C44C2360c482eB985EC9F3e364eEc0a904C44C23"
     type="received"
 />,
@@ -493,7 +493,7 @@ ShallowWrapper {
     amount="0.0011"
     confirmations={0}
     fiatValue="671.23"
-    time={1995-12-17T03:24:00.000Z}
+    time={1995-12-17T12:24:00.000Z}
     txnId="0xb2682160c482eB985EC9F3e364eEc0a904C44C2360c482eB985EC9F3e364eEc0a904C44C23"
     type="received"
 />,
@@ -935,7 +935,7 @@ ShallowWrapper {
     amount="0.0011"
     confirmations={204}
     fiatValue="671.23"
-    time={1995-12-17T03:24:00.000Z}
+    time={1995-12-17T12:24:00.000Z}
     txnId="0xb2682160c482eB985EC9F3e364eEc0a904C44C2360c482eB985EC9F3e364eEc0a904C44C23"
     type="received"
 />,
@@ -1419,7 +1419,7 @@ ShallowWrapper {
     amount="0.0011"
     confirmations={204}
     fiatValue="671.23"
-    time={1995-12-17T03:24:00.000Z}
+    time={1995-12-17T12:24:00.000Z}
     txnId="0xb2682160c482eB985EC9F3e364eEc0a904C44C2360c482eB985EC9F3e364eEc0a904C44C23"
     type="sent"
 />,
