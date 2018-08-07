@@ -214,7 +214,6 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
       etherWallet.provider = EthNetworkProvider;
       transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
     }
-    console.log('transaction', transaction);
     yield put(transferSuccess(transaction, 'ETH'));
     yield put(notify('success', 'Transaction sent'));
   } catch (error) {

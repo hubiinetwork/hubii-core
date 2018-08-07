@@ -1,10 +1,11 @@
 import { ipcRenderer } from 'electron';
 import { eventChannel } from 'redux-saga';
 import { takeEvery, put, call, select, take } from 'redux-saga/effects';
+import { deriveAddresses } from 'utils/wallet';
 import { requestHardwareWalletAPI } from 'utils/request';
 import { makeSelectTrezorInfo } from '../../selectors';
 import { trezorConnected, trezorDisconnected, fetchedTrezorAddress } from '../../actions';
-import { INIT_LEDGER, FETCH_TREZOR_ADDRESSES } from '../../constants';
+import { INIT_TREZOR, FETCH_TREZOR_ADDRESSES } from '../../constants';
 
 export function* init() {
   const channel = yield call(listenTrezorDevicesChannel);
@@ -30,13 +31,13 @@ export const listenTrezorDevicesChannel = () => eventChannel((emit) => {
   return () => { };
 });
 
-export function* getAddress({ derivationPaths }) {
+export function* getAddresses({ pathBase, count }) {
   const trezorInfo = yield select(makeSelectTrezorInfo());
   try {
-    for (let i = 0; i < derivationPaths.length; i += 1) {
-      const path = derivationPaths[i];
-      const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: trezorInfo.get('id'), path });
-      yield put(fetchedTrezorAddress(publicAddressKeyPair.path, publicAddressKeyPair.address));
+    const key = yield call(requestHardwareWalletAPI, 'getpublickey', { id: trezorInfo.get('id'), path: pathBase });
+    const addresses = deriveAddresses({ publicKey: key.node.public_key, chainCode: key.node.chain_code, count });
+    for (let i = 0; i < addresses.length; i += 1) {
+      yield put(fetchedTrezorAddress(`${pathBase}/${i}`, addresses[i]));
     }
   } catch (e) {
     console.log('err', e);
@@ -45,6 +46,6 @@ export function* getAddress({ derivationPaths }) {
 
 // Root watcher
 export default function* watch() {
-  yield takeEvery(INIT_LEDGER, init);
-  yield takeEvery(FETCH_TREZOR_ADDRESSES, getAddress);
+  yield takeEvery(INIT_TREZOR, init);
+  yield takeEvery(FETCH_TREZOR_ADDRESSES, getAddresses);
 }

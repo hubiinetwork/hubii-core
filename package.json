@@ -279,6 +279,7 @@
     "express": "4.16.3",
     "fontfaceobserver": "2.0.13",
     "fs-extra": "^7.0.0",
+    "hdkey": "^1.0.0",
     "history": "4.7.2",
     "hoist-non-react-statics": "2.5.0",
     "immutable": "3.8.2",

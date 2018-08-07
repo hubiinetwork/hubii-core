@@ -69,16 +69,7 @@ export class TrezorDerivationPathContainer extends React.Component { // eslint-d
 
   fetchAddresses() {
     const { lastAddressIndex, pathBase } = this.state;
-    const { addresses } = this.props.trezorInfo.toJS();
-    let i;
-    const paths = [];
-    for (i = 0; i <= lastAddressIndex; i += 1) {
-      const curPath = `${pathBase}/${i}`;
-      if (!addresses[curPath]) {
-        paths.push(curPath);
-      }
-    }
-    this.props.fetchTrezorAddresses(paths);
+    this.props.fetchTrezorAddresses(pathBase, lastAddressIndex + 1);
   }
 
   render() {
@@ -136,8 +127,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
-    fetchTrezorAddresses: (derivationPaths) => dispatch(fetchTrezorAddresses(derivationPaths)),
+    fetchTrezorAddresses: (...args) => dispatch(fetchTrezorAddresses(...args)),
   };
 }
 

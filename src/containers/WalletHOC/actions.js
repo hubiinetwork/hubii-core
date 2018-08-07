@@ -45,6 +45,7 @@ import {
   FETCHED_TREZOR_ADDRESS,
   DELETE_WALLET,
   INIT_LEDGER,
+  INIT_TREZOR,
   INIT_WALLETS_BALANCES,
 } from './constants';
 
@@ -283,6 +284,12 @@ export function initLedger() {
   };
 }
 
+export function initTrezor() {
+  return {
+    type: INIT_TREZOR,
+  };
+}
+
 export function fetchLedgerAddresses(derivationPaths, ethTransport) {
   return {
     type: FETCH_LEDGER_ADDRESSES,
@@ -364,10 +371,11 @@ export function trezorDisconnected(deviceId) {
   };
 }
 
-export function fetchTrezorAddresses(derivationPaths) {
+export function fetchTrezorAddresses(pathBase, count) {
   return {
     type: FETCH_TREZOR_ADDRESSES,
-    derivationPaths,
+    pathBase,
+    count,
   };
 }
 

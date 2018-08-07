@@ -78,6 +78,12 @@ async function execWalletMethods(method, params, cb) {
       );
       cb(JSON.stringify(signedTx));
     }
+    if (method === 'getpublickey') {
+      const { message } = await session.getPublicKey(parseHDPath(path));
+
+      console.log(message);
+      cb(JSON.stringify(message));
+    }
   });
 }
 
