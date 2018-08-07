@@ -87,7 +87,7 @@ WalletTransfer.propTypes = {
   prices: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  createContact: PropTypes.func,
+  createContact: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

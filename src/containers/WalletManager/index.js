@@ -189,7 +189,7 @@ WalletManager.propTypes = {
   saveLedgerAddress: PropTypes.func,
   createWalletFromPrivateKey: PropTypes.func.isRequired,
   loading: PropTypes.object.isRequired,
-  createContact: PropTypes.func.isRequired,
+  createContact: PropTypes.func,
   contacts: PropTypes.oneOfType(
     [PropTypes.arrayOf(PropTypes.object), PropTypes.object]
   ),

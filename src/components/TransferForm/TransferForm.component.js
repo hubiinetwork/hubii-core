@@ -391,5 +391,5 @@ TransferForm.propTypes = {
   onCancel: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   transfering: PropTypes.bool,
-  createContact: PropTypes.func,
+  createContact: PropTypes.func.isRequired,
 };
