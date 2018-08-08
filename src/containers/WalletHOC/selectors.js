@@ -43,7 +43,7 @@ const makeSelectWallets = () => createSelector(
 
 const makeSelectTransactions = () => createSelector(
   selectWalletHocDomain,
-  (walletHocDomain) => walletHocDomain.get('transactions')
+  (walletHocDomain) => walletHocDomain.get('transactions') || fromJS([])
 );
 
 const makeSelectTransactionsWithInfo = () => createSelector(
