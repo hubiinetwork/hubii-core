@@ -85,6 +85,9 @@ export default class AddRestoreWalletModal extends React.Component {
                   name: 'ledger',
                 },
                 {
+                  name: 'Trezor',
+                },
+                {
                   name: 'Private Key',
                 },
                 {

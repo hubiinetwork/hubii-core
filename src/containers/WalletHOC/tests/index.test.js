@@ -7,10 +7,12 @@ import { walletsWithInfoMock, currentWalletMock } from './mocks';
 describe('WalletHOC', () => {
   const initWalletsBalancesSpy = jest.fn();
   const initLedgerSpy = jest.fn();
+  const initTrezorSpy = jest.fn();
   const props = {
     currentWallet: currentWalletMock,
     currentWalletWithInfo: walletsWithInfoMock.get(0),
     initLedger: initLedgerSpy,
+    initTrezor: initTrezorSpy,
     initWalletsBalances: initWalletsBalancesSpy,
     decryptWallet: () => {},
     hideDecryptWalletModal: () => {},
@@ -112,6 +114,7 @@ describe('WalletHOC', () => {
         const instance = dom.instance();
         instance.componentDidMount();
         expect(initLedgerSpy).toBeCalled();
+        expect(initTrezorSpy).toBeCalled();
       });
     });
     describe('#onPasswordChange', () => {

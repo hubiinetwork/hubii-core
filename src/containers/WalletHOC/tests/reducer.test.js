@@ -65,6 +65,11 @@ describe('walletHocReducer', () => {
         addresses: {},
         id: null,
       },
+      trezorInfo: {
+        status: 'disconnected',
+        addresses: {},
+        id: null,
+      },
       pendingTransactions: [],
       supportedAssets: {
         loading: true,

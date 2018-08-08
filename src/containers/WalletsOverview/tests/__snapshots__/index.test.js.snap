@@ -84,6 +84,11 @@ ShallowWrapper {
             },
         }
     }
+    trezorInfo={
+        Immutable.Map {
+            connected: false,
+        }
+    }
     walletsWithInfo={
         Immutable.List [
         ]
@@ -720,6 +725,11 @@ ShallowWrapper {
             },
         }
     }
+    trezorInfo={
+        Immutable.Map {
+            connected: false,
+        }
+    }
     walletsWithInfo={
         Immutable.List [
             Immutable.Map {
@@ -1020,7 +1030,7 @@ ShallowWrapper {
                                         }
                                         balancesError={false}
                                         balancesLoading={false}
-                                        connected={null}
+                                        connected={false}
                                         deleteWallet={[Function]}
                                         handleCardClick={[Function]}
                                         isDecrypted={false}
@@ -1289,7 +1299,7 @@ ShallowWrapper {
                                         }
                                         balancesError={false}
                                         balancesLoading={false}
-                                        connected={null}
+                                        connected={false}
                                         deleteWallet={[Function]}
                                         handleCardClick={[Function]}
                                         isDecrypted={false}
@@ -1558,7 +1568,7 @@ ShallowWrapper {
                                         }
                                         balancesError={false}
                                         balancesLoading={false}
-                                        connected={null}
+                                        connected={false}
                                         deleteWallet={[Function]}
                                         handleCardClick={[Function]}
                                         isDecrypted={false}
@@ -2096,7 +2106,7 @@ ShallowWrapper {
                                         }
                                         balancesError={false}
                                         balancesLoading={false}
-                                        connected={null}
+                                        connected={false}
                                         deleteWallet={[Function]}
                                         handleCardClick={[Function]}
                                         isDecrypted={false}
@@ -2691,7 +2701,7 @@ ShallowWrapper {
                                                 }
                                                 balancesError={false}
                                                 balancesLoading={false}
-                                                connected={null}
+                                                connected={false}
                                                 deleteWallet={[Function]}
                                                 handleCardClick={[Function]}
                                                 isDecrypted={false}
@@ -2960,7 +2970,7 @@ ShallowWrapper {
                                                 }
                                                 balancesError={false}
                                                 balancesLoading={false}
-                                                connected={null}
+                                                connected={false}
                                                 deleteWallet={[Function]}
                                                 handleCardClick={[Function]}
                                                 isDecrypted={false}
@@ -3229,7 +3239,7 @@ ShallowWrapper {
                                                 }
                                                 balancesError={false}
                                                 balancesLoading={false}
-                                                connected={null}
+                                                connected={false}
                                                 deleteWallet={[Function]}
                                                 handleCardClick={[Function]}
                                                 isDecrypted={false}
@@ -3767,7 +3777,7 @@ ShallowWrapper {
                                                 }
                                                 balancesError={false}
                                                 balancesLoading={false}
-                                                connected={null}
+                                                connected={false}
                                                 deleteWallet={[Function]}
                                                 handleCardClick={[Function]}
                                                 isDecrypted={false}
@@ -4359,7 +4369,7 @@ ShallowWrapper {
                                                 }
                                                 balancesError={false}
                                                 balancesLoading={false}
-                                                connected={null}
+                                                connected={false}
                                                 deleteWallet={[Function]}
                                                 handleCardClick={[Function]}
                                                 isDecrypted={false}
@@ -4628,7 +4638,7 @@ ShallowWrapper {
                                                 }
                                                 balancesError={false}
                                                 balancesLoading={false}
-                                                connected={null}
+                                                connected={false}
                                                 deleteWallet={[Function]}
                                                 handleCardClick={[Function]}
                                                 isDecrypted={false}
@@ -4897,7 +4907,7 @@ ShallowWrapper {
                                                 }
                                                 balancesError={false}
                                                 balancesLoading={false}
-                                                connected={null}
+                                                connected={false}
                                                 deleteWallet={[Function]}
                                                 handleCardClick={[Function]}
                                                 isDecrypted={false}
@@ -5435,7 +5445,7 @@ ShallowWrapper {
                                                 }
                                                 balancesError={false}
                                                 balancesLoading={false}
-                                                connected={null}
+                                                connected={false}
                                                 deleteWallet={[Function]}
                                                 handleCardClick={[Function]}
                                                 isDecrypted={false}
@@ -6009,7 +6019,7 @@ ShallowWrapper {
                                         }
                                         balancesError={false}
                                         balancesLoading={false}
-                                        connected={null}
+                                        connected={false}
                                         deleteWallet={[Function]}
                                         handleCardClick={[Function]}
                                         isDecrypted={false}
@@ -6278,7 +6288,7 @@ ShallowWrapper {
                                         }
                                         balancesError={false}
                                         balancesLoading={false}
-                                        connected={null}
+                                        connected={false}
                                         deleteWallet={[Function]}
                                         handleCardClick={[Function]}
                                         isDecrypted={false}
@@ -6547,7 +6557,7 @@ ShallowWrapper {
                                         }
                                         balancesError={false}
                                         balancesLoading={false}
-                                        connected={null}
+                                        connected={false}
                                         deleteWallet={[Function]}
                                         handleCardClick={[Function]}
                                         isDecrypted={false}
@@ -7085,7 +7095,7 @@ ShallowWrapper {
                                         }
                                         balancesError={false}
                                         balancesLoading={false}
-                                        connected={null}
+                                        connected={false}
                                         deleteWallet={[Function]}
                                         handleCardClick={[Function]}
                                         isDecrypted={false}
@@ -7638,7 +7648,7 @@ ShallowWrapper {
                       }
                       balancesError={false}
                       balancesLoading={false}
-                      connected={null}
+                      connected={false}
                       deleteWallet={[Function]}
                       handleCardClick={[Function]}
                       isDecrypted={false}
@@ -7918,7 +7928,7 @@ ShallowWrapper {
                       ],
                       "balancesError": false,
                       "balancesLoading": false,
-                      "connected": null,
+                      "connected": false,
                       "deleteWallet": [Function],
                       "handleCardClick": [Function],
                       "isDecrypted": false,
@@ -8189,7 +8199,7 @@ ShallowWrapper {
                       }
                       balancesError={false}
                       balancesLoading={false}
-                      connected={null}
+                      connected={false}
                       deleteWallet={[Function]}
                       handleCardClick={[Function]}
                       isDecrypted={false}
@@ -8459,7 +8469,7 @@ ShallowWrapper {
                       ],
                       "balancesError": false,
                       "balancesLoading": false,
-                      "connected": null,
+                      "connected": false,
                       "deleteWallet": [Function],
                       "handleCardClick": [Function],
                       "isDecrypted": false,
@@ -8730,7 +8740,7 @@ ShallowWrapper {
                       }
                       balancesError={false}
                       balancesLoading={false}
-                      connected={null}
+                      connected={false}
                       deleteWallet={[Function]}
                       handleCardClick={[Function]}
                       isDecrypted={false}
@@ -9000,7 +9010,7 @@ ShallowWrapper {
                       ],
                       "balancesError": false,
                       "balancesLoading": false,
-                      "connected": null,
+                      "connected": false,
                       "deleteWallet": [Function],
                       "handleCardClick": [Function],
                       "isDecrypted": false,
@@ -9812,7 +9822,7 @@ ShallowWrapper {
                       }
                       balancesError={false}
                       balancesLoading={false}
-                      connected={null}
+                      connected={false}
                       deleteWallet={[Function]}
                       handleCardClick={[Function]}
                       isDecrypted={false}
@@ -10082,7 +10092,7 @@ ShallowWrapper {
                       ],
                       "balancesError": false,
                       "balancesLoading": false,
-                      "connected": null,
+                      "connected": false,
                       "deleteWallet": [Function],
                       "handleCardClick": [Function],
                       "isDecrypted": false,
@@ -10990,7 +11000,7 @@ ShallowWrapper {
                                                   }
                                                   balancesError={false}
                                                   balancesLoading={false}
-                                                  connected={null}
+                                                  connected={false}
                                                   deleteWallet={[Function]}
                                                   handleCardClick={[Function]}
                                                   isDecrypted={false}
@@ -11259,7 +11269,7 @@ ShallowWrapper {
                                                   }
                                                   balancesError={false}
                                                   balancesLoading={false}
-                                                  connected={null}
+                                                  connected={false}
                                                   deleteWallet={[Function]}
                                                   handleCardClick={[Function]}
                                                   isDecrypted={false}
@@ -11528,7 +11538,7 @@ ShallowWrapper {
                                                   }
                                                   balancesError={false}
                                                   balancesLoading={false}
-                                                  connected={null}
+                                                  connected={false}
                                                   deleteWallet={[Function]}
                                                   handleCardClick={[Function]}
                                                   isDecrypted={false}
@@ -12066,7 +12076,7 @@ ShallowWrapper {
                                                   }
                                                   balancesError={false}
                                                   balancesLoading={false}
-                                                  connected={null}
+                                                  connected={false}
                                                   deleteWallet={[Function]}
                                                   handleCardClick={[Function]}
                                                   isDecrypted={false}
@@ -12661,7 +12671,7 @@ ShallowWrapper {
                                                         }
                                                         balancesError={false}
                                                         balancesLoading={false}
-                                                        connected={null}
+                                                        connected={false}
                                                         deleteWallet={[Function]}
                                                         handleCardClick={[Function]}
                                                         isDecrypted={false}
@@ -12930,7 +12940,7 @@ ShallowWrapper {
                                                         }
                                                         balancesError={false}
                                                         balancesLoading={false}
-                                                        connected={null}
+                                                        connected={false}
                                                         deleteWallet={[Function]}
                                                         handleCardClick={[Function]}
                                                         isDecrypted={false}
@@ -13199,7 +13209,7 @@ ShallowWrapper {
                                                         }
                                                         balancesError={false}
                                                         balancesLoading={false}
-                                                        connected={null}
+                                                        connected={false}
                                                         deleteWallet={[Function]}
                                                         handleCardClick={[Function]}
                                                         isDecrypted={false}
@@ -13737,7 +13747,7 @@ ShallowWrapper {
                                                         }
                                                         balancesError={false}
                                                         balancesLoading={false}
-                                                        connected={null}
+                                                        connected={false}
                                                         deleteWallet={[Function]}
                                                         handleCardClick={[Function]}
                                                         isDecrypted={false}
@@ -14329,7 +14339,7 @@ ShallowWrapper {
                                                       }
                                                       balancesError={false}
                                                       balancesLoading={false}
-                                                      connected={null}
+                                                      connected={false}
                                                       deleteWallet={[Function]}
                                                       handleCardClick={[Function]}
                                                       isDecrypted={false}
@@ -14598,7 +14608,7 @@ ShallowWrapper {
                                                       }
                                                       balancesError={false}
                                                       balancesLoading={false}
-                                                      connected={null}
+                                                      connected={false}
                                                       deleteWallet={[Function]}
                                                       handleCardClick={[Function]}
                                                       isDecrypted={false}
@@ -14867,7 +14877,7 @@ ShallowWrapper {
                                                       }
                                                       balancesError={false}
                                                       balancesLoading={false}
-                                                      connected={null}
+                                                      connected={false}
                                                       deleteWallet={[Function]}
                                                       handleCardClick={[Function]}
                                                       isDecrypted={false}
@@ -15405,7 +15415,7 @@ ShallowWrapper {
                                                       }
                                                       balancesError={false}
                                                       balancesLoading={false}
-                                                      connected={null}
+                                                      connected={false}
                                                       deleteWallet={[Function]}
                                                       handleCardClick={[Function]}
                                                       isDecrypted={false}
@@ -15979,7 +15989,7 @@ ShallowWrapper {
                                             }
                                             balancesError={false}
                                             balancesLoading={false}
-                                            connected={null}
+                                            connected={false}
                                             deleteWallet={[Function]}
                                             handleCardClick={[Function]}
                                             isDecrypted={false}
@@ -16248,7 +16258,7 @@ ShallowWrapper {
                                             }
                                             balancesError={false}
                                             balancesLoading={false}
-                                            connected={null}
+                                            connected={false}
                                             deleteWallet={[Function]}
                                             handleCardClick={[Function]}
                                             isDecrypted={false}
@@ -16517,7 +16527,7 @@ ShallowWrapper {
                                             }
                                             balancesError={false}
                                             balancesLoading={false}
-                                            connected={null}
+                                            connected={false}
                                             deleteWallet={[Function]}
                                             handleCardClick={[Function]}
                                             isDecrypted={false}
@@ -17055,7 +17065,7 @@ ShallowWrapper {
                                             }
                                             balancesError={false}
                                             balancesLoading={false}
-                                            connected={null}
+                                            connected={false}
                                             deleteWallet={[Function]}
                                             handleCardClick={[Function]}
                                             isDecrypted={false}
@@ -17608,7 +17618,7 @@ ShallowWrapper {
                         }
                         balancesError={false}
                         balancesLoading={false}
-                        connected={null}
+                        connected={false}
                         deleteWallet={[Function]}
                         handleCardClick={[Function]}
                         isDecrypted={false}
@@ -17888,7 +17898,7 @@ ShallowWrapper {
                         ],
                         "balancesError": false,
                         "balancesLoading": false,
-                        "connected": null,
+                        "connected": false,
                         "deleteWallet": [Function],
                         "handleCardClick": [Function],
                         "isDecrypted": false,
@@ -18159,7 +18169,7 @@ ShallowWrapper {
                         }
                         balancesError={false}
                         balancesLoading={false}
-                        connected={null}
+                        connected={false}
                         deleteWallet={[Function]}
                         handleCardClick={[Function]}
                         isDecrypted={false}
@@ -18429,7 +18439,7 @@ ShallowWrapper {
                         ],
                         "balancesError": false,
                         "balancesLoading": false,
-                        "connected": null,
+                        "connected": false,
                         "deleteWallet": [Function],
                         "handleCardClick": [Function],
                         "isDecrypted": false,
@@ -18700,7 +18710,7 @@ ShallowWrapper {
                         }
                         balancesError={false}
                         balancesLoading={false}
-                        connected={null}
+                        connected={false}
                         deleteWallet={[Function]}
                         handleCardClick={[Function]}
                         isDecrypted={false}
@@ -18970,7 +18980,7 @@ ShallowWrapper {
                         ],
                         "balancesError": false,
                         "balancesLoading": false,
-                        "connected": null,
+                        "connected": false,
                         "deleteWallet": [Function],
                         "handleCardClick": [Function],
                         "isDecrypted": false,
@@ -19782,7 +19792,7 @@ ShallowWrapper {
                         }
                         balancesError={false}
                         balancesLoading={false}
-                        connected={null}
+                        connected={false}
                         deleteWallet={[Function]}
                         handleCardClick={[Function]}
                         isDecrypted={false}
@@ -20052,7 +20062,7 @@ ShallowWrapper {
                         ],
                         "balancesError": false,
                         "balancesLoading": false,
-                        "connected": null,
+                        "connected": false,
                         "deleteWallet": [Function],
                         "handleCardClick": [Function],
                         "isDecrypted": false,

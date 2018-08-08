@@ -1,6 +1,6 @@
 /**
  *
- * LnsDerivationPathContainer
+ * TrezorDerivationPathContainer
  *
  */
 
@@ -11,13 +11,12 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import {
-  fetchLedgerAddresses,
+  fetchTrezorAddresses,
 } from 'containers/WalletHOC/actions';
 
 
 import {
-  makeSelectLedgerNanoSInfo,
-  makeSelectErrors,
+  makeSelectTrezorInfo,
 } from 'containers/WalletHOC/selectors';
 
 
@@ -27,11 +26,11 @@ import { StyledButton, StyledSpan, ButtonDiv } from './BackBtn';
 import { ErrorWrapper } from './ErrorWrapper';
 import { ErrorText } from './ErrorText';
 
-export class LnsDerivationPathContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class TrezorDerivationPathContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     this.state = {
-      pathBase: 'm/44\'/60\'/0\'',
+      pathBase: 'm/44\'/60\'/0\'/0',
       firstAddressIndex: 0,
       lastAddressIndex: 19,
     };
@@ -41,15 +40,15 @@ export class LnsDerivationPathContainer extends React.Component { // eslint-disa
   }
 
   componentDidMount() {
-    if (this.props.ledgerNanoSInfo.get('status') === 'connected') {
+    if (this.props.trezorInfo.get('status') === 'connected') {
       this.fetchAddresses();
     }
   }
 
   componentDidUpdate(prevProps) {
-    const prevLedgerStatus = prevProps.ledgerNanoSInfo.get('status');
-    const curLedgerStatus = this.props.ledgerNanoSInfo.get('status');
-    if (prevLedgerStatus === 'disconnected' && curLedgerStatus === 'connected') {
+    const prevTrezorStatus = prevProps.trezorInfo.get('status');
+    const curTrezorStatus = this.props.trezorInfo.get('status');
+    if (prevTrezorStatus === 'disconnected' && curTrezorStatus === 'connected') {
       this.fetchAddresses();
     }
   }
@@ -63,24 +62,26 @@ export class LnsDerivationPathContainer extends React.Component { // eslint-disa
 
   onSelectAddress(index) {
     const derivationPath = `${this.state.pathBase}/${index}`;
-    const id = this.props.ledgerNanoSInfo.get('id');
-    const address = this.props.ledgerNanoSInfo.getIn(['addresses', derivationPath]);
+    const id = this.props.trezorInfo.get('id');
+    const address = this.props.trezorInfo.getIn(['addresses', derivationPath]);
+    if (!address) {
+      return;
+    }
     this.props.handleNext({ address, derivationPath, deviceId: id });
   }
 
   fetchAddresses() {
     const { lastAddressIndex, pathBase } = this.state;
-    this.props.fetchLedgerAddresses(pathBase, lastAddressIndex + 1);
+    this.props.fetchTrezorAddresses(pathBase, lastAddressIndex + 1);
   }
 
   render() {
-    const { ledgerNanoSInfo, errors } = this.props;
-    const error = errors.get('ledgerError');
-    const { status, addresses } = ledgerNanoSInfo.toJS();
+    const { trezorInfo } = this.props;
+    const { status, addresses } = trezorInfo.toJS();
     if (status === 'disconnected') {
       return (
         <ErrorWrapper>
-          <ErrorText>{error || 'Loading...'}</ErrorText>
+          <ErrorText>Trezor is not connected</ErrorText>
         </ErrorWrapper>
       );
     }
@@ -116,23 +117,20 @@ export class LnsDerivationPathContainer extends React.Component { // eslint-disa
   }
 }
 
-LnsDerivationPathContainer.propTypes = {
-  ledgerNanoSInfo: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-  fetchLedgerAddresses: PropTypes.func.isRequired,
+TrezorDerivationPathContainer.propTypes = {
+  trezorInfo: PropTypes.object.isRequired,
+  fetchTrezorAddresses: PropTypes.func.isRequired,
   handleBack: PropTypes.func.isRequired,
   handleNext: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  ledgerNanoSInfo: makeSelectLedgerNanoSInfo(),
-  errors: makeSelectErrors(),
+  trezorInfo: makeSelectTrezorInfo(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
-    fetchLedgerAddresses: (...args) => dispatch(fetchLedgerAddresses(...args)),
+    fetchTrezorAddresses: (...args) => dispatch(fetchTrezorAddresses(...args)),
   };
 }
 
@@ -140,4 +138,4 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(
   withConnect,
-)(LnsDerivationPathContainer);
+)(TrezorDerivationPathContainer);

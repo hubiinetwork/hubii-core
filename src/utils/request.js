@@ -17,6 +17,19 @@ export function requestWalletAPI(path, opts = {}, endpoint = process.env.WALLET_
   return request(path, options, endpoint);
 }
 
+export function requestHardwareWalletAPI(path, opts = {}, endpoint = 'trezor://') {
+  return request(path, {
+    method: 'POST',
+    body: JSON.stringify(opts),
+  }, endpoint)
+  .then((response) => {
+    if (response.error) {
+      throw new Error(response.error.message);
+    }
+    return response;
+  });
+}
+
 // Checks if a network request came back fine, and throws an error if not
 export function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
