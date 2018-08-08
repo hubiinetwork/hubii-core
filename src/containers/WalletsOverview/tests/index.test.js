@@ -46,7 +46,7 @@ describe('WalletsOverview', () => {
       const instance = wrapper.instance();
       const address = '0xabcd';
       instance.handleCardClick({ address });
-      expect(historySpy).toBeCalledWith(`/wallet/${address}`);
+      expect(historySpy).toBeCalledWith(`/wallet/${address}/overview`);
     });
   });
   describe('mapDispatchToProps', () => {
