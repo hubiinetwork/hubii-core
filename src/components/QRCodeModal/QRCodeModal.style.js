@@ -3,9 +3,9 @@ import QRCode from 'qrcode.react';
 
 export const Text = styled.div`
   color: ${({ theme }) => theme.palette.light};
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 1.14rem;
 `;
 
 export const StyledQRCode = styled(QRCode)`
@@ -13,8 +13,8 @@ export const StyledQRCode = styled(QRCode)`
   background-color: #ffffff;
   display: inline-block;
   margin: 1.7rem;
-  height: 149px !important;
-  width: 147px !important;
+  height: 10.64rem !important;
+  width: 10.5rem !important;
 `;
 
 export const Wrapper = styled.div`
@@ -26,5 +26,5 @@ export const Wrapper = styled.div`
   margin: 1rem;
 `;
 export const Logo = styled.img`
-  margin-top: -10px;
+  margin-top: -0.71rem;
 `;

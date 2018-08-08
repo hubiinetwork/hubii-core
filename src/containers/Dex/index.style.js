@@ -15,10 +15,11 @@ export const Container = styled.div`
 
 export const Heading = styled.h2`
   display: flex;
+  font-family: "SF Text";
   font-weight: 500;
-  color: ${({ theme }) => theme.palette.light};
-  font-size: 1.125rem;
   margin: 0;
+  color: ${({ theme }) => theme.palette.light};
+  font-size: 1.29rem;
 `;
 
 export const Title = styled.div`
@@ -31,8 +32,8 @@ export const Title = styled.div`
 export const TopHeader = styled(Header)`
   align-items: center;
   display: flex;
-  height: 4.625rem;
-  padding: 0 1.75rem;
+  height: 5.29rem;
+  padding: 0 2rem;
   background: ${({ theme }) => theme.palette.primary4};
 `;
 

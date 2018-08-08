@@ -2,12 +2,12 @@ import { Tabs } from 'antd';
 import styled from 'styled-components';
 
 export default styled(Tabs)`
-  margin-bottom: 0px;
+  margin-bottom: 0rem;
   flex: 1;
   
   .ant-tabs-nav-container {
-    border: 1px solid ${({ theme }) => theme.palette.light};
-    border-radius: 4px;
+    border: 0.07rem solid ${({ theme }) => theme.palette.light};
+    border-radius: 0.29rem;
     overflow: visible;
   }
 
@@ -17,35 +17,35 @@ export default styled(Tabs)`
   }
 
   .ant-tabs-bar {
-    border-bottom: 0px solid ${({ theme }) => theme.palette.light};
+    border-bottom: 0rem solid ${({ theme }) => theme.palette.light};
   }
 
   .ant-tabs-nav .ant-tabs-tab {
-    margin: 0 0px 0 0 !important;
-    padding: 6px 20px !important;
+    margin: 0 0rem 0 0 !important;
+    padding: 0.43rem 1.43rem !important;
     color: ${({ theme }) => theme.palette.light};
     font-family: 'SF Text';
-    font-size: 11px;
+    font-size: 0.79rem;
     font-weight: 500;
-    line-height: ${(props) => props.size === 'large' ? '18px' : '13px'};
+    line-height: ${(props) => props.size === 'large' ? '1.29rem' : '0.93rem'};
     flex: 1;
     display: flex;
     justify-content: center;
-    border-right: 1px solid ${({ theme }) => theme.palette.light};
+    border-right: 0.07rem solid ${({ theme }) => theme.palette.light};
     &:last-child {
       border-right: 0;
     }
   }
 
   .ant-tabs-nav-wrap {
-    margin: 0px;
+    margin: 0rem;
   }
 
   .ant-tabs-tab span i {
-    top: 2px;
+    top: 0.14rem;
     color: ${({ theme }) => theme.palette.secondary};
     position: relative;
-    font-size: 20px !important;
+    font-size: 1.43rem !important;
   }
 
   .ant-tabs-tab-active span i {

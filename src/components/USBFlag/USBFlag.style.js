@@ -6,11 +6,11 @@ export const Slanted = styled.div`
     content: '';
     position: absolute;
     top: 0;
-    left: -62px;
+    left: -4.43rem;
     width: 0;
     height: 0;
-    border-right: 100px solid transparent;
-    border-top: 100px solid
+    border-right: 7.14rem solid transparent;
+    border-top: 7.14rem solid
       ${(props) =>
         props.connected ? props.theme.palette.info : props.theme.palette.info};
   }
@@ -18,10 +18,10 @@ export const Slanted = styled.div`
 
 export const USB = styled.img`
   position: absolute;
-  width: 11px;
-  height: 16px;
-  top: 6px;
-  left: 6px;
+  width: 0.79rem;
+  height: 1.14rem;
+  top: 0.43rem;
+  left: 0.43rem;
 `;
 
 export const TextWhite = styled.span`

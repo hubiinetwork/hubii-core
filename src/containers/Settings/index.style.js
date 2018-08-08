@@ -28,7 +28,7 @@ export const StyledToggler = styled(Toggler)`
 `;
 
 export const StyledButton = styled(Button)`
-  width: 330px;
+  width: 23.57rem;
   margin-top: 1.5rem;
   border-width: 0.125rem;
   padding: 0.5rem 1rem;
@@ -44,7 +44,7 @@ export const StyledHeader = styled.div`
 `;
 
 export const RedButton = styled(Button)`
-  width: 330px;
+  width: 23.57rem;
   margin-top: 1.5rem;
   border-width: 0rem;
   padding: 0.5rem 1rem;
@@ -68,7 +68,7 @@ export const StyledSelect = styled(Select)`
     background-color: transparent;
     color: ${({ theme }) => theme.palette.light};
   }
-  width: 330px;
+  width: 23.57rem;
 `;
 
 export const StyledSwitch = styled(Switch)`

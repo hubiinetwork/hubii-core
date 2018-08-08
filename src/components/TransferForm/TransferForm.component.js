@@ -265,10 +265,10 @@ export default class TransferForm extends React.PureComponent {
       <div>
         <Modal
           footer={null}
-          width={'585px'}
+          width={'41.8rem'}
           maskClosable
           maskStyle={{ background: 'rgba(232,237,239,.65)' }}
-          style={{ marginTop: '20px' }}
+          style={{ marginTop: '1.43rem' }}
           visible={addContactModalVisibility}
           onCancel={this.hideContactModal}
           destroyOnClose
@@ -287,14 +287,10 @@ export default class TransferForm extends React.PureComponent {
                 label={<FormItemLabel>Asset</FormItemLabel>}
                 colon={false}
               >
-                <Image>
-                  <img
-                    src={getAbsolutePath(`public/images/assets/${assetToSend.symbol}.svg`)}
-                    width="32px"
-                    height="32px"
-                    alt="logo"
-                  />
-                </Image>
+                <Image
+                  src={getAbsolutePath(`public/images/assets/${assetToSend.symbol}.svg`)}
+                  alt="logo"
+                />
                 <Select disabled={transfering} defaultValue={assetToSend.symbol} onSelect={this.handleAssetChange}>
                   {assets.map((currency) => (
                     <Option value={currency.symbol} key={currency.symbol}>

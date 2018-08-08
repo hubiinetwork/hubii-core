@@ -18,8 +18,8 @@ export const SpaceBetween = styled.div`
 `;
 
 export const AssetWrapper = styled.div`
-  margin-right: 12px;
-  margin-top: 6px;
+  margin-right: 0.86rem;
+  margin-top: 0.43rem;
   &:last-child {
     margin-right: 0;
   }
@@ -27,16 +27,16 @@ export const AssetWrapper = styled.div`
 
 export const CardIcon = styled.div`
   color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 20px;
+  font-size: 1.43rem;
   &:hover {
     color: ${({ theme }) => theme.palette.info};
-    font-size: 20px;
+    font-size: 1.43rem;
   }
 `;
 
 export const OverflowHidden = styled.div`
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 0.71rem;
 `;
 
 export const CardIconSettings = styled.div`
@@ -44,10 +44,10 @@ export const CardIconSettings = styled.div`
   align-items: flex-end;
   flex: 1;
   color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 20px;
+  font-size: 1.43rem;
   &:hover {
     color: ${({ theme }) => theme.palette.info};
-    font-size: 20px;
+    font-size: 1.43rem;
   }
 `;
 
@@ -58,16 +58,16 @@ export const LeftSideWrapper = styled.div`
 
 export const TotalBalance = styled.span`
   color: ${({ theme }) => theme.palette.info};
-  font-size: 18px;
-  margin-right: 30px;
+  font-size: 1.29rem;
+  margin-right: 2.14rem;
   word-wrap: break-word;
-  min-width: 150px;
+  min-width: 10.71rem;
   text-align: right;
   flex: 1;
 `;
 
 export const WalletName = styled.p`
-  min-width: 70px;
+  min-width: 5rem;
   word-wrap: break-word;
 `;
 
@@ -75,8 +75,8 @@ export const OuterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-height: 120px;
-  padding: 18px 24px;
+  min-height: 8.57rem;
+  padding: 1.29rem 1.71rem;
   background-color: ${({ theme }) => theme.palette.primary4};
   color: white;
   cursor: pointer;
@@ -102,10 +102,10 @@ export const IconMenu = styled(Menu)`
   background-color: ${({ theme }) => theme.palette.primary3};
   padding: 0;
   .ant-dropdown-menu-item:first-child:hover {
-    border-radius: 4px 4px 0 0;
+    border-radius: 0.29rem 0.29rem 0 0;
   }
   .ant-dropdown-menu-item:last-child:hover {
-  border-radius: ${(props) => props.singleitem === 'true' ? '4px 4px' : '0 0'} 4px 4px;
+  border-radius: ${(props) => props.singleitem === 'true' ? '0.29rem 0.29rem' : '0 0'} 0.29rem 0.29rem;
   }
 
 `;

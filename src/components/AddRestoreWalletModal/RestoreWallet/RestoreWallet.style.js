@@ -4,12 +4,12 @@ import Button from '../../ui/Button';
 
 export const InfoContent = styled.span`
   color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 13px;
+  font-size: 0.93rem;
 `;
 
 export const Info = styled(Icon)`
   color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 20px;
+  font-size: 1.43rem;
   display: flex;
   align-items: center;
   &:hover {
@@ -34,26 +34,26 @@ export const RoundButton = styled(Button)`
 `;
 
 export const RestoreButton = styled(Button)`
-  min-width: 240px;
-  border-width: 2px;
+  min-width: 17.14rem;
+  border-width: 0.14rem;
   margin-top: 3.5rem;
   font-family: 'SF Text';
 `;
 
 export const IconWrapper = styled.div`
   display: flex;
-  margin-top: -7px;
+  margin-top: -0.5rem;
 `;
 
 export const CenterWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 10px;
-  margin-bottom: 12px;
+  margin-top: 0.71rem;
+  margin-bottom: 0.86rem;
 `;
 
 export const Loading = styled(Icon)`
-  font-size: 75px;
+  font-size: 5.36rem;
   color: ${({ theme }) => theme.palette.info};
   margin-top: 1rem;
 `;

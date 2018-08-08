@@ -7,10 +7,10 @@ export const StyledStep = styled(Step)`
     display: none;
   }
   .ant-steps-item-icon {
-    border: 0px solid rgba(0, 0, 0, 0.25);
-    width: 76px;
-    height: 3px;
-    margin-right: 0px !important;
+    border: 0rem solid rgba(0, 0, 0, 0.25);
+    width: 5.43rem;
+    height: 0.21rem;
+    margin-right: 0rem !important;
     background: ${({ theme }) => theme.palette.secondary4} !important;
   }
 `;
