@@ -1,7 +1,8 @@
 import { takeLatest, takeEvery, put, call, select, take, race, spawn } from 'redux-saga/effects';
 import { delay, eventChannel } from 'redux-saga';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
-import {deriveAddresses, prependHexToAddress} from 'utils/wallet'
+import { deriveAddresses, prependHexToAddress } from 'utils/wallet';
+import { createEthTransportActivity } from 'utils/ledger/comms';
 import { notify } from 'containers/App/actions';
 import {
   makeSelectLedgerNanoSInfo,
@@ -135,7 +136,6 @@ export function* fetchLedgerAddresses({ pathBase, count }) {
       yield put(fetchedLedgerAddress(`${pathBase}/${i}`, address));
     }
   } catch (error) {
-    console.log(error)
     yield put(ledgerError(error));
   }
 }

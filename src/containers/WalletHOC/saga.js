@@ -1,10 +1,9 @@
-import { delay, eventChannel } from 'redux-saga';
-import { takeLatest, takeEvery, put, call, select, take, race, spawn } from 'redux-saga/effects';
-import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
+import { delay } from 'redux-saga';
+import { takeLatest, takeEvery, put, call, select, spawn } from 'redux-saga/effects';
 import { Wallet, utils, Contract } from 'ethers';
 
 import { notify } from 'containers/App/actions';
-import { requestWalletAPI, requestHardwareWalletAPI } from 'utils/request';
+import { requestWalletAPI } from 'utils/request';
 import {
   ERC20ABI,
   EthNetworkProvider,
@@ -13,15 +12,12 @@ import {
   sendTransaction,
   isHardwareWallet,
   IsAddressMatch,
-  deriveAddresses,
-  prependHexToAddress,
 } from 'utils/wallet';
 
 import {
   makeSelectCurrentWalletWithInfo,
   makeSelectWallets,
   makeSelectCurrentDecryptionCallback,
-  makeSelectLedgerNanoSInfo,
 } from './selectors';
 
 import {
@@ -32,13 +28,9 @@ import {
   TRANSFER,
   TRANSFER_ETHER,
   TRANSFER_ERC20,
-  FETCH_LEDGER_ADDRESSES,
   CREATE_WALLET_FROM_PRIVATE_KEY,
   LOAD_PRICES,
   LOAD_SUPPORTED_TOKENS,
-  INIT_LEDGER,
-  LEDGER_CONNECTED,
-  LEDGER_DISCONNECTED,
   INIT_WALLETS_BALANCES,
 } from './constants';
 
@@ -60,22 +52,15 @@ import {
   showDecryptWalletModal,
   transferSuccess,
   transferError,
-  ledgerConnected,
-  ledgerDisconnected,
-  ledgerEthAppConnected,
-  ledgerEthAppDisconnected,
-  ledgerError,
-  fetchedLedgerAddress,
   transferEther as transferEtherAction,
   transferERC20 as transferERC20Action,
   hideDecryptWalletModal,
   transfer as transferAction,
 } from './actions';
 
-import trezorWatchers, {signTxByTrezor} from './HardwareWallets/trezor/saga';
-import ledgerWatchers, {signTxByLedger} from './HardwareWallets/ledger/saga';
+import trezorWatchers, { signTxByTrezor } from './HardwareWallets/trezor/saga';
+import ledgerWatchers, { signTxByLedger } from './HardwareWallets/ledger/saga';
 
-import { createEthTransportActivity } from '../../utils/ledger/comms';
 import generateRawTx from '../../utils/generateRawTx';
 
 // Creates a new software wallet
@@ -326,7 +311,7 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   }
   if (walletDetails.type === 'trezor') {
     const raw = rawTx.toJSON();
-    
+
     signedTx = yield signTxByTrezor(walletDetails, raw, chainId);
     rawTx.v = Buffer.from(signedTx.v.toString(16), 'hex');
   }
@@ -358,6 +343,6 @@ export default function* walletHoc() {
   yield takeLatest(LOAD_PRICES, loadPrices);
   yield takeLatest(LOAD_SUPPORTED_TOKENS, loadSupportedTokens);
 
-  yield trezorWatchers();
-  yield ledgerWatchers();
+  yield spawn(ledgerWatchers);
+  yield spawn(trezorWatchers);
 }
