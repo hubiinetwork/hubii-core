@@ -2,14 +2,16 @@ import styled from 'styled-components';
 import { Row, Collapse } from 'antd';
 
 
-export const Image = styled.div`
-border-bottom: 0.07rem solid ${({ theme }) => theme.palette.secondary};
-padding-bottom: 0.29rem;
+export const Image = styled.img`
+  width: 2.35rem;
+  height: 2.35rem;
+  border-bottom: 0.07rem solid ${({ theme }) => theme.palette.secondary};
+  padding-bottom: 0.29rem;
 `;
 
 export const ETHtoDollar = styled.span`
-font-size: 0.86rem;
-color: ${({ theme }) => theme.palette.secondary};
+  font-size: 0.86rem;
+  color: ${({ theme }) => theme.palette.secondary};
 `;
 
 const StyledRow = styled(Row)`
