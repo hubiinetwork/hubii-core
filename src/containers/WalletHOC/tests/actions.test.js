@@ -14,6 +14,9 @@ import {
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
+  loadTransactions,
+  loadTransactionsSuccess,
+  loadTransactionsError,
   loadSupportedTokens,
   loadSupportedTokensSuccess,
   loadSupportedTokensError,
@@ -37,6 +40,9 @@ import {
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
   LOAD_WALLET_BALANCES_ERROR,
+  LOAD_TRANSACTIONS,
+  LOAD_TRANSACTIONS_ERROR,
+  LOAD_TRANSACTIONS_SUCCESS,
   LOAD_SUPPORTED_TOKENS,
   LOAD_SUPPORTED_TOKENS_SUCCESS,
   LOAD_SUPPORTED_TOKENS_ERROR,
@@ -148,6 +154,43 @@ describe('WalletHoc actions', () => {
         error,
       };
       expect(loadWalletBalancesError(address, error)).toEqual(expected);
+    });
+  });
+
+  describe('loadTransactions Action', () => {
+    it('returns expected output', () => {
+      const address = '123';
+      const expected = {
+        type: LOAD_TRANSACTIONS,
+        address,
+      };
+      expect(loadTransactions(address)).toEqual(expected);
+    });
+  });
+
+  describe('loadTransactionsSuccess Action', () => {
+    it('returns expected output', () => {
+      const address = '123';
+      const transactions = [1, 2, 5];
+      const expected = {
+        type: LOAD_TRANSACTIONS_SUCCESS,
+        address,
+        transactions,
+      };
+      expect(loadTransactionsSuccess(address, transactions)).toEqual(expected);
+    });
+  });
+
+  describe('loadTransactionsError Action', () => {
+    it('returns expected output', () => {
+      const address = '123';
+      const error = 'error';
+      const expected = {
+        type: LOAD_TRANSACTIONS_ERROR,
+        address,
+        error,
+      };
+      expect(loadTransactionsError(address, error)).toEqual(expected);
     });
   });
 

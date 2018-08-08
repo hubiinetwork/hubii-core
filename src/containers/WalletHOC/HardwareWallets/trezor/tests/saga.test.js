@@ -1,83 +1,80 @@
 import { fromJS } from 'immutable';
-import { expectSaga} from 'redux-saga-test-plan';
+import { expectSaga } from 'redux-saga-test-plan';
 import walletHocReducer from 'containers/WalletHOC/reducer';
-import {transferErc20ActionParamsMock} from 'mocks/wallet';
-import { utils } from 'ethers';
 import {
   getAddresses as getTrezorAddresses,
 } from '../saga';
-import { balancesMock, address1Mock, walletsMock, pricesMock, supportedAssetsMock, supportedTokensMock } from '../../../tests/mocks';
 
 describe('hardware wallet: trezor', () => {
-  xit('should trigger trezorConnectedAction when trezor usb is connected', () => {
-    const storeState = {};
-    const deviceId = '9986172B302004F3BEB86C3F';
-    return expectSaga(walletHoc)
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-      // .provide({
-      //   call(effect) {
-      //     let result;
-      //     if (effect.fn === LedgerTransport.isSupported) {
-      //       result = true;
-      //     }
-      //     if (effect.fn === ledgerChannel) {
-      //       result = eventChannel((emitter) => {
-      //         setTimeout(() => {
-      //           emitter({ type: 'add', deviceId });
-      //         }, 100);
-      //         return () => {};
-      //       });
-      //     }
-      //     return result;
-      //   },
-      // })
-      .put(trezorConnected(deviceId))
-      .dispatch({ type: INIT_LEDGER })
-      .run(10000)
-      .then((result) => {
-        const state = result.storeState;
-        expect(state.getIn(['walletHoc', 'trezorInfo', 'status'])).toEqual('connected');
-        expect(state.getIn(['walletHoc', 'trezorInfo', 'deviceId'])).toEqual(deviceId);
-      });
-  });
-  xit('should trigger trezorDisconnectedAction when trezor usb is disconnected', () => {
-    const deviceId = '9986172B302004F3BEB86C3F';
-    const storeState = {
-      walletHoc: {
-        trezorInfo: {
-          status: 'connected',
-          deviceId,
-        },
-      },
-    };
-    return expectSaga(walletHoc)
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-      // .provide({
-      //   call(effect) {
-      //     let result;
-      //     if (effect.fn === LedgerTransport.isSupported) {
-      //       result = true;
-      //     }
-      //     if (effect.fn === ledgerChannel) {
-      //       result = eventChannel((emitter) => {
-      //         setTimeout(() => {
-      //           emitter({ type: 'add', deviceId });
-      //         }, 100);
-      //         return () => {};
-      //       });
-      //     }
-      //     return result;
-      //   },
-      // })
-      .put(trezorDisconnected(deviceId))
-      .dispatch({ type: INIT_LEDGER })
-      .run(10000)
-      .then((result) => {
-        const state = result.storeState;
-        expect(state.getIn(['walletHoc', 'trezorInfo', 'status'])).toEqual('disconnected');
-        expect(state.getIn(['walletHoc', 'trezorInfo', 'deviceId'])).toEqual(null);
-      });
-  });
+  // xit('should trigger trezorConnectedAction when trezor usb is connected', () => {
+  //   const storeState = {};
+  //   const deviceId = '9986172B302004F3BEB86C3F';
+  //   return expectSaga(walletHoc)
+  //     .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+  //     // .provide({
+  //     //   call(effect) {
+  //     //     let result;
+  //     //     if (effect.fn === LedgerTransport.isSupported) {
+  //     //       result = true;
+  //     //     }
+  //     //     if (effect.fn === ledgerChannel) {
+  //     //       result = eventChannel((emitter) => {
+  //     //         setTimeout(() => {
+  //     //           emitter({ type: 'add', deviceId });
+  //     //         }, 100);
+  //     //         return () => {};
+  //     //       });
+  //     //     }
+  //     //     return result;
+  //     //   },
+  //     // })
+  //     .put(trezorConnected(deviceId))
+  //     .dispatch({ type: INIT_LEDGER })
+  //     .run(10000)
+  //     .then((result) => {
+  //       const state = result.storeState;
+  //       expect(state.getIn(['walletHoc', 'trezorInfo', 'status'])).toEqual('connected');
+  //       expect(state.getIn(['walletHoc', 'trezorInfo', 'deviceId'])).toEqual(deviceId);
+  //     });
+  // });
+  // xit('should trigger trezorDisconnectedAction when trezor usb is disconnected', () => {
+  //   const deviceId = '9986172B302004F3BEB86C3F';
+  //   const storeState = {
+  //     walletHoc: {
+  //       trezorInfo: {
+  //         status: 'connected',
+  //         deviceId,
+  //       },
+  //     },
+  //   };
+  //   return expectSaga(walletHoc)
+  //     .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+  //     // .provide({
+  //     //   call(effect) {
+  //     //     let result;
+  //     //     if (effect.fn === LedgerTransport.isSupported) {
+  //     //       result = true;
+  //     //     }
+  //     //     if (effect.fn === ledgerChannel) {
+  //     //       result = eventChannel((emitter) => {
+  //     //         setTimeout(() => {
+  //     //           emitter({ type: 'add', deviceId });
+  //     //         }, 100);
+  //     //         return () => {};
+  //     //       });
+  //     //     }
+  //     //     return result;
+  //     //   },
+  //     // })
+  //     .put(trezorDisconnected(deviceId))
+  //     .dispatch({ type: INIT_LEDGER })
+  //     .run(10000)
+  //     .then((result) => {
+  //       const state = result.storeState;
+  //       expect(state.getIn(['walletHoc', 'trezorInfo', 'status'])).toEqual('disconnected');
+  //       expect(state.getIn(['walletHoc', 'trezorInfo', 'deviceId'])).toEqual(null);
+  //     });
+  // });
   it('should trigger fetchedTrezorAddressAction when got address by path', () => {
     const deviceId = '123';
     const storeState = {

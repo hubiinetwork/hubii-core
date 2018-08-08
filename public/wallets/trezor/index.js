@@ -11,7 +11,6 @@ function deviceEventListener(mainWindow) {
     const deviceId = device.features.device_id;
     devices[deviceId] = device;
     device.on('pin', (_, cb) => {
-      console.log('pin');
       showPrompt('pin')
         .then((pin) => {
           cb(undefined, pin);
@@ -80,8 +79,6 @@ async function execWalletMethods(method, params, cb) {
     }
     if (method === 'getpublickey') {
       const { message } = await session.getPublicKey(parseHDPath(path));
-
-      console.log(message);
       cb(JSON.stringify(message));
     }
   });

@@ -30,6 +30,7 @@ import {
   TRANSFER_ERC20,
   CREATE_WALLET_FROM_PRIVATE_KEY,
   LOAD_PRICES,
+  LOAD_TRANSACTIONS,
   LOAD_SUPPORTED_TOKENS,
   INIT_WALLETS_BALANCES,
 } from './constants';
@@ -49,6 +50,9 @@ import {
   loadPrices as loadPricesAction,
   loadPricesSuccess,
   loadPricesError,
+  loadTransactions as loadTransactionsAction,
+  loadTransactionsSuccess,
+  loadTransactionsError,
   showDecryptWalletModal,
   transferSuccess,
   transferError,
@@ -118,6 +122,7 @@ export function* initWalletsBalances() {
   const wallets = yield select(makeSelectWallets());
   for (let i = 0; i < wallets.size; i += 1) {
     yield put(loadWalletBalances(wallets.getIn([i, 'address'])));
+    yield put(loadTransactionsAction(wallets.getIn([i, 'address'])));
   }
   yield put(loadSupportedTokensAction());
   yield put(loadPricesAction());
@@ -162,6 +167,21 @@ export function* loadPrices() {
   }
 }
 
+export function* loadTransactions({ address }) {
+  const requestPath = `ethereum/wallets/${address}/transactions`;
+  try {
+    const returnData = yield call(requestWalletAPI, requestPath);
+
+    yield put(loadTransactionsSuccess(address, returnData));
+  } catch (err) {
+    yield put(loadTransactionsError(address, err));
+  } finally {
+    const FIVE_SEC_IN_MS = 1000 * 5;
+    yield call(() => delay(FIVE_SEC_IN_MS));
+    yield put(loadTransactionsAction(address));
+  }
+}
+
 export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit, contractAddress }) {
   if (wallet.encrypted && !wallet.decrypted) {
     yield put(showDecryptWalletModal(transferAction({ wallet, token, toAddress, amount, gasPrice, gasLimit, contractAddress })));
@@ -203,7 +223,6 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
     yield put(transferSuccess(transaction, 'ETH'));
     yield put(notify('success', 'Transaction sent'));
   } catch (error) {
-    console.log(error);
     yield put(transferError(error));
     yield put(notify('error', `Failed to send transaction: ${error}`));
   }
@@ -341,6 +360,7 @@ export default function* walletHoc() {
   yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
 
   yield takeLatest(LOAD_PRICES, loadPrices);
+  yield takeLatest(LOAD_TRANSACTIONS, loadTransactions);
   yield takeLatest(LOAD_SUPPORTED_TOKENS, loadSupportedTokens);
 
   yield spawn(ledgerWatchers);

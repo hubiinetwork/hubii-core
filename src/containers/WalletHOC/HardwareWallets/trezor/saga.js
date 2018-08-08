@@ -21,7 +21,7 @@ export function* init() {
         yield put(trezorDisconnected(event.deviceId));
       }
     } catch (e) {
-      console.log('err', e);
+      yield put(notify('error', e.message));
     }
   }
 }

@@ -34,7 +34,7 @@ module.exports = function showPrompt(event) {
         hasResolved = true;
         window.close();
       } catch (e) {
-        console.error(e);
+        reject(e);
       }
     });
 

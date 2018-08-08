@@ -27,6 +27,9 @@ import {
   LOAD_PRICES,
   LOAD_PRICES_SUCCESS,
   LOAD_PRICES_ERROR,
+  LOAD_TRANSACTIONS,
+  LOAD_TRANSACTIONS_SUCCESS,
+  LOAD_TRANSACTIONS_ERROR,
   TRANSFER,
   TRANSFER_ETHER,
   TRANSFER_ERC20,
@@ -214,6 +217,29 @@ export function loadPricesSuccess(prices) {
 export function loadPricesError(error) {
   return {
     type: LOAD_PRICES_ERROR,
+    error,
+  };
+}
+
+export function loadTransactions(address) {
+  return {
+    type: LOAD_TRANSACTIONS,
+    address,
+  };
+}
+
+export function loadTransactionsSuccess(address, transactions) {
+  return {
+    type: LOAD_TRANSACTIONS_SUCCESS,
+    transactions,
+    address,
+  };
+}
+
+export function loadTransactionsError(address, error) {
+  return {
+    type: LOAD_TRANSACTIONS_ERROR,
+    address,
     error,
   };
 }

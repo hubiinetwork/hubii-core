@@ -3,13 +3,12 @@ import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 import { fromJS } from 'immutable';
 import { ethAppNotOpenErrorMsg, disconnectedErrorMsg } from 'utils/ledger/friendlyErrors';
-import walletHoc, {initLedger, ledgerChannel, ledgerEthChannel, pollEthApp, tryCreateEthTransportActivity, fetchLedgerAddresses} from '../saga'
+import walletHoc, { initLedger, ledgerChannel, ledgerEthChannel, pollEthApp, tryCreateEthTransportActivity, fetchLedgerAddresses } from '../saga';
 import {
   INIT_LEDGER,
 } from '../../../constants';
 
 import {
-  initLedger as initLedgerAction,
   ledgerError,
   ledgerEthAppConnected,
   ledgerEthAppDisconnected,
@@ -19,69 +18,60 @@ import {
 import walletHocReducer from '../../../reducer';
 
 describe('ledger saga', () => {
-  xit('should dispatch ledgerError if cannot establish Transport', () => expectSaga(initLedger)
-      .provide([
-      [call(LedgerTransport.isSupported), false],
-      ])
-      .put(ledgerError(Error('NoSupport')))
-      .dispatch(initLedgerAction())
-      .run()
-  );
-
-  xit('should trigger ledgerConnectedAction when ledger usb is connected', () => {
-      const storeState = {};
-      const descriptor = 'test descriptor string';
-      return expectSaga(initLedger)
+  it('should trigger ledgerConnectedAction when ledger usb is connected', () => {
+    const storeState = {};
+    const descriptor = 'test descriptor string';
+    return expectSaga(initLedger)
       .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
       .provide({
-          call(effect) {
+        call(effect) {
           let result;
           if (effect.fn === LedgerTransport.isSupported) {
-              result = true;
+            result = true;
           }
           if (effect.fn === ledgerChannel) {
-              result = eventChannel((emitter) => {
+            result = eventChannel((emitter) => {
               setTimeout(() => {
-                  emitter({ type: 'add', descriptor });
+                emitter({ type: 'add', descriptor });
               }, 100);
               return () => {};
-              });
+            });
           }
           return result;
-          },
+        },
       })
       .put(ledgerConnected(descriptor))
       .run({ silenceTimeout: true })
       .then((result) => {
-          const state = result.storeState;
-          expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'connected'])).toEqual(true);
-          expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'descriptor'])).toEqual(descriptor);
+        const state = result.storeState;
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'connected'])).toEqual(true);
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'descriptor'])).toEqual(descriptor);
       });
   });
   it('should trigger ledgerDisconnectedAction when ledger usb is discorded', () => {
-      const storeState = {};
-      const descriptor = 'test descriptor string';
-      return expectSaga(walletHoc)
+    const storeState = {};
+    const descriptor = 'test descriptor string';
+    return expectSaga(walletHoc)
       .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
       .provide({
-          call(effect) {
+        call(effect) {
           let result;
           if (effect.fn === LedgerTransport.isSupported) {
-              result = true;
+            result = true;
           }
           if (effect.fn === ledgerChannel) {
-              result = eventChannel((emitter) => {
+            result = eventChannel((emitter) => {
               setTimeout(() => {
-                  emitter({ type: 'remove', descriptor });
+                emitter({ type: 'remove', descriptor });
               }, 100);
               return () => {};
-              });
+            });
           }
           return result;
-          },
-          race() {
+        },
+        race() {
           return { timeout: true };
-          },
+        },
       })
       .dispatch({ type: INIT_LEDGER })
       .put(ledgerDisconnected(descriptor))
@@ -89,24 +79,24 @@ describe('ledger saga', () => {
       .not.put.actionType(ledgerConnected().type)
       .run({ silenceTimeout: true })
       .then((result) => {
-          const state = result.storeState;
-          expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'status'])).toEqual('disconnected');
-          expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'connected'])).toEqual(false);
-          expect(state.getIn(['walletHoc', 'errors', 'ledgerError'])).toEqual(disconnectedErrorMsg);
+        const state = result.storeState;
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'status'])).toEqual('disconnected');
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'connected'])).toEqual(false);
+        expect(state.getIn(['walletHoc', 'errors', 'ledgerError'])).toEqual(disconnectedErrorMsg);
       });
   });
   it('should trigger nosupport error action when ledger is not supported', () => {
-      const storeState = {};
-      return expectSaga(initLedger)
+    const storeState = {};
+    return expectSaga(initLedger)
       .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
       .provide({
-          call(effect) {
+        call(effect) {
           let result;
           if (effect.fn === LedgerTransport.isSupported) {
-              result = false;
+            result = false;
           }
           return result;
-          },
+        },
       })
       .put(ledgerError(Error('NoSupport')))
       .not.put.actionType(ledgerDisconnected().type)
@@ -114,92 +104,92 @@ describe('ledger saga', () => {
       .run({ silenceTimeout: true });
   });
   it('should debounce remove event if add event follows within a second', () => {
-      const storeState = {};
-      const descriptor = 'test descriptor string';
-      return expectSaga(initLedger)
+    const storeState = {};
+    const descriptor = 'test descriptor string';
+    return expectSaga(initLedger)
       .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
       .provide({
-          call(effect) {
+        call(effect) {
           let result;
           if (effect.fn === LedgerTransport.isSupported) {
-              result = true;
+            result = true;
           }
           if (effect.fn === ledgerChannel) {
-              result = eventChannel((emitter) => {
+            result = eventChannel((emitter) => {
               setTimeout(() => {
-                  emitter({ type: 'remove', descriptor });
-                  emitter({ type: 'add', descriptor });
+                emitter({ type: 'remove', descriptor });
+                emitter({ type: 'add', descriptor });
               }, 100);
               return () => {};
-              });
+            });
           }
           return result;
-          },
+        },
       })
       .put.actionType(ledgerConnected().type)
       .not.put.actionType(ledgerDisconnected().type)
       .run({ silenceTimeout: true });
   });
   it('should trigger ledger detected when ethereum app is open', () => {
-      const storeState = {};
-      const descriptor = 'test descriptor string';
-      const status = {
+    const storeState = {};
+    const descriptor = 'test descriptor string';
+    const status = {
       address: {
-          publicKey: 'test',
+        publicKey: 'test',
       },
-      };
-      return expectSaga(pollEthApp, { descriptor })
+    };
+    return expectSaga(pollEthApp, { descriptor })
       .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
       .provide({
-          call(effect) {
+        call(effect) {
           if (effect.fn === ledgerEthChannel) {
-              return eventChannel((emitter) => {
+            return eventChannel((emitter) => {
               setTimeout(() => {
-                  emitter({ connected: true, address: status.address });
+                emitter({ connected: true, address: status.address });
               }, 100);
               return () => {};
-              });
+            });
           }
           return true;
-          },
+        },
       })
       .put(ledgerEthAppConnected(descriptor, status.address.publicKey))
       .run({ silenceTimeout: true })
       .then((result) => {
-          const state = result.storeState;
-          expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'status'])).toEqual('connected');
-          expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'ethConnected'])).toEqual(true);
-          expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'id'])).toEqual(status.address.publicKey);
+        const state = result.storeState;
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'status'])).toEqual('connected');
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'ethConnected'])).toEqual(true);
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'id'])).toEqual(status.address.publicKey);
           // expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'descriptor'])).toEqual(descriptor);
       });
   });
   it('should trigger ledger detected when ethereum app is close', () => {
-      const storeState = {};
-      const descriptor = 'test descriptor string';
-      const error = { name: 'TransportStatusError' };
-      return expectSaga(pollEthApp, { descriptor })
+    const storeState = {};
+    const descriptor = 'test descriptor string';
+    const error = { name: 'TransportStatusError' };
+    return expectSaga(pollEthApp, { descriptor })
       .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
       .provide({
-          call(effect) {
+        call(effect) {
           if (effect.fn === ledgerEthChannel) {
-              return eventChannel((emitter) => {
+            return eventChannel((emitter) => {
               setTimeout(() => {
-                  emitter({ connected: false, error });
+                emitter({ connected: false, error });
               }, 100);
               return () => {};
-              });
+            });
           }
           return true;
-          },
+        },
       })
       .put(ledgerEthAppDisconnected(descriptor))
       .put(ledgerError(error))
       .run({ silenceTimeout: true })
       .then((result) => {
-          const state = result.storeState;
-          expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'status'])).toEqual('disconnected');
-          expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'ethConnected'])).toEqual(false);
-          expect(state.getIn(['walletHoc', 'errors', 'ledgerError'])).toEqual(ethAppNotOpenErrorMsg);
+        const state = result.storeState;
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'status'])).toEqual('disconnected');
+        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'ethConnected'])).toEqual(false);
+        expect(state.getIn(['walletHoc', 'errors', 'ledgerError'])).toEqual(ethAppNotOpenErrorMsg);
       });
   });
   it('#tryCreateEthTransportActivity should start pollEthApp and rethrow the error to outer scope when throws exception', (done) => {

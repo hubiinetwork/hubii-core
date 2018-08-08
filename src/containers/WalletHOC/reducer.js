@@ -41,6 +41,8 @@ import {
   FETCHED_TREZOR_ADDRESS,
   SAVE_LEDGER_ADDRESS,
   DELETE_WALLET,
+  LOAD_TRANSACTIONS_SUCCESS,
+  LOAD_TRANSACTIONS_ERROR,
 } from './constants';
 import { disconnectedErrorMsg } from '../../utils/ledger/friendlyErrors';
 
@@ -74,7 +76,6 @@ export const initialState = fromJS({
     id: null,
   },
   pendingTransactions: [],
-  confirmedTransactions: [],
   supportedAssets: {
     loading: true,
     error: null,
@@ -85,6 +86,7 @@ export const initialState = fromJS({
     error: null,
     assets: [],
   },
+  transactions: {},
   balances: {},
   currentDecryptionCallback: null,
 });
@@ -155,6 +157,15 @@ function walletHocReducer(state = initialState, action) {
     case LOAD_PRICES_ERROR:
       return state
         .setIn(['prices', 'error'], action.error);
+    case LOAD_TRANSACTIONS_SUCCESS:
+      return state
+        .setIn(['transactions', action.address, 'loading'], false)
+        .setIn(['transactions', action.address, 'error'], null)
+        .setIn(['transactions', action.address, 'transactions'], fromJS(action.transactions || []));
+    case LOAD_TRANSACTIONS_ERROR:
+      return state
+        .setIn(['transactions', action.address, 'loading'], false)
+        .setIn(['transactions', action.address, 'error'], action.error);
     case SHOW_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], true)
