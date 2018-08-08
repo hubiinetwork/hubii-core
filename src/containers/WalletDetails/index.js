@@ -15,6 +15,7 @@ import {
 
 import {
   setCurrentWallet,
+  loadBlockHeight,
 } from 'containers/WalletHOC/actions';
 
 import SimplexPage from 'components/SimplexPage';
@@ -36,6 +37,7 @@ export class WalletDetails extends React.PureComponent {
 
   componentDidMount() {
     this.props.setCurrentWallet(this.props.match.params.address);
+    this.props.loadBlockHeight();
   }
 
   onHomeClick() {
@@ -112,6 +114,7 @@ WalletDetails.propTypes = {
   match: PropTypes.object.isRequired,
   currentWalletDetails: PropTypes.object.isRequired,
   setCurrentWallet: PropTypes.func.isRequired,
+  loadBlockHeight: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -121,6 +124,7 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
+    loadBlockHeight: (...args) => dispatch(loadBlockHeight(...args)),
   };
 }
 

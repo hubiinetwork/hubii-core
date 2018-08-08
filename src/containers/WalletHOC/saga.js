@@ -33,6 +33,7 @@ import {
   LOAD_TRANSACTIONS,
   LOAD_SUPPORTED_TOKENS,
   INIT_WALLETS_BALANCES,
+  FETCH_BLOCK_HEIGHT,
 } from './constants';
 
 import {
@@ -60,6 +61,8 @@ import {
   transferERC20 as transferERC20Action,
   hideDecryptWalletModal,
   transfer as transferAction,
+  loadBlockHeightSuccess,
+  loadBlockHeightError,
 } from './actions';
 
 import trezorWatchers, { signTxByTrezor } from './HardwareWallets/trezor/saga';
@@ -150,6 +153,15 @@ export function* loadSupportedTokens() {
     yield put(loadSupportedTokensSuccess(returnData));
   } catch (err) {
     yield put(loadSupportedTokensError(err));
+  }
+}
+
+export function* loadBlockHeight() {
+  try {
+    const blockHeight = yield EthNetworkProvider.getBlockNumber();
+    yield put(loadBlockHeightSuccess(blockHeight));
+  } catch (error) {
+    yield put(loadBlockHeightError(error));
   }
 }
 
@@ -362,6 +374,7 @@ export default function* walletHoc() {
   yield takeLatest(LOAD_PRICES, loadPrices);
   yield takeLatest(LOAD_TRANSACTIONS, loadTransactions);
   yield takeLatest(LOAD_SUPPORTED_TOKENS, loadSupportedTokens);
+  yield takeLatest(FETCH_BLOCK_HEIGHT, loadBlockHeight);
 
   yield spawn(ledgerWatchers);
   yield spawn(trezorWatchers);

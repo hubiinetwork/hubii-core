@@ -50,6 +50,9 @@ import {
   INIT_LEDGER,
   INIT_TREZOR,
   INIT_WALLETS_BALANCES,
+  FETCH_BLOCK_HEIGHT,
+  FETCH_BLOCK_HEIGHT_SUCCESS,
+  FETCH_BLOCK_HEIGHT_ERROR,
 } from './constants';
 
 import getFriendlyError from '../../utils/ledger/friendlyErrors';
@@ -430,6 +433,25 @@ export function saveTrezorAddress(name, derivationPath, deviceId, address) {
 export function transferError(error) {
   return {
     type: TRANSFER_ERROR,
+    error,
+  };
+}
+
+export function loadBlockHeight() {
+  return {
+    type: FETCH_BLOCK_HEIGHT,
+  };
+}
+
+export function loadBlockHeightSuccess(blockHeight) {
+  return {
+    type: FETCH_BLOCK_HEIGHT_SUCCESS,
+    blockHeight,
+  };
+}
+export function loadBlockHeightError(error) {
+  return {
+    type: FETCH_BLOCK_HEIGHT_ERROR,
     error,
   };
 }

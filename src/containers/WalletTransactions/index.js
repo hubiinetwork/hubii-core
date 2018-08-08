@@ -11,7 +11,7 @@ import { formatFiat } from 'utils/numberFormats';
 import Breakdown from 'components/Breakdown/Breakdown.component';
 import { SectionHeading } from 'components/ui/SectionHeading';
 
-import { makeSelectSupportedAssets, makeSelectCurrentWalletWithInfo } from 'containers/WalletHOC/selectors';
+import { makeSelectSupportedAssets, makeSelectCurrentWalletWithInfo, makeSelectBlockHeight } from 'containers/WalletHOC/selectors';
 
 import { StyledTransaction, TransactionsWrapper, BreakdownWrapper, OuterWrapper, StyledPagination } from './style';
 
@@ -38,7 +38,7 @@ export class WalletsTransactions extends React.Component {
 
 
   render() {
-    const { currentWalletWithInfo, supportedAssets } = this.props;
+    const { currentWalletWithInfo, supportedAssets, blockHeight } = this.props;
     const { currentPage } = this.state;
 
     const start = (currentPage - 1) * 10;
@@ -46,6 +46,7 @@ export class WalletsTransactions extends React.Component {
     const txToShow = currentWalletWithInfo.getIn(['transactions', 'transactions'])
       .toJS()
       .slice(start, end);
+    const { height } = blockHeight.toJS();
 
     if
     (
@@ -67,7 +68,7 @@ export class WalletsTransactions extends React.Component {
               amount={tx.decimalAmount}
               fiatEquivilent={formatFiat(tx.fiatValue, 'USD')}
               symbol={tx.symbol}
-              confirmations={'-1'}
+              confirmations={height ? `${height - tx.block.number}` : '-1'}
               type={tx.type}
               viewOnBlockExplorerClick={
                 EthNetworkProvider.name === 'ropsten' ?
@@ -99,11 +100,13 @@ export class WalletsTransactions extends React.Component {
 WalletsTransactions.propTypes = {
   currentWalletWithInfo: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
+  blockHeight: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
   supportedAssets: makeSelectSupportedAssets(),
+  blockHeight: makeSelectBlockHeight(),
 });
 
 export function mapDispatchToProps() {
