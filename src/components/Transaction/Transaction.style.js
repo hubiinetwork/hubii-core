@@ -3,9 +3,11 @@ import { Collapse, Icon } from 'antd';
 const Panel = Collapse.Panel;
 
 export const DetailPanel = styled(Panel)`
-  padding: 0px;
-  flex: 1;
-  border: 0 !important;
+  &&& {
+    padding: 0px;
+    flex: 1;
+    border: 0;
+  }
 `;
 
 export const HeaderWrapper = styled.div`
@@ -56,24 +58,26 @@ export const SubtitleText = styled.div`
 `;
 
 export const DetailCollapse = styled(Collapse)`
-  border-width: 0px;
-  padding: 0px;
-  background-color: transparent;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  .ant-collapse-header {
-    padding-left: 0.14rem !important;
-    padding-right: 0.14rem !important;
-    padding-top: 0.14rem !important;
-    padding-bottom: 0.14rem !important;
-  }
-  .ant-collapse-content {
-    padding-left: 0px !important;
-  }
-  .ant-collapse-content-box {
-    padding-top: 0.57rem !important;
-    padding: 0px !important;
+  &&& {
+    border-width: 0px;
+    padding: 0px;
+    background-color: transparent;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    .ant-collapse-header {
+      padding-left: 0.14rem;
+      padding-right: 0.14rem;
+      padding-top: 0.14rem;
+      padding-bottom: 0.14rem;
+    }
+    .ant-collapse-content {
+      padding-left: 0px;
+    }
+    .ant-collapse-content-box {
+      padding-top: 0.57rem;
+      padding: 0px;
+    }
   }
 `;
 
@@ -83,13 +87,15 @@ export const CollapsableContent = styled.div`
 `;
 
 export const TypeIcon = styled(Icon)`
-  color: ${(props) => props.type === 'upload' ?
+  &&& {
+    color: ${(props) => props.type === 'upload' ?
       props.theme.palette.warning :
-      props.theme.palette.info} !important;
-  font-size: 1.43rem;
-  display: flex;
-  align-items: center;
-  margin-right: 0.64rem;
+      props.theme.palette.info};
+    font-size: 1.43rem;
+    display: flex;
+    align-items: center;
+    margin-right: 0.64rem;
+  }
 `;
 
 export const GreenTextWrapper = styled.span`
