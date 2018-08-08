@@ -26,8 +26,9 @@ export default styled(Tabs)`
     color: ${({ theme }) => theme.palette.info};
   }
   .ant-tabs-nav .ant-tabs-tab:hover {
-    color: ${({ theme }) => theme.palette.secondary1};
-    background: ${({ theme }) => theme.palette.info1};
+     color: ${({ theme }) => theme.palette.secondary1};
+     background: ${({ theme }) => theme.palette.info1};
+     height: 3.55rem;
   }
   .ant-tabs-nav .ant-tabs-tab-active {
     color: ${({ theme }) => theme.palette.light};
@@ -41,5 +42,9 @@ export default styled(Tabs)`
   }
   .ant-tabs-content {
     padding: 0rem 1.86rem;
+  }
+  svg {
+    margin-right: 0.64rem;
+    
   }
 `;
