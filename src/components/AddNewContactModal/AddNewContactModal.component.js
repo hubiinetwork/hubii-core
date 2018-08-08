@@ -98,7 +98,7 @@ export class AddNewContactModal extends React.Component {
               <ModalFormInput
                 type="textarea"
                 placeholder="Enter a valid ethereum address"
-                disabled={!quickAddAddress}
+                disabled={quickAddAddress}
               />
             )}
           </ModalFormItem>
