@@ -816,7 +816,7 @@ ShallowWrapper {
           </Form.style__FormItem>
           <WalletHOC.style__StyledSpin
                     delay={0}
-                    tip="Decrypting Wallet..."
+                    size="large"
           />
 </Modal.style>,
       ],
@@ -911,7 +911,7 @@ ShallowWrapper {
 </Form.style__FormItem>,
             <WalletHOC.style__StyledSpin
               delay={0}
-              tip="Decrypting Wallet..."
+              size="large"
 />,
           ],
           "destroyOnClose": true,
@@ -968,7 +968,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "delay": 0,
-              "tip": "Decrypting Wallet...",
+              "size": "large",
             },
             "ref": null,
             "rendered": null,
@@ -1085,7 +1085,7 @@ ShallowWrapper {
             </Form.style__FormItem>
             <WalletHOC.style__StyledSpin
                         delay={0}
-                        tip="Decrypting Wallet..."
+                        size="large"
             />
 </Modal.style>,
         ],
@@ -1180,7 +1180,7 @@ ShallowWrapper {
 </Form.style__FormItem>,
               <WalletHOC.style__StyledSpin
                 delay={0}
-                tip="Decrypting Wallet..."
+                size="large"
 />,
             ],
             "destroyOnClose": true,
@@ -1237,7 +1237,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "delay": 0,
-                "tip": "Decrypting Wallet...",
+                "size": "large",
               },
               "ref": null,
               "rendered": null,

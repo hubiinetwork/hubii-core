@@ -68,7 +68,7 @@ export class WalletDetails extends React.PureComponent {
           <TabPane
             tab={
               <span>
-                <Icon type="wallet" />Overview
+                <Icon type="wallet" />Details
               </span>
             }
             key={`${match.url}/overview`}

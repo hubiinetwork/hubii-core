@@ -26,7 +26,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
 
   validatePrivateKey(rule, value, callback) {
     if (value && !isValidPrivateKey(value)) {
-      callback('Invalid key');
+      callback('Sorry, that private key doesn\'t seem to be valid');
     } else {
       callback();
     }
@@ -67,14 +67,14 @@ class ImportWalletPrivateKeyForm extends React.Component {
             <ModalFormItem
               label={
                 <StyledModalFormLabel>
-                  Wallet Name
+                  Enter a name for your wallet
                 </StyledModalFormLabel>
               }
             >
               {getFieldDecorator('name', {
                 rules: [
                   {
-                    message: 'Required field',
+                    message: 'Please enter a name for your wallet',
                     required: true,
                     whitespace: true,
                   },
@@ -84,14 +84,14 @@ class ImportWalletPrivateKeyForm extends React.Component {
             <ModalFormItem
               label={
                 <StyledModalFormLabel>
-                  Private Key
+                  {"Enter your wallet's private key"}
                 </StyledModalFormLabel>
               }
             >
               {getFieldDecorator('privateKey', {
                 rules: [
                   {
-                    message: 'Required field',
+                    message: 'Please enter your wallet\'s private key',
                     required: true,
                     whitespace: true,
                   },
@@ -103,7 +103,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
             </ModalFormItem>
             <ModalFormItem
               label={
-                <StyledModalFormLabel>Password</StyledModalFormLabel>
+                <StyledModalFormLabel>Enter a password to secure your wallet</StyledModalFormLabel>
               }
             >
               {getFieldDecorator('password', {
@@ -111,11 +111,11 @@ class ImportWalletPrivateKeyForm extends React.Component {
                   {
                     required: true,
                     whitespace: true,
-                    message: 'Please enter a password',
+                    message: 'Please enter a password for your wallet',
                   },
                   {
-                    min: 6,
-                    message: 'Password must be at least 6 characters',
+                    min: 8,
+                    message: 'Password must be at least 8 characters',
                   },
                   {
                     validator: this.validateToNextPassword,
@@ -146,7 +146,6 @@ class ImportWalletPrivateKeyForm extends React.Component {
                 <ButtonDiv loading={loading}>
                   <StyledSpin
                     delay={0}
-                    tip="Importing Wallet..."
                     size="large"
                   />
                 </ButtonDiv>
@@ -158,7 +157,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
                     <StyledSpan>Back</StyledSpan>
                   </StyledBackButton>
                   <StyledButton type={'primary'} htmlType="submit">
-                    <StyledSpan>Finish</StyledSpan>
+                    <StyledSpan>Import wallet</StyledSpan>
                   </StyledButton>
                 </ButtonDiv>
               )

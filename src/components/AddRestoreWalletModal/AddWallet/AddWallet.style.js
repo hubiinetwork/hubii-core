@@ -69,22 +69,26 @@ export const CenterWrapper = styled.div`
   align-items: center;
 `;
 
-export const SeedWrapper = styled.div`
+export const SeedWrapper = styled.ul`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   flex: 1;
 `;
 
-export const SeedInfo = styled.span`
+export const SeedInfo = styled.li`
   color: ${({ theme }) => theme.palette.light};
-  font-size: 0.86rem;
+  line-height: 1.3rem;
+  font-size: 0.9rem;
   font-weight: 500;
+  color: yellow;
+  margin-bottom: 0.5rem;
   font-family: 'SF Text';
 `;
 
 export const SeedText = styled.span`
   color: ${({ theme }) => theme.palette.info};
-  font-size: 1.14rem;
+  font-size: 1.3rem;
   line-height: 1.2;
   flex: 0.869;
   font-family: 'SF Text';

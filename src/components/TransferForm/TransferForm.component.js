@@ -284,7 +284,7 @@ export default class TransferForm extends React.PureComponent {
           <Col xl={14} sm={22}>
             <Form>
               <FormItem
-                label={<FormItemLabel>Asset</FormItemLabel>}
+                label={<FormItemLabel>Select an asset to send</FormItemLabel>}
                 colon={false}
               >
                 <Image
@@ -300,7 +300,7 @@ export default class TransferForm extends React.PureComponent {
                 </Select>
               </FormItem>
               <FormItem
-                label={<FormItemLabel>Recipient</FormItemLabel>}
+                label={<FormItemLabel>Specify the recipient</FormItemLabel>}
                 colon={false}
                 help={
                   this.props.recipients.find((recipient) => recipient.address === address) ?
@@ -312,7 +312,7 @@ export default class TransferForm extends React.PureComponent {
                       onClick={this.showContactModal}
                     >
                       <Icon type="plus" />
-                      Add New Contact
+                      Add address to your contacts book
                   </StyledButton>
                 }
               >
@@ -325,7 +325,7 @@ export default class TransferForm extends React.PureComponent {
                 />
               </FormItem>
               <FormItem
-                label={<FormItemLabel>Amount</FormItemLabel>}
+                label={<FormItemLabel>Enter an amount</FormItemLabel>}
                 colon={false}
                 help={<HelperText left={formatFiat(usdValueToSend, 'USD')} right="USD" />}
               >
@@ -333,11 +333,13 @@ export default class TransferForm extends React.PureComponent {
               </FormItem>
               <Collapse bordered={false} defaultActiveKey={['2']}>
                 <Panel
-                  header={<AdvanceSettingsHeader>Advanced Settings</AdvanceSettingsHeader>}
+                  header={<AdvanceSettingsHeader>Advanced settings</AdvanceSettingsHeader>}
                   key="1"
                 >
-                  <Input disabled={transfering} min={0} defaultValue={gasPriceGweiInput} value={gasPriceGweiInput} onChange={this.handleGasPriceChange} />
-                  <FormItem label={<FormItemLabel>Gas Limit</FormItemLabel>} colon={false}>
+                  <FormItem label={<FormItemLabel>Gas price</FormItemLabel>} colon={false}>
+                    <Input disabled={transfering} min={0} defaultValue={gasPriceGweiInput} value={gasPriceGweiInput} onChange={this.handleGasPriceChange} />
+                  </FormItem>
+                  <FormItem label={<FormItemLabel>Gas limit</FormItemLabel>} colon={false}>
                     <Input disabled={transfering} value={gasLimitInput} defaultValue={gasLimitInput} onChange={this.handleGasLimitChange} />
                   </FormItem>
                 </Panel>

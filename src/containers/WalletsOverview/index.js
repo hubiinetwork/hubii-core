@@ -93,7 +93,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
       <Wrapper>
         <Row gutter={16}>
           <Col span={16} xs={24} md={16}>
-            <SectionHeading>All Wallets</SectionHeading>
+            <SectionHeading>All wallets</SectionHeading>
             <Row type="flex" align="top" gutter={16}>
               {this.renderWalletCards()}
             </Row>

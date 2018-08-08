@@ -57,11 +57,11 @@ export class AddNewContactModal extends React.Component {
         <WrapperIcon>
           <Icon type="info-circle-o" />
           <Text>
-            Please ensure that all the information is correct.
+            Please ensure that all information is correct. Funds sent to an incorrect address are lost forever.
           </Text>
         </WrapperIcon>
         <Form onSubmit={this.handleSubmit} layout="vertical">
-          <ModalFormItem label={<ModalFormLabel>Name</ModalFormLabel>}>
+          <ModalFormItem label={<ModalFormLabel>Contact name</ModalFormLabel>}>
             {getFieldDecorator('name', {
               rules: [
                 {
@@ -73,7 +73,7 @@ export class AddNewContactModal extends React.Component {
             })(<ModalFormInput placeholder="John Doe" />)}
           </ModalFormItem>
           <ModalFormItem
-            label={<ModalFormLabel>Valid Ethereum Address</ModalFormLabel>}
+            label={<ModalFormLabel>{ 'Contact address' }</ModalFormLabel>}
           >
             {getFieldDecorator('address', {
               initialValue: quickAddAddress || '',
@@ -97,15 +97,14 @@ export class AddNewContactModal extends React.Component {
             })(
               <ModalFormInput
                 type="textarea"
-                placeholder="Enter a valid ethereum address"
                 disabled={quickAddAddress}
+                placeholder="0xee1636e3eu1969b618ca9334b5baf8e3760ab16a"
               />
             )}
           </ModalFormItem>
           <ButtonWrapper>
             <StyledButton type="primary" htmlType="submit">
-              <Icon type="plus" />
-              Add New Contact
+              Confirm
             </StyledButton>
           </ButtonWrapper>
         </Form>
