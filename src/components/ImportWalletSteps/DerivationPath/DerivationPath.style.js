@@ -5,7 +5,7 @@ import { ModalFormItem } from '../../ui/Modal';
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 export const Address = styled.span`
-  margin-left: -22px;
+  margin-left: -1.57rem;
 `;
 
 export const Flex = styled.div`
@@ -14,51 +14,51 @@ export const Flex = styled.div`
 `;
 
 export const SpanText = styled.span`
-  font-size: 16px;
+  font-size: 1.14rem;
   font-weight: 500;
-  line-height: 19px;
+  line-height: 1.36rem;
 `;
 
 export const PathTitle = styled.div`
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 1.14rem;
   color: ${({ theme }) => theme.palette.secondary1};
 `;
 
 export const PathSubtitle = styled.div`
-  font-size: 12px;
+  font-size: 0.86rem;
   font-weight: 500;
-  line-height: 14px;
+  line-height: 1rem;
   color: ${({ theme }) => theme.palette.secondary6};
 `;
 
 export const PathWrapper = styled.div`
-  margin-top: -5px;
-  margin-left: 7px;
-  width: 149px;
+  margin-top: -0.36rem;
+  margin-left: 0.5rem;
+  width: 10.64rem;
   color: ${({ theme }) => theme.palette.secondary6};
 `;
 
 export const Radios = styled.div`
-  margin-left: 1.3px;
+  margin-left: 0.09rem;
 `;
 
 export const RadioTitle = styled.div`
   color: ${({ theme }) => theme.palette.light};
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 16px;
-  margin-top: 23px;
+  line-height: 1.14rem;
+  margin-top: 1.64rem;
 `;
 
 export const RadioButtonWrapper = styled.div`
   display: flex;
-  margin-top: 26px;
-  min-width: 240px;
+  margin-top: 1.86rem;
+  min-width: 17.14rem;
   .ant-radio-button-wrapper-checked {
     background-color: ${({ theme }) => theme.palette.info} !important;
-    border: 0px;
+    border: 0rem;
     span i {
       display: flex !important;
     }
@@ -67,13 +67,13 @@ export const RadioButtonWrapper = styled.div`
 
 export const Tick = styled(Icon)`
   color: white;
-  font-size: 11px;
+  font-size: 0.79rem;
   font-weight: 700;
 `;
 
 export const StyledRadio = styled(RadioButton)``;
 export const FormItem = styled(ModalFormItem)`
-  margin-top: 0px;
+  margin-top: 0rem;
 `;
 
 export const StyledRadioGroup = styled(RadioGroup)`
@@ -83,12 +83,12 @@ export const StyledRadioGroup = styled(RadioGroup)`
   .ant-radio-button-wrapper {
     background-color: transparent;
     border-radius: 50%;
-    width: 16px;
-    height: 16px;
+    width: 1.14rem;
+    height: 1.14rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid ${({ theme }) => theme.palette.secondary2};
+    border: 0.07rem solid ${({ theme }) => theme.palette.secondary2};
     span i {
       display: none;
     }
@@ -107,21 +107,21 @@ export const TokenBalance = styled.div``;
 export const StyledTable = styled(Table)`
   .ant-table-thead > tr > th.ant-table-selection-column,
   .ant-table-tbody > tr > td.ant-table-selection-column {
-    width: 30px !important;
-    min-width: 15px !important;
+    width: 2.14rem !important;
+    min-width: 1.07rem !important;
   }
   thead {
     tr th {
       color: ${({ theme }) => theme.palette.light};
-      font-size: 13px;
+      font-size: 0.93rem;
       font-weight: 500;
-      line-height: 15px;
+      line-height: 1.07rem;
     }
   }
   tbody {
     tr {
       td.ant-table-selection-column {
-        padding: 4px 0px !important;
+        padding: 0.29rem 0rem !important;
       }
     }
     tr:hover {
@@ -131,69 +131,69 @@ export const StyledTable = styled(Table)`
   }
   th,
   td {
-    padding: 6px 6px !important;
+    padding: 0.43rem 0.43rem !important;
     span .ant-radio-wrapper-checked {
       span span::after {
         background-color: ${({ theme }) => theme.palette.info} !important;
-        border: 1px solid ${({ theme }) => theme.palette.info} !important;
+        border: 0.07rem solid ${({ theme }) => theme.palette.info} !important;
       }
     }
-    border: 0px !important;
+    border: 0rem !important;
     font-weight: 500;
     background: none !important;
     span label {
       .ant-radio-inner {
         background-color: transparent;
-        border: 1px solid ${({ theme }) => theme.palette.secondary2};
+        border: 0.07rem solid ${({ theme }) => theme.palette.secondary2};
       }
     }
   }
   th {
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 0.86rem;
+    line-height: 1rem;
   }
   td {
-    font-size: 12px;
+    font-size: 0.86rem;
     font-weight: 500;
-    line-height: 14px;
+    line-height: 1rem;
     color: ${({ theme }) => theme.palette.secondary1} !important;
   }
   .ant-table-small {
     border: none;
   }
-  margin-top: 5px;
-  margin-left: -15px;
+  margin-top: 0.36rem;
+  margin-left: -1.07rem;
 }
 `;
 
 export const PreviousAddresses = styled(Button)`
   color: ${({ theme }) => theme.palette.info};
-  max-height: 26px;
-  min-width: 157px;
-  margin-top: 8px;
+  max-height: 1.86rem;
+  min-width: 11.21rem;
+  margin-top: 0.57rem;
 `;
 
 export const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 26px;
+  margin-bottom: 1.86rem;
   margin-top: 1rem;
 `;
 export const FormDiv = styled.div`
-  margin-left: 30px;
+  margin-left: 2.14rem;
 `;
 
 export const StyledButton = styled(Button)`
   background-color: ${({ disabled: white }) =>
     white && 'transparent !important'};
-  font-size: 12px;
+  font-size: 0.86rem;
   font-weight: 500;
-  border-width: 2px;
-  height: 40px;
-  width: 162px;
+  border-width: 0.14rem;
+  height: 2.86rem;
+  width: 11.57rem;
   border: ${({ disabled: white, theme }) =>
-    white && `2px solid ${theme.palette.secondary4} !important`};
-  min-width: ${({ current: width }) => (width === 0 ? '260px' : '190px')};
+    white && `0.14rem solid ${theme.palette.secondary4} !important`};
+  min-width: ${({ current: width }) => (width === 0 ? '18.57rem' : '13.57rem')};
   color: ${({ disabled: white, theme }) =>
     white
       ? `${theme.palette.secondary4} !important`
@@ -202,14 +202,14 @@ export const StyledButton = styled(Button)`
     background-color: ${({ disabled: white }) =>
       white && 'transparent !important'};
     border: ${({ disabled: white, theme }) =>
-      white && `2px solid ${theme.palette.secondary4} !important`};
+      white && `0.14rem solid ${theme.palette.secondary4} !important`};
   }
 `;
 
 
 export const StyledSpan = styled.span`
-  font-size: 12px;
+  font-size: 0.86rem;
   font-weight: 500;
-  line-height: 14px;
+  line-height: 1rem;
   text-align: center;
 `;

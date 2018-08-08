@@ -17,12 +17,12 @@ import Logo from './Logo';
 export const Dex = () => (
   <Wrapper>
     <TopHeader>
-      <Heading>Dex</Heading>
+      <Heading>Exchange</Heading>
     </TopHeader>
     <Container>
       <Logo src={getAbsolutePath('public/images/hubii-core-logo-wtext.svg')} />
       <Title>
-        DEX Coming Soon.
+        DEX coming soon
       </Title>
     </Container>
   </Wrapper>

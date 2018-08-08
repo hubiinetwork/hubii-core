@@ -3,12 +3,12 @@ import { Icon } from 'antd';
 
 export const HomeIcon = styled(Icon)`
   color: ${({ theme }) => theme.palette.light};
-  font-size: 24px;
+  font-size: 1.71rem;
   transition: all 0.3s ease-in-out;
 `;
 
 export const StyledLink = styled.div`
-  width: 72px;
+  width: 5.14rem;
   background-color: ${({ theme }) => theme.palette.primary};
   display: flex;
   align-items: center;

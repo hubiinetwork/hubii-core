@@ -59,6 +59,7 @@ ShallowWrapper {
     decryptWallet={[Function]}
     hideDecryptWalletModal={[Function]}
     initLedger={[Function]}
+    initTrezor={[Function]}
     initWalletsBalances={[Function]}
     loading={
         Immutable.Map {
@@ -134,6 +135,7 @@ ShallowWrapper {
           decryptWallet={[Function]}
           hideDecryptWalletModal={[Function]}
           initLedger={[Function]}
+          initTrezor={[Function]}
           initWalletsBalances={[Function]}
           loading={
                     Immutable.Map {
@@ -153,11 +155,11 @@ ShallowWrapper {
           onCancel={[Function]}
           style={
                     Object {
-                              "marginTop": "20px",
+                              "marginTop": "1.43rem",
                             }
           }
           visible={undefined}
-          width="585px"
+          width="41.79rem"
 >
           <Form.style__FormItem
                     colon={false}
@@ -241,6 +243,7 @@ ShallowWrapper {
           "decryptWallet": [Function],
           "hideDecryptWalletModal": [Function],
           "initLedger": [Function],
+          "initTrezor": [Function],
           "initWalletsBalances": [Function],
           "loading": Immutable.Map {
             decryptingWallet: false,
@@ -287,10 +290,10 @@ ShallowWrapper {
           },
           "onCancel": [Function],
           "style": Object {
-            "marginTop": "20px",
+            "marginTop": "1.43rem",
           },
           "visible": undefined,
-          "width": "585px",
+          "width": "41.79rem",
         },
         "ref": null,
         "rendered": Array [
@@ -409,6 +412,7 @@ ShallowWrapper {
             decryptWallet={[Function]}
             hideDecryptWalletModal={[Function]}
             initLedger={[Function]}
+            initTrezor={[Function]}
             initWalletsBalances={[Function]}
             loading={
                         Immutable.Map {
@@ -428,11 +432,11 @@ ShallowWrapper {
             onCancel={[Function]}
             style={
                         Object {
-                                    "marginTop": "20px",
+                                    "marginTop": "1.43rem",
                                   }
             }
             visible={undefined}
-            width="585px"
+            width="41.79rem"
 >
             <Form.style__FormItem
                         colon={false}
@@ -516,6 +520,7 @@ ShallowWrapper {
             "decryptWallet": [Function],
             "hideDecryptWalletModal": [Function],
             "initLedger": [Function],
+            "initTrezor": [Function],
             "initWalletsBalances": [Function],
             "loading": Immutable.Map {
               decryptingWallet: false,
@@ -562,10 +567,10 @@ ShallowWrapper {
             },
             "onCancel": [Function],
             "style": Object {
-              "marginTop": "20px",
+              "marginTop": "1.43rem",
             },
             "visible": undefined,
-            "width": "585px",
+            "width": "41.79rem",
           },
           "ref": null,
           "rendered": Array [
@@ -692,6 +697,7 @@ ShallowWrapper {
     decryptWallet={[Function]}
     hideDecryptWalletModal={[Function]}
     initLedger={[Function]}
+    initTrezor={[Function]}
     initWalletsBalances={[Function]}
     loading={
         Immutable.Map {
@@ -767,6 +773,7 @@ ShallowWrapper {
           decryptWallet={[Function]}
           hideDecryptWalletModal={[Function]}
           initLedger={[Function]}
+          initTrezor={[Function]}
           initWalletsBalances={[Function]}
           loading={
                     Immutable.Map {
@@ -786,11 +793,11 @@ ShallowWrapper {
           onCancel={[Function]}
           style={
                     Object {
-                              "marginTop": "20px",
+                              "marginTop": "1.43rem",
                             }
           }
           visible={undefined}
-          width="585px"
+          width="41.79rem"
 >
           <Form.style__FormItem
                     colon={false}
@@ -871,6 +878,7 @@ ShallowWrapper {
           "decryptWallet": [Function],
           "hideDecryptWalletModal": [Function],
           "initLedger": [Function],
+          "initTrezor": [Function],
           "initWalletsBalances": [Function],
           "loading": Immutable.Map {
             decryptingWallet: true,
@@ -914,10 +922,10 @@ ShallowWrapper {
           },
           "onCancel": [Function],
           "style": Object {
-            "marginTop": "20px",
+            "marginTop": "1.43rem",
           },
           "visible": undefined,
-          "width": "585px",
+          "width": "41.79rem",
         },
         "ref": null,
         "rendered": Array [
@@ -1034,6 +1042,7 @@ ShallowWrapper {
             decryptWallet={[Function]}
             hideDecryptWalletModal={[Function]}
             initLedger={[Function]}
+            initTrezor={[Function]}
             initWalletsBalances={[Function]}
             loading={
                         Immutable.Map {
@@ -1053,11 +1062,11 @@ ShallowWrapper {
             onCancel={[Function]}
             style={
                         Object {
-                                    "marginTop": "20px",
+                                    "marginTop": "1.43rem",
                                   }
             }
             visible={undefined}
-            width="585px"
+            width="41.79rem"
 >
             <Form.style__FormItem
                         colon={false}
@@ -1138,6 +1147,7 @@ ShallowWrapper {
             "decryptWallet": [Function],
             "hideDecryptWalletModal": [Function],
             "initLedger": [Function],
+            "initTrezor": [Function],
             "initWalletsBalances": [Function],
             "loading": Immutable.Map {
               decryptingWallet: true,
@@ -1181,10 +1191,10 @@ ShallowWrapper {
             },
             "onCancel": [Function],
             "style": Object {
-              "marginTop": "20px",
+              "marginTop": "1.43rem",
             },
             "visible": undefined,
-            "width": "585px",
+            "width": "41.79rem",
           },
           "ref": null,
           "rendered": Array [

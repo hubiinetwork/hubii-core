@@ -2,6 +2,7 @@ import { Icon, Dropdown, Popover } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
+import { isHardwareWallet } from 'utils/wallet';
 import DeletionModal from 'components/DeletionModal';
 import ExportPrivateInfo from 'components/ExportPrivateInfo';
 import WalletDetailPopoverContent from './WalletDetailPopoverContent';
@@ -122,7 +123,7 @@ export class WalletItemCard extends React.PureComponent {
     }
     return (
       <OverflowHidden>
-        {type === 'lns' && <USBFlag connected={connected} />}
+        {isHardwareWallet(type) && <USBFlag connected={connected} />}
         <SpaceBetween>
           <CardIcon>
             <Popover
@@ -167,10 +168,10 @@ export class WalletItemCard extends React.PureComponent {
         </OuterWrapper>
         <Modal
           footer={null}
-          width={modalType === 'deleteWallet' ? '520px' : '700px'}
+          width={modalType === 'deleteWallet' ? '37.14rem' : '50rem'}
           maskClosable
           maskStyle={{ background: 'rgba(232,237,239,.65)' }}
-          style={{ marginTop: '20px' }}
+          style={{ marginTop: '1.43rem' }}
           visible={
             (isDecrypted && modalVisibility) ||
             (modalVisibility && modalType === 'deleteWallet')

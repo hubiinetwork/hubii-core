@@ -4,9 +4,9 @@ import Button from '../ui/Button';
 
 export const TextLight = styled.div`
   color: ${({ theme }) => theme.palette.light};
-  font-size: 16px;
+  font-size: 1.14rem;
   font-weight: 500;
-  line-height: 19px;
+  line-height: 1.36rem;
 `;
 export const LogoWrapper = styled.div`
   display: flex;
@@ -47,8 +47,8 @@ export const IconSelect = styled(StyledSelect)`
 `;
 
 export const Image = styled.img`
-  width: 25px;
-  height: 25px;
+  width: 1.79rem;
+  height: 1.79rem;
 `;
 export const IconSelectWrapper = styled.div`
   display: flex;
@@ -57,9 +57,9 @@ export const IconSelectWrapper = styled.div`
 
 export const TextPrimary = styled.div`
   color: ${({ theme }) => theme.palette.secondary};
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 1.14rem;
 `;
 export const FlexWrapper = styled.div`
   display: flex;
@@ -68,19 +68,19 @@ export const FlexWrapper = styled.div`
 `;
 export const Rate = styled.div`
   color: ${({ theme }) => theme.palette.light};
-  font-size: 20px;
+  font-size: 1.43rem;
   font-weight: 500;
-  line-height: 24px;
+  line-height: 1.71rem;
   text-align: right;
-  margin-bottom: 6px;
+  margin-bottom: 0.43rem;
 `;
 
 export const StyledButton = styled(Button)`
   color: ${({ theme }) => theme.palette.light};
-  margin-top: 93px;
-  min-width: 240px;
-  margin-bottom: 60px;
-  border: 2px solid ${({ theme }) => theme.palette.info3};
+  margin-top: 6.64rem;
+  min-width: 17.14rem;
+  margin-bottom: 4.29rem;
+  border: 0.14rem solid ${({ theme }) => theme.palette.info3};
 `;
 
 export const ButtonWrapper = styled.div`

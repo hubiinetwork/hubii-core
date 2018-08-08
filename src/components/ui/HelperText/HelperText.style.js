@@ -7,6 +7,6 @@ export const HelperWrapper = styled.div`
 `;
 
 export const Text = styled.span`
-  font-size: 14px;
+  font-size: 1rem;
   color: ${({ theme }) => theme.palette.secondary1};
 `;

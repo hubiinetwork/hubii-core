@@ -201,7 +201,7 @@ describe('makeSelectTotalBalances', () => {
         supportedAssets: supportedAssetsMock.set('loading', true),
       },
     });
-    const expected = fromJS({ assets: {}, loading: true, totalUsd: new BigNumber('0') });
+    const expected = fromJS({ assets: {}, loading: true, total: { usd: new BigNumber('0') } });
     expect(totalBalancesSelector(mockedState)).toEqual(expected);
   });
 
@@ -213,7 +213,7 @@ describe('makeSelectTotalBalances', () => {
         supportedAssets: supportedAssetsMock,
       },
     });
-    const expected = fromJS({ assets: {}, loading: true, totalUsd: new BigNumber('0') });
+    const expected = fromJS({ assets: {}, loading: true, total: { usd: new BigNumber('0') } });
     expect(totalBalancesSelector(mockedState)).toEqual(expected);
   });
 });

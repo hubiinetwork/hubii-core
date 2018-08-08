@@ -1,4 +1,7 @@
 import { providers } from 'ethers';
+import { List, Map } from 'immutable';
+import { publicToAddress } from 'ethereumjs-util';
+import HDKey from 'hdkey';
 import BigNumber from 'bignumber.js';
 import fatalError from './fatalError';
 
@@ -34,6 +37,25 @@ export const findWalletIndex = (state, address, scopedFatalError = fatalError) =
   }
 };
 
+export const getBreakdown = (balances, supportedAssets) => {
+    // convert balances to Map if they're in array form
+  let formattedBalances = balances;
+  if (balances.get('assets') && List.isList(balances.get('assets'))) {
+    const assetsAsObj = balances
+        .get('assets')
+        .reduce((acc, asset) => acc.set(asset.get('currency'), asset), new Map());
+    formattedBalances = balances.set('assets', assetsAsObj);
+  }
+
+  const totalFiat = formattedBalances.getIn(['total', 'usd']);
+
+  return formattedBalances.get('assets').keySeq().map((asset) => ({
+    label: getCurrencySymbol(supportedAssets, asset),
+    percentage: (formattedBalances.getIn(['assets', asset, 'value', 'usd']) / totalFiat) * 100,
+    color: supportedAssets.get('assets').find((a) => a.get('currency') === asset).get('color'),
+  })).toJS();
+};
+
 export const getCurrencySymbol = (supportedAssets, currency) => supportedAssets
   .get('assets')
   .find((a) => a.get('currency') === currency)
@@ -56,6 +78,21 @@ export const isValidPrivateKey = (str) => {
   return false;
 };
 
+export function deriveAddresses({ publicKey, chainCode, count }) {
+  const pathBase = 'm';
+  const hdk = new HDKey();
+  hdk.publicKey = new Buffer(publicKey, 'hex');
+  hdk.chainCode = new Buffer(chainCode, 'hex');
+  const addresses = [];
+  for (let i = 0; i < count; i += 1) {
+    const index = i;
+    const dkey = hdk.derive(`${pathBase}/${index}`);
+    const address = publicToAddress(dkey.publicKey, true).toString('hex');
+    addresses.push(address);
+  }
+  return addresses;
+}
+
 // input and output are BigNumber
 export const gweiToWei = (gwei) => (gwei.times(new BigNumber('10').pow('9')));
 
@@ -73,3 +110,6 @@ export const sendTransaction = (...args) => EthNetworkProvider.sendTransaction(.
 
 export const getTransaction = (...args) => EthNetworkProvider.getTransaction(...args);
 
+export const isHardwareWallet = (type) => type === 'lns' || type === 'trezor';
+
+export const prependHexToAddress = (address) => address.startsWith('0x') ? address : `0x${address}`;
