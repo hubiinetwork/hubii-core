@@ -12,11 +12,13 @@ import { createStructuredSelector } from 'reselect';
 
 import {
   fetchTrezorAddresses,
+  loadWalletBalances,
 } from 'containers/WalletHOC/actions';
 
 
 import {
   makeSelectTrezorInfo,
+  makeSelectBalances,
 } from 'containers/WalletHOC/selectors';
 
 
@@ -46,11 +48,25 @@ export class TrezorDerivationPathContainer extends React.Component { // eslint-d
   }
 
   componentDidUpdate(prevProps) {
+    // const { balances, loadWalletBalances } = this.props;
     const prevTrezorStatus = prevProps.trezorInfo.get('status');
     const curTrezorStatus = this.props.trezorInfo.get('status');
     if (prevTrezorStatus === 'disconnected' && curTrezorStatus === 'connected') {
       this.fetchAddresses();
     }
+    // const prevAddresses = prevProps.trezorInfo.get('addresses')
+    // const curAddresses = this.props.trezorInfo.get('addresses')
+    // const addresses = curAddresses.valueSeq().toArray()
+    // console.log(prevAddresses.equals(curAddresses), addresses.length, this.state.lastAddressIndex + 1)
+    // if (!prevAddresses.equals(curAddresses) && addresses.length === this.state.lastAddressIndex + 1) {
+    //   addresses.forEach(address => {
+    //     console.log('load', address)
+    //     if (!balances.get(address)) {
+    //       loadWalletBalances(address, true)
+    //     }
+    //   })
+    // }
+    // console.log(prevAddresses, curAddresses, prevAddresses == curAddresses, curAddresses.valueSeq().toArray())
   }
 
   onChangePathBase(e) {
@@ -126,11 +142,13 @@ TrezorDerivationPathContainer.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   trezorInfo: makeSelectTrezorInfo(),
+  balances: makeSelectBalances(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     fetchTrezorAddresses: (...args) => dispatch(fetchTrezorAddresses(...args)),
+    loadWalletBalances: (...args) => dispatch(loadWalletBalances(...args)),
   };
 }
 

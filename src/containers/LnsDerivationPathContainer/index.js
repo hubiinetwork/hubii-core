@@ -9,15 +9,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import { utils } from 'ethers';
 
 import {
   fetchLedgerAddresses,
+  loadWalletBalances,
 } from 'containers/WalletHOC/actions';
 
 
 import {
   makeSelectLedgerNanoSInfo,
   makeSelectErrors,
+  makeSelectBalances,
 } from 'containers/WalletHOC/selectors';
 
 
@@ -47,10 +50,23 @@ export class LnsDerivationPathContainer extends React.Component { // eslint-disa
   }
 
   componentDidUpdate(prevProps) {
+    const { balances } = this.props;
     const prevLedgerStatus = prevProps.ledgerNanoSInfo.get('status');
     const curLedgerStatus = this.props.ledgerNanoSInfo.get('status');
     if (prevLedgerStatus === 'disconnected' && curLedgerStatus === 'connected') {
       this.fetchAddresses();
+    }
+
+    const prevAddresses = prevProps.ledgerNanoSInfo.get('addresses');
+    const curAddresses = this.props.ledgerNanoSInfo.get('addresses');
+    const addresses = curAddresses.valueSeq().toArray();
+    if (prevAddresses !== curAddresses) {
+      addresses.forEach((address) => {
+        // console.log(balances.get(address))
+        if (!balances.get(address)) {
+          this.props.loadWalletBalances(address, true);
+        }
+      });
     }
   }
 
@@ -74,7 +90,7 @@ export class LnsDerivationPathContainer extends React.Component { // eslint-disa
   }
 
   render() {
-    const { ledgerNanoSInfo, errors } = this.props;
+    const { ledgerNanoSInfo, balances, errors } = this.props;
     const error = errors.get('ledgerError');
     const { status, addresses } = ledgerNanoSInfo.toJS();
     if (status === 'disconnected') {
@@ -90,10 +106,16 @@ export class LnsDerivationPathContainer extends React.Component { // eslint-disa
     let i;
     for (i = 0; i <= lastAddressIndex; i += 1) {
       const curDerivationPath = `${pathBase}/${i}`;
+      const assetsState = balances.getIn([addresses[curDerivationPath], 'assets']);
+      let balance = 'Loading...';
+      if (assetsState) {
+        const asset = assetsState.toJSON().find((ast) => ast.currency === 'ETH');
+        balance = parseFloat(utils.formatEther(asset.balance));
+      }
       processedAddresses.push({
         key: i,
         index: i,
-        ethBalance: 'Feature coming soon',
+        ethBalance: balance,
         address: addresses[curDerivationPath] ? `${addresses[curDerivationPath].slice(0, 18)}...` : 'Loading...',
       });
     }
@@ -119,7 +141,9 @@ export class LnsDerivationPathContainer extends React.Component { // eslint-disa
 LnsDerivationPathContainer.propTypes = {
   ledgerNanoSInfo: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  balances: PropTypes.object.isRequired,
   fetchLedgerAddresses: PropTypes.func.isRequired,
+  loadWalletBalances: PropTypes.func.isRequired,
   handleBack: PropTypes.func.isRequired,
   handleNext: PropTypes.func.isRequired,
 };
@@ -127,12 +151,14 @@ LnsDerivationPathContainer.propTypes = {
 const mapStateToProps = createStructuredSelector({
   ledgerNanoSInfo: makeSelectLedgerNanoSInfo(),
   errors: makeSelectErrors(),
+  balances: makeSelectBalances(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     fetchLedgerAddresses: (...args) => dispatch(fetchLedgerAddresses(...args)),
+    loadWalletBalances: (...args) => dispatch(loadWalletBalances(...args)),
   };
 }
 
