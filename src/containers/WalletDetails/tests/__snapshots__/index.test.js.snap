@@ -58,6 +58,7 @@ ShallowWrapper {
             },
           }
     }
+    loadBlockHeight={[Function]}
     match={
         Object {
             "params": Object {
