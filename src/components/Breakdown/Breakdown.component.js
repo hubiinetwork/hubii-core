@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { VictoryPie, VictoryContainer, VictoryTooltip } from 'victory';
 import { SectionHeading } from '../ui/SectionHeading';
-import { TotalAmount, Title } from './Breakdown.style';
+import { TotalAmount, Title, Wrapper } from './Breakdown.style';
 import Tokens from './Tokens';
 import { formatFiat } from '../../utils/numberFormats';
 
@@ -24,7 +24,7 @@ const Breakdown = ({ data = [], value }) => {
     return <div />;
   }
   return (
-    <div>
+    <Wrapper>
       <SectionHeading>Breakdown</SectionHeading>
       {(
         <div>
@@ -59,7 +59,7 @@ const Breakdown = ({ data = [], value }) => {
             <Tokens data={labels} />
           </div>
       }
-    </div>
+    </Wrapper>
   );
 };
 

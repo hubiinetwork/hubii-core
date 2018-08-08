@@ -5,9 +5,12 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
 
+import { getBreakdown } from 'utils/wallet';
+
 import { deleteWallet, showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHOC/actions';
 import {
   makeSelectLedgerNanoSInfo,
+  makeSelectTrezorInfo,
   makeSelectSupportedAssets,
   makeSelectTotalBalances,
   makeSelectWalletsWithInfo,
@@ -18,29 +21,17 @@ import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
 
 import { WalletCardsCol, Wrapper, WalletPlaceHolder } from './style';
-import { getCurrencySymbol } from '../../utils/wallet';
 
 export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(...args) {
     super(...args);
     this.renderWalletCards = this.renderWalletCards.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
-    this.getBreakdown = this.getBreakdown.bind(this);
-  }
-
-  getBreakdown() {
-    const { totalBalances, supportedAssets } = this.props;
-    const totalUsd = totalBalances.get('totalUsd');
-    return totalBalances.get('assets').keySeq().map((asset) => ({
-      label: getCurrencySymbol(supportedAssets, asset),
-      percentage: (totalBalances.getIn(['assets', asset, 'usdValue']) / totalUsd) * 100,
-      color: supportedAssets.get('assets').find((a) => a.get('currency') === asset).get('color'),
-    })).toJS();
   }
 
   handleCardClick(card) {
     const { history } = this.props;
-    history.push(`/wallet/${card.address}`);
+    history.push(`/wallet/${card.address}/overview`);
   }
 
 
@@ -56,37 +47,48 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
         </WalletPlaceHolder>
       );
     }
-    return wallets.map((wallet) => (
-      <WalletCardsCol
-        span={12}
-        key={wallet.name}
-        xs={24}
-        sm={24}
-        lg={12}
-      >
-        <WalletItemCard
-          name={wallet.name}
-          totalBalance={(wallet.balances.loading || wallet.balances.error) ? 0 : wallet.balances.total.usd.toNumber()}
-          balancesLoading={wallet.balances.loading}
-          balancesError={!!wallet.balances.error}
-          address={wallet.address}
-          type={wallet.type}
-          connected={wallet.type === 'lns' ? this.props.ledgerNanoSInfo.get('id') === wallet.deviceId : null}
-          assets={wallet.balances.assets}
-          mnemonic={wallet.mnemonic}
-          privateKey={wallet.decrypted ? wallet.decrypted.privateKey : null}
-          isDecrypted={!!wallet.decrypted}
-          showDecryptWalletModal={() => this.props.showDecryptWalletModal()}
-          setCurrentWallet={() => this.props.setCurrentWallet(wallet.address)}
-          handleCardClick={() => this.handleCardClick(wallet)}
-          walletList={wallets}
-          deleteWallet={() => this.props.deleteWallet(wallet.address)}
-        />
-      </WalletCardsCol>
-    ));
+    return wallets.map((wallet) => {
+      let connected = false;
+      if (wallet.type === 'lns' && this.props.ledgerNanoSInfo.get('id') === wallet.deviceId) {
+        connected = true;
+      }
+      if (wallet.type === 'trezor' && this.props.trezorInfo.get('id') === wallet.deviceId) {
+        connected = true;
+      }
+      return (
+        <WalletCardsCol
+          span={12}
+          key={wallet.name}
+          xs={24}
+          sm={24}
+          lg={12}
+        >
+          <WalletItemCard
+            name={wallet.name}
+            totalBalance={(wallet.balances.loading || wallet.balances.error) ? 0 : wallet.balances.total.usd.toNumber()}
+            balancesLoading={wallet.balances.loading}
+            balancesError={!!wallet.balances.error}
+            address={wallet.address}
+            type={wallet.type}
+            connected={connected}
+            assets={wallet.balances.assets}
+            mnemonic={wallet.mnemonic}
+            privateKey={wallet.decrypted ? wallet.decrypted.privateKey : null}
+            isDecrypted={!!wallet.decrypted}
+            showDecryptWalletModal={() => this.props.showDecryptWalletModal()}
+            setCurrentWallet={() => this.props.setCurrentWallet(wallet.address)}
+            handleCardClick={() => this.handleCardClick(wallet)}
+            walletList={wallets}
+            deleteWallet={() => this.props.deleteWallet(wallet.address)}
+          />
+        </WalletCardsCol>
+      );
+    }
+    );
   }
 
   render() {
+    const { totalBalances, supportedAssets } = this.props;
     return (
       <Wrapper>
         <Row gutter={16}>
@@ -99,8 +101,8 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           <Col span={8} xs={24} md={8}>
             {
               <Breakdown
-                data={this.getBreakdown()}
-                value={(+this.props.totalBalances.get('totalUsd').toFixed(6)).toString()}
+                data={getBreakdown(totalBalances, supportedAssets)}
+                value={(+this.props.totalBalances.getIn(['total', 'usd']).toFixed(6)).toString()}
               />
             }
           </Col>
@@ -116,6 +118,7 @@ WalletsOverview.propTypes = {
   deleteWallet: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   ledgerNanoSInfo: PropTypes.object.isRequired,
+  trezorInfo: PropTypes.object.isRequired,
   totalBalances: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   walletsWithInfo: PropTypes.object.isRequired,
@@ -126,6 +129,7 @@ const mapStateToProps = createStructuredSelector({
   totalBalances: makeSelectTotalBalances(),
   supportedAssets: makeSelectSupportedAssets(),
   ledgerNanoSInfo: makeSelectLedgerNanoSInfo(),
+  trezorInfo: makeSelectTrezorInfo(),
 });
 
 export function mapDispatchToProps(dispatch) {

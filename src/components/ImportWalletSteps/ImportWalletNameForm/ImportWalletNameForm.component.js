@@ -27,7 +27,7 @@ class ImportWalletNameForm extends React.Component {
     return (
       <div>
         <IconDiv>
-          <Image src={this.props.wallet.src} />
+          {this.props.wallet.src && <Image src={this.props.wallet.src} />}
         </IconDiv>
         <Form
           onSubmit={(e) => handleFinish(e, form, handleNext)}

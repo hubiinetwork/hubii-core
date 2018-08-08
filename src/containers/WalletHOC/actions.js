@@ -27,6 +27,9 @@ import {
   LOAD_PRICES,
   LOAD_PRICES_SUCCESS,
   LOAD_PRICES_ERROR,
+  LOAD_TRANSACTIONS,
+  LOAD_TRANSACTIONS_SUCCESS,
+  LOAD_TRANSACTIONS_ERROR,
   TRANSFER,
   TRANSFER_ETHER,
   TRANSFER_ERC20,
@@ -39,8 +42,13 @@ import {
   LEDGER_ERROR,
   FETCH_LEDGER_ADDRESSES,
   FETCHED_LEDGER_ADDRESS,
+  TREZOR_CONNECTED,
+  TREZOR_DISCONNECTED,
+  FETCH_TREZOR_ADDRESSES,
+  FETCHED_TREZOR_ADDRESS,
   DELETE_WALLET,
   INIT_LEDGER,
+  INIT_TREZOR,
   INIT_WALLETS_BALANCES,
 } from './constants';
 
@@ -213,6 +221,29 @@ export function loadPricesError(error) {
   };
 }
 
+export function loadTransactions(address) {
+  return {
+    type: LOAD_TRANSACTIONS,
+    address,
+  };
+}
+
+export function loadTransactionsSuccess(address, transactions) {
+  return {
+    type: LOAD_TRANSACTIONS_SUCCESS,
+    transactions,
+    address,
+  };
+}
+
+export function loadTransactionsError(address, error) {
+  return {
+    type: LOAD_TRANSACTIONS_ERROR,
+    address,
+    error,
+  };
+}
+
 export function transfer(payload) {
   return {
     type: TRANSFER,
@@ -279,11 +310,17 @@ export function initLedger() {
   };
 }
 
-export function fetchLedgerAddresses(derivationPaths, ethTransport) {
+export function initTrezor() {
+  return {
+    type: INIT_TREZOR,
+  };
+}
+
+export function fetchLedgerAddresses(pathBase, count) {
   return {
     type: FETCH_LEDGER_ADDRESSES,
-    derivationPaths,
-    ethTransport,
+    pathBase,
+    count,
   };
 }
 
@@ -343,6 +380,50 @@ export function ledgerError(rawError) {
   return {
     type: LEDGER_ERROR,
     error: friendlyError,
+  };
+}
+
+export function trezorConnected(deviceId) {
+  return {
+    type: TREZOR_CONNECTED,
+    deviceId,
+  };
+}
+
+export function trezorDisconnected(deviceId) {
+  return {
+    type: TREZOR_DISCONNECTED,
+    deviceId,
+  };
+}
+
+export function fetchTrezorAddresses(pathBase, count) {
+  return {
+    type: FETCH_TREZOR_ADDRESSES,
+    pathBase,
+    count,
+  };
+}
+
+export function fetchedTrezorAddress(derivationPath, address) {
+  return {
+    type: FETCHED_TREZOR_ADDRESS,
+    derivationPath,
+    address,
+  };
+}
+
+export function saveTrezorAddress(name, derivationPath, deviceId, address) {
+  const newWallet = {
+    deviceId,
+    address,
+    type: 'trezor',
+    name,
+    derivationPath,
+  };
+  return {
+    type: CREATE_WALLET_SUCCESS,
+    newWallet,
   };
 }
 
