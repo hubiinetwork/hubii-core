@@ -7,6 +7,7 @@ export default styled(Tabs)`
   .ant-tabs-nav .ant-tabs-tab {
     margin: 0 0rem 0 0 !important;
     padding: 0.86rem 1.14rem !important;
+    height: 3.36rem !important;
     color: ${({ theme }) => theme.palette.secondary1};
   }
   .ant-tabs-nav-scroll {
@@ -26,9 +27,8 @@ export default styled(Tabs)`
     color: ${({ theme }) => theme.palette.info};
   }
   .ant-tabs-nav .ant-tabs-tab:hover {
-     color: ${({ theme }) => theme.palette.secondary1};
-     background: ${({ theme }) => theme.palette.info1};
-     height: 3.55rem;
+    color: ${({ theme }) => theme.palette.secondary1};
+    background: ${({ theme }) => theme.palette.info1};
   }
   .ant-tabs-nav .ant-tabs-tab-active {
     color: ${({ theme }) => theme.palette.light};
@@ -45,6 +45,5 @@ export default styled(Tabs)`
   }
   svg {
     margin-right: 0.64rem;
-    
   }
 `;
