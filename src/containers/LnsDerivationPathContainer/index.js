@@ -70,15 +70,6 @@ export class LnsDerivationPathContainer extends React.Component { // eslint-disa
 
   fetchAddresses() {
     const { lastAddressIndex, pathBase } = this.state;
-    // const { addresses } = this.props.ledgerNanoSInfo.toJS();
-    // let i;
-    // const paths = [];
-    // for (i = 0; i <= lastAddressIndex; i += 1) {
-    //   const curPath = `${pathBase}/${i}`;
-    //   if (!addresses[curPath]) {
-    //     paths.push(curPath);
-    //   }
-    // }
     this.props.fetchLedgerAddresses(pathBase, lastAddressIndex + 1);
   }
 
