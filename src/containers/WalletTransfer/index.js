@@ -15,6 +15,9 @@ import {
 import {
   makeSelectContacts,
 } from 'containers/ContactBook/selectors';
+import {
+  createContact,
+} from 'containers/ContactBook/actions';
 import { transfer } from 'containers/WalletHOC/actions';
 import LoadingError from '../../components/LoadingError';
 
@@ -69,6 +72,7 @@ export class WalletTransfer extends React.PureComponent {
         transfering={currentWallet.toJS().transfering}
         errors={this.props.errors}
         currentWalletWithInfo={this.props.currentWalletWithInfo}
+        createContact={this.props.createContact}
       />
     );
   }
@@ -83,6 +87,7 @@ WalletTransfer.propTypes = {
   prices: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  createContact: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -97,6 +102,7 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     transfer: (...args) => dispatch(transfer(...args)),
+    createContact: (...args) => dispatch(createContact(...args)),
   };
 }
 
