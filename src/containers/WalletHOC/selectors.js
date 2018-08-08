@@ -41,6 +41,73 @@ const makeSelectWallets = () => createSelector(
   (walletHocDomain) => walletHocDomain.get('wallets')
 );
 
+const makeSelectTransactions = () => createSelector(
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('transactions') || fromJS([])
+);
+
+const makeSelectTransactionsWithInfo = () => createSelector(
+  makeSelectTransactions(),
+  makeSelectSupportedAssets(),
+  makeSelectPrices(),
+  (transactions, supportedAssets, prices) => {
+    // set all address's transactions to loading if don't have all required information
+    let transactionsWithInfo = transactions;
+    if (supportedAssets.get('loading') || supportedAssets.get('error') || prices.get('loading') || prices.get('error')) {
+      transactionsWithInfo = transactionsWithInfo.map((address) => address.set('loading', true));
+      return transactionsWithInfo;
+    }
+
+    // for each address iterate over each tx
+    transactionsWithInfo = transactionsWithInfo.map((addressObj, address) => {
+      const txnsWithInfo = addressObj.get('transactions').map((tx) => {
+        let txWithInfo = tx;
+
+        // get tx type
+        const type = address.toLowerCase() === tx.get('sender') ?
+              'sent' :
+              'received';
+        txWithInfo = txWithInfo.set('type', type);
+
+        // get counterpartyAddress
+        const counterpartyAddress = type === 'sent' ?
+              tx.get('recipient') :
+              tx.get('sender');
+        txWithInfo = txWithInfo.set('counterpartyAddress', counterpartyAddress);
+
+        // get currency symbol for this tx
+        const assetDetails = supportedAssets
+          .get('assets')
+          .find((a) => a.get('currency') === tx.get('currency'));
+
+        const symbol = assetDetails.get('symbol');
+        txWithInfo = txWithInfo.set('symbol', symbol);
+
+        // get decimal amt for this tx
+        const decimals = assetDetails.get('decimals');
+        const divisionFactor = new BigNumber('10').pow(decimals);
+        const weiOrEquivilent = new BigNumber(txWithInfo.get('amount'));
+        const decimalAmount = weiOrEquivilent.div(divisionFactor);
+        BigNumber.config({ EXPONENTIAL_AT: 20 });
+        txWithInfo = txWithInfo.set('decimalAmount', decimalAmount.toString());
+
+        // get fiat value of this tx
+        const assetPrices = prices
+          .get('assets')
+          .find((a) => a.get('currency') === tx.get('currency'));
+        const txFiatValue = new BigNumber(txWithInfo.get('decimalAmount')).times(assetPrices.get('usd'));
+        txWithInfo = txWithInfo.set('fiatValue', txFiatValue.toString());
+
+        return txWithInfo;
+      });
+
+      return addressObj.set('transactions', txnsWithInfo);
+    });
+
+    return transactionsWithInfo;
+  }
+);
+
 const makeSelectLoading = () => createSelector(
   selectWalletHocDomain,
   (walletHocDomain) => walletHocDomain.get('loading')
@@ -135,13 +202,25 @@ const makeSelectWalletsWithInfo = () => createSelector(
   makeSelectBalances(),
   makeSelectPrices(),
   makeSelectSupportedAssets(),
-  (wallets, balances, prices, supportedAssets) => {
+  makeSelectTransactionsWithInfo(),
+  (wallets, balances, prices, supportedAssets, transactions) => {
     const walletsWithInfo = wallets.map((wallet) => {
       let walletWithInfo = wallet;
       const walletAddress = wallet.get('address');
       let walletBalances;
+      let walletTransactions;
 
-      // Check if waiting on a response from the API, wallet balance should appear in 'loading' state
+      // Add wallet transactions
+      if (!transactions.get(walletAddress) || transactions.getIn([walletAddress, 'loading'])) {
+        walletTransactions = fromJS({ loading: true, transactions: [] });
+      } else if (transactions.getIn([walletAddress, 'error'])) {
+        walletTransactions = fromJS({ loading: false, error: true, transactions: [] });
+      } else {
+        walletTransactions = fromJS({ loading: false, error: false, transactions: transactions.getIn([walletAddress, 'transactions']) });
+      }
+      walletWithInfo = walletWithInfo.set('transactions', walletTransactions);
+
+      // Add wallet balances
       if (
         supportedAssets.get('loading') ||
         prices.get('loading') ||
@@ -224,42 +303,6 @@ const makeSelectCurrentDecryptionCallback = () => createSelector(
   (walletHocDomain) => walletHocDomain.get('currentDecryptionCallback')
 );
 
-// const makeSelectAllTransactions = () => createSelector(
-//   makeSelectCurrentWalletDetails(),
-//   makeSelectPendingTransactions(),
-//   makeSelectConfirmedTransactions(),
-//   (currentWalletDetails, pendingTxns, confirmedTxns) => {
-//     const txns = [].concat(pendingTxns.toJS()).concat(confirmedTxns.toJS());
-//     return txns.filter((txn) => {
-//       const address = currentWalletDetails.address;
-//       return IsAddressMatch(txn.from, address) || IsAddressMatch(txn.to, address);
-//     }).sort((a, b) => b.timestamp - a.timestamp);
-//   }
-// );
-
-// const makeSelectPendingTransactions = () => createSelector(
-//   selectWalletHocDomain,
-//   (walletHocDomain) => walletHocDomain.get('pendingTransactions')
-// );
-
-// const makeSelectConfirmedTransactions = () => createSelector(
-//   selectWalletHocDomain,
-//   (walletHocDomain) => walletHocDomain.get('confirmedTransactions')
-// );
-
-// const makeSelectAllTransactions = () => createSelector(
-//   makeSelectWalletsWithInfo(),
-//   makeSelectPendingTransactions(),
-//   makeSelectConfirmedTransactions(),
-//   (currentWalletDetails, pendingTxns, confirmedTxns) => {
-//     const txns = [].concat(pendingTxns.toJS()).concat(confirmedTxns.toJS());
-//     return txns.filter((txn) => {
-//       const address = currentWalletDetails.address;
-//       return IsAddressMatch(txn.from, address) || IsAddressMatch(txn.to, address);
-//     }).sort((a, b) => b.timestamp - a.timestamp);
-//   }
-// );
-
 export {
   selectWalletHocDomain,
   makeSelectLedgerNanoSInfo,
@@ -270,6 +313,8 @@ export {
   makeSelectSupportedAssets,
   makeSelectPrices,
   makeSelectWallets,
+  makeSelectTransactions,
+  makeSelectTransactionsWithInfo,
   makeSelectDerivationPathInput,
   makeSelectBalances,
   makeSelectLoading,
