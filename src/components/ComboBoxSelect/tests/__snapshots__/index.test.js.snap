@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ComboBoxSelect /> should correctly render 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ComboBoxSelect
+    addInputValidator={[Function]}
+    disabled={false}
+    handleSelect={[Function]}
+    invalidAdditionMessage="message"
+    options={
+        Array [
+            Object {
+              "name": "mike",
+              "value": "0x324234",
+            },
+            Object {
+              "name": "jake",
+              "value": "0x444224",
+            },
+          ]
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <Option
+          value="0x324234"
+>
+          mike
+</Option>,
+        <Option
+          value="0x444224"
+>
+          jake
+</Option>,
+      ],
+      "disabled": false,
+      "filterOption": [Function],
+      "notFoundContent": null,
+      "onBlur": [Function],
+      "onInputKeyDown": [Function],
+      "onSearch": [Function],
+      "onSelect": [Function],
+      "recipient": true,
+      "showSearch": true,
+      "value": "mike",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": "mike",
+        "nodeType": "class",
+        "props": Object {
+          "children": "mike",
+          "value": "0x324234",
+        },
+        "ref": null,
+        "rendered": "mike",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "jake",
+        "nodeType": "class",
+        "props": Object {
+          "children": "jake",
+          "value": "0x444224",
+        },
+        "ref": null,
+        "rendered": "jake",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Option
+            value="0x324234"
+>
+            mike
+</Option>,
+          <Option
+            value="0x444224"
+>
+            jake
+</Option>,
+        ],
+        "disabled": false,
+        "filterOption": [Function],
+        "notFoundContent": null,
+        "onBlur": [Function],
+        "onInputKeyDown": [Function],
+        "onSearch": [Function],
+        "onSelect": [Function],
+        "recipient": true,
+        "showSearch": true,
+        "value": "mike",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "mike",
+          "nodeType": "class",
+          "props": Object {
+            "children": "mike",
+            "value": "0x324234",
+          },
+          "ref": null,
+          "rendered": "mike",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "jake",
+          "nodeType": "class",
+          "props": Object {
+            "children": "jake",
+            "value": "0x444224",
+          },
+          "ref": null,
+          "rendered": "jake",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

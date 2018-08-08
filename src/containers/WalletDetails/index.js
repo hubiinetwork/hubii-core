@@ -12,7 +12,9 @@ import WalletTransactions from 'containers/WalletTransactions';
 import WalletTransfer from 'containers/WalletTransfer';
 import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHOC/selectors';
 import { setCurrentWallet } from 'containers/WalletHOC/actions';
-import Tab from '../../components/ui/Tab';
+
+import SimplexPage from 'components/SimplexPage';
+import Tab from 'components/ui/Tab';
 
 import { Wrapper, TabsLayout } from './index.style';
 
@@ -103,6 +105,16 @@ export class WalletDetails extends React.PureComponent {
             key={`${match.url}/transfer`}
           >
             <Route path={`${match.url}/transfer`} component={WalletTransfer} />
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <Icon type="shopping-cart" />Buy ETH
+              </span>
+            }
+            key={`${match.url}/buyeth`}
+          >
+            <Route path={`${match.url}/buyeth`} component={SimplexPage} />
           </TabPane>
         </Tab>
         {history.location.pathname === match.url && (

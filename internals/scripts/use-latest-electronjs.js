@@ -1,5 +1,5 @@
 
-const fs = require('fs');
+const fs = require('fs-extra');
 const buildDir = './build/public';
 const buildPublicDir = './build/public';
 
@@ -11,6 +11,15 @@ if (!fs.existsSync(buildPublicDir)) {
   fs.mkdirSync(buildPublicDir);
 }
 
-fs.copyFileSync('./public/electron.js', './build/public/electron.js', (e) => {
-  if (e) throw e;
-});
+const sources = [
+  'public/electron.js',
+  'public/wallets',
+]
+
+try {
+  sources.forEach(path => {
+    fs.copySync(`./${path}`, `./build/${path}`)
+  })
+}catch(e) {
+  console.log(e)
+}

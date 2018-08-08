@@ -2,8 +2,8 @@ import { Button } from 'antd';
 import styled from 'styled-components';
 
 export default styled(Button)`
-  height: 38px;
-  font-size: 12px;
+  height: 2.71rem;
+  font-size: 0.86rem;
   line-height: 1.5;
   font-weight: 400;
   border-radius: 0.3rem;

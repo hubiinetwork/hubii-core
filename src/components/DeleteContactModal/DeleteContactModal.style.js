@@ -30,10 +30,10 @@ export const StyledSelect = styled(Select)`
 
 export const StyledButton = styled(Button)`
   color: ${({ theme }) => theme.palette.light};
-  margin-top: 93px;
-  min-width: 240px;
-  margin-bottom: 60px;
-  border: 2px solid ${({ theme }) => theme.palette.info3};
+  margin-top: 6.64rem;
+  min-width: 17.14rem;
+  margin-bottom: 4.29rem;
+  border: 0.14rem solid ${({ theme }) => theme.palette.info3};
 `;
 
 export const ButtonWrapper = styled.div`

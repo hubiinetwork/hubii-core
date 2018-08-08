@@ -3,6 +3,70 @@ import BigNumber from 'bignumber.js';
 
 export const address1Mock = '0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0';
 
+export const transactionsMock = fromJS({
+  '0x1c7429f62595097315289ceBaC1fDbdA587Ad512': {
+    loading: false,
+    error: null,
+    transactions: [{
+      amount: '100000000',
+      block: { number: 3780091, timestamp: '2018-08-06T02:32:00.000Z' },
+      currency: 'ETH',
+      hash: '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c',
+      recipient: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
+      sender: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
+    }],
+  },
+  '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0': {
+    loading: false,
+    error: null,
+    transactions: [{
+      amount: '100000000',
+      block: { number: 3780091, timestamp: '2018-08-06T02:32:00.000Z' },
+      currency: 'ETH',
+      hash: '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c',
+      recipient: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
+      sender: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
+    }],
+  },
+});
+
+export const transactionsWithInfoMock = fromJS({
+  '0x1c7429f62595097315289ceBaC1fDbdA587Ad512': {
+    loading: false,
+    error: null,
+    transactions: [{
+      type: 'received',
+      counterpartyAddress: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
+      symbol: 'ETH',
+      decimalAmount: '0.0000000001',
+      amount: '100000000',
+      block: { number: 3780091, timestamp: '2018-08-06T02:32:00.000Z' },
+      currency: 'ETH',
+      hash: '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c',
+      recipient: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
+      sender: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
+      fiatValue: '0.0000000412',
+    }],
+  },
+  '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0': {
+    loading: false,
+    error: null,
+    transactions: [{
+      type: 'sent',
+      counterpartyAddress: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
+      symbol: 'ETH',
+      decimalAmount: '0.0000000001',
+      amount: '100000000',
+      block: { number: 3780091, timestamp: '2018-08-06T02:32:00.000Z' },
+      currency: 'ETH',
+      hash: '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c',
+      recipient: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
+      sender: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
+      fiatValue: '0.0000000412',
+    }],
+  },
+});
+
 export const contactsMock = fromJS([
   {
     name: 'mike',
@@ -25,6 +89,7 @@ export const walletsMock = fromJS([
     type: 'software',
     encrypted:
       '{"address":"910c4ba923b2243dc13e00a066eefb8ffd905eb0","id":"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"160194dccdc2e29f98bc0b02f811dc95"},"ciphertext":"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a","kdf":"scrypt","kdfparams":{"salt":"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac","n":131072,"dklen":32,"p":1,"r":8},"mac":"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff"}}',
+    transactions: { loading: true, transactions: [] },
     balances: [
       {
         symbol: 'ETH',
@@ -43,6 +108,7 @@ export const walletsMock = fromJS([
     type: 'software',
     encrypted:
       '{"address":"b09806807915422c4ebfb98e246ba78a1f34de73","id":"5aef699b-2288-44f2-a2b4-746e2413dc53","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"42c622549458c3ccbc927b24cac4e061"},"ciphertext":"bcbc5c2ad94353637803c02d5187557a0c25bec97c5c2710bee5b85fc62de478","kdf":"scrypt","kdfparams":{"salt":"39c7545fa5aa25d252a8649553081a61314de5b43a8d5d10e6c3f52fbd9e0718","n":131072,"dklen":32,"p":1,"r":8},"mac":"909eb191b0a6089669997ddb0c1a6cb26e2ff6cb06e8ccf1b82a430ac801cd86"}}',
+    transactions: { loading: true, transactions: [] },
     balances: [
       {
         symbol: 'ETH',
@@ -61,6 +127,7 @@ export const walletsMock = fromJS([
     type: 'software',
     encrypted:
       '{"address":"cdb391dc27ecb78bc96e597a16b0ec312000ba4c","id":"758b0e4b-369c-45c1-868e-25376b9f810f","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"ca2fe714718c7ce3fc5ac663f8fd3c1f"},"ciphertext":"0357242c930a884999dfd90c412d2c7271b32e7cd0879a94e811898e3b180d0e","kdf":"scrypt","kdfparams":{"salt":"71b8601c41fa3825603f9496220234ec1c37470410f52d1d729ca603f23923e3","n":131072,"dklen":32,"p":1,"r":8},"mac":"e697f0976d2f33e990d8da47d343cdb114b45a313723852af169c26ca4a28575"},"x-ethers":{"client":"ethers.js","gethFilename":"UTC--2018-07-23T22-19-49.0Z--cdb391dc27ecb78bc96e597a16b0ec312000ba4c","mnemonicCounter":"8a074b6326227fefd8238bc3d4e8f784","mnemonicCiphertext":"73ec3ba3832aab02e65c920d8ad18775","version":"0.1"}}',
+    transactions: { loading: true, transactions: [] },
     balances: [
       {
         symbol: 'ETH',
@@ -82,6 +149,7 @@ export const walletsMock = fromJS([
     derivationPath: "m/44'/60'/0'/1",
     loadingBalances: false,
     loadingBalancesError: null,
+    transactions: { loading: true, transactions: [] },
     balances: [
       {
         symbol: 'ETH',
@@ -98,6 +166,7 @@ export const walletsMock = fromJS([
     type: 'software',
     encrypted:
       '{"address":"d6e72fd622f36df68786377f8cb4f99cac817de8","id":"166df706-a20e-4327-beb3-40f47d7794ec","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"17bbe232d5799a1dbd0a72113579f87c"},"ciphertext":"51db270fb7df3689ba5635a86610e831aaa3505fc160167c2273488df8194fc6","kdf":"scrypt","kdfparams":{"salt":"be1edda7fc2d8c3e8461dc801a80a614e7304a8e603b58837abb33a26ac55e2a","n":131072,"dklen":32,"p":1,"r":8},"mac":"e35f0d4c0e8c7dce88cd3c7770e6337dbc987af497e767b55c4c5f5c6c5bc627"},"x-ethers":{"client":"ethers.js","gethFilename":"UTC--2018-07-24T23-51-27.0Z--d6e72fd622f36df68786377f8cb4f99cac817de8","mnemonicCounter":"9faf6f2a5b8c73bc813ad6816244cdc8","mnemonicCiphertext":"55fe53abdda6f826fa7d393d49513016","version":"0.1"}}',
+    transactions: { loading: true, transactions: [] },
     balances: [
       {
         symbol: 'ETH',
@@ -119,6 +188,7 @@ export const walletsMock = fromJS([
     derivationPath: "m/44'/60'/0'/0",
     loadingBalances: false,
     loadingBalancesError: null,
+    transactions: { loading: true, transactions: [] },
     balances: [
       {
         symbol: 'ETH',
@@ -133,11 +203,11 @@ export const walletsMock = fromJS([
 
 export const totalBalancesMock = fromJS({
   assets: {
-    ETH: { amount: new BigNumber('0.99960169885'), usdValue: new BigNumber('411.8358999262') },
-    '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { amount: new BigNumber('1'), usdValue: new BigNumber('0') },
+    ETH: { amount: new BigNumber('0.99960169885'), value: { usd: new BigNumber('411.8358999262') } },
+    '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { amount: new BigNumber('1'), value: { usd: new BigNumber('0') } },
   },
   loading: false,
-  totalUsd: new BigNumber('411.8358999262'),
+  total: { usd: new BigNumber('411.8358999262') },
 });
 
 export const balancesMock = fromJS({
@@ -349,6 +419,7 @@ export const walletsWithInfoMock = fromJS([
     type: 'software',
     encrypted:
       '{"address":"910c4ba923b2243dc13e00a066eefb8ffd905eb0","id":"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"160194dccdc2e29f98bc0b02f811dc95"},"ciphertext":"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a","kdf":"scrypt","kdfparams":{"salt":"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac","n":131072,"dklen":32,"p":1,"r":8},"mac":"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff"}}',
+    transactions: { loading: true, transactions: [] },
     balances: {
       loading: false,
       error: null,
@@ -385,6 +456,7 @@ export const walletsWithInfoMock = fromJS([
     type: 'software',
     encrypted:
       '{"address":"b09806807915422c4ebfb98e246ba78a1f34de73","id":"5aef699b-2288-44f2-a2b4-746e2413dc53","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"42c622549458c3ccbc927b24cac4e061"},"ciphertext":"bcbc5c2ad94353637803c02d5187557a0c25bec97c5c2710bee5b85fc62de478","kdf":"scrypt","kdfparams":{"salt":"39c7545fa5aa25d252a8649553081a61314de5b43a8d5d10e6c3f52fbd9e0718","n":131072,"dklen":32,"p":1,"r":8},"mac":"909eb191b0a6089669997ddb0c1a6cb26e2ff6cb06e8ccf1b82a430ac801cd86"}}',
+    transactions: { loading: true, transactions: [] },
     balances: {
       loading: false,
       error: null,
@@ -407,6 +479,7 @@ export const walletsWithInfoMock = fromJS([
     type: 'software',
     encrypted:
       '{"address":"cdb391dc27ecb78bc96e597a16b0ec312000ba4c","id":"758b0e4b-369c-45c1-868e-25376b9f810f","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"ca2fe714718c7ce3fc5ac663f8fd3c1f"},"ciphertext":"0357242c930a884999dfd90c412d2c7271b32e7cd0879a94e811898e3b180d0e","kdf":"scrypt","kdfparams":{"salt":"71b8601c41fa3825603f9496220234ec1c37470410f52d1d729ca603f23923e3","n":131072,"dklen":32,"p":1,"r":8},"mac":"e697f0976d2f33e990d8da47d343cdb114b45a313723852af169c26ca4a28575"},"x-ethers":{"client":"ethers.js","gethFilename":"UTC--2018-07-23T22-19-49.0Z--cdb391dc27ecb78bc96e597a16b0ec312000ba4c","mnemonicCounter":"8a074b6326227fefd8238bc3d4e8f784","mnemonicCiphertext":"73ec3ba3832aab02e65c920d8ad18775","version":"0.1"}}',
+    transactions: { loading: true, transactions: [] },
     balances: {
       loading: false,
       error: null,
@@ -424,13 +497,12 @@ export const walletsWithInfoMock = fromJS([
     loadingBalancesError: null,
   },
   {
+    name: '123456',
     deviceId:
       '041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da',
-    address: '0xc8b4217365dc359eF2e1890d72d0d9a7B643456c',
-    type: 'lns',
-    name: '123456',
-    derivationPath: "m/44'/60'/0'/1",
     loadingBalances: false,
+    address: '0xc8b4217365dc359eF2e1890d72d0d9a7B643456c',
+    transactions: { loading: true, transactions: [] },
     loadingBalancesError: null,
     balances: {
       loading: false,
@@ -445,6 +517,8 @@ export const walletsWithInfoMock = fromJS([
       ],
       total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') },
     },
+    type: 'lns',
+    derivationPath: "m/44'/60'/0'/1",
   },
   {
     name: '123',
@@ -452,6 +526,7 @@ export const walletsWithInfoMock = fromJS([
     type: 'software',
     encrypted:
       '{"address":"d6e72fd622f36df68786377f8cb4f99cac817de8","id":"166df706-a20e-4327-beb3-40f47d7794ec","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"17bbe232d5799a1dbd0a72113579f87c"},"ciphertext":"51db270fb7df3689ba5635a86610e831aaa3505fc160167c2273488df8194fc6","kdf":"scrypt","kdfparams":{"salt":"be1edda7fc2d8c3e8461dc801a80a614e7304a8e603b58837abb33a26ac55e2a","n":131072,"dklen":32,"p":1,"r":8},"mac":"e35f0d4c0e8c7dce88cd3c7770e6337dbc987af497e767b55c4c5f5c6c5bc627"},"x-ethers":{"client":"ethers.js","gethFilename":"UTC--2018-07-24T23-51-27.0Z--d6e72fd622f36df68786377f8cb4f99cac817de8","mnemonicCounter":"9faf6f2a5b8c73bc813ad6816244cdc8","mnemonicCiphertext":"55fe53abdda6f826fa7d393d49513016","version":"0.1"}}',
+    transactions: { loading: true, transactions: [] },
     balances: {
       loading: false,
       error: null,
@@ -469,13 +544,34 @@ export const walletsWithInfoMock = fromJS([
     loadingBalancesError: null,
   },
   {
+    name: 'lns',
     deviceId:
       '041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da',
-    address: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
-    type: 'lns',
-    name: 'lns',
-    derivationPath: "m/44'/60'/0'/0",
     loadingBalances: false,
+    address: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
+    transactions: {
+      loading: false,
+      error: false,
+      transactions: [
+        {
+          decimalAmount: '0.0000000001',
+          counterpartyAddress: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
+          block: {
+            number: 3780091,
+            timestamp: '2018-08-06T02:32:00.000Z',
+          },
+          hash: '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c',
+          currency: 'ETH',
+          sender: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
+          amount: '100000000',
+          symbol: 'ETH',
+          recipient: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
+          type: 'received',
+          fiatValue: '0.0000000412',
+        },
+      ],
+    },
+
     loadingBalancesError: null,
     balances: {
       loading: false,
@@ -490,5 +586,7 @@ export const walletsWithInfoMock = fromJS([
       ],
       total: { eth: new BigNumber('0.198937'), btc: new BigNumber('0.00198937'), usd: new BigNumber('81.962044') },
     },
+    type: 'lns',
+    derivationPath: "m/44'/60'/0'/0",
   },
 ]);

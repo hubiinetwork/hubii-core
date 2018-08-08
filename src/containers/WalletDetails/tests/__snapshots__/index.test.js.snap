@@ -11,6 +11,11 @@ ShallowWrapper {
             address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
             type: "software",
             encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+            transactions: Immutable.Map {
+                loading: true,
+                transactions: Immutable.List [
+                ],
+            },
             balances: Immutable.Map {
                 loading: false,
                 error: null,
@@ -138,6 +143,22 @@ ShallowWrapper {
                               path="undefined/transfer"
                     />
           </TabPane>
+          <TabPane
+                    placeholder={null}
+                    tab={
+                              <span>
+                                        <Icon
+                                                  type="shopping-cart"
+                                        />
+                                        Buy ETH
+                              </span>
+                    }
+          >
+                    <Route
+                              component={[Function]}
+                              path="undefined/buyeth"
+                    />
+          </TabPane>
 </Tab.style>,
         false,
       ],
@@ -232,6 +253,22 @@ ShallowWrapper {
                             path="undefined/transfer"
               />
 </TabPane>,
+            <TabPane
+              placeholder={null}
+              tab={
+                            <span>
+                                          <Icon
+                                                        type="shopping-cart"
+                                          />
+                                          Buy ETH
+                            </span>
+              }
+>
+              <Route
+                            component={[Function]}
+                            path="undefined/buyeth"
+              />
+</TabPane>,
           ],
           "onChange": [Function],
         },
@@ -318,6 +355,38 @@ ShallowWrapper {
             },
             "type": [Function],
           },
+          Object {
+            "instance": null,
+            "key": "undefined/buyeth",
+            "nodeType": "class",
+            "props": Object {
+              "children": <Route
+                component={[Function]}
+                path="undefined/buyeth"
+/>,
+              "placeholder": null,
+              "tab": <span>
+                <Icon
+                                type="shopping-cart"
+                />
+                Buy ETH
+</span>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "path": "undefined/buyeth",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
         ],
         "type": [Function],
       },
@@ -393,6 +462,22 @@ ShallowWrapper {
                         <Route
                                     component={[Function]}
                                     path="undefined/transfer"
+                        />
+            </TabPane>
+            <TabPane
+                        placeholder={null}
+                        tab={
+                                    <span>
+                                                <Icon
+                                                            type="shopping-cart"
+                                                />
+                                                Buy ETH
+                                    </span>
+                        }
+            >
+                        <Route
+                                    component={[Function]}
+                                    path="undefined/buyeth"
                         />
             </TabPane>
 </Tab.style>,
@@ -489,6 +574,22 @@ ShallowWrapper {
                                 path="undefined/transfer"
                 />
 </TabPane>,
+              <TabPane
+                placeholder={null}
+                tab={
+                                <span>
+                                                <Icon
+                                                                type="shopping-cart"
+                                                />
+                                                Buy ETH
+                                </span>
+                }
+>
+                <Route
+                                component={[Function]}
+                                path="undefined/buyeth"
+                />
+</TabPane>,
             ],
             "onChange": [Function],
           },
@@ -568,6 +669,38 @@ ShallowWrapper {
                 "props": Object {
                   "component": [Function],
                   "path": "undefined/transfer",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "undefined/buyeth",
+              "nodeType": "class",
+              "props": Object {
+                "children": <Route
+                  component={[Function]}
+                  path="undefined/buyeth"
+/>,
+                "placeholder": null,
+                "tab": <span>
+                  <Icon
+                                    type="shopping-cart"
+                  />
+                  Buy ETH
+</span>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "component": [Function],
+                  "path": "undefined/buyeth",
                 },
                 "ref": null,
                 "rendered": null,

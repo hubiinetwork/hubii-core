@@ -51,6 +51,7 @@ export class AddNewContactModal extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { quickAddAddress } = this.props;
     return (
       <Wrapper>
         <WrapperIcon>
@@ -75,6 +76,7 @@ export class AddNewContactModal extends React.Component {
             label={<ModalFormLabel>Valid Ethereum Address</ModalFormLabel>}
           >
             {getFieldDecorator('address', {
+              initialValue: quickAddAddress || '',
               rules: [
                 {
                   message: 'Address is required.',
@@ -96,6 +98,7 @@ export class AddNewContactModal extends React.Component {
               <ModalFormInput
                 type="textarea"
                 placeholder="Enter a valid ethereum address"
+                disabled={!quickAddAddress}
               />
             )}
           </ModalFormItem>
@@ -123,6 +126,10 @@ AddNewContactModal.propTypes = {
    * Contacts array
    */
   contacts: PropTypes.arrayOf(PropTypes.object),
+  /**
+   * quickAddAddress
+   */
+  quickAddAddress: PropTypes.string,
 };
 
 export default Form.create()(AddNewContactModal);

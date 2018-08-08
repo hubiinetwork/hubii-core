@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { VictoryPie, VictoryContainer, VictoryTooltip } from 'victory';
 import { SectionHeading } from '../ui/SectionHeading';
-import { TotalAmount, Title } from './Breakdown.style';
+import { TotalAmount, Title, Wrapper } from './Breakdown.style';
 import Tokens from './Tokens';
 import { formatFiat } from '../../utils/numberFormats';
 
 /**
  * This component shows user's total coins' convertion in dollar and a relative chart.
  */
-const Breakdown = ({ data, value }) => {
+const Breakdown = ({ data = [], value }) => {
   const chartData = data.map((item) => ({
     x: item.percentage,
     y: 2 * item.percentage,
@@ -20,9 +20,11 @@ const Breakdown = ({ data, value }) => {
     label: item.label,
     percentage: item.percentage,
   }));
-
+  if (chartData.length === 0) {
+    return <div />;
+  }
   return (
-    <div>
+    <Wrapper>
       <SectionHeading>Breakdown</SectionHeading>
       {(
         <div>
@@ -40,26 +42,24 @@ const Breakdown = ({ data, value }) => {
             />
           }
           innerRadius={90}
-          animate={{
-            onLoad: {
-              duration: 1200,
-              before: () => ({ _y: -1200, label: ' ' }),
-              after: (datum) => ({ _y: datum._y }),
-            },
-          }}
           colorScale={colors}
           data={chartData}
           containerComponent={
             <VictoryContainer
               responsive
-              style={{ marginTop: '-35px', width: '65%' }}
+              style={{ marginTop: '-2.5rem', width: '65%', paddingBottom: '1rem' }}
             />
           }
         />
       </div>
-      <SectionHeading>Assets</SectionHeading>
-      <Tokens data={labels} />
-    </div>
+      {
+        value !== '0' &&
+          <div>
+            <SectionHeading>Assets</SectionHeading>
+            <Tokens data={labels} />
+          </div>
+      }
+    </Wrapper>
   );
 };
 
