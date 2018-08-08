@@ -10,7 +10,20 @@ export const loadState = () => {
     if (serializedState === null) {
       return {};
     }
-    return JSON.parse(serializedState);
+    const restoredState = JSON.parse(serializedState);
+    if (!restoredState.walletHoc) {
+      return restoredState;
+    }
+
+    // init the properties from initialState if does not exist in stored state
+    const walletHocInitialStateJSON = walletHocInitialState.toJSON();
+    Object.keys(walletHocInitialStateJSON).forEach((prop) => {
+      if (restoredState.walletHoc[prop] === undefined || restoredState.walletHoc[prop] === null) {
+        restoredState.walletHoc[prop] = walletHocInitialStateJSON[prop];
+      }
+    });
+
+    return restoredState;
   } catch (e) {
     return {};
   }
