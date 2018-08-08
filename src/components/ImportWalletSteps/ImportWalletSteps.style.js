@@ -10,8 +10,8 @@ export const Between = styled.div`
 export const CreateButton = styled(Button)`
   background-color: transparent;
   color: ${({ theme }) => theme.palette.light};
-  height: 32px;
-  width: 153px;
+  height: 2.29rem;
+  width: 10.93rem;
   &:hover {
     background-color: ${({ theme }) => theme.palette.info2};
     color: ${({ theme }) => theme.palette.light};
@@ -19,8 +19,8 @@ export const CreateButton = styled(Button)`
   }
 `;
 export const LeftArrow = styled(Icon)`
-  font-size: 20px;
-  margin-right: 7px;
+  font-size: 1.43rem;
+  margin-right: 0.5rem;
   cursor: pointer;
 `;
 export const Flex = styled.div`
@@ -28,7 +28,7 @@ export const Flex = styled.div`
   color: ${({ theme }) => theme.palette.light};
 `;
 export const SpanText = styled.span`
-  font-size: 16px;
+  font-size: 1.14rem;
   font-weight: 500;
-  line-height: 19px;
+  line-height: 1.36rem;
 `;

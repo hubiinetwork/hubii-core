@@ -15,8 +15,8 @@ export const TextPrimary = styled.p`
   text-align: center;
 `;
 export const StyledButton = styled(Button)`
-  min-width: 150px;
-  border-width: 2px;
+  min-width: 13.57rem;
+  border-width: 0.14rem;
   padding: 0.5rem 1rem;
   margin: 1rem;
   color: ${({ theme }) => theme.palette.light};

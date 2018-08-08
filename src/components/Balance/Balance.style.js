@@ -5,32 +5,32 @@ export const FlexWrapper = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
-  margin-right: 10px;
+  margin-right: 0.71rem;
   align-self: center;
   position: relative;
 `;
 
 export const Caret = styled.div`
-  width: 0px;
-  height: 0px;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 5px solid white;
+  width: 0rem;
+  height: 0rem;
+  border-top: 0.36rem solid transparent;
+  border-bottom: 0.36rem solid transparent;
+  border-left: 0.36rem solid white;
   transform: rotate(45deg);
   position: absolute;
-  bottom: -3px;
-  right: -1px;
+  bottom: -0.21rem;
+  right: -0.07rem;
 `;
 
 export const Image = styled.img`
-  width: 32px;
-  height: 32px;
+  width: 2.29rem;
+  height: 2.29rem;
 `;
 
 export const DetailWrapper = styled.div`
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 1.14rem;
   color: ${({ theme }) => theme.palette.secondary1};
 `;
 
@@ -42,8 +42,8 @@ export const AlignCenter = styled.div`
 export const BalanceColor = styled.div`
   color: ${({ info, theme }) =>
     info ? theme.palette.info : theme.palette.light};
-  margin-right: 6px;
-  font-size: 16px;
+  margin-right: 0.43rem;
+  font-size: 1.14rem;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 1.14rem;
 `;

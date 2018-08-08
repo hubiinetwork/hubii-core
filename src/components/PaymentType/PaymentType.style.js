@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const PaymentTypes = styled.div`
-  height: 22px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-radius: 50px;
+  height: 1.57rem;
+  padding-left: 1.43rem;
+  padding-right: 1.43rem;
+  border-radius: 3.57rem;
   color: ${({ disabled: secondary1 }) => {
     if (secondary1 === true) {
       return ({ theme }) => theme.palette.secondary;

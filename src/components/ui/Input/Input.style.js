@@ -4,10 +4,10 @@ import styled from 'styled-components';
 export default styled(Input)`
   background-color: transparent;
   border: none;
-  border-radius: 0px;
-  padding: 0px;
+  border-radius: 0rem;
+  padding: 0rem;
   color: ${({ theme }) => theme.palette.light};
-  border-bottom: 1px solid ${({ theme }) => theme.palette.secondary};
+  border-bottom: 0.07rem solid ${({ theme }) => theme.palette.secondary};
 
   &:hover {
     border-color: ${({ theme }) => theme.palette.secondary};

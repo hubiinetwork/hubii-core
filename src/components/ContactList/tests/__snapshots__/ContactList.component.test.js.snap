@@ -65,11 +65,11 @@ ShallowWrapper {
           onCancel={[Function]}
           style={
                     Object {
-                              "marginTop": "20px",
+                              "marginTop": "1.43rem",
                             }
           }
           visible={false}
-          width="585px"
+          width="41.79rem"
 >
           <Form(EditContactModal)
                     address=""
@@ -148,10 +148,10 @@ ShallowWrapper {
           },
           "onCancel": [Function],
           "style": Object {
-            "marginTop": "20px",
+            "marginTop": "1.43rem",
           },
           "visible": false,
-          "width": "585px",
+          "width": "41.79rem",
         },
         "ref": null,
         "rendered": Object {
@@ -219,11 +219,11 @@ ShallowWrapper {
             onCancel={[Function]}
             style={
                         Object {
-                                    "marginTop": "20px",
+                                    "marginTop": "1.43rem",
                                   }
             }
             visible={false}
-            width="585px"
+            width="41.79rem"
 >
             <Form(EditContactModal)
                         address=""
@@ -302,10 +302,10 @@ ShallowWrapper {
             },
             "onCancel": [Function],
             "style": Object {
-              "marginTop": "20px",
+              "marginTop": "1.43rem",
             },
             "visible": false,
-            "width": "585px",
+            "width": "41.79rem",
           },
           "ref": null,
           "rendered": Object {

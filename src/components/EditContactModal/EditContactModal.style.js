@@ -6,13 +6,13 @@ export const WrapperIcon = styled.div`
   color: ${({ theme }) => theme.palette.secondary1};
   font-size: 80%;
   max-width: 70%;
-  margin-top: 40px;
+  margin-top: 2.86rem;
   i {
-    font-size: 24px;
+    font-size: 1.71rem;
   }
 `;
 export const Text = styled.div`
-  padding-left: 7px;
+  padding-left: 0.5rem;
 `;
 export const Wrapper = styled.div`
   display: flex;
@@ -27,19 +27,19 @@ export const Wrapper = styled.div`
     flex-direction: column;
   }
   .ant-form-vertical .ant-form-item {
-    padding-bottom: 0px;
+    padding-bottom: 0rem;
   }
   .ant-form-item {
-    margin-bottom: 0px;
+    margin-bottom: 0rem;
   }
 `;
 export const StyledButton1 = styled(Button)`
-  min-width: 160px;
-  border: 2px solid ${({ theme }) => theme.palette.info3};
+  min-width: 11.43rem;
+  border: 0.14rem solid ${({ theme }) => theme.palette.info3};
 `;
 
 export const ParentDiv = styled.div`
-  margin-top: 20px;
+  margin-top: 1.43rem;
   display: flex;
   justify-content: center;
 `;

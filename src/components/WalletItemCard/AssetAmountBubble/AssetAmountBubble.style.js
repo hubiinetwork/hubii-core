@@ -5,20 +5,20 @@ export const Wrapper = styled.div`
   align-items: center;
   color: ${({ theme }) => theme.palette.light};
   background-color: ${({ theme }) => theme.palette.secondary2};
-  height: 24px;
-  line-height: 22px;
-  min-width: 80px;
-  padding: 0 10px 0 2px;
-  font-size: 13px;
-  border-radius: 15px;
+  height: 1.71rem;
+  line-height: 1.57rem;
+  min-width: 5.71rem;
+  padding: 0 0.71rem 0 0.14rem;
+  font-size: 0.93rem;
+  border-radius: 1.07rem;
 `;
 
 export const Span = styled.span`
   display: flex;
-  margin-left: 6px;
+  margin-left: 0.43rem;
 `;
 
 export const Image = styled.img`
-  height: 21px;
-  width: 21px;
+  height: 1.5rem;
+  width: 1.5rem;
 `;
