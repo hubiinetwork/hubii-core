@@ -30,7 +30,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
   handleCardClick(card) {
     const { history } = this.props;
-    history.push(`/wallet/${card.address}`);
+    history.push(`/wallet/${card.address}/overview`);
   }
 
 
