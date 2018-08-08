@@ -26,9 +26,9 @@ export default styled(Tabs)`
     color: ${({ theme }) => theme.palette.info};
   }
   .ant-tabs-nav .ant-tabs-tab:hover {
-     color: ${({ theme }) => theme.palette.secondary1};
-     background: ${({ theme }) => theme.palette.info1};
-     height: 3.55rem;
+    color: ${({ theme }) => theme.palette.secondary1};
+    background: ${({ theme }) => theme.palette.info1};
+    height: 100%;
   }
   .ant-tabs-nav .ant-tabs-tab-active {
     color: ${({ theme }) => theme.palette.light};
