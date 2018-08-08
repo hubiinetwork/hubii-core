@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Col } from 'antd';
+import { Col, Pagination } from 'antd';
 
 import { media } from 'utils/style-utils';
 
@@ -10,7 +10,11 @@ export const WalletCardsCol = styled(Col)`
 `;
 
 export const StyledTransaction = styled(Transaction)`
-  margin-bottom: 1rem !important;
+  margin-bottom: 1rem;
+`;
+
+export const StyledPagination = styled(Pagination)`
+  margin-top: 1.5rem;
 `;
 
 export const TransactionsWrapper = styled.div`

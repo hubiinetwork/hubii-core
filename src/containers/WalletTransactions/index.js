@@ -1,5 +1,4 @@
 import React from 'react';
-import { Pagination } from 'antd';
 import { shell } from 'electron';
 import uuid from 'uuid/v4';
 import PropTypes from 'prop-types';
@@ -14,7 +13,7 @@ import { SectionHeading } from 'components/ui/SectionHeading';
 
 import { makeSelectSupportedAssets, makeSelectCurrentWalletWithInfo } from 'containers/WalletHOC/selectors';
 
-import { StyledTransaction, TransactionsWrapper, BreakdownWrapper, OuterWrapper } from './style';
+import { StyledTransaction, TransactionsWrapper, BreakdownWrapper, OuterWrapper, StyledPagination } from './style';
 
 export class WalletsTransactions extends React.Component {
   constructor(props) {
@@ -78,7 +77,7 @@ export class WalletsTransactions extends React.Component {
             />
             )
             )}
-          <Pagination
+          <StyledPagination
             total={currentWalletWithInfo.getIn(['transactions', 'transactions']).size}
             pageSize={10}
             defaultCurrent={currentPage}
