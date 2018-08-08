@@ -14,3 +14,9 @@ export const Title = styled.h3`
   margin-top: 3px;
   line-height: 16px;
 `;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+`;
