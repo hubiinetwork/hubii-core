@@ -5,9 +5,7 @@ import { getAbsolutePath } from 'utils/electron';
 
 import {
   ButtonDiv,
-  Wrapper,
   TitleDiv,
-  Description,
   Arrow,
   IconWrapper,
   TextWhite,
@@ -38,23 +36,18 @@ export default class AddRestoreWalletModal extends React.Component {
         {modalType === 'main' && (
           <Container>
             <TitleDiv>
-              Add / Restore Wallet<br />
-              <Description>Please select what you want to do</Description>
+              Add a wallet<br />
+              {/* <Description>Would you like to create a new wallet, or import an existing one?</Description> */}
             </TitleDiv>
-
-            <ButtonDiv onClick={() => this.switchModals('import')} type="primary">
-              <Wrapper>
-                <Icon type="download" />
-                <TextWhite>Import Wallet</TextWhite>
-              </Wrapper>
-            </ButtonDiv>
-
             <ButtonDiv onClick={() => this.switchModals('add')} type="primary">
-              <Wrapper>
-                <Icon type="plus" />
-                <TextWhite>Create New Wallet</TextWhite>
-              </Wrapper>
+              <Icon type="plus" />
+              <TextWhite>Create a new wallet</TextWhite>
             </ButtonDiv>
+            <ButtonDiv onClick={() => this.switchModals('import')} type="primary">
+              <Icon type="download" />
+              <TextWhite>Import an existing wallet</TextWhite>
+            </ButtonDiv>
+
           </Container>
         )}
         {modalType === 'add' && (
@@ -70,7 +63,7 @@ export default class AddRestoreWalletModal extends React.Component {
                 <Arrow
                   type="arrow-left"
                   onClick={() => this.switchModals('main')}
-                />Create a wallet
+                />Create a new wallet
               </IconWrapper>
             </div>
             <AddWallet loading={loading.toJS().creatingWallet} handleSubmit={this.props.handleAddWalletSubmit} />
@@ -88,7 +81,7 @@ export default class AddRestoreWalletModal extends React.Component {
                   name: 'Trezor',
                 },
                 {
-                  name: 'Private Key',
+                  name: 'Private key',
                 },
                 {
                   name: 'Mnemonic',

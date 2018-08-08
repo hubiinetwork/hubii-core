@@ -58,7 +58,7 @@ export class WalletsTransactions extends React.Component {
     return (
       <OuterWrapper>
         <TransactionsWrapper>
-          <SectionHeading>Transaction History</SectionHeading>
+          <SectionHeading>Transaction history</SectionHeading>
           {txToShow.map((tx) => (
             <StyledTransaction
               key={uuid()}

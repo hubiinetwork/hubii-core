@@ -3,14 +3,14 @@ import * as React from 'react';
 // import PropTypes from 'prop-types';
 // import { compose } from 'redux';
 // import { connect } from 'react-redux';
-import Toggler from 'components/Toggler';
+// import Toggler from 'components/Toggler';
 
 import {
   Wrapper,
   StyledButton,
   TopHeader,
   Heading,
-  StyledSwitch,
+  // StyledSwitch,
   RedButton,
   SubtitleText,
   StyledHeader,
@@ -21,20 +21,20 @@ import {
 
 const Option = Select.Option;
 
-const titleTabs = [
-  {
-    title: 'Simple',
-  },
-  {
-    title: 'Advanced',
-  },
-];
+// const titleTabs = [
+//   {
+//     title: 'Simple',
+//   },
+//   {
+//     title: 'Advanced',
+//   },
+// ];
 
 export const Settings = () => (
   <Wrapper>
     <TopHeader>
       <Heading>Settings</Heading>
-      <StyledSwitch disabled defaultChecked onChange={() => {}} />
+      {/* <StyledSwitch disabled defaultChecked onChange={() => {}} /> */}
     </TopHeader>
     <Container>
       <Segment>
@@ -57,33 +57,33 @@ export const Settings = () => (
         </StyledSelect>
       </Segment>
       <Segment>
-        <StyledHeader>
+        {/* <StyledHeader>
           User Interface
         </StyledHeader>
         <Toggler
           titleTabs={titleTabs}
           showSearch
           onTabChange={() => {}}
-        />
+        /> */}
       </Segment>
       <div style={{ display: 'flex', flexDirection: 'column', marginTop: '2rem' }}>
         <StyledButton
           type="primary"
           disabled
         >
-          Register for Striim Airdrop
+          Register for striim airdrop
         </StyledButton>
         <StyledButton
           type="primary"
           disabled
         >
-          Manage Hubii Core Password
+          Manage hubii core password
         </StyledButton>
         <StyledButton
           type="primary"
           disabled
         >
-          Multi Device Autosync
+          Multi-device autosync
         </StyledButton>
         <StyledButton
           type="primary"
@@ -93,19 +93,19 @@ export const Settings = () => (
         </StyledButton>
       </div>
       <SubtitleText>
-        Last Backup
+        Last backup: Never
       </SubtitleText>
       <div>
         <RedButton
           type="primary"
           disabled
         >
-          Delete All Local Data
+          Delete all local data
         </RedButton>
       </div>
-      <SubtitleText>
-        Warning! This cannot be undone, procceed with caution.
-      </SubtitleText>
+      {/* <SubtitleText>
+        This cannot be undone, procceed with caution.
+      </SubtitleText> */}
     </Container>
   </Wrapper>
     );

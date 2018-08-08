@@ -116,7 +116,7 @@ export function getComponentHOC(Component) {
             {loading ? (
               <StyledSpin
                 delay={0}
-                tip="Decrypting Wallet..."
+                size="large"
               />
                 ) : (
                   <Button type="primary" onClick={this.decryptWallet} disabled={!this.state.password}>
