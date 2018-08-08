@@ -10,6 +10,7 @@ describe('WalletsOverview', () => {
     showDecryptWalletModal: () => {},
     deleteWallet: () => {},
     ledgerNanoSInfo: fromJS({ connected: false }),
+    trezorInfo: fromJS({ connected: false }),
     setCurrentWallet: () => {},
     totalBalances: totalBalancesMock,
     supportedAssets: supportedAssetsMock,

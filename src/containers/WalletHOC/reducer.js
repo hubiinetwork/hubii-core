@@ -36,6 +36,9 @@ import {
   LEDGER_ETH_DISCONNECTED,
   LEDGER_ERROR,
   FETCHED_LEDGER_ADDRESS,
+  TREZOR_CONNECTED,
+  TREZOR_DISCONNECTED,
+  FETCHED_TREZOR_ADDRESS,
   SAVE_LEDGER_ADDRESS,
   DELETE_WALLET,
   LOAD_TRANSACTIONS_SUCCESS,
@@ -63,6 +66,11 @@ export const initialState = fromJS({
     address: '',
   },
   ledgerNanoSInfo: {
+    status: 'disconnected',
+    addresses: {},
+    id: null,
+  },
+  trezorInfo: {
     status: 'disconnected',
     addresses: {},
     id: null,
@@ -208,7 +216,8 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['ledgerNanoSInfo', 'status'], 'disconnected')
         .setIn(['ledgerNanoSInfo', 'ethConnected'], false)
         .setIn(['ledgerNanoSInfo', 'connected'], false)
-        .setIn(['ledgerNanoSInfo', 'descriptor'], null);
+        .setIn(['ledgerNanoSInfo', 'descriptor'], null)
+        .setIn(['ledgerNanoSInfo', 'id'], null);
         // .setIn(['errors', 'ledgerError'], 'ledger disconnected')
     case LEDGER_ERROR:
       return state
@@ -221,6 +230,18 @@ function walletHocReducer(state = initialState, action) {
     case FETCHED_LEDGER_ADDRESS:
       return state
         .setIn(['ledgerNanoSInfo', 'addresses', action.derivationPath], action.address);
+    case TREZOR_CONNECTED:
+      return state
+        .setIn(['trezorInfo', 'status'], 'connected')
+        .setIn(['trezorInfo', 'id'], action.deviceId)
+        .setIn(['errors', 'trezorError'], null);
+    case TREZOR_DISCONNECTED:
+      return state
+        .setIn(['trezorInfo', 'status'], 'disconnected')
+        .setIn(['trezorInfo', 'id'], null);
+    case FETCHED_TREZOR_ADDRESS:
+      return state
+        .setIn(['trezorInfo', 'addresses', action.derivationPath], action.address);
     case DELETE_WALLET:
       return state
         .deleteIn(['wallets', findWalletIndex(state, action.address)]);

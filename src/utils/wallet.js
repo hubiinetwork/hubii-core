@@ -1,4 +1,6 @@
 import { providers } from 'ethers';
+import { publicToAddress } from 'ethereumjs-util';
+import HDKey from 'hdkey';
 import BigNumber from 'bignumber.js';
 import fatalError from './fatalError';
 
@@ -56,6 +58,21 @@ export const isValidPrivateKey = (str) => {
   return false;
 };
 
+export function deriveAddresses({ publicKey, chainCode, count }) {
+  const pathBase = 'm';
+  const hdk = new HDKey();
+  hdk.publicKey = new Buffer(publicKey, 'hex');
+  hdk.chainCode = new Buffer(chainCode, 'hex');
+  const addresses = [];
+  for (let i = 0; i < count; i += 1) {
+    const index = i;
+    const dkey = hdk.derive(`${pathBase}/${index}`);
+    const address = publicToAddress(dkey.publicKey, true).toString('hex');
+    addresses.push(address);
+  }
+  return addresses;
+}
+
 // input and output are BigNumber
 export const gweiToWei = (gwei) => (gwei.times(new BigNumber('10').pow('9')));
 
@@ -73,3 +90,6 @@ export const sendTransaction = (...args) => EthNetworkProvider.sendTransaction(.
 
 export const getTransaction = (...args) => EthNetworkProvider.getTransaction(...args);
 
+export const isHardwareWallet = (type) => type === 'lns' || type === 'trezor';
+
+export const prependHexToAddress = (address) => address.startsWith('0x') ? address : `0x${address}`;

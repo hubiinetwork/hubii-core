@@ -4,6 +4,7 @@ const log = require('electron-log');
 const { autoUpdater } = require('electron-updater');
 const path = require('path');
 const isDev = require('electron-is-dev');
+const { registerWalletListeners } = require('./wallets');
 
 const showDevTools = process.env.DEV_TOOLS;
 let mainWindow;
@@ -30,7 +31,14 @@ function createWindow() {
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
-  mainWindow = new BrowserWindow({ width: 1200, height: 680, icon: process.platform === 'linux' && path.join(__dirname, '../icon.png') });
+  mainWindow = new BrowserWindow({
+    width: 1200,
+    height: 680,
+    icon: process.platform === 'linux' && path.join(__dirname, '../icon.png'),
+    webPreferences: {
+      preload: path.join(__dirname, 'wallets/preload.js'),
+    },
+  });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../index.html')}`);
   if (showDevTools || isDev) {
     mainWindow.webContents.openDevTools();
@@ -51,6 +59,7 @@ function createWindow() {
   }
 
   mainWindow.on('closed', () => { mainWindow = null; });
+  return mainWindow;
 }
 
 function setupAutoUpdater() {
@@ -80,6 +89,7 @@ function setupAutoUpdater() {
 app.on('ready', () => {
   createWindow();
   setupAutoUpdater();
+  registerWalletListeners(mainWindow);
 });
 
 app.on('window-all-closed', () => {
