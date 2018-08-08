@@ -203,11 +203,11 @@ export const walletsMock = fromJS([
 
 export const totalBalancesMock = fromJS({
   assets: {
-    ETH: { amount: new BigNumber('0.99960169885'), usdValue: new BigNumber('411.8358999262') },
-    '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { amount: new BigNumber('1'), usdValue: new BigNumber('0') },
+    ETH: { amount: new BigNumber('0.99960169885'), value: { usd: new BigNumber('411.8358999262') } },
+    '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { amount: new BigNumber('1'), value: { usd: new BigNumber('0') } },
   },
   loading: false,
-  totalUsd: new BigNumber('411.8358999262'),
+  total: { usd: new BigNumber('411.8358999262') },
 });
 
 export const balancesMock = fromJS({

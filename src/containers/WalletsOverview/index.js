@@ -5,6 +5,8 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
 
+import { getBreakdown } from 'utils/wallet';
+
 import { deleteWallet, showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHOC/actions';
 import {
   makeSelectLedgerNanoSInfo,
@@ -19,29 +21,17 @@ import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
 
 import { WalletCardsCol, Wrapper, WalletPlaceHolder } from './style';
-import { getCurrencySymbol } from '../../utils/wallet';
 
 export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(...args) {
     super(...args);
     this.renderWalletCards = this.renderWalletCards.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
-    this.getBreakdown = this.getBreakdown.bind(this);
-  }
-
-  getBreakdown() {
-    const { totalBalances, supportedAssets } = this.props;
-    const totalUsd = totalBalances.get('totalUsd');
-    return totalBalances.get('assets').keySeq().map((asset) => ({
-      label: getCurrencySymbol(supportedAssets, asset),
-      percentage: (totalBalances.getIn(['assets', asset, 'usdValue']) / totalUsd) * 100,
-      color: supportedAssets.get('assets').find((a) => a.get('currency') === asset).get('color'),
-    })).toJS();
   }
 
   handleCardClick(card) {
     const { history } = this.props;
-    history.push(`/wallet/${card.address}`);
+    history.push(`/wallet/${card.address}/overview`);
   }
 
 
@@ -98,6 +88,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
   }
 
   render() {
+    const { totalBalances, supportedAssets } = this.props;
     return (
       <Wrapper>
         <Row gutter={16}>
@@ -110,8 +101,8 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           <Col span={8} xs={24} md={8}>
             {
               <Breakdown
-                data={this.getBreakdown()}
-                value={(+this.props.totalBalances.get('totalUsd').toFixed(6)).toString()}
+                data={getBreakdown(totalBalances, supportedAssets)}
+                value={(+this.props.totalBalances.getIn(['total', 'usd']).toFixed(6)).toString()}
               />
             }
           </Col>

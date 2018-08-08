@@ -146,11 +146,11 @@ const makeSelectTotalBalances = () => createSelector(
       supportedAssets.get('error') ||
       prices.get('error')
     ) {
-      return fromJS({ assets: {}, loading: true, totalUsd: new BigNumber('0') });
+      return fromJS({ assets: {}, loading: true, total: { usd: new BigNumber('0') } });
     }
 
     // Caclulate total amount and value of each asset
-    let totalBalances = fromJS({ assets: {}, loading: false, totalUsd: new BigNumber('0') });
+    let totalBalances = fromJS({ assets: {}, loading: false, total: { usd: new BigNumber('0') } });
     balances.keySeq().forEach((address) => {
       // Check address balance is avaliable, and owned by the user
       const addressBalances = balances.get(address);
@@ -173,7 +173,7 @@ const makeSelectTotalBalances = () => createSelector(
         const nextAmount = prevAmount.plus(thisBalance);
 
         const price = prices.get('assets').find((p) => p.get('currency') === balance.get('currency')).get('usd');
-        totalBalances = totalBalances.setIn(['assets', currency], fromJS({ amount: nextAmount, usdValue: nextAmount.times(price) }));
+        totalBalances = totalBalances.setIn(['assets', currency], fromJS({ amount: nextAmount, value: { usd: nextAmount.times(price) } }));
       });
     });
 
@@ -183,8 +183,8 @@ const makeSelectTotalBalances = () => createSelector(
       const price = prices.get('assets').find((p) => p.get('currency') === currency).get('usd');
       const value = amount.times(price);
 
-      const prevAmount = totalBalances.get('totalUsd') || new BigNumber('0');
-      totalBalances = totalBalances.set('totalUsd', prevAmount.plus(value));
+      const prevAmount = totalBalances.getIn(['total', 'usd']) || new BigNumber('0');
+      totalBalances = totalBalances.setIn(['total', 'usd'], prevAmount.plus(value));
     });
     return totalBalances;
   }
