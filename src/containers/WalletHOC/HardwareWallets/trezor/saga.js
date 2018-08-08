@@ -42,20 +42,20 @@ export function* getAddresses({ pathBase, count }) {
       const address = prependHexToAddress(addresses[i]);
       yield put(fetchedTrezorAddress(`${pathBase}/${i}`, address));
     }
-  } catch (e) {
-    console.log('err', e);
+  } catch (error) {
+    yield put(notify('error', error.message));
   }
 }
 
-export function* signTxByTrezor(walletDetails, rawTx, chainId) {
+export function* signTxByTrezor({ walletDetails, raw, data, chainId }) {
   try {
     const tx = {
-      nonce: stripHexPrefix(rawTx[0]),
-      toAddress: stripHexPrefix(rawTx[3]),
-      value: stripHexPrefix(rawTx[4]),
-      data: rawTx[5] === '0x' ? null : stripHexPrefix(bufferToHex(toBuffer(data))),
-      gasPrice: stripHexPrefix(rawTx[1]),
-      gasLimit: stripHexPrefix(rawTx[2]),
+      nonce: stripHexPrefix(raw[0]),
+      toAddress: stripHexPrefix(raw[3]),
+      value: stripHexPrefix(raw[4]),
+      data: raw[5] === '0x' ? null : stripHexPrefix(bufferToHex(toBuffer(data))),
+      gasPrice: stripHexPrefix(raw[1]),
+      gasLimit: stripHexPrefix(raw[2]),
       chainId,
     };
     const trezorInfo = yield select(makeSelectTrezorInfo());
@@ -78,11 +78,7 @@ export function* signTxByTrezor(walletDetails, rawTx, chainId) {
 
     return signedTx;
   } catch (e) {
-    // const refinedError = ledgerError(e);
-    // yield put(refinedError);
-    // throw new Error(refinedError.error);
-    console.log(e)
-    throw new Error('Failed to sign transaction by Trezor')
+    throw new Error('Failed to sign transaction by Trezor');
   }
 }
 

@@ -312,7 +312,7 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   if (walletDetails.type === 'trezor') {
     const raw = rawTx.toJSON();
 
-    signedTx = yield signTxByTrezor(walletDetails, raw, chainId);
+    signedTx = yield signTxByTrezor({ walletDetails, raw, data, chainId });
     rawTx.v = Buffer.from(signedTx.v.toString(16), 'hex');
   }
   // update raw tx with signed data

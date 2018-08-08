@@ -64,6 +64,9 @@ export class TrezorDerivationPathContainer extends React.Component { // eslint-d
     const derivationPath = `${this.state.pathBase}/${index}`;
     const id = this.props.trezorInfo.get('id');
     const address = this.props.trezorInfo.getIn(['addresses', derivationPath]);
+    if (!address) {
+      return;
+    }
     this.props.handleNext({ address, derivationPath, deviceId: id });
   }
 
