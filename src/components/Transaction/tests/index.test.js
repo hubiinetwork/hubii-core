@@ -13,6 +13,8 @@ describe('<Transaction />', () => {
     confirmations: '204',
     type: 'sent',
     viewOnBlockExplorerClick: () => {},
+    onChange: () => {},
+    defaultOpen: false,
   };
 
   it('should render correctly tx type sent', () => {

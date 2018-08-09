@@ -30,12 +30,19 @@ const Transaction = (props) => {
     symbol,
     confirmations,
     type,
+    onChange,
+    defaultOpen,
   } = props;
 
   return (
     <Wrapper className={className}>
-      <DetailCollapse bordered={false}>
+      <DetailCollapse
+        defaultActiveKey={defaultOpen ? '1' : null}
+        bordered={false}
+        onChange={onChange}
+      >
         <DetailPanel
+          key="1"
           showArrow={false}
           header={
             <HeaderWrapper>
@@ -95,6 +102,8 @@ Transaction.propTypes = {
   type: PropTypes.string.isRequired,
   viewOnBlockExplorerClick: PropTypes.func.isRequired,
   className: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  defaultOpen: PropTypes.bool.isRequired,
 };
 
 export default Transaction;
