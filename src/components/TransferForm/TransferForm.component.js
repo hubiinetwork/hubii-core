@@ -146,10 +146,16 @@ export default class TransferForm extends React.PureComponent {
     // https://stackoverflow.com/questions/30435918/regex-pattern-to-have-only-one-dot-and-match-integer-and-decimal-numbers
     const amountToSendInputRegex = new RegExp(`^\\d+(\\.\\d{0,${assetToSendMaxDecimals}})?$`);
 
+    // set a higher gas limit for erc20 tokens
+    let gasLimit = 21000;
+    if (newSymbol !== 'ETH') gasLimit = 100000;
+
     this.setState({
       assetToSend,
       amountToSendInputRegex,
       assetToSendMaxDecimals,
+      gasLimit,
+      gasLimitInput: gasLimit.toString(),
     });
   }
 
