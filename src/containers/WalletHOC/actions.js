@@ -158,10 +158,11 @@ export function initWalletsBalances() {
   };
 }
 
-export function loadWalletBalances(address) {
+export function loadWalletBalances(address, noPoll) {
   return {
     type: LOAD_WALLET_BALANCES,
     address,
+    noPoll,
   };
 }
 

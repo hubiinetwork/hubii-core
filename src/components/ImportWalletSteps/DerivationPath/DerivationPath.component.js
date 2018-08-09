@@ -24,14 +24,6 @@ const derivationPathBases = [
     title: 'm/44\'/60\'/0\'',
     subtitle: 'Ledger (ETH)',
   },
-  {
-    title: 'm/44\'/60\'/160720\'/0\'',
-    subtitle: 'Ledger (ETC)',
-  },
-  {
-    title: 'm/44\'/61\'/0\'/0',
-    subtitle: 'TREZOR (ETC)',
-  },
 ];
 
 const columns = [{
