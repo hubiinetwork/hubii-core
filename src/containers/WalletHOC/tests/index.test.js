@@ -5,7 +5,7 @@ import WalletHOC, { getComponentHOC, mapDispatchToProps } from '../index';
 import { walletsWithInfoMock, currentWalletMock } from './mocks';
 
 describe('WalletHOC', () => {
-  const initWalletsBalancesSpy = jest.fn();
+  const initApiCallsSpy = jest.fn();
   const initLedgerSpy = jest.fn();
   const initTrezorSpy = jest.fn();
   const props = {
@@ -13,7 +13,7 @@ describe('WalletHOC', () => {
     currentWalletWithInfo: walletsWithInfoMock.get(0),
     initLedger: initLedgerSpy,
     initTrezor: initTrezorSpy,
-    initWalletsBalances: initWalletsBalancesSpy,
+    initApiCalls: initApiCallsSpy,
     decryptWallet: () => {},
     hideDecryptWalletModal: () => {},
     loading: fromJS({
@@ -91,7 +91,7 @@ describe('WalletHOC', () => {
       });
     });
     describe('#componentDidMount', () => {
-      it('should call initWalletsBalances prop when called', () => {
+      it('should call initApiCalls prop when called', () => {
         const Hoc = getComponentHOC('div');
         dom = shallow(
           <Hoc
@@ -100,7 +100,7 @@ describe('WalletHOC', () => {
         );
         const instance = dom.instance();
         instance.componentDidMount();
-        expect(initWalletsBalancesSpy).toBeCalled();
+        expect(initApiCallsSpy).toBeCalled();
       });
     });
     describe('#componentDidMount', () => {

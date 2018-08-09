@@ -19,7 +19,7 @@ import {
   makeSelectTransactions,
   makeSelectTransactionsWithInfo,
 } from '../selectors';
-import { walletsMock, balancesMock, supportedAssetsMock, walletsWithInfoMock, pricesMock, currentWalletMock, address1Mock, totalBalancesMock, transactionsMock, transactionsWithInfoMock } from './mocks';
+import { walletsMock, balancesMock, supportedAssetsMock, walletsWithInfoMock, pricesMock, address1Mock, totalBalancesMock, transactionsMock, transactionsWithInfoMock, walletHocMock } from './mocks';
 
 describe('selectWalletHocDomain', () => {
   it('should select the walletHocDomain state', () => {
@@ -222,14 +222,7 @@ describe('makeSelectCurrentWalletWithInfo', () => {
   const currentWalletWithInfoSelector = makeSelectCurrentWalletWithInfo();
   it('should return the wallet from walletsWithInfo if exists', () => {
     const mockedState = fromJS({
-      walletHoc: {
-        wallets: walletsMock,
-        currentWallet: currentWalletMock,
-        supportedAssets: supportedAssetsMock,
-        balances: balancesMock,
-        transactions: transactionsMock,
-        prices: pricesMock,
-      },
+      walletHoc: walletHocMock,
     });
     const expected = walletsWithInfoMock.get(0);
     expect(currentWalletWithInfoSelector(mockedState)).toEqual(expected);
@@ -237,14 +230,7 @@ describe('makeSelectCurrentWalletWithInfo', () => {
 
   it('should return empty {} if wallet doesn\t exist', () => {
     const mockedState = fromJS({
-      walletHoc: {
-        wallets: walletsMock,
-        currentWallet: fromJS({ address: 'doesn\'t exisit!' }),
-        supportedAssets: supportedAssetsMock,
-        transactions: transactionsMock,
-        balances: balancesMock,
-        prices: pricesMock,
-      },
+      walletHoc: walletHocMock.setIn(['currentWallet', 'address'], 'doesn\'t exist'),
     });
     const expected = fromJS({});
     expect(currentWalletWithInfoSelector(mockedState)).toEqual(expected);
@@ -256,26 +242,14 @@ describe('makeSelectTransactionsWithInfo', () => {
   it('should add type, counterpartyAddress, symbol, decimal amt, fait value to all transactions', () => {
     const expected = transactionsWithInfoMock;
     const mockedState = fromJS({
-      walletHoc: {
-        wallets: walletsMock,
-        balances: balancesMock,
-        supportedAssets: supportedAssetsMock,
-        prices: pricesMock,
-        transactions: transactionsMock,
-      },
+      walletHoc: walletHocMock,
     });
     expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
   });
 
   it('should mark add tx as loading when supportedAssets loading', () => {
     const mockedState = fromJS({
-      walletHoc: {
-        wallets: walletsMock,
-        balances: balancesMock,
-        supportedAssets: supportedAssetsMock.set('loading', true),
-        transactions: transactionsMock,
-        prices: pricesMock,
-      },
+      walletHoc: walletHocMock.setIn(['supportedAssets', 'loading'], true),
     });
     const expected = transactionsMock.map((a) => a.set('loading', true));
     expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
@@ -283,13 +257,7 @@ describe('makeSelectTransactionsWithInfo', () => {
 
   it('should mark add tx as loading when supportedAssets errored', () => {
     const mockedState = fromJS({
-      walletHoc: {
-        wallets: walletsMock,
-        balances: balancesMock,
-        supportedAssets: supportedAssetsMock.set('error', true),
-        transactions: transactionsMock,
-        prices: pricesMock,
-      },
+      walletHoc: walletHocMock.setIn(['supportedAssets', 'error'], true),
     });
     const expected = transactionsMock.map((a) => a.set('loading', true));
     expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
@@ -297,13 +265,7 @@ describe('makeSelectTransactionsWithInfo', () => {
 
   it('should mark add tx as loading when prices loading', () => {
     const mockedState = fromJS({
-      walletHoc: {
-        wallets: walletsMock,
-        balances: balancesMock,
-        supportedAssets: supportedAssetsMock,
-        transactions: transactionsMock,
-        prices: pricesMock.set('loading', true),
-      },
+      walletHoc: walletHocMock.setIn(['prices', 'loading'], true),
     });
     const expected = transactionsMock.map((a) => a.set('loading', true));
     expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
@@ -311,13 +273,23 @@ describe('makeSelectTransactionsWithInfo', () => {
 
   it('should mark add tx as loading when prices errored', () => {
     const mockedState = fromJS({
-      walletHoc: {
-        wallets: walletsMock,
-        balances: balancesMock,
-        supportedAssets: supportedAssetsMock,
-        transactions: transactionsMock,
-        prices: pricesMock.set('loading', true),
-      },
+      walletHoc: walletHocMock.setIn(['prices', 'error'], true),
+    });
+    const expected = transactionsMock.map((a) => a.set('loading', true));
+    expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
+  });
+
+  it('should mark add tx as loading when blockHeight loading', () => {
+    const mockedState = fromJS({
+      walletHoc: walletHocMock.setIn(['blockHeight', 'loading'], true),
+    });
+    const expected = transactionsMock.map((a) => a.set('loading', true));
+    expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
+  });
+
+  it('should mark add tx as loading when prices errored', () => {
+    const mockedState = fromJS({
+      walletHoc: walletHocMock.setIn(['blockHeight', 'error'], true),
     });
     const expected = transactionsMock.map((a) => a.set('loading', true));
     expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
@@ -329,26 +301,14 @@ describe('makeSelectWalletsWithInfo', () => {
   it('should piece together balances and txns for the wallet', () => {
     const expected = walletsWithInfoMock;
     const mockedState = fromJS({
-      walletHoc: {
-        wallets: walletsMock,
-        balances: balancesMock,
-        supportedAssets: supportedAssetsMock,
-        prices: pricesMock,
-        transactions: transactionsMock,
-      },
+      walletHoc: walletHocMock,
     });
     expect(walletsWithInfoSelector(mockedState)).toEqual(expected);
   });
 
   it('should mark walletsWithInfo as loading when supportedAssets loading', () => {
     const mockedState = fromJS({
-      walletHoc: {
-        wallets: walletsMock,
-        balances: balancesMock,
-        supportedAssets: supportedAssetsMock.set('loading', true),
-        transactions: transactionsMock,
-        prices: pricesMock,
-      },
+      walletHoc: walletHocMock.setIn(['supportedAssets', 'loading'], true),
     });
     const expected = walletsMock.map((w) => w.set('balances', fromJS({ loading: true, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } })));
     expect(walletsWithInfoSelector(mockedState)).toEqual(expected);
@@ -356,13 +316,7 @@ describe('makeSelectWalletsWithInfo', () => {
 
   it('should mark walletsWithInfo as loading when prices loading', () => {
     const mockedState = fromJS({
-      walletHoc: {
-        wallets: walletsMock,
-        balances: balancesMock,
-        transactions: transactionsMock,
-        supportedAssets: supportedAssetsMock,
-        prices: pricesMock.set('loading', true),
-      },
+      walletHoc: walletHocMock.setIn(['prices', 'loading'], true),
     });
     const expected = walletsMock.map((w) => w.set('balances', fromJS({ loading: true, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } })));
     expect(walletsWithInfoSelector(mockedState)).toEqual(expected);
@@ -370,13 +324,7 @@ describe('makeSelectWalletsWithInfo', () => {
 
   it('should mark walletsWithInfo as errored when prices has errored', () => {
     const mockedState = fromJS({
-      walletHoc: {
-        wallets: walletsMock,
-        balances: balancesMock,
-        supportedAssets: supportedAssetsMock,
-        prices: pricesMock.set('error', true),
-        transactions: transactionsMock,
-      },
+      walletHoc: walletHocMock.setIn(['prices', 'error'], true),
     });
     const expected = walletsMock.map((w) => w.set('balances', fromJS({ loading: false, error: true, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } })));
     expect(walletsWithInfoSelector(mockedState)).toEqual(expected);
@@ -384,13 +332,7 @@ describe('makeSelectWalletsWithInfo', () => {
 
   it('should mark walletsWithInfo as errored when supportedAssets has errored', () => {
     const mockedState = fromJS({
-      walletHoc: {
-        wallets: walletsMock,
-        balances: balancesMock,
-        supportedAssets: supportedAssetsMock.set('error', true),
-        transactions: transactionsMock,
-        prices: pricesMock,
-      },
+      walletHoc: walletHocMock.setIn(['supportedAssets', 'error'], true),
     });
     const expected = walletsMock.map((w) => w.set('balances', fromJS({ loading: false, error: true, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } })));
     expect(walletsWithInfoSelector(mockedState)).toEqual(expected);
@@ -398,13 +340,7 @@ describe('makeSelectWalletsWithInfo', () => {
 
   it('should mark a single wallet as loading if only its balance is loading', () => {
     const mockedState = fromJS({
-      walletHoc: {
-        wallets: walletsMock,
-        balances: balancesMock.setIn(['assets', address1Mock, 'loading'], true),
-        supportedAssets: supportedAssetsMock,
-        prices: pricesMock,
-        transactions: transactionsMock,
-      },
+      walletHoc: walletHocMock.setIn(['balances', 'assets', address1Mock, 'loading'], true),
     });
     const expected = walletsWithInfoMock.set(address1Mock, fromJS({ loading: true, total: { usd: 0, eth: 0, btc: 0 } })).get(0);
     expect(walletsWithInfoSelector(mockedState).get(0)).toEqual(expected);
@@ -412,13 +348,7 @@ describe('makeSelectWalletsWithInfo', () => {
 
   it('should mark a single wallet as errored if only its balance is erroed', () => {
     const mockedState = fromJS({
-      walletHoc: {
-        wallets: walletsMock,
-        balances: balancesMock.setIn(['assets', address1Mock, 'error'], true),
-        transactions: transactionsMock,
-        supportedAssets: supportedAssetsMock,
-        prices: pricesMock,
-      },
+      walletHoc: walletHocMock.setIn(['balances', 'assets', address1Mock, 'error'], true),
     });
     const expected = walletsWithInfoMock.set(address1Mock, fromJS({ loading: false, error: true, total: { usd: 0, eth: 0, btc: 0 } })).get(0);
     expect(walletsWithInfoSelector(mockedState).get(0)).toEqual(expected);

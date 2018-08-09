@@ -9,6 +9,7 @@ describe('WalletDetails', () => {
     history: { location: { pathname: '/wallet/abcd' } },
     currentWalletDetails: walletsWithInfoMock.get(0),
     setCurrentWallet: () => {},
+    loadBlockHeight: () => {},
   };
   const setCurrentWalletSpy = jest.fn();
   let dom;
