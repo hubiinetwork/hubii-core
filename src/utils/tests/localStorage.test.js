@@ -43,6 +43,20 @@ describe('localStorage', () => {
       const expected = JSON.parse(state);
       expect(loadedState).toEqual(expected);
     });
+
+    it('should init the properties from initialState if does not exist in stored state ', () => {
+      const wallets = ['1', '2', '3'];
+      const state = JSON.stringify({ walletHoc: { wallets } });
+      localStorage.setItem('state', state);
+      const loadedState = loadState();
+      const expected = {
+        walletHoc: {
+          ...walletHocInitialState.toJSON(),
+          wallets, // check non default property
+        },
+      };
+      expect(loadedState).toEqual(expected);
+    });
   });
 
   describe('saveState', () => {
