@@ -1084,7 +1084,7 @@ describe('root Saga', () => {
 
   it('should start task to watch for LOAD_TRANSACTIONS action', () => {
     const takeDescriptor = walletHocSaga.next().value;
-    expect(takeDescriptor).toEqual(takeLatest(LOAD_TRANSACTIONS, loadTransactions));
+    expect(takeDescriptor).toEqual(takeEvery(LOAD_TRANSACTIONS, loadTransactions));
   });
 
   it('should start task to watch for LOAD_SUPPORTED_TOKENS action', () => {
