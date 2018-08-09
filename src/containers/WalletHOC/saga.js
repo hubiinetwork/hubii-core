@@ -381,7 +381,7 @@ export default function* walletHoc() {
   yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
 
   yield takeLatest(LOAD_PRICES, loadPrices);
-  yield takeLatest(LOAD_TRANSACTIONS, loadTransactions);
+  yield takeEvery(LOAD_TRANSACTIONS, loadTransactions);
   yield takeLatest(LOAD_SUPPORTED_TOKENS, loadSupportedTokens);
   yield takeLatest(LOAD_BLOCK_HEIGHT, loadBlockHeight);
 
