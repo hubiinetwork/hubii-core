@@ -43,9 +43,9 @@ import {
   DELETE_WALLET,
   LOAD_TRANSACTIONS_SUCCESS,
   LOAD_TRANSACTIONS_ERROR,
-  FETCH_BLOCK_HEIGHT,
-  FETCH_BLOCK_HEIGHT_ERROR,
-  FETCH_BLOCK_HEIGHT_SUCCESS,
+  LOAD_BLOCK_HEIGHT,
+  LOAD_BLOCK_HEIGHT_ERROR,
+  LOAD_BLOCK_HEIGHT_SUCCESS,
 } from './constants';
 import { disconnectedErrorMsg } from '../../utils/ledger/friendlyErrors';
 
@@ -253,15 +253,15 @@ function walletHocReducer(state = initialState, action) {
     case DELETE_WALLET:
       return state
         .deleteIn(['wallets', findWalletIndex(state, action.address)]);
-    case FETCH_BLOCK_HEIGHT:
+    case LOAD_BLOCK_HEIGHT:
       return state
         .setIn(['blockHeight', 'loading'], true);
-    case FETCH_BLOCK_HEIGHT_SUCCESS:
+    case LOAD_BLOCK_HEIGHT_SUCCESS:
       return state
         .setIn(['blockHeight', 'loading'], false)
         .setIn(['blockHeight', 'error'], null)
         .setIn(['blockHeight', 'height'], action.blockHeight);
-    case FETCH_BLOCK_HEIGHT_ERROR:
+    case LOAD_BLOCK_HEIGHT_ERROR:
       return state
         .setIn(['blockHeight', 'loading'], false)
         .setIn(['blockHeight', 'error'], action.error);

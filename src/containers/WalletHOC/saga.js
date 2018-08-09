@@ -33,7 +33,7 @@ import {
   LOAD_TRANSACTIONS,
   LOAD_SUPPORTED_TOKENS,
   INIT_WALLETS_BALANCES,
-  FETCH_BLOCK_HEIGHT,
+  LOAD_BLOCK_HEIGHT,
 } from './constants';
 
 import {
@@ -374,7 +374,7 @@ export default function* walletHoc() {
   yield takeLatest(LOAD_PRICES, loadPrices);
   yield takeLatest(LOAD_TRANSACTIONS, loadTransactions);
   yield takeLatest(LOAD_SUPPORTED_TOKENS, loadSupportedTokens);
-  yield takeLatest(FETCH_BLOCK_HEIGHT, loadBlockHeight);
+  yield takeLatest(LOAD_BLOCK_HEIGHT, loadBlockHeight);
 
   yield spawn(ledgerWatchers);
   yield spawn(trezorWatchers);
