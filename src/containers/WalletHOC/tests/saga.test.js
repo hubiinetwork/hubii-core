@@ -181,6 +181,7 @@ describe('CREATE_WALLET_SUCCESS', () => {
       .withReducer(withReducer, state)
       .put(addNewWalletAction(newWallet))
       .put(loadWalletBalances(newWallet.address))
+      .put(loadTransactionsAction(newWallet.address))
       .run({ silenceTimeout: true })
       .then((result) => {
         const wallets = result.storeState.getIn(['walletHoc', 'wallets']);

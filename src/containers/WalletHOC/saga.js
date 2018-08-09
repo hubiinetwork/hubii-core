@@ -296,6 +296,7 @@ export function* hookNewWalletCreated({ newWallet }) {
   }
   yield put(addNewWallet(newWallet));
   yield put(loadWalletBalances(newWallet.address));
+  yield put(loadTransactionsAction(newWallet.address));
   return yield put(notify('success', `Successfully created ${newWallet.name}`));
 }
 
