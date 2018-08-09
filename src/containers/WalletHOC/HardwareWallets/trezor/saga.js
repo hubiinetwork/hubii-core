@@ -6,7 +6,7 @@ import { notify } from 'containers/App/actions';
 import { deriveAddresses, prependHexToAddress, IsAddressMatch } from 'utils/wallet';
 import { requestHardwareWalletAPI } from 'utils/request';
 import { makeSelectTrezorInfo } from '../../selectors';
-import { trezorConnected, trezorDisconnected, fetchedTrezorAddress } from '../../actions';
+import { trezorConnected, trezorDisconnected, fetchedTrezorAddress, trezorError } from '../../actions';
 import { INIT_TREZOR, FETCH_TREZOR_ADDRESSES } from '../../constants';
 
 export function* init() {
@@ -19,6 +19,7 @@ export function* init() {
       }
       if (event.status === 'disconnected') {
         yield put(trezorDisconnected(event.deviceId));
+        yield put(trezorError(new Error('Disconnected')));
       }
     } catch (e) {
       yield put(notify('error', e.message));

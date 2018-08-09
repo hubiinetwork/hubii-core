@@ -59,9 +59,10 @@ export const SAVE_LEDGER_ADDRESS = 'src/WalletHOC/SAVE_LEDGER_ADDRESS';
 export const INIT_LEDGER = 'src/WalletHOC/INIT_LEDGER';
 export const LEDGER_ERROR = 'src/WalletHOC/LEDGER_ERROR';
 
+// Trezor constants
 export const TREZOR_CONNECTED = 'src/WalletHOC/TREZOR_CONNECTED';
 export const TREZOR_DISCONNECTED = 'src/WalletHOC/TREZOR_DISCONNECTED';
 export const FETCH_TREZOR_ADDRESSES = 'src/WalletHOC/FETCH_TREZOR_ADDRESSES';
 export const FETCHED_TREZOR_ADDRESS = 'src/WalletHOC/FETCHED_TREZOR_ADDRESS';
-
 export const INIT_TREZOR = 'src/WalletHOC/INIT_TREZOR';
+export const TREZOR_ERROR = 'src/WalletHOC/TREZOR_ERROR';

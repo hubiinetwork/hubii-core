@@ -360,7 +360,6 @@ export default class TransferForm extends React.PureComponent {
               assetBalanceBefore={assetBalanceBefore}
               assetBalanceAfter={assetBalanceAfter}
               walletUsdValueBefore={currentWalletUsdBalance}
-              lnsCheck={this.props.currentWalletWithInfo.get('type') === 'lns'}
               walletUsdValueAfter={walletUsdValueAfter}
               recipient={address}
               onSend={this.onSend}
