@@ -10,29 +10,55 @@ export const contractDataErrorMsg = 'Failed to transfer token. Please make sure 
 
 // trezor
 export const trezorDisconnectedErrorMsg = 'Trezor is not connected.';
+export const trezorPinInvalidErrorMsg = 'Trezor PIN code is invalid.';
+export const trezorPassphraseMismatchErrorMsg = 'Please reconnect your Trezor device, and make sure you provided the correct passphrase for this wallet.';
+export const trezorCancelledErrorMsg = 'Denied by Trezor';
 
 function trezorErrorMsg(error) {
   let msg;
   if (error.message === 'Disconnected') {
     msg = trezorDisconnectedErrorMsg;
   }
+  if (error.message === 'PIN invalid') {
+    msg = trezorPinInvalidErrorMsg;
+  }
+  if (error.message === 'PASSPHRASE_MISMATCH') {
+    msg = trezorPassphraseMismatchErrorMsg;
+  }
+  if (error.message === 'Inconsistent state') {
+    msg = trezorPassphraseMismatchErrorMsg;
+  }
+  if (error.message === 'TREZOR_CANCELED') {
+    msg = trezorCancelledErrorMsg;
+  }
+  if (error.message === 'PIN cancelled') {
+    msg = trezorCancelledErrorMsg;
+  }
   return msg;
 }
 
 function ledgerErrorMsg(error) {
-  if (error.message === 'Disconnected') return disconnectedErrorMsg;
-  if (error.message && error.message.includes('Condition of use not satisfied')) return cancelTxErrorMsg;
-  if (error.message && error.message.includes('Ledger device: Invalid data received')) return contractDataErrorMsg;
-  if (error.name === 'TransportStatusError') return ethAppNotOpenErrorMsg;
-  if (error.name === 'TransportError') return browserSupportErrorMsg;
-  if (error.message === 'NoSupport') return noTransportErrorMsg;
-  if (error.message && error.message.includes('cannot open device with path')) return disconnectedErrorMsg;
-  return `Unknown error occured: ${error}`;
+  let msg;
+  if (error.message === 'Disconnected') msg = disconnectedErrorMsg;
+  if (error.message && error.message.includes('Condition of use not satisfied')) msg = cancelTxErrorMsg;
+  if (error.message && error.message.includes('Ledger device: Invalid data received')) msg = contractDataErrorMsg;
+  if (error.name === 'TransportStatusError') msg = ethAppNotOpenErrorMsg;
+  if (error.name === 'TransportError') msg = browserSupportErrorMsg;
+  if (error.message === 'NoSupport') msg = noTransportErrorMsg;
+  if (error.message && error.message.includes('cannot open device with path')) msg = disconnectedErrorMsg;
+  return msg;
 }
 
 export default (error, type) => {
-  if (type === 'trezor') {
-    return trezorErrorMsg(error);
+  let msg;
+  if (!type || type === 'lns') {
+    msg = ledgerErrorMsg(error);
   }
-  return ledgerErrorMsg(error);
+  if (type === 'trezor') {
+    msg = trezorErrorMsg(error);
+  }
+  if (msg) {
+    return msg;
+  }
+  return `Unknown error occured: ${error}`;
 };

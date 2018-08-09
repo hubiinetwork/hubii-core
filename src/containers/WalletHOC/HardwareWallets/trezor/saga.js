@@ -44,7 +44,8 @@ export function* getAddresses({ pathBase, count }) {
       yield put(fetchedTrezorAddress(`${pathBase}/${i}`, address));
     }
   } catch (error) {
-    yield put(notify('error', error.message));
+    const refinedError = trezorError(error);
+    yield put(notify('error', refinedError.error));
   }
 }
 
@@ -64,7 +65,7 @@ export function* signTxByTrezor({ walletDetails, raw, data, chainId }) {
     const path = walletDetails.derivationPath;
     const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
     if (!IsAddressMatch(`0x${publicAddressKeyPair.address}`, walletDetails.address)) {
-      throw new Error('Current wallet address does not match to the Trezor\'s address. Please make sure you entered the correct passphrase.');
+      throw new Error('PASSPHRASE_MISMATCH');
     }
     yield put(notify('info', 'Verify transaction details on your Trezor'));
     const signedTx = yield call(
@@ -79,7 +80,8 @@ export function* signTxByTrezor({ walletDetails, raw, data, chainId }) {
 
     return signedTx;
   } catch (e) {
-    throw new Error('Failed to sign transaction by Trezor');
+    const refinedError = trezorError(e);
+    throw new Error(refinedError.error);
   }
 }
 

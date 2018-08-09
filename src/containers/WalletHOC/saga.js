@@ -226,7 +226,7 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
     yield put(notify('success', 'Transaction sent'));
   } catch (error) {
     yield put(transferError(error));
-    yield put(notify('error', `Failed to send transaction: ${error}`));
+    yield put(notify('error', `Failed to send transaction: ${error.message}`));
   }
 }
 
@@ -259,7 +259,7 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
     yield put(notify('success', 'Transaction sent'));
   } catch (error) {
     yield put(transferError(error));
-    yield put(notify('error', `Failed to send transaction: ${error}`));
+    yield put(notify('error', `Failed to send transaction: ${error.message}`));
   }
 }
 
