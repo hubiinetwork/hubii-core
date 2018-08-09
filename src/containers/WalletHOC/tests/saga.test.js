@@ -44,6 +44,7 @@ import walletHoc, {
   sendTransactionForHardwareWallet,
   generateERC20Transaction,
   loadTransactions,
+  loadBlockHeight,
 } from '../saga';
 
 import { tryCreateEthTransportActivity } from '../HardwareWallets/ledger/saga';
@@ -62,6 +63,7 @@ import {
   LOAD_SUPPORTED_TOKENS,
   INIT_API_CALLS,
   LOAD_TRANSACTIONS,
+  LOAD_BLOCK_HEIGHT,
 } from '../constants';
 
 import {
@@ -1071,5 +1073,10 @@ describe('root Saga', () => {
   it('should start task to watch for LOAD_SUPPORTED_TOKENS action', () => {
     const takeDescriptor = walletHocSaga.next().value;
     expect(JSON.stringify(takeDescriptor)).toEqual(JSON.stringify(takeLatest(LOAD_SUPPORTED_TOKENS, loadSupportedTokens)));
+  });
+
+  it('should start task to watch for LOAD_BLOCK_HEIGHT action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(JSON.stringify(takeDescriptor)).toEqual(JSON.stringify(takeLatest(LOAD_BLOCK_HEIGHT, loadBlockHeight)));
   });
 });
