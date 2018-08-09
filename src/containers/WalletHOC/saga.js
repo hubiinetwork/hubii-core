@@ -56,6 +56,7 @@ import {
   loadTransactionsError,
   showDecryptWalletModal,
   transferSuccess,
+  loadBlockHeight as loadBlockHeightAction,
   transferError,
   transferEther as transferEtherAction,
   transferERC20 as transferERC20Action,
@@ -129,6 +130,7 @@ export function* initApiCalls() {
   }
   yield put(loadSupportedTokensAction());
   yield put(loadPricesAction());
+  yield put(loadBlockHeightAction());
 }
 
 export function* loadWalletBalancesSaga({ address }) {
@@ -162,6 +164,10 @@ export function* loadBlockHeight() {
     yield put(loadBlockHeightSuccess(blockHeight));
   } catch (error) {
     yield put(loadBlockHeightError(error));
+  } finally {
+    const TEN_SEC_IN_MS = 1000 * 60;
+    yield delay(TEN_SEC_IN_MS);
+    yield put(loadBlockHeightAction());
   }
 }
 
@@ -306,6 +312,7 @@ export function* hookNewWalletCreated({ newWallet }) {
   }
   yield put(addNewWallet(newWallet));
   yield put(loadWalletBalances(newWallet.address));
+  yield put(loadTransactionsAction(newWallet.address));
   return yield put(notify('success', `Successfully created ${newWallet.name}`));
 }
 

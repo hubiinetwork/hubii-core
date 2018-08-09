@@ -43,7 +43,6 @@ import {
   DELETE_WALLET,
   LOAD_TRANSACTIONS_SUCCESS,
   LOAD_TRANSACTIONS_ERROR,
-  LOAD_BLOCK_HEIGHT,
   LOAD_BLOCK_HEIGHT_ERROR,
   LOAD_BLOCK_HEIGHT_SUCCESS,
 } from './constants';
@@ -93,9 +92,9 @@ export const initialState = fromJS({
   balances: {},
   currentDecryptionCallback: null,
   blockHeight: {
-    loading: false,
+    loading: true,
     error: null,
-    height: null,
+    height: -1,
   },
 });
 
@@ -253,9 +252,6 @@ function walletHocReducer(state = initialState, action) {
     case DELETE_WALLET:
       return state
         .deleteIn(['wallets', findWalletIndex(state, action.address)]);
-    case LOAD_BLOCK_HEIGHT:
-      return state
-        .setIn(['blockHeight', 'loading'], true);
     case LOAD_BLOCK_HEIGHT_SUCCESS:
       return state
         .setIn(['blockHeight', 'loading'], false)

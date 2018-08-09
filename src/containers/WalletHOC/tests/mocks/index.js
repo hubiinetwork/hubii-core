@@ -30,6 +30,12 @@ export const transactionsMock = fromJS({
   },
 });
 
+export const blockHeightMock = fromJS({
+  loading: false,
+  error: null,
+  height: 3780093,
+});
+
 export const transactionsWithInfoMock = fromJS({
   '0x1c7429f62595097315289ceBaC1fDbdA587Ad512': {
     loading: false,
@@ -46,6 +52,7 @@ export const transactionsWithInfoMock = fromJS({
       recipient: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
       sender: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
       fiatValue: '0.0000000412',
+      confirmations: '3',
     }],
   },
   '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0': {
@@ -56,6 +63,7 @@ export const transactionsWithInfoMock = fromJS({
       counterpartyAddress: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
       symbol: 'ETH',
       decimalAmount: '0.0000000001',
+      confirmations: '3',
       amount: '100000000',
       block: { number: 3780091, timestamp: '2018-08-06T02:32:00.000Z' },
       currency: 'ETH',
@@ -568,6 +576,7 @@ export const walletsWithInfoMock = fromJS([
           recipient: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
           type: 'received',
           fiatValue: '0.0000000412',
+          confirmations: '3',
         },
       ],
     },
@@ -590,3 +599,13 @@ export const walletsWithInfoMock = fromJS([
     derivationPath: "m/44'/60'/0'/0",
   },
 ]);
+
+export const walletHocMock = fromJS({
+  wallets: walletsMock,
+  currentWallet: currentWalletMock,
+  balances: balancesMock,
+  supportedAssets: supportedAssetsMock,
+  transactions: transactionsMock,
+  prices: pricesMock,
+  blockHeight: blockHeightMock,
+});

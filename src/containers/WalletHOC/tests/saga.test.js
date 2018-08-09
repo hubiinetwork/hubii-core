@@ -27,7 +27,7 @@ import {
   lnsExpectedSignedTxHex,
 } from '../../../mocks/wallet';
 
-import { balancesMock, address1Mock, walletsMock, pricesMock, supportedAssetsMock, supportedTokensMock, transactionsMock } from './mocks';
+import { balancesMock, address1Mock, walletsMock, pricesMock, supportedAssetsMock, supportedTokensMock, transactionsMock, blockHeightMock } from './mocks';
 
 import walletHoc, {
   createWalletFromMnemonic,
@@ -618,6 +618,7 @@ describe('load wallets saga', () => {
             supportedAssets: supportedAssetsMock,
             pendingTransactions: [],
             transactions: transactionsMock,
+            blockHeight: blockHeightMock,
           },
         });
         storeState = storeState.setIn(['walletHoc', 'wallets', 0, 'decrypted'], {
@@ -779,6 +780,7 @@ describe('load wallets saga', () => {
               descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC1@14/XHC1@14000000/PRT2@14200000/Nano S@14200000/Nano S@0/IOUSBHostHIDDevice@14200000,0',
             },
             supportedAssets: { loading: true },
+            blockHeight: blockHeightMock,
           },
         };
         const params = {};
@@ -830,6 +832,7 @@ describe('load wallets saga', () => {
             ledgerNanoSInfo: {
               descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC@14/XHC@14000000/HS09@14900000/Nano S@14900000/Nano S@0/IOUSBHostHIDDevice@14900000,0',
             },
+            blockHeight: blockHeightMock,
           },
         });
         const nonce = 16;
@@ -890,6 +893,7 @@ describe('load wallets saga', () => {
             trezorInfo: {
               id: 'test',
             },
+            blockHeight: blockHeightMock,
           },
         });
         const nonce = 8;
