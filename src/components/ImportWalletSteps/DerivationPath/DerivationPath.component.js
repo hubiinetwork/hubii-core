@@ -18,7 +18,7 @@ import {
 const derivationPathBases = [
   {
     title: 'm/44\'/60\'/0\'/0',
-    subtitle: 'Hubii Core, Jaxx, Metamask, Exodus, TREZOR (ETH), Digital Bitbox',
+    subtitle: 'hubii core, Jaxx, Metamask, Exodus, TREZOR (ETH), Digital Bitbox',
   },
   {
     title: 'm/44\'/60\'/0\'',
@@ -45,7 +45,7 @@ const columns = [{
   key: 'address',
 },
 {
-  title: 'ETH Balance',
+  title: 'ETH balance',
   dataIndex: 'ethBalance',
   key: 'ethBalance',
 }];
@@ -61,7 +61,7 @@ class DerivationPath extends React.Component {
       <Form onSubmit={this.handleNext}>
         <FormDiv>
           <Radios>
-            <RadioTitle>Select HD derivation path</RadioTitle>
+            <RadioTitle>Select a root derivation path</RadioTitle>
             <RadioGroup
               defaultValue={pathBase}
               size="small"
@@ -82,7 +82,7 @@ class DerivationPath extends React.Component {
           </Radios>
 
           <RadioTitle>
-            Please select the address you want to interact with
+            Select the address you would like to import
           </RadioTitle>
           <Table
             onRow={(record) => ({

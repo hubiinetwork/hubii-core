@@ -14,6 +14,7 @@ describe('WalletTransfer', () => {
     transfer: () => {},
     history: {},
     errors: {},
+    createContact: jest.fn(), 
   };
 
   it('should render correctly', () => {

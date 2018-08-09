@@ -25,10 +25,10 @@ const Breakdown = ({ data = [], value }) => {
   }
   return (
     <Wrapper>
-      <SectionHeading>Breakdown</SectionHeading>
+      <SectionHeading>Balance breakdown</SectionHeading>
       {(
         <div>
-          <Title>Total Value</Title>
+          <Title>Total fiat value</Title>
           <TotalAmount>{formatFiat(value, 'USD')}</TotalAmount>
         </div>
       )}

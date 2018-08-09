@@ -59,12 +59,12 @@ export default class ExportPrivateInfo extends React.PureComponent {
                   <PrimaryHeader>
                     Mnemonic
                   </PrimaryHeader>
-                  This wallet was imported using a Private Key and therefore does not have a mnemonic.
+                  This wallet was imported using a private key therefore does not have a mnemonic to export
                 </div>
             }
           <div>
             <SecondaryHeader>
-              Private Key
+              Private key
             <CopyToClipboard text={privateKey} >
               <StyledIcon
                 type="primary"

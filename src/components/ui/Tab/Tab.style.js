@@ -7,6 +7,7 @@ export default styled(Tabs)`
   .ant-tabs-nav .ant-tabs-tab {
     margin: 0 0rem 0 0 !important;
     padding: 0.86rem 1.14rem !important;
+    height: 3.36rem !important;
     color: ${({ theme }) => theme.palette.secondary1};
   }
   .ant-tabs-nav-scroll {
@@ -41,5 +42,8 @@ export default styled(Tabs)`
   }
   .ant-tabs-content {
     padding: 0rem 1.86rem;
+  }
+  svg {
+    margin-right: 0.64rem;
   }
 `;
