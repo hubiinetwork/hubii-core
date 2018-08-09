@@ -47,7 +47,7 @@ export default class TransferDescription extends React.PureComponent {
     return (
       <WrapperDiv>
         <Row>
-          <StyledTitle span={12}>Transaction Summary</StyledTitle>
+          <StyledTitle span={12}>Summary</StyledTitle>
         </Row>
         <Row>
           <StyledCol span={12}>Send</StyledCol>
@@ -74,7 +74,7 @@ export default class TransferDescription extends React.PureComponent {
           />
         </Row>
         <Row>
-          <StyledCol span={12}>ETH Balance before</StyledCol>
+          <StyledCol span={12}>ETH balance before</StyledCol>
         </Row>
         <Row>
           <TransferDescriptionItem
@@ -84,7 +84,7 @@ export default class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           <StyledCol span={12}>
-            ETH Balance after
+            ETH balance after
           </StyledCol>
         </Row>
         <Row>
@@ -96,7 +96,7 @@ export default class TransferDescription extends React.PureComponent {
         {assetToSend.symbol !== 'ETH' &&
         <div>
           <Row>
-            <StyledCol span={12}>{assetToSend.symbol} Balance before</StyledCol>
+            <StyledCol span={12}>{assetToSend.symbol} balance before</StyledCol>
           </Row>
           <Row>
             <TransferDescriptionItem
@@ -106,7 +106,7 @@ export default class TransferDescription extends React.PureComponent {
           </Row>
           <Row>
             <StyledCol span={12}>
-              { assetToSend.symbol } Balance after
+              { assetToSend.symbol } balance after
           </StyledCol>
           </Row>
           <Row>
@@ -138,7 +138,6 @@ export default class TransferDescription extends React.PureComponent {
             this.props.transfering ?
             (<StyledSpin
               delay={0}
-              tip="Sending..."
               size="large"
             />) : (
               <StyledDiv>

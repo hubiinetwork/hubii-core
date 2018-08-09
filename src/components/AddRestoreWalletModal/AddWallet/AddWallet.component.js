@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Row, Col, Form, Popover } from 'antd';
+import { Row, Col, Form } from 'antd';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import ethers from 'ethers';
 import PropTypes from 'prop-types';
@@ -8,11 +8,9 @@ import Notification from '../../Notification';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../../ui/Modal';
 
 import {
-  Info,
   SeedInfo,
   SeedText,
   WrapperDiv,
-  InfoContent,
   RoundButton,
   FinishButton,
   SeedWrapper,
@@ -49,7 +47,7 @@ class AddWallet extends React.PureComponent {
   compareToFirstPassword(rule, value, callback) {
     const form = this.props.form;
     if (value && value !== form.getFieldValue('password')) {
-      callback('The passwords do not match!');
+      callback('The two passwords don\'t match');
     } else {
       callback();
     }
@@ -75,7 +73,7 @@ class AddWallet extends React.PureComponent {
   }
   showNotification() {
     const success = true;
-    const message = 'Seed words copied to clipboard.';
+    const message = 'Mnemonic phrase copied to clipboard';
     Notification(success, message);
   }
   render() {
@@ -91,30 +89,30 @@ class AddWallet extends React.PureComponent {
             <Form onSubmit={this.handleSubmit} disabled>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>Give your wallet a Name</ModalFormLabel>}
+                label={<ModalFormLabel>Enter a name for your wallet</ModalFormLabel>}
               >
                 {getFieldDecorator('name', {
                   rules: [
                     {
                       required: true,
-                      message: 'Please enter your wallet name.',
+                      message: 'Please enter a name for your wallet',
                     },
                   ],
                 })(<ModalFormInput disabled={loading} />)}
               </ModalFormItem>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>Set a Password</ModalFormLabel>}
+                label={<ModalFormLabel>Enter a password to secure your wallet</ModalFormLabel>}
               >
                 {getFieldDecorator('password', {
                   rules: [
                     {
                       required: true,
-                      message: 'Please enter your password!',
+                      message: 'Please enter a password for your wallet',
                     },
                     {
-                      min: 6,
-                      message: 'The required minimum is 6 characters.',
+                      min: 8,
+                      message: 'Password must be at least 8 characters',
                     },
                     {
                       validator: this.validateToNextPassword,
@@ -124,13 +122,13 @@ class AddWallet extends React.PureComponent {
               </ModalFormItem>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>Repeat Password</ModalFormLabel>}
+                label={<ModalFormLabel>Repeat password</ModalFormLabel>}
               >
                 {getFieldDecorator('confirm', {
                   rules: [
                     {
                       required: true,
-                      message: 'Please confirm your password!',
+                      message: 'Please confirm your password',
                     },
                     {
                       validator: this.compareToFirstPassword,
@@ -146,18 +144,10 @@ class AddWallet extends React.PureComponent {
               </ModalFormItem>
               <ModalFormItem colon={false}>
                 <SeedWrapper>
-                  <SeedInfo>Save these Seed Words somewhere safe</SeedInfo>
-                  <Popover
-                    overlayStyle={{ width: 270 }}
-                    content={
-                      <InfoContent>
-                        If your computer breaks, you&apos;ll be able to use this
-                        phrase to restore your wallet.
-                      </InfoContent>
-                    }
-                  >
-                    <Info type="info-circle-o" />
-                  </Popover>
+                  <SeedInfo>Write down the mnemonic phrase below and store it somewhere safe, it is the key to your wallet. If you lose the phrase any funds in your wallet will be lost forever!</SeedInfo>
+                  <SeedInfo>Never share the phrase with anybody. Possession of this phrase means possession of all of your funds.</SeedInfo>
+                  <SeedInfo>If you wish to store any significant amount of funds, it is strongly recommended to use a hardware wallet. Hardware wallets are a much safer alternative to software wallets.</SeedInfo>
+                  <SeedInfo>{"Confused? Google search 'Ethereum wallet security' and do some research. Return when you understand the risks associated with software wallets."}</SeedInfo>
                 </SeedWrapper>
               </ModalFormItem>
               <ModalFormItem colon={false}>
@@ -181,12 +171,11 @@ class AddWallet extends React.PureComponent {
                 {loading ? (
                   <StyledSpin
                     delay={0}
-                    tip="Creating Wallet..."
                     size="large"
                   />
                 ) : (
                   <FinishButton type="primary" htmlType="submit">
-                    Finish
+                    Create wallet
                   </FinishButton>
                 )}
               </CenterWrapper>

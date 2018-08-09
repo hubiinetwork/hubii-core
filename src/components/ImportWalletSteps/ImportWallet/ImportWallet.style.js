@@ -10,8 +10,9 @@ export const Coins = styled(Radio.Group)`
   flex-wrap: wrap;
   justify-content: space-between;
   .ant-radio-button-wrapper-checked {
-    background-color: ${({ theme }) => theme.palette.info};
-    border: 0.07rem solid ${({ theme }) => theme.palette.info};
+    border: 0.14rem solid ${({ theme }) => theme.palette.info};
+    box-shadow: none;
+    transition: box-shadow 0s ease;
   }
 `;
 const RadioButton = Radio.Button;

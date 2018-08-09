@@ -148,7 +148,7 @@ describe('WalletManager', () => {
         );
         const instance = dom.instance();
         const args = [{
-          walletType: 'Private Key',
+          walletType: 'Private key',
         }, {
           privateKey: 'privateKey',
           name: 'name',

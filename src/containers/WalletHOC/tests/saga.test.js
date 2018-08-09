@@ -4,7 +4,7 @@
 
 /* eslint-disable redux-saga/yield-effects */
 import { takeLatest, takeEvery, put } from 'redux-saga/effects';
-import { expectSaga } from 'redux-saga-test-plan';
+import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import BigNumber from 'bignumber.js';
 
 import { requestWalletAPI, requestHardwareWalletAPI } from 'utils/request';
@@ -418,6 +418,29 @@ describe('load wallets saga', () => {
         })
         .put(loadWalletBalancesSuccess(address, response))
         .run({ silenceTimeout: true });
+    });
+
+    it('should not poll loadWalletBalances after finished the balance request', () => {
+      const response = 'response';
+      const address = address1Mock;
+      const saga = testSaga(loadWalletBalancesSaga, { address, noPoll: true });
+      saga
+        .next()
+        .next(response).put(loadWalletBalancesSuccess(address, response))
+        .next()
+        .isDone();
+    });
+    it('should poll loadWalletBalances after finished the balance request', () => {
+      const response = 'response';
+      const address = address1Mock;
+      const saga = testSaga(loadWalletBalancesSaga, { address });
+      saga
+        .next()
+        .next(response).put(loadWalletBalancesSuccess(address, response))
+        .next()
+        .next().put(loadWalletBalances(address))
+        .next()
+        .isDone();
     });
 
     it('#loadWalletBalances should dispatch loadWalletBalancesError when error throws in request', () => {

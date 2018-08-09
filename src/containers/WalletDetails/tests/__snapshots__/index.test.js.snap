@@ -102,7 +102,7 @@ ShallowWrapper {
                                         <Icon
                                                   type="wallet"
                                         />
-                                        Overview
+                                        Details
                               </span>
                     }
           >
@@ -212,7 +212,7 @@ ShallowWrapper {
                                           <Icon
                                                         type="wallet"
                                           />
-                                          Overview
+                                          Details
                             </span>
               }
 >
@@ -289,7 +289,7 @@ ShallowWrapper {
                 <Icon
                                 type="wallet"
                 />
-                Overview
+                Details
 </span>,
             },
             "ref": null,
@@ -423,7 +423,7 @@ ShallowWrapper {
                                                 <Icon
                                                             type="wallet"
                                                 />
-                                                Overview
+                                                Details
                                     </span>
                         }
             >
@@ -533,7 +533,7 @@ ShallowWrapper {
                                                 <Icon
                                                                 type="wallet"
                                                 />
-                                                Overview
+                                                Details
                                 </span>
                 }
 >
@@ -610,7 +610,7 @@ ShallowWrapper {
                   <Icon
                                     type="wallet"
                   />
-                  Overview
+                  Details
 </span>,
               },
               "ref": null,

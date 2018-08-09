@@ -9,7 +9,7 @@ const walletData = [
     name: 'ledger',
   },
   {
-    name: 'Private Key',
+    name: 'Private key',
   },
 ];
 

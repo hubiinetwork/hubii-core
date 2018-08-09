@@ -12,7 +12,7 @@ ShallowWrapper {
               "src": "https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png",
             },
             Object {
-              "name": "Private Key",
+              "name": "Private key",
             },
           ]
     }
@@ -43,11 +43,11 @@ ShallowWrapper {
                     </ImportWallet.style__Center>
           </ImportWallet.style__CoinButton>
           <ImportWallet.style__CoinButton
-                    value="Private Key"
+                    value="Private key"
           >
                     <ImportWallet.style__Center>
                               <ImportWallet.style__OptionText>
-                                        Private Key
+                                        Private key
                               </ImportWallet.style__OptionText>
                     </ImportWallet.style__Center>
           </ImportWallet.style__CoinButton>
@@ -83,11 +83,11 @@ ShallowWrapper {
               </ImportWallet.style__Center>
 </ImportWallet.style__CoinButton>,
             <ImportWallet.style__CoinButton
-              value="Private Key"
+              value="Private key"
 >
               <ImportWallet.style__Center>
                             <ImportWallet.style__OptionText>
-                                          Private Key
+                                          Private key
                             </ImportWallet.style__OptionText>
               </ImportWallet.style__Center>
 </ImportWallet.style__CoinButton>,
@@ -136,15 +136,15 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": "Private Key",
+            "key": "Private key",
             "nodeType": "class",
             "props": Object {
               "children": <ImportWallet.style__Center>
                 <ImportWallet.style__OptionText>
-                                Private Key
+                                Private key
                 </ImportWallet.style__OptionText>
 </ImportWallet.style__Center>,
-              "value": "Private Key",
+              "value": "Private key",
             },
             "ref": null,
             "rendered": Object {
@@ -153,7 +153,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <ImportWallet.style__OptionText>
-                  Private Key
+                  Private key
 </ImportWallet.style__OptionText>,
               },
               "ref": null,
@@ -162,10 +162,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "Private Key",
+                  "children": "Private key",
                 },
                 "ref": null,
-                "rendered": "Private Key",
+                "rendered": "Private key",
                 "type": [Function],
               },
               "type": [Function],
@@ -242,11 +242,11 @@ ShallowWrapper {
                         </ImportWallet.style__Center>
             </ImportWallet.style__CoinButton>
             <ImportWallet.style__CoinButton
-                        value="Private Key"
+                        value="Private key"
             >
                         <ImportWallet.style__Center>
                                     <ImportWallet.style__OptionText>
-                                                Private Key
+                                                Private key
                                     </ImportWallet.style__OptionText>
                         </ImportWallet.style__Center>
             </ImportWallet.style__CoinButton>
@@ -282,11 +282,11 @@ ShallowWrapper {
                 </ImportWallet.style__Center>
 </ImportWallet.style__CoinButton>,
               <ImportWallet.style__CoinButton
-                value="Private Key"
+                value="Private key"
 >
                 <ImportWallet.style__Center>
                                 <ImportWallet.style__OptionText>
-                                                Private Key
+                                                Private key
                                 </ImportWallet.style__OptionText>
                 </ImportWallet.style__Center>
 </ImportWallet.style__CoinButton>,
@@ -335,15 +335,15 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "Private Key",
+              "key": "Private key",
               "nodeType": "class",
               "props": Object {
                 "children": <ImportWallet.style__Center>
                   <ImportWallet.style__OptionText>
-                                    Private Key
+                                    Private key
                   </ImportWallet.style__OptionText>
 </ImportWallet.style__Center>,
-                "value": "Private Key",
+                "value": "Private key",
               },
               "ref": null,
               "rendered": Object {
@@ -352,7 +352,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": <ImportWallet.style__OptionText>
-                    Private Key
+                    Private key
 </ImportWallet.style__OptionText>,
                 },
                 "ref": null,
@@ -361,10 +361,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "Private Key",
+                    "children": "Private key",
                   },
                   "ref": null,
-                  "rendered": "Private Key",
+                  "rendered": "Private key",
                   "type": [Function],
                 },
                 "type": [Function],

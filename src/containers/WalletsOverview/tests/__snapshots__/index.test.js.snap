@@ -115,7 +115,7 @@ ShallowWrapper {
                 xs={24}
         >
                 <SectionHeading.style__SectionHeading>
-                        All Wallets
+                        All wallets
                 </SectionHeading.style__SectionHeading>
                 <Row
                         align="top"
@@ -168,7 +168,7 @@ ShallowWrapper {
             xs={24}
 >
             <SectionHeading.style__SectionHeading>
-                        All Wallets
+                        All wallets
             </SectionHeading.style__SectionHeading>
             <Row
                         align="top"
@@ -218,7 +218,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <SectionHeading.style__SectionHeading>
-                All Wallets
+                All wallets
 </SectionHeading.style__SectionHeading>,
               <Row
                 align="top"
@@ -244,10 +244,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "All Wallets",
+                "children": "All wallets",
               },
               "ref": null,
-              "rendered": "All Wallets",
+              "rendered": "All wallets",
               "type": [Function],
             },
             Object {
@@ -380,7 +380,7 @@ ShallowWrapper {
                     xs={24}
           >
                     <SectionHeading.style__SectionHeading>
-                              All Wallets
+                              All wallets
                     </SectionHeading.style__SectionHeading>
                     <Row
                               align="top"
@@ -433,7 +433,7 @@ ShallowWrapper {
               xs={24}
 >
               <SectionHeading.style__SectionHeading>
-                            All Wallets
+                            All wallets
               </SectionHeading.style__SectionHeading>
               <Row
                             align="top"
@@ -483,7 +483,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <SectionHeading.style__SectionHeading>
-                  All Wallets
+                  All wallets
 </SectionHeading.style__SectionHeading>,
                 <Row
                   align="top"
@@ -509,10 +509,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "All Wallets",
+                  "children": "All wallets",
                 },
                 "ref": null,
-                "rendered": "All Wallets",
+                "rendered": "All wallets",
                 "type": [Function],
               },
               Object {
@@ -990,7 +990,7 @@ ShallowWrapper {
                 xs={24}
         >
                 <SectionHeading.style__SectionHeading>
-                        All Wallets
+                        All wallets
                 </SectionHeading.style__SectionHeading>
                 <Row
                         align="top"
@@ -2667,7 +2667,7 @@ ShallowWrapper {
             xs={24}
 >
             <SectionHeading.style__SectionHeading>
-                        All Wallets
+                        All wallets
             </SectionHeading.style__SectionHeading>
             <Row
                         align="top"
@@ -4341,7 +4341,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <SectionHeading.style__SectionHeading>
-                All Wallets
+                All wallets
 </SectionHeading.style__SectionHeading>,
               <Row
                 align="top"
@@ -5991,10 +5991,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "All Wallets",
+                "children": "All wallets",
               },
               "ref": null,
-              "rendered": "All Wallets",
+              "rendered": "All wallets",
               "type": [Function],
             },
             Object {
@@ -10996,7 +10996,7 @@ ShallowWrapper {
                     xs={24}
           >
                     <SectionHeading.style__SectionHeading>
-                              All Wallets
+                              All wallets
                     </SectionHeading.style__SectionHeading>
                     <Row
                               align="top"
@@ -12673,7 +12673,7 @@ ShallowWrapper {
               xs={24}
 >
               <SectionHeading.style__SectionHeading>
-                            All Wallets
+                            All wallets
               </SectionHeading.style__SectionHeading>
               <Row
                             align="top"
@@ -14347,7 +14347,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <SectionHeading.style__SectionHeading>
-                  All Wallets
+                  All wallets
 </SectionHeading.style__SectionHeading>,
                 <Row
                   align="top"
@@ -15997,10 +15997,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "All Wallets",
+                  "children": "All wallets",
                 },
                 "ref": null,
-                "rendered": "All Wallets",
+                "rendered": "All wallets",
                 "type": [Function],
               },
               Object {

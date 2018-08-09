@@ -133,7 +133,7 @@ export function* initApiCalls() {
   yield put(loadBlockHeightAction());
 }
 
-export function* loadWalletBalancesSaga({ address }) {
+export function* loadWalletBalancesSaga({ address, noPoll }) {
   const requestPath = `ethereum/wallets/${address}/balances`;
   try {
     const returnData = yield call(requestWalletAPI, requestPath);
@@ -142,9 +142,11 @@ export function* loadWalletBalancesSaga({ address }) {
   } catch (err) {
     yield put(loadWalletBalancesError(address, err));
   } finally {
-    const FIVE_SEC_IN_MS = 1000 * 5;
-    yield delay(FIVE_SEC_IN_MS);
-    yield put(loadWalletBalances(address));
+    if (!noPoll) {
+      const FIVE_SEC_IN_MS = 1000 * 5;
+      yield delay(FIVE_SEC_IN_MS);
+      yield put(loadWalletBalances(address));
+    }
   }
 }
 

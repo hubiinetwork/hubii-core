@@ -53,7 +53,7 @@ ShallowWrapper {
           </div>
           <div>
                     <ExportPrivateInfo.style__SecondaryHeader>
-                              Private Key
+                              Private key
                               <CopyToClipboard
                                         onCopy={undefined}
                                         options={undefined}
@@ -135,7 +135,7 @@ ShallowWrapper {
 </div>,
             <div>
               <ExportPrivateInfo.style__SecondaryHeader>
-                            Private Key
+                            Private key
                             <CopyToClipboard
                                           onCopy={undefined}
                                           options={undefined}
@@ -261,7 +261,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <ExportPrivateInfo.style__SecondaryHeader>
-                  Private Key
+                  Private key
                   <CopyToClipboard
                                     onCopy={undefined}
                                     options={undefined}
@@ -288,7 +288,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": Array [
-                    "Private Key",
+                    "Private key",
                     <CopyToClipboard
                       onCopy={undefined}
                       options={undefined}
@@ -307,7 +307,7 @@ ShallowWrapper {
                 },
                 "ref": null,
                 "rendered": Array [
-                  "Private Key",
+                  "Private key",
                   Object {
                     "instance": null,
                     "key": undefined,
@@ -423,7 +423,7 @@ ShallowWrapper {
             </div>
             <div>
                         <ExportPrivateInfo.style__SecondaryHeader>
-                                    Private Key
+                                    Private key
                                     <CopyToClipboard
                                                 onCopy={undefined}
                                                 options={undefined}
@@ -505,7 +505,7 @@ ShallowWrapper {
 </div>,
               <div>
                 <ExportPrivateInfo.style__SecondaryHeader>
-                                Private Key
+                                Private key
                                 <CopyToClipboard
                                                 onCopy={undefined}
                                                 options={undefined}
@@ -631,7 +631,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <ExportPrivateInfo.style__SecondaryHeader>
-                    Private Key
+                    Private key
                     <CopyToClipboard
                                         onCopy={undefined}
                                         options={undefined}
@@ -658,7 +658,7 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "children": Array [
-                      "Private Key",
+                      "Private key",
                       <CopyToClipboard
                         onCopy={undefined}
                         options={undefined}
@@ -677,7 +677,7 @@ ShallowWrapper {
                   },
                   "ref": null,
                   "rendered": Array [
-                    "Private Key",
+                    "Private key",
                     Object {
                       "instance": null,
                       "key": undefined,
