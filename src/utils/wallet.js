@@ -1,4 +1,5 @@
 import { providers } from 'ethers';
+import { List, Map } from 'immutable';
 import { publicToAddress } from 'ethereumjs-util';
 import HDKey from 'hdkey';
 import BigNumber from 'bignumber.js';
@@ -34,6 +35,25 @@ export const findWalletIndex = (state, address, scopedFatalError = fatalError) =
   } catch (e) {
     return scopedFatalError(e);
   }
+};
+
+export const getBreakdown = (balances, supportedAssets) => {
+    // convert balances to Map if they're in array form
+  let formattedBalances = balances;
+  if (balances.get('assets') && List.isList(balances.get('assets'))) {
+    const assetsAsObj = balances
+        .get('assets')
+        .reduce((acc, asset) => acc.set(asset.get('currency'), asset), new Map());
+    formattedBalances = balances.set('assets', assetsAsObj);
+  }
+
+  const totalFiat = formattedBalances.getIn(['total', 'usd']);
+
+  return formattedBalances.get('assets').keySeq().map((asset) => ({
+    label: getCurrencySymbol(supportedAssets, asset),
+    percentage: (formattedBalances.getIn(['assets', asset, 'value', 'usd']) / totalFiat) * 100,
+    color: supportedAssets.get('assets').find((a) => a.get('currency') === asset).get('color'),
+  })).toJS();
 };
 
 export const getCurrencySymbol = (supportedAssets, currency) => supportedAssets

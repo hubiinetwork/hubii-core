@@ -265,10 +265,10 @@ export default class TransferForm extends React.PureComponent {
       <div>
         <Modal
           footer={null}
-          width={'585px'}
+          width={'41.8rem'}
           maskClosable
           maskStyle={{ background: 'rgba(232,237,239,.65)' }}
-          style={{ marginTop: '20px' }}
+          style={{ marginTop: '1.43rem' }}
           visible={addContactModalVisibility}
           onCancel={this.hideContactModal}
           destroyOnClose
@@ -284,17 +284,13 @@ export default class TransferForm extends React.PureComponent {
           <Col xl={14} sm={22}>
             <Form>
               <FormItem
-                label={<FormItemLabel>Asset</FormItemLabel>}
+                label={<FormItemLabel>Select an asset to send</FormItemLabel>}
                 colon={false}
               >
-                <Image>
-                  <img
-                    src={getAbsolutePath(`public/images/assets/${assetToSend.symbol}.svg`)}
-                    width="32px"
-                    height="32px"
-                    alt="logo"
-                  />
-                </Image>
+                <Image
+                  src={getAbsolutePath(`public/images/assets/${assetToSend.symbol}.svg`)}
+                  alt="logo"
+                />
                 <Select disabled={transfering} defaultValue={assetToSend.symbol} onSelect={this.handleAssetChange}>
                   {assets.map((currency) => (
                     <Option value={currency.symbol} key={currency.symbol}>
@@ -304,7 +300,7 @@ export default class TransferForm extends React.PureComponent {
                 </Select>
               </FormItem>
               <FormItem
-                label={<FormItemLabel>Recipient</FormItemLabel>}
+                label={<FormItemLabel>Specify the recipient</FormItemLabel>}
                 colon={false}
                 help={
                   this.props.recipients.find((recipient) => recipient.address === address) ?
@@ -316,7 +312,7 @@ export default class TransferForm extends React.PureComponent {
                       onClick={this.showContactModal}
                     >
                       <Icon type="plus" />
-                      Add New Contact
+                      Add address to your contacts book
                   </StyledButton>
                 }
               >
@@ -329,7 +325,7 @@ export default class TransferForm extends React.PureComponent {
                 />
               </FormItem>
               <FormItem
-                label={<FormItemLabel>Amount</FormItemLabel>}
+                label={<FormItemLabel>Enter an amount</FormItemLabel>}
                 colon={false}
                 help={<HelperText left={formatFiat(usdValueToSend, 'USD')} right="USD" />}
               >
@@ -337,11 +333,13 @@ export default class TransferForm extends React.PureComponent {
               </FormItem>
               <Collapse bordered={false} defaultActiveKey={['2']}>
                 <Panel
-                  header={<AdvanceSettingsHeader>Advanced Settings</AdvanceSettingsHeader>}
+                  header={<AdvanceSettingsHeader>Advanced settings</AdvanceSettingsHeader>}
                   key="1"
                 >
-                  <Input disabled={transfering} min={0} defaultValue={gasPriceGweiInput} value={gasPriceGweiInput} onChange={this.handleGasPriceChange} />
-                  <FormItem label={<FormItemLabel>Gas Limit</FormItemLabel>} colon={false}>
+                  <FormItem label={<FormItemLabel>Gas price</FormItemLabel>} colon={false}>
+                    <Input disabled={transfering} min={0} defaultValue={gasPriceGweiInput} value={gasPriceGweiInput} onChange={this.handleGasPriceChange} />
+                  </FormItem>
+                  <FormItem label={<FormItemLabel>Gas limit</FormItemLabel>} colon={false}>
                     <Input disabled={transfering} value={gasLimitInput} defaultValue={gasLimitInput} onChange={this.handleGasLimitChange} />
                   </FormItem>
                 </Panel>

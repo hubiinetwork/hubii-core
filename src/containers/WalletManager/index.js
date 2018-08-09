@@ -90,7 +90,7 @@ export class WalletManager extends React.PureComponent {
   }
 
   handleImportWalletSubmit(data) {
-    if (data[0].walletType === 'Private Key') {
+    if (data[0].walletType === 'Private key') {
       const { privateKey, name, password } = data[1];
       this.props.createWalletFromPrivateKey(privateKey, name, password);
     }
@@ -135,22 +135,22 @@ export class WalletManager extends React.PureComponent {
       <Wrapper>
         <TabsLayout>
           <WalletsTabHeader>
-            <Heading>Wallet Manager</Heading>
+            <Heading>My wallets</Heading>
             <StyledButton
               type="primary"
               onClick={() => this.showModal(history.location.pathname === `${match.url}/overview` ? 'addWallet' : 'addContact')}
             >
               <Icon type="plus" />
               {history.location.pathname === `${match.url}/overview`
-                ? 'Add / Restore Wallet'
-                : 'Add New Contact'}
+                ? 'Add a wallet'
+                : 'Add a contact'}
             </StyledButton>
             <Modal
               footer={null}
-              width={'585px'}
+              width={'41.79rem'}
               maskClosable
               maskStyle={{ background: 'rgba(232,237,239,.65)' }}
-              style={{ marginTop: '20px' }}
+              style={{ marginTop: '1.43rem' }}
               visible={this.state.visible}
               onCancel={this.hideModal}
               destroyOnClose
@@ -163,7 +163,7 @@ export class WalletManager extends React.PureComponent {
           <TabPane
             tab={
               <span>
-                <Icon type="wallet" />Wallets Overview
+                <Icon type="wallet" />Overview
               </span>
             }
             key={`${match.url}/overview`}
@@ -172,7 +172,7 @@ export class WalletManager extends React.PureComponent {
           <TabPane
             tab={
               <span>
-                <Icon type="contacts" />Contacts Book
+                <Icon type="contacts" />Contacts
               </span>
             }
             key={`${match.url}/contacts`}

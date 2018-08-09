@@ -3,40 +3,40 @@ import { Icon, Select } from 'antd';
 
 export const Text = styled.div`
   color: ${({ theme }) => theme.palette.info3};
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 1.14rem;
   font-family: 'SF Text';
 `;
 
 export const TextPrimary = styled.div`
   color: black;
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 500;
   font-family: 'SF Text';
-  line-height: 16px;
+  line-height: 1.14rem;
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 8px;
+  padding-top: 0.57rem;
 `;
 
 export const StyledIcon = styled(Icon)`
   font-size: 1.2rem;
   color: ${({ theme }) => theme.palette.secondary4};
   position: absolute;
-  top: 16px;
-  right: 30px;
+  top: 1.14rem;
+  right: 2.14rem;
   z-index: 2;
 `;
 
 export const StyledSelect = styled(Select)`
   .ant-select-selection {
     background-color: ${({ theme }) => theme.palette.primary1};
-    height: 51px;
+    height: 3.64rem;
     border-color: ${({ theme }) => theme.palette.secondary4};
   }
   .ant-select-arrow {

@@ -16,7 +16,7 @@ export default class Toggler extends React.PureComponent {
       onTabChange,
     } = this.props;
     return (
-      <StyledDiv style={{ width: '330px' }}>
+      <StyledDiv style={{ width: '23.57rem' }}>
         {titleTabs && (
           <StriimTabs
             size="large"

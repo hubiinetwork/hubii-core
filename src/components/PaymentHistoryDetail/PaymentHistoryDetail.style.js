@@ -5,9 +5,9 @@ const Panel = Collapse.Panel;
 export const TextDullWhite = styled.div`
   color: ${({ theme }) => theme.palette.light1};
   display: flex;
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 1.14rem;
 `;
 
 export const ItemWrapper = styled.div`
@@ -19,7 +19,7 @@ export const LeftFlex = styled.div`
   flex: 0.7;
   justify-content: space-between;
   align-items: center;
-  margin-right: 65px;
+  margin-right: 4.64rem;
 `;
 
 export const RightFlex = styled.div`
@@ -32,15 +32,15 @@ export const RightFlex = styled.div`
 
 export const TimePast = styled.div`
   color: ${({ theme }) => theme.palette.secondary4};
-  font-size: 12px;
+  font-size: 0.86rem;
   font-weight: 500;
-  line-height: 14px;
+  line-height: 1rem;
   text-align: right;
   margin-right: 2.3rem;
 `;
 
 export const CollapseLeft = styled.div`
-  border-right: 1px solid ${({ theme }) => theme.palette.secondary7};
+  border-right: 0.07rem solid ${({ theme }) => theme.palette.secondary7};
   margin-top: 1rem;
   flex: 0.7;
 `;
@@ -59,22 +59,22 @@ export const CollapseParent = styled.div`
 
 export const Amount = styled.div`
   color: ${({ theme }) => theme.palette.secondary6};
-  font-size: 12px;
+  font-size: 0.86rem;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 1.14rem;
 `;
 
 export const PaymentHistoryAddress = styled.div`
   word-break: break-all;
   color: ${({ theme }) => theme.palette.info};
-  margin-left: 3px;
-  margin-right: 3px;
+  margin-left: 0.21rem;
+  margin-right: 0.21rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 266px;
+  max-width: 19rem;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 1.14rem;
 `;
 
 export const Wrapper = styled.div`
@@ -86,40 +86,40 @@ export const Wrapper = styled.div`
 `;
 
 export const DetailCollapse = styled(Collapse)`
-  border-width: 0px;
-  padding: 0px;
+  border-width: 0rem;
+  padding: 0rem;
   background-color: transparent;
   flex: 1;
   display: flex;
   align-items: center;
   .ant-collapse-header {
-    padding: 0px !important;
+    padding: 0rem !important;
   }
   .ant-collapse-content {
-    padding-left: 0px !important;
+    padding-left: 0rem !important;
   }
   .ant-collapse-content-box {
-    padding-top: 8px !important;
-    padding: 0px !important;
+    padding-top: 0.57rem !important;
+    padding: 0rem !important;
   }
 `;
 
 export const DetailPanel = styled(Panel)`
-  padding: 0px;
+  padding: 0rem;
   flex: 1;
   .ant-collapse-header {
     flex: 1;
     &:focus {
-      border: 0px solid red;
+      border: 0rem solid red;
     }
   }
 `;
 
 export const TextGrey = styled.div`
   color: ${({ theme }) => theme.palette.secondary6};
-  margin-bottom: 0px;
-  margin-right: 5px;
-  font-size: 13.2px;
+  margin-bottom: 0rem;
+  margin-right: 0.36rem;
+  font-size: 0.94rem;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 1.14rem;
 `;

@@ -6,7 +6,7 @@ export const StyledIcon = styled(Icon)`
 `;
 
 export const StyledTitle = styled.div`
-  width:250px;
+  width:17.86rem;
   color: white;
   overflow: hidden;
   text-overflow: ellipsis

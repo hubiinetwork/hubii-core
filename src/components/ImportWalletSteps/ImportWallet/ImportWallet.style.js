@@ -3,15 +3,16 @@ import styled from 'styled-components';
 import Button from '../../ui/Button';
 
 export const Coins = styled(Radio.Group)`
-  margin-top: 40px;
-  padding-left: 27px;
-  padding-right: 27px;
+  margin-top: 2.86rem;
+  padding-left: 1.93rem;
+  padding-right: 1.93rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   .ant-radio-button-wrapper-checked {
-    background-color: ${({ theme }) => theme.palette.info};
-    border: 1px solid ${({ theme }) => theme.palette.info};
+    border: 0.14rem solid ${({ theme }) => theme.palette.info};
+    box-shadow: none;
+    transition: box-shadow 0s ease;
   }
 `;
 const RadioButton = Radio.Button;
@@ -21,12 +22,12 @@ export const CoinButton = styled(RadioButton)`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 15px;
-  padding-top: 8px;
+  margin-top: 1.07rem;
+  padding-top: 0.57rem;
   background-color: transparent;
-  width: 227px;
-  height: 48px;
-  border-radius: 3px !important;
+  width: 16.21rem;
+  height: 3.43rem;
+  border-radius: 0.21rem !important;
 `;
 
 export const Flex = styled.div`
@@ -35,8 +36,8 @@ export const Flex = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 90px;
-  height: 30px;
+  width: 6.43rem;
+  height: 2.14rem;
 `;
 
 export const OptionText = styled.h3`
@@ -50,28 +51,28 @@ export const Center = styled.div`
   align-items: center;
 `;
 export const SpanText = styled.span`
-  font-size: 16px;
+  font-size: 1.14rem;
   font-weight: 500;
-  line-height: 19px;
+  line-height: 1.36rem;
 `;
 export const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 26px;
+  margin-bottom: 1.86rem;
   margin-top: 1rem;
 `;
 export const StyledButton = styled(Button)`
-  margin-top: 35px;
+  margin-top: 2.5rem;
   background-color: ${({ disabled: white }) =>
     white && 'transparent !important'};
-  font-size: 12px;
+  font-size: 0.86rem;
   font-weight: 500;
-  border-width: 2px;
-  height: 40px;
-  width: 162px;
+  border-width: 0.14rem;
+  height: 2.86rem;
+  width: 11.57rem;
   border: ${({ disabled: white, theme }) =>
-    white && `2px solid ${theme.palette.secondary4} !important`};
-  min-width: ${({ current: width }) => (width === 0 ? '260px' : '260px')};
+    white && `0.14rem solid ${theme.palette.secondary4} !important`};
+  min-width: ${({ current: width }) => (width === 0 ? '18.57rem' : '18.57rem')};
   color: ${({ disabled: white, theme }) =>
     white
       ? `${theme.palette.secondary4} !important`
@@ -80,12 +81,12 @@ export const StyledButton = styled(Button)`
     background-color: ${({ disabled: white }) =>
       white && 'transparent !important'};
     border: ${({ disabled: white, theme }) =>
-      white && `2px solid ${theme.palette.secondary4} !important`};
+      white && `0.14rem solid ${theme.palette.secondary4} !important`};
   }
 `;
 export const StyledSpan = styled.span`
-  font-size: 12px;
+  font-size: 0.86rem;
   font-weight: 500;
-  line-height: 14px;
+  line-height: 1rem;
   text-align: center;
 `;

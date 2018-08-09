@@ -43,14 +43,14 @@ class ImportWalletMnemonicForm extends React.Component {
             <ModalFormItem
               label={
                 <StyledModalFormLabel>
-                  Wallet Name
+                  Enter a name for your wallet
                 </StyledModalFormLabel>
               }
             >
               {getFieldDecorator('name', {
                 rules: [
                   {
-                    message: 'Required field',
+                    message: 'Please enter a name for your wallet',
                     required: true,
                     whitespace: true,
                   },
@@ -60,14 +60,14 @@ class ImportWalletMnemonicForm extends React.Component {
             <ModalFormItem
               label={
                 <StyledModalFormLabel>
-                  Mnemonic
+                  {"Enter your wallet's mnemonic"}
                 </StyledModalFormLabel>
               }
             >
               {getFieldDecorator('mnemonic', {
                 rules: [
                   {
-                    message: 'Required field',
+                    message: 'Please enter your wallet\'s mnemonic',
                     required: true,
                     whitespace: true,
                   },
@@ -76,15 +76,19 @@ class ImportWalletMnemonicForm extends React.Component {
             </ModalFormItem>
             <ModalFormItem
               label={
-                <StyledModalFormLabel>Password</StyledModalFormLabel>
+                <StyledModalFormLabel>Please enter a password to secure your wallet</StyledModalFormLabel>
               }
             >
               {getFieldDecorator('password', {
                 rules: [
                   {
-                    message: 'Required field',
+                    message: 'Please enter a password for your wallet',
                     required: true,
                     whitespace: true,
+                  },
+                  {
+                    min: 8,
+                    message: 'Password must be at least 8 characters',
                   },
                 ],
               })(<ModalFormInput type="password" disabled={loading} />)}
@@ -112,7 +116,6 @@ class ImportWalletMnemonicForm extends React.Component {
                 <ButtonDiv loading={loading}>
                   <StyledSpin
                     delay={0}
-                    tip="Importing Wallet..."
                     size="large"
                   />
                 </ButtonDiv>
@@ -124,7 +127,7 @@ class ImportWalletMnemonicForm extends React.Component {
                     <StyledSpan>Back</StyledSpan>
                   </StyledBackButton>
                   <StyledButton type={'primary'} htmlType="submit">
-                    <StyledSpan>Finish</StyledSpan>
+                    <StyledSpan>Import wallet</StyledSpan>
                   </StyledButton>
                 </ButtonDiv>
               )

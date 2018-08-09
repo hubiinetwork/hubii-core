@@ -14,7 +14,7 @@ export const Heading = styled.h2`
   font-weight: 500;
   margin: 0;
   color: ${({ theme }) => theme.palette.light};
-  font-size: 18px;
+  font-size: 1.29rem;
 `;
 
 export const TabsLayout = styled(Layout)`
@@ -23,14 +23,14 @@ export const TabsLayout = styled(Layout)`
 
 export const StyledButton = styled(Button)`
   margin-left: auto;
-  border-width: 2px;
+  border-width: 0.14rem;
   padding: 0.5rem 1rem;
 `;
 
 export const WalletsTabHeader = styled(Header)`
   display: flex;
   align-items: center;
-  height: 74px;
-  padding: 0 28px;
+  height: 5.29rem;
+  padding: 0 2rem;
   background: ${({ theme }) => theme.palette.primary4};
 `;

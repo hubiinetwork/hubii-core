@@ -60,7 +60,6 @@ class ImportWalletNameForm extends React.Component {
                 <ButtonDiv loading={loading}>
                   <StyledSpin
                   delay={0}
-                  tip="Importing Wallet..."
                   size="large"
                   />
                 </ButtonDiv>

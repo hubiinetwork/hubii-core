@@ -5,14 +5,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { EthNetworkProvider } from 'utils/wallet';
+import { EthNetworkProvider, getBreakdown } from 'utils/wallet';
+import { formatFiat } from 'utils/numberFormats';
 
-import { Row, Col, Pagination } from 'antd';
-
-import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHOC/selectors';
+import Breakdown from 'components/Breakdown/Breakdown.component';
 import { SectionHeading } from 'components/ui/SectionHeading';
-import { StyledTransaction } from './style';
-import { formatFiat } from '../../utils/numberFormats';
+
+import { makeSelectSupportedAssets, makeSelectCurrentWalletWithInfo } from 'containers/WalletHOC/selectors';
+
+import { StyledTransaction, TransactionsWrapper, BreakdownWrapper, OuterWrapper, StyledPagination } from './style';
 
 export class WalletsTransactions extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ export class WalletsTransactions extends React.Component {
 
 
   render() {
-    const { currentWalletWithInfo } = this.props;
+    const { currentWalletWithInfo, supportedAssets } = this.props;
     const { currentPage } = this.state;
 
     const start = (currentPage - 1) * 10;
@@ -46,10 +47,18 @@ export class WalletsTransactions extends React.Component {
       .toJS()
       .slice(start, end);
 
+    if
+    (
+      currentWalletWithInfo.getIn(['balances', 'loading']) ||
+      supportedAssets.get('loading') ||
+      currentWalletWithInfo.getIn(['transactions', 'loading'])) {
+      return <div>loading...</div>;
+    }
+
     return (
-      <Row gutter={16}>
-        <Col>
-          <SectionHeading>Transaction History</SectionHeading>
+      <OuterWrapper>
+        <TransactionsWrapper>
+          <SectionHeading>Transaction history</SectionHeading>
           {txToShow.map((tx) => (
             <StyledTransaction
               key={uuid()}
@@ -68,26 +77,33 @@ export class WalletsTransactions extends React.Component {
             />
             )
             )}
-          <Pagination
+          <StyledPagination
             total={currentWalletWithInfo.getIn(['transactions', 'transactions']).size}
-            showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} transactions`}
             pageSize={10}
             defaultCurrent={currentPage}
             current={currentPage}
             onChange={this.onPaginationChange}
           />
-        </Col>
-      </Row>
+        </TransactionsWrapper>
+        <BreakdownWrapper>
+          <Breakdown
+            data={getBreakdown(currentWalletWithInfo.get('balances'), supportedAssets)}
+            value={currentWalletWithInfo.getIn(['balances', 'total', 'usd']).toString()}
+          />
+        </BreakdownWrapper>
+      </OuterWrapper>
     );
   }
 }
 
 WalletsTransactions.propTypes = {
   currentWalletWithInfo: PropTypes.object.isRequired,
+  supportedAssets: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
+  supportedAssets: makeSelectSupportedAssets(),
 });
 
 export function mapDispatchToProps() {

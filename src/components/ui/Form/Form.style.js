@@ -7,13 +7,13 @@ const FlexForm = styled(Form)`
 
 export const FormItem = styled(Form.Item)`
   flex: 1;
-  margin-bottom: 30px !important;
+  margin-bottom: 2.14rem !important;
   .ant-form-item-label {
-    line-height: 12px;
-    margin-bottom: 9px;
+    line-height: 0.86rem;
+    margin-bottom: 0.64rem;
   }
   .ant-form-item-control-wrapper .ant-form-explain {
-    margin-top: 5px;
+    margin-top: 0.36rem;
   }
 
   .ant-form-item-children {
@@ -22,9 +22,9 @@ export const FormItem = styled(Form.Item)`
 `;
 
 export const FormItemLabel = styled.span`
-  font-size: 12px;
+  font-size: 0.86rem;
   color: ${({ theme }) => theme.palette.secondary1};
-  margin-bottom: 8px;
+  margin-bottom: 0.57rem;
 `;
 
 export { FlexForm as Form };

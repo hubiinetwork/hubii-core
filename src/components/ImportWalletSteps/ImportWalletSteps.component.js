@@ -94,7 +94,7 @@ export default class ImportWalletSteps extends React.Component {
         },
 
       ],
-      'Private Key': [
+      'Private key': [
         {
           title: 'Last',
           content: (
@@ -120,7 +120,7 @@ export default class ImportWalletSteps extends React.Component {
         },
       ],
     };
-    return steps.concat(stepTypes[selectedWallet.name || 'Private Key' || 'Mnemonic']);
+    return steps.concat(stepTypes[selectedWallet.name || 'Private key' || 'Mnemonic']);
   }
 
   searchSRC(logoName, wallets) {
@@ -149,14 +149,14 @@ export default class ImportWalletSteps extends React.Component {
   }
 
   render() {
-    const { current, data } = this.state;
+    const { current } = this.state;
     const { onBackIcon } = this.props;
 
     const FormNavigation = (
       <Between>
         <Flex>
           <LeftArrow type="arrow-left" onClick={() => onBackIcon()} />
-          <SpanText>Importing {data[0] && data[0].coin} Wallet</SpanText>
+          <SpanText>Import an existing wallet</SpanText>
         </Flex>
       </Between>
     );

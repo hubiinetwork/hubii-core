@@ -16,20 +16,22 @@ export const StyledButton = styled(Button)`
   padding: 0.5rem 1rem;
 `;
 
-export const Image = styled.div`
-border-bottom: 1px solid ${({ theme }) => theme.palette.secondary};
-padding-bottom: 4px;
+export const Image = styled.img`
+  width: 2.35rem;
+  height: 2.35rem;
+  border-bottom: 0.07rem solid ${({ theme }) => theme.palette.secondary};
+  padding-bottom: 0.29rem;
 `;
 
 export const ETHtoDollar = styled.span`
-font-size: 12px;
-color: ${({ theme }) => theme.palette.secondary};
+  font-size: 0.86rem;
+  color: ${({ theme }) => theme.palette.secondary};
 `;
 
 const StyledRow = styled(Row)`
-margin-top: 30px;
+margin-top: 2.14rem;
 .ant-row-flex-top {
-  margin-top: 16px;
+  margin-top: 1.14rem;
 }
 `;
 export const StyledLabel = styled.span`
@@ -40,13 +42,13 @@ font-weight: bold;
 export const Panel = Collapse.Panel;
 
 export const AdvanceSettingsHeader = styled.span`
-  font-size: 14px;
+  font-size: 1rem;
   color: ${({ theme }) => theme.palette.info};
 `;
 
 export const styledCollapse = styled(Collapse)`
   background: transparent;
-  margin-left: -15px;
+  margin-left: -1.07rem;
   .ant-collapse-header {
     color: ${({ theme }) => theme.palette.info} !important;
   }
@@ -54,13 +56,13 @@ export const styledCollapse = styled(Collapse)`
     border-bottom: none !important;
   }
   .ant-collapse-content {
-    padding-right: 0px !important;
+    padding-right: 0rem !important;
   }
   .ant-collapse-header{
     width: fit-content;
   }
   .ant-collapse-content-box {
-    padding-right: 0px !important;
+    padding-right: 0rem !important;
   }
 `;
 

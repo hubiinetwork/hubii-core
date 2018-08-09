@@ -166,18 +166,47 @@ injectGlobal`
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.27);
   }
 
+  .ant-pagination-item-link:hover,
+  .ant-pagination-next:focus,
+  .ant-pagination-next:hover,
+  .ant-pagination-prev:focus,
   .ant-pagination-item-active:focus, 
   .ant-pagination-item-active:hover,
   .ant-pagination-item-active {
-    border-color: ${darkTheme.palette.info};
+    border-color: ${darkTheme.palette.info} !important;
     background: transparent;
+    color: ${darkTheme.palette.info} !important;
   }
 
-  .ant-pagination-item:hover,
-  .ant-pagination-item:focus {
-    a {
+  .ant-pagination-jump-prev,
+  .ant-pagination-jump-next {
+    :focus:after, :hover:after {
       color: ${darkTheme.palette.info};
     }
+  }
+
+  .ant-pagination-item-link,
+  .ant-pagination-item:hover,
+  .ant-pagination-item:focus,
+  .ant-pagination-item {
+    background: transparent !important;
+  }
+
+  .ant-pagination-item {
+    :hover, :focus {
+      border-color: ${darkTheme.palette.info} !important;
+      a {
+        color: ${darkTheme.palette.info} !important;
+      }
+    }
+  }
+
+  .ant-pagination-item-link {
+    border: none !important;
+    :hover::after {
+      color: ${darkTheme.palette.info} !important;
+    }
+
   }
 
   .ant-pagination-item>a,
