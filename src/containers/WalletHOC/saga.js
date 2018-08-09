@@ -165,7 +165,7 @@ export function* loadBlockHeight() {
   } catch (error) {
     yield put(loadBlockHeightError(error));
   } finally {
-    const TEN_SEC_IN_MS = 1000 * 60;
+    const TEN_SEC_IN_MS = 1000 * 10;
     yield delay(TEN_SEC_IN_MS);
     yield put(loadBlockHeightAction());
   }
