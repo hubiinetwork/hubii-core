@@ -34,7 +34,7 @@ import walletHoc, {
   createWalletFromPrivateKey,
   decryptWallet,
   loadWalletBalancesSaga,
-  initWalletsBalances,
+  initApiCalls,
   transfer,
   transferERC20,
   transferEther,
@@ -60,7 +60,7 @@ import {
   CREATE_WALLET_SUCCESS,
   LOAD_PRICES,
   LOAD_SUPPORTED_TOKENS,
-  INIT_WALLETS_BALANCES,
+  INIT_API_CALLS,
   LOAD_TRANSACTIONS,
 } from '../constants';
 
@@ -948,7 +948,7 @@ describe('load wallets saga', () => {
     });
   });
 
-  it('initWalletsBalances should trigger loadWalletBalances for all the wallets in the list', () => {
+  it('initApiCalls should trigger loadWalletBalances for all the wallets in the list', () => {
     const wallets = fromJS([walletsMock[0], walletsMock[1]]);
     return expectSaga(walletHoc)
       .provide({
@@ -960,7 +960,7 @@ describe('load wallets saga', () => {
       .put(loadWalletBalances(wallets.getIn([1, 'address'])))
       .put(loadSupportedTokens())
       .put(loadPrices())
-      .dispatch({ type: INIT_WALLETS_BALANCES })
+      .dispatch({ type: INIT_API_CALLS })
       .run({ silenceTimeout: true });
   });
 
@@ -1019,9 +1019,9 @@ describe('root Saga', () => {
     expect(takeDescriptor).toEqual(takeEvery(DECRYPT_WALLET, decryptWallet));
   });
 
-  it('should start task to watch for INIT_WALLETS_BALANCES action', () => {
+  it('should start task to watch for INIT_API_CALLS action', () => {
     const takeDescriptor = walletHocSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(INIT_WALLETS_BALANCES, initWalletsBalances));
+    expect(takeDescriptor).toEqual(takeEvery(INIT_API_CALLS, initApiCalls));
   });
 
   it('should start task to watch for LOAD_WALLET_BALANCES action', () => {

@@ -49,7 +49,7 @@ import {
   DELETE_WALLET,
   INIT_LEDGER,
   INIT_TREZOR,
-  INIT_WALLETS_BALANCES,
+  INIT_API_CALLS,
   LOAD_BLOCK_HEIGHT,
   LOAD_BLOCK_HEIGHT_SUCCESS,
   LOAD_BLOCK_HEIGHT_ERROR,
@@ -155,9 +155,9 @@ export function setCurrentWallet(address) {
   };
 }
 
-export function initWalletsBalances() {
+export function initApiCalls() {
   return {
-    type: INIT_WALLETS_BALANCES,
+    type: INIT_API_CALLS,
   };
 }
 

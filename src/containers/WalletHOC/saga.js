@@ -32,7 +32,7 @@ import {
   LOAD_PRICES,
   LOAD_TRANSACTIONS,
   LOAD_SUPPORTED_TOKENS,
-  INIT_WALLETS_BALANCES,
+  INIT_API_CALLS,
   LOAD_BLOCK_HEIGHT,
 } from './constants';
 
@@ -121,7 +121,7 @@ export function* decryptWallet({ address, encryptedWallet, password }) {
   }
 }
 
-export function* initWalletsBalances() {
+export function* initApiCalls() {
   const wallets = yield select(makeSelectWallets());
   for (let i = 0; i < wallets.size; i += 1) {
     yield put(loadWalletBalances(wallets.getIn([i, 'address'])));
@@ -362,7 +362,7 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
 export default function* walletHoc() {
   yield takeEvery(CREATE_WALLET_FROM_MNEMONIC, createWalletFromMnemonic);
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
-  yield takeEvery(INIT_WALLETS_BALANCES, initWalletsBalances);
+  yield takeEvery(INIT_API_CALLS, initApiCalls);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
   yield takeEvery(TRANSFER, transfer);
   yield takeEvery(TRANSFER_ETHER, transferEther);
