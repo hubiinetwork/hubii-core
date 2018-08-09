@@ -58,9 +58,9 @@ ShallowWrapper {
     }
     decryptWallet={[Function]}
     hideDecryptWalletModal={[Function]}
+    initApiCalls={[Function]}
     initLedger={[Function]}
     initTrezor={[Function]}
-    initWalletsBalances={[Function]}
     loading={
         Immutable.Map {
             decryptingWallet: false,
@@ -134,9 +134,9 @@ ShallowWrapper {
           }
           decryptWallet={[Function]}
           hideDecryptWalletModal={[Function]}
+          initApiCalls={[Function]}
           initLedger={[Function]}
           initTrezor={[Function]}
-          initWalletsBalances={[Function]}
           loading={
                     Immutable.Map {
                               decryptingWallet: false,
@@ -242,9 +242,9 @@ ShallowWrapper {
 },
           "decryptWallet": [Function],
           "hideDecryptWalletModal": [Function],
+          "initApiCalls": [Function],
           "initLedger": [Function],
           "initTrezor": [Function],
-          "initWalletsBalances": [Function],
           "loading": Immutable.Map {
             decryptingWallet: false,
 },
@@ -411,9 +411,9 @@ ShallowWrapper {
             }
             decryptWallet={[Function]}
             hideDecryptWalletModal={[Function]}
+            initApiCalls={[Function]}
             initLedger={[Function]}
             initTrezor={[Function]}
-            initWalletsBalances={[Function]}
             loading={
                         Immutable.Map {
                                     decryptingWallet: false,
@@ -519,9 +519,9 @@ ShallowWrapper {
 },
             "decryptWallet": [Function],
             "hideDecryptWalletModal": [Function],
+            "initApiCalls": [Function],
             "initLedger": [Function],
             "initTrezor": [Function],
-            "initWalletsBalances": [Function],
             "loading": Immutable.Map {
               decryptingWallet: false,
 },
@@ -696,9 +696,9 @@ ShallowWrapper {
     }
     decryptWallet={[Function]}
     hideDecryptWalletModal={[Function]}
+    initApiCalls={[Function]}
     initLedger={[Function]}
     initTrezor={[Function]}
-    initWalletsBalances={[Function]}
     loading={
         Immutable.Map {
             decryptingWallet: true,
@@ -772,9 +772,9 @@ ShallowWrapper {
           }
           decryptWallet={[Function]}
           hideDecryptWalletModal={[Function]}
+          initApiCalls={[Function]}
           initLedger={[Function]}
           initTrezor={[Function]}
-          initWalletsBalances={[Function]}
           loading={
                     Immutable.Map {
                               decryptingWallet: true,
@@ -877,9 +877,9 @@ ShallowWrapper {
 },
           "decryptWallet": [Function],
           "hideDecryptWalletModal": [Function],
+          "initApiCalls": [Function],
           "initLedger": [Function],
           "initTrezor": [Function],
-          "initWalletsBalances": [Function],
           "loading": Immutable.Map {
             decryptingWallet: true,
 },
@@ -1041,9 +1041,9 @@ ShallowWrapper {
             }
             decryptWallet={[Function]}
             hideDecryptWalletModal={[Function]}
+            initApiCalls={[Function]}
             initLedger={[Function]}
             initTrezor={[Function]}
-            initWalletsBalances={[Function]}
             loading={
                         Immutable.Map {
                                     decryptingWallet: true,
@@ -1146,9 +1146,9 @@ ShallowWrapper {
 },
             "decryptWallet": [Function],
             "hideDecryptWalletModal": [Function],
+            "initApiCalls": [Function],
             "initLedger": [Function],
             "initTrezor": [Function],
-            "initWalletsBalances": [Function],
             "loading": Immutable.Map {
               decryptingWallet: true,
 },

@@ -8,7 +8,9 @@ ShallowWrapper {
     amount="0.000000000000000001"
     confirmations="204"
     counterpartyAddress="0x00"
+    defaultOpen={false}
     fiatEquivilent="$123.34 USD"
+    onChange={[Function]}
     symbol="UKG"
     time={1995-01-09T04:19:09.000Z}
     type="recieved"
@@ -28,6 +30,8 @@ ShallowWrapper {
     "props": Object {
       "children": <Transaction.style__DetailCollapse
         bordered={false}
+        defaultActiveKey={null}
+        onChange={[Function]}
 >
         <Transaction.style__DetailPanel
                 header={
@@ -165,11 +169,13 @@ ShallowWrapper {
                     </Transaction.style__TransactionId>
           </Transaction.style__CollapsableContent>
 </Transaction.style__DetailPanel>,
+        "defaultActiveKey": null,
+        "onChange": [Function],
       },
       "ref": null,
       "rendered": Object {
         "instance": null,
-        "key": undefined,
+        "key": "1",
         "nodeType": "class",
         "props": Object {
           "children": <Transaction.style__CollapsableContent>
@@ -392,6 +398,8 @@ ShallowWrapper {
       "props": Object {
         "children": <Transaction.style__DetailCollapse
           bordered={false}
+          defaultActiveKey={null}
+          onChange={[Function]}
 >
           <Transaction.style__DetailPanel
                     header={
@@ -529,11 +537,13 @@ ShallowWrapper {
                         </Transaction.style__TransactionId>
             </Transaction.style__CollapsableContent>
 </Transaction.style__DetailPanel>,
+          "defaultActiveKey": null,
+          "onChange": [Function],
         },
         "ref": null,
         "rendered": Object {
           "instance": null,
-          "key": undefined,
+          "key": "1",
           "nodeType": "class",
           "props": Object {
             "children": <Transaction.style__CollapsableContent>
@@ -767,7 +777,9 @@ ShallowWrapper {
     amount="0.000000000000000001"
     confirmations="204"
     counterpartyAddress="0x00"
+    defaultOpen={false}
     fiatEquivilent="$123.34 USD"
+    onChange={[Function]}
     symbol="UKG"
     time={1995-01-09T04:19:09.000Z}
     type="sent"
@@ -787,6 +799,8 @@ ShallowWrapper {
     "props": Object {
       "children": <Transaction.style__DetailCollapse
         bordered={false}
+        defaultActiveKey={null}
+        onChange={[Function]}
 >
         <Transaction.style__DetailPanel
                 header={
@@ -924,11 +938,13 @@ ShallowWrapper {
                     </Transaction.style__TransactionId>
           </Transaction.style__CollapsableContent>
 </Transaction.style__DetailPanel>,
+        "defaultActiveKey": null,
+        "onChange": [Function],
       },
       "ref": null,
       "rendered": Object {
         "instance": null,
-        "key": undefined,
+        "key": "1",
         "nodeType": "class",
         "props": Object {
           "children": <Transaction.style__CollapsableContent>
@@ -1151,6 +1167,8 @@ ShallowWrapper {
       "props": Object {
         "children": <Transaction.style__DetailCollapse
           bordered={false}
+          defaultActiveKey={null}
+          onChange={[Function]}
 >
           <Transaction.style__DetailPanel
                     header={
@@ -1288,11 +1306,13 @@ ShallowWrapper {
                         </Transaction.style__TransactionId>
             </Transaction.style__CollapsableContent>
 </Transaction.style__DetailPanel>,
+          "defaultActiveKey": null,
+          "onChange": [Function],
         },
         "ref": null,
         "rendered": Object {
           "instance": null,
-          "key": undefined,
+          "key": "1",
           "nodeType": "class",
           "props": Object {
             "children": <Transaction.style__CollapsableContent>
