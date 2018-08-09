@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import LnsDerivationPathContainer from 'containers/LnsDerivationPathContainer';
-import TrezorDerivationPathContainer from 'containers/TrezorDerivationPathContainer';
+import DerivationPathContainer from 'containers/DerivationPathContainer';
 
 import {
   Flex,
@@ -49,9 +48,11 @@ export default class ImportWalletSteps extends React.Component {
         {
           title: 'Second',
           content: (
-            <LnsDerivationPathContainer
+            <DerivationPathContainer
               handleBack={this.handleBack}
               handleNext={this.handleNext}
+              deviceType="lns"
+              pathBase={'m/44\'/60\'/0\''}
             />
             ),
         },
@@ -72,9 +73,11 @@ export default class ImportWalletSteps extends React.Component {
         {
           title: 'Second',
           content: (
-            <TrezorDerivationPathContainer
+            <DerivationPathContainer
               handleBack={this.handleBack}
               handleNext={this.handleNext}
+              deviceType="trezor"
+              pathBase={'m/44\'/60\'/0\'/0'}
             />
             ),
         },
