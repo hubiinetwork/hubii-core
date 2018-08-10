@@ -51,7 +51,7 @@ import {
   LOAD_PRICES_ERROR,
 } from '../constants';
 
-import getFriendlyError from '../../../utils/ledger/friendlyErrors';
+import getFriendlyError from '../../../utils/friendlyErrors';
 
 describe('WalletHoc actions', () => {
   describe('deleteWallet Action', () => {

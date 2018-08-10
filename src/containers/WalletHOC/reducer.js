@@ -48,7 +48,7 @@ import {
   LOAD_BLOCK_HEIGHT_ERROR,
   LOAD_BLOCK_HEIGHT_SUCCESS,
 } from './constants';
-import { disconnectedErrorMsg, trezorDisconnectedErrorMsg } from '../../utils/ledger/friendlyErrors';
+import { disconnectedErrorMsg, trezorDisconnectedErrorMsg } from '../../utils/friendlyErrors';
 
 export const initialState = fromJS({
   inputs: {

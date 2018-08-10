@@ -1,4 +1,4 @@
-import isElectron from '../isElectron';
+import isElectron from './isElectron';
 
 // ledger
 export const noTransportErrorMsg = 'Failed to open connection with USB port';

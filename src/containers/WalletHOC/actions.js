@@ -56,7 +56,7 @@ import {
   LOAD_BLOCK_HEIGHT_ERROR,
 } from './constants';
 
-import getFriendlyError from '../../utils/ledger/friendlyErrors';
+import getFriendlyError from '../../utils/friendlyErrors';
 
 export function deleteWallet(address) {
   return {

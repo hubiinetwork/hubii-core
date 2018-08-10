@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { disconnectedErrorMsg, trezorDisconnectedErrorMsg } from 'utils/ledger/friendlyErrors';
+import { disconnectedErrorMsg, trezorDisconnectedErrorMsg } from 'utils/friendlyErrors';
 
 import walletHocReducer from '../reducer';
 import {
