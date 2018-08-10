@@ -47,8 +47,8 @@ function createWindow() {
     delay: 0, // force show immediately since example will load fast
     minVisible: 1500, // show for 1.5s so example is obvious
     splashScreenOpts: {
-      height: 259,
-      width: 800,
+      height: 340,
+      width: 340,
       transparent: true,
     },
   });
