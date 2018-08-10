@@ -76,7 +76,7 @@ export class WalletsTransactions extends React.Component {
       currentWalletWithInfo.getIn(['transactions', 'loading'])) {
       return (
         <LoadingWrapper>
-          <StyledSpin size="large" tip="Syncronising..."></StyledSpin>
+          <StyledSpin size="large" tip="Synchronising..."></StyledSpin>
         </LoadingWrapper>
       );
     }

@@ -123,10 +123,7 @@ ShallowWrapper {
                         type="flex"
                 >
                         <style__WalletPlaceHolder>
-                                You haven't added any wallets.
-                                <br />
-                                <br />
-                                Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+                                Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner
                         </style__WalletPlaceHolder>
                 </Row>
         </Col>
@@ -176,10 +173,7 @@ ShallowWrapper {
                         type="flex"
             >
                         <style__WalletPlaceHolder>
-                                    You haven't added any wallets.
-                                    <br />
-                                    <br />
-                                    Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+                                    Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner
                         </style__WalletPlaceHolder>
             </Row>
 </Col>,
@@ -226,10 +220,7 @@ ShallowWrapper {
                 type="flex"
 >
                 <style__WalletPlaceHolder>
-                                You haven't added any wallets.
-                                <br />
-                                <br />
-                                Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+                                Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner
                 </style__WalletPlaceHolder>
 </Row>,
             ],
@@ -257,10 +248,7 @@ ShallowWrapper {
               "props": Object {
                 "align": "top",
                 "children": <style__WalletPlaceHolder>
-                  You haven't added any wallets.
-                  <br />
-                  <br />
-                  Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+                  Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner
 </style__WalletPlaceHolder>,
                 "gutter": 16,
                 "type": "flex",
@@ -271,36 +259,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": Array [
-                    "You haven't added any wallets.",
-                    <br />,
-                    <br />,
-                    "Create or import a wallet by clicking \\"Add / Restore Wallet\\" in the top right.",
-                  ],
+                  "children": "Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner",
                 },
                 "ref": null,
-                "rendered": Array [
-                  "You haven't added any wallets.",
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {},
-                    "ref": null,
-                    "rendered": null,
-                    "type": "br",
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {},
-                    "ref": null,
-                    "rendered": null,
-                    "type": "br",
-                  },
-                  "Create or import a wallet by clicking \\"Add / Restore Wallet\\" in the top right.",
-                ],
+                "rendered": "Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner",
                 "type": [Function],
               },
               "type": [Function],
@@ -388,10 +350,7 @@ ShallowWrapper {
                               type="flex"
                     >
                               <style__WalletPlaceHolder>
-                                        You haven't added any wallets.
-                                        <br />
-                                        <br />
-                                        Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+                                        Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner
                               </style__WalletPlaceHolder>
                     </Row>
           </Col>
@@ -441,10 +400,7 @@ ShallowWrapper {
                             type="flex"
               >
                             <style__WalletPlaceHolder>
-                                          You haven't added any wallets.
-                                          <br />
-                                          <br />
-                                          Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+                                          Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner
                             </style__WalletPlaceHolder>
               </Row>
 </Col>,
@@ -491,10 +447,7 @@ ShallowWrapper {
                   type="flex"
 >
                   <style__WalletPlaceHolder>
-                                    You haven't added any wallets.
-                                    <br />
-                                    <br />
-                                    Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+                                    Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner
                   </style__WalletPlaceHolder>
 </Row>,
               ],
@@ -522,10 +475,7 @@ ShallowWrapper {
                 "props": Object {
                   "align": "top",
                   "children": <style__WalletPlaceHolder>
-                    You haven't added any wallets.
-                    <br />
-                    <br />
-                    Create or import a wallet by clicking "Add / Restore Wallet" in the top right.
+                    Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner
 </style__WalletPlaceHolder>,
                   "gutter": 16,
                   "type": "flex",
@@ -536,36 +486,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": Array [
-                      "You haven't added any wallets.",
-                      <br />,
-                      <br />,
-                      "Create or import a wallet by clicking \\"Add / Restore Wallet\\" in the top right.",
-                    ],
+                    "children": "Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner",
                   },
                   "ref": null,
-                  "rendered": Array [
-                    "You haven't added any wallets.",
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {},
-                      "ref": null,
-                      "rendered": null,
-                      "type": "br",
-                    },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {},
-                      "ref": null,
-                      "rendered": null,
-                      "type": "br",
-                    },
-                    "Create or import a wallet by clicking \\"Add / Restore Wallet\\" in the top right.",
-                  ],
+                  "rendered": "Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner",
                   "type": [Function],
                 },
                 "type": [Function],
