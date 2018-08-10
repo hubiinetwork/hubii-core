@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Col, Pagination } from 'antd';
+import { Col, Pagination, Spin } from 'antd';
 
 import { media } from 'utils/style-utils';
 
@@ -15,6 +15,16 @@ export const StyledTransaction = styled(Transaction)`
 
 export const StyledPagination = styled(Pagination)`
   margin-top: 1.5rem;
+`;
+
+export const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
+`;
+
+export const StyledSpin = styled(Spin)`
+  color: ${({ theme }) => theme.palette.light}};
 `;
 
 export const TransactionsWrapper = styled.div`
