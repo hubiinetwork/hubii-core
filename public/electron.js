@@ -1,5 +1,6 @@
 
-const { app, BrowserWindow, Menu, dialog } = require('electron');
+const { initSplashScreen } = require('@trodi/electron-splashscreen');
+const { app, Menu, dialog } = require('electron');
 const log = require('electron-log');
 const { autoUpdater } = require('electron-updater');
 const path = require('path');
@@ -31,12 +32,23 @@ function createWindow() {
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
-  mainWindow = new BrowserWindow({
+  const windowOptions = {
     width: 1200,
     height: 680,
+    show: false,
     icon: process.platform === 'linux' && path.join(__dirname, '../icon.png'),
     webPreferences: {
       preload: path.join(__dirname, 'wallets/preload.js'),
+    },
+  };
+  mainWindow = initSplashScreen({
+    windowOpts: windowOptions,
+    templateUrl: path.join(__dirname, 'images/splashscreen.svg'),
+    delay: 0,
+    splashScreenOpts: {
+      height: 340,
+      width: 340,
+      transparent: true,
     },
   });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../index.html')}`);

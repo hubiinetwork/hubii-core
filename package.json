@@ -27,7 +27,7 @@
   "scripts": {
     "release": "electron-builder -lwm -p always",
     "electron-dev": "concurrently \"cross-env BROWSER=none TARGET=electron yarn start\" \"wait-on http://localhost:3000 && electron .\"",
-    "preelectron-dev": "node ./internals/scripts/use-latest-electronjs.js && electron-rebuild --force --module_dir . -w node-hid",
+    "preelectron-dev": "node ./internals/scripts/copy-public.js && electron-rebuild --force --module_dir . -w node-hid",
     "electron-build": "cross-env TARGET=electron WALLET_API=https://api2.dev.hubii.net/ npm run build && cross-env DEBUG=electron-builder electron-builder --publish never",
     "preelectron-build": "electron-rebuild --force --module_dir . -w node-hid",
     "electron-pack": "cross-env DEV_TOOLS=1 WALLET_API=https://api2.dev.hubii.net/ npm run build:electron && electron-builder --dir",
@@ -263,6 +263,7 @@
     "@ledgerhq/hw-app-eth": "4.15.0",
     "@ledgerhq/hw-transport-node-hid": "4.16.0",
     "@ledgerhq/web3-subprovider": "^4.15.0",
+    "@trodi/electron-splashscreen": "^0.3.1",
     "abi-decoder": "1.1.0",
     "antd": "3.6.2",
     "babel-polyfill": "6.26.0",
