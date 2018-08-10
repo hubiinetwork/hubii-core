@@ -40,10 +40,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     if (wallets.length === 0) {
       return (
         <WalletPlaceHolder>
-          {"You haven't added any wallets."}
-          <br />
-          <br />
-          {'Create or import a wallet by clicking "Add / Restore Wallet" in the top right.'}
+          {"Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner"}
         </WalletPlaceHolder>
       );
     }
