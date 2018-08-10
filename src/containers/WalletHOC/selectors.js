@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { referenceCurrencies } from 'utils/wallet';
-import { fromJS } from 'immutable';
+import { fromJS, List } from 'immutable';
 import BigNumber from 'bignumber.js';
 
 /**
@@ -74,7 +74,10 @@ const makeSelectTransactionsWithInfo = () => createSelector(
 
     // for each address iterate over each tx
     transactionsWithInfo = transactionsWithInfo.map((addressObj, address) => {
-      const txnsWithInfo = addressObj.get('transactions').map((tx) => {
+      const addressTxnsWithInfo = addressObj.get('transactions').reduce((result, tx) => {
+        // ignore ETH tx with 0 amount since (to filter contact calls)
+        if (tx.get('amount') === '0' && tx.get('currency') === 'ETH') return result;
+
         let txWithInfo = tx;
 
         // get tx type
@@ -116,10 +119,10 @@ const makeSelectTransactionsWithInfo = () => createSelector(
         txWithInfo = txWithInfo
           .set('confirmations', ((blockHeight.get('height') - tx.getIn(['block', 'number'])) + 1).toString());
 
-        return txWithInfo;
-      });
+        return result.push(txWithInfo);
+      }, new List());
 
-      return addressObj.set('transactions', txnsWithInfo);
+      return addressObj.set('transactions', addressTxnsWithInfo);
     });
 
     return transactionsWithInfo;
