@@ -50,7 +50,10 @@ import {
   DELETE_WALLET,
   INIT_LEDGER,
   INIT_TREZOR,
-  INIT_WALLETS_BALANCES,
+  INIT_API_CALLS,
+  LOAD_BLOCK_HEIGHT,
+  LOAD_BLOCK_HEIGHT_SUCCESS,
+  LOAD_BLOCK_HEIGHT_ERROR,
 } from './constants';
 
 import getFriendlyError from '../../utils/ledger/friendlyErrors';
@@ -153,9 +156,9 @@ export function setCurrentWallet(address) {
   };
 }
 
-export function initWalletsBalances() {
+export function initApiCalls() {
   return {
-    type: INIT_WALLETS_BALANCES,
+    type: INIT_API_CALLS,
   };
 }
 
@@ -440,6 +443,25 @@ export function saveTrezorAddress(name, derivationPath, deviceId, address) {
 export function transferError(error) {
   return {
     type: TRANSFER_ERROR,
+    error,
+  };
+}
+
+export function loadBlockHeight() {
+  return {
+    type: LOAD_BLOCK_HEIGHT,
+  };
+}
+
+export function loadBlockHeightSuccess(blockHeight) {
+  return {
+    type: LOAD_BLOCK_HEIGHT_SUCCESS,
+    blockHeight,
+  };
+}
+export function loadBlockHeightError(error) {
+  return {
+    type: LOAD_BLOCK_HEIGHT_ERROR,
     error,
   };
 }

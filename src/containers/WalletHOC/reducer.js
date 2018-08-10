@@ -45,6 +45,8 @@ import {
   DELETE_WALLET,
   LOAD_TRANSACTIONS_SUCCESS,
   LOAD_TRANSACTIONS_ERROR,
+  LOAD_BLOCK_HEIGHT_ERROR,
+  LOAD_BLOCK_HEIGHT_SUCCESS,
 } from './constants';
 import { disconnectedErrorMsg, trezorDisconnectedErrorMsg } from '../../utils/ledger/friendlyErrors';
 
@@ -92,6 +94,11 @@ export const initialState = fromJS({
   transactions: {},
   balances: {},
   currentDecryptionCallback: null,
+  blockHeight: {
+    loading: true,
+    error: null,
+    height: -1,
+  },
 });
 
 abiDecoder.addABI(ERC20ABI);
@@ -256,6 +263,15 @@ function walletHocReducer(state = initialState, action) {
     case DELETE_WALLET:
       return state
         .deleteIn(['wallets', findWalletIndex(state, action.address)]);
+    case LOAD_BLOCK_HEIGHT_SUCCESS:
+      return state
+        .setIn(['blockHeight', 'loading'], false)
+        .setIn(['blockHeight', 'error'], null)
+        .setIn(['blockHeight', 'height'], action.blockHeight);
+    case LOAD_BLOCK_HEIGHT_ERROR:
+      return state
+        .setIn(['blockHeight', 'loading'], false)
+        .setIn(['blockHeight', 'error'], action.error);
     default:
       return state;
   }

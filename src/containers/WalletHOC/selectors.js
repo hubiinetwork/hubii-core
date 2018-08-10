@@ -55,10 +55,19 @@ const makeSelectTransactionsWithInfo = () => createSelector(
   makeSelectTransactions(),
   makeSelectSupportedAssets(),
   makeSelectPrices(),
-  (transactions, supportedAssets, prices) => {
+  makeSelectBlockHeight(),
+  (transactions, supportedAssets, prices, blockHeight) => {
     // set all address's transactions to loading if don't have all required information
     let transactionsWithInfo = transactions;
-    if (supportedAssets.get('loading') || supportedAssets.get('error') || prices.get('loading') || prices.get('error')) {
+    if
+    (
+      supportedAssets.get('loading') ||
+      supportedAssets.get('error') ||
+      prices.get('loading') ||
+      prices.get('error') ||
+      blockHeight.get('loading') ||
+      blockHeight.get('error')
+    ) {
       transactionsWithInfo = transactionsWithInfo.map((address) => address.set('loading', true));
       return transactionsWithInfo;
     }
@@ -102,6 +111,10 @@ const makeSelectTransactionsWithInfo = () => createSelector(
           .find((a) => a.get('currency') === tx.get('currency'));
         const txFiatValue = new BigNumber(txWithInfo.get('decimalAmount')).times(assetPrices.get('usd'));
         txWithInfo = txWithInfo.set('fiatValue', txFiatValue.toString());
+
+        // calculate confirmations
+        txWithInfo = txWithInfo
+          .set('confirmations', ((blockHeight.get('height') - tx.getIn(['block', 'number'])) + 1).toString());
 
         return txWithInfo;
       });
@@ -308,6 +321,11 @@ const makeSelectCurrentDecryptionCallback = () => createSelector(
   (walletHocDomain) => walletHocDomain.get('currentDecryptionCallback')
 );
 
+const makeSelectBlockHeight = () => createSelector(
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('blockHeight')
+);
+
 export {
   selectWalletHocDomain,
   makeSelectLedgerNanoSInfo,
@@ -329,4 +347,5 @@ export {
   makeSelectWalletsWithInfo,
   makeSelectCurrentWalletWithInfo,
   makeSelectCurrentDecryptionCallback,
+  makeSelectBlockHeight,
 };
