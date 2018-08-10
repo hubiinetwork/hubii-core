@@ -22,6 +22,7 @@ import { formatFiat } from '../../utils/numberFormats';
 export default class TransferDescription extends React.PureComponent {
   render() {
     const {
+      currentWalletWithInfo,
       recipient,
       assetToSend,
       errors,
@@ -35,15 +36,22 @@ export default class TransferDescription extends React.PureComponent {
       usdValueToSend,
       transactionFee,
       onSend,
-      lnsCheck,
       onCancel,
     } = this.props;
+
+    let hardwareError;
+    if (currentWalletWithInfo.get('type') === 'lns' && errors.get('ledgerError')) {
+      hardwareError = errors.get('ledgerError');
+    }
+    if (currentWalletWithInfo.get('type') === 'trezor' && errors.get('trezorError')) {
+      hardwareError = errors.get('trezorError');
+    }
 
     const disableSendButton =
       amountToSend.isNegative() ||
       ethBalanceAfter.amount.isNegative() ||
       assetBalanceAfter.amount.isNegative() ||
-      (lnsCheck && errors.get('ledgerError'));
+      hardwareError;
     return (
       <WrapperDiv>
         <Row>
@@ -153,8 +161,8 @@ export default class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           {
-            lnsCheck &&
-              <StyledErrorCol span={24}>{errors.get('ledgerError')}</StyledErrorCol>
+            hardwareError &&
+              <StyledErrorCol span={24}>{hardwareError}</StyledErrorCol>
           }
         </Row>
       </WrapperDiv>
@@ -235,8 +243,5 @@ TransferDescription.propTypes = {
    * Errors
    */
   errors: PropTypes.object.isRequired,
-  /**
-   * lns check
-   */
-  lnsCheck: PropTypes.bool.isRequired,
+  currentWalletWithInfo: PropTypes.object.isRequired,
 };

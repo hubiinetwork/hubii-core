@@ -2,7 +2,7 @@ import { eventChannel } from 'redux-saga';
 import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 import { fromJS } from 'immutable';
-import { ethAppNotOpenErrorMsg, disconnectedErrorMsg } from 'utils/ledger/friendlyErrors';
+import { ethAppNotOpenErrorMsg, disconnectedErrorMsg } from 'utils/friendlyErrors';
 import walletHoc, { initLedger, ledgerChannel, ledgerEthChannel, pollEthApp, tryCreateEthTransportActivity, fetchLedgerAddresses } from '../saga';
 import {
   INIT_LEDGER,
