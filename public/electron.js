@@ -44,8 +44,7 @@ function createWindow() {
   mainWindow = initSplashScreen({
     windowOpts: windowOptions,
     templateUrl: path.join(__dirname, 'images/splashscreen.svg'),
-    delay: 0, // force show immediately since example will load fast
-    minVisible: 1500, // show for 1.5s so example is obvious
+    delay: 0,
     splashScreenOpts: {
       height: 340,
       width: 340,
