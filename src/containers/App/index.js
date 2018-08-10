@@ -14,7 +14,7 @@
 import React from 'react';
 import { compose } from 'redux';
 import Helmet from 'react-helmet';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import { getAbsolutePath } from 'utils/electron';
 import injectSaga from 'utils/injectSaga';
@@ -56,13 +56,12 @@ export function App() {
         <title>hubii core</title>
       </Helmet>
       <Switch>
-        <Route exact path="/" component={HomeScreen} />
         <Route path="/wallets" component={WalletManager} />
         <Route path="/wallet/:address" component={WalletDetails} />
         <Route path="/striim" component={Striim} />
         <Route path="/dex" component={Dex} />
         <Route path="/settings" component={Settings} />
-        <Redirect from="/" to="/wallets" />
+        <Route component={HomeScreen} />
       </Switch>
     </SideBar>
   );
