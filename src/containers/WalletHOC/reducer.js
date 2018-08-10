@@ -37,17 +37,18 @@ import {
   LEDGER_ETH_DISCONNECTED,
   LEDGER_ERROR,
   FETCHED_LEDGER_ADDRESS,
+  SAVE_LEDGER_ADDRESS,
   TREZOR_CONNECTED,
   TREZOR_DISCONNECTED,
   FETCHED_TREZOR_ADDRESS,
-  SAVE_LEDGER_ADDRESS,
+  TREZOR_ERROR,
   DELETE_WALLET,
   LOAD_TRANSACTIONS_SUCCESS,
   LOAD_TRANSACTIONS_ERROR,
   LOAD_BLOCK_HEIGHT_ERROR,
   LOAD_BLOCK_HEIGHT_SUCCESS,
 } from './constants';
-import { disconnectedErrorMsg } from '../../utils/ledger/friendlyErrors';
+import { disconnectedErrorMsg, trezorDisconnectedErrorMsg } from '../../utils/friendlyErrors';
 
 export const initialState = fromJS({
   inputs: {
@@ -63,6 +64,7 @@ export const initialState = fromJS({
     creatingWalletError: null,
     decryptingWalletError: null,
     ledgerError: disconnectedErrorMsg,
+    trezorError: trezorDisconnectedErrorMsg,
   },
   wallets: [],
   currentWallet: {
@@ -253,6 +255,11 @@ function walletHocReducer(state = initialState, action) {
     case FETCHED_TREZOR_ADDRESS:
       return state
         .setIn(['trezorInfo', 'addresses', action.derivationPath], action.address);
+    case TREZOR_ERROR:
+      return state
+        .setIn(['trezorInfo', 'status'], 'disconnected')
+        .setIn(['trezorInfo', 'addresses'], fromJS({}))
+        .setIn(['errors', 'trezorError'], action.error);
     case DELETE_WALLET:
       return state
         .deleteIn(['wallets', findWalletIndex(state, action.address)]);

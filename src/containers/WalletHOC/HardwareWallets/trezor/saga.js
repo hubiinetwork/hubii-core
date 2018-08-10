@@ -6,7 +6,7 @@ import { notify } from 'containers/App/actions';
 import { deriveAddresses, prependHexToAddress, IsAddressMatch } from 'utils/wallet';
 import { requestHardwareWalletAPI } from 'utils/request';
 import { makeSelectTrezorInfo } from '../../selectors';
-import { trezorConnected, trezorDisconnected, fetchedTrezorAddress } from '../../actions';
+import { trezorConnected, trezorDisconnected, fetchedTrezorAddress, trezorError } from '../../actions';
 import { INIT_TREZOR, FETCH_TREZOR_ADDRESSES } from '../../constants';
 
 export function* init() {
@@ -19,6 +19,7 @@ export function* init() {
       }
       if (event.status === 'disconnected') {
         yield put(trezorDisconnected(event.deviceId));
+        yield put(trezorError(new Error('Disconnected')));
       }
     } catch (e) {
       yield put(notify('error', e.message));
@@ -43,7 +44,8 @@ export function* getAddresses({ pathBase, count }) {
       yield put(fetchedTrezorAddress(`${pathBase}/${i}`, address));
     }
   } catch (error) {
-    yield put(notify('error', error.message));
+    const refinedError = trezorError(error);
+    yield put(notify('error', refinedError.error));
   }
 }
 
@@ -63,7 +65,7 @@ export function* signTxByTrezor({ walletDetails, raw, data, chainId }) {
     const path = walletDetails.derivationPath;
     const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
     if (!IsAddressMatch(`0x${publicAddressKeyPair.address}`, walletDetails.address)) {
-      throw new Error('Current wallet address does not match to the Trezor\'s address. Please make sure you entered the correct passphrase.');
+      throw new Error('PASSPHRASE_MISMATCH');
     }
     yield put(notify('info', 'Verify transaction details on your Trezor'));
     const signedTx = yield call(
@@ -78,7 +80,8 @@ export function* signTxByTrezor({ walletDetails, raw, data, chainId }) {
 
     return signedTx;
   } catch (e) {
-    throw new Error('Failed to sign transaction by Trezor');
+    const refinedError = trezorError(e);
+    throw new Error(refinedError.error);
   }
 }
 

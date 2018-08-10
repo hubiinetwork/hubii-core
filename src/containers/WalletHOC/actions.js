@@ -40,6 +40,7 @@ import {
   LEDGER_ETH_CONNECTED,
   LEDGER_ETH_DISCONNECTED,
   LEDGER_ERROR,
+  TREZOR_ERROR,
   FETCH_LEDGER_ADDRESSES,
   FETCHED_LEDGER_ADDRESS,
   TREZOR_CONNECTED,
@@ -55,7 +56,7 @@ import {
   LOAD_BLOCK_HEIGHT_ERROR,
 } from './constants';
 
-import getFriendlyError from '../../utils/ledger/friendlyErrors';
+import getFriendlyError from '../../utils/friendlyErrors';
 
 export function deleteWallet(address) {
   return {
@@ -414,6 +415,14 @@ export function fetchedTrezorAddress(derivationPath, address) {
     type: FETCHED_TREZOR_ADDRESS,
     derivationPath,
     address,
+  };
+}
+
+export function trezorError(rawError) {
+  const friendlyError = getFriendlyError(rawError, 'trezor');
+  return {
+    type: TREZOR_ERROR,
+    error: friendlyError,
   };
 }
 
