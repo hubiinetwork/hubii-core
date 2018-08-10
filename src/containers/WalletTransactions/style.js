@@ -23,6 +23,13 @@ export const LoadingWrapper = styled.div`
   margin-top: 10rem;
 `;
 
+export const NoTxPlaceholder = styled.div`
+  color: ${({ theme }) => theme.palette.secondary};
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-left: 1rem;
+`;
+
 export const StyledSpin = styled(Spin)`
   color: ${({ theme }) => theme.palette.light}};
 `;

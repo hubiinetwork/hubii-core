@@ -17,7 +17,7 @@ import {
   makeSelectBlockHeight,
 } from 'containers/WalletHOC/selectors';
 
-import { StyledTransaction, TransactionsWrapper, BreakdownWrapper, OuterWrapper, StyledPagination, StyledSpin, LoadingWrapper } from './style';
+import { StyledTransaction, TransactionsWrapper, BreakdownWrapper, OuterWrapper, StyledPagination, StyledSpin, LoadingWrapper, NoTxPlaceholder } from './style';
 
 export class WalletsTransactions extends React.Component {
   constructor(props) {
@@ -79,6 +79,9 @@ export class WalletsTransactions extends React.Component {
           <StyledSpin size="large" tip="Synchronising..."></StyledSpin>
         </LoadingWrapper>
       );
+    }
+    if (currentWalletWithInfo.getIn(['transactions', 'transactions']).size === 0) {
+      return <NoTxPlaceholder>{ 'There is no transaction history for this wallet' }</NoTxPlaceholder>;
     }
     return (
       <OuterWrapper>
