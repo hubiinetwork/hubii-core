@@ -17,7 +17,7 @@ import {
   makeSelectBlockHeight,
 } from 'containers/WalletHOC/selectors';
 
-import { StyledTransaction, TransactionsWrapper, BreakdownWrapper, OuterWrapper, StyledPagination } from './style';
+import { StyledTransaction, TransactionsWrapper, BreakdownWrapper, OuterWrapper, StyledPagination, StyledSpin, LoadingWrapper } from './style';
 
 export class WalletsTransactions extends React.Component {
   constructor(props) {
@@ -74,9 +74,12 @@ export class WalletsTransactions extends React.Component {
       currentWalletWithInfo.getIn(['balances', 'loading']) ||
       supportedAssets.get('loading') ||
       currentWalletWithInfo.getIn(['transactions', 'loading'])) {
-      return <div>loading...</div>;
+      return (
+        <LoadingWrapper>
+          <StyledSpin size="large" tip="Syncronising..."></StyledSpin>
+        </LoadingWrapper>
+      );
     }
-
     return (
       <OuterWrapper>
         <TransactionsWrapper>
