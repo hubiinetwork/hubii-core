@@ -272,7 +272,8 @@ describe('walletHocReducer', () => {
       const error = new Error();
       const expected = stateWithWallet
         .setIn(['transactions', address, 'loading'], false)
-        .setIn(['transactions', address, 'error'], error);
+        .setIn(['transactions', address, 'error'], error)
+        .setIn(['transactions', address, 'transactions'], fromJS([]));
 
       expect(walletHocReducer(stateWithWallet, loadTransactionsError(address, error))).toEqual(expected);
     });

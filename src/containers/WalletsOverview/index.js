@@ -97,6 +97,10 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           </Col>
           <Col span={8} xs={24} md={8}>
             {
+              !totalBalances.get('loading') &&
+              !totalBalances.get('error') &&
+              !supportedAssets.get('loading') &&
+              !supportedAssets.get('error') &&
               <Breakdown
                 data={getBreakdown(totalBalances, supportedAssets)}
                 value={(+this.props.totalBalances.getIn(['total', 'usd']).toFixed(6)).toString()}

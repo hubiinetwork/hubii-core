@@ -73,12 +73,21 @@ export class WalletsTransactions extends React.Component {
     (
       currentWalletWithInfo.getIn(['balances', 'loading']) ||
       supportedAssets.get('loading') ||
-      currentWalletWithInfo.getIn(['transactions', 'loading'])) {
+      currentWalletWithInfo.getIn(['transactions', 'loading'])
+    ) {
       return (
         <LoadingWrapper>
           <StyledSpin size="large" tip="Synchronising..."></StyledSpin>
         </LoadingWrapper>
       );
+    }
+    if
+    (
+      currentWalletWithInfo.getIn(['transactions', 'error']) ||
+      currentWalletWithInfo.getIn(['balances', 'error']) ||
+      supportedAssets.get('error')
+    ) {
+      return <NoTxPlaceholder>{ 'There was an problem fetching this wallet\'s transaction history. Please try again later.' }</NoTxPlaceholder>;
     }
     if (currentWalletWithInfo.getIn(['transactions', 'transactions']).size === 0) {
       return <NoTxPlaceholder>{ 'There is no transaction history for this wallet' }</NoTxPlaceholder>;

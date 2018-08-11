@@ -72,58 +72,63 @@ const makeSelectTransactionsWithInfo = () => createSelector(
       return transactionsWithInfo;
     }
 
-    // for each address iterate over each tx
-    transactionsWithInfo = transactionsWithInfo.map((addressObj, address) => {
-      const addressTxnsWithInfo = addressObj.get('transactions').reduce((result, tx) => {
-        // ignore ETH tx with 0 amount since (to filter contact calls)
-        if (tx.get('amount') === '0' && tx.get('currency') === 'ETH') return result;
+    try {
+      // for each address iterate over each tx
+      transactionsWithInfo = transactionsWithInfo.map((addressObj, address) => {
+        const addressTxnsWithInfo = addressObj.get('transactions').reduce((result, tx) => {
+          // ignore ETH tx with 0 amount since (to filter contact calls)
+          if (tx.get('amount') === '0' && tx.get('currency') === 'ETH') return result;
 
-        let txWithInfo = tx;
+          let txWithInfo = tx;
 
-        // get tx type
-        const type = address.toLowerCase() === tx.get('sender') ?
-              'sent' :
-              'received';
-        txWithInfo = txWithInfo.set('type', type);
+          // get tx type
+          const type = address.toLowerCase() === tx.get('sender') ?
+                'sent' :
+                'received';
+          txWithInfo = txWithInfo.set('type', type);
 
-        // get counterpartyAddress
-        const counterpartyAddress = type === 'sent' ?
-              tx.get('recipient') :
-              tx.get('sender');
-        txWithInfo = txWithInfo.set('counterpartyAddress', counterpartyAddress);
+          // get counterpartyAddress
+          const counterpartyAddress = type === 'sent' ?
+                tx.get('recipient') :
+                tx.get('sender');
+          txWithInfo = txWithInfo.set('counterpartyAddress', counterpartyAddress);
 
-        // get currency symbol for this tx
-        const assetDetails = supportedAssets
-          .get('assets')
-          .find((a) => a.get('currency') === tx.get('currency'));
+          // get currency symbol for this tx
+          const assetDetails = supportedAssets
+            .get('assets')
+            .find((a) => a.get('currency') === tx.get('currency'));
 
-        const symbol = assetDetails.get('symbol');
-        txWithInfo = txWithInfo.set('symbol', symbol);
+          const symbol = assetDetails.get('symbol');
+          txWithInfo = txWithInfo.set('symbol', symbol);
 
-        // get decimal amt for this tx
-        const decimals = assetDetails.get('decimals');
-        const divisionFactor = new BigNumber('10').pow(decimals);
-        const weiOrEquivilent = new BigNumber(txWithInfo.get('amount'));
-        const decimalAmount = weiOrEquivilent.div(divisionFactor);
-        BigNumber.config({ EXPONENTIAL_AT: 20 });
-        txWithInfo = txWithInfo.set('decimalAmount', decimalAmount.toString());
+          // get decimal amt for this tx
+          const decimals = assetDetails.get('decimals');
+          const divisionFactor = new BigNumber('10').pow(decimals);
+          const weiOrEquivilent = new BigNumber(txWithInfo.get('amount'));
+          const decimalAmount = weiOrEquivilent.div(divisionFactor);
+          BigNumber.config({ EXPONENTIAL_AT: 20 });
+          txWithInfo = txWithInfo.set('decimalAmount', decimalAmount.toString());
 
-        // get fiat value of this tx
-        const assetPrices = prices
-          .get('assets')
-          .find((a) => a.get('currency') === tx.get('currency'));
-        const txFiatValue = new BigNumber(txWithInfo.get('decimalAmount')).times(assetPrices.get('usd'));
-        txWithInfo = txWithInfo.set('fiatValue', txFiatValue.toString());
+          // get fiat value of this tx
+          const assetPrices = prices
+            .get('assets')
+            .find((a) => a.get('currency') === tx.get('currency'));
+          const txFiatValue = new BigNumber(txWithInfo.get('decimalAmount')).times(assetPrices.get('usd'));
+          txWithInfo = txWithInfo.set('fiatValue', txFiatValue.toString());
 
-        // calculate confirmations
-        txWithInfo = txWithInfo
-          .set('confirmations', ((blockHeight.get('height') - tx.getIn(['block', 'number'])) + 1).toString());
+          // calculate confirmations
+          txWithInfo = txWithInfo
+            .set('confirmations', ((blockHeight.get('height') - tx.getIn(['block', 'number'])) + 1).toString());
 
-        return result.push(txWithInfo);
-      }, new List());
+          return result.push(txWithInfo);
+        }, new List());
 
-      return addressObj.set('transactions', addressTxnsWithInfo);
-    });
+        return addressObj.set('transactions', addressTxnsWithInfo);
+      });
+    } catch (error) {
+      transactionsWithInfo = fromJS([]);
+      console.log(error);
+    }
 
     return transactionsWithInfo;
   }

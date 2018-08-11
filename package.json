@@ -1,6 +1,6 @@
 {
   "name": "hubii-core",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "author": {
     "name": "hubii",
@@ -22,7 +22,10 @@
         "owner": "hubiinetwork",
         "repo": "omphalos-ui"
       }
-    ]
+    ],
+    "linux": {
+      "target": ["AppImage"]
+    }
   },
   "scripts": {
     "release": "electron-builder -lwm -p always",
