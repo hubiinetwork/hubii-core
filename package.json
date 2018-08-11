@@ -22,7 +22,10 @@
         "owner": "hubiinetwork",
         "repo": "omphalos-ui"
       }
-    ]
+    ],
+    "linux": {
+      "target": ["AppImage"]
+    }
   },
   "scripts": {
     "release": "electron-builder -lwm -p always",
