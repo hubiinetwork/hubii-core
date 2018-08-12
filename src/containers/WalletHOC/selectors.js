@@ -79,6 +79,14 @@ const makeSelectTransactionsWithInfo = () => createSelector(
           // ignore ETH tx with 0 amount since (to filter contact calls)
           if (tx.get('amount') === '0' && tx.get('currency') === 'ETH') return result;
 
+          // try to locate the asset from supportedAssets
+          const assetDetails = supportedAssets
+            .get('assets')
+            .find((a) => a.get('currency') === tx.get('currency'));
+
+          // ignore unsupported assets
+          if (!assetDetails) return result;
+
           let txWithInfo = tx;
 
           // get tx type
@@ -94,10 +102,6 @@ const makeSelectTransactionsWithInfo = () => createSelector(
           txWithInfo = txWithInfo.set('counterpartyAddress', counterpartyAddress);
 
           // get currency symbol for this tx
-          const assetDetails = supportedAssets
-            .get('assets')
-            .find((a) => a.get('currency') === tx.get('currency'));
-
           const symbol = assetDetails.get('symbol');
           txWithInfo = txWithInfo.set('symbol', symbol);
 
@@ -185,7 +189,16 @@ const makeSelectTotalBalances = () => createSelector(
       // Look through each address's, summing the balances for each token
       addressBalances.get('assets').forEach((balance) => {
         const currency = balance.get('currency');
-        const decimals = supportedAssets.get('assets').find((asset) => asset.get('currency') === currency).get('decimals');
+
+        // try to locate the asset from supportedAssets
+        const assetDetails = supportedAssets
+            .get('assets')
+            .find((a) => a.get('currency') === currency);
+
+        // ignore unsupported assets
+        if (!assetDetails) return;
+
+        const decimals = assetDetails.get('decimals');
 
         const divisionFactor = new BigNumber('10').pow(decimals);
         const thisBalance = new BigNumber(balance.get('balance')).dividedBy(divisionFactor);
@@ -264,12 +277,16 @@ const makeSelectWalletsWithInfo = () => createSelector(
       } else {
         // Have all information needed to construct walletWithInfo balance
         walletBalances = balances.get(wallet.get('address'));
-        walletBalances = walletBalances.set('assets', walletBalances.get('assets').map((asset) => {
+        walletBalances = walletBalances.set('assets', walletBalances.get('assets').reduce((result, asset) => {
           let walletAsset = asset;
 
           const supportedAssetInfo = supportedAssets
             .get('assets')
             .find((a) => a.get('currency') === asset.get('currency'));
+
+          // ignore unsupported assets
+          if (!supportedAssetInfo) return result;
+
           const priceInfo = prices
             .get('assets')
             .find((p) => p.get('currency') === asset.get('currency'));
@@ -294,8 +311,8 @@ const makeSelectWalletsWithInfo = () => createSelector(
           });
 
 
-          return walletAsset;
-        }));
+          return result.push(walletAsset);
+        }, new List()));
 
         // Add total balance info for each wallet
         referenceCurrencies.forEach((currency) => {
