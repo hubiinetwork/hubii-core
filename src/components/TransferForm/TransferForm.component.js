@@ -285,7 +285,6 @@ export default class TransferForm extends React.PureComponent {
             quickAddAddress={address}
           />
         </Modal>
-
         <Row gutter={24} justify="center">
           <Col xl={14} sm={22}>
             <Form>

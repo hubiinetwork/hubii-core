@@ -67,7 +67,7 @@ import {
 } from './actions';
 
 import trezorWatchers, { signTxByTrezor } from './HardwareWallets/trezor/saga';
-import ledgerWatchers, { signTxByLedger } from './HardwareWallets/ledger/saga';
+import ledgerWatchers, { signTxByLedger, signPersonalMessageByLedger } from './HardwareWallets/ledger/saga';
 
 import generateRawTx from '../../utils/generateRawTx';
 
@@ -239,6 +239,10 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
       const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
       etherWallet.provider = EthNetworkProvider;
       transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
+      console.log(transaction);
+      etherWallet.estimateGas({ to: toAddress }).then((resolve) => console.log(resolve));
+
+      signPersonalMessage(transaction.hash, walletDetails);
     }
     yield put(transferSuccess(transaction, 'ETH'));
     yield put(notify('success', 'Transaction sent'));
@@ -267,12 +271,15 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
       etherWallet.provider = EthNetworkProvider;
       const contract = new Contract(contractAddress, contractAbiFragment, etherWallet);
       transaction = yield call((...args) => contract.transfer(...args), toAddress, amount, options);
+      etherWallet.estimateGas({ to: toAddress }).then((resolve) => console.log(resolve));
     }
 
     if (!transaction) {
       throw new Error('Failed to send transaction');
     }
+    console.log(transaction);
 
+    signPersonalMessage(transaction.hash, walletDetails);
     yield put(transferSuccess(transaction, token));
     yield put(notify('success', 'Transaction sent'));
   } catch (error) {
@@ -365,6 +372,31 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   const txHash = yield call(sendTransaction, txHex);
   // get transaction details
   return yield call(getTransaction, txHash);
+}
+
+export function* signPersonalMessage(message, wallet) {
+  let signedPersonalMessage;
+
+  console.log(message, wallet);
+  if (wallet.type === 'software') {
+    const etherWallet = new Wallet(wallet.decrypted.privateKey);
+    console.log(etherWallet);
+    signedPersonalMessage = etherWallet.signMessage(message);
+  }
+  if (wallet.type === 'lns') {
+    signedPersonalMessage = yield signPersonalMessageByLedger(wallet, message);
+  }
+  // if (wallet.type === 'trezor') {
+  // }
+
+  // if (wallet.type === 'trezor') {
+  //   const raw = rawTx.toJSON();
+  //   // signedTx = yield signTxByTrezor({ wallet, raw, data, chainId });
+  //   // rawTx.v = Buffer.from(signedTx.v.toString(16), 'hex');
+  // }
+  // const txHex = `0x${rawTx.serialize().toString('hex')}`;
+  console.log(signedPersonalMessage);
+  return signedPersonalMessage;
 }
 
 // Root watcher

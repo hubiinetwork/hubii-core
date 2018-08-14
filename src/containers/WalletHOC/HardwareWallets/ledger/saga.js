@@ -102,6 +102,7 @@ export function* initLedger() {
   while (true) { // eslint-disable-line no-constant-condition
     try {
       const msg = yield take(chan);
+      console.log(msg);
       if (msg.type === 'remove') {
         const { timeout } = yield race({
           msg: take(chan),
@@ -113,8 +114,10 @@ export function* initLedger() {
         }
       }
 
+
       yield put(ledgerConnected(msg.descriptor));
     } catch (e) {
+      console.log(e);
       yield put(ledgerError(e));
     }
   }
@@ -168,6 +171,32 @@ export function* signTxByLedger(walletDetails, rawTxHex) {
       (ethTransport) => ethTransport.signTransaction(walletDetails.derivationPath, rawTxHex)
     );
     return signedTx;
+  } catch (e) {
+    const refinedError = ledgerError(e);
+    yield put(refinedError);
+    throw new Error(refinedError.error);
+  }
+}
+
+export function* signPersonalMessageByLedger(walletDetails, txHash) {
+  try {
+    const ledgerNanoSInfo = yield select(makeSelectLedgerNanoSInfo());
+    const descriptor = ledgerNanoSInfo.get('descriptor');
+
+    // check if the eth app is opened
+    yield call(
+      tryCreateEthTransportActivity,
+      descriptor,
+      async (ethTransport) => ethTransport.getAddress(walletDetails.derivationPath)
+    );
+    yield put(notify('info', 'Verify transaction details on your Ledger'));
+
+    const signedPersonalMessage = yield call(
+      tryCreateEthTransportActivity,
+      descriptor,
+      (ethTransport) => ethTransport.signPersonalMessage(walletDetails.derivationPath, txHash)
+    );
+    return signedPersonalMessage;
   } catch (e) {
     const refinedError = ledgerError(e);
     yield put(refinedError);

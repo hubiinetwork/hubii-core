@@ -77,9 +77,17 @@ async function execWalletMethods(method, params, cb) {
       );
       cb(JSON.stringify(signedTx));
     }
+    if (method === 'signPersonalMessage') {
+      const { tx } = params;
+      const signedPersonalMessage = await session.signEthMessage(
+        parseHDPath(path),
+        tx,
+      );
+      cb(JSON.stringify(signedPersonalMessage));
+    }
     if (method === 'getpublickey') {
       const { message } = await session.getPublicKey(parseHDPath(path));
-      cb(JSON.stringify(message));
+      cb(message);
     }
   });
 }

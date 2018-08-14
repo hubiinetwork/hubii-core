@@ -78,7 +78,7 @@ injectGlobal`
   /** Regular */
   @font-face {
     font-family: "SF Text";
-    font-weight: 400;
+    font-weight: 400!important;
     src: url(${Regular});
   }
 
