@@ -8,7 +8,11 @@ export const newEth = (transport) => new Eth(transport);
 export const createEthTransportActivity = async (descriptor, activityFn) => {
   let transport;
   try {
-    transport = await LedgerTransport.create();
+    if (process.platform === 'win32') {
+      transport = await LedgerTransport.create();
+    } else {
+      transport = await LedgerTransport.open(descriptor);
+    }
     const ethTransport = new Eth(transport);
     const result = await activityFn(ethTransport);
     return result;
