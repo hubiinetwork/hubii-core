@@ -8,7 +8,6 @@
 
 # compiled files
 build/*
-!build/icon.*
 
 # misc
 .DS_Store
