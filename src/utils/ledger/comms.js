@@ -8,7 +8,7 @@ export const newEth = (transport) => new Eth(transport);
 export const createEthTransportActivity = async (descriptor, activityFn) => {
   let transport;
   try {
-    transport = await LedgerTransport.open(descriptor);
+    transport = await LedgerTransport.create();
     const ethTransport = new Eth(transport);
     const result = await activityFn(ethTransport);
     return result;
