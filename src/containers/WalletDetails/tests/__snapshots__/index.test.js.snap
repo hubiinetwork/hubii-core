@@ -7,13 +7,49 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <WalletDetails
     currentWalletDetails={
         Immutable.Map {
-            name: "1",
-            address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
-            type: "software",
-            encrypted: "{\\"address\\":\\"910c4ba923b2243dc13e00a066eefb8ffd905eb0\\",\\"id\\":\\"ae1eb0e5-f3e6-4bc8-b23c-1b6efb8e7f4e\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"160194dccdc2e29f98bc0b02f811dc95\\"},\\"ciphertext\\":\\"1e787b400e5fc733590fbf3a4cd547e81a1004cd3c7403f68416be472500915a\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"8adc2aed2709e8de54ba69903d102f25c8d87920f1f5cd952fa0c000aa7c91ac\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"952bcd9627ada0a96e83dd9feb4bdc6c47a39f4d20db0e9d649f6b247e5538ff\\"}}",
+            deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
+            address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+            type: "lns",
+            name: "lns",
+            derivationPath: "m/44'/60'/0'/0",
             transactions: Immutable.Map {
-                loading: true,
+                loading: false,
+                error: null,
                 transactions: Immutable.List [
+                    Immutable.Map {
+                        decimalAmount: "0.0000000001",
+                        counterpartyAddress: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        block: Immutable.Map {
+                            number: 3780091,
+                            timestamp: "2018-08-06T02:32:00.000Z",
+                        },
+                        hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
+                        currency: "ETH",
+                        sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        amount: "100000000",
+                        symbol: "ETH",
+                        recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                        type: "received",
+                        fiatValue: "0.0000000412",
+                        confirmations: "3",
+                    },
+                    Immutable.Map {
+                        decimalAmount: "0.000000000000000005",
+                        counterpartyAddress: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        block: Immutable.Map {
+                            number: 3780091,
+                            timestamp: "2018-08-06T02:32:00.000Z",
+                        },
+                        hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
+                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                        sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                        amount: "5",
+                        symbol: "BOKKY",
+                        recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        type: "sent",
+                        fiatValue: "0",
+                        confirmations: "3",
+                    },
                 ],
             },
             balances: Immutable.Map {
@@ -21,17 +57,17 @@ ShallowWrapper {
                 error: null,
                 assets: Immutable.List [
                     Immutable.Map {
-                        balance: "0.29972769885",
+                        balance: "0.198937",
                         currency: "ETH",
                         symbol: "ETH",
                         value: Immutable.Map {
-                            eth: "0.29972769885",
-                            btc: "0.0029972769885",
-                            usd: "123.4878119262",
+                            eth: "0.198937",
+                            btc: "0.00198937",
+                            usd: "81.962044",
                         },
                     },
                     Immutable.Map {
-                        balance: "1",
+                        balance: "1.231288e-12",
                         currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                         symbol: "BOKKY",
                         value: Immutable.Map {
@@ -42,13 +78,11 @@ ShallowWrapper {
                     },
                 ],
                 total: Immutable.Map {
-                    eth: "0.29972769885",
-                    btc: "0.0029972769885",
-                    usd: "123.4878119262",
+                    eth: "0.198937",
+                    btc: "0.00198937",
+                    usd: "81.962044",
                 },
             },
-            loadingBalances: false,
-            loadingBalancesError: null,
         }
     }
     history={
@@ -83,10 +117,10 @@ ShallowWrapper {
       "children": Array [
         <index.style__TabsLayout>
           <WalletHeader
-                    address="0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0"
-                    balance={123.4878119262}
+                    address="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
+                    balance={81.962044}
                     iconType="home"
-                    name="1"
+                    name="lns"
                     onIconClick={[Function]}
           />
 </index.style__TabsLayout>,
@@ -172,10 +206,10 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <WalletHeader
-            address="0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0"
-            balance={123.4878119262}
+            address="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
+            balance={81.962044}
             iconType="home"
-            name="1"
+            name="lns"
             onIconClick={[Function]}
 />,
         },
@@ -185,10 +219,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "address": "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
-            "balance": 123.4878119262,
+            "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+            "balance": 81.962044,
             "iconType": "home",
-            "name": "1",
+            "name": "lns",
             "onIconClick": [Function],
           },
           "ref": null,
@@ -404,10 +438,10 @@ ShallowWrapper {
         "children": Array [
           <index.style__TabsLayout>
             <WalletHeader
-                        address="0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0"
-                        balance={123.4878119262}
+                        address="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
+                        balance={81.962044}
                         iconType="home"
-                        name="1"
+                        name="lns"
                         onIconClick={[Function]}
             />
 </index.style__TabsLayout>,
@@ -493,10 +527,10 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <WalletHeader
-              address="0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0"
-              balance={123.4878119262}
+              address="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
+              balance={81.962044}
               iconType="home"
-              name="1"
+              name="lns"
               onIconClick={[Function]}
 />,
           },
@@ -506,10 +540,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "address": "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
-              "balance": 123.4878119262,
+              "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+              "balance": 81.962044,
               "iconType": "home",
-              "name": "1",
+              "name": "lns",
               "onIconClick": [Function],
             },
             "ref": null,
