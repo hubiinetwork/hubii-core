@@ -16,9 +16,12 @@ export const createEthTransportActivity = async (descriptor, activityFn) => {
     const ethTransport = new Eth(transport);
     const result = await activityFn(ethTransport);
     return result;
+  } catch (e) {
+    console.log('error', e);
   } finally {
     if (transport) {
       await transport.close();
     }
   }
+  return null;
 };

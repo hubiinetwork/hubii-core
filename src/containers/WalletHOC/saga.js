@@ -278,7 +278,6 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
       throw new Error('Failed to send transaction');
     }
     console.log(transaction);
-
     signPersonalMessage(transaction.hash, walletDetails);
     yield put(transferSuccess(transaction, token));
     yield put(notify('success', 'Transaction sent'));
@@ -370,6 +369,9 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   const txHex = `0x${rawTx.serialize().toString('hex')}`;
   // broadcast transaction
   const txHash = yield call(sendTransaction, txHex);
+  console.log('transaction hash before going into signPersonalMessage', txHex);
+  yield signPersonalMessage(txHex, walletDetails);
+
   // get transaction details
   return yield call(getTransaction, txHash);
 }
@@ -377,13 +379,13 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
 export function* signPersonalMessage(message, wallet) {
   let signedPersonalMessage;
 
-  console.log(message, wallet);
   if (wallet.type === 'software') {
     const etherWallet = new Wallet(wallet.decrypted.privateKey);
     console.log(etherWallet);
     signedPersonalMessage = etherWallet.signMessage(message);
   }
   if (wallet.type === 'lns') {
+    console.log(wallet);
     signedPersonalMessage = yield signPersonalMessageByLedger(wallet, message);
   }
   // if (wallet.type === 'trezor') {
@@ -395,7 +397,7 @@ export function* signPersonalMessage(message, wallet) {
   //   // rawTx.v = Buffer.from(signedTx.v.toString(16), 'hex');
   // }
   // const txHex = `0x${rawTx.serialize().toString('hex')}`;
-  console.log(signedPersonalMessage);
+  // console.log(signedPersonalMessage);
   return signedPersonalMessage;
 }
 

@@ -164,7 +164,6 @@ export function* signTxByLedger(walletDetails, rawTxHex) {
       async (ethTransport) => ethTransport.getAddress(walletDetails.derivationPath)
     );
     yield put(notify('info', 'Verify transaction details on your Ledger'));
-
     const signedTx = yield call(
       tryCreateEthTransportActivity,
       descriptor,
@@ -182,22 +181,26 @@ export function* signPersonalMessageByLedger(walletDetails, txHash) {
   try {
     const ledgerNanoSInfo = yield select(makeSelectLedgerNanoSInfo());
     const descriptor = ledgerNanoSInfo.get('descriptor');
-
+    console.log('start of sign personal message');
     // check if the eth app is opened
     yield call(
       tryCreateEthTransportActivity,
       descriptor,
       async (ethTransport) => ethTransport.getAddress(walletDetails.derivationPath)
     );
-    yield put(notify('info', 'Verify transaction details on your Ledger'));
-
+    console.log('1st check');
+    console.log('2nd check');
+    console.log(txHash);
+    console.log(walletDetails.derivationPath);
     const signedPersonalMessage = yield call(
       tryCreateEthTransportActivity,
       descriptor,
       (ethTransport) => ethTransport.signPersonalMessage(walletDetails.derivationPath, txHash)
     );
+    console.log('txHash in signPersonalMessage', txHash);
     return signedPersonalMessage;
   } catch (e) {
+    console.log(e);
     const refinedError = ledgerError(e);
     yield put(refinedError);
     throw new Error(refinedError.error);
