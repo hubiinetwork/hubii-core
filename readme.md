@@ -1,6 +1,6 @@
-# Omphalos UI (aka Hubii Core)
+# Omphalos UI (aka hubii core)
 
-> Omphalos UI is the user interface for the Omphalos project, by Hubii. Send and recieve crypto assets, and trustlessly trade with striim on this desktop wallet application.
+> Omphalos UI is a friendly user interface for the Omphalos project, by hubii. Send and recieve crypto assets, and trustlessly make instant, cheap, quick payments with striim on this secure desktop wallet.
 
 ## Architecture
 
@@ -18,19 +18,13 @@ Omphalos UI is a multiplatform desktop application built with Electron, React, R
 ## Install
 
 ```bash
-yarn # install dependencies
+yarn
 ```
 
-## Run in Electron (recommended)
+## Run development environment
 
 ```bash
 yarn electron-dev
-```
-
-## Run in browser
-
-```bash
-yarn start
 ```
 
 ## Lint
@@ -54,18 +48,33 @@ yarn test:dev
 ## Build
 
 ```bash
-yarn electron-build # builds and packages the app for your system architecture
+yarn electron-build # compiles and builds the app for your system architecture
 ```
 
-## Styleguide
-
-We use [react-styleguidist](https://github.com/styleguidist/react-styleguidist) to organise our component library
+## Release
 
 ```bash
-yarn styleguide
+yarn electron-build
+yarn release # builds for MacOS, Linux, Windows
 ```
 
 ## Development Guidelines
+
+### Boy scout rule
+
+During the early development of hubii core, different people with different opinions on testing and best practices touched the code base. As a result, you will notice some of the best practices below are not implemented everywhere you look. The majority of critical code has been refactored and we are confident in the foundations of the application, but we have a long way to go cleaning up less critical components and logic.
+
+Instead of tackling this technical debt all at once, we ask that developers follow the "boy scout rule": leave the code you're working on in a better state than you found it. Over time, we will chip away at these smaller issues.
+
+### Ensuring stability when using complex selectors
+
+The architecture of hubii core relies on the library [reselect](https://github.com/reduxjs/reselect) to sit inbetween the Redux store and React components. Reselect allows us to abstract a lot of the complex data processing away from the components, keeping them as simple as possible.
+
+One thing to be careful about when composing a complex selector is that you considered all possible structures input selectors can take, for example a selector could either be 'loaded', 'loading', or 'errored'. Forgetting to check for an uncommmon state like 'errored' can be easy, and cause catastrophic failure for the user.
+
+The best way to lower chances of this kind of failure occuring is to test your selector/component with every variation of its possible inputs. To make this as frictionless as possible, please maintain a `mocks/selectors.js` file in a container's `tests` folder, that contains samples of every variation of structure a selector could return (see `containers/WalletHOC/tests/mocks/selectors.js` for an example).
+
+Then when you or another developer wants to reach for a selector, when they're writing their tests they can be confident that they know exactly which inputs they need to test, and have the ability to effortlessly import the required mocked state.
 
 ### Gitflow
 
@@ -95,7 +104,7 @@ Some containers contain up to 3 levels of complex components. Combining all the 
 
 To isolate the complexities between the sub components, the parent container can use sub routes to wire up the sub components. This enable isolating the logics in the parent page container from their sub pages, as well as isolating the logics between the sub pages.
 
-Take the Striim tab page for example, the sub pages structured like: `containers/Striim` > `containers/StrrimAccounts` > `containers/SwapCurrencies`
+Take the striim tab page for example, the sub pages structured like: `containers/Striim` > `containers/StrrimAccounts` > `containers/SwapCurrencies`
 
 `containers/Striim` container is the parent page of the sub pages `accounts` and `contacts`. It  handles its own container logics and only know about the sub route path for its child containers. When the route matches `/accounts`, it renders `StriimAccountsContainer`.
 
