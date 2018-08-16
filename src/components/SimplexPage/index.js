@@ -7,23 +7,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isValidAddress } from 'ethereumjs-util';
-import Wrapper from './Wrapper';
+import { Wrapper, StyledSpin } from './styles';
 
 
 class SimplexPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
+    super(props);
+    this.state = { loading: false, error: false };
+  }
+
+  componentDidMount() {
+    const webview = document.querySelector('webview');
+    if (webview) {
+      webview.addEventListener('did-start-loading', () => this.setState({ loading: true }));
+      webview.addEventListener('did-stop-loading', () => this.setState({ loading: false }));
+    } else {
+      this.setState({ error: true }); // eslint-disable-line
+    }
+  }
+
   render() {
     const { match } = this.props;
+    const { loading, error } = this.state;
     const address = match.path.substring(8, 50);
-    if (!isValidAddress(address)) {
+    if (!isValidAddress(address) || error) {
       return (
-        <p style={{ color: 'white' }}>Fatal error: Failed to locate selected wallet address</p>
+        <p style={{ color: 'white' }}>Unexpected error occured, please try again later</p>
       );
     }
     return (
       <Wrapper>
+        {
+          loading &&
+            <StyledSpin tip="Loading..." size="large" />
+        }
         <webview
-          style={{ width: '100%', height: '100%' }}
-          src={`https://hubii-simplex.netlify.com?address=${address}`}
+          style={loading ? { display: 'none' } : { width: '100%', height: '80vh' }}
+          autosize="on"
+          src={'https://simplex.dev.hubii.net/?crypto=ETH'}
         ></webview>
       </Wrapper>
     );
