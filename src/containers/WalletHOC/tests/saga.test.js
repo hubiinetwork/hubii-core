@@ -27,7 +27,19 @@ import {
   lnsExpectedSignedTxHex,
 } from '../../../mocks/wallet';
 
-import { balancesMock, address1Mock, walletsMock, pricesMock, supportedAssetsMock, supportedTokensMock, transactionsMock, blockHeightMock } from './mocks';
+import {
+  supportedTokensMock,
+} from './mocks';
+
+
+import {
+  walletsMock,
+  pricesLoadedMock,
+  supportedAssetsLoadedMock,
+  transactionsMock,
+  blockHeightLoadedMock,
+  balancesMock,
+} from './mocks/selectors';
 
 import walletHoc, {
   createWalletFromMnemonic,
@@ -287,7 +299,7 @@ describe('load wallets saga', () => {
   describe('supported tokens', () => {
     it('should load supported tokens', () => {
       const tokens = supportedTokensMock;
-      const assets = supportedAssetsMock;
+      const assets = supportedAssetsLoadedMock;
 
       return expectSaga(loadSupportedTokensSaga)
         .withReducer(withReducer, initialState)
@@ -369,7 +381,7 @@ describe('load wallets saga', () => {
   describe('loadTransactions', () => {
     it('should call loadTransactionsSuccess on success response and dispatch self', () => {
       const response = transactionsMock.get(0);
-      const address = address1Mock;
+      const address = '0x00';
       return expectSaga(loadTransactions, { address })
         .provide({
           call(effect, next) {
@@ -387,7 +399,7 @@ describe('load wallets saga', () => {
 
     it('should call loadTransactionsError on error response and dispatch self', () => {
       const error = new Error('err');
-      const address = address1Mock;
+      const address = '0x00';
       return expectSaga(loadTransactions, { address })
         .provide({
           call(effect, next) {
@@ -407,7 +419,7 @@ describe('load wallets saga', () => {
   describe('load balances', () => {
     it('should save loaded balances in store by wallet address', () => {
       const response = balancesMock.get(0);
-      const address = address1Mock;
+      const address = '0x00';
       return expectSaga(loadWalletBalancesSaga, { address })
         .withReducer(withReducer, initialState)
         .provide({
@@ -423,7 +435,7 @@ describe('load wallets saga', () => {
 
     it('should not poll loadWalletBalances after finished the balance request', () => {
       const response = 'response';
-      const address = address1Mock;
+      const address = '0x00';
       const saga = testSaga(loadWalletBalancesSaga, { address, noPoll: true });
       saga
         .next()
@@ -433,7 +445,7 @@ describe('load wallets saga', () => {
     });
     it('should poll loadWalletBalances after finished the balance request', () => {
       const response = 'response';
-      const address = address1Mock;
+      const address = '0x00';
       const saga = testSaga(loadWalletBalancesSaga, { address });
       saga
         .next()
@@ -640,11 +652,11 @@ describe('load wallets saga', () => {
               address: '0xabcd',
             },
             balances: balancesMock,
-            prices: pricesMock,
-            supportedAssets: supportedAssetsMock,
+            prices: pricesLoadedMock,
+            supportedAssets: supportedAssetsLoadedMock,
             pendingTransactions: [],
             transactions: transactionsMock,
-            blockHeight: blockHeightMock,
+            blockHeight: blockHeightLoadedMock,
           },
         });
         storeState = storeState.setIn(['walletHoc', 'wallets', 0, 'decrypted'], {
@@ -806,7 +818,7 @@ describe('load wallets saga', () => {
               descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC1@14/XHC1@14000000/PRT2@14200000/Nano S@14200000/Nano S@0/IOUSBHostHIDDevice@14200000,0',
             },
             supportedAssets: { loading: true },
-            blockHeight: blockHeightMock,
+            blockHeight: blockHeightLoadedMock,
           },
         };
         const params = {};
@@ -842,8 +854,8 @@ describe('load wallets saga', () => {
         const storeState = fromJS({
           walletHoc: {
             balances: balancesMock,
-            prices: pricesMock,
-            supportedAssets: supportedAssetsMock,
+            prices: pricesLoadedMock,
+            supportedAssets: supportedAssetsLoadedMock,
             transactions: transactionsMock,
             wallets: [{
               name: 't1',
@@ -858,7 +870,7 @@ describe('load wallets saga', () => {
             ledgerNanoSInfo: {
               descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC@14/XHC@14000000/HS09@14900000/Nano S@14900000/Nano S@0/IOUSBHostHIDDevice@14900000,0',
             },
-            blockHeight: blockHeightMock,
+            blockHeight: blockHeightLoadedMock,
           },
         });
         const nonce = 16;
@@ -901,8 +913,8 @@ describe('load wallets saga', () => {
         const storeState = fromJS({
           walletHoc: {
             balances: balancesMock,
-            prices: pricesMock,
-            supportedAssets: supportedAssetsMock,
+            prices: pricesLoadedMock,
+            supportedAssets: supportedAssetsLoadedMock,
             wallets: [{
               name: 't1',
               type: 'trezor',
@@ -919,7 +931,7 @@ describe('load wallets saga', () => {
             trezorInfo: {
               id: 'test',
             },
-            blockHeight: blockHeightMock,
+            blockHeight: blockHeightLoadedMock,
           },
         });
         const nonce = 8;

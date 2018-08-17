@@ -29,7 +29,14 @@ import {
 } from '../actions';
 
 import { LEDGER_ERROR, FETCHED_LEDGER_ADDRESS } from '../constants';
-import { supportedAssetsMock, supportedTokensMock, pricesMock } from './mocks';
+import {
+  supportedAssetsLoadedMock,
+  pricesLoadedMock,
+} from './mocks/selectors';
+
+import {
+  supportedTokensMock,
+} from './mocks';
 
 const wallet = {
   name: 'testwallet',
@@ -291,7 +298,7 @@ describe('walletHocReducer', () => {
       const expected = stateWithWallet
         .setIn(['supportedAssets', 'loading'], false)
         .setIn(['supportedAssets', 'error'], null)
-        .setIn(['supportedAssets', 'assets'], fromJS(supportedAssetsMock.get('assets')));
+        .setIn(['supportedAssets', 'assets'], fromJS(supportedAssetsLoadedMock.get('assets')));
 
       expect(walletHocReducer(stateWithWallet, loadSupportedTokensSuccess(supportedTokensMock))).toEqual(expected);
     });
@@ -308,11 +315,11 @@ describe('walletHocReducer', () => {
 
   describe('prices', () => {
     it('handle LOAD_PRICES_SUCCESS correctly', () => {
-      const prices = pricesMock.get('assets').delete(pricesMock.get('assets').size - 1);
+      const prices = pricesLoadedMock.get('assets').delete(pricesLoadedMock.get('assets').size - 1);
       const expected = stateWithWallet
         .setIn(['prices', 'loading'], false)
         .setIn(['prices', 'error'], null)
-        .setIn(['prices', 'assets'], fromJS(pricesMock.get('assets')));
+        .setIn(['prices', 'assets'], fromJS(pricesLoadedMock.get('assets')));
 
       expect(walletHocReducer(stateWithWallet, loadPricesSuccess(prices))).toEqual(expected);
     });
