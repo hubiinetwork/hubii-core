@@ -69,6 +69,7 @@ export default class TransferForm extends React.PureComponent {
     this.hideContactModal = this.hideContactModal.bind(this);
     this.onCreateContact = this.onCreateContact.bind(this);
     this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
+    this.onBlurNumberInput = this.onBlurNumberInput.bind(this);
   }
 
   onSend() {
