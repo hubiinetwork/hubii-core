@@ -6,6 +6,7 @@ const { autoUpdater } = require('electron-updater');
 const path = require('path');
 const isDev = require('electron-is-dev');
 const { registerWalletListeners } = require('./wallets');
+const setupDevToolsShortcut = require('./dev-tools');
 
 const showDevTools = process.env.DEV_TOOLS;
 let mainWindow;
@@ -38,7 +39,8 @@ function createWindow() {
     show: false,
     icon: process.platform === 'linux' && path.join(__dirname, '../icon.png'),
     webPreferences: {
-      preload: path.join(__dirname, 'wallets/preload.js'),
+      preload: path.join(__dirname, 'preload.js'),
+      webSecurity: false,
     },
   };
   mainWindow = initSplashScreen({
@@ -102,6 +104,7 @@ app.on('ready', () => {
   createWindow();
   setupAutoUpdater();
   registerWalletListeners(mainWindow);
+  setupDevToolsShortcut();
 });
 
 app.on('window-all-closed', () => {
