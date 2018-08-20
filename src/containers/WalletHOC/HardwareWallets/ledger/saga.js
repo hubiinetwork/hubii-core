@@ -195,8 +195,16 @@ export function* signPersonalMessageByLedger(walletDetails, txHash) {
     const signedPersonalMessage = yield call(
       tryCreateEthTransportActivity,
       descriptor,
-      (ethTransport) => ethTransport.signPersonalMessage(walletDetails.derivationPath, txHash)
+      (ethTransport) => ethTransport.signPersonalMessage(walletDetails.derivationPath, Buffer.from(txHash).toString('hex')).then((result) => {
+        let v = result.v - 27;
+        v = v.toString(16);
+        if (v.length < 2) {
+          v = `0${v}`;
+        }
+        console.log(`Signature 0x${result.r}${result.s}${v}`);
+      })
     );
+    console.log(signedPersonalMessage);
     console.log('txHash in signPersonalMessage', txHash);
     return signedPersonalMessage;
   } catch (e) {
