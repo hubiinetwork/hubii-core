@@ -16,7 +16,7 @@ export const DescriptiveIcon = styled(Icon)`
 export const SingleRowWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 33rem;
   border: 0.15rem solid ${({ theme }) => theme.palette.secondary5};
   border-radius: 0.5rem; 

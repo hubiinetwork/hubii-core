@@ -1,9 +1,12 @@
 import { Row } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+
+import { formatFiat } from 'utils/numberFormats';
+import { isHardwareWallet } from 'utils/wallet';
+
 import {
   StyledCol,
-  StyledDiv,
   WrapperDiv,
   BalanceCol,
   StyledTitle,
@@ -11,10 +14,11 @@ import {
   StyledRecipient,
   StyledButtonCancel,
   StyledSpin,
-  StyledErrorCol,
+  SendCancelWrapper,
+  HWPromptWrapper,
 } from './TransferDescription.style';
 import TransferDescriptionItem from '../TransferDescriptionItem';
-import { formatFiat } from '../../utils/numberFormats';
+import HWPrompt from '../HWPrompt';
 
 /**
  * The TransferDescription Component
@@ -148,21 +152,26 @@ export default class TransferDescription extends React.PureComponent {
               delay={0}
               size="large"
             />) : (
-              <StyledDiv>
-                <StyledButtonCancel type="secondary" onClick={onCancel}>
-                  {'Cancel'}
-                </StyledButtonCancel>
-                <StyledButton type="primary" onClick={onSend} disabled={disableSendButton}>
+              <div>
+                {
+                isHardwareWallet(currentWalletWithInfo.get('type')) &&
+                <HWPromptWrapper>
+                  <HWPrompt
+                    deviceType={currentWalletWithInfo.get('type')}
+                    error={hardwareError}
+                  />
+                </HWPromptWrapper>
+                }
+                <SendCancelWrapper>
+                  <StyledButtonCancel type="secondary" onClick={onCancel}>
+                    {'Cancel'}
+                  </StyledButtonCancel>
+                  <StyledButton type="primary" onClick={onSend} disabled={disableSendButton}>
                   Send
                 </StyledButton>
-              </StyledDiv>
+                </SendCancelWrapper>
+              </div>
             )
-          }
-        </Row>
-        <Row>
-          {
-            hardwareError &&
-              <StyledErrorCol span={24}>{hardwareError}</StyledErrorCol>
           }
         </Row>
       </WrapperDiv>

@@ -31,4 +31,13 @@ describe('<HWPrompt />', () => {
       />);
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should render correctly when device is connected with no errors', () => {
+    const wrapper = shallow(
+      <HWPrompt
+        {...props}
+        error={null}
+      />);
+    expect(wrapper).toMatchSnapshot();
+  });
 });

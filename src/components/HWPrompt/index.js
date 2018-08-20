@@ -70,6 +70,12 @@ class HWPrompt extends React.Component { // eslint-disable-line react/prefer-sta
 
   render() {
     const { error, deviceType } = this.props;
+    if (!error) {
+      return singleRowMsg(
+        'Device connection established',
+        'check'
+      );
+    }
     if (deviceType === 'lns') {
       return lnsPrompt(error);
     }
@@ -80,7 +86,7 @@ class HWPrompt extends React.Component { // eslint-disable-line react/prefer-sta
 }
 
 HWPrompt.propTypes = {
-  error: PropTypes.string.isRequired,
+  error: PropTypes.string,
   deviceType: PropTypes.oneOf(['lns', 'trezor']),
 };
 
