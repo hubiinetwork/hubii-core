@@ -7,16 +7,14 @@ export const OuterWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const DescriptiveIcon = styled(Icon)`
-  color: ${(props) => props.active === 'true' ? props.theme.palette.info : null};
-  font-size: 1.5rem;
+export const DescriptiveIcon = styled.img`
+  height: 1.5rem;
   margin-right: 1rem;
 `;
 
 export const SingleRowWrapper = styled.div`
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   width: 33rem;
   border: 0.15rem solid ${({ theme }) => theme.palette.secondary5};
   border-radius: 0.5rem; 

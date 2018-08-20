@@ -26,8 +26,7 @@ ShallowWrapper {
           pos="top"
 >
           <style__DescriptiveIcon
-                    active="true"
-                    type="link"
+                    src="/public/images/hw-wallet-usb-green.png"
           />
           <style__P>
                     Connect and unlock your 
@@ -44,8 +43,7 @@ ShallowWrapper {
           pos="bottom"
 >
           <style__DescriptiveIcon
-                    active="false"
-                    type="link"
+                    src="/public/images/hw-wallet-eth-grey.png"
           />
           <style__P>
                     Open the 
@@ -70,8 +68,7 @@ ShallowWrapper {
           "active": true,
           "children": Array [
             <style__DescriptiveIcon
-              active="true"
-              type="link"
+              src="/public/images/hw-wallet-usb-green.png"
 />,
             <style__P>
               Connect and unlock your 
@@ -92,8 +89,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "active": "true",
-              "type": "link",
+              "src": "/public/images/hw-wallet-usb-green.png",
             },
             "ref": null,
             "rendered": null,
@@ -150,8 +146,7 @@ ShallowWrapper {
           "active": false,
           "children": Array [
             <style__DescriptiveIcon
-              active="false"
-              type="link"
+              src="/public/images/hw-wallet-eth-grey.png"
 />,
             <style__P>
               Open the 
@@ -173,8 +168,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "active": "false",
-              "type": "link",
+              "src": "/public/images/hw-wallet-eth-grey.png",
             },
             "ref": null,
             "rendered": null,
@@ -240,8 +234,7 @@ ShallowWrapper {
             pos="top"
 >
             <style__DescriptiveIcon
-                        active="true"
-                        type="link"
+                        src="/public/images/hw-wallet-usb-green.png"
             />
             <style__P>
                         Connect and unlock your 
@@ -258,8 +251,7 @@ ShallowWrapper {
             pos="bottom"
 >
             <style__DescriptiveIcon
-                        active="false"
-                        type="link"
+                        src="/public/images/hw-wallet-eth-grey.png"
             />
             <style__P>
                         Open the 
@@ -284,8 +276,7 @@ ShallowWrapper {
             "active": true,
             "children": Array [
               <style__DescriptiveIcon
-                active="true"
-                type="link"
+                src="/public/images/hw-wallet-usb-green.png"
 />,
               <style__P>
                 Connect and unlock your 
@@ -306,8 +297,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "active": "true",
-                "type": "link",
+                "src": "/public/images/hw-wallet-usb-green.png",
               },
               "ref": null,
               "rendered": null,
@@ -364,8 +354,7 @@ ShallowWrapper {
             "active": false,
             "children": Array [
               <style__DescriptiveIcon
-                active="false"
-                type="link"
+                src="/public/images/hw-wallet-eth-grey.png"
 />,
               <style__P>
                 Open the 
@@ -387,8 +376,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "active": "false",
-                "type": "link",
+                "src": "/public/images/hw-wallet-eth-grey.png",
               },
               "ref": null,
               "rendered": null,

@@ -6,6 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getAbsolutePath } from 'utils/electron';
 
 import {
   OuterWrapper,
@@ -38,14 +39,24 @@ const lnsPrompt = (error) => {
   return (
     <OuterWrapper>
       <Row pos="top" active={stage === 'connect'}>
-        <DescriptiveIcon type="link" active={(stage === 'connect').toString()} />
+        <DescriptiveIcon
+          src={stage === 'connect' ?
+            getAbsolutePath('public/images/hw-wallet-usb-green.png') :
+            getAbsolutePath('public/images/hw-wallet-usb-white.png')
+          }
+        />
         <P>Connect and unlock your <KeyText>Ledger Device</KeyText></P>
         <StatusIcon
           type={stage === 'connect' ? 'loading' : 'check'}
         />
       </Row>
       <Row pos="bottom" active={stage === 'openApp'}>
-        <DescriptiveIcon type="link" active={(stage === 'openApp').toString()} />
+        <DescriptiveIcon
+          src={stage === 'connect' ?
+            getAbsolutePath('public/images/hw-wallet-eth-grey.png') :
+            getAbsolutePath('public/images/hw-wallet-eth-green.png')
+          }
+        />
         <P>Open the <KeyText>Ethereum</KeyText> app on your device</P>
         <StatusIcon
           type={stage === 'openApp' ? 'loading' : 'ellipsis'}
