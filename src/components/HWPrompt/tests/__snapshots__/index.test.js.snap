@@ -1,0 +1,680 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HWPrompt /> should render correctly in lns connect stage 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HWPrompt
+    deviceType="lns"
+    error="Ledger could not be detected"
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <style__Row
+          active={true}
+          pos="top"
+>
+          <style__DescriptiveIcon
+                    active="true"
+                    type="link"
+          />
+          <style__P>
+                    Connect and unlock your 
+                    <style__KeyText>
+                              Ledger Device
+                    </style__KeyText>
+          </style__P>
+          <style__StatusIcon
+                    type="loading"
+          />
+</style__Row>,
+        <style__Row
+          active={false}
+          pos="bottom"
+>
+          <style__DescriptiveIcon
+                    active="false"
+                    type="link"
+          />
+          <style__P>
+                    Open the 
+                    <style__KeyText>
+                              Ethereum
+                    </style__KeyText>
+                     app on your device
+          </style__P>
+          <style__StatusIcon
+                    type="ellipsis"
+          />
+</style__Row>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "active": true,
+          "children": Array [
+            <style__DescriptiveIcon
+              active="true"
+              type="link"
+/>,
+            <style__P>
+              Connect and unlock your 
+              <style__KeyText>
+                            Ledger Device
+              </style__KeyText>
+</style__P>,
+            <style__StatusIcon
+              type="loading"
+/>,
+          ],
+          "pos": "top",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "active": "true",
+              "type": "link",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                "Connect and unlock your ",
+                <style__KeyText>
+                  Ledger Device
+</style__KeyText>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              "Connect and unlock your ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Ledger Device",
+                },
+                "ref": null,
+                "rendered": "Ledger Device",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "type": "loading",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "active": false,
+          "children": Array [
+            <style__DescriptiveIcon
+              active="false"
+              type="link"
+/>,
+            <style__P>
+              Open the 
+              <style__KeyText>
+                            Ethereum
+              </style__KeyText>
+               app on your device
+</style__P>,
+            <style__StatusIcon
+              type="ellipsis"
+/>,
+          ],
+          "pos": "bottom",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "active": "false",
+              "type": "link",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                "Open the ",
+                <style__KeyText>
+                  Ethereum
+</style__KeyText>,
+                " app on your device",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              "Open the ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Ethereum",
+                },
+                "ref": null,
+                "rendered": "Ethereum",
+                "type": [Function],
+              },
+              " app on your device",
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "type": "ellipsis",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <style__Row
+            active={true}
+            pos="top"
+>
+            <style__DescriptiveIcon
+                        active="true"
+                        type="link"
+            />
+            <style__P>
+                        Connect and unlock your 
+                        <style__KeyText>
+                                    Ledger Device
+                        </style__KeyText>
+            </style__P>
+            <style__StatusIcon
+                        type="loading"
+            />
+</style__Row>,
+          <style__Row
+            active={false}
+            pos="bottom"
+>
+            <style__DescriptiveIcon
+                        active="false"
+                        type="link"
+            />
+            <style__P>
+                        Open the 
+                        <style__KeyText>
+                                    Ethereum
+                        </style__KeyText>
+                         app on your device
+            </style__P>
+            <style__StatusIcon
+                        type="ellipsis"
+            />
+</style__Row>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "active": true,
+            "children": Array [
+              <style__DescriptiveIcon
+                active="true"
+                type="link"
+/>,
+              <style__P>
+                Connect and unlock your 
+                <style__KeyText>
+                                Ledger Device
+                </style__KeyText>
+</style__P>,
+              <style__StatusIcon
+                type="loading"
+/>,
+            ],
+            "pos": "top",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "active": "true",
+                "type": "link",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  "Connect and unlock your ",
+                  <style__KeyText>
+                    Ledger Device
+</style__KeyText>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                "Connect and unlock your ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Ledger Device",
+                  },
+                  "ref": null,
+                  "rendered": "Ledger Device",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "type": "loading",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "active": false,
+            "children": Array [
+              <style__DescriptiveIcon
+                active="false"
+                type="link"
+/>,
+              <style__P>
+                Open the 
+                <style__KeyText>
+                                Ethereum
+                </style__KeyText>
+                 app on your device
+</style__P>,
+              <style__StatusIcon
+                type="ellipsis"
+/>,
+            ],
+            "pos": "bottom",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "active": "false",
+                "type": "link",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  "Open the ",
+                  <style__KeyText>
+                    Ethereum
+</style__KeyText>,
+                  " app on your device",
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                "Open the ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Ethereum",
+                  },
+                  "ref": null,
+                  "rendered": "Ethereum",
+                  "type": [Function],
+                },
+                " app on your device",
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "type": "ellipsis",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<HWPrompt /> should render correctly in lns openApp stage 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HWPrompt
+    deviceType="lns"
+    error="some unknown error~~~~~~~~"
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <style__SingleRowIcon
+          color="orange"
+          type="exclamation-circle-o"
+/>,
+        <style__P>
+          Something went wrong, please reconnect your device and try again
+</style__P>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "color": "orange",
+          "type": "exclamation-circle-o",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Something went wrong, please reconnect your device and try again",
+        },
+        "ref": null,
+        "rendered": "Something went wrong, please reconnect your device and try again",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <style__SingleRowIcon
+            color="orange"
+            type="exclamation-circle-o"
+/>,
+          <style__P>
+            Something went wrong, please reconnect your device and try again
+</style__P>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "color": "orange",
+            "type": "exclamation-circle-o",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Something went wrong, please reconnect your device and try again",
+          },
+          "ref": null,
+          "rendered": "Something went wrong, please reconnect your device and try again",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<HWPrompt /> should render correctly in trezor connect stage 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HWPrompt
+    deviceType="trezor"
+    error="Ledger could not be detected"
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <style__SingleRowIcon
+          color={undefined}
+          type="loading"
+/>,
+        <style__P>
+          Please connect and unlock your Trezor device to continue
+</style__P>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "color": undefined,
+          "type": "loading",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Please connect and unlock your Trezor device to continue",
+        },
+        "ref": null,
+        "rendered": "Please connect and unlock your Trezor device to continue",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <style__SingleRowIcon
+            color={undefined}
+            type="loading"
+/>,
+          <style__P>
+            Please connect and unlock your Trezor device to continue
+</style__P>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "color": undefined,
+            "type": "loading",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Please connect and unlock your Trezor device to continue",
+          },
+          "ref": null,
+          "rendered": "Please connect and unlock your Trezor device to continue",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
