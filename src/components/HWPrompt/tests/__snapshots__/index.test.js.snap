@@ -5,6 +5,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HWPrompt
+    confTxOnDevice={false}
     deviceType="lns"
     error="Ledger could not be detected"
 />,
@@ -446,6 +447,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HWPrompt
+    confTxOnDevice={false}
     deviceType="lns"
     error="some unknown error~~~~~~~~"
 />,
@@ -559,6 +561,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HWPrompt
+    confTxOnDevice={false}
     deviceType="trezor"
     error="Ledger could not be detected"
 />,
@@ -672,6 +675,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HWPrompt
+    confTxOnDevice={false}
     deviceType="lns"
     error={null}
 />,
@@ -764,6 +768,282 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": "Device connection established",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<HWPrompt /> should render correctly when tx conf required on LNS 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HWPrompt
+    confTxOnDevice={true}
+    deviceType="lns"
+    error="Ledger could not be detected"
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <style__ConfTxShield
+          src="/public/images/shield.png"
+/>,
+        <style__ConfTxDeviceImg
+          src="/public/images/conf-tx-lns.png"
+/>,
+        <style__P>
+          Verify the details shown on your device
+</style__P>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "src": "/public/images/shield.png",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "src": "/public/images/conf-tx-lns.png",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Verify the details shown on your device",
+        },
+        "ref": null,
+        "rendered": "Verify the details shown on your device",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <style__ConfTxShield
+            src="/public/images/shield.png"
+/>,
+          <style__ConfTxDeviceImg
+            src="/public/images/conf-tx-lns.png"
+/>,
+          <style__P>
+            Verify the details shown on your device
+</style__P>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "src": "/public/images/shield.png",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "src": "/public/images/conf-tx-lns.png",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Verify the details shown on your device",
+          },
+          "ref": null,
+          "rendered": "Verify the details shown on your device",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<HWPrompt /> should render correctly when tx conf required on trezor 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HWPrompt
+    confTxOnDevice={true}
+    deviceType="trezor"
+    error="Ledger could not be detected"
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <style__ConfTxShield
+          src="/public/images/shield.png"
+/>,
+        <style__ConfTxDeviceImg
+          src="/public/images/conf-tx-trezor.png"
+/>,
+        <style__P>
+          Verify the details shown on your device
+</style__P>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "src": "/public/images/shield.png",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "src": "/public/images/conf-tx-trezor.png",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Verify the details shown on your device",
+        },
+        "ref": null,
+        "rendered": "Verify the details shown on your device",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <style__ConfTxShield
+            src="/public/images/shield.png"
+/>,
+          <style__ConfTxDeviceImg
+            src="/public/images/conf-tx-trezor.png"
+/>,
+          <style__P>
+            Verify the details shown on your device
+</style__P>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "src": "/public/images/shield.png",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "src": "/public/images/conf-tx-trezor.png",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Verify the details shown on your device",
+          },
+          "ref": null,
+          "rendered": "Verify the details shown on your device",
           "type": [Function],
         },
       ],

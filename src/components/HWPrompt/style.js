@@ -29,6 +29,16 @@ export const SingleRowIcon = styled(Icon)`
   color: ${(props) => props.color || props.theme.palette.info};
 `;
 
+export const ConfTxDeviceImg = styled.img`
+  height: 8rem;
+  margin-right: 2rem;
+`;
+
+export const ConfTxShield = styled.img`
+  height: 5rem;
+  margin-right: 2rem;
+`;
+
 export const StatusIcon = styled(Icon)`
   font-size: 1.5rem;
   margin-left: auto;

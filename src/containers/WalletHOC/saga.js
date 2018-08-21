@@ -295,13 +295,6 @@ export function generateERC20Transaction({ contractAddress, walletAddress, toAdd
   });
 }
 
-// export function* waitTransactionHash({ transaction }) {
-//   const provider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
-//   const confirmedTxn = yield call((...args) => provider.waitForTransaction(...args), transaction.hash);
-//   yield put(transactionConfirmed(confirmedTxn));
-//   yield put(notify('success', 'Transaction confirmed'));
-// }
-
 export function* hookNewWalletCreated({ newWallet }) {
   const wallets = yield select(makeSelectWallets());
   const existAddress = wallets.find((wallet) => IsAddressMatch(wallet.get('address'), newWallet.address));

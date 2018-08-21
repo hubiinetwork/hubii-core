@@ -3,7 +3,6 @@ import { delay, eventChannel } from 'redux-saga';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 import { deriveAddresses, prependHexToAddress } from 'utils/wallet';
 import { createEthTransportActivity } from 'utils/ledger/comms';
-import { notify } from 'containers/App/actions';
 import {
   makeSelectLedgerNanoSInfo,
 } from '../../selectors';
@@ -21,6 +20,8 @@ import {
   ledgerEthAppDisconnected,
   ledgerError,
   fetchedLedgerAddress,
+  ledgerConfirmTxOnDevice,
+  ledgerConfirmTxOnDeviceDone,
 } from '../../actions';
 
 
@@ -160,8 +161,8 @@ export function* signTxByLedger(walletDetails, rawTxHex) {
       descriptor,
       async (ethTransport) => ethTransport.getAddress(walletDetails.derivationPath)
     );
-    yield put(notify('info', 'Verify transaction details on your Ledger'));
 
+    yield put(ledgerConfirmTxOnDevice());
     const signedTx = yield call(
       tryCreateEthTransportActivity,
       descriptor,
@@ -172,6 +173,8 @@ export function* signTxByLedger(walletDetails, rawTxHex) {
     const refinedError = ledgerError(e);
     yield put(refinedError);
     throw new Error(refinedError.error);
+  } finally {
+    yield put(ledgerConfirmTxOnDeviceDone());
   }
 }
 

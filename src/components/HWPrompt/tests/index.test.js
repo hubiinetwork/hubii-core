@@ -7,6 +7,7 @@ describe('<HWPrompt />', () => {
   const props = {
     deviceType: 'lns',
     error: 'Ledger could not be detected',
+    confTxOnDevice: false,
   };
   it('should render correctly in lns connect stage', () => {
     const wrapper = shallow(<HWPrompt {...props} />);
@@ -37,6 +38,26 @@ describe('<HWPrompt />', () => {
       <HWPrompt
         {...props}
         error={null}
+      />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when tx conf required on LNS', () => {
+    const wrapper = shallow(
+      <HWPrompt
+        {...props}
+        deviceType="lns"
+        confTxOnDevice
+      />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when tx conf required on trezor', () => {
+    const wrapper = shallow(
+      <HWPrompt
+        {...props}
+        deviceType="trezor"
+        confTxOnDevice
       />);
     expect(wrapper).toMatchSnapshot();
   });

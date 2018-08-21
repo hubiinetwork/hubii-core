@@ -17,6 +17,8 @@ import {
   StatusIcon,
   SingleRowWrapper,
   SingleRowIcon,
+  ConfTxDeviceImg,
+  ConfTxShield,
 } from './style';
 
 const lnsPrompt = (error) => {
@@ -66,6 +68,14 @@ const lnsPrompt = (error) => {
   );
 };
 
+const confTxOnDevicePrompt = (deviceType) => (
+  <SingleRowWrapper>
+    <ConfTxShield src={getAbsolutePath('public/images/shield.png')} />
+    <ConfTxDeviceImg src={getAbsolutePath(`public/images/conf-tx-${deviceType}.png`)} />
+    <P>{ 'Verify the details shown on your device' }</P>
+  </SingleRowWrapper>
+);
+
 const singleRowMsg = (msg, iconType, iconColor) => (
   <SingleRowWrapper>
     <SingleRowIcon type={iconType || 'loading'} color={iconColor} />
@@ -80,16 +90,26 @@ class HWPrompt extends React.Component { // eslint-disable-line react/prefer-sta
   }
 
   render() {
-    const { error, deviceType } = this.props;
+    const { error, deviceType, confTxOnDevice } = this.props;
+    // tx needs to be confirmed on device
+    if (confTxOnDevice) {
+      return confTxOnDevicePrompt(deviceType);
+    }
+
+    // device connection is good
     if (!error) {
       return singleRowMsg(
         'Device connection established',
         'check'
       );
     }
+
+    // lns needs to be connected
     if (deviceType === 'lns') {
       return lnsPrompt(error);
     }
+
+    // trezor needs to be connected
     return singleRowMsg(
       'Please connect and unlock your Trezor device to continue'
     );
@@ -99,6 +119,7 @@ class HWPrompt extends React.Component { // eslint-disable-line react/prefer-sta
 HWPrompt.propTypes = {
   error: PropTypes.string,
   deviceType: PropTypes.oneOf(['lns', 'trezor']),
+  confTxOnDevice: PropTypes.bool,
 };
 
 export default HWPrompt;

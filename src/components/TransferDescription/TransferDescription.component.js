@@ -147,30 +147,29 @@ export default class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           {
+            isHardwareWallet(currentWalletWithInfo.get('type')) &&
+            <HWPromptWrapper>
+              <HWPrompt
+                deviceType={currentWalletWithInfo.get('type')}
+                error={hardwareError}
+                confTxOnDevice={this.props.confTxOnDevice}
+              />
+            </HWPromptWrapper>
+          }
+          {
             this.props.transfering ?
             (<StyledSpin
               delay={0}
               size="large"
             />) : (
-              <div>
-                {
-                isHardwareWallet(currentWalletWithInfo.get('type')) &&
-                <HWPromptWrapper>
-                  <HWPrompt
-                    deviceType={currentWalletWithInfo.get('type')}
-                    error={hardwareError}
-                  />
-                </HWPromptWrapper>
-                }
-                <SendCancelWrapper>
-                  <StyledButtonCancel type="secondary" onClick={onCancel}>
-                    {'Cancel'}
-                  </StyledButtonCancel>
-                  <StyledButton type="primary" onClick={onSend} disabled={disableSendButton}>
+              <SendCancelWrapper>
+                <StyledButtonCancel type="secondary" onClick={onCancel}>
+                  {'Cancel'}
+                </StyledButtonCancel>
+                <StyledButton type="primary" onClick={onSend} disabled={disableSendButton}>
                   Send
                 </StyledButton>
-                </SendCancelWrapper>
-              </div>
+              </SendCancelWrapper>
             )
           }
         </Row>
@@ -180,77 +179,21 @@ export default class TransferDescription extends React.PureComponent {
 }
 
 TransferDescription.propTypes = {
-  /**
-   * receipient of the TransferDescription.
-   */
   recipient: PropTypes.string.isRequired,
-
-  /**
-   * amount to send in the TransferDescription.
-   */
   amountToSend: PropTypes.object.isRequired,
-
-  /**
-   * transactionFee
-   */
   transactionFee: PropTypes.object.isRequired,
-
-  /**
-   * assetToSend
-   */
   assetToSend: PropTypes.object.isRequired,
-
-  /**
-   * amount of the asset remaining after the txn
-   */
   assetBalanceAfter: PropTypes.object.isRequired,
-
-  /**
-   * amount of the asset remaining before the txn
-   */
   assetBalanceBefore: PropTypes.object.isRequired,
-
-  /**
-   * amount of the eth remaining after the txn
-   */
   ethBalanceAfter: PropTypes.object.isRequired,
-
-  /**
-   * amount of the eth remaining before the txn
-   */
   ethBalanceBefore: PropTypes.object.isRequired,
-
-  /**
-   * wallet's total USD value after the txn
-   */
   walletUsdValueAfter: PropTypes.number.isRequired,
-
-  /**
-   * wallet's total USD value before the txn
-   */
   walletUsdValueBefore: PropTypes.number.isRequired,
-
-  /**
-   * amount sending to recipient
-   */
   usdValueToSend: PropTypes.object.isRequired,
-
-  /**
-   * onSend function Callback in the TransferDescription.
-   */
-
   onSend: PropTypes.func,
-  /**
-   * onSend function Callback  in the TransferDescription.
-   */
   onCancel: PropTypes.func,
-  /**
-   * if the wallet is transfering the transaction
-   */
   transfering: PropTypes.bool,
-  /**
-   * Errors
-   */
+  confTxOnDevice: PropTypes.bool.isRequired,
   errors: PropTypes.object.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,
 };
