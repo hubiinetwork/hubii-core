@@ -97,7 +97,7 @@ export class AddNewContactModal extends React.Component {
             })(
               <ModalFormInput
                 type="textarea"
-                disabled={quickAddAddress}
+                disabled={!!quickAddAddress}
                 placeholder="0xee1636e3eu1969b618ca9334b5baf8e3760ab16a"
               />
             )}
