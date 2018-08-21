@@ -1,17 +1,12 @@
 import { injectGlobal } from 'styled-components';
-import Bold from '../public/fonts/SF-UI-Text-Bold.otf';
-import BoldItalic from '../public/fonts/SF-UI-Text-BoldItalic.otf';
-import HeavyItalic from '../public/fonts/SF-UI-Text-HeavyItalic.otf';
-import Medium from '../public/fonts/SF-UI-Text-Medium.otf';
-import MediumItalic from '../public/fonts/SF-UI-Text-MediumItalic.otf';
-import Regular from '../public/fonts/SF-UI-Text-Regular.otf';
-import RegularItalic from '../public/fonts/SF-UI-Text-RegularItalic.otf';
-import Light from '../public/fonts/SF-UI-Text-Light.otf';
-import Semibold from '../public/fonts/SF-UI-Text-Semibold.otf';
-import SemiboldItalic from '../public/fonts/SF-UI-Text-SemiboldItalic.otf';
-import Ultrathin from '../public/fonts/SF-UI-Text-Ultrathin.otf';
-import UltrathinItalic from '../public/fonts/SF-UI-Text-UltrathinItalic.otf';
 import darkTheme from './themes/darkTheme';
+
+import BoldWoff from '../public/fonts/opensans/Bold/OpenSans-Bold.woff';
+import BoldWoff2 from '../public/fonts/opensans/Bold/OpenSans-Bold.woff2';
+import RegularWoff from '../public/fonts/opensans/Regular/OpenSans-Regular.woff';
+import RegularWoff2 from '../public/fonts/opensans/Regular/OpenSans-Regular.woff2';
+import LightWoff from '../public/fonts/opensans/Light/OpenSans-Light.woff';
+import LightWoff2 from '../public/fonts/opensans/Light/OpenSans-Light.woff2';
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
@@ -19,107 +14,33 @@ injectGlobal`
   @font-face {
     font-family: "SF Text";
     font-weight: 700;
-    src: url(${Bold});
+    src: url("${BoldWoff2}?v=1.101") format("woff2"), url("${BoldWoff}?v=1.101") format("woff");
+    font-style: normal;
   }
 
-  /** Bold Italic */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 700;
-    font-style: italic;
-    src: url(${BoldItalic});
-  }
-
-  /** Heavy */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 800;
-    src: url(${Bold});
-  }
-
-  /** Heavy Italic */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 800;
-    font-style: italic;
-    src: url(${HeavyItalic});
-  }
-
-  /** Light */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 200;
-    src: url(${Light});
-  }
-
-  /** Light Italic */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 200;
-    font-style: italic;
-    src: url(${HeavyItalic});
-  }
-
-  /** Medium */
+  // /** Regular */
   @font-face {
     font-family: "SF Text";
     font-weight: 500;
-    src: url(${Medium});
+    src: url("${RegularWoff2}?v=1.101") format("woff2"), url("${RegularWoff}?v=1.101") format("woff");
+    font-style: normal;
   }
 
-  /** Medium Italic */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 500;
-    font-style: italic;
-    src: url(${MediumItalic});
-  }
-
-  /** Regular */
+  // /** Light */
   @font-face {
     font-family: "SF Text";
     font-weight: 400;
-    src: url(${Regular});
+    src: url("${LightWoff2}?v=1.101") format("woff2"), url("${LightWoff}?v=1.101") format("woff");
+    font-style: normal;
   }
 
-  /** Regular Italic */
   @font-face {
     font-family: "SF Text";
-    font-weight: 400;
-    font-style: italic;
-    src: url(${RegularItalic});
+    font-weight: 300;
+    src: url("${LightWoff2}?v=1.101") format("woff2"), url("${LightWoff}?v=1.101") format("woff");
+    font-style: normal;
   }
 
-  /** Semibold */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 600;
-    src: url(${Semibold});
-  }
-
-  /** Semibold Italic */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 600;
-    font-style: italic;
-    src: url(${SemiboldItalic});
-  }
-
-  /** Ultrathin */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 100;
-    src: url(${Ultrathin});
-  }
-
-  /** Ultrathin Italic */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 100;
-    font-style: italic;
-    src: url(${UltrathinItalic});
-  }
-  
   .ant-tooltip {
     display: none;
   }
@@ -134,9 +55,6 @@ injectGlobal`
     width: 100%;
     margin: 0;
     padding: 0;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    font-smoothing: antialiased;
     font-weight: 500;
   }
 
