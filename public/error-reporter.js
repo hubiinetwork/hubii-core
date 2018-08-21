@@ -18,6 +18,7 @@ module.exports = () => {
   installed = true;
 
   const options = {
+    // eslint-disable-next-line no-console
     logger: console.error,
     showDialog: true,
   };

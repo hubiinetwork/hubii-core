@@ -1,9 +1,10 @@
+import { ipcRenderer } from 'electron';
 import { takeLatest, takeEvery, put, call, select, take, race, spawn } from 'redux-saga/effects';
 import { delay, eventChannel } from 'redux-saga';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 import { deriveAddresses, prependHexToAddress } from 'utils/wallet';
-import { createEthTransportActivity } from 'utils/ledger/comms';
 import { notify } from 'containers/App/actions';
+import { requestHardwareWalletAPI } from 'utils/request';
 import {
   makeSelectLedgerNanoSInfo,
 } from '../../selectors';
@@ -25,13 +26,11 @@ import {
 
 
 // Creates an eventChannel to listen to Ledger events
-export const ledgerChannel = () => eventChannel((listener) => {
-  const sub = LedgerTransport.listen({
-    next: (e) => listener(e),
-    error: (e) => listener(e),
-    complete: (e) => listener(e),
+export const ledgerChannel = () => eventChannel((emit) => {
+  ipcRenderer.on('lns-status', (event, status) => {
+    emit(status);
   });
-  return () => { sub.unsubscribe(); };
+  return () => { };
 });
 
 const ethChannels = {};
@@ -49,10 +48,20 @@ export const removeEthChannel = (descriptor) => {
 };
 
 export const ledgerEthChannel = (descriptor) => eventChannel((listener) => {
+  let inProgress = false;
   const iv = setInterval(() => {
-    createEthTransportActivity(descriptor, (ethTransport) => ethTransport.getAddress('m/44\'/60\'/0\'/0')).then((address) => {
+    if (inProgress) {
+      return;
+    }
+
+    inProgress = true;
+    const path = 'm/44\'/60\'/0\'/0';
+    const method = 'getaddress';
+    requestEthTransportActivity({ method, params: { descriptor, path } }).then((address) => {
+      inProgress = false;
       listener({ connected: true, address });
     }).catch((err) => {
+      inProgress = false;
       listener({ connected: false, error: err });
     });
   }, 2000);
@@ -128,7 +137,8 @@ export function* fetchLedgerAddresses({ pathBase, count }) {
       throw new Error('no descriptor available');
     }
     const descriptor = ledgerStatus.get('descriptor');
-    const publicAddressKeyPair = yield call(tryCreateEthTransportActivity, descriptor, async (ethTransport) => ethTransport.getAddress(pathBase, false, true));
+    const method = 'getpublickey';
+    const publicAddressKeyPair = yield call(tryCreateEthTransportActivity, method, { descriptor, path: pathBase });
     const addresses = deriveAddresses({ publicKey: publicAddressKeyPair.publicKey, chainCode: publicAddressKeyPair.chainCode, count });
 
     for (let i = 0; i < addresses.length; i += 1) {
@@ -140,13 +150,23 @@ export function* fetchLedgerAddresses({ pathBase, count }) {
   }
 }
 
-export function* tryCreateEthTransportActivity(descriptor, func) {
+export function* tryCreateEthTransportActivity(method, params) {
   try {
-    return yield call(createEthTransportActivity, descriptor, func);
+    return yield call(requestEthTransportActivity, { method, params });
   } catch (error) {
-    yield spawn(pollEthApp, { descriptor });
+    yield spawn(pollEthApp, { descriptor: params.descriptor });
     throw error;
   }
+}
+
+export function requestEthTransportActivity({ method, params }) {
+  const data = {
+    ...params,
+    id: params.id || params.descriptor,
+  };
+  return requestHardwareWalletAPI(method, data, 'lns://').catch((err) => {
+    throw err;
+  });
 }
 
 export function* signTxByLedger(walletDetails, rawTxHex) {
@@ -157,15 +177,15 @@ export function* signTxByLedger(walletDetails, rawTxHex) {
     // check if the eth app is opened
     yield call(
       tryCreateEthTransportActivity,
-      descriptor,
-      async (ethTransport) => ethTransport.getAddress(walletDetails.derivationPath)
+      'getaddress',
+      { descriptor, path: walletDetails.derivationPath }
     );
     yield put(notify('info', 'Verify transaction details on your Ledger'));
 
     const signedTx = yield call(
       tryCreateEthTransportActivity,
-      descriptor,
-      (ethTransport) => ethTransport.signTransaction(walletDetails.derivationPath, rawTxHex)
+      'signtx',
+      { descriptor, path: walletDetails.derivationPath, rawTxHex },
     );
     return signedTx;
   } catch (e) {
