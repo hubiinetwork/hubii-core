@@ -28,7 +28,7 @@ export function* init() {
 }
 
 export const listenTrezorDevicesChannel = () => eventChannel((emit) => {
-  ipcRenderer.on('status', (event, status) => {
+  ipcRenderer.on('trezor-status', (event, status) => {
     emit(status);
   });
   return () => { };
