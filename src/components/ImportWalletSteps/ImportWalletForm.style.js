@@ -17,6 +17,23 @@ export const WidthEighty = styled.div`
   width: 70%;
 `;
 
+export const FinalHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.6rem;
+  color: white;
+
+  p {
+    margin-bottom: 0.25rem;
+  }
+  img {
+    max-width: 14rem;
+    max-height: 5rem;
+    margin-bottom: 1rem;
+  }
+`;
+
 export const StyledModalFormLabel = styled(ModalFormLabel)`
   height: 1rem;
   font-size: 0.86rem;

@@ -78,12 +78,15 @@ export default class AddRestoreWalletModal extends React.Component {
                   name: 'ledger',
                 },
                 {
+                  src: getAbsolutePath('public/images/trezor-logo.png'),
                   name: 'Trezor',
                 },
                 {
+                  src: getAbsolutePath('public/images/private-key.png'),
                   name: 'Private key',
                 },
                 {
+                  src: getAbsolutePath('public/images/mnemonic.png'),
                   name: 'Mnemonic',
                 },
               ]}

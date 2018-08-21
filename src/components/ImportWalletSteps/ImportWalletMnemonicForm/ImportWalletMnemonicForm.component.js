@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
 import { handleFinish, compareToFirstPassword } from 'utils/forms';
+import { getAbsolutePath } from 'utils/electron';
 
 import {
   WidthEighty,
@@ -13,6 +14,7 @@ import {
   StyledButton,
   StyledSpan,
   StyledSpin,
+  FinalHeader,
 } from '../ImportWalletForm.style';
 
 class ImportWalletMnemonicForm extends React.Component {
@@ -33,13 +35,21 @@ class ImportWalletMnemonicForm extends React.Component {
           onSubmit={(e) => handleFinish(e, form, handleNext, { derivationPath })}
           layout="vertical"
           style={{
-            marginTop: '5rem',
+            marginTop: '2rem',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
           <WidthEighty>
+            <FinalHeader>
+              <p>Import method</p>
+              <img
+                src={getAbsolutePath('public/images/mnemonic.png')}
+                alt="import method icon"
+                style={{ marginTop: '1rem' }}
+              />
+            </FinalHeader>
             <ModalFormItem
               label={
                 <StyledModalFormLabel>

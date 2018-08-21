@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-export const SpaceBetween = styled.div`
+export const Wrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 `;
+
 export const TextDiv = styled.div`
   display: flex;
   color: ${({ theme }) => theme.palette.secondary1};

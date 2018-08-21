@@ -27,9 +27,12 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "class",
     "props": Object {
       "children": Array [
+        <ImportWallet.style__Header>
+          How is the wallet stored?
+</ImportWallet.style__Header>,
         <ImportWallet.style__Coins
           onChange={[Function]}
 >
@@ -52,21 +55,30 @@ ShallowWrapper {
                     </ImportWallet.style__Center>
           </ImportWallet.style__CoinButton>
 </ImportWallet.style__Coins>,
-        <ImportWallet.style__ButtonDiv>
-          <ImportWallet.style__StyledButton
-                    disabled={true}
-                    onClick={[Function]}
-                    type="primary"
-          >
-                    <ImportWallet.style__StyledSpan>
-                              Next
-                    </ImportWallet.style__StyledSpan>
-          </ImportWallet.style__StyledButton>
-</ImportWallet.style__ButtonDiv>,
+        <ImportWallet.style__StyledButton
+          disabled={true}
+          onClick={[Function]}
+          type="primary"
+>
+          <ImportWallet.style__StyledSpan>
+                    Next
+          </ImportWallet.style__StyledSpan>
+</ImportWallet.style__StyledButton>,
       ],
     },
     "ref": null,
     "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "How is the wallet stored?",
+        },
+        "ref": null,
+        "rendered": "How is the wallet stored?",
+        "type": [Function],
+      },
       Object {
         "instance": null,
         "key": undefined,
@@ -180,15 +192,12 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <ImportWallet.style__StyledButton
-            disabled={true}
-            onClick={[Function]}
-            type="primary"
->
-            <ImportWallet.style__StyledSpan>
-                        Next
-            </ImportWallet.style__StyledSpan>
-</ImportWallet.style__StyledButton>,
+          "children": <ImportWallet.style__StyledSpan>
+            Next
+</ImportWallet.style__StyledSpan>,
+          "disabled": true,
+          "onClick": [Function],
+          "type": "primary",
         },
         "ref": null,
         "rendered": Object {
@@ -196,39 +205,27 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <ImportWallet.style__StyledSpan>
-              Next
-</ImportWallet.style__StyledSpan>,
-            "disabled": true,
-            "onClick": [Function],
-            "type": "primary",
+            "children": "Next",
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": "Next",
-            },
-            "ref": null,
-            "rendered": "Next",
-            "type": [Function],
-          },
+          "rendered": "Next",
           "type": [Function],
         },
         "type": [Function],
       },
     ],
-    "type": "div",
+    "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "class",
       "props": Object {
         "children": Array [
+          <ImportWallet.style__Header>
+            How is the wallet stored?
+</ImportWallet.style__Header>,
           <ImportWallet.style__Coins
             onChange={[Function]}
 >
@@ -251,21 +248,30 @@ ShallowWrapper {
                         </ImportWallet.style__Center>
             </ImportWallet.style__CoinButton>
 </ImportWallet.style__Coins>,
-          <ImportWallet.style__ButtonDiv>
-            <ImportWallet.style__StyledButton
-                        disabled={true}
-                        onClick={[Function]}
-                        type="primary"
-            >
-                        <ImportWallet.style__StyledSpan>
-                                    Next
-                        </ImportWallet.style__StyledSpan>
-            </ImportWallet.style__StyledButton>
-</ImportWallet.style__ButtonDiv>,
+          <ImportWallet.style__StyledButton
+            disabled={true}
+            onClick={[Function]}
+            type="primary"
+>
+            <ImportWallet.style__StyledSpan>
+                        Next
+            </ImportWallet.style__StyledSpan>
+</ImportWallet.style__StyledButton>,
         ],
       },
       "ref": null,
       "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "How is the wallet stored?",
+          },
+          "ref": null,
+          "rendered": "How is the wallet stored?",
+          "type": [Function],
+        },
         Object {
           "instance": null,
           "key": undefined,
@@ -379,15 +385,12 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <ImportWallet.style__StyledButton
-              disabled={true}
-              onClick={[Function]}
-              type="primary"
->
-              <ImportWallet.style__StyledSpan>
-                            Next
-              </ImportWallet.style__StyledSpan>
-</ImportWallet.style__StyledButton>,
+            "children": <ImportWallet.style__StyledSpan>
+              Next
+</ImportWallet.style__StyledSpan>,
+            "disabled": true,
+            "onClick": [Function],
+            "type": "primary",
           },
           "ref": null,
           "rendered": Object {
@@ -395,31 +398,16 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <ImportWallet.style__StyledSpan>
-                Next
-</ImportWallet.style__StyledSpan>,
-              "disabled": true,
-              "onClick": [Function],
-              "type": "primary",
+              "children": "Next",
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "Next",
-              },
-              "ref": null,
-              "rendered": "Next",
-              "type": [Function],
-            },
+            "rendered": "Next",
             "type": [Function],
           },
           "type": [Function],
         },
       ],
-      "type": "div",
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {
