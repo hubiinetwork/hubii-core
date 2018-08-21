@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const ErrorWrapper = styled.div`
+export default styled.div`
   display: flex;
-  margin: 10rem 5rem;
+  margin: 4rem 2.5rem;
   color: white;
 `;
