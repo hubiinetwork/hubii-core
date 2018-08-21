@@ -236,7 +236,8 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['ledgerNanoSInfo', 'status'], 'disconnected')
         .setIn(['ledgerNanoSInfo', 'ethConnected'], false)
         .setIn(['ledgerNanoSInfo', 'connected'], false)
-        .setIn(['ledgerNanoSInfo', 'descriptor'], null);
+        .setIn(['ledgerNanoSInfo', 'descriptor'], null)
+        .setIn(['ledgerNanoSInfo', 'id'], null);
     case LEDGER_ERROR:
       return state
         .setIn(['ledgerNanoSInfo', 'status'], 'disconnected')
