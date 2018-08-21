@@ -1,4 +1,5 @@
 
+/* global mainWindow */
 const { initSplashScreen } = require('@trodi/electron-splashscreen');
 const { app, Menu, dialog } = require('electron');
 const log = require('electron-log');
@@ -9,7 +10,6 @@ const { registerWalletListeners } = require('./wallets');
 const setupDevToolsShortcut = require('./dev-tools');
 
 const showDevTools = process.env.DEV_TOOLS;
-let mainWindow;
 
 function createWindow() {
   const template = [{
@@ -43,7 +43,7 @@ function createWindow() {
       webSecurity: false,
     },
   };
-  mainWindow = initSplashScreen({
+  global.mainWindow = initSplashScreen({
     windowOpts: windowOptions,
     templateUrl: path.join(__dirname, 'images/splashscreen.svg'),
     delay: 0,
@@ -71,8 +71,12 @@ function createWindow() {
       .catch((err) => console.error(`An error occurred loading extension ${name}: `, err)); // eslint-disable-line no-console
     });
   }
-
-  mainWindow.on('closed', () => { mainWindow = null; });
+  mainWindow.once('show', () => {
+    registerWalletListeners(mainWindow);
+  });
+  mainWindow.on('closed', () => {
+    app.quit();
+  });
   return mainWindow;
 }
 
@@ -100,10 +104,9 @@ function setupAutoUpdater() {
   autoUpdater.checkForUpdatesAndNotify();
 }
 
-app.on('ready', () => {
+app.on('ready', async () => {
   createWindow();
   setupAutoUpdater();
-  registerWalletListeners(mainWindow);
   setupDevToolsShortcut();
 });
 

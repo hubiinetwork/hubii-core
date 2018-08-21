@@ -14,6 +14,8 @@ function toggleDevTools(win = BrowserWindow.getFocusedWindow()) {
   }
 }
 
-module.exports = function () {
+function setupShortcut() {
   localShortcut.register(isMacOS ? 'Cmd+Alt+I' : 'Ctrl+Shift+I', toggleDevTools);
-};
+}
+
+module.exports = setupShortcut;
