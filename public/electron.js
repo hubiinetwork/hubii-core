@@ -104,7 +104,7 @@ function setupAutoUpdater() {
   autoUpdater.checkForUpdatesAndNotify();
 }
 
-app.on('ready', async () => {
+app.on('ready', () => {
   createWindow();
   setupAutoUpdater();
   setupDevToolsShortcut();
