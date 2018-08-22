@@ -12,7 +12,7 @@ import LightWoff2 from '../public/fonts/opensans/Light/OpenSans-Light.woff2';
 injectGlobal`
   /** Bold */
   @font-face {
-    font-family: "SF Text";
+    font-family: "OpenSans";
     font-weight: 700;
     src: url("${BoldWoff2}?v=1.101") format("woff2"), url("${BoldWoff}?v=1.101") format("woff");
     font-style: normal;
@@ -20,7 +20,7 @@ injectGlobal`
 
   // /** Regular */
   @font-face {
-    font-family: "SF Text";
+    font-family: "OpenSans";
     font-weight: 500;
     src: url("${RegularWoff2}?v=1.101") format("woff2"), url("${RegularWoff}?v=1.101") format("woff");
     font-style: normal;
@@ -28,14 +28,14 @@ injectGlobal`
 
   // /** Light */
   @font-face {
-    font-family: "SF Text";
+    font-family: "OpenSans";
     font-weight: 400;
     src: url("${LightWoff2}?v=1.101") format("woff2"), url("${LightWoff}?v=1.101") format("woff");
     font-style: normal;
   }
 
   @font-face {
-    font-family: "SF Text";
+    font-family: "OpenSans";
     font-weight: 300;
     src: url("${LightWoff2}?v=1.101") format("woff2"), url("${LightWoff}?v=1.101") format("woff");
     font-style: normal;
@@ -46,7 +46,7 @@ injectGlobal`
   }
 
   html * {
-    font-family: "SF Text";
+    font-family: "OpenSans";
   }
 
   html,
