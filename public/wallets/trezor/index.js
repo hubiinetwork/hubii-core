@@ -1,3 +1,4 @@
+/* global mainWindow */
 const { DeviceList } = require('trezor.js');
 const showPrompt = require('./showPrompt');
 
@@ -5,7 +6,7 @@ const PROTOCOL_NAME = 'trezor';
 
 const devices = {};
 
-function deviceEventListener(mainWindow) {
+function deviceEventListener() {
   const deviceList = new DeviceList({ debug: false });
   deviceList.on('connect', (device) => {
     const deviceId = device.features.device_id;
@@ -43,9 +44,9 @@ function deviceEventListener(mainWindow) {
     // For convenience, device emits 'disconnect' event on disconnection.
     device.on('disconnect', () => {
       delete devices[deviceId];
-      mainWindow.webContents.send('status', { deviceId, status: 'disconnected' });
+      mainWindow.webContents.send('trezor-status', { deviceId, status: 'disconnected' });
     });
-    mainWindow.webContents.send('status', { deviceId, status: 'connected' });
+    mainWindow.webContents.send('trezor-status', { deviceId, status: 'connected' });
   });
 
   process.on('exit', () => {
@@ -53,15 +54,16 @@ function deviceEventListener(mainWindow) {
   });
 }
 
-async function execWalletMethods(method, params, cb) {
+async function execWalletMethods(method, params) {
   const { id, path } = params;
 
-  await devices[id].waitForSessionAndRun(async (session) => {
+  const response = await devices[id].waitForSessionAndRun(async (session) => {
+    let result;
     if (method === 'getaddress') {
-      const result = await session.ethereumGetAddress(
+      const addressData = await session.ethereumGetAddress(
         parseHDPath(path)
       , false);
-      cb(JSON.stringify({ path, address: result.message.address }));
+      result = { address: addressData.message.address };
     }
     if (method === 'signtx') {
       const { tx } = params;
@@ -75,13 +77,19 @@ async function execWalletMethods(method, params, cb) {
         tx.data,
         tx.chainId
       );
-      cb(JSON.stringify(signedTx));
+      result = signedTx;
     }
     if (method === 'getpublickey') {
       const { message } = await session.getPublicKey(parseHDPath(path));
-      cb(JSON.stringify(message));
+      result = message;
     }
+
+    if (result) {
+      return { ...result, id, path };
+    }
+    return null;
   });
+  return response;
 }
 
 function parseHDPath(path) {

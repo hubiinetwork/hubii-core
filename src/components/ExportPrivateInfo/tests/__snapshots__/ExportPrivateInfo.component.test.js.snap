@@ -1,15 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ExportPrivateInfo/> should render <ExportPrivateInfo/> correctly 1`] = `
+exports[`<ExportPrivateInfo/> should render <ExportPrivateInfo/> correctly and when there is a mnemonic 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ExportPrivateInfo
-    address="0x3123123"
-    mnemonic="the ball in my hand"
-    name="Wallet1"
+    mnemonic="over sentence spend best business museum ripple shop vault present travel fire"
     onExit={[Function]}
-    privateKey="privateKey"
+    privateKey="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -37,7 +35,7 @@ ShallowWrapper {
                               <CopyToClipboard
                                         onCopy={undefined}
                                         options={undefined}
-                                        text="the ball in my hand"
+                                        text="over sentence spend best business museum ripple shop vault present travel fire"
                               >
                                         <ExportPrivateInfo.style__StyledIcon
                                                   icon="copy"
@@ -49,7 +47,7 @@ ShallowWrapper {
                                         />
                               </CopyToClipboard>
                     </ExportPrivateInfo.style__SecondaryHeader>
-                    the ball in my hand
+                    over sentence spend best business museum ripple shop vault present travel fire
           </div>
           <div>
                     <ExportPrivateInfo.style__SecondaryHeader>
@@ -57,7 +55,7 @@ ShallowWrapper {
                               <CopyToClipboard
                                         onCopy={undefined}
                                         options={undefined}
-                                        text="privateKey"
+                                        text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
                               >
                                         <ExportPrivateInfo.style__StyledIcon
                                                   icon="copy"
@@ -69,7 +67,7 @@ ShallowWrapper {
                                         />
                               </CopyToClipboard>
                     </ExportPrivateInfo.style__SecondaryHeader>
-                    privateKey
+                    0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
           </div>
 </ExportPrivateInfo.style__TextPrimary>,
         <ExportPrivateInfo.style__ParentDiv>
@@ -119,7 +117,7 @@ ShallowWrapper {
                             <CopyToClipboard
                                           onCopy={undefined}
                                           options={undefined}
-                                          text="the ball in my hand"
+                                          text="over sentence spend best business museum ripple shop vault present travel fire"
                             >
                                           <ExportPrivateInfo.style__StyledIcon
                                                         icon="copy"
@@ -131,7 +129,7 @@ ShallowWrapper {
                                           />
                             </CopyToClipboard>
               </ExportPrivateInfo.style__SecondaryHeader>
-              the ball in my hand
+              over sentence spend best business museum ripple shop vault present travel fire
 </div>,
             <div>
               <ExportPrivateInfo.style__SecondaryHeader>
@@ -139,7 +137,7 @@ ShallowWrapper {
                             <CopyToClipboard
                                           onCopy={undefined}
                                           options={undefined}
-                                          text="privateKey"
+                                          text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
                             >
                                           <ExportPrivateInfo.style__StyledIcon
                                                         icon="copy"
@@ -151,7 +149,7 @@ ShallowWrapper {
                                           />
                             </CopyToClipboard>
               </ExportPrivateInfo.style__SecondaryHeader>
-              privateKey
+              0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
 </div>,
           ],
         },
@@ -168,7 +166,7 @@ ShallowWrapper {
                   <CopyToClipboard
                                     onCopy={undefined}
                                     options={undefined}
-                                    text="the ball in my hand"
+                                    text="over sentence spend best business museum ripple shop vault present travel fire"
                   >
                                     <ExportPrivateInfo.style__StyledIcon
                                                       icon="copy"
@@ -180,7 +178,7 @@ ShallowWrapper {
                                     />
                   </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
-                "the ball in my hand",
+                "over sentence spend best business museum ripple shop vault present travel fire",
               ],
             },
             "ref": null,
@@ -195,7 +193,7 @@ ShallowWrapper {
                     <CopyToClipboard
                       onCopy={undefined}
                       options={undefined}
-                      text="the ball in my hand"
+                      text="over sentence spend best business museum ripple shop vault present travel fire"
 >
                       <ExportPrivateInfo.style__StyledIcon
                                             icon="copy"
@@ -226,7 +224,7 @@ ShallowWrapper {
 />,
                       "onCopy": undefined,
                       "options": undefined,
-                      "text": "the ball in my hand",
+                      "text": "over sentence spend best business museum ripple shop vault present travel fire",
                     },
                     "ref": null,
                     "rendered": Object {
@@ -250,7 +248,7 @@ ShallowWrapper {
                 ],
                 "type": [Function],
               },
-              "the ball in my hand",
+              "over sentence spend best business museum ripple shop vault present travel fire",
             ],
             "type": "div",
           },
@@ -265,7 +263,7 @@ ShallowWrapper {
                   <CopyToClipboard
                                     onCopy={undefined}
                                     options={undefined}
-                                    text="privateKey"
+                                    text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
                   >
                                     <ExportPrivateInfo.style__StyledIcon
                                                       icon="copy"
@@ -277,7 +275,7 @@ ShallowWrapper {
                                     />
                   </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
-                "privateKey",
+                "0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a",
               ],
             },
             "ref": null,
@@ -292,7 +290,7 @@ ShallowWrapper {
                     <CopyToClipboard
                       onCopy={undefined}
                       options={undefined}
-                      text="privateKey"
+                      text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
 >
                       <ExportPrivateInfo.style__StyledIcon
                                             icon="copy"
@@ -323,7 +321,7 @@ ShallowWrapper {
 />,
                       "onCopy": undefined,
                       "options": undefined,
-                      "text": "privateKey",
+                      "text": "0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a",
                     },
                     "ref": null,
                     "rendered": Object {
@@ -347,7 +345,7 @@ ShallowWrapper {
                 ],
                 "type": [Function],
               },
-              "privateKey",
+              "0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a",
             ],
             "type": "div",
           },
@@ -407,7 +405,7 @@ ShallowWrapper {
                                     <CopyToClipboard
                                                 onCopy={undefined}
                                                 options={undefined}
-                                                text="the ball in my hand"
+                                                text="over sentence spend best business museum ripple shop vault present travel fire"
                                     >
                                                 <ExportPrivateInfo.style__StyledIcon
                                                             icon="copy"
@@ -419,7 +417,7 @@ ShallowWrapper {
                                                 />
                                     </CopyToClipboard>
                         </ExportPrivateInfo.style__SecondaryHeader>
-                        the ball in my hand
+                        over sentence spend best business museum ripple shop vault present travel fire
             </div>
             <div>
                         <ExportPrivateInfo.style__SecondaryHeader>
@@ -427,7 +425,7 @@ ShallowWrapper {
                                     <CopyToClipboard
                                                 onCopy={undefined}
                                                 options={undefined}
-                                                text="privateKey"
+                                                text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
                                     >
                                                 <ExportPrivateInfo.style__StyledIcon
                                                             icon="copy"
@@ -439,7 +437,7 @@ ShallowWrapper {
                                                 />
                                     </CopyToClipboard>
                         </ExportPrivateInfo.style__SecondaryHeader>
-                        privateKey
+                        0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
             </div>
 </ExportPrivateInfo.style__TextPrimary>,
           <ExportPrivateInfo.style__ParentDiv>
@@ -489,7 +487,7 @@ ShallowWrapper {
                                 <CopyToClipboard
                                                 onCopy={undefined}
                                                 options={undefined}
-                                                text="the ball in my hand"
+                                                text="over sentence spend best business museum ripple shop vault present travel fire"
                                 >
                                                 <ExportPrivateInfo.style__StyledIcon
                                                                 icon="copy"
@@ -501,7 +499,7 @@ ShallowWrapper {
                                                 />
                                 </CopyToClipboard>
                 </ExportPrivateInfo.style__SecondaryHeader>
-                the ball in my hand
+                over sentence spend best business museum ripple shop vault present travel fire
 </div>,
               <div>
                 <ExportPrivateInfo.style__SecondaryHeader>
@@ -509,7 +507,7 @@ ShallowWrapper {
                                 <CopyToClipboard
                                                 onCopy={undefined}
                                                 options={undefined}
-                                                text="privateKey"
+                                                text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
                                 >
                                                 <ExportPrivateInfo.style__StyledIcon
                                                                 icon="copy"
@@ -521,7 +519,7 @@ ShallowWrapper {
                                                 />
                                 </CopyToClipboard>
                 </ExportPrivateInfo.style__SecondaryHeader>
-                privateKey
+                0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
 </div>,
             ],
           },
@@ -538,7 +536,7 @@ ShallowWrapper {
                     <CopyToClipboard
                                         onCopy={undefined}
                                         options={undefined}
-                                        text="the ball in my hand"
+                                        text="over sentence spend best business museum ripple shop vault present travel fire"
                     >
                                         <ExportPrivateInfo.style__StyledIcon
                                                             icon="copy"
@@ -550,7 +548,7 @@ ShallowWrapper {
                                         />
                     </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
-                  "the ball in my hand",
+                  "over sentence spend best business museum ripple shop vault present travel fire",
                 ],
               },
               "ref": null,
@@ -565,7 +563,7 @@ ShallowWrapper {
                       <CopyToClipboard
                         onCopy={undefined}
                         options={undefined}
-                        text="the ball in my hand"
+                        text="over sentence spend best business museum ripple shop vault present travel fire"
 >
                         <ExportPrivateInfo.style__StyledIcon
                                                 icon="copy"
@@ -596,7 +594,7 @@ ShallowWrapper {
 />,
                         "onCopy": undefined,
                         "options": undefined,
-                        "text": "the ball in my hand",
+                        "text": "over sentence spend best business museum ripple shop vault present travel fire",
                       },
                       "ref": null,
                       "rendered": Object {
@@ -620,7 +618,7 @@ ShallowWrapper {
                   ],
                   "type": [Function],
                 },
-                "the ball in my hand",
+                "over sentence spend best business museum ripple shop vault present travel fire",
               ],
               "type": "div",
             },
@@ -635,7 +633,7 @@ ShallowWrapper {
                     <CopyToClipboard
                                         onCopy={undefined}
                                         options={undefined}
-                                        text="privateKey"
+                                        text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
                     >
                                         <ExportPrivateInfo.style__StyledIcon
                                                             icon="copy"
@@ -647,7 +645,7 @@ ShallowWrapper {
                                         />
                     </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
-                  "privateKey",
+                  "0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a",
                 ],
               },
               "ref": null,
@@ -662,7 +660,7 @@ ShallowWrapper {
                       <CopyToClipboard
                         onCopy={undefined}
                         options={undefined}
-                        text="privateKey"
+                        text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
 >
                         <ExportPrivateInfo.style__StyledIcon
                                                 icon="copy"
@@ -693,7 +691,7 @@ ShallowWrapper {
 />,
                         "onCopy": undefined,
                         "options": undefined,
-                        "text": "privateKey",
+                        "text": "0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a",
                       },
                       "ref": null,
                       "rendered": Object {
@@ -717,7 +715,581 @@ ShallowWrapper {
                   ],
                   "type": [Function],
                 },
-                "privateKey",
+                "0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a",
+              ],
+              "type": "div",
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <ExportPrivateInfo.style__StyledButton
+              id="exit"
+              onClick={[Function]}
+              type="primary"
+>
+              Close
+</ExportPrivateInfo.style__StyledButton>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "Close",
+              "id": "exit",
+              "onClick": [Function],
+              "type": "primary",
+            },
+            "ref": null,
+            "rendered": "Close",
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<ExportPrivateInfo/> should render <ExportPrivateInfo/> correctly and when there is not a mnemonic 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ExportPrivateInfo
+    mnemonic={undefined}
+    onExit={[Function]}
+    privateKey="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <ExportPrivateInfo.style__Text>
+          Never share this information with anyone
+</ExportPrivateInfo.style__Text>,
+        <ExportPrivateInfo.style__Text>
+          Always keep a physical backup in a safe location
+</ExportPrivateInfo.style__Text>,
+        <ExportPrivateInfo.style__TextPrimary>
+          <div>
+                    <ExportPrivateInfo.style__PrimaryHeader>
+                              Mnemonic
+                    </ExportPrivateInfo.style__PrimaryHeader>
+                    This wallet was imported using a private key therefore does not have a mnemonic to export
+          </div>
+          <div>
+                    <ExportPrivateInfo.style__SecondaryHeader>
+                              Private key
+                              <CopyToClipboard
+                                        onCopy={undefined}
+                                        options={undefined}
+                                        text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
+                              >
+                                        <ExportPrivateInfo.style__StyledIcon
+                                                  icon="copy"
+                                                  id="privateKey"
+                                                  onClick={[Function]}
+                                                  shape="circle"
+                                                  size="small"
+                                                  type="primary"
+                                        />
+                              </CopyToClipboard>
+                    </ExportPrivateInfo.style__SecondaryHeader>
+                    0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
+          </div>
+</ExportPrivateInfo.style__TextPrimary>,
+        <ExportPrivateInfo.style__ParentDiv>
+          <ExportPrivateInfo.style__StyledButton
+                    id="exit"
+                    onClick={[Function]}
+                    type="primary"
+          >
+                    Close
+          </ExportPrivateInfo.style__StyledButton>
+</ExportPrivateInfo.style__ParentDiv>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Never share this information with anyone",
+        },
+        "ref": null,
+        "rendered": "Never share this information with anyone",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Always keep a physical backup in a safe location",
+        },
+        "ref": null,
+        "rendered": "Always keep a physical backup in a safe location",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <div>
+              <ExportPrivateInfo.style__PrimaryHeader>
+                            Mnemonic
+              </ExportPrivateInfo.style__PrimaryHeader>
+              This wallet was imported using a private key therefore does not have a mnemonic to export
+</div>,
+            <div>
+              <ExportPrivateInfo.style__SecondaryHeader>
+                            Private key
+                            <CopyToClipboard
+                                          onCopy={undefined}
+                                          options={undefined}
+                                          text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
+                            >
+                                          <ExportPrivateInfo.style__StyledIcon
+                                                        icon="copy"
+                                                        id="privateKey"
+                                                        onClick={[Function]}
+                                                        shape="circle"
+                                                        size="small"
+                                                        type="primary"
+                                          />
+                            </CopyToClipboard>
+              </ExportPrivateInfo.style__SecondaryHeader>
+              0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
+</div>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <ExportPrivateInfo.style__PrimaryHeader>
+                  Mnemonic
+</ExportPrivateInfo.style__PrimaryHeader>,
+                "This wallet was imported using a private key therefore does not have a mnemonic to export",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Mnemonic",
+                },
+                "ref": null,
+                "rendered": "Mnemonic",
+                "type": [Function],
+              },
+              "This wallet was imported using a private key therefore does not have a mnemonic to export",
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <ExportPrivateInfo.style__SecondaryHeader>
+                  Private key
+                  <CopyToClipboard
+                                    onCopy={undefined}
+                                    options={undefined}
+                                    text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
+                  >
+                                    <ExportPrivateInfo.style__StyledIcon
+                                                      icon="copy"
+                                                      id="privateKey"
+                                                      onClick={[Function]}
+                                                      shape="circle"
+                                                      size="small"
+                                                      type="primary"
+                                    />
+                  </CopyToClipboard>
+</ExportPrivateInfo.style__SecondaryHeader>,
+                "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    "Private key",
+                    <CopyToClipboard
+                      onCopy={undefined}
+                      options={undefined}
+                      text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
+>
+                      <ExportPrivateInfo.style__StyledIcon
+                                            icon="copy"
+                                            id="privateKey"
+                                            onClick={[Function]}
+                                            shape="circle"
+                                            size="small"
+                                            type="primary"
+                      />
+</CopyToClipboard>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  "Private key",
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <ExportPrivateInfo.style__StyledIcon
+                        icon="copy"
+                        id="privateKey"
+                        onClick={[Function]}
+                        shape="circle"
+                        size="small"
+                        type="primary"
+/>,
+                      "onCopy": undefined,
+                      "options": undefined,
+                      "text": "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "icon": "copy",
+                        "id": "privateKey",
+                        "onClick": [Function],
+                        "shape": "circle",
+                        "size": "small",
+                        "type": "primary",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+              "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+            ],
+            "type": "div",
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <ExportPrivateInfo.style__StyledButton
+            id="exit"
+            onClick={[Function]}
+            type="primary"
+>
+            Close
+</ExportPrivateInfo.style__StyledButton>,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Close",
+            "id": "exit",
+            "onClick": [Function],
+            "type": "primary",
+          },
+          "ref": null,
+          "rendered": "Close",
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <ExportPrivateInfo.style__Text>
+            Never share this information with anyone
+</ExportPrivateInfo.style__Text>,
+          <ExportPrivateInfo.style__Text>
+            Always keep a physical backup in a safe location
+</ExportPrivateInfo.style__Text>,
+          <ExportPrivateInfo.style__TextPrimary>
+            <div>
+                        <ExportPrivateInfo.style__PrimaryHeader>
+                                    Mnemonic
+                        </ExportPrivateInfo.style__PrimaryHeader>
+                        This wallet was imported using a private key therefore does not have a mnemonic to export
+            </div>
+            <div>
+                        <ExportPrivateInfo.style__SecondaryHeader>
+                                    Private key
+                                    <CopyToClipboard
+                                                onCopy={undefined}
+                                                options={undefined}
+                                                text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
+                                    >
+                                                <ExportPrivateInfo.style__StyledIcon
+                                                            icon="copy"
+                                                            id="privateKey"
+                                                            onClick={[Function]}
+                                                            shape="circle"
+                                                            size="small"
+                                                            type="primary"
+                                                />
+                                    </CopyToClipboard>
+                        </ExportPrivateInfo.style__SecondaryHeader>
+                        0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
+            </div>
+</ExportPrivateInfo.style__TextPrimary>,
+          <ExportPrivateInfo.style__ParentDiv>
+            <ExportPrivateInfo.style__StyledButton
+                        id="exit"
+                        onClick={[Function]}
+                        type="primary"
+            >
+                        Close
+            </ExportPrivateInfo.style__StyledButton>
+</ExportPrivateInfo.style__ParentDiv>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Never share this information with anyone",
+          },
+          "ref": null,
+          "rendered": "Never share this information with anyone",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Always keep a physical backup in a safe location",
+          },
+          "ref": null,
+          "rendered": "Always keep a physical backup in a safe location",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <div>
+                <ExportPrivateInfo.style__PrimaryHeader>
+                                Mnemonic
+                </ExportPrivateInfo.style__PrimaryHeader>
+                This wallet was imported using a private key therefore does not have a mnemonic to export
+</div>,
+              <div>
+                <ExportPrivateInfo.style__SecondaryHeader>
+                                Private key
+                                <CopyToClipboard
+                                                onCopy={undefined}
+                                                options={undefined}
+                                                text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
+                                >
+                                                <ExportPrivateInfo.style__StyledIcon
+                                                                icon="copy"
+                                                                id="privateKey"
+                                                                onClick={[Function]}
+                                                                shape="circle"
+                                                                size="small"
+                                                                type="primary"
+                                                />
+                                </CopyToClipboard>
+                </ExportPrivateInfo.style__SecondaryHeader>
+                0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
+</div>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <ExportPrivateInfo.style__PrimaryHeader>
+                    Mnemonic
+</ExportPrivateInfo.style__PrimaryHeader>,
+                  "This wallet was imported using a private key therefore does not have a mnemonic to export",
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Mnemonic",
+                  },
+                  "ref": null,
+                  "rendered": "Mnemonic",
+                  "type": [Function],
+                },
+                "This wallet was imported using a private key therefore does not have a mnemonic to export",
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <ExportPrivateInfo.style__SecondaryHeader>
+                    Private key
+                    <CopyToClipboard
+                                        onCopy={undefined}
+                                        options={undefined}
+                                        text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
+                    >
+                                        <ExportPrivateInfo.style__StyledIcon
+                                                            icon="copy"
+                                                            id="privateKey"
+                                                            onClick={[Function]}
+                                                            shape="circle"
+                                                            size="small"
+                                                            type="primary"
+                                        />
+                    </CopyToClipboard>
+</ExportPrivateInfo.style__SecondaryHeader>,
+                  "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      "Private key",
+                      <CopyToClipboard
+                        onCopy={undefined}
+                        options={undefined}
+                        text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
+>
+                        <ExportPrivateInfo.style__StyledIcon
+                                                icon="copy"
+                                                id="privateKey"
+                                                onClick={[Function]}
+                                                shape="circle"
+                                                size="small"
+                                                type="primary"
+                        />
+</CopyToClipboard>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "Private key",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <ExportPrivateInfo.style__StyledIcon
+                          icon="copy"
+                          id="privateKey"
+                          onClick={[Function]}
+                          shape="circle"
+                          size="small"
+                          type="primary"
+/>,
+                        "onCopy": undefined,
+                        "options": undefined,
+                        "text": "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "icon": "copy",
+                          "id": "privateKey",
+                          "onClick": [Function],
+                          "shape": "circle",
+                          "size": "small",
+                          "type": "primary",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                  ],
+                  "type": [Function],
+                },
+                "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
               ],
               "type": "div",
             },

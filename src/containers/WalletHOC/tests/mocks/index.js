@@ -28,7 +28,6 @@ export const decryptedSoftwareWallet2Mock = encryptedSoftwareWallet2Mock
     privateKey: '0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828',
     defaultGasLimit: 1500000,
     address: '0xF4db7c6030c9c5754A6A712212d6342DCA52e25d',
-    mnemonic: 'light riot vast yard faith illness steak grant regret plate umbrella peace',
     path: "m/44'/60'/0'/0/0",
   }));
 
