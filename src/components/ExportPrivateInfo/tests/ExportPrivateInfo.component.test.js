@@ -1,30 +1,36 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ExportPrivateInfo from 'components/ExportPrivateInfo';
-
+import { decryptedSoftwareWallet1Mock, decryptedSoftwareWallet2Mock } from 'containers/WalletHOC/tests/mocks';
 describe('<ExportPrivateInfo/>', () => {
-  const wallet = {
-    name: 'Wallet1',
-    address: '0x3123123',
-    privateKey: 'privateKey',
-    mnemonic: 'the ball in my hand',
-  };
   const onExit = jest.fn();
   let wrapper;
-
   beforeEach(() => {
     wrapper = shallow(
       <ExportPrivateInfo
-        name={wallet.name}
-        address={wallet.address}
         onExit={onExit}
-        privateKey={wallet.privateKey}
-        mnemonic={wallet.mnemonic}
+        privateKey={decryptedSoftwareWallet1Mock.getIn(['decrypted', 'privateKey'])}
+        mnemonic={decryptedSoftwareWallet1Mock.getIn(['decrypted', 'mnemonic'])}
       />
     );
   });
 
-  it('should render <ExportPrivateInfo/> correctly', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should render <ExportPrivateInfo/> correctly and when there is a mnemonic', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render <ExportPrivateInfo/> correctly and when there is not a mnemonic', () => {
+    wrapper = shallow(
+      <ExportPrivateInfo
+        onExit={onExit}
+        privateKey={decryptedSoftwareWallet2Mock.getIn(['decrypted', 'privateKey'])}
+        mnemonic={decryptedSoftwareWallet2Mock.getIn(['decrypted', 'mnemonic'])}
+      />
+    );
     expect(wrapper).toMatchSnapshot();
   });
 

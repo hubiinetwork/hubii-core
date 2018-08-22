@@ -6,7 +6,7 @@ import { notify } from 'containers/App/actions';
 import { deriveAddresses, prependHexToAddress, IsAddressMatch } from 'utils/wallet';
 import { requestHardwareWalletAPI } from 'utils/request';
 import { makeSelectTrezorInfo } from '../../selectors';
-import { trezorConnected, trezorDisconnected, fetchedTrezorAddress, trezorError } from '../../actions';
+import { trezorConnected, trezorDisconnected, fetchedTrezorAddress, trezorError, trezorConfirmTxOnDevice, trezorConfirmTxOnDeviceDone } from '../../actions';
 import { INIT_TREZOR, FETCH_TREZOR_ADDRESSES } from '../../constants';
 
 export function* init() {
@@ -28,7 +28,7 @@ export function* init() {
 }
 
 export const listenTrezorDevicesChannel = () => eventChannel((emit) => {
-  ipcRenderer.on('status', (event, status) => {
+  ipcRenderer.on('trezor-status', (event, status) => {
     emit(status);
   });
   return () => { };
@@ -64,10 +64,10 @@ export function* signTxByTrezor({ walletDetails, raw, data, chainId }) {
     const deviceId = trezorInfo.get('id');
     const path = walletDetails.derivationPath;
     const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
+    yield put(trezorConfirmTxOnDevice());
     if (!IsAddressMatch(`0x${publicAddressKeyPair.address}`, walletDetails.address)) {
       throw new Error('PASSPHRASE_MISMATCH');
     }
-    yield put(notify('info', 'Verify transaction details on your Trezor'));
     const signedTx = yield call(
       requestHardwareWalletAPI,
       'signtx',
@@ -82,6 +82,8 @@ export function* signTxByTrezor({ walletDetails, raw, data, chainId }) {
   } catch (e) {
     const refinedError = trezorError(e);
     throw new Error(refinedError.error);
+  } finally {
+    yield put(trezorConfirmTxOnDeviceDone());
   }
 }
 

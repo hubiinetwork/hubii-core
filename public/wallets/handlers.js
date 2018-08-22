@@ -1,14 +1,17 @@
-const trezorHanlder = require('./trezor');
-
-const handlers = {
-  trezor: trezorHanlder,
+const trezorHandler = require('./trezor');
+const lnsHandler = require('./lns');
+const protocolNames = [trezorHandler.PROTOCOL_NAME, lnsHandler.PROTOCOL_NAME];
+const loadHandlers = async () => {
+  // eslint-disable-next-line global-require
+  const lnsHandlerModule = (await require('electron-remote').rendererRequireDirect(require.resolve('./lns/index.js'))).module;
+  const handlers = {
+    trezor: trezorHandler,
+    lns: lnsHandlerModule,
+  };
+  return handlers;
 };
-const walletTypes = Object.keys(handlers);
-
-const protocolNames = walletTypes.map((type) => handlers[type].PROTOCOL_NAME);
 
 module.exports = {
-  handlers,
-  walletTypes,
+  loadHandlers,
   protocolNames,
 };

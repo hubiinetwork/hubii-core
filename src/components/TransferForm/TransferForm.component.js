@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Icon } from 'antd';
+import { Icon } from 'antd';
 import BigNumber from 'bignumber.js';
 import PropTypes from 'prop-types';
 import { isValidAddress } from 'ethereumjs-util';
@@ -10,13 +10,15 @@ import { Modal } from 'components/ui/Modal';
 import AddNewContactModal from 'components/AddNewContactModal';
 import { getAbsolutePath } from 'utils/electron';
 import {
-  Row,
+  OuterWrapper,
   ETHtoDollar,
   Image,
   AdvanceSettingsHeader,
   Collapse,
   Panel,
   StyledButton,
+  TransferDescriptionWrapper,
+  TransferFormWrapper,
 } from './TransferForm.style';
 import Select, { Option } from '../ui/Select';
 import { Form, FormItem, FormItemLabel } from '../ui/Form';
@@ -300,8 +302,8 @@ export default class TransferForm extends React.PureComponent {
           />
         </Modal>
 
-        <Row gutter={24} justify="center">
-          <Col xl={14} sm={22}>
+        <OuterWrapper>
+          <TransferFormWrapper>
             <Form>
               <FormItem
                 label={<FormItemLabel>Select an asset to send</FormItemLabel>}
@@ -390,8 +392,8 @@ export default class TransferForm extends React.PureComponent {
                 {`1 ${assetToSend.symbol} = ${formatFiat(assetToSendUsdValue, 'USD')}`}
               </ETHtoDollar>
             </Form>
-          </Col>
-          <Col xl={9} sm={22}>
+          </TransferFormWrapper>
+          <TransferDescriptionWrapper>
             <TransferDescription
               transactionFee={transactionFee}
               amountToSend={amountToSend}
@@ -409,9 +411,10 @@ export default class TransferForm extends React.PureComponent {
               transfering={this.props.transfering}
               currentWalletWithInfo={this.props.currentWalletWithInfo}
               errors={this.props.errors}
+              confTxOnDevice={this.props.confTxOnDevice}
             />
-          </Col>
-        </Row>
+          </TransferDescriptionWrapper>
+        </OuterWrapper>
       </div>
     );
   }
@@ -430,5 +433,6 @@ TransferForm.propTypes = {
   onCancel: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   transfering: PropTypes.bool,
+  confTxOnDevice: PropTypes.bool.isRequired,
   createContact: PropTypes.func.isRequired,
 };
