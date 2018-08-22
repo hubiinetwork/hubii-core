@@ -1,50 +1,21 @@
-/** Bold */
-@font-face {
-  font-family: "OpenSans";
-  font-weight: 700;
-  src: url("/public/fonts/opensans/Bold/OpenSans-Bold.woff2") format("woff2"), url("/public/fonts/opensans/Bold/OpenSans-Bold.woff") format("woff");
-  font-style: normal;
-}
-
-/** Regular */
-@font-face {
-  font-family: "OpenSans";
-  font-weight: 500;
-  src: url("/public/fonts/opensans/Regular/OpenSans-Regular.woff2") format("woff2"), url("/public/fonts/opensans/Regular/OpenSans-Regular.woff") format("woff");
-  font-style: normal;
-}
-
-/** Light */
-@font-face {
-  font-family: "OpenSans";
-  font-weight: 400;
-  src: url("/public/fonts/opensans/Light/OpenSans-Light.woff2") format("woff2"), url("/public/fonts/opensans/Light/OpenSans-Light.woff") format("woff");
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "OpenSans";
-  font-weight: 300;
-  src: url("/public/fonts/opensans/Light/OpenSans-Light.woff2") format("woff2"), url("/public/fonts/opensans/Light/OpenSans-Light.woff") format("woff");
-  font-style: normal;
-}
+@import url(../public/fonts/Open_Sans/index.css);
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
 }
 
 div {
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
 }
 
 span {
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
 }
 
 p {
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
 }
 
 input[type='number']::-webkit-inner-spin-button,
