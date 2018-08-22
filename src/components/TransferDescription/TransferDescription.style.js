@@ -2,6 +2,10 @@ import { Col, Spin } from 'antd';
 import styled from 'styled-components';
 import Button from '../ui/Button';
 
+export const HWPromptWrapper = styled.div`
+  margin-top: 2rem;
+`;
+
 export const StyledButton = styled(Button)`
   height: 2.86rem;
   width: 11.57rem;
@@ -26,8 +30,6 @@ export const StyledButton = styled(Button)`
 export const StyledButtonCancel = styled(Button)`
   height: 2.86rem;
   width: 5rem;
-  min-width: 5rem;
-  margin-top: 4.93rem;
   margin-right: 0.57rem;
   border-radius: 0.29rem;
   background: ${({ theme }) => theme.palette.primary1};
@@ -38,18 +40,6 @@ export const StyledButtonCancel = styled(Button)`
     background: ${({ theme }) => theme.palette.primary1};
     color: ${({ theme }) => theme.palette.light};
     border: 0.07rem solid ${({ theme }) => theme.palette.light};
-`;
-export const StyledCancelButton = styled(Button)`
-  border-width: 0.14rem;
-  padding: 0.5rem 1rem;
-  margin: 1rem 0;
-  &:hover,
-  &:focus {
-    color: ${({ theme }) => theme.palette.light};
-    opacity: 0.7;
-    border-color: ${({ theme }) => theme.palette.light} !important;
-    color: ${({ theme }) => theme.palette.info};
-  }
 `;
 export const StyledTitle = styled(Col)`
   color: ${({ theme }) => theme.palette.info3};
@@ -78,9 +68,9 @@ export const StyledErrorCol = styled(Col)`
 export const StyledRecipient = styled(Col)`
   color: ${({ theme }) => theme.palette.light};
 `;
-export const StyledDiv = styled.div`
+export const SendCancelWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
+  margin-top: 2rem;
 `;
 export const BalanceCol = styled(Col)`
   height: 1.5rem;
@@ -91,7 +81,7 @@ export const BalanceCol = styled(Col)`
   line-height: 1.5rem;
 `;
 export const WrapperDiv = styled.div`
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
 `;
 export const StyledSpin = styled(Spin)`
   margin-top: 2rem;

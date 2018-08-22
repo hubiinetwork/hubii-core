@@ -54,6 +54,10 @@ import {
   LOAD_BLOCK_HEIGHT,
   LOAD_BLOCK_HEIGHT_SUCCESS,
   LOAD_BLOCK_HEIGHT_ERROR,
+  LEDGER_CONFIRM_TX_ON_DEVICE,
+  LEDGER_CONFIRM_TX_ON_DEVICE_DONE,
+  TREZOR_CONFIRM_TX_ON_DEVICE,
+  TREZOR_CONFIRM_TX_ON_DEVICE_DONE,
 } from './constants';
 
 import getFriendlyError from '../../utils/friendlyErrors';
@@ -463,5 +467,29 @@ export function loadBlockHeightError(error) {
   return {
     type: LOAD_BLOCK_HEIGHT_ERROR,
     error,
+  };
+}
+
+export function ledgerConfirmTxOnDevice() {
+  return {
+    type: LEDGER_CONFIRM_TX_ON_DEVICE,
+  };
+}
+
+export function ledgerConfirmTxOnDeviceDone() {
+  return {
+    type: LEDGER_CONFIRM_TX_ON_DEVICE_DONE,
+  };
+}
+
+export function trezorConfirmTxOnDevice() {
+  return {
+    type: TREZOR_CONFIRM_TX_ON_DEVICE,
+  };
+}
+
+export function trezorConfirmTxOnDeviceDone() {
+  return {
+    type: TREZOR_CONFIRM_TX_ON_DEVICE_DONE,
   };
 }

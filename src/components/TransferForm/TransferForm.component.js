@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Icon } from 'antd';
+import { Icon } from 'antd';
 import BigNumber from 'bignumber.js';
 import PropTypes from 'prop-types';
 import { isValidAddress } from 'ethereumjs-util';
@@ -10,13 +10,15 @@ import { Modal } from 'components/ui/Modal';
 import AddNewContactModal from 'components/AddNewContactModal';
 import { getAbsolutePath } from 'utils/electron';
 import {
-  Row,
+  OuterWrapper,
   ETHtoDollar,
   Image,
   AdvanceSettingsHeader,
   Collapse,
   Panel,
   StyledButton,
+  TransferDescriptionWrapper,
+  TransferFormWrapper,
 } from './TransferForm.style';
 import Select, { Option } from '../ui/Select';
 import { Form, FormItem, FormItemLabel } from '../ui/Form';
@@ -68,6 +70,8 @@ export default class TransferForm extends React.PureComponent {
     this.showContactModal = this.showContactModal.bind(this);
     this.hideContactModal = this.hideContactModal.bind(this);
     this.onCreateContact = this.onCreateContact.bind(this);
+    this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
+    this.onBlurNumberInput = this.onBlurNumberInput.bind(this);
   }
 
   onSend() {
@@ -87,6 +91,18 @@ export default class TransferForm extends React.PureComponent {
       this.props.createContact(name, contact.address);
     }
     this.hideContactModal();
+  }
+
+  onFocusNumberInput(input) {
+    if (this.state[input] === '0') {
+      this.setState({ [input]: '' });
+    }
+  }
+
+  onBlurNumberInput(input) {
+    if (this.state[input] === '') {
+      this.setState({ [input]: '0' });
+    }
   }
 
   handleGasPriceChange(e) {
@@ -286,8 +302,8 @@ export default class TransferForm extends React.PureComponent {
           />
         </Modal>
 
-        <Row gutter={24} justify="center">
-          <Col xl={14} sm={22}>
+        <OuterWrapper>
+          <TransferFormWrapper>
             <Form>
               <FormItem
                 label={<FormItemLabel>Select an asset to send</FormItemLabel>}
@@ -335,7 +351,14 @@ export default class TransferForm extends React.PureComponent {
                 colon={false}
                 help={<HelperText left={formatFiat(usdValueToSend, 'USD')} right="USD" />}
               >
-                <Input disabled={transfering} defaultValue={amountToSendInput} value={amountToSendInput} onChange={this.handleAmountToSendChange} />
+                <Input
+                  disabled={transfering}
+                  defaultValue={amountToSendInput}
+                  value={amountToSendInput}
+                  onFocus={() => this.onFocusNumberInput('amountToSendInput')}
+                  onBlur={() => this.onBlurNumberInput('amountToSendInput')}
+                  onChange={this.handleAmountToSendChange}
+                />
               </FormItem>
               <Collapse bordered={false} defaultActiveKey={['2']}>
                 <Panel
@@ -343,10 +366,25 @@ export default class TransferForm extends React.PureComponent {
                   key="1"
                 >
                   <FormItem label={<FormItemLabel>Gas price</FormItemLabel>} colon={false}>
-                    <Input disabled={transfering} min={0} defaultValue={gasPriceGweiInput} value={gasPriceGweiInput} onChange={this.handleGasPriceChange} />
+                    <Input
+                      disabled={transfering}
+                      min={0}
+                      defaultValue={gasPriceGweiInput}
+                      value={gasPriceGweiInput}
+                      onChange={this.handleGasPriceChange}
+                      onFocus={() => this.onFocusNumberInput('gasPriceGweiInput')}
+                      onBlur={() => this.onBlurNumberInput('gasPriceGweiInput')}
+                    />
                   </FormItem>
                   <FormItem label={<FormItemLabel>Gas limit</FormItemLabel>} colon={false}>
-                    <Input disabled={transfering} value={gasLimitInput} defaultValue={gasLimitInput} onChange={this.handleGasLimitChange} />
+                    <Input
+                      disabled={transfering}
+                      value={gasLimitInput}
+                      defaultValue={gasLimitInput}
+                      onChange={this.handleGasLimitChange}
+                      onFocus={() => this.onFocusNumberInput('gasLimitInput')}
+                      onBlur={() => this.onBlurNumberInput('gasLimitInput')}
+                    />
                   </FormItem>
                 </Panel>
               </Collapse>
@@ -354,8 +392,8 @@ export default class TransferForm extends React.PureComponent {
                 {`1 ${assetToSend.symbol} = ${formatFiat(assetToSendUsdValue, 'USD')}`}
               </ETHtoDollar>
             </Form>
-          </Col>
-          <Col xl={9} sm={22}>
+          </TransferFormWrapper>
+          <TransferDescriptionWrapper>
             <TransferDescription
               transactionFee={transactionFee}
               amountToSend={amountToSend}
@@ -373,9 +411,10 @@ export default class TransferForm extends React.PureComponent {
               transfering={this.props.transfering}
               currentWalletWithInfo={this.props.currentWalletWithInfo}
               errors={this.props.errors}
+              confTxOnDevice={this.props.confTxOnDevice}
             />
-          </Col>
-        </Row>
+          </TransferDescriptionWrapper>
+        </OuterWrapper>
       </div>
     );
   }
@@ -394,5 +433,6 @@ TransferForm.propTypes = {
   onCancel: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   transfering: PropTypes.bool,
+  confTxOnDevice: PropTypes.bool.isRequired,
   createContact: PropTypes.func.isRequired,
 };
