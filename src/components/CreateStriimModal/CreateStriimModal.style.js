@@ -5,7 +5,7 @@ import Button from '../ui/Button';
 export const TextLight = styled.div`
   color: ${({ theme }) => theme.palette.light};
   font-size: 1.14rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.36rem;
 `;
 export const LogoWrapper = styled.div`
@@ -58,7 +58,7 @@ export const IconSelectWrapper = styled.div`
 export const TextPrimary = styled.div`
   color: ${({ theme }) => theme.palette.secondary};
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.14rem;
 `;
 export const FlexWrapper = styled.div`
@@ -69,7 +69,7 @@ export const FlexWrapper = styled.div`
 export const Rate = styled.div`
   color: ${({ theme }) => theme.palette.light};
   font-size: 1.43rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.71rem;
   text-align: right;
   margin-bottom: 0.43rem;

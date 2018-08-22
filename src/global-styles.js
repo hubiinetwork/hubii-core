@@ -1,11 +1,8 @@
 import { injectGlobal } from 'styled-components';
-import { getAbsolutePath } from 'utils/electron';
 import darkTheme from './themes/darkTheme';
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
-  @import url(${getAbsolutePath('public/fonts/Open_Sans/index.css')});
-
   .ant-tooltip {
     display: none;
   }
@@ -20,7 +17,7 @@ injectGlobal`
     width: 100%;
     margin: 0;
     padding: 0;
-    font-weight: 500;
+    font-weight: 400;
   }
 
   body {

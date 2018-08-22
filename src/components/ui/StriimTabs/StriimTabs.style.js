@@ -25,7 +25,7 @@ export default styled(Tabs)`
     padding: 0.43rem 1.43rem !important;
     color: ${({ theme }) => theme.palette.light};
     font-size: 0.79rem;
-    font-weight: 500;
+    font-weight: 400;
     line-height: ${(props) => props.size === 'large' ? '1.29rem' : '0.93rem'};
     flex: 1;
     display: flex;

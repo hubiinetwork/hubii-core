@@ -20,7 +20,7 @@ export const WidthEighty = styled.div`
 export const StyledModalFormLabel = styled(ModalFormLabel)`
   height: 1rem;
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
 `;
 
@@ -35,7 +35,7 @@ export const StyledButton = styled(Button)`
   background-color: ${({ disabled: white }) =>
     white && 'transparent !important'};
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   border-width: 0.14rem;
   height: 2.86rem;
   width: 11.57rem;
@@ -64,7 +64,7 @@ export const StyledBackButton = styled(Button)`
 
 export const StyledSpan = styled.span`
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
   text-align: center;
 `;

@@ -15,20 +15,20 @@ export const Flex = styled.div`
 
 export const SpanText = styled.span`
   font-size: 1.14rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.36rem;
 `;
 
 export const PathTitle = styled.div`
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.14rem;
   color: ${({ theme }) => theme.palette.secondary1};
 `;
 
 export const PathSubtitle = styled.div`
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
   color: ${({ theme }) => theme.palette.secondary6};
 `;
@@ -47,7 +47,7 @@ export const Radios = styled.div`
 export const RadioTitle = styled.div`
   color: ${({ theme }) => theme.palette.light};
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.14rem;
   margin-top: 1.64rem;
 `;
@@ -114,7 +114,7 @@ export const StyledTable = styled(Table)`
     tr th {
       color: ${({ theme }) => theme.palette.light};
       font-size: 0.93rem;
-      font-weight: 500;
+      font-weight: 400;
       line-height: 1.07rem;
     }
   }
@@ -139,7 +139,7 @@ export const StyledTable = styled(Table)`
       }
     }
     border: 0rem !important;
-    font-weight: 500;
+    font-weight: 400;
     background: none !important;
     span label {
       .ant-radio-inner {
@@ -154,7 +154,7 @@ export const StyledTable = styled(Table)`
   }
   td {
     font-size: 0.86rem;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1rem;
     color: ${({ theme }) => theme.palette.secondary1} !important;
   }
@@ -187,7 +187,7 @@ export const StyledButton = styled(Button)`
   background-color: ${({ disabled: white }) =>
     white && 'transparent !important'};
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   border-width: 0.14rem;
   height: 2.86rem;
   width: 11.57rem;
@@ -209,7 +209,7 @@ export const StyledButton = styled(Button)`
 
 export const StyledSpan = styled.span`
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
   text-align: center;
 `;
