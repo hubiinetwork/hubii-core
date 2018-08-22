@@ -1,9 +1,10 @@
 import { injectGlobal } from 'styled-components';
+import { getAbsolutePath } from 'utils/electron';
 import darkTheme from './themes/darkTheme';
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
-  @import url('../public/fonts/Open_Sans/index.css');
+  @import url(${getAbsolutePath('public/fonts/Open_Sans/index.css')});
 
   .ant-tooltip {
     display: none;
