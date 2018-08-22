@@ -149,7 +149,7 @@ ShallowWrapper {
           src="https://simplex.dev.hubii.net/?crypto=ETH"
           style={
                     Object {
-                              "display": "none",
+                              "visibility": "hidden",
                             }
           }
 />,
@@ -177,7 +177,7 @@ ShallowWrapper {
           "autosize": "on",
           "src": "https://simplex.dev.hubii.net/?crypto=ETH",
           "style": Object {
-            "display": "none",
+            "visibility": "hidden",
           },
         },
         "ref": null,
@@ -203,7 +203,7 @@ ShallowWrapper {
             src="https://simplex.dev.hubii.net/?crypto=ETH"
             style={
                         Object {
-                                    "display": "none",
+                                    "visibility": "hidden",
                                   }
             }
 />,
@@ -231,7 +231,7 @@ ShallowWrapper {
             "autosize": "on",
             "src": "https://simplex.dev.hubii.net/?crypto=ETH",
             "style": Object {
-              "display": "none",
+              "visibility": "hidden",
             },
           },
           "ref": null,
