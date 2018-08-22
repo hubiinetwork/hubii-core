@@ -38,7 +38,6 @@ export const CustomIcon = styled.img`
 `;
 
 export const Title = styled.span`
-  font-family: "SF Text";
   font-weight: 500;
   margin: 0;
   padding-left: 1.5rem;

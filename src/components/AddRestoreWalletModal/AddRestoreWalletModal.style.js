@@ -20,7 +20,6 @@ export const TextWhite = styled.span`
   font-weight: 500;
   line-height: 1rem;
   text-align: center;
-  font-family: 'SF Text';
 `;
 
 export const Arrow = styled(Icon)`
@@ -35,7 +34,6 @@ export const IconWrapper = styled.div`
   height: 1.36rem;
   font-weight: 500;
   line-height: 1.36rem;
-  font-family: 'SF Text';
   font-size: 1.14rem;
   display: flex;
   margin-top: -0.5rem;

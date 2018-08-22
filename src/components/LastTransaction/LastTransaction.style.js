@@ -16,7 +16,6 @@ export const TransactionInfo = styled.div`
 export const Text = styled.div`
   color: ${({ theme }) => theme.palette.info3};
   margin-right: 0.21rem;
-  font-family: 'SF Text';
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.14rem;

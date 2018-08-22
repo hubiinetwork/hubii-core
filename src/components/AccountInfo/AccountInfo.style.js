@@ -6,14 +6,12 @@ export const Text = styled.div`
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.14rem;
-  font-family: 'SF Text';
 `;
 
 export const TextPrimary = styled.div`
   color: black;
   font-size: 1rem;
   font-weight: 500;
-  font-family: 'SF Text';
   line-height: 1.14rem;
 `;
 
