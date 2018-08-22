@@ -29,6 +29,6 @@ export const Flex = styled.div`
 `;
 export const SpanText = styled.span`
   font-size: 1.14rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.36rem;
 `;

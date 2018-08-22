@@ -17,7 +17,7 @@ export const Text = styled.div`
   color: ${({ theme }) => theme.palette.info3};
   margin-right: 0.21rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.14rem;
   margin-bottom: 0.43rem;
 `;
@@ -25,20 +25,20 @@ export const TextPrimary = styled.div`
   color: ${({ theme }) => theme.palette.light};
   margin-right: 1.5rem;
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
   margin-bottom: 0.43rem;
 `;
 export const TextSecondary = styled.div`
   color: ${({ theme }) => theme.palette.secondary};
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
   font-size: 0.86rem;
   margin-bottom: 0.43rem;
 `;
 export const TextGrey = styled.div`
   color: ${({ theme }) => theme.palette.secondary6};
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
   font-size: 0.86rem;
   margin-bottom: 0.43rem;

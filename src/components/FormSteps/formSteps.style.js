@@ -11,7 +11,7 @@ export const TextDiv = styled.div`
   color: ${({ theme }) => theme.palette.secondary1};
   justify-content: center;
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
   text-align: center;
   margin-top: 2.29rem;

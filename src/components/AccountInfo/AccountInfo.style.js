@@ -4,14 +4,14 @@ import { Icon, Select } from 'antd';
 export const Text = styled.div`
   color: ${({ theme }) => theme.palette.info3};
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.14rem;
 `;
 
 export const TextPrimary = styled.div`
   color: black;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.14rem;
 `;
 

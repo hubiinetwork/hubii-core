@@ -9,6 +9,7 @@ module.exports = require('./webpack.base.babel')({
   entry: [
     path.join(process.cwd(), 'node_modules/antd/dist/antd.css'),
     path.join(process.cwd(), 'node_modules/sanitize.css/sanitize.css'),
+    path.join(process.cwd(), 'public/fonts/Open_Sans/index.css'),
     path.join(process.cwd(), 'src/app.js'),
   ],
 

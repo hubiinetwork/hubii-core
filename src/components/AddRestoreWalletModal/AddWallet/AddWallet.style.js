@@ -78,7 +78,7 @@ export const SeedInfo = styled.li`
   color: ${({ theme }) => theme.palette.light};
   line-height: 1.3rem;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 400;
   color: yellow;
   margin-bottom: 0.5rem;
 `;

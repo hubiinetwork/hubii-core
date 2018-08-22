@@ -5,7 +5,7 @@ const Address = styled.span`
   display: flex;
   color: ${({ theme }) => theme.palette.secondary6};
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   align-items: center;
   line-height: 1rem;
   margin-top: 0.36rem;
@@ -51,7 +51,7 @@ const Name = styled.span`
   color: white;
   font-size: 1.29rem;
   line-height: 1.5rem;
-  font-weight: 500;
+  font-weight: 400;
 `;
 
 const WalletHeaderWrapper = styled.div`

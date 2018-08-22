@@ -38,7 +38,7 @@ export const CustomIcon = styled.img`
 `;
 
 export const Title = styled.span`
-  font-weight: 500;
+  font-weight: 400;
   margin: 0;
   padding-left: 1.5rem;
   color: ${({ theme }) => theme.palette.light};

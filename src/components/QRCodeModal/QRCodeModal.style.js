@@ -4,7 +4,7 @@ import QRCode from 'qrcode.react';
 export const Text = styled.div`
   color: ${({ theme }) => theme.palette.light};
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.14rem;
 `;
 
