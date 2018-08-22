@@ -67,7 +67,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
         >
           <WidthEighty>
             <FinalHeader>
-              <p>Import method</p>
+              <p>Importing from a</p>
               <img src={getAbsolutePath('public/images/private-key.png')} alt="import method icon" />
             </FinalHeader>
             <ModalFormItem

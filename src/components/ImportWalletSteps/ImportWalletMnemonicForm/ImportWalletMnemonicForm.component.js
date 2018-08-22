@@ -43,7 +43,7 @@ class ImportWalletMnemonicForm extends React.Component {
         >
           <WidthEighty>
             <FinalHeader>
-              <p>Import method</p>
+              <p>Importing from a</p>
               <img
                 src={getAbsolutePath('public/images/mnemonic.png')}
                 alt="import method icon"

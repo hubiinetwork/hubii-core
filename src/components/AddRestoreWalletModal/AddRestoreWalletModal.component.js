@@ -36,8 +36,7 @@ export default class AddRestoreWalletModal extends React.Component {
         {modalType === 'main' && (
           <Container>
             <TitleDiv>
-              Add a wallet<br />
-              {/* <Description>Would you like to create a new wallet, or import an existing one?</Description> */}
+              Would you like to import an existing wallet or create a new one?<br />
             </TitleDiv>
             <ButtonDiv onClick={() => this.switchModals('add')} type="primary">
               <Icon type="plus" />
