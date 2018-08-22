@@ -2,7 +2,7 @@ import React from 'react';
 import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
 import WalletHOC, { getComponentHOC, mapDispatchToProps } from '../index';
-import { walletsWithInfoMock, currentWalletMock } from './mocks';
+import { walletsWithInfoMock, currentWalletMock } from './mocks/selectors';
 
 describe('WalletHOC', () => {
   const initApiCallsSpy = jest.fn();

@@ -2,8 +2,19 @@ import React from 'react';
 import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
 import { deleteWallet } from 'containers/WalletHOC/actions';
+import {
+  walletsWithInfoMock,
+  walletsWithInfoEmptyMock,
+  totalBalancesLoadedMock,
+  totalBalancesLoadingMock,
+  totalBalancesErrorMock,
+  supportedAssetsLoadedMock,
+  supportedAssetsLoadingMock,
+  supportedAssetsErrorMock,
+} from 'containers/WalletHOC/tests/mocks/selectors';
+
 import { WalletsOverview, mapDispatchToProps } from '../index';
-import { walletsWithInfoMock, totalBalancesMock, supportedAssetsMock } from '../../WalletHOC/tests/mocks';
+
 describe('WalletsOverview', () => {
   const props = {
     walletsWithInfo: walletsWithInfoMock,
@@ -12,8 +23,8 @@ describe('WalletsOverview', () => {
     ledgerNanoSInfo: fromJS({ connected: false }),
     trezorInfo: fromJS({ connected: false }),
     setCurrentWallet: () => {},
-    totalBalances: totalBalancesMock,
-    supportedAssets: supportedAssetsMock,
+    totalBalances: totalBalancesLoadedMock,
+    supportedAssets: supportedAssetsLoadedMock,
     history: { push: () => {} },
   };
 
@@ -21,6 +32,56 @@ describe('WalletsOverview', () => {
     const wrapper = shallow(
       <WalletsOverview
         {...props}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when there are no wallets', () => {
+    const wrapper = shallow(
+      <WalletsOverview
+        {...props}
+        walletsWithInfo={walletsWithInfoEmptyMock}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when totalBalances is loading', () => {
+    const wrapper = shallow(
+      <WalletsOverview
+        {...props}
+        totalBalances={totalBalancesLoadingMock}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when totalBalances is errored', () => {
+    const wrapper = shallow(
+      <WalletsOverview
+        {...props}
+        totalBalances={totalBalancesErrorMock}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when supportedAssets is loading', () => {
+    const wrapper = shallow(
+      <WalletsOverview
+        {...props}
+        supportedAssets={supportedAssetsLoadingMock}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when supportedAssets is errored', () => {
+    const wrapper = shallow(
+      <WalletsOverview
+        {...props}
+        supportedAssets={supportedAssetsErrorMock}
       />
     );
     expect(wrapper).toMatchSnapshot();

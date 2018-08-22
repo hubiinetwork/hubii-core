@@ -26,10 +26,22 @@ import {
   loadSupportedTokensError,
   loadPricesSuccess,
   loadPricesError,
+  ledgerConfirmTxOnDevice,
+  ledgerConfirmTxOnDeviceDone,
+  trezorConfirmTxOnDeviceDone,
+  trezorConfirmTxOnDevice,
 } from '../actions';
 
 import { LEDGER_ERROR, FETCHED_LEDGER_ADDRESS } from '../constants';
-import { supportedAssetsMock, supportedTokensMock, pricesMock } from './mocks';
+import {
+  supportedAssetsLoadedMock,
+  pricesLoadedMock,
+  ledgerNanoSInfoInitialMock,
+} from './mocks/selectors';
+
+import {
+  supportedTokensMock,
+} from './mocks';
 
 const wallet = {
   name: 'testwallet',
@@ -65,11 +77,13 @@ describe('walletHocReducer', () => {
         status: 'disconnected',
         addresses: {},
         id: null,
+        confTxOnDevice: false,
       },
       trezorInfo: {
         status: 'disconnected',
         addresses: {},
         id: null,
+        confTxOnDevice: false,
       },
       pendingTransactions: [],
       supportedAssets: {
@@ -113,7 +127,7 @@ describe('walletHocReducer', () => {
       const error = 'oh no!';
       const id = '123';
       const expected = state
-        .set('ledgerNanoSInfo', fromJS({ status: 'disconnected', addresses: {}, id }))
+        .set('ledgerNanoSInfo', ledgerNanoSInfoInitialMock.set('id', '123'))
         .setIn(['errors', 'ledgerError'], error);
       expect(walletHocReducer(state.setIn(['ledgerNanoSInfo', 'id'], id), { type: LEDGER_ERROR, error })).toEqual(expected);
     });
@@ -124,6 +138,36 @@ describe('walletHocReducer', () => {
       const expected = state
           .setIn(['ledgerNanoSInfo', 'addresses', derivationPath], address);
       expect(walletHocReducer(state, { type: FETCHED_LEDGER_ADDRESS, address, derivationPath })).toEqual(expected);
+    });
+
+    it('should handle LEDGER_CONFIRM_TX_ON_DEVICE action correctly', () => {
+      const expected = state
+          .setIn(['ledgerNanoSInfo', 'confTxOnDevice'], true);
+      expect(walletHocReducer(state, ledgerConfirmTxOnDevice())).toEqual(expected);
+    });
+
+    it('should handle LEDGER_CONFIRM_TX_ON_DEVICE_DONE action correctly', () => {
+      const testState = state
+        .setIn(['ledgerNanoSInfo', 'confTxOnDevice'], true);
+      const expected = state
+        .setIn(['ledgerNanoSInfo', 'confTxOnDevice'], false);
+      expect(walletHocReducer(testState, ledgerConfirmTxOnDeviceDone())).toEqual(expected);
+    });
+  });
+
+  describe('trezor reducers', () => {
+    it('should handle TREZOR_CONFIRM_TX_ON_DEVICE action correctly', () => {
+      const expected = state
+          .setIn(['trezorInfo', 'confTxOnDevice'], true);
+      expect(walletHocReducer(state, trezorConfirmTxOnDevice())).toEqual(expected);
+    });
+
+    it('should handle TREZOR_CONFIRM_TX_ON_DEVICE_DONE action correctly', () => {
+      const testState = state
+        .setIn(['trezorInfo', 'confTxOnDevice'], true);
+      const expected = state
+        .setIn(['trezorInfo', 'confTxOnDevice'], false);
+      expect(walletHocReducer(testState, trezorConfirmTxOnDeviceDone())).toEqual(expected);
     });
   });
 
@@ -291,7 +335,7 @@ describe('walletHocReducer', () => {
       const expected = stateWithWallet
         .setIn(['supportedAssets', 'loading'], false)
         .setIn(['supportedAssets', 'error'], null)
-        .setIn(['supportedAssets', 'assets'], fromJS(supportedAssetsMock.get('assets')));
+        .setIn(['supportedAssets', 'assets'], fromJS(supportedAssetsLoadedMock.get('assets')));
 
       expect(walletHocReducer(stateWithWallet, loadSupportedTokensSuccess(supportedTokensMock))).toEqual(expected);
     });
@@ -308,11 +352,11 @@ describe('walletHocReducer', () => {
 
   describe('prices', () => {
     it('handle LOAD_PRICES_SUCCESS correctly', () => {
-      const prices = pricesMock.get('assets').delete(pricesMock.get('assets').size - 1);
+      const prices = pricesLoadedMock.get('assets').delete(pricesLoadedMock.get('assets').size - 1);
       const expected = stateWithWallet
         .setIn(['prices', 'loading'], false)
         .setIn(['prices', 'error'], null)
-        .setIn(['prices', 'assets'], fromJS(pricesMock.get('assets')));
+        .setIn(['prices', 'assets'], fromJS(pricesLoadedMock.get('assets')));
 
       expect(walletHocReducer(stateWithWallet, loadPricesSuccess(prices))).toEqual(expected);
     });

@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { walletsWithInfoMock } from 'containers/WalletHOC/tests/mocks/selectors';
+
 import { WalletDetails, mapDispatchToProps } from '../index';
-import { walletsWithInfoMock } from '../../WalletHOC/tests/mocks';
 
 describe('WalletDetails', () => {
   const props = {

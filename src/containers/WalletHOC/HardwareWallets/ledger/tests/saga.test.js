@@ -195,7 +195,8 @@ describe('ledger saga', () => {
   it('#tryCreateEthTransportActivity should start pollEthApp and rethrow the error to outer scope when throws exception', (done) => {
     const error = new Error();
     const descriptor = 'test';
-    const saga = testSaga(tryCreateEthTransportActivity, descriptor);
+    const method = 'test';
+    const saga = testSaga(tryCreateEthTransportActivity, method, { descriptor });
     try {
       saga
         .next()

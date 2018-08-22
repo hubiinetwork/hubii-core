@@ -23,8 +23,8 @@ import Breakdown from 'components/Breakdown';
 import { WalletCardsCol, Wrapper, WalletPlaceHolder } from './style';
 
 export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  constructor(...args) {
-    super(...args);
+  constructor(props) {
+    super(props);
     this.renderWalletCards = this.renderWalletCards.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
   }
@@ -46,12 +46,11 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     }
     return wallets.map((wallet) => {
       let connected = false;
-      if (wallet.type === 'lns' && this.props.ledgerNanoSInfo.get('id') === wallet.deviceId) {
-        connected = true;
-      }
-      if (wallet.type === 'trezor' && this.props.trezorInfo.get('id') === wallet.deviceId) {
-        connected = true;
-      }
+      if
+      (
+        (wallet.type === 'lns' && this.props.ledgerNanoSInfo.get('id') === wallet.deviceId) ||
+        (wallet.type === 'trezor' && this.props.trezorInfo.get('id') === wallet.deviceId)
+      ) connected = true;
       return (
         <WalletCardsCol
           span={12}
@@ -69,7 +68,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
             type={wallet.type}
             connected={connected}
             assets={wallet.balances.assets}
-            mnemonic={wallet.mnemonic}
+            mnemonic={wallet.decrypted ? wallet.decrypted.mnemonic : null}
             privateKey={wallet.decrypted ? wallet.decrypted.privateKey : null}
             isDecrypted={!!wallet.decrypted}
             showDecryptWalletModal={() => this.props.showDecryptWalletModal()}

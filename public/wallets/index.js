@@ -1,21 +1,26 @@
 const { protocol } = require('electron');
 
-const { handlers, protocolNames, walletTypes } = require('./handlers');
-
+const { loadHandlers, protocolNames } = require('./handlers');
 protocol.registerStandardSchemes(protocolNames);
 
-function listenHardwareWallets(type, mainWindow) {
-  handlers[type].deviceEventListener(mainWindow);
+function listenHardwareWallets(handler) {
+  handler.deviceEventListener();
 }
 
-function listenHardwareWalletMethods(type) {
-  const handler = handlers[type];
-  protocol.registerStringProtocol(handler.PROTOCOL_NAME, async (req, cb) => {
+async function listenHardwareWalletMethods(handler) {
+  let protocolName;
+  if (typeof handler.PROTOCOL_NAME === 'string') {
+    protocolName = handler.PROTOCOL_NAME;
+  }
+  if (typeof handler.PROTOCOL_NAME === 'function') {
+    protocolName = await handler.PROTOCOL_NAME();
+  }
+  protocol.registerStringProtocol(protocolName, async (req, cb) => {
     let res;
     try {
       const method = getMethod(req);
       const params = getParams(method, req);
-      await handler.execWalletMethods(method, params, cb);
+      res = await handler.execWalletMethods(method, params);
     } catch (err) {
       res = {
         error: {
@@ -24,8 +29,8 @@ function listenHardwareWalletMethods(type) {
           message: err.message,
         },
       };
-      cb(JSON.stringify(res));
     }
+    cb(JSON.stringify(res));
   });
 }
 
@@ -56,14 +61,15 @@ function getParams(method, req) {
   }
 }
 
-function registerWalletListeners(mainWindow) {
-  walletTypes.forEach((type) => {
-    listenHardwareWallets(type, mainWindow);
-    listenHardwareWalletMethods(type);
+async function registerWalletListeners() {
+  const handlers = await loadHandlers();
+  Object.keys(handlers).forEach((type) => {
+    const handler = handlers[type];
+    listenHardwareWallets(handler);
+    listenHardwareWalletMethods(handler);
   });
 }
 
 module.exports = {
   registerWalletListeners,
-  handlers,
 };

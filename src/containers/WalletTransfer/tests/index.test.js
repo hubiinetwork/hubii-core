@@ -1,26 +1,84 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { fromJS } from 'immutable';
+import {
+  pricesLoadedMock,
+  walletsWithInfoMock,
+  walletsMock,
+  supportedAssetsLoadedMock,
+  supportedAssetsLoadingMock,
+  supportedAssetsErrorMock,
+  pricesLoadingMock,
+  pricesErrorMock,
+  ledgerNanoSInfoConnectedMock,
+  ledgerNanoSInfoConfOnDeviceMock,
+  trezorInfoConnectedMock,
+  trezorInfoConfOnDeviceMock,
+} from 'containers/WalletHOC/tests/mocks/selectors';
+
+import { contactsMock } from 'containers/WalletHOC/tests/mocks';
+
 import { WalletTransfer, mapDispatchToProps } from '../index';
-import { pricesMock, walletsWithInfoMock, walletsMock, contactsMock, supportedAssetsMock } from '../../WalletHOC/tests/mocks';
 
 describe('WalletTransfer', () => {
   const props = {
-    prices: pricesMock,
+    prices: pricesLoadedMock,
     currentWallet: walletsMock.get(0),
-    supportedAssets: supportedAssetsMock,
+    supportedAssets: supportedAssetsLoadedMock,
     currentWalletWithInfo: walletsWithInfoMock.get(0),
     contacts: contactsMock,
     transfer: () => {},
     history: {},
     errors: {},
-    createContact: jest.fn(), 
+    ledgerNanoSInfo: ledgerNanoSInfoConnectedMock,
+    trezorInfo: trezorInfoConnectedMock,
+    createContact: jest.fn(),
   };
 
   it('should render correctly', () => {
     const wrapper = shallow(
       <WalletTransfer
         {...props}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when supported assets are loading', () => {
+    const wrapper = shallow(
+      <WalletTransfer
+        {...props}
+        supportedAssets={supportedAssetsLoadingMock}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when supported assets are in error state', () => {
+    const wrapper = shallow(
+      <WalletTransfer
+        {...props}
+        supportedAssets={supportedAssetsErrorMock}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when prices are loading', () => {
+    const wrapper = shallow(
+      <WalletTransfer
+        {...props}
+        prices={pricesLoadingMock}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when prices are in error state', () => {
+    const wrapper = shallow(
+      <WalletTransfer
+        {...props}
+        prices={pricesErrorMock}
       />
     );
     expect(wrapper).toMatchSnapshot();
@@ -41,6 +99,26 @@ describe('WalletTransfer', () => {
       <WalletTransfer
         {...props}
         currentWalletWithInfo={walletsWithInfoMock.get(0).setIn(['balances', 'error'], { message: 'some error' })}
+      />
+        );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when ledgerNanoSInfo is in confTxOnDevice state', () => {
+    const wrapper = shallow(
+      <WalletTransfer
+        {...props}
+        ledgerNanoSInfo={ledgerNanoSInfoConfOnDeviceMock}
+      />
+        );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when trezorInfo is in confTxOnDevice state', () => {
+    const wrapper = shallow(
+      <WalletTransfer
+        {...props}
+        trezorInfo={trezorInfoConfOnDeviceMock}
       />
         );
     expect(wrapper).toMatchSnapshot();

@@ -11,11 +11,6 @@ const selectWalletHocDomain = (state) => state.get('walletHoc');
 /**
  * Other specific selectors
  */
-const makeSelectPasswordInput = () => createSelector(
-  selectWalletHocDomain,
-  (walletHocDomain) => walletHocDomain.getIn(['inputs', 'password'])
-);
-
 const makeSelectLedgerNanoSInfo = () => createSelector(
   selectWalletHocDomain,
   (walletHocDomain) => walletHocDomain.get('ledgerNanoSInfo')
@@ -29,11 +24,6 @@ const makeSelectTrezorInfo = () => createSelector(
 const makeSelectDerivationPathInput = () => createSelector(
   selectWalletHocDomain,
   (walletHocDomain) => walletHocDomain.getIn(['inputs', 'derivationPath'])
-);
-
-const makeSelectNewWalletNameInput = () => createSelector(
-  selectWalletHocDomain,
-  (walletHocDomain) => walletHocDomain.getIn(['inputs', 'newWalletName'])
 );
 
 const makeSelectSelectedWalletName = () => createSelector(
@@ -87,10 +77,13 @@ const makeSelectTransactionsWithInfo = () => createSelector(
           // ignore unsupported assets
           if (!assetDetails) return result;
 
+          // ignore tx to self
+          if (tx.get('sender').toLowerCase() === tx.get('recipient').toLowerCase()) return result;
+
           let txWithInfo = tx;
 
           // get tx type
-          const type = address.toLowerCase() === tx.get('sender') ?
+          const type = address.toLowerCase() === tx.get('sender').toLowerCase() ?
                 'sent' :
                 'received';
           txWithInfo = txWithInfo.set('type', type);
@@ -131,7 +124,6 @@ const makeSelectTransactionsWithInfo = () => createSelector(
       });
     } catch (error) {
       transactionsWithInfo = fromJS([]);
-      console.log(error);
     }
 
     return transactionsWithInfo;
@@ -167,11 +159,16 @@ const makeSelectTotalBalances = () => createSelector(
   (wallets, balances, prices, supportedAssets) => {
     if (
       supportedAssets.get('loading') ||
-      prices.get('loading') ||
+      prices.get('loading')
+    ) {
+      return fromJS({ assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } });
+    }
+
+    if (
       supportedAssets.get('error') ||
       prices.get('error')
     ) {
-      return fromJS({ assets: {}, loading: true, total: { usd: new BigNumber('0') } });
+      return fromJS({ assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } });
     }
 
     // Caclulate total amount and value of each asset
@@ -251,29 +248,30 @@ const makeSelectWalletsWithInfo = () => createSelector(
 
       // Add wallet transactions
       if (!transactions.get(walletAddress) || transactions.getIn([walletAddress, 'loading'])) {
-        walletTransactions = fromJS({ loading: true, transactions: [] });
+        // console.log(transactions.get(walletAddress));
+        walletTransactions = fromJS({ loading: true, error: null, transactions: [] });
       } else if (transactions.getIn([walletAddress, 'error'])) {
         walletTransactions = fromJS({ loading: false, error: true, transactions: [] });
       } else {
-        walletTransactions = fromJS({ loading: false, error: false, transactions: transactions.getIn([walletAddress, 'transactions']) });
+        walletTransactions = fromJS({ loading: false, error: null, transactions: transactions.getIn([walletAddress, 'transactions']) });
       }
       walletWithInfo = walletWithInfo.set('transactions', walletTransactions);
 
-      // Add wallet balances
+      // Check if any critical selectors are in error state
       if (
+        supportedAssets.get('error') ||
+        prices.get('error') ||
+        (balances.get(walletAddress) && balances.getIn([walletAddress, 'error']))
+      ) {
+        walletBalances = fromJS({ loading: false, error: true, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } });
+      // Check if any critical selectors are loading
+      } else if (
         supportedAssets.get('loading') ||
         prices.get('loading') ||
         !balances.get(walletAddress) ||
         balances.getIn([walletAddress, 'loading'])
       ) {
-        walletBalances = fromJS({ loading: true, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } });
-      } else if (
-        // Check if recieved an error from any of the critical API responses
-        supportedAssets.get('error') ||
-        prices.get('error') ||
-        balances.getIn([walletAddress, 'error'])
-      ) {
-        walletBalances = fromJS({ loading: false, error: true, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } });
+        walletBalances = fromJS({ loading: true, error: null, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } });
       } else {
         // Have all information needed to construct walletWithInfo balance
         walletBalances = balances.get(wallet.get('address'));
@@ -356,8 +354,6 @@ export {
   makeSelectLedgerNanoSInfo,
   makeSelectTrezorInfo,
   makeSelectTotalBalances,
-  makeSelectNewWalletNameInput,
-  makeSelectPasswordInput,
   makeSelectSelectedWalletName,
   makeSelectSupportedAssets,
   makeSelectPrices,

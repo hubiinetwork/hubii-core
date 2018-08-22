@@ -1,4 +1,5 @@
 
+/* global mainWindow */
 const { initSplashScreen } = require('@trodi/electron-splashscreen');
 const { app, Menu, dialog } = require('electron');
 const log = require('electron-log');
@@ -6,9 +7,9 @@ const { autoUpdater } = require('electron-updater');
 const path = require('path');
 const isDev = require('electron-is-dev');
 const { registerWalletListeners } = require('./wallets');
+const setupDevToolsShortcut = require('./dev-tools');
 
 const showDevTools = process.env.DEV_TOOLS;
-let mainWindow;
 
 function createWindow() {
   const template = [{
@@ -38,10 +39,11 @@ function createWindow() {
     show: false,
     icon: process.platform === 'linux' && path.join(__dirname, '../icon.png'),
     webPreferences: {
-      preload: path.join(__dirname, 'wallets/preload.js'),
+      preload: path.join(__dirname, 'preload.js'),
+      webSecurity: false,
     },
   };
-  mainWindow = initSplashScreen({
+  global.mainWindow = initSplashScreen({
     windowOpts: windowOptions,
     templateUrl: path.join(__dirname, 'images/splashscreen.svg'),
     delay: 0,
@@ -69,8 +71,12 @@ function createWindow() {
       .catch((err) => console.error(`An error occurred loading extension ${name}: `, err)); // eslint-disable-line no-console
     });
   }
-
-  mainWindow.on('closed', () => { mainWindow = null; });
+  mainWindow.once('show', () => {
+    registerWalletListeners(mainWindow);
+  });
+  mainWindow.on('closed', () => {
+    app.quit();
+  });
   return mainWindow;
 }
 
@@ -101,13 +107,7 @@ function setupAutoUpdater() {
 app.on('ready', () => {
   createWindow();
   setupAutoUpdater();
-  registerWalletListeners(mainWindow);
-});
-
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+  setupDevToolsShortcut();
 });
 
 app.on('activate', () => {

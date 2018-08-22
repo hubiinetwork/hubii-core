@@ -47,6 +47,10 @@ import {
   LOAD_TRANSACTIONS_ERROR,
   LOAD_BLOCK_HEIGHT_ERROR,
   LOAD_BLOCK_HEIGHT_SUCCESS,
+  LEDGER_CONFIRM_TX_ON_DEVICE,
+  LEDGER_CONFIRM_TX_ON_DEVICE_DONE,
+  TREZOR_CONFIRM_TX_ON_DEVICE,
+  TREZOR_CONFIRM_TX_ON_DEVICE_DONE,
 } from './constants';
 import { disconnectedErrorMsg, trezorDisconnectedErrorMsg } from '../../utils/friendlyErrors';
 
@@ -74,11 +78,13 @@ export const initialState = fromJS({
     status: 'disconnected',
     addresses: {},
     id: null,
+    confTxOnDevice: false,
   },
   trezorInfo: {
     status: 'disconnected',
     addresses: {},
     id: null,
+    confTxOnDevice: false,
   },
   pendingTransactions: [],
   supportedAssets: {
@@ -152,7 +158,8 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['balances', action.address, 'error'], action.error);
     case LOAD_SUPPORTED_TOKENS:
       return state
-        .setIn(['supportedAssets', 'loading'], true);
+        .setIn(['supportedAssets', 'loading'], true)
+        .setIn(['supportedAssets', 'error'], null);
     case LOAD_SUPPORTED_TOKENS_SUCCESS:
       return state
         .setIn(['supportedAssets', 'loading'], false)
@@ -223,8 +230,7 @@ function walletHocReducer(state = initialState, action) {
     case LEDGER_CONNECTED:
       return state
         .setIn(['ledgerNanoSInfo', 'connected'], true)
-        .setIn(['ledgerNanoSInfo', 'descriptor'], action.descriptor)
-        .setIn(['errors', 'ledgerError'], null);
+        .setIn(['ledgerNanoSInfo', 'descriptor'], action.descriptor);
     case LEDGER_DISCONNECTED:
       return state
         .setIn(['ledgerNanoSInfo', 'status'], 'disconnected')
@@ -232,7 +238,6 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['ledgerNanoSInfo', 'connected'], false)
         .setIn(['ledgerNanoSInfo', 'descriptor'], null)
         .setIn(['ledgerNanoSInfo', 'id'], null);
-        // .setIn(['errors', 'ledgerError'], 'ledger disconnected')
     case LEDGER_ERROR:
       return state
         .setIn(['ledgerNanoSInfo', 'status'], 'disconnected')
@@ -273,6 +278,18 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['blockHeight', 'loading'], false)
         .setIn(['blockHeight', 'error'], action.error);
+    case LEDGER_CONFIRM_TX_ON_DEVICE:
+      return state
+        .setIn(['ledgerNanoSInfo', 'confTxOnDevice'], true);
+    case LEDGER_CONFIRM_TX_ON_DEVICE_DONE:
+      return state
+        .setIn(['ledgerNanoSInfo', 'confTxOnDevice'], false);
+    case TREZOR_CONFIRM_TX_ON_DEVICE:
+      return state
+        .setIn(['trezorInfo', 'confTxOnDevice'], true);
+    case TREZOR_CONFIRM_TX_ON_DEVICE_DONE:
+      return state
+        .setIn(['trezorInfo', 'confTxOnDevice'], false);
     default:
       return state;
   }
