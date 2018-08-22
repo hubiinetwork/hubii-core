@@ -18,7 +18,6 @@ export const HeaderWrapper = styled.div`
 
 export const Amount = styled.span`
   font-size: 1rem;
-  font-family: 'SF Text';
   white-space: nowrap;
   overflow: hidden;
   color: white;
@@ -30,7 +29,6 @@ export const FiatValue = styled.div`
   margin-left: 0.5rem;
   white-space: nowrap;
   overflow: hidden;
-  font-family: 'SF Text';
 `;
 
 export const TransactionHistoryTime = styled.span`
@@ -40,19 +38,16 @@ export const TransactionHistoryTime = styled.span`
   overflow: hidden;
   margin-left: auto;
   margin-right: 1rem;
-  font-family: 'SF Text';
 `;
 
 export const TypeText = styled.div`
   color: ${({ theme }) => theme.palette.light};
-  font-family: 'SF Text';
   margin-right: 0.29rem;
   font-size: 1rem;
 `;
 
 export const SubtitleText = styled.div`
   color: ${({ theme }) => theme.palette.light};
-  font-family: 'SF Text';
   margin-right: 0.29rem;
   font-size: 0.93rem;
 `;
@@ -101,7 +96,6 @@ export const TypeIcon = styled(Icon)`
 export const GreenTextWrapper = styled.span`
   word-break: break-all;
   color: ${({ theme }) => theme.palette.info};
-  font-family: 'SF Text';
   font-size: 0.93rem;
 `;
 
@@ -126,7 +120,6 @@ export const Wrapper = styled.div`
 
 export const TransactionId = styled.a`
   color: ${({ theme }) => theme.palette.secondary};
-  font-family: 'SF Text';
   font-size: 0.86rem;
   word-break: break-all;
   &:active {

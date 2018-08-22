@@ -24,7 +24,6 @@ export default styled(Tabs)`
     margin: 0 0rem 0 0 !important;
     padding: 0.43rem 1.43rem !important;
     color: ${({ theme }) => theme.palette.light};
-    font-family: 'SF Text';
     font-size: 0.79rem;
     font-weight: 500;
     line-height: ${(props) => props.size === 'large' ? '1.29rem' : '0.93rem'};

@@ -9,7 +9,7 @@ export const HWPromptWrapper = styled.div`
 export const StyledButton = styled(Button)`
   height: 2.86rem;
   width: 11.57rem;
-  font-family: 'SF Text';
+  margin-top: 4.93rem;
   border: 0.14rem solid ${({ theme }) => theme.palette.info3};
   border-radius: 0.29rem;
   background-color: ${({ disabled: white }) =>
