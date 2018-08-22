@@ -29,8 +29,8 @@ import {
 import DerivationPath from 'components/ImportWalletSteps/DerivationPath';
 
 import { StyledButton, StyledSpan, ButtonDiv } from './BackBtn';
-import { ErrorWrapper } from './ErrorWrapper';
-import { ErrorText } from './ErrorText';
+import HWPromptWrapper from './HWPromptWrapper';
+import HWPrompt from '../../components/HWPrompt';
 
 export class DerivationPathContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -124,16 +124,19 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
   }
 
   render() {
-    const { balances } = this.props;
+    const { balances, deviceType } = this.props;
     const deviceInfo = this.getDeviceInfo(this.props);
 
     const { status, addresses } = deviceInfo.toJS();
     if (status === 'disconnected') {
       const error = this.getDeviceError();
       return (
-        <ErrorWrapper>
-          <ErrorText>{error}</ErrorText>
-        </ErrorWrapper>
+        <HWPromptWrapper>
+          <HWPrompt
+            deviceType={deviceType}
+            error={error}
+          />
+        </HWPromptWrapper>
       );
     }
 

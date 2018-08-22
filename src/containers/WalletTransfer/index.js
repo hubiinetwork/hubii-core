@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+
+import { isHardwareWallet } from 'utils/wallet';
+
 import TransferForm from 'components/TransferForm';
 import PageLoadingIndicator from 'components/PageLoadingIndicator';
 import {
@@ -11,6 +14,8 @@ import {
   makeSelectCurrentWalletWithInfo,
   makeSelectPrices,
   makeSelectErrors,
+  makeSelectLedgerNanoSInfo,
+  makeSelectTrezorInfo,
 } from 'containers/WalletHOC/selectors';
 import {
   makeSelectContacts,
@@ -60,6 +65,14 @@ export class WalletTransfer extends React.PureComponent {
     } else if (currentWalletWithInfo.getIn(['balances', 'error'])) {
       return <LoadingError pageType="wallet" error={{ message: 'Failed to fetch wallet data' }} id={currentWalletWithInfo.get('address')} />;
     }
+
+    let confTxOnDevice = false;
+    if (isHardwareWallet(currentWalletWithInfo.get('type'))) {
+      confTxOnDevice = currentWalletWithInfo.get('type') === 'lns' ?
+        this.props.ledgerNanoSInfo.get('confTxOnDevice') :
+        this.props.trezorInfo.get('confTxOnDevice');
+    }
+
     return (
       <TransferForm
         currentWalletUsdBalance={currentWalletWithInfo.getIn(['balances', 'total', 'usd']).toNumber()}
@@ -73,6 +86,7 @@ export class WalletTransfer extends React.PureComponent {
         errors={this.props.errors}
         currentWalletWithInfo={this.props.currentWalletWithInfo}
         createContact={this.props.createContact}
+        confTxOnDevice={confTxOnDevice}
       />
     );
   }
@@ -82,6 +96,8 @@ WalletTransfer.propTypes = {
   currentWalletWithInfo: PropTypes.object.isRequired,
   currentWallet: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
+  ledgerNanoSInfo: PropTypes.object.isRequired,
+  trezorInfo: PropTypes.object.isRequired,
   transfer: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   prices: PropTypes.object.isRequired,
@@ -92,6 +108,8 @@ WalletTransfer.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
+  ledgerNanoSInfo: makeSelectLedgerNanoSInfo(),
+  trezorInfo: makeSelectTrezorInfo(),
   currentWallet: makeSelectCurrentWallet(),
   supportedAssets: makeSelectSupportedAssets(),
   prices: makeSelectPrices(),

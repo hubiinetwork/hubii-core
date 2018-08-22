@@ -109,6 +109,16 @@ ShallowWrapper {
     }
     errors={Object {}}
     history={Object {}}
+    ledgerNanoSInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
     prices={
         Immutable.Map {
             loading: false,
@@ -203,6 +213,16 @@ ShallowWrapper {
         }
     }
     transfer={[Function]}
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -238,6 +258,7 @@ ShallowWrapper {
           },
         },
       ],
+      "confTxOnDevice": false,
       "createContact": [Function],
       "currentWalletUsdBalance": 81.962044,
       "currentWalletWithInfo": Immutable.Map {
@@ -454,6 +475,7 @@ ShallowWrapper {
             },
           },
         ],
+        "confTxOnDevice": false,
         "createContact": [Function],
         "currentWalletUsdBalance": 81.962044,
         "currentWalletWithInfo": Immutable.Map {
@@ -764,6 +786,16 @@ ShallowWrapper {
     }
     errors={Object {}}
     history={Object {}}
+    ledgerNanoSInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
     prices={
         Immutable.Map {
             loading: false,
@@ -858,6 +890,16 @@ ShallowWrapper {
         }
     }
     transfer={[Function]}
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -1017,6 +1059,16 @@ ShallowWrapper {
     }
     errors={Object {}}
     history={Object {}}
+    ledgerNanoSInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
     prices={
         Immutable.Map {
             loading: false,
@@ -1111,6 +1163,16 @@ ShallowWrapper {
         }
     }
     transfer={[Function]}
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -1139,6 +1201,681 @@ ShallowWrapper {
       "props": Object {
         "id": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
         "pageType": "wallet",
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`WalletTransfer should render correctly when ledgerNanoSInfo is in confTxOnDevice state 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <WalletTransfer
+    contacts={
+        Immutable.List [
+            Immutable.Map {
+                name: "mike",
+                address: "0x123123",
+            },
+            Immutable.Map {
+                name: "john",
+                address: "0x1231323",
+            },
+        ]
+    }
+    createContact={[Function]}
+    currentWallet={
+        Immutable.Map {
+            deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
+            address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+            type: "lns",
+            name: "lns",
+            derivationPath: "m/44'/60'/0'/0",
+        }
+    }
+    currentWalletWithInfo={
+        Immutable.Map {
+            deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
+            address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+            type: "lns",
+            name: "lns",
+            derivationPath: "m/44'/60'/0'/0",
+            transactions: Immutable.Map {
+                loading: false,
+                error: null,
+                transactions: Immutable.List [
+                    Immutable.Map {
+                        decimalAmount: "0.0000000001",
+                        counterpartyAddress: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        block: Immutable.Map {
+                            number: 3780091,
+                            timestamp: "2018-08-06T02:32:00.000Z",
+                        },
+                        hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
+                        currency: "ETH",
+                        sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        amount: "100000000",
+                        symbol: "ETH",
+                        recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                        type: "received",
+                        fiatValue: "0.0000000412",
+                        confirmations: "3",
+                    },
+                    Immutable.Map {
+                        decimalAmount: "0.000000000000000005",
+                        counterpartyAddress: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        block: Immutable.Map {
+                            number: 3780091,
+                            timestamp: "2018-08-06T02:32:00.000Z",
+                        },
+                        hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
+                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                        sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                        amount: "5",
+                        symbol: "BOKKY",
+                        recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        type: "sent",
+                        fiatValue: "0",
+                        confirmations: "3",
+                    },
+                ],
+            },
+            balances: Immutable.Map {
+                loading: false,
+                error: null,
+                assets: Immutable.List [
+                    Immutable.Map {
+                        balance: "0.198937",
+                        currency: "ETH",
+                        symbol: "ETH",
+                        value: Immutable.Map {
+                            eth: "0.198937",
+                            btc: "0.00198937",
+                            usd: "81.962044",
+                        },
+                    },
+                    Immutable.Map {
+                        balance: "1.231288e-12",
+                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                        symbol: "BOKKY",
+                        value: Immutable.Map {
+                            eth: "0",
+                            btc: "0",
+                            usd: "0",
+                        },
+                    },
+                ],
+                total: Immutable.Map {
+                    eth: "0.198937",
+                    btc: "0.00198937",
+                    usd: "81.962044",
+                },
+            },
+        }
+    }
+    errors={Object {}}
+    history={Object {}}
+    ledgerNanoSInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: true,
+        }
+    }
+    prices={
+        Immutable.Map {
+            loading: false,
+            error: null,
+            assets: Immutable.List [
+                Immutable.Map {
+                    currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "ETH",
+                    eth: 1,
+                    btc: 0.01,
+                    usd: 412,
+                },
+            ],
+        }
+    }
+    supportedAssets={
+        Immutable.Map {
+            loading: false,
+            error: null,
+            assets: Immutable.List [
+                Immutable.Map {
+                    currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+                    symbol: "My20",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+                    symbol: "HBT",
+                    decimals: 15,
+                    color: "0063A5",
+                },
+                Immutable.Map {
+                    currency: "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+                    symbol: "SBT",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+                    symbol: "WETH",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                    symbol: "BOKKY",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "ETH",
+                    symbol: "ETH",
+                    decimals: 18,
+                    color: "5C78E4",
+                },
+            ],
+        }
+    }
+    transfer={[Function]}
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "assets": Array [
+        Object {
+          "balance": "0.198937",
+          "currency": "ETH",
+          "symbol": "ETH",
+          "value": Object {
+            "btc": "0.00198937",
+            "eth": "0.198937",
+            "usd": "81.962044",
+          },
+        },
+        Object {
+          "balance": "1.231288e-12",
+          "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+          "symbol": "BOKKY",
+          "value": Object {
+            "btc": "0",
+            "eth": "0",
+            "usd": "0",
+          },
+        },
+      ],
+      "confTxOnDevice": true,
+      "createContact": [Function],
+      "currentWalletUsdBalance": 81.962044,
+      "currentWalletWithInfo": Immutable.Map {
+        deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
+        address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+        type: "lns",
+        name: "lns",
+        derivationPath: "m/44'/60'/0'/0",
+        transactions: Immutable.Map {
+                loading: false,
+                error: null,
+                transactions: Immutable.List [
+                        Immutable.Map {
+                                decimalAmount: "0.0000000001",
+                                counterpartyAddress: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                block: Immutable.Map {
+                                        number: 3780091,
+                                        timestamp: "2018-08-06T02:32:00.000Z",
+                                },
+                                hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
+                                currency: "ETH",
+                                sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                amount: "100000000",
+                                symbol: "ETH",
+                                recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                type: "received",
+                                fiatValue: "0.0000000412",
+                                confirmations: "3",
+                        },
+                        Immutable.Map {
+                                decimalAmount: "0.000000000000000005",
+                                counterpartyAddress: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                block: Immutable.Map {
+                                        number: 3780091,
+                                        timestamp: "2018-08-06T02:32:00.000Z",
+                                },
+                                hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
+                                currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                amount: "5",
+                                symbol: "BOKKY",
+                                recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                type: "sent",
+                                fiatValue: "0",
+                                confirmations: "3",
+                        },
+                ],
+        },
+        balances: Immutable.Map {
+                loading: false,
+                error: null,
+                assets: Immutable.List [
+                        Immutable.Map {
+                                balance: "0.198937",
+                                currency: "ETH",
+                                symbol: "ETH",
+                                value: Immutable.Map {
+                                        eth: "0.198937",
+                                        btc: "0.00198937",
+                                        usd: "81.962044",
+                                },
+                        },
+                        Immutable.Map {
+                                balance: "1.231288e-12",
+                                currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                symbol: "BOKKY",
+                                value: Immutable.Map {
+                                        eth: "0",
+                                        btc: "0",
+                                        usd: "0",
+                                },
+                        },
+                ],
+                total: Immutable.Map {
+                        eth: "0.198937",
+                        btc: "0.00198937",
+                        usd: "81.962044",
+                },
+        },
+},
+      "errors": Object {},
+      "onCancel": [Function],
+      "onSend": [Function],
+      "prices": Object {
+        "assets": Array [
+          Object {
+            "btc": 0,
+            "currency": "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+            "eth": 0,
+            "timestamp": "2018-07-25T01:33:34.908Z",
+            "usd": 0,
+          },
+          Object {
+            "btc": 0,
+            "currency": "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+            "eth": 0,
+            "timestamp": "2018-07-25T01:33:34.908Z",
+            "usd": 0,
+          },
+          Object {
+            "btc": 0,
+            "currency": "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+            "eth": 0,
+            "timestamp": "2018-07-25T01:33:34.908Z",
+            "usd": 0,
+          },
+          Object {
+            "btc": 0,
+            "currency": "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+            "eth": 0,
+            "timestamp": "2018-07-25T01:33:34.908Z",
+            "usd": 0,
+          },
+          Object {
+            "btc": 0,
+            "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+            "eth": 0,
+            "timestamp": "2018-07-25T01:33:34.908Z",
+            "usd": 0,
+          },
+          Object {
+            "btc": 0.01,
+            "currency": "ETH",
+            "eth": 1,
+            "usd": 412,
+          },
+        ],
+        "error": null,
+        "loading": false,
+      },
+      "recipients": Array [
+        Object {
+          "address": "0x123123",
+          "name": "mike",
+        },
+        Object {
+          "address": "0x1231323",
+          "name": "john",
+        },
+      ],
+      "supportedAssets": Immutable.Map {
+        loading: false,
+        error: null,
+        assets: Immutable.List [
+                Immutable.Map {
+                        currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+                        symbol: "My20",
+                        decimals: 18,
+                        color: "FFAA00",
+                },
+                Immutable.Map {
+                        currency: "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+                        symbol: "HBT",
+                        decimals: 15,
+                        color: "0063A5",
+                },
+                Immutable.Map {
+                        currency: "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+                        symbol: "SBT",
+                        decimals: 18,
+                        color: "FFAA00",
+                },
+                Immutable.Map {
+                        currency: "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+                        symbol: "WETH",
+                        decimals: 18,
+                        color: "FFAA00",
+                },
+                Immutable.Map {
+                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                        symbol: "BOKKY",
+                        decimals: 18,
+                        color: "FFAA00",
+                },
+                Immutable.Map {
+                        currency: "ETH",
+                        symbol: "ETH",
+                        decimals: 18,
+                        color: "5C78E4",
+                },
+        ],
+},
+      "transfering": undefined,
+    },
+    "ref": null,
+    "rendered": null,
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "assets": Array [
+          Object {
+            "balance": "0.198937",
+            "currency": "ETH",
+            "symbol": "ETH",
+            "value": Object {
+              "btc": "0.00198937",
+              "eth": "0.198937",
+              "usd": "81.962044",
+            },
+          },
+          Object {
+            "balance": "1.231288e-12",
+            "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+            "symbol": "BOKKY",
+            "value": Object {
+              "btc": "0",
+              "eth": "0",
+              "usd": "0",
+            },
+          },
+        ],
+        "confTxOnDevice": true,
+        "createContact": [Function],
+        "currentWalletUsdBalance": 81.962044,
+        "currentWalletWithInfo": Immutable.Map {
+          deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
+          address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+          type: "lns",
+          name: "lns",
+          derivationPath: "m/44'/60'/0'/0",
+          transactions: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    transactions: Immutable.List [
+                              Immutable.Map {
+                                        decimalAmount: "0.0000000001",
+                                        counterpartyAddress: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                        block: Immutable.Map {
+                                                  number: 3780091,
+                                                  timestamp: "2018-08-06T02:32:00.000Z",
+                                        },
+                                        hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
+                                        currency: "ETH",
+                                        sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                        amount: "100000000",
+                                        symbol: "ETH",
+                                        recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                        type: "received",
+                                        fiatValue: "0.0000000412",
+                                        confirmations: "3",
+                              },
+                              Immutable.Map {
+                                        decimalAmount: "0.000000000000000005",
+                                        counterpartyAddress: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                        block: Immutable.Map {
+                                                  number: 3780091,
+                                                  timestamp: "2018-08-06T02:32:00.000Z",
+                                        },
+                                        hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                        amount: "5",
+                                        symbol: "BOKKY",
+                                        recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                        type: "sent",
+                                        fiatValue: "0",
+                                        confirmations: "3",
+                              },
+                    ],
+          },
+          balances: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                              Immutable.Map {
+                                        balance: "0.198937",
+                                        currency: "ETH",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                  eth: "0.198937",
+                                                  btc: "0.00198937",
+                                                  usd: "81.962044",
+                                        },
+                              },
+                              Immutable.Map {
+                                        balance: "1.231288e-12",
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                  eth: "0",
+                                                  btc: "0",
+                                                  usd: "0",
+                                        },
+                              },
+                    ],
+                    total: Immutable.Map {
+                              eth: "0.198937",
+                              btc: "0.00198937",
+                              usd: "81.962044",
+                    },
+          },
+},
+        "errors": Object {},
+        "onCancel": [Function],
+        "onSend": [Function],
+        "prices": Object {
+          "assets": Array [
+            Object {
+              "btc": 0,
+              "currency": "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+              "eth": 0,
+              "timestamp": "2018-07-25T01:33:34.908Z",
+              "usd": 0,
+            },
+            Object {
+              "btc": 0,
+              "currency": "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+              "eth": 0,
+              "timestamp": "2018-07-25T01:33:34.908Z",
+              "usd": 0,
+            },
+            Object {
+              "btc": 0,
+              "currency": "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+              "eth": 0,
+              "timestamp": "2018-07-25T01:33:34.908Z",
+              "usd": 0,
+            },
+            Object {
+              "btc": 0,
+              "currency": "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+              "eth": 0,
+              "timestamp": "2018-07-25T01:33:34.908Z",
+              "usd": 0,
+            },
+            Object {
+              "btc": 0,
+              "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+              "eth": 0,
+              "timestamp": "2018-07-25T01:33:34.908Z",
+              "usd": 0,
+            },
+            Object {
+              "btc": 0.01,
+              "currency": "ETH",
+              "eth": 1,
+              "usd": 412,
+            },
+          ],
+          "error": null,
+          "loading": false,
+        },
+        "recipients": Array [
+          Object {
+            "address": "0x123123",
+            "name": "mike",
+          },
+          Object {
+            "address": "0x1231323",
+            "name": "john",
+          },
+        ],
+        "supportedAssets": Immutable.Map {
+          loading: false,
+          error: null,
+          assets: Immutable.List [
+                    Immutable.Map {
+                              currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+                              symbol: "My20",
+                              decimals: 18,
+                              color: "FFAA00",
+                    },
+                    Immutable.Map {
+                              currency: "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+                              symbol: "HBT",
+                              decimals: 15,
+                              color: "0063A5",
+                    },
+                    Immutable.Map {
+                              currency: "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+                              symbol: "SBT",
+                              decimals: 18,
+                              color: "FFAA00",
+                    },
+                    Immutable.Map {
+                              currency: "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+                              symbol: "WETH",
+                              decimals: 18,
+                              color: "FFAA00",
+                    },
+                    Immutable.Map {
+                              currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                              symbol: "BOKKY",
+                              decimals: 18,
+                              color: "FFAA00",
+                    },
+                    Immutable.Map {
+                              currency: "ETH",
+                              symbol: "ETH",
+                              decimals: 18,
+                              color: "5C78E4",
+                    },
+          ],
+},
+        "transfering": undefined,
       },
       "ref": null,
       "rendered": null,
@@ -1264,6 +2001,16 @@ ShallowWrapper {
     }
     errors={Object {}}
     history={Object {}}
+    ledgerNanoSInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
     prices={
         Immutable.Map {
             loading: false,
@@ -1317,6 +2064,16 @@ ShallowWrapper {
         }
     }
     transfer={[Function]}
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -1352,6 +2109,7 @@ ShallowWrapper {
           },
         },
       ],
+      "confTxOnDevice": false,
       "createContact": [Function],
       "currentWalletUsdBalance": 81.962044,
       "currentWalletWithInfo": Immutable.Map {
@@ -1526,6 +2284,7 @@ ShallowWrapper {
             },
           },
         ],
+        "confTxOnDevice": false,
         "createContact": [Function],
         "currentWalletUsdBalance": 81.962044,
         "currentWalletWithInfo": Immutable.Map {
@@ -1792,6 +2551,16 @@ ShallowWrapper {
     }
     errors={Object {}}
     history={Object {}}
+    ledgerNanoSInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
     prices={
         Immutable.Map {
             loading: true,
@@ -1845,6 +2614,16 @@ ShallowWrapper {
         }
     }
     transfer={[Function]}
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -1880,6 +2659,7 @@ ShallowWrapper {
           },
         },
       ],
+      "confTxOnDevice": false,
       "createContact": [Function],
       "currentWalletUsdBalance": 81.962044,
       "currentWalletWithInfo": Immutable.Map {
@@ -2054,6 +2834,7 @@ ShallowWrapper {
             },
           },
         ],
+        "confTxOnDevice": false,
         "createContact": [Function],
         "currentWalletUsdBalance": 81.962044,
         "currentWalletWithInfo": Immutable.Map {
@@ -2320,6 +3101,16 @@ ShallowWrapper {
     }
     errors={Object {}}
     history={Object {}}
+    ledgerNanoSInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
     prices={
         Immutable.Map {
             loading: false,
@@ -2378,6 +3169,16 @@ ShallowWrapper {
         }
     }
     transfer={[Function]}
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -2413,6 +3214,7 @@ ShallowWrapper {
           },
         },
       ],
+      "confTxOnDevice": false,
       "createContact": [Function],
       "currentWalletUsdBalance": 81.962044,
       "currentWalletWithInfo": Immutable.Map {
@@ -2593,6 +3395,7 @@ ShallowWrapper {
             },
           },
         ],
+        "confTxOnDevice": false,
         "createContact": [Function],
         "currentWalletUsdBalance": 81.962044,
         "currentWalletWithInfo": Immutable.Map {
@@ -2865,6 +3668,16 @@ ShallowWrapper {
     }
     errors={Object {}}
     history={Object {}}
+    ledgerNanoSInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
     prices={
         Immutable.Map {
             loading: false,
@@ -2923,6 +3736,16 @@ ShallowWrapper {
         }
     }
     transfer={[Function]}
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -2958,6 +3781,7 @@ ShallowWrapper {
           },
         },
       ],
+      "confTxOnDevice": false,
       "createContact": [Function],
       "currentWalletUsdBalance": 81.962044,
       "currentWalletWithInfo": Immutable.Map {
@@ -3138,6 +3962,7 @@ ShallowWrapper {
             },
           },
         ],
+        "confTxOnDevice": false,
         "createContact": [Function],
         "currentWalletUsdBalance": 81.962044,
         "currentWalletWithInfo": Immutable.Map {
@@ -3282,6 +4107,681 @@ ShallowWrapper {
           loading: true,
           error: null,
           assets: Immutable.List [
+          ],
+},
+        "transfering": undefined,
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`WalletTransfer should render correctly when trezorInfo is in confTxOnDevice state 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <WalletTransfer
+    contacts={
+        Immutable.List [
+            Immutable.Map {
+                name: "mike",
+                address: "0x123123",
+            },
+            Immutable.Map {
+                name: "john",
+                address: "0x1231323",
+            },
+        ]
+    }
+    createContact={[Function]}
+    currentWallet={
+        Immutable.Map {
+            deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
+            address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+            type: "lns",
+            name: "lns",
+            derivationPath: "m/44'/60'/0'/0",
+        }
+    }
+    currentWalletWithInfo={
+        Immutable.Map {
+            deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
+            address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+            type: "lns",
+            name: "lns",
+            derivationPath: "m/44'/60'/0'/0",
+            transactions: Immutable.Map {
+                loading: false,
+                error: null,
+                transactions: Immutable.List [
+                    Immutable.Map {
+                        decimalAmount: "0.0000000001",
+                        counterpartyAddress: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        block: Immutable.Map {
+                            number: 3780091,
+                            timestamp: "2018-08-06T02:32:00.000Z",
+                        },
+                        hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
+                        currency: "ETH",
+                        sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        amount: "100000000",
+                        symbol: "ETH",
+                        recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                        type: "received",
+                        fiatValue: "0.0000000412",
+                        confirmations: "3",
+                    },
+                    Immutable.Map {
+                        decimalAmount: "0.000000000000000005",
+                        counterpartyAddress: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        block: Immutable.Map {
+                            number: 3780091,
+                            timestamp: "2018-08-06T02:32:00.000Z",
+                        },
+                        hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
+                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                        sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                        amount: "5",
+                        symbol: "BOKKY",
+                        recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        type: "sent",
+                        fiatValue: "0",
+                        confirmations: "3",
+                    },
+                ],
+            },
+            balances: Immutable.Map {
+                loading: false,
+                error: null,
+                assets: Immutable.List [
+                    Immutable.Map {
+                        balance: "0.198937",
+                        currency: "ETH",
+                        symbol: "ETH",
+                        value: Immutable.Map {
+                            eth: "0.198937",
+                            btc: "0.00198937",
+                            usd: "81.962044",
+                        },
+                    },
+                    Immutable.Map {
+                        balance: "1.231288e-12",
+                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                        symbol: "BOKKY",
+                        value: Immutable.Map {
+                            eth: "0",
+                            btc: "0",
+                            usd: "0",
+                        },
+                    },
+                ],
+                total: Immutable.Map {
+                    eth: "0.198937",
+                    btc: "0.00198937",
+                    usd: "81.962044",
+                },
+            },
+        }
+    }
+    errors={Object {}}
+    history={Object {}}
+    ledgerNanoSInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+    prices={
+        Immutable.Map {
+            loading: false,
+            error: null,
+            assets: Immutable.List [
+                Immutable.Map {
+                    currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                    eth: 0,
+                    btc: 0,
+                    usd: 0,
+                    timestamp: "2018-07-25T01:33:34.908Z",
+                },
+                Immutable.Map {
+                    currency: "ETH",
+                    eth: 1,
+                    btc: 0.01,
+                    usd: 412,
+                },
+            ],
+        }
+    }
+    supportedAssets={
+        Immutable.Map {
+            loading: false,
+            error: null,
+            assets: Immutable.List [
+                Immutable.Map {
+                    currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+                    symbol: "My20",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+                    symbol: "HBT",
+                    decimals: 15,
+                    color: "0063A5",
+                },
+                Immutable.Map {
+                    currency: "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+                    symbol: "SBT",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+                    symbol: "WETH",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                    symbol: "BOKKY",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "ETH",
+                    symbol: "ETH",
+                    decimals: 18,
+                    color: "5C78E4",
+                },
+            ],
+        }
+    }
+    transfer={[Function]}
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: true,
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "assets": Array [
+        Object {
+          "balance": "0.198937",
+          "currency": "ETH",
+          "symbol": "ETH",
+          "value": Object {
+            "btc": "0.00198937",
+            "eth": "0.198937",
+            "usd": "81.962044",
+          },
+        },
+        Object {
+          "balance": "1.231288e-12",
+          "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+          "symbol": "BOKKY",
+          "value": Object {
+            "btc": "0",
+            "eth": "0",
+            "usd": "0",
+          },
+        },
+      ],
+      "confTxOnDevice": false,
+      "createContact": [Function],
+      "currentWalletUsdBalance": 81.962044,
+      "currentWalletWithInfo": Immutable.Map {
+        deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
+        address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+        type: "lns",
+        name: "lns",
+        derivationPath: "m/44'/60'/0'/0",
+        transactions: Immutable.Map {
+                loading: false,
+                error: null,
+                transactions: Immutable.List [
+                        Immutable.Map {
+                                decimalAmount: "0.0000000001",
+                                counterpartyAddress: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                block: Immutable.Map {
+                                        number: 3780091,
+                                        timestamp: "2018-08-06T02:32:00.000Z",
+                                },
+                                hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
+                                currency: "ETH",
+                                sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                amount: "100000000",
+                                symbol: "ETH",
+                                recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                type: "received",
+                                fiatValue: "0.0000000412",
+                                confirmations: "3",
+                        },
+                        Immutable.Map {
+                                decimalAmount: "0.000000000000000005",
+                                counterpartyAddress: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                block: Immutable.Map {
+                                        number: 3780091,
+                                        timestamp: "2018-08-06T02:32:00.000Z",
+                                },
+                                hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
+                                currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                amount: "5",
+                                symbol: "BOKKY",
+                                recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                type: "sent",
+                                fiatValue: "0",
+                                confirmations: "3",
+                        },
+                ],
+        },
+        balances: Immutable.Map {
+                loading: false,
+                error: null,
+                assets: Immutable.List [
+                        Immutable.Map {
+                                balance: "0.198937",
+                                currency: "ETH",
+                                symbol: "ETH",
+                                value: Immutable.Map {
+                                        eth: "0.198937",
+                                        btc: "0.00198937",
+                                        usd: "81.962044",
+                                },
+                        },
+                        Immutable.Map {
+                                balance: "1.231288e-12",
+                                currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                symbol: "BOKKY",
+                                value: Immutable.Map {
+                                        eth: "0",
+                                        btc: "0",
+                                        usd: "0",
+                                },
+                        },
+                ],
+                total: Immutable.Map {
+                        eth: "0.198937",
+                        btc: "0.00198937",
+                        usd: "81.962044",
+                },
+        },
+},
+      "errors": Object {},
+      "onCancel": [Function],
+      "onSend": [Function],
+      "prices": Object {
+        "assets": Array [
+          Object {
+            "btc": 0,
+            "currency": "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+            "eth": 0,
+            "timestamp": "2018-07-25T01:33:34.908Z",
+            "usd": 0,
+          },
+          Object {
+            "btc": 0,
+            "currency": "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+            "eth": 0,
+            "timestamp": "2018-07-25T01:33:34.908Z",
+            "usd": 0,
+          },
+          Object {
+            "btc": 0,
+            "currency": "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+            "eth": 0,
+            "timestamp": "2018-07-25T01:33:34.908Z",
+            "usd": 0,
+          },
+          Object {
+            "btc": 0,
+            "currency": "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+            "eth": 0,
+            "timestamp": "2018-07-25T01:33:34.908Z",
+            "usd": 0,
+          },
+          Object {
+            "btc": 0,
+            "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+            "eth": 0,
+            "timestamp": "2018-07-25T01:33:34.908Z",
+            "usd": 0,
+          },
+          Object {
+            "btc": 0.01,
+            "currency": "ETH",
+            "eth": 1,
+            "usd": 412,
+          },
+        ],
+        "error": null,
+        "loading": false,
+      },
+      "recipients": Array [
+        Object {
+          "address": "0x123123",
+          "name": "mike",
+        },
+        Object {
+          "address": "0x1231323",
+          "name": "john",
+        },
+      ],
+      "supportedAssets": Immutable.Map {
+        loading: false,
+        error: null,
+        assets: Immutable.List [
+                Immutable.Map {
+                        currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+                        symbol: "My20",
+                        decimals: 18,
+                        color: "FFAA00",
+                },
+                Immutable.Map {
+                        currency: "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+                        symbol: "HBT",
+                        decimals: 15,
+                        color: "0063A5",
+                },
+                Immutable.Map {
+                        currency: "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+                        symbol: "SBT",
+                        decimals: 18,
+                        color: "FFAA00",
+                },
+                Immutable.Map {
+                        currency: "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+                        symbol: "WETH",
+                        decimals: 18,
+                        color: "FFAA00",
+                },
+                Immutable.Map {
+                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                        symbol: "BOKKY",
+                        decimals: 18,
+                        color: "FFAA00",
+                },
+                Immutable.Map {
+                        currency: "ETH",
+                        symbol: "ETH",
+                        decimals: 18,
+                        color: "5C78E4",
+                },
+        ],
+},
+      "transfering": undefined,
+    },
+    "ref": null,
+    "rendered": null,
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "assets": Array [
+          Object {
+            "balance": "0.198937",
+            "currency": "ETH",
+            "symbol": "ETH",
+            "value": Object {
+              "btc": "0.00198937",
+              "eth": "0.198937",
+              "usd": "81.962044",
+            },
+          },
+          Object {
+            "balance": "1.231288e-12",
+            "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+            "symbol": "BOKKY",
+            "value": Object {
+              "btc": "0",
+              "eth": "0",
+              "usd": "0",
+            },
+          },
+        ],
+        "confTxOnDevice": false,
+        "createContact": [Function],
+        "currentWalletUsdBalance": 81.962044,
+        "currentWalletWithInfo": Immutable.Map {
+          deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
+          address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+          type: "lns",
+          name: "lns",
+          derivationPath: "m/44'/60'/0'/0",
+          transactions: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    transactions: Immutable.List [
+                              Immutable.Map {
+                                        decimalAmount: "0.0000000001",
+                                        counterpartyAddress: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                        block: Immutable.Map {
+                                                  number: 3780091,
+                                                  timestamp: "2018-08-06T02:32:00.000Z",
+                                        },
+                                        hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
+                                        currency: "ETH",
+                                        sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                        amount: "100000000",
+                                        symbol: "ETH",
+                                        recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                        type: "received",
+                                        fiatValue: "0.0000000412",
+                                        confirmations: "3",
+                              },
+                              Immutable.Map {
+                                        decimalAmount: "0.000000000000000005",
+                                        counterpartyAddress: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                        block: Immutable.Map {
+                                                  number: 3780091,
+                                                  timestamp: "2018-08-06T02:32:00.000Z",
+                                        },
+                                        hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                        amount: "5",
+                                        symbol: "BOKKY",
+                                        recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                        type: "sent",
+                                        fiatValue: "0",
+                                        confirmations: "3",
+                              },
+                    ],
+          },
+          balances: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                              Immutable.Map {
+                                        balance: "0.198937",
+                                        currency: "ETH",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                  eth: "0.198937",
+                                                  btc: "0.00198937",
+                                                  usd: "81.962044",
+                                        },
+                              },
+                              Immutable.Map {
+                                        balance: "1.231288e-12",
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                  eth: "0",
+                                                  btc: "0",
+                                                  usd: "0",
+                                        },
+                              },
+                    ],
+                    total: Immutable.Map {
+                              eth: "0.198937",
+                              btc: "0.00198937",
+                              usd: "81.962044",
+                    },
+          },
+},
+        "errors": Object {},
+        "onCancel": [Function],
+        "onSend": [Function],
+        "prices": Object {
+          "assets": Array [
+            Object {
+              "btc": 0,
+              "currency": "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+              "eth": 0,
+              "timestamp": "2018-07-25T01:33:34.908Z",
+              "usd": 0,
+            },
+            Object {
+              "btc": 0,
+              "currency": "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+              "eth": 0,
+              "timestamp": "2018-07-25T01:33:34.908Z",
+              "usd": 0,
+            },
+            Object {
+              "btc": 0,
+              "currency": "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+              "eth": 0,
+              "timestamp": "2018-07-25T01:33:34.908Z",
+              "usd": 0,
+            },
+            Object {
+              "btc": 0,
+              "currency": "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+              "eth": 0,
+              "timestamp": "2018-07-25T01:33:34.908Z",
+              "usd": 0,
+            },
+            Object {
+              "btc": 0,
+              "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+              "eth": 0,
+              "timestamp": "2018-07-25T01:33:34.908Z",
+              "usd": 0,
+            },
+            Object {
+              "btc": 0.01,
+              "currency": "ETH",
+              "eth": 1,
+              "usd": 412,
+            },
+          ],
+          "error": null,
+          "loading": false,
+        },
+        "recipients": Array [
+          Object {
+            "address": "0x123123",
+            "name": "mike",
+          },
+          Object {
+            "address": "0x1231323",
+            "name": "john",
+          },
+        ],
+        "supportedAssets": Immutable.Map {
+          loading: false,
+          error: null,
+          assets: Immutable.List [
+                    Immutable.Map {
+                              currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+                              symbol: "My20",
+                              decimals: 18,
+                              color: "FFAA00",
+                    },
+                    Immutable.Map {
+                              currency: "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+                              symbol: "HBT",
+                              decimals: 15,
+                              color: "0063A5",
+                    },
+                    Immutable.Map {
+                              currency: "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+                              symbol: "SBT",
+                              decimals: 18,
+                              color: "FFAA00",
+                    },
+                    Immutable.Map {
+                              currency: "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+                              symbol: "WETH",
+                              decimals: 18,
+                              color: "FFAA00",
+                    },
+                    Immutable.Map {
+                              currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                              symbol: "BOKKY",
+                              decimals: 18,
+                              color: "FFAA00",
+                    },
+                    Immutable.Map {
+                              currency: "ETH",
+                              symbol: "ETH",
+                              decimals: 18,
+                              color: "5C78E4",
+                    },
           ],
 },
         "transfering": undefined,

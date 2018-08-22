@@ -13,16 +13,33 @@ import { Wrapper, StyledSpin } from './styles';
 class SimplexPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
-    this.state = { loading: false, error: false };
+    this.state = { loading: false, error: false, timesStoppedLoading: 0 };
+    this.startLoad = this.startLoad.bind(this);
+    this.stopLoad = this.stopLoad.bind(this);
   }
 
   componentDidMount() {
     const webview = document.querySelector('webview');
     if (webview) {
-      webview.addEventListener('did-start-loading', () => this.setState({ loading: true }));
-      webview.addEventListener('did-stop-loading', () => this.setState({ loading: false }));
+      webview.addEventListener('did-start-loading', this.startLoad);
+      webview.addEventListener('did-stop-loading', this.stopLoad);
     } else {
       this.setState({ error: true }); // eslint-disable-line
+    }
+  }
+
+  // will show loading for landing page load and simplex checkout
+  // load. stop checking after that, since it'll flash the loading
+  // screen a few times during the simplex checkout process
+  startLoad() {
+    if (this.state.timesStoppedLoading < 2) {
+      this.setState({ loading: true, timesStoppedLoading: this.state.timesStoppedLoading += 1 });
+    }
+  }
+
+  stopLoad() {
+    if (this.state.loading) {
+      this.setState({ loading: false });
     }
   }
 
@@ -42,7 +59,7 @@ class SimplexPage extends React.PureComponent { // eslint-disable-line react/pre
             <StyledSpin tip="Loading..." size="large" />
         }
         <webview
-          style={loading ? { display: 'none' } : { width: '100%', height: '80vh' }}
+          style={loading ? { visibility: 'hidden' } : { width: '100%', height: '80vh' }}
           autosize="on"
           src={'https://simplex.dev.hubii.net/?crypto=ETH'}
         ></webview>
