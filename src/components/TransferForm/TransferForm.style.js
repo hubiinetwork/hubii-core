@@ -9,6 +9,24 @@ export const StyledSelect = styled(Select)`
   }
 `;
 
+export const TransferDescriptionWrapper = styled.div`
+  min-width: 34rem;
+  margin-bottom: 3rem;
+`;
+
+export const TransferFormWrapper = styled.div`
+  display: flex;
+  margin-right: 2rem;
+  margin-bottom: 3rem;
+  flex: 1;
+`;
+
+export const OuterWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+`;
+
 export const StyledButton = styled(Button)`
   margin-left: auto;
   border-width: 2px;

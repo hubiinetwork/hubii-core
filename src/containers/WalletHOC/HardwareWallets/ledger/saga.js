@@ -3,7 +3,6 @@ import { takeLatest, takeEvery, put, call, select, take, race, spawn } from 'red
 import { delay, eventChannel } from 'redux-saga';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 import { deriveAddresses, prependHexToAddress } from 'utils/wallet';
-import { notify } from 'containers/App/actions';
 import { requestHardwareWalletAPI } from 'utils/request';
 import {
   makeSelectLedgerNanoSInfo,
@@ -22,6 +21,8 @@ import {
   ledgerEthAppDisconnected,
   ledgerError,
   fetchedLedgerAddress,
+  ledgerConfirmTxOnDevice,
+  ledgerConfirmTxOnDeviceDone,
 } from '../../actions';
 
 
@@ -180,8 +181,8 @@ export function* signTxByLedger(walletDetails, rawTxHex) {
       'getaddress',
       { descriptor, path: walletDetails.derivationPath }
     );
-    yield put(notify('info', 'Verify transaction details on your Ledger'));
 
+    yield put(ledgerConfirmTxOnDevice());
     const signedTx = yield call(
       tryCreateEthTransportActivity,
       'signtx',
@@ -192,6 +193,8 @@ export function* signTxByLedger(walletDetails, rawTxHex) {
     const refinedError = ledgerError(e);
     yield put(refinedError);
     throw new Error(refinedError.error);
+  } finally {
+    yield put(ledgerConfirmTxOnDeviceDone());
   }
 }
 
