@@ -6,7 +6,6 @@ export const StyledButton = styled(Button)`
   height: 2.86rem;
   width: 11.57rem;
   margin-top: 4.93rem;
-  font-family: 'SF Text';
   border: 0.14rem solid ${({ theme }) => theme.palette.info3};
   border-radius: 0.29rem;
   background-color: ${({ disabled: white }) =>

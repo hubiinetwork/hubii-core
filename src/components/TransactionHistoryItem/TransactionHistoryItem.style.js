@@ -12,12 +12,10 @@ export const TransactionHistoryItemCard = styled.div`
 
 export const Received = styled.div`
   color: ${({ theme }) => theme.palette.info} !important;
-  font-family: 'SF Text';
 `;
 
 export const Sent = styled.div`
   color: ${({ theme }) => theme.palette.warning} !important;
-  font-family: 'SF Text';
 `;
 
 export const Image = styled.img`

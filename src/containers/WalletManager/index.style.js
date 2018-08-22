@@ -10,7 +10,6 @@ export const Wrapper = styled.div`
 
 export const Heading = styled.h2`
   display: flex;
-  font-family: "SF Text";
   font-weight: 500;
   margin: 0;
   color: ${({ theme }) => theme.palette.light};
