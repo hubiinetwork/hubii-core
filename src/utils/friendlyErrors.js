@@ -43,9 +43,7 @@ function ledgerErrorMsg(error) {
   if (error.message && error.message.includes('Condition of use not satisfied')) msg = cancelTxErrorMsg;
   if (error.message && error.message.includes('Ledger device: Invalid data received')) msg = contractDataErrorMsg;
   if (error.message && error.message.includes('Incorrect length')) msg = ethAppNotOpenErrorMsg;
-  if (error.name === 'TransportStatusError') msg = ethAppNotOpenErrorMsg;
-  if (error.name === 'TransportError') msg = browserSupportErrorMsg;
-  if (error.message === 'NoSupport') msg = noTransportErrorMsg;
+  if (error.message && error.message.includes('Invalid channel')) msg = browserSupportErrorMsg;
   if (error.message && error.message.includes('cannot open device with path')) msg = disconnectedErrorMsg;
   return msg;
 }

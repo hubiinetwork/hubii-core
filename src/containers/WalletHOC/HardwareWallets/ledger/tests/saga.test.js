@@ -166,7 +166,7 @@ describe('ledger saga', () => {
   it('should trigger ledger detected when ethereum app is close', () => {
     const storeState = {};
     const descriptor = 'test descriptor string';
-    const error = { name: 'TransportStatusError' };
+    const error = { message: 'Incorrect length' };
     return expectSaga(pollEthApp, { descriptor })
       .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
       .provide({
