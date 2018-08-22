@@ -59,7 +59,7 @@ class SimplexPage extends React.PureComponent { // eslint-disable-line react/pre
             <StyledSpin tip="Loading..." size="large" />
         }
         <webview
-          style={loading ? { display: 'none' } : { width: '100%', height: '80vh' }}
+          style={loading ? { visibility: 'hidden' } : { width: '100%', height: '80vh' }}
           autosize="on"
           src={'https://simplex.dev.hubii.net/?crypto=ETH'}
         ></webview>
