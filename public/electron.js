@@ -38,8 +38,8 @@ function createWindow() {
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
   const windowOptions = {
-    width: 1200,
-    height: 680,
+    width: 1250,
+    height: 780,
     show: false,
     icon: process.platform === 'linux' && path.join(__dirname, '../icon.png'),
     webPreferences: {
