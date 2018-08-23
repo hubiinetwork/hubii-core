@@ -1,5 +1,6 @@
 import 'whatwg-fetch';
 import jwt from 'jsonwebtoken';
+import { WALLET_API } from 'config/constants';
 
 // Requests a URL, returning a promise. By default uses striim endpoint
 export default function request(path, opts = {}, endpoint) {
@@ -8,7 +9,7 @@ export default function request(path, opts = {}, endpoint) {
     .then(parseJSON);
 }
 
-export function requestWalletAPI(path, opts = {}, endpoint = process.env.WALLET_API) {
+export function requestWalletAPI(path, opts = {}, endpoint = WALLET_API) {
   const options = opts;
   const token = jwt.sign({ exp: Math.floor((new Date().getTime() / 1000) + 10) }, '***REMOVED***');
   options.headers = {
