@@ -7,6 +7,7 @@ import {
   StyledSearch,
 } from './ContactHeader.style';
 import { TabPane } from '../ui/StriimTabs';
+import { SectionHeading } from '../ui/SectionHeading';
 
 /** *
  * The header of contact list component
@@ -32,7 +33,7 @@ export default class ContactHeader extends React.PureComponent {
     } = this.props;
     return (
       <StyledDiv>
-        {title}
+        <SectionHeading>{title}</SectionHeading>
         {titleTabs && (
           <StyledTabs
             defaultActiveKey={titleTabs[0].title}

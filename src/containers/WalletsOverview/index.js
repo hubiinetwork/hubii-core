@@ -20,7 +20,8 @@ import { SectionHeading } from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
 
-import { WalletCardsCol, Wrapper, WalletPlaceHolder } from './style';
+import PlaceholderText from 'components/ui/PlaceholderText';
+import { WalletCardsCol, Wrapper } from './style';
 
 export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -39,9 +40,9 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     const wallets = this.props.walletsWithInfo.toJS();
     if (wallets.length === 0) {
       return (
-        <WalletPlaceHolder>
+        <PlaceholderText>
           {"Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner"}
-        </WalletPlaceHolder>
+        </PlaceholderText>
       );
     }
     return wallets.map((wallet) => {

@@ -8,8 +8,3 @@ export const WalletCardsCol = styled(Col)`
 export const Wrapper = styled.div`
   margin: 0 2rem 2rem 2rem;
 `;
-
-export const WalletPlaceHolder = styled.div`
-  color: ${({ theme }) => theme.palette.secondary};
-  font-size: 1.25rem;
-`;

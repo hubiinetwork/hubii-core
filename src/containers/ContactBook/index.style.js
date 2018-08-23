@@ -1,40 +1,38 @@
 import styled from 'styled-components';
-import { media } from 'utils/style-utils';
 
 export const Wrapper = styled.div`
-  width: 100%;
-  padding-left: 2rem;
-  padding-top: 1rem;
-  background: ${({ theme }) => theme.palette.primary1};
   display: flex;
-  flex-direction: row;
-  ${
-    media.desktop`
-      flex-direction: column;
-    `
+  margin: 0 2rem 2rem 2rem;
+  background: ${({ theme }) => theme.palette.primary1};
+
+  @media (max-width: 70rem) {
+    flex-direction: column;
   }
 `;
 
-export const InnerWrapper1 = styled.div`
-  display: ${(props) => props.contactsPresent ? 'block' : 'none'};
+export const RecentContactsWrapper = styled.div`
+  display: ${(props) => props.contactsPresent ? 'flex' : 'none'};
+  flex-direction: column;
+  min-width: 35rem;
+  padding: 0 2rem 2rem 2rem;
+  flex: 1;
   color: white;
-  width: 40rem;
-`;
 
-export const InnerWrapper2 = styled.div`
-  color: white;
-  width: 40rem;
-  margin-left: 2rem;
-  ${
-    media.desktop`
-      margin-left: 0rem;
-      margin-top: 2.5rem;
-    `
+  @media (min-width: 70rem) {
+    border-left: solid 1px #43616F;
   }
-  margin-left: ${(props) => props.contactsPresent ? '2rem' : '0rem'};
+
+  @media (max-width: 70rem) {
+    margin-top: 2rem;
+    padding-left: 0;
+  }
 `;
 
-export const Border = styled.div`
-  border-right: solid 1px #43616F;
-  margin-top: ${(props) => props.contactsLength ? '1rem' : '2rem'};
+export const AllContactsWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  color: white;
+  padding: 0 2rem 0 0;
+  min-width: 35rem;
 `;

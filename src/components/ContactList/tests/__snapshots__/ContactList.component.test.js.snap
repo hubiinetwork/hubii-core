@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ContactList/> shallow mount should render <ContactList/> with data 1`] = `
+exports[`<ContactList/> shallow mount should render <ContactList/> when empty 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
@@ -17,8 +17,9 @@ ShallowWrapper {
             },
           ]
     }
+    empty={true}
     layout="horizontal"
-    message="You have not added any contacts."
+    message="Add a contact by clicking '+ Add a contact' in top right corner"
     onDelete={[Function]}
     onEdit={[Function]}
     size="small"
@@ -36,44 +37,13 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <ContactList.style__StyledList
-          dataSource={
-                    Array [
-                              Object {
-                                "address": "0x3123123",
-                                "name": "mike",
-                              },
-                              Object {
-                                "address": "0x123123123",
-                                "name": "joe",
-                              },
-                            ]
-          }
-          itemLayout="horizontal"
-          renderItem={[Function]}
-          size="small"
-/>,
-        <Modal.style
-          destroyOnClose={true}
-          footer={null}
-          maskClosable={true}
-          maskStyle={
-                    Object {
-                              "background": "rgba(232,237,239,.65)",
-                            }
-          }
-          onCancel={[Function]}
-          style={
-                    Object {
-                              "marginTop": "1.43rem",
-                            }
-          }
-          visible={false}
-          width="41.79rem"
->
-          <Form(EditContactModal)
-                    address=""
-                    contacts={
+        <PlaceholderText>
+          Add a contact by clicking '+ Add a contact' in top right corner
+</PlaceholderText>,
+        false,
+        <div>
+          <ContactList.style__StyledList
+                    dataSource={
                               Array [
                                         Object {
                                           "address": "0x3123123",
@@ -85,11 +55,48 @@ ShallowWrapper {
                                         },
                                       ]
                     }
-                    name=""
-                    onChange={[Function]}
-                    onEdit={[Function]}
+                    itemLayout="horizontal"
+                    renderItem={[Function]}
+                    size="small"
           />
-</Modal.style>,
+          <Modal.style
+                    destroyOnClose={true}
+                    footer={null}
+                    maskClosable={true}
+                    maskStyle={
+                              Object {
+                                        "background": "rgba(232,237,239,.65)",
+                                      }
+                    }
+                    onCancel={[Function]}
+                    style={
+                              Object {
+                                        "marginTop": "1.43rem",
+                                      }
+                    }
+                    visible={false}
+                    width="41.79rem"
+          >
+                    <Form(EditContactModal)
+                              address=""
+                              contacts={
+                                        Array [
+                                                  Object {
+                                                    "address": "0x3123123",
+                                                    "name": "mike",
+                                                  },
+                                                  Object {
+                                                    "address": "0x123123123",
+                                                    "name": "joe",
+                                                  },
+                                                ]
+                              }
+                              name=""
+                              onChange={[Function]}
+                              onEdit={[Function]}
+                    />
+          </Modal.style>
+</div>,
       ],
     },
     "ref": null,
@@ -99,186 +106,21 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "dataSource": Array [
-            Object {
-              "address": "0x3123123",
-              "name": "mike",
-            },
-            Object {
-              "address": "0x123123123",
-              "name": "joe",
-            },
-          ],
-          "itemLayout": "horizontal",
-          "renderItem": [Function],
-          "size": "small",
+          "children": "Add a contact by clicking '+ Add a contact' in top right corner",
         },
         "ref": null,
-        "rendered": null,
+        "rendered": "Add a contact by clicking '+ Add a contact' in top right corner",
         "type": [Function],
       },
+      false,
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "host",
         "props": Object {
-          "children": <Form(EditContactModal)
-            address=""
-            contacts={
-                        Array [
-                                    Object {
-                                      "address": "0x3123123",
-                                      "name": "mike",
-                                    },
-                                    Object {
-                                      "address": "0x123123123",
-                                      "name": "joe",
-                                    },
-                                  ]
-            }
-            name=""
-            onChange={[Function]}
-            onEdit={[Function]}
-/>,
-          "destroyOnClose": true,
-          "footer": null,
-          "maskClosable": true,
-          "maskStyle": Object {
-            "background": "rgba(232,237,239,.65)",
-          },
-          "onCancel": [Function],
-          "style": Object {
-            "marginTop": "1.43rem",
-          },
-          "visible": false,
-          "width": "41.79rem",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "address": "",
-            "contacts": Array [
-              Object {
-                "address": "0x3123123",
-                "name": "mike",
-              },
-              Object {
-                "address": "0x123123123",
-                "name": "joe",
-              },
-            ],
-            "name": "",
-            "onChange": [Function],
-            "onEdit": [Function],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-    ],
-    "type": "div",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <ContactList.style__StyledList
-            dataSource={
-                        Array [
-                                    Object {
-                                      "address": "0x3123123",
-                                      "name": "mike",
-                                    },
-                                    Object {
-                                      "address": "0x123123123",
-                                      "name": "joe",
-                                    },
-                                  ]
-            }
-            itemLayout="horizontal"
-            renderItem={[Function]}
-            size="small"
-/>,
-          <Modal.style
-            destroyOnClose={true}
-            footer={null}
-            maskClosable={true}
-            maskStyle={
-                        Object {
-                                    "background": "rgba(232,237,239,.65)",
-                                  }
-            }
-            onCancel={[Function]}
-            style={
-                        Object {
-                                    "marginTop": "1.43rem",
-                                  }
-            }
-            visible={false}
-            width="41.79rem"
->
-            <Form(EditContactModal)
-                        address=""
-                        contacts={
-                                    Array [
-                                                Object {
-                                                  "address": "0x3123123",
-                                                  "name": "mike",
-                                                },
-                                                Object {
-                                                  "address": "0x123123123",
-                                                  "name": "joe",
-                                                },
-                                              ]
-                        }
-                        name=""
-                        onChange={[Function]}
-                        onEdit={[Function]}
-            />
-</Modal.style>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "dataSource": Array [
-              Object {
-                "address": "0x3123123",
-                "name": "mike",
-              },
-              Object {
-                "address": "0x123123123",
-                "name": "joe",
-              },
-            ],
-            "itemLayout": "horizontal",
-            "renderItem": [Function],
-            "size": "small",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <Form(EditContactModal)
-              address=""
-              contacts={
+          "children": Array [
+            <ContactList.style__StyledList
+              dataSource={
                             Array [
                                           Object {
                                             "address": "0x3123123",
@@ -290,31 +132,57 @@ ShallowWrapper {
                                           },
                                         ]
               }
-              name=""
-              onChange={[Function]}
-              onEdit={[Function]}
+              itemLayout="horizontal"
+              renderItem={[Function]}
+              size="small"
 />,
-            "destroyOnClose": true,
-            "footer": null,
-            "maskClosable": true,
-            "maskStyle": Object {
-              "background": "rgba(232,237,239,.65)",
-            },
-            "onCancel": [Function],
-            "style": Object {
-              "marginTop": "1.43rem",
-            },
-            "visible": false,
-            "width": "41.79rem",
-          },
-          "ref": null,
-          "rendered": Object {
+            <Modal.style
+              destroyOnClose={true}
+              footer={null}
+              maskClosable={true}
+              maskStyle={
+                            Object {
+                                          "background": "rgba(232,237,239,.65)",
+                                        }
+              }
+              onCancel={[Function]}
+              style={
+                            Object {
+                                          "marginTop": "1.43rem",
+                                        }
+              }
+              visible={false}
+              width="41.79rem"
+>
+              <Form(EditContactModal)
+                            address=""
+                            contacts={
+                                          Array [
+                                                        Object {
+                                                          "address": "0x3123123",
+                                                          "name": "mike",
+                                                        },
+                                                        Object {
+                                                          "address": "0x123123123",
+                                                          "name": "joe",
+                                                        },
+                                                      ]
+                            }
+                            name=""
+                            onChange={[Function]}
+                            onEdit={[Function]}
+              />
+</Modal.style>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
             "instance": null,
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "address": "",
-              "contacts": Array [
+              "dataSource": Array [
                 Object {
                   "address": "0x3123123",
                   "name": "mike",
@@ -324,15 +192,813 @@ ShallowWrapper {
                   "name": "joe",
                 },
               ],
-              "name": "",
-              "onChange": [Function],
-              "onEdit": [Function],
+              "itemLayout": "horizontal",
+              "renderItem": [Function],
+              "size": "small",
             },
             "ref": null,
             "rendered": null,
             "type": [Function],
           },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <Form(EditContactModal)
+                address=""
+                contacts={
+                                Array [
+                                                Object {
+                                                  "address": "0x3123123",
+                                                  "name": "mike",
+                                                },
+                                                Object {
+                                                  "address": "0x123123123",
+                                                  "name": "joe",
+                                                },
+                                              ]
+                }
+                name=""
+                onChange={[Function]}
+                onEdit={[Function]}
+/>,
+              "destroyOnClose": true,
+              "footer": null,
+              "maskClosable": true,
+              "maskStyle": Object {
+                "background": "rgba(232,237,239,.65)",
+              },
+              "onCancel": [Function],
+              "style": Object {
+                "marginTop": "1.43rem",
+              },
+              "visible": false,
+              "width": "41.79rem",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "address": "",
+                "contacts": Array [
+                  Object {
+                    "address": "0x3123123",
+                    "name": "mike",
+                  },
+                  Object {
+                    "address": "0x123123123",
+                    "name": "joe",
+                  },
+                ],
+                "name": "",
+                "onChange": [Function],
+                "onEdit": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <PlaceholderText>
+            Add a contact by clicking '+ Add a contact' in top right corner
+</PlaceholderText>,
+          false,
+          <div>
+            <ContactList.style__StyledList
+                        dataSource={
+                                    Array [
+                                                Object {
+                                                  "address": "0x3123123",
+                                                  "name": "mike",
+                                                },
+                                                Object {
+                                                  "address": "0x123123123",
+                                                  "name": "joe",
+                                                },
+                                              ]
+                        }
+                        itemLayout="horizontal"
+                        renderItem={[Function]}
+                        size="small"
+            />
+            <Modal.style
+                        destroyOnClose={true}
+                        footer={null}
+                        maskClosable={true}
+                        maskStyle={
+                                    Object {
+                                                "background": "rgba(232,237,239,.65)",
+                                              }
+                        }
+                        onCancel={[Function]}
+                        style={
+                                    Object {
+                                                "marginTop": "1.43rem",
+                                              }
+                        }
+                        visible={false}
+                        width="41.79rem"
+            >
+                        <Form(EditContactModal)
+                                    address=""
+                                    contacts={
+                                                Array [
+                                                            Object {
+                                                              "address": "0x3123123",
+                                                              "name": "mike",
+                                                            },
+                                                            Object {
+                                                              "address": "0x123123123",
+                                                              "name": "joe",
+                                                            },
+                                                          ]
+                                    }
+                                    name=""
+                                    onChange={[Function]}
+                                    onEdit={[Function]}
+                        />
+            </Modal.style>
+</div>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Add a contact by clicking '+ Add a contact' in top right corner",
+          },
+          "ref": null,
+          "rendered": "Add a contact by clicking '+ Add a contact' in top right corner",
           "type": [Function],
+        },
+        false,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <ContactList.style__StyledList
+                dataSource={
+                                Array [
+                                                Object {
+                                                  "address": "0x3123123",
+                                                  "name": "mike",
+                                                },
+                                                Object {
+                                                  "address": "0x123123123",
+                                                  "name": "joe",
+                                                },
+                                              ]
+                }
+                itemLayout="horizontal"
+                renderItem={[Function]}
+                size="small"
+/>,
+              <Modal.style
+                destroyOnClose={true}
+                footer={null}
+                maskClosable={true}
+                maskStyle={
+                                Object {
+                                                "background": "rgba(232,237,239,.65)",
+                                              }
+                }
+                onCancel={[Function]}
+                style={
+                                Object {
+                                                "marginTop": "1.43rem",
+                                              }
+                }
+                visible={false}
+                width="41.79rem"
+>
+                <Form(EditContactModal)
+                                address=""
+                                contacts={
+                                                Array [
+                                                                Object {
+                                                                  "address": "0x3123123",
+                                                                  "name": "mike",
+                                                                },
+                                                                Object {
+                                                                  "address": "0x123123123",
+                                                                  "name": "joe",
+                                                                },
+                                                              ]
+                                }
+                                name=""
+                                onChange={[Function]}
+                                onEdit={[Function]}
+                />
+</Modal.style>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "dataSource": Array [
+                  Object {
+                    "address": "0x3123123",
+                    "name": "mike",
+                  },
+                  Object {
+                    "address": "0x123123123",
+                    "name": "joe",
+                  },
+                ],
+                "itemLayout": "horizontal",
+                "renderItem": [Function],
+                "size": "small",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <Form(EditContactModal)
+                  address=""
+                  contacts={
+                                    Array [
+                                                      Object {
+                                                        "address": "0x3123123",
+                                                        "name": "mike",
+                                                      },
+                                                      Object {
+                                                        "address": "0x123123123",
+                                                        "name": "joe",
+                                                      },
+                                                    ]
+                  }
+                  name=""
+                  onChange={[Function]}
+                  onEdit={[Function]}
+/>,
+                "destroyOnClose": true,
+                "footer": null,
+                "maskClosable": true,
+                "maskStyle": Object {
+                  "background": "rgba(232,237,239,.65)",
+                },
+                "onCancel": [Function],
+                "style": Object {
+                  "marginTop": "1.43rem",
+                },
+                "visible": false,
+                "width": "41.79rem",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "address": "",
+                  "contacts": Array [
+                    Object {
+                      "address": "0x3123123",
+                      "name": "mike",
+                    },
+                    Object {
+                      "address": "0x123123123",
+                      "name": "joe",
+                    },
+                  ],
+                  "name": "",
+                  "onChange": [Function],
+                  "onEdit": [Function],
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<ContactList/> shallow mount should render <ContactList/> with data 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ContactList
+    data={
+        Array [
+            Object {
+              "address": "0x3123123",
+              "name": "mike",
+            },
+            Object {
+              "address": "0x123123123",
+              "name": "joe",
+            },
+          ]
+    }
+    empty={false}
+    layout="horizontal"
+    message="Add a contact by clicking '+ Add a contact' in top right corner"
+    onDelete={[Function]}
+    onEdit={[Function]}
+    size="small"
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        false,
+        false,
+        <div>
+          <ContactList.style__StyledList
+                    dataSource={
+                              Array [
+                                        Object {
+                                          "address": "0x3123123",
+                                          "name": "mike",
+                                        },
+                                        Object {
+                                          "address": "0x123123123",
+                                          "name": "joe",
+                                        },
+                                      ]
+                    }
+                    itemLayout="horizontal"
+                    renderItem={[Function]}
+                    size="small"
+          />
+          <Modal.style
+                    destroyOnClose={true}
+                    footer={null}
+                    maskClosable={true}
+                    maskStyle={
+                              Object {
+                                        "background": "rgba(232,237,239,.65)",
+                                      }
+                    }
+                    onCancel={[Function]}
+                    style={
+                              Object {
+                                        "marginTop": "1.43rem",
+                                      }
+                    }
+                    visible={false}
+                    width="41.79rem"
+          >
+                    <Form(EditContactModal)
+                              address=""
+                              contacts={
+                                        Array [
+                                                  Object {
+                                                    "address": "0x3123123",
+                                                    "name": "mike",
+                                                  },
+                                                  Object {
+                                                    "address": "0x123123123",
+                                                    "name": "joe",
+                                                  },
+                                                ]
+                              }
+                              name=""
+                              onChange={[Function]}
+                              onEdit={[Function]}
+                    />
+          </Modal.style>
+</div>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      false,
+      false,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <ContactList.style__StyledList
+              dataSource={
+                            Array [
+                                          Object {
+                                            "address": "0x3123123",
+                                            "name": "mike",
+                                          },
+                                          Object {
+                                            "address": "0x123123123",
+                                            "name": "joe",
+                                          },
+                                        ]
+              }
+              itemLayout="horizontal"
+              renderItem={[Function]}
+              size="small"
+/>,
+            <Modal.style
+              destroyOnClose={true}
+              footer={null}
+              maskClosable={true}
+              maskStyle={
+                            Object {
+                                          "background": "rgba(232,237,239,.65)",
+                                        }
+              }
+              onCancel={[Function]}
+              style={
+                            Object {
+                                          "marginTop": "1.43rem",
+                                        }
+              }
+              visible={false}
+              width="41.79rem"
+>
+              <Form(EditContactModal)
+                            address=""
+                            contacts={
+                                          Array [
+                                                        Object {
+                                                          "address": "0x3123123",
+                                                          "name": "mike",
+                                                        },
+                                                        Object {
+                                                          "address": "0x123123123",
+                                                          "name": "joe",
+                                                        },
+                                                      ]
+                            }
+                            name=""
+                            onChange={[Function]}
+                            onEdit={[Function]}
+              />
+</Modal.style>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "dataSource": Array [
+                Object {
+                  "address": "0x3123123",
+                  "name": "mike",
+                },
+                Object {
+                  "address": "0x123123123",
+                  "name": "joe",
+                },
+              ],
+              "itemLayout": "horizontal",
+              "renderItem": [Function],
+              "size": "small",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <Form(EditContactModal)
+                address=""
+                contacts={
+                                Array [
+                                                Object {
+                                                  "address": "0x3123123",
+                                                  "name": "mike",
+                                                },
+                                                Object {
+                                                  "address": "0x123123123",
+                                                  "name": "joe",
+                                                },
+                                              ]
+                }
+                name=""
+                onChange={[Function]}
+                onEdit={[Function]}
+/>,
+              "destroyOnClose": true,
+              "footer": null,
+              "maskClosable": true,
+              "maskStyle": Object {
+                "background": "rgba(232,237,239,.65)",
+              },
+              "onCancel": [Function],
+              "style": Object {
+                "marginTop": "1.43rem",
+              },
+              "visible": false,
+              "width": "41.79rem",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "address": "",
+                "contacts": Array [
+                  Object {
+                    "address": "0x3123123",
+                    "name": "mike",
+                  },
+                  Object {
+                    "address": "0x123123123",
+                    "name": "joe",
+                  },
+                ],
+                "name": "",
+                "onChange": [Function],
+                "onEdit": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          false,
+          false,
+          <div>
+            <ContactList.style__StyledList
+                        dataSource={
+                                    Array [
+                                                Object {
+                                                  "address": "0x3123123",
+                                                  "name": "mike",
+                                                },
+                                                Object {
+                                                  "address": "0x123123123",
+                                                  "name": "joe",
+                                                },
+                                              ]
+                        }
+                        itemLayout="horizontal"
+                        renderItem={[Function]}
+                        size="small"
+            />
+            <Modal.style
+                        destroyOnClose={true}
+                        footer={null}
+                        maskClosable={true}
+                        maskStyle={
+                                    Object {
+                                                "background": "rgba(232,237,239,.65)",
+                                              }
+                        }
+                        onCancel={[Function]}
+                        style={
+                                    Object {
+                                                "marginTop": "1.43rem",
+                                              }
+                        }
+                        visible={false}
+                        width="41.79rem"
+            >
+                        <Form(EditContactModal)
+                                    address=""
+                                    contacts={
+                                                Array [
+                                                            Object {
+                                                              "address": "0x3123123",
+                                                              "name": "mike",
+                                                            },
+                                                            Object {
+                                                              "address": "0x123123123",
+                                                              "name": "joe",
+                                                            },
+                                                          ]
+                                    }
+                                    name=""
+                                    onChange={[Function]}
+                                    onEdit={[Function]}
+                        />
+            </Modal.style>
+</div>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        false,
+        false,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <ContactList.style__StyledList
+                dataSource={
+                                Array [
+                                                Object {
+                                                  "address": "0x3123123",
+                                                  "name": "mike",
+                                                },
+                                                Object {
+                                                  "address": "0x123123123",
+                                                  "name": "joe",
+                                                },
+                                              ]
+                }
+                itemLayout="horizontal"
+                renderItem={[Function]}
+                size="small"
+/>,
+              <Modal.style
+                destroyOnClose={true}
+                footer={null}
+                maskClosable={true}
+                maskStyle={
+                                Object {
+                                                "background": "rgba(232,237,239,.65)",
+                                              }
+                }
+                onCancel={[Function]}
+                style={
+                                Object {
+                                                "marginTop": "1.43rem",
+                                              }
+                }
+                visible={false}
+                width="41.79rem"
+>
+                <Form(EditContactModal)
+                                address=""
+                                contacts={
+                                                Array [
+                                                                Object {
+                                                                  "address": "0x3123123",
+                                                                  "name": "mike",
+                                                                },
+                                                                Object {
+                                                                  "address": "0x123123123",
+                                                                  "name": "joe",
+                                                                },
+                                                              ]
+                                }
+                                name=""
+                                onChange={[Function]}
+                                onEdit={[Function]}
+                />
+</Modal.style>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "dataSource": Array [
+                  Object {
+                    "address": "0x3123123",
+                    "name": "mike",
+                  },
+                  Object {
+                    "address": "0x123123123",
+                    "name": "joe",
+                  },
+                ],
+                "itemLayout": "horizontal",
+                "renderItem": [Function],
+                "size": "small",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <Form(EditContactModal)
+                  address=""
+                  contacts={
+                                    Array [
+                                                      Object {
+                                                        "address": "0x3123123",
+                                                        "name": "mike",
+                                                      },
+                                                      Object {
+                                                        "address": "0x123123123",
+                                                        "name": "joe",
+                                                      },
+                                                    ]
+                  }
+                  name=""
+                  onChange={[Function]}
+                  onEdit={[Function]}
+/>,
+                "destroyOnClose": true,
+                "footer": null,
+                "maskClosable": true,
+                "maskStyle": Object {
+                  "background": "rgba(232,237,239,.65)",
+                },
+                "onCancel": [Function],
+                "style": Object {
+                  "marginTop": "1.43rem",
+                },
+                "visible": false,
+                "width": "41.79rem",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "address": "",
+                  "contacts": Array [
+                    Object {
+                      "address": "0x3123123",
+                      "name": "mike",
+                    },
+                    Object {
+                      "address": "0x123123123",
+                      "name": "joe",
+                    },
+                  ],
+                  "name": "",
+                  "onChange": [Function],
+                  "onEdit": [Function],
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": "div",
         },
       ],
       "type": "div",
@@ -354,8 +1020,9 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ContactList
     data={Array []}
+    empty={false}
     layout="horizontal"
-    message="You have not added any contacts."
+    message="Add a contact by clicking '+ Add a contact' in top right corner"
     onDelete={[Function]}
     onEdit={[Function]}
     size="small"
@@ -370,25 +1037,560 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "host",
     "props": Object {
-      "children": "You have not added any contacts.",
+      "children": Array [
+        false,
+        <PlaceholderText>
+          Filter returned no results
+</PlaceholderText>,
+        false,
+      ],
     },
     "ref": null,
-    "rendered": "You have not added any contacts.",
-    "type": [Function],
+    "rendered": Array [
+      false,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Filter returned no results",
+        },
+        "ref": null,
+        "rendered": "Filter returned no results",
+        "type": [Function],
+      },
+      false,
+    ],
+    "type": "div",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "host",
       "props": Object {
-        "children": "You have not added any contacts.",
+        "children": Array [
+          false,
+          <PlaceholderText>
+            Filter returned no results
+</PlaceholderText>,
+          false,
+        ],
       },
       "ref": null,
-      "rendered": "You have not added any contacts.",
-      "type": [Function],
+      "rendered": Array [
+        false,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Filter returned no results",
+          },
+          "ref": null,
+          "rendered": "Filter returned no results",
+          "type": [Function],
+        },
+        false,
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<ContactList/> shallow mount should render with custom message 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ContactList
+    data={
+        Array [
+            Object {
+              "address": "0x3123123",
+              "name": "mike",
+            },
+            Object {
+              "address": "0x123123123",
+              "name": "joe",
+            },
+          ]
+    }
+    empty={false}
+    layout="horizontal"
+    message="custom message"
+    onDelete={[Function]}
+    onEdit={[Function]}
+    size="small"
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        false,
+        false,
+        <div>
+          <ContactList.style__StyledList
+                    dataSource={
+                              Array [
+                                        Object {
+                                          "address": "0x3123123",
+                                          "name": "mike",
+                                        },
+                                        Object {
+                                          "address": "0x123123123",
+                                          "name": "joe",
+                                        },
+                                      ]
+                    }
+                    itemLayout="horizontal"
+                    renderItem={[Function]}
+                    size="small"
+          />
+          <Modal.style
+                    destroyOnClose={true}
+                    footer={null}
+                    maskClosable={true}
+                    maskStyle={
+                              Object {
+                                        "background": "rgba(232,237,239,.65)",
+                                      }
+                    }
+                    onCancel={[Function]}
+                    style={
+                              Object {
+                                        "marginTop": "1.43rem",
+                                      }
+                    }
+                    visible={false}
+                    width="41.79rem"
+          >
+                    <Form(EditContactModal)
+                              address=""
+                              contacts={
+                                        Array [
+                                                  Object {
+                                                    "address": "0x3123123",
+                                                    "name": "mike",
+                                                  },
+                                                  Object {
+                                                    "address": "0x123123123",
+                                                    "name": "joe",
+                                                  },
+                                                ]
+                              }
+                              name=""
+                              onChange={[Function]}
+                              onEdit={[Function]}
+                    />
+          </Modal.style>
+</div>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      false,
+      false,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <ContactList.style__StyledList
+              dataSource={
+                            Array [
+                                          Object {
+                                            "address": "0x3123123",
+                                            "name": "mike",
+                                          },
+                                          Object {
+                                            "address": "0x123123123",
+                                            "name": "joe",
+                                          },
+                                        ]
+              }
+              itemLayout="horizontal"
+              renderItem={[Function]}
+              size="small"
+/>,
+            <Modal.style
+              destroyOnClose={true}
+              footer={null}
+              maskClosable={true}
+              maskStyle={
+                            Object {
+                                          "background": "rgba(232,237,239,.65)",
+                                        }
+              }
+              onCancel={[Function]}
+              style={
+                            Object {
+                                          "marginTop": "1.43rem",
+                                        }
+              }
+              visible={false}
+              width="41.79rem"
+>
+              <Form(EditContactModal)
+                            address=""
+                            contacts={
+                                          Array [
+                                                        Object {
+                                                          "address": "0x3123123",
+                                                          "name": "mike",
+                                                        },
+                                                        Object {
+                                                          "address": "0x123123123",
+                                                          "name": "joe",
+                                                        },
+                                                      ]
+                            }
+                            name=""
+                            onChange={[Function]}
+                            onEdit={[Function]}
+              />
+</Modal.style>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "dataSource": Array [
+                Object {
+                  "address": "0x3123123",
+                  "name": "mike",
+                },
+                Object {
+                  "address": "0x123123123",
+                  "name": "joe",
+                },
+              ],
+              "itemLayout": "horizontal",
+              "renderItem": [Function],
+              "size": "small",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <Form(EditContactModal)
+                address=""
+                contacts={
+                                Array [
+                                                Object {
+                                                  "address": "0x3123123",
+                                                  "name": "mike",
+                                                },
+                                                Object {
+                                                  "address": "0x123123123",
+                                                  "name": "joe",
+                                                },
+                                              ]
+                }
+                name=""
+                onChange={[Function]}
+                onEdit={[Function]}
+/>,
+              "destroyOnClose": true,
+              "footer": null,
+              "maskClosable": true,
+              "maskStyle": Object {
+                "background": "rgba(232,237,239,.65)",
+              },
+              "onCancel": [Function],
+              "style": Object {
+                "marginTop": "1.43rem",
+              },
+              "visible": false,
+              "width": "41.79rem",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "address": "",
+                "contacts": Array [
+                  Object {
+                    "address": "0x3123123",
+                    "name": "mike",
+                  },
+                  Object {
+                    "address": "0x123123123",
+                    "name": "joe",
+                  },
+                ],
+                "name": "",
+                "onChange": [Function],
+                "onEdit": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          false,
+          false,
+          <div>
+            <ContactList.style__StyledList
+                        dataSource={
+                                    Array [
+                                                Object {
+                                                  "address": "0x3123123",
+                                                  "name": "mike",
+                                                },
+                                                Object {
+                                                  "address": "0x123123123",
+                                                  "name": "joe",
+                                                },
+                                              ]
+                        }
+                        itemLayout="horizontal"
+                        renderItem={[Function]}
+                        size="small"
+            />
+            <Modal.style
+                        destroyOnClose={true}
+                        footer={null}
+                        maskClosable={true}
+                        maskStyle={
+                                    Object {
+                                                "background": "rgba(232,237,239,.65)",
+                                              }
+                        }
+                        onCancel={[Function]}
+                        style={
+                                    Object {
+                                                "marginTop": "1.43rem",
+                                              }
+                        }
+                        visible={false}
+                        width="41.79rem"
+            >
+                        <Form(EditContactModal)
+                                    address=""
+                                    contacts={
+                                                Array [
+                                                            Object {
+                                                              "address": "0x3123123",
+                                                              "name": "mike",
+                                                            },
+                                                            Object {
+                                                              "address": "0x123123123",
+                                                              "name": "joe",
+                                                            },
+                                                          ]
+                                    }
+                                    name=""
+                                    onChange={[Function]}
+                                    onEdit={[Function]}
+                        />
+            </Modal.style>
+</div>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        false,
+        false,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <ContactList.style__StyledList
+                dataSource={
+                                Array [
+                                                Object {
+                                                  "address": "0x3123123",
+                                                  "name": "mike",
+                                                },
+                                                Object {
+                                                  "address": "0x123123123",
+                                                  "name": "joe",
+                                                },
+                                              ]
+                }
+                itemLayout="horizontal"
+                renderItem={[Function]}
+                size="small"
+/>,
+              <Modal.style
+                destroyOnClose={true}
+                footer={null}
+                maskClosable={true}
+                maskStyle={
+                                Object {
+                                                "background": "rgba(232,237,239,.65)",
+                                              }
+                }
+                onCancel={[Function]}
+                style={
+                                Object {
+                                                "marginTop": "1.43rem",
+                                              }
+                }
+                visible={false}
+                width="41.79rem"
+>
+                <Form(EditContactModal)
+                                address=""
+                                contacts={
+                                                Array [
+                                                                Object {
+                                                                  "address": "0x3123123",
+                                                                  "name": "mike",
+                                                                },
+                                                                Object {
+                                                                  "address": "0x123123123",
+                                                                  "name": "joe",
+                                                                },
+                                                              ]
+                                }
+                                name=""
+                                onChange={[Function]}
+                                onEdit={[Function]}
+                />
+</Modal.style>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "dataSource": Array [
+                  Object {
+                    "address": "0x3123123",
+                    "name": "mike",
+                  },
+                  Object {
+                    "address": "0x123123123",
+                    "name": "joe",
+                  },
+                ],
+                "itemLayout": "horizontal",
+                "renderItem": [Function],
+                "size": "small",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <Form(EditContactModal)
+                  address=""
+                  contacts={
+                                    Array [
+                                                      Object {
+                                                        "address": "0x3123123",
+                                                        "name": "mike",
+                                                      },
+                                                      Object {
+                                                        "address": "0x123123123",
+                                                        "name": "joe",
+                                                      },
+                                                    ]
+                  }
+                  name=""
+                  onChange={[Function]}
+                  onEdit={[Function]}
+/>,
+                "destroyOnClose": true,
+                "footer": null,
+                "maskClosable": true,
+                "maskStyle": Object {
+                  "background": "rgba(232,237,239,.65)",
+                },
+                "onCancel": [Function],
+                "style": Object {
+                  "marginTop": "1.43rem",
+                },
+                "visible": false,
+                "width": "41.79rem",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "address": "",
+                  "contacts": Array [
+                    Object {
+                      "address": "0x3123123",
+                      "name": "mike",
+                    },
+                    Object {
+                      "address": "0x123123123",
+                      "name": "joe",
+                    },
+                  ],
+                  "name": "",
+                  "onChange": [Function],
+                  "onEdit": [Function],
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
     },
   ],
   Symbol(enzyme.__options__): Object {
