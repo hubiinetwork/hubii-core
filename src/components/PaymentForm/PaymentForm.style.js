@@ -37,7 +37,7 @@ export const Conversion = styled.div`
   color: ${({ theme }) => theme.palette.secondary6};
   text-align: center;
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.43rem;
   margin-bottom: -0.86rem;
 `;
@@ -58,14 +58,14 @@ export const HeadingDiv = styled.div`
   color: ${({ theme }) => theme.palette.light};
   display: flex;
   font-size: 1.14rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.36rem;
   justify-content: center;
 `;
 export const StyledLabel = styled(ModalFormLabel)`
   color: ${({ theme }) => theme.palette.secondary};
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
 `;
 export const StyledInput = styled(ModalFormInput)`

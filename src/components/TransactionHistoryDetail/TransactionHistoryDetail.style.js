@@ -4,14 +4,12 @@ const Panel = Collapse.Panel;
 
 export const TypeText = styled.div`
   color: ${({ theme }) => theme.palette.light};
-  font-family: 'SF Text';
   margin-right: 0.29rem;
   font-size: 1rem;
 `;
 
 export const TransactionStatus = styled.span`
   color: ${({ theme }) => theme.palette.light};
-  font-family: 'SF Text';
   font-size: 0.86rem;
 `;
 
@@ -27,7 +25,6 @@ export const FiatValue = styled.div`
   color: ${({ theme }) => theme.palette.secondary1};
   font-size: 0.86rem;
   margin-left: 0.5rem;
-  font-family: 'SF Text';
 `;
 
 export const Left = styled.div`
@@ -39,12 +36,10 @@ export const Left = styled.div`
 export const GreenTextWrapper = styled.span`
   word-break: break-all;
   color: ${({ theme }) => theme.palette.info};
-  font-family: 'SF Text';
 `;
 
 export const TransactionId = styled.a`
   color: ${({ theme }) => theme.palette.secondary};
-  font-family: 'SF Text';
   font-size: 0.86rem;
   word-break: break-all;
   &:active {
@@ -102,7 +97,6 @@ export const HashText = styled.div`
 
 export const Amount = styled.span`
   font-size: 14px;
-  font-family: 'SF Text';
   word-break: break-all;
   color: ${({ theme }) => theme.palette.success};
 `;
@@ -111,7 +105,6 @@ export const TransactionHistoryTime = styled.span`
   color: ${({ theme }) => theme.palette.secondary1};
   font-size: 12px;
   margin-left: 1rem;
-  font-family: 'SF Text';
 `;
 
 export const DetailsWrapper = styled.div`

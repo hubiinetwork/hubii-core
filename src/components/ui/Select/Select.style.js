@@ -5,7 +5,6 @@ export const Option = Select.Option;
 export const OptGroup = Select.OptGroup;
 
 export default styled(Select)`
-  font-family: 'SF Text';
   background-color: transparent;
   border: none;
   border-radius: 0rem;
