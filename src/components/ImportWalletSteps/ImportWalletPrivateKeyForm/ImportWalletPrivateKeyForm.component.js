@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
 import { handleFinish, compareToFirstPassword } from 'utils/forms';
 import { isValidPrivateKey } from 'utils/wallet';
+import { getAbsolutePath } from 'utils/electron';
 import {
   WidthEighty,
   StyledModalFormLabel,
@@ -12,6 +13,7 @@ import {
   StyledButton,
   StyledSpan,
   StyledSpin,
+  FinalHeader,
 } from '../ImportWalletForm.style';
 
 class ImportWalletPrivateKeyForm extends React.Component {
@@ -57,13 +59,17 @@ class ImportWalletPrivateKeyForm extends React.Component {
           onSubmit={(e) => handleFinish(e, form, handleNext)}
           layout="vertical"
           style={{
-            marginTop: '5rem',
+            marginTop: '2rem',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
           <WidthEighty>
+            <FinalHeader>
+              <p>Importing from a</p>
+              <img src={getAbsolutePath('public/images/private-key.png')} alt="import method icon" />
+            </FinalHeader>
             <ModalFormItem
               label={
                 <StyledModalFormLabel>

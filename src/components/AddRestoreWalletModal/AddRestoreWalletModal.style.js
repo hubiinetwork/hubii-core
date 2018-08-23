@@ -3,7 +3,8 @@ import { Icon } from 'antd';
 import Button from '../ui/Button';
 
 export const TitleDiv = styled.div`
-  font-size: 1.14rem;
+  font-size: 1.6rem;
+  margin: 0 2rem;
   text-align: center;
   color: ${({ theme }) => theme.palette.light};
   font-weight: 400;

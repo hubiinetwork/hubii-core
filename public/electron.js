@@ -106,11 +106,24 @@ function setupAutoUpdater() {
   autoUpdater.checkForUpdatesAndNotify();
 }
 
-app.on('ready', () => {
-  createWindow();
-  setupAutoUpdater();
-  setupDevToolsShortcut();
+const shouldQuit = app.makeSingleInstance(() => {
+  // Someone tried to run a second instance, we should focus our window.
+  if (mainWindow) {
+    if (mainWindow.isMinimized()) mainWindow.restore();
+    mainWindow.focus();
+  }
 });
+
+if (shouldQuit) {
+  app.quit();
+} else {
+  app.on('ready', () => {
+    createWindow();
+    setupAutoUpdater();
+    setupDevToolsShortcut();
+  });
+}
+
 
 app.on('activate', () => {
   if (mainWindow === null) {
