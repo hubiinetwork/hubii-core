@@ -31,4 +31,13 @@ describe('<Transaction />', () => {
       />);
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should render contract creation events correctly', () => {
+    const wrapper = shallow(
+      <Transaction
+        {...props}
+        counterpartyAddress=""
+      />);
+    expect(wrapper).toMatchSnapshot();
+  });
 });
