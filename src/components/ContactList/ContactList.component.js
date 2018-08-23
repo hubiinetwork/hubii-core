@@ -18,8 +18,8 @@ export default class ContactList extends React.PureComponent {
     super(props);
     this.state = {
       modalVisibility: false,
-      name: '',
-      address: '',
+      oldName: '',
+      oldAddress: '',
       modalType: null,
     };
     this.showNotification = this.showNotification.bind(this);
@@ -45,8 +45,8 @@ export default class ContactList extends React.PureComponent {
   showModal(item, modalType) {
     this.setState({
       modalVisibility: true,
-      name: item.name,
-      address: item.address,
+      oldName: item.name,
+      oldAddress: item.address,
       modalType,
     });
   }
@@ -58,27 +58,27 @@ export default class ContactList extends React.PureComponent {
   }
 
   handleDelete() {
-    const { name, address } = this.state;
+    const { oldName, oldAddress } = this.state;
     this.setState({ modalVisibility: false });
-    this.props.onDelete({ name, address });
+    this.props.onDelete({ name: oldName, address: oldAddress });
   }
 
-  handleEdit(oldContact) {
+  handleEdit(newContact) {
     const { onEdit } = this.props;
-    const { name, address } = this.state;
+    const { oldAddress, oldName } = this.state;
     this.setState({ modalVisibility: false });
-    onEdit({ name, address }, oldContact);
+    onEdit(newContact, { address: oldAddress, name: oldName });
   }
 
   render() {
     const { size, layout, data } = this.props;
-    const { name, address, modalType } = this.state;
+    const { oldName, oldAddress, modalType } = this.state;
     let modal;
     if (modalType === 'delete') {
       modal = (
         <DeletionModal
-          name={name}
-          address={address}
+          name={oldName}
+          address={oldAddress}
           onCancel={this.handleCancel}
           onDelete={this.handleDelete}
           type="contact"
@@ -87,11 +87,11 @@ export default class ContactList extends React.PureComponent {
     } else {
       modal = (
         <EditContactModal
-          name={name}
-          address={address}
+          name={oldName}
+          address={oldAddress}
           onEdit={(e) => this.handleEdit(e)}
-          onChange={(input, type) => this.onChange(input, type)}
           contacts={data}
+          confirmText="Edit Contact"
         />
       );
     }

@@ -18,30 +18,17 @@ export class EditContactModal extends React.Component {
   constructor(props) {
     super(props);
     this.handleEdit = this.handleEdit.bind(this);
-    this.state = {
-      oldName: null,
-      oldAddress: null,
-    };
-
     this.validateInUse = this.validateInUse.bind(this);
     this.validateInvalid = this.validateInvalid.bind(this);
   }
 
-  componentWillMount() {
-    const { name, address } = this.props;
-    this.setState({
-      oldName: name,
-      oldAddress: address,
-    });
-  }
 
   handleEdit(e) {
     const { onEdit } = this.props;
-    const { oldName, oldAddress } = this.state;
     e.preventDefault();
-    this.props.form.validateFields((err) => {
+    this.props.form.validateFields((err, value) => {
       if (!err) {
-        onEdit({ name: oldName, address: oldAddress });
+        onEdit({ address: value.address.trim(), name: value.name.trim() });
       }
     });
   }
@@ -49,7 +36,7 @@ export class EditContactModal extends React.Component {
   validateInUse(rule, value, callback) {
     const { contacts } = this.props;
     const sameAddressList = contacts.filter((person) => person.address === value.trim());
-    if (sameAddressList.length && value.trim() !== this.state.oldAddress) {
+    if (sameAddressList.length && value.trim() !== this.props.address) {
       callback('You have already saved this address');
     }
     callback();
@@ -65,7 +52,7 @@ export class EditContactModal extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { onChange } = this.props;
+    const { confirmText, quickAddAddress } = this.props;
     return (
       <Wrapper>
         <WrapperIcon>
@@ -85,7 +72,7 @@ export class EditContactModal extends React.Component {
                 },
               ],
               initialValue: this.props.name,
-            })(<ModalFormInput onChange={(e) => onChange(e.target.value, 'name')} />)}
+            })(<ModalFormInput placeholder="John Doe" />)}
           </ModalFormItem>
           <ModalFormItem
             label={<ModalFormLabel>Valid Ethereum Address</ModalFormLabel>}
@@ -107,8 +94,14 @@ export class EditContactModal extends React.Component {
                   validator: (rule, value, callback) => this.validateInUse(rule, value, callback),
                 },
               ],
-              initialValue: this.props.address,
-            })(<ModalFormInput onChange={(e) => onChange(e.target.value, 'address')} />)}
+              initialValue: this.props.address || quickAddAddress,
+            })(
+              <ModalFormInput
+                type="textarea"
+                disabled={!!quickAddAddress}
+                placeholder="0xee1636e3eu1969b618ca9334b5baf8e3760ab16a"
+              />
+            )}
           </ModalFormItem>
           <ParentDiv>
             <StyledButton1
@@ -117,7 +110,7 @@ export class EditContactModal extends React.Component {
               id="button"
             >
               <Icon type="plus" />
-              Edit Contact
+              {confirmText}
             </StyledButton1>
           </ParentDiv>
         </Form>
@@ -138,15 +131,16 @@ EditContactModal.propTypes = {
    * Function to be executed when edit button is pressed
    */
   onEdit: PropTypes.func,
+
   form: PropTypes.object,
-  /**
-   * Function to be executed when input is changed
-   */
-  onChange: PropTypes.func,
   /**
    * Contacts array
    */
   contacts: PropTypes.arrayOf(PropTypes.object),
+
+  confirmText: PropTypes.string.isRequired,
+
+  quickAddAddress: PropTypes.string,
 };
 
 export default Form.create()(EditContactModal);

@@ -7,7 +7,7 @@ import { gweiToWei, gweiToEther } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
 import ComboBoxSelect from 'components/ComboBoxSelect';
 import { Modal } from 'components/ui/Modal';
-import AddNewContactModal from 'components/AddNewContactModal';
+import EditContactModal from 'components/EditContactModal';
 import { getAbsolutePath } from 'utils/electron';
 import {
   OuterWrapper,
@@ -295,10 +295,11 @@ export default class TransferForm extends React.PureComponent {
           onCancel={this.hideContactModal}
           destroyOnClose
         >
-          <AddNewContactModal
-            onSubmit={(contact) => this.onCreateContact(contact)}
+          <EditContactModal
+            onEdit={(contact) => this.onCreateContact(contact)}
             contacts={recipients}
             quickAddAddress={address}
+            confirmText="Add"
           />
         </Modal>
 
