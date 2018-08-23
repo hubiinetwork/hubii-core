@@ -81,7 +81,6 @@ export class WalletTransfer extends React.PureComponent {
         recipients={contacts.toJS()}
         assets={currentWalletWithInfo.getIn(['balances', 'assets']).toJS()}
         onSend={this.onSend}
-        onCancel={this.onCancel}
         transfering={currentWallet.toJS().transfering}
         errors={this.props.errors}
         currentWalletWithInfo={this.props.currentWalletWithInfo}
