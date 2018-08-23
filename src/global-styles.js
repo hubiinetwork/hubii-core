@@ -166,6 +166,8 @@ injectGlobal`
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.27);
   }
 
+
+  /* Custom antd Pagination styles */
   .ant-pagination-item-link:hover,
   .ant-pagination-next:focus,
   .ant-pagination-next:hover,
@@ -206,7 +208,6 @@ injectGlobal`
     :hover::after {
       color: ${darkTheme.palette.info} !important;
     }
-
   }
 
   .ant-pagination-item>a,
@@ -214,5 +215,10 @@ injectGlobal`
     color: ${darkTheme.palette.light};
   }
 
+  /* Custom antd notification styles */
+  .ant-notification-notice-with-icon {
+    display: flex;
+    align-items: center;
+  }
 }
 `;
