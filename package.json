@@ -35,7 +35,7 @@
     "preelectron-dev": "node ./internals/scripts/copy-public.js && electron-rebuild --force --module_dir . -w node-hid",
     "electron-build": "cross-env TARGET=electron npm run build && cross-env DEBUG=electron-builder electron-builder --publish never",
     "preelectron-build": "electron-rebuild --force --module_dir . -w node-hid",
-    "electron-pack": "cross-env DEV_TOOLS=1 TARGET=electron npm run build && cross-env DEBUG=electron-builder electron-builder --dir",
+    "electron-pack": "cross-env TARGET=electron npm run build && cross-env DEBUG=electron-builder electron-builder --dir",
     "precommit": "npm run lint:staged",
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",

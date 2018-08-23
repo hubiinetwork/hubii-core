@@ -9,8 +9,6 @@ const isDev = require('electron-is-dev');
 const { registerWalletListeners } = require('./wallets');
 const setupDevToolsShortcut = require('./dev-tools');
 
-const showDevTools = process.env.DEV_TOOLS;
-
 function createWindow() {
   const template = [{
     label: 'Application',
@@ -54,10 +52,8 @@ function createWindow() {
     },
   });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../index.html')}`);
-  if (showDevTools || isDev) {
-    mainWindow.webContents.openDevTools();
-  }
   if (isDev) {
+    mainWindow.webContents.openDevTools();
     // Need to require this globally so we can keep it as a
     // dev-only dependency
     const {
