@@ -15,8 +15,7 @@ export const Container = styled.div`
 
 export const Heading = styled.h2`
   display: flex;
-  font-family: "SF Text";
-  font-weight: 500;
+  font-weight: 400;
   margin: 0;
   color: ${({ theme }) => theme.palette.light};
   font-size: 1.29rem;

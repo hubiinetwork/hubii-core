@@ -29,7 +29,7 @@ export const Image = styled.img`
 
 export const DetailWrapper = styled.div`
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.14rem;
   color: ${({ theme }) => theme.palette.secondary1};
 `;
@@ -44,6 +44,6 @@ export const BalanceColor = styled.div`
     info ? theme.palette.info : theme.palette.light};
   margin-right: 0.43rem;
   font-size: 1.14rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.14rem;
 `;
