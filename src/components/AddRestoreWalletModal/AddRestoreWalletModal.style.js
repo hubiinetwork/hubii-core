@@ -3,10 +3,11 @@ import { Icon } from 'antd';
 import Button from '../ui/Button';
 
 export const TitleDiv = styled.div`
-  font-size: 1.14rem;
+  font-size: 1.6rem;
+  margin: 0 2rem;
   text-align: center;
   color: ${({ theme }) => theme.palette.light};
-  font-weight: 500;
+  font-weight: 400;
 `;
 
 export const Container = styled.div`
@@ -17,10 +18,9 @@ export const TextWhite = styled.span`
   color: ${({ theme }) => theme.palette.light};
   height: 1rem;
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
   text-align: center;
-  font-family: 'SF Text';
 `;
 
 export const Arrow = styled(Icon)`
@@ -33,9 +33,8 @@ export const Arrow = styled(Icon)`
 
 export const IconWrapper = styled.div`
   height: 1.36rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.36rem;
-  font-family: 'SF Text';
   font-size: 1.14rem;
   display: flex;
   margin-top: -0.5rem;

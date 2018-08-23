@@ -25,6 +25,7 @@ import {
   OverflowHidden,
   SpaceBetween,
   WalletName,
+  Spinner,
 } from './WalletItemCard.style';
 
 /**
@@ -149,14 +150,17 @@ export class WalletItemCard extends React.PureComponent {
         >
           <LeftSideWrapper>
             <WalletName>{name}</WalletName>
-            <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
+            {!balancesLoading && !balancesError &&
+              <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
+            }
           </LeftSideWrapper>
           <AssetsWrapper>
             {
               balancesError && <WalletName>Error fetching balance</WalletName>
             }
             {
-              balancesLoading && <WalletName>Fetching balance...</WalletName>
+              balancesLoading &&
+                <Spinner type="loading" />
             }
             {!balancesLoading && !balancesError &&
               assets.map((asset) => (

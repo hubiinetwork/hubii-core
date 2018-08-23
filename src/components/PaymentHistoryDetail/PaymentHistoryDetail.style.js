@@ -6,7 +6,7 @@ export const TextDullWhite = styled.div`
   color: ${({ theme }) => theme.palette.light1};
   display: flex;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.14rem;
 `;
 
@@ -33,7 +33,7 @@ export const RightFlex = styled.div`
 export const TimePast = styled.div`
   color: ${({ theme }) => theme.palette.secondary4};
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
   text-align: right;
   margin-right: 2.3rem;
@@ -60,7 +60,7 @@ export const CollapseParent = styled.div`
 export const Amount = styled.div`
   color: ${({ theme }) => theme.palette.secondary6};
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.14rem;
 `;
 
@@ -73,7 +73,7 @@ export const PaymentHistoryAddress = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 19rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.14rem;
 `;
 
@@ -120,6 +120,6 @@ export const TextGrey = styled.div`
   margin-bottom: 0rem;
   margin-right: 0.36rem;
   font-size: 0.94rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.14rem;
 `;
