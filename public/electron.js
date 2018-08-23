@@ -9,16 +9,20 @@ const isDev = require('electron-is-dev');
 const { registerWalletListeners } = require('./wallets');
 const setupDevToolsShortcut = require('./dev-tools');
 
+const version = app.getVersion();
 const showDevTools = process.env.DEV_TOOLS;
 
 function createWindow() {
-  const template = [{
-    label: 'Application',
-    submenu: [
-        { label: 'About Application', selector: 'orderFrontStandardAboutPanel:' },
-        { type: 'separator' },
-        { label: 'Quit', accelerator: 'Command+Q', click() { app.quit(); } },
-    ] }, {
+  const template = [
+    {
+      label: 'Application',
+      submenu: [
+          { label: `Version: ${version}`, enabled: false },
+          { type: 'separator' },
+          { label: 'Quit', accelerator: 'Command+Q', click() { app.quit(); } },
+      ],
+    },
+    {
       label: 'Edit',
       submenu: [
         { label: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
@@ -28,7 +32,8 @@ function createWindow() {
         { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
         { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
         { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
-      ] },
+      ],
+    },
   ];
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
@@ -104,11 +109,24 @@ function setupAutoUpdater() {
   autoUpdater.checkForUpdatesAndNotify();
 }
 
-app.on('ready', () => {
-  createWindow();
-  setupAutoUpdater();
-  setupDevToolsShortcut();
+const shouldQuit = app.makeSingleInstance(() => {
+  // Someone tried to run a second instance, we should focus our window.
+  if (mainWindow) {
+    if (mainWindow.isMinimized()) mainWindow.restore();
+    mainWindow.focus();
+  }
 });
+
+if (shouldQuit) {
+  app.quit();
+} else {
+  app.on('ready', () => {
+    createWindow();
+    setupAutoUpdater();
+    setupDevToolsShortcut();
+  });
+}
+
 
 app.on('activate', () => {
   if (mainWindow === null) {

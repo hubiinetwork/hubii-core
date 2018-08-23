@@ -7,18 +7,16 @@ const { Item } = List;
 
 export const Text = styled.div`
   color: ${({ theme }) => theme.palette.info3};
-  font-family: 'SF Text';
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.14rem;
 `;
 
 export const TextPrimary = styled.div`
   color: ${({ theme }) => theme.palette.light};
   margin-top: 0.43rem;
-  font-family: 'SF Text';
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
 `;
 
@@ -26,9 +24,8 @@ export const TextSecondary = styled.div`
   color: ${({ theme }) => theme.palette.secondary};
   font-weight: 400;
   font-size: 0.93rem;
-  font-family: 'SF Text';
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
 `;
 

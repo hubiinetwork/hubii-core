@@ -1,131 +1,14 @@
 import { injectGlobal } from 'styled-components';
-import Bold from '../public/fonts/SF-UI-Text-Bold.otf';
-import BoldItalic from '../public/fonts/SF-UI-Text-BoldItalic.otf';
-import HeavyItalic from '../public/fonts/SF-UI-Text-HeavyItalic.otf';
-import Medium from '../public/fonts/SF-UI-Text-Medium.otf';
-import MediumItalic from '../public/fonts/SF-UI-Text-MediumItalic.otf';
-import Regular from '../public/fonts/SF-UI-Text-Regular.otf';
-import RegularItalic from '../public/fonts/SF-UI-Text-RegularItalic.otf';
-import Light from '../public/fonts/SF-UI-Text-Light.otf';
-import Semibold from '../public/fonts/SF-UI-Text-Semibold.otf';
-import SemiboldItalic from '../public/fonts/SF-UI-Text-SemiboldItalic.otf';
-import Ultrathin from '../public/fonts/SF-UI-Text-Ultrathin.otf';
-import UltrathinItalic from '../public/fonts/SF-UI-Text-UltrathinItalic.otf';
 import darkTheme from './themes/darkTheme';
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
-  /** Bold */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 700;
-    src: url(${Bold});
-  }
-
-  /** Bold Italic */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 700;
-    font-style: italic;
-    src: url(${BoldItalic});
-  }
-
-  /** Heavy */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 800;
-    src: url(${Bold});
-  }
-
-  /** Heavy Italic */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 800;
-    font-style: italic;
-    src: url(${HeavyItalic});
-  }
-
-  /** Light */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 200;
-    src: url(${Light});
-  }
-
-  /** Light Italic */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 200;
-    font-style: italic;
-    src: url(${HeavyItalic});
-  }
-
-  /** Medium */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 500;
-    src: url(${Medium});
-  }
-
-  /** Medium Italic */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 500;
-    font-style: italic;
-    src: url(${MediumItalic});
-  }
-
-  /** Regular */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 400;
-    src: url(${Regular});
-  }
-
-  /** Regular Italic */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 400;
-    font-style: italic;
-    src: url(${RegularItalic});
-  }
-
-  /** Semibold */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 600;
-    src: url(${Semibold});
-  }
-
-  /** Semibold Italic */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 600;
-    font-style: italic;
-    src: url(${SemiboldItalic});
-  }
-
-  /** Ultrathin */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 100;
-    src: url(${Ultrathin});
-  }
-
-  /** Ultrathin Italic */
-  @font-face {
-    font-family: "SF Text";
-    font-weight: 100;
-    font-style: italic;
-    src: url(${UltrathinItalic});
-  }
-  
   .ant-tooltip {
     display: none;
   }
 
   html * {
-    font-family: "SF Text";
+    font-family: "Open Sans";
   }
 
   html,
@@ -134,10 +17,7 @@ injectGlobal`
     width: 100%;
     margin: 0;
     padding: 0;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    font-smoothing: antialiased;
-    font-weight: 500;
+    font-weight: 400;
   }
 
   body {
@@ -166,6 +46,8 @@ injectGlobal`
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.27);
   }
 
+
+  /* Custom antd Pagination styles */
   .ant-pagination-item-link:hover,
   .ant-pagination-next:focus,
   .ant-pagination-next:hover,
@@ -206,7 +88,6 @@ injectGlobal`
     :hover::after {
       color: ${darkTheme.palette.info} !important;
     }
-
   }
 
   .ant-pagination-item>a,
@@ -214,5 +95,10 @@ injectGlobal`
     color: ${darkTheme.palette.light};
   }
 
+  /* Custom antd notification styles */
+  .ant-notification-notice-with-icon {
+    display: flex;
+    align-items: center;
+  }
 }
 `;

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import DerivationPathContainer from 'containers/DerivationPathContainer';
 
 import {
-  Flex,
-  Between,
+  NavigationWrapper,
+  Wrapper,
   SpanText,
   LeftArrow,
 } from './ImportWalletSteps.style';
@@ -153,12 +153,12 @@ export default class ImportWalletSteps extends React.Component {
     const { onBackIcon } = this.props;
 
     const FormNavigation = (
-      <Between>
-        <Flex>
+      <Wrapper>
+        <NavigationWrapper>
           <LeftArrow type="arrow-left" onClick={() => onBackIcon()} />
           <SpanText>Import an existing wallet</SpanText>
-        </Flex>
-      </Between>
+        </NavigationWrapper>
+      </Wrapper>
     );
     const steps = this.getSteps();
     return (

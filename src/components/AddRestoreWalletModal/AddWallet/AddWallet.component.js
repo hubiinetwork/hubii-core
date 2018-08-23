@@ -3,20 +3,20 @@ import { Row, Col, Form } from 'antd';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import ethers from 'ethers';
 import PropTypes from 'prop-types';
-import { getAbsolutePath } from 'utils/electron';
 import Notification from '../../Notification';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../../ui/Modal';
 
 import {
-  SeedInfo,
+  WarningPoint,
   SeedText,
   WrapperDiv,
   RoundButton,
   FinishButton,
-  SeedWrapper,
+  WarningList,
   CenterWrapper,
   StyledSpin,
 } from './AddWallet.style';
+import { FinalHeader } from '../../ImportWalletSteps/ImportWalletForm.style';
 
 /**
  * This component shows form  to add a wallet.
@@ -81,12 +81,18 @@ class AddWallet extends React.PureComponent {
     const { loading } = this.props;
     return (
       <div>
-        <CenterWrapper>
-          <img src={getAbsolutePath('public/images/hubiit-token-with-text.svg')} alt="hubii logo" />
-        </CenterWrapper>
         <Row justify="center" type="flex">
           <Col span={18}>
-            <Form onSubmit={this.handleSubmit} disabled>
+            <Form
+              onSubmit={this.handleSubmit}
+              disabled
+              style={{
+                marginTop: '2rem',
+              }}
+            >
+              <FinalHeader>
+                <p>Creating a new wallet</p>
+              </FinalHeader>
               <ModalFormItem
                 colon={false}
                 label={<ModalFormLabel>Enter a name for your wallet</ModalFormLabel>}
@@ -143,29 +149,27 @@ class AddWallet extends React.PureComponent {
                 )}
               </ModalFormItem>
               <ModalFormItem colon={false}>
-                <SeedWrapper>
-                  <SeedInfo>Write down the mnemonic phrase below and store it somewhere safe, it is the key to your wallet. If you lose the phrase any funds in your wallet will be lost forever!</SeedInfo>
-                  <SeedInfo>Never share the phrase with anybody. Possession of this phrase means possession of all of your funds.</SeedInfo>
-                  <SeedInfo>If you wish to store any significant amount of funds, it is strongly recommended to use a hardware wallet. Hardware wallets are a much safer alternative to software wallets.</SeedInfo>
-                  <SeedInfo>{"Confused? Google search 'Ethereum wallet security' and do some research. Return when you understand the risks associated with software wallets."}</SeedInfo>
-                </SeedWrapper>
+                <WarningList>
+                  <WarningPoint>Write down the mnemonic phrase below and store it somewhere safe, it is the key to your wallet. If you lose the phrase any funds in your wallet will be lost forever!</WarningPoint>
+                  <WarningPoint>Never share the phrase with anybody. Possession of this phrase means possession of all of your funds.</WarningPoint>
+                  <WarningPoint>If you wish to store any significant amount of funds, it is strongly recommended to use a hardware wallet. Hardware wallets are a much safer alternative to software wallets.</WarningPoint>
+                  <WarningPoint>{"Confused? Google search 'Ethereum wallet security' and do some research. Only you are responsible for your funds."}</WarningPoint>
+                </WarningList>
               </ModalFormItem>
               <ModalFormItem colon={false}>
-                <SeedWrapper>
-                  <CopyToClipboard text={this.state.mnemonic}>
-                    <WrapperDiv>
-                      <SeedText>{this.state.mnemonic}</SeedText>
-                      <RoundButton
-                        type="primary"
-                        shape="circle"
-                        icon="copy"
-                        size={'small'}
-                        onClick={this.showNotification}
-                        key={2}
-                      />
-                    </WrapperDiv>
-                  </CopyToClipboard>
-                </SeedWrapper>
+                <CopyToClipboard text={this.state.mnemonic}>
+                  <WrapperDiv>
+                    <SeedText>{this.state.mnemonic}</SeedText>
+                    <RoundButton
+                      type="primary"
+                      shape="circle"
+                      icon="copy"
+                      size={'small'}
+                      onClick={this.showNotification}
+                      key={2}
+                    />
+                  </WrapperDiv>
+                </CopyToClipboard>
               </ModalFormItem>
               <CenterWrapper>
                 {loading ? (
