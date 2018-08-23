@@ -4,11 +4,12 @@ import {
   Coins,
   Image,
   Center,
-  ButtonDiv,
   CoinButton,
   StyledSpan,
   StyledButton,
   OptionText,
+  Header,
+  Wrapper,
 } from './ImportWallet.style';
 
 class ImportWallet extends React.Component {
@@ -35,7 +36,8 @@ class ImportWallet extends React.Component {
   render() {
     const { walletType } = this.state;
     return (
-      <div>
+      <Wrapper>
+        <Header>How is the wallet stored?</Header>
         <Coins onChange={this.onChange}>
           {this.props.wallets.map((wallet) => (
             <CoinButton value={wallet.name} key={wallet.name}>
@@ -51,12 +53,10 @@ class ImportWallet extends React.Component {
             </CoinButton>
           ))}
         </Coins>
-        <ButtonDiv>
-          <StyledButton type={'primary'} disabled={walletType === ''} onClick={this.handleNext}>
-            <StyledSpan>Next</StyledSpan>
-          </StyledButton>
-        </ButtonDiv>
-      </div>
+        <StyledButton type={'primary'} disabled={walletType === ''} onClick={this.handleNext}>
+          <StyledSpan>Next</StyledSpan>
+        </StyledButton>
+      </Wrapper>
     );
   }
 }

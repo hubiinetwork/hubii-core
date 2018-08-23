@@ -67,14 +67,14 @@ export const CenterWrapper = styled.div`
   align-items: center;
 `;
 
-export const SeedWrapper = styled.ul`
+export const WarningList = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
 `;
 
-export const SeedInfo = styled.li`
+export const WarningPoint = styled.li`
   color: ${({ theme }) => theme.palette.light};
   line-height: 1.3rem;
   font-size: 0.9rem;
