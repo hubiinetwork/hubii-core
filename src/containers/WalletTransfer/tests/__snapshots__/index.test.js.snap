@@ -340,7 +340,6 @@ ShallowWrapper {
         },
 },
       "errors": Object {},
-      "onCancel": [Function],
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -557,7 +556,6 @@ ShallowWrapper {
           },
 },
         "errors": Object {},
-        "onCancel": [Function],
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -1557,7 +1555,6 @@ ShallowWrapper {
         },
 },
       "errors": Object {},
-      "onCancel": [Function],
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -1774,7 +1771,6 @@ ShallowWrapper {
           },
 },
         "errors": Object {},
-        "onCancel": [Function],
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -2191,7 +2187,6 @@ ShallowWrapper {
         },
 },
       "errors": Object {},
-      "onCancel": [Function],
       "onSend": [Function],
       "prices": Object {
         "assets": Array [],
@@ -2366,7 +2361,6 @@ ShallowWrapper {
           },
 },
         "errors": Object {},
-        "onCancel": [Function],
         "onSend": [Function],
         "prices": Object {
           "assets": Array [],
@@ -2741,7 +2735,6 @@ ShallowWrapper {
         },
 },
       "errors": Object {},
-      "onCancel": [Function],
       "onSend": [Function],
       "prices": Object {
         "assets": Array [],
@@ -2916,7 +2909,6 @@ ShallowWrapper {
           },
 },
         "errors": Object {},
-        "onCancel": [Function],
         "onSend": [Function],
         "prices": Object {
           "assets": Array [],
@@ -3296,7 +3288,6 @@ ShallowWrapper {
         },
 },
       "errors": Object {},
-      "onCancel": [Function],
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -3477,7 +3468,6 @@ ShallowWrapper {
           },
 },
         "errors": Object {},
-        "onCancel": [Function],
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -3863,7 +3853,6 @@ ShallowWrapper {
         },
 },
       "errors": Object {},
-      "onCancel": [Function],
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -4044,7 +4033,6 @@ ShallowWrapper {
           },
 },
         "errors": Object {},
-        "onCancel": [Function],
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -4466,7 +4454,6 @@ ShallowWrapper {
         },
 },
       "errors": Object {},
-      "onCancel": [Function],
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -4683,7 +4670,6 @@ ShallowWrapper {
           },
 },
         "errors": Object {},
-        "onCancel": [Function],
         "onSend": [Function],
         "prices": Object {
           "assets": Array [

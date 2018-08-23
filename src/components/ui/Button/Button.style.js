@@ -2,16 +2,19 @@ import { Button } from 'antd';
 import styled from 'styled-components';
 
 export default styled(Button)`
+&&& {
+  ${(props) => props.disabled ? `
+    pointer-events: none;
+    background-color: transparent;
+    border-color: ${props.theme.palette.secondary4};
+    color: ${props.theme.palette.secondary4};
+  ` : null}
+}
   height: 2.71rem;
   font-size: 0.86rem;
   line-height: 1.5;
   font-weight: 400;
   border-radius: 0.3rem;
-  ${(props) => props.disabled ? `
-    pointer-events: none;
-    background-color: rgba(245, 245, 245, 0.1);
-    border: 0;
-  ` : null}
   ${({ theme, type }) => {
     if (type === 'primary') {
       return `
