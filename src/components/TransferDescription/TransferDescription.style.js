@@ -9,7 +9,7 @@ export const HWPromptWrapper = styled.div`
 export const StyledButton = styled(Button)`
   height: 2.86rem;
   width: 11.57rem;
-  font-family: 'SF Text';
+  margin-top: 4.93rem;
   border: 0.14rem solid ${({ theme }) => theme.palette.info3};
   border-radius: 0.29rem;
   background-color: ${({ disabled: white }) =>
@@ -44,13 +44,13 @@ export const StyledButtonCancel = styled(Button)`
 export const StyledTitle = styled(Col)`
   color: ${({ theme }) => theme.palette.info3};
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
   white-space: nowrap;
 `;
 export const StyledCol = styled(Col)`
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
   margin-top: 1.43rem;
   margin-bottom: 0.43rem;
@@ -59,7 +59,7 @@ export const StyledCol = styled(Col)`
 `;
 export const StyledErrorCol = styled(Col)`
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
   margin-top: 1.43rem;
   margin-bottom: 0.43rem;
@@ -77,7 +77,7 @@ export const BalanceCol = styled(Col)`
   width: 8rem;
   color: ${({ theme }) => theme.palette.light};
   font-size: 1.29rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.5rem;
 `;
 export const WrapperDiv = styled.div`

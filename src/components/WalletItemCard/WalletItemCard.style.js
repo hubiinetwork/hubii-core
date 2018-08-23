@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Menu } from 'antd';
+import { Menu, Icon } from 'antd';
 
 export const AssetsWrapper = styled.div`
   display: flex;
@@ -51,6 +51,12 @@ export const CardIconSettings = styled.div`
   }
 `;
 
+export const Spinner = styled(Icon)`
+  display: flex;
+  margin: auto;
+  font-size: 2rem;
+`;
+
 export const LeftSideWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -100,6 +106,8 @@ export const RightSideWrapper = styled.div`
 
 export const IconMenu = styled(Menu)`
   background-color: ${({ theme }) => theme.palette.primary3};
+  overflow: hidden;
+  cursor: pointer;
   padding: 0;
   .ant-dropdown-menu-item:first-child:hover {
     border-radius: 0.29rem 0.29rem 0 0;
