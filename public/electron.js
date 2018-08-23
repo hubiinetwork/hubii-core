@@ -9,14 +9,19 @@ const isDev = require('electron-is-dev');
 const { registerWalletListeners } = require('./wallets');
 const setupDevToolsShortcut = require('./dev-tools');
 
+const version = app.getVersion();
+
 function createWindow() {
-  const template = [{
-    label: 'Application',
-    submenu: [
-        { label: 'About Application', selector: 'orderFrontStandardAboutPanel:' },
-        { type: 'separator' },
-        { label: 'Quit', accelerator: 'Command+Q', click() { app.quit(); } },
-    ] }, {
+  const template = [
+    {
+      label: 'Application',
+      submenu: [
+          { label: `Version: ${version}`, enabled: false },
+          { type: 'separator' },
+          { label: 'Quit', accelerator: 'Command+Q', click() { app.quit(); } },
+      ],
+    },
+    {
       label: 'Edit',
       submenu: [
         { label: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
@@ -26,7 +31,8 @@ function createWindow() {
         { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
         { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
         { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
-      ] },
+      ],
+    },
   ];
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
