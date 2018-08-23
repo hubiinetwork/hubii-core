@@ -2,23 +2,39 @@ import { Radio } from 'antd';
 import styled from 'styled-components';
 import Button from '../../ui/Button';
 
+const RadioButton = Radio.Button;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Header = styled.p`
+  &&& {
+    color: white;
+    text-align: center;
+    font-size: 1.7rem;
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+  }
+`;
+
 export const Coins = styled(Radio.Group)`
-  margin-top: 2.86rem;
-  padding-left: 1.93rem;
-  padding-right: 1.93rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   .ant-radio-button-wrapper-checked {
     border: 0.14rem solid ${({ theme }) => theme.palette.info};
     box-shadow: none;
     transition: box-shadow 0s ease;
   }
 `;
-const RadioButton = Radio.Button;
 
 export const CoinButton = styled(RadioButton)`
   padding: 0.5rem;
+  margin: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,8 +52,8 @@ export const Flex = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 6.43rem;
-  height: 2.14rem;
+  max-width: 11rem;
+  max-height: 2.5rem;
 `;
 
 export const OptionText = styled.h3`
@@ -50,19 +66,16 @@ export const Center = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 export const SpanText = styled.span`
   font-size: 1.14rem;
   font-weight: 400;
   line-height: 1.36rem;
 `;
-export const ButtonDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1.86rem;
-  margin-top: 1rem;
-`;
+
 export const StyledButton = styled(Button)`
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
   background-color: ${({ disabled: white }) =>
     white && 'transparent !important'};
   font-size: 0.86rem;
