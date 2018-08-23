@@ -85,7 +85,7 @@ async function execWalletMethods(method, params) {
         parseHDPath(path),
         tx,
       );
-      cb(JSON.stringify(signedPersonalMessage));
+      result = signedPersonalMessage;
     }
     if (method === 'getpublickey') {
       const { message } = await session.getPublicKey(parseHDPath(path));

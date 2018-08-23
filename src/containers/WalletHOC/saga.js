@@ -381,14 +381,10 @@ export function* signPersonalMessage(message, wallet) {
     console.log(wallet);
     signedPersonalMessage = yield signPersonalMessageByLedger(wallet, message);
   }
-  // if (wallet.type === 'trezor') {
-  // }
-
-  // if (wallet.type === 'trezor') {
-  //   const raw = rawTx.toJSON();
-  //   // signedTx = yield signTxByTrezor({ wallet, raw, data, chainId });
-  //   // rawTx.v = Buffer.from(signedTx.v.toString(16), 'hex');
-  // }
+  if (wallet.type === 'trezor') {
+    signedPersonalMessage = yield signTxByTrezor({ wallet, message });
+    // rawTx.v = Buffer.from(signedTx.v.toString(16), 'hex');
+  }
   // const txHex = `0x${rawTx.serialize().toString('hex')}`;
   // console.log(signedPersonalMessage);
   return signedPersonalMessage;

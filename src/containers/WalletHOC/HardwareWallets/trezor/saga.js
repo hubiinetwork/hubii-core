@@ -89,16 +89,16 @@ export function* signTxByTrezor({ walletDetails, raw, data, chainId }) {
 
 export function* signPersonalMessageByTrezor(txHash, walletDetails) {
   const path = walletDetails.derivationPath;
-  const trezorInfo = yield select(makeSelectTrezorInfo());
-  const deviceId = trezorInfo.get('id');
+  // const trezorInfo = yield select(makeSelectTrezorInfo());
+  // const deviceId = trezorInfo.get('id');
   try {
     const signedTx = yield call(
       requestHardwareWalletAPI,
-      'signPersonalMessage',
+      'signMessage',
       {
-        id: deviceId,
         path,
-        tx: txHash,
+        message: txHash,
+        coin: 'ETH',
       }
     );
 
