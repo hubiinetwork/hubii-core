@@ -87,14 +87,14 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     const { totalBalances, supportedAssets } = this.props;
     return (
       <Wrapper>
-        <Row gutter={16}>
-          <Col span={16} xs={24} md={16}>
+        <Row gutter={32}>
+          <Col sm={24} md={12} lg={16}>
             <SectionHeading>All wallets</SectionHeading>
             <Row type="flex" align="top" gutter={16}>
               {this.renderWalletCards()}
             </Row>
           </Col>
-          <Col span={8} xs={24} md={8}>
+          <Col sm={24} md={12} lg={8}>
             {
               !totalBalances.get('loading') &&
               !totalBalances.get('error') &&
