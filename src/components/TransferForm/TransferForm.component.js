@@ -84,11 +84,7 @@ export default class TransferForm extends React.PureComponent {
 
   onCreateContact(contact) {
     if (contact) {
-      const name = contact.name.replace(
-        /\w\S*/g,
-        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-      );
-      this.props.createContact(name, contact.address);
+      this.props.createContact(contact.name, contact.address);
     }
     this.hideContactModal();
   }
