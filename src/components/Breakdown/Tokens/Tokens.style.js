@@ -10,7 +10,6 @@ export const Label = styled.div`
   color: ${({ theme }) => theme.palette.light};
   font-size: 0.86rem;
   font-weight: 400;
-  line-height: 1rem;
 `;
 
 export const Percentage = styled.div`
