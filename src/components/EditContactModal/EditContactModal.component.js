@@ -36,6 +36,7 @@ export class EditContactModal extends React.Component {
 
   validateInUse(rule, value, callback) {
     const { contacts } = this.props;
+    if (!value) { callback(); return; } // no address input
     const sameAddressList = contacts.filter((person) => IsAddressMatch(person.address, value.trim()));
     if (sameAddressList.length) {
       callback('You have already saved this address');
@@ -44,6 +45,7 @@ export class EditContactModal extends React.Component {
   }
 
   validateInvalid(rule, value, callback) {
+    if (!value) { callback(); return; } // no address input
     if (!isValidAddress(value.trim())) {
       callback('invalid Address');
     }
