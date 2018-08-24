@@ -18,9 +18,8 @@ import { makeSelectContacts, makeSelectRecentContacts } from './selectors';
 
 import {
   Wrapper,
-  Border,
-  InnerWrapper1,
-  InnerWrapper2,
+  AllContactsWrapper,
+  RecentContactsWrapper,
 } from './index.style';
 
 export class ContactBook extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -53,35 +52,33 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
 
     return (
       <Wrapper>
-        <InnerWrapper1 contactsPresent={contacts.length}>
+        <AllContactsWrapper contactsPresent={contacts.length}>
           <ContactHeader
-            title={'Recently Used Contacts'}
-            showSearch
-            onChange={((value) => this.setState({ recentFilterText: value }))}
-          />
-          <Border contactsLength={recentContacts.length}>
-            <ContactList
-              data={this.filterSearchText(recentContacts, 'recentFilterText')}
-              onEdit={(newContact, oldContact) => this.props.editContact(contacts, recentContacts, newContact, oldContact)}
-              onDelete={(contact) => this.props.removeContact(contacts, recentContacts, contact)}
-              message={'You have no recently used contacts.'}
-            />
-          </Border>
-        </InnerWrapper1>
-        <InnerWrapper2 contactsPresent={contacts.length}>
-          <ContactHeader
-            title={'All Contacts'}
-            showSearch
+            title={'All contacts'}
+            showSearch={contacts.length !== 0}
             onChange={((value) => this.setState({ fullFilterText: value }))}
           />
-          <Border contactsLength={contacts.length}>
-            <ContactList
-              data={this.filterSearchText(contacts, 'fullFilterText')}
-              onEdit={(newContact, oldContact) => this.props.editContact(contacts, recentContacts, newContact, oldContact)}
-              onDelete={(data) => this.props.removeContact(contacts, recentContacts, data)}
-            />
-          </Border>
-        </InnerWrapper2>
+          <ContactList
+            data={this.filterSearchText(contacts, 'fullFilterText')}
+            empty={contacts.length === 0}
+            onEdit={(newContact, oldContact) => this.props.editContact(contacts, recentContacts, newContact, oldContact)}
+            onDelete={(data) => this.props.removeContact(contacts, recentContacts, data)}
+          />
+        </AllContactsWrapper>
+        <RecentContactsWrapper contactsPresent={contacts.length}>
+          <ContactHeader
+            title={'Recently used contacts'}
+            showSearch={recentContacts.length !== 0}
+            onChange={((value) => this.setState({ recentFilterText: value }))}
+          />
+          <ContactList
+            data={this.filterSearchText(recentContacts, 'recentFilterText')}
+            empty={recentContacts.length === 0}
+            onEdit={(newContact, oldContact) => this.props.editContact(contacts, recentContacts, newContact, oldContact)}
+            onDelete={(contact) => this.props.removeContact(contacts, recentContacts, contact)}
+            message={'You have no recently used contacts'}
+          />
+        </RecentContactsWrapper>
       </Wrapper>
     );
   }
