@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 
 import { formatFiat } from 'utils/numberFormats';
+import { isValidAddress } from 'ethereumjs-util';
 import { isHardwareWallet } from 'utils/wallet';
 
 import {
@@ -52,6 +53,7 @@ export default class TransferDescription extends React.PureComponent {
       amountToSend.isNegative() ||
       ethBalanceAfter.amount.isNegative() ||
       assetBalanceAfter.amount.isNegative() ||
+      !isValidAddress(recipient) ||
       hardwareError;
     return (
       <WrapperDiv>
