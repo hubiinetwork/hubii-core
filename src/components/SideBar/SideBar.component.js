@@ -2,10 +2,9 @@ import { Icon, Layout, Menu } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SideBarLayout, SideBarMenu, StriimImage } from './SideBar.style';
+import { SideBarLayout, SideBarMenu } from './SideBar.style';
 import SvgIcon from '../ui/SvgIcon';
 import darkTheme from '../../themes/darkTheme';
-import { getAbsolutePath } from '../../utils/electron';
 const { Sider } = Layout;
 
 /**
@@ -72,12 +71,6 @@ export class SideBar extends React.Component {
                           />
                         </SvgIcon>
                       )}
-                      {menuItem.icon === 'striim' &&
-                        (currentRoute === menuItem.to ? (
-                          <StriimImage alt="colorImage" src={getAbsolutePath('public/images/striim.png')} />
-                        ) : (
-                          <StriimImage alt="darkImage" src={getAbsolutePath('public/images/striim-dark.png')} />
-                        ))}
                       {menuItem.icon === 'dex' && (
                       <SvgIcon viewBox="0 0 28 16">
                         <g
