@@ -20,7 +20,8 @@ import { SectionHeading } from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
 
-import { WalletCardsCol, Wrapper, WalletPlaceHolder } from './style';
+import PlaceholderText from 'components/ui/PlaceholderText';
+import { WalletCardsCol, Wrapper } from './style';
 
 export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -39,9 +40,9 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     const wallets = this.props.walletsWithInfo.toJS();
     if (wallets.length === 0) {
       return (
-        <WalletPlaceHolder>
+        <PlaceholderText>
           {"Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner"}
-        </WalletPlaceHolder>
+        </PlaceholderText>
       );
     }
     return wallets.map((wallet) => {
@@ -87,14 +88,14 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     const { totalBalances, supportedAssets } = this.props;
     return (
       <Wrapper>
-        <Row gutter={16}>
-          <Col span={16} xs={24} md={16}>
+        <Row gutter={32}>
+          <Col sm={24} md={12} lg={16}>
             <SectionHeading>All wallets</SectionHeading>
             <Row type="flex" align="top" gutter={16}>
               {this.renderWalletCards()}
             </Row>
           </Col>
-          <Col span={8} xs={24} md={8}>
+          <Col sm={24} md={12} lg={8}>
             {
               !totalBalances.get('loading') &&
               !totalBalances.get('error') &&
