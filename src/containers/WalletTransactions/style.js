@@ -36,7 +36,7 @@ export const StyledSpin = styled(Spin)`
 
 export const TransactionsWrapper = styled.div`
   max-width: 60rem;
-  min-width: 40rem;
+  min-width: 45rem;
   ${media.tablet`
     max-width: 100rem;
   `}

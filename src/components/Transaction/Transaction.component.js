@@ -68,7 +68,13 @@ const Transaction = (props) => {
           <CollapsableContent>
             <div style={{ display: 'flex' }}>
               <SubtitleText>
-                {type === 'received' ? 'From: ' : 'To: '}
+                { counterpartyAddress === '' &&
+                  'Contract creation'
+                }
+                {
+                  counterpartyAddress !== '' &&
+                  (type === 'received' ? 'From: ' : 'To: ')
+                }
               </SubtitleText>
               <GreenTextWrapper>
                 {counterpartyAddress}

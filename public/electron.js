@@ -10,7 +10,6 @@ const { registerWalletListeners } = require('./wallets');
 const setupDevToolsShortcut = require('./dev-tools');
 
 const version = app.getVersion();
-const showDevTools = process.env.DEV_TOOLS;
 
 function createWindow() {
   const template = [
@@ -39,8 +38,8 @@ function createWindow() {
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
   const windowOptions = {
-    width: 1200,
-    height: 680,
+    width: 1250,
+    height: 780,
     show: false,
     icon: process.platform === 'linux' && path.join(__dirname, '../icon.png'),
     webPreferences: {
@@ -59,10 +58,8 @@ function createWindow() {
     },
   });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../index.html')}`);
-  if (showDevTools || isDev) {
-    mainWindow.webContents.openDevTools();
-  }
   if (isDev) {
+    mainWindow.webContents.openDevTools();
     // Need to require this globally so we can keep it as a
     // dev-only dependency
     const {

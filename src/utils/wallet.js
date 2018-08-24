@@ -3,6 +3,7 @@ import { List, Map } from 'immutable';
 import { publicToAddress } from 'ethereumjs-util';
 import HDKey from 'hdkey';
 import BigNumber from 'bignumber.js';
+import { NETWORK } from 'config/constants';
 import fatalError from './fatalError';
 
 export const ERC20ABI = [
@@ -98,7 +99,7 @@ export const gweiToWei = (gwei) => (gwei.times(new BigNumber('10').pow('9')));
 
 export const gweiToEther = (gwei) => (gwei.times(new BigNumber('10').pow('-9')));
 
-export const EthNetworkProvider = providers.getDefaultProvider(process.env.NETWORK || 'ropsten');
+export const EthNetworkProvider = providers.getDefaultProvider(NETWORK);
 
 export const IsAddressMatch = (a, b) => a.toLowerCase() === b.toLowerCase();
 

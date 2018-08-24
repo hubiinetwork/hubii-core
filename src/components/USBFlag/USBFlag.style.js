@@ -14,6 +14,8 @@ export const Slanted = styled.div`
       ${(props) =>
         props.connected ? props.theme.palette.info : props.theme.palette.info};
   }
+  transform: translateZ(0px); /* fix overflow when spinner icon */
+  -webkit-transform: translateZ(0px); 
 `;
 
 export const USB = styled.img`
