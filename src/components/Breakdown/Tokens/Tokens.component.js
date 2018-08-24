@@ -17,7 +17,6 @@ const Tokens = (props) => {
   const items = sortedData.map((item) => (
     <FlexItem key={`token-${item.label}`}>
       <Logo
-      // eslint-disable-next-line global-require
         src={getAbsolutePath(`public/images/assets/${item.label}.svg`)}
       />
       <Label>{item.label}</Label>
