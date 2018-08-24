@@ -3,11 +3,11 @@ import { Icon } from 'antd';
 import BigNumber from 'bignumber.js';
 import PropTypes from 'prop-types';
 import { isValidAddress } from 'ethereumjs-util';
-import { gweiToWei, gweiToEther } from 'utils/wallet';
+import { gweiToWei, gweiToEther, IsAddressMatch } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
 import ComboBoxSelect from 'components/ComboBoxSelect';
 import { Modal } from 'components/ui/Modal';
-import AddNewContactModal from 'components/AddNewContactModal';
+import EditContactModal from 'components/EditContactModal';
 import { getAbsolutePath } from 'utils/electron';
 import {
   OuterWrapper,
@@ -84,11 +84,7 @@ export default class TransferForm extends React.PureComponent {
 
   onCreateContact(contact) {
     if (contact) {
-      const name = contact.name.replace(
-        /\w\S*/g,
-        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-      );
-      this.props.createContact(name, contact.address);
+      this.props.createContact(contact.name, contact.address);
     }
     this.hideContactModal();
   }
@@ -211,11 +207,11 @@ export default class TransferForm extends React.PureComponent {
 
   handleRecipient(value) {
     let address = value;
-    const recipientMatch = this.props.recipients.find((option) => option.name.toLowerCase() === value.toLowerCase() || option.address === value);
+    const recipientMatch = this.props.recipients.find((contact) => contact.name.toLowerCase() === value.toLowerCase() || IsAddressMatch(contact.address, value));
     if (recipientMatch && !isValidAddress(value)) {
       address = recipientMatch.address;
     } else if (!recipientMatch && !isValidAddress(value)) {
-      address = 'Invalid Address';
+      address = 'Please enter a valid address or contact name';
     }
     this.setState({
       address,
@@ -295,10 +291,11 @@ export default class TransferForm extends React.PureComponent {
           onCancel={this.hideContactModal}
           destroyOnClose
         >
-          <AddNewContactModal
-            onSubmit={(contact) => this.onCreateContact(contact)}
+          <EditContactModal
+            onEdit={(contact) => this.onCreateContact(contact)}
             contacts={recipients}
             quickAddAddress={address}
+            confirmText="Create contact"
           />
         </Modal>
 
@@ -325,7 +322,7 @@ export default class TransferForm extends React.PureComponent {
                 label={<FormItemLabel>Specify the recipient</FormItemLabel>}
                 colon={false}
                 help={
-                  this.props.recipients.find((recipient) => recipient.address === address) ?
+                  this.props.recipients.find((recipient) => IsAddressMatch(recipient.address, address)) ?
                     <HelperText left={address} /> :
                     !isValidAddress(address) ?
                     null :
@@ -343,7 +340,7 @@ export default class TransferForm extends React.PureComponent {
                   options={recipients.map((recipient) => ({ name: recipient.name, value: recipient.address }))}
                   handleSelect={(value) => this.handleRecipient(value)}
                   addInputValidator={(value) => isValidAddress(value)}
-                  invalidAdditionMessage={'Invalid Address or Not Found Contact'}
+                  invalidAdditionMessage={'Please enter a valid address or contact name'}
                 />
               </FormItem>
               <FormItem

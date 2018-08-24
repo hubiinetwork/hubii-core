@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Form, Icon } from 'antd';
 import PropTypes from 'prop-types';
+import { IsAddressMatch } from 'utils/wallet';
 import { isValidAddress } from 'ethereumjs-util';
 import {
   Text,
@@ -18,44 +19,44 @@ export class EditContactModal extends React.Component {
   constructor(props) {
     super(props);
     this.handleEdit = this.handleEdit.bind(this);
-    this.state = {
-      oldName: null,
-      oldAddress: null,
-    };
-
-    this.validateInUse = this.validateInUse.bind(this);
+    this.validateAddressInUse = this.validateAddressInUse.bind(this);
+    this.validateNameInUse = this.validateNameInUse.bind(this);
     this.validateInvalid = this.validateInvalid.bind(this);
   }
 
-  componentWillMount() {
-    const { name, address } = this.props;
-    this.setState({
-      oldName: name,
-      oldAddress: address,
-    });
-  }
 
   handleEdit(e) {
     const { onEdit } = this.props;
-    const { oldName, oldAddress } = this.state;
     e.preventDefault();
-    this.props.form.validateFields((err) => {
+    this.props.form.validateFields((err, value) => {
       if (!err) {
-        onEdit({ name: oldName, address: oldAddress });
+        onEdit({ address: value.address.trim(), name: value.name.trim() });
       }
     });
   }
 
-  validateInUse(rule, value, callback) {
+  validateAddressInUse(rule, value, callback) {
     const { contacts } = this.props;
-    const sameAddressList = contacts.filter((person) => person.address === value.trim());
-    if (sameAddressList.length && value.trim() !== this.state.oldAddress) {
+    if (!value) { callback(); return; } // no address input
+    const sameAddressList = contacts.filter((person) => IsAddressMatch(person.address, value.trim()));
+    if (sameAddressList.length && !IsAddressMatch(value.trim(), this.props.initialAddress)) {
       callback('You have already saved this address');
     }
     callback();
   }
 
+  validateNameInUse(rule, value, callback) {
+    const { contacts } = this.props;
+    if (!value) { callback(); return; } // no name input
+    const sameAddressList = contacts.filter((person) => person.name.toLowerCase() === value.trim().toLowerCase());
+    if (sameAddressList.length && this.props.initialName.toLowerCase() !== value.trim().toLowerCase()) {
+      callback(true);
+    }
+    callback();
+  }
+
   validateInvalid(rule, value, callback) {
+    if (!value) { callback(); return; } // no address input
     if (!isValidAddress(value.trim())) {
       callback('invalid Address');
     }
@@ -65,50 +66,64 @@ export class EditContactModal extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { onChange } = this.props;
+    const { confirmText, quickAddAddress } = this.props;
     return (
       <Wrapper>
         <WrapperIcon>
           <Icon type="info-circle-o" />
           <Text>
-            Please be sure that all the information is correct. Once a
-            transaction is made, it can not be changed.
+Please ensure that all information is correct. Funds sent to an incorrect address are lost forever.
           </Text>
         </WrapperIcon>
         <Form layout="vertical" onSubmit={this.handleEdit}>
-          <ModalFormItem label={<ModalFormLabel>Name</ModalFormLabel>}>
+          <ModalFormItem label={<ModalFormLabel>Contact name</ModalFormLabel>}>
             {getFieldDecorator('name', {
               rules: [
                 {
-                  message: 'Name is required.',
+                  message: 'Please enter a name for the contact',
                   required: true,
                 },
+                {
+                  message: 'A contact with that name already exists',
+                  required: true,
+                  validator: (rule, value, callback) => this.validateNameInUse(rule, value, callback),
+                },
+                {
+                  max: 25,
+                  message: 'Contact name cannot exceed 25 characters',
+                },
               ],
-              initialValue: this.props.name,
-            })(<ModalFormInput onChange={(e) => onChange(e.target.value, 'name')} />)}
+              initialValue: this.props.initialName,
+            })(<ModalFormInput placeholder="John Doe" />)}
           </ModalFormItem>
           <ModalFormItem
-            label={<ModalFormLabel>Valid Ethereum Address</ModalFormLabel>}
+            label={<ModalFormLabel>Contact address</ModalFormLabel>}
           >
             {getFieldDecorator('address', {
               rules: [
                 {
-                  message: 'Address is required.',
+                  message: 'Please enter an address for the contact',
                   required: true,
                 },
                 {
-                  message: 'Address is invalid.',
+                  message: "Sorry, that address isn't valid",
                   required: true,
                   validator: (rule, value, callback) => this.validateInvalid(rule, value, callback),
                 },
                 {
-                  message: 'This address is already under use',
+                  message: 'A contact with that address already exists',
                   required: true,
-                  validator: (rule, value, callback) => this.validateInUse(rule, value, callback),
+                  validator: (rule, value, callback) => this.validateAddressInUse(rule, value, callback),
                 },
               ],
-              initialValue: this.props.address,
-            })(<ModalFormInput onChange={(e) => onChange(e.target.value, 'address')} />)}
+              initialValue: this.props.initialAddress || quickAddAddress,
+            })(
+              <ModalFormInput
+                type="textarea"
+                disabled={!!quickAddAddress}
+                placeholder="0xee1636e3eu1969b618ca9334b5baf8e3760ab16a"
+              />
+            )}
           </ModalFormItem>
           <ParentDiv>
             <StyledButton1
@@ -116,8 +131,7 @@ export class EditContactModal extends React.Component {
               htmlType="submit"
               id="button"
             >
-              <Icon type="plus" />
-              Edit Contact
+              {confirmText}
             </StyledButton1>
           </ParentDiv>
         </Form>
@@ -125,28 +139,20 @@ export class EditContactModal extends React.Component {
     );
   }
 }
+
+EditContactModal.defaultProps = {
+  initialName: '',
+  initialAddress: '',
+};
+
 EditContactModal.propTypes = {
-  /**
-   * Name of contact.
-   */
-  name: PropTypes.string,
-  /**
-   * Address of contact.
-   */
-  address: PropTypes.string,
-  /**
-   * Function to be executed when edit button is pressed
-   */
+  initialName: PropTypes.string,
+  initialAddress: PropTypes.string,
   onEdit: PropTypes.func,
   form: PropTypes.object,
-  /**
-   * Function to be executed when input is changed
-   */
-  onChange: PropTypes.func,
-  /**
-   * Contacts array
-   */
   contacts: PropTypes.arrayOf(PropTypes.object),
+  confirmText: PropTypes.string.isRequired,
+  quickAddAddress: PropTypes.string,
 };
 
 export default Form.create()(EditContactModal);

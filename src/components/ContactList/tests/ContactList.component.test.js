@@ -81,8 +81,8 @@ describe('<ContactList/>', () => {
         };
         const modalType = 'edit';
         contactList.showModal(item, modalType);
-        expect(contactList.state.name).toEqual(item.name);
-        expect(contactList.state.address).toEqual(item.address);
+        expect(contactList.state.oldName).toEqual(item.name);
+        expect(contactList.state.oldAddress).toEqual(item.address);
         expect(contactList.state.modalType).toEqual(modalType);
         expect(contactList.state.modalVisibility).toEqual(true);
       });

@@ -13,6 +13,7 @@ describe('EditContactModal', () => {
           validateFields: jest.fn(),
         },
         contacts: [],
+        confirmText: 'Add',
       };
     });
     describe('validateField', () => {
@@ -30,7 +31,7 @@ describe('EditContactModal', () => {
         instance.setState({
           oldAddress: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a',
         });
-        instance.validateInUse(rule, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
+        instance.validateAddressInUse(rule, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
         expect(callbackSpy).toBeCalled();
       });
       it('already has the address and the old address is not the same as the edited', () => {
@@ -47,7 +48,7 @@ describe('EditContactModal', () => {
         instance.setState({
           oldAddress: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f13a',
         });
-        instance.validateInUse(rule, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
+        instance.validateAddressInUse(rule, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
         expect(callbackSpy).toBeCalledWith('You have already saved this address');
       });
       it('address is invalid', () => {
@@ -73,24 +74,6 @@ describe('EditContactModal', () => {
         const rule = { field: 'address' };
         instance.validateInvalid(rule, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
         expect(callbackSpy).toBeCalledWith();
-      });
-    });
-    describe('componentWillMount', () => {
-      const contact = {
-        name: 'mike',
-        address: '0x12312312sad23',
-      };
-      it('should set the oldAddress and oldName on mount', () => {
-        dom = shallow(
-          <EditContactModal
-            {...props}
-            {...contact}
-          />
-        );
-        const instance = dom.instance();
-        instance.componentWillMount();
-        expect(instance.state.oldAddress).toEqual(contact.address);
-        expect(instance.state.oldName).toEqual(contact.name);
       });
     });
     describe('handleEdit', () => {

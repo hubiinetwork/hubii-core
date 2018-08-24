@@ -10,9 +10,9 @@ import WalletsOverview from 'containers/WalletsOverview';
 import ContactBook from 'containers/ContactBook';
 import Tab from 'components/ui/Tab';
 import AddRestoreWalletModal from 'components/AddRestoreWalletModal';
-import AddNewContactModal from 'components/AddNewContactModal';
 import { Modal } from 'components/ui/Modal';
 import { makeSelectContacts } from 'containers/ContactBook/selectors';
+import EditContactModal from 'components/EditContactModal';
 
 import {
   createWalletFromMnemonic,
@@ -63,11 +63,7 @@ export class WalletManager extends React.PureComponent {
 
   onCreateContact(contact) {
     if (contact) {
-      const name = contact.name.replace(
-        /\w\S*/g,
-        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-      );
-      this.props.createContact(name, contact.address);
+      this.props.createContact(contact.name, contact.address);
     }
     this.hideModal();
   }
@@ -117,9 +113,10 @@ export class WalletManager extends React.PureComponent {
     let modal;
     switch (this.state.type) {
       case 'addContact':
-        modal = (<AddNewContactModal
-          onSubmit={(contact) => this.onCreateContact(contact)}
+        modal = (<EditContactModal
+          onEdit={(contact) => this.onCreateContact(contact)}
           contacts={contacts.toJS()}
+          confirmText="Create contact"
         />);
         break;
       default:
