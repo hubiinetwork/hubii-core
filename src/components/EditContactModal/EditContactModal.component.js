@@ -88,6 +88,10 @@ Please ensure that all information is correct. Funds sent to an incorrect addres
                   required: true,
                   validator: (rule, value, callback) => this.validateNameInUse(rule, value, callback),
                 },
+                {
+                  max: 25,
+                  message: 'Contact name cannot exceed 25 characters',
+                },
               ],
               initialValue: this.props.initialName,
             })(<ModalFormInput placeholder="John Doe" />)}
