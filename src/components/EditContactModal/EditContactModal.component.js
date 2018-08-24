@@ -19,7 +19,8 @@ export class EditContactModal extends React.Component {
   constructor(props) {
     super(props);
     this.handleEdit = this.handleEdit.bind(this);
-    this.validateInUse = this.validateInUse.bind(this);
+    this.validateAddressInUse = this.validateAddressInUse.bind(this);
+    this.validateNameInUse = this.validateNameInUse.bind(this);
     this.validateInvalid = this.validateInvalid.bind(this);
   }
 
@@ -34,12 +35,22 @@ export class EditContactModal extends React.Component {
     });
   }
 
-  validateInUse(rule, value, callback) {
+  validateAddressInUse(rule, value, callback) {
     const { contacts } = this.props;
     if (!value) { callback(); return; } // no address input
     const sameAddressList = contacts.filter((person) => IsAddressMatch(person.address, value.trim()));
-    if (sameAddressList.length) {
+    if (sameAddressList.length && !IsAddressMatch(value.trim(), this.props.initialAddress)) {
       callback('You have already saved this address');
+    }
+    callback();
+  }
+
+  validateNameInUse(rule, value, callback) {
+    const { contacts } = this.props;
+    if (!value) { callback(); return; } // no name input
+    const sameAddressList = contacts.filter((person) => person.name.toLowerCase() === value.trim().toLowerCase());
+    if (sameAddressList.length && this.props.initialName.toLowerCase() !== value.trim().toLowerCase()) {
+      callback(true);
     }
     callback();
   }
@@ -72,8 +83,13 @@ Please ensure that all information is correct. Funds sent to an incorrect addres
                   message: 'Please enter a name for the contact',
                   required: true,
                 },
+                {
+                  message: 'A contact with that name already exists',
+                  required: true,
+                  validator: (rule, value, callback) => this.validateNameInUse(rule, value, callback),
+                },
               ],
-              initialValue: this.props.name,
+              initialValue: this.props.initialName,
             })(<ModalFormInput placeholder="John Doe" />)}
           </ModalFormItem>
           <ModalFormItem
@@ -93,10 +109,10 @@ Please ensure that all information is correct. Funds sent to an incorrect addres
                 {
                   message: 'A contact with that address already exists',
                   required: true,
-                  validator: (rule, value, callback) => this.validateInUse(rule, value, callback),
+                  validator: (rule, value, callback) => this.validateAddressInUse(rule, value, callback),
                 },
               ],
-              initialValue: this.props.address || quickAddAddress,
+              initialValue: this.props.initialAddress || quickAddAddress,
             })(
               <ModalFormInput
                 type="textarea"
@@ -119,28 +135,19 @@ Please ensure that all information is correct. Funds sent to an incorrect addres
     );
   }
 }
+
+EditContactModal.defaultProps = {
+  initialName: '',
+  initialAddress: '',
+};
+
 EditContactModal.propTypes = {
-  /**
-   * Name of contact.
-   */
-  name: PropTypes.string,
-  /**
-   * Address of contact.
-   */
-  address: PropTypes.string,
-  /**
-   * Function to be executed when edit button is pressed
-   */
+  initialName: PropTypes.string,
+  initialAddress: PropTypes.string,
   onEdit: PropTypes.func,
-
   form: PropTypes.object,
-  /**
-   * Contacts array
-   */
   contacts: PropTypes.arrayOf(PropTypes.object),
-
   confirmText: PropTypes.string.isRequired,
-
   quickAddAddress: PropTypes.string,
 };
 

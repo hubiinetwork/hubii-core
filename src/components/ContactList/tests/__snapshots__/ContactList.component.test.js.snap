@@ -72,7 +72,6 @@ ShallowWrapper {
           width="41.79rem"
 >
           <Form(EditContactModal)
-                    address=""
                     confirmText="Edit contact"
                     contacts={
                               Array [
@@ -86,7 +85,8 @@ ShallowWrapper {
                                         },
                                       ]
                     }
-                    name=""
+                    initialAddress=""
+                    initialName=""
                     onEdit={[Function]}
           />
 </Modal.style>,
@@ -123,7 +123,6 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <Form(EditContactModal)
-            address=""
             confirmText="Edit contact"
             contacts={
                         Array [
@@ -137,7 +136,8 @@ ShallowWrapper {
                                     },
                                   ]
             }
-            name=""
+            initialAddress=""
+            initialName=""
             onEdit={[Function]}
 />,
           "destroyOnClose": true,
@@ -159,7 +159,6 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "address": "",
             "confirmText": "Edit contact",
             "contacts": Array [
               Object {
@@ -171,7 +170,8 @@ ShallowWrapper {
                 "name": "joe",
               },
             ],
-            "name": "",
+            "initialAddress": "",
+            "initialName": "",
             "onEdit": [Function],
           },
           "ref": null,
@@ -226,7 +226,6 @@ ShallowWrapper {
             width="41.79rem"
 >
             <Form(EditContactModal)
-                        address=""
                         confirmText="Edit contact"
                         contacts={
                                     Array [
@@ -240,7 +239,8 @@ ShallowWrapper {
                                                 },
                                               ]
                         }
-                        name=""
+                        initialAddress=""
+                        initialName=""
                         onEdit={[Function]}
             />
 </Modal.style>,
@@ -277,7 +277,6 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <Form(EditContactModal)
-              address=""
               confirmText="Edit contact"
               contacts={
                             Array [
@@ -291,7 +290,8 @@ ShallowWrapper {
                                           },
                                         ]
               }
-              name=""
+              initialAddress=""
+              initialName=""
               onEdit={[Function]}
 />,
             "destroyOnClose": true,
@@ -313,7 +313,6 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "address": "",
               "confirmText": "Edit contact",
               "contacts": Array [
                 Object {
@@ -325,7 +324,8 @@ ShallowWrapper {
                   "name": "joe",
                 },
               ],
-              "name": "",
+              "initialAddress": "",
+              "initialName": "",
               "onEdit": [Function],
             },
             "ref": null,

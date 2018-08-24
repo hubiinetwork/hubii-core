@@ -87,8 +87,8 @@ export default class ContactList extends React.PureComponent {
     } else {
       modal = (
         <EditContactModal
-          name={oldName}
-          address={oldAddress}
+          initialName={oldName}
+          initialAddress={oldAddress}
           onEdit={(e) => this.handleEdit(e)}
           contacts={data}
           confirmText="Edit contact"

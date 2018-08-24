@@ -31,7 +31,7 @@ describe('EditContactModal', () => {
         instance.setState({
           oldAddress: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a',
         });
-        instance.validateInUse(rule, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
+        instance.validateAddressInUse(rule, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
         expect(callbackSpy).toBeCalled();
       });
       it('already has the address and the old address is not the same as the edited', () => {
@@ -48,7 +48,7 @@ describe('EditContactModal', () => {
         instance.setState({
           oldAddress: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f13a',
         });
-        instance.validateInUse(rule, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
+        instance.validateAddressInUse(rule, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
         expect(callbackSpy).toBeCalledWith('You have already saved this address');
       });
       it('address is invalid', () => {
