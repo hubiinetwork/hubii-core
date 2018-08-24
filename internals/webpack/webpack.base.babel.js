@@ -1,7 +1,7 @@
 /**
  * COMMON WEBPACK CONFIGURATION
  */
-
+require('dotenv').config();
 const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -149,26 +149,15 @@ module.exports = (options) => ({
     // inside your code for any environment checks; UglifyJS will automatically
     // drop any unreachable code.
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        NETWORK: JSON.stringify(process.env.NETWORK),
-        WALLET_API: JSON.stringify(process.env.WALLET_API),
-      },
+      'process.env': Object.keys(process.env).reduce((accumulator, currentKey) => {
+        const envs = accumulator;
+        envs[currentKey] = JSON.stringify(process.env[currentKey]);
+        return envs;
+      }, {}),
     }),
     new CopyWebpackPlugin(
       [
         { from: 'public/', to: 'public/' },
-        {
-          from: 'public/electron.js',
-          to: 'public/electron.js',
-          transform(content) {
-            if (!process.env.DEV_TOOLS) {
-              return content;
-            }
-            const templated = content.toString('utf8').replace('process.env.DEV_TOOLS', parseInt(process.env.DEV_TOOLS, 10));
-            return Buffer.from(templated, 'utf8');
-          },
-        },
       ]
     ),
   ]),

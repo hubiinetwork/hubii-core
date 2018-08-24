@@ -9,16 +9,19 @@ const isDev = require('electron-is-dev');
 const { registerWalletListeners } = require('./wallets');
 const setupDevToolsShortcut = require('./dev-tools');
 
-const showDevTools = process.env.DEV_TOOLS;
+const version = app.getVersion();
 
 function createWindow() {
-  const template = [{
-    label: 'Application',
-    submenu: [
-        { label: 'About Application', selector: 'orderFrontStandardAboutPanel:' },
-        { type: 'separator' },
-        { label: 'Quit', accelerator: 'Command+Q', click() { app.quit(); } },
-    ] }, {
+  const template = [
+    {
+      label: 'Application',
+      submenu: [
+          { label: `Version: ${version}`, enabled: false },
+          { type: 'separator' },
+          { label: 'Quit', accelerator: 'Command+Q', click() { app.quit(); } },
+      ],
+    },
+    {
       label: 'Edit',
       submenu: [
         { label: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
@@ -28,14 +31,15 @@ function createWindow() {
         { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
         { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
         { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
-      ] },
+      ],
+    },
   ];
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
   const windowOptions = {
-    width: 1200,
-    height: 680,
+    width: 1250,
+    height: 780,
     show: false,
     icon: process.platform === 'linux' && path.join(__dirname, '../icon.png'),
     webPreferences: {
@@ -54,10 +58,8 @@ function createWindow() {
     },
   });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../index.html')}`);
-  if (showDevTools || isDev) {
-    mainWindow.webContents.openDevTools();
-  }
   if (isDev) {
+    mainWindow.webContents.openDevTools();
     // Need to require this globally so we can keep it as a
     // dev-only dependency
     const {
@@ -104,11 +106,24 @@ function setupAutoUpdater() {
   autoUpdater.checkForUpdatesAndNotify();
 }
 
-app.on('ready', () => {
-  createWindow();
-  setupAutoUpdater();
-  setupDevToolsShortcut();
+const shouldQuit = app.makeSingleInstance(() => {
+  // Someone tried to run a second instance, we should focus our window.
+  if (mainWindow) {
+    if (mainWindow.isMinimized()) mainWindow.restore();
+    mainWindow.focus();
+  }
 });
+
+if (shouldQuit) {
+  app.quit();
+} else {
+  app.on('ready', () => {
+    createWindow();
+    setupAutoUpdater();
+    setupDevToolsShortcut();
+  });
+}
+
 
 app.on('activate', () => {
   if (mainWindow === null) {

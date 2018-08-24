@@ -12,9 +12,7 @@ import {
   StyledTitle,
   StyledButton,
   StyledRecipient,
-  StyledButtonCancel,
   StyledSpin,
-  SendCancelWrapper,
   HWPromptWrapper,
 } from './TransferDescription.style';
 import TransferDescriptionItem from '../TransferDescriptionItem';
@@ -40,7 +38,6 @@ export default class TransferDescription extends React.PureComponent {
       usdValueToSend,
       transactionFee,
       onSend,
-      onCancel,
     } = this.props;
 
     let hardwareError;
@@ -162,14 +159,9 @@ export default class TransferDescription extends React.PureComponent {
               delay={0}
               size="large"
             />) : (
-              <SendCancelWrapper>
-                <StyledButtonCancel type="secondary" onClick={onCancel}>
-                  {'Cancel'}
-                </StyledButtonCancel>
-                <StyledButton type="primary" onClick={onSend} disabled={disableSendButton}>
-                  Send
-                </StyledButton>
-              </SendCancelWrapper>
+              <StyledButton type="primary" onClick={onSend} disabled={disableSendButton}>
+                Send
+              </StyledButton>
             )
           }
         </Row>
@@ -191,7 +183,6 @@ TransferDescription.propTypes = {
   walletUsdValueBefore: PropTypes.number.isRequired,
   usdValueToSend: PropTypes.object.isRequired,
   onSend: PropTypes.func,
-  onCancel: PropTypes.func,
   transfering: PropTypes.bool,
   confTxOnDevice: PropTypes.bool.isRequired,
   errors: PropTypes.object.isRequired,

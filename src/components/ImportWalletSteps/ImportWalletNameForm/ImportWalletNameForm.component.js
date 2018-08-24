@@ -42,7 +42,7 @@ class ImportWalletNameForm extends React.Component {
             <FormItem
               label={
                 <StyledModalFormLabel>
-                  Enter Wallet Name
+                  Enter a name for your wallet 
                 </StyledModalFormLabel>
               }
             >

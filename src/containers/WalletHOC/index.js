@@ -107,7 +107,7 @@ export function getComponentHOC(Component) {
             destroyOnClose
           >
             <FormItem
-              label={<FormItemLabel>Please enter wallet password to proceed</FormItemLabel>}
+              label={<FormItemLabel>{"Please enter your wallet's password to proceed"}</FormItemLabel>}
               colon={false}
             >
               <Input value={this.state.password} onChange={this.onPasswordChange} type="password" onKeyPress={(e) => this.handleKeyPress(e)} />
