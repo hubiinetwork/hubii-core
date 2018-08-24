@@ -73,7 +73,7 @@ ShallowWrapper {
 >
           <Form(EditContactModal)
                     address=""
-                    confirmText="Edit Contact"
+                    confirmText="Edit contact"
                     contacts={
                               Array [
                                         Object {
@@ -124,7 +124,7 @@ ShallowWrapper {
         "props": Object {
           "children": <Form(EditContactModal)
             address=""
-            confirmText="Edit Contact"
+            confirmText="Edit contact"
             contacts={
                         Array [
                                     Object {
@@ -160,7 +160,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "address": "",
-            "confirmText": "Edit Contact",
+            "confirmText": "Edit contact",
             "contacts": Array [
               Object {
                 "address": "0x3123123",
@@ -227,7 +227,7 @@ ShallowWrapper {
 >
             <Form(EditContactModal)
                         address=""
-                        confirmText="Edit Contact"
+                        confirmText="Edit contact"
                         contacts={
                                     Array [
                                                 Object {
@@ -278,7 +278,7 @@ ShallowWrapper {
           "props": Object {
             "children": <Form(EditContactModal)
               address=""
-              confirmText="Edit Contact"
+              confirmText="Edit contact"
               contacts={
                             Array [
                                           Object {
@@ -314,7 +314,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "address": "",
-              "confirmText": "Edit Contact",
+              "confirmText": "Edit contact",
               "contacts": Array [
                 Object {
                   "address": "0x3123123",

@@ -38,7 +38,7 @@ export default class ContactList extends React.PureComponent {
 
   showNotification() {
     const success = true;
-    const message = 'Address copied to clipboard.';
+    const message = 'Address copied to clipboard';
     Notification(success, message);
   }
 
@@ -91,7 +91,7 @@ export default class ContactList extends React.PureComponent {
           address={oldAddress}
           onEdit={(e) => this.handleEdit(e)}
           contacts={data}
-          confirmText="Edit Contact"
+          confirmText="Edit contact"
         />
       );
     }

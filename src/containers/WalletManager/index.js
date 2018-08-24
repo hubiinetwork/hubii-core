@@ -116,7 +116,7 @@ export class WalletManager extends React.PureComponent {
         modal = (<EditContactModal
           onEdit={(contact) => this.onCreateContact(contact)}
           contacts={contacts.toJS()}
-          confirmText="Add"
+          confirmText="Create contact"
         />);
         break;
       default:

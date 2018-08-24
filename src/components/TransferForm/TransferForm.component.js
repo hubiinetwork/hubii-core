@@ -295,7 +295,7 @@ export default class TransferForm extends React.PureComponent {
             onEdit={(contact) => this.onCreateContact(contact)}
             contacts={recipients}
             quickAddAddress={address}
-            confirmText="Add"
+            confirmText="Create contact"
           />
         </Modal>
 

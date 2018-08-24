@@ -58,12 +58,11 @@ export class EditContactModal extends React.Component {
         <WrapperIcon>
           <Icon type="info-circle-o" />
           <Text>
-            Please be sure that all the information is correct. Once a
-            transaction is made, it can not be changed.
+Please ensure that all information is correct. Funds sent to an incorrect address are lost forever.
           </Text>
         </WrapperIcon>
         <Form layout="vertical" onSubmit={this.handleEdit}>
-          <ModalFormItem label={<ModalFormLabel>Name</ModalFormLabel>}>
+          <ModalFormItem label={<ModalFormLabel>Contact name</ModalFormLabel>}>
             {getFieldDecorator('name', {
               rules: [
                 {
@@ -75,7 +74,7 @@ export class EditContactModal extends React.Component {
             })(<ModalFormInput placeholder="John Doe" />)}
           </ModalFormItem>
           <ModalFormItem
-            label={<ModalFormLabel>Valid Ethereum Address</ModalFormLabel>}
+            label={<ModalFormLabel>Contact address</ModalFormLabel>}
           >
             {getFieldDecorator('address', {
               rules: [
@@ -89,7 +88,7 @@ export class EditContactModal extends React.Component {
                   validator: (rule, value, callback) => this.validateInvalid(rule, value, callback),
                 },
                 {
-                  message: 'This address is already under use',
+                  message: 'A contact already exists with that address',
                   required: true,
                   validator: (rule, value, callback) => this.validateInUse(rule, value, callback),
                 },
@@ -109,7 +108,6 @@ export class EditContactModal extends React.Component {
               htmlType="submit"
               id="button"
             >
-              <Icon type="plus" />
               {confirmText}
             </StyledButton1>
           </ParentDiv>
