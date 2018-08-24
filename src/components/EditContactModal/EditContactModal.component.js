@@ -67,7 +67,7 @@ Please ensure that all information is correct. Funds sent to an incorrect addres
             {getFieldDecorator('name', {
               rules: [
                 {
-                  message: 'Name is required.',
+                  message: 'Please enter a name for the contact',
                   required: true,
                 },
               ],
@@ -80,16 +80,16 @@ Please ensure that all information is correct. Funds sent to an incorrect addres
             {getFieldDecorator('address', {
               rules: [
                 {
-                  message: 'Address is required.',
+                  message: 'Please enter an address for the contact',
                   required: true,
                 },
                 {
-                  message: 'Address is invalid.',
+                  message: "Sorry, that address isn't valid",
                   required: true,
                   validator: (rule, value, callback) => this.validateInvalid(rule, value, callback),
                 },
                 {
-                  message: 'A contact already exists with that address',
+                  message: 'A contact with that address already exists',
                   required: true,
                   validator: (rule, value, callback) => this.validateInUse(rule, value, callback),
                 },
