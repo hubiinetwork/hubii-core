@@ -1,12 +1,7 @@
 import { List } from 'antd';
 import styled from 'styled-components';
 
-export const StyledDiv = styled.div`
-  margin-top: 1.07rem;
-`;
 export const StyledList = styled(List)`
-  margin-right: 1.29rem;
-  margin-left: 0rem;
   .ant-list-item-meta-title {
     color: ${({ theme }) => theme.palette.info3};
     font-size: 1rem;

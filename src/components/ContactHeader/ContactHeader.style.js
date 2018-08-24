@@ -5,16 +5,12 @@ import { InputSearch } from '../ui/Input';
 export const StyledDiv = styled.div`
   color: ${({ theme }) => theme.palette.light};
   display: flex;
+  align-items: center;
   font-size: 1.21rem;
-  margin-top: -0.5rem;
   justify-content: space-between;
-  position: relative;
 `;
 export const Wrapper = styled.div`
   width: 30%;
-  margin-right: 0.71rem;
-  position: absolute;
-  right: 0;
 `;
 
 export const StyledTabs = styled(StriimTabs)`
