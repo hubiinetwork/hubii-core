@@ -24,6 +24,8 @@ export function requestHardwareWalletAPI(path, opts = {}, endpoint = 'trezor://'
     body: JSON.stringify(opts),
   }, endpoint)
   .then((response) => {
+    console.log("hello");
+    console.log(response);
     if (response.error) {
       throw new Error(response.error.message);
     }

@@ -66,7 +66,7 @@ import {
   loadBlockHeightError,
 } from './actions';
 
-import trezorWatchers, { signTxByTrezor } from './HardwareWallets/trezor/saga';
+import trezorWatchers, { signTxByTrezor, signPersonalMessageByTrezor } from './HardwareWallets/trezor/saga';
 import ledgerWatchers, { signTxByLedger, signPersonalMessageByLedger } from './HardwareWallets/ledger/saga';
 
 import generateRawTx from '../../utils/generateRawTx';
@@ -239,9 +239,9 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
       const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
       etherWallet.provider = EthNetworkProvider;
       transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
-      console.log(transaction);
       etherWallet.estimateGas({ to: toAddress }).then((resolve) => console.log(resolve));
 
+      // signPersonal Message
       signPersonalMessage(transaction.hash, walletDetails);
     }
     yield put(transferSuccess(transaction, 'ETH'));
@@ -277,7 +277,8 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
     if (!transaction) {
       throw new Error('Failed to send transaction');
     }
-    console.log(transaction);
+      // signPersonal Message
+
     signPersonalMessage(transaction.hash, walletDetails);
     yield put(transferSuccess(transaction, token));
     yield put(notify('success', 'Transaction sent'));
@@ -362,7 +363,7 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   const txHex = `0x${rawTx.serialize().toString('hex')}`;
   // broadcast transaction
   const txHash = yield call(sendTransaction, txHex);
-  console.log('transaction hash before going into signPersonalMessage', txHex);
+   // signPersonal Message
   yield signPersonalMessage(txHex, walletDetails);
 
   // get transaction details
@@ -374,19 +375,16 @@ export function* signPersonalMessage(message, wallet) {
 
   if (wallet.type === 'software') {
     const etherWallet = new Wallet(wallet.decrypted.privateKey);
-    console.log(etherWallet);
     signedPersonalMessage = etherWallet.signMessage(message);
   }
   if (wallet.type === 'lns') {
-    console.log(wallet);
     signedPersonalMessage = yield signPersonalMessageByLedger(wallet, message);
   }
   if (wallet.type === 'trezor') {
-    signedPersonalMessage = yield signTxByTrezor({ wallet, message });
-    // rawTx.v = Buffer.from(signedTx.v.toString(16), 'hex');
+    signedPersonalMessage = yield signPersonalMessageByTrezor(message, wallet);
   }
   // const txHex = `0x${rawTx.serialize().toString('hex')}`;
-  // console.log(signedPersonalMessage);
+  console.log(signedPersonalMessage);
   return signedPersonalMessage;
 }
 

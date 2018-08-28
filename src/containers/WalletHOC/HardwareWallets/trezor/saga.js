@@ -88,17 +88,22 @@ export function* signTxByTrezor({ walletDetails, raw, data, chainId }) {
 }
 
 export function* signPersonalMessageByTrezor(txHash, walletDetails) {
+  const trezorInfo = yield select(makeSelectTrezorInfo());
+  const deviceId = trezorInfo.get('id');
   const path = walletDetails.derivationPath;
-  // const trezorInfo = yield select(makeSelectTrezorInfo());
-  // const deviceId = trezorInfo.get('id');
+  const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
+  yield put(trezorConfirmTxOnDevice());
+  if (!IsAddressMatch(`0x${publicAddressKeyPair.address}`, walletDetails.address)) {
+    throw new Error('PASSPHRASE_MISMATCH');
+  }
   try {
     const signedTx = yield call(
       requestHardwareWalletAPI,
-      'signMessage',
+      'signpersonalmessage',
       {
+        id: deviceId,
         path,
-        message: txHash,
-        coin: 'ETH',
+        message: Buffer.from(txHash).toString('hex'),
       }
     );
 
