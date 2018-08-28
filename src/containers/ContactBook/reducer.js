@@ -38,6 +38,7 @@ function contactsReducer(state = initialState, action) {
         .set('contacts', fromJS(action.newContactsList))
         .set('recentContacts', fromJS(action.newRecentContactsList));
     case TRANSFER_SUCCESS: {
+      console.log(action);
       const recentContacts = updateRecentContacts(state.get('contacts').toJS(), state.get('recentContacts').toJS(), action.transaction);
       return state
         .set('recentContacts', fromJS(recentContacts));
