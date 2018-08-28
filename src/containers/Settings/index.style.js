@@ -17,7 +17,7 @@ export const Container = styled.div`
 
 export const Heading = styled.h2`
   display: flex;
-  font-weight: 500;
+  font-weight: 400;
   color: ${({ theme }) => theme.palette.light};
   font-size: 1.125rem;
   margin: 0;

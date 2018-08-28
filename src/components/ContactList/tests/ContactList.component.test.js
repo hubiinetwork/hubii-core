@@ -5,26 +5,47 @@ import DeletionModal from 'components/DeletionModal';
 import EditContactModal from 'components/EditContactModal';
 
 describe('<ContactList/>', () => {
-  const contacts = [
-    {
-      name: 'mike',
-      address: '0x3123123',
-    },
-    {
-      name: 'joe',
-      address: '0x123123123',
-    },
-  ];
-  const onDelete = jest.fn();
-  const onEdit = jest.fn();
+  const props = {
+    data: [
+      {
+        name: 'mike',
+        address: '0x3123123',
+      },
+      {
+        name: 'joe',
+        address: '0x123123123',
+      },
+    ],
+    empty: false,
+    onDelete: jest.fn(),
+    onEdit: jest.fn(),
+  };
 
   describe('shallow mount', () => {
     it('should render <ContactList/> with data', () => {
       const shallowWrapper = shallow(
         <ContactList
-          data={contacts}
-          onEdit={onEdit}
-          onDelete={onDelete}
+          {...props}
+        />
+      );
+      expect(shallowWrapper).toMatchSnapshot();
+    });
+
+    it('should render <ContactList/> when empty', () => {
+      const shallowWrapper = shallow(
+        <ContactList
+          {...props}
+          empty
+        />
+      );
+      expect(shallowWrapper).toMatchSnapshot();
+    });
+
+    it('should render with custom message', () => {
+      const shallowWrapper = shallow(
+        <ContactList
+          {...props}
+          message="custom message"
         />
       );
       expect(shallowWrapper).toMatchSnapshot();
@@ -33,9 +54,8 @@ describe('<ContactList/>', () => {
     it('should render <ContactList/> without data', () => {
       const shallowWrapper = shallow(
         <ContactList
+          {...props}
           data={[]}
-          onEdit={onEdit}
-          onDelete={onDelete}
         />
       );
       expect(shallowWrapper).toMatchSnapshot();
@@ -48,9 +68,7 @@ describe('<ContactList/>', () => {
     beforeEach(() => {
       wrapper = shallow(
         <ContactList
-          data={contacts}
-          onEdit={onEdit}
-          onDelete={onDelete}
+          {...props}
         />
       );
       contactList = wrapper.instance();
@@ -63,8 +81,8 @@ describe('<ContactList/>', () => {
         };
         const modalType = 'edit';
         contactList.showModal(item, modalType);
-        expect(contactList.state.name).toEqual(item.name);
-        expect(contactList.state.address).toEqual(item.address);
+        expect(contactList.state.oldName).toEqual(item.name);
+        expect(contactList.state.oldAddress).toEqual(item.address);
         expect(contactList.state.modalType).toEqual(modalType);
         expect(contactList.state.modalVisibility).toEqual(true);
       });

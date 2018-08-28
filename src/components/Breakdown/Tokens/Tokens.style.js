@@ -9,8 +9,7 @@ export const Logo = styled.img`
 export const Label = styled.div`
   color: ${({ theme }) => theme.palette.light};
   font-size: 0.86rem;
-  font-weight: 500;
-  line-height: 1rem;
+  font-weight: 400;
 `;
 
 export const Percentage = styled.div`

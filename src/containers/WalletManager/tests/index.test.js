@@ -117,12 +117,8 @@ describe('WalletManager', () => {
           name: 'mike',
           address: '0x12312',
         };
-        const newName = args.name.replace(
-          /\w\S*/g,
-          (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-        );
         instance.onCreateContact(args);
-        expect(createContactSpy).toBeCalledWith(newName, args.address);
+        expect(createContactSpy).toBeCalledWith(args.name, args.address);
       });
       it('#handleAddWalletSubmit should call createWalletFromMnemonic action', () => {
         dom = shallow(

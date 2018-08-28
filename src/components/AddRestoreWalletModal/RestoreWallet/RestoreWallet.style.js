@@ -37,7 +37,6 @@ export const RestoreButton = styled(Button)`
   min-width: 17.14rem;
   border-width: 0.14rem;
   margin-top: 3.5rem;
-  font-family: 'SF Text';
 `;
 
 export const IconWrapper = styled.div`

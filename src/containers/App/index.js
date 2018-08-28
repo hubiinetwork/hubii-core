@@ -40,11 +40,6 @@ export function App() {
       name: 'Wallet Manager',
     },
     {
-      to: '/striim',
-      icon: 'striim',
-      name: 'striim detail',
-    },
-    {
       to: '/dex',
       icon: 'dex',
       name: 'dex detail',
