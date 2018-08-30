@@ -29,6 +29,8 @@ import {
 
 import {
   supportedTokensMock,
+  // messageMock,
+  // decryptedSoftwareWallet1Mock,
 } from './mocks';
 
 
@@ -1046,9 +1048,14 @@ describe('load wallets saga', () => {
         .run({ silenceTimeout: true });
     });
   });
+  // describe('#signPersonalMessage', () => {
+  //   const message = messageMock;
+  //   it('should run the function relevant to a software wallet', () => {
+  //     const wallet = decryptedSoftwareWallet1Mock.toJS();
+  //   });
+  // });
 });
 
-// describe('sign')
 
 describe('root Saga', () => {
   const walletHocSaga = walletHoc();
