@@ -112,7 +112,6 @@ export function* initLedger() {
   while (true) { // eslint-disable-line no-constant-condition
     try {
       const msg = yield take(chan);
-      console.log(msg);
       if (msg.type === 'remove') {
         const { timeout } = yield race({
           msg: take(chan),
@@ -127,7 +126,6 @@ export function* initLedger() {
 
       yield put(ledgerConnected(msg.descriptor));
     } catch (e) {
-      console.log(e);
       yield put(ledgerError(e));
     }
   }

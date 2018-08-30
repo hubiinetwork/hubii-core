@@ -1048,6 +1048,8 @@ describe('load wallets saga', () => {
   });
 });
 
+// describe('sign')
+
 describe('root Saga', () => {
   const walletHocSaga = walletHoc();
 

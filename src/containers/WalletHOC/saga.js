@@ -240,9 +240,6 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
       etherWallet.provider = EthNetworkProvider;
       transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
       etherWallet.estimateGas({ to: toAddress }).then((resolve) => console.log(resolve));
-
-      // signPersonal Message
-      signPersonalMessage(transaction.hash, walletDetails);
     }
     yield put(transferSuccess(transaction, 'ETH'));
     yield put(notify('success', 'Transaction sent'));
@@ -277,9 +274,6 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
     if (!transaction) {
       throw new Error('Failed to send transaction');
     }
-      // signPersonal Message
-
-    signPersonalMessage(transaction.hash, walletDetails);
     yield put(transferSuccess(transaction, token));
     yield put(notify('success', 'Transaction sent'));
   } catch (error) {
@@ -351,7 +345,6 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   }
   if (walletDetails.type === 'trezor') {
     const raw = rawTx.toJSON();
-
     signedTx = yield signTxByTrezor({ walletDetails, raw, data, chainId });
     rawTx.v = Buffer.from(signedTx.v.toString(16), 'hex');
   }
@@ -363,8 +356,6 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   const txHex = `0x${rawTx.serialize().toString('hex')}`;
   // broadcast transaction
   const txHash = yield call(sendTransaction, txHex);
-   // signPersonal Message
-  yield signPersonalMessage(txHex, walletDetails);
 
   // get transaction details
   return yield call(getTransaction, txHash);
@@ -383,8 +374,6 @@ export function* signPersonalMessage(message, wallet) {
   if (wallet.type === 'trezor') {
     signedPersonalMessage = yield signPersonalMessageByTrezor(message, wallet);
   }
-  // const txHex = `0x${rawTx.serialize().toString('hex')}`;
-  console.log(signedPersonalMessage);
   return signedPersonalMessage;
 }
 
