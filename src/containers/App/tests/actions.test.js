@@ -1,8 +1,8 @@
 import {
-  notify,
+  notify, changeNetwork,
 } from '../actions';
 import {
-  NOTIFY,
+  NOTIFY, CHANGE_NETWORK,
 } from '../constants';
 
 describe('App actions', () => {
@@ -16,6 +16,16 @@ describe('App actions', () => {
         message,
       };
       expect(notify(messageType, message)).toEqual(expected);
+    });
+  });
+  describe('changeNetwork Action', () => {
+    const name = 'some network';
+    it('returns expected output', () => {
+      const expected = {
+        type: CHANGE_NETWORK,
+        name,
+      };
+      expect(changeNetwork(name)).toEqual(expected);
     });
   });
 });

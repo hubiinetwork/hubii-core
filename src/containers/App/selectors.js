@@ -1,9 +1,20 @@
 import { createSelector } from 'reselect';
 
+const selectAppDomain = (state) => state.get('app');
 const selectRoute = (state) => state.get('route');
 
+const makeSelectCurrentNetwork = () => createSelector(
+  selectAppDomain,
+  (appDomain) => appDomain.get('currentNetwork')
+);
+
+const makeSelectSupportedNetworks = () => createSelector(
+  selectAppDomain,
+  (appDomain) => appDomain.get('supportedNetworks')
+);
+
 const makeSelectLocation = () => createSelector(
-  selectRoute,
+  selectAppDomain,
   (routeState) => routeState.get('location').toJS()
 );
 
@@ -18,4 +29,6 @@ const makeSelectPathnameId = () => createSelector(
 export {
   makeSelectLocation,
   makeSelectPathnameId,
+  makeSelectCurrentNetwork,
+  makeSelectSupportedNetworks,
 };

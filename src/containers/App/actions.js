@@ -1,4 +1,4 @@
-import { NOTIFY } from './constants';
+import { NOTIFY, CHANGE_NETWORK } from './constants';
 
 
 export function notify(messageType, message) {
@@ -6,5 +6,12 @@ export function notify(messageType, message) {
     type: NOTIFY,
     messageType,
     message,
+  };
+}
+
+export function changeNetwork(name) {
+  return {
+    type: CHANGE_NETWORK,
+    name,
   };
 }

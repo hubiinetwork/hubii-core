@@ -18,6 +18,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import { getAbsolutePath } from 'utils/electron';
 import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
 
 import HomeScreen from 'components/HomeScreen';
 import SideBar from 'components/SideBar';
@@ -31,6 +32,7 @@ import withExchangeRate from 'containers/ExchangeRateHOC';
 import WalletHOC from 'containers/WalletHOC';
 
 import saga from './saga';
+import reducer from './reducer';
 
 export function App() {
   const menuItems = [
@@ -63,8 +65,10 @@ export function App() {
 }
 
 const withSaga = injectSaga({ key: 'app', saga });
+const withReducer = injectReducer({ key: 'app', reducer });
 
 export default compose(
+  withReducer,
   withSaga,
   withExchangeRate,
   WalletHOC,

@@ -18,3 +18,12 @@ const stringFromEnv = (key, def) => process.env[key] || def;
 
 export const WALLET_API = stringFromEnv('WALLET_API', 'https://api2.dev.hubii.net/');
 export const NETWORK = stringFromEnv('NETWORK', 'ropsten');
+
+export const SUPPORTED_NETWORKS = {
+  mainnet: {
+    walletApiEndpoint: 'https://api2.dev.hubii.net/',
+  },
+  ropsten: {
+    walletApiEndpoint: 'https://api2.dev.hubii.net/',
+  },
+};
