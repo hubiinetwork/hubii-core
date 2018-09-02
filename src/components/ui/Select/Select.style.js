@@ -8,9 +8,8 @@ export default styled(Select)`
   background-color: transparent;
   border: none;
   border-radius: 0rem;
-  padding: 0rem;
+  padding: 0;
   color: ${({ theme }) => theme.palette.light};
-  padding-left: ${({ recipient }) => (recipient ? '0rem' : '1rem')};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,6 +26,9 @@ export default styled(Select)`
     outline: none;
     box-shadow: none;
   }
+  .ant-select-selection-selected-value {
+    padding-right: 2rem;
+  }
   .ant-select-selection:focus {
     .ant-select-selection-selected-value {
       color: ${({ theme }) => theme.palette.info} !important;
@@ -34,6 +36,7 @@ export default styled(Select)`
   }
   .ant-select-selection {
     background-color: transparent;
+    box-shadow: none;
     border: none;
   }
   .ant-select-selection:active {

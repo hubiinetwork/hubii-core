@@ -9,7 +9,7 @@ import { EthNetworkProvider, getBreakdown } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
 
 import Breakdown from 'components/Breakdown/Breakdown.component';
-import { SectionHeading } from 'components/ui/SectionHeading';
+import SectionHeading from 'components/ui/SectionHeading';
 
 import {
   makeSelectSupportedAssets,
