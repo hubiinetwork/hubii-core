@@ -9,13 +9,17 @@ import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import BigNumber from 'bignumber.js';
 
 import { requestWalletAPI, requestHardwareWalletAPI } from 'utils/request';
+import { getTransaction } from 'utils/wallet';
 import { Wallet, utils } from 'ethers';
 import walletHocReducer, { initialState } from 'containers/WalletHOC/reducer';
 import { fromJS } from 'immutable';
 import { CHANGE_NETWORK } from 'containers/App/constants';
 import { notify } from 'containers/App/actions';
+import {
+  appMock,
+  currentNetworkMock,
+} from 'containers/App/tests/mocks/selectors';
 
-import { getTransactionCount, sendTransaction, getTransaction } from '../../../utils/wallet';
 import {
   privateKeyMock,
   encryptedMock,
@@ -42,6 +46,7 @@ import {
   blockHeightLoadedMock,
   balancesMock,
 } from './mocks/selectors';
+
 
 import walletHoc, {
   createWalletFromMnemonic,
@@ -303,15 +308,17 @@ describe('network API calls', () => {
         ...wallets.map((wallet) => fork(loadWalletBalancesSaga, { address: wallet.get('address') })),
         ...wallets.map((wallet) => fork(loadTransactions, { address: wallet.get('address') })),
         fork(loadSupportedTokensSaga),
-        fork(loadBlockHeight),
+        fork(loadBlockHeight, currentNetworkMock),
         fork(loadPricesSaga),
       ];
       saga
-        .next() // wallets selector
+        .next() // network selector
+        .next(currentNetworkMock) // wallets selector
         .next(wallets).all(allSagas)
         .next([mockTask]).take(CHANGE_NETWORK)
         .next().cancel(mockTask)
-        .next() // wallets selector
+        .next() // network selector
+        .next(currentNetworkMock) // wallets selector
         .next(wallets).all(allSagas);
     });
   });
@@ -483,8 +490,11 @@ describe('network API calls', () => {
 
   describe('load block height', () => {
     const height = '50';
+    let saga;
+    beforeEach(() => {
+      saga = testSaga(loadBlockHeight, currentNetworkMock);
+    });
     it('should correctly handle success scenario', () => {
-      const saga = testSaga(loadBlockHeight);
       saga
         .next() // eth provider
         .next(height).put(loadBlockHeightSuccess(height))
@@ -495,7 +505,6 @@ describe('network API calls', () => {
 
     it('should correctly handle err scenario', () => {
       const e = new Error('some err');
-      const saga = testSaga(loadBlockHeight);
       saga
         .next() // eth provider
         .throw(e).put(loadBlockHeightError(e))
@@ -505,7 +514,6 @@ describe('network API calls', () => {
     });
 
     it('should correctly drop existing call and stop when cancelled', () => {
-      const saga = testSaga(loadBlockHeight);
       const e = new Error(e);
       saga
         .next() // eth provider
@@ -520,6 +528,7 @@ describe('network API calls', () => {
     // listen for confirmation
     // update pending txn in store
     const storeState = {
+      app: appMock,
       walletHoc: {
         wallets: [{
           name: 't1',
@@ -587,6 +596,7 @@ describe('network API calls', () => {
     // listen for confirmation
     // update pending txn in store
     const storeState = {
+      app: appMock,
       walletHoc: {
         wallets: [{
           name: 't1',
@@ -655,7 +665,9 @@ describe('network API calls', () => {
         // listen for confirmation
         // update pending txn in store
         let storeState = fromJS({
+          app: appMock,
           walletHoc: {
+            app: appMock,
             wallets: [{
               name: 't1',
               type: 'software',
@@ -702,6 +714,7 @@ describe('network API calls', () => {
         // listen for confirmation
         // update pending txn in store
         const storeState = {
+          app: appMock,
           walletHoc: {
             wallets: [{
               name: 't1',
@@ -811,11 +824,13 @@ describe('network API calls', () => {
           walletAddress: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
           toAddress: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
           amount: utils.parseEther(amount.toString()),
+          provider: currentNetworkMock.provider,
         }, options);
         expect(tx).toEqual(expectedTx);
       });
       it('transfer erc20 should pass params correctly to sendTransactionForHardwareWallet', () => {
         const storeState = {
+          app: appMock,
           walletHoc: {
             wallets: [{
               name: 't1',
@@ -867,6 +882,7 @@ describe('network API calls', () => {
     describe('hardware wallet: ledger', () => {
       it('#sendTransactionForHardwareWallet should sign tx and output a hex correctly', () => {
         const storeState = fromJS({
+          app: appMock,
           walletHoc: {
             balances: balancesMock,
             prices: pricesLoadedMock,
@@ -901,10 +917,10 @@ describe('network API calls', () => {
               if (effect.fn === tryCreateEthTransportActivity) {
                 return lnsSignedTxMock;
               }
-              if (effect.fn === getTransactionCount) {
+              if (effect.args.includes('pending')) {
                 return nonce;
               }
-              if (effect.fn === sendTransaction) {
+              if (effect.args[0].startsWith('0xf8')) {
                 signedTxHex = effect.args[0];
                 return 'hash';
               }
@@ -926,6 +942,7 @@ describe('network API calls', () => {
       it('#sendTransactionForHardwareWallet should sign tx and output a hex correctly', () => {
         const address = 'e1dddbd012f6a9f3f0a346a2b418aecd03b058e7';
         const storeState = fromJS({
+          app: appMock,
           walletHoc: {
             balances: balancesMock,
             prices: pricesLoadedMock,
@@ -982,10 +999,10 @@ describe('network API calls', () => {
               if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'signtx') {
                 return signedTx;
               }
-              if (effect.fn === getTransactionCount) {
+              if (effect.args.includes('pending')) {
                 return nonce;
               }
-              if (effect.fn === sendTransaction) {
+              if (effect.args[0].startsWith('0xf8')) {
                 signedTxHex = effect.args[0];
                 return 'hash';
               }

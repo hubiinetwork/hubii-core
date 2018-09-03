@@ -7,7 +7,7 @@ import { Settings } from '../index';
 describe('Settings', () => {
   const props = {
     onChangeNetwork: () => {},
-    currentNetwork: 'ropsten',
+    currentNetwork: SUPPORTED_NETWORKS.ropsten,
     supportedNetworks: fromJS(SUPPORTED_NETWORKS),
   };
   it('should render correctly', () => {

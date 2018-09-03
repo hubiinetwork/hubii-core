@@ -34,14 +34,14 @@ export class Settings extends React.PureComponent {
               Network
             </StyledSectionHeading>
             <Select
-              value={currentNetwork}
-              style={{ width: '13rem' }}
+              value={currentNetwork.provider.name}
+              style={{ width: '15rem' }}
               onChange={onChangeNetwork}
             >
               {
                 Object.entries(supportedNetworks.toJS()).map(([key]) => {
-                  const testnet = key !== 'mainnet';
-                  const name = `${key.charAt(0).toUpperCase()}${key.slice(1)}${testnet ? ' [TESTNET]' : ''}`;
+                  const label = key === 'homestead' ? '[MAINNET]' : '[TESTNET]';
+                  const name = `${key.charAt(0).toUpperCase()}${key.slice(1)} ${label}`;
                   return (
                     <Option value={key} key={key}>
                       {name}
@@ -59,7 +59,7 @@ export class Settings extends React.PureComponent {
 
 Settings.propTypes = {
   onChangeNetwork: PropTypes.func.isRequired,
-  currentNetwork: PropTypes.string.isRequired,
+  currentNetwork: PropTypes.object.isRequired,
   supportedNetworks: ImmutablePropTypes.map.isRequired,
 };
 

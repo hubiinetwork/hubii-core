@@ -1,3 +1,4 @@
+import { SUPPORTED_NETWORKS } from 'config/constants';
 import {
   notify, changeNetwork,
 } from '../actions';
@@ -19,11 +20,11 @@ describe('App actions', () => {
     });
   });
   describe('changeNetwork Action', () => {
-    const name = 'some network';
+    const name = 'ropsten';
     it('returns expected output', () => {
       const expected = {
         type: CHANGE_NETWORK,
-        name,
+        network: SUPPORTED_NETWORKS[name],
       };
       expect(changeNetwork(name)).toEqual(expected);
     });

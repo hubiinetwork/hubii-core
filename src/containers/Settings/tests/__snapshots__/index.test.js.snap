@@ -5,14 +5,48 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Settings
-    currentNetwork="ropsten"
+    currentNetwork={
+        Object {
+            "provider": FallbackProvider {
+              "_emitted": Object {
+                "block": -1,
+              },
+              "_events": Object {},
+              "chainId": 3,
+              "ensAddress": "0x112234455C3a32FD11230C42E7Bccd4A84e02010",
+              "name": "ropsten",
+              "resetEventsBlock": [Function],
+            },
+            "walletApiEndpoint": "https://api2.dev.hubii.net/",
+          }
+    }
     onChangeNetwork={[Function]}
     supportedNetworks={
         Immutable.Map {
-            mainnet: Immutable.Map {
+            homestead: Immutable.Map {
+                provider: FallbackProvider {
+                    "_emitted": Object {
+                      "block": -1,
+                    },
+                    "_events": Object {},
+                    "chainId": 1,
+                    "ensAddress": "0x314159265dD8dbb310642f98f50C066173C1259b",
+                    "name": "homestead",
+                    "resetEventsBlock": [Function],
+                  },
                 walletApiEndpoint: "https://api2.dev.hubii.net/",
             },
             ropsten: Immutable.Map {
+                provider: FallbackProvider {
+                    "_emitted": Object {
+                      "block": -1,
+                    },
+                    "_events": Object {},
+                    "chainId": 3,
+                    "ensAddress": "0x112234455C3a32FD11230C42E7Bccd4A84e02010",
+                    "name": "ropsten",
+                    "resetEventsBlock": [Function],
+                  },
                 walletApiEndpoint: "https://api2.dev.hubii.net/",
             },
         }
@@ -45,15 +79,15 @@ ShallowWrapper {
                               onChange={[Function]}
                               style={
                                         Object {
-                                                  "width": "13rem",
+                                                  "width": "15rem",
                                                 }
                               }
                               value="ropsten"
                     >
                               <Option
-                                        value="mainnet"
+                                        value="homestead"
                               >
-                                        Mainnet
+                                        Homestead [MAINNET]
                               </Option>
                               <Option
                                         value="ropsten"
@@ -103,15 +137,15 @@ ShallowWrapper {
                         onChange={[Function]}
                         style={
                                     Object {
-                                                "width": "13rem",
+                                                "width": "15rem",
                                               }
                         }
                         value="ropsten"
             >
                         <Option
-                                    value="mainnet"
+                                    value="homestead"
                         >
-                                    Mainnet
+                                    Homestead [MAINNET]
                         </Option>
                         <Option
                                     value="ropsten"
@@ -135,15 +169,15 @@ ShallowWrapper {
                 onChange={[Function]}
                 style={
                                 Object {
-                                                "width": "13rem",
+                                                "width": "15rem",
                                               }
                 }
                 value="ropsten"
 >
                 <Option
-                                value="mainnet"
+                                value="homestead"
                 >
-                                Mainnet
+                                Homestead [MAINNET]
                 </Option>
                 <Option
                                 value="ropsten"
@@ -173,9 +207,9 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <Option
-                    value="mainnet"
+                    value="homestead"
 >
-                    Mainnet
+                    Homestead [MAINNET]
 </Option>,
                   <Option
                     value="ropsten"
@@ -185,7 +219,7 @@ ShallowWrapper {
                 ],
                 "onChange": [Function],
                 "style": Object {
-                  "width": "13rem",
+                  "width": "15rem",
                 },
                 "value": "ropsten",
               },
@@ -193,14 +227,14 @@ ShallowWrapper {
               "rendered": Array [
                 Object {
                   "instance": null,
-                  "key": "mainnet",
+                  "key": "homestead",
                   "nodeType": "class",
                   "props": Object {
-                    "children": "Mainnet",
-                    "value": "mainnet",
+                    "children": "Homestead [MAINNET]",
+                    "value": "homestead",
                   },
                   "ref": null,
-                  "rendered": "Mainnet",
+                  "rendered": "Homestead [MAINNET]",
                   "type": [Function],
                 },
                 Object {
@@ -247,15 +281,15 @@ ShallowWrapper {
                                     onChange={[Function]}
                                     style={
                                                 Object {
-                                                            "width": "13rem",
+                                                            "width": "15rem",
                                                           }
                                     }
                                     value="ropsten"
                         >
                                     <Option
-                                                value="mainnet"
+                                                value="homestead"
                                     >
-                                                Mainnet
+                                                Homestead [MAINNET]
                                     </Option>
                                     <Option
                                                 value="ropsten"
@@ -305,15 +339,15 @@ ShallowWrapper {
                             onChange={[Function]}
                             style={
                                           Object {
-                                                        "width": "13rem",
+                                                        "width": "15rem",
                                                       }
                             }
                             value="ropsten"
               >
                             <Option
-                                          value="mainnet"
+                                          value="homestead"
                             >
-                                          Mainnet
+                                          Homestead [MAINNET]
                             </Option>
                             <Option
                                           value="ropsten"
@@ -337,15 +371,15 @@ ShallowWrapper {
                   onChange={[Function]}
                   style={
                                     Object {
-                                                      "width": "13rem",
+                                                      "width": "15rem",
                                                     }
                   }
                   value="ropsten"
 >
                   <Option
-                                    value="mainnet"
+                                    value="homestead"
                   >
-                                    Mainnet
+                                    Homestead [MAINNET]
                   </Option>
                   <Option
                                     value="ropsten"
@@ -375,9 +409,9 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <Option
-                      value="mainnet"
+                      value="homestead"
 >
-                      Mainnet
+                      Homestead [MAINNET]
 </Option>,
                     <Option
                       value="ropsten"
@@ -387,7 +421,7 @@ ShallowWrapper {
                   ],
                   "onChange": [Function],
                   "style": Object {
-                    "width": "13rem",
+                    "width": "15rem",
                   },
                   "value": "ropsten",
                 },
@@ -395,14 +429,14 @@ ShallowWrapper {
                 "rendered": Array [
                   Object {
                     "instance": null,
-                    "key": "mainnet",
+                    "key": "homestead",
                     "nodeType": "class",
                     "props": Object {
-                      "children": "Mainnet",
-                      "value": "mainnet",
+                      "children": "Homestead [MAINNET]",
+                      "value": "homestead",
                     },
                     "ref": null,
-                    "rendered": "Mainnet",
+                    "rendered": "Homestead [MAINNET]",
                     "type": [Function],
                   },
                   Object {

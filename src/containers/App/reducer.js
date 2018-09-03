@@ -10,7 +10,7 @@ import { SUPPORTED_NETWORKS } from 'config/constants';
 import { CHANGE_NETWORK } from './constants';
 
 export const initialState = fromJS({
-  currentNetwork: 'mainnet',
+  currentNetwork: SUPPORTED_NETWORKS.ropsten,
   supportedNetworks: SUPPORTED_NETWORKS,
 });
 
@@ -19,7 +19,7 @@ function appReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_NETWORK:
       return state
-        .set('currentNetwork', action.name);
+        .set('currentNetwork', fromJS(action.network));
     default:
       return state;
   }

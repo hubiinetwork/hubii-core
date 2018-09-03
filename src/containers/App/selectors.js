@@ -5,7 +5,7 @@ const selectRoute = (state) => state.get('route');
 
 const makeSelectCurrentNetwork = () => createSelector(
   selectAppDomain,
-  (appDomain) => appDomain.get('currentNetwork')
+  (appDomain) => appDomain.get('currentNetwork').toJS()
 );
 
 const makeSelectSupportedNetworks = () => createSelector(

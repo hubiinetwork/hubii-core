@@ -14,13 +14,10 @@ import { Wallet, utils, Contract } from 'ethers';
 
 import { notify } from 'containers/App/actions';
 import { CHANGE_NETWORK } from 'containers/App/constants';
+import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { requestWalletAPI } from 'utils/request';
 import {
   ERC20ABI,
-  EthNetworkProvider,
-  getTransaction,
-  getTransactionCount,
-  sendTransaction,
   isHardwareWallet,
   IsAddressMatch,
 } from 'utils/wallet';
@@ -154,10 +151,10 @@ export function* loadSupportedTokens() {
   }
 }
 
-export function* loadBlockHeight() {
+export function* loadBlockHeight(network) {
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const blockHeight = yield EthNetworkProvider.getBlockNumber();
+      const blockHeight = yield network.provider.getBlockNumber();
       yield put(loadBlockHeightSuccess(blockHeight));
     } catch (error) {
       yield put(loadBlockHeightError(error));
@@ -229,12 +226,13 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
     let transaction;
     const options = { gasPrice, gasLimit };
     const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
+    const network = yield select(makeSelectCurrentNetwork());
 
     if (isHardwareWallet(walletDetails.type)) {
       transaction = yield call(sendTransactionForHardwareWallet, { toAddress, amount, gasPrice, gasLimit });
     } else {
       const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
-      etherWallet.provider = EthNetworkProvider;
+      etherWallet.provider = network.provider;
       transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
     }
     yield put(transferSuccess(transaction, 'ETH'));
@@ -248,20 +246,24 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
 export function* transferERC20({ token, contractAddress, toAddress, amount, gasPrice, gasLimit }) {
   const contractAbiFragment = ERC20ABI;
   const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
+  const network = yield select(makeSelectCurrentNetwork());
+  const provider = network.provider;
   let transaction;
   try {
     const options = { gasPrice, gasLimit };
     if (isHardwareWallet(walletDetails.type)) {
+      // console.log(provider);
       const tx = yield call(generateERC20Transaction, {
         contractAddress,
         walletAddress: walletDetails.address,
         toAddress,
         amount,
+        provider,
       }, options);
       transaction = yield call(sendTransactionForHardwareWallet, { ...tx, amount: tx.value, toAddress: tx.to });
     } else {
       const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
-      etherWallet.provider = EthNetworkProvider;
+      etherWallet.provider = provider;
       const contract = new Contract(contractAddress, contractAbiFragment, etherWallet);
       transaction = yield call((...args) => contract.transfer(...args), toAddress, amount, options);
     }
@@ -279,10 +281,10 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
 }
 
 // hook into etherjs's sign function get generated erc20 transaction object for further process
-export function generateERC20Transaction({ contractAddress, walletAddress, toAddress, amount }, options) {
+export function generateERC20Transaction({ contractAddress, walletAddress, toAddress, amount, provider }, options) {
   return new Promise((resolve) => {
     const contract = new Contract(contractAddress, ERC20ABI, {
-      provider: EthNetworkProvider,
+      provider,
       getAddress: () => walletAddress,
       sign: (tx) => {
         resolve(tx);
@@ -310,13 +312,15 @@ export function* hookNewWalletCreated({ newWallet }) {
 
 export function* sendTransactionForHardwareWallet({ toAddress, amount, data, nonce, gasPrice, gasLimit }) {
   const currentWalletWithInfo = yield select(makeSelectCurrentWalletWithInfo());
+  const network = yield select(makeSelectCurrentNetwork());
+  const provider = network.provider;
   const walletDetails = currentWalletWithInfo.toJS();
   let nonceValue = nonce;
   if (!nonceValue) {
-    nonceValue = yield call(getTransactionCount, walletDetails.address, 'pending');
+    nonceValue = yield call([provider, 'getTransactionCount'], walletDetails.address, 'pending');
   }
   const amountHex = amount ? amount.toHexString() : '0x00';
-  const chainId = EthNetworkProvider.chainId;
+  const chainId = provider.chainId;
 
   // generate raw tx for ledger nano to sign
   const rawTx = generateRawTx({
@@ -352,9 +356,9 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   // regenerate tx hex string
   const txHex = `0x${rawTx.serialize().toString('hex')}`;
   // broadcast transaction
-  const txHash = yield call(sendTransaction, txHex);
+  const txHash = yield call([provider, 'sendTransaction'], txHex);
   // get transaction details
-  return yield call(getTransaction, txHash);
+  return yield call([provider, 'getTransaction'], txHash);
 }
 
 // manages calling of network specific APIs
@@ -362,12 +366,13 @@ export function* networkApiOrcestrator() {
   try {
     while (true) { // eslint-disable-line no-constant-condition
       // fork new processes, some of which will poll
+      const network = yield select(makeSelectCurrentNetwork());
       const wallets = yield select(makeSelectWallets());
       const allTasks = yield all([
         ...wallets.map((wallet) => fork(loadWalletBalancesSaga, { address: wallet.get('address') })),
         ...wallets.map((wallet) => fork(loadTransactions, { address: wallet.get('address') })),
         fork(loadSupportedTokens),
-        fork(loadBlockHeight),
+        fork(loadBlockHeight, network),
         fork(loadPrices),
       ]);
 
