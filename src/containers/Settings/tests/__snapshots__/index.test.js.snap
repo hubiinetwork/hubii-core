@@ -34,7 +34,7 @@ ShallowWrapper {
                     "name": "homestead",
                     "resetEventsBlock": [Function],
                   },
-                walletApiEndpoint: "https://api2.dev.hubii.net/",
+                walletApiEndpoint: "https://api2.hubii.com/",
             },
             ropsten: Immutable.Map {
                 provider: FallbackProvider {
