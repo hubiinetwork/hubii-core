@@ -317,6 +317,7 @@ describe('network API calls', () => {
         .next(wallets).all(allSagas)
         .next([mockTask]).take(CHANGE_NETWORK)
         .next().cancel(mockTask)
+        .next() // notify
         .next() // network selector
         .next(currentNetworkMock) // wallets selector
         .next(wallets).all(allSagas);

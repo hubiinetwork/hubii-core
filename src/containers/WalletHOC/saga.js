@@ -382,6 +382,7 @@ export function* networkApiOrcestrator() {
       // on network change kill all forks and restart
       yield take(CHANGE_NETWORK);
       yield cancel(...allTasks);
+      yield put(notify('success', 'Network changed'));
     }
   } catch (e) {
     // errors in the forked processes themselves should be caught
