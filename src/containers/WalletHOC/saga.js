@@ -127,7 +127,7 @@ export function* loadWalletBalancesSaga({ address, noPoll }, _endpoint) {
   const requestPath = `ethereum/wallets/${address}/balances`;
   let endpoint = _endpoint;
   if (!endpoint) {
-    endpoint = (yield makeSelectCurrentNetwork()).walletApiEndpoint;
+    endpoint = (yield select(makeSelectCurrentNetwork())).walletApiEndpoint;
   }
   while (true) { // eslint-disable-line no-constant-condition
     try {
