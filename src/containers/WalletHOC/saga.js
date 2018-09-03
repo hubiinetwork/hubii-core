@@ -256,7 +256,6 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
   try {
     const options = { gasPrice, gasLimit };
     if (isHardwareWallet(walletDetails.type)) {
-      // console.log(provider);
       const tx = yield call(generateERC20Transaction, {
         contractAddress,
         walletAddress: walletDetails.address,

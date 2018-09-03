@@ -13,11 +13,6 @@ const makeSelectSupportedNetworks = () => createSelector(
   (appDomain) => appDomain.get('supportedNetworks')
 );
 
-const makeSelectLocation = () => createSelector(
-  selectAppDomain,
-  (routeState) => routeState.get('location').toJS()
-);
-
 const makeSelectPathnameId = () => createSelector(
   selectRoute,
   (routeState) => {
@@ -27,7 +22,6 @@ const makeSelectPathnameId = () => createSelector(
 );
 
 export {
-  makeSelectLocation,
   makeSelectPathnameId,
   makeSelectCurrentNetwork,
   makeSelectSupportedNetworks,
