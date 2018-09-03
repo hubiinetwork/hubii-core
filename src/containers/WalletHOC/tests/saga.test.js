@@ -305,11 +305,11 @@ describe('network API calls', () => {
     it('should fork all required sagas, cancelling and restarting on CHANGE_NETWORK', () => {
       const saga = testSaga(networkApiOrcestrator);
       const allSagas = [
-        ...wallets.map((wallet) => fork(loadWalletBalancesSaga, { address: wallet.get('address') })),
-        ...wallets.map((wallet) => fork(loadTransactions, { address: wallet.get('address') })),
-        fork(loadSupportedTokensSaga),
-        fork(loadBlockHeight, currentNetworkMock),
-        fork(loadPricesSaga),
+        ...wallets.map((wallet) => fork(loadWalletBalancesSaga, { address: wallet.get('address') }, currentNetworkMock.walletApiEndpoint)),
+        ...wallets.map((wallet) => fork(loadTransactions, { address: wallet.get('address') }, currentNetworkMock.walletApiEndpoint)),
+        fork(loadSupportedTokensSaga, currentNetworkMock.walletApiEndpoint),
+        fork(loadBlockHeight, currentNetworkMock.provider),
+        fork(loadPricesSaga, currentNetworkMock.walletApiEndpoint),
       ];
       saga
         .next() // network selector
@@ -363,9 +363,9 @@ describe('network API calls', () => {
         .run({ silenceTimeout: true });
     });
     it('should correctly drop exising call and stop when cancelled', () => {
-      const saga = testSaga(loadSupportedTokensSaga);
+      const saga = testSaga(loadSupportedTokensSaga, currentNetworkMock.walletApiEndpoint);
       saga
-        .next().call(requestWalletAPI, requestPath)
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
         .next().finish()
         .next().isDone();
     });
@@ -417,30 +417,31 @@ describe('network API calls', () => {
   describe('load transactions', () => {
     const address = '0x00';
     const requestPath = `ethereum/wallets/${address}/transactions`;
+    let saga;
+    beforeEach(() => {
+      saga = testSaga(loadTransactions, { address }, currentNetworkMock.walletApiEndpoint);
+    });
     it('should correctly handle success scenario', () => {
-      const saga = testSaga(loadTransactions, { address });
       const response = ['1', '2'];
       saga
-        .next().call(requestWalletAPI, requestPath)
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
         .next(response).put(loadTransactionsSuccess('0x00', response))
         .next() // delay
-        .next().call(requestWalletAPI, requestPath);
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint);
     });
 
     it('should correctly handle failed API call', () => {
-      const saga = testSaga(loadTransactions, { address });
       const e = new Error('error');
       saga
-        .next().call(requestWalletAPI, requestPath)
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
         .throw(e).put(loadTransactionsError(address, e))
         .next() // delay
-        .next().call(requestWalletAPI, requestPath);
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint);
     });
 
     it('should correctly drop exising call and stop when cancelled', () => {
-      const saga = testSaga(loadTransactions, { address });
       saga
-        .next().call(requestWalletAPI, requestPath)
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
         .next().finish()
         .next().isDone();
     });
@@ -449,40 +450,41 @@ describe('network API calls', () => {
   describe('load balances', () => {
     const address = '0x00';
     const requestPath = `ethereum/wallets/${address}/balances`;
+    let saga;
+    beforeEach(() => {
+      saga = testSaga(loadWalletBalancesSaga, { address }, currentNetworkMock.walletApiEndpoint);
+    });
     it('should correctly handle success scenario', () => {
-      const saga = testSaga(loadWalletBalancesSaga, { address });
       const response = balancesMock.get(0);
       saga
-        .next().call(requestWalletAPI, requestPath)
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
         .next(response).put(loadWalletBalancesSuccess('0x00', response))
         .next() // delay
-        .next().call(requestWalletAPI, requestPath);
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint);
     });
 
     it('should correctly not poll when noPoll true', () => {
-      const saga = testSaga(loadWalletBalancesSaga, { address, noPoll: true });
+      saga = testSaga(loadWalletBalancesSaga, { address, noPoll: true }, currentNetworkMock.walletApiEndpoint);
       const response = balancesMock.get(0);
       saga
-        .next().call(requestWalletAPI, requestPath)
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
         .next(response).put(loadWalletBalancesSuccess('0x00', response))
         .next() // delay
         .next().isDone();
     });
 
     it('should correctly handle failed API call', () => {
-      const saga = testSaga(loadWalletBalancesSaga, { address });
       const e = new Error('error');
       saga
-        .next().call(requestWalletAPI, requestPath)
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
         .throw(e).put(loadWalletBalancesError(address, e))
         .next() // delay
-        .next().call(requestWalletAPI, requestPath);
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint);
     });
 
     it('should correctly drop exising call and stop when cancelled', () => {
-      const saga = testSaga(loadWalletBalancesSaga, { address });
       saga
-        .next().call(requestWalletAPI, requestPath)
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
         .next().finish()
         .next().isDone();
     });
@@ -492,7 +494,7 @@ describe('network API calls', () => {
     const height = '50';
     let saga;
     beforeEach(() => {
-      saga = testSaga(loadBlockHeight, currentNetworkMock);
+      saga = testSaga(loadBlockHeight, currentNetworkMock.provider);
     });
     it('should correctly handle success scenario', () => {
       saga
@@ -792,15 +794,7 @@ describe('network API calls', () => {
           .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
           .dispatch(transferAction(params))
           .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
-          // .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
           .run({ silenceTimeout: true });
-          // .run(500000)
-          // .then((result) => {
-          //   const walletHocState = result.storeState.get('walletHoc');
-          //   expect(walletHocState.getIn(['pendingTransactions']).count()).toEqual(0);
-          //   expect(walletHocState.getIn(['confirmedTransactions']).count()).toEqual(1);
-          //   expect(walletHocState.getIn(['confirmedTransactions']).get(0)).toEqual(fromJS(formatedTransaction));
-          // });
       });
       it('#generateERC20Transaction should generate transaction object using etherjs contract', async () => {
         const nonce = 1;

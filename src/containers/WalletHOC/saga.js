@@ -123,11 +123,15 @@ export function* decryptWallet({ address, encryptedWallet, password }) {
   }
 }
 
-export function* loadWalletBalancesSaga({ address, noPoll }) {
+export function* loadWalletBalancesSaga({ address, noPoll }, _endpoint) {
   const requestPath = `ethereum/wallets/${address}/balances`;
+  let endpoint = _endpoint;
+  if (!endpoint) {
+    endpoint = (yield makeSelectCurrentNetwork()).walletApiEndpoint;
+  }
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const returnData = yield call(requestWalletAPI, requestPath);
+      const returnData = yield call(requestWalletAPI, requestPath, endpoint);
       yield put(loadWalletBalancesSuccess(address, returnData));
     } catch (err) {
       if (!noPoll) {
@@ -141,20 +145,20 @@ export function* loadWalletBalancesSaga({ address, noPoll }) {
   }
 }
 
-export function* loadSupportedTokens() {
+export function* loadSupportedTokens(endpoint) {
   const requestPath = 'ethereum/supported-tokens';
   try {
-    const returnData = yield call(requestWalletAPI, requestPath);
+    const returnData = yield call(requestWalletAPI, requestPath, endpoint);
     yield put(loadSupportedTokensSuccess(returnData));
   } catch (err) {
     yield put(loadSupportedTokensError(err));
   }
 }
 
-export function* loadBlockHeight(network) {
+export function* loadBlockHeight(provider) {
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const blockHeight = yield network.provider.getBlockNumber();
+      const blockHeight = yield provider.getBlockNumber();
       yield put(loadBlockHeightSuccess(blockHeight));
     } catch (error) {
       yield put(loadBlockHeightError(error));
@@ -165,11 +169,11 @@ export function* loadBlockHeight(network) {
   }
 }
 
-export function* loadPrices() {
+export function* loadPrices(endpoint) {
   const requestPath = 'ethereum/prices';
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const returnData = yield call(requestWalletAPI, requestPath);
+      const returnData = yield call(requestWalletAPI, requestPath, endpoint);
       yield put(loadPricesSuccess(returnData));
     } catch (err) {
       yield put(loadPricesError(err));
@@ -180,11 +184,11 @@ export function* loadPrices() {
   }
 }
 
-export function* loadTransactions({ address }) {
+export function* loadTransactions({ address }, endpoint) {
   const requestPath = `ethereum/wallets/${address}/transactions`;
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const returnData = yield call(requestWalletAPI, requestPath);
+      const returnData = yield call(requestWalletAPI, requestPath, endpoint);
 
       yield put(loadTransactionsSuccess(address, returnData));
     } catch (err) {
@@ -369,11 +373,11 @@ export function* networkApiOrcestrator() {
       const network = yield select(makeSelectCurrentNetwork());
       const wallets = yield select(makeSelectWallets());
       const allTasks = yield all([
-        ...wallets.map((wallet) => fork(loadWalletBalancesSaga, { address: wallet.get('address') })),
-        ...wallets.map((wallet) => fork(loadTransactions, { address: wallet.get('address') })),
-        fork(loadSupportedTokens),
-        fork(loadBlockHeight, network),
-        fork(loadPrices),
+        ...wallets.map((wallet) => fork(loadWalletBalancesSaga, { address: wallet.get('address') }, network.walletApiEndpoint)),
+        ...wallets.map((wallet) => fork(loadTransactions, { address: wallet.get('address') }, network.walletApiEndpoint)),
+        fork(loadSupportedTokens, network.walletApiEndpoint),
+        fork(loadBlockHeight, network.provider),
+        fork(loadPrices, network.walletApiEndpoint),
       ]);
 
       // on network change kill all forks and restart
