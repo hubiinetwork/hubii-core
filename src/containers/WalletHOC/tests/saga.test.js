@@ -30,8 +30,9 @@ import {
 
 import {
   supportedTokensMock,
-  messageMock,
   decryptedSoftwareWallet1Mock,
+  lnsWalletMock,
+  trezorWalletMock,
 } from './mocks';
 
 
@@ -1051,17 +1052,88 @@ describe('load wallets saga', () => {
     });
   });
 
-  // TODO: after add the sdk, adding extra testing
   describe('#signPersonalMessage', () => {
-    const message = messageMock;
+    const message = '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c';
+    const signedMessage = '0xb9540a3867e40c2a9ad8ae684956d285ad147ce34dfdd6dee91928d7caf7008d051c4bf7557ddeaf243e2a34ef4bd9958dd87ee3d31d644272c066d6b9f423721c';
+
     it('should run the function relevant to a software wallet', () => {
       const wallet = decryptedSoftwareWallet1Mock.toJS();
       const expectedResult = {
         done: true,
-        value: '0xb9540a3867e40c2a9ad8ae684956d285ad147ce34dfdd6dee91928d7caf7008d051c4bf7557ddeaf243e2a34ef4bd9958dd87ee3d31d644272c066d6b9f423721c',
+        value: signedMessage,
       };
       const putDescriptor = signPersonalMessage({ message, wallet }).next();
       expect(putDescriptor).toEqual(expectedResult);
+    });
+    it('should run the function relevant to a lns', async () => {
+      const storeState = fromJS({
+        walletHoc: {
+          balances: balancesMock,
+          prices: pricesLoadedMock,
+          supportedAssets: supportedAssetsLoadedMock,
+          transactions: transactionsMock,
+          wallets: [lnsWalletMock.toJS()],
+          currentWallet: {
+            name: lnsWalletMock.toJS().name,
+            address: lnsWalletMock.toJS().address,
+          },
+          ledgerNanoSInfo: {
+            descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC@14/XHC@14000000/HS09@14900000/Nano S@14900000/Nano S@0/IOUSBHostHIDDevice@14900000,0',
+          },
+          blockHeight: blockHeightLoadedMock,
+        },
+      });
+      const { returnValue } = await expectSaga(signPersonalMessage, { wallet: lnsWalletMock.toJS(), message })
+        .provide({
+          call(effect) {
+            if (effect.fn === tryCreateEthTransportActivity) {
+              return signedMessage;
+            }
+            return {};
+          },
+        })
+        .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+        .run({ silenceTimeout: true });
+      expect(returnValue).toEqual(signedMessage);
+    });
+
+    it('should run the function relevant to a trezor', async () => {
+      const address = trezorWalletMock.get('address');
+      const expectedReturnAddress = address.slice(2);
+      const storeState = fromJS({
+        walletHoc: {
+          balances: balancesMock,
+          prices: pricesLoadedMock,
+          supportedAssets: supportedAssetsLoadedMock,
+          wallets: [trezorWalletMock.toJS()],
+          currentWallet: {
+            name: trezorWalletMock.toJS().name,
+            address,
+          },
+          transactions: transactionsMock,
+          pendingTransactions: [],
+          confirmedTransactions: [],
+          trezorInfo: {
+            id: trezorWalletMock.toJS().deviceId,
+          },
+          blockHeight: blockHeightLoadedMock,
+        },
+      });
+      const { returnValue } = await expectSaga(signPersonalMessage, { wallet: trezorWalletMock.toJS(), message })
+        .provide({
+          call(effect) {
+            if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'signpersonalmessage') {
+              return signedMessage;
+            }
+            if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'getaddress') {
+              return { address: expectedReturnAddress };
+            }
+            return {};
+          },
+        })
+        .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+        .run({ silenceTimeout: true });
+      expect(returnValue).toEqual(signedMessage);
     });
   });
 });

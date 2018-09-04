@@ -126,8 +126,6 @@ export const contactsMock = fromJS([
 
 export const contactsEmptyMock = fromJS([]);
 
-export const messageMock = '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c';
-
 export const supportedTokensMock = [
   {
     currency: '0x8899544F1fc4E0D570f3c998cC7e5857140dC322',
