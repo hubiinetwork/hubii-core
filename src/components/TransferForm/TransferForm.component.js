@@ -310,7 +310,12 @@ export default class TransferForm extends React.PureComponent {
                   src={getAbsolutePath(`public/images/assets/${assetToSend.symbol}.svg`)}
                   alt="logo"
                 />
-                <Select disabled={transfering} defaultValue={assetToSend.symbol} onSelect={this.handleAssetChange}>
+                <Select
+                  disabled={transfering}
+                  defaultValue={assetToSend.symbol}
+                  onSelect={this.handleAssetChange}
+                  style={{ paddingLeft: '0.5rem' }}
+                >
                   {assets.map((currency) => (
                     <Option value={currency.symbol} key={currency.symbol}>
                       {currency.symbol}

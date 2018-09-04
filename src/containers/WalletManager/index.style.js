@@ -8,14 +8,6 @@ export const Wrapper = styled.div`
   background: ${({ theme }) => theme.palette.primary1};
 `;
 
-export const Heading = styled.h2`
-  display: flex;
-  font-weight: 400;
-  margin: 0;
-  color: ${({ theme }) => theme.palette.light};
-  font-size: 1.29rem;
-`;
-
 export const TabsLayout = styled(Layout)`
   background: ${({ theme }) => theme.palette.primary3};
 `;
