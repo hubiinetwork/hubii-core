@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 
 const selectRoute = (state) => state.get('route');
+const selectApp = (state) => state.get('app');
 
 const makeSelectLocation = () => createSelector(
   selectRoute,
@@ -15,7 +16,13 @@ const makeSelectPathnameId = () => createSelector(
   }
 );
 
+const makeSelectReleaseNotes = () => createSelector(
+  selectApp,
+  (routeState) => routeState.get('releaseNotes').toJS()
+);
+
 export {
   makeSelectLocation,
   makeSelectPathnameId,
+  makeSelectReleaseNotes,
 };
