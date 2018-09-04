@@ -8,6 +8,8 @@ import { fromJS } from 'immutable';
 import { ERC20ABI, findWalletIndex } from 'utils/wallet';
 import abiDecoder from 'abi-decoder';
 
+import { CHANGE_NETWORK } from 'containers/App/constants';
+
 import {
   LOAD_WALLET_BALANCES,
   LOAD_WALLET_BALANCES_SUCCESS,
@@ -290,6 +292,14 @@ function walletHocReducer(state = initialState, action) {
     case TREZOR_CONFIRM_TX_ON_DEVICE_DONE:
       return state
         .setIn(['trezorInfo', 'confTxOnDevice'], false);
+    case CHANGE_NETWORK:
+      return state
+        .set('prices', initialState.get('prices'))
+        .set('supportedAssets', initialState.get('supportedAssets'))
+        .set('transactions', initialState.get('transactions'))
+        .set('balances', initialState.get('balances'))
+        .set('blockHeight', initialState.get('blockHeight'))
+        .set('pendingTransactions', initialState.get('pendingTransactions'));
     default:
       return state;
   }

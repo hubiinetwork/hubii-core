@@ -3,17 +3,23 @@
  */
 
 /* eslint-disable redux-saga/yield-effects */
-import { takeLatest, takeEvery, put } from 'redux-saga/effects';
+import { takeEvery, put, fork } from 'redux-saga/effects';
+import { createMockTask } from 'redux-saga/utils';
 import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import BigNumber from 'bignumber.js';
 
 import { requestWalletAPI, requestHardwareWalletAPI } from 'utils/request';
+import { getTransaction } from 'utils/wallet';
 import { Wallet, utils } from 'ethers';
 import walletHocReducer, { initialState } from 'containers/WalletHOC/reducer';
 import { fromJS } from 'immutable';
+import { CHANGE_NETWORK } from 'containers/App/constants';
 import { notify } from 'containers/App/actions';
+import {
+  appMock,
+  currentNetworkMock,
+} from 'containers/App/tests/mocks/selectors';
 
-import { getTransactionCount, sendTransaction, getTransaction } from '../../../utils/wallet';
 import {
   privateKeyMock,
   encryptedMock,
@@ -41,12 +47,12 @@ import {
   balancesMock,
 } from './mocks/selectors';
 
+
 import walletHoc, {
   createWalletFromMnemonic,
   createWalletFromPrivateKey,
   decryptWallet,
   loadWalletBalancesSaga,
-  initApiCalls,
   transfer,
   transferERC20,
   transferEther,
@@ -57,6 +63,7 @@ import walletHoc, {
   generateERC20Transaction,
   loadTransactions,
   loadBlockHeight,
+  networkApiOrcestrator,
 } from '../saga';
 
 import { tryCreateEthTransportActivity } from '../HardwareWallets/ledger/saga';
@@ -71,11 +78,7 @@ import {
   TRANSFER_ERC20,
   LEDGER_ERROR,
   CREATE_WALLET_SUCCESS,
-  LOAD_PRICES,
-  LOAD_SUPPORTED_TOKENS,
   INIT_API_CALLS,
-  LOAD_TRANSACTIONS,
-  LOAD_BLOCK_HEIGHT,
 } from '../constants';
 
 import {
@@ -87,11 +90,9 @@ import {
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
-  loadSupportedTokens,
   loadSupportedTokensSuccess,
   loadTransactions as loadTransactionsAction,
   loadSupportedTokensError,
-  loadPrices,
   loadPricesSuccess,
   loadPricesError,
   transferSuccess,
@@ -100,6 +101,8 @@ import {
   addNewWallet as addNewWalletAction,
   loadTransactionsSuccess,
   loadTransactionsError,
+  loadBlockHeightSuccess,
+  loadBlockHeightError,
 } from '../actions';
 
 const withReducer = (state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action));
@@ -295,8 +298,35 @@ describe('decryptWallet saga', () => {
   });
 });
 
-describe('load wallets saga', () => {
+describe('network API calls', () => {
+  describe('network api orcentrator', () => {
+    const wallets = walletsMock;
+    const mockTask = createMockTask();
+    it('should fork all required sagas, cancelling and restarting on CHANGE_NETWORK', () => {
+      const saga = testSaga(networkApiOrcestrator);
+      const allSagas = [
+        ...wallets.map((wallet) => fork(loadWalletBalancesSaga, { address: wallet.get('address') }, currentNetworkMock.walletApiEndpoint)),
+        ...wallets.map((wallet) => fork(loadTransactions, { address: wallet.get('address') }, currentNetworkMock.walletApiEndpoint)),
+        fork(loadSupportedTokensSaga, currentNetworkMock.walletApiEndpoint),
+        fork(loadBlockHeight, currentNetworkMock.provider),
+        fork(loadPricesSaga, currentNetworkMock.walletApiEndpoint),
+      ];
+      saga
+        .next() // network selector
+        .next(currentNetworkMock) // wallets selector
+        .next(wallets).all(allSagas)
+        .next([mockTask]).take(CHANGE_NETWORK)
+        .next().cancel(mockTask)
+        .next() // notify
+        .next() // network selector
+        .next(currentNetworkMock) // wallets selector
+        .next(wallets).all(allSagas);
+    });
+  });
+
+
   describe('supported tokens', () => {
+    const requestPath = 'ethereum/supported-tokens';
     it('should load supported tokens', () => {
       const tokens = supportedTokensMock;
       const assets = supportedAssetsLoadedMock;
@@ -306,7 +336,7 @@ describe('load wallets saga', () => {
         .provide({
           call(effect) {
             expect(effect.fn).toBe(requestWalletAPI);
-            expect(effect.args[0], 'ethereum/supported-tokens');
+            expect(effect.args[0], requestPath);
             return tokens;
           },
         })
@@ -326,12 +356,19 @@ describe('load wallets saga', () => {
         .provide({
           call(effect) {
             expect(effect.fn).toBe(requestWalletAPI);
-            expect(effect.args[0], 'ethereum/supported-tokens');
+            expect(effect.args[0], requestPath);
             throw error;
           },
         })
         .put(loadSupportedTokensError(error))
         .run({ silenceTimeout: true });
+    });
+    it('should correctly drop exising call and stop when cancelled', () => {
+      const saga = testSaga(loadSupportedTokensSaga, currentNetworkMock.walletApiEndpoint);
+      saga
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
+        .next().finish()
+        .next().isDone();
     });
   });
   describe('prices', () => {
@@ -378,116 +415,113 @@ describe('load wallets saga', () => {
     });
   });
 
-  describe('loadTransactions', () => {
-    it('should call loadTransactionsSuccess on success response and dispatch self', () => {
-      const response = transactionsMock.get(0);
-      const address = '0x00';
-      return expectSaga(loadTransactions, { address })
-        .provide({
-          call(effect, next) {
-            if (effect.fn === requestWalletAPI) {
-              return response;
-            }
-            next();
-            return null;
-          },
-        })
-        .put(loadTransactionsSuccess(address, response))
-        .put(loadTransactionsAction(address))
-        .run();
+  describe('load transactions', () => {
+    const address = '0x00';
+    const requestPath = `ethereum/wallets/${address}/transactions`;
+    let saga;
+    beforeEach(() => {
+      saga = testSaga(loadTransactions, { address }, currentNetworkMock.walletApiEndpoint);
+    });
+    it('should correctly handle success scenario', () => {
+      const response = ['1', '2'];
+      saga
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
+        .next(response).put(loadTransactionsSuccess('0x00', response))
+        .next() // delay
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint);
     });
 
-    it('should call loadTransactionsError on error response and dispatch self', () => {
-      const error = new Error('err');
-      const address = '0x00';
-      return expectSaga(loadTransactions, { address })
-        .provide({
-          call(effect, next) {
-            if (effect.fn === requestWalletAPI) {
-              throw error;
-            }
-            next();
-            return null;
-          },
-        })
-        .put(loadTransactionsError(address, error))
-        .put(loadTransactionsAction(address))
-        .run();
+    it('should correctly handle failed API call', () => {
+      const e = new Error('error');
+      saga
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
+        .throw(e).put(loadTransactionsError(address, e))
+        .next() // delay
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint);
+    });
+
+    it('should correctly drop exising call and stop when cancelled', () => {
+      saga
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
+        .next().finish()
+        .next().isDone();
     });
   });
 
   describe('load balances', () => {
-    it('should save loaded balances in store by wallet address', () => {
+    const address = '0x00';
+    const requestPath = `ethereum/wallets/${address}/balances`;
+    let saga;
+    beforeEach(() => {
+      saga = testSaga(loadWalletBalancesSaga, { address }, currentNetworkMock.walletApiEndpoint);
+    });
+    it('should correctly handle success scenario', () => {
       const response = balancesMock.get(0);
-      const address = '0x00';
-      return expectSaga(loadWalletBalancesSaga, { address })
-        .withReducer(withReducer, initialState)
-        .provide({
-          call(effect) {
-            expect(effect.fn).toBe(requestWalletAPI);
-            expect(effect.args[0], `ethereum/wallets/${address}/balances`);
-            return response;
-          },
-        })
-        .put(loadWalletBalancesSuccess(address, response))
-        .run({ silenceTimeout: true });
-    });
-
-    it('should not poll loadWalletBalances after finished the balance request', () => {
-      const response = 'response';
-      const address = '0x00';
-      const saga = testSaga(loadWalletBalancesSaga, { address, noPoll: true });
       saga
-        .next()
-        .next(response).put(loadWalletBalancesSuccess(address, response))
-        .next()
-        .isDone();
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
+        .next(response).put(loadWalletBalancesSuccess('0x00', response))
+        .next() // delay
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint);
     });
-    it('should poll loadWalletBalances after finished the balance request', () => {
-      const response = 'response';
-      const address = '0x00';
-      const saga = testSaga(loadWalletBalancesSaga, { address });
+
+    it('should correctly not poll when noPoll true', () => {
+      saga = testSaga(loadWalletBalancesSaga, { address, noPoll: true }, currentNetworkMock.walletApiEndpoint);
+      const response = balancesMock.get(0);
       saga
-        .next()
-        .next(response).put(loadWalletBalancesSuccess(address, response))
-        .next()
-        .next().put(loadWalletBalances(address))
-        .next()
-        .isDone();
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
+        .next(response).put(loadWalletBalancesSuccess('0x00', response))
+        .next() // delay
+        .next().isDone();
     });
 
-    it('#loadWalletBalances should dispatch loadWalletBalancesError when error throws in request', () => {
-      const address = 'abcd';
-      const error = new Error();
-      return expectSaga(loadWalletBalancesSaga, { address })
-        .withReducer(withReducer, initialState)
-        .provide({
-          call(effect) {
-            expect(effect.fn).toBe(requestWalletAPI);
-            throw error;
-          },
-        })
-        .put(loadWalletBalancesError(address, error))
-        .run({ silenceTimeout: true })
-        .then((result) => {
-          const walletBalances = result.storeState.getIn(['walletHoc', 'balances', address]);
-          expect(walletBalances.get('loading')).toEqual(false);
-          expect(walletBalances.get('error')).toEqual(error);
-        });
+    it('should correctly handle failed API call', () => {
+      const e = new Error('error');
+      saga
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
+        .throw(e).put(loadWalletBalancesError(address, e))
+        .next() // delay
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint);
     });
 
-    it('should trigger action loadWalletBalances when createWalletSuccess action is dispatch', () => {
-      const decryptedWallet = { address: '0x123' };
-      const encryptedWallet = JSON.stringify({ address: '123' });
-      return expectSaga(walletHoc)
-        .provide({
-          select() {
-            return fromJS([]);
-          },
-        })
-        .put(loadWalletBalances(decryptedWallet.address))
-        .dispatch(createWalletSuccess(name, encryptedWallet, decryptedWallet))
-        .run({ silenceTimeout: true });
+    it('should correctly drop exising call and stop when cancelled', () => {
+      saga
+        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
+        .next().finish()
+        .next().isDone();
+    });
+  });
+
+  describe('load block height', () => {
+    const height = '50';
+    let saga;
+    beforeEach(() => {
+      saga = testSaga(loadBlockHeight, currentNetworkMock.provider);
+    });
+    it('should correctly handle success scenario', () => {
+      saga
+        .next() // eth provider
+        .next(height).put(loadBlockHeightSuccess(height))
+        .next() // delay
+        .next() // eth provider
+        .next(height).put(loadBlockHeightSuccess(height));
+    });
+
+    it('should correctly handle err scenario', () => {
+      const e = new Error('some err');
+      saga
+        .next() // eth provider
+        .throw(e).put(loadBlockHeightError(e))
+        .next() // delay
+        .next() // eth provider
+        .next(height).put(loadBlockHeightSuccess(height));
+    });
+
+    it('should correctly drop existing call and stop when cancelled', () => {
+      const e = new Error(e);
+      saga
+        .next() // eth provider
+        .next().finish()
+        .next().isDone();
     });
   });
 
@@ -497,6 +531,7 @@ describe('load wallets saga', () => {
     // listen for confirmation
     // update pending txn in store
     const storeState = {
+      app: appMock,
       walletHoc: {
         wallets: [{
           name: 't1',
@@ -555,15 +590,7 @@ describe('load wallets saga', () => {
       .withReducer(withReducer, fromJS(storeState))
       .dispatch(transferAction(transferEthActionParamsMock))
       .put(transferSuccess(signedTransaction, 'ETH'))// send signed transaction
-      // .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
       .run({ silenceTimeout: true });
-      // .then((result) => {
-      //   const walletHocState = result.storeState.get('walletHoc');
-      //   expect(walletHocState.getIn(['pendingTransactions']).count()).toEqual(0);
-      //   expect(walletHocState.getIn(['confirmedTransactions']).count()).toEqual(1);
-      //   formatedTransaction.value = parseFloat(utils.formatEther(formatedTransaction.value));
-      //   expect(walletHocState.getIn(['confirmedTransactions']).get(0).toJS()).toEqual(formatedTransaction);
-      // });
   });
 
   it('sign transaction for erc20 payment', () => {
@@ -572,6 +599,7 @@ describe('load wallets saga', () => {
     // listen for confirmation
     // update pending txn in store
     const storeState = {
+      app: appMock,
       walletHoc: {
         wallets: [{
           name: 't1',
@@ -640,7 +668,9 @@ describe('load wallets saga', () => {
         // listen for confirmation
         // update pending txn in store
         let storeState = fromJS({
+          app: appMock,
           walletHoc: {
+            app: appMock,
             wallets: [{
               name: 't1',
               type: 'software',
@@ -687,6 +717,7 @@ describe('load wallets saga', () => {
         // listen for confirmation
         // update pending txn in store
         const storeState = {
+          app: appMock,
           walletHoc: {
             wallets: [{
               name: 't1',
@@ -764,15 +795,7 @@ describe('load wallets saga', () => {
           .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
           .dispatch(transferAction(params))
           .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
-          // .put(transactionConfirmedAction(confirmedTransaction))// transaction confirmed in the network
           .run({ silenceTimeout: true });
-          // .run(500000)
-          // .then((result) => {
-          //   const walletHocState = result.storeState.get('walletHoc');
-          //   expect(walletHocState.getIn(['pendingTransactions']).count()).toEqual(0);
-          //   expect(walletHocState.getIn(['confirmedTransactions']).count()).toEqual(1);
-          //   expect(walletHocState.getIn(['confirmedTransactions']).get(0)).toEqual(fromJS(formatedTransaction));
-          // });
       });
       it('#generateERC20Transaction should generate transaction object using etherjs contract', async () => {
         const nonce = 1;
@@ -796,11 +819,13 @@ describe('load wallets saga', () => {
           walletAddress: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
           toAddress: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
           amount: utils.parseEther(amount.toString()),
+          provider: currentNetworkMock.provider,
         }, options);
         expect(tx).toEqual(expectedTx);
       });
       it('transfer erc20 should pass params correctly to sendTransactionForHardwareWallet', () => {
         const storeState = {
+          app: appMock,
           walletHoc: {
             wallets: [{
               name: 't1',
@@ -852,6 +877,7 @@ describe('load wallets saga', () => {
     describe('hardware wallet: ledger', () => {
       it('#sendTransactionForHardwareWallet should sign tx and output a hex correctly', () => {
         const storeState = fromJS({
+          app: appMock,
           walletHoc: {
             balances: balancesMock,
             prices: pricesLoadedMock,
@@ -886,10 +912,10 @@ describe('load wallets saga', () => {
               if (effect.fn === tryCreateEthTransportActivity) {
                 return lnsSignedTxMock;
               }
-              if (effect.fn === getTransactionCount) {
+              if (effect.args.includes('pending')) {
                 return nonce;
               }
-              if (effect.fn === sendTransaction) {
+              if (effect.args[0].startsWith('0xf8')) {
                 signedTxHex = effect.args[0];
                 return 'hash';
               }
@@ -911,6 +937,7 @@ describe('load wallets saga', () => {
       it('#sendTransactionForHardwareWallet should sign tx and output a hex correctly', () => {
         const address = 'e1dddbd012f6a9f3f0a346a2b418aecd03b058e7';
         const storeState = fromJS({
+          app: appMock,
           walletHoc: {
             balances: balancesMock,
             prices: pricesLoadedMock,
@@ -967,10 +994,10 @@ describe('load wallets saga', () => {
               if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'signtx') {
                 return signedTx;
               }
-              if (effect.fn === getTransactionCount) {
+              if (effect.args.includes('pending')) {
                 return nonce;
               }
-              if (effect.fn === sendTransaction) {
+              if (effect.args[0].startsWith('0xf8')) {
                 signedTxHex = effect.args[0];
                 return 'hash';
               }
@@ -988,22 +1015,6 @@ describe('load wallets saga', () => {
           });
       });
     });
-  });
-
-  it('initApiCalls should trigger loadWalletBalances for all the wallets in the list', () => {
-    const wallets = fromJS([walletsMock[0], walletsMock[1]]);
-    return expectSaga(walletHoc)
-      .provide({
-        select() {
-          return wallets;
-        },
-      })
-      .put(loadWalletBalances(wallets.getIn([0, 'address'])))
-      .put(loadWalletBalances(wallets.getIn([1, 'address'])))
-      .put(loadSupportedTokens())
-      .put(loadPrices())
-      .dispatch({ type: INIT_API_CALLS })
-      .run({ silenceTimeout: true });
   });
 
   describe('transfer', () => {
@@ -1063,7 +1074,7 @@ describe('root Saga', () => {
 
   it('should start task to watch for INIT_API_CALLS action', () => {
     const takeDescriptor = walletHocSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(INIT_API_CALLS, initApiCalls));
+    expect(takeDescriptor).toEqual(takeEvery(INIT_API_CALLS, networkApiOrcestrator));
   });
 
   it('should start task to watch for LOAD_WALLET_BALANCES action', () => {
@@ -1094,25 +1105,5 @@ describe('root Saga', () => {
   it('should wait for the CREATE_WALLET_SUCCESS action', () => {
     const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated));
-  });
-
-  it('should start task to watch for LOAD_PRICES action', () => {
-    const takeDescriptor = walletHocSaga.next().value;
-    expect(takeDescriptor).toEqual(takeLatest(LOAD_PRICES, loadPricesSaga));
-  });
-
-  it('should start task to watch for LOAD_TRANSACTIONS action', () => {
-    const takeDescriptor = walletHocSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(LOAD_TRANSACTIONS, loadTransactions));
-  });
-
-  it('should start task to watch for LOAD_SUPPORTED_TOKENS action', () => {
-    const takeDescriptor = walletHocSaga.next().value;
-    expect(JSON.stringify(takeDescriptor)).toEqual(JSON.stringify(takeLatest(LOAD_SUPPORTED_TOKENS, loadSupportedTokens)));
-  });
-
-  it('should start task to watch for LOAD_BLOCK_HEIGHT action', () => {
-    const takeDescriptor = walletHocSaga.next().value;
-    expect(JSON.stringify(takeDescriptor)).toEqual(JSON.stringify(takeLatest(LOAD_BLOCK_HEIGHT, loadBlockHeight)));
   });
 });
