@@ -203,23 +203,17 @@ export function* signPersonalMessageByLedger(walletDetails, txHash) {
   try {
     const ledgerNanoSInfo = yield select(makeSelectLedgerNanoSInfo());
     const descriptor = ledgerNanoSInfo.get('descriptor');
-    // check if the eth app is opened
     yield call(
       tryCreateEthTransportActivity,
-      descriptor,
-      async (ethTransport) => ethTransport.getAddress(walletDetails.derivationPath)
+      'getaddress',
+      { descriptor, path: walletDetails.derivationPath }
     );
     const signedPersonalMessage = yield call(
       tryCreateEthTransportActivity,
-      descriptor,
-      (ethTransport) => ethTransport.signPersonalMessage(walletDetails.derivationPath, Buffer.from(txHash).toString('hex')).then((result) => {
-        let v = result.v - 27;
-        v = v.toString(16);
-        if (v.length < 2) {
-          v = `0${v}`;
-        }
-      })
+      'signpersonalmessage',
+      { descriptor, path: walletDetails.derivationPath.toString(), message: Buffer.from(txHash).toString('hex') },
     );
+    // may need to do extra work depending, but this will return an a signed personal message object.
     return signedPersonalMessage;
   } catch (e) {
     const refinedError = ledgerError(e);

@@ -32,8 +32,6 @@ import {
   supportedTokensMock,
   messageMock,
   decryptedSoftwareWallet1Mock,
-  lnsWalletMock,
-  // trezorWalletMock,
 } from './mocks';
 
 
@@ -1052,6 +1050,8 @@ describe('load wallets saga', () => {
         .run({ silenceTimeout: true });
     });
   });
+
+  // TODO: after add the sdk, adding extra testing
   describe('#signPersonalMessage', () => {
     const message = messageMock;
     it('should run the function relevant to a software wallet', () => {
@@ -1061,125 +1061,7 @@ describe('load wallets saga', () => {
         value: '0xb9540a3867e40c2a9ad8ae684956d285ad147ce34dfdd6dee91928d7caf7008d051c4bf7557ddeaf243e2a34ef4bd9958dd87ee3d31d644272c066d6b9f423721c',
       };
       const putDescriptor = signPersonalMessage({ message, wallet }).next();
-
       expect(putDescriptor).toEqual(expectedResult);
-    });
-    // it('should run the function relevant to a lns', () => {
-    //   const wallet = lnsWalletMock.toJS();
-    //   const expectedResult = {
-    //     lol: 'ha',
-    //   };
-    //   const storeState = fromJS({
-    //     walletHoc: {
-    //       balances: balancesMock,
-    //       prices: pricesLoadedMock,
-    //       supportedAssets: supportedAssetsLoadedMock,
-    //       transactions: transactionsMock,
-    //       wallets: [{
-    //         name: 't1',
-    //         type: 'lns',
-    //         address: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
-    //         derivationPath: 'm/44\'/60\'/0\'/0',
-    //       }],
-    //       currentWallet: {
-    //         name: 't1',
-    //         address: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
-    //       },
-    //       ledgerNanoSInfo: {
-    //         descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC@14/XHC@14000000/HS09@14900000/Nano S@14900000/Nano S@0/IOUSBHostHIDDevice@14900000,0',
-    //       },
-    //       blockHeight: blockHeightLoadedMock,
-    //     },
-    //   });
-
-      // expectSaga(signPersonalMessage, { message, wallet })
-      //   .provide({
-      //     call(effect) {
-      //       if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'getaddress') {
-      //         return { address };
-      //       }
-      //       if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'signtx') {
-      //         return signedTx;
-      //       }
-      //       if (effect.fn === getTransactionCount) {
-      //         return nonce;
-      //       }
-      //       if (effect.fn === sendTransaction) {
-      //         signedTxHex = effect.args[0];
-      //         return 'hash';
-      //       }
-      //       if (effect.fn === getTransaction) {
-      //         return { value: 1 };
-      //       }
-      //       return {};
-      //     },
-      //   })
-      //   .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-      //   .returns(
-      //     expectedResult
-      //     // (result) => {
-      //     //   expect(result).toEqual(expectedResult);
-      //     // }
-      //   )
-      //   .run({ silenceTimeout: true });
-    // });
-
-    it('should run the function relevant to a trezor', () => {
-      const wallet = lnsWalletMock.toJS();
-      const expectedResult = {
-        lol: 'ha',
-      };
-      const storeState = fromJS({
-        walletHoc: {
-          balances: balancesMock,
-          prices: pricesLoadedMock,
-          supportedAssets: supportedAssetsLoadedMock,
-          transactions: transactionsMock,
-          wallets: [{
-            name: 't1',
-            type: 'trezor',
-            address: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
-            derivationPath: 'm/44\'/60\'/0\'/0',
-          }],
-          currentWallet: {
-            name: 't1',
-            address: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
-          },
-          pendingTransactions: [],
-          confirmedTransactions: [],
-          trezorInfo: {
-            id: 'test',
-          },
-          blockHeight: blockHeightLoadedMock,
-        },
-      });
-
-      expectSaga(signPersonalMessage, { message, wallet })
-        // .provide({
-        //   call(effect) {
-        //     if (effect.fn === tryCreateEthTransportActivity) {
-        //       return lnsSignedTxMock;
-        //     }
-        //     if (effect.fn === getTransactionCount) {
-        //       return nonce;
-        //     }
-        //     if (effect.fn === sendTransaction) {
-        //       signedTxHex = effect.args[0];
-        //       return 'hash';
-        //     }
-        //     if (effect.fn === getTransaction) {
-        //       return { value: 1 };
-        //     }
-        //     return {};
-        //   },
-        // })
-        .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
-        .run({ silenceTimeout: true })
-        .then(
-          (result) => {
-            expect(result).toEqual(expectedResult);
-          }
-        );
     });
   });
 });
