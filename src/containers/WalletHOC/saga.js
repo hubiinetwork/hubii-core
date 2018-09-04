@@ -361,7 +361,7 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   return yield call(getTransaction, txHash);
 }
 
-export function* signPersonalMessage(message, wallet) {
+export function* signPersonalMessage({ message, wallet }) {
   let signedPersonalMessage;
 
   if (wallet.type === 'software') {
