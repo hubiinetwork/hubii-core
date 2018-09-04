@@ -3,7 +3,7 @@ import { Icon } from 'antd';
 import BigNumber from 'bignumber.js';
 import PropTypes from 'prop-types';
 import { isValidAddress } from 'ethereumjs-util';
-import { gweiToWei, gweiToEther, IsAddressMatch } from 'utils/wallet';
+import { gweiToWei, gweiToEther, isAddressMatch } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
 import ComboBoxSelect from 'components/ComboBoxSelect';
 import { Modal } from 'components/ui/Modal';
@@ -207,7 +207,7 @@ export default class TransferForm extends React.PureComponent {
 
   handleRecipient(value) {
     let address = value;
-    const recipientMatch = this.props.recipients.find((contact) => contact.name.toLowerCase() === value.toLowerCase() || IsAddressMatch(contact.address, value));
+    const recipientMatch = this.props.recipients.find((contact) => contact.name.toLowerCase() === value.toLowerCase() || isAddressMatch(contact.address, value));
     if (recipientMatch && !isValidAddress(value)) {
       address = recipientMatch.address;
     } else if (!recipientMatch && !isValidAddress(value)) {
@@ -322,7 +322,7 @@ export default class TransferForm extends React.PureComponent {
                 label={<FormItemLabel>Specify the recipient</FormItemLabel>}
                 colon={false}
                 help={
-                  this.props.recipients.find((recipient) => IsAddressMatch(recipient.address, address)) ?
+                  this.props.recipients.find((recipient) => isAddressMatch(recipient.address, address)) ?
                     <HelperText left={address} /> :
                     !isValidAddress(address) ?
                     null :

@@ -11,7 +11,7 @@ import {
   getTransactionCount,
   sendTransaction,
   isHardwareWallet,
-  IsAddressMatch,
+  isAddressMatch,
 } from 'utils/wallet';
 
 import {
@@ -297,7 +297,7 @@ export function generateERC20Transaction({ contractAddress, walletAddress, toAdd
 
 export function* hookNewWalletCreated({ newWallet }) {
   const wallets = yield select(makeSelectWallets());
-  const existAddress = wallets.find((wallet) => IsAddressMatch(wallet.get('address'), newWallet.address));
+  const existAddress = wallets.find((wallet) => isAddressMatch(wallet.get('address'), newWallet.address));
   const existName = wallets.find((wallet) => wallet.get('name') === newWallet.name);
   if (existAddress) {
     return yield put(notify('error', `Wallet ${newWallet.address} already exists`));

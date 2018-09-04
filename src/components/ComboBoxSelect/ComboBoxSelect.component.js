@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { IsAddressMatch } from 'utils/wallet';
+import { isAddressMatch } from 'utils/wallet';
 import { StyledSelect } from './ComboBoxSelect.style';
 import { Option } from '../ui/Select';
 
@@ -45,7 +45,7 @@ class ComboBoxSelect extends React.PureComponent { // eslint-disable-line react/
     const { options } = this.props;
     const value = selectValue.trim();
     // check if there is an exisiting contact for the input
-    const existingContact = options.find((option) => option.name.toLowerCase() === value.toLowerCase() || IsAddressMatch(option.value, selectValue));
+    const existingContact = options.find((option) => option.name.toLowerCase() === value.toLowerCase() || isAddressMatch(option.value, selectValue));
     // set the input value to be a Invalid Addition Message as the input is not a valid input and nor is it an exisiting option
     if (!this.props.addInputValidator(value) && !existingContact) {
       this.setState({ selectValue: this.props.invalidAdditionMessage });
@@ -66,7 +66,7 @@ class ComboBoxSelect extends React.PureComponent { // eslint-disable-line react/
     // basic check to see if it is an invalid input with no exisiting option
     if (event.key === 'Enter' && !this.props.addInputValidator(value) && options.every((option) => option.name.toLowerCase() !== value.toLowerCase())) {
       this.setState({ notFoundMessage: this.props.invalidAdditionMessage, selectValue: options[0] ? options[0].name : '' });
-    } else if (event.key === 'Enter' && options.every((option) => !IsAddressMatch(option.value, value) && option.name.toLowerCase() !== value)) {
+    } else if (event.key === 'Enter' && options.every((option) => !isAddressMatch(option.value, value) && option.name.toLowerCase() !== value)) {
       // will only this option if it is a valid input and it is not an existing option
       this.setState((prevState) => ({
         options: [...prevState.options, { name: value, value }],
@@ -82,7 +82,7 @@ class ComboBoxSelect extends React.PureComponent { // eslint-disable-line react/
   }
 
   handleFilterOption(input, option) {
-    return option.props.children.toLowerCase().indexOf(input.toLowerCase().trim()) >= 0 || IsAddressMatch(option.props.value, input.trim());
+    return option.props.children.toLowerCase().indexOf(input.toLowerCase().trim()) >= 0 || isAddressMatch(option.props.value, input.trim());
   }
 
   render() {

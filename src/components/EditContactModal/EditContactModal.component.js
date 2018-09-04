@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Form, Icon } from 'antd';
 import PropTypes from 'prop-types';
-import { IsAddressMatch } from 'utils/wallet';
+import { isAddressMatch } from 'utils/wallet';
 import { isValidAddress } from 'ethereumjs-util';
 import {
   Text,
@@ -38,8 +38,8 @@ export class EditContactModal extends React.Component {
   validateAddressInUse(rule, value, callback) {
     const { contacts } = this.props;
     if (!value) { callback(); return; } // no address input
-    const sameAddressList = contacts.filter((person) => IsAddressMatch(person.address, value.trim()));
-    if (sameAddressList.length && !IsAddressMatch(value.trim(), this.props.initialAddress)) {
+    const sameAddressList = contacts.filter((person) => isAddressMatch(person.address, value.trim()));
+    if (sameAddressList.length && !isAddressMatch(value.trim(), this.props.initialAddress)) {
       callback('You have already saved this address');
     }
     callback();
