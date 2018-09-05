@@ -92,7 +92,7 @@ export function* signPersonalMessageByTrezor(txHash, walletDetails) {
   const deviceId = trezorInfo.get('id');
   const path = walletDetails.derivationPath;
   const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
-  if (!IsAddressMatch(`0x${publicAddressKeyPair.address}`, walletDetails.address)) {
+  if (!isAddressMatch(`0x${publicAddressKeyPair.address}`, walletDetails.address)) {
     throw new Error('PASSPHRASE_MISMATCH');
   }
   try {
