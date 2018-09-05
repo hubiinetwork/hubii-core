@@ -1108,24 +1108,20 @@ describe('network API calls', () => {
     it('should run the function relevant to a trezor', async () => {
       const address = trezorWalletMock.get('address');
       const expectedReturnAddress = address.slice(2);
+
       const storeState = fromJS({
-        walletHoc: {
-          balances: balancesMock,
-          prices: pricesLoadedMock,
-          supportedAssets: supportedAssetsLoadedMock,
-          wallets: [trezorWalletMock.toJS()],
-          currentWallet: {
+        walletHoc: fromJS({})
+          .set('balances', balancesMock)
+          .set('prices', pricesLoadedMock)
+          .set('wallets', [trezorWalletMock.toJS()])
+          .set('currentWallet', {
             name: trezorWalletMock.toJS().name,
             address,
-          },
-          transactions: transactionsMock,
-          pendingTransactions: [],
-          confirmedTransactions: [],
-          trezorInfo: {
-            id: trezorWalletMock.toJS().deviceId,
-          },
-          blockHeight: blockHeightLoadedMock,
-        },
+          })
+          .set('transactions', transactionsMock)
+          .set('pendingTransactions', [])
+          .set('confirmedTransactions', [])
+          .set('trezorInfo', { id: transactionsMock.toJS().deviceId }).toJS(),
       });
       const { returnValue } = await expectSaga(signPersonalMessage, { wallet: trezorWalletMock.toJS(), message })
         .provide({

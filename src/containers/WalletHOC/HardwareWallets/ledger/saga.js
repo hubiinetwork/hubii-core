@@ -213,7 +213,6 @@ export function* signPersonalMessageByLedger(walletDetails, txHash) {
       'signpersonalmessage',
       { descriptor, path: walletDetails.derivationPath.toString(), message: Buffer.from(txHash).toString('hex') },
     );
-    // may need to do extra work depending, but this will return an a signed personal message object.
     return signedPersonalMessage;
   } catch (e) {
     const refinedError = ledgerError(e);

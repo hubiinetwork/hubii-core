@@ -238,7 +238,6 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
       const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
       etherWallet.provider = network.provider;
       transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
-      etherWallet.estimateGas({ to: toAddress }).then((resolve) => console.log(resolve));
     }
     yield put(transferSuccess(transaction, 'ETH'));
     yield put(notify('success', 'Transaction sent'));
@@ -270,7 +269,6 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
       etherWallet.provider = provider;
       const contract = new Contract(contractAddress, contractAbiFragment, etherWallet);
       transaction = yield call((...args) => contract.transfer(...args), toAddress, amount, options);
-      etherWallet.estimateGas({ to: toAddress }).then((resolve) => console.log(resolve));
     }
 
     if (!transaction) {
