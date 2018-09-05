@@ -97,7 +97,7 @@ export const gweiToWei = (gwei) => (gwei.times(new BigNumber('10').pow('9')));
 
 export const gweiToEther = (gwei) => (gwei.times(new BigNumber('10').pow('-9')));
 
-export const IsAddressMatch = (a, b) => a.toLowerCase() === b.toLowerCase();
+export const isAddressMatch = (a, b) => a.toLowerCase() === b.toLowerCase();
 
 export const parseBigNumber = (bignumber, decimals) => parseInt(bignumber, 10) / (10 ** decimals);
 

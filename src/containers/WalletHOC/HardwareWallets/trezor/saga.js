@@ -3,7 +3,7 @@ import { eventChannel } from 'redux-saga';
 import { takeEvery, put, call, select, take } from 'redux-saga/effects';
 import { toBuffer, bufferToHex, stripHexPrefix } from 'ethereumjs-util';
 import { notify } from 'containers/App/actions';
-import { deriveAddresses, prependHexToAddress, IsAddressMatch } from 'utils/wallet';
+import { deriveAddresses, prependHexToAddress, isAddressMatch } from 'utils/wallet';
 import { requestHardwareWalletAPI } from 'utils/request';
 import { makeSelectTrezorInfo } from '../../selectors';
 import { trezorConnected, trezorDisconnected, fetchedTrezorAddress, trezorError, trezorConfirmTxOnDevice, trezorConfirmTxOnDeviceDone } from '../../actions';
@@ -65,7 +65,7 @@ export function* signTxByTrezor({ walletDetails, raw, data, chainId }) {
     const path = walletDetails.derivationPath;
     const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
     yield put(trezorConfirmTxOnDevice());
-    if (!IsAddressMatch(`0x${publicAddressKeyPair.address}`, walletDetails.address)) {
+    if (!isAddressMatch(`0x${publicAddressKeyPair.address}`, walletDetails.address)) {
       throw new Error('PASSPHRASE_MISMATCH');
     }
     const signedTx = yield call(
