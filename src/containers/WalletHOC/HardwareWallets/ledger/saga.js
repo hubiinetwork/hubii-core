@@ -123,6 +123,7 @@ export function* initLedger() {
         }
       }
 
+
       yield put(ledgerConnected(msg.descriptor));
     } catch (e) {
       yield put(ledgerError(e));
@@ -195,6 +196,28 @@ export function* signTxByLedger(walletDetails, rawTxHex) {
     throw new Error(refinedError.error);
   } finally {
     yield put(ledgerConfirmTxOnDeviceDone());
+  }
+}
+
+export function* signPersonalMessageByLedger(walletDetails, txHash) {
+  try {
+    const ledgerNanoSInfo = yield select(makeSelectLedgerNanoSInfo());
+    const descriptor = ledgerNanoSInfo.get('descriptor');
+    yield call(
+      tryCreateEthTransportActivity,
+      'getaddress',
+      { descriptor, path: walletDetails.derivationPath }
+    );
+    const signedPersonalMessage = yield call(
+      tryCreateEthTransportActivity,
+      'signpersonalmessage',
+      { descriptor, path: walletDetails.derivationPath.toString(), message: Buffer.from(txHash).toString('hex') },
+    );
+    return signedPersonalMessage;
+  } catch (e) {
+    const refinedError = ledgerError(e);
+    yield put(refinedError);
+    throw new Error(refinedError.error);
   }
 }
 

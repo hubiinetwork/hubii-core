@@ -68,8 +68,8 @@ import {
   loadBlockHeightError,
 } from './actions';
 
-import trezorWatchers, { signTxByTrezor } from './HardwareWallets/trezor/saga';
-import ledgerWatchers, { signTxByLedger } from './HardwareWallets/ledger/saga';
+import trezorWatchers, { signTxByTrezor, signPersonalMessageByTrezor } from './HardwareWallets/trezor/saga';
+import ledgerWatchers, { signTxByLedger, signPersonalMessageByLedger } from './HardwareWallets/ledger/saga';
 
 
 // Creates a new software wallet
@@ -274,7 +274,6 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
     if (!transaction) {
       throw new Error('Failed to send transaction');
     }
-
     yield put(transferSuccess(transaction, token));
     yield put(notify('success', 'Transaction sent'));
   } catch (error) {
@@ -348,7 +347,6 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   }
   if (walletDetails.type === 'trezor') {
     const raw = rawTx.toJSON();
-
     signedTx = yield signTxByTrezor({ walletDetails, raw, data, chainId });
     rawTx.v = Buffer.from(signedTx.v.toString(16), 'hex');
   }
@@ -391,6 +389,22 @@ export function* networkApiOrcestrator() {
     // never happen
     throw new Error(e);
   }
+}
+
+export function* signPersonalMessage({ message, wallet }) {
+  let signedPersonalMessage;
+
+  if (wallet.type === 'software') {
+    const etherWallet = new Wallet(wallet.decrypted.privateKey);
+    signedPersonalMessage = etherWallet.signMessage(message);
+  }
+  if (wallet.type === 'lns') {
+    signedPersonalMessage = yield signPersonalMessageByLedger(wallet, message);
+  }
+  if (wallet.type === 'trezor') {
+    signedPersonalMessage = yield signPersonalMessageByTrezor(message, wallet);
+  }
+  return signedPersonalMessage;
 }
 
 // Root watcher

@@ -34,6 +34,10 @@ async function execWalletMethods(method, params) {
     const { rawTxHex } = params;
     result = await createEthTransportActivity(id, (ethTransport) => ethTransport.signTransaction(path, rawTxHex));
   }
+  if (method === 'signpersonalmessage') {
+    const { message } = params;
+    result = await createEthTransportActivity(id, (ethTransport) => ethTransport.signPersonalMessage(path, message));
+  }
 
   if (result) {
     return { ...result, id, path };
