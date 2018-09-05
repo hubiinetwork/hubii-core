@@ -11,6 +11,15 @@ export const TitleDiv = styled.div`
 
 export const Container = styled.div`
   padding: 2rem 0;
+  h1 {
+    color: ${({ theme }) => theme.palette.light};
+  }
+  h2 {
+    color: ${({ theme }) => theme.palette.light};
+  }
+  h3 {
+    color: ${({ theme }) => theme.palette.light};
+  }
 `;
 
 export const TextWhite = styled.span`
