@@ -9,9 +9,9 @@ import { expectSaga } from 'redux-saga-test-plan';
 
 import Notification from 'components/Notification';
 
-import request from 'utils/request'
+import request from 'utils/request';
 
-import appReducer from '../reducer'
+import appReducer from '../reducer';
 
 import app, {
   notifyUI,
@@ -20,7 +20,7 @@ import app, {
   releaseNotesChannel,
 } from '../saga';
 
-import * as actions from '../actions'
+import * as actions from '../actions';
 
 import {
   NOTIFY,
@@ -42,13 +42,12 @@ describe('release notes', () => {
     show: true,
     tag_name: '1',
     body: 'test',
-  }
-  it('should load and store release notes', () => {
-    return expectSaga(watchNewRelease)
+  };
+  it('should load and store release notes', () => expectSaga(watchNewRelease)
     .withReducer(appReducer)
     .provide({
       call(effect) {
-        let result
+        let result;
         if (effect.fn === releaseNotesChannel) {
           result = eventChannel((emitter) => {
             setTimeout(() => {
@@ -59,8 +58,8 @@ describe('release notes', () => {
         }
         if (effect.fn === request) {
           result = [
-            releaseNotes, {}
-          ]
+            releaseNotes, {},
+          ];
         }
         return result;
       },
@@ -72,9 +71,8 @@ describe('release notes', () => {
       expect(state.getIn(['releaseNotes', 'show'])).toEqual(releaseNotes.show);
       expect(state.getIn(['releaseNotes', 'version'])).toEqual(releaseNotes.tag_name);
       expect(state.getIn(['releaseNotes', 'body'])).toEqual(releaseNotes.body);
-    });
-  });
-})
+    }));
+});
 
 describe('root Saga', () => {
   const appSaga = app();
