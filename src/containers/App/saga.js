@@ -1,5 +1,5 @@
 import { ipcRenderer } from 'electron';
-import { takeEvery, take, takeLatest, call, put, all } from 'redux-saga/effects';
+import { takeEvery, take, takeLatest, call, put, all, fork } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 
 import { REPO, OWNER } from 'config/constants';
@@ -42,6 +42,6 @@ export default function* app() {
   yield all([
     takeEvery(NOTIFY, notifyUI),
     takeLatest(INSTALL_NEW_RELEASE, installNewRelease),
-    watchNewRelease(),
+    fork(watchNewRelease),
   ]);
 }
