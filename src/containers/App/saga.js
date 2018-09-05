@@ -1,21 +1,47 @@
-import { takeEvery, takeLatest, call, put } from 'redux-saga/effects';
+import { ipcRenderer } from 'electron';
+import { takeEvery, take, takeLatest, call, put, all } from 'redux-saga/effects';
+import { eventChannel } from 'redux-saga';
 
+import { REPO, OWNER } from 'config/constants';
 import Notification from 'components/Notification';
 import request from 'utils/request';
 
-import { NOTIFY, LOAD_RELEASE_NOTES } from './constants';
-import { loadReleaseNotesSuccess } from './actions';
+import { NOTIFY, INSTALL_NEW_RELEASE } from './constants';
+import * as actions from './actions';
 
 export function* notifyUI({ messageType, message }) {
   yield Promise.resolve(Notification(messageType, message));
 }
 
-export function* loadReleaseNotes() {
-  const response = yield call(request, '/repos/LedgerHQ/ledger-live-desktop/releases', {}, 'https://api.github.com');
-  yield put(loadReleaseNotesSuccess(response[0]));
+export const installNewRelease = () => {
+  ipcRenderer.send('install-new-release');
+};
+
+export const releaseNotesChannel = () => eventChannel((emit) => {
+  ipcRenderer.on('update-downloaded', () => {
+    emit({});
+  });
+  return () => { };
+});
+
+export function* watchNewRelease() {
+  const chan = yield call(releaseNotesChannel);
+
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      yield take(chan);
+      const response = yield call(request, `/repos/${OWNER}/${REPO}/releases`, {}, 'https://api.github.com');
+      yield put(actions.loadReleaseNotesSuccess(response[0]));
+    } catch (e) {
+      actions.notify('error', e);
+    }
+  }
 }
 
 export default function* app() {
-  yield takeEvery(NOTIFY, notifyUI);
-  yield takeLatest(LOAD_RELEASE_NOTES, loadReleaseNotes);
+  yield all([
+    takeEvery(NOTIFY, notifyUI),
+    takeLatest(INSTALL_NEW_RELEASE, installNewRelease),
+    watchNewRelease(),
+  ]);
 }

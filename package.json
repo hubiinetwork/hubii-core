@@ -19,8 +19,8 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "hubiinetwork",
-        "repo": "omphalos-ui"
+        "owner": "techland",
+        "repo": "test-updater"
       }
     ],
     "linux": {

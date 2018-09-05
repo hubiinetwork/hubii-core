@@ -37,20 +37,19 @@ import WalletHOC from 'containers/WalletHOC';
 
 import { Modal } from 'components/ui/Modal';
 
+import {
+  ButtonDiv,
+  TitleDiv,
+  TextWhite,
+  Container,
+} from './index.style';
+
 import reducer from './reducer';
 import saga from './saga';
 import * as actions from './actions';
 import { makeSelectReleaseNotes } from './selectors';
-class App extends React.Component {
 
-  componentDidMount() {
-    this.props.loadReleaseNotes();
-  }
-
-  componentDidUpdate(prevProps) {
-    console.log(prevProps, this.props);
-  }
-
+class App extends React.PureComponent {
   render() {
     const menuItems = [
       {
@@ -84,9 +83,18 @@ class App extends React.Component {
           maskStyle={{ background: 'rgba(232,237,239,.65)' }}
           style={{ marginTop: '1.43rem' }}
           visible={this.props.releaseNotes.show}
+          onCancel={this.props.hideReleaseNotes}
           destroyOnClose
         >
-          <ReactMarkdown source={this.props.releaseNotes.body} />
+          <TitleDiv>
+            {`New version available - ${this.props.releaseNotes.version}`}
+          </TitleDiv>
+          <Container>
+            <ReactMarkdown source={this.props.releaseNotes.body} />
+          </Container>
+          <ButtonDiv type="primary" onClick={this.props.installNewRelease}>
+            <TextWhite>Install</TextWhite>
+          </ButtonDiv>
         </Modal>
       </SideBar>
     );
@@ -95,7 +103,8 @@ class App extends React.Component {
 
 App.propTypes = {
   releaseNotes: PropTypes.object.isRequired,
-  loadReleaseNotes: PropTypes.function,
+  hideReleaseNotes: PropTypes.func.isRequired,
+  installNewRelease: PropTypes.func.isRequired,
 };
 
 const withReducer = injectReducer({ key: 'app', reducer });
@@ -106,7 +115,8 @@ const mapStateToProps = createStructuredSelector({
 });
 function mapDispatchToProps(dispatch) {
   return {
-    loadReleaseNotes: () => dispatch(actions.loadReleaseNotes()),
+    hideReleaseNotes: () => dispatch(actions.hideReleaseNotes()),
+    installNewRelease: () => dispatch(actions.installNewRelease()),
   };
 }
 

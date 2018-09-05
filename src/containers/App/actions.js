@@ -4,6 +4,7 @@ import {
   LOAD_RELEASE_NOTES_SUCCESS,
   SHOW_RELEASE_NOTES,
   HIDE_RELEASE_NOTES,
+  INSTALL_NEW_RELEASE,
 } from './constants';
 
 
@@ -37,5 +38,11 @@ export function hideReleaseNotes() {
 export function showReleaseNotes() {
   return {
     type: SHOW_RELEASE_NOTES,
+  };
+}
+
+export function installNewRelease() {
+  return {
+    type: INSTALL_NEW_RELEASE,
   };
 }

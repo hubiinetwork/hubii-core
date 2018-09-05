@@ -18,3 +18,5 @@ const stringFromEnv = (key, def) => process.env[key] || def;
 
 export const WALLET_API = stringFromEnv('WALLET_API', 'https://api2.dev.hubii.net/');
 export const NETWORK = stringFromEnv('NETWORK', 'ropsten');
+export const REPO = stringFromEnv('npm_package_build_publish_0_repo');
+export const OWNER = stringFromEnv('npm_package_build_publish_0_owner');
