@@ -17,7 +17,6 @@ import {
   loadWalletBalances,
 } from 'containers/WalletHOC/actions';
 
-
 import {
   makeSelectLedgerNanoSInfo,
   makeSelectTrezorInfo,
@@ -59,16 +58,13 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
       this.fetchAddresses();
     }
 
-    const prevAddresses = this.getDeviceInfo(prevProps).get('addresses');
     const curAddresses = this.getDeviceInfo(this.props).get('addresses');
     const addresses = curAddresses.valueSeq().toArray();
-    if (prevAddresses !== curAddresses) {
-      addresses.forEach((address) => {
-        if (!balances.get(address)) {
-          this.props.loadWalletBalances(address, true);
-        }
-      });
-    }
+    addresses.forEach((address) => {
+      if (!balances.get(address)) {
+        this.props.loadWalletBalances(address, true);
+      }
+    });
   }
 
   onChangePathBase(e) {

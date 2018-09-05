@@ -1,7 +1,6 @@
 /* global mainWindow */
 const { DeviceList } = require('trezor.js');
 const showPrompt = require('./showPrompt');
-
 const PROTOCOL_NAME = 'trezor';
 
 const devices = {};
@@ -78,6 +77,14 @@ async function execWalletMethods(method, params) {
         tx.chainId
       );
       result = signedTx;
+    }
+    if (method === 'signpersonalmessage') {
+      const { message } = params;
+      const signedPersonalMessage = await session.signEthMessage(
+        parseHDPath(path),
+        message,
+      );
+      result = signedPersonalMessage;
     }
     if (method === 'getpublickey') {
       const { message } = await session.getPublicKey(parseHDPath(path));

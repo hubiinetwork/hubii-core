@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SectionHeading } from '../ui/SectionHeading';
+import SectionHeading from '../ui/SectionHeading';
 
 export const Wrapper = styled(SectionHeading)``;
 

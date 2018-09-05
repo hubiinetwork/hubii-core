@@ -1,5 +1,7 @@
+import { SUPPORTED_NETWORKS } from 'config/constants';
 import {
   NOTIFY,
+  CHANGE_NETWORK,
   LOAD_RELEASE_NOTES,
   LOAD_RELEASE_NOTES_SUCCESS,
   SHOW_RELEASE_NOTES,
@@ -44,5 +46,12 @@ export function showReleaseNotes() {
 export function installNewRelease() {
   return {
     type: INSTALL_NEW_RELEASE,
+  };
+}
+
+export function changeNetwork(name) {
+  return {
+    type: CHANGE_NETWORK,
+    network: SUPPORTED_NETWORKS[name],
   };
 }

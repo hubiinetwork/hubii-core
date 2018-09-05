@@ -1,8 +1,9 @@
+import { SUPPORTED_NETWORKS } from 'config/constants';
 import {
-  notify,
+  notify, changeNetwork,
 } from '../actions';
 import {
-  NOTIFY,
+  NOTIFY, CHANGE_NETWORK,
 } from '../constants';
 
 describe('App actions', () => {
@@ -16,6 +17,16 @@ describe('App actions', () => {
         message,
       };
       expect(notify(messageType, message)).toEqual(expected);
+    });
+  });
+  describe('changeNetwork Action', () => {
+    const name = 'ropsten';
+    it('returns expected output', () => {
+      const expected = {
+        type: CHANGE_NETWORK,
+        network: SUPPORTED_NETWORKS[name],
+      };
+      expect(changeNetwork(name)).toEqual(expected);
     });
   });
 });
