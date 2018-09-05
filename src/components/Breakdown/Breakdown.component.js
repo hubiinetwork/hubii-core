@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { VictoryPie, VictoryContainer, VictoryTooltip } from 'victory';
-import { SectionHeading } from '../ui/SectionHeading';
+import SectionHeading from '../ui/SectionHeading';
 import { TotalAmount, Title, Wrapper } from './Breakdown.style';
 import Tokens from './Tokens';
 import { formatFiat } from '../../utils/numberFormats';

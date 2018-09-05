@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Layout } from 'antd';
-import Button from '../../components/ui/Button';
-const { Header } = Layout;
+import Button from 'components/ui/Button';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -25,8 +24,3 @@ export const StyledButton = styled(Button)`
   padding: 0.5rem 1rem;
 `;
 
-export const WalletsTabHeader = styled(Header)`
-  height: 5.29rem;
-  padding: 0 2rem;
-  background: ${({ theme }) => theme.palette.primary4};
-`;
