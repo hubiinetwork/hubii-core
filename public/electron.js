@@ -95,9 +95,6 @@ function setupAutoUpdater() {
   });
   autoUpdater.checkForUpdatesAndNotify();
 
-  // setInterval(() => {
-  //   mainWindow.webContents.send('update-downloaded');
-  // }, 5000);
   ipcMain.on('install-new-release', () => {
     autoUpdater.quitAndInstall();
   });
