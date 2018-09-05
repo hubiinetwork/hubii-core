@@ -10,6 +10,8 @@ export const TitleDiv = styled.div`
 `;
 
 export const Container = styled.div`
+  overflow-x: hidden;
+  max-height: 400px;
   padding: 2rem 0;
   h1 {
     color: ${({ theme }) => theme.palette.light};
@@ -31,11 +33,14 @@ export const TextWhite = styled.span`
   text-align: center;
 `;
 
-export const ButtonDiv = styled(Button)`
-  margin: auto;
+export const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 1.5rem;
+  margin-top: ${(props) => props.loading ? '1.79rem' : '3.57rem'};
+  margin-bottom: 1.86rem;
+`;
+
+export const StyledButton = styled(Button)`
   background-color: ${({ disabled: white }) =>
     white && 'transparent !important'};
   font-size: 0.86rem;
@@ -45,7 +50,7 @@ export const ButtonDiv = styled(Button)`
   width: 11.57rem;
   border: ${({ disabled: white, theme }) =>
     white && `0.14rem solid ${theme.palette.secondary4} !important`};
-  min-width: ${({ current: width }) => (width === 0 ? '18.57rem' : '18.57rem')};
+  min-width: ${({ current: width }) => (width === 0 ? '18.57rem' : '13.57rem')};
   color: ${({ disabled: white, theme }) =>
     white
       ? `${theme.palette.secondary4} !important`
@@ -58,3 +63,11 @@ export const ButtonDiv = styled(Button)`
   }
 `;
 
+export const StyledDetailsButton = styled(Button)`
+  height: 2.86rem;
+  width: 10rem;
+  margin-left: 0.57rem;
+  margin-right: 0.57rem;
+  border-radius: 0.29rem;
+  border: 0.07rem solid ${({ theme }) => theme.palette.light};
+`;

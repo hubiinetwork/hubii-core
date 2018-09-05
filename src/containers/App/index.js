@@ -12,6 +12,7 @@
  */
 
 import React from 'react';
+import { shell } from 'electron';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -36,9 +37,12 @@ import withExchangeRate from 'containers/ExchangeRateHOC';
 import WalletHOC from 'containers/WalletHOC';
 
 import { Modal } from 'components/ui/Modal';
+import { OWNER, REPO } from 'config/constants';
 
 import {
   ButtonDiv,
+  StyledButton,
+  StyledDetailsButton,
   TitleDiv,
   TextWhite,
   Container,
@@ -92,8 +96,13 @@ class App extends React.PureComponent {
           <Container>
             <ReactMarkdown source={this.props.releaseNotes.body} />
           </Container>
-          <ButtonDiv type="primary" onClick={this.props.installNewRelease}>
-            <TextWhite>Install</TextWhite>
+          <ButtonDiv>
+            <StyledButton type="primary" onClick={this.props.installNewRelease}>
+              <TextWhite>Install</TextWhite>
+            </StyledButton>
+            <StyledDetailsButton type="primary" onClick={() => { shell.openExternal(`https://github.com/${OWNER}/${REPO}/releases/tag/${this.props.releaseNotes.version}`); }}>
+              <TextWhite>View Details</TextWhite>
+            </StyledDetailsButton>
           </ButtonDiv>
         </Modal>
       </SideBar>
