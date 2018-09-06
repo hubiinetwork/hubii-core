@@ -28,7 +28,6 @@ import WalletDetails from 'containers/WalletDetails';
 import Dex from 'containers/Dex';
 import Settings from 'containers/Settings';
 
-import withExchangeRate from 'containers/ExchangeRateHOC';
 import WalletHOC from 'containers/WalletHOC';
 
 import ReleaseNotesModal from 'containers/ReleaseNotesModal';
@@ -73,6 +72,5 @@ const withSaga = injectSaga({ key: 'app', saga });
 export default compose(
   withReducer,
   withSaga,
-  withExchangeRate,
   WalletHOC,
 )(App);
