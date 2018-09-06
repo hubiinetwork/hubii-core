@@ -21,14 +21,8 @@ const makeSelectPathnameId = () => createSelector(
   }
 );
 
-const makeSelectReleaseNotes = () => createSelector(
-  selectAppDomain,
-  (routeState) => routeState.get('releaseNotes').toJS()
-);
-
 export {
   makeSelectPathnameId,
-  makeSelectReleaseNotes,
   makeSelectCurrentNetwork,
   makeSelectSupportedNetworks,
 };
