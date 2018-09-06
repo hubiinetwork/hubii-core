@@ -93,6 +93,7 @@ function setupAutoUpdater() {
   autoUpdater.on('error', (err) => {
     log.error('auto updater:', err);
   });
+
   autoUpdater.checkForUpdatesAndNotify();
 
   ipcMain.on('install-new-release', () => {

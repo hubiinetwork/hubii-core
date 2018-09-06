@@ -20,6 +20,7 @@ import Helmet from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
+import emoji from 'emoji-dictionary';
 
 import { getAbsolutePath } from 'utils/electron';
 import injectSaga from 'utils/injectSaga';
@@ -67,6 +68,8 @@ class App extends React.PureComponent {
         name: 'dex detail',
       },
     ];
+    const emojiSupport = (text) => text.replace(/:\w+:/gi, (name) => emoji.getUnicode(name));
+
     return (
       <SideBar menuItems={menuItems} logoSrc={getAbsolutePath('public/images/hubii-core-logo.svg')}>
         <Helmet>
@@ -94,7 +97,7 @@ class App extends React.PureComponent {
             {`New version available - ${this.props.releaseNotes.version}`}
           </TitleDiv>
           <Container>
-            <ReactMarkdown source={this.props.releaseNotes.body} />
+            <ReactMarkdown source={this.props.releaseNotes.body} renderers={{ text: emojiSupport }} />
           </Container>
           <ButtonDiv>
             <StyledButton type="primary" onClick={this.props.installNewRelease}>

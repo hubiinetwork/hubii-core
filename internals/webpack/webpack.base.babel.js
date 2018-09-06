@@ -172,6 +172,7 @@ module.exports = (options) => ({
       '.react.js',
       '.css',
       '.less',
+      '.json',
     ],
     mainFields: [
       'browser',
