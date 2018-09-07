@@ -30,9 +30,10 @@
     }
   },
   "scripts": {
+    "bld-elec": "webpack --config internals/webpack/webpack.electron.babel.js",
     "release": "electron-builder -lwm -p always",
     "electron-dev": "concurrently \"cross-env BROWSER=none TARGET=electron yarn start\" \"wait-on http://localhost:3000 && electron .\"",
-    "preelectron-dev": "node ./internals/scripts/copy-public.js && electron-rebuild --force --module_dir . -w node-hid",
+    "preelectron-dev": "npm run bld-elec && electron-rebuild --force --module_dir . -w node-hid",
     "electron-build": "cross-env TARGET=electron npm run build && cross-env DEBUG=electron-builder electron-builder --publish never",
     "preelectron-build": "electron-rebuild --force --module_dir . -w node-hid",
     "electron-pack": "cross-env TARGET=electron npm run build && cross-env DEBUG=electron-builder electron-builder --dir",
@@ -280,6 +281,7 @@
     "electron-is-dev": "0.3.0",
     "electron-localshortcut": "^3.1.0",
     "electron-log": "^2.2.17",
+    "electron-reload": "^1.2.5",
     "electron-remote": "^1.3.0",
     "electron-updater": "^3.0.1",
     "ensure-error": "^1.0.0",

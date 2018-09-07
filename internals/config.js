@@ -29,6 +29,7 @@ const ReactBoilerplate = {
         'minimist',
         'sanitize.css',
         '@ledgerhq/hw-transport-node-hid',
+        'electron-reload',
       ],
 
       /**

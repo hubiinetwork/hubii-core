@@ -10,6 +10,10 @@ const { registerWalletListeners } = require('./wallets');
 const setupDevToolsShortcut = require('./dev-tools');
 
 const version = app.getVersion();
+console.log(`${__dirname}/../../`)
+require('electron-reload')(__dirname, {
+  electron: path.join(`${__dirname}/../../`, 'node_modules', '.bin', 'electron')
+});
 
 function createWindow() {
   const template = [
@@ -36,7 +40,7 @@ function createWindow() {
   ];
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
-
+  log.info(path.join(__dirname, 'preload.js'))
   const windowOptions = {
     width: 1250,
     height: 780,
