@@ -1,2 +1,2 @@
 require('./wallets/preload');
-require('./error-reporter')();
+// require('./error-reporter')();

@@ -1,13 +1,12 @@
-const { remote } = require('electron');
-const LedgerTransport = require('@ledgerhq/hw-transport-node-hid').default;
-const Eth = require('@ledgerhq/hw-app-eth').default;
-const PROTOCOL_NAME = 'lns';
+import { remote } from 'electron';
+import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
+import Eth from '@ledgerhq/hw-app-eth';
 
 function emitEvent(windowInstance, event) {
   windowInstance.webContents.send('lns-status', event);
 }
 
-function deviceEventListener() {
+export const deviceEventListener = function() {
   const mainWindow = remote.getGlobal('mainWindow');
   const sub = LedgerTransport.listen({
     next: (e) => emitEvent(mainWindow, e),
@@ -20,7 +19,7 @@ function deviceEventListener() {
   });
 }
 
-async function execWalletMethods(method, params) {
+export const execWalletMethods = async function(method, params) {
   const { id, path } = params;
   let result;
 
@@ -63,9 +62,4 @@ const createEthTransportActivity = async (descriptor, activityFn) => {
   }
 };
 
-
-module.exports = {
-  PROTOCOL_NAME,
-  deviceEventListener,
-  execWalletMethods,
-};
+export const PROTOCOL_NAME = 'lns';

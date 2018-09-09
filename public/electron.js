@@ -9,11 +9,11 @@ const isDev = require('electron-is-dev');
 const { registerWalletListeners } = require('./wallets');
 const setupDevToolsShortcut = require('./dev-tools');
 
-const version = app.getVersion();
-console.log(`${__dirname}/../../`)
 require('electron-reload')(__dirname, {
   electron: path.join(`${__dirname}/../../`, 'node_modules', '.bin', 'electron')
 });
+
+const version = app.getVersion();
 
 function createWindow() {
   const template = [

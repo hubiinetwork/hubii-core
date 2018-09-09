@@ -30,11 +30,12 @@
     }
   },
   "scripts": {
-    "bld-elec": "webpack --config internals/webpack/webpack.electron.babel.js",
+    "bld-elec": "webpack --watch --config internals/webpack/webpack.electron.babel.js",
     "release": "electron-builder -lwm -p always",
-    "electron-dev": "concurrently \"cross-env BROWSER=none TARGET=electron yarn start\" \"wait-on http://localhost:3000 && electron .\"",
-    "preelectron-dev": "npm run bld-elec && electron-rebuild --force --module_dir . -w node-hid",
-    "electron-build": "cross-env TARGET=electron npm run build && cross-env DEBUG=electron-builder electron-builder --publish never",
+    "electron-dev": "concurrently --kill-others \"npm run bld-elec\" \"cross-env BROWSER=none TARGET=electron yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "preelectron-dev": "electron-rebuild --force --module_dir . -w node-hid",
+    "electron": "electron .",
+    "electron-build": "cross-env TARGET=electron npm run build && webpack --config internals/webpack/webpack.electron.babel.js && cross-env DEBUG=electron-builder electron-builder --publish never",
     "preelectron-build": "electron-rebuild --force --module_dir . -w node-hid",
     "electron-pack": "cross-env TARGET=electron npm run build && cross-env DEBUG=electron-builder electron-builder --dir",
     "precommit": "npm run lint:staged",

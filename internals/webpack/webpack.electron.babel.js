@@ -1,5 +1,5 @@
 /**
- * COMMON WEBPACK CONFIGURATION
+ * ELECTRON WEBPACK CONFIGURATION
  */
 require('dotenv').config();
 const fs = require('fs')
@@ -18,46 +18,40 @@ process.noDeprecation = true;
 const target = 'node';
 
 var node_modules = {}
+var node_modules_2 = {}
+
 fs.readdirSync('node_modules').forEach(function(module) {
   node_modules[module] = "require('"+module+"')"
+  node_modules_2[module] = module
 })
 
-
-module.exports = (options) => ({
+const commonConfig = {
   mode: 'development',
-  entry: [
-    path.join(process.cwd(), 'public/electron.js'),
-  ],
+  entry: {
+    electron: path.join(process.cwd(), 'public/electron.js'),
+    preload: path.join(process.cwd(), 'public/preload.js'),
+  },
   output: {
     path: path.resolve(process.cwd(), 'build'),
-    // publicPath: 'public',
-    filename: 'public/electron.js',
+    filename: 'public/[name].js',
     chunkFilename: '[name].chunk.js',
   },
   optimization: {
     minimize: false,
   },
-  // module: {
-  //   rules: [
-  //     {
-  //       test: /\.js?$/,
-  //       exclude: /node_modules/,
-  //       use: {
-  //         loader: 'babel-loader',
-  //         // options: options.babelQuery,
-  //       },
-  //     }
-  //   ]
-  // },
+  module: {
+    rules: [
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          // options: options.babelQuery,
+        },
+      }
+    ]
+  },
   plugins: [
-    // new webpack.ProvidePlugin({
-    //   // make fetch available
-    //   fetch: 'exports-loader?self.fetch!whatwg-fetch',
-    // }),
-
-    // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
-    // inside your code for any environment checks; UglifyJS will automatically
-    // drop any unreachable code.
     new webpack.DefinePlugin({
       'process.env': Object.keys(process.env).reduce((accumulator, currentKey) => {
         const envs = accumulator;
@@ -82,20 +76,12 @@ module.exports = (options) => ({
     ],
     extensions: [
       '.js',
-      '.jsx',
-      '.react.js',
-      '.css',
-      '.less',
-      '.json',
     ],
     mainFields: [
       'browser',
       'jsnext:main',
       'main',
     ],
-    // alias: {
-    //   moment$: 'moment/moment.js',
-    // },
   },
   devtool: 'eval-source-map',
   externals: node_modules,
@@ -104,6 +90,21 @@ module.exports = (options) => ({
     __dirname: false,
     __filename: false,
   },
-//   node,
-  performance:  {},
-});
+}
+
+module.exports = (options) => ([
+  commonConfig, 
+  {
+    ...commonConfig,
+    entry: {
+      "wallets/lns/index": path.join(process.cwd(), 'public/wallets/lns/index.js'),
+    },
+    externals: node_modules_2,
+    output: {
+      path: path.resolve(process.cwd(), 'build'),
+      filename: 'public/[name].js',
+      chunkFilename: '[name].chunk.js',
+      libraryTarget: 'commonjs2',
+    },
+  }
+]);
