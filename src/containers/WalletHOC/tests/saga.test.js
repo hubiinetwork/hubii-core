@@ -19,6 +19,7 @@ import {
   appMock,
   currentNetworkMock,
 } from 'containers/App/tests/mocks/selectors';
+import { tryCreateEthTransportActivity } from 'containers/LedgerHoc/saga';
 
 import {
   privateKeyMock,
@@ -68,7 +69,6 @@ import walletHoc, {
   networkApiOrcestrator,
 } from '../saga';
 
-import { tryCreateEthTransportActivity } from '../HardwareWallets/ledger/saga';
 
 import {
   CREATE_WALLET_FROM_MNEMONIC,

@@ -6,13 +6,13 @@ import { deriveAddresses, prependHexToAddress } from 'utils/wallet';
 import { requestHardwareWalletAPI } from 'utils/request';
 import {
   makeSelectLedgerNanoSInfo,
-} from '../../selectors';
+} from 'containers/WalletHOC/selectors';
 import {
   FETCH_LEDGER_ADDRESSES,
   INIT_LEDGER,
   LEDGER_CONNECTED,
   LEDGER_DISCONNECTED,
-} from '../../constants';
+} from './constants';
 
 import {
   ledgerConnected,
@@ -23,7 +23,7 @@ import {
   fetchedLedgerAddress,
   ledgerConfirmTxOnDevice,
   ledgerConfirmTxOnDeviceDone,
-} from '../../actions';
+} from './actions';
 
 
 // Creates an eventChannel to listen to Ledger events

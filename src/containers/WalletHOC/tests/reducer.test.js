@@ -2,6 +2,14 @@ import { fromJS } from 'immutable';
 
 import { disconnectedErrorMsg, trezorDisconnectedErrorMsg } from 'utils/friendlyErrors';
 
+import {
+  ledgerEthAppConnected,
+  ledgerConfirmTxOnDevice,
+  ledgerConfirmTxOnDeviceDone,
+} from 'containers/LedgerHoc/actions';
+
+import { LEDGER_ERROR, FETCHED_LEDGER_ADDRESS } from 'containers/LedgerHoc/constants';
+
 import walletHocReducer from '../reducer';
 import {
   createWalletFromMnemonic,
@@ -14,25 +22,21 @@ import {
   loadTransactionsError,
   loadTransactionsSuccess,
   loadSupportedTokens,
+  showDecryptWalletModal,
+  hideDecryptWalletModal,
   setCurrentWallet,
   transferError,
   transfer,
-  showDecryptWalletModal,
-  hideDecryptWalletModal,
-  ledgerEthAppConnected,
   deleteWallet,
   addNewWallet,
   loadSupportedTokensSuccess,
   loadSupportedTokensError,
   loadPricesSuccess,
   loadPricesError,
-  ledgerConfirmTxOnDevice,
-  ledgerConfirmTxOnDeviceDone,
   trezorConfirmTxOnDeviceDone,
   trezorConfirmTxOnDevice,
 } from '../actions';
 
-import { LEDGER_ERROR, FETCHED_LEDGER_ADDRESS } from '../constants';
 import {
   supportedAssetsLoadedMock,
   pricesLoadedMock,

@@ -3,10 +3,20 @@ import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 import { fromJS } from 'immutable';
 import { ethAppNotOpenErrorMsg, disconnectedErrorMsg } from 'utils/friendlyErrors';
-import walletHoc, { initLedger, ledgerChannel, ledgerEthChannel, pollEthApp, tryCreateEthTransportActivity, fetchLedgerAddresses } from '../saga';
+import walletHocReducer from 'containers/WalletHOC/reducer';
+
+import walletHoc, {
+  initLedger,
+  ledgerChannel,
+  ledgerEthChannel,
+  pollEthApp,
+  tryCreateEthTransportActivity,
+  fetchLedgerAddresses,
+} from '../saga';
+
 import {
   INIT_LEDGER,
-} from '../../../constants';
+} from '../constants';
 
 import {
   ledgerError,
@@ -14,8 +24,7 @@ import {
   ledgerEthAppDisconnected,
   ledgerConnected,
   ledgerDisconnected,
-} from '../../../actions';
-import walletHocReducer from '../../../reducer';
+} from '../actions';
 
 describe('ledger saga', () => {
   it('should trigger ledgerConnectedAction when ledger usb is connected', () => {

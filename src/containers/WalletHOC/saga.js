@@ -23,6 +23,8 @@ import {
 } from 'utils/wallet';
 import generateRawTx from 'utils/generateRawTx';
 
+import { signTxByLedger, signPersonalMessageByLedger } from 'containers/LedgerHoc/saga';
+
 import {
   makeSelectCurrentWalletWithInfo,
   makeSelectWallets,
@@ -69,7 +71,6 @@ import {
 } from './actions';
 
 import trezorWatchers, { signTxByTrezor, signPersonalMessageByTrezor } from './HardwareWallets/trezor/saga';
-import ledgerWatchers, { signTxByLedger, signPersonalMessageByLedger } from './HardwareWallets/ledger/saga';
 
 
 // Creates a new software wallet
@@ -420,6 +421,6 @@ export default function* walletHoc() {
   yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
   yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
 
-  yield spawn(ledgerWatchers);
+  // yield spawn(ledgerWatchers);
   yield spawn(trezorWatchers);
 }

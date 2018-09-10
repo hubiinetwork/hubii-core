@@ -4,6 +4,7 @@
  *
  */
 import { utils } from 'ethers';
+import getFriendlyError from 'utils/friendlyErrors';
 import abiDecoder from 'abi-decoder';
 
 import {
@@ -35,32 +36,21 @@ import {
   TRANSFER_ERC20,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
-  LEDGER_CONNECTED,
-  LEDGER_DISCONNECTED,
-  LEDGER_ETH_CONNECTED,
-  LEDGER_ETH_DISCONNECTED,
-  LEDGER_ERROR,
   TREZOR_ERROR,
-  FETCH_LEDGER_ADDRESSES,
-  FETCHED_LEDGER_ADDRESS,
   TREZOR_CONNECTED,
   TREZOR_DISCONNECTED,
   FETCH_TREZOR_ADDRESSES,
   FETCHED_TREZOR_ADDRESS,
   DELETE_WALLET,
-  INIT_LEDGER,
   INIT_TREZOR,
   INIT_API_CALLS,
   LOAD_BLOCK_HEIGHT,
   LOAD_BLOCK_HEIGHT_SUCCESS,
   LOAD_BLOCK_HEIGHT_ERROR,
-  LEDGER_CONFIRM_TX_ON_DEVICE,
-  LEDGER_CONFIRM_TX_ON_DEVICE_DONE,
   TREZOR_CONFIRM_TX_ON_DEVICE,
   TREZOR_CONFIRM_TX_ON_DEVICE_DONE,
 } from './constants';
 
-import getFriendlyError from '../../utils/friendlyErrors';
 
 export function deleteWallet(address) {
   return {
@@ -313,82 +303,9 @@ export function transferSuccess(transaction, token) {
   };
 }
 
-export function initLedger() {
-  return {
-    type: INIT_LEDGER,
-  };
-}
-
 export function initTrezor() {
   return {
     type: INIT_TREZOR,
-  };
-}
-
-export function fetchLedgerAddresses(pathBase, count) {
-  return {
-    type: FETCH_LEDGER_ADDRESSES,
-    pathBase,
-    count,
-  };
-}
-
-export function fetchedLedgerAddress(derivationPath, address) {
-  return {
-    type: FETCHED_LEDGER_ADDRESS,
-    derivationPath,
-    address,
-  };
-}
-
-export function saveLedgerAddress(name, derivationPath, deviceId, address) {
-  const newWallet = {
-    deviceId,
-    address,
-    type: 'lns',
-    name,
-    derivationPath,
-  };
-  return {
-    type: CREATE_WALLET_SUCCESS,
-    newWallet,
-  };
-}
-
-export function ledgerConnected(descriptor) {
-  return {
-    type: LEDGER_CONNECTED,
-    descriptor,
-  };
-}
-
-export function ledgerDisconnected(descriptor) {
-  return {
-    type: LEDGER_DISCONNECTED,
-    descriptor,
-  };
-}
-
-export function ledgerEthAppConnected(descriptor, id) {
-  return {
-    type: LEDGER_ETH_CONNECTED,
-    descriptor,
-    id,
-  };
-}
-
-export function ledgerEthAppDisconnected(descriptor) {
-  return {
-    type: LEDGER_ETH_DISCONNECTED,
-    descriptor,
-  };
-}
-
-export function ledgerError(rawError) {
-  const friendlyError = getFriendlyError(rawError);
-  return {
-    type: LEDGER_ERROR,
-    error: friendlyError,
   };
 }
 
@@ -467,18 +384,6 @@ export function loadBlockHeightError(error) {
   return {
     type: LOAD_BLOCK_HEIGHT_ERROR,
     error,
-  };
-}
-
-export function ledgerConfirmTxOnDevice() {
-  return {
-    type: LEDGER_CONFIRM_TX_ON_DEVICE,
-  };
-}
-
-export function ledgerConfirmTxOnDeviceDone() {
-  return {
-    type: LEDGER_CONFIRM_TX_ON_DEVICE_DONE,
   };
 }
 

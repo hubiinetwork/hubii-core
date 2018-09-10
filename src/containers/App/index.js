@@ -33,6 +33,7 @@ import WalletHOC from 'containers/WalletHOC';
 
 import saga from './saga';
 import reducer from './reducer';
+import withLedger from '../LedgerHoc';
 
 export function App() {
   const menuItems = [
@@ -72,4 +73,5 @@ export default compose(
   withSaga,
   withExchangeRate,
   WalletHOC,
+  withLedger
 )(App);

@@ -16,10 +16,14 @@ import EditContactModal from 'components/EditContactModal';
 
 import {
   createWalletFromMnemonic,
-  saveLedgerAddress,
   saveTrezorAddress,
   createWalletFromPrivateKey,
 } from 'containers/WalletHOC/actions';
+
+import {
+  saveLedgerAddress,
+} from 'containers/LedgerHoc/actions';
+
 import { makeSelectLoading, makeSelectWallets } from 'containers/WalletHOC/selectors';
 
 import TopHeader from 'components/ui/TopHeader';

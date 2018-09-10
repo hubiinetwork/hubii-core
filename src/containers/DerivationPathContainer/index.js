@@ -12,10 +12,13 @@ import { createStructuredSelector } from 'reselect';
 import { utils } from 'ethers';
 
 import {
-  fetchLedgerAddresses,
   fetchTrezorAddresses,
   loadWalletBalances,
 } from 'containers/WalletHOC/actions';
+
+import {
+  fetchLedgerAddresses,
+} from 'containers/LedgerHoc/actions';
 
 import {
   makeSelectLedgerNanoSInfo,
