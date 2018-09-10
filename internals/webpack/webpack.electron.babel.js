@@ -2,10 +2,9 @@
  * ELECTRON WEBPACK CONFIGURATION
  */
 require('dotenv').config();
-const fs = require('fs')
+const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 // Remove this line once the following warning goes away (it was meant for webpack loader authors not users):
@@ -16,16 +15,16 @@ process.noDeprecation = true;
 
 // Expose APIs for the environment targeted
 
-var node_modules = {}
-var node_modules_commonjs2 = {}
+const nodeModules = {};
+const nodeModulesCommonjs2 = {};
 
-fs.readdirSync('node_modules').forEach(function(module) {
-  node_modules[module] = "require('"+module+"')"
-  node_modules_commonjs2[module] = module
-})
+fs.readdirSync('node_modules').forEach((module) => {
+  nodeModules[module] = `require('${module}')`;
+  nodeModulesCommonjs2[module] = module;
+});
 
 const commonConfig = {
-  mode: process.env.NODE_ENV === 'production'? 'production': 'development',
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   entry: {
     electron: path.join(process.cwd(), 'src/electron/electron.js'),
     preload: path.join(process.cwd(), 'src/electron/preload.js'),
@@ -47,8 +46,12 @@ const commonConfig = {
         use: {
           loader: 'babel-loader',
         },
-      }
-    ]
+      },
+      {
+        test: /\.html$/,
+        use: 'html-loader',
+      },
+    ],
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -70,6 +73,7 @@ const commonConfig = {
     ],
     extensions: [
       '.js',
+      '.html',
     ],
     mainFields: [
       'browser',
@@ -78,28 +82,28 @@ const commonConfig = {
     ],
   },
   devtool: 'eval-source-map',
-  externals: node_modules,
+  externals: nodeModules,
   target: 'node',
   node: {
     __dirname: false,
     __filename: false,
   },
-}
+};
 
 module.exports = () => ([
-  commonConfig, 
+  commonConfig,
   {
     ...commonConfig,
     entry: {
-      //transpile the dynamic requires
-      "wallets/lns/index": path.join(process.cwd(), 'src/electron/wallets/lns/index.js'),
+      // transpile the dynamic requires
+      'wallets/lns/index': path.join(process.cwd(), 'src/electron/wallets/lns/index.js'),
     },
-    externals: node_modules_commonjs2,
+    externals: nodeModulesCommonjs2,
     output: {
       path: path.resolve(process.cwd(), 'build'),
       filename: 'electron/[name].js',
       chunkFilename: '[name].chunk.js',
       libraryTarget: 'commonjs2',
     },
-  }
+  },
 ]);
