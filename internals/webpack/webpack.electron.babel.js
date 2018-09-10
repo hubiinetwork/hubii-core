@@ -15,25 +15,24 @@ const CircularDependencyPlugin = require('circular-dependency-plugin');
 process.noDeprecation = true;
 
 // Expose APIs for the environment targeted
-const target = 'node';
 
 var node_modules = {}
-var node_modules_2 = {}
+var node_modules_commonjs2 = {}
 
 fs.readdirSync('node_modules').forEach(function(module) {
   node_modules[module] = "require('"+module+"')"
-  node_modules_2[module] = module
+  node_modules_commonjs2[module] = module
 })
 
 const commonConfig = {
-  mode: 'development',
+  mode: process.env.NODE_ENV === 'production'? 'production': 'development',
   entry: {
-    electron: path.join(process.cwd(), 'public/electron.js'),
-    preload: path.join(process.cwd(), 'public/preload.js'),
+    electron: path.join(process.cwd(), 'electron/electron.js'),
+    preload: path.join(process.cwd(), 'electron/preload.js'),
   },
   output: {
     path: path.resolve(process.cwd(), 'build'),
-    filename: 'public/[name].js',
+    filename: 'electron/[name].js',
     chunkFilename: '[name].chunk.js',
   },
   optimization: {
@@ -63,11 +62,6 @@ const commonConfig = {
       exclude: /a\.js|node_modules/, // exclude node_modules
       failOnError: false, // show a warning when there is a circular dependency
     }),
-    new CopyWebpackPlugin(
-      [
-        { from: 'public/', to: 'public/' },
-      ]
-    ),
   ],
   resolve: {
     modules: [
@@ -85,24 +79,25 @@ const commonConfig = {
   },
   devtool: 'eval-source-map',
   externals: node_modules,
-  target,
+  target: 'node',
   node: {
     __dirname: false,
     __filename: false,
   },
 }
 
-module.exports = (options) => ([
+module.exports = () => ([
   commonConfig, 
   {
     ...commonConfig,
     entry: {
-      "wallets/lns/index": path.join(process.cwd(), 'public/wallets/lns/index.js'),
+      //transpile the dynamic requires
+      "wallets/lns/index": path.join(process.cwd(), 'electron/wallets/lns/index.js'),
     },
-    externals: node_modules_2,
+    externals: node_modules_commonjs2,
     output: {
       path: path.resolve(process.cwd(), 'build'),
-      filename: 'public/[name].js',
+      filename: 'electron/[name].js',
       chunkFilename: '[name].chunk.js',
       libraryTarget: 'commonjs2',
     },

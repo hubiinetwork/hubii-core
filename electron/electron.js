@@ -9,9 +9,11 @@ const isDev = require('electron-is-dev');
 const { registerWalletListeners } = require('./wallets');
 const setupDevToolsShortcut = require('./dev-tools');
 
-require('electron-reload')(__dirname, {
-  electron: path.join(`${__dirname}/../../`, 'node_modules', '.bin', 'electron')
-});
+if (process.env.NODE_ENV === 'development') {
+  require('electron-reload')(__dirname, {
+    electron: path.join(`${__dirname}/../../`, 'node_modules', '.bin', 'electron')
+  });
+}
 
 const version = app.getVersion();
 
@@ -40,7 +42,7 @@ function createWindow() {
   ];
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
-  log.info(path.join(__dirname, 'preload.js'))
+  
   const windowOptions = {
     width: 1250,
     height: 780,
@@ -134,3 +136,7 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+process.on('unhandledRejection', err => {
+  console.error(err)
+})

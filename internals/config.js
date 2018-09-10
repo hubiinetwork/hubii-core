@@ -29,7 +29,10 @@ const ReactBoilerplate = {
         'minimist',
         'sanitize.css',
         '@ledgerhq/hw-transport-node-hid',
+        'trezor.js',
         'electron-reload',
+        'electron-remote',
+        'electron-updater',
       ],
 
       /**

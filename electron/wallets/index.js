@@ -14,7 +14,6 @@ async function listenHardwareWalletMethods(handler) {
   }
   if (typeof handler.PROTOCOL_NAME === 'function') {
     protocolName = await handler.PROTOCOL_NAME();
-    console.log('protocol', protocolName)
   }
   protocol.registerStringProtocol(protocolName, async (req, cb) => {
     let res;
