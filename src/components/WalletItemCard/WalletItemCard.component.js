@@ -115,6 +115,7 @@ export class WalletItemCard extends React.PureComponent {
     } = this.props;
 
     const { modalVisibility, modalType } = this.state;
+
     let assetBubbles = null;
     if (assets) {
       assetBubbles = assets.map((asset) => (
