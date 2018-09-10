@@ -41,7 +41,9 @@ export class WalletItemCard extends React.PureComponent {
     this.settingsMenu = this.settingsMenu.bind(this);
     this.handleDeleteWallet = this.handleDeleteWallet.bind(this);
     this.handleExportSeedWords = this.handleExportSeedWords.bind(this);
+    this.determineAmount = this.determineAmount.bind(this);
   }
+
 
   settingsMenu(walletType) {
     const menuItems = [];
@@ -64,6 +66,12 @@ export class WalletItemCard extends React.PureComponent {
       );
     }
     return <Menu singleitem={(menuItems.length === 1).toString()}>{menuItems.map((item) => item)}</Menu>;
+  }
+
+  determineAmount(balance) {
+    // const { priceInfo } = this.props;
+    console.log(balance);
+    return 4;
   }
 
   async handleExportSeedWords() {
@@ -96,6 +104,14 @@ export class WalletItemCard extends React.PureComponent {
     } = this.props;
 
     const { modalVisibility, modalType } = this.state;
+    let assetBubbles = null;
+    if (assets) {
+      assetBubbles = assets.map((asset) => (
+        <AssetWrapper key={asset.currency}>
+          <AssetAmountBubble name={asset.symbol} amount={this.determineAmount(asset.balance)} />
+        </AssetWrapper>
+      ));
+    }
 
     let modal;
     switch (modalType) {
@@ -162,12 +178,7 @@ export class WalletItemCard extends React.PureComponent {
               balancesLoading &&
                 <Spinner type="loading" />
             }
-            {!balancesLoading && !balancesError &&
-              assets.map((asset) => (
-                <AssetWrapper key={asset.currency}>
-                  <AssetAmountBubble name={asset.symbol} amount={asset.balance.toString().substr(0, 6)} />
-                </AssetWrapper>
-              ))}
+            {!balancesLoading && !balancesError && assetBubbles}
           </AssetsWrapper>
         </OuterWrapper>
         <Modal
@@ -253,6 +264,10 @@ WalletItemCard.propTypes = {
    * Wallet's private key
    */
   privateKey: PropTypes.string,
+  /**
+   * Price list
+   */
+  // priceInfo: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default WalletItemCard;

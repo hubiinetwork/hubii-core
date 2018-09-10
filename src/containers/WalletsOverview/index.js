@@ -14,6 +14,7 @@ import {
   makeSelectSupportedAssets,
   makeSelectTotalBalances,
   makeSelectWalletsWithInfo,
+  makeSelectPrices,
 } from 'containers/WalletHOC/selectors';
 
 import { SectionHeading } from 'components/ui/SectionHeading';
@@ -37,6 +38,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
 
   renderWalletCards() {
+    const { priceInfo } = this.props;
     const wallets = this.props.walletsWithInfo.toJS();
     if (wallets.length === 0) {
       return (
@@ -77,6 +79,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
             handleCardClick={() => this.handleCardClick(wallet)}
             walletList={wallets}
             deleteWallet={() => this.props.deleteWallet(wallet.address)}
+            priceInfo={priceInfo.toJS().assets}
           />
         </WalletCardsCol>
       );
@@ -86,13 +89,14 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
   render() {
     const { totalBalances, supportedAssets } = this.props;
+    const walletCards = this.renderWalletCards();
     return (
       <Wrapper>
         <Row gutter={32}>
           <Col sm={24} md={12} lg={16}>
             <SectionHeading>All wallets</SectionHeading>
             <Row type="flex" align="top" gutter={16}>
-              {this.renderWalletCards()}
+              {walletCards}
             </Row>
           </Col>
           <Col sm={24} md={12} lg={8}>
@@ -123,6 +127,7 @@ WalletsOverview.propTypes = {
   totalBalances: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   walletsWithInfo: PropTypes.object.isRequired,
+  priceInfo: PropTypes,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -131,6 +136,7 @@ const mapStateToProps = createStructuredSelector({
   supportedAssets: makeSelectSupportedAssets(),
   ledgerNanoSInfo: makeSelectLedgerNanoSInfo(),
   trezorInfo: makeSelectTrezorInfo(),
+  priceInfo: makeSelectPrices(),
 });
 
 export function mapDispatchToProps(dispatch) {
