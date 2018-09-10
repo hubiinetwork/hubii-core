@@ -68,10 +68,21 @@ export class WalletItemCard extends React.PureComponent {
     return <Menu singleitem={(menuItems.length === 1).toString()}>{menuItems.map((item) => item)}</Menu>;
   }
 
-  determineAmount(balance) {
-    // const { priceInfo } = this.props;
-    console.log(balance);
-    return 4;
+  determineAmount(amount, currency) {
+    const extractedCurrency = this.props.priceInfo.filter((currencyItem) => currencyItem.currency.toLowerCase() === currency.toLowerCase())[0];
+    const ratio = 0.01 / extractedCurrency.usd;
+    const ratioSplitByDot = ratio.toString().split('.');
+    const amountSplitByDot = amount.toString().split('.');
+
+    if (amountSplitByDot.length === 1) {
+      return amount.toString();
+    }
+
+    if (!extractedCurrency.usd) {
+      return `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, 6)}`;
+    }
+    const decimalPlacement = (ratioSplitByDot[1].toString().length - parseFloat(ratioSplitByDot[1]).toString().length) + 1;
+    return `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, decimalPlacement)}`;
   }
 
   async handleExportSeedWords() {
@@ -108,7 +119,7 @@ export class WalletItemCard extends React.PureComponent {
     if (assets) {
       assetBubbles = assets.map((asset) => (
         <AssetWrapper key={asset.currency}>
-          <AssetAmountBubble name={asset.symbol} amount={this.determineAmount(asset.balance)} />
+          <AssetAmountBubble name={asset.symbol} amount={this.determineAmount(asset.balance, asset.currency)} />
         </AssetWrapper>
       ));
     }
@@ -267,7 +278,7 @@ WalletItemCard.propTypes = {
   /**
    * Price list
    */
-  // priceInfo: PropTypes.arrayOf(PropTypes.object),
+  priceInfo: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default WalletItemCard;
