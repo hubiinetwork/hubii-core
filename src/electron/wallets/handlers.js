@@ -1,6 +1,6 @@
-const trezorHandler = require('./trezor');
-const lnsHandler = require('./lns');
-const path = require('path')
+import * as trezorHandler from './trezor';
+import * as lnsHandler from './lns';
+import path from 'path'
 export const protocolNames = [trezorHandler.PROTOCOL_NAME, lnsHandler.PROTOCOL_NAME];
 export const loadHandlers = async () => {
   // eslint-disable-next-line global-require

@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import { remote } from 'electron';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 import Eth from '@ledgerhq/hw-app-eth';

@@ -1,5 +1,5 @@
-const { webFrame } = require('electron');
-const { protocolNames } = require('./handlers');
+import { webFrame } from 'electron';
+import { protocolNames } from './handlers';
 
 if (webFrame) {
   protocolNames.forEach((name) => {

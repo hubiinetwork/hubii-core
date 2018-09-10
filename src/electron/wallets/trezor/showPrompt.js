@@ -1,9 +1,8 @@
-const { BrowserWindow, ipcMain } = require('electron');
+import { BrowserWindow, ipcMain } from 'electron';
+import path from 'path';
+import fs from 'fs'
 
-const path = require('path');
-const fs = require('fs');
-
-module.exports = function showPrompt(event) {
+export default function showPrompt(event) {
   return new Promise((resolve, reject) => {
     const pinTemplate = fs.readFileSync(path.resolve(__dirname, `${event}.html`), 'utf8');
     const scriptNonce = Math.floor(Math.random() * 1000000000000);

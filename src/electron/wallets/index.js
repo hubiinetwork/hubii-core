@@ -1,6 +1,6 @@
-const { protocol } = require('electron');
+import { protocol } from 'electron';
+import { loadHandlers, protocolNames } from './handlers';
 
-const { loadHandlers, protocolNames } = require('./handlers');
 protocol.registerStandardSchemes(protocolNames);
 
 function listenHardwareWallets(handler) {

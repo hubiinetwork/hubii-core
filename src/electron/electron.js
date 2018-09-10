@@ -1,13 +1,13 @@
 
 /* global mainWindow */
-const { initSplashScreen } = require('@trodi/electron-splashscreen');
-const { app, Menu, dialog } = require('electron');
-const log = require('electron-log');
-const { autoUpdater } = require('electron-updater');
-const path = require('path');
-const isDev = require('electron-is-dev');
-const { registerWalletListeners } = require('./wallets');
-const setupDevToolsShortcut = require('./dev-tools');
+import { initSplashScreen } from '@trodi/electron-splashscreen';
+import { app, Menu, dialog } from 'electron';
+import log from 'electron-log';
+import { autoUpdater } from 'electron-updater';
+import path from 'path';
+import isDev from 'electron-is-dev';
+import { registerWalletListeners } from './wallets';
+import setupDevToolsShortcut from './dev-tools';
 
 if (process.env.NODE_ENV === 'development') {
   require('electron-reload')(__dirname, {

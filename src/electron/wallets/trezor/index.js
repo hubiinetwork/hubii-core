@@ -1,6 +1,6 @@
 /* global mainWindow */
-const { DeviceList } = require('trezor.js');
-const showPrompt = require('./showPrompt');
+import { DeviceList } from 'trezor.js';
+import showPrompt from './showPrompt';
 export const PROTOCOL_NAME = 'trezor';
 
 const devices = {};

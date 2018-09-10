@@ -1,5 +1,5 @@
-const { BrowserWindow } = require('electron');
-const localShortcut = require('electron-localshortcut');
+import { BrowserWindow } from 'electron';
+import localShortcut from 'electron-localshortcut';
 
 const isMacOS = process.platform === 'darwin';
 
@@ -14,8 +14,6 @@ function toggleDevTools(win = BrowserWindow.getFocusedWindow()) {
   }
 }
 
-function setupShortcut() {
+export default function setupShortcut() {
   localShortcut.register(isMacOS ? 'Cmd+Alt+I' : 'Ctrl+Shift+I', toggleDevTools);
 }
-
-module.exports = setupShortcut;
