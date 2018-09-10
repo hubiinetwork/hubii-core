@@ -77,7 +77,11 @@
   },
   "babel": {
     "plugins": [
-      "styled-components"
+      "styled-components",
+      ["transform-runtime", {
+        "polyfill": false,
+        "regenerator": true
+      }]
     ],
     "presets": [
       [
@@ -343,6 +347,7 @@
     "babel-plugin-transform-react-inline-elements": "6.22.0",
     "babel-plugin-transform-react-jsx-source": "6.22.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "1.5.1",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
@@ -377,7 +382,6 @@
     "jest-fetch-mock": "1.6.2",
     "lint-staged": "3.5.1",
     "mockdate": "2.0.2",
-    "ngrok": "2.2.9",
     "node-plop": "0.7.0",
     "null-loader": "0.1.1",
     "offline-plugin": "4.9.0",
