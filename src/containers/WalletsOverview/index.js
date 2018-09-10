@@ -127,7 +127,7 @@ WalletsOverview.propTypes = {
   totalBalances: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   walletsWithInfo: PropTypes.object.isRequired,
-  priceInfo: PropTypes,
+  priceInfo: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
