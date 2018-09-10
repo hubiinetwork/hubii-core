@@ -5,11 +5,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { EthNetworkProvider, getBreakdown } from 'utils/wallet';
+import { getBreakdown } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
 
 import Breakdown from 'components/Breakdown/Breakdown.component';
-import { SectionHeading } from 'components/ui/SectionHeading';
+import SectionHeading from 'components/ui/SectionHeading';
+
+import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 
 import {
   makeSelectSupportedAssets,
@@ -60,7 +62,7 @@ export class WalletsTransactions extends React.Component {
 
 
   render() {
-    const { currentWalletWithInfo, supportedAssets } = this.props;
+    const { currentWalletWithInfo, supportedAssets, currentNetwork } = this.props;
     const { expandedTxs, currentPage } = this.state;
 
     const start = (currentPage - 1) * 10;
@@ -107,7 +109,7 @@ export class WalletsTransactions extends React.Component {
               confirmations={tx.confirmations}
               type={tx.type}
               viewOnBlockExplorerClick={
-                EthNetworkProvider.name === 'ropsten' ?
+                currentNetwork.provider.name === 'ropsten' ?
                   () => shell.openExternal(`https://ropsten.etherscan.io/tx/${tx.hash}`) :
                   () => shell.openExternal(`https://etherscan.io/tx/${tx.hash}`)
               }
@@ -139,12 +141,14 @@ WalletsTransactions.propTypes = {
   currentWalletWithInfo: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   blockHeight: PropTypes.object.isRequired,
+  currentNetwork: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
   supportedAssets: makeSelectSupportedAssets(),
   blockHeight: makeSelectBlockHeight(),
+  currentNetwork: makeSelectCurrentNetwork(),
 });
 
 export function mapDispatchToProps() {

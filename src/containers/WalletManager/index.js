@@ -21,15 +21,16 @@ import {
   createWalletFromPrivateKey,
 } from 'containers/WalletHOC/actions';
 import { makeSelectLoading, makeSelectWallets } from 'containers/WalletHOC/selectors';
+
+import TopHeader from 'components/ui/TopHeader';
+import Heading from 'components/ui/Heading';
+
 import { createContact } from '../ContactBook/actions';
 
 
 import {
   Wrapper,
-  TabsLayout,
   StyledButton,
-  WalletsTabHeader,
-  Heading,
 } from './index.style';
 
 const TabPane = Tabs.TabPane;
@@ -130,32 +131,30 @@ export class WalletManager extends React.PureComponent {
 
     return (
       <Wrapper>
-        <TabsLayout>
-          <WalletsTabHeader>
-            <Heading>My wallets</Heading>
-            <StyledButton
-              type="primary"
-              onClick={() => this.showModal(history.location.pathname === `${match.url}/overview` ? 'addWallet' : 'addContact')}
-            >
-              <Icon type="plus" />
-              {history.location.pathname === `${match.url}/overview`
+        <TopHeader>
+          <Heading>My wallets</Heading>
+          <StyledButton
+            type="primary"
+            onClick={() => this.showModal(history.location.pathname === `${match.url}/overview` ? 'addWallet' : 'addContact')}
+          >
+            <Icon type="plus" />
+            {history.location.pathname === `${match.url}/overview`
                 ? 'Add a wallet'
                 : 'Add a contact'}
-            </StyledButton>
-            <Modal
-              footer={null}
-              width={'41.79rem'}
-              maskClosable
-              maskStyle={{ background: 'rgba(232,237,239,.65)' }}
-              style={{ marginTop: '1.43rem' }}
-              visible={this.state.visible}
-              onCancel={this.hideModal}
-              destroyOnClose
-            >
-              {modal}
-            </Modal>
-          </WalletsTabHeader>
-        </TabsLayout>
+          </StyledButton>
+          <Modal
+            footer={null}
+            width={'41.79rem'}
+            maskClosable
+            maskStyle={{ background: 'rgba(232,237,239,.65)' }}
+            style={{ marginTop: '1.43rem' }}
+            visible={this.state.visible}
+            onCancel={this.hideModal}
+            destroyOnClose
+          >
+            {modal}
+          </Modal>
+        </TopHeader>
         <Tab activeKey={history.location.pathname} onChange={this.onTabsChange} animated={false}>
           <TabPane
             tab={

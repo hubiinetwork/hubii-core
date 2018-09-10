@@ -7,7 +7,7 @@ import {
   StyledSearch,
 } from './ContactHeader.style';
 import { TabPane } from '../ui/StriimTabs';
-import { SectionHeading } from '../ui/SectionHeading';
+import SectionHeading from '../ui/SectionHeading';
 
 /** *
  * The header of contact list component

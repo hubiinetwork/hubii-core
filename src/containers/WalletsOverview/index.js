@@ -17,7 +17,7 @@ import {
   makeSelectPrices,
 } from 'containers/WalletHOC/selectors';
 
-import { SectionHeading } from 'components/ui/SectionHeading';
+import SectionHeading from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
 import Breakdown from 'components/Breakdown';
 

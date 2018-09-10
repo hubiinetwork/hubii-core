@@ -23,9 +23,9 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <SectionHeading.style__SectionHeading>
+        <SectionHeading>
           some title
-</SectionHeading.style__SectionHeading>,
+</SectionHeading>,
         undefined,
         null,
       ],
@@ -55,9 +55,9 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <SectionHeading.style__SectionHeading>
+          <SectionHeading>
             some title
-</SectionHeading.style__SectionHeading>,
+</SectionHeading>,
           undefined,
           null,
         ],
@@ -114,9 +114,9 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <SectionHeading.style__SectionHeading>
+        <SectionHeading>
           some title
-</SectionHeading.style__SectionHeading>,
+</SectionHeading>,
         undefined,
         <ContactHeader.style__Wrapper>
           <ContactHeader.style__StyledSearch
@@ -175,9 +175,9 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <SectionHeading.style__SectionHeading>
+          <SectionHeading>
             some title
-</SectionHeading.style__SectionHeading>,
+</SectionHeading>,
           undefined,
           <ContactHeader.style__Wrapper>
             <ContactHeader.style__StyledSearch

@@ -1,117 +1,82 @@
-import { Select } from 'antd';
 import * as React from 'react';
-// import PropTypes from 'prop-types';
-// import { compose } from 'redux';
-// import { connect } from 'react-redux';
-// import Toggler from 'components/Toggler';
+import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
+import { makeSelectCurrentNetwork, makeSelectSupportedNetworks } from 'containers/App/selectors';
+import { changeNetwork } from 'containers/App/actions';
+
+import TopHeader from 'components/ui/TopHeader';
+import Heading from 'components/ui/Heading';
+import Select, { Option } from 'components/ui/Select';
 
 import {
   Wrapper,
-  StyledButton,
-  TopHeader,
-  Heading,
-  // StyledSwitch,
-  RedButton,
-  SubtitleText,
-  StyledHeader,
-  StyledSelect,
-  Segment,
-  Container,
-} from './index.style';
+  SettingWrapper,
+  Body,
+  StyledSectionHeading,
+} from './style';
 
-const Option = Select.Option;
+export class Settings extends React.PureComponent {
 
-// const titleTabs = [
-//   {
-//     title: 'Simple',
-//   },
-//   {
-//     title: 'Advanced',
-//   },
-// ];
-
-export const Settings = () => (
-  <Wrapper>
-    <TopHeader>
-      <Heading>Settings</Heading>
-      {/* <StyledSwitch disabled defaultChecked onChange={() => {}} /> */}
-    </TopHeader>
-    <Container>
-      <Segment>
-        <StyledHeader >
-          Language
-        </StyledHeader>
-        <StyledSelect defaultValue="English" disabled onChange={() => {}}>
-          <Option value="English">English</Option>
-          <Option value="Japanese">Japanese</Option>
-          <Option value="Mandarin" disabled>Mandarin</Option>
-          <Option value="Russian">Russian</Option>
-        </StyledSelect>
-      </Segment>
-      <Segment>
-        <StyledHeader >
-          Fiat Currency
-        </StyledHeader>
-        <StyledSelect defaultValue="US" disabled onChange={() => {}}>
-          <Option value="US">US</Option>
-        </StyledSelect>
-      </Segment>
-      <Segment>
-        {/* <StyledHeader>
-          User Interface
-        </StyledHeader>
-        <Toggler
-          titleTabs={titleTabs}
-          showSearch
-          onTabChange={() => {}}
-        /> */}
-      </Segment>
-      <div style={{ display: 'flex', flexDirection: 'column', marginTop: '2rem' }}>
-        <StyledButton
-          type="primary"
-          disabled
-        >
-          Register for striim airdrop
-        </StyledButton>
-        <StyledButton
-          type="primary"
-          disabled
-        >
-          Manage hubii core password
-        </StyledButton>
-        <StyledButton
-          type="primary"
-          disabled
-        >
-          Multi-device autosync
-        </StyledButton>
-        <StyledButton
-          type="primary"
-          disabled
-        >
-          Backup Local Data
-        </StyledButton>
-      </div>
-      <SubtitleText>
-        Last backup: Never
-      </SubtitleText>
-      <div>
-        <RedButton
-          type="primary"
-          disabled
-        >
-          Delete all local data
-        </RedButton>
-      </div>
-      {/* <SubtitleText>
-        This cannot be undone, procceed with caution.
-      </SubtitleText> */}
-    </Container>
-  </Wrapper>
+  render() {
+    const { onChangeNetwork, currentNetwork, supportedNetworks } = this.props;
+    return (
+      <Wrapper>
+        <TopHeader>
+          <Heading>Settings</Heading>
+        </TopHeader>
+        <Body>
+          <SettingWrapper>
+            <StyledSectionHeading>
+              Network
+            </StyledSectionHeading>
+            <Select
+              value={currentNetwork.provider.name}
+              style={{ width: '15rem' }}
+              onChange={onChangeNetwork}
+            >
+              {
+                Object.entries(supportedNetworks.toJS()).map(([key]) => {
+                  const label = key === 'homestead' ? '[MAINNET]' : '[TESTNET]';
+                  const name = `${key.charAt(0).toUpperCase()}${key.slice(1)} ${label}`;
+                  return (
+                    <Option value={key} key={key}>
+                      {name}
+                    </Option>
+                  );
+                })
+              }
+            </Select>
+          </SettingWrapper>
+        </Body>
+      </Wrapper>
     );
+  }
+  }
 
 Settings.propTypes = {
-
+  onChangeNetwork: PropTypes.func.isRequired,
+  currentNetwork: PropTypes.object.isRequired,
+  supportedNetworks: ImmutablePropTypes.map.isRequired,
 };
 
-export default Settings;
+const mapStateToProps = createStructuredSelector({
+  currentNetwork: makeSelectCurrentNetwork(),
+  supportedNetworks: makeSelectSupportedNetworks(),
+});
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    onChangeNetwork: (...args) => dispatch(changeNetwork(...args)),
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
+
+export default compose(withConnect)(Settings);

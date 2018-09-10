@@ -3,7 +3,7 @@ import { eventChannel } from 'redux-saga';
 import { takeEvery, put, call, select, take } from 'redux-saga/effects';
 import { toBuffer, bufferToHex, stripHexPrefix } from 'ethereumjs-util';
 import { notify } from 'containers/App/actions';
-import { deriveAddresses, prependHexToAddress, IsAddressMatch } from 'utils/wallet';
+import { deriveAddresses, prependHexToAddress, isAddressMatch } from 'utils/wallet';
 import { requestHardwareWalletAPI } from 'utils/request';
 import { makeSelectTrezorInfo } from '../../selectors';
 import { trezorConnected, trezorDisconnected, fetchedTrezorAddress, trezorError, trezorConfirmTxOnDevice, trezorConfirmTxOnDeviceDone } from '../../actions';
@@ -65,7 +65,7 @@ export function* signTxByTrezor({ walletDetails, raw, data, chainId }) {
     const path = walletDetails.derivationPath;
     const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
     yield put(trezorConfirmTxOnDevice());
-    if (!IsAddressMatch(`0x${publicAddressKeyPair.address}`, walletDetails.address)) {
+    if (!isAddressMatch(`0x${publicAddressKeyPair.address}`, walletDetails.address)) {
       throw new Error('PASSPHRASE_MISMATCH');
     }
     const signedTx = yield call(
@@ -84,6 +84,32 @@ export function* signTxByTrezor({ walletDetails, raw, data, chainId }) {
     throw new Error(refinedError.error);
   } finally {
     yield put(trezorConfirmTxOnDeviceDone());
+  }
+}
+
+export function* signPersonalMessageByTrezor(txHash, walletDetails) {
+  const trezorInfo = yield select(makeSelectTrezorInfo());
+  const deviceId = trezorInfo.get('id');
+  const path = walletDetails.derivationPath;
+  const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
+  if (!isAddressMatch(`0x${publicAddressKeyPair.address}`, walletDetails.address)) {
+    throw new Error('PASSPHRASE_MISMATCH');
+  }
+  try {
+    const signedTx = yield call(
+      requestHardwareWalletAPI,
+      'signpersonalmessage',
+      {
+        id: deviceId,
+        path,
+        message: Buffer.from(txHash).toString('hex'),
+      }
+    );
+
+    return signedTx;
+  } catch (e) {
+    const refinedError = trezorError(e);
+    throw new Error(refinedError.error);
   }
 }
 

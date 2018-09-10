@@ -1,18 +1,27 @@
 import { delay } from 'redux-saga';
-import { takeLatest, takeEvery, put, call, select, spawn } from 'redux-saga/effects';
+import {
+  takeEvery,
+  take,
+  put,
+  call,
+  select,
+  spawn,
+  cancel,
+  all,
+  fork,
+} from 'redux-saga/effects';
 import { Wallet, utils, Contract } from 'ethers';
 
 import { notify } from 'containers/App/actions';
+import { CHANGE_NETWORK } from 'containers/App/constants';
+import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { requestWalletAPI } from 'utils/request';
 import {
   ERC20ABI,
-  EthNetworkProvider,
-  getTransaction,
-  getTransactionCount,
-  sendTransaction,
   isHardwareWallet,
-  IsAddressMatch,
+  isAddressMatch,
 } from 'utils/wallet';
+import generateRawTx from 'utils/generateRawTx';
 
 import {
   makeSelectCurrentWalletWithInfo,
@@ -29,11 +38,7 @@ import {
   TRANSFER_ETHER,
   TRANSFER_ERC20,
   CREATE_WALLET_FROM_PRIVATE_KEY,
-  LOAD_PRICES,
-  LOAD_TRANSACTIONS,
-  LOAD_SUPPORTED_TOKENS,
   INIT_API_CALLS,
-  LOAD_BLOCK_HEIGHT,
 } from './constants';
 
 import {
@@ -45,10 +50,8 @@ import {
   loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
-  loadSupportedTokens as loadSupportedTokensAction,
   loadSupportedTokensSuccess,
   loadSupportedTokensError,
-  loadPrices as loadPricesAction,
   loadPricesSuccess,
   loadPricesError,
   loadTransactions as loadTransactionsAction,
@@ -56,7 +59,6 @@ import {
   loadTransactionsError,
   showDecryptWalletModal,
   transferSuccess,
-  loadBlockHeight as loadBlockHeightAction,
   transferError,
   transferEther as transferEtherAction,
   transferERC20 as transferERC20Action,
@@ -66,10 +68,9 @@ import {
   loadBlockHeightError,
 } from './actions';
 
-import trezorWatchers, { signTxByTrezor } from './HardwareWallets/trezor/saga';
-import ledgerWatchers, { signTxByLedger } from './HardwareWallets/ledger/saga';
+import trezorWatchers, { signTxByTrezor, signPersonalMessageByTrezor } from './HardwareWallets/trezor/saga';
+import ledgerWatchers, { signTxByLedger, signPersonalMessageByLedger } from './HardwareWallets/ledger/saga';
 
-import generateRawTx from '../../utils/generateRawTx';
 
 // Creates a new software wallet
 export function* createWalletFromMnemonic({ name, mnemonic, derivationPath, password }) {
@@ -122,83 +123,80 @@ export function* decryptWallet({ address, encryptedWallet, password }) {
   }
 }
 
-export function* initApiCalls() {
-  const wallets = yield select(makeSelectWallets());
-  for (let i = 0; i < wallets.size; i += 1) {
-    yield put(loadWalletBalances(wallets.getIn([i, 'address'])));
-    yield put(loadTransactionsAction(wallets.getIn([i, 'address'])));
-  }
-  yield put(loadSupportedTokensAction());
-  yield put(loadPricesAction());
-  yield put(loadBlockHeightAction());
-}
-
-export function* loadWalletBalancesSaga({ address, noPoll }) {
+export function* loadWalletBalancesSaga({ address, noPoll }, _endpoint) {
   const requestPath = `ethereum/wallets/${address}/balances`;
-  try {
-    const returnData = yield call(requestWalletAPI, requestPath);
-
-    yield put(loadWalletBalancesSuccess(address, returnData));
-  } catch (err) {
-    yield put(loadWalletBalancesError(address, err));
-  } finally {
-    if (!noPoll) {
+  let endpoint = _endpoint;
+  if (!endpoint) {
+    endpoint = (yield select(makeSelectCurrentNetwork())).walletApiEndpoint;
+  }
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const returnData = yield call(requestWalletAPI, requestPath, endpoint);
+      yield put(loadWalletBalancesSuccess(address, returnData));
+    } catch (err) {
+      if (!noPoll) {
+        yield put(loadWalletBalancesError(address, err));
+      }
+    } finally {
       const FIVE_SEC_IN_MS = 1000 * 5;
       yield delay(FIVE_SEC_IN_MS);
-      yield put(loadWalletBalances(address));
     }
+    if (noPoll) break;
   }
 }
 
-export function* loadSupportedTokens() {
+export function* loadSupportedTokens(endpoint) {
   const requestPath = 'ethereum/supported-tokens';
   try {
-    const returnData = yield call(requestWalletAPI, requestPath);
+    const returnData = yield call(requestWalletAPI, requestPath, endpoint);
     yield put(loadSupportedTokensSuccess(returnData));
   } catch (err) {
     yield put(loadSupportedTokensError(err));
   }
 }
 
-export function* loadBlockHeight() {
-  try {
-    const blockHeight = yield EthNetworkProvider.getBlockNumber();
-    yield put(loadBlockHeightSuccess(blockHeight));
-  } catch (error) {
-    yield put(loadBlockHeightError(error));
-  } finally {
-    const TEN_SEC_IN_MS = 1000 * 10;
-    yield delay(TEN_SEC_IN_MS);
-    yield put(loadBlockHeightAction());
+export function* loadBlockHeight(provider) {
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const blockHeight = yield provider.getBlockNumber();
+      yield put(loadBlockHeightSuccess(blockHeight));
+    } catch (error) {
+      yield put(loadBlockHeightError(error));
+    } finally {
+      const TEN_SEC_IN_MS = 1000 * 10;
+      yield delay(TEN_SEC_IN_MS);
+    }
   }
 }
 
-export function* loadPrices() {
+export function* loadPrices(endpoint) {
   const requestPath = 'ethereum/prices';
-  try {
-    const returnData = yield call(requestWalletAPI, requestPath);
-    yield put(loadPricesSuccess(returnData));
-  } catch (err) {
-    yield put(loadPricesError(err));
-  } finally {
-    const ONE_MINUTE_IN_MS = 1000 * 60;
-    yield delay(ONE_MINUTE_IN_MS);
-    yield put(loadPricesAction());
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const returnData = yield call(requestWalletAPI, requestPath, endpoint);
+      yield put(loadPricesSuccess(returnData));
+    } catch (err) {
+      yield put(loadPricesError(err));
+    } finally {
+      const ONE_MINUTE_IN_MS = 1000 * 60;
+      yield delay(ONE_MINUTE_IN_MS);
+    }
   }
 }
 
-export function* loadTransactions({ address }) {
+export function* loadTransactions({ address }, endpoint) {
   const requestPath = `ethereum/wallets/${address}/transactions`;
-  try {
-    const returnData = yield call(requestWalletAPI, requestPath);
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const returnData = yield call(requestWalletAPI, requestPath, endpoint);
 
-    yield put(loadTransactionsSuccess(address, returnData));
-  } catch (err) {
-    yield put(loadTransactionsError(address, err));
-  } finally {
-    const FIVE_SEC_IN_MS = 1000 * 5;
-    yield call(() => delay(FIVE_SEC_IN_MS));
-    yield put(loadTransactionsAction(address));
+      yield put(loadTransactionsSuccess(address, returnData));
+    } catch (err) {
+      yield put(loadTransactionsError(address, err));
+    } finally {
+      const FIVE_SEC_IN_MS = 1000 * 5;
+      yield delay(FIVE_SEC_IN_MS);
+    }
   }
 }
 
@@ -232,12 +230,13 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
     let transaction;
     const options = { gasPrice, gasLimit };
     const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
+    const network = yield select(makeSelectCurrentNetwork());
 
     if (isHardwareWallet(walletDetails.type)) {
       transaction = yield call(sendTransactionForHardwareWallet, { toAddress, amount, gasPrice, gasLimit });
     } else {
       const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
-      etherWallet.provider = EthNetworkProvider;
+      etherWallet.provider = network.provider;
       transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
     }
     yield put(transferSuccess(transaction, 'ETH'));
@@ -251,6 +250,8 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
 export function* transferERC20({ token, contractAddress, toAddress, amount, gasPrice, gasLimit }) {
   const contractAbiFragment = ERC20ABI;
   const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
+  const network = yield select(makeSelectCurrentNetwork());
+  const provider = network.provider;
   let transaction;
   try {
     const options = { gasPrice, gasLimit };
@@ -260,11 +261,12 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
         walletAddress: walletDetails.address,
         toAddress,
         amount,
+        provider,
       }, options);
       transaction = yield call(sendTransactionForHardwareWallet, { ...tx, amount: tx.value, toAddress: tx.to });
     } else {
       const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
-      etherWallet.provider = EthNetworkProvider;
+      etherWallet.provider = provider;
       const contract = new Contract(contractAddress, contractAbiFragment, etherWallet);
       transaction = yield call((...args) => contract.transfer(...args), toAddress, amount, options);
     }
@@ -272,7 +274,6 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
     if (!transaction) {
       throw new Error('Failed to send transaction');
     }
-
     yield put(transferSuccess(transaction, token));
     yield put(notify('success', 'Transaction sent'));
   } catch (error) {
@@ -282,10 +283,10 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
 }
 
 // hook into etherjs's sign function get generated erc20 transaction object for further process
-export function generateERC20Transaction({ contractAddress, walletAddress, toAddress, amount }, options) {
+export function generateERC20Transaction({ contractAddress, walletAddress, toAddress, amount, provider }, options) {
   return new Promise((resolve) => {
     const contract = new Contract(contractAddress, ERC20ABI, {
-      provider: EthNetworkProvider,
+      provider,
       getAddress: () => walletAddress,
       sign: (tx) => {
         resolve(tx);
@@ -297,7 +298,7 @@ export function generateERC20Transaction({ contractAddress, walletAddress, toAdd
 
 export function* hookNewWalletCreated({ newWallet }) {
   const wallets = yield select(makeSelectWallets());
-  const existAddress = wallets.find((wallet) => IsAddressMatch(wallet.get('address'), newWallet.address));
+  const existAddress = wallets.find((wallet) => isAddressMatch(wallet.get('address'), newWallet.address));
   const existName = wallets.find((wallet) => wallet.get('name') === newWallet.name);
   if (existAddress) {
     return yield put(notify('error', `Wallet ${newWallet.address} already exists`));
@@ -313,13 +314,15 @@ export function* hookNewWalletCreated({ newWallet }) {
 
 export function* sendTransactionForHardwareWallet({ toAddress, amount, data, nonce, gasPrice, gasLimit }) {
   const currentWalletWithInfo = yield select(makeSelectCurrentWalletWithInfo());
+  const network = yield select(makeSelectCurrentNetwork());
+  const provider = network.provider;
   const walletDetails = currentWalletWithInfo.toJS();
   let nonceValue = nonce;
   if (!nonceValue) {
-    nonceValue = yield call(getTransactionCount, walletDetails.address, 'pending');
+    nonceValue = yield call([provider, 'getTransactionCount'], walletDetails.address, 'pending');
   }
   const amountHex = amount ? amount.toHexString() : '0x00';
-  const chainId = EthNetworkProvider.chainId;
+  const chainId = provider.chainId;
 
   // generate raw tx for ledger nano to sign
   const rawTx = generateRawTx({
@@ -344,7 +347,6 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   }
   if (walletDetails.type === 'trezor') {
     const raw = rawTx.toJSON();
-
     signedTx = yield signTxByTrezor({ walletDetails, raw, data, chainId });
     rawTx.v = Buffer.from(signedTx.v.toString(16), 'hex');
   }
@@ -355,16 +357,61 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   // regenerate tx hex string
   const txHex = `0x${rawTx.serialize().toString('hex')}`;
   // broadcast transaction
-  const txHash = yield call(sendTransaction, txHex);
+  const txHash = yield call([provider, 'sendTransaction'], txHex);
   // get transaction details
-  return yield call(getTransaction, txHash);
+  return yield call([provider, 'getTransaction'], txHash);
+}
+
+// manages calling of network specific APIs
+export function* networkApiOrcestrator() {
+  try {
+    while (true) { // eslint-disable-line no-constant-condition
+      // fork new processes, some of which will poll
+      const network = yield select(makeSelectCurrentNetwork());
+      const wallets = yield select(makeSelectWallets());
+      const allTasks = yield all([
+        ...wallets.map((wallet) => fork(loadWalletBalancesSaga, { address: wallet.get('address') }, network.walletApiEndpoint)),
+        ...wallets.map((wallet) => fork(loadTransactions, { address: wallet.get('address') }, network.walletApiEndpoint)),
+        fork(loadSupportedTokens, network.walletApiEndpoint),
+        fork(loadBlockHeight, network.provider),
+        fork(loadPrices, network.walletApiEndpoint),
+      ]);
+
+      // on network change kill all forks and restart
+      yield take(CHANGE_NETWORK);
+      yield cancel(...allTasks);
+      yield put(notify('success', 'Network changed'));
+    }
+  } catch (e) {
+    // errors in the forked processes themselves should be caught
+    // and handled before they get here. if something goes wrong here
+    // there was probably an error with the wallet selector, which should
+    // never happen
+    throw new Error(e);
+  }
+}
+
+export function* signPersonalMessage({ message, wallet }) {
+  let signedPersonalMessage;
+
+  if (wallet.type === 'software') {
+    const etherWallet = new Wallet(wallet.decrypted.privateKey);
+    signedPersonalMessage = etherWallet.signMessage(message);
+  }
+  if (wallet.type === 'lns') {
+    signedPersonalMessage = yield signPersonalMessageByLedger(wallet, message);
+  }
+  if (wallet.type === 'trezor') {
+    signedPersonalMessage = yield signPersonalMessageByTrezor(message, wallet);
+  }
+  return signedPersonalMessage;
 }
 
 // Root watcher
 export default function* walletHoc() {
   yield takeEvery(CREATE_WALLET_FROM_MNEMONIC, createWalletFromMnemonic);
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
-  yield takeEvery(INIT_API_CALLS, initApiCalls);
+  yield takeEvery(INIT_API_CALLS, networkApiOrcestrator);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalancesSaga);
   yield takeEvery(TRANSFER, transfer);
   yield takeEvery(TRANSFER_ETHER, transferEther);
@@ -372,11 +419,6 @@ export default function* walletHoc() {
 
   yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
   yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
-
-  yield takeLatest(LOAD_PRICES, loadPrices);
-  yield takeEvery(LOAD_TRANSACTIONS, loadTransactions);
-  yield takeLatest(LOAD_SUPPORTED_TOKENS, loadSupportedTokens);
-  yield takeLatest(LOAD_BLOCK_HEIGHT, loadBlockHeight);
 
   yield spawn(ledgerWatchers);
   yield spawn(trezorWatchers);
