@@ -5,7 +5,7 @@ export const PROTOCOL_NAME = 'trezor';
 
 const devices = {};
 
-export const deviceEventListener = function () {
+export function deviceEventListener() {
   const deviceList = new DeviceList({ debug: false });
   deviceList.on('connect', (device) => {
     const deviceId = device.features.device_id;
@@ -53,7 +53,7 @@ export const deviceEventListener = function () {
   });
 }
 
-export const execWalletMethods = async function(method, params) {
+export async function execWalletMethods(method, params) {
   const { id, path } = params;
 
   const response = await devices[id].waitForSessionAndRun(async (session) => {

@@ -6,7 +6,7 @@ function emitEvent(windowInstance, event) {
   windowInstance.webContents.send('lns-status', event);
 }
 
-export const deviceEventListener = function() {
+export function deviceEventListener() {
   const mainWindow = remote.getGlobal('mainWindow');
   const sub = LedgerTransport.listen({
     next: (e) => emitEvent(mainWindow, e),
@@ -19,7 +19,7 @@ export const deviceEventListener = function() {
   });
 }
 
-export const execWalletMethods = async function(method, params) {
+export async function execWalletMethods(method, params) {
   const { id, path } = params;
   let result;
 

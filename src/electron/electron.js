@@ -10,8 +10,9 @@ import { registerWalletListeners } from './wallets';
 import setupDevToolsShortcut from './dev-tools';
 
 if (process.env.NODE_ENV === 'development') {
+  // eslint-disable-next-line global-require
   require('electron-reload')(__dirname, {
-    electron: path.join(`${__dirname}/../../`, 'node_modules', '.bin', 'electron')
+    electron: path.join(`${__dirname}/../../`, 'node_modules', '.bin', 'electron'),
   });
 }
 
@@ -42,7 +43,7 @@ function createWindow() {
   ];
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
-  
+
   const windowOptions = {
     width: 1250,
     height: 780,
@@ -137,6 +138,6 @@ app.on('activate', () => {
   }
 });
 
-process.on('unhandledRejection', err => {
-  console.error(err)
-})
+process.on('unhandledRejection', (err) => {
+  log.error(err);
+});
