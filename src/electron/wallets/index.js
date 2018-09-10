@@ -61,7 +61,7 @@ function getParams(method, req) {
   }
 }
 
-async function registerWalletListeners() {
+export async function registerWalletListeners() {
   const handlers = await loadHandlers();
   Object.keys(handlers).forEach((type) => {
     const handler = handlers[type];
@@ -70,6 +70,3 @@ async function registerWalletListeners() {
   });
 }
 
-module.exports = {
-  registerWalletListeners,
-};

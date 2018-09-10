@@ -1,11 +1,11 @@
 /* global mainWindow */
 const { DeviceList } = require('trezor.js');
 const showPrompt = require('./showPrompt');
-const PROTOCOL_NAME = 'trezor';
+export const PROTOCOL_NAME = 'trezor';
 
 const devices = {};
 
-function deviceEventListener() {
+export const deviceEventListener = function () {
   const deviceList = new DeviceList({ debug: false });
   deviceList.on('connect', (device) => {
     const deviceId = device.features.device_id;
@@ -53,7 +53,7 @@ function deviceEventListener() {
   });
 }
 
-async function execWalletMethods(method, params) {
+export const execWalletMethods = async function(method, params) {
   const { id, path } = params;
 
   const response = await devices[id].waitForSessionAndRun(async (session) => {
@@ -122,9 +122,3 @@ function parseHDPath(path) {
       return n;
     });
 }
-
-module.exports = {
-  PROTOCOL_NAME,
-  deviceEventListener,
-  execWalletMethods,
-};

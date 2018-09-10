@@ -27,8 +27,8 @@ fs.readdirSync('node_modules').forEach(function(module) {
 const commonConfig = {
   mode: process.env.NODE_ENV === 'production'? 'production': 'development',
   entry: {
-    electron: path.join(process.cwd(), 'electron/electron.js'),
-    preload: path.join(process.cwd(), 'electron/preload.js'),
+    electron: path.join(process.cwd(), 'src/electron/electron.js'),
+    preload: path.join(process.cwd(), 'src/electron/preload.js'),
   },
   output: {
     path: path.resolve(process.cwd(), 'build'),
@@ -43,9 +43,9 @@ const commonConfig = {
       {
         test: /\.js?$/,
         exclude: /node_modules/,
+        include: /src/,
         use: {
           loader: 'babel-loader',
-          // options: options.babelQuery,
         },
       }
     ]
@@ -92,7 +92,7 @@ module.exports = () => ([
     ...commonConfig,
     entry: {
       //transpile the dynamic requires
-      "wallets/lns/index": path.join(process.cwd(), 'electron/wallets/lns/index.js'),
+      "wallets/lns/index": path.join(process.cwd(), 'src/electron/wallets/lns/index.js'),
     },
     externals: node_modules_commonjs2,
     output: {
