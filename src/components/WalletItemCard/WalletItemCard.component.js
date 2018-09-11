@@ -2,7 +2,7 @@ import { Icon, Dropdown, Popover } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import { isHardwareWallet } from 'utils/wallet';
+import { isHardwareWallet, isAddressMatch } from 'utils/wallet';
 import DeletionModal from 'components/DeletionModal';
 import ExportPrivateInfo from 'components/ExportPrivateInfo';
 import WalletDetailPopoverContent from './WalletDetailPopoverContent';
@@ -41,7 +41,9 @@ export class WalletItemCard extends React.PureComponent {
     this.settingsMenu = this.settingsMenu.bind(this);
     this.handleDeleteWallet = this.handleDeleteWallet.bind(this);
     this.handleExportSeedWords = this.handleExportSeedWords.bind(this);
+    this.determineAmount = this.determineAmount.bind(this);
   }
+
 
   settingsMenu(walletType) {
     const menuItems = [];
@@ -64,6 +66,34 @@ export class WalletItemCard extends React.PureComponent {
       );
     }
     return <Menu singleitem={(menuItems.length === 1).toString()}>{menuItems.map((item) => item)}</Menu>;
+  }
+
+  /*
+   * This function will reduce the amount's decimal places according to 0.01 usd of the currency.
+   *
+   */
+  determineAmount(amount, currency) {
+    const extractedCurrency = this.props.priceInfo.find((currencyItem) => isAddressMatch(currencyItem.currency, currency));
+
+    // find what 0.01 usd is in the relevant currency
+    const ratio = 0.01 / extractedCurrency.usd;
+    const ratioSplitByDot = ratio.toString().split('.');
+    const amountSplitByDot = amount.toString().split('.');
+
+    // check to see if the amount was a whole value, in which case just return as there is no need for decimal alteration
+    if (amountSplitByDot.length === 1) {
+      return amount.toString();
+    }
+
+    // check to see if this currency is a test token, in which case just use a default number, 6, of decimal places
+    if (!extractedCurrency.usd) {
+      return `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, 6)}`;
+    }
+
+    // otherwise, find how many 0's there are after the decimal place on the ratio + 1, and minus that with the length of the
+    // number of digits after the decimal place on the ratio.
+    const decimalPlacement = (ratioSplitByDot[1].toString().length - parseFloat(ratioSplitByDot[1]).toString().length) + 1;
+    return `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, decimalPlacement)}`;
   }
 
   async handleExportSeedWords() {
@@ -96,6 +126,15 @@ export class WalletItemCard extends React.PureComponent {
     } = this.props;
 
     const { modalVisibility, modalType } = this.state;
+
+    let assetBubbles = null;
+    if (assets) {
+      assetBubbles = assets.map((asset) => (
+        <AssetWrapper key={asset.currency}>
+          <AssetAmountBubble name={asset.symbol} amount={this.determineAmount(asset.balance, asset.currency)} />
+        </AssetWrapper>
+      ));
+    }
 
     let modal;
     switch (modalType) {
@@ -162,12 +201,7 @@ export class WalletItemCard extends React.PureComponent {
               balancesLoading &&
                 <Spinner type="loading" />
             }
-            {!balancesLoading && !balancesError &&
-              assets.map((asset) => (
-                <AssetWrapper key={asset.currency}>
-                  <AssetAmountBubble name={asset.symbol} amount={asset.balance.toString().substr(0, 6)} />
-                </AssetWrapper>
-              ))}
+            {!balancesLoading && !balancesError && assetBubbles}
           </AssetsWrapper>
         </OuterWrapper>
         <Modal
@@ -253,6 +287,10 @@ WalletItemCard.propTypes = {
    * Wallet's private key
    */
   privateKey: PropTypes.string,
+  /**
+   * Price list
+   */
+  priceInfo: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default WalletItemCard;

@@ -5,8 +5,6 @@
  * code.
  */
 
-// Needed for redux-saga es6 generator support
-import 'babel-polyfill';
 
 // Import all the third party stuff
 import React from 'react';
