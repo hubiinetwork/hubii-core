@@ -136,3 +136,6 @@ app.on('activate', () => {
 process.on('unhandledRejection', (err) => {
   log.error(err);
 });
+process.on('uncaughtException', (err) => {
+  log.error(err);
+});
