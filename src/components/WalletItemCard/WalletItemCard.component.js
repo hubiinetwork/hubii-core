@@ -2,7 +2,7 @@ import { Icon, Dropdown, Popover } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import { isHardwareWallet } from 'utils/wallet';
+import { isHardwareWallet, isAddressMatch } from 'utils/wallet';
 import DeletionModal from 'components/DeletionModal';
 import ExportPrivateInfo from 'components/ExportPrivateInfo';
 import WalletDetailPopoverContent from './WalletDetailPopoverContent';
@@ -68,19 +68,30 @@ export class WalletItemCard extends React.PureComponent {
     return <Menu singleitem={(menuItems.length === 1).toString()}>{menuItems.map((item) => item)}</Menu>;
   }
 
+  /*
+   * This function will reduce the amount's decimal places according to 0.01 usd of the currency.
+   *
+   */
   determineAmount(amount, currency) {
-    const extractedCurrency = this.props.priceInfo.filter((currencyItem) => currencyItem.currency.toLowerCase() === currency.toLowerCase())[0];
+    const extractedCurrency = this.props.priceInfo.find((currencyItem) => isAddressMatch(currencyItem.currency, currency));
+
+    // find what 0.01 usd is in the relevant currency
     const ratio = 0.01 / extractedCurrency.usd;
     const ratioSplitByDot = ratio.toString().split('.');
     const amountSplitByDot = amount.toString().split('.');
 
+    // check to see if the amount was a whole value, in which case just return as there is no need for decimal alteration
     if (amountSplitByDot.length === 1) {
       return amount.toString();
     }
 
+    // check to see if this currency is a test token, in which case just use a default number, 6, of decimal places
     if (!extractedCurrency.usd) {
       return `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, 6)}`;
     }
+
+    // otherwise, find how many 0's there are after the decimal place on the ratio + 1, and minus that with the length of the
+    // number of digits after the decimal place on the ratio.
     const decimalPlacement = (ratioSplitByDot[1].toString().length - parseFloat(ratioSplitByDot[1]).toString().length) + 1;
     return `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, decimalPlacement)}`;
   }
