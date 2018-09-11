@@ -7,6 +7,7 @@ import { takeEvery } from 'redux-saga/effects';
 
 import Notification from 'components/Notification';
 
+
 import app, {
   notifyUI,
 } from '../saga';
@@ -24,6 +25,7 @@ describe('notifyUI saga', () => {
     expect(promiseDescriptor).toEqual(Promise.resolve(Notification(type, message)));
   });
 });
+
 
 describe('root Saga', () => {
   const appSaga = app();

@@ -1,7 +1,7 @@
 
 /* global mainWindow */
 import { initSplashScreen } from '@trodi/electron-splashscreen';
-import { app, Menu, dialog } from 'electron';
+import { app, Menu, ipcMain } from 'electron';
 import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
 import path from 'path';
@@ -93,24 +93,19 @@ function setupAutoUpdater() {
   autoUpdater.logger = log;
   autoUpdater.logger.transports.file.level = 'info';
 
-  autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-    const dialogOpts = {
-      type: 'info',
-      buttons: ['Restart', 'Later'],
-      title: 'Application Update',
-      message: process.platform === 'win32' ? releaseNotes : releaseName,
-      detail: 'A new version has been downloaded.',
-    };
-
-    dialog.showMessageBox(dialogOpts, (response) => {
-      if (response === 0) autoUpdater.quitAndInstall();
-    });
+  autoUpdater.on('update-downloaded', () => {
+    mainWindow.webContents.send('update-downloaded');
   });
 
   autoUpdater.on('error', (err) => {
     log.error('auto updater:', err);
   });
+
   autoUpdater.checkForUpdatesAndNotify();
+
+  ipcMain.on('install-new-release', () => {
+    autoUpdater.quitAndInstall();
+  });
 }
 
 const shouldQuit = app.makeSingleInstance(() => {
