@@ -56,7 +56,7 @@ function createWindow() {
   };
   global.mainWindow = initSplashScreen({
     windowOpts: windowOptions,
-    templateUrl: path.join(__dirname, 'images/splashscreen.svg'),
+    templateUrl: path.join(__dirname, '../public/images/splashscreen.svg'),
     delay: 0,
     splashScreenOpts: {
       height: 340,
