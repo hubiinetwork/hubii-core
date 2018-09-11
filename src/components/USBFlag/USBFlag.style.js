@@ -12,7 +12,7 @@ export const Slanted = styled.div`
     border-right: 7.14rem solid transparent;
     border-top: 7.14rem solid
       ${(props) =>
-        props.connected ? props.theme.palette.info : props.theme.palette.info};
+        props.connected ? props.theme.palette.info : props.theme.palette.secondary6};
   }
   transform: translateZ(0px); /* fix overflow when spinner icon */
   -webkit-transform: translateZ(0px); 
