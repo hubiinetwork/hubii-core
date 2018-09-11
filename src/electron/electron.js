@@ -1,13 +1,20 @@
 
 /* global mainWindow */
-const { initSplashScreen } = require('@trodi/electron-splashscreen');
-const { app, Menu, dialog } = require('electron');
-const log = require('electron-log');
-const { autoUpdater } = require('electron-updater');
-const path = require('path');
-const isDev = require('electron-is-dev');
-const { registerWalletListeners } = require('./wallets');
-const setupDevToolsShortcut = require('./dev-tools');
+import { initSplashScreen } from '@trodi/electron-splashscreen';
+import { app, Menu, dialog } from 'electron';
+import log from 'electron-log';
+import { autoUpdater } from 'electron-updater';
+import path from 'path';
+import isDev from 'electron-is-dev';
+import { registerWalletListeners } from './wallets';
+import setupDevToolsShortcut from './dev-tools';
+
+if (process.env.NODE_ENV === 'development') {
+  // eslint-disable-next-line global-require
+  require('electron-reload')(__dirname, {
+    electron: path.join(`${__dirname}/../../`, 'node_modules', '.bin', 'electron'),
+  });
+}
 
 const version = app.getVersion();
 
@@ -49,7 +56,7 @@ function createWindow() {
   };
   global.mainWindow = initSplashScreen({
     windowOpts: windowOptions,
-    templateUrl: path.join(__dirname, 'images/splashscreen.svg'),
+    templateUrl: path.join(__dirname, '../public/images/splashscreen.svg'),
     delay: 0,
     splashScreenOpts: {
       height: 340,
@@ -129,4 +136,8 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+process.on('unhandledRejection', (err) => {
+  log.error(err);
 });

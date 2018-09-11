@@ -1,13 +1,13 @@
-const { BrowserWindow, ipcMain } = require('electron');
+import { BrowserWindow, ipcMain } from 'electron';
 
-const path = require('path');
-const fs = require('fs');
+import pinTemplate from 'electron/wallets/trezor/pin.html';
+import passTemplate from 'electron/wallets/trezor/passphrase.html';
 
-module.exports = function showPrompt(event) {
+export default function showPrompt(event) {
   return new Promise((resolve, reject) => {
-    const pinTemplate = fs.readFileSync(path.resolve(__dirname, `${event}.html`), 'utf8');
+    const template = event === 'pin' ? pinTemplate : passTemplate;
     const scriptNonce = Math.floor(Math.random() * 1000000000000);
-    const html = pinTemplate
+    const html = template
       .replace(/\$scriptNonce/g, scriptNonce.toString())
       .replace(/\$EVENT/g, event);
 
@@ -42,4 +42,4 @@ module.exports = function showPrompt(event) {
     window.show();
     window.focus();
   });
-};
+}
