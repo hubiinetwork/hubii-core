@@ -895,10 +895,10 @@ describe('network API calls', () => {
               name: 't1',
               address: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
             },
-            ledgerNanoSInfo: {
-              descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC@14/XHC@14000000/HS09@14900000/Nano S@14900000/Nano S@0/IOUSBHostHIDDevice@14900000,0',
-            },
             blockHeight: blockHeightLoadedMock,
+          },
+          ledgerHoc: {
+            descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC@14/XHC@14000000/HS09@14900000/Nano S@14900000/Nano S@0/IOUSBHostHIDDevice@14900000,0',
           },
         });
         const nonce = 16;
@@ -1085,10 +1085,10 @@ describe('network API calls', () => {
             name: lnsWalletMock.toJS().name,
             address: lnsWalletMock.toJS().address,
           },
-          ledgerNanoSInfo: {
-            descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC@14/XHC@14000000/HS09@14900000/Nano S@14900000/Nano S@0/IOUSBHostHIDDevice@14900000,0',
-          },
           blockHeight: blockHeightLoadedMock,
+        },
+        ledgerHoc: {
+          descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC@14/XHC@14000000/HS09@14900000/Nano S@14900000/Nano S@0/IOUSBHostHIDDevice@14900000,0',
         },
       });
       const { returnValue } = await expectSaga(signPersonalMessage, { wallet: lnsWalletMock.toJS(), message })

@@ -2,14 +2,6 @@ import { fromJS } from 'immutable';
 
 import { disconnectedErrorMsg, trezorDisconnectedErrorMsg } from 'utils/friendlyErrors';
 
-import {
-  ledgerEthAppConnected,
-  ledgerConfirmTxOnDevice,
-  ledgerConfirmTxOnDeviceDone,
-} from 'containers/LedgerHoc/actions';
-
-import { LEDGER_ERROR, FETCHED_LEDGER_ADDRESS } from 'containers/LedgerHoc/constants';
-
 import walletHocReducer from '../reducer';
 import {
   createWalletFromMnemonic,
@@ -40,7 +32,6 @@ import {
 import {
   supportedAssetsLoadedMock,
   pricesLoadedMock,
-  ledgerNanoSInfoInitialMock,
 } from './mocks/selectors';
 
 import {
@@ -77,12 +68,6 @@ describe('walletHocReducer', () => {
         address: '',
       },
       currentDecryptionCallback: null,
-      ledgerNanoSInfo: {
-        status: 'disconnected',
-        addresses: {},
-        id: null,
-        confTxOnDevice: false,
-      },
       trezorInfo: {
         status: 'disconnected',
         addresses: {},
@@ -113,50 +98,6 @@ describe('walletHocReducer', () => {
 
   it('returns the initial state', () => {
     expect(walletHocReducer(undefined, {})).toEqual(state);
-  });
-
-  describe('Ledger Nano S reducers', () => {
-    it('should handle LEDGER_ETH_CONNECTED action correctly', () => {
-      const id = '893745sjdfhks83';
-      const descriptor = 'desc';
-      const expected = state
-          .setIn(['ledgerNanoSInfo', 'status'], 'connected')
-          .setIn(['ledgerNanoSInfo', 'id'], id)
-          .setIn(['ledgerNanoSInfo', 'ethConnected'], true)
-          .setIn(['errors', 'ledgerError'], null);
-      expect(walletHocReducer(state, ledgerEthAppConnected(descriptor, id))).toEqual(expected);
-    });
-
-    it('should handle LEDGER_ERROR action correctly', () => {
-      const error = 'oh no!';
-      const id = '123';
-      const expected = state
-        .set('ledgerNanoSInfo', ledgerNanoSInfoInitialMock.set('id', '123'))
-        .setIn(['errors', 'ledgerError'], error);
-      expect(walletHocReducer(state.setIn(['ledgerNanoSInfo', 'id'], id), { type: LEDGER_ERROR, error })).toEqual(expected);
-    });
-
-    it('should handle FETCHED_LEDGER_ADDRESS action correctly', () => {
-      const derivationPath = 'm01201010';
-      const address = '0x0000000000000';
-      const expected = state
-          .setIn(['ledgerNanoSInfo', 'addresses', derivationPath], address);
-      expect(walletHocReducer(state, { type: FETCHED_LEDGER_ADDRESS, address, derivationPath })).toEqual(expected);
-    });
-
-    it('should handle LEDGER_CONFIRM_TX_ON_DEVICE action correctly', () => {
-      const expected = state
-          .setIn(['ledgerNanoSInfo', 'confTxOnDevice'], true);
-      expect(walletHocReducer(state, ledgerConfirmTxOnDevice())).toEqual(expected);
-    });
-
-    it('should handle LEDGER_CONFIRM_TX_ON_DEVICE_DONE action correctly', () => {
-      const testState = state
-        .setIn(['ledgerNanoSInfo', 'confTxOnDevice'], true);
-      const expected = state
-        .setIn(['ledgerNanoSInfo', 'confTxOnDevice'], false);
-      expect(walletHocReducer(testState, ledgerConfirmTxOnDeviceDone())).toEqual(expected);
-    });
   });
 
   describe('trezor reducers', () => {

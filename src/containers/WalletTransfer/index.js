@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { isHardwareWallet } from 'utils/wallet';
 
 import TransferForm from 'components/TransferForm';
 import PageLoadingIndicator from 'components/PageLoadingIndicator';
@@ -14,9 +13,11 @@ import {
   makeSelectCurrentWalletWithInfo,
   makeSelectPrices,
   makeSelectErrors,
-  makeSelectLedgerNanoSInfo,
   makeSelectTrezorInfo,
 } from 'containers/WalletHOC/selectors';
+import {
+  makeSelectLedgerHoc,
+} from 'containers/LedgerHoc/selectors';
 import {
   makeSelectContacts,
 } from 'containers/ContactBook/selectors';
@@ -56,7 +57,14 @@ export class WalletTransfer extends React.PureComponent {
   }
 
   render() {
-    const { contacts, currentWallet, prices, currentWalletWithInfo } = this.props;
+    const {
+      contacts,
+      currentWallet,
+      prices,
+      currentWalletWithInfo,
+      ledgerNanoSInfo,
+      trezorInfo,
+    } = this.props;
     if (!currentWalletWithInfo.getIn(['balances', 'assets'])) {
       return null;
     }
@@ -66,17 +74,20 @@ export class WalletTransfer extends React.PureComponent {
       return <LoadingError pageType="wallet" error={{ message: 'Failed to fetch wallet data' }} id={currentWalletWithInfo.get('address')} />;
     }
 
-    let confTxOnDevice = false;
-    if (isHardwareWallet(currentWalletWithInfo.get('type'))) {
-      confTxOnDevice = currentWalletWithInfo.get('type') === 'lns' ?
-        this.props.ledgerNanoSInfo.get('confTxOnDevice') :
-        this.props.trezorInfo.get('confTxOnDevice');
+    // get if the hw wallet is ready to make tx
+    let hwWalletReady = true;
+    if (currentWalletWithInfo.get('type') === 'lns' && !ledgerNanoSInfo.get('ethConnected')) {
+      hwWalletReady = false;
     }
-
+    if (currentWalletWithInfo.get('type') === 'trezor' && !trezorInfo.get('status') !== 'connected') {
+      hwWalletReady = false;
+    }
     return (
       <TransferForm
         currentWalletUsdBalance={currentWalletWithInfo.getIn(['balances', 'total', 'usd']).toNumber()}
         supportedAssets={this.props.supportedAssets}
+        ledgerNanoSInfo={this.props.ledgerNanoSInfo}
+        hwWalletReady={hwWalletReady}
         prices={prices.toJS()}
         recipients={contacts.toJS()}
         assets={currentWalletWithInfo.getIn(['balances', 'assets']).toJS()}
@@ -85,7 +96,6 @@ export class WalletTransfer extends React.PureComponent {
         errors={this.props.errors}
         currentWalletWithInfo={this.props.currentWalletWithInfo}
         createContact={this.props.createContact}
-        confTxOnDevice={confTxOnDevice}
       />
     );
   }
@@ -107,7 +117,7 @@ WalletTransfer.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
-  ledgerNanoSInfo: makeSelectLedgerNanoSInfo(),
+  ledgerNanoSInfo: makeSelectLedgerHoc(),
   trezorInfo: makeSelectTrezorInfo(),
   currentWallet: makeSelectCurrentWallet(),
   supportedAssets: makeSelectSupportedAssets(),

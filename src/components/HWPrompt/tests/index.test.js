@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 
 import HWPrompt from '../index';
 
+// fix these tests when trezor has been refactored
 describe('<HWPrompt />', () => {
   const props = {
     deviceType: 'lns',

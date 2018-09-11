@@ -13,13 +13,11 @@ const selectLedgerHocDomain = (state) => state.get('ledgerHoc');
 /**
  * Default selector used by LedgerHoc
  */
-
 const makeSelectLedgerHoc = () => createSelector(
   selectLedgerHocDomain,
-  (substate) => substate.toJS()
+  (substate) => substate
 );
 
-export default makeSelectLedgerHoc;
 export {
-  selectLedgerHocDomain,
+  makeSelectLedgerHoc,
 };

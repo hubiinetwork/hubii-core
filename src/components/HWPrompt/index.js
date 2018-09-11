@@ -21,21 +21,43 @@ import {
   ConfTxShield,
 } from './style';
 
-const lnsPrompt = (error) => {
-  let stage;
-  if (error.includes('Ledger could not be detected')) {
-    stage = 'connect';
-  } else if (error.includes('does not appear to have the Ethereum app open')) {
-    stage = 'openApp';
-  } else if (error.includes("does not appear to have 'Browser support'")) {
+const lnsPrompt = (ledgerInfo) => {
+  const error = ledgerInfo.get('error');
+  // check if device is connected
+  if (ledgerInfo.get('ethConnected')) {
+    return singleRowMsg(
+        'Device connection established',
+        'check'
+      );
+  }
+
+  // check the error
+  if (error && error.includes("Ledger connected but does not appear to have 'Browser support'")) {
     return singleRowMsg(
       "Please set 'Browser support' to 'No' in your device settings to continue"
     );
-  } else {
+  } else if
+  (
+    error
+    && !error.includes('does not appear to have the Ethereum app open')
+    && !error.includes('Ledger could not be detected')
+  ) {
     return singleRowMsg(
       'Something went wrong, please reconnect your device and try again',
       'exclamation-circle-o',
       'orange'
+    );
+  }
+  // no errors, show prompts
+  let stage;
+  if (!ledgerInfo.get('connected')) {
+    stage = 'connect';
+  } else if (!ledgerInfo.get('ethConnected')) {
+    stage = 'openApp';
+  } else {
+    return singleRowMsg(
+        'Device connection established',
+        'check'
     );
   }
   return (
@@ -90,10 +112,21 @@ class HWPrompt extends React.Component { // eslint-disable-line react/prefer-sta
   }
 
   render() {
-    const { error, deviceType, confTxOnDevice } = this.props;
+    const {
+      deviceType,
+      confTxOnDevice,
+      ledgerInfo,
+      error,
+    } = this.props;
+
     // tx needs to be confirmed on device
     if (confTxOnDevice) {
       return confTxOnDevicePrompt(deviceType);
+    }
+
+    // handle ledger
+    if (deviceType === 'lns') {
+      return lnsPrompt(ledgerInfo);
     }
 
     // device connection is good
@@ -102,11 +135,6 @@ class HWPrompt extends React.Component { // eslint-disable-line react/prefer-sta
         'Device connection established',
         'check'
       );
-    }
-
-    // lns needs to be connected
-    if (deviceType === 'lns') {
-      return lnsPrompt(error);
     }
 
     // trezor needs to be connected
@@ -119,6 +147,7 @@ class HWPrompt extends React.Component { // eslint-disable-line react/prefer-sta
 HWPrompt.propTypes = {
   error: PropTypes.string,
   deviceType: PropTypes.oneOf(['lns', 'trezor']),
+  ledgerInfo: PropTypes.object.isRequired,
   confTxOnDevice: PropTypes.bool,
 };
 

@@ -258,7 +258,6 @@ ShallowWrapper {
           },
         },
       ],
-      "confTxOnDevice": false,
       "createContact": [Function],
       "currentWalletUsdBalance": 81.962044,
       "currentWalletWithInfo": Immutable.Map {
@@ -340,6 +339,15 @@ ShallowWrapper {
         },
 },
       "errors": Object {},
+      "hwWalletReady": false,
+      "ledgerNanoSInfo": Immutable.Map {
+        status: "connected",
+        connected: true,
+        addresses: Immutable.Map {
+        },
+        id: "ajlsdfkjas",
+        confTxOnDevice: false,
+},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -474,7 +482,6 @@ ShallowWrapper {
             },
           },
         ],
-        "confTxOnDevice": false,
         "createContact": [Function],
         "currentWalletUsdBalance": 81.962044,
         "currentWalletWithInfo": Immutable.Map {
@@ -556,6 +563,15 @@ ShallowWrapper {
           },
 },
         "errors": Object {},
+        "hwWalletReady": false,
+        "ledgerNanoSInfo": Immutable.Map {
+          status: "connected",
+          connected: true,
+          addresses: Immutable.Map {
+          },
+          id: "ajlsdfkjas",
+          confTxOnDevice: false,
+},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -1473,7 +1489,6 @@ ShallowWrapper {
           },
         },
       ],
-      "confTxOnDevice": true,
       "createContact": [Function],
       "currentWalletUsdBalance": 81.962044,
       "currentWalletWithInfo": Immutable.Map {
@@ -1555,6 +1570,15 @@ ShallowWrapper {
         },
 },
       "errors": Object {},
+      "hwWalletReady": false,
+      "ledgerNanoSInfo": Immutable.Map {
+        status: "connected",
+        connected: true,
+        addresses: Immutable.Map {
+        },
+        id: "ajlsdfkjas",
+        confTxOnDevice: true,
+},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -1689,7 +1713,6 @@ ShallowWrapper {
             },
           },
         ],
-        "confTxOnDevice": true,
         "createContact": [Function],
         "currentWalletUsdBalance": 81.962044,
         "currentWalletWithInfo": Immutable.Map {
@@ -1771,6 +1794,15 @@ ShallowWrapper {
           },
 },
         "errors": Object {},
+        "hwWalletReady": false,
+        "ledgerNanoSInfo": Immutable.Map {
+          status: "connected",
+          connected: true,
+          addresses: Immutable.Map {
+          },
+          id: "ajlsdfkjas",
+          confTxOnDevice: true,
+},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -2105,7 +2137,6 @@ ShallowWrapper {
           },
         },
       ],
-      "confTxOnDevice": false,
       "createContact": [Function],
       "currentWalletUsdBalance": 81.962044,
       "currentWalletWithInfo": Immutable.Map {
@@ -2187,6 +2218,15 @@ ShallowWrapper {
         },
 },
       "errors": Object {},
+      "hwWalletReady": false,
+      "ledgerNanoSInfo": Immutable.Map {
+        status: "connected",
+        connected: true,
+        addresses: Immutable.Map {
+        },
+        id: "ajlsdfkjas",
+        confTxOnDevice: false,
+},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [],
@@ -2279,7 +2319,6 @@ ShallowWrapper {
             },
           },
         ],
-        "confTxOnDevice": false,
         "createContact": [Function],
         "currentWalletUsdBalance": 81.962044,
         "currentWalletWithInfo": Immutable.Map {
@@ -2361,6 +2400,15 @@ ShallowWrapper {
           },
 },
         "errors": Object {},
+        "hwWalletReady": false,
+        "ledgerNanoSInfo": Immutable.Map {
+          status: "connected",
+          connected: true,
+          addresses: Immutable.Map {
+          },
+          id: "ajlsdfkjas",
+          confTxOnDevice: false,
+},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [],
@@ -2653,7 +2701,6 @@ ShallowWrapper {
           },
         },
       ],
-      "confTxOnDevice": false,
       "createContact": [Function],
       "currentWalletUsdBalance": 81.962044,
       "currentWalletWithInfo": Immutable.Map {
@@ -2735,6 +2782,15 @@ ShallowWrapper {
         },
 },
       "errors": Object {},
+      "hwWalletReady": false,
+      "ledgerNanoSInfo": Immutable.Map {
+        status: "connected",
+        connected: true,
+        addresses: Immutable.Map {
+        },
+        id: "ajlsdfkjas",
+        confTxOnDevice: false,
+},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [],
@@ -2827,7 +2883,6 @@ ShallowWrapper {
             },
           },
         ],
-        "confTxOnDevice": false,
         "createContact": [Function],
         "currentWalletUsdBalance": 81.962044,
         "currentWalletWithInfo": Immutable.Map {
@@ -2909,6 +2964,15 @@ ShallowWrapper {
           },
 },
         "errors": Object {},
+        "hwWalletReady": false,
+        "ledgerNanoSInfo": Immutable.Map {
+          status: "connected",
+          connected: true,
+          addresses: Immutable.Map {
+          },
+          id: "ajlsdfkjas",
+          confTxOnDevice: false,
+},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [],
@@ -3206,7 +3270,6 @@ ShallowWrapper {
           },
         },
       ],
-      "confTxOnDevice": false,
       "createContact": [Function],
       "currentWalletUsdBalance": 81.962044,
       "currentWalletWithInfo": Immutable.Map {
@@ -3288,6 +3351,15 @@ ShallowWrapper {
         },
 },
       "errors": Object {},
+      "hwWalletReady": false,
+      "ledgerNanoSInfo": Immutable.Map {
+        status: "connected",
+        connected: true,
+        addresses: Immutable.Map {
+        },
+        id: "ajlsdfkjas",
+        confTxOnDevice: false,
+},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -3386,7 +3458,6 @@ ShallowWrapper {
             },
           },
         ],
-        "confTxOnDevice": false,
         "createContact": [Function],
         "currentWalletUsdBalance": 81.962044,
         "currentWalletWithInfo": Immutable.Map {
@@ -3468,6 +3539,15 @@ ShallowWrapper {
           },
 },
         "errors": Object {},
+        "hwWalletReady": false,
+        "ledgerNanoSInfo": Immutable.Map {
+          status: "connected",
+          connected: true,
+          addresses: Immutable.Map {
+          },
+          id: "ajlsdfkjas",
+          confTxOnDevice: false,
+},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -3771,7 +3851,6 @@ ShallowWrapper {
           },
         },
       ],
-      "confTxOnDevice": false,
       "createContact": [Function],
       "currentWalletUsdBalance": 81.962044,
       "currentWalletWithInfo": Immutable.Map {
@@ -3853,6 +3932,15 @@ ShallowWrapper {
         },
 },
       "errors": Object {},
+      "hwWalletReady": false,
+      "ledgerNanoSInfo": Immutable.Map {
+        status: "connected",
+        connected: true,
+        addresses: Immutable.Map {
+        },
+        id: "ajlsdfkjas",
+        confTxOnDevice: false,
+},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -3951,7 +4039,6 @@ ShallowWrapper {
             },
           },
         ],
-        "confTxOnDevice": false,
         "createContact": [Function],
         "currentWalletUsdBalance": 81.962044,
         "currentWalletWithInfo": Immutable.Map {
@@ -4033,6 +4120,15 @@ ShallowWrapper {
           },
 },
         "errors": Object {},
+        "hwWalletReady": false,
+        "ledgerNanoSInfo": Immutable.Map {
+          status: "connected",
+          connected: true,
+          addresses: Immutable.Map {
+          },
+          id: "ajlsdfkjas",
+          confTxOnDevice: false,
+},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -4372,7 +4468,6 @@ ShallowWrapper {
           },
         },
       ],
-      "confTxOnDevice": false,
       "createContact": [Function],
       "currentWalletUsdBalance": 81.962044,
       "currentWalletWithInfo": Immutable.Map {
@@ -4454,6 +4549,15 @@ ShallowWrapper {
         },
 },
       "errors": Object {},
+      "hwWalletReady": false,
+      "ledgerNanoSInfo": Immutable.Map {
+        status: "connected",
+        connected: true,
+        addresses: Immutable.Map {
+        },
+        id: "ajlsdfkjas",
+        confTxOnDevice: false,
+},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -4588,7 +4692,6 @@ ShallowWrapper {
             },
           },
         ],
-        "confTxOnDevice": false,
         "createContact": [Function],
         "currentWalletUsdBalance": 81.962044,
         "currentWalletWithInfo": Immutable.Map {
@@ -4670,6 +4773,15 @@ ShallowWrapper {
           },
 },
         "errors": Object {},
+        "hwWalletReady": false,
+        "ledgerNanoSInfo": Immutable.Map {
+          status: "connected",
+          connected: true,
+          addresses: Immutable.Map {
+          },
+          id: "ajlsdfkjas",
+          confTxOnDevice: false,
+},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [

@@ -409,10 +409,10 @@ export default class TransferForm extends React.PureComponent {
               walletUsdValueAfter={walletUsdValueAfter}
               recipient={address}
               onSend={this.onSend}
+              hwWalletReady={this.props.hwWalletReady}
               transfering={this.props.transfering}
               currentWalletWithInfo={this.props.currentWalletWithInfo}
               errors={this.props.errors}
-              confTxOnDevice={this.props.confTxOnDevice}
             />
           </TransferDescriptionWrapper>
         </OuterWrapper>
@@ -433,6 +433,6 @@ TransferForm.propTypes = {
   onSend: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   transfering: PropTypes.bool,
-  confTxOnDevice: PropTypes.bool.isRequired,
+  hwWalletReady: PropTypes.bool.isRequired,
   createContact: PropTypes.func.isRequired,
 };

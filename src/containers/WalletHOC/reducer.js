@@ -8,20 +8,12 @@ import { fromJS } from 'immutable';
 import { ERC20ABI, findWalletIndex } from 'utils/wallet';
 import abiDecoder from 'abi-decoder';
 
-import { CHANGE_NETWORK } from 'containers/App/constants';
-
-
 import {
-  FETCHED_LEDGER_ADDRESS,
-  LEDGER_CONNECTED,
-  LEDGER_DISCONNECTED,
-  LEDGER_ETH_CONNECTED,
-  LEDGER_ETH_DISCONNECTED,
-  LEDGER_ERROR,
-  SAVE_LEDGER_ADDRESS,
-  LEDGER_CONFIRM_TX_ON_DEVICE,
-  LEDGER_CONFIRM_TX_ON_DEVICE_DONE,
-} from 'containers/LedgerHoc/constants';
+  disconnectedErrorMsg,
+  trezorDisconnectedErrorMsg,
+} from 'utils/friendlyErrors';
+
+import { CHANGE_NETWORK } from 'containers/App/constants';
 
 import {
   LOAD_WALLET_BALANCES,
@@ -58,7 +50,7 @@ import {
   TREZOR_CONFIRM_TX_ON_DEVICE,
   TREZOR_CONFIRM_TX_ON_DEVICE_DONE,
 } from './constants';
-import { disconnectedErrorMsg, trezorDisconnectedErrorMsg } from '../../utils/friendlyErrors';
+
 
 export const initialState = fromJS({
   inputs: {
@@ -79,12 +71,6 @@ export const initialState = fromJS({
   wallets: [],
   currentWallet: {
     address: '',
-  },
-  ledgerNanoSInfo: {
-    status: 'disconnected',
-    addresses: {},
-    id: null,
-    confTxOnDevice: false,
   },
   trezorInfo: {
     status: 'disconnected',
@@ -222,39 +208,6 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], action.error.message)
         .setIn(['currentWallet', 'lastTransaction'], null);
-    case LEDGER_ETH_CONNECTED:
-      return state
-        .setIn(['ledgerNanoSInfo', 'status'], 'connected')
-        .setIn(['ledgerNanoSInfo', 'id'], action.id)
-        .setIn(['errors', 'ledgerError'], null)
-        .setIn(['ledgerNanoSInfo', 'ethConnected'], true);
-    case LEDGER_ETH_DISCONNECTED:
-      return state
-        .setIn(['ledgerNanoSInfo', 'status'], 'disconnected')
-        .setIn(['ledgerNanoSInfo', 'id'], action.id)
-        .setIn(['ledgerNanoSInfo', 'ethConnected'], false);
-    case LEDGER_CONNECTED:
-      return state
-        .setIn(['ledgerNanoSInfo', 'connected'], true)
-        .setIn(['ledgerNanoSInfo', 'descriptor'], action.descriptor);
-    case LEDGER_DISCONNECTED:
-      return state
-        .setIn(['ledgerNanoSInfo', 'status'], 'disconnected')
-        .setIn(['ledgerNanoSInfo', 'ethConnected'], false)
-        .setIn(['ledgerNanoSInfo', 'connected'], false)
-        .setIn(['ledgerNanoSInfo', 'descriptor'], null)
-        .setIn(['ledgerNanoSInfo', 'id'], null);
-    case LEDGER_ERROR:
-      return state
-        .setIn(['ledgerNanoSInfo', 'status'], 'disconnected')
-        .setIn(['ledgerNanoSInfo', 'addresses'], fromJS({}))
-        .setIn(['errors', 'ledgerError'], action.error);
-    case SAVE_LEDGER_ADDRESS:
-      return state
-        .setIn(['wallets', 'hardware', action.name], fromJS(action.newLedgerWallet));
-    case FETCHED_LEDGER_ADDRESS:
-      return state
-        .setIn(['ledgerNanoSInfo', 'addresses', action.derivationPath], action.address);
     case TREZOR_CONNECTED:
       return state
         .setIn(['trezorInfo', 'status'], 'connected')
@@ -284,12 +237,6 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['blockHeight', 'loading'], false)
         .setIn(['blockHeight', 'error'], action.error);
-    case LEDGER_CONFIRM_TX_ON_DEVICE:
-      return state
-        .setIn(['ledgerNanoSInfo', 'confTxOnDevice'], true);
-    case LEDGER_CONFIRM_TX_ON_DEVICE_DONE:
-      return state
-        .setIn(['ledgerNanoSInfo', 'confTxOnDevice'], false);
     case TREZOR_CONFIRM_TX_ON_DEVICE:
       return state
         .setIn(['trezorInfo', 'confTxOnDevice'], true);

@@ -11,10 +11,6 @@ const selectWalletHocDomain = (state) => state.get('walletHoc');
 /**
  * Other specific selectors
  */
-const makeSelectLedgerNanoSInfo = () => createSelector(
-  selectWalletHocDomain,
-  (walletHocDomain) => walletHocDomain.get('ledgerNanoSInfo')
-);
 
 const makeSelectTrezorInfo = () => createSelector(
   selectWalletHocDomain,
@@ -351,7 +347,6 @@ const makeSelectBlockHeight = () => createSelector(
 
 export {
   selectWalletHocDomain,
-  makeSelectLedgerNanoSInfo,
   makeSelectTrezorInfo,
   makeSelectTotalBalances,
   makeSelectSelectedWalletName,

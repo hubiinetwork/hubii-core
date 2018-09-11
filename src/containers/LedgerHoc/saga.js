@@ -5,8 +5,8 @@ import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 import { deriveAddresses, prependHexToAddress } from 'utils/wallet';
 import { requestHardwareWalletAPI } from 'utils/request';
 import {
-  makeSelectLedgerNanoSInfo,
-} from 'containers/WalletHOC/selectors';
+  makeSelectLedgerHoc,
+} from 'containers/LedgerHoc/selectors';
 import {
   FETCH_LEDGER_ADDRESSES,
   INIT_LEDGER,
@@ -134,7 +134,7 @@ export function* initLedger() {
 // Dispatches the address for every derivation path in the input
 export function* fetchLedgerAddresses({ pathBase, count }) {
   try {
-    const ledgerStatus = yield select(makeSelectLedgerNanoSInfo());
+    const ledgerStatus = yield select(makeSelectLedgerHoc());
     if (!ledgerStatus.get('descriptor')) {
       throw new Error('no descriptor available');
     }
@@ -173,7 +173,7 @@ export function requestEthTransportActivity({ method, params }) {
 
 export function* signTxByLedger(walletDetails, rawTxHex) {
   try {
-    const ledgerNanoSInfo = yield select(makeSelectLedgerNanoSInfo());
+    const ledgerNanoSInfo = yield select(makeSelectLedgerHoc());
     const descriptor = ledgerNanoSInfo.get('descriptor');
 
     // check if the eth app is opened
@@ -201,7 +201,7 @@ export function* signTxByLedger(walletDetails, rawTxHex) {
 
 export function* signPersonalMessageByLedger(walletDetails, txHash) {
   try {
-    const ledgerNanoSInfo = yield select(makeSelectLedgerNanoSInfo());
+    const ledgerNanoSInfo = yield select(makeSelectLedgerHoc());
     const descriptor = ledgerNanoSInfo.get('descriptor');
     yield call(
       tryCreateEthTransportActivity,

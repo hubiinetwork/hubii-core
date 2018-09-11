@@ -11,6 +11,8 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { utils } from 'ethers';
 
+import HWPromptContainer from 'containers/HWPromptContainer';
+
 import {
   fetchTrezorAddresses,
   loadWalletBalances,
@@ -21,18 +23,20 @@ import {
 } from 'containers/LedgerHoc/actions';
 
 import {
-  makeSelectLedgerNanoSInfo,
   makeSelectTrezorInfo,
   makeSelectErrors,
   makeSelectBalances,
 } from 'containers/WalletHOC/selectors';
+
+import {
+  makeSelectLedgerHoc,
+} from 'containers/LedgerHoc/selectors';
 
 
 import DerivationPath from 'components/ImportWalletSteps/DerivationPath';
 
 import { StyledButton, StyledSpan, ButtonDiv } from './BackBtn';
 import HWPromptWrapper from './HWPromptWrapper';
-import HWPrompt from '../../components/HWPrompt';
 
 export class DerivationPathContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -126,15 +130,15 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
     const { balances, deviceType } = this.props;
     const deviceInfo = this.getDeviceInfo(this.props);
 
-    const { status, addresses } = deviceInfo.toJS();
-    if (status === 'disconnected') {
-      const error = this.getDeviceError();
+    const { status, addresses, ethConnected } = deviceInfo.toJS();
+    if
+    (
+      (deviceType !== 'lns' && status === 'disconnected')
+      || (deviceType === 'lns' && !ethConnected)
+    ) {
       return (
         <HWPromptWrapper>
-          <HWPrompt
-            deviceType={deviceType}
-            error={error}
-          />
+          <HWPromptContainer passedDeviceType={deviceType} />
         </HWPromptWrapper>
       );
     }
@@ -193,7 +197,7 @@ DerivationPathContainer.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  ledgerNanoSInfo: makeSelectLedgerNanoSInfo(),
+  ledgerNanoSInfo: makeSelectLedgerHoc(),
   trezorInfo: makeSelectTrezorInfo(),
   errors: makeSelectErrors(),
   balances: makeSelectBalances(),

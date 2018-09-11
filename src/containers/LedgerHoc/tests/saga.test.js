@@ -3,9 +3,8 @@ import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
 import { fromJS } from 'immutable';
 import { ethAppNotOpenErrorMsg, disconnectedErrorMsg } from 'utils/friendlyErrors';
-import walletHocReducer from 'containers/WalletHOC/reducer';
 
-import walletHoc, {
+import ledgerHoc, {
   initLedger,
   ledgerChannel,
   ledgerEthChannel,
@@ -13,6 +12,8 @@ import walletHoc, {
   tryCreateEthTransportActivity,
   fetchLedgerAddresses,
 } from '../saga';
+
+import ledgerHocReducer from '../reducer';
 
 import {
   INIT_LEDGER,
@@ -31,7 +32,7 @@ describe('ledger saga', () => {
     const storeState = {};
     const descriptor = 'test descriptor string';
     return expectSaga(initLedger)
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .withReducer((state, action) => state.set('ledgerHoc', ledgerHocReducer(state.get('ledgerHoc'), action)), fromJS(storeState))
       .provide({
         call(effect) {
           let result;
@@ -53,15 +54,15 @@ describe('ledger saga', () => {
       .run({ silenceTimeout: true })
       .then((result) => {
         const state = result.storeState;
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'connected'])).toEqual(true);
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'descriptor'])).toEqual(descriptor);
+        expect(state.getIn(['ledgerHoc', 'connected'])).toEqual(true);
+        expect(state.getIn(['ledgerHoc', 'descriptor'])).toEqual(descriptor);
       });
   });
   it('should trigger ledgerDisconnectedAction when ledger usb is discorded', () => {
     const storeState = {};
     const descriptor = 'test descriptor string';
-    return expectSaga(walletHoc)
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+    return expectSaga(ledgerHoc)
+      .withReducer((state, action) => state.set('ledgerHoc', ledgerHocReducer(state.get('ledgerHoc'), action)), fromJS(storeState))
       .provide({
         call(effect) {
           let result;
@@ -89,15 +90,15 @@ describe('ledger saga', () => {
       .run({ silenceTimeout: true })
       .then((result) => {
         const state = result.storeState;
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'status'])).toEqual('disconnected');
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'connected'])).toEqual(false);
-        expect(state.getIn(['walletHoc', 'errors', 'ledgerError'])).toEqual(disconnectedErrorMsg);
+        expect(state.getIn(['ledgerHoc', 'status'])).toEqual('disconnected');
+        expect(state.getIn(['ledgerHoc', 'connected'])).toEqual(false);
+        expect(state.getIn(['ledgerHoc', 'error'])).toEqual(disconnectedErrorMsg);
       });
   });
   it('should trigger nosupport error action when ledger is not supported', () => {
     const storeState = {};
     return expectSaga(initLedger)
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .withReducer((state, action) => state.set('ledgerHoc', ledgerHocReducer(state.get('ledgerHoc'), action)), fromJS(storeState))
       .provide({
         call(effect) {
           let result;
@@ -116,7 +117,7 @@ describe('ledger saga', () => {
     const storeState = {};
     const descriptor = 'test descriptor string';
     return expectSaga(initLedger)
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .withReducer((state, action) => state.set('ledgerHoc', ledgerHocReducer(state.get('ledgerHoc'), action)), fromJS(storeState))
       .provide({
         call(effect) {
           let result;
@@ -148,7 +149,7 @@ describe('ledger saga', () => {
       },
     };
     return expectSaga(pollEthApp, { descriptor })
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .withReducer((state, action) => state.set('ledgerHoc', ledgerHocReducer(state.get('ledgerHoc'), action)), fromJS(storeState))
       .provide({
         call(effect) {
           if (effect.fn === ledgerEthChannel) {
@@ -166,10 +167,9 @@ describe('ledger saga', () => {
       .run({ silenceTimeout: true })
       .then((result) => {
         const state = result.storeState;
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'status'])).toEqual('connected');
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'ethConnected'])).toEqual(true);
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'id'])).toEqual(status.address.publicKey);
-          // expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'descriptor'])).toEqual(descriptor);
+        expect(state.getIn(['ledgerHoc', 'status'])).toEqual('connected');
+        expect(state.getIn(['ledgerHoc', 'ethConnected'])).toEqual(true);
+        expect(state.getIn(['ledgerHoc', 'id'])).toEqual(status.address.publicKey);
       });
   });
   it('should trigger ledger detected when ethereum app is close', () => {
@@ -177,7 +177,7 @@ describe('ledger saga', () => {
     const descriptor = 'test descriptor string';
     const error = { message: 'Incorrect length' };
     return expectSaga(pollEthApp, { descriptor })
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .withReducer((state, action) => state.set('ledgerHoc', ledgerHocReducer(state.get('ledgerHoc'), action)), fromJS(storeState))
       .provide({
         call(effect) {
           if (effect.fn === ledgerEthChannel) {
@@ -196,9 +196,9 @@ describe('ledger saga', () => {
       .run({ silenceTimeout: true })
       .then((result) => {
         const state = result.storeState;
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'status'])).toEqual('disconnected');
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'ethConnected'])).toEqual(false);
-        expect(state.getIn(['walletHoc', 'errors', 'ledgerError'])).toEqual(ethAppNotOpenErrorMsg);
+        expect(state.getIn(['ledgerHoc', 'status'])).toEqual('disconnected');
+        expect(state.getIn(['ledgerHoc', 'ethConnected'])).toEqual(false);
+        expect(state.getIn(['ledgerHoc', 'error'])).toEqual(ethAppNotOpenErrorMsg);
       });
   });
   it('#tryCreateEthTransportActivity should start pollEthApp and rethrow the error to outer scope when throws exception', (done) => {
@@ -222,10 +222,8 @@ describe('ledger saga', () => {
   });
   it('should trigger fetchedLedgerAddressAction when got address by path', () => {
     const storeState = {
-      walletHoc: {
-        ledgerNanoSInfo: {
-          descriptor: '123',
-        },
+      ledgerHoc: {
+        descriptor: '123',
       },
     };
     const key = {
@@ -243,7 +241,7 @@ describe('ledger saga', () => {
     ];
     const count = 5;
     return expectSaga(fetchLedgerAddresses, { pathBase, count })
-      .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+      .withReducer((state, action) => state.set('ledgerHoc', ledgerHocReducer(state.get('ledgerHoc'), action)), fromJS(storeState))
       .provide({
         call(effect) {
           if (effect.fn === tryCreateEthTransportActivity) {
@@ -255,9 +253,9 @@ describe('ledger saga', () => {
       .run({ silenceTimeout: true })
       .then((result) => {
         const state = result.storeState;
-        expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'addresses']).count()).toEqual(count);
+        expect(state.getIn(['ledgerHoc', 'addresses']).count()).toEqual(count);
         for (let i = 0; i < expectedAddresses.length; i += 1) {
-          expect(state.getIn(['walletHoc', 'ledgerNanoSInfo', 'addresses', `${pathBase}/${i}`])).toEqual(expectedAddresses[i]);
+          expect(state.getIn(['ledgerHoc', 'addresses', `${pathBase}/${i}`])).toEqual(expectedAddresses[i]);
         }
       });
   });

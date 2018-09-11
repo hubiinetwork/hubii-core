@@ -79,10 +79,9 @@ export function ledgerEthAppConnected(descriptor, id) {
   };
 }
 
-export function ledgerEthAppDisconnected(descriptor) {
+export function ledgerEthAppDisconnected() {
   return {
     type: LEDGER_ETH_DISCONNECTED,
-    descriptor,
   };
 }
 
