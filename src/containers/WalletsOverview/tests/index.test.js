@@ -11,6 +11,7 @@ import {
   supportedAssetsLoadedMock,
   supportedAssetsLoadingMock,
   supportedAssetsErrorMock,
+  pricesLoadedMock,
 } from 'containers/WalletHOC/tests/mocks/selectors';
 
 import { WalletsOverview, mapDispatchToProps } from '../index';
@@ -26,6 +27,7 @@ describe('WalletsOverview', () => {
     totalBalances: totalBalancesLoadedMock,
     supportedAssets: supportedAssetsLoadedMock,
     history: { push: () => {} },
+    priceInfo: pricesLoadedMock,
   };
 
   it('should render correctly when there are wallets', () => {
