@@ -55,11 +55,9 @@ const commonConfig = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': Object.keys(process.env).reduce((accumulator, currentKey) => {
-        const envs = accumulator;
-        envs[currentKey] = JSON.stringify(process.env[currentKey]);
-        return envs;
-      }, {}),
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
     }),
     new CircularDependencyPlugin({
       exclude: /a\.js|node_modules/, // exclude node_modules

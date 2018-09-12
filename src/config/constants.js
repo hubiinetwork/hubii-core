@@ -20,8 +20,8 @@ const boolFromEnv = (key, def) => {
 const stringFromEnv = (key, def) => process.env[key] || def;
 
 export const JWT_SECRET = stringFromEnv('OMPHALOS_JWT_SECRET', '');
-export const REPO = stringFromEnv('npm_package_build_publish_0_repo');
-export const OWNER = stringFromEnv('npm_package_build_publish_0_owner');
+export const REPO = stringFromEnv('PUBLISH_REPO');
+export const OWNER = stringFromEnv('PUBLISH_OWNER');
 export const SUPPORTED_NETWORKS = {
   homestead: {
     provider: providers.getDefaultProvider('homestead'),

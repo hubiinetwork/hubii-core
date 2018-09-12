@@ -149,11 +149,12 @@ module.exports = (options) => ({
     // inside your code for any environment checks; UglifyJS will automatically
     // drop any unreachable code.
     new webpack.DefinePlugin({
-      'process.env': Object.keys(process.env).reduce((accumulator, currentKey) => {
-        const envs = accumulator;
-        envs[currentKey] = JSON.stringify(process.env[currentKey]);
-        return envs;
-      }, {}),
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        OMPHALOS_JWT_SECRET: JSON.stringify(process.env.OMPHALOS_JWT_SECRET),
+        PUBLISH_REPO: JSON.stringify(process.env.npm_package_build_publish_0_repo),
+        PUBLISH_OWNER: JSON.stringify(process.env.npm_package_build_publish_0_owner),
+      },
     }),
     new CopyWebpackPlugin(
       [
