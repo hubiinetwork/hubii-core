@@ -1,11 +1,12 @@
 # Omphalos UI (aka hubii core) <img src="https://ci.dev.hubii.net/app/rest/builds/buildType:(id:OmphalosUi_Build)/statusIcon"> ![GitHub release](https://img.shields.io/github/release/hubiinetwork/omphalous-ui.svg) ![GitHub](https://img.shields.io/github/license/hubiinetwork/omphalos-ui.svg)
 
-> Omphalos UI is a friendly user interface for the Omphalos project, by hubii. Send and recieve crypto assets, and trustlessly make instant, cheap, quick payments and trades via nahmii all within this secure desktop wallet
-
 <br />
 <p align="center">
     <img src="public/images/hubii-core-logo-wtext.svg" width="300">
 </p>
+
+> Omphalos UI is a friendly user interface for the Omphalos project, by hubii. Send and recieve crypto assets, and trustlessly make instant, cheap, quick payments and trades via nahmii all within this secure desktop wallet
+
 
 ## Table of Contents
 
