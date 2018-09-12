@@ -19,10 +19,9 @@
     + [Install dependencies](#install-dependencies)
     + [Run](#run)
     + [Lint](#lint)
-    + [Test everything](#test-everything)
-    + [Test only what's changed since the last commit](#test-only-what-s-changed-since-the-last-commit)
-    + [Getting Ropsten ETH](#getting-ropsten-eth)
-    + [Getting Ropsten ERC20 tokens](#getting-ropsten-erc20-tokens)
+    + [Test](#test-everything)
+    + [Get Ropsten ETH](#get-ropsten-eth)
+    + [Get Ropsten ERC20 tokens](#get-ropsten-erc20-tokens)
   * [Build from source](#build-from-source)
   * [Development guidelines](#development-guidelines)
     + [Boy scout rule](#boy-scout-rule)
@@ -98,7 +97,7 @@ yarn test
 yarn test:dev
 ```
 
-### Getting Ropsten ETH
+### Get Ropsten ETH
 
 There are various faucents providing free Ropsten ETH:
 
@@ -107,7 +106,7 @@ There are various faucents providing free Ropsten ETH:
 * faucent.metamask.io
     * Follow instructions on the website
 
-### Getting Ropsten ERC20 tokens
+### Get Ropsten ERC20 tokens
 
 We recommend the ERC20 BOKKY token on Ropsten. To receive BOKKY, send Ropsten ETH to  the [BOKKY smart contract](https://ropsten.etherscan.io/address/0x583cbbb8a8443b38abcc0c956bece47340ea1367) for BOKKY tokens in return, 1 for 1.
 
