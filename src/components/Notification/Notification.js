@@ -2,7 +2,7 @@ import * as React from 'react';
 import { notification } from 'antd';
 import { StyledIcon, StyledTitle } from './Notification.style';
 
-export default (type, title) => {
+export default (type, message, customDuration) => {
   // If unknown type default to info
   let color;
   let iconType;
@@ -10,24 +10,24 @@ export default (type, title) => {
   if (type === 'success') {
     color = '#51b651';
     iconType = 'check-circle-o';
-    duration = 4;
+    duration = customDuration || 4;
   } else if (type === 'error') {
     color = '#ef3f20';
     iconType = 'close-circle-o';
-    duration = 10;
+    duration = customDuration || 10;
   } else if (type === 'warning') {
     color = '#f0ad4e';
     iconType = 'exclamation-circle-o';
-    duration = 10;
+    duration = customDuration || 10;
   } else {
     color = '#5bc0de';
     iconType = 'info-circle-o';
-    duration = 4;
+    duration = customDuration || 4;
   }
   notification.open({
     duration,
     icon: <StyledIcon type={iconType} />,
-    message: <StyledTitle>{title}</StyledTitle>,
+    message: <StyledTitle>{message}</StyledTitle>,
     description: '',
     placement: 'bottomRight',
     style: { background: color },

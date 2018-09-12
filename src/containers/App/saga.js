@@ -4,8 +4,8 @@ import Notification from 'components/Notification';
 
 import { NOTIFY } from './constants';
 
-export function* notifyUI({ messageType, message }) {
-  yield Promise.resolve(Notification(messageType, message));
+export function* notifyUI({ messageType, message, customDuration }) {
+  yield Promise.resolve(Notification(messageType, message, customDuration));
 }
 
 export default function* app() {

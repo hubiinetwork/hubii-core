@@ -15,6 +15,7 @@ describe('WalletHOC', () => {
     initTrezor: initTrezorSpy,
     initApiCalls: initApiCallsSpy,
     decryptWallet: () => {},
+    notify: () => {},
     hideDecryptWalletModal: () => {},
     loading: fromJS({
       decryptingWallet: false,
