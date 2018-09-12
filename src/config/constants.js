@@ -19,6 +19,7 @@ const boolFromEnv = (key, def) => {
 // eslint-disable-next-line no-unused-vars
 const stringFromEnv = (key, def) => process.env[key] || def;
 
+export const JWT_SECRET = stringFromEnv('OMPHALOS_JWT_SECRET', '');
 export const REPO = stringFromEnv('npm_package_build_publish_0_repo');
 export const OWNER = stringFromEnv('npm_package_build_publish_0_owner');
 export const SUPPORTED_NETWORKS = {

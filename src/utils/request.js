@@ -1,5 +1,6 @@
 import 'whatwg-fetch';
 import jwt from 'jsonwebtoken';
+import { JWT_SECRET } from 'config/constants';
 
 // Requests a URL, returning a promise. By default uses striim endpoint
 export default function request(path, opts = {}, endpoint) {
@@ -10,7 +11,7 @@ export default function request(path, opts = {}, endpoint) {
 
 export function requestWalletAPI(path, endpoint, opts = {}) {
   const options = opts;
-  const token = jwt.sign({ exp: Math.floor((new Date().getTime() / 1000) + 10) }, '***REMOVED***');
+  const token = jwt.sign({ exp: Math.floor((new Date().getTime() / 1000) + 10) }, JWT_SECRET);
   options.headers = {
     Authorization: `Bearer ${token}`,
   };
