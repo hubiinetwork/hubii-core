@@ -1,12 +1,32 @@
-# Omphalos UI (aka hubii core)
+<div style="text-align:center">
+    <img src="public/images/hubii-core-logo-wtext.svg" width="300">
+</div>
 
-> Omphalos UI is a friendly user interface for the Omphalos project, by hubii. Send and recieve crypto assets, and trustlessly make instant, cheap, quick payments with striim on this secure desktop wallet.
+# Omphalos UI (aka hubii core) <img src="https://ci.dev.hubii.net/app/rest/builds/buildType:(id:OmphalosUi_Build)/statusIcon">
+
+> Omphalos UI is a friendly user interface for the Omphalos project, by hubii. Send and recieve crypto assets, and trustlessly make instant, cheap, quick payments and trades via nahmii all within this secure desktop wallet.
+
+## Highlights
+
+* Open source
+* Send, receive crypto assets on the Ethereum blockchain
+* Manage all wallets & addresses in one application
+* Retain full custody and control of private keys
+* First class Ledger Nano S support
+* First class Trezor support
+* Instant payments and trades without compromising on security with nahmii *(WIP)*
+
+## Install
+
+*macOS 10.9+, Linux, and Windows 7+ are supported (64bit only)*
+
+Download the latest version of hubii core for your system on the [official releases page](https://github.com/hubiinetwork/omphalos-ui/releases)
 
 ## Architecture
 
 Omphalos UI is a multiplatform desktop application built with Electron, React, Redux and styled-components. The architecture is heavily influenced the [react-boilerplate](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/introduction.md) project. To understand our design decisions in greater detail, we recommend you checkout the documentaion and reasoning outlined in that repository.
 
-## Setup
+## Develop
 
 ### Requirements
 
@@ -15,50 +35,65 @@ Omphalos UI is a multiplatform desktop application built with Electron, React, R
 * Python
 * A C++ compiler
 
-## Install
+### Setup API credentials
+
+1. Send an email with the subject line "API access" to [placeholder@hubii.com](mailto:placeholder@hubii.com), we'll get back to you within 24 hours
+
+2. Add the credentials we provide to your system PATH
+
+### Install dependencies
 
 ```bash
 yarn
 ```
 
-## Run development environment
+### Run
 
 ```bash
 yarn electron-dev
 ```
 
-## Lint
+### Lint
 
 ```bash
 yarn lint
 ```
 
-## Test everything
+### Test everything
 
 ```bash
 yarn test
 ```
 
-## Test only what's changed since the last commit
+### Test only what's changed since the last commit
 
 ```bash
 yarn test:dev
 ```
 
-## Build
+### Getting Ropsten ETH
+
+There are various faucents providing free Ropsten ETH:
+
+* faucet.ropsten.be
+    * `wget https://faucet.ropsten.be/donate/<your ethereum address>`
+* faucent.metamask.io
+    * Follow instructions on the website
+
+### Getting Ropsten ERC20 tokens
+
+We recommend the ERC20 BOKKY token on Ropsten. To receive BOKKY, send Ropsten ETH to  the [BOKKY smart contract](https://ropsten.etherscan.io/address/0x583cbbb8a8443b38abcc0c956bece47340ea1367) for BOKKY tokens in return, 1 for 1.
+
+
+## Build from source
 
 ```bash
-yarn electron-build # compiles and builds the app for your system architecture
+# compiles and builds the app for your system architecture
+# the binary will be created inside the dist folder
+yarn && yarn electron-build
 ```
 
-## Release
-
-```bash
-yarn electron-build
-yarn release # builds for MacOS, Linux, Windows
-```
-
-## Development Guidelines
+## Development guidelines
 
 ### Boy scout rule
 
@@ -136,14 +171,6 @@ const mapStateToProps = createStructuredSelector({
 });
 ```
 
-## Mock API
+## Debugging a production build
 
-Currently the backend API is mocked using [json-server](https://github.com/typicode/json-server). `yarn start` includes the command to start up the json server and serve the mocked API from port `8000`.
-
-Once the backend API is ready, we will use it instead of json-server.
-
-## Folders
-
-*Section WIP*
-
-*public*: We use [copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin) to copy the files to `build/public`. This folder would hold the assets such as images/fonts. These asset files can be referenced by path `/public/[path_of_asset_file]`.
+The dev tools can be opened with `Cmd+Alt+I` on macOS, or `Ctrl+Shift+I` on Linux and Windows.
