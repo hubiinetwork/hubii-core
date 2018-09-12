@@ -37,7 +37,7 @@ Omphalos UI is a multiplatform desktop application built with Electron, React, R
 
 ### Setup API credentials
 
-1. Send an email with the subject line "API access" to [placeholder@hubii.com](mailto:placeholder@hubii.com), we'll get back to you within 24 hours
+1. Send an email with the subject line "API access" to [info@hubii.com](mailto:info@hubii.com), we'll get back to you within 24 hours
 
 2. Add the credentials we provide to your system PATH
 
