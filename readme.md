@@ -5,7 +5,7 @@
     <img src="public/images/hubii-core-logo-wtext.svg" width="300">
 </p>
 
-> Omphalos UI is a friendly user interface for the Omphalos project, by hubii. Send and recieve crypto assets, and trustlessly make instant, cheap, quick payments and trades via nahmii all within this secure desktop wallet
+> Omphalos UI (hubii core) is an Ethereum wallet manager and friendly user interface to the Ethereum scaling solution nahmii, by hubii. Send and recieve crypto assets and trustlessly make instant, cheap payments and trades, all within a secure desktop environment
 
 
 ## Table of Contents
