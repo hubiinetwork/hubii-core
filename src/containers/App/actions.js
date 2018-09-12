@@ -5,11 +5,12 @@ import {
 } from './constants';
 
 
-export function notify(messageType, message) {
+export function notify(messageType, message, customDuration) {
   return {
     type: NOTIFY,
     messageType,
     message,
+    customDuration,
   };
 }
 
