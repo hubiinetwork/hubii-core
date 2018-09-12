@@ -1,14 +1,13 @@
 {
   "name": "hubii-core",
   "version": "0.4.0",
-  "private": true,
   "author": {
     "name": "hubii",
     "email": "info@hubii.com",
     "url": "https://hubii.com"
   },
+  "license": "GPL-3.0-or-later",
   "description": "Send, recieve and trade Ethereum assets trustlessly without compromise. Powered by striim",
-  "license": "MIT",
   "main": "build/electron/electron.js",
   "homepage": "https://github.com/hubiinetwork/omphalos-ui",
   "build": {
