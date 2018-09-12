@@ -1,10 +1,36 @@
+# Omphalos UI (aka hubii core) <img src="https://ci.dev.hubii.net/app/rest/builds/buildType:(id:OmphalosUi_Build)/statusIcon"> ![GitHub release](https://img.shields.io/github/release/hubiinetwork/omphalous-ui.svg) ![GitHub](https://img.shields.io/github/license/hubiinetwork/omphalos-ui.svg)
+
+> Omphalos UI is a friendly user interface for the Omphalos project, by hubii. Send and recieve crypto assets, and trustlessly make instant, cheap, quick payments and trades via nahmii all within this secure desktop wallet
+
+<br />
 <p align="center">
     <img src="public/images/hubii-core-logo-wtext.svg" width="300">
 </p>
 
-# Omphalos UI (aka hubii core) <img src="https://ci.dev.hubii.net/app/rest/builds/buildType:(id:OmphalosUi_Build)/statusIcon">
+## Table of Contents
 
-> Omphalos UI is a friendly user interface for the Omphalos project, by hubii. Send and recieve crypto assets, and trustlessly make instant, cheap, quick payments and trades via nahmii all within this secure desktop wallet.
+  * [Highlights](#highlights)
+  * [Install](#install)
+  * [Architecture](#architecture)
+  * [Develop](#develop)
+    + [Requirements](#requirements)
+    + [Setup API credentials](#setup-api-credentials)
+    + [Install dependencies](#install-dependencies)
+    + [Run](#run)
+    + [Lint](#lint)
+    + [Test everything](#test-everything)
+    + [Test only what's changed since the last commit](#test-only-what-s-changed-since-the-last-commit)
+    + [Getting Ropsten ETH](#getting-ropsten-eth)
+    + [Getting Ropsten ERC20 tokens](#getting-ropsten-erc20-tokens)
+  * [Build from source](#build-from-source)
+  * [Development guidelines](#development-guidelines)
+    + [Boy scout rule](#boy-scout-rule)
+    + [Ensuring stability when using complex selectors](#ensuring-stability-when-using-complex-selectors)
+    + [Gitflow](#gitflow)
+    + [Working with numbers](#working-with-numbers)
+    + [Test Driven Development](#test-driven-development)
+    + [Containers as sub pages](#containers-as-sub-pages)
+  * [Debugging a production build](#debugging-a-production-build)
 
 ## Highlights
 
@@ -39,7 +65,7 @@ Omphalos UI is a multiplatform desktop application built with Electron, React, R
 
 1. Send an email with the subject line "API access" to [info@hubii.com](mailto:info@hubii.com), we'll get back to you within 24 hours
 
-2. Add the credentials we provide to your system PATH
+2. Add the credentials we provide to your PATH
 
 ### Install dependencies
 
