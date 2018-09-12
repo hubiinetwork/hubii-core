@@ -1,6 +1,6 @@
-<div style="text-align:center">
+<p align="center">
     <img src="public/images/hubii-core-logo-wtext.svg" width="300">
-</div>
+</p>
 
 # Omphalos UI (aka hubii core) <img src="https://ci.dev.hubii.net/app/rest/builds/buildType:(id:OmphalosUi_Build)/statusIcon">
 
