@@ -4,7 +4,6 @@
  *
  */
 import { utils } from 'ethers';
-import getFriendlyError from 'utils/friendlyErrors';
 import abiDecoder from 'abi-decoder';
 
 import {
@@ -36,19 +35,11 @@ import {
   TRANSFER_ERC20,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
-  TREZOR_ERROR,
-  TREZOR_CONNECTED,
-  TREZOR_DISCONNECTED,
-  FETCH_TREZOR_ADDRESSES,
-  FETCHED_TREZOR_ADDRESS,
   DELETE_WALLET,
-  INIT_TREZOR,
   INIT_API_CALLS,
   LOAD_BLOCK_HEIGHT,
   LOAD_BLOCK_HEIGHT_SUCCESS,
   LOAD_BLOCK_HEIGHT_ERROR,
-  TREZOR_CONFIRM_TX_ON_DEVICE,
-  TREZOR_CONFIRM_TX_ON_DEVICE_DONE,
 } from './constants';
 
 
@@ -303,50 +294,6 @@ export function transferSuccess(transaction, token) {
   };
 }
 
-export function initTrezor() {
-  return {
-    type: INIT_TREZOR,
-  };
-}
-
-export function trezorConnected(deviceId) {
-  return {
-    type: TREZOR_CONNECTED,
-    deviceId,
-  };
-}
-
-export function trezorDisconnected(deviceId) {
-  return {
-    type: TREZOR_DISCONNECTED,
-    deviceId,
-  };
-}
-
-export function fetchTrezorAddresses(pathBase, count) {
-  return {
-    type: FETCH_TREZOR_ADDRESSES,
-    pathBase,
-    count,
-  };
-}
-
-export function fetchedTrezorAddress(derivationPath, address) {
-  return {
-    type: FETCHED_TREZOR_ADDRESS,
-    derivationPath,
-    address,
-  };
-}
-
-export function trezorError(rawError) {
-  const friendlyError = getFriendlyError(rawError, 'trezor');
-  return {
-    type: TREZOR_ERROR,
-    error: friendlyError,
-  };
-}
-
 export function saveTrezorAddress(name, derivationPath, deviceId, address) {
   const newWallet = {
     deviceId,
@@ -384,17 +331,5 @@ export function loadBlockHeightError(error) {
   return {
     type: LOAD_BLOCK_HEIGHT_ERROR,
     error,
-  };
-}
-
-export function trezorConfirmTxOnDevice() {
-  return {
-    type: TREZOR_CONFIRM_TX_ON_DEVICE,
-  };
-}
-
-export function trezorConfirmTxOnDeviceDone() {
-  return {
-    type: TREZOR_CONFIRM_TX_ON_DEVICE_DONE,
   };
 }

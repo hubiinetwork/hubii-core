@@ -13,11 +13,13 @@ import {
   makeSelectCurrentWalletWithInfo,
   makeSelectPrices,
   makeSelectErrors,
-  makeSelectTrezorInfo,
 } from 'containers/WalletHOC/selectors';
 import {
   makeSelectLedgerHoc,
 } from 'containers/LedgerHoc/selectors';
+import {
+  makeSelectTrezorHoc,
+} from 'containers/TrezorHoc/selectors';
 import {
   makeSelectContacts,
 } from 'containers/ContactBook/selectors';
@@ -79,7 +81,7 @@ export class WalletTransfer extends React.PureComponent {
     if (currentWalletWithInfo.get('type') === 'lns' && !ledgerNanoSInfo.get('ethConnected')) {
       hwWalletReady = false;
     }
-    if (currentWalletWithInfo.get('type') === 'trezor' && !trezorInfo.get('status') !== 'connected') {
+    if (currentWalletWithInfo.get('type') === 'trezor' && trezorInfo.get('status') !== 'connected') {
       hwWalletReady = false;
     }
     return (
@@ -118,7 +120,7 @@ WalletTransfer.propTypes = {
 const mapStateToProps = createStructuredSelector({
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
   ledgerNanoSInfo: makeSelectLedgerHoc(),
-  trezorInfo: makeSelectTrezorInfo(),
+  trezorInfo: makeSelectTrezorHoc(),
   currentWallet: makeSelectCurrentWallet(),
   supportedAssets: makeSelectSupportedAssets(),
   prices: makeSelectPrices(),

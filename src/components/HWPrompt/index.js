@@ -21,6 +21,21 @@ import {
   ConfTxShield,
 } from './style';
 
+const confTxOnDevicePrompt = (deviceType) => (
+  <SingleRowWrapper>
+    <ConfTxShield src={getAbsolutePath('public/images/shield.png')} />
+    <ConfTxDeviceImg src={getAbsolutePath(`public/images/conf-tx-${deviceType}.png`)} />
+    <P>{ 'Verify the details shown on your device' }</P>
+  </SingleRowWrapper>
+);
+
+const singleRowMsg = (msg, iconType, iconColor) => (
+  <SingleRowWrapper>
+    <SingleRowIcon type={iconType || 'loading'} color={iconColor} />
+    <P>{msg}</P>
+  </SingleRowWrapper>
+);
+
 const lnsPrompt = (ledgerInfo) => {
   const error = ledgerInfo.get('error');
   // check if device is connected
@@ -90,34 +105,41 @@ const lnsPrompt = (ledgerInfo) => {
   );
 };
 
-const confTxOnDevicePrompt = (deviceType) => (
-  <SingleRowWrapper>
-    <ConfTxShield src={getAbsolutePath('public/images/shield.png')} />
-    <ConfTxDeviceImg src={getAbsolutePath(`public/images/conf-tx-${deviceType}.png`)} />
-    <P>{ 'Verify the details shown on your device' }</P>
-  </SingleRowWrapper>
-);
-
-const singleRowMsg = (msg, iconType, iconColor) => (
-  <SingleRowWrapper>
-    <SingleRowIcon type={iconType || 'loading'} color={iconColor} />
-    <P>{msg}</P>
-  </SingleRowWrapper>
-);
-
-class HWPrompt extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  shouldComponentUpdate(nextProps) {
-    if (nextProps.error === 'Loading...') return false;
-    return true;
+const trezorPrompt = (trezorInfo) => {
+  const error = trezorInfo.get('error');
+  if (error && !error.includes('Trezor is not connected')) {
+    return singleRowMsg(
+        'Something went wrong, please reconnect your device and try again',
+        'exclamation-circle-o',
+        'orange'
+      );
   }
 
+    // device connection is good
+  if (trezorInfo.get('status') === 'connected') {
+    return singleRowMsg(
+        'Device connection established',
+        'check'
+      );
+  }
+
+    // trezor needs to be connected
+  return singleRowMsg(
+      'Please connect and unlock your Trezor device to continue'
+    );
+};
+
+class HWPrompt extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const {
       deviceType,
-      confTxOnDevice,
       ledgerInfo,
-      error,
+      trezorInfo,
     } = this.props;
+
+    const confTxOnDevice = deviceType === 'lns'
+      ? ledgerInfo.get('confTxOnDevice')
+      : trezorInfo.get('confTxOnDevice');
 
     // tx needs to be confirmed on device
     if (confTxOnDevice) {
@@ -129,26 +151,15 @@ class HWPrompt extends React.Component { // eslint-disable-line react/prefer-sta
       return lnsPrompt(ledgerInfo);
     }
 
-    // device connection is good
-    if (!error) {
-      return singleRowMsg(
-        'Device connection established',
-        'check'
-      );
-    }
-
-    // trezor needs to be connected
-    return singleRowMsg(
-      'Please connect and unlock your Trezor device to continue'
-    );
+    // handle trezor
+    return trezorPrompt(trezorInfo);
   }
 }
 
 HWPrompt.propTypes = {
-  error: PropTypes.string,
   deviceType: PropTypes.oneOf(['lns', 'trezor']),
   ledgerInfo: PropTypes.object.isRequired,
-  confTxOnDevice: PropTypes.bool,
+  trezorInfo: PropTypes.object.isRequired,
 };
 
 export default HWPrompt;

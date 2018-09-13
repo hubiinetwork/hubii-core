@@ -20,30 +20,6 @@ export const walletsMock = fromJS([
   trezorWalletMock,
 ]);
 
-// makeSelectTrezorInfo
-export const trezorInfoInitialMock = fromJS({
-  status: 'disconnected',
-  addresses: {},
-  id: null,
-  confTxOnDevice: false,
-});
-
-export const trezorInfoConnectedMock = fromJS({
-  status: 'connected',
-  connected: true,
-  addresses: {},
-  id: 'ajlsdfkjas',
-  confTxOnDevice: false,
-});
-
-export const trezorInfoConfOnDeviceMock = fromJS({
-  status: 'connected',
-  connected: true,
-  addresses: {},
-  id: 'ajlsdfkjas',
-  confTxOnDevice: true,
-});
-
 // makeSelectTransactions
 export const transactionsEmptyMock = fromJS({});
 
@@ -359,14 +335,25 @@ export const currentWalletNoneMock = fromJS({
   address: '',
 });
 
-export const currentWalletMock = fromJS({
+export const currentWalletLnsMock = fromJS({
   address: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
+  type: 'lns',
+});
+
+export const currentWalletTrezorMock = fromJS({
+  address: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
+  type: 'trezor',
+});
+
+export const currentWalletSoftwareMock = fromJS({
+  address: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
+  type: 'software',
 });
 
 // selectWalletHocDomain
 export const walletHocMock = fromJS({
   wallets: walletsMock,
-  currentWallet: currentWalletMock,
+  currentWallet: currentWalletSoftwareMock,
   balances: balancesMock,
   supportedAssets: supportedAssetsLoadedMock,
   transactions: transactionsMock,

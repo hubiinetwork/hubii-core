@@ -9,7 +9,6 @@ import { getBreakdown } from 'utils/wallet';
 
 import { deleteWallet, showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHOC/actions';
 import {
-  makeSelectTrezorInfo,
   makeSelectSupportedAssets,
   makeSelectTotalBalances,
   makeSelectWalletsWithInfo,
@@ -18,6 +17,10 @@ import {
 import {
   makeSelectLedgerHoc,
 } from 'containers/LedgerHoc/selectors';
+
+import {
+  makeSelectTrezorHoc,
+} from 'containers/TrezorHoc/selectors';
 
 import SectionHeading from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
@@ -133,7 +136,7 @@ const mapStateToProps = createStructuredSelector({
   totalBalances: makeSelectTotalBalances(),
   supportedAssets: makeSelectSupportedAssets(),
   ledgerNanoSInfo: makeSelectLedgerHoc(),
-  trezorInfo: makeSelectTrezorInfo(),
+  trezorInfo: makeSelectTrezorHoc(),
 });
 
 export function mapDispatchToProps(dispatch) {

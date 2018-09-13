@@ -14,7 +14,6 @@ import { utils } from 'ethers';
 import HWPromptContainer from 'containers/HWPromptContainer';
 
 import {
-  fetchTrezorAddresses,
   loadWalletBalances,
 } from 'containers/WalletHOC/actions';
 
@@ -23,7 +22,10 @@ import {
 } from 'containers/LedgerHoc/actions';
 
 import {
-  makeSelectTrezorInfo,
+  fetchTrezorAddresses,
+} from 'containers/TrezorHoc/actions';
+
+import {
   makeSelectErrors,
   makeSelectBalances,
 } from 'containers/WalletHOC/selectors';
@@ -31,6 +33,10 @@ import {
 import {
   makeSelectLedgerHoc,
 } from 'containers/LedgerHoc/selectors';
+
+import {
+  makeSelectTrezorHoc,
+} from 'containers/TrezorHoc/selectors';
 
 
 import DerivationPath from 'components/ImportWalletSteps/DerivationPath';
@@ -198,7 +204,7 @@ DerivationPathContainer.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   ledgerNanoSInfo: makeSelectLedgerHoc(),
-  trezorInfo: makeSelectTrezorInfo(),
+  trezorInfo: makeSelectTrezorHoc(),
   errors: makeSelectErrors(),
   balances: makeSelectBalances(),
 });

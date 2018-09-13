@@ -8,11 +8,6 @@ import { fromJS } from 'immutable';
 import { ERC20ABI, findWalletIndex } from 'utils/wallet';
 import abiDecoder from 'abi-decoder';
 
-import {
-  disconnectedErrorMsg,
-  trezorDisconnectedErrorMsg,
-} from 'utils/friendlyErrors';
-
 import { CHANGE_NETWORK } from 'containers/App/constants';
 
 import {
@@ -38,17 +33,11 @@ import {
   TRANSFER,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
-  TREZOR_CONNECTED,
-  TREZOR_DISCONNECTED,
-  FETCHED_TREZOR_ADDRESS,
-  TREZOR_ERROR,
   DELETE_WALLET,
   LOAD_TRANSACTIONS_SUCCESS,
   LOAD_TRANSACTIONS_ERROR,
   LOAD_BLOCK_HEIGHT_ERROR,
   LOAD_BLOCK_HEIGHT_SUCCESS,
-  TREZOR_CONFIRM_TX_ON_DEVICE,
-  TREZOR_CONFIRM_TX_ON_DEVICE_DONE,
 } from './constants';
 
 
@@ -65,18 +54,10 @@ export const initialState = fromJS({
   errors: {
     creatingWalletError: null,
     decryptingWalletError: null,
-    ledgerError: disconnectedErrorMsg,
-    trezorError: trezorDisconnectedErrorMsg,
   },
   wallets: [],
   currentWallet: {
     address: '',
-  },
-  trezorInfo: {
-    status: 'disconnected',
-    addresses: {},
-    id: null,
-    confTxOnDevice: false,
   },
   pendingTransactions: [],
   supportedAssets: {
@@ -208,23 +189,6 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], action.error.message)
         .setIn(['currentWallet', 'lastTransaction'], null);
-    case TREZOR_CONNECTED:
-      return state
-        .setIn(['trezorInfo', 'status'], 'connected')
-        .setIn(['trezorInfo', 'id'], action.deviceId)
-        .setIn(['errors', 'trezorError'], null);
-    case TREZOR_DISCONNECTED:
-      return state
-        .setIn(['trezorInfo', 'status'], 'disconnected')
-        .setIn(['trezorInfo', 'id'], null);
-    case FETCHED_TREZOR_ADDRESS:
-      return state
-        .setIn(['trezorInfo', 'addresses', action.derivationPath], action.address);
-    case TREZOR_ERROR:
-      return state
-        .setIn(['trezorInfo', 'status'], 'disconnected')
-        .setIn(['trezorInfo', 'addresses'], fromJS({}))
-        .setIn(['errors', 'trezorError'], action.error);
     case DELETE_WALLET:
       return state
         .deleteIn(['wallets', findWalletIndex(state, action.address)]);
@@ -237,12 +201,6 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['blockHeight', 'loading'], false)
         .setIn(['blockHeight', 'error'], action.error);
-    case TREZOR_CONFIRM_TX_ON_DEVICE:
-      return state
-        .setIn(['trezorInfo', 'confTxOnDevice'], true);
-    case TREZOR_CONFIRM_TX_ON_DEVICE_DONE:
-      return state
-        .setIn(['trezorInfo', 'confTxOnDevice'], false);
     case CHANGE_NETWORK:
       return state
         .set('prices', initialState.get('prices'))

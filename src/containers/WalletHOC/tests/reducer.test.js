@@ -1,7 +1,5 @@
 import { fromJS } from 'immutable';
 
-import { disconnectedErrorMsg, trezorDisconnectedErrorMsg } from 'utils/friendlyErrors';
-
 import walletHocReducer from '../reducer';
 import {
   createWalletFromMnemonic,
@@ -25,8 +23,6 @@ import {
   loadSupportedTokensError,
   loadPricesSuccess,
   loadPricesError,
-  trezorConfirmTxOnDeviceDone,
-  trezorConfirmTxOnDevice,
 } from '../actions';
 
 import {
@@ -60,20 +56,12 @@ describe('walletHocReducer', () => {
       errors: {
         creatingWalletError: null,
         decryptingWalletError: null,
-        ledgerError: disconnectedErrorMsg,
-        trezorError: trezorDisconnectedErrorMsg,
       },
       wallets: [],
       currentWallet: {
         address: '',
       },
       currentDecryptionCallback: null,
-      trezorInfo: {
-        status: 'disconnected',
-        addresses: {},
-        id: null,
-        confTxOnDevice: false,
-      },
       pendingTransactions: [],
       supportedAssets: {
         loading: true,
@@ -98,22 +86,6 @@ describe('walletHocReducer', () => {
 
   it('returns the initial state', () => {
     expect(walletHocReducer(undefined, {})).toEqual(state);
-  });
-
-  describe('trezor reducers', () => {
-    it('should handle TREZOR_CONFIRM_TX_ON_DEVICE action correctly', () => {
-      const expected = state
-          .setIn(['trezorInfo', 'confTxOnDevice'], true);
-      expect(walletHocReducer(state, trezorConfirmTxOnDevice())).toEqual(expected);
-    });
-
-    it('should handle TREZOR_CONFIRM_TX_ON_DEVICE_DONE action correctly', () => {
-      const testState = state
-        .setIn(['trezorInfo', 'confTxOnDevice'], true);
-      const expected = state
-        .setIn(['trezorInfo', 'confTxOnDevice'], false);
-      expect(walletHocReducer(testState, trezorConfirmTxOnDeviceDone())).toEqual(expected);
-    });
   });
 
   describe('software wallet lifecycle reducers', () => {

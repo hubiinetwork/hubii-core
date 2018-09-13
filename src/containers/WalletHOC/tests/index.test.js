@@ -2,15 +2,13 @@ import React from 'react';
 import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
 import WalletHOC, { getComponentHOC, mapDispatchToProps } from '../index';
-import { walletsWithInfoMock, currentWalletMock } from './mocks/selectors';
+import { walletsWithInfoMock, currentWalletSoftwareMock } from './mocks/selectors';
 
 describe('WalletHOC', () => {
   const initApiCallsSpy = jest.fn();
-  const initTrezorSpy = jest.fn();
   const props = {
-    currentWallet: currentWalletMock,
+    currentWallet: currentWalletSoftwareMock,
     currentWalletWithInfo: walletsWithInfoMock.get(0),
-    initTrezor: initTrezorSpy,
     initApiCalls: initApiCallsSpy,
     decryptWallet: () => {},
     hideDecryptWalletModal: () => {},

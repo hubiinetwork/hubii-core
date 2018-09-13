@@ -19,6 +19,7 @@ import {
   appMock,
   currentNetworkMock,
 } from 'containers/App/tests/mocks/selectors';
+import { trezorHocConnectedMock } from 'containers/TrezorHoc/tests/mocks/selectors';
 import { tryCreateEthTransportActivity } from 'containers/LedgerHoc/saga';
 
 import {
@@ -957,11 +958,9 @@ describe('network API calls', () => {
             transactions: transactionsMock,
             pendingTransactions: [],
             confirmedTransactions: [],
-            trezorInfo: {
-              id: 'test',
-            },
             blockHeight: blockHeightLoadedMock,
           },
+          trezorHoc: trezorHocConnectedMock,
         });
         const nonce = 8;
         // const rawTx = [
@@ -1120,9 +1119,9 @@ describe('network API calls', () => {
           })
           .set('transactions', transactionsMock)
           .set('pendingTransactions', [])
-          .set('confirmedTransactions', [])
-          .set('trezorInfo', { id: transactionsMock.toJS().deviceId }).toJS(),
-      });
+          .set('confirmedTransactions', []),
+        trezorHoc: { id: transactionsMock.toJS().deviceId },
+      }).toJS();
       const { returnValue } = await expectSaga(signPersonalMessage, { wallet: trezorWalletMock.toJS(), message })
         .provide({
           call(effect) {

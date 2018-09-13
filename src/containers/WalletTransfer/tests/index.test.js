@@ -10,14 +10,17 @@ import {
   supportedAssetsErrorMock,
   pricesLoadingMock,
   pricesErrorMock,
-  trezorInfoConnectedMock,
-  trezorInfoConfOnDeviceMock,
 } from 'containers/WalletHOC/tests/mocks/selectors';
 
 import {
   ledgerHocConnectedMock,
   ledgerHocConfOnDeviceMock,
 } from 'containers/LedgerHoc/tests/mocks/selectors';
+
+import {
+  trezorHocConnectedMock,
+  trezorHocConfOnDeviceMock,
+} from 'containers/TrezorHoc/tests/mocks/selectors';
 
 import { contactsMock } from 'containers/WalletHOC/tests/mocks';
 
@@ -34,7 +37,7 @@ describe('WalletTransfer', () => {
     history: {},
     errors: {},
     ledgerNanoSInfo: ledgerHocConnectedMock,
-    trezorInfo: trezorInfoConnectedMock,
+    trezorInfo: trezorHocConnectedMock,
     createContact: jest.fn(),
   };
 
@@ -121,7 +124,7 @@ describe('WalletTransfer', () => {
     const wrapper = shallow(
       <WalletTransfer
         {...props}
-        trezorInfo={trezorInfoConfOnDeviceMock}
+        trezorInfo={trezorHocConfOnDeviceMock}
       />
         );
     expect(wrapper).toMatchSnapshot();

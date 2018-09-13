@@ -5,6 +5,7 @@
  */
 
 import { fromJS } from 'immutable';
+import { disconnectedErrorMsg } from 'utils/friendlyErrors';
 import {
   FETCHED_LEDGER_ADDRESS,
   LEDGER_CONNECTED,
@@ -23,7 +24,7 @@ const initialState = fromJS({
   addresses: {},
   id: null,
   confTxOnDevice: false,
-  error: null,
+  error: disconnectedErrorMsg,
 });
 
 function ledgerHocReducer(state = initialState, action) {

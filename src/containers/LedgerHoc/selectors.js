@@ -6,11 +6,6 @@ import { createSelector } from 'reselect';
 const selectLedgerHocDomain = (state) => state.get('ledgerHoc');
 
 /**
- * Other specific selectors
- */
-
-
-/**
  * Default selector used by LedgerHoc
  */
 const makeSelectLedgerHoc = () => createSelector(

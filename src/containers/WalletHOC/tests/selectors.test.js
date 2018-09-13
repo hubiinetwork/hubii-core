@@ -33,7 +33,7 @@ import {
   totalBalancesLoadedMock,
   totalBalancesLoadingMock,
   walletHocMock,
-  currentWalletMock,
+  currentWalletSoftwareMock,
   totalBalancesErrorMock,
 } from './mocks/selectors';
 
@@ -296,30 +296,30 @@ describe('makeSelectWalletsWithInfo', () => {
 
   it('should set wallets tx to loading if it doesnt exist yet in tx state', () => {
     const mockedState = fromJS({
-      walletHoc: walletHocMock.deleteIn(['transactions', currentWalletMock.get('address')]),
+      walletHoc: walletHocMock.deleteIn(['transactions', currentWalletSoftwareMock.get('address')]),
     });
     const walletsWithInfo = walletsWithInfoSelector(mockedState);
-    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletMock.get('address'));
+    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletSoftwareMock.get('address'));
     expect(wallet.getIn(['transactions', 'loading'])).toEqual(true);
   });
 
   it('should set wallets tx to loading if it\'s tx are in loading state', () => {
     const mockedState = fromJS({
-      walletHoc: walletHocMock.setIn(['transactions', currentWalletMock.get('address'), 'loading'], true),
+      walletHoc: walletHocMock.setIn(['transactions', currentWalletSoftwareMock.get('address'), 'loading'], true),
     });
     const walletsWithInfo = walletsWithInfoSelector(mockedState);
-    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletMock.get('address'));
+    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletSoftwareMock.get('address'));
     expect(wallet.getIn(['transactions', 'loading'])).toEqual(true);
   });
 
   it('should set wallets tx to error if it\'s tx are in error state and its not already in loading state', () => {
     const mockedState = fromJS({
       walletHoc: walletHocMock
-        .setIn(['transactions', currentWalletMock.get('address'), 'error'], true)
-        .setIn(['transactions', currentWalletMock.get('address'), 'loading'], false),
+        .setIn(['transactions', currentWalletSoftwareMock.get('address'), 'error'], true)
+        .setIn(['transactions', currentWalletSoftwareMock.get('address'), 'loading'], false),
     });
     const walletsWithInfo = walletsWithInfoSelector(mockedState);
-    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletMock.get('address'));
+    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletSoftwareMock.get('address'));
     expect(wallet.getIn(['transactions', 'error'])).toEqual(true);
   });
 
@@ -349,21 +349,21 @@ describe('makeSelectWalletsWithInfo', () => {
 
   it('should set a wallet\'s balance to loading if it doesn\'t exist in balances', () => {
     const mockedState = fromJS({
-      walletHoc: walletHocMock.setIn(['balances', currentWalletMock.get('address')], null),
+      walletHoc: walletHocMock.setIn(['balances', currentWalletSoftwareMock.get('address')], null),
     });
     const walletsWithInfo = walletsWithInfoSelector(mockedState);
-    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletMock.get('address'));
+    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletSoftwareMock.get('address'));
     expect(wallet.getIn(['balances', 'loading'])).toEqual(true);
   });
 
   it('should set a wallet\'s balance to loading if it\'s balance state is loadng', () => {
     const mockedState = fromJS({
       walletHoc: walletHocMock
-        .setIn(['balances', currentWalletMock.get('address'), 'loading'], true)
-        .setIn(['balances', currentWalletMock.get('address'), 'error'], false),
+        .setIn(['balances', currentWalletSoftwareMock.get('address'), 'loading'], true)
+        .setIn(['balances', currentWalletSoftwareMock.get('address'), 'error'], false),
     });
     const walletsWithInfo = walletsWithInfoSelector(mockedState);
-    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletMock.get('address'));
+    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletSoftwareMock.get('address'));
     expect(wallet.getIn(['balances', 'loading'])).toEqual(true);
   });
 
@@ -390,10 +390,10 @@ describe('makeSelectWalletsWithInfo', () => {
   it('should set a wallet\'s balance to error if it\'s balance state is errored', () => {
     const mockedState = fromJS({
       walletHoc: walletHocMock
-        .setIn(['balances', currentWalletMock.get('address'), 'error'], true),
+        .setIn(['balances', currentWalletSoftwareMock.get('address'), 'error'], true),
     });
     const walletsWithInfo = walletsWithInfoSelector(mockedState);
-    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletMock.get('address'));
+    const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletSoftwareMock.get('address'));
     expect(wallet.getIn(['balances', 'error'])).toEqual(true);
   });
 });

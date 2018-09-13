@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable';
+import { disconnectedErrorMsg } from 'utils/friendlyErrors';
 
 import {
   ledgerEthAppConnected,
@@ -22,7 +23,7 @@ describe('ledgerHocReducer', () => {
       addresses: {},
       id: null,
       confTxOnDevice: false,
-      error: null,
+      error: disconnectedErrorMsg,
     });
   });
 
