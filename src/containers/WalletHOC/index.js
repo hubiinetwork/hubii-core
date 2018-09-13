@@ -4,14 +4,17 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 
+import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
+
 import { Modal } from 'components/ui/Modal';
 import { FormItem, FormItemLabel } from 'components/ui/Form';
 
 import Input from 'components/ui/Input';
 import Button from 'components/ui/Button';
 
-import injectSaga from 'utils/injectSaga';
-import injectReducer from 'utils/injectReducer';
+import { notify } from 'containers/App/actions';
+
 import reducer from './reducer';
 import saga from './saga';
 import {
@@ -62,6 +65,7 @@ export function getComponentHOC(Component) {
 
     componentDidMount() {
       this.props.initApiCalls();
+      this.props.notify('info', 'Hi, thanks for trying this alpha build of hubii core. In this build, you can interact with the Ethereum testnet Ropsten. Stay tuned for mainnet support, which will be enabled very soon', 18);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -127,6 +131,7 @@ export function getComponentHOC(Component) {
   HOC.propTypes = {
     currentWallet: PropTypes.object.isRequired,
     currentWalletWithInfo: PropTypes.object.isRequired,
+    notify: PropTypes.func.isRequired,
     initApiCalls: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
@@ -137,6 +142,7 @@ export function getComponentHOC(Component) {
 
 export function mapDispatchToProps(dispatch) {
   return {
+    notify: (...args) => dispatch(notify(...args)),
     hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
     decryptWallet: (...args) => dispatch(decryptWallet(...args)),
     initApiCalls: (...args) => dispatch(initApiCalls(...args)),

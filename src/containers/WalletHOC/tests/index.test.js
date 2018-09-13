@@ -11,6 +11,7 @@ describe('WalletHOC', () => {
     currentWalletWithInfo: walletsWithInfoMock.get(0),
     initApiCalls: initApiCallsSpy,
     decryptWallet: () => {},
+    notify: () => {},
     hideDecryptWalletModal: () => {},
     loading: fromJS({
       decryptingWallet: false,

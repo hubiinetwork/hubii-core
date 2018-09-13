@@ -28,15 +28,16 @@ import WalletDetails from 'containers/WalletDetails';
 import Dex from 'containers/Dex';
 import Settings from 'containers/Settings';
 
-import withExchangeRate from 'containers/ExchangeRateHOC';
 import WalletHOC from 'containers/WalletHOC';
 import withLedger from 'containers/LedgerHoc';
 import withTrezor from 'containers/TrezorHoc';
 
-import saga from './saga';
-import reducer from './reducer';
+import ReleaseNotesModal from 'containers/ReleaseNotesModal';
 
-export function App() {
+import reducer from './reducer';
+import saga from './saga';
+
+function App() {
   const menuItems = [
     {
       to: '/wallets',
@@ -62,17 +63,17 @@ export function App() {
         <Route path="/settings" component={Settings} />
         <Route component={HomeScreen} />
       </Switch>
+      <ReleaseNotesModal />
     </SideBar>
   );
 }
 
-const withSaga = injectSaga({ key: 'app', saga });
 const withReducer = injectReducer({ key: 'app', reducer });
+const withSaga = injectSaga({ key: 'app', saga });
 
 export default compose(
   withReducer,
   withSaga,
-  withExchangeRate,
   WalletHOC,
   withLedger,
   withTrezor

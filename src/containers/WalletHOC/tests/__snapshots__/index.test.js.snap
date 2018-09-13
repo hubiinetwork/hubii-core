@@ -99,6 +99,7 @@ ShallowWrapper {
             decryptingWallet: false,
         }
     }
+    notify={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -208,6 +209,7 @@ ShallowWrapper {
                               decryptingWallet: false,
                     }
           }
+          notify={[Function]}
 />,
         <Modal.style
           destroyOnClose={true}
@@ -347,6 +349,7 @@ ShallowWrapper {
           "loading": Immutable.Map {
             decryptingWallet: false,
 },
+          "notify": [Function],
         },
         "ref": null,
         "rendered": null,
@@ -551,6 +554,7 @@ ShallowWrapper {
                                     decryptingWallet: false,
                         }
             }
+            notify={[Function]}
 />,
           <Modal.style
             destroyOnClose={true}
@@ -690,6 +694,7 @@ ShallowWrapper {
             "loading": Immutable.Map {
               decryptingWallet: false,
 },
+            "notify": [Function],
           },
           "ref": null,
           "rendered": null,
@@ -902,6 +907,7 @@ ShallowWrapper {
             decryptingWallet: true,
         }
     }
+    notify={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -1011,6 +1017,7 @@ ShallowWrapper {
                               decryptingWallet: true,
                     }
           }
+          notify={[Function]}
 />,
         <Modal.style
           destroyOnClose={true}
@@ -1147,6 +1154,7 @@ ShallowWrapper {
           "loading": Immutable.Map {
             decryptingWallet: true,
 },
+          "notify": [Function],
         },
         "ref": null,
         "rendered": null,
@@ -1346,6 +1354,7 @@ ShallowWrapper {
                                     decryptingWallet: true,
                         }
             }
+            notify={[Function]}
 />,
           <Modal.style
             destroyOnClose={true}
@@ -1482,6 +1491,7 @@ ShallowWrapper {
             "loading": Immutable.Map {
               decryptingWallet: true,
 },
+            "notify": [Function],
           },
           "ref": null,
           "rendered": null,

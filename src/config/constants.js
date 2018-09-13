@@ -19,6 +19,9 @@ const boolFromEnv = (key, def) => {
 // eslint-disable-next-line no-unused-vars
 const stringFromEnv = (key, def) => process.env[key] || def;
 
+export const JWT_SECRET = stringFromEnv('OMPHALOS_JWT_SECRET', '');
+export const REPO = stringFromEnv('PUBLISH_REPO');
+export const OWNER = stringFromEnv('PUBLISH_OWNER');
 export const SUPPORTED_NETWORKS = {
   homestead: {
     provider: providers.getDefaultProvider('homestead'),
