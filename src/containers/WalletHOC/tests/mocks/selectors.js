@@ -20,38 +20,6 @@ export const walletsMock = fromJS([
   trezorWalletMock,
 ]);
 
-// makeSelectLedgerNanoSInfo
-export const ledgerNanoSInfoInitialMock = fromJS({
-  status: 'disconnected',
-  addresses: {},
-  id: null,
-  confTxOnDevice: false,
-});
-
-export const ledgerNanoSInfoConnectedMock = fromJS({
-  status: 'connected',
-  connected: true,
-  addresses: {},
-  id: 'ajlsdfkjas',
-  confTxOnDevice: false,
-});
-
-export const ledgerNanoSInfoConnectedAppNotOpenMock = fromJS({
-  status: 'disconnected',
-  connected: true,
-  addresses: {},
-  id: 'ajlsdfkjas',
-  confTxOnDevice: false,
-});
-
-export const ledgerNanoSInfoConfOnDeviceMock = fromJS({
-  status: 'connected',
-  connected: true,
-  addresses: {},
-  id: 'ajlsdfkjas',
-  confTxOnDevice: true,
-});
-
 // makeSelectTrezorInfo
 export const trezorInfoInitialMock = fromJS({
   status: 'disconnected',
