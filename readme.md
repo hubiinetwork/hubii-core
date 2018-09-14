@@ -1,4 +1,4 @@
-# Omphalos UI (aka hubii core) <img src="https://ci.dev.hubii.net/app/rest/builds/buildType:(id:OmphalosUi_Build)/statusIcon"> ![GitHub release](https://img.shields.io/github/release/hubiinetwork/omphalous-ui.svg) ![GitHub](https://img.shields.io/github/license/hubiinetwork/omphalos-ui.svg)
+# hubii core (aka Omphalos UI) <img src="https://ci.dev.hubii.net/app/rest/builds/buildType:(id:OmphalosUi_Build)/statusIcon"> ![GitHub release](https://img.shields.io/github/release/hubiinetwork/hubii-core.svg) ![GitHub](https://img.shields.io/github/license/hubiinetwork/hubii-core.svg)
 
 <br />
 <p align="center">
