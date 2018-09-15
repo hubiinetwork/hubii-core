@@ -5,7 +5,7 @@ import { fork, takeEvery } from 'redux-saga/effects';
 import { createMockTask } from 'redux-saga/utils';
 
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
-import { CREATE_WALLET_SUCCESS } from 'containers/WalletHOC/constants';
+import { ADD_NEW_WALLET } from 'containers/WalletHOC/constants';
 
 import {
   walletsMock,
@@ -64,7 +64,7 @@ describe('hubiiApi saga', () => {
         .next() // network selector
         .next(currentNetworkMock) // wallets selector
         .next(wallets).all(allSagas)
-        .next([mockTask]).take([CHANGE_NETWORK, CREATE_WALLET_SUCCESS])
+        .next([mockTask]).take([CHANGE_NETWORK, ADD_NEW_WALLET])
         .next().cancel(mockTask)
         .next() // network selector
         .next(currentNetworkMock) // wallets selector

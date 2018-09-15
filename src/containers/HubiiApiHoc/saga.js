@@ -13,7 +13,7 @@ import { delay } from 'redux-saga';
 import { requestWalletAPI } from 'utils/request';
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
-import { CREATE_WALLET_SUCCESS } from 'containers/WalletHOC/constants';
+import { ADD_NEW_WALLET } from 'containers/WalletHOC/constants';
 
 import {
   makeSelectWallets,
@@ -113,7 +113,7 @@ export function* networkApiOrcestrator() {
       ]);
 
       // on network change kill all forks and restart
-      yield take([CHANGE_NETWORK, CREATE_WALLET_SUCCESS]);
+      yield take([CHANGE_NETWORK, ADD_NEW_WALLET]);
       yield cancel(...allTasks);
     }
   } catch (e) {
