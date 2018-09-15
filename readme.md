@@ -1,11 +1,11 @@
-# Omphalos UI (aka hubii core) <img src="https://ci.dev.hubii.net/app/rest/builds/buildType:(id:OmphalosUi_Build)/statusIcon"> ![GitHub release](https://img.shields.io/github/release/hubiinetwork/omphalous-ui.svg) ![GitHub](https://img.shields.io/github/license/hubiinetwork/omphalos-ui.svg)
+# hubii core (aka Omphalos UI) <img src="https://ci.dev.hubii.net/app/rest/builds/buildType:(id:OmphalosUi_Build)/statusIcon"> ![GitHub release](https://img.shields.io/github/release/hubiinetwork/hubii-core.svg) ![GitHub](https://img.shields.io/github/license/hubiinetwork/hubii-core.svg)
 
 <br />
 <p align="center">
     <img src="public/images/hubii-core-logo-wtext.svg" width="300">
 </p>
 
-> Omphalos UI (hubii core) is an Ethereum wallet manager and friendly user interface to the Ethereum scaling solution nahmii, by hubii. Send and recieve crypto assets and trustlessly make instant, cheap payments and trades, all within a secure desktop environment
+> hubii core is an Ethereum wallet manager and friendly user interface to the Ethereum scaling solution nahmii, by hubii. Send and recieve crypto assets and trustlessly make instant, cheap payments and trades, all within a secure desktop environment
 
 
 ## Table of Contents
@@ -46,11 +46,11 @@
 
 *macOS 10.9+, Linux, and Windows 7+ are supported (64bit only)*
 
-Download the latest version of hubii core for your system on the [official releases page](https://github.com/hubiinetwork/omphalos-ui/releases)
+Download the latest version of hubii core for your system on the [official releases page](https://github.com/hubiinetwork/hubii-core/releases)
 
 ## Architecture
 
-Omphalos UI is a multiplatform desktop application built with Electron, React, Redux and styled-components. The architecture is heavily influenced the [react-boilerplate](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/introduction.md) project. To understand our design decisions in greater detail, we recommend you checkout the documentaion and reasoning outlined in that repository.
+hubii core is a multiplatform desktop application built with Electron, React, Redux and styled-components. The architecture is heavily influenced the [react-boilerplate](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/introduction.md) project. To understand our design decisions in greater detail, we recommend you checkout the documentaion and reasoning outlined in that repository.
 
 ## Develop
 
