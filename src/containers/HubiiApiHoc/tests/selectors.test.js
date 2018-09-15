@@ -1,7 +1,7 @@
 
 import { storeMock } from 'mocks/store';
 
-import { blockHeightLoadingMock, blockHeightErrorMock } from 'containers/WalletHOC/tests/mocks/selectors';
+import { blockHeightLoadingMock, blockHeightErrorMock } from 'containers/EthOperationsHoc/tests/mocks/selectors';
 
 import {
   transactionsMock,
@@ -90,14 +90,14 @@ describe('makeSelectTransactionsWithInfo', () => {
 
   it('should mark add tx as loading when blockHeight loading', () => {
     const mockedState = storeMock
-      .setIn(['walletHoc', 'blockHeight'], blockHeightLoadingMock);
+      .setIn(['ethOperationsHoc', 'blockHeight'], blockHeightLoadingMock);
     const expected = transactionsMock.map((a) => a.set('loading', true));
     expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
   });
 
   it('should mark add tx as loading when blockHeight errored', () => {
     const mockedState = storeMock
-      .setIn(['walletHoc', 'blockHeight'], blockHeightErrorMock);
+      .setIn(['ethOperationsHoc', 'blockHeight'], blockHeightErrorMock);
     const expected = transactionsMock.map((a) => a.set('loading', true));
     expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
   });

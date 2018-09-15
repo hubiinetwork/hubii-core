@@ -26,8 +26,6 @@ import {
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
   DELETE_WALLET,
-  LOAD_BLOCK_HEIGHT_ERROR,
-  LOAD_BLOCK_HEIGHT_SUCCESS,
 } from './constants';
 
 
@@ -50,11 +48,6 @@ export const initialState = fromJS({
     address: '',
   },
   currentDecryptionCallback: null,
-  blockHeight: {
-    loading: true,
-    error: null,
-    height: -1,
-  },
 });
 
 abiDecoder.addABI(ERC20ABI);
@@ -125,15 +118,6 @@ function walletHocReducer(state = initialState, action) {
     case DELETE_WALLET:
       return state
         .deleteIn(['wallets', findWalletIndex(state, action.address)]);
-    case LOAD_BLOCK_HEIGHT_SUCCESS:
-      return state
-        .setIn(['blockHeight', 'loading'], false)
-        .setIn(['blockHeight', 'error'], null)
-        .setIn(['blockHeight', 'height'], action.blockHeight);
-    case LOAD_BLOCK_HEIGHT_ERROR:
-      return state
-        .setIn(['blockHeight', 'loading'], false)
-        .setIn(['blockHeight', 'error'], action.error);
     case CHANGE_NETWORK:
       return state
         .set('prices', initialState.get('prices'))

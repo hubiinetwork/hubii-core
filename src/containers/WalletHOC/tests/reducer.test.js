@@ -44,11 +44,6 @@ describe('walletHocReducer', () => {
         address: '',
       },
       currentDecryptionCallback: null,
-      blockHeight: {
-        loading: true,
-        error: null,
-        height: -1,
-      },
     });
     stateWithWallet = state.setIn(['wallets', 0], fromJS(wallet));
   });

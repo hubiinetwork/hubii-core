@@ -9,6 +9,7 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import contactsReducer from 'containers/ContactBook/reducer';
 import walletHocReducer from 'containers/WalletHOC/reducer';
 import hubiiApiHocReducer from 'containers/HubiiApiHoc/reducer';
+import ethOperationsHocReducer from 'containers/EthOperationsHoc/reducer';
 
 /*
  * routeReducer
@@ -37,6 +38,7 @@ export default function createReducer(injectedReducers) {
     contacts: contactsReducer,
     walletHoc: walletHocReducer,
     hubiiApiHoc: hubiiApiHocReducer,
+    ethOperationsHoc: ethOperationsHocReducer,
     language: languageProviderReducer,
     ...injectedReducers,
   });

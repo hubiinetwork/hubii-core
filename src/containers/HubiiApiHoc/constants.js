@@ -4,8 +4,6 @@
  *
  */
 
-export const INIT_HUBII_API = 'src/HubiiApiHoc/INIT_HUBII_API';
-
 export const LOAD_WALLET_BALANCES = 'src/HubiiApiHoc/LOAD_WALLET_BALANCES';
 export const LOAD_WALLET_BALANCES_SUCCESS = 'src/HubiiApiHoc/LOAD_WALLET_BALANCES_SUCCESS';
 export const LOAD_WALLET_BALANCES_ERROR = 'src/HubiiApiHoc/LOAD_WALLET_BALANCES_ERROR';

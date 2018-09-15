@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import { fromJS, List } from 'immutable';
 import BigNumber from 'bignumber.js';
 
-import { makeSelectBlockHeight } from 'containers/WalletHOC/selectors';
+import { makeSelectBlockHeight } from 'containers/EthOperationsHoc/selectors';
 
 /**
  * Direct selector to the hubiiApiHoc state domain

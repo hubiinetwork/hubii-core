@@ -24,9 +24,6 @@ import {
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
   DELETE_WALLET,
-  LOAD_BLOCK_HEIGHT,
-  LOAD_BLOCK_HEIGHT_SUCCESS,
-  LOAD_BLOCK_HEIGHT_ERROR,
 } from './constants';
 
 
@@ -205,25 +202,6 @@ export function saveTrezorAddress(name, derivationPath, deviceId, address) {
 export function transferError(error) {
   return {
     type: TRANSFER_ERROR,
-    error,
-  };
-}
-
-export function loadBlockHeight() {
-  return {
-    type: LOAD_BLOCK_HEIGHT,
-  };
-}
-
-export function loadBlockHeightSuccess(blockHeight) {
-  return {
-    type: LOAD_BLOCK_HEIGHT_SUCCESS,
-    blockHeight,
-  };
-}
-export function loadBlockHeightError(error) {
-  return {
-    type: LOAD_BLOCK_HEIGHT_ERROR,
     error,
   };
 }

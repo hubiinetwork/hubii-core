@@ -4,13 +4,14 @@
 
 /* eslint-disable redux-saga/yield-effects */
 import { takeEvery, put } from 'redux-saga/effects';
-import { expectSaga, testSaga } from 'redux-saga-test-plan';
+import { expectSaga } from 'redux-saga-test-plan';
 import { Wallet, utils } from 'ethers';
 import { fromJS } from 'immutable';
 import BigNumber from 'bignumber.js';
 
 import { requestHardwareWalletAPI } from 'utils/request';
 import { getTransaction } from 'utils/wallet';
+import { storeMock } from 'mocks/store';
 
 import { notify } from 'containers/App/actions';
 import {
@@ -24,15 +25,16 @@ import {
 } from 'containers/App/tests/mocks/selectors';
 
 import {
-  INIT_HUBII_API,
-} from 'containers/HubiiApiHoc/constants';
-
-import {
   hubiiApiHocMock,
   pricesLoadedMock,
   supportedAssetsLoadedMock,
   transactionsMock,
 } from 'containers/HubiiApiHoc/tests/mocks/selectors';
+
+import {
+  ethOperationsHocMock,
+  blockHeightLoadedMock,
+} from 'containers/EthOperationsHoc/tests/mocks/selectors';
 
 import { trezorHocConnectedMock } from 'containers/TrezorHoc/tests/mocks/selectors';
 import { tryCreateEthTransportActivity } from 'containers/LedgerHoc/saga';
@@ -58,7 +60,6 @@ import {
 
 import {
   walletsMock,
-  blockHeightLoadedMock,
   balancesMock,
 } from './mocks/selectors';
 
@@ -73,12 +74,9 @@ import walletHoc, {
   sendTransactionForHardwareWallet,
   generateERC20Transaction,
   signPersonalMessage,
-  networkApiOrcestrator,
-  loadBlockHeight,
 } from '../saga';
 
 import walletHocReducer, { initialState } from '../reducer';
-
 
 import {
   CREATE_WALLET_FROM_MNEMONIC,
@@ -101,10 +99,7 @@ import {
   transferError,
   transfer as transferAction,
   addNewWallet as addNewWalletAction,
-  loadBlockHeightSuccess,
-  loadBlockHeightError,
 } from '../actions';
-import { storeMock } from '../../../mocks/store';
 
 const withReducer = (state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action));
 
@@ -299,40 +294,6 @@ describe('decryptWallet saga', () => {
   });
 });
 
-describe('load block height', () => {
-  const height = '50';
-  let saga;
-  beforeEach(() => {
-    saga = testSaga(loadBlockHeight, currentNetworkMock.provider);
-  });
-  it('should correctly handle success scenario', () => {
-    saga
-        .next() // eth provider
-        .next(height).put(loadBlockHeightSuccess(height))
-        .next() // delay
-        .next() // eth provider
-        .next(height).put(loadBlockHeightSuccess(height));
-  });
-
-  it('should correctly handle err scenario', () => {
-    const e = new Error('some err');
-    saga
-        .next() // eth provider
-        .throw(e).put(loadBlockHeightError(e))
-        .next() // delay
-        .next() // eth provider
-        .next(height).put(loadBlockHeightSuccess(height));
-  });
-
-  it('should correctly drop existing call and stop when cancelled', () => {
-    const e = new Error(e);
-    saga
-        .next() // eth provider
-        .next().finish()
-        .next().isDone();
-  });
-});
-
 it('sign transaction for eth payment', () => {
   const storeState = storeMock;
   // create txn hash
@@ -365,6 +326,7 @@ it('sign transaction for erc20 payment', () => {
   // listen for confirmation
   // update pending txn in store
   const storeState = {
+    ethOperationsHoc: ethOperationsHocMock,
     app: appMock,
     hubiiApiHoc: hubiiApiHocMock,
     walletHoc: {
@@ -433,6 +395,7 @@ describe('payment transfer', () => {
       // listen for confirmation
       // update pending txn in store
       let storeState = fromJS({
+        ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
         app: appMock,
         walletHoc: {
@@ -477,6 +440,7 @@ describe('payment transfer', () => {
         // listen for confirmation
         // update pending txn in store
       const storeState = {
+        ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
         app: appMock,
         walletHoc: {
@@ -584,6 +548,7 @@ describe('payment transfer', () => {
     });
     it('transfer erc20 should pass params correctly to sendTransactionForHardwareWallet', () => {
       const storeState = {
+        ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
         app: appMock,
         walletHoc: {
@@ -637,6 +602,7 @@ describe('payment transfer', () => {
   describe('hardware wallet: ledger', () => {
     it('#sendTransactionForHardwareWallet should sign tx and output a hex correctly', () => {
       const storeState = fromJS({
+        ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
         app: appMock,
         walletHoc: {
@@ -698,6 +664,7 @@ describe('payment transfer', () => {
     it('#sendTransactionForHardwareWallet should sign tx and output a hex correctly', () => {
       const address = 'e1dddbd012f6a9f3f0a346a2b418aecd03b058e7';
       const storeState = fromJS({
+        ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
         app: appMock,
         walletHoc: {
@@ -912,11 +879,6 @@ describe('root Saga', () => {
   it('should start task to watch for DECRYPT_WALLET action', () => {
     const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(DECRYPT_WALLET, decryptWallet));
-  });
-
-  it('should start task to watch for INIT_HUBII_API action', () => {
-    const takeDescriptor = walletHocSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(INIT_HUBII_API, networkApiOrcestrator));
   });
 
   it('should start task to watch for TRANSFER action', () => {

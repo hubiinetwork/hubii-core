@@ -231,11 +231,6 @@ const makeSelectCurrentDecryptionCallback = () => createSelector(
   (walletHocDomain) => walletHocDomain.get('currentDecryptionCallback')
 );
 
-const makeSelectBlockHeight = () => createSelector(
-  selectWalletHocDomain,
-  (walletHocDomain) => walletHocDomain.get('blockHeight')
-);
-
 export {
   selectWalletHocDomain,
   makeSelectTotalBalances,
@@ -248,5 +243,4 @@ export {
   makeSelectWalletsWithInfo,
   makeSelectCurrentWalletWithInfo,
   makeSelectCurrentDecryptionCallback,
-  makeSelectBlockHeight,
 };

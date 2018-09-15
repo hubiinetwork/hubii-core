@@ -11,9 +11,9 @@ import {
 import { delay } from 'redux-saga';
 
 import { requestWalletAPI } from 'utils/request';
-import { CHANGE_NETWORK } from 'containers/App/constants';
+import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
-import { notify } from 'containers/App/actions';
+import { CREATE_WALLET_SUCCESS } from 'containers/WalletHOC/constants';
 
 import {
   makeSelectWallets,
@@ -21,7 +21,6 @@ import {
 
 import {
   LOAD_WALLET_BALANCES,
-  INIT_HUBII_API,
 } from './constants';
 
 import {
@@ -99,7 +98,7 @@ export function* loadTransactions({ address }, endpoint) {
   }
 }
 
-// manages calling of network specific APIs
+// manages calling of hubii network specific APIs
 export function* networkApiOrcestrator() {
   try {
     while (true) { // eslint-disable-line no-constant-condition
@@ -114,9 +113,8 @@ export function* networkApiOrcestrator() {
       ]);
 
       // on network change kill all forks and restart
-      yield take(CHANGE_NETWORK);
+      yield take([CHANGE_NETWORK, CREATE_WALLET_SUCCESS]);
       yield cancel(...allTasks);
-      yield put(notify('success', 'Network changed'));
     }
   } catch (e) {
     // errors in the forked processes themselves should be caught
@@ -129,6 +127,6 @@ export function* networkApiOrcestrator() {
 
 // Root watcher
 export default function* watch() {
-  yield takeEvery(INIT_HUBII_API, networkApiOrcestrator);
+  yield takeEvery(INIT_NETWORK_ACTIVITY, networkApiOrcestrator);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalances);
 }

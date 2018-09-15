@@ -4,7 +4,8 @@ import { requestWalletAPI } from 'utils/request';
 import { fork, takeEvery } from 'redux-saga/effects';
 import { createMockTask } from 'redux-saga/utils';
 
-import { CHANGE_NETWORK } from 'containers/App/constants';
+import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
+import { CREATE_WALLET_SUCCESS } from 'containers/WalletHOC/constants';
 
 import {
   walletsMock,
@@ -22,10 +23,6 @@ import {
   balancesMock,
   supportedAssetsLoadedMock,
 } from './mocks/selectors';
-
-import {
-  INIT_HUBII_API,
-} from '../constants';
 
 import hubiiApiHoc, {
   loadTransactions,
@@ -67,9 +64,8 @@ describe('hubiiApi saga', () => {
         .next() // network selector
         .next(currentNetworkMock) // wallets selector
         .next(wallets).all(allSagas)
-        .next([mockTask]).take(CHANGE_NETWORK)
+        .next([mockTask]).take([CHANGE_NETWORK, CREATE_WALLET_SUCCESS])
         .next().cancel(mockTask)
-        .next() // notify
         .next() // network selector
         .next(currentNetworkMock) // wallets selector
         .next(wallets).all(allSagas);
@@ -247,7 +243,7 @@ describe('hubiiApi saga', () => {
     const hubiiApiHocSaga = hubiiApiHoc();
     it('should start task to watch for INIT_API_CALLS action', () => {
       const takeDescriptor = hubiiApiHocSaga.next().value;
-      expect(takeDescriptor).toEqual(takeEvery(INIT_HUBII_API, networkApiOrcestrator));
+      expect(takeDescriptor).toEqual(takeEvery(INIT_NETWORK_ACTIVITY, networkApiOrcestrator));
     });
   });
 });

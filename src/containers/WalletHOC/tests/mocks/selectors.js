@@ -22,25 +22,6 @@ export const walletsMock = fromJS([
   trezorWalletMock,
 ]);
 
-// makeSelectBlockHeight
-export const blockHeightLoadedMock = fromJS({
-  loading: false,
-  error: null,
-  height: 3780093,
-});
-
-export const blockHeightLoadingMock = fromJS({
-  loading: true,
-  error: null,
-  height: -1,
-});
-
-export const blockHeightErrorMock = fromJS({
-  loading: false,
-  error: true,
-  height: 123,
-});
-
 // makeSelectTotalBalances
 export const totalBalancesErrorMock = fromJS({ assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } });
 export const totalBalancesLoadingMock = fromJS({ assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } });
@@ -145,5 +126,4 @@ export const currentWalletSoftwareMock = fromJS({
 export const walletHocMock = fromJS({
   wallets: walletsMock,
   currentWallet: currentWalletSoftwareMock,
-  blockHeight: blockHeightLoadedMock,
 });

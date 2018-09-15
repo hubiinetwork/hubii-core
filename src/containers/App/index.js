@@ -32,6 +32,7 @@ import WalletHOC from 'containers/WalletHOC';
 import withLedger from 'containers/LedgerHoc';
 import withTrezor from 'containers/TrezorHoc';
 import withHubiiApi from 'containers/HubiiApiHoc';
+import withEthOperations from 'containers/EthOperationsHoc';
 
 import ReleaseNotesModal from 'containers/ReleaseNotesModal';
 
@@ -78,5 +79,6 @@ export default compose(
   WalletHOC,
   withLedger,
   withTrezor,
+  withEthOperations,
   withHubiiApi,
 )(App);

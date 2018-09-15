@@ -108,18 +108,6 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
     return deviceInfo;
   }
 
-  getDeviceError() {
-    const { deviceType, errors } = this.props;
-    let error;
-    if (deviceType === 'lns') {
-      error = errors.get('ledgerError') || 'Loading...';
-    }
-    if (deviceType === 'trezor') {
-      error = 'Trezor is not connected';
-    }
-    return error;
-  }
-
   fetchAddresses() {
     const { lastAddressIndex, pathBase } = this.state;
     const { deviceType } = this.props;
@@ -192,7 +180,6 @@ DerivationPathContainer.propTypes = {
   ledgerNanoSInfo: PropTypes.object.isRequired,
   // eslint-disable-next-line react/no-unused-prop-types
   trezorInfo: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
   balances: PropTypes.object.isRequired,
   fetchLedgerAddresses: PropTypes.func.isRequired,
   fetchTrezorAddresses: PropTypes.func.isRequired,

@@ -17,14 +17,7 @@ import {
   LOAD_TRANSACTIONS,
   LOAD_TRANSACTIONS_SUCCESS,
   LOAD_TRANSACTIONS_ERROR,
-  INIT_HUBII_API,
 } from './constants';
-
-export function initHubiiApi() {
-  return {
-    type: INIT_HUBII_API,
-  };
-}
 
 export function loadWalletBalances(address, noPoll) {
   return {

@@ -1,18 +1,11 @@
-import { delay } from 'redux-saga';
 import {
   takeEvery,
-  take,
   put,
   call,
   select,
-  cancel,
-  all,
-  fork,
 } from 'redux-saga/effects';
 import { Wallet, utils, Contract } from 'ethers';
 
-import { CHANGE_NETWORK } from 'containers/App/constants';
-import { INIT_HUBII_API } from 'containers/HubiiApiHoc/constants';
 import { notify } from 'containers/App/actions';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import {
@@ -66,8 +59,6 @@ import {
   transferERC20 as transferERC20Action,
   hideDecryptWalletModal,
   transfer as transferAction,
-  loadBlockHeightSuccess,
-  loadBlockHeightError,
 } from './actions';
 
 
@@ -122,19 +113,6 @@ export function* decryptWallet({ address, encryptedWallet, password }) {
   }
 }
 
-export function* loadBlockHeight(provider) {
-  while (true) { // eslint-disable-line no-constant-condition
-    try {
-      const blockHeight = yield provider.getBlockNumber();
-      yield put(loadBlockHeightSuccess(blockHeight));
-    } catch (error) {
-      yield put(loadBlockHeightError(error));
-    } finally {
-      const TEN_SEC_IN_MS = 1000 * 10;
-      yield delay(TEN_SEC_IN_MS);
-    }
-  }
-}
 export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit, contractAddress }) {
   if (wallet.encrypted && !wallet.decrypted) {
     yield put(showDecryptWalletModal(transferAction({ wallet, token, toAddress, amount, gasPrice, gasLimit, contractAddress })));
@@ -297,30 +275,6 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   return yield call([provider, 'getTransaction'], txHash);
 }
 
-// manages calling of network specific APIs
-export function* networkApiOrcestrator() {
-  try {
-    while (true) { // eslint-disable-line no-constant-condition
-      // fork new processes, some of which will poll
-      const network = yield select(makeSelectCurrentNetwork());
-      const allTasks = yield all([
-        fork(loadBlockHeight, network.provider),
-      ]);
-
-      // on network change kill all forks and restart
-      yield take(CHANGE_NETWORK);
-      yield cancel(...allTasks);
-      yield put(notify('success', 'Network changed'));
-    }
-  } catch (e) {
-    // errors in the forked processes themselves should be caught
-    // and handled before they get here. if something goes wrong here
-    // there was probably an error with the wallet selector, which should
-    // never happen
-    throw new Error(e);
-  }
-}
-
 export function* signPersonalMessage({ message, wallet }) {
   let signedPersonalMessage;
 
@@ -341,7 +295,6 @@ export function* signPersonalMessage({ message, wallet }) {
 export default function* walletHoc() {
   yield takeEvery(CREATE_WALLET_FROM_MNEMONIC, createWalletFromMnemonic);
   yield takeEvery(DECRYPT_WALLET, decryptWallet);
-  yield takeEvery(INIT_HUBII_API, networkApiOrcestrator);
   yield takeEvery(TRANSFER, transfer);
   yield takeEvery(TRANSFER_ETHER, transferEther);
   yield takeEvery(TRANSFER_ERC20, transferERC20);
