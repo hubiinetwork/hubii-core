@@ -9,7 +9,7 @@
   "license": "GPL-3.0-or-later",
   "description": "Send, recieve and trade Ethereum assets trustlessly without compromise. Powered by striim",
   "main": "build/electron/electron.js",
-  "homepage": "https://github.com/hubiinetwork/omphalos-ui",
+  "homepage": "https://github.com/hubiinetwork/hubii-core",
   "build": {
     "appId": "com.hubii.electron-hubii-core",
     "files": [
@@ -19,7 +19,7 @@
       {
         "provider": "github",
         "owner": "hubiinetwork",
-        "repo": "omphalos-ui"
+        "repo": "hubii-core"
       }
     ],
     "linux": {

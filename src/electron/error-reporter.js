@@ -8,7 +8,7 @@ const dialog = electron.dialog || electron.remote.dialog;
 const clipboard = electron.clipboard || electron.remote.clipboard;
 
 let installed = false;
-const errorMsg = 'An unexpected error happened. Please report this issue to (https://github.com/hubiinetwork/omphalos-ui) with the following error logs:';
+const errorMsg = 'An unexpected error occured. Please report this issue to (https://github.com/hubiinetwork/hubii-core) with the following error logs:';
 
 module.exports = () => {
   if (installed) {

@@ -46,11 +46,11 @@
 
 *macOS 10.9+, Linux, and Windows 7+ are supported (64bit only)*
 
-Download the latest version of hubii core for your system on the [official releases page](https://github.com/hubiinetwork/omphalos-ui/releases)
+Download the latest version of hubii core for your system on the [official releases page](https://github.com/hubiinetwork/hubii-core/releases)
 
 ## Architecture
 
-Omphalos UI is a multiplatform desktop application built with Electron, React, Redux and styled-components. The architecture is heavily influenced the [react-boilerplate](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/introduction.md) project. To understand our design decisions in greater detail, we recommend you checkout the documentaion and reasoning outlined in that repository.
+hubii core is a multiplatform desktop application built with Electron, React, Redux and styled-components. The architecture is heavily influenced the [react-boilerplate](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/introduction.md) project. To understand our design decisions in greater detail, we recommend you checkout the documentaion and reasoning outlined in that repository.
 
 ## Develop
 
