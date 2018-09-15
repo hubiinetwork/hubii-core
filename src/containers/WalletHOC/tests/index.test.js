@@ -5,11 +5,9 @@ import WalletHOC, { getComponentHOC, mapDispatchToProps } from '../index';
 import { walletsWithInfoMock, currentWalletSoftwareMock } from './mocks/selectors';
 
 describe('WalletHOC', () => {
-  const initApiCallsSpy = jest.fn();
   const props = {
     currentWallet: currentWalletSoftwareMock,
     currentWalletWithInfo: walletsWithInfoMock.get(0),
-    initApiCalls: initApiCallsSpy,
     decryptWallet: () => {},
     notify: () => {},
     hideDecryptWalletModal: () => {},
@@ -85,19 +83,6 @@ describe('WalletHOC', () => {
         instance.componentWillReceiveProps(nextProps);
         const expectedPassword = 'password';
         expect(instance.state.password).toEqual(expectedPassword);
-      });
-    });
-    describe('#componentDidMount', () => {
-      it('should call initApiCalls prop when called', () => {
-        const Hoc = getComponentHOC('div');
-        dom = shallow(
-          <Hoc
-            {...props}
-          />
-        );
-        const instance = dom.instance();
-        instance.componentDidMount();
-        expect(initApiCallsSpy).toBeCalled();
       });
     });
     describe('#onPasswordChange', () => {

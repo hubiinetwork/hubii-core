@@ -9,11 +9,13 @@ import TransferForm from 'components/TransferForm';
 import PageLoadingIndicator from 'components/PageLoadingIndicator';
 import {
   makeSelectCurrentWallet,
-  makeSelectSupportedAssets,
   makeSelectCurrentWalletWithInfo,
-  makeSelectPrices,
   makeSelectErrors,
 } from 'containers/WalletHOC/selectors';
+import {
+  makeSelectSupportedAssets,
+  makeSelectPrices,
+} from 'containers/HubiiApiHoc/selectors';
 import {
   makeSelectLedgerHoc,
 } from 'containers/LedgerHoc/selectors';

@@ -9,11 +9,14 @@ import { getBreakdown } from 'utils/wallet';
 
 import { deleteWallet, showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHOC/actions';
 import {
-  makeSelectSupportedAssets,
-  makeSelectTotalBalances,
   makeSelectWalletsWithInfo,
-  makeSelectPrices,
+  makeSelectTotalBalances,
 } from 'containers/WalletHOC/selectors';
+
+import {
+  makeSelectSupportedAssets,
+  makeSelectPrices,
+} from 'containers/HubiiApiHoc/selectors';
 
 import {
   makeSelectLedgerHoc,

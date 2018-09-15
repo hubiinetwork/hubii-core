@@ -2,15 +2,18 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { fromJS } from 'immutable';
 import {
-  pricesLoadedMock,
   walletsWithInfoMock,
   walletsMock,
+} from 'containers/WalletHOC/tests/mocks/selectors';
+
+import {
+  pricesLoadedMock,
   supportedAssetsLoadedMock,
   supportedAssetsLoadingMock,
   supportedAssetsErrorMock,
   pricesLoadingMock,
   pricesErrorMock,
-} from 'containers/WalletHOC/tests/mocks/selectors';
+} from 'containers/HubiiApiHoc/tests/mocks/selectors';
 
 import {
   ledgerHocConnectedMock,

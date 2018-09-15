@@ -25,7 +25,6 @@ import {
 import {
   decryptWallet,
   hideDecryptWalletModal,
-  initApiCalls,
 } from './actions';
 
 import {
@@ -64,7 +63,6 @@ export function getComponentHOC(Component) {
     }
 
     componentDidMount() {
-      this.props.initApiCalls();
       this.props.notify('info', 'Hi, thanks for trying this alpha build of hubii core. In this build, you can interact with the Ethereum testnet Ropsten. Stay tuned for mainnet support, which will be enabled very soon', 18);
     }
 
@@ -132,7 +130,6 @@ export function getComponentHOC(Component) {
     currentWallet: PropTypes.object.isRequired,
     currentWalletWithInfo: PropTypes.object.isRequired,
     notify: PropTypes.func.isRequired,
-    initApiCalls: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
     loading: PropTypes.object,
@@ -145,7 +142,6 @@ export function mapDispatchToProps(dispatch) {
     notify: (...args) => dispatch(notify(...args)),
     hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
     decryptWallet: (...args) => dispatch(decryptWallet(...args)),
-    initApiCalls: (...args) => dispatch(initApiCalls(...args)),
   };
 }
 

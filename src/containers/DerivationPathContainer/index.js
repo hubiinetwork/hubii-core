@@ -15,7 +15,7 @@ import HWPromptContainer from 'containers/HWPromptContainer';
 
 import {
   loadWalletBalances,
-} from 'containers/WalletHOC/actions';
+} from 'containers/HubiiApiHoc/actions';
 
 import {
   fetchLedgerAddresses,
@@ -26,9 +26,8 @@ import {
 } from 'containers/TrezorHoc/actions';
 
 import {
-  makeSelectErrors,
   makeSelectBalances,
-} from 'containers/WalletHOC/selectors';
+} from 'containers/HubiiApiHoc/selectors';
 
 import {
   makeSelectLedgerHoc,
@@ -205,7 +204,6 @@ DerivationPathContainer.propTypes = {
 const mapStateToProps = createStructuredSelector({
   ledgerNanoSInfo: makeSelectLedgerHoc(),
   trezorInfo: makeSelectTrezorHoc(),
-  errors: makeSelectErrors(),
   balances: makeSelectBalances(),
 });
 

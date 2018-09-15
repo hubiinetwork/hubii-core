@@ -18,25 +18,12 @@ import {
   SHOW_DECRYPT_WALLET_MODAL,
   HIDE_DECRYPT_WALLET_MODAL,
   SET_CURRENT_WALLET,
-  LOAD_WALLET_BALANCES,
-  LOAD_WALLET_BALANCES_SUCCESS,
-  LOAD_WALLET_BALANCES_ERROR,
-  LOAD_SUPPORTED_TOKENS,
-  LOAD_SUPPORTED_TOKENS_SUCCESS,
-  LOAD_SUPPORTED_TOKENS_ERROR,
-  LOAD_PRICES,
-  LOAD_PRICES_SUCCESS,
-  LOAD_PRICES_ERROR,
-  LOAD_TRANSACTIONS,
-  LOAD_TRANSACTIONS_SUCCESS,
-  LOAD_TRANSACTIONS_ERROR,
   TRANSFER,
   TRANSFER_ETHER,
   TRANSFER_ERC20,
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
   DELETE_WALLET,
-  INIT_API_CALLS,
   LOAD_BLOCK_HEIGHT,
   LOAD_BLOCK_HEIGHT_SUCCESS,
   LOAD_BLOCK_HEIGHT_ERROR,
@@ -138,99 +125,6 @@ export function setCurrentWallet(address) {
   return {
     type: SET_CURRENT_WALLET,
     address,
-  };
-}
-
-export function initApiCalls() {
-  return {
-    type: INIT_API_CALLS,
-  };
-}
-
-export function loadWalletBalances(address, noPoll) {
-  return {
-    type: LOAD_WALLET_BALANCES,
-    address,
-    noPoll,
-  };
-}
-
-export function loadWalletBalancesSuccess(address, assets) {
-  return {
-    type: LOAD_WALLET_BALANCES_SUCCESS,
-    address,
-    assets,
-  };
-}
-
-export function loadWalletBalancesError(address, error) {
-  return {
-    type: LOAD_WALLET_BALANCES_ERROR,
-    address,
-    error,
-  };
-}
-
-export function loadSupportedTokens() {
-  return {
-    type: LOAD_SUPPORTED_TOKENS,
-  };
-}
-
-export function loadSupportedTokensSuccess(tokens) {
-  return {
-    type: LOAD_SUPPORTED_TOKENS_SUCCESS,
-    assets: [...tokens, { currency: 'ETH', symbol: 'ETH', decimals: 18, color: '5C78E4' }],
-  };
-}
-
-export function loadSupportedTokensError(error) {
-  return {
-    type: LOAD_SUPPORTED_TOKENS_ERROR,
-    error,
-  };
-}
-
-export function loadPrices() {
-  return {
-    type: LOAD_PRICES,
-  };
-}
-
-export function loadPricesSuccess(prices) {
-  return {
-    type: LOAD_PRICES_SUCCESS,
-    prices: [...prices, { currency: 'ETH', eth: 1, btc: 0.01, usd: 412 }],
-  };
-}
-
-export function loadPricesError(error) {
-  return {
-    type: LOAD_PRICES_ERROR,
-    error,
-  };
-}
-
-export function loadTransactions(address) {
-  return {
-    type: LOAD_TRANSACTIONS,
-    address,
-  };
-}
-
-export function loadTransactionsSuccess(address, transactions) {
-  return {
-    type: LOAD_TRANSACTIONS_SUCCESS,
-    transactions,
-    address,
-  };
-}
-
-export function loadTransactionsError(address, error) {
-  return {
-    type: LOAD_TRANSACTIONS_ERROR,
-    address,
-    error,
   };
 }
 

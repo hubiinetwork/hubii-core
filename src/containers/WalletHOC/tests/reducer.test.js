@@ -7,11 +7,6 @@ import {
   createWalletSuccess,
   decryptWallet,
   decryptWalletSuccess,
-  loadWalletBalancesSuccess,
-  loadWalletBalancesError,
-  loadTransactionsError,
-  loadTransactionsSuccess,
-  loadSupportedTokens,
   showDecryptWalletModal,
   hideDecryptWalletModal,
   setCurrentWallet,
@@ -19,20 +14,7 @@ import {
   transfer,
   deleteWallet,
   addNewWallet,
-  loadSupportedTokensSuccess,
-  loadSupportedTokensError,
-  loadPricesSuccess,
-  loadPricesError,
 } from '../actions';
-
-import {
-  supportedAssetsLoadedMock,
-  pricesLoadedMock,
-} from './mocks/selectors';
-
-import {
-  supportedTokensMock,
-} from './mocks';
 
 const wallet = {
   name: 'testwallet',
@@ -62,19 +44,6 @@ describe('walletHocReducer', () => {
         address: '',
       },
       currentDecryptionCallback: null,
-      pendingTransactions: [],
-      supportedAssets: {
-        loading: true,
-        error: null,
-        assets: [],
-      },
-      prices: {
-        loading: true,
-        error: null,
-        assets: [],
-      },
-      transactions: {},
-      balances: {},
       blockHeight: {
         loading: true,
         error: null,
@@ -170,121 +139,6 @@ describe('walletHocReducer', () => {
         .setIn(['loading', 'decryptingWallet'], true)
         .set('progress', 0);
       expect(walletHocReducer(state, decryptWallet())).toEqual(expected);
-    });
-  });
-
-  describe('balances', () => {
-    it('load wallet balances success', () => {
-      const address = '0x00';
-      const balances = [];
-      const expected = stateWithWallet
-        .setIn(['balances', address, 'loading'], false)
-        .setIn(['balances', address, 'error'], null)
-        .setIn(['balances', address, 'assets'], fromJS(balances));
-
-      expect(walletHocReducer(stateWithWallet, loadWalletBalancesSuccess(address, balances))).toEqual(expected);
-    });
-    it('should default to empty array if token property is null', () => {
-      const address = '0x00';
-      const balances = null;
-      const expected = stateWithWallet
-        .setIn(['balances', address, 'loading'], false)
-        .setIn(['balances', address, 'error'], null)
-        .setIn(['balances', address, 'assets'], fromJS([]));
-
-      expect(walletHocReducer(stateWithWallet, loadWalletBalancesSuccess(address, balances))).toEqual(expected);
-    });
-    it('load wallet balances error', () => {
-      const address = '0x00';
-      const error = new Error();
-      const expected = stateWithWallet
-        .setIn(['balances', address, 'loading'], false)
-        .setIn(['balances', address, 'error'], error);
-
-      expect(walletHocReducer(stateWithWallet, loadWalletBalancesError(address, error))).toEqual(expected);
-    });
-  });
-
-  describe('transactions', () => {
-    it('load transactions success', () => {
-      const address = '0x00';
-      const transactions = ['12', '21'];
-      const expected = stateWithWallet
-        .setIn(['transactions', address, 'loading'], false)
-        .setIn(['transactions', address, 'error'], null)
-        .setIn(['transactions', address, 'transactions'], fromJS(transactions));
-
-      expect(walletHocReducer(stateWithWallet, loadTransactionsSuccess(address, transactions))).toEqual(expected);
-    });
-
-    it('should default to empty array if token property is null', () => {
-      const address = '0x00';
-      const transactions = null;
-      const expected = stateWithWallet
-        .setIn(['transactions', address, 'loading'], false)
-        .setIn(['transactions', address, 'error'], null)
-        .setIn(['transactions', address, 'transactions'], fromJS([]));
-
-      expect(walletHocReducer(stateWithWallet, loadTransactionsSuccess(address, transactions))).toEqual(expected);
-    });
-
-    it('should correctly handle error', () => {
-      const address = '0x00';
-      const error = new Error();
-      const expected = stateWithWallet
-        .setIn(['transactions', address, 'loading'], false)
-        .setIn(['transactions', address, 'error'], error)
-        .setIn(['transactions', address, 'transactions'], fromJS([]));
-
-      expect(walletHocReducer(stateWithWallet, loadTransactionsError(address, error))).toEqual(expected);
-    });
-  });
-
-  describe('supported tokens', () => {
-    it('handle LOAD_SUPPORTED_TOKENS correctly', () => {
-      const expected = stateWithWallet
-        .setIn(['supportedAssets', 'loading'], true);
-
-      expect(walletHocReducer(stateWithWallet, loadSupportedTokens())).toEqual(expected);
-    });
-
-    it('handle LOAD_SUPPORTED_TOKENS_SUCCESS correctly', () => {
-      const expected = stateWithWallet
-        .setIn(['supportedAssets', 'loading'], false)
-        .setIn(['supportedAssets', 'error'], null)
-        .setIn(['supportedAssets', 'assets'], fromJS(supportedAssetsLoadedMock.get('assets')));
-
-      expect(walletHocReducer(stateWithWallet, loadSupportedTokensSuccess(supportedTokensMock))).toEqual(expected);
-    });
-
-    it('handle LOAD_SUPPORTED_TOKENS_ERROR correctly', () => {
-      const error = 'error';
-      const expected = stateWithWallet
-        .setIn(['supportedAssets', 'loading'], false)
-        .setIn(['supportedAssets', 'error'], error);
-
-      expect(walletHocReducer(stateWithWallet, loadSupportedTokensError(error))).toEqual(expected);
-    });
-  });
-
-  describe('prices', () => {
-    it('handle LOAD_PRICES_SUCCESS correctly', () => {
-      const prices = pricesLoadedMock.get('assets').delete(pricesLoadedMock.get('assets').size - 1);
-      const expected = stateWithWallet
-        .setIn(['prices', 'loading'], false)
-        .setIn(['prices', 'error'], null)
-        .setIn(['prices', 'assets'], fromJS(pricesLoadedMock.get('assets')));
-
-      expect(walletHocReducer(stateWithWallet, loadPricesSuccess(prices))).toEqual(expected);
-    });
-
-    it('handle LOAD_PRICES_ERROR correctly', () => {
-      const error = 'error';
-      const expected = stateWithWallet
-        .setIn(['prices', 'loading'], true)
-        .setIn(['prices', 'error'], error);
-
-      expect(walletHocReducer(stateWithWallet, loadPricesError(error))).toEqual(expected);
     });
   });
 

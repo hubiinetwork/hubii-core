@@ -11,14 +11,6 @@ import abiDecoder from 'abi-decoder';
 import { CHANGE_NETWORK } from 'containers/App/constants';
 
 import {
-  LOAD_WALLET_BALANCES,
-  LOAD_WALLET_BALANCES_SUCCESS,
-  LOAD_WALLET_BALANCES_ERROR,
-  LOAD_SUPPORTED_TOKENS,
-  LOAD_SUPPORTED_TOKENS_SUCCESS,
-  LOAD_SUPPORTED_TOKENS_ERROR,
-  LOAD_PRICES_SUCCESS,
-  LOAD_PRICES_ERROR,
   CREATE_WALLET_FROM_MNEMONIC,
   CREATE_WALLET_FROM_PRIVATE_KEY,
   CREATE_WALLET_SUCCESS,
@@ -34,8 +26,6 @@ import {
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
   DELETE_WALLET,
-  LOAD_TRANSACTIONS_SUCCESS,
-  LOAD_TRANSACTIONS_ERROR,
   LOAD_BLOCK_HEIGHT_ERROR,
   LOAD_BLOCK_HEIGHT_SUCCESS,
 } from './constants';
@@ -59,19 +49,6 @@ export const initialState = fromJS({
   currentWallet: {
     address: '',
   },
-  pendingTransactions: [],
-  supportedAssets: {
-    loading: true,
-    error: null,
-    assets: [],
-  },
-  prices: {
-    loading: true,
-    error: null,
-    assets: [],
-  },
-  transactions: {},
-  balances: {},
   currentDecryptionCallback: null,
   blockHeight: {
     loading: true,
@@ -117,49 +94,6 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['loading', 'decryptingWallet'], false)
         .setIn(['errors', 'decryptingWalletError'], action.error);
-    case LOAD_WALLET_BALANCES:
-      return state
-        .setIn(['balances', action.address], state.getIn(['balances', action.address]) || fromJS({ loading: true }));
-    case LOAD_WALLET_BALANCES_SUCCESS:
-      return state
-        .setIn(['balances', action.address, 'loading'], false)
-        .setIn(['balances', action.address, 'error'], null)
-        .setIn(['balances', action.address, 'assets'], fromJS(action.assets || []));
-    case LOAD_WALLET_BALANCES_ERROR:
-      return state
-        .setIn(['balances', action.address, 'loading'], false)
-        .setIn(['balances', action.address, 'error'], action.error);
-    case LOAD_SUPPORTED_TOKENS:
-      return state
-        .setIn(['supportedAssets', 'loading'], true)
-        .setIn(['supportedAssets', 'error'], null);
-    case LOAD_SUPPORTED_TOKENS_SUCCESS:
-      return state
-        .setIn(['supportedAssets', 'loading'], false)
-        .setIn(['supportedAssets', 'error'], null)
-        .setIn(['supportedAssets', 'assets'], fromJS(action.assets));
-    case LOAD_SUPPORTED_TOKENS_ERROR:
-      return state
-        .setIn(['supportedAssets', 'loading'], false)
-        .setIn(['supportedAssets', 'error'], action.error);
-    case LOAD_PRICES_SUCCESS:
-      return state
-        .setIn(['prices', 'loading'], false)
-        .setIn(['prices', 'error'], null)
-        .setIn(['prices', 'assets'], fromJS(action.prices));
-    case LOAD_PRICES_ERROR:
-      return state
-        .setIn(['prices', 'error'], action.error);
-    case LOAD_TRANSACTIONS_SUCCESS:
-      return state
-        .setIn(['transactions', action.address, 'loading'], false)
-        .setIn(['transactions', action.address, 'error'], null)
-        .setIn(['transactions', action.address, 'transactions'], fromJS(action.transactions || []));
-    case LOAD_TRANSACTIONS_ERROR:
-      return state
-        .setIn(['transactions', action.address, 'loading'], false)
-        .setIn(['transactions', action.address, 'error'], action.error)
-        .setIn(['transactions', action.address, 'transactions'], fromJS([]));
     case SHOW_DECRYPT_WALLET_MODAL:
       return state
         .setIn(['currentWallet', 'showDecryptModal'], true)
@@ -182,8 +116,7 @@ function walletHocReducer(state = initialState, action) {
       return state
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], null)
-        .setIn(['currentWallet', 'lastTransaction'], fromJS(action.transaction))
-        .updateIn(['pendingTransactions'], (list) => list.unshift(fromJS(action.transaction)));
+        .setIn(['currentWallet', 'lastTransaction'], fromJS(action.transaction));
     case TRANSFER_ERROR:
       return state
         .setIn(['currentWallet', 'transfering'], false)
@@ -207,8 +140,7 @@ function walletHocReducer(state = initialState, action) {
         .set('supportedAssets', initialState.get('supportedAssets'))
         .set('transactions', initialState.get('transactions'))
         .set('balances', initialState.get('balances'))
-        .set('blockHeight', initialState.get('blockHeight'))
-        .set('pendingTransactions', initialState.get('pendingTransactions'));
+        .set('blockHeight', initialState.get('blockHeight'));
     default:
       return state;
   }

@@ -14,12 +14,24 @@ import SectionHeading from 'components/ui/SectionHeading';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 
 import {
-  makeSelectSupportedAssets,
   makeSelectCurrentWalletWithInfo,
   makeSelectBlockHeight,
 } from 'containers/WalletHOC/selectors';
 
-import { StyledTransaction, TransactionsWrapper, BreakdownWrapper, OuterWrapper, StyledPagination, StyledSpin, LoadingWrapper, NoTxPlaceholder } from './style';
+import {
+  makeSelectSupportedAssets,
+} from 'containers/HubiiApiHoc/selectors';
+
+import {
+  StyledTransaction,
+  TransactionsWrapper,
+  BreakdownWrapper,
+  OuterWrapper,
+  StyledPagination,
+  StyledSpin,
+  LoadingWrapper,
+  NoTxPlaceholder,
+} from './style';
 
 export class WalletsTransactions extends React.Component {
   constructor(props) {

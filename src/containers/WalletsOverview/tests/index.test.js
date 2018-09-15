@@ -8,11 +8,14 @@ import {
   totalBalancesLoadedMock,
   totalBalancesLoadingMock,
   totalBalancesErrorMock,
+} from 'containers/WalletHOC/tests/mocks/selectors';
+
+import {
   supportedAssetsLoadedMock,
   supportedAssetsLoadingMock,
   supportedAssetsErrorMock,
   pricesLoadedMock,
-} from 'containers/WalletHOC/tests/mocks/selectors';
+} from 'containers/HubiiApiHoc/tests/mocks/selectors';
 
 import { WalletsOverview, mapDispatchToProps } from '../index';
 
