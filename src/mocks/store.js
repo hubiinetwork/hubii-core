@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 
 import {
   walletHocMock,
-} from 'containers/WalletHOC/tests/mocks/selectors';
+} from 'containers/WalletHoc/tests/mocks/selectors';
 import {
   hubiiApiHocMock,
 } from 'containers/HubiiApiHoc/tests/mocks/selectors';

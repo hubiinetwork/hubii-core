@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { walletsWithInfoMock } from 'containers/WalletHOC/tests/mocks/selectors';
+import { walletsWithInfoMock } from 'containers/WalletHoc/tests/mocks/selectors';
 
 import { WalletDetails, mapDispatchToProps } from '../index';
 

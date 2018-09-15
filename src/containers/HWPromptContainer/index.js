@@ -15,7 +15,7 @@ import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
 import HWPrompt from 'components/HWPrompt';
 import {
   makeSelectCurrentWalletWithInfo,
-} from 'containers/WalletHOC/selectors';
+} from 'containers/WalletHoc/selectors';
 
 
 export class HWPromptContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function

@@ -4,7 +4,7 @@ import { fromJS } from 'immutable';
 import {
   walletsWithInfoMock,
   walletsMock,
-} from 'containers/WalletHOC/tests/mocks/selectors';
+} from 'containers/WalletHoc/tests/mocks/selectors';
 
 import {
   pricesLoadedMock,
@@ -25,7 +25,7 @@ import {
   trezorHocConfOnDeviceMock,
 } from 'containers/TrezorHoc/tests/mocks/selectors';
 
-import { contactsMock } from 'containers/WalletHOC/tests/mocks';
+import { contactsMock } from 'containers/WalletHoc/tests/mocks';
 
 import { WalletTransfer, mapDispatchToProps } from '../index';
 

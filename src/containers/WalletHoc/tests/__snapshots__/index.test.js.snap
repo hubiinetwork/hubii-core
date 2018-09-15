@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`WalletHOC shallow mount #Hoc rendering renders correctly when loading is false 1`] = `
+exports[`WalletHoc shallow mount #Hoc rendering renders correctly when loading is false 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
@@ -803,7 +803,7 @@ ShallowWrapper {
 }
 `;
 
-exports[`WalletHOC shallow mount #Hoc rendering renders correctly when loading is true 1`] = `
+exports[`WalletHoc shallow mount #Hoc rendering renders correctly when loading is true 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
@@ -1045,7 +1045,7 @@ ShallowWrapper {
                               value={null}
                     />
           </Form.style__FormItem>
-          <WalletHOC.style__StyledSpin
+          <WalletHoc.style__StyledSpin
                     delay={0}
                     size="large"
           />
@@ -1173,7 +1173,7 @@ ShallowWrapper {
                             value={null}
               />
 </Form.style__FormItem>,
-            <WalletHOC.style__StyledSpin
+            <WalletHoc.style__StyledSpin
               delay={0}
               size="large"
 />,
@@ -1380,7 +1380,7 @@ ShallowWrapper {
                                     value={null}
                         />
             </Form.style__FormItem>
-            <WalletHOC.style__StyledSpin
+            <WalletHoc.style__StyledSpin
                         delay={0}
                         size="large"
             />
@@ -1508,7 +1508,7 @@ ShallowWrapper {
                                 value={null}
                 />
 </Form.style__FormItem>,
-              <WalletHOC.style__StyledSpin
+              <WalletHoc.style__StyledSpin
                 delay={0}
                 size="large"
 />,

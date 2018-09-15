@@ -29,9 +29,9 @@ import {
 
 import {
   StyledSpin,
-} from './WalletHOC.style';
+} from './WalletHoc.style';
 
-export default function WalletHOC(Component) {
+export default function WalletHoc(Component) {
   const HOC = getComponentHOC(Component);
 
   const mapStateToProps = createStructuredSelector({

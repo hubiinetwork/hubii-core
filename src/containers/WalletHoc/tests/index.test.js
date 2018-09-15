@@ -1,10 +1,10 @@
 import React from 'react';
 import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
-import WalletHOC, { getComponentHOC, mapDispatchToProps } from '../index';
+import WalletHoc, { getComponentHOC, mapDispatchToProps } from '../index';
 import { walletsWithInfoMock, currentWalletSoftwareMock } from './mocks/selectors';
 
-describe('WalletHOC', () => {
+describe('WalletHoc', () => {
   const props = {
     currentWallet: currentWalletSoftwareMock,
     currentWalletWithInfo: walletsWithInfoMock.get(0),
@@ -20,9 +20,9 @@ describe('WalletHOC', () => {
     jest.clearAllMocks();
   });
   describe('shallow mount', () => {
-    describe('#WalletHOC', () => {
+    describe('#WalletHoc', () => {
       it('should return composed component', () => {
-        const hoc = WalletHOC('div');
+        const hoc = WalletHoc('div');
         expect(hoc.WrappedComponent).toBeDefined();
       });
     });

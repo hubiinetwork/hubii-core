@@ -133,7 +133,7 @@ The architecture of hubii core relies on the library [reselect](https://github.c
 
 One thing to be careful about when composing a complex selector is that you considered all possible structures input selectors can take, for example a selector could either be 'loaded', 'loading', or 'errored'. Forgetting to check for an uncommmon state like 'errored' can be easy, and cause catastrophic failure for the user.
 
-The best way to lower chances of this kind of failure occuring is to test your selector/component with every variation of its possible inputs. To make this as frictionless as possible, please maintain a `mocks/selectors.js` file in a container's `tests` folder, that contains samples of every variation of structure a selector could return (see `containers/WalletHOC/tests/mocks/selectors.js` for an example).
+The best way to lower chances of this kind of failure occuring is to test your selector/component with every variation of its possible inputs. To make this as frictionless as possible, please maintain a `mocks/selectors.js` file in a container's `tests` folder, that contains samples of every variation of structure a selector could return (see `containers/WalletHoc/tests/mocks/selectors.js` for an example).
 
 Then when you or another developer wants to reach for a selector, when they're writing their tests they can be confident that they know exactly which inputs they need to test, and have the ability to effortlessly import the required mocked state.
 

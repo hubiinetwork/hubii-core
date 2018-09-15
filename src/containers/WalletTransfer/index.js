@@ -11,7 +11,7 @@ import {
   makeSelectCurrentWallet,
   makeSelectCurrentWalletWithInfo,
   makeSelectErrors,
-} from 'containers/WalletHOC/selectors';
+} from 'containers/WalletHoc/selectors';
 import {
   makeSelectSupportedAssets,
   makeSelectPrices,
@@ -28,7 +28,7 @@ import {
 import {
   createContact,
 } from 'containers/ContactBook/actions';
-import { transfer } from 'containers/WalletHOC/actions';
+import { transfer } from 'containers/WalletHoc/actions';
 import LoadingError from '../../components/LoadingError';
 
 export class WalletTransfer extends React.PureComponent {

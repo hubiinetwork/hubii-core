@@ -7,7 +7,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import contactsReducer from 'containers/ContactBook/reducer';
-import walletHocReducer from 'containers/WalletHOC/reducer';
+import walletHocReducer from 'containers/WalletHoc/reducer';
 import hubiiApiHocReducer from 'containers/HubiiApiHoc/reducer';
 import ethOperationsHocReducer from 'containers/EthOperationsHoc/reducer';
 

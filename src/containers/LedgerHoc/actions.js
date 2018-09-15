@@ -4,7 +4,7 @@
  *
  */
 
-import { CREATE_WALLET_SUCCESS } from 'containers/WalletHOC/constants';
+import { CREATE_WALLET_SUCCESS } from 'containers/WalletHoc/constants';
 import getFriendlyError from 'utils/friendlyErrors';
 
 import {

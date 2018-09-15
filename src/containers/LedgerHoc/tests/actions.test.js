@@ -2,7 +2,7 @@ import getFriendlyError from 'utils/friendlyErrors';
 
 import {
   CREATE_WALLET_SUCCESS,
-} from 'containers/WalletHOC/constants';
+} from 'containers/WalletHoc/constants';
 
 import {
   ledgerEthAppConnected,

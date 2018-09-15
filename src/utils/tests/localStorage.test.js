@@ -1,6 +1,6 @@
 
 import { fromJS } from 'immutable';
-import { initialState as walletHocInitialState } from 'containers/WalletHOC/reducer';
+import { initialState as walletHocInitialState } from 'containers/WalletHoc/reducer';
 import { initialState as contactsInitialState } from 'containers/ContactBook/reducer';
 import { loadState, saveState, filterPersistedState } from '../localStorage';
 

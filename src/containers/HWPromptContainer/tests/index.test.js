@@ -8,7 +8,7 @@ import {
 import {
   walletsWithInfoEmptyMock,
   walletsWithInfoMock,
-} from 'containers/WalletHOC/tests/mocks/selectors';
+} from 'containers/WalletHoc/tests/mocks/selectors';
 
 import {
   ledgerHocConnectedMock,

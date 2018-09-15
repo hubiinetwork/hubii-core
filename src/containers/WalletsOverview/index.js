@@ -7,11 +7,11 @@ import { Row, Col } from 'antd';
 
 import { getBreakdown } from 'utils/wallet';
 
-import { deleteWallet, showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHOC/actions';
+import { deleteWallet, showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHoc/actions';
 import {
   makeSelectWalletsWithInfo,
   makeSelectTotalBalances,
-} from 'containers/WalletHOC/selectors';
+} from 'containers/WalletHoc/selectors';
 
 import {
   makeSelectSupportedAssets,
