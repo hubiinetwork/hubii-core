@@ -90,11 +90,9 @@ import {
   decryptWalletSuccess,
   decryptWalletFailed,
   showDecryptWalletModal,
-  loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
   loadSupportedTokensSuccess,
-  loadTransactions as loadTransactionsAction,
   loadSupportedTokensError,
   loadPricesSuccess,
   loadPricesError,
@@ -200,8 +198,6 @@ describe('CREATE_WALLET_SUCCESS', () => {
     return expectSaga(hookNewWalletCreated, { newWallet })
       .withReducer(withReducer, state)
       .put(addNewWalletAction(newWallet))
-      .put(loadWalletBalances(newWallet.address))
-      .put(loadTransactionsAction(newWallet.address))
       .run({ silenceTimeout: true })
       .then((result) => {
         const wallets = result.storeState.getIn(['walletHoc', 'wallets']);

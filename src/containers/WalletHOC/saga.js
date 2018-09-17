@@ -48,14 +48,12 @@ import {
   createWalletSuccess,
   decryptWalletFailed,
   decryptWalletSuccess,
-  loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
   loadSupportedTokensSuccess,
   loadSupportedTokensError,
   loadPricesSuccess,
   loadPricesError,
-  loadTransactions as loadTransactionsAction,
   loadTransactionsSuccess,
   loadTransactionsError,
   showDecryptWalletModal,
@@ -308,8 +306,6 @@ export function* hookNewWalletCreated({ newWallet }) {
     return yield put(notify('error', `Wallet ${newWallet.name} already exists`));
   }
   yield put(addNewWallet(newWallet));
-  yield put(loadWalletBalances(newWallet.address));
-  yield put(loadTransactionsAction(newWallet.address));
   return yield put(notify('success', `Successfully created ${newWallet.name}`));
 }
 
