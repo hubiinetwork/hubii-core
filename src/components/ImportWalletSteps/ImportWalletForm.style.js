@@ -49,34 +49,12 @@ export const ButtonDiv = styled.div`
 `;
 
 export const StyledButton = styled(Button)`
-  background-color: ${({ disabled: white }) =>
-    white && 'transparent !important'};
-  font-size: 0.86rem;
-  font-weight: 400;
-  border-width: 0.14rem;
-  height: 2.86rem;
   width: 11.57rem;
-  border: ${({ disabled: white, theme }) =>
-    white && `0.14rem solid ${theme.palette.secondary4} !important`};
-  min-width: ${({ current: width }) => (width === 0 ? '18.57rem' : '13.57rem')};
-  color: ${({ disabled: white, theme }) =>
-    white
-      ? `${theme.palette.secondary4} !important`
-      : `${theme.palette.light} !important`};
-  &:hover {
-    background-color: ${({ disabled: white }) =>
-      white && 'transparent !important'};
-    border: ${({ disabled: white, theme }) =>
-      white && `0.14rem solid ${theme.palette.secondary4} !important`};
-  }
 `;
 
 export const StyledBackButton = styled(Button)`
-  height: 2.86rem;
   width: 5rem;
-  margin-right: 0.57rem;
-  border-radius: 0.29rem;
-  border: 0.07rem solid ${({ theme }) => theme.palette.light};
+  margin-right: 1.57rem;
 `;
 
 export const StyledSpan = styled.span`

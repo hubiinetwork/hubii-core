@@ -25,7 +25,7 @@ export default class ExportPrivateInfo extends React.PureComponent {
 
   showNotification(type) {
     const success = true;
-    const message = `${type} copied to clipboard.`;
+    const message = `${type} copied to clipboard`;
     Notification(success, message);
   }
 
@@ -44,8 +44,7 @@ export default class ExportPrivateInfo extends React.PureComponent {
                     Mnemonic
                     <CopyToClipboard text={mnemonic} >
                       <StyledIcon
-                        type="primary"
-                        shape="circle"
+                        type="icon"
                         icon="copy"
                         size={'small'}
                         onClick={() => this.showNotification('Mnemonic')}
@@ -67,8 +66,7 @@ export default class ExportPrivateInfo extends React.PureComponent {
               Private key
             <CopyToClipboard text={privateKey} >
               <StyledIcon
-                type="primary"
-                shape="circle"
+                type="icon"
                 icon="copy"
                 size={'small'}
                 onClick={() => this.showNotification('Private key')}

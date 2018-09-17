@@ -159,10 +159,10 @@ class ImportWalletPrivateKeyForm extends React.Component {
               :
               (
                 <ButtonDiv>
-                  <StyledBackButton type={'primary'} onClick={this.props.handleBack}>
+                  <StyledBackButton type="default" onClick={this.props.handleBack}>
                     <StyledSpan>Back</StyledSpan>
                   </StyledBackButton>
-                  <StyledButton type={'primary'} htmlType="submit">
+                  <StyledButton type="primary" htmlType="submit">
                     <StyledSpan>Import wallet</StyledSpan>
                   </StyledButton>
                 </ButtonDiv>

@@ -38,11 +38,11 @@ export default class AddRestoreWalletModal extends React.Component {
             <TitleDiv>
               Would you like to import an existing wallet or create a new one?<br />
             </TitleDiv>
-            <ButtonDiv onClick={() => this.switchModals('add')} type="primary">
+            <ButtonDiv onClick={() => this.switchModals('add')}>
               <Icon type="plus" />
               <TextWhite>Create a new wallet</TextWhite>
             </ButtonDiv>
-            <ButtonDiv onClick={() => this.switchModals('import')} type="primary">
+            <ButtonDiv onClick={() => this.switchModals('import')}>
               <Icon type="download" />
               <TextWhite>Import an existing wallet</TextWhite>
             </ButtonDiv>

@@ -14,7 +14,6 @@ export const TabsLayout = styled(Layout)`
 
 export const StyledButton = styled(Button)`
   margin-left: auto;
-  border-width: 0.14rem;
   padding: 0.5rem 1rem;
 `;
 
