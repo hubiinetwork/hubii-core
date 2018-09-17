@@ -81,6 +81,7 @@ import {
   LEDGER_ERROR,
   CREATE_WALLET_SUCCESS,
   INIT_API_CALLS,
+  ADD_NEW_WALLET,
 } from '../constants';
 
 import {
@@ -317,9 +318,8 @@ describe('network API calls', () => {
         .next() // network selector
         .next(currentNetworkMock) // wallets selector
         .next(wallets).all(allSagas)
-        .next([mockTask]).take(CHANGE_NETWORK)
+        .next([mockTask]).take([CHANGE_NETWORK, ADD_NEW_WALLET])
         .next().cancel(mockTask)
-        .next() // notify
         .next() // network selector
         .next(currentNetworkMock) // wallets selector
         .next(wallets).all(allSagas);

@@ -39,6 +39,7 @@ import {
   TRANSFER_ERC20,
   CREATE_WALLET_FROM_PRIVATE_KEY,
   INIT_API_CALLS,
+  ADD_NEW_WALLET,
 } from './constants';
 
 import {
@@ -377,10 +378,9 @@ export function* networkApiOrcestrator() {
         fork(loadPrices, network.walletApiEndpoint),
       ]);
 
-      // on network change kill all forks and restart
-      yield take(CHANGE_NETWORK);
+      // on network change or new wallet kill all forks and restart
+      yield take([CHANGE_NETWORK, ADD_NEW_WALLET]);
       yield cancel(...allTasks);
-      yield put(notify('success', 'Network changed'));
     }
   } catch (e) {
     // errors in the forked processes themselves should be caught
