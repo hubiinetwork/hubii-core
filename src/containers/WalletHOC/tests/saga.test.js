@@ -81,6 +81,7 @@ import {
   LEDGER_ERROR,
   CREATE_WALLET_SUCCESS,
   INIT_API_CALLS,
+  ADD_NEW_WALLET,
 } from '../constants';
 
 import {
@@ -89,11 +90,9 @@ import {
   decryptWalletSuccess,
   decryptWalletFailed,
   showDecryptWalletModal,
-  loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
   loadSupportedTokensSuccess,
-  loadTransactions as loadTransactionsAction,
   loadSupportedTokensError,
   loadPricesSuccess,
   loadPricesError,
@@ -199,8 +198,6 @@ describe('CREATE_WALLET_SUCCESS', () => {
     return expectSaga(hookNewWalletCreated, { newWallet })
       .withReducer(withReducer, state)
       .put(addNewWalletAction(newWallet))
-      .put(loadWalletBalances(newWallet.address))
-      .put(loadTransactionsAction(newWallet.address))
       .run({ silenceTimeout: true })
       .then((result) => {
         const wallets = result.storeState.getIn(['walletHoc', 'wallets']);
@@ -317,9 +314,8 @@ describe('network API calls', () => {
         .next() // network selector
         .next(currentNetworkMock) // wallets selector
         .next(wallets).all(allSagas)
-        .next([mockTask]).take(CHANGE_NETWORK)
+        .next([mockTask]).take([CHANGE_NETWORK, ADD_NEW_WALLET])
         .next().cancel(mockTask)
-        .next() // notify
         .next() // network selector
         .next(currentNetworkMock) // wallets selector
         .next(wallets).all(allSagas);

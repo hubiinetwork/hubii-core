@@ -39,6 +39,7 @@ import {
   TRANSFER_ERC20,
   CREATE_WALLET_FROM_PRIVATE_KEY,
   INIT_API_CALLS,
+  ADD_NEW_WALLET,
 } from './constants';
 
 import {
@@ -47,14 +48,12 @@ import {
   createWalletSuccess,
   decryptWalletFailed,
   decryptWalletSuccess,
-  loadWalletBalances,
   loadWalletBalancesSuccess,
   loadWalletBalancesError,
   loadSupportedTokensSuccess,
   loadSupportedTokensError,
   loadPricesSuccess,
   loadPricesError,
-  loadTransactions as loadTransactionsAction,
   loadTransactionsSuccess,
   loadTransactionsError,
   showDecryptWalletModal,
@@ -307,8 +306,6 @@ export function* hookNewWalletCreated({ newWallet }) {
     return yield put(notify('error', `Wallet ${newWallet.name} already exists`));
   }
   yield put(addNewWallet(newWallet));
-  yield put(loadWalletBalances(newWallet.address));
-  yield put(loadTransactionsAction(newWallet.address));
   return yield put(notify('success', `Successfully created ${newWallet.name}`));
 }
 
@@ -377,10 +374,9 @@ export function* networkApiOrcestrator() {
         fork(loadPrices, network.walletApiEndpoint),
       ]);
 
-      // on network change kill all forks and restart
-      yield take(CHANGE_NETWORK);
+      // on network change or new wallet kill all forks and restart
+      yield take([CHANGE_NETWORK, ADD_NEW_WALLET]);
       yield cancel(...allTasks);
-      yield put(notify('success', 'Network changed'));
     }
   } catch (e) {
     // errors in the forked processes themselves should be caught
