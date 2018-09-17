@@ -24,12 +24,11 @@ import {
   makeSelectBalances,
 } from 'containers/WalletHOC/selectors';
 
-
+import HWPrompt from 'components/HWPrompt';
 import DerivationPath from 'components/ImportWalletSteps/DerivationPath';
 
 import { StyledButton, StyledSpan, ButtonDiv } from './BackBtn';
 import HWPromptWrapper from './HWPromptWrapper';
-import HWPrompt from '../../components/HWPrompt';
 
 export class DerivationPathContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {

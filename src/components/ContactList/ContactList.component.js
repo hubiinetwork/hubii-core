@@ -2,13 +2,15 @@ import { List } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import CopyToClipboard from 'react-copy-to-clipboard';
+
 import DeletionModal from 'components/DeletionModal';
-import PlaceholderText from 'components/ui/PlaceholderText';
 import EditContactModal from 'components/EditContactModal';
 
-import StyledButton from '../ui/Button';
-import { Modal } from '../ui/Modal';
-import Notification from '../Notification';
+import PlaceholderText from 'components/ui/PlaceholderText';
+import Button from 'components/ui/Button';
+import { Modal } from 'components/ui/Modal';
+import Notification from 'components/Notification';
+
 import { StyledList } from './ContactList.style';
 
 /**
@@ -99,24 +101,21 @@ export default class ContactList extends React.PureComponent {
     const Item = (item) => (
       <List.Item
         actions={[
-          <StyledButton
-            type="primary"
-            shape="circle"
+          <Button
+            type="icon"
             icon="delete"
             size={'small'}
             onClick={() => this.showModal(item, 'delete')}
           />,
-          <StyledButton
-            type="primary"
-            shape="circle"
+          <Button
+            type="icon"
             icon="edit"
             size={'small'}
             onClick={() => this.showModal(item, 'edit')}
           />,
           <CopyToClipboard text={item.address} key={2}>
-            <StyledButton
-              type="primary"
-              shape="circle"
+            <Button
+              type="icon"
               icon="copy"
               size={'small'}
               onClick={this.showNotification}

@@ -7,7 +7,7 @@ import {
   Text,
   Wrapper,
   WrapperIcon,
-  StyledButton1,
+  StyledButton,
   ParentDiv,
 } from './EditContactModal.style';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
@@ -126,13 +126,13 @@ Please ensure that all information is correct. Funds sent to an incorrect addres
             )}
           </ModalFormItem>
           <ParentDiv>
-            <StyledButton1
+            <StyledButton
               type="primary"
               htmlType="submit"
               id="button"
             >
               {confirmText}
-            </StyledButton1>
+            </StyledButton>
           </ParentDiv>
         </Form>
       </Wrapper>

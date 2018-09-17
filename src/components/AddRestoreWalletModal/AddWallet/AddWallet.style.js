@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Icon, Spin } from 'antd';
-import Button from '../../ui/Button';
+import Button from 'components/ui/Button';
 
 export const InfoContent = styled.span`
   color: ${({ theme }) => theme.palette.secondary1};
@@ -24,21 +24,8 @@ export const Info = styled(Icon)`
 `;
 
 export const RoundButton = styled(Button)`
-  color: ${({ theme }) => theme.palette.secondary1};
-  background: ${({ theme }) => theme.palette.secondary4};
-  border-color: ${({ theme }) => theme.palette.primary4};
   width: 2.07rem !important;
   height: 2.07rem !important;
-  &:hover {
-    color: ${({ theme }) => theme.palette.info} !important;
-    background: ${({ theme }) => theme.palette.secondary4} !important;
-    border-color: ${({ theme }) => theme.palette.secondary4} !important;
-  }
-  &:focus {
-    color: ${({ theme }) => theme.palette.secondary1};
-    background: ${({ theme }) => theme.palette.secondary4};
-    border-color: ${({ theme }) => theme.palette.secondary4};
-  }
 `;
 
 export const FinishButton = styled(Button)`

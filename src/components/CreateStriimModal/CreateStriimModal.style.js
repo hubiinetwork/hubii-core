@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Form, Select } from 'antd';
-import Button from '../ui/Button';
+
+import Button from 'components/ui/Button';
 
 export const TextLight = styled.div`
   color: ${({ theme }) => theme.palette.light};

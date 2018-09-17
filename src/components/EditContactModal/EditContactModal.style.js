@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../ui/Button';
+import Button from 'components/ui/Button';
 
 export const WrapperIcon = styled.div`
   display: flex;
@@ -33,9 +33,8 @@ export const Wrapper = styled.div`
     margin-bottom: 0rem;
   }
 `;
-export const StyledButton1 = styled(Button)`
+export const StyledButton = styled(Button)`
   min-width: 11.43rem;
-  border: 0.14rem solid ${({ theme }) => theme.palette.info3};
 `;
 
 export const ParentDiv = styled.div`

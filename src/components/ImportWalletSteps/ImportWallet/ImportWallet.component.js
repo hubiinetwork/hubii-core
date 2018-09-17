@@ -1,10 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Coins,
+  OptionsWrapper,
   Image,
   Center,
-  CoinButton,
+  Option,
   StyledSpan,
   StyledButton,
   OptionText,
@@ -38,9 +38,9 @@ class ImportWallet extends React.Component {
     return (
       <Wrapper>
         <Header>How is the wallet stored?</Header>
-        <Coins onChange={this.onChange}>
+        <OptionsWrapper onChange={this.onChange}>
           {this.props.wallets.map((wallet) => (
-            <CoinButton value={wallet.name} key={wallet.name}>
+            <Option value={wallet.name} key={wallet.name}>
               <Center>
                 {
                   wallet.src
@@ -50,9 +50,9 @@ class ImportWallet extends React.Component {
                     <OptionText>{wallet.name}</OptionText>
                 }
               </Center>
-            </CoinButton>
+            </Option>
           ))}
-        </Coins>
+        </OptionsWrapper>
         <StyledButton type={'primary'} disabled={walletType === ''} onClick={this.handleNext}>
           <StyledSpan>Next</StyledSpan>
         </StyledButton>

@@ -41,9 +41,8 @@ ShallowWrapper {
                                                   icon="copy"
                                                   id="mnemonic"
                                                   onClick={[Function]}
-                                                  shape="circle"
                                                   size="small"
-                                                  type="primary"
+                                                  type="icon"
                                         />
                               </CopyToClipboard>
                     </ExportPrivateInfo.style__SecondaryHeader>
@@ -61,9 +60,8 @@ ShallowWrapper {
                                                   icon="copy"
                                                   id="privateKey"
                                                   onClick={[Function]}
-                                                  shape="circle"
                                                   size="small"
-                                                  type="primary"
+                                                  type="icon"
                                         />
                               </CopyToClipboard>
                     </ExportPrivateInfo.style__SecondaryHeader>
@@ -123,9 +121,8 @@ ShallowWrapper {
                                                         icon="copy"
                                                         id="mnemonic"
                                                         onClick={[Function]}
-                                                        shape="circle"
                                                         size="small"
-                                                        type="primary"
+                                                        type="icon"
                                           />
                             </CopyToClipboard>
               </ExportPrivateInfo.style__SecondaryHeader>
@@ -143,9 +140,8 @@ ShallowWrapper {
                                                         icon="copy"
                                                         id="privateKey"
                                                         onClick={[Function]}
-                                                        shape="circle"
                                                         size="small"
-                                                        type="primary"
+                                                        type="icon"
                                           />
                             </CopyToClipboard>
               </ExportPrivateInfo.style__SecondaryHeader>
@@ -172,9 +168,8 @@ ShallowWrapper {
                                                       icon="copy"
                                                       id="mnemonic"
                                                       onClick={[Function]}
-                                                      shape="circle"
                                                       size="small"
-                                                      type="primary"
+                                                      type="icon"
                                     />
                   </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
@@ -199,9 +194,8 @@ ShallowWrapper {
                                             icon="copy"
                                             id="mnemonic"
                                             onClick={[Function]}
-                                            shape="circle"
                                             size="small"
-                                            type="primary"
+                                            type="icon"
                       />
 </CopyToClipboard>,
                   ],
@@ -218,9 +212,8 @@ ShallowWrapper {
                         icon="copy"
                         id="mnemonic"
                         onClick={[Function]}
-                        shape="circle"
                         size="small"
-                        type="primary"
+                        type="icon"
 />,
                       "onCopy": undefined,
                       "options": undefined,
@@ -235,9 +228,8 @@ ShallowWrapper {
                         "icon": "copy",
                         "id": "mnemonic",
                         "onClick": [Function],
-                        "shape": "circle",
                         "size": "small",
-                        "type": "primary",
+                        "type": "icon",
                       },
                       "ref": null,
                       "rendered": null,
@@ -269,9 +261,8 @@ ShallowWrapper {
                                                       icon="copy"
                                                       id="privateKey"
                                                       onClick={[Function]}
-                                                      shape="circle"
                                                       size="small"
-                                                      type="primary"
+                                                      type="icon"
                                     />
                   </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
@@ -296,9 +287,8 @@ ShallowWrapper {
                                             icon="copy"
                                             id="privateKey"
                                             onClick={[Function]}
-                                            shape="circle"
                                             size="small"
-                                            type="primary"
+                                            type="icon"
                       />
 </CopyToClipboard>,
                   ],
@@ -315,9 +305,8 @@ ShallowWrapper {
                         icon="copy"
                         id="privateKey"
                         onClick={[Function]}
-                        shape="circle"
                         size="small"
-                        type="primary"
+                        type="icon"
 />,
                       "onCopy": undefined,
                       "options": undefined,
@@ -332,9 +321,8 @@ ShallowWrapper {
                         "icon": "copy",
                         "id": "privateKey",
                         "onClick": [Function],
-                        "shape": "circle",
                         "size": "small",
-                        "type": "primary",
+                        "type": "icon",
                       },
                       "ref": null,
                       "rendered": null,
@@ -411,9 +399,8 @@ ShallowWrapper {
                                                             icon="copy"
                                                             id="mnemonic"
                                                             onClick={[Function]}
-                                                            shape="circle"
                                                             size="small"
-                                                            type="primary"
+                                                            type="icon"
                                                 />
                                     </CopyToClipboard>
                         </ExportPrivateInfo.style__SecondaryHeader>
@@ -431,9 +418,8 @@ ShallowWrapper {
                                                             icon="copy"
                                                             id="privateKey"
                                                             onClick={[Function]}
-                                                            shape="circle"
                                                             size="small"
-                                                            type="primary"
+                                                            type="icon"
                                                 />
                                     </CopyToClipboard>
                         </ExportPrivateInfo.style__SecondaryHeader>
@@ -493,9 +479,8 @@ ShallowWrapper {
                                                                 icon="copy"
                                                                 id="mnemonic"
                                                                 onClick={[Function]}
-                                                                shape="circle"
                                                                 size="small"
-                                                                type="primary"
+                                                                type="icon"
                                                 />
                                 </CopyToClipboard>
                 </ExportPrivateInfo.style__SecondaryHeader>
@@ -513,9 +498,8 @@ ShallowWrapper {
                                                                 icon="copy"
                                                                 id="privateKey"
                                                                 onClick={[Function]}
-                                                                shape="circle"
                                                                 size="small"
-                                                                type="primary"
+                                                                type="icon"
                                                 />
                                 </CopyToClipboard>
                 </ExportPrivateInfo.style__SecondaryHeader>
@@ -542,9 +526,8 @@ ShallowWrapper {
                                                             icon="copy"
                                                             id="mnemonic"
                                                             onClick={[Function]}
-                                                            shape="circle"
                                                             size="small"
-                                                            type="primary"
+                                                            type="icon"
                                         />
                     </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
@@ -569,9 +552,8 @@ ShallowWrapper {
                                                 icon="copy"
                                                 id="mnemonic"
                                                 onClick={[Function]}
-                                                shape="circle"
                                                 size="small"
-                                                type="primary"
+                                                type="icon"
                         />
 </CopyToClipboard>,
                     ],
@@ -588,9 +570,8 @@ ShallowWrapper {
                           icon="copy"
                           id="mnemonic"
                           onClick={[Function]}
-                          shape="circle"
                           size="small"
-                          type="primary"
+                          type="icon"
 />,
                         "onCopy": undefined,
                         "options": undefined,
@@ -605,9 +586,8 @@ ShallowWrapper {
                           "icon": "copy",
                           "id": "mnemonic",
                           "onClick": [Function],
-                          "shape": "circle",
                           "size": "small",
-                          "type": "primary",
+                          "type": "icon",
                         },
                         "ref": null,
                         "rendered": null,
@@ -639,9 +619,8 @@ ShallowWrapper {
                                                             icon="copy"
                                                             id="privateKey"
                                                             onClick={[Function]}
-                                                            shape="circle"
                                                             size="small"
-                                                            type="primary"
+                                                            type="icon"
                                         />
                     </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
@@ -666,9 +645,8 @@ ShallowWrapper {
                                                 icon="copy"
                                                 id="privateKey"
                                                 onClick={[Function]}
-                                                shape="circle"
                                                 size="small"
-                                                type="primary"
+                                                type="icon"
                         />
 </CopyToClipboard>,
                     ],
@@ -685,9 +663,8 @@ ShallowWrapper {
                           icon="copy"
                           id="privateKey"
                           onClick={[Function]}
-                          shape="circle"
                           size="small"
-                          type="primary"
+                          type="icon"
 />,
                         "onCopy": undefined,
                         "options": undefined,
@@ -702,9 +679,8 @@ ShallowWrapper {
                           "icon": "copy",
                           "id": "privateKey",
                           "onClick": [Function],
-                          "shape": "circle",
                           "size": "small",
-                          "type": "primary",
+                          "type": "icon",
                         },
                         "ref": null,
                         "rendered": null,
@@ -813,9 +789,8 @@ ShallowWrapper {
                                                   icon="copy"
                                                   id="privateKey"
                                                   onClick={[Function]}
-                                                  shape="circle"
                                                   size="small"
-                                                  type="primary"
+                                                  type="icon"
                                         />
                               </CopyToClipboard>
                     </ExportPrivateInfo.style__SecondaryHeader>
@@ -881,9 +856,8 @@ ShallowWrapper {
                                                         icon="copy"
                                                         id="privateKey"
                                                         onClick={[Function]}
-                                                        shape="circle"
                                                         size="small"
-                                                        type="primary"
+                                                        type="icon"
                                           />
                             </CopyToClipboard>
               </ExportPrivateInfo.style__SecondaryHeader>
@@ -939,9 +913,8 @@ ShallowWrapper {
                                                       icon="copy"
                                                       id="privateKey"
                                                       onClick={[Function]}
-                                                      shape="circle"
                                                       size="small"
-                                                      type="primary"
+                                                      type="icon"
                                     />
                   </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
@@ -966,9 +939,8 @@ ShallowWrapper {
                                             icon="copy"
                                             id="privateKey"
                                             onClick={[Function]}
-                                            shape="circle"
                                             size="small"
-                                            type="primary"
+                                            type="icon"
                       />
 </CopyToClipboard>,
                   ],
@@ -985,9 +957,8 @@ ShallowWrapper {
                         icon="copy"
                         id="privateKey"
                         onClick={[Function]}
-                        shape="circle"
                         size="small"
-                        type="primary"
+                        type="icon"
 />,
                       "onCopy": undefined,
                       "options": undefined,
@@ -1002,9 +973,8 @@ ShallowWrapper {
                         "icon": "copy",
                         "id": "privateKey",
                         "onClick": [Function],
-                        "shape": "circle",
                         "size": "small",
-                        "type": "primary",
+                        "type": "icon",
                       },
                       "ref": null,
                       "rendered": null,
@@ -1087,9 +1057,8 @@ ShallowWrapper {
                                                             icon="copy"
                                                             id="privateKey"
                                                             onClick={[Function]}
-                                                            shape="circle"
                                                             size="small"
-                                                            type="primary"
+                                                            type="icon"
                                                 />
                                     </CopyToClipboard>
                         </ExportPrivateInfo.style__SecondaryHeader>
@@ -1155,9 +1124,8 @@ ShallowWrapper {
                                                                 icon="copy"
                                                                 id="privateKey"
                                                                 onClick={[Function]}
-                                                                shape="circle"
                                                                 size="small"
-                                                                type="primary"
+                                                                type="icon"
                                                 />
                                 </CopyToClipboard>
                 </ExportPrivateInfo.style__SecondaryHeader>
@@ -1213,9 +1181,8 @@ ShallowWrapper {
                                                             icon="copy"
                                                             id="privateKey"
                                                             onClick={[Function]}
-                                                            shape="circle"
                                                             size="small"
-                                                            type="primary"
+                                                            type="icon"
                                         />
                     </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
@@ -1240,9 +1207,8 @@ ShallowWrapper {
                                                 icon="copy"
                                                 id="privateKey"
                                                 onClick={[Function]}
-                                                shape="circle"
                                                 size="small"
-                                                type="primary"
+                                                type="icon"
                         />
 </CopyToClipboard>,
                     ],
@@ -1259,9 +1225,8 @@ ShallowWrapper {
                           icon="copy"
                           id="privateKey"
                           onClick={[Function]}
-                          shape="circle"
                           size="small"
-                          type="primary"
+                          type="icon"
 />,
                         "onCopy": undefined,
                         "options": undefined,
@@ -1276,9 +1241,8 @@ ShallowWrapper {
                           "icon": "copy",
                           "id": "privateKey",
                           "onClick": [Function],
-                          "shape": "circle",
                           "size": "small",
-                          "type": "primary",
+                          "type": "icon",
                         },
                         "ref": null,
                         "rendered": null,

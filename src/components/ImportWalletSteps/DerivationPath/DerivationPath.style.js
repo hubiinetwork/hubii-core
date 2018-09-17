@@ -1,6 +1,5 @@
 import { Icon, Radio, Table } from 'antd';
 import styled from 'styled-components';
-import Button from '../../ui/Button';
 import { ModalFormItem } from '../../ui/Modal';
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
@@ -166,46 +165,9 @@ export const StyledTable = styled(Table)`
 }
 `;
 
-export const PreviousAddresses = styled(Button)`
-  color: ${({ theme }) => theme.palette.info};
-  max-height: 1.86rem;
-  min-width: 11.21rem;
-  margin-top: 0.57rem;
-`;
-
-export const ButtonDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1.86rem;
-  margin-top: 1rem;
-`;
 export const FormDiv = styled.div`
   margin-left: 2.14rem;
 `;
-
-export const StyledButton = styled(Button)`
-  background-color: ${({ disabled: white }) =>
-    white && 'transparent !important'};
-  font-size: 0.86rem;
-  font-weight: 400;
-  border-width: 0.14rem;
-  height: 2.86rem;
-  width: 11.57rem;
-  border: ${({ disabled: white, theme }) =>
-    white && `0.14rem solid ${theme.palette.secondary4} !important`};
-  min-width: ${({ current: width }) => (width === 0 ? '18.57rem' : '13.57rem')};
-  color: ${({ disabled: white, theme }) =>
-    white
-      ? `${theme.palette.secondary4} !important`
-      : `${theme.palette.light} !important`};
-  &:hover {
-    background-color: ${({ disabled: white }) =>
-      white && 'transparent !important'};
-    border: ${({ disabled: white, theme }) =>
-      white && `0.14rem solid ${theme.palette.secondary4} !important`};
-  }
-`;
-
 
 export const StyledSpan = styled.span`
   font-size: 0.86rem;

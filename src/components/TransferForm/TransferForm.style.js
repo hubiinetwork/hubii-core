@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Row, Collapse } from 'antd';
-import Button from '../../components/ui/Button';
+
+import Button from 'components/ui/Button';
 
 export const TransferDescriptionWrapper = styled.div`
   min-width: 34rem;
@@ -21,10 +22,7 @@ export const OuterWrapper = styled.div`
 `;
 
 export const StyledButton = styled(Button)`
-  margin-left: auto;
-  border-width: 2px;
   margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
 `;
 
 export const Image = styled.img`
