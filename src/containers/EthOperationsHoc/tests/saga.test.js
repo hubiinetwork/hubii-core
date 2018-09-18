@@ -68,7 +68,6 @@ describe('eth operations orcentrator', () => {
         .next(currentNetworkMock).all(allSagas)
         .next([mockTask]).take(CHANGE_NETWORK)
         .next().cancel(mockTask)
-        .next() // notify
         .next() // network selector
         .next(currentNetworkMock).all(allSagas);
   });
