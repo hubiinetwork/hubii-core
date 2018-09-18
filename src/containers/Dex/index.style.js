@@ -36,3 +36,7 @@ export const TopHeader = styled(Header)`
   background: ${({ theme }) => theme.palette.primary4};
 `;
 
+export const Logo = styled.img`
+  margin-top: 5rem;
+  width: 15rem;
+`;
