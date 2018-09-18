@@ -26,11 +26,6 @@ import {
 } from 'containers/TrezorHoc/saga';
 
 import {
-  loadWalletBalances,
-  loadTransactions,
-} from 'containers/HubiiApiHoc/actions';
-
-import {
   makeSelectCurrentWalletWithInfo,
   makeSelectWallets,
   makeSelectCurrentDecryptionCallback,
@@ -220,8 +215,6 @@ export function* hookNewWalletCreated({ newWallet }) {
     return yield put(notify('error', `Wallet ${newWallet.name} already exists`));
   }
   yield put(addNewWallet(newWallet));
-  yield put(loadWalletBalances(newWallet.address));
-  yield put(loadTransactions(newWallet.address));
   return yield put(notify('success', `Successfully created ${newWallet.name}`));
 }
 

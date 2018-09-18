@@ -44,8 +44,7 @@ const WalletHeader = (props) => {
               {`${props.address}`}
               <CopyToClipboard text={`${props.address}`}>
                 <CopyButton
-                  type="primary"
-                  shape="circle"
+                  type="icon"
                   icon="copy"
                   size={'small'}
                   onClick={showNotification}

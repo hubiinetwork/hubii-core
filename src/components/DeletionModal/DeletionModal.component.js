@@ -18,17 +18,17 @@ const DeletionModal = (props) => (
     <Text> Are you sure you want to delete this {props.type}?</Text>
     <TextPrimary>
       <div>
-        <SecondaryHeader>Name </SecondaryHeader> {props.name}
+        <SecondaryHeader>Name</SecondaryHeader> {props.name}
       </div>
       <div>
-        <SecondaryHeader>Address </SecondaryHeader>{props.address}
+        <SecondaryHeader>Address</SecondaryHeader>{props.address}
       </div>
     </TextPrimary>
     <ParentDiv>
-      <StyledButton type="primary" onClick={props.onDelete} id="delete">
+      <StyledButton type="danger" onClick={props.onDelete} id="delete">
         Delete
       </StyledButton>
-      <StyledButton type="primary" onClick={props.onCancel} id="cancel">
+      <StyledButton type="default" onClick={props.onCancel} id="cancel">
         Cancel
       </StyledButton>
     </ParentDiv>

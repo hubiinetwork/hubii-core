@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Icon } from 'antd';
-import Button from '../ui/Button';
+import Button from 'components/ui/Button';
 
 export const TitleDiv = styled.div`
   font-size: 1.6rem;
@@ -56,42 +56,4 @@ export const ButtonDiv = styled(Button)`
   height: 2.86rem;
   margin-top: 1.72rem;
   margin-bottom: 1.43rem;
-  border-width: 0.09rem;
-  border-color: ${({ theme }) => theme.palette.light} !important;
-  i {
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    color: ${({ theme }) => theme.palette.info};
-  }
-  span {
-    color: ${({ theme }) => theme.palette.light};
-  }
-  &:hover {
-    /* color: ${({ theme }) => theme.palette.info}; */
-    opacity: 0.9;
-    border-color: ${({ theme }) => theme.palette.info};
-    background: none !important;
-  }
-  &:focus {
-    color: ${({ theme }) => theme.palette.info};
-    opacity: 0.9;
-    border-color: ${({ theme }) => theme.palette.light} !important;
-    background: transparent !important;
-  }
-  &:active {
-    color: ${({ theme }) => theme.palette.info};
-    opacity: 0.9;
-    border-color: ${({ theme }) => theme.palette.light} !important;
-    background: transparent !important;
-  }
-`;
-
-export const RightTopButton = styled(Button)`
-  min-width: 9.36rem;
-  border-color: ${({ theme }) => theme.palette.light};
-`;
-
-export const DisabledButton = styled(ButtonDiv)`
-  cursor: not-allowed;
 `;

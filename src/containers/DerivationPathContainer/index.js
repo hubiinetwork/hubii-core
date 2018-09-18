@@ -37,7 +37,7 @@ import {
   makeSelectTrezorHoc,
 } from 'containers/TrezorHoc/selectors';
 
-
+import HWPrompt from 'components/HWPrompt';
 import DerivationPath from 'components/ImportWalletSteps/DerivationPath';
 
 import { StyledButton, StyledSpan, ButtonDiv } from './BackBtn';

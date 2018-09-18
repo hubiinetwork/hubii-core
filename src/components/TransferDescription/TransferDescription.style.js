@@ -1,6 +1,7 @@
 import { Col, Spin } from 'antd';
 import styled from 'styled-components';
-import Button from '../ui/Button';
+
+import Button from 'components/ui/Button';
 
 export const HWPromptWrapper = styled.div`
   margin-top: 2rem;
@@ -8,24 +9,7 @@ export const HWPromptWrapper = styled.div`
 
 export const StyledButton = styled(Button)`
   margin-top: 2rem;
-  height: 2.86rem;
   width: 11.57rem;
-  border: 0.14rem solid ${({ theme }) => theme.palette.info3};
-  border-radius: 0.29rem;
-  background-color: ${({ disabled: white }) =>
-    white && 'transparent !important'};
-  border: ${({ disabled: white, theme }) =>
-    white && `0.14rem solid ${theme.palette.secondary4} !important`};
-  color: ${({ disabled: white, theme }) =>
-    white
-      ? `${theme.palette.secondary4} !important`
-      : `${theme.palette.light} !important`};
-  &:hover {
-    background-color: ${({ disabled: white }) =>
-      white && 'transparent !important'};
-    border: ${({ disabled: white, theme }) =>
-      white && `0.14rem solid ${theme.palette.secondary4} !important`};
-  }
 `;
 
 export const StyledTitle = styled(Col)`

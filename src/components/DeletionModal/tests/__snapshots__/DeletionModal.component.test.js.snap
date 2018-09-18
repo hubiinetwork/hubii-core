@@ -32,14 +32,14 @@ ShallowWrapper {
         <DeletionModal.style__TextPrimary>
           <div>
                     <DeletionModal.style__SecondaryHeader>
-                              Name 
+                              Name
                     </DeletionModal.style__SecondaryHeader>
                      
                     mike
           </div>
           <div>
                     <DeletionModal.style__SecondaryHeader>
-                              Address 
+                              Address
                     </DeletionModal.style__SecondaryHeader>
                     0x3123123
           </div>
@@ -48,14 +48,14 @@ ShallowWrapper {
           <DeletionModal.style__StyledButton
                     id="delete"
                     onClick={[Function]}
-                    type="primary"
+                    type="danger"
           >
                     Delete
           </DeletionModal.style__StyledButton>
           <DeletionModal.style__StyledButton
                     id="cancel"
                     onClick={[Function]}
-                    type="primary"
+                    type="default"
           >
                     Cancel
           </DeletionModal.style__StyledButton>
@@ -91,14 +91,14 @@ ShallowWrapper {
           "children": Array [
             <div>
               <DeletionModal.style__SecondaryHeader>
-                            Name 
+                            Name
               </DeletionModal.style__SecondaryHeader>
                
               mike
 </div>,
             <div>
               <DeletionModal.style__SecondaryHeader>
-                            Address 
+                            Address
               </DeletionModal.style__SecondaryHeader>
               0x3123123
 </div>,
@@ -113,7 +113,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <DeletionModal.style__SecondaryHeader>
-                  Name 
+                  Name
 </DeletionModal.style__SecondaryHeader>,
                 " ",
                 "mike",
@@ -126,10 +126,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "Name ",
+                  "children": "Name",
                 },
                 "ref": null,
-                "rendered": "Name ",
+                "rendered": "Name",
                 "type": [Function],
               },
               " ",
@@ -144,7 +144,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <DeletionModal.style__SecondaryHeader>
-                  Address 
+                  Address
 </DeletionModal.style__SecondaryHeader>,
                 "0x3123123",
               ],
@@ -156,10 +156,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "Address ",
+                  "children": "Address",
                 },
                 "ref": null,
-                "rendered": "Address ",
+                "rendered": "Address",
                 "type": [Function],
               },
               "0x3123123",
@@ -178,14 +178,14 @@ ShallowWrapper {
             <DeletionModal.style__StyledButton
               id="delete"
               onClick={[Function]}
-              type="primary"
+              type="danger"
 >
               Delete
 </DeletionModal.style__StyledButton>,
             <DeletionModal.style__StyledButton
               id="cancel"
               onClick={[Function]}
-              type="primary"
+              type="default"
 >
               Cancel
 </DeletionModal.style__StyledButton>,
@@ -201,7 +201,7 @@ ShallowWrapper {
               "children": "Delete",
               "id": "delete",
               "onClick": [Function],
-              "type": "primary",
+              "type": "danger",
             },
             "ref": null,
             "rendered": "Delete",
@@ -215,7 +215,7 @@ ShallowWrapper {
               "children": "Cancel",
               "id": "cancel",
               "onClick": [Function],
-              "type": "primary",
+              "type": "default",
             },
             "ref": null,
             "rendered": "Cancel",
@@ -242,14 +242,14 @@ ShallowWrapper {
           <DeletionModal.style__TextPrimary>
             <div>
                         <DeletionModal.style__SecondaryHeader>
-                                    Name 
+                                    Name
                         </DeletionModal.style__SecondaryHeader>
                          
                         mike
             </div>
             <div>
                         <DeletionModal.style__SecondaryHeader>
-                                    Address 
+                                    Address
                         </DeletionModal.style__SecondaryHeader>
                         0x3123123
             </div>
@@ -258,14 +258,14 @@ ShallowWrapper {
             <DeletionModal.style__StyledButton
                         id="delete"
                         onClick={[Function]}
-                        type="primary"
+                        type="danger"
             >
                         Delete
             </DeletionModal.style__StyledButton>
             <DeletionModal.style__StyledButton
                         id="cancel"
                         onClick={[Function]}
-                        type="primary"
+                        type="default"
             >
                         Cancel
             </DeletionModal.style__StyledButton>
@@ -301,14 +301,14 @@ ShallowWrapper {
             "children": Array [
               <div>
                 <DeletionModal.style__SecondaryHeader>
-                                Name 
+                                Name
                 </DeletionModal.style__SecondaryHeader>
                  
                 mike
 </div>,
               <div>
                 <DeletionModal.style__SecondaryHeader>
-                                Address 
+                                Address
                 </DeletionModal.style__SecondaryHeader>
                 0x3123123
 </div>,
@@ -323,7 +323,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <DeletionModal.style__SecondaryHeader>
-                    Name 
+                    Name
 </DeletionModal.style__SecondaryHeader>,
                   " ",
                   "mike",
@@ -336,10 +336,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "Name ",
+                    "children": "Name",
                   },
                   "ref": null,
-                  "rendered": "Name ",
+                  "rendered": "Name",
                   "type": [Function],
                 },
                 " ",
@@ -354,7 +354,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <DeletionModal.style__SecondaryHeader>
-                    Address 
+                    Address
 </DeletionModal.style__SecondaryHeader>,
                   "0x3123123",
                 ],
@@ -366,10 +366,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "Address ",
+                    "children": "Address",
                   },
                   "ref": null,
-                  "rendered": "Address ",
+                  "rendered": "Address",
                   "type": [Function],
                 },
                 "0x3123123",
@@ -388,14 +388,14 @@ ShallowWrapper {
               <DeletionModal.style__StyledButton
                 id="delete"
                 onClick={[Function]}
-                type="primary"
+                type="danger"
 >
                 Delete
 </DeletionModal.style__StyledButton>,
               <DeletionModal.style__StyledButton
                 id="cancel"
                 onClick={[Function]}
-                type="primary"
+                type="default"
 >
                 Cancel
 </DeletionModal.style__StyledButton>,
@@ -411,7 +411,7 @@ ShallowWrapper {
                 "children": "Delete",
                 "id": "delete",
                 "onClick": [Function],
-                "type": "primary",
+                "type": "danger",
               },
               "ref": null,
               "rendered": "Delete",
@@ -425,7 +425,7 @@ ShallowWrapper {
                 "children": "Cancel",
                 "id": "cancel",
                 "onClick": [Function],
-                "type": "primary",
+                "type": "default",
               },
               "ref": null,
               "rendered": "Cancel",

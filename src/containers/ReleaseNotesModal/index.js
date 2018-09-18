@@ -52,7 +52,7 @@ class ReleaseNotesModal extends React.PureComponent {
           <StyledButton type="primary" onClick={this.props.installNewRelease}>
             <TextWhite>Install</TextWhite>
           </StyledButton>
-          <StyledDetailsButton type="primary" onClick={() => { shell.openExternal(`https://github.com/${OWNER}/${REPO}/releases/tag/${this.props.releaseNotes.version}`); }}>
+          <StyledDetailsButton onClick={() => { shell.openExternal(`https://github.com/${OWNER}/${REPO}/releases/tag/${this.props.releaseNotes.version}`); }}>
             <TextWhite>View Details</TextWhite>
           </StyledDetailsButton>
         </ButtonDiv>

@@ -1,6 +1,7 @@
 import { Radio } from 'antd';
 import styled from 'styled-components';
-import Button from '../../ui/Button';
+
+import Button from 'components/ui/Button';
 
 const RadioButton = Radio.Button;
 
@@ -21,7 +22,7 @@ export const Header = styled.p`
   }
 `;
 
-export const Coins = styled(Radio.Group)`
+export const OptionsWrapper = styled(Radio.Group)`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -32,7 +33,7 @@ export const Coins = styled(Radio.Group)`
   }
 `;
 
-export const CoinButton = styled(RadioButton)`
+export const Option = styled(RadioButton)`
   padding: 0.5rem;
   margin: 1rem;
   display: flex;
@@ -76,26 +77,7 @@ export const SpanText = styled.span`
 export const StyledButton = styled(Button)`
   margin-top: 1.5rem;
   margin-bottom: 2rem;
-  background-color: ${({ disabled: white }) =>
-    white && 'transparent !important'};
-  font-size: 0.86rem;
-  font-weight: 400;
-  border-width: 0.14rem;
-  height: 2.86rem;
-  width: 11.57rem;
-  border: ${({ disabled: white, theme }) =>
-    white && `0.14rem solid ${theme.palette.secondary4} !important`};
-  min-width: ${({ current: width }) => (width === 0 ? '18.57rem' : '18.57rem')};
-  color: ${({ disabled: white, theme }) =>
-    white
-      ? `${theme.palette.secondary4} !important`
-      : `${theme.palette.light} !important`};
-  &:hover {
-    background-color: ${({ disabled: white }) =>
-      white && 'transparent !important'};
-    border: ${({ disabled: white, theme }) =>
-      white && `0.14rem solid ${theme.palette.secondary4} !important`};
-  }
+  width: 18.57rem;
 `;
 export const StyledSpan = styled.span`
   font-size: 0.86rem;

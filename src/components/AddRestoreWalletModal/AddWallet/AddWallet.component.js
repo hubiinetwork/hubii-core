@@ -161,8 +161,7 @@ class AddWallet extends React.PureComponent {
                   <WrapperDiv>
                     <SeedText>{this.state.mnemonic}</SeedText>
                     <RoundButton
-                      type="primary"
-                      shape="circle"
+                      type="icon"
                       icon="copy"
                       size={'small'}
                       onClick={this.showNotification}

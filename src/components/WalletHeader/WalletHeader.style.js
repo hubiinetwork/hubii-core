@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import StyledButton from '../ui/Button';
+import Button from 'components/ui/Button';
 
 const Address = styled.span`
   display: flex;
@@ -17,21 +17,8 @@ const Balance = styled.span`
   margin-right: 2.14rem;
 `;
 
-const CopyButton = styled(StyledButton)`
+const CopyButton = styled(Button)`
   margin-left: 0.57rem;
-  color: ${({ theme }) => theme.palette.secondary1};
-  background-color: ${({ theme }) => theme.palette.primary};
-  border-color: ${({ theme }) => theme.palette.primary2};
-  &:hover {
-    color: ${({ theme }) => theme.palette.info} !important;
-    background: ${({ theme }) => theme.palette.primary2} !important;
-    border-color: ${({ theme }) => theme.palette.primary2} !important;
-  }
-  &:focus {
-    color: ${({ theme }) => theme.palette.secondary1};
-    background: ${({ theme }) => theme.palette.primary2};
-    border-color: ${({ theme }) => theme.palette.primary2};
-  }
 `;
 
 const DetailWrapper = styled.div`
