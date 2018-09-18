@@ -1,4 +1,4 @@
-import { Icon, Tabs } from 'antd';
+import { Icon } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
@@ -8,7 +8,7 @@ import { createStructuredSelector } from 'reselect';
 
 import WalletsOverview from 'containers/WalletsOverview';
 import ContactBook from 'containers/ContactBook';
-import Tab from 'components/ui/Tab';
+import Tabs, { TabPane } from 'components/ui/Tabs';
 import AddRestoreWalletModal from 'components/AddRestoreWalletModal';
 import { Modal } from 'components/ui/Modal';
 import { makeSelectContacts } from 'containers/ContactBook/selectors';
@@ -33,7 +33,6 @@ import {
   StyledButton,
 } from './index.style';
 
-const TabPane = Tabs.TabPane;
 
 export class WalletManager extends React.PureComponent {
   constructor(props) {
@@ -155,7 +154,7 @@ export class WalletManager extends React.PureComponent {
             {modal}
           </Modal>
         </TopHeader>
-        <Tab activeKey={history.location.pathname} onChange={this.onTabsChange} animated={false}>
+        <Tabs activeKey={history.location.pathname} onChange={this.onTabsChange} animated={false}>
           <TabPane
             tab={
               <span>
@@ -174,7 +173,7 @@ export class WalletManager extends React.PureComponent {
             key={`${match.url}/contacts`}
           >
           </TabPane>
-        </Tab>
+        </Tabs>
         <Route path={`${match.url}/overview`} component={WalletsOverview} />
         <Route path={`${match.url}/contacts`} component={ContactBook} />
         {

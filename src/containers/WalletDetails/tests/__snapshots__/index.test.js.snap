@@ -115,7 +115,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <index.style__TabsLayout>
+        <index.style__HeaderWrapper>
           <WalletHeader
                     address="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
                     balance={81.962044}
@@ -123,8 +123,8 @@ ShallowWrapper {
                     name="lns"
                     onIconClick={[Function]}
           />
-</index.style__TabsLayout>,
-        <Tab.style
+</index.style__HeaderWrapper>,
+        <Tabs
           activeKey="/wallet/abcd"
           animated={false}
           onChange={[Function]}
@@ -194,7 +194,7 @@ ShallowWrapper {
                               path="undefined/buyeth"
                     />
           </TabPane>
-</Tab.style>,
+</Tabs>,
         false,
       ],
     },
@@ -436,7 +436,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <index.style__TabsLayout>
+          <index.style__HeaderWrapper>
             <WalletHeader
                         address="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
                         balance={81.962044}
@@ -444,8 +444,8 @@ ShallowWrapper {
                         name="lns"
                         onIconClick={[Function]}
             />
-</index.style__TabsLayout>,
-          <Tab.style
+</index.style__HeaderWrapper>,
+          <Tabs
             activeKey="/wallet/abcd"
             animated={false}
             onChange={[Function]}
@@ -515,7 +515,7 @@ ShallowWrapper {
                                     path="undefined/buyeth"
                         />
             </TabPane>
-</Tab.style>,
+</Tabs>,
           false,
         ],
       },

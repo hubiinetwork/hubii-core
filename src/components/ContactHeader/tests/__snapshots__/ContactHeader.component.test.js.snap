@@ -26,7 +26,6 @@ ShallowWrapper {
         <SectionHeading>
           some title
 </SectionHeading>,
-        undefined,
         null,
       ],
     },
@@ -43,7 +42,6 @@ ShallowWrapper {
         "rendered": "some title",
         "type": [Function],
       },
-      undefined,
       null,
     ],
     "type": [Function],
@@ -58,7 +56,6 @@ ShallowWrapper {
           <SectionHeading>
             some title
 </SectionHeading>,
-          undefined,
           null,
         ],
       },
@@ -75,7 +72,6 @@ ShallowWrapper {
           "rendered": "some title",
           "type": [Function],
         },
-        undefined,
         null,
       ],
       "type": [Function],
@@ -117,7 +113,6 @@ ShallowWrapper {
         <SectionHeading>
           some title
 </SectionHeading>,
-        undefined,
         <ContactHeader.style__Wrapper>
           <ContactHeader.style__StyledSearch
                     onChange={[Function]}
@@ -139,7 +134,6 @@ ShallowWrapper {
         "rendered": "some title",
         "type": [Function],
       },
-      undefined,
       Object {
         "instance": null,
         "key": undefined,
@@ -178,7 +172,6 @@ ShallowWrapper {
           <SectionHeading>
             some title
 </SectionHeading>,
-          undefined,
           <ContactHeader.style__Wrapper>
             <ContactHeader.style__StyledSearch
                         onChange={[Function]}
@@ -200,7 +193,6 @@ ShallowWrapper {
           "rendered": "some title",
           "type": [Function],
         },
-        undefined,
         Object {
           "instance": null,
           "key": undefined,
