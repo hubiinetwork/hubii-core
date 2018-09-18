@@ -11,7 +11,6 @@ import { delay } from 'redux-saga';
 
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
-import { notify } from 'containers/App/actions';
 
 import {
   loadBlockHeightSuccess,
@@ -46,7 +45,6 @@ export function* ethOperationsOrcestrator() {
       // on network change kill all forks and restart
       yield take(CHANGE_NETWORK);
       yield cancel(...allTasks);
-      yield put(notify('success', 'Network changed'));
     }
   } catch (e) {
     // errors in the forked processes themselves should be caught
