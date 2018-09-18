@@ -14,10 +14,6 @@ import { getTransaction } from 'utils/wallet';
 import { storeMock } from 'mocks/store';
 
 import { notify } from 'containers/App/actions';
-import {
-  loadWalletBalances,
-  loadTransactions,
-} from 'containers/HubiiApiHoc/actions';
 
 import {
   appMock,
@@ -193,8 +189,6 @@ describe('CREATE_WALLET_SUCCESS', () => {
     return expectSaga(hookNewWalletCreated, { newWallet })
       .withReducer(withReducer, state)
       .put(addNewWalletAction(newWallet))
-      .put(loadWalletBalances(newWallet.address))
-      .put(loadTransactions(newWallet.address))
       .run({ silenceTimeout: true })
       .then((result) => {
         const wallets = result.storeState.getIn(['walletHoc', 'wallets']);
