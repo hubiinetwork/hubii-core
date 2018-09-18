@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { StyledStep, StepsCentered } from '../ui/Steps';
 import { Wrapper } from './style';
 
+
 const FormSteps = ({ steps, currentStep, beforeContent, afterContent }) => (
   <Wrapper>
     {beforeContent}
@@ -12,7 +13,7 @@ const FormSteps = ({ steps, currentStep, beforeContent, afterContent }) => (
       <StepsCentered current={currentStep}>
         {steps.map((item) => (
           <StyledStep key={item.title} title={item.title} />
-            ))}
+        ))}
       </StepsCentered>
     </div>
   </Wrapper>
@@ -23,4 +24,5 @@ FormSteps.propTypes = {
   beforeContent: PropTypes.node,
   afterContent: PropTypes.node,
 };
+
 export default FormSteps;

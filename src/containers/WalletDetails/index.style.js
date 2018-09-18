@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   background: ${({ theme }) => theme.palette.primary1};
 `;
 
-export const TabsLayout = styled(Layout)`
+export const HeaderWrapper = styled(Layout)`
   background: ${({ theme }) => theme.palette.primary3};
   .heading {
     color: ${({ theme }) => theme.palette.light};
@@ -23,4 +23,3 @@ export const StyledButton = styled(Button)`
   border-width: 0.14rem;
   padding: 0.5rem 1rem;
 `;
-

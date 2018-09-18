@@ -1,7 +1,4 @@
 import * as React from 'react';
-// import PropTypes from 'prop-types';
-// import { compose } from 'redux';
-// import { connect } from 'react-redux';
 import { getAbsolutePath } from 'utils/electron';
 
 import {
@@ -10,9 +7,8 @@ import {
   Heading,
   Title,
   Container,
+  Logo,
 } from './index.style';
-
-import Logo from './Logo';
 
 export const Dex = () => (
   <Wrapper>
@@ -27,9 +23,5 @@ export const Dex = () => (
     </Container>
   </Wrapper>
     );
-
-Dex.propTypes = {
-
-};
 
 export default Dex;

@@ -1,4 +1,4 @@
-import { Icon, Tabs } from 'antd';
+import { Icon } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -14,11 +14,10 @@ import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHOC/selectors'
 import { setCurrentWallet } from 'containers/WalletHOC/actions';
 
 import SimplexPage from 'components/SimplexPage';
-import Tab from 'components/ui/Tab';
+import Tabs, { TabPane } from 'components/ui/Tabs';
 
-import { Wrapper, TabsLayout } from './index.style';
+import { Wrapper, HeaderWrapper } from './index.style';
 
-const TabPane = Tabs.TabPane;
 
 export class WalletDetails extends React.PureComponent {
   constructor(props) {
@@ -49,7 +48,7 @@ export class WalletDetails extends React.PureComponent {
     }
     return (
       <Wrapper>
-        <TabsLayout>
+        <HeaderWrapper>
           <WalletHeader
             iconType="home"
             name={currentWallet.get('name')}
@@ -59,8 +58,8 @@ export class WalletDetails extends React.PureComponent {
               .toNumber()}
             onIconClick={this.onHomeClick}
           />
-        </TabsLayout>
-        <Tab
+        </HeaderWrapper>
+        <Tabs
           activeKey={history.location.pathname}
           onChange={this.onTabsChange}
           animated={false}
@@ -116,7 +115,7 @@ export class WalletDetails extends React.PureComponent {
           >
             <Route path={`${match.url}/buyeth`} component={SimplexPage} />
           </TabPane>
-        </Tab>
+        </Tabs>
         {history.location.pathname === match.url && (
           <Redirect from={match.url} to={`${match.url}/transfer`} push />
         )}

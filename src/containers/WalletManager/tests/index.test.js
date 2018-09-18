@@ -1,7 +1,7 @@
 import React from 'react';
 import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
-import Tab from 'components/ui/Tab';
+import Tabs from 'components/ui/Tabs';
 import { WalletManager, mapDispatchToProps } from '../index';
 
 describe('WalletManager', () => {
@@ -57,7 +57,7 @@ describe('WalletManager', () => {
         expect(dom.find('Redirect').length).toEqual(0);
       });
       it('should set activeKey of Tab to the location.pathname', () => {
-        expect(dom.find(Tab).props().activeKey).toEqual(history.location.pathname);
+        expect(dom.find(Tabs).props().activeKey).toEqual(history.location.pathname);
       });
     });
     describe('methods', () => {
