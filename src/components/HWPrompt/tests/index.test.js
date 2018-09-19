@@ -1,24 +1,57 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+import {
+  trezorHocConnectedMock,
+  trezorHocDisconnectedMock,
+  trezorHocConfOnDeviceMock,
+} from 'containers/TrezorHoc/tests/mocks/selectors';
+
+import {
+  ledgerHocDisconnectedMock,
+  ledgerHocConfOnDeviceMock,
+  ledgerHocConnectedAppNotOpenMock,
+  ledgerHocConnectedMock,
+} from 'containers/LedgerHoc/tests/mocks/selectors';
+
 import HWPrompt from '../index';
 
 describe('<HWPrompt />', () => {
   const props = {
     deviceType: 'lns',
-    error: 'Ledger could not be detected',
-    confTxOnDevice: false,
+    ledgerInfo: ledgerHocConnectedMock,
+    trezorInfo: trezorHocConnectedMock,
   };
-  it('should render correctly in lns connect stage', () => {
+  it('should render correctly in lns connected stage', () => {
     const wrapper = shallow(<HWPrompt {...props} />);
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should render correctly in lns openApp stage', () => {
+  it('should render correctly in lns open device stage', () => {
     const wrapper = shallow(
       <HWPrompt
         {...props}
-        error="some unknown error~~~~~~~~"
+        ledgerInfo={ledgerHocConnectedAppNotOpenMock}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly in lns connect stage', () => {
+    const wrapper = shallow(
+      <HWPrompt
+        {...props}
+        ledgerInfo={ledgerHocDisconnectedMock}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly in lns conf on device stage', () => {
+    const wrapper = shallow(
+      <HWPrompt
+        {...props}
+        ledgerInfo={ledgerHocConfOnDeviceMock}
       />
     );
     expect(wrapper).toMatchSnapshot();
@@ -29,35 +62,17 @@ describe('<HWPrompt />', () => {
       <HWPrompt
         {...props}
         deviceType="trezor"
+        trezorInfo={trezorHocDisconnectedMock}
       />);
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should render correctly when device is connected with no errors', () => {
-    const wrapper = shallow(
-      <HWPrompt
-        {...props}
-        error={null}
-      />);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render correctly when tx conf required on LNS', () => {
-    const wrapper = shallow(
-      <HWPrompt
-        {...props}
-        deviceType="lns"
-        confTxOnDevice
-      />);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render correctly when tx conf required on trezor', () => {
+  it('should render correctly in trezor conf on device stage', () => {
     const wrapper = shallow(
       <HWPrompt
         {...props}
         deviceType="trezor"
-        confTxOnDevice
+        trezorInfo={trezorHocConfOnDeviceMock}
       />);
     expect(wrapper).toMatchSnapshot();
   });

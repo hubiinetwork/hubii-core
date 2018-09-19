@@ -1,0 +1,21 @@
+/*
+ *
+ * HubiiApiHoc constants
+ *
+ */
+
+export const LOAD_WALLET_BALANCES = 'src/HubiiApiHoc/LOAD_WALLET_BALANCES';
+export const LOAD_WALLET_BALANCES_SUCCESS = 'src/HubiiApiHoc/LOAD_WALLET_BALANCES_SUCCESS';
+export const LOAD_WALLET_BALANCES_ERROR = 'src/HubiiApiHoc/LOAD_WALLET_BALANCES_ERROR';
+
+export const LOAD_SUPPORTED_TOKENS = 'src/HubiiApiHoc/LOAD_SUPPORTED_TOKENS';
+export const LOAD_SUPPORTED_TOKENS_SUCCESS = 'src/HubiiApiHoc/LOAD_SUPPORTED_TOKENS_SUCCESS';
+export const LOAD_SUPPORTED_TOKENS_ERROR = 'src/HubiiApiHoc/LOAD_SUPPORTED_TOKENS_ERROR';
+
+export const LOAD_PRICES = 'src/HubiiApiHoc/LOAD_PRICES';
+export const LOAD_PRICES_SUCCESS = 'src/HubiiApiHoc/LOAD_PRICES_SUCCESS';
+export const LOAD_PRICES_ERROR = 'src/HubiiApiHoc/LOAD_PRICES_ERROR';
+
+export const LOAD_TRANSACTIONS = 'src/HubiiApiHoc/LOAD_TRANSACTIONS';
+export const LOAD_TRANSACTIONS_SUCCESS = 'src/HubiiApiHoc/LOAD_TRANSACTIONS_SUCCESS';
+export const LOAD_TRANSACTIONS_ERROR = 'src/HubiiApiHoc/LOAD_TRANSACTIONS_ERROR';

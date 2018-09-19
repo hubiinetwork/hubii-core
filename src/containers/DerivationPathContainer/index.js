@@ -11,20 +11,32 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { utils } from 'ethers';
 
+import HWPromptContainer from 'containers/HWPromptContainer';
+
+import {
+  loadWalletBalances,
+} from 'containers/HubiiApiHoc/actions';
+
 import {
   fetchLedgerAddresses,
-  fetchTrezorAddresses,
-  loadWalletBalances,
-} from 'containers/WalletHOC/actions';
+} from 'containers/LedgerHoc/actions';
 
 import {
-  makeSelectLedgerNanoSInfo,
-  makeSelectTrezorInfo,
-  makeSelectErrors,
-  makeSelectBalances,
-} from 'containers/WalletHOC/selectors';
+  fetchTrezorAddresses,
+} from 'containers/TrezorHoc/actions';
 
-import HWPrompt from 'components/HWPrompt';
+import {
+  makeSelectBalances,
+} from 'containers/HubiiApiHoc/selectors';
+
+import {
+  makeSelectLedgerHoc,
+} from 'containers/LedgerHoc/selectors';
+
+import {
+  makeSelectTrezorHoc,
+} from 'containers/TrezorHoc/selectors';
+
 import DerivationPath from 'components/ImportWalletSteps/DerivationPath';
 
 import { StyledButton, StyledSpan, ButtonDiv } from './BackBtn';
@@ -95,18 +107,6 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
     return deviceInfo;
   }
 
-  getDeviceError() {
-    const { deviceType, errors } = this.props;
-    let error;
-    if (deviceType === 'lns') {
-      error = errors.get('ledgerError') || 'Loading...';
-    }
-    if (deviceType === 'trezor') {
-      error = 'Trezor is not connected';
-    }
-    return error;
-  }
-
   fetchAddresses() {
     const { lastAddressIndex, pathBase } = this.state;
     const { deviceType } = this.props;
@@ -122,15 +122,15 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
     const { balances, deviceType } = this.props;
     const deviceInfo = this.getDeviceInfo(this.props);
 
-    const { status, addresses } = deviceInfo.toJS();
-    if (status === 'disconnected') {
-      const error = this.getDeviceError();
+    const { status, addresses, ethConnected } = deviceInfo.toJS();
+    if
+    (
+      (deviceType !== 'lns' && status === 'disconnected')
+      || (deviceType === 'lns' && !ethConnected)
+    ) {
       return (
         <HWPromptWrapper>
-          <HWPrompt
-            deviceType={deviceType}
-            error={error}
-          />
+          <HWPromptContainer passedDeviceType={deviceType} />
         </HWPromptWrapper>
       );
     }
@@ -179,7 +179,6 @@ DerivationPathContainer.propTypes = {
   ledgerNanoSInfo: PropTypes.object.isRequired,
   // eslint-disable-next-line react/no-unused-prop-types
   trezorInfo: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
   balances: PropTypes.object.isRequired,
   fetchLedgerAddresses: PropTypes.func.isRequired,
   fetchTrezorAddresses: PropTypes.func.isRequired,
@@ -189,9 +188,8 @@ DerivationPathContainer.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  ledgerNanoSInfo: makeSelectLedgerNanoSInfo(),
-  trezorInfo: makeSelectTrezorInfo(),
-  errors: makeSelectErrors(),
+  ledgerNanoSInfo: makeSelectLedgerHoc(),
+  trezorInfo: makeSelectTrezorHoc(),
   balances: makeSelectBalances(),
 });
 

@@ -1,13 +1,186 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<HWPrompt /> should render correctly in lns conf on device stage 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HWPrompt
+    deviceType="lns"
+    ledgerInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: true,
+        }
+    }
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <style__ConfTxShield
+          src="/public/images/shield.png"
+/>,
+        <style__ConfTxDeviceImg
+          src="/public/images/conf-tx-lns.png"
+/>,
+        <style__P>
+          Verify the details shown on your device
+</style__P>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "src": "/public/images/shield.png",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "src": "/public/images/conf-tx-lns.png",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Verify the details shown on your device",
+        },
+        "ref": null,
+        "rendered": "Verify the details shown on your device",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <style__ConfTxShield
+            src="/public/images/shield.png"
+/>,
+          <style__ConfTxDeviceImg
+            src="/public/images/conf-tx-lns.png"
+/>,
+          <style__P>
+            Verify the details shown on your device
+</style__P>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "src": "/public/images/shield.png",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "src": "/public/images/conf-tx-lns.png",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Verify the details shown on your device",
+          },
+          "ref": null,
+          "rendered": "Verify the details shown on your device",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
 exports[`<HWPrompt /> should render correctly in lns connect stage 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HWPrompt
-    confTxOnDevice={false}
     deviceType="lns"
-    error="Ledger could not be detected"
+    ledgerInfo={
+        Immutable.Map {
+            status: "disconnected",
+            addresses: Immutable.Map {
+            },
+            id: null,
+            confTxOnDevice: false,
+        }
+    }
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -442,14 +615,32 @@ ShallowWrapper {
 }
 `;
 
-exports[`<HWPrompt /> should render correctly in lns openApp stage 1`] = `
+exports[`<HWPrompt /> should render correctly in lns connected stage 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HWPrompt
-    confTxOnDevice={false}
     deviceType="lns"
-    error="some unknown error~~~~~~~~"
+    ledgerInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -464,13 +655,41 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <style__SingleRowIcon
-          color="orange"
-          type="exclamation-circle-o"
-/>,
-        <style__P>
-          Something went wrong, please reconnect your device and try again
-</style__P>,
+        <style__Row
+          active={false}
+          pos="top"
+>
+          <style__DescriptiveIcon
+                    src="/public/images/hw-wallet-usb-white.png"
+          />
+          <style__P>
+                    Connect and unlock your 
+                    <style__KeyText>
+                              Ledger Device
+                    </style__KeyText>
+          </style__P>
+          <style__StatusIcon
+                    type="check"
+          />
+</style__Row>,
+        <style__Row
+          active={true}
+          pos="bottom"
+>
+          <style__DescriptiveIcon
+                    src="/public/images/hw-wallet-eth-green.png"
+          />
+          <style__P>
+                    Open the 
+                    <style__KeyText>
+                              Ethereum
+                    </style__KeyText>
+                     app on your device
+          </style__P>
+          <style__StatusIcon
+                    type="loading"
+          />
+</style__Row>,
       ],
     },
     "ref": null,
@@ -480,11 +699,77 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "color": "orange",
-          "type": "exclamation-circle-o",
+          "active": false,
+          "children": Array [
+            <style__DescriptiveIcon
+              src="/public/images/hw-wallet-usb-white.png"
+/>,
+            <style__P>
+              Connect and unlock your 
+              <style__KeyText>
+                            Ledger Device
+              </style__KeyText>
+</style__P>,
+            <style__StatusIcon
+              type="check"
+/>,
+          ],
+          "pos": "top",
         },
         "ref": null,
-        "rendered": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "src": "/public/images/hw-wallet-usb-white.png",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                "Connect and unlock your ",
+                <style__KeyText>
+                  Ledger Device
+</style__KeyText>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              "Connect and unlock your ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Ledger Device",
+                },
+                "ref": null,
+                "rendered": "Ledger Device",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "type": "check",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
         "type": [Function],
       },
       Object {
@@ -492,10 +777,80 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "Something went wrong, please reconnect your device and try again",
+          "active": true,
+          "children": Array [
+            <style__DescriptiveIcon
+              src="/public/images/hw-wallet-eth-green.png"
+/>,
+            <style__P>
+              Open the 
+              <style__KeyText>
+                            Ethereum
+              </style__KeyText>
+               app on your device
+</style__P>,
+            <style__StatusIcon
+              type="loading"
+/>,
+          ],
+          "pos": "bottom",
         },
         "ref": null,
-        "rendered": "Something went wrong, please reconnect your device and try again",
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "src": "/public/images/hw-wallet-eth-green.png",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                "Open the ",
+                <style__KeyText>
+                  Ethereum
+</style__KeyText>,
+                " app on your device",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              "Open the ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Ethereum",
+                },
+                "ref": null,
+                "rendered": "Ethereum",
+                "type": [Function],
+              },
+              " app on your device",
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "type": "loading",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
         "type": [Function],
       },
     ],
@@ -508,13 +863,41 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <style__SingleRowIcon
-            color="orange"
-            type="exclamation-circle-o"
-/>,
-          <style__P>
-            Something went wrong, please reconnect your device and try again
-</style__P>,
+          <style__Row
+            active={false}
+            pos="top"
+>
+            <style__DescriptiveIcon
+                        src="/public/images/hw-wallet-usb-white.png"
+            />
+            <style__P>
+                        Connect and unlock your 
+                        <style__KeyText>
+                                    Ledger Device
+                        </style__KeyText>
+            </style__P>
+            <style__StatusIcon
+                        type="check"
+            />
+</style__Row>,
+          <style__Row
+            active={true}
+            pos="bottom"
+>
+            <style__DescriptiveIcon
+                        src="/public/images/hw-wallet-eth-green.png"
+            />
+            <style__P>
+                        Open the 
+                        <style__KeyText>
+                                    Ethereum
+                        </style__KeyText>
+                         app on your device
+            </style__P>
+            <style__StatusIcon
+                        type="loading"
+            />
+</style__Row>,
         ],
       },
       "ref": null,
@@ -524,11 +907,77 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "color": "orange",
-            "type": "exclamation-circle-o",
+            "active": false,
+            "children": Array [
+              <style__DescriptiveIcon
+                src="/public/images/hw-wallet-usb-white.png"
+/>,
+              <style__P>
+                Connect and unlock your 
+                <style__KeyText>
+                                Ledger Device
+                </style__KeyText>
+</style__P>,
+              <style__StatusIcon
+                type="check"
+/>,
+            ],
+            "pos": "top",
           },
           "ref": null,
-          "rendered": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "src": "/public/images/hw-wallet-usb-white.png",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  "Connect and unlock your ",
+                  <style__KeyText>
+                    Ledger Device
+</style__KeyText>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                "Connect and unlock your ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Ledger Device",
+                  },
+                  "ref": null,
+                  "rendered": "Ledger Device",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "type": "check",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
         Object {
@@ -536,10 +985,80 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "Something went wrong, please reconnect your device and try again",
+            "active": true,
+            "children": Array [
+              <style__DescriptiveIcon
+                src="/public/images/hw-wallet-eth-green.png"
+/>,
+              <style__P>
+                Open the 
+                <style__KeyText>
+                                Ethereum
+                </style__KeyText>
+                 app on your device
+</style__P>,
+              <style__StatusIcon
+                type="loading"
+/>,
+            ],
+            "pos": "bottom",
           },
           "ref": null,
-          "rendered": "Something went wrong, please reconnect your device and try again",
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "src": "/public/images/hw-wallet-eth-green.png",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  "Open the ",
+                  <style__KeyText>
+                    Ethereum
+</style__KeyText>,
+                  " app on your device",
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                "Open the ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Ethereum",
+                  },
+                  "ref": null,
+                  "rendered": "Ethereum",
+                  "type": [Function],
+                },
+                " app on your device",
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "type": "loading",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
       ],
@@ -556,380 +1075,492 @@ ShallowWrapper {
 }
 `;
 
-exports[`<HWPrompt /> should render correctly in trezor connect stage 1`] = `
+exports[`<HWPrompt /> should render correctly in lns open device stage 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HWPrompt
-    confTxOnDevice={false}
+    deviceType="lns"
+    ledgerInfo={
+        Immutable.Map {
+            status: "disconnected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <style__Row
+          active={false}
+          pos="top"
+>
+          <style__DescriptiveIcon
+                    src="/public/images/hw-wallet-usb-white.png"
+          />
+          <style__P>
+                    Connect and unlock your 
+                    <style__KeyText>
+                              Ledger Device
+                    </style__KeyText>
+          </style__P>
+          <style__StatusIcon
+                    type="check"
+          />
+</style__Row>,
+        <style__Row
+          active={true}
+          pos="bottom"
+>
+          <style__DescriptiveIcon
+                    src="/public/images/hw-wallet-eth-green.png"
+          />
+          <style__P>
+                    Open the 
+                    <style__KeyText>
+                              Ethereum
+                    </style__KeyText>
+                     app on your device
+          </style__P>
+          <style__StatusIcon
+                    type="loading"
+          />
+</style__Row>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "active": false,
+          "children": Array [
+            <style__DescriptiveIcon
+              src="/public/images/hw-wallet-usb-white.png"
+/>,
+            <style__P>
+              Connect and unlock your 
+              <style__KeyText>
+                            Ledger Device
+              </style__KeyText>
+</style__P>,
+            <style__StatusIcon
+              type="check"
+/>,
+          ],
+          "pos": "top",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "src": "/public/images/hw-wallet-usb-white.png",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                "Connect and unlock your ",
+                <style__KeyText>
+                  Ledger Device
+</style__KeyText>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              "Connect and unlock your ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Ledger Device",
+                },
+                "ref": null,
+                "rendered": "Ledger Device",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "type": "check",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "active": true,
+          "children": Array [
+            <style__DescriptiveIcon
+              src="/public/images/hw-wallet-eth-green.png"
+/>,
+            <style__P>
+              Open the 
+              <style__KeyText>
+                            Ethereum
+              </style__KeyText>
+               app on your device
+</style__P>,
+            <style__StatusIcon
+              type="loading"
+/>,
+          ],
+          "pos": "bottom",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "src": "/public/images/hw-wallet-eth-green.png",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                "Open the ",
+                <style__KeyText>
+                  Ethereum
+</style__KeyText>,
+                " app on your device",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              "Open the ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Ethereum",
+                },
+                "ref": null,
+                "rendered": "Ethereum",
+                "type": [Function],
+              },
+              " app on your device",
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "type": "loading",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <style__Row
+            active={false}
+            pos="top"
+>
+            <style__DescriptiveIcon
+                        src="/public/images/hw-wallet-usb-white.png"
+            />
+            <style__P>
+                        Connect and unlock your 
+                        <style__KeyText>
+                                    Ledger Device
+                        </style__KeyText>
+            </style__P>
+            <style__StatusIcon
+                        type="check"
+            />
+</style__Row>,
+          <style__Row
+            active={true}
+            pos="bottom"
+>
+            <style__DescriptiveIcon
+                        src="/public/images/hw-wallet-eth-green.png"
+            />
+            <style__P>
+                        Open the 
+                        <style__KeyText>
+                                    Ethereum
+                        </style__KeyText>
+                         app on your device
+            </style__P>
+            <style__StatusIcon
+                        type="loading"
+            />
+</style__Row>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "active": false,
+            "children": Array [
+              <style__DescriptiveIcon
+                src="/public/images/hw-wallet-usb-white.png"
+/>,
+              <style__P>
+                Connect and unlock your 
+                <style__KeyText>
+                                Ledger Device
+                </style__KeyText>
+</style__P>,
+              <style__StatusIcon
+                type="check"
+/>,
+            ],
+            "pos": "top",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "src": "/public/images/hw-wallet-usb-white.png",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  "Connect and unlock your ",
+                  <style__KeyText>
+                    Ledger Device
+</style__KeyText>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                "Connect and unlock your ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Ledger Device",
+                  },
+                  "ref": null,
+                  "rendered": "Ledger Device",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "type": "check",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "active": true,
+            "children": Array [
+              <style__DescriptiveIcon
+                src="/public/images/hw-wallet-eth-green.png"
+/>,
+              <style__P>
+                Open the 
+                <style__KeyText>
+                                Ethereum
+                </style__KeyText>
+                 app on your device
+</style__P>,
+              <style__StatusIcon
+                type="loading"
+/>,
+            ],
+            "pos": "bottom",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "src": "/public/images/hw-wallet-eth-green.png",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  "Open the ",
+                  <style__KeyText>
+                    Ethereum
+</style__KeyText>,
+                  " app on your device",
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                "Open the ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Ethereum",
+                  },
+                  "ref": null,
+                  "rendered": "Ethereum",
+                  "type": [Function],
+                },
+                " app on your device",
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "type": "loading",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<HWPrompt /> should render correctly in trezor conf on device stage 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HWPrompt
     deviceType="trezor"
-    error="Ledger could not be detected"
-/>,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "children": Array [
-        <style__SingleRowIcon
-          color={undefined}
-          type="loading"
-/>,
-        <style__P>
-          Please connect and unlock your Trezor device to continue
-</style__P>,
-      ],
-    },
-    "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "color": undefined,
-          "type": "loading",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": "Please connect and unlock your Trezor device to continue",
-        },
-        "ref": null,
-        "rendered": "Please connect and unlock your Trezor device to continue",
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": Array [
-          <style__SingleRowIcon
-            color={undefined}
-            type="loading"
-/>,
-          <style__P>
-            Please connect and unlock your Trezor device to continue
-</style__P>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "color": undefined,
-            "type": "loading",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": "Please connect and unlock your Trezor device to continue",
-          },
-          "ref": null,
-          "rendered": "Please connect and unlock your Trezor device to continue",
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-      },
-    },
-  },
-}
-`;
-
-exports[`<HWPrompt /> should render correctly when device is connected with no errors 1`] = `
-ShallowWrapper {
-  "length": 1,
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <HWPrompt
-    confTxOnDevice={false}
-    deviceType="lns"
-    error={null}
-/>,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "children": Array [
-        <style__SingleRowIcon
-          color={undefined}
-          type="check"
-/>,
-        <style__P>
-          Device connection established
-</style__P>,
-      ],
-    },
-    "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "color": undefined,
-          "type": "check",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": "Device connection established",
-        },
-        "ref": null,
-        "rendered": "Device connection established",
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": Array [
-          <style__SingleRowIcon
-            color={undefined}
-            type="check"
-/>,
-          <style__P>
-            Device connection established
-</style__P>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "color": undefined,
-            "type": "check",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": "Device connection established",
-          },
-          "ref": null,
-          "rendered": "Device connection established",
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-      },
-    },
-  },
-}
-`;
-
-exports[`<HWPrompt /> should render correctly when tx conf required on LNS 1`] = `
-ShallowWrapper {
-  "length": 1,
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <HWPrompt
-    confTxOnDevice={true}
-    deviceType="lns"
-    error="Ledger could not be detected"
-/>,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "children": Array [
-        <style__ConfTxShield
-          src="/public/images/shield.png"
-/>,
-        <style__ConfTxDeviceImg
-          src="/public/images/conf-tx-lns.png"
-/>,
-        <style__P>
-          Verify the details shown on your device
-</style__P>,
-      ],
-    },
-    "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "src": "/public/images/shield.png",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "src": "/public/images/conf-tx-lns.png",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": "Verify the details shown on your device",
-        },
-        "ref": null,
-        "rendered": "Verify the details shown on your device",
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": Array [
-          <style__ConfTxShield
-            src="/public/images/shield.png"
-/>,
-          <style__ConfTxDeviceImg
-            src="/public/images/conf-tx-lns.png"
-/>,
-          <style__P>
-            Verify the details shown on your device
-</style__P>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "src": "/public/images/shield.png",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "src": "/public/images/conf-tx-lns.png",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": "Verify the details shown on your device",
-          },
-          "ref": null,
-          "rendered": "Verify the details shown on your device",
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-      },
-    },
-  },
-}
-`;
-
-exports[`<HWPrompt /> should render correctly when tx conf required on trezor 1`] = `
-ShallowWrapper {
-  "length": 1,
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <HWPrompt
-    confTxOnDevice={true}
-    deviceType="trezor"
-    error="Ledger could not be detected"
+    ledgerInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: true,
+        }
+    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -1044,6 +1675,138 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": "Verify the details shown on your device",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<HWPrompt /> should render correctly in trezor connect stage 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HWPrompt
+    deviceType="trezor"
+    ledgerInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+    trezorInfo={
+        Immutable.Map {
+            status: "disconnected",
+            connected: false,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <style__SingleRowIcon
+          color={undefined}
+          type="loading"
+/>,
+        <style__P>
+          Please connect and unlock your Trezor device to continue
+</style__P>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "color": undefined,
+          "type": "loading",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Please connect and unlock your Trezor device to continue",
+        },
+        "ref": null,
+        "rendered": "Please connect and unlock your Trezor device to continue",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <style__SingleRowIcon
+            color={undefined}
+            type="loading"
+/>,
+          <style__P>
+            Please connect and unlock your Trezor device to continue
+</style__P>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "color": undefined,
+            "type": "loading",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Please connect and unlock your Trezor device to continue",
+          },
+          "ref": null,
+          "rendered": "Please connect and unlock your Trezor device to continue",
           "type": [Function],
         },
       ],

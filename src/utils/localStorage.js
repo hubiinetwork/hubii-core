@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { initialState as walletHocInitialState } from 'containers/WalletHOC/reducer';
+import { initialState as walletHocInitialState } from 'containers/WalletHoc/reducer';
 import { initialState as contactsInitialState } from 'containers/ContactBook/reducer';
 
 
@@ -53,7 +53,7 @@ export const filterPersistedState = (state) => {
   persistedState = persistedState.set('walletHoc', walletHocInitialState);
 
   /*
-   * Sanitised software wallets from WalletHOC
+   * Sanitised software wallets from WalletHoc
    */
 
   // Get software wallets ensuring the decrypted property is filtered out

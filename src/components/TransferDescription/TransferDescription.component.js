@@ -6,6 +6,8 @@ import { formatFiat } from 'utils/numberFormats';
 import { isValidAddress } from 'ethereumjs-util';
 import { isHardwareWallet } from 'utils/wallet';
 
+import HWPromptContainer from 'containers/HWPromptContainer';
+
 import {
   StyledCol,
   WrapperDiv,
@@ -17,7 +19,6 @@ import {
   HWPromptWrapper,
 } from './TransferDescription.style';
 import TransferDescriptionItem from '../TransferDescriptionItem';
-import HWPrompt from '../HWPrompt';
 
 /**
  * The TransferDescription Component
@@ -28,7 +29,6 @@ export default class TransferDescription extends React.PureComponent {
       currentWalletWithInfo,
       recipient,
       assetToSend,
-      errors,
       amountToSend,
       ethBalanceBefore,
       ethBalanceAfter,
@@ -39,22 +39,15 @@ export default class TransferDescription extends React.PureComponent {
       usdValueToSend,
       transactionFee,
       onSend,
+      hwWalletReady,
     } = this.props;
-
-    let hardwareError;
-    if (currentWalletWithInfo.get('type') === 'lns' && errors.get('ledgerError')) {
-      hardwareError = errors.get('ledgerError');
-    }
-    if (currentWalletWithInfo.get('type') === 'trezor' && errors.get('trezorError')) {
-      hardwareError = errors.get('trezorError');
-    }
 
     const disableSendButton =
       amountToSend.isNegative() ||
       ethBalanceAfter.amount.isNegative() ||
       assetBalanceAfter.amount.isNegative() ||
       !isValidAddress(recipient) ||
-      hardwareError;
+      !hwWalletReady;
     return (
       <WrapperDiv>
         <Row>
@@ -148,11 +141,7 @@ export default class TransferDescription extends React.PureComponent {
           {
             isHardwareWallet(currentWalletWithInfo.get('type')) &&
             <HWPromptWrapper>
-              <HWPrompt
-                deviceType={currentWalletWithInfo.get('type')}
-                error={hardwareError}
-                confTxOnDevice={this.props.confTxOnDevice}
-              />
+              <HWPromptContainer />
             </HWPromptWrapper>
           }
           {
@@ -186,7 +175,6 @@ TransferDescription.propTypes = {
   usdValueToSend: PropTypes.object.isRequired,
   onSend: PropTypes.func,
   transfering: PropTypes.bool,
-  confTxOnDevice: PropTypes.bool.isRequired,
-  errors: PropTypes.object.isRequired,
+  hwWalletReady: PropTypes.bool.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,
 };

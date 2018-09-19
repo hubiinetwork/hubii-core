@@ -2,21 +2,30 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { fromJS } from 'immutable';
 import {
-  pricesLoadedMock,
   walletsWithInfoMock,
   walletsMock,
+} from 'containers/WalletHoc/tests/mocks/selectors';
+
+import {
+  pricesLoadedMock,
   supportedAssetsLoadedMock,
   supportedAssetsLoadingMock,
   supportedAssetsErrorMock,
   pricesLoadingMock,
   pricesErrorMock,
-  ledgerNanoSInfoConnectedMock,
-  ledgerNanoSInfoConfOnDeviceMock,
-  trezorInfoConnectedMock,
-  trezorInfoConfOnDeviceMock,
-} from 'containers/WalletHOC/tests/mocks/selectors';
+} from 'containers/HubiiApiHoc/tests/mocks/selectors';
 
-import { contactsMock } from 'containers/WalletHOC/tests/mocks';
+import {
+  ledgerHocConnectedMock,
+  ledgerHocConfOnDeviceMock,
+} from 'containers/LedgerHoc/tests/mocks/selectors';
+
+import {
+  trezorHocConnectedMock,
+  trezorHocConfOnDeviceMock,
+} from 'containers/TrezorHoc/tests/mocks/selectors';
+
+import { contactsMock } from 'containers/WalletHoc/tests/mocks';
 
 import { WalletTransfer, mapDispatchToProps } from '../index';
 
@@ -30,8 +39,8 @@ describe('WalletTransfer', () => {
     transfer: () => {},
     history: {},
     errors: {},
-    ledgerNanoSInfo: ledgerNanoSInfoConnectedMock,
-    trezorInfo: trezorInfoConnectedMock,
+    ledgerNanoSInfo: ledgerHocConnectedMock,
+    trezorInfo: trezorHocConnectedMock,
     createContact: jest.fn(),
   };
 
@@ -108,7 +117,7 @@ describe('WalletTransfer', () => {
     const wrapper = shallow(
       <WalletTransfer
         {...props}
-        ledgerNanoSInfo={ledgerNanoSInfoConfOnDeviceMock}
+        ledgerNanoSInfo={ledgerHocConfOnDeviceMock}
       />
         );
     expect(wrapper).toMatchSnapshot();
@@ -118,7 +127,7 @@ describe('WalletTransfer', () => {
     const wrapper = shallow(
       <WalletTransfer
         {...props}
-        trezorInfo={trezorInfoConfOnDeviceMock}
+        trezorInfo={trezorHocConfOnDeviceMock}
       />
         );
     expect(wrapper).toMatchSnapshot();

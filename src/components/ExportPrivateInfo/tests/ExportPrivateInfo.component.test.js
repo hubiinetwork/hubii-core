@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ExportPrivateInfo from 'components/ExportPrivateInfo';
-import { decryptedSoftwareWallet1Mock, decryptedSoftwareWallet2Mock } from 'containers/WalletHOC/tests/mocks';
+import { decryptedSoftwareWallet1Mock, decryptedSoftwareWallet2Mock } from 'containers/WalletHoc/tests/mocks';
 describe('<ExportPrivateInfo/>', () => {
   const onExit = jest.fn();
   let wrapper;

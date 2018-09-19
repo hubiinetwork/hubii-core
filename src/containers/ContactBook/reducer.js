@@ -8,7 +8,7 @@ import { fromJS } from 'immutable';
 
 import {
   TRANSFER_SUCCESS,
-} from 'containers/WalletHOC/constants';
+} from 'containers/WalletHoc/constants';
 
 import { updateRecentContacts } from 'utils/contacts';
 

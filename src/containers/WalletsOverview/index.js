@@ -7,15 +7,24 @@ import { Row, Col } from 'antd';
 
 import { getBreakdown } from 'utils/wallet';
 
-import { deleteWallet, showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHOC/actions';
+import { deleteWallet, showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHoc/actions';
 import {
-  makeSelectLedgerNanoSInfo,
-  makeSelectTrezorInfo,
-  makeSelectSupportedAssets,
-  makeSelectTotalBalances,
   makeSelectWalletsWithInfo,
+  makeSelectTotalBalances,
+} from 'containers/WalletHoc/selectors';
+
+import {
+  makeSelectSupportedAssets,
   makeSelectPrices,
-} from 'containers/WalletHOC/selectors';
+} from 'containers/HubiiApiHoc/selectors';
+
+import {
+  makeSelectLedgerHoc,
+} from 'containers/LedgerHoc/selectors';
+
+import {
+  makeSelectTrezorHoc,
+} from 'containers/TrezorHoc/selectors';
 
 import SectionHeading from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
@@ -134,8 +143,8 @@ const mapStateToProps = createStructuredSelector({
   walletsWithInfo: makeSelectWalletsWithInfo(),
   totalBalances: makeSelectTotalBalances(),
   supportedAssets: makeSelectSupportedAssets(),
-  ledgerNanoSInfo: makeSelectLedgerNanoSInfo(),
-  trezorInfo: makeSelectTrezorInfo(),
+  ledgerNanoSInfo: makeSelectLedgerHoc(),
+  trezorInfo: makeSelectTrezorHoc(),
   priceInfo: makeSelectPrices(),
 });
 

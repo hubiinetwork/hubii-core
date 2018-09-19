@@ -10,8 +10,8 @@ import { Route, Redirect } from 'react-router';
 import WalletHeader from 'components/WalletHeader';
 import WalletTransactions from 'containers/WalletTransactions';
 import WalletTransfer from 'containers/WalletTransfer';
-import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHOC/selectors';
-import { setCurrentWallet } from 'containers/WalletHOC/actions';
+import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHoc/selectors';
+import { setCurrentWallet } from 'containers/WalletHoc/actions';
 
 import SimplexPage from 'components/SimplexPage';
 import Tabs, { TabPane } from 'components/ui/Tabs';

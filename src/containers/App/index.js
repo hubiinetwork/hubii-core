@@ -27,7 +27,11 @@ import WalletDetails from 'containers/WalletDetails';
 import Dex from 'containers/Dex';
 import Settings from 'containers/Settings';
 
-import WalletHOC from 'containers/WalletHOC';
+import WalletHoc from 'containers/WalletHoc';
+import withLedger from 'containers/LedgerHoc';
+import withTrezor from 'containers/TrezorHoc';
+import withHubiiApi from 'containers/HubiiApiHoc';
+import withEthOperations from 'containers/EthOperationsHoc';
 
 import ReleaseNotesModal from 'containers/ReleaseNotesModal';
 
@@ -70,5 +74,9 @@ const withSaga = injectSaga({ key: 'app', saga });
 export default compose(
   withReducer,
   withSaga,
-  WalletHOC,
+  WalletHoc,
+  withLedger,
+  withTrezor,
+  withEthOperations,
+  withHubiiApi,
 )(App);

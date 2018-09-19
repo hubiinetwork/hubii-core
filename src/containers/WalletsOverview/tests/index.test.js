@@ -1,18 +1,21 @@
 import React from 'react';
 import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
-import { deleteWallet } from 'containers/WalletHOC/actions';
+import { deleteWallet } from 'containers/WalletHoc/actions';
 import {
   walletsWithInfoMock,
   walletsWithInfoEmptyMock,
   totalBalancesLoadedMock,
   totalBalancesLoadingMock,
   totalBalancesErrorMock,
+} from 'containers/WalletHoc/tests/mocks/selectors';
+
+import {
   supportedAssetsLoadedMock,
   supportedAssetsLoadingMock,
   supportedAssetsErrorMock,
   pricesLoadedMock,
-} from 'containers/WalletHOC/tests/mocks/selectors';
+} from 'containers/HubiiApiHoc/tests/mocks/selectors';
 
 import { WalletsOverview, mapDispatchToProps } from '../index';
 
