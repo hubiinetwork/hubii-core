@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import HomeScreen from 'components/HomeScreen';
-import Striim from 'containers/Striim';
 import WalletManager from 'containers/WalletManager';
 import WalletDetails from 'containers/WalletDetails';
 import { SideBar } from '../SideBar.component';
@@ -14,11 +13,6 @@ describe('<SideBar />', () => {
       to: '/wallets',
       icon: 'wallet',
       name: 'Wallet Manager',
-    },
-    {
-      to: '/wallet',
-      icon: 'striim',
-      name: 'striim detail',
     },
     {
       to: '/dex',
@@ -39,7 +33,6 @@ describe('<SideBar />', () => {
           <Route exact path="/" component={HomeScreen} />
           <Route path="/wallets" component={WalletManager} />
           <Route path="/wallet/:address" component={WalletDetails} />
-          <Route path="/striim" component={Striim} />
           <Redirect from="/" to="/wallets" />
         </Switch>
       </SideBar>

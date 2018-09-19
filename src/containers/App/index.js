@@ -22,7 +22,6 @@ import injectReducer from 'utils/injectReducer';
 
 import HomeScreen from 'components/HomeScreen';
 import SideBar from 'components/SideBar';
-import Striim from 'containers/Striim';
 import WalletManager from 'containers/WalletManager';
 import WalletDetails from 'containers/WalletDetails';
 import Dex from 'containers/Dex';
@@ -60,7 +59,6 @@ function App() {
       <Switch>
         <Route path="/wallets" component={WalletManager} />
         <Route path="/wallet/:address" component={WalletDetails} />
-        <Route path="/striim" component={Striim} />
         <Route path="/dex" component={Dex} />
         <Route path="/settings" component={Settings} />
         <Route component={HomeScreen} />

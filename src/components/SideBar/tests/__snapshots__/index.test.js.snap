@@ -19,11 +19,6 @@ ShallowWrapper {
               "to": "/wallets",
             },
             Object {
-              "icon": "striim",
-              "name": "striim detail",
-              "to": "/wallet",
-            },
-            Object {
               "icon": "dex",
               "name": "dex detail",
               "to": "/dex",
@@ -44,10 +39,6 @@ ShallowWrapper {
         <Route
             component={[Function]}
             path="/wallet/:address"
-        />
-        <Route
-            component={[Function]}
-            path="/striim"
         />
         <Redirect
             from="/"
@@ -148,26 +139,6 @@ ShallowWrapper {
                     >
                               <Link
                                         replace={false}
-                                        to="/wallet"
-                              >
-                                        <div
-                                                  style={
-                                                            Object {
-                                                                      "alignItems": "center",
-                                                                      "display": "flex",
-                                                                      "justifyContent": "center",
-                                                                    }
-                                                  }
-                                        >
-                                                  
-                                        </div>
-                              </Link>
-                    </MenuItem>
-                    <MenuItem
-                              className="menu-wallet"
-                    >
-                              <Link
-                                        replace={false}
                                         to="/dex"
                               >
                                         <div
@@ -235,10 +206,6 @@ ShallowWrapper {
           <Route
                     component={[Function]}
                     path="/wallet/:address"
-          />
-          <Route
-                    component={[Function]}
-                    path="/striim"
           />
           <Redirect
                     from="/"
@@ -317,26 +284,6 @@ ShallowWrapper {
                                                                         fill="#404f56"
                                                             />
                                                 </SvgIcon>
-                                    </div>
-                        </Link>
-            </MenuItem>
-            <MenuItem
-                        className="menu-wallet"
-            >
-                        <Link
-                                    replace={false}
-                                    to="/wallet"
-                        >
-                                    <div
-                                                style={
-                                                            Object {
-                                                                        "alignItems": "center",
-                                                                        "display": "flex",
-                                                                        "justifyContent": "center",
-                                                                      }
-                                                }
-                                    >
-                                                
                                     </div>
                         </Link>
             </MenuItem>
@@ -462,26 +409,6 @@ ShallowWrapper {
                                                                                           fill="#404f56"
                                                                         />
                                                       </SvgIcon>
-                                    </div>
-                  </Link>
-</MenuItem>,
-                <MenuItem
-                  className="menu-wallet"
->
-                  <Link
-                                    replace={false}
-                                    to="/wallet"
-                  >
-                                    <div
-                                                      style={
-                                                                        Object {
-                                                                                          "alignItems": "center",
-                                                                                          "display": "flex",
-                                                                                          "justifyContent": "center",
-                                                                                        }
-                                                      }
-                                    >
-                                                      
                                     </div>
                   </Link>
 </MenuItem>,
@@ -762,76 +689,6 @@ ShallowWrapper {
                       },
                       "type": [Function],
                     },
-                    false,
-                  ],
-                  "type": "div",
-                },
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "/wallet",
-              "nodeType": "class",
-              "props": Object {
-                "children": <Link
-                  replace={false}
-                  to="/wallet"
->
-                  <div
-                                    style={
-                                                      Object {
-                                                                        "alignItems": "center",
-                                                                        "display": "flex",
-                                                                        "justifyContent": "center",
-                                                                      }
-                                    }
-                  >
-                                    
-                  </div>
-</Link>,
-                "className": "menu-wallet",
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <div
-                    style={
-                                        Object {
-                                                            "alignItems": "center",
-                                                            "display": "flex",
-                                                            "justifyContent": "center",
-                                                          }
-                    }
->
-                    
-</div>,
-                  "replace": false,
-                  "to": "/wallet",
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": Array [
-                      false,
-                      false,
-                    ],
-                    "style": Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "justifyContent": "center",
-                    },
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    false,
                     false,
                   ],
                   "type": "div",
@@ -1151,10 +1008,6 @@ ShallowWrapper {
               component={[Function]}
               path="/wallet/:address"
 />,
-            <Route
-              component={[Function]}
-              path="/striim"
-/>,
             <Redirect
               from="/"
               push={false}
@@ -1196,18 +1049,6 @@ ShallowWrapper {
             "props": Object {
               "component": [Function],
               "path": "/wallet/:address",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/striim",
             },
             "ref": null,
             "rendered": null,
@@ -1318,26 +1159,6 @@ ShallowWrapper {
                         >
                                     <Link
                                                 replace={false}
-                                                to="/wallet"
-                                    >
-                                                <div
-                                                            style={
-                                                                        Object {
-                                                                                    "alignItems": "center",
-                                                                                    "display": "flex",
-                                                                                    "justifyContent": "center",
-                                                                                  }
-                                                            }
-                                                >
-                                                            
-                                                </div>
-                                    </Link>
-                        </MenuItem>
-                        <MenuItem
-                                    className="menu-wallet"
-                        >
-                                    <Link
-                                                replace={false}
                                                 to="/dex"
                                     >
                                                 <div
@@ -1405,10 +1226,6 @@ ShallowWrapper {
             <Route
                         component={[Function]}
                         path="/wallet/:address"
-            />
-            <Route
-                        component={[Function]}
-                        path="/striim"
             />
             <Redirect
                         from="/"
@@ -1487,26 +1304,6 @@ ShallowWrapper {
                                                                                     fill="#404f56"
                                                                       />
                                                         </SvgIcon>
-                                          </div>
-                            </Link>
-              </MenuItem>
-              <MenuItem
-                            className="menu-wallet"
-              >
-                            <Link
-                                          replace={false}
-                                          to="/wallet"
-                            >
-                                          <div
-                                                        style={
-                                                                      Object {
-                                                                                    "alignItems": "center",
-                                                                                    "display": "flex",
-                                                                                    "justifyContent": "center",
-                                                                                  }
-                                                        }
-                                          >
-                                                        
                                           </div>
                             </Link>
               </MenuItem>
@@ -1632,26 +1429,6 @@ ShallowWrapper {
                                                                                                     fill="#404f56"
                                                                                 />
                                                             </SvgIcon>
-                                        </div>
-                    </Link>
-</MenuItem>,
-                  <MenuItem
-                    className="menu-wallet"
->
-                    <Link
-                                        replace={false}
-                                        to="/wallet"
-                    >
-                                        <div
-                                                            style={
-                                                                                Object {
-                                                                                                    "alignItems": "center",
-                                                                                                    "display": "flex",
-                                                                                                    "justifyContent": "center",
-                                                                                                  }
-                                                            }
-                                        >
-                                                            
                                         </div>
                     </Link>
 </MenuItem>,
@@ -1932,76 +1709,6 @@ ShallowWrapper {
                         },
                         "type": [Function],
                       },
-                      false,
-                    ],
-                    "type": "div",
-                  },
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": "/wallet",
-                "nodeType": "class",
-                "props": Object {
-                  "children": <Link
-                    replace={false}
-                    to="/wallet"
->
-                    <div
-                                        style={
-                                                            Object {
-                                                                                "alignItems": "center",
-                                                                                "display": "flex",
-                                                                                "justifyContent": "center",
-                                                                              }
-                                        }
-                    >
-                                        
-                    </div>
-</Link>,
-                  "className": "menu-wallet",
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": <div
-                      style={
-                                            Object {
-                                                                  "alignItems": "center",
-                                                                  "display": "flex",
-                                                                  "justifyContent": "center",
-                                                                }
-                      }
->
-                      
-</div>,
-                    "replace": false,
-                    "to": "/wallet",
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": Array [
-                        false,
-                        false,
-                      ],
-                      "style": Object {
-                        "alignItems": "center",
-                        "display": "flex",
-                        "justifyContent": "center",
-                      },
-                    },
-                    "ref": null,
-                    "rendered": Array [
-                      false,
                       false,
                     ],
                     "type": "div",
@@ -2321,10 +2028,6 @@ ShallowWrapper {
                 component={[Function]}
                 path="/wallet/:address"
 />,
-              <Route
-                component={[Function]}
-                path="/striim"
-/>,
               <Redirect
                 from="/"
                 push={false}
@@ -2366,18 +2069,6 @@ ShallowWrapper {
               "props": Object {
                 "component": [Function],
                 "path": "/wallet/:address",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/striim",
               },
               "ref": null,
               "rendered": null,
