@@ -26,17 +26,21 @@ export class SideBar extends React.Component {
     const { menuItems, logoSrc, children } = this.props;
     const { info, dark2 } = darkTheme.palette;
     const currentRoute = this.getroute();
-    let selectedKeys = [currentRoute];
-    if (currentRoute === '/wallet') {
-      selectedKeys = ['/wallets'];
+    let selectedKeys;
+    if (currentRoute.includes('wallet')) {
+      selectedKeys = ['wallet'];
     } else if (currentRoute.includes('nahmii')) {
-      selectedKeys = ['/nahmii/airdriip-registration'];
+      selectedKeys = ['nahmii'];
+    } else if (currentRoute.includes('dex')) {
+      selectedKeys = ['dex'];
+    } else if (currentRoute.includes('settings')) {
+      selectedKeys = ['settings'];
     }
     return (
       <SideBarLayout style={{ minHeight: '100vh' }}>
         <Sider collapsed collapsedWidth="72" trigger={null}>
           <SideBarMenu
-            defaultSelectedKeys={[menuItems[0].to]}
+            defaultSelectedKeys={[menuItems[0].key]}
             mode="inline"
             onSelect={this.handleChange}
             selectedKeys={selectedKeys}
@@ -55,7 +59,7 @@ export class SideBar extends React.Component {
             </Menu.Item>
             {menuItems &&
               menuItems.map((menuItem) => (
-                <Menu.Item key={menuItem.to} className="menu-wallet">
+                <Menu.Item key={menuItem.key} className="menu-wallet">
                   <Link to={menuItem.to}>
                     <div
                       style={{
@@ -108,7 +112,7 @@ export class SideBar extends React.Component {
                   </Link>
                 </Menu.Item>
                 ))}
-            <Menu.Item key="/settings" className="menu-setting">
+            <Menu.Item key="settings" className="menu-setting">
               <Link to="/settings">
                 <div>
                   <Icon className="setting-icon" type="setting" />

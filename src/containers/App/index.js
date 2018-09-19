@@ -44,14 +44,17 @@ function App() {
     {
       to: '/wallets',
       icon: 'wallet',
+      key: 'wallet',
     },
     {
       to: '/nahmii/airdriip-registration',
       icon: 'nahmii-token',
+      key: 'nahmii',
     },
     {
       to: '/dex',
       icon: 'dex',
+      key: 'dex',
     },
   ];
   return (
