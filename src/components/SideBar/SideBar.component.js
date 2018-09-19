@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 import { SideBarLayout, SideBarMenu } from './SideBar.style';
 import SvgIcon from '../ui/SvgIcon';
 import darkTheme from '../../themes/darkTheme';
+
+import NahmiiGrey from '../../../public/images/nahmii-token-grey.png';
+import NahmiiGreen from '../../../public/images/nahmii-token-green.png';
+
 const { Sider } = Layout;
 
 /**
@@ -25,6 +29,8 @@ export class SideBar extends React.Component {
     let selectedKeys = [currentRoute];
     if (currentRoute === '/wallet') {
       selectedKeys = ['/wallets'];
+    } else if (currentRoute.includes('nahmii')) {
+      selectedKeys = ['/nahmii/airdriip-registration'];
     }
     return (
       <SideBarLayout style={{ minHeight: '100vh' }}>
@@ -87,6 +93,17 @@ export class SideBar extends React.Component {
                         </g>
                       </SvgIcon>
                     )}
+                      {menuItem.icon === 'nahmii-token' && (
+                       currentRoute.includes('nahmii')
+                       ?
+                         <div>
+                           <img alt="nahmii token" style={{ height: 'auto', width: '32px' }} src={NahmiiGreen} />
+                         </div>
+                      :
+                         <div>
+                           <img alt="nahmii token" style={{ height: 'auto', width: '32px' }} src={NahmiiGrey} />
+                         </div>
+                    )}
                     </div>
                   </Link>
                 </Menu.Item>
@@ -112,7 +129,6 @@ SideBar.propTypes = {
    */
   menuItems: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
       icon: PropTypes.string.isRequired,
       to: PropTypes.string.isRequired,
     })
