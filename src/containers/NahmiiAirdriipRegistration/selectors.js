@@ -16,7 +16,7 @@ const selectNahmiiAirdriipRegistrationDomain = (state) => state.get('nahmiiAirdr
 
 const makeSelectNahmiiAirdriipRegistration = () => createSelector(
   selectNahmiiAirdriipRegistrationDomain,
-  (substate) => substate.toJS()
+  (substate) => substate
 );
 
 export default makeSelectNahmiiAirdriipRegistration;

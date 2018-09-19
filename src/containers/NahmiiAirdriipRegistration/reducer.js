@@ -16,7 +16,8 @@ const initialState = fromJS({
 function nahmiiAirdriipRegistrationReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_STAGE:
-      return state;
+      return state
+        .set('stage', action.stage);
     default:
       return state;
   }

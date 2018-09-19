@@ -3,12 +3,17 @@ import darkTheme from './themes/darkTheme';
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
+&&&& {
   .ant-tooltip {
     display: none;
   }
 
   html * {
     font-family: "Open Sans";
+  }
+
+  h1, h2 {
+    color: ${darkTheme.palette.light} !important;
   }
 
   html,
@@ -101,4 +106,4 @@ injectGlobal`
     align-items: center;
   }
 }
-`;
+}`;
