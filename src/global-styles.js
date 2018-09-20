@@ -12,10 +12,6 @@ injectGlobal`
     font-family: "Open Sans";
   }
 
-  h1, h2 {
-    color: ${darkTheme.palette.light} !important;
-  }
-
   html,
   body {
     height: 100%;
