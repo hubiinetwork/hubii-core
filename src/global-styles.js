@@ -20,10 +20,6 @@ injectGlobal`
     font-weight: 400;
   }
 
-  body {
-    letter-spacing: 0.06rem;
-  }
-
   #app {
     min-height: 100%;
     min-width: 100%;
