@@ -92,6 +92,18 @@ export function deriveAddresses({ publicKey, chainCode, count }) {
   return addresses;
 }
 
+export const walletReady = (walletType, ledgerInfo, trezorInfo) => {
+  // check ledger
+  if (walletType === 'lns' && !ledgerInfo.get('ethConnected')) {
+    return false;
+  }
+  // check trezor
+  if (walletType === 'trezor' && trezorInfo.get('status') !== 'connected') {
+    return false;
+  }
+  return true;
+};
+
 // input and output are BigNumber
 export const gweiToWei = (gwei) => (gwei.times(new BigNumber('10').pow('9')));
 
