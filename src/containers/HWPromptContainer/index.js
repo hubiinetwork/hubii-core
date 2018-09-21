@@ -28,11 +28,13 @@ export class HWPromptContainer extends React.Component { // eslint-disable-line 
     } = this.props;
     const deviceType = passedDeviceType || currentWalletWithInfo.get('type');
     return (
-      <HWPrompt
-        deviceType={deviceType}
-        ledgerInfo={ledgerInfo}
-        trezorInfo={trezorInfo}
-      />
+      <div style={this.props.style}>
+        <HWPrompt
+          deviceType={deviceType}
+          ledgerInfo={ledgerInfo}
+          trezorInfo={trezorInfo}
+        />
+      </div>
     );
   }
 }
@@ -40,6 +42,7 @@ export class HWPromptContainer extends React.Component { // eslint-disable-line 
 HWPromptContainer.propTypes = {
   currentWalletWithInfo: PropTypes.object.isRequired,
   ledgerInfo: PropTypes.object.isRequired,
+  style: PropTypes.object,
   trezorInfo: PropTypes.object.isRequired,
   passedDeviceType: PropTypes.oneOf(['lns', 'trezor']),
 };
