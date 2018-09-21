@@ -10,8 +10,14 @@ export const OuterWrapper = styled.div`
   margin-top: 4rem;
 `;
 
-export const StyledHeading = styled(Heading)`
+export const PrimaryHeading = styled(Heading)`
   margin-bottom: 1rem;
+`;
+
+export const SecondaryHeading = styled(Heading)`
+&&&& {
+  margin-bottom: 4rem;
+}
 `;
 
 export const ButtonsWrapper = styled.div`
@@ -26,7 +32,7 @@ export const StartWrapper = styled.div`
 
 export const StyledButton = styled(Button)`
 &&&& {
-  margin: 3rem 1rem;
+  margin: 0 1rem;
   width: 14rem;
 }`;
 

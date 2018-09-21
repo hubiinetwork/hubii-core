@@ -13,7 +13,7 @@ import Select, { Option } from 'components/ui/Select';
 const StyledSelect = styled(Select)`
 &&&& {
   padding: 1rem;
-  width: 35rem;
+  width: 33rem;
   border: 2px solid ${({ theme }) => theme.palette.secondary7};
   border-radius: 0.5rem;
   .ant-select-selection {
@@ -32,7 +32,6 @@ function SelectWallet(props) {
     <div>
       <StyledSelect
         {...props}
-        onChange={(a) => props.onChange(props.wallets.find((w) => w.address === a))}
       >
         {
           props.wallets.map((w) => (
@@ -51,7 +50,6 @@ function SelectWallet(props) {
 
 SelectWallet.propTypes = {
   wallets: PropTypes.array.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default SelectWallet;

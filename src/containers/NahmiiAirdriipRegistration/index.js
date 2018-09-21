@@ -12,13 +12,19 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+import { walletReady, isHardwareWallet } from 'utils/wallet';
 
-import { makeSelectWallets } from 'containers/WalletHoc/selectors';
+import { makeSelectLedgerHoc } from 'containers/LedgerHoc/selectors';
+import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
+import { setCurrentWallet } from 'containers/WalletHoc/actions';
 
-import Heading from 'components/ui/Heading';
+import {
+  makeSelectWallets,
+  makeSelectCurrentWalletWithInfo,
+} from 'containers/WalletHoc/selectors';
+import HWPromptContainer from 'containers/HWPromptContainer';
+
 import SelectWallet from 'components/ui/SelectWallet';
-// import { Option } from 'components/ui/Select';
-
 
 import makeSelectNahmiiAirdriipRegistration from './selectors';
 import reducer from './reducer';
@@ -29,18 +35,18 @@ import {
   StyledButtonTall,
   OuterWrapper,
   ButtonsWrapper,
-  StyledHeading,
+  PrimaryHeading,
+  SecondaryHeading,
 } from './style';
 import {
   changeStage,
-  changeSelectedCoreWallet,
   register,
 } from './actions';
 
 const Start = (props) => (
   <StartWrapper>
-    <StyledHeading large>Thank you for your interest in the nahmii airdriip!</StyledHeading>
-    <Heading>Has the address you intend to register been imported into hubii core?</Heading>
+    <PrimaryHeading large>Thank you for your interest in the nahmii airdriip!</PrimaryHeading>
+    <SecondaryHeading>Has the address you intend to register been imported into hubii core?</SecondaryHeading>
     <ButtonsWrapper>
       <StyledButtonTall
         onClick={() => props.changeStage('register-arbitrary')}
@@ -61,31 +67,45 @@ const Start = (props) => (
 
 const CoreAddressRegistrationForm = (props) => (
   <StartWrapper>
-    <StyledHeading large>Register a hubii core address</StyledHeading>
-    <StyledHeading>Select the address you would like to register</StyledHeading>
+    <PrimaryHeading large>Register a hubii core address</PrimaryHeading>
+    <SecondaryHeading>Select the address you would like to register</SecondaryHeading>
     <SelectWallet
       wallets={props.wallets.toJS()}
-      onChange={(wallet) => props.changeSelectedCoreWallet(wallet)}
-      value={props.store.getIn(['selectedCoreWallet', 'address'])}
+      onChange={(address) => props.setCurrentWallet(address)}
+      value={props.currentWalletWithInfo.get('address')}
+      style={{ marginBottom: '2rem' }}
     />
+    {
+      isHardwareWallet(props.currentWalletWithInfo.get('type')) &&
+      <HWPromptContainer
+        style={{ marginBottom: '2rem' }}
+        passedDeviceType={props.currentWalletWithInfo.get('type')}
+      />
+    }
   </StartWrapper>
 );
 
 const ManualRegistrationForm = () => (
   <StartWrapper>
-    <StyledHeading large>Manual registration</StyledHeading>
-    <Heading>Has the address you intend to register been imported into hubii core?</Heading>
+    <PrimaryHeading large>Manual registration</PrimaryHeading>
+    <SecondaryHeading>Has the address you intend to register been imported into hubii core?</SecondaryHeading>
   </StartWrapper>
 );
 
 export class NahmiiAirdriipRegistration extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
-    props.changeSelectedCoreWallet(props.wallets.get(0).toJS());
+    props.setCurrentWallet(props.wallets.getIn([0, 'address']));
   }
 
   render() {
-    const { store, wallets } = this.props;
+    const {
+      store,
+      wallets,
+      ledgerInfo,
+      trezorInfo,
+      currentWalletWithInfo,
+    } = this.props;
     if (store.get('stage') === 'start') {
       return (
         <OuterWrapper>
@@ -93,34 +113,49 @@ export class NahmiiAirdriipRegistration extends React.Component { // eslint-disa
         </OuterWrapper>
       );
     }
+
+    const disabledRegisterButton =
+      store.get('stage') === 'register-imported'
+      && !walletReady(currentWalletWithInfo.get('type'), ledgerInfo, trezorInfo);
+
+    const loading = store.get('registering');
+
     return (
       <OuterWrapper>
         {
           store.get('stage') === 'register-imported' &&
           <CoreAddressRegistrationForm
+            currentWalletWithInfo={currentWalletWithInfo}
             wallets={wallets}
-            store={store}
-            changeSelectedCoreWallet={this.props.changeSelectedCoreWallet}
+            setCurrentWallet={this.props.setCurrentWallet}
           />
         }
         {
           store.get('stage') === 'register-arbitrary' &&
           <ManualRegistrationForm />
         }
-        <ButtonsWrapper>
-          <StyledButton
-            onClick={() => this.props.changeStage('start')}
-            style={{ width: '7rem' }}
-          >
-            Go back
+        {
+          loading &&
+          'loading'
+        }
+        {
+          !loading &&
+          <ButtonsWrapper>
+            <StyledButton
+              onClick={() => this.props.changeStage('start')}
+              style={{ width: '7rem' }}
+            >
+              Go back
           </StyledButton>
-          <StyledButton
-            type="primary"
-            onClick={() => this.props.register()}
-          >
-            Register address
+            <StyledButton
+              type="primary"
+              disabled={disabledRegisterButton}
+              onClick={() => this.props.register()}
+            >
+              Register address
           </StyledButton>
-        </ButtonsWrapper>
+          </ButtonsWrapper>
+        }
       </OuterWrapper>
     );
   }
@@ -130,14 +165,17 @@ NahmiiAirdriipRegistration.propTypes = { // eslint-disable-line
   changeStage: PropTypes.func.isRequired,
   store: PropTypes.object.isRequired,
   register: PropTypes.func.isRequired,
-  changeSelectedCoreWallet: PropTypes.func.isRequired,
+  ledgerInfo: PropTypes.object.isRequired,
+  trezorInfo: PropTypes.object.isRequired,
+  setCurrentWallet: PropTypes.func.isRequired,
+  currentWalletWithInfo: PropTypes.object.isRequired,
   wallets: PropTypes.object.isRequired,
 };
 
 CoreAddressRegistrationForm.propTypes = { // eslint-disable-line
-  changeSelectedCoreWallet: PropTypes.func.isRequired,
+  setCurrentWallet: PropTypes.func.isRequired,
   wallets: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired,
+  currentWalletWithInfo: PropTypes.object.isRequired,
 };
 
 ManualRegistrationForm.propTypes = { // eslint-disable-line
@@ -151,6 +189,9 @@ Start.propTypes = { // eslint-disable-line
 const mapStateToProps = createStructuredSelector({
   store: makeSelectNahmiiAirdriipRegistration(),
   wallets: makeSelectWallets(),
+  currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
+  ledgerInfo: makeSelectLedgerHoc(),
+  trezorInfo: makeSelectTrezorHoc(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -158,7 +199,7 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     changeStage: (...args) => dispatch(changeStage(...args)),
     register: () => dispatch(register()),
-    changeSelectedCoreWallet: (...args) => dispatch(changeSelectedCoreWallet(...args)),
+    setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
   };
 }
 

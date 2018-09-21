@@ -12,7 +12,6 @@ import {
   REGISTRATION_SUCCESS,
   REGISTRATION_FAILED,
   REGISTER,
-  CHANGE_SELECTED_CORE_WALLET,
 } from './constants';
 
 const initialState = fromJS({
@@ -21,14 +20,7 @@ const initialState = fromJS({
     address: '',
     signedMessage: '',
   },
-  selectedCoreWallet: {
-    name: '',
-    type: 'software',
-    address: '0x0000000000000000000000000000000000000000',
-  },
   registering: false,
-  error: null,
-  showSuccessMsg: false,
 });
 
 function nahmiiAirdriipRegistrationReducer(state = initialState, action) {
@@ -36,11 +28,6 @@ function nahmiiAirdriipRegistrationReducer(state = initialState, action) {
     case CHANGE_STAGE:
       return state
         .set('stage', action.stage)
-        .set('showSuccessMsg', false)
-        .set('error', null);
-    case CHANGE_SELECTED_CORE_WALLET:
-      return state
-        .set('selectedCoreWallet', fromJS(action.wallet))
         .set('showSuccessMsg', false)
         .set('error', null);
     case CHANGE_MANUAL_ADDRESS:
@@ -53,15 +40,10 @@ function nahmiiAirdriipRegistrationReducer(state = initialState, action) {
         .set('showSuccessMsg', false);
     case REGISTER:
       return state
-        .set('registering', true)
-        .set('error', null);
+        .set('registering', true);
     case REGISTRATION_SUCCESS:
-      return state
-        .set('registering', false)
-        .set('showSuccessMsg', true);
     case REGISTRATION_FAILED:
       return state
-        .set('error', action.error)
         .set('registering', false);
     default:
       return state;
