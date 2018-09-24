@@ -15,12 +15,17 @@ ShallowWrapper {
         Array [
             Object {
               "icon": "wallet",
-              "name": "Wallet Manager",
+              "key": "wallet",
               "to": "/wallets",
             },
             Object {
+              "icon": "nahmii-token",
+              "key": "nahmii",
+              "to": "/nahmii/airdriip-registration",
+            },
+            Object {
               "icon": "dex",
-              "name": "dex detail",
+              "key": "dex",
               "to": "/dex",
             },
           ]
@@ -75,16 +80,12 @@ ShallowWrapper {
           <SideBar.style__SideBarMenu
                     defaultSelectedKeys={
                               Array [
-                                        "/wallets",
+                                        "wallet",
                                       ]
                     }
                     mode="inline"
                     onSelect={undefined}
-                    selectedKeys={
-                              Array [
-                                        "/world",
-                                      ]
-                    }
+                    selectedKeys={undefined}
           >
                     <MenuItem
                               className="menu-logo"
@@ -131,6 +132,37 @@ ShallowWrapper {
                                                                       fill="#404f56"
                                                             />
                                                   </SvgIcon>
+                                        </div>
+                              </Link>
+                    </MenuItem>
+                    <MenuItem
+                              className="menu-wallet"
+                    >
+                              <Link
+                                        replace={false}
+                                        to="/nahmii/airdriip-registration"
+                              >
+                                        <div
+                                                  style={
+                                                            Object {
+                                                                      "alignItems": "center",
+                                                                      "display": "flex",
+                                                                      "justifyContent": "center",
+                                                                    }
+                                                  }
+                                        >
+                                                  <div>
+                                                            <img
+                                                                      alt="nahmii token"
+                                                                      src="IMAGE_MOCK"
+                                                                      style={
+                                                                                Object {
+                                                                                          "height": "auto",
+                                                                                          "width": "32px",
+                                                                                        }
+                                                                      }
+                                                            />
+                                                  </div>
                                         </div>
                               </Link>
                     </MenuItem>
@@ -228,16 +260,12 @@ ShallowWrapper {
           "children": <SideBar.style__SideBarMenu
             defaultSelectedKeys={
                         Array [
-                                    "/wallets",
+                                    "wallet",
                                   ]
             }
             mode="inline"
             onSelect={undefined}
-            selectedKeys={
-                        Array [
-                                    "/world",
-                                  ]
-            }
+            selectedKeys={undefined}
 >
             <MenuItem
                         className="menu-logo"
@@ -284,6 +312,37 @@ ShallowWrapper {
                                                                         fill="#404f56"
                                                             />
                                                 </SvgIcon>
+                                    </div>
+                        </Link>
+            </MenuItem>
+            <MenuItem
+                        className="menu-wallet"
+            >
+                        <Link
+                                    replace={false}
+                                    to="/nahmii/airdriip-registration"
+                        >
+                                    <div
+                                                style={
+                                                            Object {
+                                                                        "alignItems": "center",
+                                                                        "display": "flex",
+                                                                        "justifyContent": "center",
+                                                                      }
+                                                }
+                                    >
+                                                <div>
+                                                            <img
+                                                                        alt="nahmii token"
+                                                                        src="IMAGE_MOCK"
+                                                                        style={
+                                                                                    Object {
+                                                                                                "height": "auto",
+                                                                                                "width": "32px",
+                                                                                              }
+                                                                        }
+                                                            />
+                                                </div>
                                     </div>
                         </Link>
             </MenuItem>
@@ -417,6 +476,37 @@ ShallowWrapper {
 >
                   <Link
                                     replace={false}
+                                    to="/nahmii/airdriip-registration"
+                  >
+                                    <div
+                                                      style={
+                                                                        Object {
+                                                                                          "alignItems": "center",
+                                                                                          "display": "flex",
+                                                                                          "justifyContent": "center",
+                                                                                        }
+                                                      }
+                                    >
+                                                      <div>
+                                                                        <img
+                                                                                          alt="nahmii token"
+                                                                                          src="IMAGE_MOCK"
+                                                                                          style={
+                                                                                                            Object {
+                                                                                                                              "height": "auto",
+                                                                                                                              "width": "32px",
+                                                                                                                            }
+                                                                                          }
+                                                                        />
+                                                      </div>
+                                    </div>
+                  </Link>
+</MenuItem>,
+                <MenuItem
+                  className="menu-wallet"
+>
+                  <Link
+                                    replace={false}
                                     to="/dex"
                   >
                                     <div
@@ -472,13 +562,11 @@ ShallowWrapper {
 </MenuItem>,
             ],
             "defaultSelectedKeys": Array [
-              "/wallets",
+              "wallet",
             ],
             "mode": "inline",
             "onSelect": undefined,
-            "selectedKeys": Array [
-              "/world",
-            ],
+            "selectedKeys": undefined,
           },
           "ref": null,
           "rendered": Array [
@@ -575,7 +663,7 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "/wallets",
+              "key": "wallet",
               "nodeType": "class",
               "props": Object {
                 "children": <Link
@@ -652,6 +740,7 @@ ShallowWrapper {
                         />
 </SvgIcon>,
                       false,
+                      false,
                     ],
                     "style": Object {
                       "alignItems": "center",
@@ -690,6 +779,7 @@ ShallowWrapper {
                       "type": [Function],
                     },
                     false,
+                    false,
                   ],
                   "type": "div",
                 },
@@ -699,7 +789,146 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "/dex",
+              "key": "nahmii",
+              "nodeType": "class",
+              "props": Object {
+                "children": <Link
+                  replace={false}
+                  to="/nahmii/airdriip-registration"
+>
+                  <div
+                                    style={
+                                                      Object {
+                                                                        "alignItems": "center",
+                                                                        "display": "flex",
+                                                                        "justifyContent": "center",
+                                                                      }
+                                    }
+                  >
+                                    <div>
+                                                      <img
+                                                                        alt="nahmii token"
+                                                                        src="IMAGE_MOCK"
+                                                                        style={
+                                                                                          Object {
+                                                                                                            "height": "auto",
+                                                                                                            "width": "32px",
+                                                                                                          }
+                                                                        }
+                                                      />
+                                    </div>
+                  </div>
+</Link>,
+                "className": "menu-wallet",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <div
+                    style={
+                                        Object {
+                                                            "alignItems": "center",
+                                                            "display": "flex",
+                                                            "justifyContent": "center",
+                                                          }
+                    }
+>
+                    <div>
+                                        <img
+                                                            alt="nahmii token"
+                                                            src="IMAGE_MOCK"
+                                                            style={
+                                                                                Object {
+                                                                                                    "height": "auto",
+                                                                                                    "width": "32px",
+                                                                                                  }
+                                                            }
+                                        />
+                    </div>
+</div>,
+                  "replace": false,
+                  "to": "/nahmii/airdriip-registration",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      false,
+                      false,
+                      <div>
+                        <img
+                                                alt="nahmii token"
+                                                src="IMAGE_MOCK"
+                                                style={
+                                                                        Object {
+                                                                                                "height": "auto",
+                                                                                                "width": "32px",
+                                                                                              }
+                                                }
+                        />
+</div>,
+                    ],
+                    "style": Object {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "justifyContent": "center",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    false,
+                    false,
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <img
+                          alt="nahmii token"
+                          src="IMAGE_MOCK"
+                          style={
+                                                    Object {
+                                                                              "height": "auto",
+                                                                              "width": "32px",
+                                                                            }
+                          }
+/>,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "alt": "nahmii token",
+                          "src": "IMAGE_MOCK",
+                          "style": Object {
+                            "height": "auto",
+                            "width": "32px",
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "img",
+                      },
+                      "type": "div",
+                    },
+                  ],
+                  "type": "div",
+                },
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "dex",
               "nodeType": "class",
               "props": Object {
                 "children": <Link
@@ -806,6 +1035,7 @@ ShallowWrapper {
                                                 />
                         </g>
 </SvgIcon>,
+                      false,
                     ],
                     "style": Object {
                       "alignItems": "center",
@@ -890,6 +1120,7 @@ ShallowWrapper {
                       },
                       "type": [Function],
                     },
+                    false,
                   ],
                   "type": "div",
                 },
@@ -899,7 +1130,7 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "/settings",
+              "key": "settings",
               "nodeType": "class",
               "props": Object {
                 "children": <Link
@@ -1095,16 +1326,12 @@ ShallowWrapper {
             <SideBar.style__SideBarMenu
                         defaultSelectedKeys={
                                     Array [
-                                                "/wallets",
+                                                "wallet",
                                               ]
                         }
                         mode="inline"
                         onSelect={undefined}
-                        selectedKeys={
-                                    Array [
-                                                "/world",
-                                              ]
-                        }
+                        selectedKeys={undefined}
             >
                         <MenuItem
                                     className="menu-logo"
@@ -1151,6 +1378,37 @@ ShallowWrapper {
                                                                                     fill="#404f56"
                                                                         />
                                                             </SvgIcon>
+                                                </div>
+                                    </Link>
+                        </MenuItem>
+                        <MenuItem
+                                    className="menu-wallet"
+                        >
+                                    <Link
+                                                replace={false}
+                                                to="/nahmii/airdriip-registration"
+                                    >
+                                                <div
+                                                            style={
+                                                                        Object {
+                                                                                    "alignItems": "center",
+                                                                                    "display": "flex",
+                                                                                    "justifyContent": "center",
+                                                                                  }
+                                                            }
+                                                >
+                                                            <div>
+                                                                        <img
+                                                                                    alt="nahmii token"
+                                                                                    src="IMAGE_MOCK"
+                                                                                    style={
+                                                                                                Object {
+                                                                                                            "height": "auto",
+                                                                                                            "width": "32px",
+                                                                                                          }
+                                                                                    }
+                                                                        />
+                                                            </div>
                                                 </div>
                                     </Link>
                         </MenuItem>
@@ -1248,16 +1506,12 @@ ShallowWrapper {
             "children": <SideBar.style__SideBarMenu
               defaultSelectedKeys={
                             Array [
-                                          "/wallets",
+                                          "wallet",
                                         ]
               }
               mode="inline"
               onSelect={undefined}
-              selectedKeys={
-                            Array [
-                                          "/world",
-                                        ]
-              }
+              selectedKeys={undefined}
 >
               <MenuItem
                             className="menu-logo"
@@ -1304,6 +1558,37 @@ ShallowWrapper {
                                                                                     fill="#404f56"
                                                                       />
                                                         </SvgIcon>
+                                          </div>
+                            </Link>
+              </MenuItem>
+              <MenuItem
+                            className="menu-wallet"
+              >
+                            <Link
+                                          replace={false}
+                                          to="/nahmii/airdriip-registration"
+                            >
+                                          <div
+                                                        style={
+                                                                      Object {
+                                                                                    "alignItems": "center",
+                                                                                    "display": "flex",
+                                                                                    "justifyContent": "center",
+                                                                                  }
+                                                        }
+                                          >
+                                                        <div>
+                                                                      <img
+                                                                                    alt="nahmii token"
+                                                                                    src="IMAGE_MOCK"
+                                                                                    style={
+                                                                                                  Object {
+                                                                                                                "height": "auto",
+                                                                                                                "width": "32px",
+                                                                                                              }
+                                                                                    }
+                                                                      />
+                                                        </div>
                                           </div>
                             </Link>
               </MenuItem>
@@ -1437,6 +1722,37 @@ ShallowWrapper {
 >
                     <Link
                                         replace={false}
+                                        to="/nahmii/airdriip-registration"
+                    >
+                                        <div
+                                                            style={
+                                                                                Object {
+                                                                                                    "alignItems": "center",
+                                                                                                    "display": "flex",
+                                                                                                    "justifyContent": "center",
+                                                                                                  }
+                                                            }
+                                        >
+                                                            <div>
+                                                                                <img
+                                                                                                    alt="nahmii token"
+                                                                                                    src="IMAGE_MOCK"
+                                                                                                    style={
+                                                                                                                        Object {
+                                                                                                                                            "height": "auto",
+                                                                                                                                            "width": "32px",
+                                                                                                                                          }
+                                                                                                    }
+                                                                                />
+                                                            </div>
+                                        </div>
+                    </Link>
+</MenuItem>,
+                  <MenuItem
+                    className="menu-wallet"
+>
+                    <Link
+                                        replace={false}
                                         to="/dex"
                     >
                                         <div
@@ -1492,13 +1808,11 @@ ShallowWrapper {
 </MenuItem>,
               ],
               "defaultSelectedKeys": Array [
-                "/wallets",
+                "wallet",
               ],
               "mode": "inline",
               "onSelect": undefined,
-              "selectedKeys": Array [
-                "/world",
-              ],
+              "selectedKeys": undefined,
             },
             "ref": null,
             "rendered": Array [
@@ -1595,7 +1909,7 @@ ShallowWrapper {
               },
               Object {
                 "instance": null,
-                "key": "/wallets",
+                "key": "wallet",
                 "nodeType": "class",
                 "props": Object {
                   "children": <Link
@@ -1672,6 +1986,7 @@ ShallowWrapper {
                           />
 </SvgIcon>,
                         false,
+                        false,
                       ],
                       "style": Object {
                         "alignItems": "center",
@@ -1710,6 +2025,7 @@ ShallowWrapper {
                         "type": [Function],
                       },
                       false,
+                      false,
                     ],
                     "type": "div",
                   },
@@ -1719,7 +2035,146 @@ ShallowWrapper {
               },
               Object {
                 "instance": null,
-                "key": "/dex",
+                "key": "nahmii",
+                "nodeType": "class",
+                "props": Object {
+                  "children": <Link
+                    replace={false}
+                    to="/nahmii/airdriip-registration"
+>
+                    <div
+                                        style={
+                                                            Object {
+                                                                                "alignItems": "center",
+                                                                                "display": "flex",
+                                                                                "justifyContent": "center",
+                                                                              }
+                                        }
+                    >
+                                        <div>
+                                                            <img
+                                                                                alt="nahmii token"
+                                                                                src="IMAGE_MOCK"
+                                                                                style={
+                                                                                                    Object {
+                                                                                                                        "height": "auto",
+                                                                                                                        "width": "32px",
+                                                                                                                      }
+                                                                                }
+                                                            />
+                                        </div>
+                    </div>
+</Link>,
+                  "className": "menu-wallet",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <div
+                      style={
+                                            Object {
+                                                                  "alignItems": "center",
+                                                                  "display": "flex",
+                                                                  "justifyContent": "center",
+                                                                }
+                      }
+>
+                      <div>
+                                            <img
+                                                                  alt="nahmii token"
+                                                                  src="IMAGE_MOCK"
+                                                                  style={
+                                                                                        Object {
+                                                                                                              "height": "auto",
+                                                                                                              "width": "32px",
+                                                                                                            }
+                                                                  }
+                                            />
+                      </div>
+</div>,
+                    "replace": false,
+                    "to": "/nahmii/airdriip-registration",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        false,
+                        false,
+                        <div>
+                          <img
+                                                    alt="nahmii token"
+                                                    src="IMAGE_MOCK"
+                                                    style={
+                                                                              Object {
+                                                                                                        "height": "auto",
+                                                                                                        "width": "32px",
+                                                                                                      }
+                                                    }
+                          />
+</div>,
+                      ],
+                      "style": Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "justifyContent": "center",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      false,
+                      false,
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <img
+                            alt="nahmii token"
+                            src="IMAGE_MOCK"
+                            style={
+                                                        Object {
+                                                                                    "height": "auto",
+                                                                                    "width": "32px",
+                                                                                  }
+                            }
+/>,
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "alt": "nahmii token",
+                            "src": "IMAGE_MOCK",
+                            "style": Object {
+                              "height": "auto",
+                              "width": "32px",
+                            },
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": "img",
+                        },
+                        "type": "div",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "dex",
                 "nodeType": "class",
                 "props": Object {
                   "children": <Link
@@ -1826,6 +2281,7 @@ ShallowWrapper {
                                                     />
                           </g>
 </SvgIcon>,
+                        false,
                       ],
                       "style": Object {
                         "alignItems": "center",
@@ -1910,6 +2366,7 @@ ShallowWrapper {
                         },
                         "type": [Function],
                       },
+                      false,
                     ],
                     "type": "div",
                   },
@@ -1919,7 +2376,7 @@ ShallowWrapper {
               },
               Object {
                 "instance": null,
-                "key": "/settings",
+                "key": "settings",
                 "nodeType": "class",
                 "props": Object {
                   "children": <Link
