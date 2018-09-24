@@ -33,7 +33,7 @@ export const AntdIcon = styled(Icon)`
 `;
 
 export const CustomIcon = styled.img` 
-  max-width: ${(props) => props.src.includes('nahmii') ? '4' : '4'}rem;
+  max-width: 4rem;
   max-height: ${(props) => props.src.includes('nahmii') ? '3.5' : '3'}rem;
 `;
 
