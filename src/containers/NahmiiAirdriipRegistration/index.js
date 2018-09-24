@@ -5,6 +5,8 @@
  */
 
 import React from 'react';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import { Spin } from 'antd';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -17,6 +19,7 @@ import { walletReady, isHardwareWallet } from 'utils/wallet';
 import { makeSelectLedgerHoc } from 'containers/LedgerHoc/selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
 import { setCurrentWallet } from 'containers/WalletHoc/actions';
+import { notify } from 'containers/App/actions';
 
 import {
   makeSelectWallets,
@@ -25,8 +28,10 @@ import {
 import HWPromptContainer from 'containers/HWPromptContainer';
 
 import SelectWallet from 'components/ui/SelectWallet';
+import Button from 'components/ui/Button';
+import Input from 'components/ui/Input';
 
-import makeSelectNahmiiAirdriipRegistration from './selectors';
+import { makeSelectNahmiiAirdriipRegistration } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import {
@@ -37,13 +42,18 @@ import {
   ButtonsWrapper,
   PrimaryHeading,
   SecondaryHeading,
+  MessageTemplateWrapper,
 } from './style';
 import {
   changeStage,
   register,
+  changeManualAddress,
+  changeManualSignedMessage,
 } from './actions';
 
-const Start = (props) => (
+const messageTemplate = '\\x19Ethereum Signed Message:\nI wish the register the address <address> for the nahmii airdriip';
+
+export const Start = (props) => (
   <StartWrapper>
     <PrimaryHeading large>Thank you for your interest in the nahmii airdriip!</PrimaryHeading>
     <SecondaryHeading>Has the address you intend to register been imported into hubii core?</SecondaryHeading>
@@ -65,7 +75,7 @@ const Start = (props) => (
   </StartWrapper>
 );
 
-const CoreAddressRegistrationForm = (props) => (
+export const CoreAddressRegistrationForm = (props) => (
   <StartWrapper>
     <PrimaryHeading large>Register a hubii core address</PrimaryHeading>
     <SecondaryHeading>Select the address you would like to register</SecondaryHeading>
@@ -85,10 +95,32 @@ const CoreAddressRegistrationForm = (props) => (
   </StartWrapper>
 );
 
-const ManualRegistrationForm = () => (
+
+export const ManualRegistrationForm = (props) => (
   <StartWrapper>
     <PrimaryHeading large>Manual registration</PrimaryHeading>
-    <SecondaryHeading>Has the address you intend to register been imported into hubii core?</SecondaryHeading>
+    <PrimaryHeading>{'Using your address\'s private key, sign the KECCAK-256 hash of the following message:'}</PrimaryHeading>
+    <MessageTemplateWrapper>
+      <SecondaryHeading style={{ marginRight: '1rem' }}>{messageTemplate}</SecondaryHeading>
+      <CopyToClipboard text={messageTemplate}>
+        <Button
+          type="icon"
+          icon="copy"
+          size={'small'}
+          onClick={() => props.notify('success', 'Message template copied to clipboard')}
+        />
+      </CopyToClipboard>
+    </MessageTemplateWrapper>
+    <Input
+      style={{ marginBottom: '2rem' }}
+      placeholder="Ethereum address"
+      onChange={props.changeManualAddress}
+    />
+    <Input
+      style={{ marginBottom: '2rem' }}
+      placeholder="Signed KECCAK-256 hash hex"
+      onChange={props.changeManualSignedMessage}
+    />
   </StartWrapper>
 );
 
@@ -132,11 +164,15 @@ export class NahmiiAirdriipRegistration extends React.Component { // eslint-disa
         }
         {
           store.get('stage') === 'register-arbitrary' &&
-          <ManualRegistrationForm />
+          <ManualRegistrationForm
+            notify={this.props.notify}
+            changeManualAddress={this.props.changeManualAddress}
+            changeManualSignedMessage={this.props.changeManualSignedMessage}
+          />
         }
         {
           loading &&
-          'loading'
+          <Spin size="large" />
         }
         {
           !loading &&
@@ -164,6 +200,9 @@ export class NahmiiAirdriipRegistration extends React.Component { // eslint-disa
 NahmiiAirdriipRegistration.propTypes = { // eslint-disable-line
   changeStage: PropTypes.func.isRequired,
   store: PropTypes.object.isRequired,
+  notify: PropTypes.func.isRequired,
+  changeManualAddress: PropTypes.func.isRequired,
+  changeManualSignedMessage: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
   ledgerInfo: PropTypes.object.isRequired,
   trezorInfo: PropTypes.object.isRequired,
@@ -179,7 +218,9 @@ CoreAddressRegistrationForm.propTypes = { // eslint-disable-line
 };
 
 ManualRegistrationForm.propTypes = { // eslint-disable-line
-
+  changeManualAddress: PropTypes.func.isRequired,
+  changeManualSignedMessage: PropTypes.func.isRequired,
+  notify: PropTypes.func.isRequired,
 };
 
 Start.propTypes = { // eslint-disable-line
@@ -200,6 +241,9 @@ function mapDispatchToProps(dispatch) {
     changeStage: (...args) => dispatch(changeStage(...args)),
     register: () => dispatch(register()),
     setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
+    notify: (...args) => dispatch(notify(...args)),
+    changeManualAddress: (...args) => dispatch(changeManualAddress(...args)),
+    changeManualSignedMessage: (...args) => dispatch(changeManualSignedMessage(...args)),
   };
 }
 

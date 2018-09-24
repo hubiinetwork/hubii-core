@@ -17,7 +17,10 @@ export const PrimaryHeading = styled(Heading)`
 export const SecondaryHeading = styled(Heading)`
 &&&& {
   margin-bottom: 4rem;
-}
+}`;
+
+export const MessageTemplateWrapper = styled.div`
+  display: flex;
 `;
 
 export const ButtonsWrapper = styled.div`
