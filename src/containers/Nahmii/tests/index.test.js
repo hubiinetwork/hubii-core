@@ -1,10 +1,19 @@
-// import React from 'react';
-// import { shallow } from 'enzyme';
+import React from 'react';
+import { shallow } from 'enzyme';
 
-// import { Nahmii } from '../index';
+import { Nahmii } from '../index';
 
 describe('<Nahmii />', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(true).toEqual(false);
+  let props;
+  beforeEach(() => {
+    props = {
+      history: { location: { pathname: 'some-path' } },
+      match: { url: 'some-url' },
+      dispatch: () => {},
+    };
+  });
+  it('should render correctly', () => {
+    const wrapper = shallow(<Nahmii {...props} />);
+    expect(wrapper).toMatchSnapshot();
   });
 });
