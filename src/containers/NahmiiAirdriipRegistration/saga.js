@@ -13,6 +13,7 @@ function* register() {
     const wallet = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
     if (wallet.encrypted && !wallet.decrypted) {
       yield put(setCurrentWallet(wallet.address));
+      yield put(registerationFailed(new Error('wallet encrypted')));
       yield put(showDecryptWalletModal(registerAction()));
       return;
     }
