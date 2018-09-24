@@ -1,10 +1,18 @@
-// import React from 'react';
-// import { shallow } from 'enzyme';
+import React from 'react';
+import { shallow } from 'enzyme';
 
-// import SelectWallet from '../index';
+import { walletsMock, walletsEmptyMock } from 'containers/WalletHoc/tests/mocks/selectors';
+
+import SelectWallet from '../index';
 
 describe('<SelectWallet />', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(true).toEqual(false);
+  it('should render correctly', () => {
+    const wrapper = shallow(<SelectWallet wallets={walletsMock.toJS()} />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when there are no wallets', () => {
+    const wrapper = shallow(<SelectWallet wallets={walletsEmptyMock.toJS()} />);
+    expect(wrapper).toMatchSnapshot();
   });
 });
