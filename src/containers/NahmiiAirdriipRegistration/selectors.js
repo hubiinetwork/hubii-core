@@ -19,7 +19,6 @@ const makeSelectNahmiiAirdriipRegistration = () => createSelector(
   (substate) => substate
 );
 
-export default makeSelectNahmiiAirdriipRegistration;
 export {
-  selectNahmiiAirdriipRegistrationDomain,
+  makeSelectNahmiiAirdriipRegistration,
 };

@@ -1,8 +1,14 @@
-// import { fromJS } from 'immutable';
-// import { selectNahmiiAirdriipRegistrationDomain } from '../selectors';
+import { fromJS } from 'immutable';
+import { makeSelectNahmiiAirdriipRegistration } from '../selectors';
+import { nahmiiAirdriipRegistrationMock } from './mocks/selectors';
 
 describe('selectNahmiiAirdriipRegistrationDomain', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(true).toEqual(false);
+  it('should select nahmiiAirdriipRegistration state', () => {
+    const nahmiiAirdriipRegistrationSelector = makeSelectNahmiiAirdriipRegistration();
+    const mockedState = fromJS({
+      nahmiiAirdriipRegistration: nahmiiAirdriipRegistrationMock,
+    });
+    expect(nahmiiAirdriipRegistrationSelector(mockedState))
+      .toEqual(nahmiiAirdriipRegistrationMock);
   });
 });

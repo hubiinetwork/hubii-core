@@ -14,7 +14,7 @@ import {
   REGISTER,
 } from './constants';
 
-const initialState = fromJS({
+export const initialState = fromJS({
   stage: 'start',
   manualRegistrationInfo: {
     address: '',
@@ -27,17 +27,13 @@ function nahmiiAirdriipRegistrationReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_STAGE:
       return state
-        .set('stage', action.stage)
-        .set('showSuccessMsg', false)
-        .set('error', null);
+        .set('stage', action.stage);
     case CHANGE_MANUAL_ADDRESS:
       return state
-        .setIn(['manualRegistrationInfo', 'address'], action.address)
-        .set('showSuccessMsg', false);
+        .setIn(['manualRegistrationInfo', 'address'], action.address);
     case CHANGE_MANUAL_SIGNED_MESSAGE:
       return state
-        .setIn(['manualRegistrationInfo', 'signedMessage'], action.signedMessage)
-        .set('showSuccessMsg', false);
+        .setIn(['manualRegistrationInfo', 'signedMessage'], action.signedMessage);
     case REGISTER:
       return state
         .set('registering', true);
