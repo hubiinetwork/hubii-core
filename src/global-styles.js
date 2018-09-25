@@ -8,6 +8,7 @@ injectGlobal`
   }
 
   html * {
+    font-size: 14px;
     font-family: "Open Sans";
   }
 
