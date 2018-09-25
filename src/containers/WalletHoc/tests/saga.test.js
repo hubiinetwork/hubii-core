@@ -10,7 +10,7 @@ import { fromJS } from 'immutable';
 import BigNumber from 'bignumber.js';
 
 import { requestHardwareWalletAPI } from 'utils/request';
-import { getTransaction } from 'utils/wallet';
+import { getTransaction, prependHexToAddress } from 'utils/wallet';
 import { storeMock } from 'mocks/store';
 
 import { notify } from 'containers/App/actions';
@@ -62,6 +62,7 @@ import {
 import walletHoc, {
   createWalletFromMnemonic,
   createWalletFromPrivateKey,
+  createWalletFromKeystone,
   decryptWallet,
   transfer,
   transferERC20,
@@ -175,6 +176,30 @@ describe('createWalletFromMnemonic saga', () => {
         .put(createWalletFailed(new Error('invalid param')))
           .run({ silenceTimeout: true }));
       it('when password is not given', () => expectSaga(createWalletFromPrivateKey, { privateKeyMock, name, password: null })
+        .put(notify('error', `Failed to import wallet: ${new Error('invalid param')}`))
+        .put(createWalletFailed(new Error('invalid param')))
+          .run({ silenceTimeout: true }));
+    });
+  });
+
+  describe('create wallet by keystone', () => {
+    const address = prependHexToAddress(JSON.parse(encryptedMock).address);
+    it('should dispatch createWalletSuccess when wallet creation successful', () => expectSaga(createWalletFromKeystone, { name, keystone: encryptedMock })
+      .put({
+        type: CREATE_WALLET_SUCCESS,
+        newWallet: {
+          name,
+          address,
+          type: 'software',
+          encrypted: encryptedMock,
+          decrypted: null,
+        },
+      })
+      .run({ silenceTimeout: true })
+    );
+    describe('exceptions', () => {
+      const invalidEncrypted = '';
+      it('encrypted string is invalid', () => expectSaga(createWalletFromKeystone, { name, keystone: invalidEncrypted })
         .put(notify('error', `Failed to import wallet: ${new Error('invalid param')}`))
         .put(createWalletFailed(new Error('invalid param')))
           .run({ silenceTimeout: true }));

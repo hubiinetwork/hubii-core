@@ -12,6 +12,7 @@ import {
   ERC20ABI,
   isHardwareWallet,
   isAddressMatch,
+  prependHexToAddress,
 } from 'utils/wallet';
 import generateRawTx from 'utils/generateRawTx';
 
@@ -39,6 +40,7 @@ import {
   TRANSFER_ETHER,
   TRANSFER_ERC20,
   CREATE_WALLET_FROM_PRIVATE_KEY,
+  CREATE_WALLET_FROM_KEYSTONE,
 } from './constants';
 
 import {
@@ -79,6 +81,17 @@ export function* createWalletFromPrivateKey({ privateKey, name, password }) {
     const encryptedWallet = yield call((...args) => decryptedWallet.encrypt(...args), password);
     yield put(createWalletSuccess(name, encryptedWallet, decryptedWallet));
     yield put(notify('warning', 'Wallets imported by private key are difficult to backup. It is recommended to sweep your funds into a mnemonic based wallet, which allows backup by a word phrase rather than a long hex string'));
+  } catch (e) {
+    yield put(notify('error', `Failed to import wallet: ${e}`));
+    yield put(createWalletFailed(e));
+  }
+}
+
+export function* createWalletFromKeystone({ name, keystone }) {
+  try {
+    if (!name || !keystone) throw new Error('invalid param');
+    const address = JSON.parse(keystone).address;
+    yield put(createWalletSuccess(name, keystone, null, prependHexToAddress(address)));
   } catch (e) {
     yield put(notify('error', `Failed to import wallet: ${e}`));
     yield put(createWalletFailed(e));
@@ -293,4 +306,5 @@ export default function* walletHoc() {
   yield takeEvery(TRANSFER_ERC20, transferERC20);
   yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
   yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
+  yield takeEvery(CREATE_WALLET_FROM_KEYSTONE, createWalletFromKeystone);
 }
