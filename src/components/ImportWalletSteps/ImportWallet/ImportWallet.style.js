@@ -47,11 +47,6 @@ export const Option = styled(RadioButton)`
   border-radius: 0.21rem !important;
 `;
 
-export const Flex = styled.div`
-  display: flex;
-  color: ${({ theme }) => theme.palette.light};
-`;
-
 export const Image = styled.img`
   max-width: 11rem;
   max-height: 2.5rem;
