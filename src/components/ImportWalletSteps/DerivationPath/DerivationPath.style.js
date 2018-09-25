@@ -1,70 +1,48 @@
 import { Icon, Radio, Table } from 'antd';
 import styled from 'styled-components';
-import { ModalFormItem } from '../../ui/Modal';
-const RadioButton = Radio.Button;
+
+import Heading from 'components/ui/Heading';
+import Text from 'components/ui/Text';
+import { ModalFormItem } from 'components/ui/Modal';
+
 const RadioGroup = Radio.Group;
-export const Address = styled.span`
-  margin-left: -1.57rem;
-`;
+export const RadioButton = Radio.Button;
 
-export const Flex = styled.div`
-  display: flex;
+export const DerivationPathText = styled(Text)`
   color: ${({ theme }) => theme.palette.light};
-`;
-
-export const PathTitle = styled.div`
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.14rem;
-  color: ${({ theme }) => theme.palette.secondary1};
-`;
-
-export const PathSubtitle = styled.div`
-  font-size: 0.86rem;
-  font-weight: 400;
-  line-height: 1rem;
-  color: ${({ theme }) => theme.palette.secondary6};
 `;
 
 export const PathWrapper = styled.div`
-  margin-top: -0.36rem;
+  margin-top: -0.25rem;
   margin-left: 0.5rem;
-  width: 10.64rem;
   color: ${({ theme }) => theme.palette.secondary6};
 `;
 
-export const Radios = styled.div`
-  margin-left: 0.09rem;
-`;
-
-export const RadioTitle = styled.div`
-  color: ${({ theme }) => theme.palette.light};
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.14rem;
-  margin-top: 1.64rem;
-`;
+export const StyledHeading = styled(Heading)`
+&& {
+  margin-top: 2rem;
+}`;
 
 export const RadioButtonWrapper = styled.div`
+&&&& {
   display: flex;
-  margin-top: 1.86rem;
+  margin-top: 1rem;
   min-width: 17.14rem;
   .ant-radio-button-wrapper-checked {
-    background-color: ${({ theme }) => theme.palette.info} !important;
+    background-color: ${({ theme }) => theme.palette.info};
     border: 0rem;
     span i {
-      display: flex !important;
+      display: flex;
     }
   }
-`;
+}`;
 
 export const Tick = styled(Icon)`
-  color: white;
+  color: ${({ theme }) => theme.palette.primary};
   font-size: 0.79rem;
   font-weight: 700;
 `;
 
-export const StyledRadio = styled(RadioButton)``;
 export const FormItem = styled(ModalFormItem)`
   margin-top: 0rem;
 `;
@@ -91,49 +69,41 @@ export const StyledRadioGroup = styled(RadioGroup)`
   }
 `;
 
-export const Addresses = styled.div`
-  display: flex;
-`;
-
-export const TokenBalance = styled.div``;
-
 export const StyledTable = styled(Table)`
+&&&&& {
   .ant-table-thead > tr > th.ant-table-selection-column,
   .ant-table-tbody > tr > td.ant-table-selection-column {
-    width: 2.14rem !important;
-    min-width: 1.07rem !important;
+    width: 2.14rem;
+    min-width: 1.07rem;
   }
-  thead {
-    tr th {
-      color: ${({ theme }) => theme.palette.light};
-      font-size: 0.93rem;
-      font-weight: 400;
-      line-height: 1.07rem;
-    }
+  thead > tr > th > span {
+    color: ${({ theme }) => theme.palette.light};
+    font-size: 1.15rem;
+    line-height: 1.07rem;
   }
   tbody {
     tr {
       td.ant-table-selection-column {
-        padding: 0.29rem 0rem !important;
+        padding: 0.29rem 0rem;
       }
     }
     tr:hover {
       cursor: pointer;
-      background-color: ${({ theme }) => theme.palette.secondary6} !important;
+      background-color: ${({ theme }) => theme.palette.secondary6};
     }
   }
   th,
   td {
-    padding: 0.43rem 0.43rem !important;
+    padding: 0.43rem 0.43rem;
     span .ant-radio-wrapper-checked {
       span span::after {
-        background-color: ${({ theme }) => theme.palette.info} !important;
-        border: 0.07rem solid ${({ theme }) => theme.palette.info} !important;
+        background-color: ${({ theme }) => theme.palette.info};
+        border: 0.07rem solid ${({ theme }) => theme.palette.info};
       }
     }
-    border: 0rem !important;
-    font-weight: 400;
-    background: none !important;
+    line-height: 1rem;
+    border: 0rem;
+    background: none;
     span label {
       .ant-radio-inner {
         background-color: transparent;
@@ -141,24 +111,17 @@ export const StyledTable = styled(Table)`
       }
     }
   }
-  th {
-    font-size: 0.86rem;
-    line-height: 1rem;
-  }
   td {
-    font-size: 0.86rem;
-    font-weight: 400;
-    line-height: 1rem;
-    color: ${({ theme }) => theme.palette.secondary1} !important;
+    color: ${({ theme }) => theme.palette.secondary1};
   }
   .ant-table-small {
     border: none;
   }
-  margin-top: 0.36rem;
-  margin-left: -1.07rem;
+  margin-top: 1rem;
+  margin-left: -1rem;
 }
 `;
 
 export const FormDiv = styled.div`
-  margin-left: 2.14rem;
+  margin: 0 2.14rem;
 `;
