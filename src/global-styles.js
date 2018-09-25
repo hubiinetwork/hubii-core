@@ -10,6 +10,7 @@ injectGlobal`
   html * {
     font-size: 14px;
     font-family: "Open Sans";
+    font-weight: 400;
   }
 
   html,
@@ -18,7 +19,6 @@ injectGlobal`
     width: 100%;
     margin: 0;
     padding: 0;
-    font-weight: 400;
   }
 
   #app {
