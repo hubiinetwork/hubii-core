@@ -38,8 +38,9 @@ import {
 } from 'containers/TrezorHoc/selectors';
 
 import DerivationPath from 'components/ImportWalletSteps/DerivationPath';
+import Text from 'components/ui/Text';
 
-import { StyledButton, StyledSpan, ButtonDiv } from './BackBtn';
+import { StyledButton, ButtonDiv } from './BackBtn';
 import HWPromptWrapper from './HWPromptWrapper';
 
 export class DerivationPathContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -164,7 +165,7 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
         />
         <ButtonDiv>
           <StyledButton type={'primary'} onClick={this.props.handleBack}>
-            <StyledSpan>Back</StyledSpan>
+            <Text>Back</Text>
           </StyledButton>
         </ButtonDiv>
       </div>
