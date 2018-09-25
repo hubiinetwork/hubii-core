@@ -68,20 +68,8 @@ export const Center = styled.div`
   align-items: center;
 `;
 
-export const SpanText = styled.span`
-  font-size: 1.14rem;
-  font-weight: 400;
-  line-height: 1.36rem;
-`;
-
 export const StyledButton = styled(Button)`
   margin-top: 1.5rem;
   margin-bottom: 2rem;
   width: 18.57rem;
-`;
-export const StyledSpan = styled.span`
-  font-size: 0.86rem;
-  font-weight: 400;
-  line-height: 1rem;
-  text-align: center;
 `;

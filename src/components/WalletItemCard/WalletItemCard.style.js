@@ -44,10 +44,8 @@ export const CardIconSettings = styled.div`
   align-items: flex-end;
   flex: 1;
   color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 1.43rem;
   &:hover {
     color: ${({ theme }) => theme.palette.info};
-    font-size: 1.43rem;
   }
 `;
 

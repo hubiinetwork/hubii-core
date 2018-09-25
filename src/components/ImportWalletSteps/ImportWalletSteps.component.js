@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import DerivationPathContainer from 'containers/DerivationPathContainer';
+import Text from 'components/ui/Text';
 
 import {
   NavigationWrapper,
   Wrapper,
-  SpanText,
   LeftArrow,
 } from './ImportWalletSteps.style';
 
@@ -156,7 +156,7 @@ export default class ImportWalletSteps extends React.Component {
       <Wrapper>
         <NavigationWrapper>
           <LeftArrow type="arrow-left" onClick={() => onBackIcon()} />
-          <SpanText>Import an existing wallet</SpanText>
+          <Text large>Import an existing wallet</Text>
         </NavigationWrapper>
       </Wrapper>
     );

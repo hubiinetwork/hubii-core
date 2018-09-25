@@ -12,12 +12,6 @@ export const Flex = styled.div`
   color: ${({ theme }) => theme.palette.light};
 `;
 
-export const SpanText = styled.span`
-  font-size: 1.14rem;
-  font-weight: 400;
-  line-height: 1.36rem;
-`;
-
 export const PathTitle = styled.div`
   font-size: 1rem;
   font-weight: 400;
@@ -167,11 +161,4 @@ export const StyledTable = styled(Table)`
 
 export const FormDiv = styled.div`
   margin-left: 2.14rem;
-`;
-
-export const StyledSpan = styled.span`
-  font-size: 0.86rem;
-  font-weight: 400;
-  line-height: 1rem;
-  text-align: center;
 `;

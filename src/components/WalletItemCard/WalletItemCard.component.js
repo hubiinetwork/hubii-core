@@ -173,12 +173,15 @@ export class WalletItemCard extends React.PureComponent {
                 <WalletDetailPopoverContent address={address} type={type} />
               }
             >
-              <Icon type="info-circle-o" />
+              <Icon type="info-circle-o" style={{ fontSize: '1.4rem' }} />
             </Popover>
           </CardIcon>
           <CardIconSettings>
             <Dropdown placement="bottomLeft" overlay={this.settingsMenu(type)}>
-              <Icon type="setting" style={{ marginTop: 65, position: 'absolute' }} />
+              <Icon
+                type="setting"
+                style={{ marginTop: 65, position: 'absolute', fontSize: '1.4rem' }}
+              />
             </Dropdown>
           </CardIconSettings>
         </SpaceBetween>
