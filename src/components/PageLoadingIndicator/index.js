@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Loader } from 'semantic-ui-react';
+import { Spin } from 'antd';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -15,12 +15,12 @@ import messages from './messages';
 function PageLoadingIndicator(props) {
   return (
     <div>
-      <Loader active size="huge">
+      <Spin tip="Loading...">
         <FormattedMessage
           {...messages.header}
           values={{ pageType: props.pageType, id: props.id }}
         />
-      </Loader>
+      </Spin>
     </div>
   );
 }
