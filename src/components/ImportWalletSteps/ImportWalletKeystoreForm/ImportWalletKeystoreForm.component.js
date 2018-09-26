@@ -83,7 +83,7 @@ class ImportWalletKeystoreForm extends React.Component {
                 </StyledModalFormLabel>
               }
             >
-              <StyledButton onClick={this.loadKeystoreFile} style={{width:'100%'}}>
+              <StyledButton onClick={this.loadKeystoreFile} style={{ width: '100%' }}>
                 <Icon type="upload" />
                 <StyledSpan>Select keystore file</StyledSpan>
               </StyledButton>

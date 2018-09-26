@@ -90,10 +90,14 @@ export function* createWalletFromPrivateKey({ privateKey, name, password }) {
 export function* createWalletFromKeystore({ name, keystore }) {
   try {
     if (!name || !keystore) throw new Error('invalid param');
-    const address = JSON.parse(keystore).address;
+    const json = JSON.parse(keystore);
+    if (!json.address || !json.id || !json.version) {
+      throw new Error('invalid keystore file');
+    }
+    const address = json.address;
     yield put(createWalletSuccess(name, keystore, null, prependHexToAddress(address)));
   } catch (e) {
-    yield put(notify('error', `Failed to import wallet: ${e}`));
+    yield put(notify('error', 'Failed to import wallet: Please make sure the keystore file is in valid format.'));
     yield put(createWalletFailed(e));
   }
 }
