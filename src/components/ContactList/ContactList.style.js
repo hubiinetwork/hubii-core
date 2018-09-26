@@ -2,16 +2,13 @@ import { List } from 'antd';
 import styled from 'styled-components';
 
 export const StyledList = styled(List)`
+&&&&&& {
   .ant-list-item-meta-title {
     color: ${({ theme }) => theme.palette.info3};
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.14rem;
+    line-height: 1rem;
   }
   .ant-list-item-meta-description {
     color: ${({ theme }) => theme.palette.secondary6};
-    font-size: 0.86rem;
-    font-weight: 400;
     line-height: 1rem;
   }
   .ant-btn-circle.ant-btn-sm,
@@ -40,4 +37,4 @@ export const StyledList = styled(List)`
   .ant-list-item-action > li {
     padding: 0 0.29rem;
   }
-`;
+}`;
