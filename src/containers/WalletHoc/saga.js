@@ -97,7 +97,7 @@ export function* createWalletFromKeystore({ name, keystore }) {
     const address = json.address;
     yield put(createWalletSuccess(name, keystore, null, prependHexToAddress(address)));
   } catch (e) {
-    yield put(notify('error', 'Failed to import wallet: Please make sure the keystore file is in valid format.'));
+    yield put(notify('error', 'Failed to import wallet: Please make sure the keystore file is valid.'));
     yield put(createWalletFailed(e));
   }
 }

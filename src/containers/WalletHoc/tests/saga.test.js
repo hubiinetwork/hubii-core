@@ -201,14 +201,14 @@ describe('createWalletFromMnemonic saga', () => {
       it('encrypted string is not a valid keystore format', () => {
         const invalidEncrypted = '{}';
         return expectSaga(createWalletFromKeystore, { name, keystore: invalidEncrypted })
-          .put(notify('error', 'Failed to import wallet: Please make sure the keystore file is in valid format.'))
+          .put(notify('error', 'Failed to import wallet: Please make sure the keystore file is valid.'))
           .put(createWalletFailed(new Error('invalid keystore file')))
             .run({ silenceTimeout: true });
       });
       it('encrypted string is not a valid json string', () => {
         const invalidEncrypted = 'a';
         return expectSaga(createWalletFromKeystore, { name, keystore: invalidEncrypted })
-          .put(notify('error', 'Failed to import wallet: Please make sure the keystore file is in valid format.'))
+          .put(notify('error', 'Failed to import wallet: Please make sure the keystore file is valid.'))
           .put(createWalletFailed(new SyntaxError('Unexpected token a in JSON at position 0')))
             .run({ silenceTimeout: true });
       });
