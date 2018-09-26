@@ -10,9 +10,7 @@ import HWPromptContainer from 'containers/HWPromptContainer';
 
 import {
   StyledCol,
-  WrapperDiv,
-  BalanceCol,
-  StyledTitle,
+  Balance,
   StyledButton,
   StyledRecipient,
   StyledSpin,
@@ -49,10 +47,7 @@ export default class TransferDescription extends React.PureComponent {
       !isValidAddress(recipient) ||
       !hwWalletReady;
     return (
-      <WrapperDiv>
-        <Row>
-          <StyledTitle span={12}>Summary</StyledTitle>
-        </Row>
+      <div>
         <Row>
           <StyledCol span={12}>Send</StyledCol>
         </Row>
@@ -125,17 +120,17 @@ export default class TransferDescription extends React.PureComponent {
           <StyledCol span={12}>Total wallet value before</StyledCol>
         </Row>
         <Row>
-          <BalanceCol>
+          <Balance large>
             {formatFiat(walletUsdValueBefore, 'USD')}
-          </BalanceCol>
+          </Balance>
         </Row>
         <Row>
           <StyledCol span={12}>Total wallet value after</StyledCol>
         </Row>
         <Row>
-          <BalanceCol>
+          <Balance large>
             {formatFiat(walletUsdValueAfter, 'USD')}
-          </BalanceCol>
+          </Balance>
         </Row>
         <Row>
           {
@@ -156,7 +151,7 @@ export default class TransferDescription extends React.PureComponent {
             )
           }
         </Row>
-      </WrapperDiv>
+      </div>
     );
   }
 }
