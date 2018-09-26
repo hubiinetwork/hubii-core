@@ -13,14 +13,6 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
-export const Heading = styled.h2`
-  display: flex;
-  font-weight: 400;
-  margin: 0;
-  color: ${({ theme }) => theme.palette.light};
-  font-size: 1.29rem;
-`;
-
 export const Title = styled.div`
   margin-top: 2rem;
   font-size: 2rem;
