@@ -11,7 +11,7 @@ export const FormItem = styled(Form.Item)`
   flex: 1;
   margin-bottom: 2.14rem !important;
   .ant-form-item-label {
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.1rem;
   }
   .ant-form-item-control-wrapper .ant-form-explain {
     margin-top: 0.36rem;
