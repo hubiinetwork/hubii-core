@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { Collapse, Icon } from 'antd';
+
+import Text from 'components/ui/Text';
+
 const Panel = Collapse.Panel;
 
 export const DetailPanel = styled(Panel)`
@@ -16,40 +19,35 @@ export const HeaderWrapper = styled.div`
   align-items: center;
 `;
 
-export const Amount = styled.span`
-  font-size: 1rem;
+export const Amount = styled(Text)`
   white-space: nowrap;
   overflow: hidden;
   color: white;
 `;
 
-export const FiatValue = styled.div`
+export const FiatValue = styled(Text)`
   color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 0.86rem;
   margin-left: 0.5rem;
   white-space: nowrap;
   overflow: hidden;
 `;
 
-export const TransactionHistoryTime = styled.span`
+export const TransactionHistoryTime = styled(Text)`
   color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 0.86rem;
   white-space: nowrap;
   overflow: hidden;
   margin-left: auto;
   margin-right: 1rem;
 `;
 
-export const TypeText = styled.div`
+export const TypeText = styled(Text)`
   color: ${({ theme }) => theme.palette.light};
   margin-right: 0.29rem;
-  font-size: 1rem;
 `;
 
-export const SubtitleText = styled.div`
+export const SubtitleText = styled(Text)`
   color: ${({ theme }) => theme.palette.light};
   margin-right: 0.29rem;
-  font-size: 0.93rem;
 `;
 
 export const DetailCollapse = styled(Collapse)`
@@ -93,10 +91,9 @@ export const TypeIcon = styled(Icon)`
   }
 `;
 
-export const GreenTextWrapper = styled.span`
+export const GreenTextWrapper = styled(Text)`
   word-break: break-all;
   color: ${({ theme }) => theme.palette.info};
-  font-size: 0.93rem;
 `;
 
 export const Image = styled.img`
@@ -120,7 +117,6 @@ export const Wrapper = styled.div`
 
 export const TransactionId = styled.a`
   color: ${({ theme }) => theme.palette.secondary};
-  font-size: 0.86rem;
   word-break: break-all;
   &:active {
     color: ${({ theme }) => theme.palette.info};
