@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import Text from 'components/ui/Text';
+
 import {
-  Text,
+  TopHeading,
   TextPrimary,
   Wrapper,
   StyledButton,
@@ -15,13 +18,17 @@ import {
  */
 const DeletionModal = (props) => (
   <Wrapper>
-    <Text> Are you sure you want to delete this {props.type}?</Text>
+    <TopHeading> Are you sure you want to delete this {props.type}?</TopHeading>
     <TextPrimary>
-      <div>
-        <SecondaryHeader>Name</SecondaryHeader> {props.name}
+      <div style={{ marginBottom: '0.5rem' }}>
+        <SecondaryHeader large>Name</SecondaryHeader>
+        <br />
+        <Text>{props.name}</Text>
       </div>
       <div>
-        <SecondaryHeader>Address</SecondaryHeader>{props.address}
+        <SecondaryHeader large>Address</SecondaryHeader>
+        <br />
+        <Text>{props.address}</Text>
       </div>
     </TextPrimary>
     <ParentDiv>
