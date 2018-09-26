@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { Row, Collapse } from 'antd';
+import { Collapse } from 'antd';
 
 import Button from 'components/ui/Button';
+import Text from 'components/ui/Text';
 
 export const TransferDescriptionWrapper = styled.div`
   min-width: 34rem;
@@ -32,26 +33,13 @@ export const Image = styled.img`
   padding-bottom: 0.29rem;
 `;
 
-export const ETHtoDollar = styled.span`
-  font-size: 0.86rem;
+export const ETHtoDollar = styled(Text)`
   color: ${({ theme }) => theme.palette.secondary};
-`;
-
-const StyledRow = styled(Row)`
-margin-top: 2.14rem;
-.ant-row-flex-top {
-  margin-top: 1.14rem;
-}
-`;
-export const StyledLabel = styled.span`
-color: ${({ theme }) => theme.palette.info};
-font-weight: bold;
 `;
 
 export const Panel = Collapse.Panel;
 
-export const AdvanceSettingsHeader = styled.span`
-  font-size: 1rem;
+export const AdvanceSettingsHeader = styled(Text)`
   color: ${({ theme }) => theme.palette.info};
 `;
 
@@ -75,4 +63,4 @@ export const styledCollapse = styled(Collapse)`
   }
 `;
 
-export { styledCollapse as Collapse, StyledRow as Row };
+export { styledCollapse as Collapse };
