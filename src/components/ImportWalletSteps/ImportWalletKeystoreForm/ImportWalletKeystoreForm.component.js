@@ -17,36 +17,36 @@ import {
   FinalHeader,
 } from '../ImportWalletForm.style';
 
-class ImportWalletKeystoneForm extends React.Component {
+class ImportWalletKeystoreForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      keystone: null,
+      keystore: null,
       filepath: null,
     };
-    this.loadKeystoneFile = this.loadKeystoneFile.bind(this);
+    this.loadKeystoreFile = this.loadKeystoreFile.bind(this);
   }
 
-  loadKeystoneFile() {
+  loadKeystoreFile() {
     const { dialog } = remote;
     dialog.showOpenDialog((filenames) => {
       if (!filenames || !filenames.length) {
-        this.setState({ keystone: null, filepath: null });
+        this.setState({ keystore: null, filepath: null });
         return;
       }
       const encryptedWallet = fs.readFileSync(filenames[0], 'utf8');
-      this.setState({ keystone: encryptedWallet, filepath: filenames[0] });
+      this.setState({ keystore: encryptedWallet, filepath: filenames[0] });
     });
   }
 
   render() {
     const { getFieldDecorator } = this.props.form;
     const { form, handleNext, loading } = this.props;
-    const { keystone, filepath } = this.state;
+    const { keystore, filepath } = this.state;
     return (
       <div>
         <Form
-          onSubmit={(e) => handleFinish(e, form, handleNext, { keystone })}
+          onSubmit={(e) => handleFinish(e, form, handleNext, { keystore })}
           layout="vertical"
           style={{
             marginTop: '2rem',
@@ -57,7 +57,7 @@ class ImportWalletKeystoneForm extends React.Component {
         >
           <WidthEighty>
             <FinalHeader>
-              <p>Importing from a keystone file</p>
+              <p>Importing from a keystore file</p>
             </FinalHeader>
             <ModalFormItem
               label={
@@ -83,15 +83,15 @@ class ImportWalletKeystoneForm extends React.Component {
                 </StyledModalFormLabel>
               }
             >
-              <StyledButton onClick={this.loadKeystoneFile}>
-                <StyledSpan>Keystone File</StyledSpan>
+              <StyledButton onClick={this.loadKeystoreFile}>
+                <StyledSpan>Keystore File</StyledSpan>
               </StyledButton>
             </ModalFormItem>
             <ButtonDiv>
               <StyledBackButton type="default" onClick={this.props.handleBack}>
                 <StyledSpan>Back</StyledSpan>
               </StyledBackButton>
-              <StyledButton type="primary" disabled={!this.state.keystone} htmlType="submit">
+              <StyledButton type="primary" disabled={!this.state.keystore} htmlType="submit">
                 <StyledSpan>Import wallet</StyledSpan>
               </StyledButton>
             </ButtonDiv>
@@ -102,7 +102,7 @@ class ImportWalletKeystoneForm extends React.Component {
   }
 }
 
-ImportWalletKeystoneForm.propTypes = {
+ImportWalletKeystoreForm.propTypes = {
   /**
    * Function to be executed when back button is pressed
    */
@@ -121,4 +121,4 @@ ImportWalletKeystoneForm.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
-export default Form.create()(ImportWalletKeystoneForm);
+export default Form.create()(ImportWalletKeystoreForm);

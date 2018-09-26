@@ -18,7 +18,7 @@ import {
   createWalletFromMnemonic,
   saveTrezorAddress,
   createWalletFromPrivateKey,
-  createWalletFromKeystone,
+  createWalletFromKeystore,
 } from 'containers/WalletHoc/actions';
 
 import {
@@ -111,9 +111,9 @@ export class WalletManager extends React.PureComponent {
       const { mnemonic, derivationPath, password, name } = data[1];
       this.props.createWalletFromMnemonic(name, mnemonic, derivationPath, password);
     }
-    if (data[0].walletType === 'Keystone') {
-      const { name, keystone } = data[1];
-      this.props.createWalletFromKeystone(name, keystone);
+    if (data[0].walletType === 'Keystore') {
+      const { name, keystore } = data[1];
+      this.props.createWalletFromKeystore(name, keystore);
     }
   }
 
@@ -202,7 +202,7 @@ WalletManager.propTypes = {
   saveLedgerAddress: PropTypes.func,
   saveTrezorAddress: PropTypes.func,
   createWalletFromPrivateKey: PropTypes.func.isRequired,
-  createWalletFromKeystone: PropTypes.func.isRequired,
+  createWalletFromKeystore: PropTypes.func.isRequired,
   loading: PropTypes.object.isRequired,
   createContact: PropTypes.func,
   contacts: PropTypes.oneOfType(
@@ -223,7 +223,7 @@ export function mapDispatchToProps(dispatch) {
     saveTrezorAddress: (...args) => dispatch(saveTrezorAddress(...args)),
     createWalletFromMnemonic: (...args) => dispatch(createWalletFromMnemonic(...args)),
     createWalletFromPrivateKey: (...args) => dispatch(createWalletFromPrivateKey(...args)),
-    createWalletFromKeystone: (...args) => dispatch(createWalletFromKeystone(...args)),
+    createWalletFromKeystore: (...args) => dispatch(createWalletFromKeystore(...args)),
     createContact: (...args) => dispatch(createContact(...args)),
   };
 }

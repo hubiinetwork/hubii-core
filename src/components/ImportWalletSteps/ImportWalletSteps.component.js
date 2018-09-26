@@ -14,7 +14,7 @@ import ImportWallet from './ImportWallet';
 import ImportWalletNameForm from './ImportWalletNameForm';
 import ImportWalletPrivateKeyForm from './ImportWalletPrivateKeyForm';
 import ImportWalletMnemonicForm from './ImportWalletMnemonicForm';
-import ImportWalletKeystoneForm from './ImportWalletKeystoneForm';
+import ImportWalletKeystoreForm from './ImportWalletKeystoreForm';
 import FormSteps from '../FormSteps';
 
 export default class ImportWalletSteps extends React.Component {
@@ -120,11 +120,11 @@ export default class ImportWalletSteps extends React.Component {
           ),
         },
       ],
-      Keystone: [
+      Keystore: [
         {
           title: 'Last',
           content: (
-            <ImportWalletKeystoneForm
+            <ImportWalletKeystoreForm
               handleBack={this.handleBack}
               handleNext={this.handleNext}
               loading={loading}

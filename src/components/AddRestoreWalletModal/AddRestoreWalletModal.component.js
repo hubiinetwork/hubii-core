@@ -90,7 +90,7 @@ export default class AddRestoreWalletModal extends React.Component {
                 },
                 {
                   // src: getAbsolutePath('public/images/mnemonic.png'),
-                  name: 'Keystone',
+                  name: 'Keystore',
                 },
               ]}
               onBackIcon={() => this.switchModals('main')}

@@ -62,7 +62,7 @@ import {
 import walletHoc, {
   createWalletFromMnemonic,
   createWalletFromPrivateKey,
-  createWalletFromKeystone,
+  createWalletFromKeystore,
   decryptWallet,
   transfer,
   transferERC20,
@@ -182,9 +182,9 @@ describe('createWalletFromMnemonic saga', () => {
     });
   });
 
-  describe('create wallet by keystone', () => {
+  describe('create wallet by keystore', () => {
     const address = prependHexToAddress(JSON.parse(encryptedMock).address);
-    it('should dispatch createWalletSuccess when wallet creation successful', () => expectSaga(createWalletFromKeystone, { name, keystone: encryptedMock })
+    it('should dispatch createWalletSuccess when wallet creation successful', () => expectSaga(createWalletFromKeystore, { name, keystore: encryptedMock })
       .put({
         type: CREATE_WALLET_SUCCESS,
         newWallet: {
@@ -199,7 +199,7 @@ describe('createWalletFromMnemonic saga', () => {
     );
     describe('exceptions', () => {
       const invalidEncrypted = '';
-      it('encrypted string is invalid', () => expectSaga(createWalletFromKeystone, { name, keystone: invalidEncrypted })
+      it('encrypted string is invalid', () => expectSaga(createWalletFromKeystore, { name, keystore: invalidEncrypted })
         .put(notify('error', `Failed to import wallet: ${new Error('invalid param')}`))
         .put(createWalletFailed(new Error('invalid param')))
           .run({ silenceTimeout: true }));

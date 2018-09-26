@@ -1,4 +1,4 @@
-Variants of ImportWalletKeystoneForm:
+Variants of ImportWalletKeystoreForm:
 
 ```js
 <div
@@ -9,7 +9,7 @@ Variants of ImportWalletKeystoneForm:
     height: 576
   }}
 >
-  <ImportWalletKeystoneForm
+  <ImportWalletKeystoreForm
     handleNext={() => console.log("handleNext")}
     handleNext={() => console.log("handleBack")}
     loading={false}
@@ -26,7 +26,7 @@ Variants of ImportWalletKeystoneForm:
     height: 576
   }}
 >
-  <ImportWalletKeystoneForm
+  <ImportWalletKeystoreForm
     handleNext={() => console.log("handleNext")}
     handleNext={() => console.log("handleBack")}
     loading

@@ -40,7 +40,7 @@ import {
   TRANSFER_ETHER,
   TRANSFER_ERC20,
   CREATE_WALLET_FROM_PRIVATE_KEY,
-  CREATE_WALLET_FROM_KEYSTONE,
+  CREATE_WALLET_FROM_KEYSTORE,
 } from './constants';
 
 import {
@@ -87,11 +87,11 @@ export function* createWalletFromPrivateKey({ privateKey, name, password }) {
   }
 }
 
-export function* createWalletFromKeystone({ name, keystone }) {
+export function* createWalletFromKeystore({ name, keystore }) {
   try {
-    if (!name || !keystone) throw new Error('invalid param');
-    const address = JSON.parse(keystone).address;
-    yield put(createWalletSuccess(name, keystone, null, prependHexToAddress(address)));
+    if (!name || !keystore) throw new Error('invalid param');
+    const address = JSON.parse(keystore).address;
+    yield put(createWalletSuccess(name, keystore, null, prependHexToAddress(address)));
   } catch (e) {
     yield put(notify('error', `Failed to import wallet: ${e}`));
     yield put(createWalletFailed(e));
@@ -306,5 +306,5 @@ export default function* walletHoc() {
   yield takeEvery(TRANSFER_ERC20, transferERC20);
   yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
   yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
-  yield takeEvery(CREATE_WALLET_FROM_KEYSTONE, createWalletFromKeystone);
+  yield takeEvery(CREATE_WALLET_FROM_KEYSTORE, createWalletFromKeystore);
 }
