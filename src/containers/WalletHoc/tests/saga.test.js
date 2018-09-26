@@ -10,7 +10,7 @@ import { fromJS } from 'immutable';
 import BigNumber from 'bignumber.js';
 
 import { requestHardwareWalletAPI } from 'utils/request';
-import { getTransaction } from 'utils/wallet';
+import { getTransaction, prependHexToAddress } from 'utils/wallet';
 import { storeMock } from 'mocks/store';
 
 import { notify } from 'containers/App/actions';
@@ -62,6 +62,7 @@ import {
 import walletHoc, {
   createWalletFromMnemonic,
   createWalletFromPrivateKey,
+  createWalletFromKeystore,
   decryptWallet,
   transfer,
   transferERC20,
@@ -178,6 +179,39 @@ describe('createWalletFromMnemonic saga', () => {
         .put(notify('error', `Failed to import wallet: ${new Error('invalid param')}`))
         .put(createWalletFailed(new Error('invalid param')))
           .run({ silenceTimeout: true }));
+    });
+  });
+
+  describe('create wallet by keystore', () => {
+    const address = prependHexToAddress(JSON.parse(encryptedMock).address);
+    it('should dispatch createWalletSuccess when wallet creation successful', () => expectSaga(createWalletFromKeystore, { name, keystore: encryptedMock })
+      .put({
+        type: CREATE_WALLET_SUCCESS,
+        newWallet: {
+          name,
+          address,
+          type: 'software',
+          encrypted: encryptedMock,
+          decrypted: null,
+        },
+      })
+      .run({ silenceTimeout: true })
+    );
+    describe('exceptions', () => {
+      it('encrypted string is not a valid keystore format', () => {
+        const invalidEncrypted = '{}';
+        return expectSaga(createWalletFromKeystore, { name, keystore: invalidEncrypted })
+          .put(notify('error', 'Failed to import wallet: Please make sure the keystore file is valid.'))
+          .put(createWalletFailed(new Error('invalid keystore file')))
+            .run({ silenceTimeout: true });
+      });
+      it('encrypted string is not a valid json string', () => {
+        const invalidEncrypted = 'a';
+        return expectSaga(createWalletFromKeystore, { name, keystore: invalidEncrypted })
+          .put(notify('error', 'Failed to import wallet: Please make sure the keystore file is valid.'))
+          .put(createWalletFailed(new SyntaxError('Unexpected token a in JSON at position 0')))
+            .run({ silenceTimeout: true });
+      });
     });
   });
 });

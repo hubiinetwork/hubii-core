@@ -88,6 +88,9 @@ export default class AddRestoreWalletModal extends React.Component {
                   src: getAbsolutePath('public/images/mnemonic.png'),
                   name: 'Mnemonic',
                 },
+                {
+                  name: 'Keystore',
+                },
               ]}
               onBackIcon={() => this.switchModals('main')}
               handleSubmit={this.props.handleImportWalletSubmit}
