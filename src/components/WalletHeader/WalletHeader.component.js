@@ -1,8 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import CopyToClipboard from 'react-copy-to-clipboard';
+
+import { formatFiat } from 'utils/numberFormats';
+import Heading from 'components/ui/Heading';
+import USBFlag from 'components/USBFlag';
+import Notification from 'components/Notification';
+
 import {
-  Name,
   Address,
   Balance,
   CopyButton,
@@ -11,10 +16,7 @@ import {
   WalletHeaderWrapper,
   OverflowHidden,
 } from './WalletHeader.style';
-import USBFlag from '../USBFlag';
-import Notification from '../Notification';
 import WalletHeaderIcon from './WalletHeaderIcon';
-import { formatFiat } from '../../utils/numberFormats';
 
 /**
  * The WalletHeader Component
@@ -39,7 +41,7 @@ const WalletHeader = (props) => {
         )}
         <HeaderDetail>
           <DetailWrapper>
-            <Name>{props.name}</Name>
+            <Heading>{props.name}</Heading>
             <Address>
               {`${props.address}`}
               <CopyToClipboard text={`${props.address}`}>
@@ -54,7 +56,7 @@ const WalletHeader = (props) => {
             </Address>
           </DetailWrapper>
           <DetailWrapper>
-            <Balance>{formatFiat(props.balance, 'USD')}</Balance>
+            <Balance large>{formatFiat(props.balance, 'USD')}</Balance>
           </DetailWrapper>
         </HeaderDetail>
       </OverflowHidden>
