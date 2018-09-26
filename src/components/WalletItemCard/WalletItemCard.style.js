@@ -74,6 +74,7 @@ export const TotalBalance = styled(Heading)`
 export const WalletName = styled(Text)`
   min-width: 5rem;
   word-wrap: break-word;
+  margin-bottom: 0.5rem;
 `;
 
 export const OuterWrapper = styled.div`
