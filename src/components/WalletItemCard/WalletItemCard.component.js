@@ -193,7 +193,7 @@ export class WalletItemCard extends React.PureComponent {
           <LeftSideWrapper>
             <WalletName>{name}</WalletName>
             {!balancesLoading && !balancesError &&
-              <TotalBalance large>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
+              <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
             }
           </LeftSideWrapper>
           <AssetsWrapper>

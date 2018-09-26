@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Menu, Icon } from 'antd';
 
 import Text from 'components/ui/Text';
+import Heading from 'components/ui/Heading';
 
 export const AssetsWrapper = styled.div`
   display: flex;
@@ -60,7 +61,7 @@ export const LeftSideWrapper = styled.div`
   flex-direction: row;
 `;
 
-export const TotalBalance = styled(Text)`
+export const TotalBalance = styled(Heading)`
   color: ${({ theme }) => theme.palette.info};
   margin-top: -0.25rem;
   margin-right: 2.14rem;
