@@ -1,4 +1,5 @@
 import React from 'react';
+import { Alert } from 'antd';
 import { shell } from 'electron';
 import uuid from 'uuid/v4';
 import PropTypes from 'prop-types';
@@ -139,6 +140,29 @@ export class WalletsTransactions extends React.Component {
             defaultCurrent={currentPage}
             current={currentPage}
             onChange={this.onPaginationChange}
+          />
+          <Alert
+            message="Where's my transaction?"
+            description={
+              <div>
+                <span>In this alpha build of hubii core, only confirmed transactions are displayed. This means recently sent transactions may take some time to appear, while they are pending.</span>
+                <br />
+                <span>Until support for pending transactions is added into hubii core, you can </span>
+                <a
+                  role="link"
+                  tabIndex={0}
+                  onClick={
+                    currentNetwork.provider.name === 'ropsten' ?
+                      () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
+                      () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
+                  }
+                >view them on Etherscan</a>
+                <span>.</span>
+              </div>
+              }
+            type="info"
+            showIcon
+            style={{ margin: '2rem 0' }}
           />
         </TransactionsWrapper>
         <BreakdownWrapper>
