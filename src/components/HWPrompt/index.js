@@ -8,11 +8,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getAbsolutePath } from 'utils/electron';
 
+import Text from 'components/ui/Text';
+
 import {
   OuterWrapper,
   Row,
   KeyText,
-  P,
   DescriptiveIcon,
   StatusIcon,
   SingleRowWrapper,
@@ -25,14 +26,14 @@ const confTxOnDevicePrompt = (deviceType) => (
   <SingleRowWrapper>
     <ConfTxShield src={getAbsolutePath('public/images/shield.png')} />
     <ConfTxDeviceImg src={getAbsolutePath(`public/images/conf-tx-${deviceType}.png`)} />
-    <P>{ 'Verify the details shown on your device' }</P>
+    <Text large>{ 'Verify the details shown on your device' }</Text>
   </SingleRowWrapper>
 );
 
 const singleRowMsg = (msg, iconType, iconColor) => (
   <SingleRowWrapper>
     <SingleRowIcon type={iconType || 'loading'} color={iconColor} />
-    <P>{msg}</P>
+    <Text large>{msg}</Text>
   </SingleRowWrapper>
 );
 
@@ -84,7 +85,7 @@ const lnsPrompt = (ledgerInfo) => {
             getAbsolutePath('public/images/hw-wallet-usb-white.png')
           }
         />
-        <P>Connect and unlock your <KeyText>Ledger Device</KeyText></P>
+        <Text>Connect and unlock your <KeyText>Ledger Device</KeyText></Text>
         <StatusIcon
           type={stage === 'connect' ? 'loading' : 'check'}
         />
@@ -96,7 +97,7 @@ const lnsPrompt = (ledgerInfo) => {
             getAbsolutePath('public/images/hw-wallet-eth-green.png')
           }
         />
-        <P>Open the <KeyText>Ethereum</KeyText> app on your device</P>
+        <Text>Open the <KeyText>Ethereum</KeyText> app on your device</Text>
         <StatusIcon
           type={stage === 'openApp' ? 'loading' : 'ellipsis'}
         />

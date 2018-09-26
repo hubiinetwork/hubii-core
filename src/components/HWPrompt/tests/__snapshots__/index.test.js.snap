@@ -46,9 +46,11 @@ ShallowWrapper {
         <style__ConfTxDeviceImg
           src="/public/images/conf-tx-lns.png"
 />,
-        <style__P>
+        <Text
+          large={true}
+>
           Verify the details shown on your device
-</style__P>,
+</Text>,
       ],
     },
     "ref": null,
@@ -81,6 +83,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": "Verify the details shown on your device",
+          "large": true,
         },
         "ref": null,
         "rendered": "Verify the details shown on your device",
@@ -102,9 +105,11 @@ ShallowWrapper {
           <style__ConfTxDeviceImg
             src="/public/images/conf-tx-lns.png"
 />,
-          <style__P>
+          <Text
+            large={true}
+>
             Verify the details shown on your device
-</style__P>,
+</Text>,
         ],
       },
       "ref": null,
@@ -137,6 +142,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": "Verify the details shown on your device",
+            "large": true,
           },
           "ref": null,
           "rendered": "Verify the details shown on your device",
@@ -202,12 +208,12 @@ ShallowWrapper {
           <style__DescriptiveIcon
                     src="/public/images/hw-wallet-usb-green.png"
           />
-          <style__P>
+          <Text>
                     Connect and unlock your 
                     <style__KeyText>
                               Ledger Device
                     </style__KeyText>
-          </style__P>
+          </Text>
           <style__StatusIcon
                     type="loading"
           />
@@ -219,13 +225,13 @@ ShallowWrapper {
           <style__DescriptiveIcon
                     src="/public/images/hw-wallet-eth-grey.png"
           />
-          <style__P>
+          <Text>
                     Open the 
                     <style__KeyText>
                               Ethereum
                     </style__KeyText>
                      app on your device
-          </style__P>
+          </Text>
           <style__StatusIcon
                     type="ellipsis"
           />
@@ -244,12 +250,12 @@ ShallowWrapper {
             <style__DescriptiveIcon
               src="/public/images/hw-wallet-usb-green.png"
 />,
-            <style__P>
+            <Text>
               Connect and unlock your 
               <style__KeyText>
                             Ledger Device
               </style__KeyText>
-</style__P>,
+</Text>,
             <style__StatusIcon
               type="loading"
 />,
@@ -322,13 +328,13 @@ ShallowWrapper {
             <style__DescriptiveIcon
               src="/public/images/hw-wallet-eth-grey.png"
 />,
-            <style__P>
+            <Text>
               Open the 
               <style__KeyText>
                             Ethereum
               </style__KeyText>
                app on your device
-</style__P>,
+</Text>,
             <style__StatusIcon
               type="ellipsis"
 />,
@@ -410,12 +416,12 @@ ShallowWrapper {
             <style__DescriptiveIcon
                         src="/public/images/hw-wallet-usb-green.png"
             />
-            <style__P>
+            <Text>
                         Connect and unlock your 
                         <style__KeyText>
                                     Ledger Device
                         </style__KeyText>
-            </style__P>
+            </Text>
             <style__StatusIcon
                         type="loading"
             />
@@ -427,13 +433,13 @@ ShallowWrapper {
             <style__DescriptiveIcon
                         src="/public/images/hw-wallet-eth-grey.png"
             />
-            <style__P>
+            <Text>
                         Open the 
                         <style__KeyText>
                                     Ethereum
                         </style__KeyText>
                          app on your device
-            </style__P>
+            </Text>
             <style__StatusIcon
                         type="ellipsis"
             />
@@ -452,12 +458,12 @@ ShallowWrapper {
               <style__DescriptiveIcon
                 src="/public/images/hw-wallet-usb-green.png"
 />,
-              <style__P>
+              <Text>
                 Connect and unlock your 
                 <style__KeyText>
                                 Ledger Device
                 </style__KeyText>
-</style__P>,
+</Text>,
               <style__StatusIcon
                 type="loading"
 />,
@@ -530,13 +536,13 @@ ShallowWrapper {
               <style__DescriptiveIcon
                 src="/public/images/hw-wallet-eth-grey.png"
 />,
-              <style__P>
+              <Text>
                 Open the 
                 <style__KeyText>
                                 Ethereum
                 </style__KeyText>
                  app on your device
-</style__P>,
+</Text>,
               <style__StatusIcon
                 type="ellipsis"
 />,
@@ -662,12 +668,12 @@ ShallowWrapper {
           <style__DescriptiveIcon
                     src="/public/images/hw-wallet-usb-white.png"
           />
-          <style__P>
+          <Text>
                     Connect and unlock your 
                     <style__KeyText>
                               Ledger Device
                     </style__KeyText>
-          </style__P>
+          </Text>
           <style__StatusIcon
                     type="check"
           />
@@ -679,13 +685,13 @@ ShallowWrapper {
           <style__DescriptiveIcon
                     src="/public/images/hw-wallet-eth-green.png"
           />
-          <style__P>
+          <Text>
                     Open the 
                     <style__KeyText>
                               Ethereum
                     </style__KeyText>
                      app on your device
-          </style__P>
+          </Text>
           <style__StatusIcon
                     type="loading"
           />
@@ -704,12 +710,12 @@ ShallowWrapper {
             <style__DescriptiveIcon
               src="/public/images/hw-wallet-usb-white.png"
 />,
-            <style__P>
+            <Text>
               Connect and unlock your 
               <style__KeyText>
                             Ledger Device
               </style__KeyText>
-</style__P>,
+</Text>,
             <style__StatusIcon
               type="check"
 />,
@@ -782,13 +788,13 @@ ShallowWrapper {
             <style__DescriptiveIcon
               src="/public/images/hw-wallet-eth-green.png"
 />,
-            <style__P>
+            <Text>
               Open the 
               <style__KeyText>
                             Ethereum
               </style__KeyText>
                app on your device
-</style__P>,
+</Text>,
             <style__StatusIcon
               type="loading"
 />,
@@ -870,12 +876,12 @@ ShallowWrapper {
             <style__DescriptiveIcon
                         src="/public/images/hw-wallet-usb-white.png"
             />
-            <style__P>
+            <Text>
                         Connect and unlock your 
                         <style__KeyText>
                                     Ledger Device
                         </style__KeyText>
-            </style__P>
+            </Text>
             <style__StatusIcon
                         type="check"
             />
@@ -887,13 +893,13 @@ ShallowWrapper {
             <style__DescriptiveIcon
                         src="/public/images/hw-wallet-eth-green.png"
             />
-            <style__P>
+            <Text>
                         Open the 
                         <style__KeyText>
                                     Ethereum
                         </style__KeyText>
                          app on your device
-            </style__P>
+            </Text>
             <style__StatusIcon
                         type="loading"
             />
@@ -912,12 +918,12 @@ ShallowWrapper {
               <style__DescriptiveIcon
                 src="/public/images/hw-wallet-usb-white.png"
 />,
-              <style__P>
+              <Text>
                 Connect and unlock your 
                 <style__KeyText>
                                 Ledger Device
                 </style__KeyText>
-</style__P>,
+</Text>,
               <style__StatusIcon
                 type="check"
 />,
@@ -990,13 +996,13 @@ ShallowWrapper {
               <style__DescriptiveIcon
                 src="/public/images/hw-wallet-eth-green.png"
 />,
-              <style__P>
+              <Text>
                 Open the 
                 <style__KeyText>
                                 Ethereum
                 </style__KeyText>
                  app on your device
-</style__P>,
+</Text>,
               <style__StatusIcon
                 type="loading"
 />,
@@ -1122,12 +1128,12 @@ ShallowWrapper {
           <style__DescriptiveIcon
                     src="/public/images/hw-wallet-usb-white.png"
           />
-          <style__P>
+          <Text>
                     Connect and unlock your 
                     <style__KeyText>
                               Ledger Device
                     </style__KeyText>
-          </style__P>
+          </Text>
           <style__StatusIcon
                     type="check"
           />
@@ -1139,13 +1145,13 @@ ShallowWrapper {
           <style__DescriptiveIcon
                     src="/public/images/hw-wallet-eth-green.png"
           />
-          <style__P>
+          <Text>
                     Open the 
                     <style__KeyText>
                               Ethereum
                     </style__KeyText>
                      app on your device
-          </style__P>
+          </Text>
           <style__StatusIcon
                     type="loading"
           />
@@ -1164,12 +1170,12 @@ ShallowWrapper {
             <style__DescriptiveIcon
               src="/public/images/hw-wallet-usb-white.png"
 />,
-            <style__P>
+            <Text>
               Connect and unlock your 
               <style__KeyText>
                             Ledger Device
               </style__KeyText>
-</style__P>,
+</Text>,
             <style__StatusIcon
               type="check"
 />,
@@ -1242,13 +1248,13 @@ ShallowWrapper {
             <style__DescriptiveIcon
               src="/public/images/hw-wallet-eth-green.png"
 />,
-            <style__P>
+            <Text>
               Open the 
               <style__KeyText>
                             Ethereum
               </style__KeyText>
                app on your device
-</style__P>,
+</Text>,
             <style__StatusIcon
               type="loading"
 />,
@@ -1330,12 +1336,12 @@ ShallowWrapper {
             <style__DescriptiveIcon
                         src="/public/images/hw-wallet-usb-white.png"
             />
-            <style__P>
+            <Text>
                         Connect and unlock your 
                         <style__KeyText>
                                     Ledger Device
                         </style__KeyText>
-            </style__P>
+            </Text>
             <style__StatusIcon
                         type="check"
             />
@@ -1347,13 +1353,13 @@ ShallowWrapper {
             <style__DescriptiveIcon
                         src="/public/images/hw-wallet-eth-green.png"
             />
-            <style__P>
+            <Text>
                         Open the 
                         <style__KeyText>
                                     Ethereum
                         </style__KeyText>
                          app on your device
-            </style__P>
+            </Text>
             <style__StatusIcon
                         type="loading"
             />
@@ -1372,12 +1378,12 @@ ShallowWrapper {
               <style__DescriptiveIcon
                 src="/public/images/hw-wallet-usb-white.png"
 />,
-              <style__P>
+              <Text>
                 Connect and unlock your 
                 <style__KeyText>
                                 Ledger Device
                 </style__KeyText>
-</style__P>,
+</Text>,
               <style__StatusIcon
                 type="check"
 />,
@@ -1450,13 +1456,13 @@ ShallowWrapper {
               <style__DescriptiveIcon
                 src="/public/images/hw-wallet-eth-green.png"
 />,
-              <style__P>
+              <Text>
                 Open the 
                 <style__KeyText>
                                 Ethereum
                 </style__KeyText>
                  app on your device
-</style__P>,
+</Text>,
               <style__StatusIcon
                 type="loading"
 />,
@@ -1581,9 +1587,11 @@ ShallowWrapper {
         <style__ConfTxDeviceImg
           src="/public/images/conf-tx-trezor.png"
 />,
-        <style__P>
+        <Text
+          large={true}
+>
           Verify the details shown on your device
-</style__P>,
+</Text>,
       ],
     },
     "ref": null,
@@ -1616,6 +1624,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": "Verify the details shown on your device",
+          "large": true,
         },
         "ref": null,
         "rendered": "Verify the details shown on your device",
@@ -1637,9 +1646,11 @@ ShallowWrapper {
           <style__ConfTxDeviceImg
             src="/public/images/conf-tx-trezor.png"
 />,
-          <style__P>
+          <Text
+            large={true}
+>
             Verify the details shown on your device
-</style__P>,
+</Text>,
         ],
       },
       "ref": null,
@@ -1672,6 +1683,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": "Verify the details shown on your device",
+            "large": true,
           },
           "ref": null,
           "rendered": "Verify the details shown on your device",
@@ -1735,9 +1747,11 @@ ShallowWrapper {
           color={undefined}
           type="loading"
 />,
-        <style__P>
+        <Text
+          large={true}
+>
           Please connect and unlock your Trezor device to continue
-</style__P>,
+</Text>,
       ],
     },
     "ref": null,
@@ -1760,6 +1774,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": "Please connect and unlock your Trezor device to continue",
+          "large": true,
         },
         "ref": null,
         "rendered": "Please connect and unlock your Trezor device to continue",
@@ -1779,9 +1794,11 @@ ShallowWrapper {
             color={undefined}
             type="loading"
 />,
-          <style__P>
+          <Text
+            large={true}
+>
             Please connect and unlock your Trezor device to continue
-</style__P>,
+</Text>,
         ],
       },
       "ref": null,
@@ -1804,6 +1821,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": "Please connect and unlock your Trezor device to continue",
+            "large": true,
           },
           "ref": null,
           "rendered": "Please connect and unlock your Trezor device to continue",
