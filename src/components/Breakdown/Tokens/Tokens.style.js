@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+
+import Text from 'components/ui/Text';
+
 export const Logo = styled.img`
   border-radius: 50%;
   height: 1.14rem;
@@ -6,10 +9,8 @@ export const Logo = styled.img`
   margin-right: 0.5rem;
 `;
 
-export const Label = styled.div`
+export const Label = styled(Text)`
   color: ${({ theme }) => theme.palette.light};
-  font-size: 0.86rem;
-  font-weight: 400;
 `;
 
 export const Percentage = styled.div`

@@ -1,18 +1,11 @@
 import styled from 'styled-components';
 
-export const TotalAmount = styled.div`
-  color: ${({ theme }) => theme.palette.light};
-  font-size: 2rem;
-  font-weight: 400;
-  line-height: 2.43rem;
-`;
+import Text from 'components/ui/Text';
 
-export const Title = styled.h3`
+
+export const Title = styled(Text)`
   color: ${({ theme }) => theme.palette.light};
-  font-weight: 400;
-  font-size: 1rem;
   margin-top: 0.21rem;
-  line-height: 1.14rem;
 `;
 
 export const Wrapper = styled.div`
