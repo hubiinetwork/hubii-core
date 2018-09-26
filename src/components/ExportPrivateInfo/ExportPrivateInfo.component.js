@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import Notification from '../Notification';
+
+import Notification from 'components/Notification';
+import Text from 'components/ui/Text';
 
 import {
-  Text,
+  TopHeading,
   TextPrimary,
   Wrapper,
   ParentDiv,
   SecondaryHeader,
   StyledButton,
   StyledIcon,
-  PrimaryHeader,
 } from './ExportPrivateInfo.style';
 
 /**
@@ -33,14 +34,13 @@ export default class ExportPrivateInfo extends React.PureComponent {
     const { mnemonic, privateKey, onExit } = this.props;
     return (
       <Wrapper>
-        <Text>Never share this information with anyone</Text>
-        <Text>Always keep a physical backup in a safe location</Text>
+        <TopHeading>Never share this information with anyone</TopHeading>
+        <TopHeading>Always keep a physical backup in a safe location</TopHeading>
         <TextPrimary>
           {
               mnemonic ?
-
-                <div>
-                  <SecondaryHeader>
+                <div style={{ marginBottom: '0.5rem' }}>
+                  <SecondaryHeader large>
                     Mnemonic
                     <CopyToClipboard text={mnemonic} >
                       <StyledIcon
@@ -52,17 +52,19 @@ export default class ExportPrivateInfo extends React.PureComponent {
                       />
                     </CopyToClipboard>
                   </SecondaryHeader>
-                  {mnemonic}
+                  <br />
+                  <Text>{mnemonic}</Text>
                 </div> :
-                <div>
-                  <PrimaryHeader>
+                <div style={{ marginBottom: '0.5rem' }}>
+                  <SecondaryHeader large>
                     Mnemonic
-                  </PrimaryHeader>
-                  This wallet was imported using a private key therefore does not have a mnemonic to export
+                  </SecondaryHeader>
+                  <br />
+                  <Text>This wallet was imported using a private key therefore does not have a mnemonic to export</Text>
                 </div>
             }
           <div>
-            <SecondaryHeader>
+            <SecondaryHeader large>
               Private key
             <CopyToClipboard text={privateKey} >
               <StyledIcon
@@ -74,7 +76,8 @@ export default class ExportPrivateInfo extends React.PureComponent {
               />
             </CopyToClipboard>
             </SecondaryHeader>
-            {privateKey}
+            <br />
+            <Text>{privateKey}</Text>
           </div>
         </TextPrimary>
         <ParentDiv>

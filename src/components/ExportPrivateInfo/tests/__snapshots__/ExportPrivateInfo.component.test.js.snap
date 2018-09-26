@@ -22,15 +22,23 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <ExportPrivateInfo.style__Text>
+        <ExportPrivateInfo.style__TopHeading>
           Never share this information with anyone
-</ExportPrivateInfo.style__Text>,
-        <ExportPrivateInfo.style__Text>
+</ExportPrivateInfo.style__TopHeading>,
+        <ExportPrivateInfo.style__TopHeading>
           Always keep a physical backup in a safe location
-</ExportPrivateInfo.style__Text>,
+</ExportPrivateInfo.style__TopHeading>,
         <ExportPrivateInfo.style__TextPrimary>
-          <div>
-                    <ExportPrivateInfo.style__SecondaryHeader>
+          <div
+                    style={
+                              Object {
+                                        "marginBottom": "0.5rem",
+                                      }
+                    }
+          >
+                    <ExportPrivateInfo.style__SecondaryHeader
+                              large={true}
+                    >
                               Mnemonic
                               <CopyToClipboard
                                         onCopy={undefined}
@@ -46,10 +54,15 @@ ShallowWrapper {
                                         />
                               </CopyToClipboard>
                     </ExportPrivateInfo.style__SecondaryHeader>
-                    over sentence spend best business museum ripple shop vault present travel fire
+                    <br />
+                    <Text>
+                              over sentence spend best business museum ripple shop vault present travel fire
+                    </Text>
           </div>
           <div>
-                    <ExportPrivateInfo.style__SecondaryHeader>
+                    <ExportPrivateInfo.style__SecondaryHeader
+                              large={true}
+                    >
                               Private key
                               <CopyToClipboard
                                         onCopy={undefined}
@@ -65,7 +78,10 @@ ShallowWrapper {
                                         />
                               </CopyToClipboard>
                     </ExportPrivateInfo.style__SecondaryHeader>
-                    0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
+                    <br />
+                    <Text>
+                              0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
+                    </Text>
           </div>
 </ExportPrivateInfo.style__TextPrimary>,
         <ExportPrivateInfo.style__ParentDiv>
@@ -109,8 +125,16 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <div>
-              <ExportPrivateInfo.style__SecondaryHeader>
+            <div
+              style={
+                            Object {
+                                          "marginBottom": "0.5rem",
+                                        }
+              }
+>
+              <ExportPrivateInfo.style__SecondaryHeader
+                            large={true}
+              >
                             Mnemonic
                             <CopyToClipboard
                                           onCopy={undefined}
@@ -126,10 +150,15 @@ ShallowWrapper {
                                           />
                             </CopyToClipboard>
               </ExportPrivateInfo.style__SecondaryHeader>
-              over sentence spend best business museum ripple shop vault present travel fire
+              <br />
+              <Text>
+                            over sentence spend best business museum ripple shop vault present travel fire
+              </Text>
 </div>,
             <div>
-              <ExportPrivateInfo.style__SecondaryHeader>
+              <ExportPrivateInfo.style__SecondaryHeader
+                            large={true}
+              >
                             Private key
                             <CopyToClipboard
                                           onCopy={undefined}
@@ -145,7 +174,10 @@ ShallowWrapper {
                                           />
                             </CopyToClipboard>
               </ExportPrivateInfo.style__SecondaryHeader>
-              0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
+              <br />
+              <Text>
+                            0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
+              </Text>
 </div>,
           ],
         },
@@ -157,7 +189,9 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ExportPrivateInfo.style__SecondaryHeader>
+                <ExportPrivateInfo.style__SecondaryHeader
+                  large={true}
+>
                   Mnemonic
                   <CopyToClipboard
                                     onCopy={undefined}
@@ -173,8 +207,14 @@ ShallowWrapper {
                                     />
                   </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
-                "over sentence spend best business museum ripple shop vault present travel fire",
+                <br />,
+                <Text>
+                  over sentence spend best business museum ripple shop vault present travel fire
+</Text>,
               ],
+              "style": Object {
+                "marginBottom": "0.5rem",
+              },
             },
             "ref": null,
             "rendered": Array [
@@ -199,6 +239,7 @@ ShallowWrapper {
                       />
 </CopyToClipboard>,
                   ],
+                  "large": true,
                 },
                 "ref": null,
                 "rendered": Array [
@@ -240,7 +281,26 @@ ShallowWrapper {
                 ],
                 "type": [Function],
               },
-              "over sentence spend best business museum ripple shop vault present travel fire",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": "br",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "over sentence spend best business museum ripple shop vault present travel fire",
+                },
+                "ref": null,
+                "rendered": "over sentence spend best business museum ripple shop vault present travel fire",
+                "type": [Function],
+              },
             ],
             "type": "div",
           },
@@ -250,7 +310,9 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ExportPrivateInfo.style__SecondaryHeader>
+                <ExportPrivateInfo.style__SecondaryHeader
+                  large={true}
+>
                   Private key
                   <CopyToClipboard
                                     onCopy={undefined}
@@ -266,7 +328,10 @@ ShallowWrapper {
                                     />
                   </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
-                "0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a",
+                <br />,
+                <Text>
+                  0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
+</Text>,
               ],
             },
             "ref": null,
@@ -292,6 +357,7 @@ ShallowWrapper {
                       />
 </CopyToClipboard>,
                   ],
+                  "large": true,
                 },
                 "ref": null,
                 "rendered": Array [
@@ -333,7 +399,26 @@ ShallowWrapper {
                 ],
                 "type": [Function],
               },
-              "0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": "br",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a",
+                },
+                "ref": null,
+                "rendered": "0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a",
+                "type": [Function],
+              },
             ],
             "type": "div",
           },
@@ -380,15 +465,23 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <ExportPrivateInfo.style__Text>
+          <ExportPrivateInfo.style__TopHeading>
             Never share this information with anyone
-</ExportPrivateInfo.style__Text>,
-          <ExportPrivateInfo.style__Text>
+</ExportPrivateInfo.style__TopHeading>,
+          <ExportPrivateInfo.style__TopHeading>
             Always keep a physical backup in a safe location
-</ExportPrivateInfo.style__Text>,
+</ExportPrivateInfo.style__TopHeading>,
           <ExportPrivateInfo.style__TextPrimary>
-            <div>
-                        <ExportPrivateInfo.style__SecondaryHeader>
+            <div
+                        style={
+                                    Object {
+                                                "marginBottom": "0.5rem",
+                                              }
+                        }
+            >
+                        <ExportPrivateInfo.style__SecondaryHeader
+                                    large={true}
+                        >
                                     Mnemonic
                                     <CopyToClipboard
                                                 onCopy={undefined}
@@ -404,10 +497,15 @@ ShallowWrapper {
                                                 />
                                     </CopyToClipboard>
                         </ExportPrivateInfo.style__SecondaryHeader>
-                        over sentence spend best business museum ripple shop vault present travel fire
+                        <br />
+                        <Text>
+                                    over sentence spend best business museum ripple shop vault present travel fire
+                        </Text>
             </div>
             <div>
-                        <ExportPrivateInfo.style__SecondaryHeader>
+                        <ExportPrivateInfo.style__SecondaryHeader
+                                    large={true}
+                        >
                                     Private key
                                     <CopyToClipboard
                                                 onCopy={undefined}
@@ -423,7 +521,10 @@ ShallowWrapper {
                                                 />
                                     </CopyToClipboard>
                         </ExportPrivateInfo.style__SecondaryHeader>
-                        0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
+                        <br />
+                        <Text>
+                                    0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
+                        </Text>
             </div>
 </ExportPrivateInfo.style__TextPrimary>,
           <ExportPrivateInfo.style__ParentDiv>
@@ -467,8 +568,16 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <div>
-                <ExportPrivateInfo.style__SecondaryHeader>
+              <div
+                style={
+                                Object {
+                                                "marginBottom": "0.5rem",
+                                              }
+                }
+>
+                <ExportPrivateInfo.style__SecondaryHeader
+                                large={true}
+                >
                                 Mnemonic
                                 <CopyToClipboard
                                                 onCopy={undefined}
@@ -484,10 +593,15 @@ ShallowWrapper {
                                                 />
                                 </CopyToClipboard>
                 </ExportPrivateInfo.style__SecondaryHeader>
-                over sentence spend best business museum ripple shop vault present travel fire
+                <br />
+                <Text>
+                                over sentence spend best business museum ripple shop vault present travel fire
+                </Text>
 </div>,
               <div>
-                <ExportPrivateInfo.style__SecondaryHeader>
+                <ExportPrivateInfo.style__SecondaryHeader
+                                large={true}
+                >
                                 Private key
                                 <CopyToClipboard
                                                 onCopy={undefined}
@@ -503,7 +617,10 @@ ShallowWrapper {
                                                 />
                                 </CopyToClipboard>
                 </ExportPrivateInfo.style__SecondaryHeader>
-                0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
+                <br />
+                <Text>
+                                0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
+                </Text>
 </div>,
             ],
           },
@@ -515,7 +632,9 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <ExportPrivateInfo.style__SecondaryHeader>
+                  <ExportPrivateInfo.style__SecondaryHeader
+                    large={true}
+>
                     Mnemonic
                     <CopyToClipboard
                                         onCopy={undefined}
@@ -531,8 +650,14 @@ ShallowWrapper {
                                         />
                     </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
-                  "over sentence spend best business museum ripple shop vault present travel fire",
+                  <br />,
+                  <Text>
+                    over sentence spend best business museum ripple shop vault present travel fire
+</Text>,
                 ],
+                "style": Object {
+                  "marginBottom": "0.5rem",
+                },
               },
               "ref": null,
               "rendered": Array [
@@ -557,6 +682,7 @@ ShallowWrapper {
                         />
 </CopyToClipboard>,
                     ],
+                    "large": true,
                   },
                   "ref": null,
                   "rendered": Array [
@@ -598,7 +724,26 @@ ShallowWrapper {
                   ],
                   "type": [Function],
                 },
-                "over sentence spend best business museum ripple shop vault present travel fire",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": "br",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "over sentence spend best business museum ripple shop vault present travel fire",
+                  },
+                  "ref": null,
+                  "rendered": "over sentence spend best business museum ripple shop vault present travel fire",
+                  "type": [Function],
+                },
               ],
               "type": "div",
             },
@@ -608,7 +753,9 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <ExportPrivateInfo.style__SecondaryHeader>
+                  <ExportPrivateInfo.style__SecondaryHeader
+                    large={true}
+>
                     Private key
                     <CopyToClipboard
                                         onCopy={undefined}
@@ -624,7 +771,10 @@ ShallowWrapper {
                                         />
                     </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
-                  "0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a",
+                  <br />,
+                  <Text>
+                    0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
+</Text>,
                 ],
               },
               "ref": null,
@@ -650,6 +800,7 @@ ShallowWrapper {
                         />
 </CopyToClipboard>,
                     ],
+                    "large": true,
                   },
                   "ref": null,
                   "rendered": Array [
@@ -691,7 +842,26 @@ ShallowWrapper {
                   ],
                   "type": [Function],
                 },
-                "0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": "br",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a",
+                  },
+                  "ref": null,
+                  "rendered": "0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a",
+                  "type": [Function],
+                },
               ],
               "type": "div",
             },
@@ -764,21 +934,34 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <ExportPrivateInfo.style__Text>
+        <ExportPrivateInfo.style__TopHeading>
           Never share this information with anyone
-</ExportPrivateInfo.style__Text>,
-        <ExportPrivateInfo.style__Text>
+</ExportPrivateInfo.style__TopHeading>,
+        <ExportPrivateInfo.style__TopHeading>
           Always keep a physical backup in a safe location
-</ExportPrivateInfo.style__Text>,
+</ExportPrivateInfo.style__TopHeading>,
         <ExportPrivateInfo.style__TextPrimary>
-          <div>
-                    <ExportPrivateInfo.style__PrimaryHeader>
+          <div
+                    style={
+                              Object {
+                                        "marginBottom": "0.5rem",
+                                      }
+                    }
+          >
+                    <ExportPrivateInfo.style__SecondaryHeader
+                              large={true}
+                    >
                               Mnemonic
-                    </ExportPrivateInfo.style__PrimaryHeader>
-                    This wallet was imported using a private key therefore does not have a mnemonic to export
+                    </ExportPrivateInfo.style__SecondaryHeader>
+                    <br />
+                    <Text>
+                              This wallet was imported using a private key therefore does not have a mnemonic to export
+                    </Text>
           </div>
           <div>
-                    <ExportPrivateInfo.style__SecondaryHeader>
+                    <ExportPrivateInfo.style__SecondaryHeader
+                              large={true}
+                    >
                               Private key
                               <CopyToClipboard
                                         onCopy={undefined}
@@ -794,7 +977,10 @@ ShallowWrapper {
                                         />
                               </CopyToClipboard>
                     </ExportPrivateInfo.style__SecondaryHeader>
-                    0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
+                    <br />
+                    <Text>
+                              0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
+                    </Text>
           </div>
 </ExportPrivateInfo.style__TextPrimary>,
         <ExportPrivateInfo.style__ParentDiv>
@@ -838,14 +1024,27 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <div>
-              <ExportPrivateInfo.style__PrimaryHeader>
+            <div
+              style={
+                            Object {
+                                          "marginBottom": "0.5rem",
+                                        }
+              }
+>
+              <ExportPrivateInfo.style__SecondaryHeader
+                            large={true}
+              >
                             Mnemonic
-              </ExportPrivateInfo.style__PrimaryHeader>
-              This wallet was imported using a private key therefore does not have a mnemonic to export
+              </ExportPrivateInfo.style__SecondaryHeader>
+              <br />
+              <Text>
+                            This wallet was imported using a private key therefore does not have a mnemonic to export
+              </Text>
 </div>,
             <div>
-              <ExportPrivateInfo.style__SecondaryHeader>
+              <ExportPrivateInfo.style__SecondaryHeader
+                            large={true}
+              >
                             Private key
                             <CopyToClipboard
                                           onCopy={undefined}
@@ -861,7 +1060,10 @@ ShallowWrapper {
                                           />
                             </CopyToClipboard>
               </ExportPrivateInfo.style__SecondaryHeader>
-              0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
+              <br />
+              <Text>
+                            0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
+              </Text>
 </div>,
           ],
         },
@@ -873,11 +1075,19 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ExportPrivateInfo.style__PrimaryHeader>
+                <ExportPrivateInfo.style__SecondaryHeader
+                  large={true}
+>
                   Mnemonic
-</ExportPrivateInfo.style__PrimaryHeader>,
-                "This wallet was imported using a private key therefore does not have a mnemonic to export",
+</ExportPrivateInfo.style__SecondaryHeader>,
+                <br />,
+                <Text>
+                  This wallet was imported using a private key therefore does not have a mnemonic to export
+</Text>,
               ],
+              "style": Object {
+                "marginBottom": "0.5rem",
+              },
             },
             "ref": null,
             "rendered": Array [
@@ -887,12 +1097,32 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": "Mnemonic",
+                  "large": true,
                 },
                 "ref": null,
                 "rendered": "Mnemonic",
                 "type": [Function],
               },
-              "This wallet was imported using a private key therefore does not have a mnemonic to export",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": "br",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "This wallet was imported using a private key therefore does not have a mnemonic to export",
+                },
+                "ref": null,
+                "rendered": "This wallet was imported using a private key therefore does not have a mnemonic to export",
+                "type": [Function],
+              },
             ],
             "type": "div",
           },
@@ -902,7 +1132,9 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ExportPrivateInfo.style__SecondaryHeader>
+                <ExportPrivateInfo.style__SecondaryHeader
+                  large={true}
+>
                   Private key
                   <CopyToClipboard
                                     onCopy={undefined}
@@ -918,7 +1150,10 @@ ShallowWrapper {
                                     />
                   </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
-                "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+                <br />,
+                <Text>
+                  0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
+</Text>,
               ],
             },
             "ref": null,
@@ -944,6 +1179,7 @@ ShallowWrapper {
                       />
 </CopyToClipboard>,
                   ],
+                  "large": true,
                 },
                 "ref": null,
                 "rendered": Array [
@@ -985,7 +1221,26 @@ ShallowWrapper {
                 ],
                 "type": [Function],
               },
-              "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": "br",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+                },
+                "ref": null,
+                "rendered": "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+                "type": [Function],
+              },
             ],
             "type": "div",
           },
@@ -1032,21 +1287,34 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <ExportPrivateInfo.style__Text>
+          <ExportPrivateInfo.style__TopHeading>
             Never share this information with anyone
-</ExportPrivateInfo.style__Text>,
-          <ExportPrivateInfo.style__Text>
+</ExportPrivateInfo.style__TopHeading>,
+          <ExportPrivateInfo.style__TopHeading>
             Always keep a physical backup in a safe location
-</ExportPrivateInfo.style__Text>,
+</ExportPrivateInfo.style__TopHeading>,
           <ExportPrivateInfo.style__TextPrimary>
-            <div>
-                        <ExportPrivateInfo.style__PrimaryHeader>
+            <div
+                        style={
+                                    Object {
+                                                "marginBottom": "0.5rem",
+                                              }
+                        }
+            >
+                        <ExportPrivateInfo.style__SecondaryHeader
+                                    large={true}
+                        >
                                     Mnemonic
-                        </ExportPrivateInfo.style__PrimaryHeader>
-                        This wallet was imported using a private key therefore does not have a mnemonic to export
+                        </ExportPrivateInfo.style__SecondaryHeader>
+                        <br />
+                        <Text>
+                                    This wallet was imported using a private key therefore does not have a mnemonic to export
+                        </Text>
             </div>
             <div>
-                        <ExportPrivateInfo.style__SecondaryHeader>
+                        <ExportPrivateInfo.style__SecondaryHeader
+                                    large={true}
+                        >
                                     Private key
                                     <CopyToClipboard
                                                 onCopy={undefined}
@@ -1062,7 +1330,10 @@ ShallowWrapper {
                                                 />
                                     </CopyToClipboard>
                         </ExportPrivateInfo.style__SecondaryHeader>
-                        0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
+                        <br />
+                        <Text>
+                                    0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
+                        </Text>
             </div>
 </ExportPrivateInfo.style__TextPrimary>,
           <ExportPrivateInfo.style__ParentDiv>
@@ -1106,14 +1377,27 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <div>
-                <ExportPrivateInfo.style__PrimaryHeader>
+              <div
+                style={
+                                Object {
+                                                "marginBottom": "0.5rem",
+                                              }
+                }
+>
+                <ExportPrivateInfo.style__SecondaryHeader
+                                large={true}
+                >
                                 Mnemonic
-                </ExportPrivateInfo.style__PrimaryHeader>
-                This wallet was imported using a private key therefore does not have a mnemonic to export
+                </ExportPrivateInfo.style__SecondaryHeader>
+                <br />
+                <Text>
+                                This wallet was imported using a private key therefore does not have a mnemonic to export
+                </Text>
 </div>,
               <div>
-                <ExportPrivateInfo.style__SecondaryHeader>
+                <ExportPrivateInfo.style__SecondaryHeader
+                                large={true}
+                >
                                 Private key
                                 <CopyToClipboard
                                                 onCopy={undefined}
@@ -1129,7 +1413,10 @@ ShallowWrapper {
                                                 />
                                 </CopyToClipboard>
                 </ExportPrivateInfo.style__SecondaryHeader>
-                0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
+                <br />
+                <Text>
+                                0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
+                </Text>
 </div>,
             ],
           },
@@ -1141,11 +1428,19 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <ExportPrivateInfo.style__PrimaryHeader>
+                  <ExportPrivateInfo.style__SecondaryHeader
+                    large={true}
+>
                     Mnemonic
-</ExportPrivateInfo.style__PrimaryHeader>,
-                  "This wallet was imported using a private key therefore does not have a mnemonic to export",
+</ExportPrivateInfo.style__SecondaryHeader>,
+                  <br />,
+                  <Text>
+                    This wallet was imported using a private key therefore does not have a mnemonic to export
+</Text>,
                 ],
+                "style": Object {
+                  "marginBottom": "0.5rem",
+                },
               },
               "ref": null,
               "rendered": Array [
@@ -1155,12 +1450,32 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "children": "Mnemonic",
+                    "large": true,
                   },
                   "ref": null,
                   "rendered": "Mnemonic",
                   "type": [Function],
                 },
-                "This wallet was imported using a private key therefore does not have a mnemonic to export",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": "br",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "This wallet was imported using a private key therefore does not have a mnemonic to export",
+                  },
+                  "ref": null,
+                  "rendered": "This wallet was imported using a private key therefore does not have a mnemonic to export",
+                  "type": [Function],
+                },
               ],
               "type": "div",
             },
@@ -1170,7 +1485,9 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <ExportPrivateInfo.style__SecondaryHeader>
+                  <ExportPrivateInfo.style__SecondaryHeader
+                    large={true}
+>
                     Private key
                     <CopyToClipboard
                                         onCopy={undefined}
@@ -1186,7 +1503,10 @@ ShallowWrapper {
                                         />
                     </CopyToClipboard>
 </ExportPrivateInfo.style__SecondaryHeader>,
-                  "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+                  <br />,
+                  <Text>
+                    0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
+</Text>,
                 ],
               },
               "ref": null,
@@ -1212,6 +1532,7 @@ ShallowWrapper {
                         />
 </CopyToClipboard>,
                     ],
+                    "large": true,
                   },
                   "ref": null,
                   "rendered": Array [
@@ -1253,7 +1574,26 @@ ShallowWrapper {
                   ],
                   "type": [Function],
                 },
-                "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": "br",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+                  },
+                  "ref": null,
+                  "rendered": "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+                  "type": [Function],
+                },
               ],
               "type": "div",
             },
