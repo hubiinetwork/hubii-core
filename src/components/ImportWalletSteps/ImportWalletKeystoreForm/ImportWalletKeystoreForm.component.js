@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Form } from 'antd';
+import { Form, Icon } from 'antd';
 import PropTypes from 'prop-types';
 
 import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
@@ -83,8 +83,9 @@ class ImportWalletKeystoreForm extends React.Component {
                 </StyledModalFormLabel>
               }
             >
-              <StyledButton onClick={this.loadKeystoreFile}>
-                <StyledSpan>Keystore File</StyledSpan>
+              <StyledButton onClick={this.loadKeystoreFile} style={{width:'100%'}}>
+                <Icon type="upload" />
+                <StyledSpan>Select keystore file</StyledSpan>
               </StyledButton>
             </ModalFormItem>
             <ButtonDiv>
