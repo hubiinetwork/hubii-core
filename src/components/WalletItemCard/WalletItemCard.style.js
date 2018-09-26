@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import { Menu, Icon } from 'antd';
 
+import Text from 'components/ui/Text';
+
 export const AssetsWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
 `;
 
-export const SpaceBetween = styled.div`
+export const IconsWrapper = styled.div`
   display: flex;
   height: 0%;
   flex-direction: column;
@@ -14,7 +16,7 @@ export const SpaceBetween = styled.div`
   position: absolute;
   right: 0;
   margin-right: 1.65rem;
-  margin-top: 1.2rem;
+  margin-top: 1.29rem;
 `;
 
 export const AssetWrapper = styled.div`
@@ -27,10 +29,8 @@ export const AssetWrapper = styled.div`
 
 export const CardIcon = styled.div`
   color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 1.43rem;
   &:hover {
     color: ${({ theme }) => theme.palette.info};
-    font-size: 1.43rem;
   }
 `;
 
@@ -60,9 +60,9 @@ export const LeftSideWrapper = styled.div`
   flex-direction: row;
 `;
 
-export const TotalBalance = styled.span`
+export const TotalBalance = styled(Text)`
   color: ${({ theme }) => theme.palette.info};
-  font-size: 1.29rem;
+  margin-top: -0.25rem;
   margin-right: 2.14rem;
   word-wrap: break-word;
   min-width: 10.71rem;
@@ -70,7 +70,7 @@ export const TotalBalance = styled.span`
   flex: 1;
 `;
 
-export const WalletName = styled.p`
+export const WalletName = styled(Text)`
   min-width: 5rem;
   word-wrap: break-word;
 `;

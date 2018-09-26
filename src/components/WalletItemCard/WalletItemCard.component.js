@@ -23,7 +23,7 @@ import {
   MenuDivider,
   CardIconSettings,
   OverflowHidden,
-  SpaceBetween,
+  IconsWrapper,
   WalletName,
   Spinner,
 } from './WalletItemCard.style';
@@ -65,7 +65,7 @@ export class WalletItemCard extends React.PureComponent {
         </MenuItem>
       );
     }
-    return <Menu singleitem={(menuItems.length === 1).toString()}>{menuItems.map((item) => item)}</Menu>;
+    return <Menu visible singleitem={(menuItems.length === 1).toString()}>{menuItems.map((item) => item)}</Menu>;
   }
 
   /*
@@ -164,7 +164,7 @@ export class WalletItemCard extends React.PureComponent {
     return (
       <OverflowHidden>
         {isHardwareWallet(type) && <USBFlag connected={connected} />}
-        <SpaceBetween>
+        <IconsWrapper>
           <CardIcon>
             <Popover
               placement="right"
@@ -184,7 +184,7 @@ export class WalletItemCard extends React.PureComponent {
               />
             </Dropdown>
           </CardIconSettings>
-        </SpaceBetween>
+        </IconsWrapper>
         <OuterWrapper
           onClick={() => {
             handleCardClick(address);
@@ -193,7 +193,7 @@ export class WalletItemCard extends React.PureComponent {
           <LeftSideWrapper>
             <WalletName>{name}</WalletName>
             {!balancesLoading && !balancesError &&
-              <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
+              <TotalBalance large>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
             }
           </LeftSideWrapper>
           <AssetsWrapper>
