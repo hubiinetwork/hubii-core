@@ -42,6 +42,11 @@ injectGlobal`
     border-radius: 8px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.27);
   }
+  
+  /* Hide number under antd steps */
+  .ant-steps-icon {
+    visibility: hidden;
+  }
 
 
   /* Custom antd Pagination styles */
