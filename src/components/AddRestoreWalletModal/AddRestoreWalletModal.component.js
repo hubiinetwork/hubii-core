@@ -90,6 +90,7 @@ export default class AddRestoreWalletModal extends React.Component {
                   name: 'Mnemonic',
                 },
                 {
+                  src: getAbsolutePath('public/images/keystore.png'),
                   name: 'Keystore',
                 },
               ]}

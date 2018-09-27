@@ -1,13 +1,15 @@
 import * as React from 'react';
+import { remote } from 'electron';
 import { Form, Icon } from 'antd';
 import PropTypes from 'prop-types';
+
+import { getAbsolutePath } from 'utils/electron';
+import { handleFinish } from 'utils/forms';
+import fs from 'fs';
 
 import { ModalFormInput, ModalFormItem, ModalFormLabel } from 'components/ui/Modal';
 import Heading from 'components/ui/Heading';
 import Text from 'components/ui/Text';
-import { handleFinish } from 'utils/forms';
-import fs from 'fs';
-import { remote } from 'electron';
 
 import {
   WidthEighty,
@@ -57,7 +59,12 @@ class ImportWalletKeystoreForm extends React.Component {
         >
           <WidthEighty>
             <FinalHeader>
-              <Heading>Importing from a keystore file</Heading>
+              <Heading>Importing from a</Heading>
+              <img
+                src={getAbsolutePath('public/images/keystore.png')}
+                alt="import method icon"
+                style={{ marginTop: '1rem' }}
+              />
             </FinalHeader>
             <ModalFormItem
               label={
