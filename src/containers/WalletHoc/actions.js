@@ -9,6 +9,7 @@ import abiDecoder from 'abi-decoder';
 import {
   CREATE_WALLET_FROM_MNEMONIC,
   CREATE_WALLET_FROM_PRIVATE_KEY,
+  CREATE_WALLET_FROM_KEYSTORE,
   CREATE_WALLET_FAILURE,
   CREATE_WALLET_SUCCESS,
   ADD_NEW_WALLET,
@@ -60,12 +61,20 @@ export function createWalletFromPrivateKey(privateKey, name, password) {
   };
 }
 
-export function createWalletSuccess(name, encryptedWallet, decryptedWallet) {
+export function createWalletFromKeystore(name, keystore) {
+  return {
+    type: CREATE_WALLET_FROM_KEYSTORE,
+    name,
+    keystore,
+  };
+}
+
+export function createWalletSuccess(name, encryptedWallet, decryptedWallet, address) {
   return {
     type: CREATE_WALLET_SUCCESS,
     newWallet: {
       name,
-      address: decryptedWallet.address,
+      address: address || decryptedWallet.address,
       type: 'software',
       encrypted: encryptedWallet,
       decrypted: decryptedWallet,
