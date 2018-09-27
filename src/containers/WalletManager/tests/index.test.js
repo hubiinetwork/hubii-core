@@ -25,6 +25,7 @@ describe('WalletManager', () => {
     };
     let createWalletFromMnemonicSpy;
     let createWalletFromPrivateKeySpy;
+    let createWalletFromKeystoreSpy;
     let createContactSpy;
 
     let dom;
@@ -33,6 +34,8 @@ describe('WalletManager', () => {
       params.createWalletFromMnemonic = createWalletFromMnemonicSpy;
       createWalletFromPrivateKeySpy = jest.fn();
       params.createWalletFromPrivateKey = createWalletFromPrivateKeySpy;
+      createWalletFromKeystoreSpy = jest.fn();
+      params.createWalletFromKeystore = createWalletFromKeystoreSpy;
 
       createContactSpy = jest.fn();
       params.createContact = createContactSpy;
