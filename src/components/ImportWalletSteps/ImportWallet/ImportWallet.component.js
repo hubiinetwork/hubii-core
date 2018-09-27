@@ -1,11 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+
+import Text from 'components/ui/Text';
+
 import {
   OptionsWrapper,
   Image,
   Center,
   Option,
-  StyledSpan,
   StyledButton,
   OptionText,
   Header,
@@ -54,7 +56,7 @@ class ImportWallet extends React.Component {
           ))}
         </OptionsWrapper>
         <StyledButton type={'primary'} disabled={walletType === ''} onClick={this.handleNext}>
-          <StyledSpan>Next</StyledSpan>
+          <Text>Next</Text>
         </StyledButton>
       </Wrapper>
     );

@@ -60,9 +60,9 @@ ShallowWrapper {
           onClick={[Function]}
           type="primary"
 >
-          <ImportWallet.style__StyledSpan>
+          <Text>
                     Next
-          </ImportWallet.style__StyledSpan>
+          </Text>
 </ImportWallet.style__StyledButton>,
       ],
     },
@@ -192,9 +192,9 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <ImportWallet.style__StyledSpan>
+          "children": <Text>
             Next
-</ImportWallet.style__StyledSpan>,
+</Text>,
           "disabled": true,
           "onClick": [Function],
           "type": "primary",
@@ -253,9 +253,9 @@ ShallowWrapper {
             onClick={[Function]}
             type="primary"
 >
-            <ImportWallet.style__StyledSpan>
+            <Text>
                         Next
-            </ImportWallet.style__StyledSpan>
+            </Text>
 </ImportWallet.style__StyledButton>,
         ],
       },
@@ -385,9 +385,9 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <ImportWallet.style__StyledSpan>
+            "children": <Text>
               Next
-</ImportWallet.style__StyledSpan>,
+</Text>,
             "disabled": true,
             "onClick": [Function],
             "type": "primary",

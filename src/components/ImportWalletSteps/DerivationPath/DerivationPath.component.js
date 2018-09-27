@@ -1,24 +1,25 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'antd';
+
+import Text from 'components/ui/Text';
+
 import {
   Tick,
-  Radios,
   FormDiv,
-  PathTitle,
-  RadioTitle,
+  StyledHeading,
   PathWrapper,
-  PathSubtitle,
   RadioButtonWrapper,
   StyledTable as Table,
-  StyledRadio as RadioButton,
+  RadioButton,
   StyledRadioGroup as RadioGroup,
+  DerivationPathText,
 } from './DerivationPath.style';
 
 const derivationPathBases = [
   {
     title: 'm/44\'/60\'/0\'/0',
-    subtitle: 'hubii core, Jaxx, Metamask, Exodus, TREZOR (ETH), Digital Bitbox',
+    subtitle: 'hubii core software wallet, Jaxx, Metamask, Exodus, TREZOR (ETH), Digital Bitbox',
   },
   {
     title: 'm/44\'/60\'/0\'',
@@ -52,8 +53,8 @@ class DerivationPath extends React.Component {
     return (
       <Form onSubmit={this.handleNext}>
         <FormDiv>
-          <Radios>
-            <RadioTitle>Select a root derivation path</RadioTitle>
+          <div>
+            <StyledHeading>Select a root derivation path</StyledHeading>
             <RadioGroup
               defaultValue={pathBase}
               size="small"
@@ -65,17 +66,17 @@ class DerivationPath extends React.Component {
                     <Tick type="check" />
                   </RadioButton>
                   <PathWrapper>
-                    <PathTitle>{path.title}</PathTitle>
-                    <PathSubtitle>{path.subtitle} </PathSubtitle>
+                    <DerivationPathText>{path.title}</DerivationPathText>
+                    <br />
+                    <Text>{path.subtitle}</Text>
                   </PathWrapper>
                 </RadioButtonWrapper>
             ))}
             </RadioGroup>
-          </Radios>
-
-          <RadioTitle>
+          </div>
+          <StyledHeading>
             Select the address you would like to import
-          </RadioTitle>
+          </StyledHeading>
           <Table
             onRow={(record) => ({
               onClick: () => this.props.onSelectAddress(record.index),

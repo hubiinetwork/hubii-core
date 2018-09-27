@@ -2,18 +2,18 @@ import * as React from 'react';
 import { Form, Icon } from 'antd';
 import PropTypes from 'prop-types';
 
-import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
+import { ModalFormInput, ModalFormItem, ModalFormLabel } from 'components/ui/Modal';
+import Heading from 'components/ui/Heading';
+import Text from 'components/ui/Text';
 import { handleFinish } from 'utils/forms';
 import fs from 'fs';
 import { remote } from 'electron';
 
 import {
   WidthEighty,
-  StyledModalFormLabel,
   ButtonDiv,
   StyledBackButton,
   StyledButton,
-  StyledSpan,
   FinalHeader,
 } from '../ImportWalletForm.style';
 
@@ -57,13 +57,13 @@ class ImportWalletKeystoreForm extends React.Component {
         >
           <WidthEighty>
             <FinalHeader>
-              <p>Importing from a keystore file</p>
+              <Heading>Importing from a keystore file</Heading>
             </FinalHeader>
             <ModalFormItem
               label={
-                <StyledModalFormLabel>
+                <ModalFormLabel>
                   Enter a name for your wallet
-                </StyledModalFormLabel>
+                </ModalFormLabel>
               }
             >
               {getFieldDecorator('name', {
@@ -78,22 +78,22 @@ class ImportWalletKeystoreForm extends React.Component {
             </ModalFormItem>
             <ModalFormItem
               label={
-                <StyledModalFormLabel>
+                <ModalFormLabel>
                   {filepath}
-                </StyledModalFormLabel>
+                </ModalFormLabel>
               }
             >
               <StyledButton onClick={this.loadKeystoreFile} style={{ width: '100%' }}>
                 <Icon type="upload" />
-                <StyledSpan>Select keystore file</StyledSpan>
+                <Text>Select keystore file</Text>
               </StyledButton>
             </ModalFormItem>
             <ButtonDiv>
               <StyledBackButton type="default" onClick={this.props.handleBack}>
-                <StyledSpan>Back</StyledSpan>
+                <Text>Back</Text>
               </StyledBackButton>
               <StyledButton type="primary" disabled={!this.state.keystore} htmlType="submit">
-                <StyledSpan>Import wallet</StyledSpan>
+                <Text>Import wallet</Text>
               </StyledButton>
             </ButtonDiv>
           </WidthEighty>

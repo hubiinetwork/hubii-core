@@ -4,7 +4,6 @@ import styled from 'styled-components';
 export default styled(Button)`
 &&&& {
   height: 2.71rem;
-  font-size: 0.86rem;
   ${({ theme, type }) => {
     if (type === 'primary' || type === 'default' || !type) {
       return `

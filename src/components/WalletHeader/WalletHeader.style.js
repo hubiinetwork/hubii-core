@@ -1,20 +1,17 @@
 import styled from 'styled-components';
 import Button from 'components/ui/Button';
+import Text from 'components/ui/Text';
+import Heading from 'components/ui/Heading';
 
-const Address = styled.span`
+const Address = styled(Text)`
   display: flex;
   color: ${({ theme }) => theme.palette.secondary6};
-  font-size: 0.86rem;
-  font-weight: 400;
   align-items: center;
-  line-height: 1rem;
   margin-top: 0.36rem;
 `;
 
-const Balance = styled.span`
+const Balance = styled(Heading)`
   color: ${({ theme }) => theme.palette.info};
-  font-size: 1.71rem;
-  margin-right: 2.14rem;
 `;
 
 const CopyButton = styled(Button)`
@@ -25,20 +22,13 @@ const DetailWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 2.14rem;
 `;
 
 const HeaderDetail = styled.div`
   display: flex;
   justify-content: space-between;
   flex: 1;
-`;
-
-const Name = styled.span`
-  color: white;
-  font-size: 1.29rem;
-  line-height: 1.5rem;
-  font-weight: 400;
+  margin: 1rem 2rem;
 `;
 
 const WalletHeaderWrapper = styled.div`
@@ -55,7 +45,6 @@ const OverflowHidden = styled.div`
 
 export {
   WalletHeaderWrapper,
-  Name,
   HeaderDetail,
   DetailWrapper,
   CopyButton,

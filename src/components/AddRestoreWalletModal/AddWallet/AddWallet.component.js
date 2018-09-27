@@ -3,14 +3,15 @@ import { Row, Col, Form } from 'antd';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import ethers from 'ethers';
 import PropTypes from 'prop-types';
-import Notification from '../../Notification';
+import Notification from 'components/Notification';
+import Heading from 'components/ui/Heading';
+import Button from 'components/ui/Button';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../../ui/Modal';
 
 import {
   WarningPoint,
   SeedText,
   WrapperDiv,
-  RoundButton,
   FinishButton,
   WarningList,
   CenterWrapper,
@@ -91,7 +92,7 @@ class AddWallet extends React.PureComponent {
               }}
             >
               <FinalHeader>
-                <p>Creating a new wallet</p>
+                <Heading large>Creating a new wallet</Heading>
               </FinalHeader>
               <ModalFormItem
                 colon={false}
@@ -159,8 +160,8 @@ class AddWallet extends React.PureComponent {
               <ModalFormItem colon={false}>
                 <CopyToClipboard text={this.state.mnemonic}>
                   <WrapperDiv>
-                    <SeedText>{this.state.mnemonic}</SeedText>
-                    <RoundButton
+                    <SeedText large>{this.state.mnemonic}</SeedText>
+                    <Button
                       type="icon"
                       icon="copy"
                       size={'small'}

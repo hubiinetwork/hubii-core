@@ -19,7 +19,6 @@ export const SingleRowWrapper = styled.div`
   border: 0.15rem solid ${({ theme }) => theme.palette.secondary5};
   border-radius: 0.5rem; 
   color: white;
-  font-size: 1.25rem;
   padding: 2rem 2rem;
 `;
 
@@ -43,10 +42,6 @@ export const StatusIcon = styled(Icon)`
   font-size: 1.5rem;
   margin-left: auto;
   color: ${(props) => props.type === 'check' ? props.theme.palette.info : null};
-`;
-
-export const P = styled.p`
-  margin-bottom: 0;
 `;
 
 export const Row = styled.div`

@@ -1,6 +1,8 @@
 import { Form } from 'antd';
 import styled from 'styled-components';
 
+import Text from 'components/ui/Text';
+
 const FlexForm = styled(Form)`
   flex: 1;
 `;
@@ -9,8 +11,7 @@ export const FormItem = styled(Form.Item)`
   flex: 1;
   margin-bottom: 2.14rem !important;
   .ant-form-item-label {
-    line-height: 0.86rem;
-    margin-bottom: 0.64rem;
+    margin-bottom: 0.1rem;
   }
   .ant-form-item-control-wrapper .ant-form-explain {
     margin-top: 0.36rem;
@@ -21,8 +22,7 @@ export const FormItem = styled(Form.Item)`
   }
 `;
 
-export const FormItemLabel = styled.span`
-  font-size: 0.86rem;
+export const FormItemLabel = styled(Text)`
   color: ${({ theme }) => theme.palette.secondary1};
   margin-bottom: 0.57rem;
 `;

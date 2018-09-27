@@ -3,12 +3,13 @@ import { Icon } from 'antd';
 import PropTypes from 'prop-types';
 import { getAbsolutePath } from 'utils/electron';
 
+import Text from 'components/ui/Text';
+
 import {
-  ButtonDiv,
-  TitleDiv,
+  StyledButton,
+  StyledHeading,
   Arrow,
   IconWrapper,
-  TextWhite,
   Container,
 } from './AddRestoreWalletModal.style';
 import { AddWallet } from './AddWallet';
@@ -35,18 +36,17 @@ export default class AddRestoreWalletModal extends React.Component {
       <div>
         {modalType === 'main' && (
           <Container>
-            <TitleDiv>
+            <StyledHeading large>
               Would you like to import an existing wallet or create a new one?<br />
-            </TitleDiv>
-            <ButtonDiv onClick={() => this.switchModals('add')}>
+            </StyledHeading>
+            <StyledButton onClick={() => this.switchModals('add')}>
               <Icon type="plus" />
-              <TextWhite>Create a new wallet</TextWhite>
-            </ButtonDiv>
-            <ButtonDiv onClick={() => this.switchModals('import')}>
+              <Text>Create a new wallet</Text>
+            </StyledButton>
+            <StyledButton onClick={() => this.switchModals('import')}>
               <Icon type="download" />
-              <TextWhite>Import an existing wallet</TextWhite>
-            </ButtonDiv>
-
+              <span>Import an existing wallet</span>
+            </StyledButton>
           </Container>
         )}
         {modalType === 'add' && (
@@ -62,7 +62,8 @@ export default class AddRestoreWalletModal extends React.Component {
                 <Arrow
                   type="arrow-left"
                   onClick={() => this.switchModals('main')}
-                />Create a new wallet
+                />
+                <Text large>Create a new wallet</Text>
               </IconWrapper>
             </div>
             <AddWallet loading={loading.toJS().creatingWallet} handleSubmit={this.props.handleAddWalletSubmit} />

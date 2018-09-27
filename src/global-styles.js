@@ -8,7 +8,9 @@ injectGlobal`
   }
 
   html * {
+    font-size: 14px;
     font-family: "Open Sans";
+    font-weight: 400;
   }
 
   html,
@@ -17,7 +19,6 @@ injectGlobal`
     width: 100%;
     margin: 0;
     padding: 0;
-    font-weight: 400;
   }
 
   #app {
@@ -40,6 +41,11 @@ injectGlobal`
   .ant-popover-inner{
     border-radius: 8px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.27);
+  }
+  
+  /* Hide number under antd steps */
+  .ant-steps-icon {
+    visibility: hidden;
   }
 
 

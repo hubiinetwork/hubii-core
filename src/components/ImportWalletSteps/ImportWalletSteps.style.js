@@ -8,19 +8,14 @@ export const Wrapper = styled.div`
 `;
 
 export const LeftArrow = styled(Icon)`
-  font-size: 1.43rem;
+  font-size: 1.5rem;
   margin-right: 0.5rem;
   cursor: pointer;
 `;
 
 export const NavigationWrapper = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
   margin-right: auto;
-  color: ${({ theme }) => theme.palette.light};
-`;
-
-export const SpanText = styled.span`
-  font-size: 1.14rem;
-  font-weight: 400;
-  line-height: 1.36rem;
 `;

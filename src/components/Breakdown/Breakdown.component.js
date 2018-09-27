@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { VictoryPie, VictoryContainer, VictoryTooltip } from 'victory';
-import SectionHeading from '../ui/SectionHeading';
-import { TotalAmount, Title, Wrapper } from './Breakdown.style';
+import SectionHeading from 'components/ui/SectionHeading';
+import Heading from 'components/ui/Heading';
+import { Title, Wrapper } from './Breakdown.style';
 import Tokens from './Tokens';
 import { formatFiat } from '../../utils/numberFormats';
 
@@ -29,7 +30,7 @@ const Breakdown = ({ data = [], value }) => {
       {(
         <div>
           <Title>Total fiat value</Title>
-          <TotalAmount>{formatFiat(value, 'USD')}</TotalAmount>
+          <Heading large>{formatFiat(value, 'USD')}</Heading>
         </div>
       )}
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>

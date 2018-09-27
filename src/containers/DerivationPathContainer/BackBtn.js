@@ -11,9 +11,3 @@ export const StyledButton = styled(Button)`
   height: 2.86rem;
   width: 18.57rem;
 `;
-export const StyledSpan = styled.span`
-  font-size: 0.86rem;
-  font-weight: 400;
-  line-height: 1rem;
-  text-align: center;
-`;

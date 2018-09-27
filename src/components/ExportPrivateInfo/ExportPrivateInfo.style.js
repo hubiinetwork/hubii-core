@@ -1,28 +1,26 @@
 import styled from 'styled-components';
 
 import Button from 'components/ui/Button';
+import Heading from 'components/ui/Heading';
+import Text from 'components/ui/Text';
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-export const Text = styled.div`
+export const TopHeading = styled(Heading)`
   color: ${({ theme }) => theme.palette.info};
-  font-size: large;
   margin-bottom: 0.5rem;
 `;
 
-export const SecondaryHeader = styled.div`
+export const SecondaryHeader = styled(Text)`
   color: ${({ theme }) => theme.palette.info};
-  font-size: medium;
-  margin: 0.5rem 0 0.5rem 2rem;
 `;
 
 export const PrimaryHeader = styled.div`
   color: ${({ theme }) => theme.palette.info};
-  font-size: medium;
-  margin: 0.5rem 0 0.5rem 0rem;
+  margin: 0.5rem 0;
 `;
 
 export const TextPrimary = styled.div`
