@@ -10,14 +10,18 @@ import {
 } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 
-import { requestWalletAPI } from 'utils/request';
+import { requestWalletAPI, requestAPIToken } from 'utils/request';
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
-import { ADD_NEW_WALLET } from 'containers/WalletHoc/constants';
+import { ADD_NEW_WALLET } from 'containers/WalletHOC/constants';
 
 import {
   makeSelectWallets,
-} from 'containers/WalletHoc/selectors';
+} from 'containers/WalletHOC/selectors';
+
+import {
+  makeSelectHubiiWalletAPIToken,
+} from 'containers/HubiiApiHoc/selectors';
 
 import {
   LOAD_WALLET_BALANCES,
@@ -32,6 +36,7 @@ import {
   loadPricesError,
   loadTransactionsSuccess,
   loadTransactionsError,
+  loadHubiiWalletAPIToken,
 } from './actions';
 
 
@@ -43,7 +48,8 @@ export function* loadWalletBalances({ address, noPoll }, _endpoint) {
   }
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const returnData = yield call(requestWalletAPI, requestPath, endpoint);
+      const token = yield select(makeSelectHubiiWalletAPIToken());
+      const returnData = yield call(requestWalletAPI, requestPath, endpoint, { token: token.toJS().userToken });
       yield put(loadWalletBalancesSuccess(address, returnData));
     } catch (err) {
       if (!noPoll) {
@@ -60,8 +66,8 @@ export function* loadWalletBalances({ address, noPoll }, _endpoint) {
 export function* loadSupportedTokens(endpoint) {
   const requestPath = 'ethereum/supported-tokens';
   try {
-    const returnData = yield call(requestWalletAPI, requestPath, endpoint);
-    yield put(loadSupportedTokensSuccess(returnData));
+    const token = yield select(makeSelectHubiiWalletAPIToken());
+    const returnData = yield call(requestWalletAPI, requestPath, endpoint, { token: token.toJS().userToken }); yield put(loadSupportedTokensSuccess(returnData));
   } catch (err) {
     yield put(loadSupportedTokensError(err));
   }
@@ -71,8 +77,8 @@ export function* loadPrices(endpoint) {
   const requestPath = 'ethereum/prices';
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const returnData = yield call(requestWalletAPI, requestPath, endpoint);
-      yield put(loadPricesSuccess(returnData));
+      const token = yield select(makeSelectHubiiWalletAPIToken());
+      const returnData = yield call(requestWalletAPI, requestPath, endpoint, { token: token.toJS().userToken }); yield put(loadPricesSuccess(returnData));
     } catch (err) {
       yield put(loadPricesError(err));
     } finally {
@@ -86,7 +92,8 @@ export function* loadTransactions({ address }, endpoint) {
   const requestPath = `ethereum/wallets/${address}/transactions`;
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const returnData = yield call(requestWalletAPI, requestPath, endpoint);
+      const token = yield select(makeSelectHubiiWalletAPIToken());
+      const returnData = yield call(requestWalletAPI, requestPath, endpoint, { token: token.toJS().userToken });
 
       yield put(loadTransactionsSuccess(address, returnData));
     } catch (err) {
@@ -94,6 +101,23 @@ export function* loadTransactions({ address }, endpoint) {
     } finally {
       const FIVE_SEC_IN_MS = 1000 * 5;
       yield delay(FIVE_SEC_IN_MS);
+    }
+  }
+}
+
+export function* requestToken(endpoint) {
+  const requestPath = 'identity/apptoken';
+
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const returnToken = yield call(requestAPIToken, requestPath, endpoint);
+      // console.log(returnToken);
+      yield put(loadHubiiWalletAPIToken(returnToken));
+    } catch (err) {
+      // yield put(loadToken(err));
+    } finally {
+      const ONE_MINUTE_IN_MS = 1000 * 60;
+      yield delay(ONE_MINUTE_IN_MS);
     }
   }
 }
@@ -110,6 +134,7 @@ export function* networkApiOrcestrator() {
         ...wallets.map((wallet) => fork(loadTransactions, { address: wallet.get('address') }, network.walletApiEndpoint)),
         fork(loadSupportedTokens, network.walletApiEndpoint),
         fork(loadPrices, network.walletApiEndpoint),
+        fork(requestToken, network.walletApiEndpoint),
       ]);
 
       // on network change kill all forks and restart

@@ -154,6 +154,9 @@ module.exports = (options) => ({
         OMPHALOS_JWT_SECRET: JSON.stringify(process.env.OMPHALOS_JWT_SECRET),
         PUBLISH_REPO: JSON.stringify(process.env.npm_package_build_publish_0_repo),
         PUBLISH_OWNER: JSON.stringify(process.env.npm_package_build_publish_0_owner),
+        APPID: JSON.stringify(process.env.APPID),
+        SECRET: JSON.stringify(process.env.SECRET),
+
       },
     }),
     new CopyWebpackPlugin(

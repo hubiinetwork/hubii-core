@@ -16,9 +16,11 @@ import {
   LOAD_PRICES_ERROR,
   LOAD_TRANSACTIONS_SUCCESS,
   LOAD_TRANSACTIONS_ERROR,
+  LOAD_HUBII_API_TOKEN,
 } from './constants';
 
 export const initialState = fromJS({
+
   transactions: {},
   balances: {},
   prices: {
@@ -31,6 +33,7 @@ export const initialState = fromJS({
     error: null,
     assets: [],
   },
+  hubiiWalletApiToken: null,
 });
 
 function hubiiApiHocReducer(state = initialState, action) {
@@ -78,6 +81,9 @@ function hubiiApiHocReducer(state = initialState, action) {
         .setIn(['transactions', action.address, 'loading'], false)
         .setIn(['transactions', action.address, 'error'], action.error)
         .setIn(['transactions', action.address, 'transactions'], fromJS([]));
+    case LOAD_HUBII_API_TOKEN:
+      return state
+        .set('hubiiWalletApiToken', fromJS(action.token));
     default:
       return state;
   }

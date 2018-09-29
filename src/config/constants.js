@@ -17,11 +17,13 @@ const boolFromEnv = (key, def) => {
   return def;
 };
 // eslint-disable-next-line no-unused-vars
-const stringFromEnv = (key, def) => process.env[key] || def;
+const stringFromEnv = (key, def) => process.env[key];
 
-export const JWT_SECRET = stringFromEnv('OMPHALOS_JWT_SECRET', '');
 export const REPO = stringFromEnv('PUBLISH_REPO');
 export const OWNER = stringFromEnv('PUBLISH_OWNER');
+export const APPID = stringFromEnv('APPID');
+export const SECRET = stringFromEnv('SECRET');
+export const HUBII_WALLET_SECRET = stringFromEnv('HUBII_WALLET_SECRET');
 export const SUPPORTED_NETWORKS = {
   homestead: {
     provider: providers.getDefaultProvider('homestead'),
