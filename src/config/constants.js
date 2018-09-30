@@ -21,16 +21,23 @@ const stringFromEnv = (key, def) => process.env[key];
 
 export const REPO = stringFromEnv('PUBLISH_REPO');
 export const OWNER = stringFromEnv('PUBLISH_OWNER');
-export const APPID = stringFromEnv('APPID');
-export const SECRET = stringFromEnv('SECRET');
-export const HUBII_WALLET_SECRET = stringFromEnv('HUBII_WALLET_SECRET');
+export const ROPSTEN_IDENTITY_SERVICE_SECRET = stringFromEnv('ROPSTEN_IDENTITY_SERVICE_SECRET');
+export const HOMESTEAD_IDENTITY_SERVICE_SECRET = stringFromEnv('HOMESTEAD_IDENTITY_SERVICE_SECRET');
+export const ROPSTEN_IDENTITY_SERVICE_APPID = stringFromEnv('ROPSTEN_IDENTITY_SERVICE_APPID');
+export const HOMESTEAD_IDENTITY_SERVICE_APPID = stringFromEnv('HOMESTEAD_IDENTITY_SERVICE_APPID');
+
 export const SUPPORTED_NETWORKS = {
   homestead: {
     provider: providers.getDefaultProvider('homestead'),
     walletApiEndpoint: 'https://api2.hubii.com/',
+    identityServiceSecret: HOMESTEAD_IDENTITY_SERVICE_SECRET,
+    identityServiceAppId: HOMESTEAD_IDENTITY_SERVICE_APPID,
+
   },
   ropsten: {
     provider: providers.getDefaultProvider('ropsten'),
     walletApiEndpoint: 'https://api2.dev.hubii.net/',
+    identityServiceSecret: ROPSTEN_IDENTITY_SERVICE_SECRET,
+    identityServiceAppId: ROPSTEN_IDENTITY_SERVICE_APPID,
   },
 };

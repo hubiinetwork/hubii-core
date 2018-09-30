@@ -17,7 +17,6 @@ import {
   LOAD_TRANSACTIONS,
   LOAD_TRANSACTIONS_SUCCESS,
   LOAD_TRANSACTIONS_ERROR,
-  LOAD_HUBII_API_TOKEN,
 } from './constants';
 
 export function loadWalletBalances(address, noPoll) {
@@ -107,10 +106,3 @@ export function loadTransactionsError(address, error) {
   };
 }
 
-
-export function loadHubiiWalletAPIToken(token) {
-  return {
-    type: LOAD_HUBII_API_TOKEN,
-    token,
-  };
-}

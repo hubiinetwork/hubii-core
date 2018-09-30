@@ -3,6 +3,7 @@ import {
   NOTIFY,
   CHANGE_NETWORK,
   INIT_NETWORK_ACTIVITY,
+  LOAD_IDENTITY_SERVICE_TOKEN_SUCCESS,
 } from './constants';
 
 
@@ -27,3 +28,11 @@ export function initNetworkActivity() {
     type: INIT_NETWORK_ACTIVITY,
   };
 }
+
+export function loadIdentityServiceToken(token) {
+  return {
+    type: LOAD_IDENTITY_SERVICE_TOKEN_SUCCESS,
+    token,
+  };
+}
+

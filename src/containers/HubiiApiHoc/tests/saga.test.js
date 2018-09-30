@@ -5,11 +5,11 @@ import { fork, takeEvery } from 'redux-saga/effects';
 import { createMockTask } from 'redux-saga/utils';
 
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
-import { ADD_NEW_WALLET } from 'containers/WalletHoc/constants';
+import { ADD_NEW_WALLET } from 'containers/WalletHOC/constants';
 
 import {
   walletsMock,
-} from 'containers/WalletHoc/tests/mocks/selectors';
+} from 'containers/WalletHOC/tests/mocks/selectors';
 
 import {
   currentNetworkMock,
@@ -30,6 +30,7 @@ import hubiiApiHoc, {
   loadWalletBalances,
   loadSupportedTokens,
   loadPrices as loadPricesSaga,
+  requestWalletAPIToken,
 } from '../saga';
 
 import {
@@ -43,7 +44,6 @@ import {
   loadPricesError,
 } from '../actions';
 
-
 import hubiiApiHocReducer, { initialState } from '../reducer';
 
 const withReducer = (state, action) => state.set('hubiiApiHoc', hubiiApiHocReducer(state.get('hubiiApiHoc'), action));
@@ -55,10 +55,11 @@ describe('hubiiApi saga', () => {
     it('should fork all required sagas, cancelling and restarting on CHANGE_NETWORK', () => {
       const saga = testSaga(networkApiOrcestrator);
       const allSagas = [
-        ...wallets.map((wallet) => fork(loadWalletBalances, { address: wallet.get('address') }, currentNetworkMock.walletApiEndpoint)),
-        ...wallets.map((wallet) => fork(loadTransactions, { address: wallet.get('address') }, currentNetworkMock.walletApiEndpoint)),
-        fork(loadSupportedTokens, currentNetworkMock.walletApiEndpoint),
-        fork(loadPricesSaga, currentNetworkMock.walletApiEndpoint),
+        fork(requestWalletAPIToken, currentNetworkMock),
+        ...wallets.map((wallet) => fork(loadWalletBalances, { address: wallet.get('address') }, currentNetworkMock)),
+        ...wallets.map((wallet) => fork(loadTransactions, { address: wallet.get('address') }, currentNetworkMock)),
+        fork(loadSupportedTokens, currentNetworkMock),
+        fork(loadPricesSaga, currentNetworkMock),
       ];
       saga
         .next() // network selector

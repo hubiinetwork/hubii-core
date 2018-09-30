@@ -9,6 +9,7 @@ import { SUPPORTED_NETWORKS } from 'config/constants';
 
 import {
   CHANGE_NETWORK,
+  LOAD_IDENTITY_SERVICE_TOKEN_SUCCESS,
 } from './constants';
 
 export const initialState = fromJS({
@@ -27,6 +28,9 @@ function appReducer(state = initialState, action) {
     case CHANGE_NETWORK:
       return state
         .set('currentNetwork', fromJS(action.network));
+    case LOAD_IDENTITY_SERVICE_TOKEN_SUCCESS:
+      return state
+        .setIn(['currentNetwork', 'identityServiceToken'], fromJS(action.token.userToken));
     default:
       return state;
   }

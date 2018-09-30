@@ -125,16 +125,10 @@ const makeSelectTransactionsWithInfo = () => createSelector(
   }
 );
 
-const makeSelectHubiiWalletAPIToken = () => createSelector(
-  selectHubiiApiHocDomain,
-  (hubiiApiHocDomain) => hubiiApiHocDomain.get('hubiiWalletApiToken')
-);
-
 export {
   makeSelectTransactions,
   makeSelectBalances,
   makeSelectPrices,
   makeSelectSupportedAssets,
   makeSelectTransactionsWithInfo,
-  makeSelectHubiiWalletAPIToken,
 };

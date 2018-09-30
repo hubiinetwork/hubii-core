@@ -1,5 +1,4 @@
 import 'whatwg-fetch';
-import { SECRET, APPID, HUBII_WALLET_SECRET } from 'config/constants';
 // Requests a URL, returning a promise. By default uses striim endpoint
 export default function request(path, opts = {}, endpoint) {
   return fetch(endpoint + path, opts)
@@ -7,13 +6,13 @@ export default function request(path, opts = {}, endpoint) {
     .then(parseJSON);
 }
 
-export function requestWalletAPI(path, endpoint, opts = {}) {
-  const options = {
-    headers: {
-      Authorization: `Bearer ${opts.token}`,
-    },
+export function requestWalletAPI(path, network, opts = {}) {
+  const options = opts;
+  options.headers = {
+    Authorization: `Bearer ${network.identityServiceToken}`,
+
   };
-  return request(path, options, endpoint);
+  return request(path, options, network.walletApiEndpoint);
 }
 
 export function requestHardwareWalletAPI(path, opts = {}, endpoint = 'trezor://') {
@@ -29,19 +28,17 @@ export function requestHardwareWalletAPI(path, opts = {}, endpoint = 'trezor://'
   });
 }
 
-export function requestAPIToken(path, endpoint) {
-  const options = {
-    appid: APPID,
-    secret: SECRET,
-  };
-  console.log(HUBII_WALLET_SECRET);
+export function requestAPIToken(path, network) {
+  // NOTE: ensure that the passes in network object contains all the necessary options with correct spelling
+  const options = { ...network.options };
+
   return request(path, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(options),
-  }, endpoint)
+  }, network.endpoint)
   .then((response) => {
     if (response.error) {
       throw new Error(response.error.message);
