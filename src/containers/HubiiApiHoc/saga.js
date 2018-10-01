@@ -13,11 +13,11 @@ import { delay } from 'redux-saga';
 import { requestWalletAPI, requestAPIToken } from 'utils/request';
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
-import { ADD_NEW_WALLET } from 'containers/WalletHOC/constants';
+import { ADD_NEW_WALLET } from 'containers/WalletHoc/constants';
 
 import {
   makeSelectWallets,
-} from 'containers/WalletHOC/selectors';
+} from 'containers/WalletHoc/selectors';
 
 import {
   loadIdentityServiceToken,

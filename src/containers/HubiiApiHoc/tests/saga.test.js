@@ -5,11 +5,11 @@ import { fork, takeEvery } from 'redux-saga/effects';
 import { createMockTask } from 'redux-saga/utils';
 
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
-import { ADD_NEW_WALLET } from 'containers/WalletHOC/constants';
+import { ADD_NEW_WALLET } from 'containers/WalletHoc/constants';
 
 import {
   walletsMock,
-} from 'containers/WalletHOC/tests/mocks/selectors';
+} from 'containers/WalletHoc/tests/mocks/selectors';
 
 import {
   currentNetworkMock,
