@@ -140,6 +140,8 @@ module.exports = (options) => ({
     ],
   },
   plugins: options.plugins.concat([
+    new webpack.DefinePlugin({ 'global.GENTLY': false }),
+
     new webpack.ProvidePlugin({
       // make fetch available
       fetch: 'exports-loader?self.fetch!whatwg-fetch',
@@ -185,6 +187,9 @@ module.exports = (options) => ({
     ],
     alias: {
       moment$: 'moment/moment.js',
+      inherits: 'inherits/inherits_browser.js',
+      superagent: 'superagent/lib/client',
+      emitter: 'component-emitter',
     },
   },
   devtool: options.devtool,

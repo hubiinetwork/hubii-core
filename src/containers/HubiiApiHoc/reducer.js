@@ -19,7 +19,6 @@ import {
 } from './constants';
 
 export const initialState = fromJS({
-
   transactions: {},
   balances: {},
   prices: {
@@ -32,7 +31,6 @@ export const initialState = fromJS({
     error: null,
     assets: [],
   },
-  hubiiWalletApiToken: null,
 });
 
 function hubiiApiHocReducer(state = initialState, action) {

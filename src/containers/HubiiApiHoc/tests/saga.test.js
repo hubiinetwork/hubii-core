@@ -30,7 +30,7 @@ import hubiiApiHoc, {
   loadWalletBalances,
   loadSupportedTokens,
   loadPrices as loadPricesSaga,
-  requestWalletAPIToken,
+  requestWalletApiToken,
 } from '../saga';
 
 import {
@@ -55,7 +55,7 @@ describe('hubiiApi saga', () => {
     it('should fork all required sagas, cancelling and restarting on CHANGE_NETWORK', () => {
       const saga = testSaga(networkApiOrcestrator);
       const allSagas = [
-        fork(requestWalletAPIToken, currentNetworkMock),
+        fork(requestWalletApiToken, currentNetworkMock),
         ...wallets.map((wallet) => fork(loadWalletBalances, { address: wallet.get('address') }, currentNetworkMock)),
         ...wallets.map((wallet) => fork(loadTransactions, { address: wallet.get('address') }, currentNetworkMock)),
         fork(loadSupportedTokens, currentNetworkMock),

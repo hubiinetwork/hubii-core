@@ -8,8 +8,11 @@ import { fromJS } from 'immutable';
 import { SUPPORTED_NETWORKS } from 'config/constants';
 
 import {
-  CHANGE_NETWORK,
   LOAD_IDENTITY_SERVICE_TOKEN_SUCCESS,
+} from 'containers/HubiiApiHoc/constants';
+
+import {
+  CHANGE_NETWORK,
 } from './constants';
 
 export const initialState = fromJS({
@@ -30,7 +33,7 @@ function appReducer(state = initialState, action) {
         .set('currentNetwork', fromJS(action.network));
     case LOAD_IDENTITY_SERVICE_TOKEN_SUCCESS:
       return state
-        .setIn(['currentNetwork', 'identityServiceToken'], fromJS(action.token.userToken));
+        .setIn(['currentNetwork', 'identityServiceToken'], fromJS(action.token));
     default:
       return state;
   }

@@ -28,25 +28,6 @@ export function requestHardwareWalletAPI(path, opts = {}, endpoint = 'trezor://'
   });
 }
 
-export function requestAPIToken(path, network) {
-  // NOTE: ensure that the passes in network object contains all the necessary options with correct spelling
-  const options = { ...network.options };
-
-  return request(path, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(options),
-  }, network.endpoint)
-  .then((response) => {
-    if (response.error) {
-      throw new Error(response.error.message);
-    }
-    return response;
-  });
-}
-
 // Checks if a network request came back fine, and throws an error if not
 export function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
