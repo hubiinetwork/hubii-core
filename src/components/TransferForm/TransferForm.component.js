@@ -289,7 +289,6 @@ export default class TransferForm extends React.PureComponent {
           footer={null}
           width={'41.8rem'}
           maskClosable
-          maskStyle={{ background: 'rgba(232,237,239,.65)' }}
           style={{ marginTop: '1.43rem' }}
           visible={addContactModalVisibility}
           onCancel={this.hideContactModal}

@@ -211,7 +211,6 @@ export class WalletItemCard extends React.PureComponent {
           footer={null}
           width={modalType === 'deleteWallet' ? '37.14rem' : '50rem'}
           maskClosable
-          maskStyle={{ background: 'rgba(232,237,239,.65)' }}
           style={{ marginTop: '1.43rem' }}
           visible={
             (isDecrypted && modalVisibility) ||
