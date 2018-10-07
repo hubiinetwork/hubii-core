@@ -60,7 +60,8 @@ export function* loadWalletBalances({ address, noPoll }, network) {
 export function* loadSupportedTokens(network) {
   const requestPath = 'ethereum/supported-tokens';
   try {
-    const returnData = yield call(requestWalletAPI, requestPath, network); yield put(loadSupportedTokensSuccess(returnData));
+    const returnData = yield call(requestWalletAPI, requestPath, network);
+    yield put(loadSupportedTokensSuccess(returnData));
   } catch (err) {
     yield put(loadSupportedTokensError(err));
   }
@@ -70,7 +71,8 @@ export function* loadPrices(network) {
   const requestPath = 'ethereum/prices';
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const returnData = yield call(requestWalletAPI, requestPath, network); yield put(loadPricesSuccess(returnData));
+      const returnData = yield call(requestWalletAPI, requestPath, network);
+      yield put(loadPricesSuccess(returnData));
     } catch (err) {
       yield put(loadPricesError(err));
     } finally {
