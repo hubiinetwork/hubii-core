@@ -149,7 +149,6 @@ export default class ContactList extends React.PureComponent {
               footer={null}
               width={'41.79rem'}
               maskClosable
-              maskStyle={{ background: 'rgba(232,237,239,.65)' }}
               style={{ marginTop: '1.43rem' }}
               visible={this.state.modalVisibility}
               onCancel={this.handleCancel}
