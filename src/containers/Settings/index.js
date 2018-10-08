@@ -7,6 +7,7 @@ import { createStructuredSelector } from 'reselect';
 
 import { makeSelectCurrentNetwork, makeSelectSupportedNetworks } from 'containers/App/selectors';
 import { changeNetwork } from 'containers/App/actions';
+import { changeLocale } from 'containers/LanguageProvider/actions';
 
 import TopHeader from 'components/ui/TopHeader';
 import Heading from 'components/ui/Heading';
@@ -22,7 +23,7 @@ import {
 export class Settings extends React.PureComponent {
 
   render() {
-    const { onChangeNetwork, currentNetwork, supportedNetworks } = this.props;
+    const { onChangeNetwork, onChangeLocale, currentNetwork, supportedNetworks } = this.props;
     return (
       <Wrapper>
         <TopHeader>
@@ -52,6 +53,23 @@ export class Settings extends React.PureComponent {
               }
             </Select>
           </SettingWrapper>
+          <SettingWrapper>
+            <StyledSectionHeading>
+              Language
+            </StyledSectionHeading>
+            <Select
+              // value={'en'}
+              style={{ width: '15rem' }}
+              onChange={onChangeLocale}
+            >
+              <Option value={'en'} key={'en'}>
+                en
+              </Option>
+              <Option value={'zh'} key={'zh'}>
+                zh
+              </Option>
+            </Select>
+          </SettingWrapper>
         </Body>
       </Wrapper>
     );
@@ -60,6 +78,7 @@ export class Settings extends React.PureComponent {
 
 Settings.propTypes = {
   onChangeNetwork: PropTypes.func.isRequired,
+  onChangeLocale: PropTypes.func.isRequired,
   currentNetwork: PropTypes.object.isRequired,
   supportedNetworks: ImmutablePropTypes.map.isRequired,
 };
@@ -72,6 +91,7 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     onChangeNetwork: (...args) => dispatch(changeNetwork(...args)),
+    onChangeLocale: (...args) => dispatch(changeLocale(...args)),
   };
 }
 

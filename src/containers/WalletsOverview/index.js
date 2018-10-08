@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
+import { FormattedMessage } from 'react-intl';
 
 import { getBreakdown } from 'utils/wallet';
 
@@ -103,7 +104,12 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
       <Wrapper>
         <Row gutter={32}>
           <Col sm={24} md={12} lg={16}>
-            <SectionHeading>All wallets</SectionHeading>
+            <SectionHeading>
+              <FormattedMessage
+                id="app.all_wallets"
+                defaultMessage="All wallets"
+              />
+            </SectionHeading>
             <Row type="flex" align="top" gutter={16}>
               {walletCards}
             </Row>
