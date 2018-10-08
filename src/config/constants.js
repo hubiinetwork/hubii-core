@@ -32,7 +32,6 @@ export const SUPPORTED_NETWORKS = {
     walletApiEndpoint: 'https://api2.hubii.com/',
     identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : HOMESTEAD_IDENTITY_SERVICE_SECRET,
     identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : HOMESTEAD_IDENTITY_SERVICE_APPID,
-
   },
   ropsten: {
     provider: providers.getDefaultProvider('ropsten'),
