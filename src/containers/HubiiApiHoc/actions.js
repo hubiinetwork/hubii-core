@@ -17,6 +17,7 @@ import {
   LOAD_TRANSACTIONS,
   LOAD_TRANSACTIONS_SUCCESS,
   LOAD_TRANSACTIONS_ERROR,
+  LOAD_IDENTITY_SERVICE_TOKEN_SUCCESS,
 } from './constants';
 
 export function loadWalletBalances(address, noPoll) {
@@ -103,5 +104,12 @@ export function loadTransactionsError(address, error) {
     type: LOAD_TRANSACTIONS_ERROR,
     address,
     error,
+  };
+}
+
+export function loadIdentityServiceTokenSuccess(token) {
+  return {
+    type: LOAD_IDENTITY_SERVICE_TOKEN_SUCCESS,
+    token,
   };
 }

@@ -140,6 +140,8 @@ module.exports = (options) => ({
     ],
   },
   plugins: options.plugins.concat([
+    new webpack.DefinePlugin({ 'global.GENTLY': false }),
+
     new webpack.ProvidePlugin({
       // make fetch available
       fetch: 'exports-loader?self.fetch!whatwg-fetch',
@@ -151,9 +153,12 @@ module.exports = (options) => ({
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        OMPHALOS_JWT_SECRET: JSON.stringify(process.env.OMPHALOS_JWT_SECRET),
         PUBLISH_REPO: JSON.stringify(process.env.npm_package_build_publish_0_repo),
         PUBLISH_OWNER: JSON.stringify(process.env.npm_package_build_publish_0_owner),
+        ROPSTEN_IDENTITY_SERVICE_APPID: JSON.stringify(process.env.ROPSTEN_IDENTITY_SERVICE_APPID),
+        HOMESTEAD_IDENTITY_SERVICE_APPID: JSON.stringify(process.env.HOMESTEAD_IDENTITY_SERVICE_APPID),
+        ROPSTEN_IDENTITY_SERVICE_SECRET: JSON.stringify(process.env.ROPSTEN_IDENTITY_SERVICE_SECRET),
+        HOMESTEAD_IDENTITY_SERVICE_SECRET: JSON.stringify(process.env.HOMESTEAD_IDENTITY_SERVICE_SECRET),
       },
     }),
     new CopyWebpackPlugin(
@@ -182,6 +187,9 @@ module.exports = (options) => ({
     ],
     alias: {
       moment$: 'moment/moment.js',
+      inherits: 'inherits/inherits_browser.js',
+      superagent: 'superagent/lib/client',
+      emitter: 'component-emitter',
     },
   },
   devtool: options.devtool,
