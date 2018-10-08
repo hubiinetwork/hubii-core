@@ -19,7 +19,7 @@ ShallowWrapper {
               "name": "ropsten",
               "resetEventsBlock": [Function],
             },
-            "walletApiEndpoint": "https://api2.dev.hubii.net/",
+            "walletApiEndpoint": [Function],
           }
     }
     onChangeNetwork={[Function]}
@@ -36,7 +36,7 @@ ShallowWrapper {
                     "name": "homestead",
                     "resetEventsBlock": [Function],
                   },
-                walletApiEndpoint: "https://api2.hubii.com/",
+                walletApiEndpoint: [Function],
                 identityServiceSecret: "secret",
                 identityServiceAppId: "appid",
             },
@@ -51,7 +51,7 @@ ShallowWrapper {
                     "name": "ropsten",
                     "resetEventsBlock": [Function],
                   },
-                walletApiEndpoint: "https://api2.dev.hubii.net/",
+                walletApiEndpoint: [Function],
                 identityServiceSecret: "secret",
                 identityServiceAppId: "appid",
             },

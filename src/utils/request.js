@@ -12,7 +12,7 @@ export function requestWalletAPI(path, network, opts = {}) {
     Authorization: `Bearer ${network.identityServiceToken}`,
 
   };
-  return request(path, options, network.walletApiEndpoint);
+  return request(path, options, network.walletApiEndpoint());
 }
 
 export function requestHardwareWalletAPI(path, opts = {}, endpoint = 'trezor://') {

@@ -102,7 +102,7 @@ export function* requestToken() {
     try {
       const network = yield select(makeSelectCurrentNetwork());
       const nahmiiProvider = new nahmii.NahmiiProvider(
-        network.walletApiEndpoint.slice(7, -1),
+        network.walletApiEndpoint(true),
         network.identityServiceAppId,
         network.identityServiceSecret
       );
