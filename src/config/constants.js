@@ -17,7 +17,7 @@ const boolFromEnv = (key, def) => {
   return def;
 };
 // eslint-disable-next-line no-unused-vars
-const stringFromEnv = (key, def) => process.env[key];
+const stringFromEnv = (key, def) => process.env[key] || def;
 
 export const REPO = stringFromEnv('PUBLISH_REPO');
 export const OWNER = stringFromEnv('PUBLISH_OWNER');
