@@ -106,7 +106,7 @@ export function* requestToken() {
         network.identityServiceAppId,
         network.identityServiceSecret
       );
-      const token = yield nahmiiProvider.getApiAccessToken();
+      const token = yield call([nahmiiProvider, 'getApiAccessToken']);
       yield put(loadIdentityServiceTokenSuccess(token));
       return;
     } catch (e) {
@@ -125,8 +125,8 @@ export function* networkApiOrcestrator() {
       yield requestToken();
 
       // now that we have a valid token, start the rest of the calls
-      const wallets = yield select(makeSelectWallets());
       const network = yield select(makeSelectCurrentNetwork());
+      const wallets = yield select(makeSelectWallets());
       const allTasks = yield all([
         ...wallets.map((wallet) => fork(loadWalletBalances, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadTransactions, { address: wallet.get('address') }, network)),
@@ -139,7 +139,7 @@ export function* networkApiOrcestrator() {
       //   * when the network is changed or a wallet is added
       const ONE_MINUTE_IN_MS = 60 * 1000;
       yield race({
-        timer: delay(ONE_MINUTE_IN_MS),
+        timer: call(delay, ONE_MINUTE_IN_MS),
         override: take([CHANGE_NETWORK, ADD_NEW_WALLET]),
       });
       yield cancel(...allTasks);

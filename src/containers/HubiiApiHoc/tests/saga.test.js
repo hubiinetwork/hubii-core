@@ -1,7 +1,8 @@
 import { fromJS } from 'immutable';
 import { expectSaga, testSaga } from 'redux-saga-test-plan';
+import { delay } from 'redux-saga';
 import { requestWalletAPI } from 'utils/request';
-import { fork, takeEvery } from 'redux-saga/effects';
+import { call, fork, takeEvery, take } from 'redux-saga/effects';
 import { createMockTask } from 'redux-saga/utils';
 
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
@@ -30,7 +31,8 @@ import hubiiApiHoc, {
   loadWalletBalances,
   loadSupportedTokens,
   loadPrices as loadPricesSaga,
-  requestWalletApiToken,
+  requestToken,
+  // requestWalletApiToken,
 } from '../saga';
 
 import {
@@ -42,6 +44,7 @@ import {
   loadSupportedTokensError,
   loadPricesSuccess,
   loadPricesError,
+  loadIdentityServiceTokenSuccess,
 } from '../actions';
 
 import hubiiApiHocReducer, { initialState } from '../reducer';
@@ -50,26 +53,50 @@ const withReducer = (state, action) => state.set('hubiiApiHoc', hubiiApiHocReduc
 
 describe('hubiiApi saga', () => {
   describe('network api orcentrator', () => {
+    const ONE_MINUTE_IN_MS = 60 * 1000;
     const wallets = walletsMock;
     const mockTask = createMockTask();
-    it('should fork all required sagas, cancelling and restarting on CHANGE_NETWORK', () => {
+    it.only('should fork all required sagas, cancelling and restarting on CHANGE_NETWORK', () => {
       const saga = testSaga(networkApiOrcestrator);
       const allSagas = [
-        fork(requestWalletApiToken, currentNetworkMock),
+        // fork(requestWalletApiToken, currentNetworkMock),
         ...wallets.map((wallet) => fork(loadWalletBalances, { address: wallet.get('address') }, currentNetworkMock)),
         ...wallets.map((wallet) => fork(loadTransactions, { address: wallet.get('address') }, currentNetworkMock)),
         fork(loadSupportedTokens, currentNetworkMock),
         fork(loadPricesSaga, currentNetworkMock),
       ];
       saga
+        .next() // request token
         .next() // network selector
         .next(currentNetworkMock) // wallets selector
         .next(wallets).all(allSagas)
-        .next([mockTask]).take([CHANGE_NETWORK, ADD_NEW_WALLET])
+        .next([mockTask]).race({
+          timer: call(delay, ONE_MINUTE_IN_MS),
+          override: take([CHANGE_NETWORK, ADD_NEW_WALLET]),
+        })
         .next().cancel(mockTask)
+        .next() // request token
         .next() // network selector
         .next(currentNetworkMock) // wallets selector
         .next(wallets).all(allSagas);
+    });
+  });
+
+  describe('requestToken', () => {
+    it('should fetch a token', () => {
+      const token = 'token';
+
+      return expectSaga(requestToken)
+        .provide({
+          select() {
+            return currentNetworkMock;
+          },
+          call() {
+            return token;
+          },
+        })
+        .put(loadIdentityServiceTokenSuccess(token))
+        .run({ silenceTimeout: true });
     });
   });
 
