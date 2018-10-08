@@ -30,14 +30,14 @@ export const SUPPORTED_NETWORKS = {
   homestead: {
     provider: providers.getDefaultProvider('homestead'),
     walletApiEndpoint: 'https://api2.hubii.com/',
-    identityServiceSecret: HOMESTEAD_IDENTITY_SERVICE_SECRET,
+    identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : HOMESTEAD_IDENTITY_SERVICE_SECRET,
     identityServiceAppId: HOMESTEAD_IDENTITY_SERVICE_APPID,
 
   },
   ropsten: {
     provider: providers.getDefaultProvider('ropsten'),
     walletApiEndpoint: 'https://api2.dev.hubii.net/',
-    identityServiceSecret: ROPSTEN_IDENTITY_SERVICE_SECRET,
+    identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : ROPSTEN_IDENTITY_SERVICE_SECRET,
     identityServiceAppId: ROPSTEN_IDENTITY_SERVICE_APPID,
   },
 };
