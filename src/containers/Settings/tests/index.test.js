@@ -8,6 +8,7 @@ import { Settings } from '../index';
 describe('Settings', () => {
   const props = {
     onChangeNetwork: () => {},
+    onChangeLocale: () => {},
     currentNetwork: currentNetworkMock,
     supportedNetworks: fromJS(SUPPORTED_NETWORKS),
   };
