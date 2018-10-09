@@ -13,6 +13,8 @@ import TopHeader from 'components/ui/TopHeader';
 import Heading from 'components/ui/Heading';
 import Select, { Option } from 'components/ui/Select';
 
+import { translationMessages } from '../../i18n';
+
 import {
   Wrapper,
   SettingWrapper,
@@ -62,12 +64,13 @@ export class Settings extends React.PureComponent {
               style={{ width: '15rem' }}
               onChange={onChangeLocale}
             >
-              <Option value={'en'} key={'en'}>
-                en
-              </Option>
-              <Option value={'zh'} key={'zh'}>
-                zh
-              </Option>
+              {
+                Object.keys(translationMessages).map((locale) => (
+                  <Option value={locale} key={locale}>
+                    {translationMessages[locale].language}
+                  </Option>
+                  ))
+              }
             </Select>
           </SettingWrapper>
         </Body>

@@ -5,19 +5,27 @@
  *
  */
 import { addLocaleData } from 'react-intl';
-import enLocaleData from 'react-intl/locale-data/en';
-import zhLocaleData from 'react-intl/locale-data/zh';
 
 import { DEFAULT_LOCALE } from './containers/App/constants'; // eslint-disable-line
 import enTranslationMessages from './translations/en.json';
-import zhTranslationMessages from './translations/zh.json';
 
-export const appLocales = [
-  'en',
-  'zh',
-];
+const context = require.context('./translations', true, /\.json$/);
+const locales = {};
+context.keys().forEach((key) => {
+  const locale = key.replace('./', '').replace('.json', '');
+  locales[locale] = context(key);
+});
 
-addLocaleData([enLocaleData, zhLocaleData]);
+export const appLocales = Object.keys(locales);
+
+const localeData = [];
+appLocales.forEach((locale) => {
+  // eslint-disable-next-line global-require
+  const data = require(`react-intl/locale-data/${locale}`);
+  localeData.push(data);
+});
+
+addLocaleData(localeData);
 
 export const formatTranslationMessages = (locale, messages) => {
   const defaultFormattedMessages = locale !== DEFAULT_LOCALE
@@ -32,7 +40,4 @@ export const formatTranslationMessages = (locale, messages) => {
   }, {});
 };
 
-export const translationMessages = {
-  en: formatTranslationMessages('en', enTranslationMessages),
-  zh: formatTranslationMessages('zh', zhTranslationMessages),
-};
+export const translationMessages = appLocales.reduce((formattedLocaleMessages, locale) => Object.assign(formattedLocaleMessages, { [locale]: formatTranslationMessages(locale, locales[locale]) }), {});
