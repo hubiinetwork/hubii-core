@@ -11,6 +11,7 @@ describe('Settings', () => {
     onChangeLocale: () => {},
     currentNetwork: currentNetworkMock,
     supportedNetworks: fromJS(SUPPORTED_NETWORKS),
+    locale: 'en',
   };
   it('should render correctly', () => {
     const wrapper = shallow(<Settings {...props} />);

@@ -22,6 +22,7 @@ ShallowWrapper {
             "walletApiEndpoint": [Function],
           }
     }
+    locale="en"
     onChangeLocale={[Function]}
     onChangeNetwork={[Function]}
     supportedNetworks={
@@ -115,17 +116,9 @@ ShallowWrapper {
                                                   "width": "15rem",
                                                 }
                               }
+                              value="en"
                     >
-                              <Option
-                                        value="en"
-                              >
-                                        en
-                              </Option>
-                              <Option
-                                        value="zh"
-                              >
-                                        zh
-                              </Option>
+                              
                     </Select.style>
           </style__SettingWrapper>
 </style__Body>,
@@ -199,17 +192,9 @@ ShallowWrapper {
                                                         "width": "15rem",
                                                       }
                             }
+                            value="en"
               >
-                            <Option
-                                          value="en"
-                            >
-                                          en
-                            </Option>
-                            <Option
-                                          value="zh"
-                            >
-                                          zh
-                            </Option>
+                            
               </Select.style>
 </style__SettingWrapper>,
           ],
@@ -333,17 +318,9 @@ ShallowWrapper {
                                                       "width": "15rem",
                                                     }
                   }
+                  value="en"
 >
-                  <Option
-                                    value="en"
-                  >
-                                    en
-                  </Option>
-                  <Option
-                                    value="zh"
-                  >
-                                    zh
-                  </Option>
+                  
 </Select.style>,
               ],
             },
@@ -365,50 +342,15 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": Array [
-                    <Option
-                      value="en"
->
-                      en
-</Option>,
-                    <Option
-                      value="zh"
->
-                      zh
-</Option>,
-                  ],
+                  "children": Array [],
                   "onChange": [Function],
                   "style": Object {
                     "width": "15rem",
                   },
+                  "value": "en",
                 },
                 "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": "en",
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": "en",
-                      "value": "en",
-                    },
-                    "ref": null,
-                    "rendered": "en",
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": "zh",
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": "zh",
-                      "value": "zh",
-                    },
-                    "ref": null,
-                    "rendered": "zh",
-                    "type": [Function],
-                  },
-                ],
+                "rendered": Array [],
                 "type": [Function],
               },
             ],
@@ -470,17 +412,9 @@ ShallowWrapper {
                                                             "width": "15rem",
                                                           }
                                     }
+                                    value="en"
                         >
-                                    <Option
-                                                value="en"
-                                    >
-                                                en
-                                    </Option>
-                                    <Option
-                                                value="zh"
-                                    >
-                                                zh
-                                    </Option>
+                                    
                         </Select.style>
             </style__SettingWrapper>
 </style__Body>,
@@ -554,17 +488,9 @@ ShallowWrapper {
                                                                 "width": "15rem",
                                                               }
                                 }
+                                value="en"
                 >
-                                <Option
-                                                value="en"
-                                >
-                                                en
-                                </Option>
-                                <Option
-                                                value="zh"
-                                >
-                                                zh
-                                </Option>
+                                
                 </Select.style>
 </style__SettingWrapper>,
             ],
@@ -688,17 +614,9 @@ ShallowWrapper {
                                                             "width": "15rem",
                                                           }
                     }
+                    value="en"
 >
-                    <Option
-                                        value="en"
-                    >
-                                        en
-                    </Option>
-                    <Option
-                                        value="zh"
-                    >
-                                        zh
-                    </Option>
+                    
 </Select.style>,
                 ],
               },
@@ -720,50 +638,15 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": Array [
-                      <Option
-                        value="en"
->
-                        en
-</Option>,
-                      <Option
-                        value="zh"
->
-                        zh
-</Option>,
-                    ],
+                    "children": Array [],
                     "onChange": [Function],
                     "style": Object {
                       "width": "15rem",
                     },
+                    "value": "en",
                   },
                   "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": "en",
-                      "nodeType": "class",
-                      "props": Object {
-                        "children": "en",
-                        "value": "en",
-                      },
-                      "ref": null,
-                      "rendered": "en",
-                      "type": [Function],
-                    },
-                    Object {
-                      "instance": null,
-                      "key": "zh",
-                      "nodeType": "class",
-                      "props": Object {
-                        "children": "zh",
-                        "value": "zh",
-                      },
-                      "ref": null,
-                      "rendered": "zh",
-                      "type": [Function],
-                    },
-                  ],
+                  "rendered": Array [],
                   "type": [Function],
                 },
               ],

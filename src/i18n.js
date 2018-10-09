@@ -6,15 +6,18 @@
  */
 import { addLocaleData } from 'react-intl';
 
-import { DEFAULT_LOCALE } from './containers/App/constants'; // eslint-disable-line
+import { DEFAULT_LOCALE } from './containers/App/constants';
 import enTranslationMessages from './translations/en.json';
 
-const context = require.context('./translations', true, /\.json$/);
 const locales = {};
-context.keys().forEach((key) => {
-  const locale = key.replace('./', '').replace('.json', '');
-  locales[locale] = context(key);
-});
+
+try {
+  const context = require.context('./translations', true, /\.json$/);
+  context.keys().forEach((key) => {
+    const locale = key.replace('./', '').replace('.json', '');
+    locales[locale] = context(key);
+  });
+} catch (error) {}// eslint-disable-line
 
 export const appLocales = Object.keys(locales);
 

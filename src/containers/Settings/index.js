@@ -13,6 +13,7 @@ import TopHeader from 'components/ui/TopHeader';
 import Heading from 'components/ui/Heading';
 import Select, { Option } from 'components/ui/Select';
 
+import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
 import { translationMessages } from '../../i18n';
 
 import {
@@ -25,7 +26,7 @@ import {
 export class Settings extends React.PureComponent {
 
   render() {
-    const { onChangeNetwork, onChangeLocale, currentNetwork, supportedNetworks } = this.props;
+    const { locale, onChangeNetwork, onChangeLocale, currentNetwork, supportedNetworks } = this.props;
     return (
       <Wrapper>
         <TopHeader>
@@ -60,14 +61,14 @@ export class Settings extends React.PureComponent {
               Language
             </StyledSectionHeading>
             <Select
-              // value={'en'}
+              value={locale}
               style={{ width: '15rem' }}
               onChange={onChangeLocale}
             >
               {
-                Object.keys(translationMessages).map((locale) => (
-                  <Option value={locale} key={locale}>
-                    {translationMessages[locale].language}
+                Object.keys(translationMessages).map((localeKey) => (
+                  <Option value={localeKey} key={localeKey}>
+                    {translationMessages[localeKey].language}
                   </Option>
                   ))
               }
@@ -84,11 +85,13 @@ Settings.propTypes = {
   onChangeLocale: PropTypes.func.isRequired,
   currentNetwork: PropTypes.object.isRequired,
   supportedNetworks: ImmutablePropTypes.map.isRequired,
+  locale: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   currentNetwork: makeSelectCurrentNetwork(),
   supportedNetworks: makeSelectSupportedNetworks(),
+  locale: makeSelectLocale(),
 });
 
 export function mapDispatchToProps(dispatch) {
