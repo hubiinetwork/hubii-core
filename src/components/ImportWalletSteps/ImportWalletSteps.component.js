@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import DerivationPathContainer from 'containers/DerivationPathContainer';
+import Text from 'components/ui/Text';
 
 import {
   NavigationWrapper,
   Wrapper,
-  SpanText,
   LeftArrow,
 } from './ImportWalletSteps.style';
 
@@ -14,6 +14,7 @@ import ImportWallet from './ImportWallet';
 import ImportWalletNameForm from './ImportWalletNameForm';
 import ImportWalletPrivateKeyForm from './ImportWalletPrivateKeyForm';
 import ImportWalletMnemonicForm from './ImportWalletMnemonicForm';
+import ImportWalletKeystoreForm from './ImportWalletKeystoreForm';
 import FormSteps from '../FormSteps';
 
 export default class ImportWalletSteps extends React.Component {
@@ -119,6 +120,18 @@ export default class ImportWalletSteps extends React.Component {
           ),
         },
       ],
+      Keystore: [
+        {
+          title: 'Last',
+          content: (
+            <ImportWalletKeystoreForm
+              handleBack={this.handleBack}
+              handleNext={this.handleNext}
+              loading={loading}
+            />
+          ),
+        },
+      ],
     };
     return steps.concat(stepTypes[selectedWallet.name || 'Private key' || 'Mnemonic']);
   }
@@ -156,7 +169,7 @@ export default class ImportWalletSteps extends React.Component {
       <Wrapper>
         <NavigationWrapper>
           <LeftArrow type="arrow-left" onClick={() => onBackIcon()} />
-          <SpanText>Import an existing wallet</SpanText>
+          <Text large>Import an existing wallet</Text>
         </NavigationWrapper>
       </Wrapper>
     );

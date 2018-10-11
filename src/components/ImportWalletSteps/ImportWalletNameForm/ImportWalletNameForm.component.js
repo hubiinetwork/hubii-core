@@ -3,13 +3,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'antd';
 import { handleFinish } from 'utils/forms';
+import Text from 'components/ui/Text';
+import { ModalFormLabel } from 'components/ui/Modal';
 import {
   Image,
   IconDiv,
   WidthEighty,
-  StyledModalFormLabel,
   ButtonDiv,
-  StyledSpan,
   StyledButton,
   StyledBackButton,
   FormInput,
@@ -41,9 +41,9 @@ class ImportWalletNameForm extends React.Component {
           <WidthEighty>
             <FormItem
               label={
-                <StyledModalFormLabel>
+                <ModalFormLabel>
                   Enter a name for your wallet 
-                </StyledModalFormLabel>
+                </ModalFormLabel>
               }
             >
               {getFieldDecorator('name', {
@@ -68,10 +68,10 @@ class ImportWalletNameForm extends React.Component {
               (
                 <ButtonDiv>
                   <StyledBackButton type="default" onClick={this.props.handleBack}>
-                    <StyledSpan>Back</StyledSpan>
+                    <Text>Back</Text>
                   </StyledBackButton>
                   <StyledButton type="primary" htmlType="submit">
-                    <StyledSpan>Finish</StyledSpan>
+                    <Text>Finish</Text>
                   </StyledButton>
                 </ButtonDiv>
               )

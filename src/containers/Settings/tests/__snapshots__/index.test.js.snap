@@ -7,6 +7,8 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <Settings
     currentNetwork={
         Object {
+            "identityServiceAppId": "appid",
+            "identityServiceSecret": "secret",
             "provider": FallbackProvider {
               "_emitted": Object {
                 "block": -1,
@@ -17,7 +19,7 @@ ShallowWrapper {
               "name": "ropsten",
               "resetEventsBlock": [Function],
             },
-            "walletApiEndpoint": "https://api2.dev.hubii.net/",
+            "walletApiEndpoint": [Function],
           }
     }
     onChangeNetwork={[Function]}
@@ -34,7 +36,9 @@ ShallowWrapper {
                     "name": "homestead",
                     "resetEventsBlock": [Function],
                   },
-                walletApiEndpoint: "https://api2.hubii.com/",
+                walletApiEndpoint: [Function],
+                identityServiceSecret: "secret",
+                identityServiceAppId: "appid",
             },
             ropsten: Immutable.Map {
                 provider: FallbackProvider {
@@ -47,7 +51,9 @@ ShallowWrapper {
                     "name": "ropsten",
                     "resetEventsBlock": [Function],
                   },
-                walletApiEndpoint: "https://api2.dev.hubii.net/",
+                walletApiEndpoint: [Function],
+                identityServiceSecret: "secret",
+                identityServiceAppId: "appid",
             },
         }
     }

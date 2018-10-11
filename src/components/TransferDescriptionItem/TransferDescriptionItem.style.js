@@ -1,17 +1,13 @@
 import styled from 'styled-components';
 
-export const Label = styled.span`
+import Text from 'components/ui/Text';
+
+export const Label = styled(Text)`
   color: ${({ theme }) => theme.palette.light};
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.14rem;
 `;
 
-export const Value = styled.span`
+export const Value = styled(Text)`
   color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.14rem;
   text-align: right;
 `;
 

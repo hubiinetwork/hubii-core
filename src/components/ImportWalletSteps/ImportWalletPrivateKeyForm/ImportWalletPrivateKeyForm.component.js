@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { Form } from 'antd';
 import PropTypes from 'prop-types';
-import { ModalFormInput, ModalFormItem } from 'components/ui/Modal';
+import { ModalFormInput, ModalFormItem, ModalFormLabel } from 'components/ui/Modal';
+import Heading from 'components/ui/Heading';
 import { handleFinish, compareToFirstPassword } from 'utils/forms';
 import { isValidPrivateKey } from 'utils/wallet';
 import { getAbsolutePath } from 'utils/electron';
 import {
   WidthEighty,
-  StyledModalFormLabel,
   ButtonDiv,
   StyledBackButton,
   StyledButton,
-  StyledSpan,
   StyledSpin,
   FinalHeader,
 } from '../ImportWalletForm.style';
+import Text from '../../ui/Text';
 
 class ImportWalletPrivateKeyForm extends React.Component {
   constructor(props) {
@@ -67,14 +67,14 @@ class ImportWalletPrivateKeyForm extends React.Component {
         >
           <WidthEighty>
             <FinalHeader>
-              <p>Importing from a</p>
+              <Heading>Importing from a</Heading>
               <img src={getAbsolutePath('public/images/private-key.png')} alt="import method icon" />
             </FinalHeader>
             <ModalFormItem
               label={
-                <StyledModalFormLabel>
+                <ModalFormLabel>
                   Enter a name for your wallet
-                </StyledModalFormLabel>
+                </ModalFormLabel>
               }
             >
               {getFieldDecorator('name', {
@@ -89,9 +89,9 @@ class ImportWalletPrivateKeyForm extends React.Component {
             </ModalFormItem>
             <ModalFormItem
               label={
-                <StyledModalFormLabel>
+                <ModalFormLabel>
                   {"Enter your wallet's private key"}
-                </StyledModalFormLabel>
+                </ModalFormLabel>
               }
             >
               {getFieldDecorator('privateKey', {
@@ -109,7 +109,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
             </ModalFormItem>
             <ModalFormItem
               label={
-                <StyledModalFormLabel>Enter a password to secure your wallet</StyledModalFormLabel>
+                <ModalFormLabel>Enter a password to secure your wallet</ModalFormLabel>
               }
             >
               {getFieldDecorator('password', {
@@ -131,7 +131,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
             </ModalFormItem>
             <ModalFormItem
               label={
-                <StyledModalFormLabel>Repeat password</StyledModalFormLabel>
+                <ModalFormLabel>Repeat password</ModalFormLabel>
               }
             >
               {getFieldDecorator('confirm', {
@@ -160,10 +160,10 @@ class ImportWalletPrivateKeyForm extends React.Component {
               (
                 <ButtonDiv>
                   <StyledBackButton type="default" onClick={this.props.handleBack}>
-                    <StyledSpan>Back</StyledSpan>
+                    <Text>Back</Text>
                   </StyledBackButton>
                   <StyledButton type="primary" htmlType="submit">
-                    <StyledSpan>Import wallet</StyledSpan>
+                    <Text>Import wallet</Text>
                   </StyledButton>
                 </ButtonDiv>
               )

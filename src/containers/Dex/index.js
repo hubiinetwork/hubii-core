@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { getAbsolutePath } from 'utils/electron';
 
+import Heading from 'components/ui/Heading';
+
 import {
   Wrapper,
   TopHeader,
-  Heading,
   Title,
   Container,
   Logo,

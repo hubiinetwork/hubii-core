@@ -63,11 +63,6 @@ ShallowWrapper {
                     destroyOnClose={true}
                     footer={null}
                     maskClosable={true}
-                    maskStyle={
-                              Object {
-                                        "background": "rgba(232,237,239,.65)",
-                                      }
-                    }
                     onCancel={[Function]}
                     style={
                               Object {
@@ -140,11 +135,6 @@ ShallowWrapper {
               destroyOnClose={true}
               footer={null}
               maskClosable={true}
-              maskStyle={
-                            Object {
-                                          "background": "rgba(232,237,239,.65)",
-                                        }
-              }
               onCancel={[Function]}
               style={
                             Object {
@@ -226,9 +216,6 @@ ShallowWrapper {
               "destroyOnClose": true,
               "footer": null,
               "maskClosable": true,
-              "maskStyle": Object {
-                "background": "rgba(232,237,239,.65)",
-              },
               "onCancel": [Function],
               "style": Object {
                 "marginTop": "1.43rem",
@@ -302,11 +289,6 @@ ShallowWrapper {
                         destroyOnClose={true}
                         footer={null}
                         maskClosable={true}
-                        maskStyle={
-                                    Object {
-                                                "background": "rgba(232,237,239,.65)",
-                                              }
-                        }
                         onCancel={[Function]}
                         style={
                                     Object {
@@ -379,11 +361,6 @@ ShallowWrapper {
                 destroyOnClose={true}
                 footer={null}
                 maskClosable={true}
-                maskStyle={
-                                Object {
-                                                "background": "rgba(232,237,239,.65)",
-                                              }
-                }
                 onCancel={[Function]}
                 style={
                                 Object {
@@ -465,9 +442,6 @@ ShallowWrapper {
                 "destroyOnClose": true,
                 "footer": null,
                 "maskClosable": true,
-                "maskStyle": Object {
-                  "background": "rgba(232,237,239,.65)",
-                },
                 "onCancel": [Function],
                 "style": Object {
                   "marginTop": "1.43rem",
@@ -580,11 +554,6 @@ ShallowWrapper {
                     destroyOnClose={true}
                     footer={null}
                     maskClosable={true}
-                    maskStyle={
-                              Object {
-                                        "background": "rgba(232,237,239,.65)",
-                                      }
-                    }
                     onCancel={[Function]}
                     style={
                               Object {
@@ -647,11 +616,6 @@ ShallowWrapper {
               destroyOnClose={true}
               footer={null}
               maskClosable={true}
-              maskStyle={
-                            Object {
-                                          "background": "rgba(232,237,239,.65)",
-                                        }
-              }
               onCancel={[Function]}
               style={
                             Object {
@@ -733,9 +697,6 @@ ShallowWrapper {
               "destroyOnClose": true,
               "footer": null,
               "maskClosable": true,
-              "maskStyle": Object {
-                "background": "rgba(232,237,239,.65)",
-              },
               "onCancel": [Function],
               "style": Object {
                 "marginTop": "1.43rem",
@@ -807,11 +768,6 @@ ShallowWrapper {
                         destroyOnClose={true}
                         footer={null}
                         maskClosable={true}
-                        maskStyle={
-                                    Object {
-                                                "background": "rgba(232,237,239,.65)",
-                                              }
-                        }
                         onCancel={[Function]}
                         style={
                                     Object {
@@ -874,11 +830,6 @@ ShallowWrapper {
                 destroyOnClose={true}
                 footer={null}
                 maskClosable={true}
-                maskStyle={
-                                Object {
-                                                "background": "rgba(232,237,239,.65)",
-                                              }
-                }
                 onCancel={[Function]}
                 style={
                                 Object {
@@ -960,9 +911,6 @@ ShallowWrapper {
                 "destroyOnClose": true,
                 "footer": null,
                 "maskClosable": true,
-                "maskStyle": Object {
-                  "background": "rgba(232,237,239,.65)",
-                },
                 "onCancel": [Function],
                 "style": Object {
                   "marginTop": "1.43rem",
@@ -1169,11 +1117,6 @@ ShallowWrapper {
                     destroyOnClose={true}
                     footer={null}
                     maskClosable={true}
-                    maskStyle={
-                              Object {
-                                        "background": "rgba(232,237,239,.65)",
-                                      }
-                    }
                     onCancel={[Function]}
                     style={
                               Object {
@@ -1236,11 +1179,6 @@ ShallowWrapper {
               destroyOnClose={true}
               footer={null}
               maskClosable={true}
-              maskStyle={
-                            Object {
-                                          "background": "rgba(232,237,239,.65)",
-                                        }
-              }
               onCancel={[Function]}
               style={
                             Object {
@@ -1322,9 +1260,6 @@ ShallowWrapper {
               "destroyOnClose": true,
               "footer": null,
               "maskClosable": true,
-              "maskStyle": Object {
-                "background": "rgba(232,237,239,.65)",
-              },
               "onCancel": [Function],
               "style": Object {
                 "marginTop": "1.43rem",
@@ -1396,11 +1331,6 @@ ShallowWrapper {
                         destroyOnClose={true}
                         footer={null}
                         maskClosable={true}
-                        maskStyle={
-                                    Object {
-                                                "background": "rgba(232,237,239,.65)",
-                                              }
-                        }
                         onCancel={[Function]}
                         style={
                                     Object {
@@ -1463,11 +1393,6 @@ ShallowWrapper {
                 destroyOnClose={true}
                 footer={null}
                 maskClosable={true}
-                maskStyle={
-                                Object {
-                                                "background": "rgba(232,237,239,.65)",
-                                              }
-                }
                 onCancel={[Function]}
                 style={
                                 Object {
@@ -1549,9 +1474,6 @@ ShallowWrapper {
                 "destroyOnClose": true,
                 "footer": null,
                 "maskClosable": true,
-                "maskStyle": Object {
-                  "background": "rgba(232,237,239,.65)",
-                },
                 "onCancel": [Function],
                 "style": Object {
                   "marginTop": "1.43rem",

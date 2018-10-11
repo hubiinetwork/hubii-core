@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Spin } from 'antd';
 import Button from 'components/ui/Button';
-import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
+import { ModalFormInput, ModalFormItem } from '../ui/Modal';
 
 /**
  * General styling for ImportWalletForms
@@ -21,12 +21,7 @@ export const FinalHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 1.6rem;
-  color: white;
 
-  p {
-    margin-bottom: 0.25rem;
-  }
   img {
     max-width: 14rem;
     max-height: 5rem;
@@ -34,18 +29,10 @@ export const FinalHeader = styled.div`
   }
 `;
 
-export const StyledModalFormLabel = styled(ModalFormLabel)`
-  height: 1rem;
-  font-size: 0.86rem;
-  font-weight: 400;
-  line-height: 1rem;
-`;
-
 export const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: ${(props) => props.loading ? '1.79rem' : '3.57rem'};
-  margin-bottom: 1.86rem;
+  margin: 1.8rem 0;
 `;
 
 export const StyledButton = styled(Button)`
@@ -55,13 +42,6 @@ export const StyledButton = styled(Button)`
 export const StyledBackButton = styled(Button)`
   width: 5rem;
   margin-right: 1.57rem;
-`;
-
-export const StyledSpan = styled.span`
-  font-size: 0.86rem;
-  font-weight: 400;
-  line-height: 1rem;
-  text-align: center;
 `;
 
 /**

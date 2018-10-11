@@ -27,7 +27,7 @@ export default (type, message, customDuration) => {
   notification.open({
     duration,
     icon: <StyledIcon type={iconType} />,
-    message: <StyledTitle>{message}</StyledTitle>,
+    message: <StyledTitle large>{message}</StyledTitle>,
     description: '',
     placement: 'bottomRight',
     style: { background: color },

@@ -77,10 +77,13 @@
   "babel": {
     "plugins": [
       "styled-components",
-      ["transform-runtime", {
-        "polyfill": false,
-        "regenerator": true
-      }]
+      [
+        "transform-runtime",
+        {
+          "polyfill": false,
+          "regenerator": true
+        }
+      ]
     ],
     "presets": [
       [
@@ -305,6 +308,7 @@
     "lodash.debounce": "^4.0.8",
     "minimist": "1.2.0",
     "moment": "2.22.2",
+    "nahmii-sdk": "^1.0.0-beta.6",
     "prop-types": "15.6.1",
     "qrcode.react": "0.8.0",
     "react": "16.2.0",
@@ -357,7 +361,7 @@
     "copy-webpack-plugin": "4.5.1",
     "coveralls": "2.13.1",
     "css-loader": "0.28.11",
-    "electron": "2.0.2",
+    "electron": "2.0.10",
     "electron-builder": "20.20.4",
     "electron-devtools-installer": "2.2.4",
     "electron-rebuild": "1.7.3",

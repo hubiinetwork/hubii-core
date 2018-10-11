@@ -1,11 +1,8 @@
 import styled from 'styled-components';
-import { Icon, Spin } from 'antd';
-import Button from 'components/ui/Button';
+import { Spin } from 'antd';
 
-export const InfoContent = styled.span`
-  color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 0.93rem;
-`;
+import Button from 'components/ui/Button';
+import Text from 'components/ui/Text';
 
 export const WrapperDiv = styled.div`
   display: flex;
@@ -13,37 +10,9 @@ export const WrapperDiv = styled.div`
   justify-content: space-between;
 `;
 
-export const Info = styled(Icon)`
-  color: ${({ theme }) => theme.palette.secondary4};
-  font-size: 0.93rem;
-  display: flex;
-  align-items: center;
-  &:hover {
-    color: ${({ theme }) => theme.palette.info};
-  }
-`;
-
-export const RoundButton = styled(Button)`
-  width: 2.07rem !important;
-  height: 2.07rem !important;
-`;
-
 export const FinishButton = styled(Button)`
   min-width: 17.14rem;
-  border-width: 0.14rem;
   margin-top: 3rem;
-`;
-
-export const Arrow = styled(Icon)`
-  margin-right: 0.43rem;
-  display: flex;
-  align-items: center;
-  font-weight: 700;
-`;
-
-export const IconWrapper = styled.div`
-  display: flex;
-  margin-top: -0.5rem;
 `;
 
 export const CenterWrapper = styled.div`
@@ -62,19 +31,14 @@ export const WarningList = styled.ul`
 `;
 
 export const WarningPoint = styled.li`
-  color: ${({ theme }) => theme.palette.light};
   line-height: 1.3rem;
-  font-size: 0.9rem;
-  font-weight: 400;
   color: yellow;
   margin-bottom: 0.5rem;
 `;
 
-export const SeedText = styled.span`
+export const SeedText = styled(Text)`
   color: ${({ theme }) => theme.palette.info};
-  font-size: 1.3rem;
-  line-height: 1.2;
-  flex: 0.869;
+  flex: 1;
 `;
 
 export const StyledSpin = styled(Spin)`

@@ -5,10 +5,16 @@ import PropTypes from 'prop-types';
 import { isValidAddress } from 'ethereumjs-util';
 import { gweiToWei, gweiToEther, isAddressMatch } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
+import { getAbsolutePath } from 'utils/electron';
+
 import ComboBoxSelect from 'components/ComboBoxSelect';
+import Input from 'components/ui/Input';
+import Select, { Option } from 'components/ui/Select';
+import { Form, FormItem, FormItemLabel } from 'components/ui/Form';
+import HelperText from 'components/ui/HelperText';
 import { Modal } from 'components/ui/Modal';
 import EditContactModal from 'components/EditContactModal';
-import { getAbsolutePath } from 'utils/electron';
+
 import {
   OuterWrapper,
   ETHtoDollar,
@@ -20,11 +26,9 @@ import {
   TransferDescriptionWrapper,
   TransferFormWrapper,
 } from './TransferForm.style';
-import Select, { Option } from '../ui/Select';
-import { Form, FormItem, FormItemLabel } from '../ui/Form';
-import HelperText from '../ui/HelperText';
 import TransferDescription from '../TransferDescription';
-import Input from '../ui/Input';
+
+
 // valid gwei number is numbers, optionally followed by a . at most 9 more numbers
 const gweiRegex = new RegExp('^\\d+(\\.\\d{0,9})?$');
 
@@ -285,7 +289,6 @@ export default class TransferForm extends React.PureComponent {
           footer={null}
           width={'41.8rem'}
           maskClosable
-          maskStyle={{ background: 'rgba(232,237,239,.65)' }}
           style={{ marginTop: '1.43rem' }}
           visible={addContactModalVisibility}
           onCancel={this.hideContactModal}
