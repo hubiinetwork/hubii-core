@@ -99,9 +99,10 @@ export function* loadTransactions({ address }, network) {
 
 export function* requestToken() {
   while (true) { // eslint-disable-line no-constant-condition
+    let nahmiiProvider;
     try {
       const network = yield select(makeSelectCurrentNetwork());
-      const nahmiiProvider = new nahmii.NahmiiProvider(
+      nahmiiProvider = new nahmii.NahmiiProvider(
         network.walletApiEndpoint(true),
         network.identityServiceAppId,
         network.identityServiceSecret
@@ -113,6 +114,8 @@ export function* requestToken() {
       // try again in 5sec
       const FIVE_SEC_IN_MS = 5 * 5000;
       yield delay(FIVE_SEC_IN_MS);
+    } finally {
+      nahmiiProvider.stopUpdate();
     }
   }
 }
