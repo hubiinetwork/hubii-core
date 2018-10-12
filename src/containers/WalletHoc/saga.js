@@ -299,8 +299,8 @@ export function* signPersonalMessage({ message, wallet }) {
     const bufferParams = fromRpcSig(rpcSig);
     return {
       v: bufferParams.v,
-      r: bufferParams.r.toString('hex'),
-      s: bufferParams.s.toString('hex'),
+      r: `0x${bufferParams.r.toString('hex')}`,
+      s: `0x${bufferParams.s.toString('hex')}`,
     };
   }
   if (wallet.type === 'lns') {

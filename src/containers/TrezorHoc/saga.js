@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron';
 import { eventChannel } from 'redux-saga';
 import { takeEvery, put, call, select, take } from 'redux-saga/effects';
-import { toBuffer, bufferToHex, stripHexPrefix } from 'ethereumjs-util';
+import { fromRpcSig, toBuffer, bufferToHex, stripHexPrefix } from 'ethereumjs-util';
 import { notify } from 'containers/App/actions';
 import { deriveAddresses, prependHexToAddress, isAddressMatch } from 'utils/wallet';
 import { requestHardwareWalletAPI } from 'utils/request';
@@ -112,8 +112,12 @@ export function* signPersonalMessageByTrezor(txHash, walletDetails) {
         message: Buffer.from(txHash).toString('hex'),
       }
     );
-
-    return signedTx;
+    const expandedSig = fromRpcSig(`0x${signedTx.message.signature}`);
+    return {
+      r: bufferToHex(expandedSig.r),
+      s: bufferToHex(expandedSig.s),
+      v: expandedSig.v,
+    };
   } catch (e) {
     const refinedError = trezorError(e);
     throw new Error(refinedError.error);

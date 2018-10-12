@@ -815,9 +815,9 @@ describe('transfer', () => {
 
 describe('#signPersonalMessage', () => {
   const message = '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c';
-  const signedMessage = {
-    r: 'b9540a3867e40c2a9ad8ae684956d285ad147ce34dfdd6dee91928d7caf7008d',
-    s: '051c4bf7557ddeaf243e2a34ef4bd9958dd87ee3d31d644272c066d6b9f42372',
+  const expandedSig = {
+    r: '0xb9540a3867e40c2a9ad8ae684956d285ad147ce34dfdd6dee91928d7caf7008d',
+    s: '0x051c4bf7557ddeaf243e2a34ef4bd9958dd87ee3d31d644272c066d6b9f42372',
     v: 28,
   };
 
@@ -825,12 +825,17 @@ describe('#signPersonalMessage', () => {
     const wallet = decryptedSoftwareWallet1Mock.toJS();
     const expectedResult = {
       done: true,
-      value: signedMessage,
+      value: expandedSig,
     };
     const putDescriptor = signPersonalMessage({ message, wallet }).next();
     expect(putDescriptor).toEqual(expectedResult);
   });
   it('should run the function relevant to a lns', async () => {
+    const ledgerExpandedSig = {
+      r: 'b9540a3867e40c2a9ad8ae684956d285ad147ce34dfdd6dee91928d7caf7008d',
+      s: '051c4bf7557ddeaf243e2a34ef4bd9958dd87ee3d31d644272c066d6b9f42372',
+      v: 28,
+    };
     const mockState = storeMock.set('ledgerHoc', fromJS({
       descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC@14/XHC@14000000/HS09@14900000/Nano S@14900000/Nano S@0/IOUSBHostHIDDevice@14900000,0',
     }));
@@ -838,18 +843,27 @@ describe('#signPersonalMessage', () => {
         .provide({
           call(effect) {
             if (effect.fn === tryCreateEthTransportActivity) {
-              return signedMessage;
+              return ledgerExpandedSig;
             }
             return {};
           },
         })
         .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), mockState)
         .run({ silenceTimeout: true });
-    expect(returnValue).toEqual(signedMessage);
+    expect(returnValue).toEqual(expandedSig);
   });
 
   it('should run the function relevant to a trezor', async () => {
+    const trezorFlatFormSig = '944cd5778ce7376fcb8e24bb19b5fc86792b40a9b8b5836b887f7db8ac3859bd7f382f8fc108126725315ac4dc06a37b1345050913aa74bb09d9ab78e61d26b600';
+    const trezorExpandedSig = {
+      r: '0x944cd5778ce7376fcb8e24bb19b5fc86792b40a9b8b5836b887f7db8ac3859bd',
+      s: '0x7f382f8fc108126725315ac4dc06a37b1345050913aa74bb09d9ab78e61d26b6',
+      v: 27,
+    };
     const address = trezorWalletMock.get('address');
+    const trezorSignedMessage = {
+      message: { signature: trezorFlatFormSig },
+    };
     const expectedReturnAddress = address.slice(2);
     const mockState = storeMock.set('trezorHoc', fromJS({
       id: transactionsMock.toJS().deviceId,
@@ -859,7 +873,7 @@ describe('#signPersonalMessage', () => {
         .provide({
           call(effect) {
             if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'signpersonalmessage') {
-              return signedMessage;
+              return trezorSignedMessage;
             }
             if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'getaddress') {
               return { address: expectedReturnAddress };
@@ -869,7 +883,7 @@ describe('#signPersonalMessage', () => {
         })
         .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), mockState)
         .run({ silenceTimeout: true });
-    expect(returnValue).toEqual(signedMessage);
+    expect(returnValue).toEqual(trezorExpandedSig);
   });
 });
 
