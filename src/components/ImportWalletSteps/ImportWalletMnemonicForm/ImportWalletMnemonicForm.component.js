@@ -29,7 +29,7 @@ class ImportWalletMnemonicForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     const { form, handleNext, loading, intl } = this.props;
-    const {formatMessage} = intl
+    const { formatMessage } = intl;
     const { derivationPath } = this.state;
     return (
       <div>
@@ -45,7 +45,7 @@ class ImportWalletMnemonicForm extends React.Component {
         >
           <WidthEighty>
             <FinalHeader>
-              <Heading>{formatMessage({id: 'import_from'})}</Heading>
+              <Heading>{formatMessage({ id: 'import_from' })}</Heading>
               <img
                 src={getAbsolutePath('public/images/mnemonic.png')}
                 alt="import method icon"
@@ -55,14 +55,14 @@ class ImportWalletMnemonicForm extends React.Component {
             <ModalFormItem
               label={
                 <ModalFormLabel>
-                  {formatMessage({id: 'enter_wallet_name'})}
+                  {formatMessage({ id: 'enter_wallet_name' })}
                 </ModalFormLabel>
               }
             >
               {getFieldDecorator('name', {
                 rules: [
                   {
-                    message: formatMessage({id: 'please_enter_wallet_name'}),
+                    message: formatMessage({ id: 'please_enter_wallet_name' }),
                     required: true,
                     whitespace: true,
                   },
@@ -72,14 +72,14 @@ class ImportWalletMnemonicForm extends React.Component {
             <ModalFormItem
               label={
                 <ModalFormLabel>
-                  {formatMessage({id: 'enter_wallet_mnemonic'})}
+                  {formatMessage({ id: 'enter_wallet_mnemonic' })}
                 </ModalFormLabel>
               }
             >
               {getFieldDecorator('mnemonic', {
                 rules: [
                   {
-                    message: formatMessage({id: 'please_enter_wallet_mnemonic'}),
+                    message: formatMessage({ id: 'please_enter_wallet_mnemonic' }),
                     required: true,
                     whitespace: true,
                   },
@@ -88,26 +88,26 @@ class ImportWalletMnemonicForm extends React.Component {
             </ModalFormItem>
             <ModalFormItem
               label={
-                <ModalFormLabel>{formatMessage({id: 'enter_wallet_password'})}</ModalFormLabel>
+                <ModalFormLabel>{formatMessage({ id: 'enter_wallet_password' })}</ModalFormLabel>
               }
             >
               {getFieldDecorator('password', {
                 rules: [
                   {
-                    message: formatMessage({id: 'please_enter_wallet_password'}),
+                    message: formatMessage({ id: 'please_enter_wallet_password' }),
                     required: true,
                     whitespace: true,
                   },
                   {
                     min: 8,
-                    message: formatMessage({id: 'password_8chart_min'}),
+                    message: formatMessage({ id: 'password_8chart_min' }),
                   },
                 ],
               })(<ModalFormInput type="password" disabled={loading} />)}
             </ModalFormItem>
             <ModalFormItem
               label={
-                <ModalFormLabel>{formatMessage({id: 'repeat_password'})}</ModalFormLabel>
+                <ModalFormLabel>{formatMessage({ id: 'repeat_password' })}</ModalFormLabel>
               }
             >
               {getFieldDecorator('repeatPassword', {
@@ -115,7 +115,7 @@ class ImportWalletMnemonicForm extends React.Component {
                   {
                     required: true,
                     whitespace: true,
-                    message: formatMessage({id: 'confirm_password'}),
+                    message: formatMessage({ id: 'confirm_password' }),
                   },
                   {
                     validator: (rule, value, callback) => compareToFirstPassword(form, rule, value, callback),
@@ -136,10 +136,10 @@ class ImportWalletMnemonicForm extends React.Component {
               (
                 <ButtonDiv>
                   <StyledBackButton type="default" onClick={this.props.handleBack}>
-                    <Text>{formatMessage({id: 'back'})}</Text>
+                    <Text>{formatMessage({ id: 'back' })}</Text>
                   </StyledBackButton>
                   <StyledButton type="primary" htmlType="submit">
-                    <Text>{formatMessage({id: 'import_wallet'})}</Text>
+                    <Text>{formatMessage({ id: 'import_wallet' })}</Text>
                   </StyledButton>
                 </ButtonDiv>
               )
@@ -168,6 +168,7 @@ ImportWalletMnemonicForm.propTypes = {
    * loading
    */
   loading: PropTypes.bool.isRequired,
+  intl: PropTypes.object,
 };
 
 export default Form.create()(injectIntl(ImportWalletMnemonicForm));

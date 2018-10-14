@@ -11,12 +11,12 @@ import { humanFriendlyWalletType } from '../../../utils/wallet';
 
 const WalletDetailPopoverContent = (props) => {
   const description = walletTypeDescriptions[props.type];
-  const {formatMessage} = props.intl
+  const { formatMessage } = props.intl;
   return (
     <Wrapper>
-      <div>{formatMessage({id: humanFriendlyWalletType(props.type)})}</div>
+      <div>{formatMessage({ id: humanFriendlyWalletType(props.type) })}</div>
       <Subtitle>{description}</Subtitle>
-      <div>{formatMessage({id: 'address'})}</div>
+      <div>{formatMessage({ id: 'address' })}</div>
       <Subtitle>{props.address}</Subtitle>
     </Wrapper>
   );
@@ -31,6 +31,7 @@ WalletDetailPopoverContent.propTypes = {
    * type of wallet item.
    */
   type: PropTypes.string.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 export default injectIntl(WalletDetailPopoverContent);

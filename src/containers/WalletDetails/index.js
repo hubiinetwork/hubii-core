@@ -43,7 +43,7 @@ export class WalletDetails extends React.PureComponent {
 
   render() {
     const { history, match, currentWalletDetails, intl } = this.props;
-    const {formatMessage} = intl
+    const { formatMessage } = intl;
     const currentWallet = currentWalletDetails;
     if (!currentWallet || currentWallet === fromJS({})) {
       return null;
@@ -69,7 +69,7 @@ export class WalletDetails extends React.PureComponent {
           <TabPane
             tab={
               <span>
-                <Icon type="wallet" />{formatMessage({id: 'details'})}
+                <Icon type="wallet" />{formatMessage({ id: 'details' })}
               </span>
             }
             key={`${match.url}/overview`}
@@ -100,7 +100,7 @@ export class WalletDetails extends React.PureComponent {
                     />
                   </g>
                 </svg>
-                {formatMessage({id: 'transfer'})}
+                {formatMessage({ id: 'transfer' })}
               </span>
             }
             key={`${match.url}/transfer`}
@@ -110,7 +110,7 @@ export class WalletDetails extends React.PureComponent {
           <TabPane
             tab={
               <span>
-                <Icon type="shopping-cart" />{formatMessage({id: 'buy_eth'})}
+                <Icon type="shopping-cart" />{formatMessage({ id: 'buy_eth' })}
               </span>
             }
             key={`${match.url}/buyeth`}
@@ -131,6 +131,7 @@ WalletDetails.propTypes = {
   match: PropTypes.object.isRequired,
   currentWalletDetails: PropTypes.object.isRequired,
   setCurrentWallet: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

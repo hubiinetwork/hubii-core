@@ -48,7 +48,7 @@ export class WalletItemCard extends React.PureComponent {
 
   settingsMenu(walletType) {
     const menuItems = [];
-    const {formatMessage} = this.props.intl;
+    const { formatMessage } = this.props.intl;
     menuItems.push(
       <MenuItem
         key="1"
@@ -56,14 +56,14 @@ export class WalletItemCard extends React.PureComponent {
           this.setState({ modalVisibility: true, modalType: 'deleteWallet' })
         }
       >
-        {formatMessage({id: 'delete_wallet'})}
+        {formatMessage({ id: 'delete_wallet' })}
       </MenuItem>
     );
     if (walletType === 'software') {
       menuItems.push(<MenuDivider key="2" />);
       menuItems.push(
         <MenuItem key="3" onClick={this.handleExportSeedWords}>
-          {formatMessage({id: 'backup_wallet'})}
+          {formatMessage({ id: 'backup_wallet' })}
         </MenuItem>
       );
     }
@@ -127,7 +127,7 @@ export class WalletItemCard extends React.PureComponent {
       privateKey,
     } = this.props;
 
-    const {formatMessage} = this.props.intl
+    const { formatMessage } = this.props.intl;
 
     const { modalVisibility, modalType } = this.state;
 
@@ -202,7 +202,7 @@ export class WalletItemCard extends React.PureComponent {
           </LeftSideWrapper>
           <AssetsWrapper>
             {
-              balancesError && <WalletName>{formatMessage({id: 'fetch_balance_error'})}</WalletName>
+              balancesError && <WalletName>{formatMessage({ id: 'fetch_balance_error' })}</WalletName>
             }
             {
               balancesLoading &&
@@ -297,6 +297,7 @@ WalletItemCard.propTypes = {
    * Price list
    */
   priceInfo: PropTypes.arrayOf(PropTypes.object),
+  intl: PropTypes.object,
 };
 
 export default injectIntl(WalletItemCard);

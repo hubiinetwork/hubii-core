@@ -18,32 +18,32 @@ import {
  * DeletionModal
  */
 const DeletionModal = (props) => {
-  const {formatMessage} = props.intl
+  const { formatMessage } = props.intl;
   return (
-  <Wrapper>
-    <TopHeading> {formatMessage({id: 'delete_confirm'}, {type: props.type})}</TopHeading>
-    <TextPrimary>
-      <div style={{ marginBottom: '0.5rem' }}>
-        <SecondaryHeader large>{formatMessage({id: 'name'})}</SecondaryHeader>
-        <br />
-        <Text>{props.name}</Text>
-      </div>
-      <div>
-        <SecondaryHeader large>{formatMessage({id: 'address'})}</SecondaryHeader>
-        <br />
-        <Text>{props.address}</Text>
-      </div>
-    </TextPrimary>
-    <ParentDiv>
-      <StyledButton type="danger" onClick={props.onDelete} id="delete">
-      {formatMessage({id: 'delete'})}
-      </StyledButton>
-      <StyledButton type="default" onClick={props.onCancel} id="cancel">
-      {formatMessage({id: 'cancel'})}
-      </StyledButton>
-    </ParentDiv>
-  </Wrapper>
-  )
+    <Wrapper>
+      <TopHeading> {formatMessage({ id: 'delete_confirm' }, { type: props.type })}</TopHeading>
+      <TextPrimary>
+        <div style={{ marginBottom: '0.5rem' }}>
+          <SecondaryHeader large>{formatMessage({ id: 'name' })}</SecondaryHeader>
+          <br />
+          <Text>{props.name}</Text>
+        </div>
+        <div>
+          <SecondaryHeader large>{formatMessage({ id: 'address' })}</SecondaryHeader>
+          <br />
+          <Text>{props.address}</Text>
+        </div>
+      </TextPrimary>
+      <ParentDiv>
+        <StyledButton type="danger" onClick={props.onDelete} id="delete">
+          {formatMessage({ id: 'delete' })}
+        </StyledButton>
+        <StyledButton type="default" onClick={props.onCancel} id="cancel">
+          {formatMessage({ id: 'cancel' })}
+        </StyledButton>
+      </ParentDiv>
+    </Wrapper>
+  );
 };
 DeletionModal.propTypes = {
   /**
@@ -66,5 +66,6 @@ DeletionModal.propTypes = {
    * Type of Deletion (i.e "wallet", "contact")
    */
   type: PropTypes.string.isRequired,
+  intl: PropTypes.object,
 };
 export default injectIntl(DeletionModal);

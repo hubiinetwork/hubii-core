@@ -26,30 +26,30 @@ class DerivationPath extends React.Component {
       onChangePathBase,
       intl,
     } = this.props;
-    const {formatMessage} = intl
+    const { formatMessage } = intl;
     const derivationPathBases = [
       {
         title: 'm/44\'/60\'/0\'/0',
-        subtitle: formatMessage({id: 'derivation_title_1'}),
+        subtitle: formatMessage({ id: 'derivation_title_1' }),
       },
       {
         title: 'm/44\'/60\'/0\'',
-        subtitle: formatMessage({id: 'derivation_title_2'}),
+        subtitle: formatMessage({ id: 'derivation_title_2' }),
       },
     ];
-    
+
     const columns = [{
-      title: formatMessage({id: 'index'}),
+      title: formatMessage({ id: 'index' }),
       dataIndex: 'index',
       key: 'index',
     },
     {
-      title: formatMessage({id: 'address'}),
+      title: formatMessage({ id: 'address' }),
       dataIndex: 'address',
       key: 'address',
     },
     {
-      title: formatMessage({id: 'eth_balance'}),
+      title: formatMessage({ id: 'eth_balance' }),
       dataIndex: 'ethBalance',
       key: 'ethBalance',
     }];
@@ -57,7 +57,7 @@ class DerivationPath extends React.Component {
       <Form onSubmit={this.handleNext}>
         <FormDiv>
           <div>
-            <StyledHeading>{formatMessage({id: 'select_derivation_path'})}</StyledHeading>
+            <StyledHeading>{formatMessage({ id: 'select_derivation_path' })}</StyledHeading>
             <RadioGroup
               defaultValue={pathBase}
               size="small"
@@ -78,7 +78,7 @@ class DerivationPath extends React.Component {
             </RadioGroup>
           </div>
           <StyledHeading>
-            {formatMessage({id: 'select_import_address'})}
+            {formatMessage({ id: 'select_import_address' })}
           </StyledHeading>
           <Table
             onRow={(record) => ({
@@ -114,6 +114,7 @@ DerivationPath.propTypes = {
    * callback when user changes the path base
    */
   onSelectAddress: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 export default injectIntl(DerivationPath);

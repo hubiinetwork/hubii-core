@@ -33,21 +33,21 @@ class AddRestoreWalletModal extends React.Component {
   render() {
     const { modalType } = this.state;
     const { loading, intl } = this.props;
-    const {formatMessage} = intl
+    const { formatMessage } = intl;
     return (
       <div>
         {modalType === 'main' && (
           <Container>
             <StyledHeading large>
-              {formatMessage({id: 'import_wallet_question'})}<br />
+              {formatMessage({ id: 'import_wallet_question' })}<br />
             </StyledHeading>
             <StyledButton onClick={() => this.switchModals('add')}>
               <Icon type="plus" />
-              <Text>{formatMessage({id: 'create_new_wallet'})}</Text>
+              <Text>{formatMessage({ id: 'create_new_wallet' })}</Text>
             </StyledButton>
             <StyledButton onClick={() => this.switchModals('import')}>
               <Icon type="download" />
-              <span>{formatMessage({id: 'import_exist_wallet'})}</span>
+              <span>{formatMessage({ id: 'import_exist_wallet' })}</span>
             </StyledButton>
           </Container>
         )}
@@ -65,7 +65,7 @@ class AddRestoreWalletModal extends React.Component {
                   type="arrow-left"
                   onClick={() => this.switchModals('main')}
                 />
-                <Text large>{formatMessage({id: 'create_wallet'})}</Text>
+                <Text large>{formatMessage({ id: 'create_wallet' })}</Text>
               </IconWrapper>
             </div>
             <AddWallet loading={loading.toJS().creatingWallet} handleSubmit={this.props.handleAddWalletSubmit} />
@@ -118,6 +118,7 @@ AddRestoreWalletModal.propTypes = {
    */
 
   loading: PropTypes.object.isRequired,
+  intl: PropTypes.object,
 };
 
-export default injectIntl(AddRestoreWalletModal)
+export default injectIntl(AddRestoreWalletModal);

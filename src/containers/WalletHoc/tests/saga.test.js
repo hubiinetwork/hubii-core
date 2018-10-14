@@ -123,20 +123,20 @@ describe('createWalletFromMnemonic saga', () => {
       it('when mnemonic is invalid', () => {
         const invalidMnemonic = 'rubbish';
         expectSaga(createWalletFromMnemonic, { name, invalidMnemonic, derivationPath, password })
-          .put(notify('error', `import_wallet_failed_error`))
+          .put(notify('error', 'import_wallet_failed_error'))
           .put(createWalletFailed(new Error('invalid_param_error')))
           .run({ silenceTimeout: true });
       });
       it('when mnemonic is not given', () => expectSaga(createWalletFromMnemonic, { name, derivationPath, password })
-        .put(notify('error', `import_wallet_failed_error`))
+        .put(notify('error', 'import_wallet_failed_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
         .run({ silenceTimeout: true }));
       it('when derivation path is not given', () => expectSaga(createWalletFromMnemonic, { name, mnemonic, password })
-        .put(notify('error', `import_wallet_failed_error`))
+        .put(notify('error', 'import_wallet_failed_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
         .run({ silenceTimeout: true }));
       it('when password is not given', () => expectSaga(createWalletFromMnemonic, { name, mnemonic, derivationPath })
-        .put(notify('error', `import_wallet_failed_error`))
+        .put(notify('error', 'import_wallet_failed_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
         .run({ silenceTimeout: true }));
     });
@@ -168,15 +168,15 @@ describe('createWalletFromMnemonic saga', () => {
     );
     describe('exceptions', () => {
       it('when private key is invalid', () => expectSaga(createWalletFromPrivateKey, { privateKeyMock: null, name, password: pwd })
-        .put(notify('error', `import_wallet_failed_error`))
+        .put(notify('error', 'import_wallet_failed_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
           .run({ silenceTimeout: true }));
       it('when address is not given', () => expectSaga(createWalletFromPrivateKey, { privateKeyMock, address: null, password: pwd })
-        .put(notify('error', `import_wallet_failed_error`))
+        .put(notify('error', 'import_wallet_failed_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
           .run({ silenceTimeout: true }));
       it('when password is not given', () => expectSaga(createWalletFromPrivateKey, { privateKeyMock, name, password: null })
-        .put(notify('error', `import_wallet_failed_error`))
+        .put(notify('error', 'import_wallet_failed_error'))
         .put(createWalletFailed(new Error('invalid_param_error')))
           .run({ silenceTimeout: true }));
     });
@@ -243,7 +243,7 @@ describe('CREATE_WALLET_SUCCESS', () => {
     newWallet.name = 'new name';
     return expectSaga(hookNewWalletCreated, { newWallet })
       .withReducer(withReducer, fromJS(storeState))
-      .put(notify('error', `wallet_address_exist_error`))
+      .put(notify('error', 'wallet_address_exist_error'))
       .run({ silenceTimeout: true })
       .then((result) => {
         const wallets = result.storeState.getIn(['walletHoc', 'wallets']);
@@ -263,7 +263,7 @@ describe('CREATE_WALLET_SUCCESS', () => {
     newWallet.address = '0x02';
     return expectSaga(hookNewWalletCreated, { newWallet })
       .withReducer(withReducer, fromJS(storeState))
-      .put(notify('error', `wallet_name_exist_error`))
+      .put(notify('error', 'wallet_name_exist_error'))
       .run({ silenceTimeout: true })
       .then((result) => {
         const wallets = result.storeState.getIn(['walletHoc', 'wallets']);
@@ -306,7 +306,7 @@ describe('decryptWallet saga', () => {
     const error = new Error('address_undefined_error');
     expect(putDescriptor).toEqual(put(decryptWalletFailed(error)));
     putDescriptor = decryptWalletGenerator.next().value;
-    expect(putDescriptor).toEqual(put(notify('error', `unlock_wallet_failed_error`)));
+    expect(putDescriptor).toEqual(put(notify('error', 'unlock_wallet_failed_error')));
   });
 
   it('should dispatch the decryptWalletFailed and notify action if decryption fails', () => {
@@ -318,7 +318,7 @@ describe('decryptWallet saga', () => {
     let putDescriptor = decryptWalletGenerator.next(error).value;
     expect(putDescriptor).toEqual(put(decryptWalletFailed(error)));
     putDescriptor = decryptWalletGenerator.next().value;
-    expect(putDescriptor).toEqual(put(notify('error', `unlock_wallet_failed_error`)));
+    expect(putDescriptor).toEqual(put(notify('error', 'unlock_wallet_failed_error')));
   });
 });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { EditContactModal } from '../EditContactModal.component';
-import {intl} from '../../../../__mocks__/react-intl'
+import { intl } from '../../../../__mocks__/react-intl';
 
 describe('EditContactModal', () => {
   describe('shallow mount', () => {

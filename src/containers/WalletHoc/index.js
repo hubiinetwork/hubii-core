@@ -64,8 +64,8 @@ export function getComponentHOC(Component) {
     }
 
     componentDidMount() {
-      const {formatMessage} = this.props.intl
-      this.props.notify('info', formatMessage({id: 'welcome_testnet'}), 18);
+      const { formatMessage } = this.props.intl;
+      this.props.notify('info', formatMessage({ id: 'welcome_testnet' }), 18);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -134,6 +134,7 @@ export function getComponentHOC(Component) {
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
     loading: PropTypes.object,
+    intl: PropTypes.object.isRequired,
   };
   return injectIntl(HOC);
 }

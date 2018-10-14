@@ -49,9 +49,9 @@ class AddWallet extends React.PureComponent {
   }
   compareToFirstPassword(rule, value, callback) {
     const form = this.props.form;
-    const {formatMessage} = this.props.intl
+    const { formatMessage } = this.props.intl;
     if (value && value !== form.getFieldValue('password')) {
-      callback(formatMessage({id: 'password_notmatch'}));
+      callback(formatMessage({ id: 'password_notmatch' }));
     } else {
       callback();
     }
@@ -76,15 +76,15 @@ class AddWallet extends React.PureComponent {
     });
   }
   showNotification() {
-    const {formatMessage} = this.props.intl
+    const { formatMessage } = this.props.intl;
     const success = true;
-    const message = formatMessage({id: 'mnemonic_clipboard'});
+    const message = formatMessage({ id: 'mnemonic_clipboard' });
     Notification(success, message);
   }
   render() {
     const { getFieldDecorator } = this.props.form;
     const { loading, intl } = this.props;
-    const {formatMessage} = intl
+    const { formatMessage } = intl;
     return (
       <div>
         <Row justify="center" type="flex">
@@ -97,34 +97,34 @@ class AddWallet extends React.PureComponent {
               }}
             >
               <FinalHeader>
-                <Heading large>{formatMessage({id: 'create_new_wallet'})}</Heading>
+                <Heading large>{formatMessage({ id: 'create_new_wallet' })}</Heading>
               </FinalHeader>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>{formatMessage({id: 'enter_wallet_name'})}</ModalFormLabel>}
+                label={<ModalFormLabel>{formatMessage({ id: 'enter_wallet_name' })}</ModalFormLabel>}
               >
                 {getFieldDecorator('name', {
                   rules: [
                     {
                       required: true,
-                      message: formatMessage({id: 'please_enter_wallet_name'}),
+                      message: formatMessage({ id: 'please_enter_wallet_name' }),
                     },
                   ],
                 })(<ModalFormInput disabled={loading} />)}
               </ModalFormItem>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>{formatMessage({id: 'enter_wallet_password'})}</ModalFormLabel>}
+                label={<ModalFormLabel>{formatMessage({ id: 'enter_wallet_password' })}</ModalFormLabel>}
               >
                 {getFieldDecorator('password', {
                   rules: [
                     {
                       required: true,
-                      message: formatMessage({id: 'please_enter_wallet_password'}),
+                      message: formatMessage({ id: 'please_enter_wallet_password' }),
                     },
                     {
                       min: 8,
-                      message: formatMessage({id: 'password_8chart_min'}),
+                      message: formatMessage({ id: 'password_8chart_min' }),
                     },
                     {
                       validator: this.validateToNextPassword,
@@ -134,13 +134,13 @@ class AddWallet extends React.PureComponent {
               </ModalFormItem>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>{formatMessage({id: 'repeat_password'})}</ModalFormLabel>}
+                label={<ModalFormLabel>{formatMessage({ id: 'repeat_password' })}</ModalFormLabel>}
               >
                 {getFieldDecorator('confirm', {
                   rules: [
                     {
                       required: true,
-                      message: formatMessage({id: 'confirm_password'}),
+                      message: formatMessage({ id: 'confirm_password' }),
                     },
                     {
                       validator: this.compareToFirstPassword,
@@ -156,10 +156,10 @@ class AddWallet extends React.PureComponent {
               </ModalFormItem>
               <ModalFormItem colon={false}>
                 <WarningList>
-                  <WarningPoint>{formatMessage({id: 'wallet_mnemonic_phrase_warning_1'})}</WarningPoint>
-                  <WarningPoint>{formatMessage({id: 'wallet_mnemonic_phrase_warning_2'})}</WarningPoint>
-                  <WarningPoint>{formatMessage({id: 'wallet_mnemonic_phrase_warning_3'})}</WarningPoint>
-                  <WarningPoint>{formatMessage({id: 'wallet_mnemonic_phrase_warning_4'})}</WarningPoint>
+                  <WarningPoint>{formatMessage({ id: 'wallet_mnemonic_phrase_warning_1' })}</WarningPoint>
+                  <WarningPoint>{formatMessage({ id: 'wallet_mnemonic_phrase_warning_2' })}</WarningPoint>
+                  <WarningPoint>{formatMessage({ id: 'wallet_mnemonic_phrase_warning_3' })}</WarningPoint>
+                  <WarningPoint>{formatMessage({ id: 'wallet_mnemonic_phrase_warning_4' })}</WarningPoint>
                 </WarningList>
               </ModalFormItem>
               <ModalFormItem colon={false}>
@@ -184,7 +184,7 @@ class AddWallet extends React.PureComponent {
                   />
                 ) : (
                   <FinishButton type="primary" htmlType="submit">
-                    {formatMessage({id: 'create_wallet'})}
+                    {formatMessage({ id: 'create_wallet' })}
                   </FinishButton>
                 )}
               </CenterWrapper>
@@ -211,6 +211,7 @@ AddWallet.propTypes = {
    */
 
   loading: PropTypes.bool,
+  intl: PropTypes.object.isRequired,
 };
 
 export default Form.create()(injectIntl(AddWallet));

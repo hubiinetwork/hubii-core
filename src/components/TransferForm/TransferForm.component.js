@@ -211,12 +211,13 @@ class TransferForm extends React.PureComponent {
   }
 
   handleRecipient(value) {
+    const { formatMessage } = this.props.intl;
     let address = value;
     const recipientMatch = this.props.recipients.find((contact) => contact.name.toLowerCase() === value.toLowerCase() || isAddressMatch(contact.address, value));
     if (recipientMatch && !isValidAddress(value)) {
       address = recipientMatch.address;
     } else if (!recipientMatch && !isValidAddress(value)) {
-      address = formatMessage({id: 'enter_valid_address_contact'});
+      address = formatMessage({ id: 'enter_valid_address_contact' });
     }
     this.setState({
       address,
@@ -237,7 +238,7 @@ class TransferForm extends React.PureComponent {
     } = this.state;
 
     const { currentWalletUsdBalance, assets, prices, recipients, transfering, intl } = this.props;
-    const {formatMessage} = intl
+    const { formatMessage } = intl;
 
     const assetToSendUsdValue = prices.assets
       .find((a) => a.currency === assetToSend.currency).usd;
@@ -300,7 +301,7 @@ class TransferForm extends React.PureComponent {
             onEdit={(contact) => this.onCreateContact(contact)}
             contacts={recipients}
             quickAddAddress={address}
-            confirmText={formatMessage({id: 'create_contact'})}
+            confirmText={formatMessage({ id: 'create_contact' })}
           />
         </Modal>
 
@@ -308,7 +309,7 @@ class TransferForm extends React.PureComponent {
           <TransferFormWrapper>
             <Form>
               <FormItem
-                label={<FormItemLabel>{formatMessage({id: 'select_asset'})}</FormItemLabel>}
+                label={<FormItemLabel>{formatMessage({ id: 'select_asset' })}</FormItemLabel>}
                 colon={false}
               >
                 <Image
@@ -329,7 +330,7 @@ class TransferForm extends React.PureComponent {
                 </Select>
               </FormItem>
               <FormItem
-                label={<FormItemLabel>{formatMessage({id: 'select_recipient'})}</FormItemLabel>}
+                label={<FormItemLabel>{formatMessage({ id: 'select_recipient' })}</FormItemLabel>}
                 colon={false}
                 help={
                   this.props.recipients.find((recipient) => isAddressMatch(recipient.address, address)) ?
@@ -341,8 +342,8 @@ class TransferForm extends React.PureComponent {
                       onClick={this.showContactModal}
                     >
                       <Icon type="plus" />
-                      {formatMessage({id: 'add_address_contacts_book'})}
-                  </StyledButton>
+                      {formatMessage({ id: 'add_address_contacts_book' })}
+                    </StyledButton>
                 }
               >
                 <ComboBoxSelect
@@ -350,13 +351,13 @@ class TransferForm extends React.PureComponent {
                   options={recipients.map((recipient) => ({ name: recipient.name, value: recipient.address }))}
                   handleSelect={(value) => this.handleRecipient(value)}
                   addInputValidator={(value) => isValidAddress(value)}
-                  invalidAdditionMessage={formatMessage({id: 'enter_valid_address_contact'})}
+                  invalidAdditionMessage={formatMessage({ id: 'enter_valid_address_contact' })}
                 />
               </FormItem>
               <FormItem
-                label={<FormItemLabel>{formatMessage({id: 'enter_amount'})}</FormItemLabel>}
+                label={<FormItemLabel>{formatMessage({ id: 'enter_amount' })}</FormItemLabel>}
                 colon={false}
-                help={<HelperText left={formatFiat(usdValueToSend, 'USD')} right={formatMessage({id: 'usd'})} />}
+                help={<HelperText left={formatFiat(usdValueToSend, 'USD')} right={formatMessage({ id: 'usd' })} />}
               >
                 <Input
                   disabled={transfering}
@@ -369,10 +370,10 @@ class TransferForm extends React.PureComponent {
               </FormItem>
               <Collapse bordered={false} defaultActiveKey={['2']}>
                 <Panel
-                  header={<AdvanceSettingsHeader>{formatMessage({id: 'advanced_settings'})}</AdvanceSettingsHeader>}
+                  header={<AdvanceSettingsHeader>{formatMessage({ id: 'advanced_settings' })}</AdvanceSettingsHeader>}
                   key="1"
                 >
-                  <FormItem label={<FormItemLabel>{formatMessage({id: 'gas_price'})}</FormItemLabel>} colon={false}>
+                  <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_price' })}</FormItemLabel>} colon={false}>
                     <Input
                       disabled={transfering}
                       min={0}
@@ -383,7 +384,7 @@ class TransferForm extends React.PureComponent {
                       onBlur={() => this.onBlurNumberInput('gasPriceGweiInput')}
                     />
                   </FormItem>
-                  <FormItem label={<FormItemLabel>{formatMessage({id: 'gas_limit'})}</FormItemLabel>} colon={false}>
+                  <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_limit' })}</FormItemLabel>} colon={false}>
                     <Input
                       disabled={transfering}
                       value={gasLimitInput}
@@ -440,5 +441,6 @@ TransferForm.propTypes = {
   transfering: PropTypes.bool,
   hwWalletReady: PropTypes.bool.isRequired,
   createContact: PropTypes.func.isRequired,
+  intl: PropTypes.object,
 };
-export default injectIntl(TransferForm)
+export default injectIntl(TransferForm);

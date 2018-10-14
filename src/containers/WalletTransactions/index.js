@@ -81,7 +81,7 @@ export class WalletsTransactions extends React.Component {
   render() {
     const { currentWalletWithInfo, supportedAssets, currentNetwork, intl } = this.props;
     const { expandedTxs, currentPage } = this.state;
-    const {formatMessage} = intl
+    const { formatMessage } = intl;
     const start = (currentPage - 1) * 10;
     const end = start + 10;
     const txToShow = currentWalletWithInfo.getIn(['transactions', 'transactions'])
@@ -96,7 +96,7 @@ export class WalletsTransactions extends React.Component {
     ) {
       return (
         <LoadingWrapper>
-          <StyledSpin size="large" tip={formatMessage({id: 'synchronising'})}></StyledSpin>
+          <StyledSpin size="large" tip={formatMessage({ id: 'synchronising' })}></StyledSpin>
         </LoadingWrapper>
       );
     }
@@ -106,15 +106,15 @@ export class WalletsTransactions extends React.Component {
       currentWalletWithInfo.getIn(['balances', 'error']) ||
       supportedAssets.get('error')
     ) {
-      return <NoTxPlaceholder>{ formatMessage({id: 'fetch_transactions_error'}) }</NoTxPlaceholder>;
+      return <NoTxPlaceholder>{ formatMessage({ id: 'fetch_transactions_error' }) }</NoTxPlaceholder>;
     }
     if (currentWalletWithInfo.getIn(['transactions', 'transactions']).size === 0) {
-      return <NoTxPlaceholder>{ formatMessage({id: 'no_transaction_history'}) }</NoTxPlaceholder>;
+      return <NoTxPlaceholder>{ formatMessage({ id: 'no_transaction_history' }) }</NoTxPlaceholder>;
     }
     return (
       <OuterWrapper>
         <TransactionsWrapper>
-          <SectionHeading>{formatMessage({id: 'transaction_history'})}</SectionHeading>
+          <SectionHeading>{formatMessage({ id: 'transaction_history' })}</SectionHeading>
           {txToShow.map((tx) => (
             <StyledTransaction
               key={uuid()}
@@ -143,14 +143,14 @@ export class WalletsTransactions extends React.Component {
             onChange={this.onPaginationChange}
           />
           <Alert
-            message={formatMessage({id: 'where_my_transaction'})}
+            message={formatMessage({ id: 'where_my_transaction' })}
             description={
               <div>
                 <span>
-                  {formatMessage({id: 'my_transaction_notes_1'})}
+                  {formatMessage({ id: 'my_transaction_notes_1' })}
                 </span>
                 <br />
-                  {formatMessage({id: 'my_transaction_notes_2'})}
+                {formatMessage({ id: 'my_transaction_notes_2' })}
                 <a
                   role="link"
                   tabIndex={0}
@@ -159,7 +159,7 @@ export class WalletsTransactions extends React.Component {
                       () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
                       () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
                   }
-                >{formatMessage({id: 'view_them_etherscan'})}</a>
+                >{formatMessage({ id: 'view_them_etherscan' })}</a>
                 <span>.</span>
               </div>
               }
@@ -184,6 +184,7 @@ WalletsTransactions.propTypes = {
   supportedAssets: PropTypes.object.isRequired,
   blockHeight: PropTypes.object.isRequired,
   currentNetwork: PropTypes.object.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

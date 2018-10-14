@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { fromJS } from 'immutable';
 import { ContactBook, mapDispatchToProps } from '../index';
 import { removeContact, editContact } from '../actions';
-import {intl} from '../../../../__mocks__/react-intl'
+import { intl } from '../../../../__mocks__/react-intl';
 
 
 describe('<ContactBook />', () => {

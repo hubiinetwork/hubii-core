@@ -1,4 +1,4 @@
-import { Row, Transfer } from 'antd';
+import { Row } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
@@ -42,7 +42,7 @@ class TransferDescription extends React.PureComponent {
       intl,
     } = this.props;
 
-    const {formatMessage} = intl
+    const { formatMessage } = intl;
 
     const disableSendButton =
       amountToSend.isNegative() ||
@@ -53,7 +53,7 @@ class TransferDescription extends React.PureComponent {
     return (
       <div>
         <Row>
-          <StyledCol span={12}>{formatMessage({id: 'send'})}</StyledCol>
+          <StyledCol span={12}>{formatMessage({ id: 'send' })}</StyledCol>
         </Row>
         <Row>
           <TransferDescriptionItem
@@ -62,13 +62,13 @@ class TransferDescription extends React.PureComponent {
           />
         </Row>
         <Row>
-          <StyledCol span={12}>{formatMessage({id: 'to'})}</StyledCol>
+          <StyledCol span={12}>{formatMessage({ id: 'to' })}</StyledCol>
         </Row>
         <Row>
           <StyledRecipient span={12}>{recipient}</StyledRecipient>
         </Row>
         <Row>
-          <StyledCol span={12}>{formatMessage({id: 'fee'})}</StyledCol>
+          <StyledCol span={12}>{formatMessage({ id: 'fee' })}</StyledCol>
         </Row>
         <Row>
           <TransferDescriptionItem
@@ -77,7 +77,7 @@ class TransferDescription extends React.PureComponent {
           />
         </Row>
         <Row>
-          <StyledCol span={12}>ETH {formatMessage({id: 'balance_before'})}</StyledCol>
+          <StyledCol span={12}>ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
         </Row>
         <Row>
           <TransferDescriptionItem
@@ -87,7 +87,7 @@ class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           <StyledCol span={12}>
-            ETH {formatMessage({id: 'balance_after'})}
+            ETH {formatMessage({ id: 'balance_after' })}
           </StyledCol>
         </Row>
         <Row>
@@ -99,7 +99,7 @@ class TransferDescription extends React.PureComponent {
         {assetToSend.symbol !== 'ETH' &&
         <div>
           <Row>
-            <StyledCol span={12}>{assetToSend.symbol} {formatMessage({id: 'balance_before'})}</StyledCol>
+            <StyledCol span={12}>{assetToSend.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
           </Row>
           <Row>
             <TransferDescriptionItem
@@ -109,8 +109,8 @@ class TransferDescription extends React.PureComponent {
           </Row>
           <Row>
             <StyledCol span={12}>
-              { assetToSend.symbol } {formatMessage({id: 'balance_after'})}
-          </StyledCol>
+              { assetToSend.symbol } {formatMessage({ id: 'balance_after' })}
+            </StyledCol>
           </Row>
           <Row>
             <TransferDescriptionItem
@@ -121,7 +121,7 @@ class TransferDescription extends React.PureComponent {
         </div>
       }
         <Row>
-          <StyledCol span={12}>{formatMessage({id: 'total_value_before'})}</StyledCol>
+          <StyledCol span={12}>{formatMessage({ id: 'total_value_before' })}</StyledCol>
         </Row>
         <Row>
           <Balance large>
@@ -129,7 +129,7 @@ class TransferDescription extends React.PureComponent {
           </Balance>
         </Row>
         <Row>
-          <StyledCol span={12}>{formatMessage({id: 'balance_after'})}</StyledCol>
+          <StyledCol span={12}>{formatMessage({ id: 'balance_after' })}</StyledCol>
         </Row>
         <Row>
           <Balance large>
@@ -150,7 +150,7 @@ class TransferDescription extends React.PureComponent {
               size="large"
             />) : (
               <StyledButton type="primary" onClick={onSend} disabled={disableSendButton}>
-                {formatMessage({id: 'send'})}
+                {formatMessage({ id: 'send' })}
               </StyledButton>
             )
           }
@@ -176,6 +176,7 @@ TransferDescription.propTypes = {
   transfering: PropTypes.bool,
   hwWalletReady: PropTypes.bool.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
-export default injectIntl(TransferDescription)
+export default injectIntl(TransferDescription);

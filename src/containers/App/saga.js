@@ -1,21 +1,21 @@
 import { takeEvery, put, select } from 'redux-saga/effects';
 
 import Notification from 'components/Notification';
-
-import { NOTIFY, CHANGE_NETWORK } from './constants';
+import { IntlProvider } from 'react-intl';
+import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
 import { CHANGE_LOCALE } from 'containers/LanguageProvider/constants';
+
+import { translationMessages } from '../../i18n';
+import { NOTIFY, CHANGE_NETWORK } from './constants';
 import { notify } from './actions';
 
-import { IntlProvider } from 'react-intl';
-import {translationMessages} from '../../i18n'
-import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
 
-export let intl
+export let intl;// eslint-disable-line import/no-mutable-exports
 
 export function* getIntl() {
-  const locale = yield select(makeSelectLocale())
+  const locale = yield select(makeSelectLocale());
   intl = new IntlProvider({ locale, messages: translationMessages[locale] }, {}).getChildContext().intl;
-  return intl
+  return intl;
 }
 
 export function* notifyUI({ messageType, message, customDuration }) {
@@ -30,5 +30,5 @@ export default function* app() {
   yield takeEvery(NOTIFY, notifyUI);
   yield takeEvery(CHANGE_NETWORK, hookChangeNetwork);
   yield takeEvery(CHANGE_LOCALE, getIntl);
-  intl = yield getIntl()
+  intl = yield getIntl();
 }

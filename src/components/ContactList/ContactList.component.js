@@ -41,9 +41,9 @@ class ContactList extends React.PureComponent {
   }
 
   showNotification() {
-    const {formatMessage} = this.props.intl
+    const { formatMessage } = this.props.intl;
     const success = true;
-    const message = formatMessage({id: 'address_clipboard'});
+    const message = formatMessage({ id: 'address_clipboard' });
     Notification(success, message);
   }
 
@@ -78,7 +78,7 @@ class ContactList extends React.PureComponent {
   render() {
     const { empty, size, layout, data, intl } = this.props;
     const { oldName, oldAddress, modalType } = this.state;
-    const {formatMessage} = intl
+    const { formatMessage } = intl;
     let modal;
     if (modalType === 'delete') {
       modal = (
@@ -97,7 +97,7 @@ class ContactList extends React.PureComponent {
           initialAddress={oldAddress}
           onEdit={(e) => this.handleEdit(e)}
           contacts={data}
-          confirmText={formatMessage({id: 'edit_contact'})}
+          confirmText={formatMessage({ id: 'edit_contact' })}
         />
       );
     }
@@ -133,11 +133,11 @@ class ContactList extends React.PureComponent {
       <div>
         {
           empty &&
-          <PlaceholderText>{formatMessage({id: 'add_contact_tip'})}</PlaceholderText>
+          <PlaceholderText>{formatMessage({ id: 'add_contact_tip' })}</PlaceholderText>
         }
         {
           !empty && data.length === 0 &&
-          <PlaceholderText>{formatMessage({id: 'contact_filter_no_results'})}</PlaceholderText>
+          <PlaceholderText>{formatMessage({ id: 'contact_filter_no_results' })}</PlaceholderText>
         }
         {
           data.length > 0 &&
@@ -178,6 +178,7 @@ ContactList.propTypes = {
   size: PropTypes.oneOf(['default', 'small', 'large']),
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  intl: PropTypes.object,
 };
 
-export default injectIntl(ContactList)
+export default injectIntl(ContactList);

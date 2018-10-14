@@ -9,7 +9,7 @@ import { addLocaleData } from 'react-intl';
 import { DEFAULT_LOCALE } from './containers/App/constants';
 import enTranslationMessages from './translations/en.json';
 
-const locales = {en: enTranslationMessages};
+const locales = { en: enTranslationMessages };
 
 try {
   const context = require.context('./translations', true, /\.json$/);
@@ -33,14 +33,12 @@ addLocaleData(localeData);
 
 const defaultFormattedMessages = locales[DEFAULT_LOCALE];
 
-export const formatTranslationMessages = (locale, messages) => {
-  return Object.keys(defaultFormattedMessages).reduce((formattedMessages, key) => {
-    let message = messages[key];
-    if (!message) {
-      message = defaultFormattedMessages[key];
-    }
-    return Object.assign(formattedMessages, { [key]: message });
-  }, {});
-};
+export const formatTranslationMessages = (locale, messages) => Object.keys(defaultFormattedMessages).reduce((formattedMessages, key) => {
+  let message = messages[key];
+  if (!message) {
+    message = defaultFormattedMessages[key];
+  }
+  return Object.assign(formattedMessages, { [key]: message });
+}, {});
 
 export const translationMessages = appLocales.reduce((formattedLocaleMessages, locale) => Object.assign(formattedLocaleMessages, { [locale]: formatTranslationMessages(locale, locales[locale]) }), {});

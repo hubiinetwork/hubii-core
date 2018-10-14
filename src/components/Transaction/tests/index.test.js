@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import {intl} from '../../../../__mocks__/react-intl'
+import { intl } from '../../../../__mocks__/react-intl';
 import Transaction from '../index';
 
 describe('<Transaction />', () => {
@@ -22,7 +22,7 @@ describe('<Transaction />', () => {
   it.only('should render correctly tx type sent', () => {
     const wrapper = shallow(
       <Transaction {...props} />
-    )
+    );
     expect(wrapper).toMatchSnapshot();
   });
 

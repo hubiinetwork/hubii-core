@@ -12,7 +12,7 @@ import { formatFiat } from '../../utils/numberFormats';
  * This component shows user's total coins' convertion in dollar and a relative chart.
  */
 const Breakdown = ({ data = [], value, intl }) => {
-  const {formatMessage} = intl
+  const { formatMessage } = intl;
   const chartData = data.map((item) => ({
     x: item.percentage,
     y: 2 * item.percentage,
@@ -28,10 +28,10 @@ const Breakdown = ({ data = [], value, intl }) => {
   }
   return (
     <Wrapper>
-      <SectionHeading>{formatMessage({id: 'balance_breakdown'})}</SectionHeading>
+      <SectionHeading>{formatMessage({ id: 'balance_breakdown' })}</SectionHeading>
       {(
         <div>
-          <Title>{formatMessage({id: 'total_fiat_value'})}</Title>
+          <Title>{formatMessage({ id: 'total_fiat_value' })}</Title>
           <Heading large>{formatFiat(value, 'USD')}</Heading>
         </div>
       )}
@@ -58,7 +58,7 @@ const Breakdown = ({ data = [], value, intl }) => {
       {
         value !== '0' &&
           <div>
-            <SectionHeading>{formatMessage({id: 'assets'})}</SectionHeading>
+            <SectionHeading>{formatMessage({ id: 'assets' })}</SectionHeading>
             <Tokens data={labels} />
           </div>
       }
@@ -81,5 +81,6 @@ Breakdown.propTypes = {
       label: PropTypes.string.isRequired,
     })
   ),
+  intl: PropTypes.object,
 };
 export default injectIntl(Breakdown);

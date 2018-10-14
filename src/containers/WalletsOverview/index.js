@@ -49,13 +49,13 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
   renderWalletCards() {
     const { priceInfo } = this.props;
-    const {formatMessage} = this.props.intl;
-    
+    const { formatMessage } = this.props.intl;
+
     const wallets = this.props.walletsWithInfo.toJS();
     if (wallets.length === 0) {
       return (
         <PlaceholderText>
-          {formatMessage({id: 'add_wallet_tip'})}
+          {formatMessage({ id: 'add_wallet_tip' })}
         </PlaceholderText>
       );
     }
@@ -101,14 +101,14 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
   render() {
     const { totalBalances, supportedAssets } = this.props;
-    const {formatMessage} = this.props.intl;
+    const { formatMessage } = this.props.intl;
     const walletCards = this.renderWalletCards();
     return (
       <Wrapper>
         <Row gutter={32}>
           <Col sm={24} md={12} lg={16}>
             <SectionHeading>
-              {formatMessage({id: 'all_wallets'})}
+              {formatMessage({ id: 'all_wallets' })}
             </SectionHeading>
             <Row type="flex" align="top" gutter={16}>
               {walletCards}
@@ -143,6 +143,7 @@ WalletsOverview.propTypes = {
   supportedAssets: PropTypes.object.isRequired,
   walletsWithInfo: PropTypes.object.isRequired,
   priceInfo: PropTypes.object,
+  intl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

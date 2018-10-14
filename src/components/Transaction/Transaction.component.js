@@ -35,7 +35,7 @@ const Transaction = (props) => {
     defaultOpen,
     intl,
   } = props;
-  const {formatMessage} = intl
+  const { formatMessage } = intl;
   return (
     <Wrapper className={className}>
       <DetailCollapse
@@ -55,7 +55,7 @@ const Transaction = (props) => {
                 type={type === 'received' ? 'download' : 'upload'}
               />
               <TypeText>
-                {type === 'received' ? formatMessage({id: 'received'}) : formatMessage({id: 'sent'})}
+                {type === 'received' ? formatMessage({ id: 'received' }) : formatMessage({ id: 'sent' })}
               </TypeText>
               <Amount>
                 {amount} {symbol}
@@ -71,11 +71,11 @@ const Transaction = (props) => {
             <div style={{ display: 'flex' }}>
               <SubtitleText>
                 { counterpartyAddress === '' &&
-                  formatMessage({id: 'contract_creation'})
+                  formatMessage({ id: 'contract_creation' })
                 }
                 {
                   counterpartyAddress !== '' &&
-                  (type === 'received' ? (formatMessage({id: 'from'}) + ':') : (formatMessage({id: 'to'})) + ':')
+                  (type === 'received' ? (`${formatMessage({ id: 'from' })}:`) : `${formatMessage({ id: 'to' })}:`)
                 }
               </SubtitleText>
               <GreenTextWrapper>
@@ -84,7 +84,7 @@ const Transaction = (props) => {
             </div>
             <div style={{ display: 'flex' }}>
               <SubtitleText>
-                {formatMessage({id: 'confirmations'})}: 
+                {formatMessage({ id: 'confirmations' })}:
               </SubtitleText>
               <GreenTextWrapper>
                 {confirmations}
@@ -92,7 +92,7 @@ const Transaction = (props) => {
             </div>
             <TransactionId
               onClick={viewOnBlockExplorerClick}
-            >{formatMessage({id: 'view_etherscan'})}</TransactionId>
+            >{formatMessage({ id: 'view_etherscan' })}</TransactionId>
           </CollapsableContent>
         </DetailPanel>
       </DetailCollapse>
@@ -112,6 +112,7 @@ Transaction.propTypes = {
   className: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   defaultOpen: PropTypes.bool.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 export default injectIntl(Transaction);

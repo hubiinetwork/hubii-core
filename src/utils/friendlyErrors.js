@@ -1,9 +1,7 @@
-import isElectron from './isElectron';
-
 // ledger
 export const noTransportErrorMsg = 'Failed to open connection with USB port';
 export const ethAppNotOpenErrorMsg = 'ledger_connected_not_eth_open_error';
-export const browserSupportErrorMsg = `ledger_connected_not_browser_support_error`;
+export const browserSupportErrorMsg = 'ledger_connected_not_browser_support_error';
 export const disconnectedErrorMsg = 'ledger_not_detected_error';
 export const cancelTxErrorMsg = 'ledger_transaction_cancelled_error';
 export const contractDataErrorMsg = 'ledger_contract_transaction_data_error';

@@ -14,7 +14,6 @@ import Text from 'components/ui/Text';
 import {
   OuterWrapper,
   Row,
-  KeyText,
   DescriptiveIcon,
   StatusIcon,
   SingleRowWrapper,
@@ -23,11 +22,11 @@ import {
   ConfTxShield,
 } from './style';
 
-const confTxOnDevicePrompt = (deviceType, {formatMessage}) => (
+const confTxOnDevicePrompt = (deviceType, { formatMessage }) => (
   <SingleRowWrapper>
     <ConfTxShield src={getAbsolutePath('public/images/shield.png')} />
     <ConfTxDeviceImg src={getAbsolutePath(`public/images/conf-tx-${deviceType}.png`)} />
-    <Text large>{ formatMessage({id: 'verify_device_details'}) }</Text>
+    <Text large>{ formatMessage({ id: 'verify_device_details' }) }</Text>
   </SingleRowWrapper>
 );
 
@@ -38,20 +37,20 @@ const singleRowMsg = (msg, iconType, iconColor) => (
   </SingleRowWrapper>
 );
 
-const lnsPrompt = (ledgerInfo, {formatMessage}) => {
+const lnsPrompt = (ledgerInfo, { formatMessage }) => {
   const error = ledgerInfo.get('error');
   // check if device is connected
   if (ledgerInfo.get('ethConnected')) {
     return singleRowMsg(
-        formatMessage({id: 'hw_connected'}),
+        formatMessage({ id: 'hw_connected' }),
         'check'
       );
   }
 
   // check the error
-  if (error && error.includes("ledger_connected_not_browser_support_error")) {
+  if (error && error.includes('ledger_connected_not_browser_support_error')) {
     return singleRowMsg(
-      formatMessage({id: 'ledger_set_browser_support_no'})
+      formatMessage({ id: 'ledger_set_browser_support_no' })
     );
   } else if
   (
@@ -60,7 +59,7 @@ const lnsPrompt = (ledgerInfo, {formatMessage}) => {
     && !error.includes('ledger_not_detected_error')
   ) {
     return singleRowMsg(
-      formatMessage({id: 'hw_unknown_error'}),
+      formatMessage({ id: 'hw_unknown_error' }),
       'exclamation-circle-o',
       'orange'
     );
@@ -73,7 +72,7 @@ const lnsPrompt = (ledgerInfo, {formatMessage}) => {
     stage = 'openApp';
   } else {
     return singleRowMsg(
-        formatMessage({id: 'hw_connected'}),
+        formatMessage({ id: 'hw_connected' }),
         'check'
     );
   }
@@ -86,7 +85,7 @@ const lnsPrompt = (ledgerInfo, {formatMessage}) => {
             getAbsolutePath('public/images/hw-wallet-usb-white.png')
           }
         />
-        <Text>{formatMessage({id: 'ledger_connect_unlock'})}</Text>
+        <Text>{formatMessage({ id: 'ledger_connect_unlock' })}</Text>
         <StatusIcon
           type={stage === 'connect' ? 'loading' : 'check'}
         />
@@ -98,7 +97,7 @@ const lnsPrompt = (ledgerInfo, {formatMessage}) => {
             getAbsolutePath('public/images/hw-wallet-eth-green.png')
           }
         />
-        <Text>{formatMessage({id: 'ledger_open_eth_app'})}</Text>
+        <Text>{formatMessage({ id: 'ledger_open_eth_app' })}</Text>
         <StatusIcon
           type={stage === 'openApp' ? 'loading' : 'ellipsis'}
         />
@@ -107,11 +106,11 @@ const lnsPrompt = (ledgerInfo, {formatMessage}) => {
   );
 };
 
-const trezorPrompt = (trezorInfo, {formatMessage}) => {
+const trezorPrompt = (trezorInfo, { formatMessage }) => {
   const error = trezorInfo.get('error');
   if (error && !error.includes('trezor_not_connected_error')) {
     return singleRowMsg(
-        formatMessage({id: 'hw_unknown_error'}),
+        formatMessage({ id: 'hw_unknown_error' }),
         'exclamation-circle-o',
         'orange'
       );
@@ -120,14 +119,14 @@ const trezorPrompt = (trezorInfo, {formatMessage}) => {
     // device connection is good
   if (trezorInfo.get('status') === 'connected') {
     return singleRowMsg(
-        formatMessage({id: 'hw_connected'}),
+        formatMessage({ id: 'hw_connected' }),
         'check'
       );
   }
 
     // trezor needs to be connected
   return singleRowMsg(
-      formatMessage({id: 'trezor_connect_unlock'})
+      formatMessage({ id: 'trezor_connect_unlock' })
     );
 };
 
@@ -162,6 +161,7 @@ HWPrompt.propTypes = {
   deviceType: PropTypes.oneOf(['lns', 'trezor']),
   ledgerInfo: PropTypes.object.isRequired,
   trezorInfo: PropTypes.object.isRequired,
+  intl: PropTypes.object,
 };
 
 export default injectIntl(HWPrompt);

@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import DashboardCard from 'components/DashboardCard';
 import { injectIntl } from 'react-intl';
 
@@ -16,21 +17,25 @@ import Cards from './Cards';
 
 class HomeScreen extends React.PureComponent {
   render() {
-    const {formatMessage} = this.props.intl
+    const { formatMessage } = this.props.intl;
     return (
       <Wrapper>
         <Logo src={getAbsolutePath('public/images/hubii-core-logo-wtext.svg')} />
         <Cards>
           <StyledLink to="/wallets">
-            <DashboardCard iconSrc={getAbsolutePath('public/images/wallet-icon-green.png')} title={formatMessage({id: 'my_wallets'})} />
+            <DashboardCard iconSrc={getAbsolutePath('public/images/wallet-icon-green.png')} title={formatMessage({ id: 'my_wallets' })} />
           </StyledLink>
           <StyledLink to="/dex">
-            <DashboardCard iconSrc={getAbsolutePath('public/images/dex-icon-green.png')} title={formatMessage({id: 'DEX'})} />
+            <DashboardCard iconSrc={getAbsolutePath('public/images/dex-icon-green.png')} title={formatMessage({ id: 'DEX' })} />
           </StyledLink>
         </Cards>
       </Wrapper>
     );
   }
 }
+
+HomeScreen.propTypes = {
+  intl: PropTypes.object.isRequired,
+};
 
 export default injectIntl(HomeScreen);

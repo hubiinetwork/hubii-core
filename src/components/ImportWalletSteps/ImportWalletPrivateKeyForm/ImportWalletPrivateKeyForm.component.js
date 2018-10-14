@@ -29,9 +29,9 @@ class ImportWalletPrivateKeyForm extends React.Component {
   }
 
   validatePrivateKey(rule, value, callback) {
-    const {formatMessage} = this.props.intl
+    const { formatMessage } = this.props.intl;
     if (value && !isValidPrivateKey(value)) {
-      callback(formatMessage({id: 'invalid_private_key'}));
+      callback(formatMessage({ id: 'invalid_private_key' }));
     } else {
       callback();
     }
@@ -56,7 +56,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     const { form, handleNext, loading, intl } = this.props;
-    const {formatMessage} = intl
+    const { formatMessage } = intl;
     return (
       <div>
         <Form
@@ -71,20 +71,20 @@ class ImportWalletPrivateKeyForm extends React.Component {
         >
           <WidthEighty>
             <FinalHeader>
-              <Heading>{formatMessage({id: 'import_from'})}</Heading>
+              <Heading>{formatMessage({ id: 'import_from' })}</Heading>
               <img src={getAbsolutePath('public/images/private-key.png')} alt="import method icon" />
             </FinalHeader>
             <ModalFormItem
               label={
                 <ModalFormLabel>
-                  {formatMessage({id: 'enter_wallet_name'})}
+                  {formatMessage({ id: 'enter_wallet_name' })}
                 </ModalFormLabel>
               }
             >
               {getFieldDecorator('name', {
                 rules: [
                   {
-                    message: formatMessage({id: 'please_enter_wallet_name'}),
+                    message: formatMessage({ id: 'please_enter_wallet_name' }),
                     required: true,
                     whitespace: true,
                   },
@@ -94,14 +94,14 @@ class ImportWalletPrivateKeyForm extends React.Component {
             <ModalFormItem
               label={
                 <ModalFormLabel>
-                  {formatMessage({id: 'enter_private_key'})}
+                  {formatMessage({ id: 'enter_private_key' })}
                 </ModalFormLabel>
               }
             >
               {getFieldDecorator('privateKey', {
                 rules: [
                   {
-                    message: formatMessage({id: 'please_enter_private_key'}),
+                    message: formatMessage({ id: 'please_enter_private_key' }),
                     required: true,
                     whitespace: true,
                   },
@@ -113,7 +113,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
             </ModalFormItem>
             <ModalFormItem
               label={
-                <ModalFormLabel>{formatMessage({id: 'enter_wallet_password'})}</ModalFormLabel>
+                <ModalFormLabel>{formatMessage({ id: 'enter_wallet_password' })}</ModalFormLabel>
               }
             >
               {getFieldDecorator('password', {
@@ -121,11 +121,11 @@ class ImportWalletPrivateKeyForm extends React.Component {
                   {
                     required: true,
                     whitespace: true,
-                    message: formatMessage({id: 'please_enter_wallet_password'}),
+                    message: formatMessage({ id: 'please_enter_wallet_password' }),
                   },
                   {
                     min: 8,
-                    message: formatMessage({id: 'password_8chart_min'}),
+                    message: formatMessage({ id: 'password_8chart_min' }),
                   },
                   {
                     validator: this.validateToNextPassword,
@@ -135,7 +135,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
             </ModalFormItem>
             <ModalFormItem
               label={
-                <ModalFormLabel>{formatMessage({id: 'repeat_password'})}</ModalFormLabel>
+                <ModalFormLabel>{formatMessage({ id: 'repeat_password' })}</ModalFormLabel>
               }
             >
               {getFieldDecorator('confirm', {
@@ -143,7 +143,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
                   {
                     required: true,
                     whitespace: true,
-                    message: formatMessage({id: 'confirm_password'}),
+                    message: formatMessage({ id: 'confirm_password' }),
                   },
                   {
                     validator: (rule, value, callback) => compareToFirstPassword(form, rule, value, callback),
@@ -164,10 +164,10 @@ class ImportWalletPrivateKeyForm extends React.Component {
               (
                 <ButtonDiv>
                   <StyledBackButton type="default" onClick={this.props.handleBack}>
-                    <Text>{formatMessage({id: 'back'})}</Text>
+                    <Text>{formatMessage({ id: 'back' })}</Text>
                   </StyledBackButton>
                   <StyledButton type="primary" htmlType="submit">
-                    <Text>{formatMessage({id: 'import_wallet'})}</Text>
+                    <Text>{formatMessage({ id: 'import_wallet' })}</Text>
                   </StyledButton>
                 </ButtonDiv>
               )
@@ -196,6 +196,7 @@ ImportWalletPrivateKeyForm.propTypes = {
    * loading
    */
   loading: PropTypes.bool.isRequired,
+  intl: PropTypes.object,
 };
 
 export default Form.create()(injectIntl(ImportWalletPrivateKeyForm));

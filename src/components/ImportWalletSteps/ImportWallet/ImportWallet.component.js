@@ -38,10 +38,10 @@ class ImportWallet extends React.Component {
 
   render() {
     const { walletType } = this.state;
-    const {formatMessage} = this.props.intl
+    const { formatMessage } = this.props.intl;
     return (
       <Wrapper>
-        <Header>{formatMessage({id: 'store_wallet_question'})}</Header>
+        <Header>{formatMessage({ id: 'store_wallet_question' })}</Header>
         <OptionsWrapper onChange={this.onChange}>
           {this.props.wallets.map((wallet) => (
             <Option value={wallet.name} key={wallet.name}>
@@ -58,7 +58,7 @@ class ImportWallet extends React.Component {
           ))}
         </OptionsWrapper>
         <StyledButton type={'primary'} disabled={walletType === ''} onClick={this.handleNext}>
-          <Text>{formatMessage({id: 'next'})}</Text>
+          <Text>{formatMessage({ id: 'next' })}</Text>
         </StyledButton>
       </Wrapper>
     );
@@ -74,7 +74,7 @@ ImportWallet.propTypes = {
    * Function to be executed when next button is pressed
    */
   handleNext: PropTypes.func,
-
+  intl: PropTypes.object.isRequired,
 };
 
 export default injectIntl(ImportWallet);

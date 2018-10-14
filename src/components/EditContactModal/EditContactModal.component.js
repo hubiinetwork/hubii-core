@@ -38,11 +38,11 @@ export class EditContactModal extends React.Component {
 
   validateAddressInUse(rule, value, callback) {
     const { contacts, intl } = this.props;
-    const {formatMessage} = intl
+    const { formatMessage } = intl;
     if (!value) { callback(); return; } // no address input
     const sameAddressList = contacts.filter((person) => isAddressMatch(person.address, value.trim()));
     if (sameAddressList.length && !isAddressMatch(value.trim(), this.props.initialAddress)) {
-      callback(formatMessage({id: 'contact_address_exist_error'}));
+      callback(formatMessage({ id: 'contact_address_exist_error' }));
     }
     callback();
   }
@@ -58,10 +58,10 @@ export class EditContactModal extends React.Component {
   }
 
   validateInvalid(rule, value, callback) {
-    const {formatMessage} = this.props.intl
+    const { formatMessage } = this.props.intl;
     if (!value) { callback(); return; } // no address input
     if (!isValidAddress(value.trim())) {
-      callback(formatMessage({id: 'invalid_address'}));
+      callback(formatMessage({ id: 'invalid_address' }));
     }
     callback();
   }
@@ -70,52 +70,52 @@ export class EditContactModal extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     const { confirmText, quickAddAddress, intl } = this.props;
-    const {formatMessage} = intl
+    const { formatMessage } = intl;
     return (
       <Wrapper>
         <WrapperIcon>
           <Icon type="info-circle-o" />
           <Text>
-            {formatMessage({id: 'contact_info_warning'})}
+            {formatMessage({ id: 'contact_info_warning' })}
           </Text>
         </WrapperIcon>
         <Form layout="vertical" onSubmit={this.handleEdit}>
-          <ModalFormItem label={<ModalFormLabel>{formatMessage({id: 'contact_name'})}</ModalFormLabel>}>
+          <ModalFormItem label={<ModalFormLabel>{formatMessage({ id: 'contact_name' })}</ModalFormLabel>}>
             {getFieldDecorator('name', {
               rules: [
                 {
-                  message: formatMessage({id: 'contact_enter_name'}),
+                  message: formatMessage({ id: 'contact_enter_name' }),
                   required: true,
                 },
                 {
-                  message: formatMessage({id: 'contact_name_exist_error'}),
+                  message: formatMessage({ id: 'contact_name_exist_error' }),
                   required: true,
                   validator: (rule, value, callback) => this.validateNameInUse(rule, value, callback),
                 },
                 {
                   max: 25,
-                  message: formatMessage({id: 'contact_name_max25_error'}),
+                  message: formatMessage({ id: 'contact_name_max25_error' }),
                 },
               ],
               initialValue: this.props.initialName,
             })(<ModalFormInput placeholder="John Doe" />)}
           </ModalFormItem>
           <ModalFormItem
-            label={<ModalFormLabel>{formatMessage({id: 'contact_address'})}</ModalFormLabel>}
+            label={<ModalFormLabel>{formatMessage({ id: 'contact_address' })}</ModalFormLabel>}
           >
             {getFieldDecorator('address', {
               rules: [
                 {
-                  message: formatMessage({id: 'contact_enter_name'}),
+                  message: formatMessage({ id: 'contact_enter_name' }),
                   required: true,
                 },
                 {
-                  message: formatMessage({id: 'invalid_address'}),
+                  message: formatMessage({ id: 'invalid_address' }),
                   required: true,
                   validator: (rule, value, callback) => this.validateInvalid(rule, value, callback),
                 },
                 {
-                  message: formatMessage({id: 'contact_address_exist_error'}),
+                  message: formatMessage({ id: 'contact_address_exist_error' }),
                   required: true,
                   validator: (rule, value, callback) => this.validateAddressInUse(rule, value, callback),
                 },
@@ -157,6 +157,7 @@ EditContactModal.propTypes = {
   contacts: PropTypes.arrayOf(PropTypes.object),
   confirmText: PropTypes.string.isRequired,
   quickAddAddress: PropTypes.string,
+  intl: PropTypes.object.isRequired,
 };
 
 export default Form.create()(injectIntl(EditContactModal));

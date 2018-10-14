@@ -165,13 +165,13 @@ class ImportWalletSteps extends React.Component {
   render() {
     const { current } = this.state;
     const { onBackIcon } = this.props;
-    const {formatMessage} = this.props.intl
+    const { formatMessage } = this.props.intl;
 
     const FormNavigation = (
       <Wrapper>
         <NavigationWrapper>
           <LeftArrow type="arrow-left" onClick={() => onBackIcon()} />
-          <Text large>{formatMessage({id: 'import_exist_wallet'})}</Text>
+          <Text large>{formatMessage({ id: 'import_exist_wallet' })}</Text>
         </NavigationWrapper>
       </Wrapper>
     );
@@ -187,6 +187,7 @@ ImportWalletSteps.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onBackIcon: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
-export default injectIntl(ImportWalletSteps)
+export default injectIntl(ImportWalletSteps);

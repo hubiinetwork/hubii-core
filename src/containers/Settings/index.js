@@ -28,16 +28,16 @@ export class Settings extends React.PureComponent {
 
   render() {
     const { locale, onChangeNetwork, onChangeLocale, currentNetwork, supportedNetworks, intl } = this.props;
-    const {formatMessage} = intl
+    const { formatMessage } = intl;
     return (
       <Wrapper>
         <TopHeader>
-          <Heading>{formatMessage({id: 'settings'})}</Heading>
+          <Heading>{formatMessage({ id: 'settings' })}</Heading>
         </TopHeader>
         <Body>
           <SettingWrapper>
             <StyledSectionHeading>
-              {formatMessage({id: 'setting_network'})}
+              {formatMessage({ id: 'setting_network' })}
             </StyledSectionHeading>
             <Select
               value={currentNetwork.provider.name}
@@ -60,7 +60,7 @@ export class Settings extends React.PureComponent {
           </SettingWrapper>
           <SettingWrapper>
             <StyledSectionHeading>
-              {formatMessage({id: 'setting_language'})}
+              {formatMessage({ id: 'setting_language' })}
             </StyledSectionHeading>
             <Select
               value={locale}
@@ -88,6 +88,7 @@ Settings.propTypes = {
   currentNetwork: PropTypes.object.isRequired,
   supportedNetworks: ImmutablePropTypes.map.isRequired,
   locale: PropTypes.string.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

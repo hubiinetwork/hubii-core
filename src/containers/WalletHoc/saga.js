@@ -63,42 +63,42 @@ import {
 // Creates a new software wallet
 export function* createWalletFromMnemonic({ name, mnemonic, derivationPath, password }) {
   try {
-    if (!name || !derivationPath || !password || !mnemonic) throw new Error(intl.formatMessage({id: 'invalid_param_error'}));
+    if (!name || !derivationPath || !password || !mnemonic) throw new Error(intl.formatMessage({ id: 'invalid_param_error' }));
     const decryptedWallet = Wallet.fromMnemonic(mnemonic, derivationPath);
     const encryptedWallet = yield call((...args) => decryptedWallet.encrypt(...args), password);
     yield put(createWalletSuccess(name, encryptedWallet, decryptedWallet));
   } catch (e) {
-    yield put(notify('error', intl.formatMessage({id: 'import_wallet_failed_error'}, {message: e})));
+    yield put(notify('error', intl.formatMessage({ id: 'import_wallet_failed_error' }, { message: e })));
     yield put(createWalletFailed(e));
   }
 }
 
 export function* createWalletFromPrivateKey({ privateKey, name, password }) {
   try {
-    if (!name || !privateKey || !password) throw new Error(intl.formatMessage({id: 'invalid_param_error'}));
+    if (!name || !privateKey || !password) throw new Error(intl.formatMessage({ id: 'invalid_param_error' }));
     let prefixedPrivateKey = privateKey;
     if (!prefixedPrivateKey.startsWith('0x')) prefixedPrivateKey = `0x${privateKey}`;
     const decryptedWallet = new Wallet(prefixedPrivateKey);
     const encryptedWallet = yield call((...args) => decryptedWallet.encrypt(...args), password);
     yield put(createWalletSuccess(name, encryptedWallet, decryptedWallet));
-    yield put(notify('warning', intl.formatMessage({id: 'wallet_private_key_warning'})));
+    yield put(notify('warning', intl.formatMessage({ id: 'wallet_private_key_warning' })));
   } catch (e) {
-    yield put(notify('error', intl.formatMessage({id: 'import_wallet_failed_error'}, {message: e})));
+    yield put(notify('error', intl.formatMessage({ id: 'import_wallet_failed_error' }, { message: e })));
     yield put(createWalletFailed(e));
   }
 }
 
 export function* createWalletFromKeystore({ name, keystore }) {
   try {
-    if (!name || !keystore) throw new Error(intl.formatMessage({id: 'invalid_param_error'}));
+    if (!name || !keystore) throw new Error(intl.formatMessage({ id: 'invalid_param_error' }));
     const json = JSON.parse(keystore);
     if (!json.address || !json.id || !json.version) {
-      throw new Error(intl.formatMessage({id: 'invalid_keystore_error'}));
+      throw new Error(intl.formatMessage({ id: 'invalid_keystore_error' }));
     }
     const address = json.address;
     yield put(createWalletSuccess(name, keystore, null, prependHexToAddress(address)));
   } catch (e) {
-    yield put(notify('error', intl.formatMessage({id: 'import_keystore_failed_error'})));
+    yield put(notify('error', intl.formatMessage({ id: 'import_keystore_failed_error' })));
     yield put(createWalletFailed(e));
   }
 }
@@ -107,13 +107,13 @@ export function* createWalletFromKeystore({ name, keystore }) {
 export function* decryptWallet({ address, encryptedWallet, password }) {
   let callbackAction = yield select(makeSelectCurrentDecryptionCallback());
   try {
-    yield put(notify('info', intl.formatMessage({id: 'unlock_wallet_info'})));
-    if (!address) throw new Error(intl.formatMessage({id: 'address_undefined_error'}));
+    yield put(notify('info', intl.formatMessage({ id: 'unlock_wallet_info' })));
+    if (!address) throw new Error(intl.formatMessage({ id: 'address_undefined_error' }));
     const res = yield Wallet.fromEncryptedWallet(encryptedWallet, password);
     if (!res.privateKey) throw res;
     const decryptedWallet = res;
     yield put(decryptWalletSuccess(address, decryptedWallet));
-    yield put(notify('success', intl.formatMessage({id: 'unlock_wallet_success'})));
+    yield put(notify('success', intl.formatMessage({ id: 'unlock_wallet_success' })));
     yield put(hideDecryptWalletModal());
     if (callbackAction) {
       callbackAction = callbackAction.toJS();
@@ -122,14 +122,14 @@ export function* decryptWallet({ address, encryptedWallet, password }) {
     }
   } catch (e) {
     yield put(decryptWalletFailed(e));
-    yield put(notify('error', intl.formatMessage({id: 'unlock_wallet_failed_error'}, {message: e})));
+    yield put(notify('error', intl.formatMessage({ id: 'unlock_wallet_failed_error' }, { message: e })));
   }
 }
 
 export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit, contractAddress }) {
   if (wallet.encrypted && !wallet.decrypted) {
     yield put(showDecryptWalletModal(transferAction({ wallet, token, toAddress, amount, gasPrice, gasLimit, contractAddress })));
-    yield put(transferError(new Error(intl.formatMessage({id: 'wallet_encrypted_error'}))));
+    yield put(transferError(new Error(intl.formatMessage({ id: 'wallet_encrypted_error' }))));
     return;
   }
 
@@ -138,7 +138,7 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
   const amountConverted = utils.bigNumberify(amount.toString());
   const gasPriceConverted = utils.bigNumberify(gasPrice.toString());
 
-  yield put(notify('info', intl.formatMessage({id: 'send_transaction_info'})));
+  yield put(notify('info', intl.formatMessage({ id: 'send_transaction_info' })));
   try {
     if (token === 'ETH') {
       yield put(transferEtherAction({ toAddress, amount: amountConverted, gasPrice: gasPriceConverted, gasLimit }));
@@ -147,7 +147,7 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
     }
   } catch (error) {
     yield put(transferError(error));
-    yield put(notify('error', intl.formatMessage({id: 'send_transaction_failed_message_error'}, {message: error})));
+    yield put(notify('error', intl.formatMessage({ id: 'send_transaction_failed_message_error' }, { message: error })));
   }
 }
 
@@ -166,10 +166,10 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
       transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
     }
     yield put(transferSuccess(transaction, 'ETH'));
-    yield put(notify('success', intl.formatMessage({id: 'sent_transaction_success'})));
+    yield put(notify('success', intl.formatMessage({ id: 'sent_transaction_success' })));
   } catch (error) {
     yield put(transferError(error));
-    yield put(notify('error', intl.formatMessage({id: 'send_transaction_failed_message_error'}, {message: error})));
+    yield put(notify('error', intl.formatMessage({ id: 'send_transaction_failed_message_error' }, { message: error })));
   }
 }
 
@@ -198,13 +198,13 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
     }
 
     if (!transaction) {
-      throw new Error(intl.formatMessage({id: 'send_transaction_failed_error'}));
+      throw new Error(intl.formatMessage({ id: 'send_transaction_failed_error' }));
     }
     yield put(transferSuccess(transaction, token));
-    yield put(notify('success', intl.formatMessage({id: 'sent_transaction_success'})));
+    yield put(notify('success', intl.formatMessage({ id: 'sent_transaction_success' })));
   } catch (error) {
     yield put(transferError(error));
-    yield put(notify('error', intl.formatMessage({id: 'send_transaction_failed_message_error'}, {message: error})));
+    yield put(notify('error', intl.formatMessage({ id: 'send_transaction_failed_message_error' }, { message: error })));
   }
 }
 
@@ -227,13 +227,13 @@ export function* hookNewWalletCreated({ newWallet }) {
   const existAddress = wallets.find((wallet) => isAddressMatch(wallet.get('address'), newWallet.address));
   const existName = wallets.find((wallet) => wallet.get('name') === newWallet.name);
   if (existAddress) {
-    return yield put(notify('error', intl.formatMessage({id: 'wallet_address_exist_error'}, {address: newWallet.address})));
+    return yield put(notify('error', intl.formatMessage({ id: 'wallet_address_exist_error' }, { address: newWallet.address })));
   }
   if (existName) {
-    return yield put(notify('error', intl.formatMessage({id: 'wallet_name_exist_error'}, {name: newWallet.name})));
+    return yield put(notify('error', intl.formatMessage({ id: 'wallet_name_exist_error' }, { name: newWallet.name })));
   }
   yield put(addNewWallet(newWallet));
-  return yield put(notify('success', intl.formatMessage({id: 'create_wallet_success'}, {name: newWallet.name})));
+  return yield put(notify('success', intl.formatMessage({ id: 'create_wallet_success' }, { name: newWallet.name })));
 }
 
 export function* sendTransactionForHardwareWallet({ toAddress, amount, data, nonce, gasPrice, gasLimit }) {

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { walletsWithInfoMock } from 'containers/WalletHoc/tests/mocks/selectors';
 
 import { WalletDetails, mapDispatchToProps } from '../index';
-import {intl} from '../../../../__mocks__/react-intl'
+import { intl } from '../../../../__mocks__/react-intl';
 
 describe('WalletDetails', () => {
   const props = {
