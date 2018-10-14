@@ -2,17 +2,17 @@ import isElectron from './isElectron';
 
 // ledger
 export const noTransportErrorMsg = 'Failed to open connection with USB port';
-export const ethAppNotOpenErrorMsg = 'Ledger connected but does not appear to have the Ethereum app open. Please download the Ethereum app from the Ledger Manager and open it on your device.';
-export const browserSupportErrorMsg = `Ledger connected but does not appear to have 'Browser support' set to ${isElectron ? '\'No\'' : '\'Yes\''}, please ${isElectron ? 'disable' : 'enable'} browser support in the Ethereum app settings.`;
-export const disconnectedErrorMsg = 'Ledger could not be detected';
-export const cancelTxErrorMsg = 'Transaction Cancelled';
-export const contractDataErrorMsg = 'Failed to transfer token. Please make sure \'Contract data\' is set to yes on your Ledger device.';
+export const ethAppNotOpenErrorMsg = 'ledger_connected_not_eth_open_error';
+export const browserSupportErrorMsg = `ledger_connected_not_browser_support_error`;
+export const disconnectedErrorMsg = 'ledger_not_detected_error';
+export const cancelTxErrorMsg = 'ledger_transaction_cancelled_error';
+export const contractDataErrorMsg = 'ledger_contract_transaction_data_error';
 
 // trezor
-export const trezorDisconnectedErrorMsg = 'Trezor is not connected.';
-export const trezorPinInvalidErrorMsg = 'Trezor PIN code is invalid.';
-export const trezorPassphraseMismatchErrorMsg = 'Please reconnect your Trezor device, and make sure you provided the correct passphrase for this wallet.';
-export const trezorCancelledErrorMsg = 'Denied by Trezor';
+export const trezorDisconnectedErrorMsg = 'trezor_not_connected_error';
+export const trezorPinInvalidErrorMsg = 'trezor_invalid_pin_error';
+export const trezorPassphraseMismatchErrorMsg = 'trezor_invalid_passphrase_error';
+export const trezorCancelledErrorMsg = 'trezor_denied_error';
 
 function trezorErrorMsg(error) {
   let msg;

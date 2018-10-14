@@ -1552,6 +1552,11 @@ ShallowWrapper {
     counterpartyAddress="0x00"
     defaultOpen={false}
     fiatEquivilent="$123.34 USD"
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     onChange={[Function]}
     symbol="UKG"
     time={1995-01-09T04:19:09.000Z}
@@ -1585,7 +1590,7 @@ ShallowWrapper {
                                         type="upload"
                                 />
                                 <Transaction.style__TypeText>
-                                        Sent 
+                                        sent
                                 </Transaction.style__TypeText>
                                 <Transaction.style__Amount>
                                         0.000000000000000001
@@ -1611,7 +1616,7 @@ ShallowWrapper {
                                 }
                         >
                                 <Transaction.style__SubtitleText>
-                                        To: 
+                                        to:
                                 </Transaction.style__SubtitleText>
                                 <Transaction.style__GreenTextWrapper>
                                         0x00
@@ -1625,7 +1630,8 @@ ShallowWrapper {
                                 }
                         >
                                 <Transaction.style__SubtitleText>
-                                        Confirmations: 
+                                        confirmations
+                                        :
                                 </Transaction.style__SubtitleText>
                                 <Transaction.style__GreenTextWrapper>
                                         204
@@ -1634,7 +1640,7 @@ ShallowWrapper {
                         <Transaction.style__TransactionId
                                 onClick={[Function]}
                         >
-                                View on Etherscan
+                                view_etherscan
                         </Transaction.style__TransactionId>
                 </Transaction.style__CollapsableContent>
         </Transaction.style__DetailPanel>
@@ -1658,7 +1664,7 @@ ShallowWrapper {
                                         type="upload"
                               />
                               <Transaction.style__TypeText>
-                                        Sent 
+                                        sent
                               </Transaction.style__TypeText>
                               <Transaction.style__Amount>
                                         0.000000000000000001
@@ -1684,7 +1690,7 @@ ShallowWrapper {
                               }
                     >
                               <Transaction.style__SubtitleText>
-                                        To: 
+                                        to:
                               </Transaction.style__SubtitleText>
                               <Transaction.style__GreenTextWrapper>
                                         0x00
@@ -1698,7 +1704,8 @@ ShallowWrapper {
                               }
                     >
                               <Transaction.style__SubtitleText>
-                                        Confirmations: 
+                                        confirmations
+                                        :
                               </Transaction.style__SubtitleText>
                               <Transaction.style__GreenTextWrapper>
                                         204
@@ -1707,7 +1714,7 @@ ShallowWrapper {
                     <Transaction.style__TransactionId
                               onClick={[Function]}
                     >
-                              View on Etherscan
+                              view_etherscan
                     </Transaction.style__TransactionId>
           </Transaction.style__CollapsableContent>
 </Transaction.style__DetailPanel>,
@@ -1729,7 +1736,7 @@ ShallowWrapper {
                         }
             >
                         <Transaction.style__SubtitleText>
-                                    To: 
+                                    to:
                         </Transaction.style__SubtitleText>
                         <Transaction.style__GreenTextWrapper>
                                     0x00
@@ -1743,7 +1750,8 @@ ShallowWrapper {
                         }
             >
                         <Transaction.style__SubtitleText>
-                                    Confirmations: 
+                                    confirmations
+                                    :
                         </Transaction.style__SubtitleText>
                         <Transaction.style__GreenTextWrapper>
                                     204
@@ -1752,7 +1760,7 @@ ShallowWrapper {
             <Transaction.style__TransactionId
                         onClick={[Function]}
             >
-                        View on Etherscan
+                        view_etherscan
             </Transaction.style__TransactionId>
 </Transaction.style__CollapsableContent>,
           "header": <Transaction.style__HeaderWrapper>
@@ -1763,7 +1771,7 @@ ShallowWrapper {
                         type="upload"
             />
             <Transaction.style__TypeText>
-                        Sent 
+                        sent
             </Transaction.style__TypeText>
             <Transaction.style__Amount>
                         0.000000000000000001
@@ -1794,7 +1802,7 @@ ShallowWrapper {
                 }
 >
                 <Transaction.style__SubtitleText>
-                                To: 
+                                to:
                 </Transaction.style__SubtitleText>
                 <Transaction.style__GreenTextWrapper>
                                 0x00
@@ -1808,7 +1816,8 @@ ShallowWrapper {
                 }
 >
                 <Transaction.style__SubtitleText>
-                                Confirmations: 
+                                confirmations
+                                :
                 </Transaction.style__SubtitleText>
                 <Transaction.style__GreenTextWrapper>
                                 204
@@ -1817,7 +1826,7 @@ ShallowWrapper {
               <Transaction.style__TransactionId
                 onClick={[Function]}
 >
-                View on Etherscan
+                view_etherscan
 </Transaction.style__TransactionId>,
             ],
           },
@@ -1830,7 +1839,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <Transaction.style__SubtitleText>
-                    To: 
+                    to:
 </Transaction.style__SubtitleText>,
                   <Transaction.style__GreenTextWrapper>
                     0x00
@@ -1849,13 +1858,13 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       false,
-                      "To: ",
+                      "to:",
                     ],
                   },
                   "ref": null,
                   "rendered": Array [
                     false,
-                    "To: ",
+                    "to:",
                   ],
                   "type": [Function],
                 },
@@ -1880,7 +1889,8 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <Transaction.style__SubtitleText>
-                    Confirmations: 
+                    confirmations
+                    :
 </Transaction.style__SubtitleText>,
                   <Transaction.style__GreenTextWrapper>
                     204
@@ -1897,10 +1907,16 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "Confirmations: ",
+                    "children": Array [
+                      "confirmations",
+                      ":",
+                    ],
                   },
                   "ref": null,
-                  "rendered": "Confirmations: ",
+                  "rendered": Array [
+                    "confirmations",
+                    ":",
+                  ],
                   "type": [Function],
                 },
                 Object {
@@ -1922,11 +1938,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "View on Etherscan",
+                "children": "view_etherscan",
                 "onClick": [Function],
               },
               "ref": null,
-              "rendered": "View on Etherscan",
+              "rendered": "view_etherscan",
               "type": [Function],
             },
           ],
@@ -1959,7 +1975,7 @@ ShallowWrapper {
                                                   type="upload"
                                         />
                                         <Transaction.style__TypeText>
-                                                  Sent 
+                                                  sent
                                         </Transaction.style__TypeText>
                                         <Transaction.style__Amount>
                                                   0.000000000000000001
@@ -1985,7 +2001,7 @@ ShallowWrapper {
                                         }
                               >
                                         <Transaction.style__SubtitleText>
-                                                  To: 
+                                                  to:
                                         </Transaction.style__SubtitleText>
                                         <Transaction.style__GreenTextWrapper>
                                                   0x00
@@ -1999,7 +2015,8 @@ ShallowWrapper {
                                         }
                               >
                                         <Transaction.style__SubtitleText>
-                                                  Confirmations: 
+                                                  confirmations
+                                                  :
                                         </Transaction.style__SubtitleText>
                                         <Transaction.style__GreenTextWrapper>
                                                   204
@@ -2008,7 +2025,7 @@ ShallowWrapper {
                               <Transaction.style__TransactionId
                                         onClick={[Function]}
                               >
-                                        View on Etherscan
+                                        view_etherscan
                               </Transaction.style__TransactionId>
                     </Transaction.style__CollapsableContent>
           </Transaction.style__DetailPanel>
@@ -2032,7 +2049,7 @@ ShallowWrapper {
                                                 type="upload"
                                     />
                                     <Transaction.style__TypeText>
-                                                Sent 
+                                                sent
                                     </Transaction.style__TypeText>
                                     <Transaction.style__Amount>
                                                 0.000000000000000001
@@ -2058,7 +2075,7 @@ ShallowWrapper {
                                     }
                         >
                                     <Transaction.style__SubtitleText>
-                                                To: 
+                                                to:
                                     </Transaction.style__SubtitleText>
                                     <Transaction.style__GreenTextWrapper>
                                                 0x00
@@ -2072,7 +2089,8 @@ ShallowWrapper {
                                     }
                         >
                                     <Transaction.style__SubtitleText>
-                                                Confirmations: 
+                                                confirmations
+                                                :
                                     </Transaction.style__SubtitleText>
                                     <Transaction.style__GreenTextWrapper>
                                                 204
@@ -2081,7 +2099,7 @@ ShallowWrapper {
                         <Transaction.style__TransactionId
                                     onClick={[Function]}
                         >
-                                    View on Etherscan
+                                    view_etherscan
                         </Transaction.style__TransactionId>
             </Transaction.style__CollapsableContent>
 </Transaction.style__DetailPanel>,
@@ -2103,7 +2121,7 @@ ShallowWrapper {
                             }
               >
                             <Transaction.style__SubtitleText>
-                                          To: 
+                                          to:
                             </Transaction.style__SubtitleText>
                             <Transaction.style__GreenTextWrapper>
                                           0x00
@@ -2117,7 +2135,8 @@ ShallowWrapper {
                             }
               >
                             <Transaction.style__SubtitleText>
-                                          Confirmations: 
+                                          confirmations
+                                          :
                             </Transaction.style__SubtitleText>
                             <Transaction.style__GreenTextWrapper>
                                           204
@@ -2126,7 +2145,7 @@ ShallowWrapper {
               <Transaction.style__TransactionId
                             onClick={[Function]}
               >
-                            View on Etherscan
+                            view_etherscan
               </Transaction.style__TransactionId>
 </Transaction.style__CollapsableContent>,
             "header": <Transaction.style__HeaderWrapper>
@@ -2137,7 +2156,7 @@ ShallowWrapper {
                             type="upload"
               />
               <Transaction.style__TypeText>
-                            Sent 
+                            sent
               </Transaction.style__TypeText>
               <Transaction.style__Amount>
                             0.000000000000000001
@@ -2168,7 +2187,7 @@ ShallowWrapper {
                   }
 >
                   <Transaction.style__SubtitleText>
-                                    To: 
+                                    to:
                   </Transaction.style__SubtitleText>
                   <Transaction.style__GreenTextWrapper>
                                     0x00
@@ -2182,7 +2201,8 @@ ShallowWrapper {
                   }
 >
                   <Transaction.style__SubtitleText>
-                                    Confirmations: 
+                                    confirmations
+                                    :
                   </Transaction.style__SubtitleText>
                   <Transaction.style__GreenTextWrapper>
                                     204
@@ -2191,7 +2211,7 @@ ShallowWrapper {
                 <Transaction.style__TransactionId
                   onClick={[Function]}
 >
-                  View on Etherscan
+                  view_etherscan
 </Transaction.style__TransactionId>,
               ],
             },
@@ -2204,7 +2224,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <Transaction.style__SubtitleText>
-                      To: 
+                      to:
 </Transaction.style__SubtitleText>,
                     <Transaction.style__GreenTextWrapper>
                       0x00
@@ -2223,13 +2243,13 @@ ShallowWrapper {
                     "props": Object {
                       "children": Array [
                         false,
-                        "To: ",
+                        "to:",
                       ],
                     },
                     "ref": null,
                     "rendered": Array [
                       false,
-                      "To: ",
+                      "to:",
                     ],
                     "type": [Function],
                   },
@@ -2254,7 +2274,8 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <Transaction.style__SubtitleText>
-                      Confirmations: 
+                      confirmations
+                      :
 </Transaction.style__SubtitleText>,
                     <Transaction.style__GreenTextWrapper>
                       204
@@ -2271,10 +2292,16 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "children": "Confirmations: ",
+                      "children": Array [
+                        "confirmations",
+                        ":",
+                      ],
                     },
                     "ref": null,
-                    "rendered": "Confirmations: ",
+                    "rendered": Array [
+                      "confirmations",
+                      ":",
+                    ],
                     "type": [Function],
                   },
                   Object {
@@ -2296,11 +2323,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "View on Etherscan",
+                  "children": "view_etherscan",
                   "onClick": [Function],
                 },
                 "ref": null,
-                "rendered": "View on Etherscan",
+                "rendered": "view_etherscan",
                 "type": [Function],
               },
             ],

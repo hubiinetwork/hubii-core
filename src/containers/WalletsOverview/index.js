@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
-import { FormattedMessage } from 'react-intl';
+import { injectIntl } from 'react-intl';
 
 import { getBreakdown } from 'utils/wallet';
 
@@ -49,11 +49,13 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
   renderWalletCards() {
     const { priceInfo } = this.props;
+    const {formatMessage} = this.props.intl;
+    
     const wallets = this.props.walletsWithInfo.toJS();
     if (wallets.length === 0) {
       return (
         <PlaceholderText>
-          {"Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner"}
+          {formatMessage({id: 'add_wallet_tip'})}
         </PlaceholderText>
       );
     }
@@ -99,16 +101,14 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
   render() {
     const { totalBalances, supportedAssets } = this.props;
+    const {formatMessage} = this.props.intl;
     const walletCards = this.renderWalletCards();
     return (
       <Wrapper>
         <Row gutter={32}>
           <Col sm={24} md={12} lg={16}>
             <SectionHeading>
-              <FormattedMessage
-                id="app.all_wallets"
-                defaultMessage="All wallets"
-              />
+              {formatMessage({id: 'all_wallets'})}
             </SectionHeading>
             <Row type="flex" align="top" gutter={16}>
               {walletCards}
@@ -166,4 +166,4 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(
   withConnect,
-)(WalletsOverview);
+)(injectIntl(WalletsOverview));

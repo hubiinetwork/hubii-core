@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { injectIntl } from 'react-intl';
 import { getAbsolutePath } from 'utils/electron';
 import {
   Wrapper,
@@ -32,8 +33,9 @@ const Transaction = (props) => {
     type,
     onChange,
     defaultOpen,
+    intl,
   } = props;
-
+  const {formatMessage} = intl
   return (
     <Wrapper className={className}>
       <DetailCollapse
@@ -53,7 +55,7 @@ const Transaction = (props) => {
                 type={type === 'received' ? 'download' : 'upload'}
               />
               <TypeText>
-                {type === 'received' ? 'Received ' : 'Sent '}
+                {type === 'received' ? formatMessage({id: 'received'}) : formatMessage({id: 'sent'})}
               </TypeText>
               <Amount>
                 {amount} {symbol}
@@ -69,11 +71,11 @@ const Transaction = (props) => {
             <div style={{ display: 'flex' }}>
               <SubtitleText>
                 { counterpartyAddress === '' &&
-                  'Contract creation'
+                  formatMessage({id: 'contract_creation'})
                 }
                 {
                   counterpartyAddress !== '' &&
-                  (type === 'received' ? 'From: ' : 'To: ')
+                  (type === 'received' ? (formatMessage({id: 'from'}) + ':') : (formatMessage({id: 'to'})) + ':')
                 }
               </SubtitleText>
               <GreenTextWrapper>
@@ -82,7 +84,7 @@ const Transaction = (props) => {
             </div>
             <div style={{ display: 'flex' }}>
               <SubtitleText>
-                {'Confirmations: '}
+                {formatMessage({id: 'confirmations'})}: 
               </SubtitleText>
               <GreenTextWrapper>
                 {confirmations}
@@ -90,7 +92,7 @@ const Transaction = (props) => {
             </div>
             <TransactionId
               onClick={viewOnBlockExplorerClick}
-            >View on Etherscan</TransactionId>
+            >{formatMessage({id: 'view_etherscan'})}</TransactionId>
           </CollapsableContent>
         </DetailPanel>
       </DetailCollapse>
@@ -112,4 +114,4 @@ Transaction.propTypes = {
   defaultOpen: PropTypes.bool.isRequired,
 };
 
-export default Transaction;
+export default injectIntl(Transaction);

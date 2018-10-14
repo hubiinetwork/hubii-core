@@ -2,6 +2,7 @@ import * as React from 'react';
 import { remote } from 'electron';
 import { Form, Icon } from 'antd';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 
 import { getAbsolutePath } from 'utils/electron';
 import { handleFinish } from 'utils/forms';
@@ -43,8 +44,9 @@ class ImportWalletKeystoreForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { form, handleNext, loading } = this.props;
+    const { form, handleNext, loading, intl } = this.props;
     const { keystore, filepath } = this.state;
+    const {formatMessage} = intl
     return (
       <div>
         <Form
@@ -59,7 +61,7 @@ class ImportWalletKeystoreForm extends React.Component {
         >
           <WidthEighty>
             <FinalHeader>
-              <Heading>Importing from a</Heading>
+              <Heading>{formatMessage({id: 'import_from'})}</Heading>
               <img
                 src={getAbsolutePath('public/images/keystore.png')}
                 alt="import method icon"
@@ -69,14 +71,14 @@ class ImportWalletKeystoreForm extends React.Component {
             <ModalFormItem
               label={
                 <ModalFormLabel>
-                  Enter a name for your wallet
+                  {formatMessage({id: 'enter_wallet_name'})}
                 </ModalFormLabel>
               }
             >
               {getFieldDecorator('name', {
                 rules: [
                   {
-                    message: 'Please enter a name for your wallet',
+                    message: formatMessage({id: 'please_enter_wallet_name'}),
                     required: true,
                     whitespace: true,
                   },
@@ -92,15 +94,15 @@ class ImportWalletKeystoreForm extends React.Component {
             >
               <StyledButton onClick={this.loadKeystoreFile} style={{ width: '100%' }}>
                 <Icon type="upload" />
-                <Text>Select keystore file</Text>
+                <Text>{formatMessage({id: 'select_keystore'})}</Text>
               </StyledButton>
             </ModalFormItem>
             <ButtonDiv>
               <StyledBackButton type="default" onClick={this.props.handleBack}>
-                <Text>Back</Text>
+                <Text>{formatMessage({id: 'back'})}</Text>
               </StyledBackButton>
               <StyledButton type="primary" disabled={!this.state.keystore} htmlType="submit">
-                <Text>Import wallet</Text>
+                <Text>{formatMessage({id: 'import_wallet'})}</Text>
               </StyledButton>
             </ButtonDiv>
           </WidthEighty>
@@ -129,4 +131,4 @@ ImportWalletKeystoreForm.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
-export default Form.create()(ImportWalletKeystoreForm);
+export default Form.create()(injectIntl(ImportWalletKeystoreForm));

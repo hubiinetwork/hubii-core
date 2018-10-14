@@ -34,6 +34,7 @@ import withHubiiApi from 'containers/HubiiApiHoc';
 import withEthOperations from 'containers/EthOperationsHoc';
 
 import ReleaseNotesModal from 'containers/ReleaseNotesModal';
+import { injectIntl } from 'react-intl';
 
 import reducer from './reducer';
 import saga from './saga';
@@ -79,4 +80,4 @@ export default compose(
   withTrezor,
   withEthOperations,
   withHubiiApi,
-)(App);
+)(injectIntl(App));

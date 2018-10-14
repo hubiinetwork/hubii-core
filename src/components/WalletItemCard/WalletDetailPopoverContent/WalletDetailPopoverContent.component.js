@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 import walletTypeDescriptions from '../walletTypeDescriptions';
 import { Subtitle, Wrapper } from './WalletDetailPopoverContent.style';
 import { humanFriendlyWalletType } from '../../../utils/wallet';
@@ -10,11 +11,12 @@ import { humanFriendlyWalletType } from '../../../utils/wallet';
 
 const WalletDetailPopoverContent = (props) => {
   const description = walletTypeDescriptions[props.type];
+  const {formatMessage} = props.intl
   return (
     <Wrapper>
-      <div>{humanFriendlyWalletType(props.type)}</div>
+      <div>{formatMessage({id: humanFriendlyWalletType(props.type)})}</div>
       <Subtitle>{description}</Subtitle>
-      <div>Address</div>
+      <div>{formatMessage({id: 'address'})}</div>
       <Subtitle>{props.address}</Subtitle>
     </Wrapper>
   );
@@ -31,4 +33,4 @@ WalletDetailPopoverContent.propTypes = {
   type: PropTypes.string.isRequired,
 };
 
-export default WalletDetailPopoverContent;
+export default injectIntl(WalletDetailPopoverContent);

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 import { VictoryPie, VictoryContainer, VictoryTooltip } from 'victory';
 import SectionHeading from 'components/ui/SectionHeading';
 import Heading from 'components/ui/Heading';
@@ -10,7 +11,8 @@ import { formatFiat } from '../../utils/numberFormats';
 /**
  * This component shows user's total coins' convertion in dollar and a relative chart.
  */
-const Breakdown = ({ data = [], value }) => {
+const Breakdown = ({ data = [], value, intl }) => {
+  const {formatMessage} = intl
   const chartData = data.map((item) => ({
     x: item.percentage,
     y: 2 * item.percentage,
@@ -26,10 +28,10 @@ const Breakdown = ({ data = [], value }) => {
   }
   return (
     <Wrapper>
-      <SectionHeading>Balance breakdown</SectionHeading>
+      <SectionHeading>{formatMessage({id: 'balance_breakdown'})}</SectionHeading>
       {(
         <div>
-          <Title>Total fiat value</Title>
+          <Title>{formatMessage({id: 'total_fiat_value'})}</Title>
           <Heading large>{formatFiat(value, 'USD')}</Heading>
         </div>
       )}
@@ -56,7 +58,7 @@ const Breakdown = ({ data = [], value }) => {
       {
         value !== '0' &&
           <div>
-            <SectionHeading>Assets</SectionHeading>
+            <SectionHeading>{formatMessage({id: 'assets'})}</SectionHeading>
             <Tokens data={labels} />
           </div>
       }
@@ -80,4 +82,4 @@ Breakdown.propTypes = {
     })
   ),
 };
-export default Breakdown;
+export default injectIntl(Breakdown);

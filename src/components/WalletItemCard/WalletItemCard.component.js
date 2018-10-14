@@ -1,6 +1,7 @@
 import { Icon, Dropdown, Popover } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 
 import { isHardwareWallet, isAddressMatch } from 'utils/wallet';
 import DeletionModal from 'components/DeletionModal';
@@ -47,6 +48,7 @@ export class WalletItemCard extends React.PureComponent {
 
   settingsMenu(walletType) {
     const menuItems = [];
+    const {formatMessage} = this.props.intl;
     menuItems.push(
       <MenuItem
         key="1"
@@ -54,14 +56,14 @@ export class WalletItemCard extends React.PureComponent {
           this.setState({ modalVisibility: true, modalType: 'deleteWallet' })
         }
       >
-        Delete Wallet
+        {formatMessage({id: 'delete_wallet'})}
       </MenuItem>
     );
     if (walletType === 'software') {
       menuItems.push(<MenuDivider key="2" />);
       menuItems.push(
         <MenuItem key="3" onClick={this.handleExportSeedWords}>
-          Backup / Export Wallet
+          {formatMessage({id: 'backup_wallet'})}
         </MenuItem>
       );
     }
@@ -124,6 +126,8 @@ export class WalletItemCard extends React.PureComponent {
       mnemonic,
       privateKey,
     } = this.props;
+
+    const {formatMessage} = this.props.intl
 
     const { modalVisibility, modalType } = this.state;
 
@@ -198,7 +202,7 @@ export class WalletItemCard extends React.PureComponent {
           </LeftSideWrapper>
           <AssetsWrapper>
             {
-              balancesError && <WalletName>Error fetching balance</WalletName>
+              balancesError && <WalletName>{formatMessage({id: 'fetch_balance_error'})}</WalletName>
             }
             {
               balancesLoading &&
@@ -295,4 +299,4 @@ WalletItemCard.propTypes = {
   priceInfo: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default WalletItemCard;
+export default injectIntl(WalletItemCard);

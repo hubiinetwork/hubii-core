@@ -17,6 +17,7 @@ import {
   pricesLoadedMock,
 } from 'containers/HubiiApiHoc/tests/mocks/selectors';
 
+import {intl} from '../../../../__mocks__/react-intl'
 import { WalletsOverview, mapDispatchToProps } from '../index';
 
 describe('WalletsOverview', () => {
@@ -31,6 +32,7 @@ describe('WalletsOverview', () => {
     supportedAssets: supportedAssetsLoadedMock,
     history: { push: () => {} },
     priceInfo: pricesLoadedMock,
+    intl,
   };
 
   it('should render correctly when there are wallets', () => {

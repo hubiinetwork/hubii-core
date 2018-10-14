@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+import {intl} from '../../../../__mocks__/react-intl'
 import Transaction from '../index';
 
 describe('<Transaction />', () => {
@@ -15,11 +16,13 @@ describe('<Transaction />', () => {
     viewOnBlockExplorerClick: () => {},
     onChange: () => {},
     defaultOpen: false,
+    intl,
   };
 
-  it('should render correctly tx type sent', () => {
+  it.only('should render correctly tx type sent', () => {
     const wrapper = shallow(
-      <Transaction {...props} />);
+      <Transaction {...props} />
+    )
     expect(wrapper).toMatchSnapshot();
   });
 

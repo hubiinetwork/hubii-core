@@ -1,4 +1,5 @@
 {
     "language": "中文",
-    "app.all_wallets": "所有钱包"
+    "all_wallets": "所有钱包",
+    "wallet_name_exist_error": "钱包名称 “{name}” 已经存在"    
 }
