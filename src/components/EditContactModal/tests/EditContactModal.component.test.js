@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { EditContactModal } from '../EditContactModal.component';
+import {intl} from '../../../../__mocks__/react-intl'
 
 describe('EditContactModal', () => {
   describe('shallow mount', () => {
@@ -14,6 +15,7 @@ describe('EditContactModal', () => {
         },
         contacts: [],
         confirmText: 'Add',
+        intl,
       };
     });
     describe('validateField', () => {
@@ -49,7 +51,7 @@ describe('EditContactModal', () => {
           oldAddress: '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f13a',
         });
         instance.validateAddressInUse(rule, '0x994C3De8Cc5bc781183205A3dD6E175bE1E6f14a', callbackSpy);
-        expect(callbackSpy).toBeCalledWith('You have already saved this address');
+        expect(callbackSpy).toBeCalledWith('contact_address_exist_error');
       });
       it('address is invalid', () => {
         dom = shallow(
@@ -61,7 +63,7 @@ describe('EditContactModal', () => {
         const callbackSpy = jest.fn();
         const rule = { field: 'address' };
         instance.validateInvalid(rule, '123', callbackSpy);
-        expect(callbackSpy).toBeCalledWith('invalid Address');
+        expect(callbackSpy).toBeCalledWith('invalid_address');
       });
       it('valid address', () => {
         dom = shallow(

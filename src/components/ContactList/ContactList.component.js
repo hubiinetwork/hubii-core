@@ -2,6 +2,7 @@ import { List } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import { injectIntl } from 'react-intl';
 
 import DeletionModal from 'components/DeletionModal';
 import EditContactModal from 'components/EditContactModal';
@@ -16,7 +17,7 @@ import { StyledList } from './ContactList.style';
 /**
  * The ContactList Component shows list of contacts.
  */
-export default class ContactList extends React.PureComponent {
+class ContactList extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,8 +41,9 @@ export default class ContactList extends React.PureComponent {
   }
 
   showNotification() {
+    const {formatMessage} = this.props.intl
     const success = true;
-    const message = 'Address copied to clipboard';
+    const message = formatMessage({id: 'address_clipboard'});
     Notification(success, message);
   }
 
@@ -74,8 +76,9 @@ export default class ContactList extends React.PureComponent {
   }
 
   render() {
-    const { empty, size, layout, data } = this.props;
+    const { empty, size, layout, data, intl } = this.props;
     const { oldName, oldAddress, modalType } = this.state;
+    const {formatMessage} = intl
     let modal;
     if (modalType === 'delete') {
       modal = (
@@ -94,7 +97,7 @@ export default class ContactList extends React.PureComponent {
           initialAddress={oldAddress}
           onEdit={(e) => this.handleEdit(e)}
           contacts={data}
-          confirmText="Edit contact"
+          confirmText={formatMessage({id: 'edit_contact'})}
         />
       );
     }
@@ -130,11 +133,11 @@ export default class ContactList extends React.PureComponent {
       <div>
         {
           empty &&
-          <PlaceholderText>{this.props.message}</PlaceholderText>
+          <PlaceholderText>{formatMessage({id: 'add_contact_tip'})}</PlaceholderText>
         }
         {
           !empty && data.length === 0 &&
-          <PlaceholderText>Filter returned no results</PlaceholderText>
+          <PlaceholderText>{formatMessage({id: 'contact_filter_no_results'})}</PlaceholderText>
         }
         {
           data.length > 0 &&
@@ -166,15 +169,15 @@ export default class ContactList extends React.PureComponent {
 ContactList.defaultProps = {
   size: 'small',
   layout: 'horizontal',
-  message: "Add a contact by clicking '+ Add a contact' in top right corner",
 };
 
 ContactList.propTypes = {
   empty: PropTypes.bool.isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   layout: PropTypes.string,
-  message: PropTypes.string,
   size: PropTypes.oneOf(['default', 'small', 'large']),
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
+
+export default injectIntl(ContactList)

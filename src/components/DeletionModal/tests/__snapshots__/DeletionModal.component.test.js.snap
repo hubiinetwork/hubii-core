@@ -6,6 +6,11 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <DeletionModal
     address="0x3123123"
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     name="mike"
     onCancel={[Function]}
     onDelete={[Function]}
@@ -25,9 +30,8 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <DeletionModal.style__TopHeading>
-           Are you sure you want to delete this 
-          wallet
-          ?
+           
+          delete_confirm
 </DeletionModal.style__TopHeading>,
         <DeletionModal.style__TextPrimary>
           <div
@@ -40,7 +44,7 @@ ShallowWrapper {
                     <DeletionModal.style__SecondaryHeader
                               large={true}
                     >
-                              Name
+                              name
                     </DeletionModal.style__SecondaryHeader>
                     <br />
                     <Text>
@@ -51,7 +55,7 @@ ShallowWrapper {
                     <DeletionModal.style__SecondaryHeader
                               large={true}
                     >
-                              Address
+                              address
                     </DeletionModal.style__SecondaryHeader>
                     <br />
                     <Text>
@@ -65,14 +69,14 @@ ShallowWrapper {
                     onClick={[Function]}
                     type="danger"
           >
-                    Delete
+                    delete
           </DeletionModal.style__StyledButton>
           <DeletionModal.style__StyledButton
                     id="cancel"
                     onClick={[Function]}
                     type="default"
           >
-                    Cancel
+                    cancel
           </DeletionModal.style__StyledButton>
 </DeletionModal.style__ParentDiv>,
       ],
@@ -85,16 +89,14 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            " Are you sure you want to delete this ",
-            "wallet",
-            "?",
+            " ",
+            "delete_confirm",
           ],
         },
         "ref": null,
         "rendered": Array [
-          " Are you sure you want to delete this ",
-          "wallet",
-          "?",
+          " ",
+          "delete_confirm",
         ],
         "type": [Function],
       },
@@ -114,7 +116,7 @@ ShallowWrapper {
               <DeletionModal.style__SecondaryHeader
                             large={true}
               >
-                            Name
+                            name
               </DeletionModal.style__SecondaryHeader>
               <br />
               <Text>
@@ -125,7 +127,7 @@ ShallowWrapper {
               <DeletionModal.style__SecondaryHeader
                             large={true}
               >
-                            Address
+                            address
               </DeletionModal.style__SecondaryHeader>
               <br />
               <Text>
@@ -145,7 +147,7 @@ ShallowWrapper {
                 <DeletionModal.style__SecondaryHeader
                   large={true}
 >
-                  Name
+                  name
 </DeletionModal.style__SecondaryHeader>,
                 <br />,
                 <Text>
@@ -163,11 +165,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "Name",
+                  "children": "name",
                   "large": true,
                 },
                 "ref": null,
-                "rendered": "Name",
+                "rendered": "name",
                 "type": [Function],
               },
               Object {
@@ -202,7 +204,7 @@ ShallowWrapper {
                 <DeletionModal.style__SecondaryHeader
                   large={true}
 >
-                  Address
+                  address
 </DeletionModal.style__SecondaryHeader>,
                 <br />,
                 <Text>
@@ -217,11 +219,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "Address",
+                  "children": "address",
                   "large": true,
                 },
                 "ref": null,
-                "rendered": "Address",
+                "rendered": "address",
                 "type": [Function],
               },
               Object {
@@ -261,14 +263,14 @@ ShallowWrapper {
               onClick={[Function]}
               type="danger"
 >
-              Delete
+              delete
 </DeletionModal.style__StyledButton>,
             <DeletionModal.style__StyledButton
               id="cancel"
               onClick={[Function]}
               type="default"
 >
-              Cancel
+              cancel
 </DeletionModal.style__StyledButton>,
           ],
         },
@@ -279,13 +281,13 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Delete",
+              "children": "delete",
               "id": "delete",
               "onClick": [Function],
               "type": "danger",
             },
             "ref": null,
-            "rendered": "Delete",
+            "rendered": "delete",
             "type": [Function],
           },
           Object {
@@ -293,13 +295,13 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Cancel",
+              "children": "cancel",
               "id": "cancel",
               "onClick": [Function],
               "type": "default",
             },
             "ref": null,
-            "rendered": "Cancel",
+            "rendered": "cancel",
             "type": [Function],
           },
         ],
@@ -316,9 +318,8 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <DeletionModal.style__TopHeading>
-             Are you sure you want to delete this 
-            wallet
-            ?
+             
+            delete_confirm
 </DeletionModal.style__TopHeading>,
           <DeletionModal.style__TextPrimary>
             <div
@@ -331,7 +332,7 @@ ShallowWrapper {
                         <DeletionModal.style__SecondaryHeader
                                     large={true}
                         >
-                                    Name
+                                    name
                         </DeletionModal.style__SecondaryHeader>
                         <br />
                         <Text>
@@ -342,7 +343,7 @@ ShallowWrapper {
                         <DeletionModal.style__SecondaryHeader
                                     large={true}
                         >
-                                    Address
+                                    address
                         </DeletionModal.style__SecondaryHeader>
                         <br />
                         <Text>
@@ -356,14 +357,14 @@ ShallowWrapper {
                         onClick={[Function]}
                         type="danger"
             >
-                        Delete
+                        delete
             </DeletionModal.style__StyledButton>
             <DeletionModal.style__StyledButton
                         id="cancel"
                         onClick={[Function]}
                         type="default"
             >
-                        Cancel
+                        cancel
             </DeletionModal.style__StyledButton>
 </DeletionModal.style__ParentDiv>,
         ],
@@ -376,16 +377,14 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              " Are you sure you want to delete this ",
-              "wallet",
-              "?",
+              " ",
+              "delete_confirm",
             ],
           },
           "ref": null,
           "rendered": Array [
-            " Are you sure you want to delete this ",
-            "wallet",
-            "?",
+            " ",
+            "delete_confirm",
           ],
           "type": [Function],
         },
@@ -405,7 +404,7 @@ ShallowWrapper {
                 <DeletionModal.style__SecondaryHeader
                                 large={true}
                 >
-                                Name
+                                name
                 </DeletionModal.style__SecondaryHeader>
                 <br />
                 <Text>
@@ -416,7 +415,7 @@ ShallowWrapper {
                 <DeletionModal.style__SecondaryHeader
                                 large={true}
                 >
-                                Address
+                                address
                 </DeletionModal.style__SecondaryHeader>
                 <br />
                 <Text>
@@ -436,7 +435,7 @@ ShallowWrapper {
                   <DeletionModal.style__SecondaryHeader
                     large={true}
 >
-                    Name
+                    name
 </DeletionModal.style__SecondaryHeader>,
                   <br />,
                   <Text>
@@ -454,11 +453,11 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "Name",
+                    "children": "name",
                     "large": true,
                   },
                   "ref": null,
-                  "rendered": "Name",
+                  "rendered": "name",
                   "type": [Function],
                 },
                 Object {
@@ -493,7 +492,7 @@ ShallowWrapper {
                   <DeletionModal.style__SecondaryHeader
                     large={true}
 >
-                    Address
+                    address
 </DeletionModal.style__SecondaryHeader>,
                   <br />,
                   <Text>
@@ -508,11 +507,11 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "Address",
+                    "children": "address",
                     "large": true,
                   },
                   "ref": null,
-                  "rendered": "Address",
+                  "rendered": "address",
                   "type": [Function],
                 },
                 Object {
@@ -552,14 +551,14 @@ ShallowWrapper {
                 onClick={[Function]}
                 type="danger"
 >
-                Delete
+                delete
 </DeletionModal.style__StyledButton>,
               <DeletionModal.style__StyledButton
                 id="cancel"
                 onClick={[Function]}
                 type="default"
 >
-                Cancel
+                cancel
 </DeletionModal.style__StyledButton>,
             ],
           },
@@ -570,13 +569,13 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Delete",
+                "children": "delete",
                 "id": "delete",
                 "onClick": [Function],
                 "type": "danger",
               },
               "ref": null,
-              "rendered": "Delete",
+              "rendered": "delete",
               "type": [Function],
             },
             Object {
@@ -584,13 +583,13 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Cancel",
+                "children": "cancel",
                 "id": "cancel",
                 "onClick": [Function],
                 "type": "default",
               },
               "ref": null,
-              "rendered": "Cancel",
+              "rendered": "cancel",
               "type": [Function],
             },
           ],

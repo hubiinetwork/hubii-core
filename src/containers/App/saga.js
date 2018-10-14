@@ -18,12 +18,7 @@ export function* getIntl() {
   return intl
 }
 
-
 export function* notifyUI({ messageType, message, customDuration }) {
-  if (!intl) {
-    intl = yield getIntl()
-  }
-  // const translatedText = message.id ? intl.formatMessage({id: message.id}, message.values) : message;
   yield Promise.resolve(Notification(messageType, message, customDuration));
 }
 
@@ -35,4 +30,5 @@ export default function* app() {
   yield takeEvery(NOTIFY, notifyUI);
   yield takeEvery(CHANGE_NETWORK, hookChangeNetwork);
   yield takeEvery(CHANGE_LOCALE, getIntl);
+  intl = yield getIntl()
 }

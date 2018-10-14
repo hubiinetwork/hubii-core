@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Form, Icon } from 'antd';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 import { isAddressMatch } from 'utils/wallet';
 import { isValidAddress } from 'ethereumjs-util';
 import {
@@ -36,11 +37,12 @@ export class EditContactModal extends React.Component {
   }
 
   validateAddressInUse(rule, value, callback) {
-    const { contacts } = this.props;
+    const { contacts, intl } = this.props;
+    const {formatMessage} = intl
     if (!value) { callback(); return; } // no address input
     const sameAddressList = contacts.filter((person) => isAddressMatch(person.address, value.trim()));
     if (sameAddressList.length && !isAddressMatch(value.trim(), this.props.initialAddress)) {
-      callback('You have already saved this address');
+      callback(formatMessage({id: 'contact_address_exist_error'}));
     }
     callback();
   }
@@ -56,9 +58,10 @@ export class EditContactModal extends React.Component {
   }
 
   validateInvalid(rule, value, callback) {
+    const {formatMessage} = this.props.intl
     if (!value) { callback(); return; } // no address input
     if (!isValidAddress(value.trim())) {
-      callback('invalid Address');
+      callback(formatMessage({id: 'invalid_address'}));
     }
     callback();
   }
@@ -66,52 +69,53 @@ export class EditContactModal extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { confirmText, quickAddAddress } = this.props;
+    const { confirmText, quickAddAddress, intl } = this.props;
+    const {formatMessage} = intl
     return (
       <Wrapper>
         <WrapperIcon>
           <Icon type="info-circle-o" />
           <Text>
-Please ensure that all information is correct. Funds sent to an incorrect address are lost forever.
+            {formatMessage({id: 'contact_info_warning'})}
           </Text>
         </WrapperIcon>
         <Form layout="vertical" onSubmit={this.handleEdit}>
-          <ModalFormItem label={<ModalFormLabel>Contact name</ModalFormLabel>}>
+          <ModalFormItem label={<ModalFormLabel>{formatMessage({id: 'contact_name'})}</ModalFormLabel>}>
             {getFieldDecorator('name', {
               rules: [
                 {
-                  message: 'Please enter a name for the contact',
+                  message: formatMessage({id: 'contact_enter_name'}),
                   required: true,
                 },
                 {
-                  message: 'A contact with that name already exists',
+                  message: formatMessage({id: 'contact_name_exist_error'}),
                   required: true,
                   validator: (rule, value, callback) => this.validateNameInUse(rule, value, callback),
                 },
                 {
                   max: 25,
-                  message: 'Contact name cannot exceed 25 characters',
+                  message: formatMessage({id: 'contact_name_max25_error'}),
                 },
               ],
               initialValue: this.props.initialName,
             })(<ModalFormInput placeholder="John Doe" />)}
           </ModalFormItem>
           <ModalFormItem
-            label={<ModalFormLabel>Contact address</ModalFormLabel>}
+            label={<ModalFormLabel>{formatMessage({id: 'contact_address'})}</ModalFormLabel>}
           >
             {getFieldDecorator('address', {
               rules: [
                 {
-                  message: 'Please enter an address for the contact',
+                  message: formatMessage({id: 'contact_enter_name'}),
                   required: true,
                 },
                 {
-                  message: "Sorry, that address isn't valid",
+                  message: formatMessage({id: 'invalid_address'}),
                   required: true,
                   validator: (rule, value, callback) => this.validateInvalid(rule, value, callback),
                 },
                 {
-                  message: 'A contact with that address already exists',
+                  message: formatMessage({id: 'contact_address_exist_error'}),
                   required: true,
                   validator: (rule, value, callback) => this.validateAddressInUse(rule, value, callback),
                 },
@@ -155,5 +159,5 @@ EditContactModal.propTypes = {
   quickAddAddress: PropTypes.string,
 };
 
-export default Form.create()(EditContactModal);
+export default Form.create()(injectIntl(EditContactModal));
 

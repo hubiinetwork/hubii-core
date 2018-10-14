@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ImportWallet from '../index';
+import {intl} from '../../../../../__mocks__/react-intl'
 
 const walletData = [
   {
@@ -15,7 +16,7 @@ const walletData = [
 
 describe('<ImportWallet />', () => {
   it('should render correctly', () => {
-    const wrapper = shallow(<ImportWallet wallets={walletData} />);
+    const wrapper = shallow(<ImportWallet wallets={walletData} intl={intl} />);
     expect(wrapper).toMatchSnapshot();
   });
 });

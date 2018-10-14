@@ -22,6 +22,11 @@ ShallowWrapper {
             "walletApiEndpoint": [Function],
           }
     }
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     locale="en"
     onChangeLocale={[Function]}
     onChangeNetwork={[Function]}
@@ -75,13 +80,13 @@ ShallowWrapper {
       "children": Array [
         <TopHeader>
           <Heading>
-                    Settings
+                    settings
           </Heading>
 </TopHeader>,
         <style__Body>
           <style__SettingWrapper>
                     <style__StyledSectionHeading>
-                              Network
+                              setting_network
                     </style__StyledSectionHeading>
                     <Select.style
                               disabled={true}
@@ -107,7 +112,7 @@ ShallowWrapper {
           </style__SettingWrapper>
           <style__SettingWrapper>
                     <style__StyledSectionHeading>
-                              Language
+                              setting_language
                     </style__StyledSectionHeading>
                     <Select.style
                               onChange={[Function]}
@@ -118,7 +123,11 @@ ShallowWrapper {
                               }
                               value="en"
                     >
-                              
+                              <Option
+                                        value="en"
+                              >
+                                        English
+                              </Option>
                     </Select.style>
           </style__SettingWrapper>
 </style__Body>,
@@ -132,7 +141,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <Heading>
-            Settings
+            settings
 </Heading>,
         },
         "ref": null,
@@ -141,10 +150,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "Settings",
+            "children": "settings",
           },
           "ref": null,
-          "rendered": "Settings",
+          "rendered": "settings",
           "type": [Function],
         },
         "type": [Function],
@@ -157,7 +166,7 @@ ShallowWrapper {
           "children": Array [
             <style__SettingWrapper>
               <style__StyledSectionHeading>
-                            Network
+                            setting_network
               </style__StyledSectionHeading>
               <Select.style
                             disabled={true}
@@ -183,7 +192,7 @@ ShallowWrapper {
 </style__SettingWrapper>,
             <style__SettingWrapper>
               <style__StyledSectionHeading>
-                            Language
+                            setting_language
               </style__StyledSectionHeading>
               <Select.style
                             onChange={[Function]}
@@ -194,7 +203,11 @@ ShallowWrapper {
                             }
                             value="en"
               >
-                            
+                            <Option
+                                          value="en"
+                            >
+                                          English
+                            </Option>
               </Select.style>
 </style__SettingWrapper>,
           ],
@@ -208,7 +221,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <style__StyledSectionHeading>
-                  Network
+                  setting_network
 </style__StyledSectionHeading>,
                 <Select.style
                   disabled={true}
@@ -240,10 +253,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "Network",
+                  "children": "setting_network",
                 },
                 "ref": null,
-                "rendered": "Network",
+                "rendered": "setting_network",
                 "type": [Function],
               },
               Object {
@@ -309,7 +322,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <style__StyledSectionHeading>
-                  Language
+                  setting_language
 </style__StyledSectionHeading>,
                 <Select.style
                   onChange={[Function]}
@@ -320,7 +333,11 @@ ShallowWrapper {
                   }
                   value="en"
 >
-                  
+                  <Option
+                                    value="en"
+                  >
+                                    English
+                  </Option>
 </Select.style>,
               ],
             },
@@ -331,10 +348,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "Language",
+                  "children": "setting_language",
                 },
                 "ref": null,
-                "rendered": "Language",
+                "rendered": "setting_language",
                 "type": [Function],
               },
               Object {
@@ -342,7 +359,13 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": Array [],
+                  "children": Array [
+                    <Option
+                      value="en"
+>
+                      English
+</Option>,
+                  ],
                   "onChange": [Function],
                   "style": Object {
                     "width": "15rem",
@@ -350,7 +373,20 @@ ShallowWrapper {
                   "value": "en",
                 },
                 "ref": null,
-                "rendered": Array [],
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": "en",
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "English",
+                      "value": "en",
+                    },
+                    "ref": null,
+                    "rendered": "English",
+                    "type": [Function],
+                  },
+                ],
                 "type": [Function],
               },
             ],
@@ -371,13 +407,13 @@ ShallowWrapper {
         "children": Array [
           <TopHeader>
             <Heading>
-                        Settings
+                        settings
             </Heading>
 </TopHeader>,
           <style__Body>
             <style__SettingWrapper>
                         <style__StyledSectionHeading>
-                                    Network
+                                    setting_network
                         </style__StyledSectionHeading>
                         <Select.style
                                     disabled={true}
@@ -403,7 +439,7 @@ ShallowWrapper {
             </style__SettingWrapper>
             <style__SettingWrapper>
                         <style__StyledSectionHeading>
-                                    Language
+                                    setting_language
                         </style__StyledSectionHeading>
                         <Select.style
                                     onChange={[Function]}
@@ -414,7 +450,11 @@ ShallowWrapper {
                                     }
                                     value="en"
                         >
-                                    
+                                    <Option
+                                                value="en"
+                                    >
+                                                English
+                                    </Option>
                         </Select.style>
             </style__SettingWrapper>
 </style__Body>,
@@ -428,7 +468,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <Heading>
-              Settings
+              settings
 </Heading>,
           },
           "ref": null,
@@ -437,10 +477,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Settings",
+              "children": "settings",
             },
             "ref": null,
-            "rendered": "Settings",
+            "rendered": "settings",
             "type": [Function],
           },
           "type": [Function],
@@ -453,7 +493,7 @@ ShallowWrapper {
             "children": Array [
               <style__SettingWrapper>
                 <style__StyledSectionHeading>
-                                Network
+                                setting_network
                 </style__StyledSectionHeading>
                 <Select.style
                                 disabled={true}
@@ -479,7 +519,7 @@ ShallowWrapper {
 </style__SettingWrapper>,
               <style__SettingWrapper>
                 <style__StyledSectionHeading>
-                                Language
+                                setting_language
                 </style__StyledSectionHeading>
                 <Select.style
                                 onChange={[Function]}
@@ -490,7 +530,11 @@ ShallowWrapper {
                                 }
                                 value="en"
                 >
-                                
+                                <Option
+                                                value="en"
+                                >
+                                                English
+                                </Option>
                 </Select.style>
 </style__SettingWrapper>,
             ],
@@ -504,7 +548,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <style__StyledSectionHeading>
-                    Network
+                    setting_network
 </style__StyledSectionHeading>,
                   <Select.style
                     disabled={true}
@@ -536,10 +580,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "Network",
+                    "children": "setting_network",
                   },
                   "ref": null,
-                  "rendered": "Network",
+                  "rendered": "setting_network",
                   "type": [Function],
                 },
                 Object {
@@ -605,7 +649,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <style__StyledSectionHeading>
-                    Language
+                    setting_language
 </style__StyledSectionHeading>,
                   <Select.style
                     onChange={[Function]}
@@ -616,7 +660,11 @@ ShallowWrapper {
                     }
                     value="en"
 >
-                    
+                    <Option
+                                        value="en"
+                    >
+                                        English
+                    </Option>
 </Select.style>,
                 ],
               },
@@ -627,10 +675,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "Language",
+                    "children": "setting_language",
                   },
                   "ref": null,
-                  "rendered": "Language",
+                  "rendered": "setting_language",
                   "type": [Function],
                 },
                 Object {
@@ -638,7 +686,13 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": Array [],
+                    "children": Array [
+                      <Option
+                        value="en"
+>
+                        English
+</Option>,
+                    ],
                     "onChange": [Function],
                     "style": Object {
                       "width": "15rem",
@@ -646,7 +700,20 @@ ShallowWrapper {
                     "value": "en",
                   },
                   "ref": null,
-                  "rendered": Array [],
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": "en",
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "English",
+                        "value": "en",
+                      },
+                      "ref": null,
+                      "rendered": "English",
+                      "type": [Function],
+                    },
+                  ],
                   "type": [Function],
                 },
               ],

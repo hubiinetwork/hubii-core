@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import { fromJS } from 'immutable';
 import { ContactBook, mapDispatchToProps } from '../index';
 import { removeContact, editContact } from '../actions';
+import {intl} from '../../../../__mocks__/react-intl'
 
 
 describe('<ContactBook />', () => {
@@ -68,6 +69,7 @@ describe('<ContactBook />', () => {
     ]),
     removeContact: jest.fn(),
     editContact: jest.fn(),
+    intl,
   };
 
   let wrapper;

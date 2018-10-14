@@ -9,7 +9,7 @@ import { addLocaleData } from 'react-intl';
 import { DEFAULT_LOCALE } from './containers/App/constants';
 import enTranslationMessages from './translations/en.json';
 
-const locales = {};
+const locales = {en: enTranslationMessages};
 
 try {
   const context = require.context('./translations', true, /\.json$/);
@@ -17,7 +17,8 @@ try {
     const locale = key.replace('./', '').replace('.json', '');
     locales[locale] = context(key);
   });
-} catch (error) {}// eslint-disable-line
+} catch (error) { // eslint-disable-line
+}
 
 export const appLocales = Object.keys(locales);
 
@@ -31,10 +32,11 @@ appLocales.forEach((locale) => {
 addLocaleData(localeData);
 
 const defaultFormattedMessages = locales[DEFAULT_LOCALE];
+
 export const formatTranslationMessages = (locale, messages) => {
   return Object.keys(defaultFormattedMessages).reduce((formattedMessages, key) => {
     let message = messages[key];
-    if (!message && locale !== DEFAULT_LOCALE) {
+    if (!message) {
       message = defaultFormattedMessages[key];
     }
     return Object.assign(formattedMessages, { [key]: message });

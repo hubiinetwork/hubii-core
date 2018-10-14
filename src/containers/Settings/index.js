@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -26,16 +27,17 @@ import {
 export class Settings extends React.PureComponent {
 
   render() {
-    const { locale, onChangeNetwork, onChangeLocale, currentNetwork, supportedNetworks } = this.props;
+    const { locale, onChangeNetwork, onChangeLocale, currentNetwork, supportedNetworks, intl } = this.props;
+    const {formatMessage} = intl
     return (
       <Wrapper>
         <TopHeader>
-          <Heading>Settings</Heading>
+          <Heading>{formatMessage({id: 'settings'})}</Heading>
         </TopHeader>
         <Body>
           <SettingWrapper>
             <StyledSectionHeading>
-              Network
+              {formatMessage({id: 'setting_network'})}
             </StyledSectionHeading>
             <Select
               value={currentNetwork.provider.name}
@@ -58,7 +60,7 @@ export class Settings extends React.PureComponent {
           </SettingWrapper>
           <SettingWrapper>
             <StyledSectionHeading>
-              Language
+              {formatMessage({id: 'setting_language'})}
             </StyledSectionHeading>
             <Select
               value={locale}
@@ -106,4 +108,4 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-export default compose(withConnect)(Settings);
+export default compose(withConnect)(injectIntl(Settings));
