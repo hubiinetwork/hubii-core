@@ -1,6 +1,7 @@
 {
     "language": "English",
     "all_wallets": "All Wallets",
+    "my_wallets": "My Wallets",
     "create_contact": "Create contact",
     "add_wallet": "Add a wallet",
     "add_wallet_tip": "Add a wallet to hubii core by clicking '+ Add a wallet' in the top right corner",
@@ -102,7 +103,7 @@
     "unlock_wallet_success": "Wallet unlocked!",
     "unlock_wallet_failed_error": "Failed to unlock wallet: {message}",
     "address_undefined_error": "Address undefined",
-    "invalid_param_error": "Address undefined",
+    "invalid_param_error": "invalid param",
     "invalid_keystore_error": "invalid keystore file",
     "wallet_encrypted_error": "Wallet is encrypted",
     "send_transaction_info": "Sending transaction...",
@@ -110,6 +111,5 @@
     "send_transaction_failed_error": "Failed to send transaction",
     "sent_transaction_success": "Transaction sent",
     "wallet_address_exist_error": "Wallet {address} already exists",
-    "wallet_name_exist_error": "Wallet {name} already exists",
-    "my_wallets": "My Wallets"
+    "wallet_name_exist_error": "Wallet {name} already exists"
 }
