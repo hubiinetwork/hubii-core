@@ -8,7 +8,6 @@ import { setIntl } from 'utils/localisation';
 import { NOTIFY, CHANGE_NETWORK } from './constants';
 import { notify } from './actions';
 
-
 export function* changeLocale() {
   const locale = yield select(makeSelectLocale());
   setIntl(locale);
