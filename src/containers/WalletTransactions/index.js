@@ -5,6 +5,7 @@ import uuid from 'uuid/v4';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { injectIntl } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { getBreakdown } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
@@ -78,9 +79,9 @@ export class WalletsTransactions extends React.Component {
 
 
   render() {
-    const { currentWalletWithInfo, supportedAssets, currentNetwork } = this.props;
+    const { currentWalletWithInfo, supportedAssets, currentNetwork, intl } = this.props;
     const { expandedTxs, currentPage } = this.state;
-
+    const { formatMessage } = intl;
     const start = (currentPage - 1) * 10;
     const end = start + 10;
     const txToShow = currentWalletWithInfo.getIn(['transactions', 'transactions'])
@@ -95,7 +96,7 @@ export class WalletsTransactions extends React.Component {
     ) {
       return (
         <LoadingWrapper>
-          <StyledSpin size="large" tip="Synchronising..."></StyledSpin>
+          <StyledSpin size="large" tip={formatMessage({ id: 'synchronising' })}></StyledSpin>
         </LoadingWrapper>
       );
     }
@@ -105,15 +106,15 @@ export class WalletsTransactions extends React.Component {
       currentWalletWithInfo.getIn(['balances', 'error']) ||
       supportedAssets.get('error')
     ) {
-      return <NoTxPlaceholder>{ 'There was an problem fetching this wallet\'s transaction history. Please try again later.' }</NoTxPlaceholder>;
+      return <NoTxPlaceholder>{ formatMessage({ id: 'fetch_transactions_error' }) }</NoTxPlaceholder>;
     }
     if (currentWalletWithInfo.getIn(['transactions', 'transactions']).size === 0) {
-      return <NoTxPlaceholder>{ 'There is no transaction history for this wallet' }</NoTxPlaceholder>;
+      return <NoTxPlaceholder>{ formatMessage({ id: 'no_transaction_history' }) }</NoTxPlaceholder>;
     }
     return (
       <OuterWrapper>
         <TransactionsWrapper>
-          <SectionHeading>Transaction history</SectionHeading>
+          <SectionHeading>{formatMessage({ id: 'transaction_history' })}</SectionHeading>
           {txToShow.map((tx) => (
             <StyledTransaction
               key={uuid()}
@@ -142,12 +143,14 @@ export class WalletsTransactions extends React.Component {
             onChange={this.onPaginationChange}
           />
           <Alert
-            message="Where's my transaction?"
+            message={formatMessage({ id: 'where_my_transaction' })}
             description={
               <div>
-                <span>In this alpha build of hubii core, only confirmed transactions are displayed. This means recently sent transactions may take some time to appear, while they are pending.</span>
+                <span>
+                  {formatMessage({ id: 'my_transaction_notes_1' })}
+                </span>
                 <br />
-                <span>Until support for pending transactions is added into hubii core, you can </span>
+                {formatMessage({ id: 'my_transaction_notes_2' })}
                 <a
                   role="link"
                   tabIndex={0}
@@ -156,7 +159,7 @@ export class WalletsTransactions extends React.Component {
                       () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
                       () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
                   }
-                >view them on Etherscan</a>
+                >{formatMessage({ id: 'view_them_etherscan' })}</a>
                 <span>.</span>
               </div>
               }
@@ -181,6 +184,7 @@ WalletsTransactions.propTypes = {
   supportedAssets: PropTypes.object.isRequired,
   blockHeight: PropTypes.object.isRequired,
   currentNetwork: PropTypes.object.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -198,4 +202,4 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(
   withConnect,
-)(WalletsTransactions);
+)(injectIntl(WalletsTransactions));

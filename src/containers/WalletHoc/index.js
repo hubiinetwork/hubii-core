@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -63,7 +64,8 @@ export function getComponentHOC(Component) {
     }
 
     componentDidMount() {
-      this.props.notify('info', 'Hi, thanks for trying this alpha build of hubii core. In this build, you can interact with the Ethereum testnet Ropsten. Stay tuned for mainnet support, which will be enabled very soon', 18);
+      const { formatMessage } = this.props.intl;
+      this.props.notify('info', formatMessage({ id: 'welcome_testnet' }), 18);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -132,8 +134,9 @@ export function getComponentHOC(Component) {
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
     loading: PropTypes.object,
+    intl: PropTypes.object.isRequired,
   };
-  return HOC;
+  return injectIntl(HOC);
 }
 
 export function mapDispatchToProps(dispatch) {

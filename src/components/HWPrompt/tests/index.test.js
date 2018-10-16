@@ -14,6 +14,7 @@ import {
   ledgerHocConnectedMock,
 } from 'containers/LedgerHoc/tests/mocks/selectors';
 
+import { intl } from '../../../../__mocks__/react-intl';
 import HWPrompt from '../index';
 
 describe('<HWPrompt />', () => {
@@ -21,6 +22,7 @@ describe('<HWPrompt />', () => {
     deviceType: 'lns',
     ledgerInfo: ledgerHocConnectedMock,
     trezorInfo: trezorHocConnectedMock,
+    intl,
   };
   it('should render correctly in lns connected stage', () => {
     const wrapper = shallow(<HWPrompt {...props} />);

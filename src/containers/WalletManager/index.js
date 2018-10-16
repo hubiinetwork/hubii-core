@@ -1,4 +1,5 @@
 import { Icon } from 'antd';
+import { injectIntl } from 'react-intl';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
@@ -119,13 +120,14 @@ export class WalletManager extends React.PureComponent {
 
   render() {
     const { history, match, contacts, loading } = this.props;
+    const { formatMessage } = this.props.intl;
     let modal;
     switch (this.state.type) {
       case 'addContact':
         modal = (<EditContactModal
           onEdit={(contact) => this.onCreateContact(contact)}
           contacts={contacts.toJS()}
-          confirmText="Create contact"
+          confirmText={formatMessage({ id: 'create_contact' })}
         />);
         break;
       default:
@@ -140,15 +142,17 @@ export class WalletManager extends React.PureComponent {
     return (
       <Wrapper>
         <TopHeader>
-          <Heading>My wallets</Heading>
+          <Heading>
+            {formatMessage({ id: 'my_wallets' })}
+          </Heading>
           <StyledButton
             type="primary"
             onClick={() => this.showModal(history.location.pathname === `${match.url}/overview` ? 'addWallet' : 'addContact')}
           >
             <Icon type="plus" />
             {history.location.pathname === `${match.url}/overview`
-                ? 'Add a wallet'
-                : 'Add a contact'}
+                ? formatMessage({ id: 'add_wallet' })
+                : formatMessage({ id: 'add_contact' })}
           </StyledButton>
           <Modal
             footer={null}
@@ -166,7 +170,7 @@ export class WalletManager extends React.PureComponent {
           <TabPane
             tab={
               <span>
-                <Icon type="wallet" />Overview
+                <Icon type="wallet" />{formatMessage({ id: 'overview' })}
               </span>
             }
             key={`${match.url}/overview`}
@@ -175,7 +179,7 @@ export class WalletManager extends React.PureComponent {
           <TabPane
             tab={
               <span>
-                <Icon type="contacts" />Contacts
+                <Icon type="contacts" />{formatMessage({ id: 'contacts' })}
               </span>
             }
             key={`${match.url}/contacts`}
@@ -208,6 +212,7 @@ WalletManager.propTypes = {
     [PropTypes.arrayOf(PropTypes.object), PropTypes.object]
   ),
   wallets: PropTypes.object.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -231,4 +236,4 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(
   withConnect,
-)(WalletManager);
+)(injectIntl(WalletManager));

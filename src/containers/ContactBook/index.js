@@ -6,6 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -47,6 +48,7 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
 
   render() {
     let { contacts, recentContacts } = this.props;
+    const { formatMessage } = this.props.intl;
     contacts = contacts.toJS();
     recentContacts = recentContacts.toJS();
 
@@ -54,7 +56,7 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
       <Wrapper>
         <AllContactsWrapper contactsPresent={contacts.length}>
           <ContactHeader
-            title={'All contacts'}
+            title={formatMessage({ id: 'all_contacts' })}
             showSearch={contacts.length !== 0}
             onChange={((value) => this.setState({ fullFilterText: value }))}
           />
@@ -67,7 +69,7 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
         </AllContactsWrapper>
         <RecentContactsWrapper contactsPresent={contacts.length}>
           <ContactHeader
-            title={'Recently used contacts'}
+            title={formatMessage({ id: 'recent_contacts' })}
             showSearch={recentContacts.length !== 0}
             onChange={((value) => this.setState({ recentFilterText: value }))}
           />
@@ -76,7 +78,7 @@ export class ContactBook extends React.PureComponent { // eslint-disable-line re
             empty={recentContacts.length === 0}
             onEdit={(newContact, oldContact) => this.props.editContact(contacts, recentContacts, newContact, oldContact)}
             onDelete={(contact) => this.props.removeContact(contacts, recentContacts, contact)}
-            message={'You have no recently used contacts'}
+            message={formatMessage({ id: 'no_recent_contacts' })}
           />
         </RecentContactsWrapper>
       </Wrapper>
@@ -93,6 +95,7 @@ ContactBook.propTypes = {
     [PropTypes.arrayOf(PropTypes.object), PropTypes.object]
   ),
   editContact: PropTypes.func,
+  intl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -112,4 +115,4 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(
   withConnect,
-)(ContactBook);
+)(injectIntl(ContactBook));

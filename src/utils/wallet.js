@@ -63,8 +63,8 @@ export const getCurrencySymbol = (supportedAssets, currency) => supportedAssets
 export const referenceCurrencies = ['eth', 'btc', 'usd'];
 
 export const humanFriendlyWalletType = (type) => {
-  if (type === 'lns') return 'Ledger Nano S';
-  if (type === 'software') return 'Software Wallet';
+  if (type === 'lns') return 'wallet_type_lns';
+  if (type === 'software') return 'wallet_type_software';
   return type;
 };
 

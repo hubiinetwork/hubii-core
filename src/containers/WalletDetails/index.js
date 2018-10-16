@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fromJS } from 'immutable';
 import { compose } from 'redux';
+import { injectIntl } from 'react-intl';
 import theme from 'themes/darkTheme';
 import { createStructuredSelector } from 'reselect';
 import { Route, Redirect } from 'react-router';
@@ -41,7 +42,8 @@ export class WalletDetails extends React.PureComponent {
   }
 
   render() {
-    const { history, match, currentWalletDetails } = this.props;
+    const { history, match, currentWalletDetails, intl } = this.props;
+    const { formatMessage } = intl;
     const currentWallet = currentWalletDetails;
     if (!currentWallet || currentWallet === fromJS({})) {
       return null;
@@ -67,7 +69,7 @@ export class WalletDetails extends React.PureComponent {
           <TabPane
             tab={
               <span>
-                <Icon type="wallet" />Details
+                <Icon type="wallet" />{formatMessage({ id: 'details' })}
               </span>
             }
             key={`${match.url}/overview`}
@@ -98,7 +100,7 @@ export class WalletDetails extends React.PureComponent {
                     />
                   </g>
                 </svg>
-                Transfer
+                {formatMessage({ id: 'transfer' })}
               </span>
             }
             key={`${match.url}/transfer`}
@@ -108,7 +110,7 @@ export class WalletDetails extends React.PureComponent {
           <TabPane
             tab={
               <span>
-                <Icon type="shopping-cart" />Buy ETH
+                <Icon type="shopping-cart" />{formatMessage({ id: 'buy_eth' })}
               </span>
             }
             key={`${match.url}/buyeth`}
@@ -129,6 +131,7 @@ WalletDetails.propTypes = {
   match: PropTypes.object.isRequired,
   currentWalletDetails: PropTypes.object.isRequired,
   setCurrentWallet: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -146,4 +149,4 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-export default compose(withConnect)(WalletDetails);
+export default compose(withConnect)(injectIntl(WalletDetails));

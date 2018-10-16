@@ -5,6 +5,11 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ImportWallet
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     wallets={
         Array [
             Object {
@@ -31,7 +36,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <ImportWallet.style__Header>
-          How is the wallet stored?
+          store_wallet_question
 </ImportWallet.style__Header>,
         <ImportWallet.style__OptionsWrapper
           onChange={[Function]}
@@ -61,7 +66,7 @@ ShallowWrapper {
           type="primary"
 >
           <Text>
-                    Next
+                    next
           </Text>
 </ImportWallet.style__StyledButton>,
       ],
@@ -73,10 +78,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "How is the wallet stored?",
+          "children": "store_wallet_question",
         },
         "ref": null,
-        "rendered": "How is the wallet stored?",
+        "rendered": "store_wallet_question",
         "type": [Function],
       },
       Object {
@@ -193,7 +198,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <Text>
-            Next
+            next
 </Text>,
           "disabled": true,
           "onClick": [Function],
@@ -205,10 +210,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "Next",
+            "children": "next",
           },
           "ref": null,
-          "rendered": "Next",
+          "rendered": "next",
           "type": [Function],
         },
         "type": [Function],
@@ -224,7 +229,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <ImportWallet.style__Header>
-            How is the wallet stored?
+            store_wallet_question
 </ImportWallet.style__Header>,
           <ImportWallet.style__OptionsWrapper
             onChange={[Function]}
@@ -254,7 +259,7 @@ ShallowWrapper {
             type="primary"
 >
             <Text>
-                        Next
+                        next
             </Text>
 </ImportWallet.style__StyledButton>,
         ],
@@ -266,10 +271,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "How is the wallet stored?",
+            "children": "store_wallet_question",
           },
           "ref": null,
-          "rendered": "How is the wallet stored?",
+          "rendered": "store_wallet_question",
           "type": [Function],
         },
         Object {
@@ -386,7 +391,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <Text>
-              Next
+              next
 </Text>,
             "disabled": true,
             "onClick": [Function],
@@ -398,10 +403,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Next",
+              "children": "next",
             },
             "ref": null,
-            "rendered": "Next",
+            "rendered": "next",
             "type": [Function],
           },
           "type": [Function],
