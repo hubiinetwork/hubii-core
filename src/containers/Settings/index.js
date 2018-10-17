@@ -109,4 +109,4 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-export default compose(withConnect)(injectIntl(Settings));
+export default compose(withConnect, injectIntl)(Settings);

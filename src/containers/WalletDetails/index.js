@@ -149,4 +149,4 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-export default compose(withConnect)(injectIntl(WalletDetails));
+export default compose(withConnect, injectIntl)(WalletDetails);
