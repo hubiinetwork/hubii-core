@@ -10,6 +10,7 @@ import { Spin } from 'antd';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { injectIntl } from 'react-intl';
 import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
@@ -55,21 +56,21 @@ const messageTemplate = '\\x19Ethereum Signed Message:\nI wish the register the 
 
 export const Start = (props) => (
   <StartWrapper>
-    <PrimaryHeading large>Thank you for your interest in the nahmii airdriip!</PrimaryHeading>
-    <SecondaryHeading>Has the address you intend to register been imported into hubii core?</SecondaryHeading>
+    <PrimaryHeading large>{props.intl.formatMessage({ id: 'thanks_for_interest_airdriip' })}</PrimaryHeading>
+    <SecondaryHeading>{props.intl.formatMessage({ id: 'has_address_been_imported_airdriip' })}</SecondaryHeading>
     <ButtonsWrapper>
       <StyledButtonTall
         onClick={() => props.changeStage('register-arbitrary')}
       >
-        <div>No</div>
-        <div>(advanced)</div>
+        <div>{props.intl.formatMessage({ id: 'no' })}</div>
+        <div>{props.intl.formatMessage({ id: 'airdriip_advanced' })}</div>
       </StyledButtonTall>
       <StyledButtonTall
         type="primary"
         onClick={() => props.changeStage('register-imported')}
       >
-        <div>Yes</div>
-        <div>(one-click-registration)</div>
+        <div>{props.intl.formatMessage({ id: 'yes' })}</div>
+        <div>{props.intl.formatMessage({ id: 'one_click_registration' })}</div>
       </StyledButtonTall>
     </ButtonsWrapper>
   </StartWrapper>
@@ -77,8 +78,8 @@ export const Start = (props) => (
 
 export const CoreAddressRegistrationForm = (props) => (
   <StartWrapper>
-    <PrimaryHeading large>Register a hubii core address</PrimaryHeading>
-    <SecondaryHeading>Select the address you would like to register</SecondaryHeading>
+    <PrimaryHeading large>{props.intl.formatMessage({ id: 'register_a_hubii_core_address' })}</PrimaryHeading>
+    <SecondaryHeading>{props.intl.formatMessage({ id: 'has_address_been_imported_airdriip' })}</SecondaryHeading>
     <SelectWallet
       wallets={props.wallets.toJS()}
       onChange={(address) => props.setCurrentWallet(address)}
@@ -98,8 +99,8 @@ export const CoreAddressRegistrationForm = (props) => (
 
 export const ManualRegistrationForm = (props) => (
   <StartWrapper>
-    <PrimaryHeading large>Manual registration</PrimaryHeading>
-    <PrimaryHeading>{'Using your address\'s private key, sign the KECCAK-256 hash of the following message:'}</PrimaryHeading>
+    <PrimaryHeading large>{props.intl.formatMessage({ id: 'manual_registration' })}</PrimaryHeading>
+    <PrimaryHeading>{props.intl.formatMessage({ id: 'airdriip_manual_registration_instructions' })}</PrimaryHeading>
     <MessageTemplateWrapper>
       <SecondaryHeading style={{ marginRight: '1rem' }}>{messageTemplate}</SecondaryHeading>
       <CopyToClipboard text={messageTemplate}>
@@ -107,18 +108,18 @@ export const ManualRegistrationForm = (props) => (
           type="icon"
           icon="copy"
           size={'small'}
-          onClick={() => props.notify('success', 'Message template copied to clipboard')}
+          onClick={() => props.notify('success', props.intl.formatMessage({ id: 'message_template_copied' }))}
         />
       </CopyToClipboard>
     </MessageTemplateWrapper>
     <Input
       style={{ marginBottom: '2rem' }}
-      placeholder="Ethereum address"
+      placeholder={props.intl.formatMessage({ id: 'ethereum_adderss' })}
       onChange={props.changeManualAddress}
     />
     <Input
       style={{ marginBottom: '2rem' }}
-      placeholder="Signed KECCAK-256 hash hex"
+      placeholder={props.intl.formatMessage({ id: 'signed_keccak_hash_hex' })}
       onChange={props.changeManualSignedMessage}
     />
   </StartWrapper>
@@ -137,11 +138,16 @@ export class NahmiiAirdriipRegistration extends React.Component { // eslint-disa
       ledgerInfo,
       trezorInfo,
       currentWalletWithInfo,
+      intl,
     } = this.props;
+    const { formatMessage } = intl;
     if (store.get('stage') === 'start') {
       return (
         <OuterWrapper>
-          <Start changeStage={this.props.changeStage} />
+          <Start
+            changeStage={this.props.changeStage}
+            intl={intl}
+          />
         </OuterWrapper>
       );
     }
@@ -160,6 +166,7 @@ export class NahmiiAirdriipRegistration extends React.Component { // eslint-disa
             currentWalletWithInfo={currentWalletWithInfo}
             wallets={wallets}
             setCurrentWallet={this.props.setCurrentWallet}
+            intl={intl}
           />
         }
         {
@@ -168,6 +175,7 @@ export class NahmiiAirdriipRegistration extends React.Component { // eslint-disa
             notify={this.props.notify}
             changeManualAddress={this.props.changeManualAddress}
             changeManualSignedMessage={this.props.changeManualSignedMessage}
+            intl={intl}
           />
         }
         {
@@ -181,15 +189,15 @@ export class NahmiiAirdriipRegistration extends React.Component { // eslint-disa
               onClick={() => this.props.changeStage('start')}
               style={{ width: '7rem' }}
             >
-              Go back
-          </StyledButton>
+              {formatMessage({ id: 'back' })}
+            </StyledButton>
             <StyledButton
               type="primary"
               disabled={disabledRegisterButton}
               onClick={() => this.props.register()}
             >
-              Register address
-          </StyledButton>
+              {formatMessage({ id: 'register_address' })}
+            </StyledButton>
           </ButtonsWrapper>
         }
       </OuterWrapper>
@@ -209,22 +217,26 @@ NahmiiAirdriipRegistration.propTypes = { // eslint-disable-line
   setCurrentWallet: PropTypes.func.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,
   wallets: PropTypes.object.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
-CoreAddressRegistrationForm.propTypes = { // eslint-disable-line
+CoreAddressRegistrationForm.propTypes = {
   setCurrentWallet: PropTypes.func.isRequired,
   wallets: PropTypes.object.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
-ManualRegistrationForm.propTypes = { // eslint-disable-line
+ManualRegistrationForm.propTypes = {
   changeManualAddress: PropTypes.func.isRequired,
   changeManualSignedMessage: PropTypes.func.isRequired,
   notify: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
-Start.propTypes = { // eslint-disable-line
+Start.propTypes = {
   changeStage: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -256,4 +268,5 @@ export default compose(
   withReducer,
   withSaga,
   withConnect,
+  injectIntl
 )(NahmiiAirdriipRegistration);

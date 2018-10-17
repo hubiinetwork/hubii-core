@@ -41,7 +41,7 @@ ShallowWrapper {
           >
                     <DashboardCard
                               iconSrc="/public/images/nahmii-token-green.png"
-                              title="My nahmii"
+                              title="my_nahmii"
                     />
           </StyledLink>
           <StyledLink
@@ -57,7 +57,7 @@ ShallowWrapper {
           >
                     <DashboardCard
                               iconType="setting"
-                              title="Settings"
+                              title="settings"
                     />
           </StyledLink>
 </Cards>,
@@ -95,7 +95,7 @@ ShallowWrapper {
 >
               <DashboardCard
                             iconSrc="/public/images/nahmii-token-green.png"
-                            title="My nahmii"
+                            title="my_nahmii"
               />
 </StyledLink>,
             <StyledLink
@@ -111,7 +111,7 @@ ShallowWrapper {
 >
               <DashboardCard
                             iconType="setting"
-                            title="Settings"
+                            title="settings"
               />
 </StyledLink>,
           ],
@@ -151,7 +151,7 @@ ShallowWrapper {
             "props": Object {
               "children": <DashboardCard
                 iconSrc="/public/images/nahmii-token-green.png"
-                title="My nahmii"
+                title="my_nahmii"
 />,
               "to": "/nahmii/airdriip-registration",
             },
@@ -162,7 +162,7 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "iconSrc": "/public/images/nahmii-token-green.png",
-                "title": "My nahmii",
+                "title": "my_nahmii",
               },
               "ref": null,
               "rendered": null,
@@ -203,7 +203,7 @@ ShallowWrapper {
             "props": Object {
               "children": <DashboardCard
                 iconType="setting"
-                title="Settings"
+                title="settings"
 />,
               "to": "/settings",
             },
@@ -214,7 +214,7 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "iconType": "setting",
-                "title": "Settings",
+                "title": "settings",
               },
               "ref": null,
               "rendered": null,
@@ -252,7 +252,7 @@ ShallowWrapper {
             >
                         <DashboardCard
                                     iconSrc="/public/images/nahmii-token-green.png"
-                                    title="My nahmii"
+                                    title="my_nahmii"
                         />
             </StyledLink>
             <StyledLink
@@ -268,7 +268,7 @@ ShallowWrapper {
             >
                         <DashboardCard
                                     iconType="setting"
-                                    title="Settings"
+                                    title="settings"
                         />
             </StyledLink>
 </Cards>,
@@ -306,7 +306,7 @@ ShallowWrapper {
 >
                 <DashboardCard
                                 iconSrc="/public/images/nahmii-token-green.png"
-                                title="My nahmii"
+                                title="my_nahmii"
                 />
 </StyledLink>,
               <StyledLink
@@ -322,7 +322,7 @@ ShallowWrapper {
 >
                 <DashboardCard
                                 iconType="setting"
-                                title="Settings"
+                                title="settings"
                 />
 </StyledLink>,
             ],
@@ -362,7 +362,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <DashboardCard
                   iconSrc="/public/images/nahmii-token-green.png"
-                  title="My nahmii"
+                  title="my_nahmii"
 />,
                 "to": "/nahmii/airdriip-registration",
               },
@@ -373,7 +373,7 @@ ShallowWrapper {
                 "nodeType": "function",
                 "props": Object {
                   "iconSrc": "/public/images/nahmii-token-green.png",
-                  "title": "My nahmii",
+                  "title": "my_nahmii",
                 },
                 "ref": null,
                 "rendered": null,
@@ -414,7 +414,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <DashboardCard
                   iconType="setting"
-                  title="Settings"
+                  title="settings"
 />,
                 "to": "/settings",
               },
@@ -425,7 +425,7 @@ ShallowWrapper {
                 "nodeType": "function",
                 "props": Object {
                   "iconType": "setting",
-                  "title": "Settings",
+                  "title": "settings",
                 },
                 "ref": null,
                 "rendered": null,

@@ -12,6 +12,7 @@ import {
   currentWalletSoftwareMock,
 } from 'containers/WalletHoc/tests/mocks/selectors';
 
+import { intl } from '../../../../__mocks__/react-intl';
 import { nahmiiAirdriipRegistrationMock } from './mocks/selectors';
 
 import {
@@ -37,6 +38,7 @@ describe('<NahmiiAirdriipRegistration />', () => {
         store: nahmiiAirdriipRegistrationMock,
         changeManualAddress: () => {},
         changeManualSignedMessage: () => {},
+        intl,
       };
     });
     it('should render correctly in start stage', () => {
@@ -77,6 +79,7 @@ describe('<NahmiiAirdriipRegistration />', () => {
     beforeEach(() => {
       props = {
         changeStage: () => {},
+        intl,
       };
     });
     it('should render correctly', () => {
@@ -107,6 +110,7 @@ describe('<NahmiiAirdriipRegistration />', () => {
         currentWalletWithInfo: currentWalletLnsMock,
         setCurrentWallet: () => {},
         wallets: walletsMock,
+        intl,
       };
     });
     it('should render correctly when a hardware wallet is selected', () => {
@@ -153,6 +157,7 @@ describe('<NahmiiAirdriipRegistration />', () => {
         changeManualAddress: () => {},
         changeManualSignedMessage: () => {},
         notify: () => {},
+        intl,
       };
     });
     it('should render correctly', () => {
@@ -183,13 +188,13 @@ describe('<NahmiiAirdriipRegistration />', () => {
       );
       expect(changeManualAddressSpy).toHaveBeenCalledTimes(0);
       wrapper
-        .find({ placeholder: 'Ethereum address' })
+        .find({ placeholder: 'ethereum_adderss' })
         .simulate('change', { target: { value: '0x00000' } });
       expect(changeManualAddressSpy).toHaveBeenCalledTimes(1);
 
       expect(changeManualSignedMessageSpy).toHaveBeenCalledTimes(0);
       wrapper
-        .find({ placeholder: 'Signed KECCAK-256 hash hex' })
+        .find({ placeholder: 'signed_keccak_hash_hex' })
         .simulate('change', { target: { value: '0x00000' } });
       expect(changeManualSignedMessageSpy).toHaveBeenCalledTimes(1);
     });
