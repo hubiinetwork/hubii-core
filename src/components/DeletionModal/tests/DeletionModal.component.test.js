@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import DeletionModal from 'components/DeletionModal';
+import { intl } from '../../../../__mocks__/react-intl';
 
 describe('<ContactDeletionModal/>', () => {
   const contact = {
@@ -21,6 +22,7 @@ describe('<ContactDeletionModal/>', () => {
         onCancel={onCancel}
         onDelete={onDelete}
         type={type}
+        intl={intl}
       />
     );
   });

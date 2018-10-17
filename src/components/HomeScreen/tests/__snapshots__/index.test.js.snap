@@ -4,7 +4,13 @@ exports[`<HomeScreen /> should render correctly 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <HomeScreen />,
+  Symbol(enzyme.__unrendered__): <HomeScreen
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+/>,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -27,7 +33,7 @@ ShallowWrapper {
           >
                     <DashboardCard
                               iconSrc="/public/images/wallet-icon-green.png"
-                              title="My wallets"
+                              title="my_wallets"
                     />
           </StyledLink>
           <StyledLink
@@ -81,7 +87,7 @@ ShallowWrapper {
 >
               <DashboardCard
                             iconSrc="/public/images/wallet-icon-green.png"
-                            title="My wallets"
+                            title="my_wallets"
               />
 </StyledLink>,
             <StyledLink
@@ -119,7 +125,7 @@ ShallowWrapper {
             "props": Object {
               "children": <DashboardCard
                 iconSrc="/public/images/wallet-icon-green.png"
-                title="My wallets"
+                title="my_wallets"
 />,
               "to": "/wallets",
             },
@@ -130,7 +136,7 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "iconSrc": "/public/images/wallet-icon-green.png",
-                "title": "My wallets",
+                "title": "my_wallets",
               },
               "ref": null,
               "rendered": null,
@@ -238,7 +244,7 @@ ShallowWrapper {
             >
                         <DashboardCard
                                     iconSrc="/public/images/wallet-icon-green.png"
-                                    title="My wallets"
+                                    title="my_wallets"
                         />
             </StyledLink>
             <StyledLink
@@ -292,7 +298,7 @@ ShallowWrapper {
 >
                 <DashboardCard
                                 iconSrc="/public/images/wallet-icon-green.png"
-                                title="My wallets"
+                                title="my_wallets"
                 />
 </StyledLink>,
               <StyledLink
@@ -330,7 +336,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <DashboardCard
                   iconSrc="/public/images/wallet-icon-green.png"
-                  title="My wallets"
+                  title="my_wallets"
 />,
                 "to": "/wallets",
               },
@@ -341,7 +347,7 @@ ShallowWrapper {
                 "nodeType": "function",
                 "props": Object {
                   "iconSrc": "/public/images/wallet-icon-green.png",
-                  "title": "My wallets",
+                  "title": "my_wallets",
                 },
                 "ref": null,
                 "rendered": null,

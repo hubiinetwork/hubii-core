@@ -93,6 +93,11 @@ ShallowWrapper {
     }
     decryptWallet={[Function]}
     hideDecryptWalletModal={[Function]}
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     loading={
         Immutable.Map {
             decryptingWallet: false,
@@ -202,6 +207,11 @@ ShallowWrapper {
           }
           decryptWallet={[Function]}
           hideDecryptWalletModal={[Function]}
+          intl={
+                    Object {
+                              "formatMessage": [Function],
+                            }
+          }
           loading={
                     Immutable.Map {
                               decryptingWallet: false,
@@ -338,6 +348,9 @@ ShallowWrapper {
 },
           "decryptWallet": [Function],
           "hideDecryptWalletModal": [Function],
+          "intl": Object {
+            "formatMessage": [Function],
+          },
           "loading": Immutable.Map {
             decryptingWallet: false,
 },
@@ -537,6 +550,11 @@ ShallowWrapper {
             }
             decryptWallet={[Function]}
             hideDecryptWalletModal={[Function]}
+            intl={
+                        Object {
+                                    "formatMessage": [Function],
+                                  }
+            }
             loading={
                         Immutable.Map {
                                     decryptingWallet: false,
@@ -673,6 +691,9 @@ ShallowWrapper {
 },
             "decryptWallet": [Function],
             "hideDecryptWalletModal": [Function],
+            "intl": Object {
+              "formatMessage": [Function],
+            },
             "loading": Immutable.Map {
               decryptingWallet: false,
 },
@@ -880,6 +901,11 @@ ShallowWrapper {
     }
     decryptWallet={[Function]}
     hideDecryptWalletModal={[Function]}
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     loading={
         Immutable.Map {
             decryptingWallet: true,
@@ -989,6 +1015,11 @@ ShallowWrapper {
           }
           decryptWallet={[Function]}
           hideDecryptWalletModal={[Function]}
+          intl={
+                    Object {
+                              "formatMessage": [Function],
+                            }
+          }
           loading={
                     Immutable.Map {
                               decryptingWallet: true,
@@ -1122,6 +1153,9 @@ ShallowWrapper {
 },
           "decryptWallet": [Function],
           "hideDecryptWalletModal": [Function],
+          "intl": Object {
+            "formatMessage": [Function],
+          },
           "loading": Immutable.Map {
             decryptingWallet: true,
 },
@@ -1316,6 +1350,11 @@ ShallowWrapper {
             }
             decryptWallet={[Function]}
             hideDecryptWalletModal={[Function]}
+            intl={
+                        Object {
+                                    "formatMessage": [Function],
+                                  }
+            }
             loading={
                         Immutable.Map {
                                     decryptingWallet: true,
@@ -1449,6 +1488,9 @@ ShallowWrapper {
 },
             "decryptWallet": [Function],
             "hideDecryptWalletModal": [Function],
+            "intl": Object {
+              "formatMessage": [Function],
+            },
             "loading": Immutable.Map {
               decryptingWallet: true,
 },

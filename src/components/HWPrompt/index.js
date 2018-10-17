@@ -7,13 +7,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getAbsolutePath } from 'utils/electron';
+import { injectIntl } from 'react-intl';
 
 import Text from 'components/ui/Text';
 
 import {
   OuterWrapper,
   Row,
-  KeyText,
   DescriptiveIcon,
   StatusIcon,
   SingleRowWrapper,
@@ -22,11 +22,11 @@ import {
   ConfTxShield,
 } from './style';
 
-const confTxOnDevicePrompt = (deviceType) => (
+const confTxOnDevicePrompt = (deviceType, { formatMessage }) => (
   <SingleRowWrapper>
     <ConfTxShield src={getAbsolutePath('public/images/shield.png')} />
     <ConfTxDeviceImg src={getAbsolutePath(`public/images/conf-tx-${deviceType}.png`)} />
-    <Text large>{ 'Verify the details shown on your device' }</Text>
+    <Text large>{ formatMessage({ id: 'verify_device_details' }) }</Text>
   </SingleRowWrapper>
 );
 
@@ -37,29 +37,29 @@ const singleRowMsg = (msg, iconType, iconColor) => (
   </SingleRowWrapper>
 );
 
-const lnsPrompt = (ledgerInfo) => {
+const lnsPrompt = (ledgerInfo, { formatMessage }) => {
   const error = ledgerInfo.get('error');
   // check if device is connected
   if (ledgerInfo.get('ethConnected')) {
     return singleRowMsg(
-        'Device connection established',
+        formatMessage({ id: 'hw_connected' }),
         'check'
       );
   }
 
   // check the error
-  if (error && error.includes("Ledger connected but does not appear to have 'Browser support'")) {
+  if (error && error.includes('ledger_connected_not_browser_support_error')) {
     return singleRowMsg(
-      "Please set 'Browser support' to 'No' in your device settings to continue"
+      formatMessage({ id: 'ledger_set_browser_support_no' })
     );
   } else if
   (
     error
-    && !error.includes('does not appear to have the Ethereum app open')
-    && !error.includes('Ledger could not be detected')
+    && !error.includes('ledger_connected_not_eth_open_error')
+    && !error.includes('ledger_not_detected_error')
   ) {
     return singleRowMsg(
-      'Something went wrong, please reconnect your device and try again',
+      formatMessage({ id: 'hw_unknown_error' }),
       'exclamation-circle-o',
       'orange'
     );
@@ -72,7 +72,7 @@ const lnsPrompt = (ledgerInfo) => {
     stage = 'openApp';
   } else {
     return singleRowMsg(
-        'Device connection established',
+        formatMessage({ id: 'hw_connected' }),
         'check'
     );
   }
@@ -85,7 +85,7 @@ const lnsPrompt = (ledgerInfo) => {
             getAbsolutePath('public/images/hw-wallet-usb-white.png')
           }
         />
-        <Text>Connect and unlock your <KeyText>Ledger Device</KeyText></Text>
+        <Text>{formatMessage({ id: 'ledger_connect_unlock' })}</Text>
         <StatusIcon
           type={stage === 'connect' ? 'loading' : 'check'}
         />
@@ -97,7 +97,7 @@ const lnsPrompt = (ledgerInfo) => {
             getAbsolutePath('public/images/hw-wallet-eth-green.png')
           }
         />
-        <Text>Open the <KeyText>Ethereum</KeyText> app on your device</Text>
+        <Text>{formatMessage({ id: 'ledger_open_eth_app' })}</Text>
         <StatusIcon
           type={stage === 'openApp' ? 'loading' : 'ellipsis'}
         />
@@ -106,11 +106,11 @@ const lnsPrompt = (ledgerInfo) => {
   );
 };
 
-const trezorPrompt = (trezorInfo) => {
+const trezorPrompt = (trezorInfo, { formatMessage }) => {
   const error = trezorInfo.get('error');
-  if (error && !error.includes('Trezor is not connected')) {
+  if (error && !error.includes('trezor_not_connected_error')) {
     return singleRowMsg(
-        'Something went wrong, please reconnect your device and try again',
+        formatMessage({ id: 'hw_unknown_error' }),
         'exclamation-circle-o',
         'orange'
       );
@@ -119,14 +119,14 @@ const trezorPrompt = (trezorInfo) => {
     // device connection is good
   if (trezorInfo.get('status') === 'connected') {
     return singleRowMsg(
-        'Device connection established',
+        formatMessage({ id: 'hw_connected' }),
         'check'
       );
   }
 
     // trezor needs to be connected
   return singleRowMsg(
-      'Please connect and unlock your Trezor device to continue'
+      formatMessage({ id: 'trezor_connect_unlock' })
     );
 };
 
@@ -136,24 +136,24 @@ class HWPrompt extends React.Component { // eslint-disable-line react/prefer-sta
       deviceType,
       ledgerInfo,
       trezorInfo,
+      intl,
     } = this.props;
-
     const confTxOnDevice = deviceType === 'lns'
       ? ledgerInfo.get('confTxOnDevice')
       : trezorInfo.get('confTxOnDevice');
 
     // tx needs to be confirmed on device
     if (confTxOnDevice) {
-      return confTxOnDevicePrompt(deviceType);
+      return confTxOnDevicePrompt(deviceType, intl);
     }
 
     // handle ledger
     if (deviceType === 'lns') {
-      return lnsPrompt(ledgerInfo);
+      return lnsPrompt(ledgerInfo, intl);
     }
 
     // handle trezor
-    return trezorPrompt(trezorInfo);
+    return trezorPrompt(trezorInfo, intl);
   }
 }
 
@@ -161,6 +161,7 @@ HWPrompt.propTypes = {
   deviceType: PropTypes.oneOf(['lns', 'trezor']),
   ledgerInfo: PropTypes.object.isRequired,
   trezorInfo: PropTypes.object.isRequired,
+  intl: PropTypes.object,
 };
 
-export default HWPrompt;
+export default injectIntl(HWPrompt);

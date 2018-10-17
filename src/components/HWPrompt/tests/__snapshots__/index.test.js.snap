@@ -6,6 +6,11 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HWPrompt
     deviceType="lns"
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     ledgerInfo={
         Immutable.Map {
             status: "connected",
@@ -49,7 +54,7 @@ ShallowWrapper {
         <Text
           large={true}
 >
-          Verify the details shown on your device
+          verify_device_details
 </Text>,
       ],
     },
@@ -82,11 +87,11 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "Verify the details shown on your device",
+          "children": "verify_device_details",
           "large": true,
         },
         "ref": null,
-        "rendered": "Verify the details shown on your device",
+        "rendered": "verify_device_details",
         "type": [Function],
       },
     ],
@@ -108,7 +113,7 @@ ShallowWrapper {
           <Text
             large={true}
 >
-            Verify the details shown on your device
+            verify_device_details
 </Text>,
         ],
       },
@@ -141,11 +146,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "Verify the details shown on your device",
+            "children": "verify_device_details",
             "large": true,
           },
           "ref": null,
-          "rendered": "Verify the details shown on your device",
+          "rendered": "verify_device_details",
           "type": [Function],
         },
       ],
@@ -168,6 +173,11 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HWPrompt
     deviceType="lns"
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     ledgerInfo={
         Immutable.Map {
             status: "disconnected",
@@ -209,10 +219,7 @@ ShallowWrapper {
                     src="/public/images/hw-wallet-usb-green.png"
           />
           <Text>
-                    Connect and unlock your 
-                    <style__KeyText>
-                              Ledger Device
-                    </style__KeyText>
+                    ledger_connect_unlock
           </Text>
           <style__StatusIcon
                     type="loading"
@@ -226,11 +233,7 @@ ShallowWrapper {
                     src="/public/images/hw-wallet-eth-grey.png"
           />
           <Text>
-                    Open the 
-                    <style__KeyText>
-                              Ethereum
-                    </style__KeyText>
-                     app on your device
+                    ledger_open_eth_app
           </Text>
           <style__StatusIcon
                     type="ellipsis"
@@ -251,10 +254,7 @@ ShallowWrapper {
               src="/public/images/hw-wallet-usb-green.png"
 />,
             <Text>
-              Connect and unlock your 
-              <style__KeyText>
-                            Ledger Device
-              </style__KeyText>
+              ledger_connect_unlock
 </Text>,
             <style__StatusIcon
               type="loading"
@@ -280,28 +280,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": Array [
-                "Connect and unlock your ",
-                <style__KeyText>
-                  Ledger Device
-</style__KeyText>,
-              ],
+              "children": "ledger_connect_unlock",
             },
             "ref": null,
-            "rendered": Array [
-              "Connect and unlock your ",
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Ledger Device",
-                },
-                "ref": null,
-                "rendered": "Ledger Device",
-                "type": [Function],
-              },
-            ],
+            "rendered": "ledger_connect_unlock",
             "type": [Function],
           },
           Object {
@@ -329,11 +311,7 @@ ShallowWrapper {
               src="/public/images/hw-wallet-eth-grey.png"
 />,
             <Text>
-              Open the 
-              <style__KeyText>
-                            Ethereum
-              </style__KeyText>
-               app on your device
+              ledger_open_eth_app
 </Text>,
             <style__StatusIcon
               type="ellipsis"
@@ -359,30 +337,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": Array [
-                "Open the ",
-                <style__KeyText>
-                  Ethereum
-</style__KeyText>,
-                " app on your device",
-              ],
+              "children": "ledger_open_eth_app",
             },
             "ref": null,
-            "rendered": Array [
-              "Open the ",
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Ethereum",
-                },
-                "ref": null,
-                "rendered": "Ethereum",
-                "type": [Function],
-              },
-              " app on your device",
-            ],
+            "rendered": "ledger_open_eth_app",
             "type": [Function],
           },
           Object {
@@ -417,10 +375,7 @@ ShallowWrapper {
                         src="/public/images/hw-wallet-usb-green.png"
             />
             <Text>
-                        Connect and unlock your 
-                        <style__KeyText>
-                                    Ledger Device
-                        </style__KeyText>
+                        ledger_connect_unlock
             </Text>
             <style__StatusIcon
                         type="loading"
@@ -434,11 +389,7 @@ ShallowWrapper {
                         src="/public/images/hw-wallet-eth-grey.png"
             />
             <Text>
-                        Open the 
-                        <style__KeyText>
-                                    Ethereum
-                        </style__KeyText>
-                         app on your device
+                        ledger_open_eth_app
             </Text>
             <style__StatusIcon
                         type="ellipsis"
@@ -459,10 +410,7 @@ ShallowWrapper {
                 src="/public/images/hw-wallet-usb-green.png"
 />,
               <Text>
-                Connect and unlock your 
-                <style__KeyText>
-                                Ledger Device
-                </style__KeyText>
+                ledger_connect_unlock
 </Text>,
               <style__StatusIcon
                 type="loading"
@@ -488,28 +436,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": Array [
-                  "Connect and unlock your ",
-                  <style__KeyText>
-                    Ledger Device
-</style__KeyText>,
-                ],
+                "children": "ledger_connect_unlock",
               },
               "ref": null,
-              "rendered": Array [
-                "Connect and unlock your ",
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "Ledger Device",
-                  },
-                  "ref": null,
-                  "rendered": "Ledger Device",
-                  "type": [Function],
-                },
-              ],
+              "rendered": "ledger_connect_unlock",
               "type": [Function],
             },
             Object {
@@ -537,11 +467,7 @@ ShallowWrapper {
                 src="/public/images/hw-wallet-eth-grey.png"
 />,
               <Text>
-                Open the 
-                <style__KeyText>
-                                Ethereum
-                </style__KeyText>
-                 app on your device
+                ledger_open_eth_app
 </Text>,
               <style__StatusIcon
                 type="ellipsis"
@@ -567,30 +493,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": Array [
-                  "Open the ",
-                  <style__KeyText>
-                    Ethereum
-</style__KeyText>,
-                  " app on your device",
-                ],
+                "children": "ledger_open_eth_app",
               },
               "ref": null,
-              "rendered": Array [
-                "Open the ",
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "Ethereum",
-                  },
-                  "ref": null,
-                  "rendered": "Ethereum",
-                  "type": [Function],
-                },
-                " app on your device",
-              ],
+              "rendered": "ledger_open_eth_app",
               "type": [Function],
             },
             Object {
@@ -627,6 +533,11 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HWPrompt
     deviceType="lns"
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     ledgerInfo={
         Immutable.Map {
             status: "connected",
@@ -669,10 +580,7 @@ ShallowWrapper {
                     src="/public/images/hw-wallet-usb-white.png"
           />
           <Text>
-                    Connect and unlock your 
-                    <style__KeyText>
-                              Ledger Device
-                    </style__KeyText>
+                    ledger_connect_unlock
           </Text>
           <style__StatusIcon
                     type="check"
@@ -686,11 +594,7 @@ ShallowWrapper {
                     src="/public/images/hw-wallet-eth-green.png"
           />
           <Text>
-                    Open the 
-                    <style__KeyText>
-                              Ethereum
-                    </style__KeyText>
-                     app on your device
+                    ledger_open_eth_app
           </Text>
           <style__StatusIcon
                     type="loading"
@@ -711,10 +615,7 @@ ShallowWrapper {
               src="/public/images/hw-wallet-usb-white.png"
 />,
             <Text>
-              Connect and unlock your 
-              <style__KeyText>
-                            Ledger Device
-              </style__KeyText>
+              ledger_connect_unlock
 </Text>,
             <style__StatusIcon
               type="check"
@@ -740,28 +641,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": Array [
-                "Connect and unlock your ",
-                <style__KeyText>
-                  Ledger Device
-</style__KeyText>,
-              ],
+              "children": "ledger_connect_unlock",
             },
             "ref": null,
-            "rendered": Array [
-              "Connect and unlock your ",
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Ledger Device",
-                },
-                "ref": null,
-                "rendered": "Ledger Device",
-                "type": [Function],
-              },
-            ],
+            "rendered": "ledger_connect_unlock",
             "type": [Function],
           },
           Object {
@@ -789,11 +672,7 @@ ShallowWrapper {
               src="/public/images/hw-wallet-eth-green.png"
 />,
             <Text>
-              Open the 
-              <style__KeyText>
-                            Ethereum
-              </style__KeyText>
-               app on your device
+              ledger_open_eth_app
 </Text>,
             <style__StatusIcon
               type="loading"
@@ -819,30 +698,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": Array [
-                "Open the ",
-                <style__KeyText>
-                  Ethereum
-</style__KeyText>,
-                " app on your device",
-              ],
+              "children": "ledger_open_eth_app",
             },
             "ref": null,
-            "rendered": Array [
-              "Open the ",
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Ethereum",
-                },
-                "ref": null,
-                "rendered": "Ethereum",
-                "type": [Function],
-              },
-              " app on your device",
-            ],
+            "rendered": "ledger_open_eth_app",
             "type": [Function],
           },
           Object {
@@ -877,10 +736,7 @@ ShallowWrapper {
                         src="/public/images/hw-wallet-usb-white.png"
             />
             <Text>
-                        Connect and unlock your 
-                        <style__KeyText>
-                                    Ledger Device
-                        </style__KeyText>
+                        ledger_connect_unlock
             </Text>
             <style__StatusIcon
                         type="check"
@@ -894,11 +750,7 @@ ShallowWrapper {
                         src="/public/images/hw-wallet-eth-green.png"
             />
             <Text>
-                        Open the 
-                        <style__KeyText>
-                                    Ethereum
-                        </style__KeyText>
-                         app on your device
+                        ledger_open_eth_app
             </Text>
             <style__StatusIcon
                         type="loading"
@@ -919,10 +771,7 @@ ShallowWrapper {
                 src="/public/images/hw-wallet-usb-white.png"
 />,
               <Text>
-                Connect and unlock your 
-                <style__KeyText>
-                                Ledger Device
-                </style__KeyText>
+                ledger_connect_unlock
 </Text>,
               <style__StatusIcon
                 type="check"
@@ -948,28 +797,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": Array [
-                  "Connect and unlock your ",
-                  <style__KeyText>
-                    Ledger Device
-</style__KeyText>,
-                ],
+                "children": "ledger_connect_unlock",
               },
               "ref": null,
-              "rendered": Array [
-                "Connect and unlock your ",
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "Ledger Device",
-                  },
-                  "ref": null,
-                  "rendered": "Ledger Device",
-                  "type": [Function],
-                },
-              ],
+              "rendered": "ledger_connect_unlock",
               "type": [Function],
             },
             Object {
@@ -997,11 +828,7 @@ ShallowWrapper {
                 src="/public/images/hw-wallet-eth-green.png"
 />,
               <Text>
-                Open the 
-                <style__KeyText>
-                                Ethereum
-                </style__KeyText>
-                 app on your device
+                ledger_open_eth_app
 </Text>,
               <style__StatusIcon
                 type="loading"
@@ -1027,30 +854,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": Array [
-                  "Open the ",
-                  <style__KeyText>
-                    Ethereum
-</style__KeyText>,
-                  " app on your device",
-                ],
+                "children": "ledger_open_eth_app",
               },
               "ref": null,
-              "rendered": Array [
-                "Open the ",
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "Ethereum",
-                  },
-                  "ref": null,
-                  "rendered": "Ethereum",
-                  "type": [Function],
-                },
-                " app on your device",
-              ],
+              "rendered": "ledger_open_eth_app",
               "type": [Function],
             },
             Object {
@@ -1087,6 +894,11 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HWPrompt
     deviceType="lns"
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     ledgerInfo={
         Immutable.Map {
             status: "disconnected",
@@ -1129,10 +941,7 @@ ShallowWrapper {
                     src="/public/images/hw-wallet-usb-white.png"
           />
           <Text>
-                    Connect and unlock your 
-                    <style__KeyText>
-                              Ledger Device
-                    </style__KeyText>
+                    ledger_connect_unlock
           </Text>
           <style__StatusIcon
                     type="check"
@@ -1146,11 +955,7 @@ ShallowWrapper {
                     src="/public/images/hw-wallet-eth-green.png"
           />
           <Text>
-                    Open the 
-                    <style__KeyText>
-                              Ethereum
-                    </style__KeyText>
-                     app on your device
+                    ledger_open_eth_app
           </Text>
           <style__StatusIcon
                     type="loading"
@@ -1171,10 +976,7 @@ ShallowWrapper {
               src="/public/images/hw-wallet-usb-white.png"
 />,
             <Text>
-              Connect and unlock your 
-              <style__KeyText>
-                            Ledger Device
-              </style__KeyText>
+              ledger_connect_unlock
 </Text>,
             <style__StatusIcon
               type="check"
@@ -1200,28 +1002,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": Array [
-                "Connect and unlock your ",
-                <style__KeyText>
-                  Ledger Device
-</style__KeyText>,
-              ],
+              "children": "ledger_connect_unlock",
             },
             "ref": null,
-            "rendered": Array [
-              "Connect and unlock your ",
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Ledger Device",
-                },
-                "ref": null,
-                "rendered": "Ledger Device",
-                "type": [Function],
-              },
-            ],
+            "rendered": "ledger_connect_unlock",
             "type": [Function],
           },
           Object {
@@ -1249,11 +1033,7 @@ ShallowWrapper {
               src="/public/images/hw-wallet-eth-green.png"
 />,
             <Text>
-              Open the 
-              <style__KeyText>
-                            Ethereum
-              </style__KeyText>
-               app on your device
+              ledger_open_eth_app
 </Text>,
             <style__StatusIcon
               type="loading"
@@ -1279,30 +1059,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": Array [
-                "Open the ",
-                <style__KeyText>
-                  Ethereum
-</style__KeyText>,
-                " app on your device",
-              ],
+              "children": "ledger_open_eth_app",
             },
             "ref": null,
-            "rendered": Array [
-              "Open the ",
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Ethereum",
-                },
-                "ref": null,
-                "rendered": "Ethereum",
-                "type": [Function],
-              },
-              " app on your device",
-            ],
+            "rendered": "ledger_open_eth_app",
             "type": [Function],
           },
           Object {
@@ -1337,10 +1097,7 @@ ShallowWrapper {
                         src="/public/images/hw-wallet-usb-white.png"
             />
             <Text>
-                        Connect and unlock your 
-                        <style__KeyText>
-                                    Ledger Device
-                        </style__KeyText>
+                        ledger_connect_unlock
             </Text>
             <style__StatusIcon
                         type="check"
@@ -1354,11 +1111,7 @@ ShallowWrapper {
                         src="/public/images/hw-wallet-eth-green.png"
             />
             <Text>
-                        Open the 
-                        <style__KeyText>
-                                    Ethereum
-                        </style__KeyText>
-                         app on your device
+                        ledger_open_eth_app
             </Text>
             <style__StatusIcon
                         type="loading"
@@ -1379,10 +1132,7 @@ ShallowWrapper {
                 src="/public/images/hw-wallet-usb-white.png"
 />,
               <Text>
-                Connect and unlock your 
-                <style__KeyText>
-                                Ledger Device
-                </style__KeyText>
+                ledger_connect_unlock
 </Text>,
               <style__StatusIcon
                 type="check"
@@ -1408,28 +1158,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": Array [
-                  "Connect and unlock your ",
-                  <style__KeyText>
-                    Ledger Device
-</style__KeyText>,
-                ],
+                "children": "ledger_connect_unlock",
               },
               "ref": null,
-              "rendered": Array [
-                "Connect and unlock your ",
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "Ledger Device",
-                  },
-                  "ref": null,
-                  "rendered": "Ledger Device",
-                  "type": [Function],
-                },
-              ],
+              "rendered": "ledger_connect_unlock",
               "type": [Function],
             },
             Object {
@@ -1457,11 +1189,7 @@ ShallowWrapper {
                 src="/public/images/hw-wallet-eth-green.png"
 />,
               <Text>
-                Open the 
-                <style__KeyText>
-                                Ethereum
-                </style__KeyText>
-                 app on your device
+                ledger_open_eth_app
 </Text>,
               <style__StatusIcon
                 type="loading"
@@ -1487,30 +1215,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": Array [
-                  "Open the ",
-                  <style__KeyText>
-                    Ethereum
-</style__KeyText>,
-                  " app on your device",
-                ],
+                "children": "ledger_open_eth_app",
               },
               "ref": null,
-              "rendered": Array [
-                "Open the ",
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "Ethereum",
-                  },
-                  "ref": null,
-                  "rendered": "Ethereum",
-                  "type": [Function],
-                },
-                " app on your device",
-              ],
+              "rendered": "ledger_open_eth_app",
               "type": [Function],
             },
             Object {
@@ -1547,6 +1255,11 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HWPrompt
     deviceType="trezor"
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     ledgerInfo={
         Immutable.Map {
             status: "connected",
@@ -1590,7 +1303,7 @@ ShallowWrapper {
         <Text
           large={true}
 >
-          Verify the details shown on your device
+          verify_device_details
 </Text>,
       ],
     },
@@ -1623,11 +1336,11 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "Verify the details shown on your device",
+          "children": "verify_device_details",
           "large": true,
         },
         "ref": null,
-        "rendered": "Verify the details shown on your device",
+        "rendered": "verify_device_details",
         "type": [Function],
       },
     ],
@@ -1649,7 +1362,7 @@ ShallowWrapper {
           <Text
             large={true}
 >
-            Verify the details shown on your device
+            verify_device_details
 </Text>,
         ],
       },
@@ -1682,11 +1395,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "Verify the details shown on your device",
+            "children": "verify_device_details",
             "large": true,
           },
           "ref": null,
-          "rendered": "Verify the details shown on your device",
+          "rendered": "verify_device_details",
           "type": [Function],
         },
       ],
@@ -1709,6 +1422,11 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HWPrompt
     deviceType="trezor"
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     ledgerInfo={
         Immutable.Map {
             status: "connected",
@@ -1750,7 +1468,7 @@ ShallowWrapper {
         <Text
           large={true}
 >
-          Please connect and unlock your Trezor device to continue
+          trezor_connect_unlock
 </Text>,
       ],
     },
@@ -1773,11 +1491,11 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "Please connect and unlock your Trezor device to continue",
+          "children": "trezor_connect_unlock",
           "large": true,
         },
         "ref": null,
-        "rendered": "Please connect and unlock your Trezor device to continue",
+        "rendered": "trezor_connect_unlock",
         "type": [Function],
       },
     ],
@@ -1797,7 +1515,7 @@ ShallowWrapper {
           <Text
             large={true}
 >
-            Please connect and unlock your Trezor device to continue
+            trezor_connect_unlock
 </Text>,
         ],
       },
@@ -1820,11 +1538,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "Please connect and unlock your Trezor device to continue",
+            "children": "trezor_connect_unlock",
             "large": true,
           },
           "ref": null,
-          "rendered": "Please connect and unlock your Trezor device to continue",
+          "rendered": "trezor_connect_unlock",
           "type": [Function],
         },
       ],

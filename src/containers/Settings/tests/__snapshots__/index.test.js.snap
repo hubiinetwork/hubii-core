@@ -22,6 +22,13 @@ ShallowWrapper {
             "walletApiEndpoint": [Function],
           }
     }
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+    locale="en"
+    onChangeLocale={[Function]}
     onChangeNetwork={[Function]}
     supportedNetworks={
         Immutable.Map {
@@ -73,13 +80,13 @@ ShallowWrapper {
       "children": Array [
         <TopHeader>
           <Heading>
-                    Settings
+                    settings
           </Heading>
 </TopHeader>,
         <style__Body>
           <style__SettingWrapper>
                     <style__StyledSectionHeading>
-                              Network
+                              setting_network
                     </style__StyledSectionHeading>
                     <Select.style
                               disabled={true}
@@ -103,6 +110,26 @@ ShallowWrapper {
                               </Option>
                     </Select.style>
           </style__SettingWrapper>
+          <style__SettingWrapper>
+                    <style__StyledSectionHeading>
+                              setting_language
+                    </style__StyledSectionHeading>
+                    <Select.style
+                              onChange={[Function]}
+                              style={
+                                        Object {
+                                                  "width": "15rem",
+                                                }
+                              }
+                              value="en"
+                    >
+                              <Option
+                                        value="en"
+                              >
+                                        English
+                              </Option>
+                    </Select.style>
+          </style__SettingWrapper>
 </style__Body>,
       ],
     },
@@ -114,7 +141,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <Heading>
-            Settings
+            settings
 </Heading>,
         },
         "ref": null,
@@ -123,10 +150,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "Settings",
+            "children": "settings",
           },
           "ref": null,
-          "rendered": "Settings",
+          "rendered": "settings",
           "type": [Function],
         },
         "type": [Function],
@@ -136,215 +163,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <style__SettingWrapper>
-            <style__StyledSectionHeading>
-                        Network
-            </style__StyledSectionHeading>
-            <Select.style
-                        disabled={true}
-                        onChange={[Function]}
-                        style={
-                                    Object {
-                                                "width": "15rem",
-                                              }
-                        }
-                        value="ropsten"
-            >
-                        <Option
-                                    value="homestead"
-                        >
-                                    Homestead [MAINNET]
-                        </Option>
-                        <Option
-                                    value="ropsten"
-                        >
-                                    Ropsten [TESTNET]
-                        </Option>
-            </Select.style>
-</style__SettingWrapper>,
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": Array [
-              <style__StyledSectionHeading>
-                Network
-</style__StyledSectionHeading>,
-              <Select.style
-                disabled={true}
-                onChange={[Function]}
-                style={
-                                Object {
-                                                "width": "15rem",
-                                              }
-                }
-                value="ropsten"
->
-                <Option
-                                value="homestead"
-                >
-                                Homestead [MAINNET]
-                </Option>
-                <Option
-                                value="ropsten"
-                >
-                                Ropsten [TESTNET]
-                </Option>
-</Select.style>,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "Network",
-              },
-              "ref": null,
-              "rendered": "Network",
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": Array [
-                  <Option
-                    value="homestead"
->
-                    Homestead [MAINNET]
-</Option>,
-                  <Option
-                    value="ropsten"
->
-                    Ropsten [TESTNET]
-</Option>,
-                ],
-                "disabled": true,
-                "onChange": [Function],
-                "style": Object {
-                  "width": "15rem",
-                },
-                "value": "ropsten",
-              },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": "homestead",
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "Homestead [MAINNET]",
-                    "value": "homestead",
-                  },
-                  "ref": null,
-                  "rendered": "Homestead [MAINNET]",
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": "ropsten",
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "Ropsten [TESTNET]",
-                    "value": "ropsten",
-                  },
-                  "ref": null,
-                  "rendered": "Ropsten [TESTNET]",
-                  "type": [Function],
-                },
-              ],
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": Array [
-          <TopHeader>
-            <Heading>
-                        Settings
-            </Heading>
-</TopHeader>,
-          <style__Body>
+          "children": Array [
             <style__SettingWrapper>
-                        <style__StyledSectionHeading>
-                                    Network
-                        </style__StyledSectionHeading>
-                        <Select.style
-                                    disabled={true}
-                                    onChange={[Function]}
-                                    style={
-                                                Object {
-                                                            "width": "15rem",
-                                                          }
-                                    }
-                                    value="ropsten"
-                        >
-                                    <Option
-                                                value="homestead"
-                                    >
-                                                Homestead [MAINNET]
-                                    </Option>
-                                    <Option
-                                                value="ropsten"
-                                    >
-                                                Ropsten [TESTNET]
-                                    </Option>
-                        </Select.style>
-            </style__SettingWrapper>
-</style__Body>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <Heading>
-              Settings
-</Heading>,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": "Settings",
-            },
-            "ref": null,
-            "rendered": "Settings",
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <style__SettingWrapper>
               <style__StyledSectionHeading>
-                            Network
+                            setting_network
               </style__StyledSectionHeading>
               <Select.style
                             disabled={true}
@@ -368,16 +190,38 @@ ShallowWrapper {
                             </Option>
               </Select.style>
 </style__SettingWrapper>,
-          },
-          "ref": null,
-          "rendered": Object {
+            <style__SettingWrapper>
+              <style__StyledSectionHeading>
+                            setting_language
+              </style__StyledSectionHeading>
+              <Select.style
+                            onChange={[Function]}
+                            style={
+                                          Object {
+                                                        "width": "15rem",
+                                                      }
+                            }
+                            value="en"
+              >
+                            <Option
+                                          value="en"
+                            >
+                                          English
+                            </Option>
+              </Select.style>
+</style__SettingWrapper>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
             "instance": null,
             "key": undefined,
             "nodeType": "class",
             "props": Object {
               "children": Array [
                 <style__StyledSectionHeading>
-                  Network
+                  setting_network
 </style__StyledSectionHeading>,
                 <Select.style
                   disabled={true}
@@ -409,10 +253,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "Network",
+                  "children": "setting_network",
                 },
                 "ref": null,
-                "rendered": "Network",
+                "rendered": "setting_network",
                 "type": [Function],
               },
               Object {
@@ -471,6 +315,411 @@ ShallowWrapper {
             ],
             "type": [Function],
           },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <style__StyledSectionHeading>
+                  setting_language
+</style__StyledSectionHeading>,
+                <Select.style
+                  onChange={[Function]}
+                  style={
+                                    Object {
+                                                      "width": "15rem",
+                                                    }
+                  }
+                  value="en"
+>
+                  <Option
+                                    value="en"
+                  >
+                                    English
+                  </Option>
+</Select.style>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "setting_language",
+                },
+                "ref": null,
+                "rendered": "setting_language",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <Option
+                      value="en"
+>
+                      English
+</Option>,
+                  ],
+                  "onChange": [Function],
+                  "style": Object {
+                    "width": "15rem",
+                  },
+                  "value": "en",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": "en",
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "English",
+                      "value": "en",
+                    },
+                    "ref": null,
+                    "rendered": "English",
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <TopHeader>
+            <Heading>
+                        settings
+            </Heading>
+</TopHeader>,
+          <style__Body>
+            <style__SettingWrapper>
+                        <style__StyledSectionHeading>
+                                    setting_network
+                        </style__StyledSectionHeading>
+                        <Select.style
+                                    disabled={true}
+                                    onChange={[Function]}
+                                    style={
+                                                Object {
+                                                            "width": "15rem",
+                                                          }
+                                    }
+                                    value="ropsten"
+                        >
+                                    <Option
+                                                value="homestead"
+                                    >
+                                                Homestead [MAINNET]
+                                    </Option>
+                                    <Option
+                                                value="ropsten"
+                                    >
+                                                Ropsten [TESTNET]
+                                    </Option>
+                        </Select.style>
+            </style__SettingWrapper>
+            <style__SettingWrapper>
+                        <style__StyledSectionHeading>
+                                    setting_language
+                        </style__StyledSectionHeading>
+                        <Select.style
+                                    onChange={[Function]}
+                                    style={
+                                                Object {
+                                                            "width": "15rem",
+                                                          }
+                                    }
+                                    value="en"
+                        >
+                                    <Option
+                                                value="en"
+                                    >
+                                                English
+                                    </Option>
+                        </Select.style>
+            </style__SettingWrapper>
+</style__Body>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Heading>
+              settings
+</Heading>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "settings",
+            },
+            "ref": null,
+            "rendered": "settings",
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <style__SettingWrapper>
+                <style__StyledSectionHeading>
+                                setting_network
+                </style__StyledSectionHeading>
+                <Select.style
+                                disabled={true}
+                                onChange={[Function]}
+                                style={
+                                                Object {
+                                                                "width": "15rem",
+                                                              }
+                                }
+                                value="ropsten"
+                >
+                                <Option
+                                                value="homestead"
+                                >
+                                                Homestead [MAINNET]
+                                </Option>
+                                <Option
+                                                value="ropsten"
+                                >
+                                                Ropsten [TESTNET]
+                                </Option>
+                </Select.style>
+</style__SettingWrapper>,
+              <style__SettingWrapper>
+                <style__StyledSectionHeading>
+                                setting_language
+                </style__StyledSectionHeading>
+                <Select.style
+                                onChange={[Function]}
+                                style={
+                                                Object {
+                                                                "width": "15rem",
+                                                              }
+                                }
+                                value="en"
+                >
+                                <Option
+                                                value="en"
+                                >
+                                                English
+                                </Option>
+                </Select.style>
+</style__SettingWrapper>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <style__StyledSectionHeading>
+                    setting_network
+</style__StyledSectionHeading>,
+                  <Select.style
+                    disabled={true}
+                    onChange={[Function]}
+                    style={
+                                        Object {
+                                                            "width": "15rem",
+                                                          }
+                    }
+                    value="ropsten"
+>
+                    <Option
+                                        value="homestead"
+                    >
+                                        Homestead [MAINNET]
+                    </Option>
+                    <Option
+                                        value="ropsten"
+                    >
+                                        Ropsten [TESTNET]
+                    </Option>
+</Select.style>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "setting_network",
+                  },
+                  "ref": null,
+                  "rendered": "setting_network",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <Option
+                        value="homestead"
+>
+                        Homestead [MAINNET]
+</Option>,
+                      <Option
+                        value="ropsten"
+>
+                        Ropsten [TESTNET]
+</Option>,
+                    ],
+                    "disabled": true,
+                    "onChange": [Function],
+                    "style": Object {
+                      "width": "15rem",
+                    },
+                    "value": "ropsten",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": "homestead",
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "Homestead [MAINNET]",
+                        "value": "homestead",
+                      },
+                      "ref": null,
+                      "rendered": "Homestead [MAINNET]",
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": "ropsten",
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "Ropsten [TESTNET]",
+                        "value": "ropsten",
+                      },
+                      "ref": null,
+                      "rendered": "Ropsten [TESTNET]",
+                      "type": [Function],
+                    },
+                  ],
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <style__StyledSectionHeading>
+                    setting_language
+</style__StyledSectionHeading>,
+                  <Select.style
+                    onChange={[Function]}
+                    style={
+                                        Object {
+                                                            "width": "15rem",
+                                                          }
+                    }
+                    value="en"
+>
+                    <Option
+                                        value="en"
+                    >
+                                        English
+                    </Option>
+</Select.style>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "setting_language",
+                  },
+                  "ref": null,
+                  "rendered": "setting_language",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <Option
+                        value="en"
+>
+                        English
+</Option>,
+                    ],
+                    "onChange": [Function],
+                    "style": Object {
+                      "width": "15rem",
+                    },
+                    "value": "en",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": "en",
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "English",
+                        "value": "en",
+                      },
+                      "ref": null,
+                      "rendered": "English",
+                      "type": [Function],
+                    },
+                  ],
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
       ],

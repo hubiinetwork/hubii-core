@@ -79,5 +79,11 @@ export const filterPersistedState = (state) => {
     .set('contacts', state.get('contacts'));
 
 
+  /**
+   * Language Setting
+   */
+  persistedState = persistedState
+    .set('language', state.get('language'));
+
   return persistedState;
 };

@@ -6,6 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import emoji from 'emoji-dictionary';
+import { injectIntl } from 'react-intl';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -30,7 +31,7 @@ import { makeSelectReleaseNotes } from './selectors';
 class ReleaseNotesModal extends React.PureComponent {
   render() {
     const emojiSupport = (text) => text.replace(/:\w+:/gi, (name) => emoji.getUnicode(name));
-
+    const { formatMessage } = this.props.intl;
     return (
       <Modal
         footer={null}
@@ -42,17 +43,17 @@ class ReleaseNotesModal extends React.PureComponent {
         destroyOnClose
       >
         <TitleDiv>
-          {`New version available - ${this.props.releaseNotes.version}`}
+          {`${formatMessage({ id: 'new_version_available' })} - ${this.props.releaseNotes.version}`}
         </TitleDiv>
         <Container>
           <ReactMarkdown source={this.props.releaseNotes.body} renderers={{ text: emojiSupport }} />
         </Container>
         <ButtonDiv>
           <StyledButton type="primary" onClick={this.props.installNewRelease}>
-            <TextWhite>Install</TextWhite>
+            <TextWhite>{formatMessage({ id: 'upgrade' })}</TextWhite>
           </StyledButton>
           <StyledDetailsButton onClick={() => { shell.openExternal(`https://github.com/${OWNER}/${REPO}/releases/tag/${this.props.releaseNotes.version}`); }}>
-            <TextWhite>View Details</TextWhite>
+            <TextWhite>{formatMessage({ id: 'view_details' })}</TextWhite>
           </StyledDetailsButton>
         </ButtonDiv>
       </Modal>
@@ -64,6 +65,7 @@ ReleaseNotesModal.propTypes = {
   releaseNotes: PropTypes.object.isRequired,
   hideReleaseNotes: PropTypes.func.isRequired,
   installNewRelease: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 const withReducer = injectReducer({ key: 'releaseNotes', reducer });
@@ -85,4 +87,4 @@ export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(ReleaseNotesModal);
+)(injectIntl(ReleaseNotesModal));

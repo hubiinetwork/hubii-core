@@ -3,6 +3,7 @@ import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
 import WalletHoc, { getComponentHOC, mapDispatchToProps } from '../index';
 import { walletsWithInfoMock, currentWalletSoftwareMock } from './mocks/selectors';
+import { intl } from '../../../../__mocks__/react-intl';
 
 describe('WalletHoc', () => {
   const props = {
@@ -14,6 +15,7 @@ describe('WalletHoc', () => {
     loading: fromJS({
       decryptingWallet: false,
     }),
+    intl,
   };
   let dom;
   afterEach(() => {

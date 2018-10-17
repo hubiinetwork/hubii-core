@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import ContactList from 'components/ContactList';
 import DeletionModal from 'components/DeletionModal';
 import EditContactModal from 'components/EditContactModal';
+import { intl } from '../../../../__mocks__/react-intl';
 
 describe('<ContactList/>', () => {
   const props = {
@@ -19,6 +20,7 @@ describe('<ContactList/>', () => {
     empty: false,
     onDelete: jest.fn(),
     onEdit: jest.fn(),
+    intl,
   };
 
   describe('shallow mount', () => {

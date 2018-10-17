@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 
 import DerivationPathContainer from 'containers/DerivationPathContainer';
 import Text from 'components/ui/Text';
@@ -17,7 +18,7 @@ import ImportWalletMnemonicForm from './ImportWalletMnemonicForm';
 import ImportWalletKeystoreForm from './ImportWalletKeystoreForm';
 import FormSteps from '../FormSteps';
 
-export default class ImportWalletSteps extends React.Component {
+class ImportWalletSteps extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -164,12 +165,13 @@ export default class ImportWalletSteps extends React.Component {
   render() {
     const { current } = this.state;
     const { onBackIcon } = this.props;
+    const { formatMessage } = this.props.intl;
 
     const FormNavigation = (
       <Wrapper>
         <NavigationWrapper>
           <LeftArrow type="arrow-left" onClick={() => onBackIcon()} />
-          <Text large>Import an existing wallet</Text>
+          <Text large>{formatMessage({ id: 'import_exist_wallet' })}</Text>
         </NavigationWrapper>
       </Wrapper>
     );
@@ -185,4 +187,7 @@ ImportWalletSteps.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onBackIcon: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  intl: PropTypes.object.isRequired,
 };
+
+export default injectIntl(ImportWalletSteps);

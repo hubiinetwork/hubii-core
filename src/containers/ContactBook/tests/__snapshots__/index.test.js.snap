@@ -22,6 +22,11 @@ ShallowWrapper {
         ]
     }
     editContact={[Function]}
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     recentContacts={
         Immutable.List [
             Immutable.Map {
@@ -56,7 +61,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     placeholder="Filter"
                     showSearch={true}
-                    title="All contacts"
+                    title="all_contacts"
           />
           <ContactList
                     data={
@@ -77,7 +82,6 @@ ShallowWrapper {
                     }
                     empty={false}
                     layout="horizontal"
-                    message="Add a contact by clicking '+ Add a contact' in top right corner"
                     onDelete={[Function]}
                     onEdit={[Function]}
                     size="small"
@@ -90,7 +94,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     placeholder="Filter"
                     showSearch={true}
-                    title="Recently used contacts"
+                    title="recent_contacts"
           />
           <ContactList
                     data={
@@ -107,7 +111,7 @@ ShallowWrapper {
                     }
                     empty={false}
                     layout="horizontal"
-                    message="You have no recently used contacts"
+                    message="no_recent_contacts"
                     onDelete={[Function]}
                     onEdit={[Function]}
                     size="small"
@@ -127,7 +131,7 @@ ShallowWrapper {
               onChange={[Function]}
               placeholder="Filter"
               showSearch={true}
-              title="All contacts"
+              title="all_contacts"
 />,
             <ContactList
               data={
@@ -148,7 +152,6 @@ ShallowWrapper {
               }
               empty={false}
               layout="horizontal"
-              message="Add a contact by clicking '+ Add a contact' in top right corner"
               onDelete={[Function]}
               onEdit={[Function]}
               size="small"
@@ -166,7 +169,7 @@ ShallowWrapper {
               "onChange": [Function],
               "placeholder": "Filter",
               "showSearch": true,
-              "title": "All contacts",
+              "title": "all_contacts",
             },
             "ref": null,
             "rendered": null,
@@ -193,7 +196,6 @@ ShallowWrapper {
               ],
               "empty": false,
               "layout": "horizontal",
-              "message": "Add a contact by clicking '+ Add a contact' in top right corner",
               "onDelete": [Function],
               "onEdit": [Function],
               "size": "small",
@@ -215,7 +217,7 @@ ShallowWrapper {
               onChange={[Function]}
               placeholder="Filter"
               showSearch={true}
-              title="Recently used contacts"
+              title="recent_contacts"
 />,
             <ContactList
               data={
@@ -232,7 +234,7 @@ ShallowWrapper {
               }
               empty={false}
               layout="horizontal"
-              message="You have no recently used contacts"
+              message="no_recent_contacts"
               onDelete={[Function]}
               onEdit={[Function]}
               size="small"
@@ -250,7 +252,7 @@ ShallowWrapper {
               "onChange": [Function],
               "placeholder": "Filter",
               "showSearch": true,
-              "title": "Recently used contacts",
+              "title": "recent_contacts",
             },
             "ref": null,
             "rendered": null,
@@ -273,7 +275,7 @@ ShallowWrapper {
               ],
               "empty": false,
               "layout": "horizontal",
-              "message": "You have no recently used contacts",
+              "message": "no_recent_contacts",
               "onDelete": [Function],
               "onEdit": [Function],
               "size": "small",
@@ -302,7 +304,7 @@ ShallowWrapper {
                         onChange={[Function]}
                         placeholder="Filter"
                         showSearch={true}
-                        title="All contacts"
+                        title="all_contacts"
             />
             <ContactList
                         data={
@@ -323,7 +325,6 @@ ShallowWrapper {
                         }
                         empty={false}
                         layout="horizontal"
-                        message="Add a contact by clicking '+ Add a contact' in top right corner"
                         onDelete={[Function]}
                         onEdit={[Function]}
                         size="small"
@@ -336,7 +337,7 @@ ShallowWrapper {
                         onChange={[Function]}
                         placeholder="Filter"
                         showSearch={true}
-                        title="Recently used contacts"
+                        title="recent_contacts"
             />
             <ContactList
                         data={
@@ -353,7 +354,7 @@ ShallowWrapper {
                         }
                         empty={false}
                         layout="horizontal"
-                        message="You have no recently used contacts"
+                        message="no_recent_contacts"
                         onDelete={[Function]}
                         onEdit={[Function]}
                         size="small"
@@ -373,7 +374,7 @@ ShallowWrapper {
                 onChange={[Function]}
                 placeholder="Filter"
                 showSearch={true}
-                title="All contacts"
+                title="all_contacts"
 />,
               <ContactList
                 data={
@@ -394,7 +395,6 @@ ShallowWrapper {
                 }
                 empty={false}
                 layout="horizontal"
-                message="Add a contact by clicking '+ Add a contact' in top right corner"
                 onDelete={[Function]}
                 onEdit={[Function]}
                 size="small"
@@ -412,7 +412,7 @@ ShallowWrapper {
                 "onChange": [Function],
                 "placeholder": "Filter",
                 "showSearch": true,
-                "title": "All contacts",
+                "title": "all_contacts",
               },
               "ref": null,
               "rendered": null,
@@ -439,7 +439,6 @@ ShallowWrapper {
                 ],
                 "empty": false,
                 "layout": "horizontal",
-                "message": "Add a contact by clicking '+ Add a contact' in top right corner",
                 "onDelete": [Function],
                 "onEdit": [Function],
                 "size": "small",
@@ -461,7 +460,7 @@ ShallowWrapper {
                 onChange={[Function]}
                 placeholder="Filter"
                 showSearch={true}
-                title="Recently used contacts"
+                title="recent_contacts"
 />,
               <ContactList
                 data={
@@ -478,7 +477,7 @@ ShallowWrapper {
                 }
                 empty={false}
                 layout="horizontal"
-                message="You have no recently used contacts"
+                message="no_recent_contacts"
                 onDelete={[Function]}
                 onEdit={[Function]}
                 size="small"
@@ -496,7 +495,7 @@ ShallowWrapper {
                 "onChange": [Function],
                 "placeholder": "Filter",
                 "showSearch": true,
-                "title": "Recently used contacts",
+                "title": "recent_contacts",
               },
               "ref": null,
               "rendered": null,
@@ -519,7 +518,7 @@ ShallowWrapper {
                 ],
                 "empty": false,
                 "layout": "horizontal",
-                "message": "You have no recently used contacts",
+                "message": "no_recent_contacts",
                 "onDelete": [Function],
                 "onEdit": [Function],
                 "size": "small",

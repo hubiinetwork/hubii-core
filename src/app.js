@@ -27,6 +27,7 @@ import dark from 'themes/darkTheme';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
+import { getIntl as initIntl } from 'utils/localisation';
 
 import configureStore from './configureStore';
 
@@ -65,6 +66,9 @@ if (module.hot) {
     render(translationMessages);
   });
 }
+
+// init localisation
+initIntl();
 
 // Chunked polyfill for browsers without Intl support
 if (!window.Intl) {

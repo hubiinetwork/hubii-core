@@ -14,10 +14,13 @@ const esTranslationMessages = {
 };
 
 describe('formatTranslationMessages', () => {
-  it('should build only defaults when DEFAULT_LOCALE', () => {
+  it('should build only defaults', () => {
     const result = formatTranslationMessages(DEFAULT_LOCALE, { a: 'a' });
 
-    expect(result).toEqual({ a: 'a' });
+    expect(result).toEqual({
+      message1: 'default message',
+      message2: 'default message 2',
+    });
   });
 
 

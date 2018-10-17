@@ -1,6 +1,7 @@
 import { Row } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 
 import { formatFiat } from 'utils/numberFormats';
 import { isValidAddress } from 'ethereumjs-util';
@@ -21,7 +22,7 @@ import TransferDescriptionItem from '../TransferDescriptionItem';
 /**
  * The TransferDescription Component
  */
-export default class TransferDescription extends React.PureComponent {
+class TransferDescription extends React.PureComponent {
   render() {
     const {
       currentWalletWithInfo,
@@ -38,7 +39,10 @@ export default class TransferDescription extends React.PureComponent {
       transactionFee,
       onSend,
       hwWalletReady,
+      intl,
     } = this.props;
+
+    const { formatMessage } = intl;
 
     const disableSendButton =
       amountToSend.isNegative() ||
@@ -49,7 +53,7 @@ export default class TransferDescription extends React.PureComponent {
     return (
       <div>
         <Row>
-          <StyledCol span={12}>Send</StyledCol>
+          <StyledCol span={12}>{formatMessage({ id: 'send' })}</StyledCol>
         </Row>
         <Row>
           <TransferDescriptionItem
@@ -58,13 +62,13 @@ export default class TransferDescription extends React.PureComponent {
           />
         </Row>
         <Row>
-          <StyledCol span={12}>To</StyledCol>
+          <StyledCol span={12}>{formatMessage({ id: 'to' })}</StyledCol>
         </Row>
         <Row>
           <StyledRecipient span={12}>{recipient}</StyledRecipient>
         </Row>
         <Row>
-          <StyledCol span={12}>Fee</StyledCol>
+          <StyledCol span={12}>{formatMessage({ id: 'fee' })}</StyledCol>
         </Row>
         <Row>
           <TransferDescriptionItem
@@ -73,7 +77,7 @@ export default class TransferDescription extends React.PureComponent {
           />
         </Row>
         <Row>
-          <StyledCol span={12}>ETH balance before</StyledCol>
+          <StyledCol span={12}>ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
         </Row>
         <Row>
           <TransferDescriptionItem
@@ -83,7 +87,7 @@ export default class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           <StyledCol span={12}>
-            ETH balance after
+            ETH {formatMessage({ id: 'balance_after' })}
           </StyledCol>
         </Row>
         <Row>
@@ -95,7 +99,7 @@ export default class TransferDescription extends React.PureComponent {
         {assetToSend.symbol !== 'ETH' &&
         <div>
           <Row>
-            <StyledCol span={12}>{assetToSend.symbol} balance before</StyledCol>
+            <StyledCol span={12}>{assetToSend.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
           </Row>
           <Row>
             <TransferDescriptionItem
@@ -105,8 +109,8 @@ export default class TransferDescription extends React.PureComponent {
           </Row>
           <Row>
             <StyledCol span={12}>
-              { assetToSend.symbol } balance after
-          </StyledCol>
+              { assetToSend.symbol } {formatMessage({ id: 'balance_after' })}
+            </StyledCol>
           </Row>
           <Row>
             <TransferDescriptionItem
@@ -117,7 +121,7 @@ export default class TransferDescription extends React.PureComponent {
         </div>
       }
         <Row>
-          <StyledCol span={12}>Total wallet value before</StyledCol>
+          <StyledCol span={12}>{formatMessage({ id: 'total_value_before' })}</StyledCol>
         </Row>
         <Row>
           <Balance large>
@@ -125,7 +129,7 @@ export default class TransferDescription extends React.PureComponent {
           </Balance>
         </Row>
         <Row>
-          <StyledCol span={12}>Total wallet value after</StyledCol>
+          <StyledCol span={12}>{formatMessage({ id: 'balance_after' })}</StyledCol>
         </Row>
         <Row>
           <Balance large>
@@ -146,7 +150,7 @@ export default class TransferDescription extends React.PureComponent {
               size="large"
             />) : (
               <StyledButton type="primary" onClick={onSend} disabled={disableSendButton}>
-                Send
+                {formatMessage({ id: 'send' })}
               </StyledButton>
             )
           }
@@ -172,4 +176,7 @@ TransferDescription.propTypes = {
   transfering: PropTypes.bool,
   hwWalletReady: PropTypes.bool.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,
+  intl: PropTypes.object.isRequired,
 };
+
+export default injectIntl(TransferDescription);

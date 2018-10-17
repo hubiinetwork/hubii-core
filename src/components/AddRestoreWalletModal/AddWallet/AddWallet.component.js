@@ -3,6 +3,7 @@ import { Row, Col, Form } from 'antd';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import ethers from 'ethers';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 import Notification from 'components/Notification';
 import Heading from 'components/ui/Heading';
 import Button from 'components/ui/Button';
@@ -37,6 +38,7 @@ class AddWallet extends React.PureComponent {
     this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
     this.compareToFirstPassword = this.compareToFirstPassword.bind(this);
     this.validateToNextPassword = this.validateToNextPassword.bind(this);
+    this.showNotification = this.showNotification.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleConfirmBlur(e) {
@@ -47,8 +49,9 @@ class AddWallet extends React.PureComponent {
   }
   compareToFirstPassword(rule, value, callback) {
     const form = this.props.form;
+    const { formatMessage } = this.props.intl;
     if (value && value !== form.getFieldValue('password')) {
-      callback('The two passwords don\'t match');
+      callback(formatMessage({ id: 'password_notmatch' }));
     } else {
       callback();
     }
@@ -73,13 +76,15 @@ class AddWallet extends React.PureComponent {
     });
   }
   showNotification() {
+    const { formatMessage } = this.props.intl;
     const success = true;
-    const message = 'Mnemonic phrase copied to clipboard';
+    const message = formatMessage({ id: 'mnemonic_clipboard' });
     Notification(success, message);
   }
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { loading } = this.props;
+    const { loading, intl } = this.props;
+    const { formatMessage } = intl;
     return (
       <div>
         <Row justify="center" type="flex">
@@ -92,34 +97,34 @@ class AddWallet extends React.PureComponent {
               }}
             >
               <FinalHeader>
-                <Heading large>Creating a new wallet</Heading>
+                <Heading large>{formatMessage({ id: 'create_new_wallet' })}</Heading>
               </FinalHeader>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>Enter a name for your wallet</ModalFormLabel>}
+                label={<ModalFormLabel>{formatMessage({ id: 'enter_wallet_name' })}</ModalFormLabel>}
               >
                 {getFieldDecorator('name', {
                   rules: [
                     {
                       required: true,
-                      message: 'Please enter a name for your wallet',
+                      message: formatMessage({ id: 'please_enter_wallet_name' }),
                     },
                   ],
                 })(<ModalFormInput disabled={loading} />)}
               </ModalFormItem>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>Enter a password to secure your wallet</ModalFormLabel>}
+                label={<ModalFormLabel>{formatMessage({ id: 'enter_wallet_password' })}</ModalFormLabel>}
               >
                 {getFieldDecorator('password', {
                   rules: [
                     {
                       required: true,
-                      message: 'Please enter a password for your wallet',
+                      message: formatMessage({ id: 'please_enter_wallet_password' }),
                     },
                     {
                       min: 8,
-                      message: 'Password must be at least 8 characters',
+                      message: formatMessage({ id: 'password_8chart_min' }),
                     },
                     {
                       validator: this.validateToNextPassword,
@@ -129,13 +134,13 @@ class AddWallet extends React.PureComponent {
               </ModalFormItem>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>Repeat password</ModalFormLabel>}
+                label={<ModalFormLabel>{formatMessage({ id: 'repeat_password' })}</ModalFormLabel>}
               >
                 {getFieldDecorator('confirm', {
                   rules: [
                     {
                       required: true,
-                      message: 'Please confirm your password',
+                      message: formatMessage({ id: 'confirm_password' }),
                     },
                     {
                       validator: this.compareToFirstPassword,
@@ -151,10 +156,10 @@ class AddWallet extends React.PureComponent {
               </ModalFormItem>
               <ModalFormItem colon={false}>
                 <WarningList>
-                  <WarningPoint>Write down the mnemonic phrase below and store it somewhere safe, it is the key to your wallet. If you lose the phrase any funds in your wallet will be lost forever!</WarningPoint>
-                  <WarningPoint>Never share the phrase with anybody. Possession of this phrase means possession of all of your funds.</WarningPoint>
-                  <WarningPoint>If you wish to store any significant amount of funds, it is strongly recommended to use a hardware wallet. Hardware wallets are a much safer alternative to software wallets.</WarningPoint>
-                  <WarningPoint>{"Confused? Google search 'Ethereum wallet security' and do some research. Only you are responsible for your funds."}</WarningPoint>
+                  <WarningPoint>{formatMessage({ id: 'wallet_mnemonic_phrase_warning_1' })}</WarningPoint>
+                  <WarningPoint>{formatMessage({ id: 'wallet_mnemonic_phrase_warning_2' })}</WarningPoint>
+                  <WarningPoint>{formatMessage({ id: 'wallet_mnemonic_phrase_warning_3' })}</WarningPoint>
+                  <WarningPoint>{formatMessage({ id: 'wallet_mnemonic_phrase_warning_4' })}</WarningPoint>
                 </WarningList>
               </ModalFormItem>
               <ModalFormItem colon={false}>
@@ -179,7 +184,7 @@ class AddWallet extends React.PureComponent {
                   />
                 ) : (
                   <FinishButton type="primary" htmlType="submit">
-                    Create wallet
+                    {formatMessage({ id: 'create_wallet' })}
                   </FinishButton>
                 )}
               </CenterWrapper>
@@ -206,6 +211,7 @@ AddWallet.propTypes = {
    */
 
   loading: PropTypes.bool,
+  intl: PropTypes.object.isRequired,
 };
 
-export default Form.create()(AddWallet);
+export default Form.create()(injectIntl(AddWallet));

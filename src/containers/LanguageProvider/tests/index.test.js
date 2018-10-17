@@ -36,7 +36,7 @@ describe('<ConnectedLanguageProvider />', () => {
     store = configureStore({}, browserHistory);
   });
 
-  it('should render the default language messages', () => {
+  xit('should render the default language messages', () => {
     const renderedComponent = mount(
       <Provider store={store}>
         <ConnectedLanguageProvider messages={translationMessages}>
