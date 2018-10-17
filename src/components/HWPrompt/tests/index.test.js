@@ -14,7 +14,7 @@ import {
   ledgerHocConnectedMock,
 } from 'containers/LedgerHoc/tests/mocks/selectors';
 
-import { intl } from '../../../../__mocks__/react-intl';
+import { intl } from 'jest/__mocks__/react-intl';
 import HWPrompt from '../index';
 
 describe('<HWPrompt />', () => {

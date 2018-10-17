@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { fromJS } from 'immutable';
+import { intl } from 'jest/__mocks__/react-intl';
 import { ContactBook, mapDispatchToProps } from '../index';
 import { removeContact, editContact } from '../actions';
-import { intl } from '../../../../__mocks__/react-intl';
 
 
 describe('<ContactBook />', () => {

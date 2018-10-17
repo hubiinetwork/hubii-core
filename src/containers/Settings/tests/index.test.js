@@ -3,8 +3,8 @@ import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
 import { SUPPORTED_NETWORKS } from 'config/constants';
 import { currentNetworkMock } from 'containers/App/tests/mocks/selectors';
+import { intl } from 'jest/__mocks__/react-intl';
 import { Settings } from '../index';
-import { intl } from '../../../../__mocks__/react-intl';
 
 describe('Settings', () => {
   const props = {

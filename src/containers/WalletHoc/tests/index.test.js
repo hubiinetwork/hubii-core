@@ -1,9 +1,9 @@
 import React from 'react';
 import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
+import { intl } from 'jest/__mocks__/react-intl';
 import WalletHoc, { getComponentHOC, mapDispatchToProps } from '../index';
 import { walletsWithInfoMock, currentWalletSoftwareMock } from './mocks/selectors';
-import { intl } from '../../../../__mocks__/react-intl';
 
 describe('WalletHoc', () => {
   const props = {
