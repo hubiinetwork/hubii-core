@@ -28,6 +28,7 @@ import {
 } from 'containers/WalletHoc/selectors';
 import HWPromptContainer from 'containers/HWPromptContainer';
 
+import AirdriipRegistrationStatusUi from 'components/AirdriipRegistrationStatusUi';
 import SelectWallet from 'components/ui/SelectWallet';
 import Button from 'components/ui/Button';
 import Input from 'components/ui/Input';
@@ -52,16 +53,19 @@ import {
   changeManualSignedMessage,
 } from './actions';
 
-const messageTemplate = '\\x19Ethereum Signed Message:\nI wish the register the address <address> for the nahmii airdriip';
+const messageTemplate =
+  '\\x19Ethereum Signed Message:\nI wish the register the address <address> for the nahmii airdriip';
 
 export const Start = (props) => (
   <StartWrapper>
-    <PrimaryHeading large>{props.intl.formatMessage({ id: 'thanks_for_interest_airdriip' })}</PrimaryHeading>
-    <SecondaryHeading>{props.intl.formatMessage({ id: 'has_address_been_imported_airdriip' })}</SecondaryHeading>
+    <PrimaryHeading large>
+      {props.intl.formatMessage({ id: 'thanks_for_interest_airdriip' })}
+    </PrimaryHeading>
+    <SecondaryHeading>
+      {props.intl.formatMessage({ id: 'has_address_been_imported_airdriip' })}
+    </SecondaryHeading>
     <ButtonsWrapper>
-      <StyledButtonTall
-        onClick={() => props.changeStage('register-arbitrary')}
-      >
+      <StyledButtonTall onClick={() => props.changeStage('register-arbitrary')}>
         <div>{props.intl.formatMessage({ id: 'no' })}</div>
         <div>{props.intl.formatMessage({ id: 'airdriip_advanced' })}</div>
       </StyledButtonTall>
@@ -78,8 +82,12 @@ export const Start = (props) => (
 
 export const CoreAddressRegistrationForm = (props) => (
   <StartWrapper>
-    <PrimaryHeading large>{props.intl.formatMessage({ id: 'register_a_hubii_core_address' })}</PrimaryHeading>
-    <SecondaryHeading>{props.intl.formatMessage({ id: 'has_address_been_imported_airdriip' })}</SecondaryHeading>
+    <PrimaryHeading large>
+      {props.intl.formatMessage({ id: 'register_a_hubii_core_address' })}
+    </PrimaryHeading>
+    <SecondaryHeading>
+      {props.intl.formatMessage({ id: 'select_address_to_register' })}
+    </SecondaryHeading>
     <SelectWallet
       wallets={props.wallets.toJS()}
       onChange={(address) => props.setCurrentWallet(address)}
@@ -87,34 +95,48 @@ export const CoreAddressRegistrationForm = (props) => (
       style={{ marginBottom: '2rem' }}
     />
     {
-      isHardwareWallet(props.currentWalletWithInfo.get('type')) &&
-      <HWPromptContainer
-        style={{ marginBottom: '2rem' }}
-        passedDeviceType={props.currentWalletWithInfo.get('type')}
-      />
+      isHardwareWallet(props.currentWalletWithInfo.get('type'))
+      && props.showHwPrompt && (
+        <HWPromptContainer
+          style={{ marginBottom: '2rem' }}
+          passedDeviceType={props.currentWalletWithInfo.get('type')}
+        />
+    )
     }
   </StartWrapper>
 );
 
-
 export const ManualRegistrationForm = (props) => (
   <StartWrapper>
-    <PrimaryHeading large>{props.intl.formatMessage({ id: 'manual_registration' })}</PrimaryHeading>
-    <PrimaryHeading>{props.intl.formatMessage({ id: 'airdriip_manual_registration_instructions' })}</PrimaryHeading>
+    <PrimaryHeading large>
+      {props.intl.formatMessage({ id: 'manual_registration' })}
+    </PrimaryHeading>
+    <PrimaryHeading>
+      {props.intl.formatMessage({
+        id: 'airdriip_manual_registration_instructions',
+      })}
+    </PrimaryHeading>
     <MessageTemplateWrapper>
-      <SecondaryHeading style={{ marginRight: '1rem' }}>{messageTemplate}</SecondaryHeading>
+      <SecondaryHeading style={{ marginRight: '1rem' }}>
+        {messageTemplate}
+      </SecondaryHeading>
       <CopyToClipboard text={messageTemplate}>
         <Button
           type="icon"
           icon="copy"
           size={'small'}
-          onClick={() => props.notify('success', props.intl.formatMessage({ id: 'message_template_copied' }))}
+          onClick={() =>
+            props.notify(
+              'success',
+              props.intl.formatMessage({ id: 'message_template_copied' })
+            )
+          }
         />
       </CopyToClipboard>
     </MessageTemplateWrapper>
     <Input
       style={{ marginBottom: '2rem' }}
-      placeholder={props.intl.formatMessage({ id: 'ethereum_adderss' })}
+      placeholder={props.intl.formatMessage({ id: 'ethereum_address' })}
       onChange={props.changeManualAddress}
     />
     <Input
@@ -125,7 +147,8 @@ export const ManualRegistrationForm = (props) => (
   </StartWrapper>
 );
 
-export class NahmiiAirdriipRegistration extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+export class NahmiiAirdriipRegistration extends React.Component {
   constructor(props) {
     super(props);
     props.setCurrentWallet(props.wallets.getIn([0, 'address']));
@@ -144,68 +167,86 @@ export class NahmiiAirdriipRegistration extends React.Component { // eslint-disa
     if (store.get('stage') === 'start') {
       return (
         <OuterWrapper>
-          <Start
-            changeStage={this.props.changeStage}
-            intl={intl}
-          />
+          <Start changeStage={this.props.changeStage} intl={intl} />
         </OuterWrapper>
       );
     }
 
+    const addressRegistrationStatus = store.getIn([
+      'addressStatuses',
+      currentWalletWithInfo.get('address'),
+    ]);
+
     const disabledRegisterButton =
       store.get('stage') === 'register-imported'
-      && !walletReady(currentWalletWithInfo.get('type'), ledgerInfo, trezorInfo);
+      && (!walletReady(
+          currentWalletWithInfo.get('type'),
+          ledgerInfo,
+          trezorInfo
+        )
+      || addressRegistrationStatus !== 'unregistered');
 
-    const loading = store.get('registering');
+    const registering = store.get('registering');
 
     return (
       <OuterWrapper>
         {
-          store.get('stage') === 'register-imported' &&
-          <CoreAddressRegistrationForm
-            currentWalletWithInfo={currentWalletWithInfo}
-            wallets={wallets}
-            setCurrentWallet={this.props.setCurrentWallet}
-            intl={intl}
-          />
+          store.get('stage') === 'register-imported' && (
+            <CoreAddressRegistrationForm
+              currentWalletWithInfo={currentWalletWithInfo}
+              showHwPrompt={addressRegistrationStatus === 'unregistered'}
+              wallets={wallets}
+              setCurrentWallet={this.props.setCurrentWallet}
+              intl={intl}
+            />
+          )
         }
         {
-          store.get('stage') === 'register-arbitrary' &&
-          <ManualRegistrationForm
-            notify={this.props.notify}
-            changeManualAddress={this.props.changeManualAddress}
-            changeManualSignedMessage={this.props.changeManualSignedMessage}
-            intl={intl}
-          />
+          store.get('stage') === 'register-arbitrary' && (
+            <ManualRegistrationForm
+              notify={this.props.notify}
+              changeManualAddress={this.props.changeManualAddress}
+              changeManualSignedMessage={this.props.changeManualSignedMessage}
+              intl={intl}
+            />
+        )}
+        {
+          registering && <Spin size="large" />
         }
         {
-          loading &&
-          <Spin size="large" />
+          store.get('stage') === 'register-imported'
+          && addressRegistrationStatus !== 'unregistered' &&
+            <AirdriipRegistrationStatusUi
+              loading={!addressRegistrationStatus}
+              status={addressRegistrationStatus}
+              style={{ width: '33rem', marginBottom: '2rem' }}
+            />
         }
         {
-          !loading &&
-          <ButtonsWrapper>
-            <StyledButton
-              onClick={() => this.props.changeStage('start')}
-              style={{ width: '7rem' }}
-            >
-              {formatMessage({ id: 'back' })}
-            </StyledButton>
-            <StyledButton
-              type="primary"
-              disabled={disabledRegisterButton}
-              onClick={() => this.props.register()}
-            >
-              {formatMessage({ id: 'register_address' })}
-            </StyledButton>
-          </ButtonsWrapper>
+          !registering && (
+            <ButtonsWrapper>
+              <StyledButton
+                onClick={() => this.props.changeStage('start')}
+                style={{ width: '7rem' }}
+              >
+                {formatMessage({ id: 'back' })}
+              </StyledButton>
+              <StyledButton
+                type="primary"
+                disabled={disabledRegisterButton}
+                onClick={() => this.props.register()}
+              >
+                {formatMessage({ id: 'register_address' })}
+              </StyledButton>
+            </ButtonsWrapper>
+          )
         }
       </OuterWrapper>
     );
   }
 }
 
-NahmiiAirdriipRegistration.propTypes = { // eslint-disable-line
+NahmiiAirdriipRegistration.propTypes = {
   changeStage: PropTypes.func.isRequired,
   store: PropTypes.object.isRequired,
   notify: PropTypes.func.isRequired,
@@ -224,6 +265,7 @@ CoreAddressRegistrationForm.propTypes = {
   setCurrentWallet: PropTypes.func.isRequired,
   wallets: PropTypes.object.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,
+  showHwPrompt: PropTypes.bool.isRequired,
   intl: PropTypes.object.isRequired,
 };
 
@@ -255,13 +297,20 @@ function mapDispatchToProps(dispatch) {
     setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
     notify: (...args) => dispatch(notify(...args)),
     changeManualAddress: (...args) => dispatch(changeManualAddress(...args)),
-    changeManualSignedMessage: (...args) => dispatch(changeManualSignedMessage(...args)),
+    changeManualSignedMessage: (...args) =>
+      dispatch(changeManualSignedMessage(...args)),
   };
 }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
 
-const withReducer = injectReducer({ key: 'nahmiiAirdriipRegistration', reducer });
+const withReducer = injectReducer({
+  key: 'nahmiiAirdriipRegistration',
+  reducer,
+});
 const withSaga = injectSaga({ key: 'nahmiiAirdriipRegistration', saga });
 
 export default compose(

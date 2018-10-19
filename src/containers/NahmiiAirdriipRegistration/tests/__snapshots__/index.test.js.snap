@@ -17,6 +17,7 @@ ShallowWrapper {
           }
     }
     setCurrentWallet={[Function]}
+    showHwPrompt={true}
     wallets={
         Immutable.List [
             Immutable.Map {
@@ -73,7 +74,7 @@ ShallowWrapper {
           register_a_hubii_core_address
 </style__PrimaryHeading>,
         <style__SecondaryHeading>
-          has_address_been_imported_airdriip
+          select_address_to_register
 </style__SecondaryHeading>,
         <SelectWallet
           onChange={[Function]}
@@ -149,10 +150,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "has_address_been_imported_airdriip",
+          "children": "select_address_to_register",
         },
         "ref": null,
-        "rendered": "has_address_been_imported_airdriip",
+        "rendered": "select_address_to_register",
         "type": [Function],
       },
       Object {
@@ -234,7 +235,7 @@ ShallowWrapper {
             register_a_hubii_core_address
 </style__PrimaryHeading>,
           <style__SecondaryHeading>
-            has_address_been_imported_airdriip
+            select_address_to_register
 </style__SecondaryHeading>,
           <SelectWallet
             onChange={[Function]}
@@ -310,10 +311,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "has_address_been_imported_airdriip",
+            "children": "select_address_to_register",
           },
           "ref": null,
-          "rendered": "has_address_been_imported_airdriip",
+          "rendered": "select_address_to_register",
           "type": [Function],
         },
         Object {
@@ -410,6 +411,7 @@ ShallowWrapper {
           }
     }
     setCurrentWallet={[Function]}
+    showHwPrompt={true}
     wallets={
         Immutable.List [
             Immutable.Map {
@@ -466,7 +468,7 @@ ShallowWrapper {
           register_a_hubii_core_address
 </style__PrimaryHeading>,
         <style__SecondaryHeading>
-          has_address_been_imported_airdriip
+          select_address_to_register
 </style__SecondaryHeading>,
         <SelectWallet
           onChange={[Function]}
@@ -535,10 +537,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "has_address_been_imported_airdriip",
+          "children": "select_address_to_register",
         },
         "ref": null,
-        "rendered": "has_address_been_imported_airdriip",
+        "rendered": "select_address_to_register",
         "type": [Function],
       },
       Object {
@@ -607,7 +609,7 @@ ShallowWrapper {
             register_a_hubii_core_address
 </style__PrimaryHeading>,
           <style__SecondaryHeading>
-            has_address_been_imported_airdriip
+            select_address_to_register
 </style__SecondaryHeading>,
           <SelectWallet
             onChange={[Function]}
@@ -676,10 +678,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "has_address_been_imported_airdriip",
+            "children": "select_address_to_register",
           },
           "ref": null,
-          "rendered": "has_address_been_imported_airdriip",
+          "rendered": "select_address_to_register",
           "type": [Function],
         },
         Object {
@@ -762,6 +764,7 @@ ShallowWrapper {
           }
     }
     setCurrentWallet={[Function]}
+    showHwPrompt={true}
     wallets={
         Immutable.List [
         ]
@@ -786,7 +789,7 @@ ShallowWrapper {
           register_a_hubii_core_address
 </style__PrimaryHeading>,
         <style__SecondaryHeading>
-          has_address_been_imported_airdriip
+          select_address_to_register
 </style__SecondaryHeading>,
         <SelectWallet
           onChange={[Function]}
@@ -820,10 +823,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "has_address_been_imported_airdriip",
+          "children": "select_address_to_register",
         },
         "ref": null,
-        "rendered": "has_address_been_imported_airdriip",
+        "rendered": "select_address_to_register",
         "type": [Function],
       },
       Object {
@@ -859,7 +862,7 @@ ShallowWrapper {
             register_a_hubii_core_address
 </style__PrimaryHeading>,
           <style__SecondaryHeading>
-            has_address_been_imported_airdriip
+            select_address_to_register
 </style__SecondaryHeading>,
           <SelectWallet
             onChange={[Function]}
@@ -893,10 +896,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "has_address_been_imported_airdriip",
+            "children": "select_address_to_register",
           },
           "ref": null,
-          "rendered": "has_address_been_imported_airdriip",
+          "rendered": "select_address_to_register",
           "type": [Function],
         },
         Object {
@@ -992,7 +995,7 @@ ShallowWrapper {
 </style__MessageTemplateWrapper>,
         <Input.style
           onChange={[Function]}
-          placeholder="ethereum_adderss"
+          placeholder="ethereum_address"
           style={
                     Object {
                               "marginBottom": "2rem",
@@ -1126,7 +1129,7 @@ I wish the register the address <address> for the nahmii airdriip",
         "nodeType": "class",
         "props": Object {
           "onChange": [Function],
-          "placeholder": "ethereum_adderss",
+          "placeholder": "ethereum_address",
           "style": Object {
             "marginBottom": "2rem",
           },
@@ -1195,7 +1198,7 @@ I wish the register the address <address> for the nahmii airdriip",
 </style__MessageTemplateWrapper>,
           <Input.style
             onChange={[Function]}
-            placeholder="ethereum_adderss"
+            placeholder="ethereum_address"
             style={
                         Object {
                                     "marginBottom": "2rem",
@@ -1329,7 +1332,7 @@ I wish the register the address <address> for the nahmii airdriip",
           "nodeType": "class",
           "props": Object {
             "onChange": [Function],
-            "placeholder": "ethereum_adderss",
+            "placeholder": "ethereum_address",
             "style": Object {
               "marginBottom": "2rem",
             },
@@ -1481,6 +1484,8 @@ ShallowWrapper {
                 signedMessage: "0x81327429834jksdfhks",
             },
             registering: false,
+            addressStatuses: Immutable.Map {
+            },
         }
     }
     trezorInfo={
@@ -1555,6 +1560,7 @@ ShallowWrapper {
           notify={[Function]}
 />,
         false,
+        false,
         <style__ButtonsWrapper>
           <style__StyledButton
                     onClick={[Function]}
@@ -1595,6 +1601,7 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
+      false,
       false,
       Object {
         "instance": null,
@@ -1677,6 +1684,7 @@ ShallowWrapper {
             notify={[Function]}
 />,
           false,
+          false,
           <style__ButtonsWrapper>
             <style__StyledButton
                         onClick={[Function]}
@@ -1717,6 +1725,7 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
+        false,
         false,
         Object {
           "instance": null,
@@ -1905,6 +1914,8 @@ ShallowWrapper {
                 signedMessage: "0x81327429834jksdfhks",
             },
             registering: false,
+            addressStatuses: Immutable.Map {
+            },
         }
     }
     trezorInfo={
@@ -2054,6 +2065,7 @@ ShallowWrapper {
                             }
           }
           setCurrentWallet={[Function]}
+          showHwPrompt={false}
           wallets={
                     Immutable.List [
                               Immutable.Map {
@@ -2093,6 +2105,16 @@ ShallowWrapper {
 />,
         false,
         false,
+        <AirdriipRegistrationStatusUi
+          loading={true}
+          status={undefined}
+          style={
+                    Object {
+                              "marginBottom": "2rem",
+                              "width": "33rem",
+                            }
+          }
+/>,
         <style__ButtonsWrapper>
           <style__StyledButton
                     onClick={[Function]}
@@ -2203,6 +2225,7 @@ ShallowWrapper {
             "formatMessage": [Function],
           },
           "setCurrentWallet": [Function],
+          "showHwPrompt": false,
           "wallets": Immutable.List [
             Immutable.Map {
                         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
@@ -2244,6 +2267,22 @@ ShallowWrapper {
       },
       false,
       false,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "loading": true,
+          "status": undefined,
+          "style": Object {
+            "marginBottom": "2rem",
+            "width": "33rem",
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
       Object {
         "instance": null,
         "key": undefined,
@@ -2400,6 +2439,7 @@ ShallowWrapper {
                                   }
             }
             setCurrentWallet={[Function]}
+            showHwPrompt={false}
             wallets={
                         Immutable.List [
                                     Immutable.Map {
@@ -2439,6 +2479,16 @@ ShallowWrapper {
 />,
           false,
           false,
+          <AirdriipRegistrationStatusUi
+            loading={true}
+            status={undefined}
+            style={
+                        Object {
+                                    "marginBottom": "2rem",
+                                    "width": "33rem",
+                                  }
+            }
+/>,
           <style__ButtonsWrapper>
             <style__StyledButton
                         onClick={[Function]}
@@ -2549,6 +2599,7 @@ ShallowWrapper {
               "formatMessage": [Function],
             },
             "setCurrentWallet": [Function],
+            "showHwPrompt": false,
             "wallets": Immutable.List [
               Immutable.Map {
                             deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
@@ -2590,6 +2641,22 @@ ShallowWrapper {
         },
         false,
         false,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "loading": true,
+            "status": undefined,
+            "style": Object {
+              "marginBottom": "2rem",
+              "width": "33rem",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
         Object {
           "instance": null,
           "key": undefined,
@@ -2777,6 +2844,8 @@ ShallowWrapper {
                 signedMessage: "0x81327429834jksdfhks",
             },
             registering: false,
+            addressStatuses: Immutable.Map {
+            },
         }
     }
     trezorInfo={
@@ -3021,6 +3090,8 @@ ShallowWrapper {
                 signedMessage: "0x81327429834jksdfhks",
             },
             registering: true,
+            addressStatuses: Immutable.Map {
+            },
         }
     }
     trezorInfo={

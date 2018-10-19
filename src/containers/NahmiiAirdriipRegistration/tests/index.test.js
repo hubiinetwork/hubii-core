@@ -110,6 +110,7 @@ describe('<NahmiiAirdriipRegistration />', () => {
         currentWalletWithInfo: currentWalletLnsMock,
         setCurrentWallet: () => {},
         wallets: walletsMock,
+        showHwPrompt: true,
         intl,
       };
     });
@@ -188,7 +189,7 @@ describe('<NahmiiAirdriipRegistration />', () => {
       );
       expect(changeManualAddressSpy).toHaveBeenCalledTimes(0);
       wrapper
-        .find({ placeholder: 'ethereum_adderss' })
+        .find({ placeholder: 'ethereum_address' })
         .simulate('change', { target: { value: '0x00000' } });
       expect(changeManualAddressSpy).toHaveBeenCalledTimes(1);
 

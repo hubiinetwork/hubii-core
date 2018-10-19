@@ -12,6 +12,8 @@ import {
   REGISTRATION_SUCCESS,
   REGISTRATION_FAILED,
   REGISTER,
+  CHECK_ADDRESS_REGISTRATION_SUCCESS,
+  CHECK_ADDRESS_REGISTRATION_FAILED,
 } from './constants';
 
 export const initialState = fromJS({
@@ -21,6 +23,7 @@ export const initialState = fromJS({
     signedMessage: '',
   },
   registering: false,
+  addressStatuses: {},
 });
 
 function nahmiiAirdriipRegistrationReducer(state = initialState, action) {
@@ -38,9 +41,18 @@ function nahmiiAirdriipRegistrationReducer(state = initialState, action) {
       return state
         .set('registering', true);
     case REGISTRATION_SUCCESS:
+      return state
+        .setIn(['addressStatuses', action.address], 'registered')
+        .set('registering', false);
     case REGISTRATION_FAILED:
       return state
         .set('registering', false);
+    case CHECK_ADDRESS_REGISTRATION_SUCCESS:
+      return state
+        .setIn(['addressStatuses', action.address], action.status);
+    case CHECK_ADDRESS_REGISTRATION_FAILED:
+      return state
+        .setIn(['addressStatuses', action.address], action.error);
     default:
       return state;
   }

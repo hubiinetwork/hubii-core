@@ -1,0 +1,504 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AirdriipRegistrationStatusUi /> should render correctly in error state 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <AirdriipRegistrationStatusUi
+    loading={true}
+    status="Error: asdkjfasjdkl"
+    style={
+        Object {
+            "marginBottom": "5px",
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Text>
+          Checking registration status
+</Text>,
+        <Spin
+          indicator={
+                    <Icon
+                              type="loading"
+                    />
+          }
+          prefixCls="ant-spin"
+          size="default"
+          spinning={true}
+          style={
+                    Object {
+                              "marginLeft": "0.75rem",
+                            }
+          }
+          wrapperClassName=""
+/>,
+      ],
+      "style": Object {
+        "display": "flex",
+        "justifyContent": "center",
+        "marginBottom": "5px",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Checking registration status",
+        },
+        "ref": null,
+        "rendered": "Checking registration status",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "indicator": <Icon
+            type="loading"
+/>,
+          "prefixCls": "ant-spin",
+          "size": "default",
+          "spinning": true,
+          "style": Object {
+            "marginLeft": "0.75rem",
+          },
+          "wrapperClassName": "",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Text>
+            Checking registration status
+</Text>,
+          <Spin
+            indicator={
+                        <Icon
+                                    type="loading"
+                        />
+            }
+            prefixCls="ant-spin"
+            size="default"
+            spinning={true}
+            style={
+                        Object {
+                                    "marginLeft": "0.75rem",
+                                  }
+            }
+            wrapperClassName=""
+/>,
+        ],
+        "style": Object {
+          "display": "flex",
+          "justifyContent": "center",
+          "marginBottom": "5px",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Checking registration status",
+          },
+          "ref": null,
+          "rendered": "Checking registration status",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "indicator": <Icon
+              type="loading"
+/>,
+            "prefixCls": "ant-spin",
+            "size": "default",
+            "spinning": true,
+            "style": Object {
+              "marginLeft": "0.75rem",
+            },
+            "wrapperClassName": "",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<AirdriipRegistrationStatusUi /> should render correctly in loading state 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <AirdriipRegistrationStatusUi
+    loading={true}
+    style={
+        Object {
+            "marginBottom": "5px",
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Text>
+          Checking registration status
+</Text>,
+        <Spin
+          indicator={
+                    <Icon
+                              type="loading"
+                    />
+          }
+          prefixCls="ant-spin"
+          size="default"
+          spinning={true}
+          style={
+                    Object {
+                              "marginLeft": "0.75rem",
+                            }
+          }
+          wrapperClassName=""
+/>,
+      ],
+      "style": Object {
+        "display": "flex",
+        "justifyContent": "center",
+        "marginBottom": "5px",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Checking registration status",
+        },
+        "ref": null,
+        "rendered": "Checking registration status",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "indicator": <Icon
+            type="loading"
+/>,
+          "prefixCls": "ant-spin",
+          "size": "default",
+          "spinning": true,
+          "style": Object {
+            "marginLeft": "0.75rem",
+          },
+          "wrapperClassName": "",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Text>
+            Checking registration status
+</Text>,
+          <Spin
+            indicator={
+                        <Icon
+                                    type="loading"
+                        />
+            }
+            prefixCls="ant-spin"
+            size="default"
+            spinning={true}
+            style={
+                        Object {
+                                    "marginLeft": "0.75rem",
+                                  }
+            }
+            wrapperClassName=""
+/>,
+        ],
+        "style": Object {
+          "display": "flex",
+          "justifyContent": "center",
+          "marginBottom": "5px",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Checking registration status",
+          },
+          "ref": null,
+          "rendered": "Checking registration status",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "indicator": <Icon
+              type="loading"
+/>,
+            "prefixCls": "ant-spin",
+            "size": "default",
+            "spinning": true,
+            "style": Object {
+              "marginLeft": "0.75rem",
+            },
+            "wrapperClassName": "",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<AirdriipRegistrationStatusUi /> should render correctly in registered state 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <AirdriipRegistrationStatusUi
+    loading={true}
+    status="registered"
+    style={
+        Object {
+            "marginBottom": "5px",
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Text>
+          Checking registration status
+</Text>,
+        <Spin
+          indicator={
+                    <Icon
+                              type="loading"
+                    />
+          }
+          prefixCls="ant-spin"
+          size="default"
+          spinning={true}
+          style={
+                    Object {
+                              "marginLeft": "0.75rem",
+                            }
+          }
+          wrapperClassName=""
+/>,
+      ],
+      "style": Object {
+        "display": "flex",
+        "justifyContent": "center",
+        "marginBottom": "5px",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Checking registration status",
+        },
+        "ref": null,
+        "rendered": "Checking registration status",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "indicator": <Icon
+            type="loading"
+/>,
+          "prefixCls": "ant-spin",
+          "size": "default",
+          "spinning": true,
+          "style": Object {
+            "marginLeft": "0.75rem",
+          },
+          "wrapperClassName": "",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Text>
+            Checking registration status
+</Text>,
+          <Spin
+            indicator={
+                        <Icon
+                                    type="loading"
+                        />
+            }
+            prefixCls="ant-spin"
+            size="default"
+            spinning={true}
+            style={
+                        Object {
+                                    "marginLeft": "0.75rem",
+                                  }
+            }
+            wrapperClassName=""
+/>,
+        ],
+        "style": Object {
+          "display": "flex",
+          "justifyContent": "center",
+          "marginBottom": "5px",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Checking registration status",
+          },
+          "ref": null,
+          "rendered": "Checking registration status",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "indicator": <Icon
+              type="loading"
+/>,
+            "prefixCls": "ant-spin",
+            "size": "default",
+            "spinning": true,
+            "style": Object {
+              "marginLeft": "0.75rem",
+            },
+            "wrapperClassName": "",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

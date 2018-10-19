@@ -7,6 +7,7 @@ export const nahmiiAirdriipRegistrationMock = fromJS({
     signedMessage: '0x81327429834jksdfhks',
   },
   registering: false,
+  addressStatuses: {},
 });
 
 export const nahmiiAirdriipRegistrationRegisterImportedMock = fromJS({
@@ -16,6 +17,7 @@ export const nahmiiAirdriipRegistrationRegisterImportedMock = fromJS({
     signedMessage: '0x81327429834jksdfhks',
   },
   registering: false,
+  addressStatuses: {},
 });
 
 export const nahmiiAirdriipRegistrationRegisterArbitraryMock = fromJS({
@@ -25,6 +27,7 @@ export const nahmiiAirdriipRegistrationRegisterArbitraryMock = fromJS({
     signedMessage: '0x81327429834jksdfhks',
   },
   registering: false,
+  addressStatuses: {},
 });
 
 export const nahmiiAirdriipRegistrationRegisteringMock = fromJS({
@@ -34,4 +37,5 @@ export const nahmiiAirdriipRegistrationRegisteringMock = fromJS({
     signedMessage: '0x81327429834jksdfhks',
   },
   registering: true,
+  addressStatuses: {},
 });

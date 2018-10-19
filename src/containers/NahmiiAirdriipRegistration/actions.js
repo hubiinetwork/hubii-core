@@ -11,7 +11,25 @@ import {
   CHANGE_MANUAL_SIGNED_MESSAGE,
   REGISTRATION_SUCCESS,
   REGISTRATION_FAILED,
+  CHECK_ADDRESS_REGISTRATION_SUCCESS,
+  CHECK_ADDRESS_REGISTRATION_FAILED,
 } from './constants';
+
+export function checkAddressRegistrationSuccess(address, status) {
+  return {
+    type: CHECK_ADDRESS_REGISTRATION_SUCCESS,
+    address,
+    status,
+  };
+}
+
+export function checkAddressRegistrationFailed(address, error) {
+  return {
+    type: CHECK_ADDRESS_REGISTRATION_FAILED,
+    address,
+    error,
+  };
+}
 
 export function changeStage(stage) {
   return {
@@ -40,9 +58,10 @@ export function register() {
   };
 }
 
-export function registerationSuccess() {
+export function registerationSuccess(address) {
   return {
     type: REGISTRATION_SUCCESS,
+    address,
   };
 }
 
