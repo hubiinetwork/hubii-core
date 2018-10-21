@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+import { intl } from 'jest/__mocks__/react-intl';
+
 import { ledgerHocConnectedMock } from 'containers/LedgerHoc/tests/mocks/selectors';
 import { trezorHocConnectedMock } from 'containers/TrezorHoc/tests/mocks/selectors';
 import {
@@ -12,7 +14,6 @@ import {
   currentWalletSoftwareMock,
 } from 'containers/WalletHoc/tests/mocks/selectors';
 
-import { intl } from '../../../../__mocks__/react-intl';
 import { nahmiiAirdriipRegistrationMock } from './mocks/selectors';
 
 import {
