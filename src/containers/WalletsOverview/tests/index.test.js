@@ -17,7 +17,7 @@ import {
   pricesLoadedMock,
 } from 'containers/HubiiApiHoc/tests/mocks/selectors';
 
-import { intl } from '../../../../__mocks__/react-intl';
+import { intl } from 'jest/__mocks__/react-intl';
 import { WalletsOverview, mapDispatchToProps } from '../index';
 
 describe('WalletsOverview', () => {

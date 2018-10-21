@@ -2,8 +2,8 @@ import React from 'react';
 import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
 import Tabs from 'components/ui/Tabs';
+import { intl } from 'jest/__mocks__/react-intl';
 import { WalletManager, mapDispatchToProps } from '../index';
-import { intl } from '../../../../__mocks__/react-intl';
 
 describe('WalletManager', () => {
   describe('shallow mount', () => {

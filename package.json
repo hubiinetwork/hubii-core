@@ -263,7 +263,8 @@
       "raf/polyfill",
       "<rootDir>/internals/testing/enzyme-setup.js"
     ],
-    "testRegex": "tests/.*\\.test\\.js$"
+    "testRegex": "tests/.*\\.test\\.js$",
+    "roots": ["<rootDir>/", "<rootDir>/src/jest/"]
   },
   "dependencies": {
     "@fortawesome/fontawesome": "1.1.8",

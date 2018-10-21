@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+import { intl } from 'jest/__mocks__/react-intl';
 import HomeScreen from '../index';
-import { intl } from '../../../../__mocks__/react-intl';
 
 describe('<HomeScreen />', () => {
   it('should render correctly', () => {
