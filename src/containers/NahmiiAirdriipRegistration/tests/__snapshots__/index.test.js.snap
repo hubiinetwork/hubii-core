@@ -938,6 +938,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ManualRegistrationForm
+    addressValue="0x000"
     changeManualAddress={[Function]}
     changeManualSignedMessage={[Function]}
     intl={
@@ -946,6 +947,7 @@ ShallowWrapper {
           }
     }
     notify={[Function]}
+    signedMessageValue="0x000123"
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -968,48 +970,25 @@ ShallowWrapper {
         <style__PrimaryHeading>
           airdriip_manual_registration_instructions
 </style__PrimaryHeading>,
-        <style__MessageTemplateWrapper>
-          <style__SecondaryHeading
-                    style={
-                              Object {
-                                        "marginRight": "1rem",
-                                      }
-                    }
-          >
-                    \\x19Ethereum Signed Message:
-                    I wish the register the address &lt;address&gt; for the nahmii airdriip
-          </style__SecondaryHeading>
-          <CopyToClipboard
-                    onCopy={undefined}
-                    options={undefined}
-                    text="\\\\x19Ethereum Signed Message:
-          I wish the register the address <address> for the nahmii airdriip"
-          >
-                    <Button.style
-                              icon="copy"
-                              onClick={[Function]}
-                              size="small"
-                              type="icon"
-                    />
-          </CopyToClipboard>
-</style__MessageTemplateWrapper>,
         <Input.style
           onChange={[Function]}
           placeholder="ethereum_address"
           style={
                     Object {
-                              "marginBottom": "2rem",
+                              "margin": "2rem 0",
                             }
           }
+          value="0x000"
 />,
         <Input.style
           onChange={[Function]}
-          placeholder="signed_keccak_hash_hex"
+          placeholder="signature_hex_string"
           style={
                     Object {
                               "marginBottom": "2rem",
                             }
           }
+          value="0x000123"
 />,
       ],
     },
@@ -1043,96 +1022,12 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": Array [
-            <style__SecondaryHeading
-              style={
-                            Object {
-                                          "marginRight": "1rem",
-                                        }
-              }
->
-              \\x19Ethereum Signed Message:
-              I wish the register the address &lt;address&gt; for the nahmii airdriip
-</style__SecondaryHeading>,
-            <CopyToClipboard
-              onCopy={undefined}
-              options={undefined}
-              text="\\\\x19Ethereum Signed Message:
-I wish the register the address <address> for the nahmii airdriip"
->
-              <Button.style
-                            icon="copy"
-                            onClick={[Function]}
-                            size="small"
-                            type="icon"
-              />
-</CopyToClipboard>,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": "\\\\x19Ethereum Signed Message:
-I wish the register the address <address> for the nahmii airdriip",
-              "style": Object {
-                "marginRight": "1rem",
-              },
-            },
-            "ref": null,
-            "rendered": "\\\\x19Ethereum Signed Message:
-I wish the register the address <address> for the nahmii airdriip",
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <Button.style
-                icon="copy"
-                onClick={[Function]}
-                size="small"
-                type="icon"
-/>,
-              "onCopy": undefined,
-              "options": undefined,
-              "text": "\\\\x19Ethereum Signed Message:
-I wish the register the address <address> for the nahmii airdriip",
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "icon": "copy",
-                "onClick": [Function],
-                "size": "small",
-                "type": "icon",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
           "onChange": [Function],
           "placeholder": "ethereum_address",
           "style": Object {
-            "marginBottom": "2rem",
+            "margin": "2rem 0",
           },
+          "value": "0x000",
         },
         "ref": null,
         "rendered": null,
@@ -1144,10 +1039,11 @@ I wish the register the address <address> for the nahmii airdriip",
         "nodeType": "class",
         "props": Object {
           "onChange": [Function],
-          "placeholder": "signed_keccak_hash_hex",
+          "placeholder": "signature_hex_string",
           "style": Object {
             "marginBottom": "2rem",
           },
+          "value": "0x000123",
         },
         "ref": null,
         "rendered": null,
@@ -1171,48 +1067,25 @@ I wish the register the address <address> for the nahmii airdriip",
           <style__PrimaryHeading>
             airdriip_manual_registration_instructions
 </style__PrimaryHeading>,
-          <style__MessageTemplateWrapper>
-            <style__SecondaryHeading
-                        style={
-                                    Object {
-                                                "marginRight": "1rem",
-                                              }
-                        }
-            >
-                        \\x19Ethereum Signed Message:
-                        I wish the register the address &lt;address&gt; for the nahmii airdriip
-            </style__SecondaryHeading>
-            <CopyToClipboard
-                        onCopy={undefined}
-                        options={undefined}
-                        text="\\\\x19Ethereum Signed Message:
-            I wish the register the address <address> for the nahmii airdriip"
-            >
-                        <Button.style
-                                    icon="copy"
-                                    onClick={[Function]}
-                                    size="small"
-                                    type="icon"
-                        />
-            </CopyToClipboard>
-</style__MessageTemplateWrapper>,
           <Input.style
             onChange={[Function]}
             placeholder="ethereum_address"
             style={
                         Object {
-                                    "marginBottom": "2rem",
+                                    "margin": "2rem 0",
                                   }
             }
+            value="0x000"
 />,
           <Input.style
             onChange={[Function]}
-            placeholder="signed_keccak_hash_hex"
+            placeholder="signature_hex_string"
             style={
                         Object {
                                     "marginBottom": "2rem",
                                   }
             }
+            value="0x000123"
 />,
         ],
       },
@@ -1246,96 +1119,12 @@ I wish the register the address <address> for the nahmii airdriip",
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": Array [
-              <style__SecondaryHeading
-                style={
-                                Object {
-                                                "marginRight": "1rem",
-                                              }
-                }
->
-                \\x19Ethereum Signed Message:
-                I wish the register the address &lt;address&gt; for the nahmii airdriip
-</style__SecondaryHeading>,
-              <CopyToClipboard
-                onCopy={undefined}
-                options={undefined}
-                text="\\\\x19Ethereum Signed Message:
-I wish the register the address <address> for the nahmii airdriip"
->
-                <Button.style
-                                icon="copy"
-                                onClick={[Function]}
-                                size="small"
-                                type="icon"
-                />
-</CopyToClipboard>,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "\\\\x19Ethereum Signed Message:
-I wish the register the address <address> for the nahmii airdriip",
-                "style": Object {
-                  "marginRight": "1rem",
-                },
-              },
-              "ref": null,
-              "rendered": "\\\\x19Ethereum Signed Message:
-I wish the register the address <address> for the nahmii airdriip",
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <Button.style
-                  icon="copy"
-                  onClick={[Function]}
-                  size="small"
-                  type="icon"
-/>,
-                "onCopy": undefined,
-                "options": undefined,
-                "text": "\\\\x19Ethereum Signed Message:
-I wish the register the address <address> for the nahmii airdriip",
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "icon": "copy",
-                  "onClick": [Function],
-                  "size": "small",
-                  "type": "icon",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
             "onChange": [Function],
             "placeholder": "ethereum_address",
             "style": Object {
-              "marginBottom": "2rem",
+              "margin": "2rem 0",
             },
+            "value": "0x000",
           },
           "ref": null,
           "rendered": null,
@@ -1347,10 +1136,11 @@ I wish the register the address <address> for the nahmii airdriip",
           "nodeType": "class",
           "props": Object {
             "onChange": [Function],
-            "placeholder": "signed_keccak_hash_hex",
+            "placeholder": "signature_hex_string",
             "style": Object {
               "marginBottom": "2rem",
             },
+            "value": "0x000123",
           },
           "ref": null,
           "rendered": null,
@@ -1480,8 +1270,8 @@ ShallowWrapper {
         Immutable.Map {
             stage: "register-arbitrary",
             manualRegistrationInfo: Immutable.Map {
-                address: "0x000000000",
-                signedMessage: "0x81327429834jksdfhks",
+                address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+                signedMessage: "0x8bfb0e2034f6e5e311c100308264551719db9d674dfbd5b20c54e545d310b6c41bfb02f74c5f2b49d6a55e133ee2d290578f90e9f810d6887a5b229282f6b8a600",
             },
             registering: false,
             addressStatuses: Immutable.Map {
@@ -1550,6 +1340,7 @@ ShallowWrapper {
       "children": Array [
         false,
         <ManualRegistrationForm
+          addressValue="0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0"
           changeManualAddress={[Function]}
           changeManualSignedMessage={[Function]}
           intl={
@@ -1558,6 +1349,7 @@ ShallowWrapper {
                             }
           }
           notify={[Function]}
+          signedMessageValue="0x8bfb0e2034f6e5e311c100308264551719db9d674dfbd5b20c54e545d310b6c41bfb02f74c5f2b49d6a55e133ee2d290578f90e9f810d6887a5b229282f6b8a600"
 />,
         false,
         false,
@@ -1590,12 +1382,14 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
+          "addressValue": "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
           "changeManualAddress": [Function],
           "changeManualSignedMessage": [Function],
           "intl": Object {
             "formatMessage": [Function],
           },
           "notify": [Function],
+          "signedMessageValue": "0x8bfb0e2034f6e5e311c100308264551719db9d674dfbd5b20c54e545d310b6c41bfb02f74c5f2b49d6a55e133ee2d290578f90e9f810d6887a5b229282f6b8a600",
         },
         "ref": null,
         "rendered": null,
@@ -1674,6 +1468,7 @@ ShallowWrapper {
         "children": Array [
           false,
           <ManualRegistrationForm
+            addressValue="0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0"
             changeManualAddress={[Function]}
             changeManualSignedMessage={[Function]}
             intl={
@@ -1682,6 +1477,7 @@ ShallowWrapper {
                                   }
             }
             notify={[Function]}
+            signedMessageValue="0x8bfb0e2034f6e5e311c100308264551719db9d674dfbd5b20c54e545d310b6c41bfb02f74c5f2b49d6a55e133ee2d290578f90e9f810d6887a5b229282f6b8a600"
 />,
           false,
           false,
@@ -1714,12 +1510,14 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "addressValue": "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
             "changeManualAddress": [Function],
             "changeManualSignedMessage": [Function],
             "intl": Object {
               "formatMessage": [Function],
             },
             "notify": [Function],
+            "signedMessageValue": "0x8bfb0e2034f6e5e311c100308264551719db9d674dfbd5b20c54e545d310b6c41bfb02f74c5f2b49d6a55e133ee2d290578f90e9f810d6887a5b229282f6b8a600",
           },
           "ref": null,
           "rendered": null,
@@ -1910,8 +1708,8 @@ ShallowWrapper {
         Immutable.Map {
             stage: "register-imported",
             manualRegistrationInfo: Immutable.Map {
-                address: "0x000000000",
-                signedMessage: "0x81327429834jksdfhks",
+                address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+                signedMessage: "0x8bfb0e2034f6e5e311c100308264551719db9d674dfbd5b20c54e545d310b6c41bfb02f74c5f2b49d6a55e133ee2d290578f90e9f810d6887a5b229282f6b8a600",
             },
             registering: false,
             addressStatuses: Immutable.Map {
@@ -2840,8 +2638,8 @@ ShallowWrapper {
         Immutable.Map {
             stage: "start",
             manualRegistrationInfo: Immutable.Map {
-                address: "0x000000000",
-                signedMessage: "0x81327429834jksdfhks",
+                address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+                signedMessage: "0x8bfb0e2034f6e5e311c100308264551719db9d674dfbd5b20c54e545d310b6c41bfb02f74c5f2b49d6a55e133ee2d290578f90e9f810d6887a5b229282f6b8a600",
             },
             registering: false,
             addressStatuses: Immutable.Map {
@@ -3086,8 +2884,8 @@ ShallowWrapper {
         Immutable.Map {
             stage: "start",
             manualRegistrationInfo: Immutable.Map {
-                address: "0x000000000",
-                signedMessage: "0x81327429834jksdfhks",
+                address: "0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0",
+                signedMessage: "0x8bfb0e2034f6e5e311c100308264551719db9d674dfbd5b20c54e545d310b6c41bfb02f74c5f2b49d6a55e133ee2d290578f90e9f810d6887a5b229282f6b8a600",
             },
             registering: true,
             addressStatuses: Immutable.Map {

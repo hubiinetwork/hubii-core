@@ -149,7 +149,7 @@
     "airdriip_registration": "Airdriip registration",
     "ethereum_address": "Ethereum address",
     "register_address": "Register address",
-    "signed_keccak_hash_hex": "Signed keccak-256 hash hex",
+    "signature_hex_string": "Signature hex string",
     "thanks_for_interest_airdriip": "Thank you for your interest in the nahmii airdriip!",
     "has_address_been_imported_airdriip": "Has the address you intend to register been imported into hubii core?",
     "yes": "Yes",
@@ -160,5 +160,12 @@
     "register_a_hubii_core_address": "Register a hubii core address",
     "select_address_to_register": "Select the address you would like to register",
     "manual_registration": "Manual registration",
-    "airdriip_manual_registration_instructions": "Using your address's private key, sign the keccak-256 hash of the following message:"
+    "checking_registration_status": "Checking registration status",
+    "airdriip_manual_registration_instructions": "Sign the keccak-256 hash of the message \"I agree to the terms and conditions for signing up for the nahmii airdriip.\" the same way geth or web3js would, and enter the accociated address and signature below.",
+    "address_registered": "Address registered",
+    "no_further_action_required": "No further action is required",
+    "address_not_registered": "Address is not yet registered",
+    "problem_communicating_nahmii_airdriip": "There was a problem communicating with the nahmii airdriip service, please try again later.",
+    "address_registered_sucesfully": "Address registered sucesfully!",
+    "airdriip_registration_problem": "Sorry, something went wrong during registration: {message}"
 }

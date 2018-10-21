@@ -162,20 +162,14 @@ describe('<NahmiiAirdriipRegistration />', () => {
       };
     });
     it('should render correctly', () => {
-      const wrapper = shallow(<ManualRegistrationForm {...props} />);
-      expect(wrapper).toMatchSnapshot();
-    });
-    it('should correctly call the notify function when copy to clipboard is clicked', () => {
-      const notifySpy = jest.fn();
       const wrapper = shallow(
         <ManualRegistrationForm
           {...props}
-          notify={notifySpy}
+          addressValue="0x000"
+          signedMessageValue="0x000123"
         />
       );
-      expect(notifySpy).toHaveBeenCalledTimes(0);
-      wrapper.find('CopyToClipboard').childAt(0).simulate('click');
-      expect(notifySpy).toHaveBeenCalledTimes(1);
+      expect(wrapper).toMatchSnapshot();
     });
     it('should correctly call the field change functions', () => {
       const changeManualAddressSpy = jest.fn();
@@ -185,6 +179,8 @@ describe('<NahmiiAirdriipRegistration />', () => {
           {...props}
           changeManualAddress={changeManualAddressSpy}
           changeManualSignedMessage={changeManualSignedMessageSpy}
+          addressValue="0x000"
+          signedMessageValue="0x000123"
         />
       );
       expect(changeManualAddressSpy).toHaveBeenCalledTimes(0);
@@ -195,7 +191,7 @@ describe('<NahmiiAirdriipRegistration />', () => {
 
       expect(changeManualSignedMessageSpy).toHaveBeenCalledTimes(0);
       wrapper
-        .find({ placeholder: 'signed_keccak_hash_hex' })
+        .find({ placeholder: 'signature_hex_string' })
         .simulate('change', { target: { value: '0x00000' } });
       expect(changeManualSignedMessageSpy).toHaveBeenCalledTimes(1);
     });

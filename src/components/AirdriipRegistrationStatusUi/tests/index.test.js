@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+import { intl } from '../../../../__mocks__/react-intl';
 import AirdriipRegistrationStatusUi from '../index';
 
 describe('<AirdriipRegistrationStatusUi />', () => {
@@ -9,6 +10,7 @@ describe('<AirdriipRegistrationStatusUi />', () => {
     props = {
       loading: true,
       style: { marginBottom: '5px' },
+      intl,
     };
   });
   it('should render correctly in loading state', () => {

@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import CopyToClipboard from 'react-copy-to-clipboard';
 import { Spin } from 'antd';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -30,7 +29,6 @@ import HWPromptContainer from 'containers/HWPromptContainer';
 
 import AirdriipRegistrationStatusUi from 'components/AirdriipRegistrationStatusUi';
 import SelectWallet from 'components/ui/SelectWallet';
-import Button from 'components/ui/Button';
 import Input from 'components/ui/Input';
 
 import { makeSelectNahmiiAirdriipRegistration } from './selectors';
@@ -44,7 +42,6 @@ import {
   ButtonsWrapper,
   PrimaryHeading,
   SecondaryHeading,
-  MessageTemplateWrapper,
 } from './style';
 import {
   changeStage,
@@ -53,8 +50,6 @@ import {
   changeManualSignedMessage,
 } from './actions';
 
-const messageTemplate =
-  '\\x19Ethereum Signed Message:\nI wish the register the address <address> for the nahmii airdriip';
 
 export const Start = (props) => (
   <StartWrapper>
@@ -112,37 +107,19 @@ export const ManualRegistrationForm = (props) => (
       {props.intl.formatMessage({ id: 'manual_registration' })}
     </PrimaryHeading>
     <PrimaryHeading>
-      {props.intl.formatMessage({
-        id: 'airdriip_manual_registration_instructions',
-      })}
+      {props.intl.formatMessage({ id: 'airdriip_manual_registration_instructions' })}
     </PrimaryHeading>
-    <MessageTemplateWrapper>
-      <SecondaryHeading style={{ marginRight: '1rem' }}>
-        {messageTemplate}
-      </SecondaryHeading>
-      <CopyToClipboard text={messageTemplate}>
-        <Button
-          type="icon"
-          icon="copy"
-          size={'small'}
-          onClick={() =>
-            props.notify(
-              'success',
-              props.intl.formatMessage({ id: 'message_template_copied' })
-            )
-          }
-        />
-      </CopyToClipboard>
-    </MessageTemplateWrapper>
     <Input
-      style={{ marginBottom: '2rem' }}
+      style={{ margin: '2rem 0' }}
       placeholder={props.intl.formatMessage({ id: 'ethereum_address' })}
-      onChange={props.changeManualAddress}
+      onChange={(e) => props.changeManualAddress(e.target.value)}
+      value={props.addressValue}
     />
     <Input
       style={{ marginBottom: '2rem' }}
-      placeholder={props.intl.formatMessage({ id: 'signed_keccak_hash_hex' })}
-      onChange={props.changeManualSignedMessage}
+      placeholder={props.intl.formatMessage({ id: 'signature_hex_string' })}
+      onChange={(e) => props.changeManualSignedMessage(e.target.value)}
+      value={props.signedMessageValue}
     />
   </StartWrapper>
 );
@@ -207,9 +184,12 @@ export class NahmiiAirdriipRegistration extends React.Component {
               notify={this.props.notify}
               changeManualAddress={this.props.changeManualAddress}
               changeManualSignedMessage={this.props.changeManualSignedMessage}
+              addressValue={store.getIn(['manualRegistrationInfo', 'address'])}
+              signedMessageValue={store.getIn(['manualRegistrationInfo', 'signedMessage'])}
               intl={intl}
             />
-        )}
+          )
+        }
         {
           registering && <Spin size="large" />
         }
@@ -272,7 +252,8 @@ CoreAddressRegistrationForm.propTypes = {
 ManualRegistrationForm.propTypes = {
   changeManualAddress: PropTypes.func.isRequired,
   changeManualSignedMessage: PropTypes.func.isRequired,
-  notify: PropTypes.func.isRequired,
+  addressValue: PropTypes.string.isRequired,
+  signedMessageValue: PropTypes.string.isRequired,
   intl: PropTypes.object.isRequired,
 };
 

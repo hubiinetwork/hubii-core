@@ -5,6 +5,7 @@
 /* eslint-disable redux-saga/yield-effects */
 import { takeEvery } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
+import { getIntl } from 'utils/localisation';
 import { storeMock } from 'mocks/store';
 
 import { showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHoc/actions';
@@ -29,11 +30,14 @@ describe('register saga', () => {
         if (effect.fn.name === 'requestWalletAPI') {
           return true;
         }
+        if (effect.fn.name === 'signPersonalMessage') {
+          return { v: '0', s: '0', r: '0' };
+        }
         return next();
       },
     })
-    .put(notify('success', 'Address registered sucessfully!'))
-    .put(registerationSuccess('0x000000000'))
+    .put(notify('success', getIntl().formatMessage({ id: 'address_registered_sucesfully' })))
+    .put(registerationSuccess('0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0'))
     .run()
   );
   it('should correctly handle a hubii wallet registration', () => {
@@ -53,7 +57,7 @@ describe('register saga', () => {
           return next();
         },
       })
-    .put(notify('success', 'Address registered sucessfully!'))
+    .put(notify('success', getIntl().formatMessage({ id: 'address_registered_sucesfully' })))
     .put(registerationSuccess(address))
     .run();
   });
@@ -86,7 +90,7 @@ describe('register saga', () => {
         },
       })
     .put(registerationFailed())
-    .put(notify('error', 'Sorry, something went wrong during registration: Error: some error'))
+    .put(notify('error', getIntl().formatMessage({ id: 'airdriip_registration_problem' }, { message: 'some error' })))
     .run();
   });
 });

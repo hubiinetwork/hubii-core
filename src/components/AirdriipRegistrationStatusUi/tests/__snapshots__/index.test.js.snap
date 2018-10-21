@@ -5,6 +5,11 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <AirdriipRegistrationStatusUi
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     loading={true}
     status="Error: asdkjfasjdkl"
     style={
@@ -27,7 +32,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Text>
-          Checking registration status
+          checking_registration_status
 </Text>,
         <Spin
           indicator={
@@ -59,10 +64,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "Checking registration status",
+          "children": "checking_registration_status",
         },
         "ref": null,
-        "rendered": "Checking registration status",
+        "rendered": "checking_registration_status",
         "type": [Function],
       },
       Object {
@@ -96,7 +101,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Text>
-            Checking registration status
+            checking_registration_status
 </Text>,
           <Spin
             indicator={
@@ -128,10 +133,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "Checking registration status",
+            "children": "checking_registration_status",
           },
           "ref": null,
-          "rendered": "Checking registration status",
+          "rendered": "checking_registration_status",
           "type": [Function],
         },
         Object {
@@ -173,6 +178,11 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <AirdriipRegistrationStatusUi
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     loading={true}
     style={
         Object {
@@ -194,7 +204,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Text>
-          Checking registration status
+          checking_registration_status
 </Text>,
         <Spin
           indicator={
@@ -226,10 +236,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "Checking registration status",
+          "children": "checking_registration_status",
         },
         "ref": null,
-        "rendered": "Checking registration status",
+        "rendered": "checking_registration_status",
         "type": [Function],
       },
       Object {
@@ -263,7 +273,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Text>
-            Checking registration status
+            checking_registration_status
 </Text>,
           <Spin
             indicator={
@@ -295,10 +305,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "Checking registration status",
+            "children": "checking_registration_status",
           },
           "ref": null,
-          "rendered": "Checking registration status",
+          "rendered": "checking_registration_status",
           "type": [Function],
         },
         Object {
@@ -340,6 +350,11 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <AirdriipRegistrationStatusUi
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     loading={true}
     status="registered"
     style={
@@ -362,7 +377,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Text>
-          Checking registration status
+          checking_registration_status
 </Text>,
         <Spin
           indicator={
@@ -394,10 +409,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "Checking registration status",
+          "children": "checking_registration_status",
         },
         "ref": null,
-        "rendered": "Checking registration status",
+        "rendered": "checking_registration_status",
         "type": [Function],
       },
       Object {
@@ -431,7 +446,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Text>
-            Checking registration status
+            checking_registration_status
 </Text>,
           <Spin
             indicator={
@@ -463,10 +478,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "Checking registration status",
+            "children": "checking_registration_status",
           },
           "ref": null,
-          "rendered": "Checking registration status",
+          "rendered": "checking_registration_status",
           "type": [Function],
         },
         Object {

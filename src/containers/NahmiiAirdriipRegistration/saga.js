@@ -1,7 +1,9 @@
 import ethers from 'ethers';
+import { fromRpcSig, bufferToHex } from 'ethereumjs-util';
 import utils from 'nahmii-sdk/lib/utils';
 import { takeEvery, put, select, call } from 'redux-saga/effects';
 import { requestWalletAPI } from 'utils/request';
+import { getIntl } from 'utils/localisation';
 
 import { notify } from 'containers/App/actions';
 import { signPersonalMessage } from 'containers/WalletHoc/saga';
@@ -21,6 +23,7 @@ import {
 import { makeSelectNahmiiAirdriipRegistration } from './selectors';
 
 const MESSAGE = 'I agree to the terms and conditions for signing up for the nahmii airdriip.';
+const MESSAGE_HASH = utils.hash(MESSAGE);
 const API_PATH = 'airdriips/registrations';
 
 export function* checkRegistrationStatus({ address }) {
@@ -40,7 +43,6 @@ export function* checkRegistrationStatus({ address }) {
 
 export function* register() {
   try {
-    let messageHash;
     let address;
     let sig;
     const network = yield select(makeSelectCurrentNetwork());
@@ -54,18 +56,19 @@ export function* register() {
         return;
       }
       address = wallet.address;
-      messageHash = utils.hash(MESSAGE, wallet.address);
-      const messageHashArr = ethers.utils.arrayify(messageHash);
+      const messageHashArr = ethers.utils.arrayify(MESSAGE_HASH);
       sig = yield call(signPersonalMessage, { message: messageHashArr, wallet });
     } else {
       address = nahmiiAirdriipState.manualRegistrationInfo.address;
-      sig = nahmiiAirdriipState.manualRegistrationInfo.signedMessage;
+      sig = fromRpcSig(nahmiiAirdriipState.manualRegistrationInfo.signedMessage);
+      sig.s = bufferToHex(sig.s);
+      sig.r = bufferToHex(sig.r);
     }
     const payload = {
       document: MESSAGE,
       sender: address,
       seal: {
-        hash: messageHash,
+        hash: MESSAGE_HASH,
         signature: sig,
       },
     };
@@ -76,11 +79,11 @@ export function* register() {
 
     yield call(requestWalletAPI, API_PATH, network, options);
 
-    yield put(notify('success', 'Address registered sucessfully!'));
+    yield put(notify('success', getIntl().formatMessage({ id: 'address_registered_sucesfully' })));
     yield put(registerationSuccess(address));
   } catch (e) {
     yield put(registerationFailed());
-    yield put(notify('error', `Sorry, something went wrong during registration: ${e}`));
+    yield put(notify('error', getIntl().formatMessage({ id: 'airdriip_registration_problem' }, { message: e })));
   }
 }
 
