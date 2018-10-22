@@ -103,6 +103,7 @@ export function* signPersonalMessageByTrezor(txHash, walletDetails) {
     throw new Error('PASSPHRASE_MISMATCH');
   }
   try {
+    yield put(trezorConfirmTxOnDevice());
     const signedTx = yield call(
       requestHardwareWalletAPI,
       'signpersonalmessage',
@@ -121,6 +122,8 @@ export function* signPersonalMessageByTrezor(txHash, walletDetails) {
   } catch (e) {
     const refinedError = trezorError(e);
     throw new Error(refinedError.error);
+  } finally {
+    yield put(trezorConfirmTxOnDeviceDone());
   }
 }
 

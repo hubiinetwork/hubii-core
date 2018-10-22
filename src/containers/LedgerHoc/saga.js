@@ -208,6 +208,7 @@ export function* signPersonalMessageByLedger(walletDetails, txHash) {
       'getaddress',
       { descriptor, path: walletDetails.derivationPath }
     );
+    yield put(ledgerConfirmTxOnDevice());
     const signedPersonalMessage = yield call(
       tryCreateEthTransportActivity,
       'signpersonalmessage',
@@ -222,6 +223,8 @@ export function* signPersonalMessageByLedger(walletDetails, txHash) {
     const refinedError = ledgerError(e);
     yield put(refinedError);
     throw new Error(refinedError.error);
+  } finally {
+    yield put(ledgerConfirmTxOnDeviceDone());
   }
 }
 
