@@ -1,0 +1,54 @@
+@import 'https://code.highcharts.com/css/highcharts.css';
+
+.highcharts-candlestick-series .highcharts-point-down {
+	stroke: #eb4d5b;
+	fill: #eb4d5b;
+}
+
+.highcharts-candlestick-series .highcharts-point-up {
+	stroke: #53b987;
+	fill: #53b987;
+}
+
+/* .highcharts-column-series .highcharts-point {
+	stroke: #1f5354 !important;
+	fill: #1f5354;
+} */
+
+.highcharts-background {
+	fill: #26404D
+}
+
+.highcharts-grid-line {
+	fill:#43616F;
+	stroke:#43616F;
+}
+
+.highcharts-container {
+	height: 480px !important;
+}
+
+.highcharts-button {
+	fill: #43616F;
+}
+
+.highcharts-range-selector-buttons text
+ {
+	fill: #ffffff !important;
+}
+
+.highcharts-axis-line, 
+.highcharts-tick,
+.highcharts-navigator-outline{
+	opacity: 1;
+}
+
+.highcharts-tooltip-box {
+	fill: none;
+	fill-opacity: 0.6;
+	stroke-width: 0;
+}
+
+.candlestickchart-tooltip-value {
+	color: #3df5cd
+}

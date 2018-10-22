@@ -264,7 +264,10 @@
       "<rootDir>/internals/testing/enzyme-setup.js"
     ],
     "testRegex": "tests/.*\\.test\\.js$",
-    "roots": ["<rootDir>/", "<rootDir>/src/jest/"]
+    "roots": [
+      "<rootDir>/",
+      "<rootDir>/src/jest/"
+    ]
   },
   "dependencies": {
     "@fortawesome/fontawesome": "1.1.8",
@@ -316,6 +319,7 @@
     "react-copy-to-clipboard": "5.0.1",
     "react-dom": "16.2.0",
     "react-helmet": "5.2.0",
+    "react-highcharts": "^16.0.2",
     "react-immutable-proptypes": "^2.1.0",
     "react-intl": "2.4.0",
     "react-loadable": "5.3.1",
