@@ -21,7 +21,9 @@ const AirdriipRegistrationStatusUi = ({ status, loading, style, intl }) => {
           justifyContent: 'center',
         }}
       >
-        <Text>{formatMessage({ id: 'checking_registration_status' })}</Text>
+        <Text style={{ color: 'white' }}>
+          {formatMessage({ id: 'checking_registration_status' })}
+        </Text>
         <Spin
           style={{ marginLeft: '0.75rem' }}
           indicator={<Icon type="loading" />}

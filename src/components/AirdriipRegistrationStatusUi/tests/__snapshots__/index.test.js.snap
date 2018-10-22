@@ -31,7 +31,13 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <Text>
+        <Text
+          style={
+                    Object {
+                              "color": "white",
+                            }
+          }
+>
           checking_registration_status
 </Text>,
         <Spin
@@ -65,6 +71,9 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": "checking_registration_status",
+          "style": Object {
+            "color": "white",
+          },
         },
         "ref": null,
         "rendered": "checking_registration_status",
@@ -100,7 +109,13 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <Text>
+          <Text
+            style={
+                        Object {
+                                    "color": "white",
+                                  }
+            }
+>
             checking_registration_status
 </Text>,
           <Spin
@@ -134,6 +149,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": "checking_registration_status",
+            "style": Object {
+              "color": "white",
+            },
           },
           "ref": null,
           "rendered": "checking_registration_status",
@@ -203,7 +221,13 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <Text>
+        <Text
+          style={
+                    Object {
+                              "color": "white",
+                            }
+          }
+>
           checking_registration_status
 </Text>,
         <Spin
@@ -237,6 +261,9 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": "checking_registration_status",
+          "style": Object {
+            "color": "white",
+          },
         },
         "ref": null,
         "rendered": "checking_registration_status",
@@ -272,7 +299,13 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <Text>
+          <Text
+            style={
+                        Object {
+                                    "color": "white",
+                                  }
+            }
+>
             checking_registration_status
 </Text>,
           <Spin
@@ -306,6 +339,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": "checking_registration_status",
+            "style": Object {
+              "color": "white",
+            },
           },
           "ref": null,
           "rendered": "checking_registration_status",
@@ -376,7 +412,13 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <Text>
+        <Text
+          style={
+                    Object {
+                              "color": "white",
+                            }
+          }
+>
           checking_registration_status
 </Text>,
         <Spin
@@ -410,6 +452,9 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": "checking_registration_status",
+          "style": Object {
+            "color": "white",
+          },
         },
         "ref": null,
         "rendered": "checking_registration_status",
@@ -445,7 +490,13 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <Text>
+          <Text
+            style={
+                        Object {
+                                    "color": "white",
+                                  }
+            }
+>
             checking_registration_status
 </Text>,
           <Spin
@@ -479,6 +530,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": "checking_registration_status",
+            "style": Object {
+              "color": "white",
+            },
           },
           "ref": null,
           "rendered": "checking_registration_status",
