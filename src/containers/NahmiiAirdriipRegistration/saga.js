@@ -1,7 +1,7 @@
 import ethers from 'ethers';
 import { fromRpcSig, bufferToHex } from 'ethereumjs-util';
 import utils from 'nahmii-sdk/lib/utils';
-import { takeEvery, put, select, call } from 'redux-saga/effects';
+import { take, takeEvery, put, select, call } from 'redux-saga/effects';
 import { requestWalletAPI } from 'utils/request';
 import { getIntl } from 'utils/localisation';
 
@@ -10,6 +10,7 @@ import { signPersonalMessage } from 'containers/WalletHoc/saga';
 import { showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHoc/actions';
 import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHoc/selectors';
 import { SET_CURRENT_WALLET } from 'containers/WalletHoc/constants';
+import { LOAD_IDENTITY_SERVICE_TOKEN_SUCCESS } from 'containers/HubiiApiHoc/constants';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 
 import { REGISTER } from './constants';
@@ -18,7 +19,6 @@ import {
   registerationFailed,
   register as registerAction,
   checkAddressRegistrationSuccess,
-  checkAddressRegistrationFailed,
 } from './actions';
 import { makeSelectNahmiiAirdriipRegistration } from './selectors';
 
@@ -28,16 +28,23 @@ const API_PATH = 'airdriips/registrations';
 
 export function* checkRegistrationStatus({ address }) {
   try {
+    // this saga is special, as it may be called before the JWT token for the hubii
+    // API has been loaded. do a quick check here and ensure the JWT is loaded
+    let network = yield select(makeSelectCurrentNetwork());
+    if (!network.identityServiceToken) {
+      yield take(LOAD_IDENTITY_SERVICE_TOKEN_SUCCESS);
+      network = yield select(makeSelectCurrentNetwork());
+    }
+
     const addressStatus = (yield select(makeSelectNahmiiAirdriipRegistration()))
                             .getIn(['addressStatuses', address]);
 
-    if (addressStatus === 'registered' || addressStatus === 'unregistered') return;
+    if (addressStatus === 'registered') return;
 
-    // const network = yield select(makeSelectCurrentNetwork());
-    // const response = yield requestWalletAPI(`${API_PATH}/${address}`, network);
-    yield put(checkAddressRegistrationSuccess(address, 'unregistered'));
+    yield requestWalletAPI(`${API_PATH}/${address}`, network);
+    yield put(checkAddressRegistrationSuccess(address, 'registered'));
   } catch (e) {
-    yield put(checkAddressRegistrationFailed(address, 'Error: asdfads)'));
+    yield put(checkAddressRegistrationSuccess(address, 'unregistered'));
   }
 }
 
@@ -64,6 +71,20 @@ export function* register() {
       sig.s = bufferToHex(sig.s);
       sig.r = bufferToHex(sig.r);
     }
+
+    // check to ensure the address isn't already registered
+    try {
+      // try to get address registration status
+      // if already registered, network call will suceeeded and we terminate the saga early
+      // else, network call will fail and execution will continue as usual
+      yield requestWalletAPI(`${API_PATH}/${address}`, network);
+      yield put(notify('info', getIntl().formatMessage({ id: 'airdriip_address_is_already_registered' })));
+      yield put(registerationFailed());
+      return;
+    } catch (e) {
+      // continue with execution
+    }
+
     const payload = {
       document: MESSAGE,
       sender: address,
