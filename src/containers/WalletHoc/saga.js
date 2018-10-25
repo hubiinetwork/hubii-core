@@ -129,7 +129,14 @@ export function* decryptWallet({ address, encryptedWallet, password }) {
     }
   } catch (e) {
     yield put(decryptWalletFailed(e));
-    yield put(notify('error', getIntl().formatMessage({ id: 'unlock_wallet_failed_error' }, { message: getIntl().formatMessage({ id: e.message }) })));
+    yield put(notify('error', getIntl().formatMessage(
+      {
+        id: 'unlock_wallet_failed_error',
+      },
+      {
+        message: e.message === 'invalid password' ? getIntl().formatMessage({ id: 'invalid_password' }) : e.message,
+      }
+    )));
   }
 }
 

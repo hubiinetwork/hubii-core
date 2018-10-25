@@ -236,7 +236,7 @@ ShallowWrapper {
                     colon={false}
                     label={
                               <Form.style__FormItemLabel>
-                                        Please enter your wallet's password to proceed
+                                        enter_password_proceed
                               </Form.style__FormItemLabel>
                     }
           >
@@ -252,7 +252,7 @@ ShallowWrapper {
                     onClick={[Function]}
                     type="primary"
           >
-                    Confirm
+                    confirm
           </Button.style>
 </Modal.style>,
       ],
@@ -370,7 +370,7 @@ ShallowWrapper {
               colon={false}
               label={
                             <Form.style__FormItemLabel>
-                                          Please enter your wallet's password to proceed
+                                          enter_password_proceed
                             </Form.style__FormItemLabel>
               }
 >
@@ -386,7 +386,7 @@ ShallowWrapper {
               onClick={[Function]}
               type="primary"
 >
-              Confirm
+              confirm
 </Button.style>,
           ],
           "destroyOnClose": true,
@@ -414,7 +414,7 @@ ShallowWrapper {
 />,
               "colon": false,
               "label": <Form.style__FormItemLabel>
-                Please enter your wallet's password to proceed
+                enter_password_proceed
 </Form.style__FormItemLabel>,
             },
             "ref": null,
@@ -439,13 +439,13 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Confirm",
+              "children": "confirm",
               "disabled": true,
               "onClick": [Function],
               "type": "primary",
             },
             "ref": null,
-            "rendered": "Confirm",
+            "rendered": "confirm",
             "type": [Function],
           },
         ],
@@ -579,7 +579,7 @@ ShallowWrapper {
                         colon={false}
                         label={
                                     <Form.style__FormItemLabel>
-                                                Please enter your wallet's password to proceed
+                                                enter_password_proceed
                                     </Form.style__FormItemLabel>
                         }
             >
@@ -595,7 +595,7 @@ ShallowWrapper {
                         onClick={[Function]}
                         type="primary"
             >
-                        Confirm
+                        confirm
             </Button.style>
 </Modal.style>,
         ],
@@ -713,7 +713,7 @@ ShallowWrapper {
                 colon={false}
                 label={
                                 <Form.style__FormItemLabel>
-                                                Please enter your wallet's password to proceed
+                                                enter_password_proceed
                                 </Form.style__FormItemLabel>
                 }
 >
@@ -729,7 +729,7 @@ ShallowWrapper {
                 onClick={[Function]}
                 type="primary"
 >
-                Confirm
+                confirm
 </Button.style>,
             ],
             "destroyOnClose": true,
@@ -757,7 +757,7 @@ ShallowWrapper {
 />,
                 "colon": false,
                 "label": <Form.style__FormItemLabel>
-                  Please enter your wallet's password to proceed
+                  enter_password_proceed
 </Form.style__FormItemLabel>,
               },
               "ref": null,
@@ -782,13 +782,13 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Confirm",
+                "children": "confirm",
                 "disabled": true,
                 "onClick": [Function],
                 "type": "primary",
               },
               "ref": null,
-              "rendered": "Confirm",
+              "rendered": "confirm",
               "type": [Function],
             },
           ],
@@ -1044,7 +1044,7 @@ ShallowWrapper {
                     colon={false}
                     label={
                               <Form.style__FormItemLabel>
-                                        Please enter your wallet's password to proceed
+                                        enter_password_proceed
                               </Form.style__FormItemLabel>
                     }
           >
@@ -1175,7 +1175,7 @@ ShallowWrapper {
               colon={false}
               label={
                             <Form.style__FormItemLabel>
-                                          Please enter your wallet's password to proceed
+                                          enter_password_proceed
                             </Form.style__FormItemLabel>
               }
 >
@@ -1216,7 +1216,7 @@ ShallowWrapper {
 />,
               "colon": false,
               "label": <Form.style__FormItemLabel>
-                Please enter your wallet's password to proceed
+                enter_password_proceed
 </Form.style__FormItemLabel>,
             },
             "ref": null,
@@ -1379,7 +1379,7 @@ ShallowWrapper {
                         colon={false}
                         label={
                                     <Form.style__FormItemLabel>
-                                                Please enter your wallet's password to proceed
+                                                enter_password_proceed
                                     </Form.style__FormItemLabel>
                         }
             >
@@ -1510,7 +1510,7 @@ ShallowWrapper {
                 colon={false}
                 label={
                                 <Form.style__FormItemLabel>
-                                                Please enter your wallet's password to proceed
+                                                enter_password_proceed
                                 </Form.style__FormItemLabel>
                 }
 >
@@ -1551,7 +1551,7 @@ ShallowWrapper {
 />,
                 "colon": false,
                 "label": <Form.style__FormItemLabel>
-                  Please enter your wallet's password to proceed
+                  enter_password_proceed
 </Form.style__FormItemLabel>,
               },
               "ref": null,

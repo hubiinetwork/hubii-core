@@ -91,6 +91,7 @@ export function getComponentHOC(Component) {
     }
 
     render() {
+      const { formatMessage } = this.props.intl;
       const loading = this.props.loading.get('decryptingWallet');
 
       return (
@@ -106,7 +107,7 @@ export function getComponentHOC(Component) {
             destroyOnClose
           >
             <FormItem
-              label={<FormItemLabel>{"Please enter your wallet's password to proceed"}</FormItemLabel>}
+              label={<FormItemLabel>{formatMessage({ id: 'enter_password_proceed' })}</FormItemLabel>}
               colon={false}
             >
               <Input value={this.state.password} onChange={this.onPasswordChange} type="password" onKeyPress={(e) => this.handleKeyPress(e)} />
@@ -119,7 +120,7 @@ export function getComponentHOC(Component) {
               />
                 ) : (
                   <Button type="primary" onClick={this.decryptWallet} disabled={!this.state.password}>
-                    Confirm
+                    {formatMessage({ id: 'confirm' })}
                   </Button>
                 )}
           </Modal>
