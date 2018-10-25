@@ -15,6 +15,7 @@ import {
   CHECK_ADDRESS_REGISTRATION_SUCCESS,
   CHECK_ADDRESS_REGISTRATION_FAILED,
 } from './constants';
+import { CHANGE_NETWORK } from '../App/constants';
 
 export const initialState = fromJS({
   stage: 'start',
@@ -53,6 +54,9 @@ function nahmiiAirdriipRegistrationReducer(state = initialState, action) {
     case CHECK_ADDRESS_REGISTRATION_FAILED:
       return state
         .setIn(['addressStatuses', action.address], action.error);
+    case CHANGE_NETWORK:
+      return state
+        .set('addressStatuses', fromJS({}));
     default:
       return state;
   }
