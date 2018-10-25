@@ -1356,8 +1356,8 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <style__NetworkWarning
-          description="hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'."
-          message="Warning"
+          description="airdriip_testnet_warning"
+          message="warning"
           showIcon={true}
           type="warning"
 />,
@@ -1405,8 +1405,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "description": "hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'.",
-          "message": "Warning",
+          "description": "airdriip_testnet_warning",
+          "message": "warning",
           "showIcon": true,
           "type": "warning",
         },
@@ -1506,8 +1506,8 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <style__NetworkWarning
-            description="hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'."
-            message="Warning"
+            description="airdriip_testnet_warning"
+            message="warning"
             showIcon={true}
             type="warning"
 />,
@@ -1555,8 +1555,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "description": "hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'.",
-            "message": "Warning",
+            "description": "airdriip_testnet_warning",
+            "message": "warning",
             "showIcon": true,
             "type": "warning",
           },
@@ -1855,8 +1855,8 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <style__NetworkWarning
-          description="hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'."
-          message="Warning"
+          description="airdriip_testnet_warning"
+          message="warning"
           showIcon={true}
           type="warning"
 />,
@@ -2026,8 +2026,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "description": "hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'.",
-          "message": "Warning",
+          "description": "airdriip_testnet_warning",
+          "message": "warning",
           "showIcon": true,
           "type": "warning",
         },
@@ -2251,8 +2251,8 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <style__NetworkWarning
-            description="hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'."
-            message="Warning"
+            description="airdriip_testnet_warning"
+            message="warning"
             showIcon={true}
             type="warning"
 />,
@@ -2422,8 +2422,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "description": "hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'.",
-            "message": "Warning",
+            "description": "airdriip_testnet_warning",
+            "message": "warning",
             "showIcon": true,
             "type": "warning",
           },
@@ -2846,8 +2846,8 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <style__NetworkWarning
-          description="hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'."
-          message="Warning"
+          description="airdriip_testnet_warning"
+          message="warning"
           showIcon={true}
           type="warning"
 />,
@@ -2873,8 +2873,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "description": "hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'.",
-          "message": "Warning",
+          "description": "airdriip_testnet_warning",
+          "message": "warning",
           "showIcon": true,
           "type": "warning",
         },
@@ -2912,8 +2912,8 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <style__NetworkWarning
-            description="hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'."
-            message="Warning"
+            description="airdriip_testnet_warning"
+            message="warning"
             showIcon={true}
             type="warning"
 />,
@@ -2939,8 +2939,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "description": "hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'.",
-            "message": "Warning",
+            "description": "airdriip_testnet_warning",
+            "message": "warning",
             "showIcon": true,
             "type": "warning",
           },
@@ -3177,8 +3177,8 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <style__NetworkWarning
-          description="hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'."
-          message="Warning"
+          description="airdriip_testnet_warning"
+          message="warning"
           showIcon={true}
           type="warning"
 />,
@@ -3209,8 +3209,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "description": "hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'.",
-          "message": "Warning",
+          "description": "airdriip_testnet_warning",
+          "message": "warning",
           "showIcon": true,
           "type": "warning",
         },
@@ -3261,8 +3261,8 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <style__NetworkWarning
-            description="hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'."
-            message="Warning"
+            description="airdriip_testnet_warning"
+            message="warning"
             showIcon={true}
             type="warning"
 />,
@@ -3293,8 +3293,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "description": "hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'.",
-            "message": "Warning",
+            "description": "airdriip_testnet_warning",
+            "message": "warning",
             "showIcon": true,
             "type": "warning",
           },

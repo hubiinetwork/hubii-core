@@ -168,8 +168,8 @@ export class NahmiiAirdriipRegistration extends React.Component {
         {
           currentNetwork.provider.name !== 'homestead' &&
           <NetworkWarning
-            message="Warning"
-            description="hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'."
+            message={intl.formatMessage({ id: 'warning' })}
+            description={intl.formatMessage({ id: 'airdriip_testnet_warning' })}
             type="warning"
             showIcon
           />
