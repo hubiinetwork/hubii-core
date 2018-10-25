@@ -5,6 +5,7 @@ import { intl } from 'jest/__mocks__/react-intl';
 
 import { ledgerHocConnectedMock } from 'containers/LedgerHoc/tests/mocks/selectors';
 import { trezorHocConnectedMock } from 'containers/TrezorHoc/tests/mocks/selectors';
+import { currentNetworkMock } from 'containers/App/tests/mocks/selectors';
 import {
   walletsMock,
   walletsWithInfoMock,
@@ -40,7 +41,22 @@ describe('<NahmiiAirdriipRegistration />', () => {
         changeManualAddress: () => {},
         changeManualSignedMessage: () => {},
         intl,
+        currentNetwork: currentNetworkMock,
       };
+    });
+    it('should render correctly when the network is on mainnet', () => {
+      const wrapper = shallow(
+        <NahmiiAirdriipRegistration
+          {...props}
+          currentNetwork={{
+            ...currentNetworkMock,
+            provider: {
+              ...currentNetworkMock.provider,
+              name: 'homestead',
+            },
+          }}
+        />);
+      expect(wrapper).toMatchSnapshot();
     });
     it('should render correctly in start stage', () => {
       const wrapper = shallow(<NahmiiAirdriipRegistration {...props} />);

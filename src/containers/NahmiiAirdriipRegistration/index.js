@@ -22,6 +22,9 @@ import { setCurrentWallet } from 'containers/WalletHoc/actions';
 import { notify } from 'containers/App/actions';
 
 import {
+  makeSelectCurrentNetwork,
+} from 'containers/App/selectors';
+import {
   makeSelectWallets,
   makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHoc/selectors';
@@ -42,6 +45,7 @@ import {
   ButtonsWrapper,
   PrimaryHeading,
   SecondaryHeading,
+  NetworkWarning,
 } from './style';
 import {
   changeStage,
@@ -139,15 +143,9 @@ export class NahmiiAirdriipRegistration extends React.Component {
       trezorInfo,
       currentWalletWithInfo,
       intl,
+      currentNetwork,
     } = this.props;
     const { formatMessage } = intl;
-    if (store.get('stage') === 'start') {
-      return (
-        <OuterWrapper>
-          <Start changeStage={this.props.changeStage} intl={intl} />
-        </OuterWrapper>
-      );
-    }
 
     const addressRegistrationStatus = store.getIn([
       'addressStatuses',
@@ -167,6 +165,20 @@ export class NahmiiAirdriipRegistration extends React.Component {
 
     return (
       <OuterWrapper>
+        {
+          currentNetwork.provider.name !== 'homestead' &&
+          <NetworkWarning
+            message="Warning"
+            description="hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'."
+            type="warning"
+            showIcon
+          />
+        }
+        {
+          store.get('stage') === 'start' && (
+            <Start changeStage={this.props.changeStage} intl={intl} />
+          )
+        }
         {
           store.get('stage') === 'register-imported' && (
             <CoreAddressRegistrationForm
@@ -203,7 +215,7 @@ export class NahmiiAirdriipRegistration extends React.Component {
             />
         }
         {
-          !registering && (
+          !registering && !(store.get('stage') === 'start') && (
             <ButtonsWrapper>
               <StyledButton
                 onClick={() => this.props.changeStage('start')}
@@ -239,6 +251,7 @@ NahmiiAirdriipRegistration.propTypes = {
   currentWalletWithInfo: PropTypes.object.isRequired,
   wallets: PropTypes.object.isRequired,
   intl: PropTypes.object.isRequired,
+  currentNetwork: PropTypes.object.isRequired,
 };
 
 CoreAddressRegistrationForm.propTypes = {
@@ -268,6 +281,7 @@ const mapStateToProps = createStructuredSelector({
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
   ledgerInfo: makeSelectLedgerHoc(),
   trezorInfo: makeSelectTrezorHoc(),
+  currentNetwork: makeSelectCurrentNetwork(),
 });
 
 function mapDispatchToProps(dispatch) {

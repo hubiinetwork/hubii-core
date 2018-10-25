@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Alert } from 'antd';
 
 import Button from 'components/ui/Button';
 import Heading from 'components/ui/Heading';
@@ -35,6 +36,9 @@ export const StyledButton = styled(Button)`
   width: 14rem;
 }`;
 
+export const NetworkWarning = styled(Alert)`
+  margin-bottom: 3rem;
+`;
 
 export const StyledButtonTall = styled(StyledButton)`
 &&&& {
