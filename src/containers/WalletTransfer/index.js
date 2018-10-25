@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
+import { walletReady } from 'utils/wallet';
 
 import TransferForm from 'components/TransferForm';
 import PageLoadingIndicator from 'components/PageLoadingIndicator';
@@ -79,13 +80,7 @@ export class WalletTransfer extends React.PureComponent {
     }
 
     // get if the hw wallet is ready to make tx
-    let hwWalletReady = true;
-    if (currentWalletWithInfo.get('type') === 'lns' && !ledgerNanoSInfo.get('ethConnected')) {
-      hwWalletReady = false;
-    }
-    if (currentWalletWithInfo.get('type') === 'trezor' && trezorInfo.get('status') !== 'connected') {
-      hwWalletReady = false;
-    }
+    const hwWalletReady = walletReady(currentWalletWithInfo.get('type'), ledgerNanoSInfo, trezorInfo);
     return (
       <TransferForm
         currentWalletUsdBalance={currentWalletWithInfo.getIn(['balances', 'total', 'usd']).toNumber()}

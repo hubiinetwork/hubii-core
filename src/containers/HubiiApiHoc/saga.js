@@ -111,9 +111,9 @@ export function* requestToken() {
       yield put(loadIdentityServiceTokenSuccess(token));
       return;
     } catch (e) {
-      // try again in 5sec
-      const FIVE_SEC_IN_MS = 5 * 5000;
-      yield delay(FIVE_SEC_IN_MS);
+      // try again in 2sec
+      const TWO_SEC_IN_MS = 2 * 1000;
+      yield delay(TWO_SEC_IN_MS);
     } finally {
       nahmiiProvider.stopUpdate();
     }

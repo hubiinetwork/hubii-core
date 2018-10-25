@@ -1,0 +1,994 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SelectWallet /> should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SelectWallet
+    wallets={
+        Array [
+            Object {
+              "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+              "derivationPath": "m/44'/60'/0'/0",
+              "deviceId": "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
+              "name": "lns",
+              "type": "lns",
+            },
+            Object {
+              "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
+              "encrypted": "{\\"address\\":\\"82191e2863e0b6afc0a7d538cdabfd509aa648b5\\",\\"id\\":\\"2c8ffa0a-5624-4191-94a3-3869ae170702\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"30d2c35f4ebb46423e782814c735ff94\\"},\\"ciphertext\\":\\"d2e98cdb8c6d7ddb9192d5f1a633df3e37f02ec3a950c8673f98d03dc011e477\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"14c5ee2eb9dfe1f10bfd3fc7dde4de93197883477e74e5eb51bef5786865b401\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"9f2740c399e9a2f141fefb816ed2fe2aeee8de2ebc8c73f7c87890b4ae928501\\"},\\"x-ethers\\":{\\"client\\":\\"ethers.js\\",\\"gethFilename\\":\\"UTC--2018-08-13T05-04-04.0Z--82191e2863e0b6afc0a7d538cdabfd509aa648b5\\",\\"mnemonicCounter\\":\\"631a83199112cb4398ee94dd2e9d105c\\",\\"mnemonicCiphertext\\":\\"a92457ab3b87724a76536873f8eb5e28\\",\\"version\\":\\"0.1\\"}}",
+              "name": "software-wallet-mock1",
+              "type": "software",
+            },
+            Object {
+              "address": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+              "decrypted": Object {
+                "address": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+                "defaultGasLimit": 1500000,
+                "path": "m/44'/60'/0'/0/0",
+                "privateKey": "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+              },
+              "encrypted": "\\"{\\"address\\":\\"f4db7c6030c9c5754a6a712212d6342dca52e25d\\",\\"id\\":\\"b3f33163-7085-4926-931b-76c1518912b5\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"f1f74d7e443eb7ce7ecdb7d12d860532\\"},\\"ciphertext\\":\\"ef22c4c440c385e7d2635b7ead479472dab4e8d00e5ba82513344a8fa057151b\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"c55a2e1a1ed54cff2dafeb53d825f5e67ce546d0c930e198b07c65ff4538bafa\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"a359b225c6dd9caedf2a7a624ec426b68b7f1d7eb5378ffe33d1b7219cddb0ff\\"},\\"x-ethers\\":{\\"client\\":\\"ethers.js\\",\\"gethFilename\\":\\"UTC--2018-08-13T05-24-22.0Z--f4db7c6030c9c5754a6a712212d6342dca52e25d\\",\\"mnemonicCounter\\":\\"c6bc00f4277c72aae56538fd6f92c7db\\",\\"mnemonicCiphertext\\":\\"aba771a74a5c8a16edbca85828d8c087\\",\\"version\\":\\"0.1\\"}}\\"",
+              "name": "software-wallet-mock2",
+              "type": "software",
+            },
+            Object {
+              "address": "0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb",
+              "derivationPath": "m/44'/60'/0'/0/1",
+              "deviceId": "7BB16BDA1AFB971DF5D954EF",
+              "name": "trezor",
+              "type": "trezor",
+            },
+          ]
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <SelectWallet__StyledSelect
+        wallets={
+                Array [
+                        Object {
+                          "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                          "derivationPath": "m/44'/60'/0'/0",
+                          "deviceId": "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
+                          "name": "lns",
+                          "type": "lns",
+                        },
+                        Object {
+                          "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
+                          "encrypted": "{\\"address\\":\\"82191e2863e0b6afc0a7d538cdabfd509aa648b5\\",\\"id\\":\\"2c8ffa0a-5624-4191-94a3-3869ae170702\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"30d2c35f4ebb46423e782814c735ff94\\"},\\"ciphertext\\":\\"d2e98cdb8c6d7ddb9192d5f1a633df3e37f02ec3a950c8673f98d03dc011e477\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"14c5ee2eb9dfe1f10bfd3fc7dde4de93197883477e74e5eb51bef5786865b401\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"9f2740c399e9a2f141fefb816ed2fe2aeee8de2ebc8c73f7c87890b4ae928501\\"},\\"x-ethers\\":{\\"client\\":\\"ethers.js\\",\\"gethFilename\\":\\"UTC--2018-08-13T05-04-04.0Z--82191e2863e0b6afc0a7d538cdabfd509aa648b5\\",\\"mnemonicCounter\\":\\"631a83199112cb4398ee94dd2e9d105c\\",\\"mnemonicCiphertext\\":\\"a92457ab3b87724a76536873f8eb5e28\\",\\"version\\":\\"0.1\\"}}",
+                          "name": "software-wallet-mock1",
+                          "type": "software",
+                        },
+                        Object {
+                          "address": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+                          "decrypted": Object {
+                            "address": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+                            "defaultGasLimit": 1500000,
+                            "path": "m/44'/60'/0'/0/0",
+                            "privateKey": "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+                          },
+                          "encrypted": "\\"{\\"address\\":\\"f4db7c6030c9c5754a6a712212d6342dca52e25d\\",\\"id\\":\\"b3f33163-7085-4926-931b-76c1518912b5\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"f1f74d7e443eb7ce7ecdb7d12d860532\\"},\\"ciphertext\\":\\"ef22c4c440c385e7d2635b7ead479472dab4e8d00e5ba82513344a8fa057151b\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"c55a2e1a1ed54cff2dafeb53d825f5e67ce546d0c930e198b07c65ff4538bafa\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"a359b225c6dd9caedf2a7a624ec426b68b7f1d7eb5378ffe33d1b7219cddb0ff\\"},\\"x-ethers\\":{\\"client\\":\\"ethers.js\\",\\"gethFilename\\":\\"UTC--2018-08-13T05-24-22.0Z--f4db7c6030c9c5754a6a712212d6342dca52e25d\\",\\"mnemonicCounter\\":\\"c6bc00f4277c72aae56538fd6f92c7db\\",\\"mnemonicCiphertext\\":\\"aba771a74a5c8a16edbca85828d8c087\\",\\"version\\":\\"0.1\\"}}\\"",
+                          "name": "software-wallet-mock2",
+                          "type": "software",
+                        },
+                        Object {
+                          "address": "0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb",
+                          "derivationPath": "m/44'/60'/0'/0/1",
+                          "deviceId": "7BB16BDA1AFB971DF5D954EF",
+                          "name": "trezor",
+                          "type": "trezor",
+                        },
+                      ]
+        }
+>
+        <Option
+                value="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
+        >
+                <div>
+                        <SelectWallet__WalletName>
+                                lns
+                        </SelectWallet__WalletName>
+                        <p>
+                                0x1c7429f62595097315289ceBaC1fDbdA587Ad512
+                        </p>
+                </div>
+        </Option>
+        <Option
+                value="0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5"
+        >
+                <div>
+                        <SelectWallet__WalletName>
+                                software-wallet-mock1
+                        </SelectWallet__WalletName>
+                        <p>
+                                0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5
+                        </p>
+                </div>
+        </Option>
+        <Option
+                value="0xF4db7c6030c9c5754A6A712212d6342DCA52e25d"
+        >
+                <div>
+                        <SelectWallet__WalletName>
+                                software-wallet-mock2
+                        </SelectWallet__WalletName>
+                        <p>
+                                0xF4db7c6030c9c5754A6A712212d6342DCA52e25d
+                        </p>
+                </div>
+        </Option>
+        <Option
+                value="0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb"
+        >
+                <div>
+                        <SelectWallet__WalletName>
+                                trezor
+                        </SelectWallet__WalletName>
+                        <p>
+                                0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb
+                        </p>
+                </div>
+        </Option>
+</SelectWallet__StyledSelect>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Option
+            value="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
+>
+            <div>
+                        <SelectWallet__WalletName>
+                                    lns
+                        </SelectWallet__WalletName>
+                        <p>
+                                    0x1c7429f62595097315289ceBaC1fDbdA587Ad512
+                        </p>
+            </div>
+</Option>,
+          <Option
+            value="0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5"
+>
+            <div>
+                        <SelectWallet__WalletName>
+                                    software-wallet-mock1
+                        </SelectWallet__WalletName>
+                        <p>
+                                    0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5
+                        </p>
+            </div>
+</Option>,
+          <Option
+            value="0xF4db7c6030c9c5754A6A712212d6342DCA52e25d"
+>
+            <div>
+                        <SelectWallet__WalletName>
+                                    software-wallet-mock2
+                        </SelectWallet__WalletName>
+                        <p>
+                                    0xF4db7c6030c9c5754A6A712212d6342DCA52e25d
+                        </p>
+            </div>
+</Option>,
+          <Option
+            value="0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb"
+>
+            <div>
+                        <SelectWallet__WalletName>
+                                    trezor
+                        </SelectWallet__WalletName>
+                        <p>
+                                    0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb
+                        </p>
+            </div>
+</Option>,
+        ],
+        "wallets": Array [
+          Object {
+            "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+            "derivationPath": "m/44'/60'/0'/0",
+            "deviceId": "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
+            "name": "lns",
+            "type": "lns",
+          },
+          Object {
+            "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
+            "encrypted": "{\\"address\\":\\"82191e2863e0b6afc0a7d538cdabfd509aa648b5\\",\\"id\\":\\"2c8ffa0a-5624-4191-94a3-3869ae170702\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"30d2c35f4ebb46423e782814c735ff94\\"},\\"ciphertext\\":\\"d2e98cdb8c6d7ddb9192d5f1a633df3e37f02ec3a950c8673f98d03dc011e477\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"14c5ee2eb9dfe1f10bfd3fc7dde4de93197883477e74e5eb51bef5786865b401\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"9f2740c399e9a2f141fefb816ed2fe2aeee8de2ebc8c73f7c87890b4ae928501\\"},\\"x-ethers\\":{\\"client\\":\\"ethers.js\\",\\"gethFilename\\":\\"UTC--2018-08-13T05-04-04.0Z--82191e2863e0b6afc0a7d538cdabfd509aa648b5\\",\\"mnemonicCounter\\":\\"631a83199112cb4398ee94dd2e9d105c\\",\\"mnemonicCiphertext\\":\\"a92457ab3b87724a76536873f8eb5e28\\",\\"version\\":\\"0.1\\"}}",
+            "name": "software-wallet-mock1",
+            "type": "software",
+          },
+          Object {
+            "address": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+            "decrypted": Object {
+              "address": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+              "defaultGasLimit": 1500000,
+              "path": "m/44'/60'/0'/0/0",
+              "privateKey": "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+            },
+            "encrypted": "\\"{\\"address\\":\\"f4db7c6030c9c5754a6a712212d6342dca52e25d\\",\\"id\\":\\"b3f33163-7085-4926-931b-76c1518912b5\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"f1f74d7e443eb7ce7ecdb7d12d860532\\"},\\"ciphertext\\":\\"ef22c4c440c385e7d2635b7ead479472dab4e8d00e5ba82513344a8fa057151b\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"c55a2e1a1ed54cff2dafeb53d825f5e67ce546d0c930e198b07c65ff4538bafa\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"a359b225c6dd9caedf2a7a624ec426b68b7f1d7eb5378ffe33d1b7219cddb0ff\\"},\\"x-ethers\\":{\\"client\\":\\"ethers.js\\",\\"gethFilename\\":\\"UTC--2018-08-13T05-24-22.0Z--f4db7c6030c9c5754a6a712212d6342dca52e25d\\",\\"mnemonicCounter\\":\\"c6bc00f4277c72aae56538fd6f92c7db\\",\\"mnemonicCiphertext\\":\\"aba771a74a5c8a16edbca85828d8c087\\",\\"version\\":\\"0.1\\"}}\\"",
+            "name": "software-wallet-mock2",
+            "type": "software",
+          },
+          Object {
+            "address": "0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb",
+            "derivationPath": "m/44'/60'/0'/0/1",
+            "deviceId": "7BB16BDA1AFB971DF5D954EF",
+            "name": "trezor",
+            "type": "trezor",
+          },
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+          "nodeType": "class",
+          "props": Object {
+            "children": <div>
+              <SelectWallet__WalletName>
+                            lns
+              </SelectWallet__WalletName>
+              <p>
+                            0x1c7429f62595097315289ceBaC1fDbdA587Ad512
+              </p>
+</div>,
+            "value": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <SelectWallet__WalletName>
+                  lns
+</SelectWallet__WalletName>,
+                <p>
+                  0x1c7429f62595097315289ceBaC1fDbdA587Ad512
+</p>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "lns",
+                },
+                "ref": null,
+                "rendered": "lns",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                },
+                "ref": null,
+                "rendered": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                "type": "p",
+              },
+            ],
+            "type": "div",
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
+          "nodeType": "class",
+          "props": Object {
+            "children": <div>
+              <SelectWallet__WalletName>
+                            software-wallet-mock1
+              </SelectWallet__WalletName>
+              <p>
+                            0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5
+              </p>
+</div>,
+            "value": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <SelectWallet__WalletName>
+                  software-wallet-mock1
+</SelectWallet__WalletName>,
+                <p>
+                  0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5
+</p>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "software-wallet-mock1",
+                },
+                "ref": null,
+                "rendered": "software-wallet-mock1",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
+                },
+                "ref": null,
+                "rendered": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
+                "type": "p",
+              },
+            ],
+            "type": "div",
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+          "nodeType": "class",
+          "props": Object {
+            "children": <div>
+              <SelectWallet__WalletName>
+                            software-wallet-mock2
+              </SelectWallet__WalletName>
+              <p>
+                            0xF4db7c6030c9c5754A6A712212d6342DCA52e25d
+              </p>
+</div>,
+            "value": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <SelectWallet__WalletName>
+                  software-wallet-mock2
+</SelectWallet__WalletName>,
+                <p>
+                  0xF4db7c6030c9c5754A6A712212d6342DCA52e25d
+</p>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "software-wallet-mock2",
+                },
+                "ref": null,
+                "rendered": "software-wallet-mock2",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+                },
+                "ref": null,
+                "rendered": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+                "type": "p",
+              },
+            ],
+            "type": "div",
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb",
+          "nodeType": "class",
+          "props": Object {
+            "children": <div>
+              <SelectWallet__WalletName>
+                            trezor
+              </SelectWallet__WalletName>
+              <p>
+                            0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb
+              </p>
+</div>,
+            "value": "0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <SelectWallet__WalletName>
+                  trezor
+</SelectWallet__WalletName>,
+                <p>
+                  0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb
+</p>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "trezor",
+                },
+                "ref": null,
+                "rendered": "trezor",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb",
+                },
+                "ref": null,
+                "rendered": "0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb",
+                "type": "p",
+              },
+            ],
+            "type": "div",
+          },
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <SelectWallet__StyledSelect
+          wallets={
+                    Array [
+                              Object {
+                                "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                "derivationPath": "m/44'/60'/0'/0",
+                                "deviceId": "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
+                                "name": "lns",
+                                "type": "lns",
+                              },
+                              Object {
+                                "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
+                                "encrypted": "{\\"address\\":\\"82191e2863e0b6afc0a7d538cdabfd509aa648b5\\",\\"id\\":\\"2c8ffa0a-5624-4191-94a3-3869ae170702\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"30d2c35f4ebb46423e782814c735ff94\\"},\\"ciphertext\\":\\"d2e98cdb8c6d7ddb9192d5f1a633df3e37f02ec3a950c8673f98d03dc011e477\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"14c5ee2eb9dfe1f10bfd3fc7dde4de93197883477e74e5eb51bef5786865b401\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"9f2740c399e9a2f141fefb816ed2fe2aeee8de2ebc8c73f7c87890b4ae928501\\"},\\"x-ethers\\":{\\"client\\":\\"ethers.js\\",\\"gethFilename\\":\\"UTC--2018-08-13T05-04-04.0Z--82191e2863e0b6afc0a7d538cdabfd509aa648b5\\",\\"mnemonicCounter\\":\\"631a83199112cb4398ee94dd2e9d105c\\",\\"mnemonicCiphertext\\":\\"a92457ab3b87724a76536873f8eb5e28\\",\\"version\\":\\"0.1\\"}}",
+                                "name": "software-wallet-mock1",
+                                "type": "software",
+                              },
+                              Object {
+                                "address": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+                                "decrypted": Object {
+                                  "address": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+                                  "defaultGasLimit": 1500000,
+                                  "path": "m/44'/60'/0'/0/0",
+                                  "privateKey": "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+                                },
+                                "encrypted": "\\"{\\"address\\":\\"f4db7c6030c9c5754a6a712212d6342dca52e25d\\",\\"id\\":\\"b3f33163-7085-4926-931b-76c1518912b5\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"f1f74d7e443eb7ce7ecdb7d12d860532\\"},\\"ciphertext\\":\\"ef22c4c440c385e7d2635b7ead479472dab4e8d00e5ba82513344a8fa057151b\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"c55a2e1a1ed54cff2dafeb53d825f5e67ce546d0c930e198b07c65ff4538bafa\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"a359b225c6dd9caedf2a7a624ec426b68b7f1d7eb5378ffe33d1b7219cddb0ff\\"},\\"x-ethers\\":{\\"client\\":\\"ethers.js\\",\\"gethFilename\\":\\"UTC--2018-08-13T05-24-22.0Z--f4db7c6030c9c5754a6a712212d6342dca52e25d\\",\\"mnemonicCounter\\":\\"c6bc00f4277c72aae56538fd6f92c7db\\",\\"mnemonicCiphertext\\":\\"aba771a74a5c8a16edbca85828d8c087\\",\\"version\\":\\"0.1\\"}}\\"",
+                                "name": "software-wallet-mock2",
+                                "type": "software",
+                              },
+                              Object {
+                                "address": "0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb",
+                                "derivationPath": "m/44'/60'/0'/0/1",
+                                "deviceId": "7BB16BDA1AFB971DF5D954EF",
+                                "name": "trezor",
+                                "type": "trezor",
+                              },
+                            ]
+          }
+>
+          <Option
+                    value="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
+          >
+                    <div>
+                              <SelectWallet__WalletName>
+                                        lns
+                              </SelectWallet__WalletName>
+                              <p>
+                                        0x1c7429f62595097315289ceBaC1fDbdA587Ad512
+                              </p>
+                    </div>
+          </Option>
+          <Option
+                    value="0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5"
+          >
+                    <div>
+                              <SelectWallet__WalletName>
+                                        software-wallet-mock1
+                              </SelectWallet__WalletName>
+                              <p>
+                                        0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5
+                              </p>
+                    </div>
+          </Option>
+          <Option
+                    value="0xF4db7c6030c9c5754A6A712212d6342DCA52e25d"
+          >
+                    <div>
+                              <SelectWallet__WalletName>
+                                        software-wallet-mock2
+                              </SelectWallet__WalletName>
+                              <p>
+                                        0xF4db7c6030c9c5754A6A712212d6342DCA52e25d
+                              </p>
+                    </div>
+          </Option>
+          <Option
+                    value="0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb"
+          >
+                    <div>
+                              <SelectWallet__WalletName>
+                                        trezor
+                              </SelectWallet__WalletName>
+                              <p>
+                                        0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb
+                              </p>
+                    </div>
+          </Option>
+</SelectWallet__StyledSelect>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Option
+              value="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
+>
+              <div>
+                            <SelectWallet__WalletName>
+                                          lns
+                            </SelectWallet__WalletName>
+                            <p>
+                                          0x1c7429f62595097315289ceBaC1fDbdA587Ad512
+                            </p>
+              </div>
+</Option>,
+            <Option
+              value="0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5"
+>
+              <div>
+                            <SelectWallet__WalletName>
+                                          software-wallet-mock1
+                            </SelectWallet__WalletName>
+                            <p>
+                                          0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5
+                            </p>
+              </div>
+</Option>,
+            <Option
+              value="0xF4db7c6030c9c5754A6A712212d6342DCA52e25d"
+>
+              <div>
+                            <SelectWallet__WalletName>
+                                          software-wallet-mock2
+                            </SelectWallet__WalletName>
+                            <p>
+                                          0xF4db7c6030c9c5754A6A712212d6342DCA52e25d
+                            </p>
+              </div>
+</Option>,
+            <Option
+              value="0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb"
+>
+              <div>
+                            <SelectWallet__WalletName>
+                                          trezor
+                            </SelectWallet__WalletName>
+                            <p>
+                                          0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb
+                            </p>
+              </div>
+</Option>,
+          ],
+          "wallets": Array [
+            Object {
+              "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+              "derivationPath": "m/44'/60'/0'/0",
+              "deviceId": "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
+              "name": "lns",
+              "type": "lns",
+            },
+            Object {
+              "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
+              "encrypted": "{\\"address\\":\\"82191e2863e0b6afc0a7d538cdabfd509aa648b5\\",\\"id\\":\\"2c8ffa0a-5624-4191-94a3-3869ae170702\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"30d2c35f4ebb46423e782814c735ff94\\"},\\"ciphertext\\":\\"d2e98cdb8c6d7ddb9192d5f1a633df3e37f02ec3a950c8673f98d03dc011e477\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"14c5ee2eb9dfe1f10bfd3fc7dde4de93197883477e74e5eb51bef5786865b401\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"9f2740c399e9a2f141fefb816ed2fe2aeee8de2ebc8c73f7c87890b4ae928501\\"},\\"x-ethers\\":{\\"client\\":\\"ethers.js\\",\\"gethFilename\\":\\"UTC--2018-08-13T05-04-04.0Z--82191e2863e0b6afc0a7d538cdabfd509aa648b5\\",\\"mnemonicCounter\\":\\"631a83199112cb4398ee94dd2e9d105c\\",\\"mnemonicCiphertext\\":\\"a92457ab3b87724a76536873f8eb5e28\\",\\"version\\":\\"0.1\\"}}",
+              "name": "software-wallet-mock1",
+              "type": "software",
+            },
+            Object {
+              "address": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+              "decrypted": Object {
+                "address": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+                "defaultGasLimit": 1500000,
+                "path": "m/44'/60'/0'/0/0",
+                "privateKey": "0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828",
+              },
+              "encrypted": "\\"{\\"address\\":\\"f4db7c6030c9c5754a6a712212d6342dca52e25d\\",\\"id\\":\\"b3f33163-7085-4926-931b-76c1518912b5\\",\\"version\\":3,\\"Crypto\\":{\\"cipher\\":\\"aes-128-ctr\\",\\"cipherparams\\":{\\"iv\\":\\"f1f74d7e443eb7ce7ecdb7d12d860532\\"},\\"ciphertext\\":\\"ef22c4c440c385e7d2635b7ead479472dab4e8d00e5ba82513344a8fa057151b\\",\\"kdf\\":\\"scrypt\\",\\"kdfparams\\":{\\"salt\\":\\"c55a2e1a1ed54cff2dafeb53d825f5e67ce546d0c930e198b07c65ff4538bafa\\",\\"n\\":131072,\\"dklen\\":32,\\"p\\":1,\\"r\\":8},\\"mac\\":\\"a359b225c6dd9caedf2a7a624ec426b68b7f1d7eb5378ffe33d1b7219cddb0ff\\"},\\"x-ethers\\":{\\"client\\":\\"ethers.js\\",\\"gethFilename\\":\\"UTC--2018-08-13T05-24-22.0Z--f4db7c6030c9c5754a6a712212d6342dca52e25d\\",\\"mnemonicCounter\\":\\"c6bc00f4277c72aae56538fd6f92c7db\\",\\"mnemonicCiphertext\\":\\"aba771a74a5c8a16edbca85828d8c087\\",\\"version\\":\\"0.1\\"}}\\"",
+              "name": "software-wallet-mock2",
+              "type": "software",
+            },
+            Object {
+              "address": "0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb",
+              "derivationPath": "m/44'/60'/0'/0/1",
+              "deviceId": "7BB16BDA1AFB971DF5D954EF",
+              "name": "trezor",
+              "type": "trezor",
+            },
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+            "nodeType": "class",
+            "props": Object {
+              "children": <div>
+                <SelectWallet__WalletName>
+                                lns
+                </SelectWallet__WalletName>
+                <p>
+                                0x1c7429f62595097315289ceBaC1fDbdA587Ad512
+                </p>
+</div>,
+              "value": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <SelectWallet__WalletName>
+                    lns
+</SelectWallet__WalletName>,
+                  <p>
+                    0x1c7429f62595097315289ceBaC1fDbdA587Ad512
+</p>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "lns",
+                  },
+                  "ref": null,
+                  "rendered": "lns",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                  },
+                  "ref": null,
+                  "rendered": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                  "type": "p",
+                },
+              ],
+              "type": "div",
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
+            "nodeType": "class",
+            "props": Object {
+              "children": <div>
+                <SelectWallet__WalletName>
+                                software-wallet-mock1
+                </SelectWallet__WalletName>
+                <p>
+                                0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5
+                </p>
+</div>,
+              "value": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <SelectWallet__WalletName>
+                    software-wallet-mock1
+</SelectWallet__WalletName>,
+                  <p>
+                    0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5
+</p>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "software-wallet-mock1",
+                  },
+                  "ref": null,
+                  "rendered": "software-wallet-mock1",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
+                  },
+                  "ref": null,
+                  "rendered": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
+                  "type": "p",
+                },
+              ],
+              "type": "div",
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+            "nodeType": "class",
+            "props": Object {
+              "children": <div>
+                <SelectWallet__WalletName>
+                                software-wallet-mock2
+                </SelectWallet__WalletName>
+                <p>
+                                0xF4db7c6030c9c5754A6A712212d6342DCA52e25d
+                </p>
+</div>,
+              "value": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <SelectWallet__WalletName>
+                    software-wallet-mock2
+</SelectWallet__WalletName>,
+                  <p>
+                    0xF4db7c6030c9c5754A6A712212d6342DCA52e25d
+</p>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "software-wallet-mock2",
+                  },
+                  "ref": null,
+                  "rendered": "software-wallet-mock2",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+                  },
+                  "ref": null,
+                  "rendered": "0xF4db7c6030c9c5754A6A712212d6342DCA52e25d",
+                  "type": "p",
+                },
+              ],
+              "type": "div",
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb",
+            "nodeType": "class",
+            "props": Object {
+              "children": <div>
+                <SelectWallet__WalletName>
+                                trezor
+                </SelectWallet__WalletName>
+                <p>
+                                0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb
+                </p>
+</div>,
+              "value": "0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <SelectWallet__WalletName>
+                    trezor
+</SelectWallet__WalletName>,
+                  <p>
+                    0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb
+</p>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "trezor",
+                  },
+                  "ref": null,
+                  "rendered": "trezor",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb",
+                  },
+                  "ref": null,
+                  "rendered": "0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb",
+                  "type": "p",
+                },
+              ],
+              "type": "div",
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<SelectWallet /> should render correctly when there are no wallets 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SelectWallet
+    wallets={Array []}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <SelectWallet__StyledSelect
+        wallets={Array []}
+>
+        
+</SelectWallet__StyledSelect>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [],
+        "wallets": Array [],
+      },
+      "ref": null,
+      "rendered": Array [],
+      "type": [Function],
+    },
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <SelectWallet__StyledSelect
+          wallets={Array []}
+>
+          
+</SelectWallet__StyledSelect>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [],
+          "wallets": Array [],
+        },
+        "ref": null,
+        "rendered": Array [],
+        "type": [Function],
+      },
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

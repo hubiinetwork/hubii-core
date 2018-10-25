@@ -34,7 +34,6 @@ const makeSelectWallets = () => createSelector(
   (walletHocDomain) => walletHocDomain.get('wallets')
 );
 
-
 const makeSelectLoading = () => createSelector(
   selectWalletHocDomain,
   (walletHocDomain) => walletHocDomain.get('loading')

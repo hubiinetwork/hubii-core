@@ -1,5 +1,7 @@
 import { fromJS } from 'immutable';
 
+import { changeNetwork } from 'containers/App/actions';
+
 import {
   supportedAssetsLoadedMock,
   pricesLoadedMock,
@@ -159,6 +161,23 @@ describe('hubiiApiHocReducer', () => {
         .setIn(['prices', 'error'], error);
 
       expect(hubiiApiHocReducer(state, loadPricesError(error))).toEqual(expected);
+    });
+  });
+
+  describe('a network change', () => {
+    it('should reset values to loading/empty', () => {
+      const testState = state
+        .setIn(['supportedAssets', 'loading'], false)
+        .setIn(['prices', 'loading'], false)
+        .set('transactions', fromJS({ '0x00': {} }))
+        .set('balances', fromJS({ '0x00': {} }));
+      const expected = state
+        .setIn(['supportedAssets', 'loading'], true)
+        .setIn(['prices', 'loading'], true)
+        .set('transactions', fromJS({}))
+        .set('balances', fromJS({}));
+
+      expect(hubiiApiHocReducer(testState, changeNetwork('some network'))).toEqual(expected);
     });
   });
 });

@@ -3,6 +3,7 @@ import darkTheme from './themes/darkTheme';
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
+&&&& {
   .ant-tooltip {
     display: none;
   }
@@ -103,4 +104,4 @@ injectGlobal`
     align-items: center;
   }
 }
-`;
+}`;

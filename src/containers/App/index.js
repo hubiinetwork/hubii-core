@@ -26,6 +26,7 @@ import WalletManager from 'containers/WalletManager';
 import WalletDetails from 'containers/WalletDetails';
 import Dex from 'containers/Dex';
 import Settings from 'containers/Settings';
+import Nahmii from 'containers/Nahmii';
 
 import WalletHoc from 'containers/WalletHoc';
 import withLedger from 'containers/LedgerHoc';
@@ -44,12 +45,17 @@ function App() {
     {
       to: '/wallets',
       icon: 'wallet',
-      name: 'Wallet Manager',
+      key: 'wallet',
+    },
+    {
+      to: '/nahmii/airdriip-registration',
+      icon: 'nahmii-token',
+      key: 'nahmii',
     },
     {
       to: '/dex',
       icon: 'dex',
-      name: 'dex detail',
+      key: 'dex',
     },
   ];
   return (
@@ -61,6 +67,7 @@ function App() {
         <Route path="/wallets" component={WalletManager} />
         <Route path="/wallet/:address" component={WalletDetails} />
         <Route path="/dex" component={Dex} />
+        <Route path="/nahmii" component={Nahmii} />
         <Route path="/settings" component={Settings} />
         <Route component={HomeScreen} />
       </Switch>

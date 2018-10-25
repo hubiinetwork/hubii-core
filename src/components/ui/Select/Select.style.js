@@ -31,7 +31,7 @@ export default styled(Select)`
   }
   .ant-select-selection:focus {
     .ant-select-selection-selected-value {
-      color: ${({ theme }) => theme.palette.info} !important;
+      color: ${({ theme }) => theme.palette.info};
     }
   }
   .ant-select-selection {

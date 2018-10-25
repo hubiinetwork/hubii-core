@@ -10,7 +10,9 @@ export function requestWalletAPI(path, network, opts = {}) {
   const options = opts;
   options.headers = {
     Authorization: `Bearer ${network.identityServiceToken}`,
-
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    ...options.headers,
   };
   return request(path, options, network.walletApiEndpoint());
 }

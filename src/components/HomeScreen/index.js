@@ -15,6 +15,7 @@ import Wrapper from './Wrapper';
 import Logo from './Logo';
 import Cards from './Cards';
 
+
 class HomeScreen extends React.PureComponent {
   render() {
     const { formatMessage } = this.props.intl;
@@ -23,10 +24,28 @@ class HomeScreen extends React.PureComponent {
         <Logo src={getAbsolutePath('public/images/hubii-core-logo-wtext.svg')} />
         <Cards>
           <StyledLink to="/wallets">
-            <DashboardCard iconSrc={getAbsolutePath('public/images/wallet-icon-green.png')} title={formatMessage({ id: 'my_wallets' })} />
+            <DashboardCard
+              iconSrc={getAbsolutePath('public/images/wallet-icon-green.png')}
+              title={formatMessage({ id: 'my_wallets' })}
+            />
+          </StyledLink>
+          <StyledLink to="/nahmii/airdriip-registration">
+            <DashboardCard
+              iconSrc={getAbsolutePath('public/images/nahmii-token-green.png')}
+              title={formatMessage({ id: 'my_nahmii' })}
+            />
           </StyledLink>
           <StyledLink to="/dex">
-            <DashboardCard iconSrc={getAbsolutePath('public/images/dex-icon-green.png')} title={formatMessage({ id: 'DEX' })} />
+            <DashboardCard
+              iconSrc={getAbsolutePath('public/images/dex-icon-green.png')}
+              title={formatMessage({ id: 'DEX' })}
+            />
+          </StyledLink>
+          <StyledLink to="/settings">
+            <DashboardCard
+              iconType="setting"
+              title={formatMessage({ id: 'settings' })}
+            />
           </StyledLink>
         </Cards>
       </Wrapper>

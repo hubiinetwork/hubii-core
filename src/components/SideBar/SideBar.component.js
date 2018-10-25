@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 import { SideBarLayout, SideBarMenu } from './SideBar.style';
 import SvgIcon from '../ui/SvgIcon';
 import darkTheme from '../../themes/darkTheme';
+
+import NahmiiGrey from '../../../public/images/nahmii-token-grey.png';
+import NahmiiGreen from '../../../public/images/nahmii-token-green.png';
+
 const { Sider } = Layout;
 
 /**
@@ -22,15 +26,21 @@ export class SideBar extends React.Component {
     const { menuItems, logoSrc, children } = this.props;
     const { info, dark2 } = darkTheme.palette;
     const currentRoute = this.getroute();
-    let selectedKeys = [currentRoute];
-    if (currentRoute === '/wallet') {
-      selectedKeys = ['/wallets'];
+    let selectedKeys;
+    if (currentRoute.includes('wallet')) {
+      selectedKeys = ['wallet'];
+    } else if (currentRoute.includes('nahmii')) {
+      selectedKeys = ['nahmii'];
+    } else if (currentRoute.includes('dex')) {
+      selectedKeys = ['dex'];
+    } else if (currentRoute.includes('settings')) {
+      selectedKeys = ['settings'];
     }
     return (
       <SideBarLayout style={{ minHeight: '100vh' }}>
         <Sider collapsed collapsedWidth="72" trigger={null}>
           <SideBarMenu
-            defaultSelectedKeys={[menuItems[0].to]}
+            defaultSelectedKeys={[menuItems[0].key]}
             mode="inline"
             onSelect={this.handleChange}
             selectedKeys={selectedKeys}
@@ -49,7 +59,7 @@ export class SideBar extends React.Component {
             </Menu.Item>
             {menuItems &&
               menuItems.map((menuItem) => (
-                <Menu.Item key={menuItem.to} className="menu-wallet">
+                <Menu.Item key={menuItem.key} className="menu-wallet">
                   <Link to={menuItem.to}>
                     <div
                       style={{
@@ -87,11 +97,22 @@ export class SideBar extends React.Component {
                         </g>
                       </SvgIcon>
                     )}
+                      {menuItem.icon === 'nahmii-token' && (
+                       currentRoute.includes('nahmii')
+                       ?
+                         <div>
+                           <img alt="nahmii token" style={{ height: 'auto', width: '32px' }} src={NahmiiGreen} />
+                         </div>
+                      :
+                         <div>
+                           <img alt="nahmii token" style={{ height: 'auto', width: '32px' }} src={NahmiiGrey} />
+                         </div>
+                    )}
                     </div>
                   </Link>
                 </Menu.Item>
                 ))}
-            <Menu.Item key="/settings" className="menu-setting">
+            <Menu.Item key="settings" className="menu-setting">
               <Link to="/settings">
                 <div>
                   <Icon className="setting-icon" type="setting" />
@@ -112,7 +133,6 @@ SideBar.propTypes = {
    */
   menuItems: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
       icon: PropTypes.string.isRequired,
       to: PropTypes.string.isRequired,
     })

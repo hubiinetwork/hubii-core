@@ -5,6 +5,7 @@ import {
   select,
 } from 'redux-saga/effects';
 import { Wallet, utils, Contract } from 'ethers';
+import { fromRpcSig } from 'ethereumjs-util';
 
 import { notify } from 'containers/App/actions';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
@@ -117,12 +118,25 @@ export function* decryptWallet({ address, encryptedWallet, password }) {
     yield put(hideDecryptWalletModal());
     if (callbackAction) {
       callbackAction = callbackAction.toJS();
-      callbackAction.wallet.decrypted = decryptedWallet;
+      // the transfer saga recieves the wallet via an action. if the callback action
+      // had a wallet property, add the decrypted field.
+      // ideally instead of this, the wallet property should be taken from the store
+      // via a selector, instead of through the callback.
+      if (callbackAction.wallet) {
+        callbackAction.wallet.decrypted = decryptedWallet;
+      }
       yield put(callbackAction);
     }
   } catch (e) {
     yield put(decryptWalletFailed(e));
-    yield put(notify('error', getIntl().formatMessage({ id: 'unlock_wallet_failed_error' }, { message: getIntl().formatMessage({ id: e.message }) })));
+    yield put(notify('error', getIntl().formatMessage(
+      {
+        id: 'unlock_wallet_failed_error',
+      },
+      {
+        message: e.message === 'invalid password' ? getIntl().formatMessage({ id: 'invalid_password' }) : e.message,
+      }
+    )));
   }
 }
 
@@ -287,19 +301,23 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
 }
 
 export function* signPersonalMessage({ message, wallet }) {
-  let signedPersonalMessage;
-
   if (wallet.type === 'software') {
     const etherWallet = new Wallet(wallet.decrypted.privateKey);
-    signedPersonalMessage = etherWallet.signMessage(message);
+    const rpcSig = etherWallet.signMessage(message);
+    const bufferParams = fromRpcSig(rpcSig);
+    return {
+      v: bufferParams.v,
+      r: `0x${bufferParams.r.toString('hex')}`,
+      s: `0x${bufferParams.s.toString('hex')}`,
+    };
   }
   if (wallet.type === 'lns') {
-    signedPersonalMessage = yield signPersonalMessageByLedger(wallet, message);
+    return yield signPersonalMessageByLedger(wallet, message);
   }
   if (wallet.type === 'trezor') {
-    signedPersonalMessage = yield signPersonalMessageByTrezor(message, wallet);
+    return yield signPersonalMessageByTrezor(message, wallet);
   }
-  return signedPersonalMessage;
+  throw new Error('invalid wallet');
 }
 
 // Root watcher

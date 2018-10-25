@@ -122,6 +122,11 @@ export const currentWalletSoftwareMock = fromJS({
   type: 'software',
 });
 
+export const currentWalletSoftwareEncrypted = fromJS({
+  address: '0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5',
+  type: 'software',
+});
+
 // selectWalletHocDomain
 export const walletHocMock = fromJS({
   wallets: walletsMock,
