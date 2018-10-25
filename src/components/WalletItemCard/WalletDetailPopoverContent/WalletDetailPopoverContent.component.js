@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
+
+import Text from 'components/ui/Text';
+
 import walletTypeDescriptions from '../walletTypeDescriptions';
 import { Subtitle, Wrapper } from './WalletDetailPopoverContent.style';
 import { humanFriendlyWalletType } from '../../../utils/wallet';
@@ -14,9 +17,9 @@ const WalletDetailPopoverContent = (props) => {
   const { formatMessage } = props.intl;
   return (
     <Wrapper>
-      <div>{formatMessage({ id: humanFriendlyWalletType(props.type) })}</div>
+      <Text large>{formatMessage({ id: humanFriendlyWalletType(props.type) })}</Text>
       <Subtitle>{description}</Subtitle>
-      <div>{formatMessage({ id: 'address' })}</div>
+      <Text large>{formatMessage({ id: 'address' })}</Text>
       <Subtitle>{props.address}</Subtitle>
     </Wrapper>
   );

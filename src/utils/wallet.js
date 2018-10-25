@@ -64,6 +64,7 @@ export const referenceCurrencies = ['eth', 'btc', 'usd'];
 
 export const humanFriendlyWalletType = (type) => {
   if (type === 'lns') return 'wallet_type_lns';
+  if (type === 'trezor') return 'wallet_type_trezor';
   if (type === 'software') return 'wallet_type_software';
   return type;
 };
