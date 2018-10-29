@@ -20,6 +20,7 @@
     "contacts": "联系人",
     "address": "地址",
     "wallet_type_lns": "Ledger Nano S",
+    "wallet_type_trezor": "Trezor",
     "wallet_type_software": "软件钱包",
     "balance_breakdown": "资产统计",
     "total_fiat_value": "总价值",

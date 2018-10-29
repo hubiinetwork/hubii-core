@@ -20,6 +20,7 @@
     "contacts": "Contacts",
     "address": "Address",
     "wallet_type_lns": "Ledger Nano S",
+    "wallet_type_trezor": "Trezor",
     "wallet_type_software": "Software Wallet",
     "balance_breakdown": "Balance Breakdown",
     "total_fiat_value": "Total Fiat Value",
