@@ -39,16 +39,16 @@ import {
 } from './actions';
 
 
-export function* loadWalletBalances({ address, noPoll }, network) {
+export function* loadWalletBalances({ address, noPoll }, _network) {
+  let network = _network;
+  if (noPoll) network = yield select(makeSelectCurrentNetwork());
   const requestPath = `ethereum/wallets/${address}/balances`;
   while (true) { // eslint-disable-line no-constant-condition
     try {
       const returnData = yield call(requestWalletAPI, requestPath, network);
       yield put(loadWalletBalancesSuccess(address, returnData));
     } catch (err) {
-      if (!noPoll) {
-        yield put(loadWalletBalancesError(address, err));
-      }
+      yield put(loadWalletBalancesError(address, err));
     } finally {
       const FIVE_SEC_IN_MS = 1000 * 5;
       yield delay(FIVE_SEC_IN_MS);

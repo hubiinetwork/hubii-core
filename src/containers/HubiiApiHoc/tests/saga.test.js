@@ -229,6 +229,15 @@ describe('hubiiApi saga', () => {
     beforeEach(() => {
       saga = testSaga(loadWalletBalances, { address }, currentNetworkMock.walletApiEndpoint);
     });
+
+    it('should select currentNetwork inside the saga network if noPoll is true', () => {
+      saga = testSaga(loadWalletBalances, { address, noPoll: true });
+      const network = { name: 'homestead' };
+      saga
+        .next() // network select
+        .next(network).call(requestWalletAPI, requestPath, network);
+    });
+
     it('should correctly handle success scenario', () => {
       const response = balancesMock.get(0);
       saga
@@ -241,8 +250,10 @@ describe('hubiiApi saga', () => {
     it('should correctly not poll when noPoll true', () => {
       saga = testSaga(loadWalletBalances, { address, noPoll: true }, currentNetworkMock.walletApiEndpoint);
       const response = balancesMock.get(0);
+      const network = { name: 'homestead' };
       saga
-        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
+        .next() // select network
+        .next(network).call(requestWalletAPI, requestPath, network)
         .next(response).put(loadWalletBalancesSuccess('0x00', response))
         .next() // delay
         .next().isDone();
