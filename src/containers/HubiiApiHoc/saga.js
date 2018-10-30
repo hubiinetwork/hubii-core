@@ -40,8 +40,7 @@ import {
 
 
 export function* loadWalletBalances({ address, noPoll }, _network) {
-  let network = _network;
-  if (noPoll) network = yield select(makeSelectCurrentNetwork());
+  const network = _network || (yield select(makeSelectCurrentNetwork()));
   const requestPath = `ethereum/wallets/${address}/balances`;
   while (true) { // eslint-disable-line no-constant-condition
     try {
