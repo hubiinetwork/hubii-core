@@ -15,18 +15,18 @@ export const Label = styled(Text)`
 
 export const Percentage = styled.div`
   color: ${({ theme }) => theme.palette.info};
-  margin-left: 0.29rem;
+  white-space: nowrap;
 `;
 
 export const FlexContainer = styled.div`
   display: flex;
-  margin-top: -0.86rem;
   flex-wrap: wrap;
+  margin-top: -0.86rem;
 `;
 
 export const FlexItem = styled.div`
   display: flex;
-  align-items: center;
-  margin-top: 0.57rem;
-  width: 9.5rem;
+  flex-direction: column;
+  margin: 1rem 1rem 0 0;
+  flex-wrap: wrap;
 `;

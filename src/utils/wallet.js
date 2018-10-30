@@ -50,6 +50,7 @@ export const getBreakdown = (balances, supportedAssets) => {
 
   return formattedBalances.get('assets').keySeq().map((asset) => ({
     label: getCurrencySymbol(supportedAssets, asset),
+    value: formattedBalances.getIn(['assets', asset, 'value', 'usd']).toString(),
     percentage: (formattedBalances.getIn(['assets', asset, 'value', 'usd']) / totalFiat) * 100,
     color: supportedAssets.get('assets').find((a) => a.get('currency') === asset).get('color'),
   })).toJS();

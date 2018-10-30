@@ -4,9 +4,9 @@ import { injectIntl } from 'react-intl';
 import { VictoryPie, VictoryContainer, VictoryTooltip } from 'victory';
 import SectionHeading from 'components/ui/SectionHeading';
 import Heading from 'components/ui/Heading';
+import { formatFiat } from 'utils/numberFormats';
 import { Title, Wrapper } from './Breakdown.style';
 import Tokens from './Tokens';
-import { formatFiat } from '../../utils/numberFormats';
 
 /**
  * This component shows user's total coins' convertion in dollar and a relative chart.
@@ -19,10 +19,6 @@ const Breakdown = ({ data = [], value, intl }) => {
     label: `${item.label}: ${item.percentage}%`,
   }));
   const colors = data.map((item) => item.color);
-  const labels = data.map((item) => ({
-    label: item.label,
-    percentage: item.percentage,
-  }));
   if (chartData.length === 0) {
     return <div />;
   }
@@ -59,7 +55,7 @@ const Breakdown = ({ data = [], value, intl }) => {
         value !== '0' &&
           <div>
             <SectionHeading>{formatMessage({ id: 'assets' })}</SectionHeading>
-            <Tokens data={labels} />
+            <Tokens data={data} />
           </div>
       }
     </Wrapper>
