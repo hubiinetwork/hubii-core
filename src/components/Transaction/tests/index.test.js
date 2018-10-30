@@ -19,7 +19,7 @@ describe('<Transaction />', () => {
     intl,
   };
 
-  it.only('should render correctly tx type sent', () => {
+  it('should render correctly tx type sent', () => {
     const wrapper = shallow(
       <Transaction {...props} />
     );
