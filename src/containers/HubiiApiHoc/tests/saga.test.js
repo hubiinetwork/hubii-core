@@ -55,7 +55,7 @@ describe('hubiiApi saga', () => {
     const ONE_MINUTE_IN_MS = 60 * 1000;
     const wallets = walletsMock;
     const mockTask = createMockTask();
-    it.only('should fork all required sagas, cancelling and restarting on CHANGE_NETWORK', () => {
+    it('should fork all required sagas, cancelling and restarting on CHANGE_NETWORK', () => {
       const saga = testSaga(networkApiOrcestrator);
       const allSagas = [
         ...wallets.map((wallet) => fork(loadWalletBalances, { address: wallet.get('address') }, currentNetworkMock)),
@@ -229,6 +229,15 @@ describe('hubiiApi saga', () => {
     beforeEach(() => {
       saga = testSaga(loadWalletBalances, { address }, currentNetworkMock.walletApiEndpoint);
     });
+
+    it('should select currentNetwork inside the saga network if noPoll is true', () => {
+      saga = testSaga(loadWalletBalances, { address, noPoll: true });
+      const network = { name: 'homestead' };
+      saga
+        .next() // network select
+        .next(network).call(requestWalletAPI, requestPath, network);
+    });
+
     it('should correctly handle success scenario', () => {
       const response = balancesMock.get(0);
       saga
@@ -239,10 +248,12 @@ describe('hubiiApi saga', () => {
     });
 
     it('should correctly not poll when noPoll true', () => {
-      saga = testSaga(loadWalletBalances, { address, noPoll: true }, currentNetworkMock.walletApiEndpoint);
+      saga = testSaga(loadWalletBalances, { address, noPoll: true });
       const response = balancesMock.get(0);
+      const network = { name: 'homestead' };
       saga
-        .next().call(requestWalletAPI, requestPath, currentNetworkMock.walletApiEndpoint)
+        .next() // select network
+        .next(network).call(requestWalletAPI, requestPath, network)
         .next(response).put(loadWalletBalancesSuccess('0x00', response))
         .next() // delay
         .next().isDone();
