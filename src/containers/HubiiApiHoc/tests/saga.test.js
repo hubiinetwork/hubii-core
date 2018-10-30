@@ -248,7 +248,7 @@ describe('hubiiApi saga', () => {
     });
 
     it('should correctly not poll when noPoll true', () => {
-      saga = testSaga(loadWalletBalances, { address, noPoll: true }, currentNetworkMock.walletApiEndpoint);
+      saga = testSaga(loadWalletBalances, { address, noPoll: true });
       const response = balancesMock.get(0);
       const network = { name: 'homestead' };
       saga
