@@ -34,7 +34,7 @@ const trimmableWalletApiEndpoint = (endpoint) => (trimmed) => {
 export const SUPPORTED_NETWORKS = {
   homestead: {
     provider: providers.getDefaultProvider('homestead'),
-    walletApiEndpoint: trimmableWalletApiEndpoint('https://api2.hubii.com/'),
+    walletApiEndpoint: trimmableWalletApiEndpoint('https://api.nahmii.io/'),
     identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : HOMESTEAD_IDENTITY_SERVICE_SECRET,
     identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : HOMESTEAD_IDENTITY_SERVICE_APPID,
   },
