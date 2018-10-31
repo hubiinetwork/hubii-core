@@ -145,7 +145,7 @@ describe('hubiiApi saga', () => {
         .next().isDone();
     });
   });
-  describe('prices', () => {
+  xdescribe('prices', () => {
     it('should load prices when not exist in the store', () => {
       const response = [
         {

@@ -148,7 +148,7 @@ describe('HubiiApiHoc actions', () => {
       const prices = [1, 2, 5];
       const expected = {
         type: LOAD_PRICES_SUCCESS,
-        prices: [...prices, { currency: 'ETH', eth: 1, btc: 0.01, usd: 412 }],
+        prices,
       };
       expect(loadPricesSuccess(prices)).toEqual(expected);
     });

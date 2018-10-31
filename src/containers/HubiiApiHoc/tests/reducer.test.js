@@ -145,7 +145,7 @@ describe('hubiiApiHocReducer', () => {
 
   describe('prices', () => {
     it('handle LOAD_PRICES_SUCCESS correctly', () => {
-      const prices = pricesLoadedMock.get('assets').delete(pricesLoadedMock.get('assets').size - 1);
+      const prices = pricesLoadedMock.get('assets');
       const expected = state
         .setIn(['prices', 'loading'], false)
         .setIn(['prices', 'error'], null)
