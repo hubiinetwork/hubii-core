@@ -1,6 +1,7 @@
 import { Icon, Dropdown, Popover } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import BigNumber from 'bignumber.js';
 import { injectIntl } from 'react-intl';
 
 import { isHardwareWallet, isAddressMatch } from 'utils/wallet';
@@ -77,19 +78,19 @@ export class WalletItemCard extends React.PureComponent {
   determineAmount(amount, currency) {
     const extractedCurrency = this.props.priceInfo.find((currencyItem) => isAddressMatch(currencyItem.currency, currency));
 
+    // check to see if this currency is a test token, in which case just use a default number, 6, of decimal places
+    if (extractedCurrency.usd === '0') {
+      return amount.toFixed(5);
+    }
+
     // find what 0.01 usd is in the relevant currency
-    const ratio = 0.01 / extractedCurrency.usd;
-    const ratioSplitByDot = ratio.toString().split('.');
+    const ratio = new BigNumber(0.01).dividedBy(extractedCurrency.usd).toString();
+    const ratioSplitByDot = ratio.split('.');
     const amountSplitByDot = amount.toString().split('.');
 
     // check to see if the amount was a whole value, in which case just return as there is no need for decimal alteration
     if (amountSplitByDot.length === 1) {
       return amount.toString();
-    }
-
-    // check to see if this currency is a test token, in which case just use a default number, 6, of decimal places
-    if (!extractedCurrency.usd) {
-      return `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, 6)}`;
     }
 
     // otherwise, find how many 0's there are after the decimal place on the ratio + 1, and minus that with the length of the
