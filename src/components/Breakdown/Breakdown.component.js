@@ -16,7 +16,7 @@ const Breakdown = ({ data = [], value, intl }) => {
   const chartData = data.map((item) => ({
     x: item.percentage,
     y: 2 * item.percentage,
-    label: `${item.label}: ${item.percentage}%`,
+    label: `${item.label}: ${item.percentage.toFixed(0)}%`,
   }));
   const colors = data.map((item) => item.color);
   if (chartData.length === 0) {
