@@ -60,7 +60,6 @@
     "enter_valid_address_contact": "请输入一个有效钱包地址或联系人名",
     "usd": "美金",
     "create_wallet_success": "成功创建钱包 {name}",
-    "welcome_testnet": "您好，感谢尝试 hubii core 测试版。此版本只支持ropsten 以太坊测试网络。主网的支持将在近期推出。",
     "import_wallet_question": "请问您想要导入钱包，或是创建新钱包？",
     "create_new_wallet": "创建新钱包",
     "import_exist_wallet": "导入钱包",

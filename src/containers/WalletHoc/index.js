@@ -14,8 +14,6 @@ import { FormItem, FormItemLabel } from 'components/ui/Form';
 import Input from 'components/ui/Input';
 import Button from 'components/ui/Button';
 
-import { notify } from 'containers/App/actions';
-
 import reducer from './reducer';
 import saga from './saga';
 import {
@@ -61,11 +59,6 @@ export function getComponentHOC(Component) {
       this.onPasswordChange = this.onPasswordChange.bind(this);
       this.decryptWallet = this.decryptWallet.bind(this);
       this.handleKeyPress = this.handleKeyPress.bind(this);
-    }
-
-    componentDidMount() {
-      const { formatMessage } = this.props.intl;
-      this.props.notify('info', formatMessage({ id: 'welcome_testnet' }), 18);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -131,7 +124,6 @@ export function getComponentHOC(Component) {
   HOC.propTypes = {
     currentWallet: PropTypes.object.isRequired,
     currentWalletWithInfo: PropTypes.object.isRequired,
-    notify: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
     loading: PropTypes.object,
@@ -142,7 +134,6 @@ export function getComponentHOC(Component) {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    notify: (...args) => dispatch(notify(...args)),
     hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
     decryptWallet: (...args) => dispatch(decryptWallet(...args)),
   };

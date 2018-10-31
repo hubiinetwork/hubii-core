@@ -12,8 +12,9 @@ import {
 
 import { delay } from 'redux-saga';
 import nahmii from 'nahmii-sdk';
+import BigNumber from 'bignumber.js';
 
-import { requestWalletAPI } from 'utils/request';
+import request, { requestWalletAPI } from 'utils/request';
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { ADD_NEW_WALLET } from 'containers/WalletHoc/constants';
@@ -23,7 +24,7 @@ import {
 } from 'containers/WalletHoc/selectors';
 
 import {
-  LOAD_WALLET_BALANCES,
+  LOAD_WALLET_BALANCES, LOAD_SUPPORTED_TOKENS_SUCCESS,
 } from './constants';
 
 import {
@@ -37,6 +38,7 @@ import {
   loadTransactionsSuccess,
   loadTransactionsError,
 } from './actions';
+import { makeSelectSupportedAssets } from './selectors';
 
 
 export function* loadWalletBalances({ address, noPoll }, _network) {
@@ -44,7 +46,12 @@ export function* loadWalletBalances({ address, noPoll }, _network) {
   const requestPath = `ethereum/wallets/${address}/balances`;
   while (true) { // eslint-disable-line no-constant-condition
     try {
+      // temporarily fetch ETH balance from node until the backend is fixed
+      const ethBal = yield network.provider.getBalance(address);
       const returnData = yield call(requestWalletAPI, requestPath, network);
+      const ethBalIndex = returnData.findIndex((bal) => bal.currency === 'ETH');
+      returnData[ethBalIndex].balance = ethBal;
+
       yield put(loadWalletBalancesSuccess(address, returnData));
     } catch (err) {
       yield put(loadWalletBalancesError(address, err));
@@ -66,12 +73,69 @@ export function* loadSupportedTokens(network) {
   }
 }
 
+// temp function to add ETH price, and other broken prices to the load prices response
+function* patchPrices(returnData) {
+  let supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+
+  // wait for supported assets to load
+  if (supportedAssets.loading) {
+    yield take(LOAD_SUPPORTED_TOKENS_SUCCESS);
+    supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+  }
+
+  // get the symbols that need refetching
+  let pathSyms = 'ETH';
+  const symbols = ['ETH'];
+  returnData.forEach((price) => {
+    if (!price.eth) {
+      const symbol = supportedAssets.assets.find((asset) => asset.currency === price.currency).symbol;
+      symbols.push(symbol);
+      pathSyms = `${pathSyms},${symbol}`;
+    }
+  });
+
+  // get the pricing data
+  const endpoint = 'https://min-api.cryptocompare.com/';
+  const prices = { ETH: {}, USD: {}, BTC: {} };
+  const [ethPrices, usdPrices, btcPrices] = yield all(
+    Object.keys(prices).map((sym) => {
+      const path = `data/price?fsym=${sym}&tsyms=${pathSyms}`;
+      return request(path, {}, endpoint);
+    })
+  );
+  prices.ETH = ethPrices;
+  prices.USD = usdPrices;
+  prices.BTC = btcPrices;
+
+  // massage the data
+  Object.keys(prices).forEach((primarySym) => {
+    Object.keys(prices[primarySym]).forEach((secondarySym) => {
+      const price = new BigNumber(1).dividedBy(prices[primarySym][secondarySym]).toString();
+      prices[primarySym][secondarySym] = price;
+    });
+  });
+
+  // patch the new pricing data onto the hubii data
+  const patchedData = [...returnData, { currency: 'ETH', eth: prices.ETH.ETH, btc: prices.BTC.ETH, usd: prices.USD.ETH }];
+  symbols.forEach((symbol) => {
+    if (symbol === 'ETH') return;
+    const currency = supportedAssets.assets.find((a) => a.symbol === symbol).currency;
+    const entry = patchedData.find((item) => item.currency === currency);
+    entry.eth = prices.ETH[symbol] || '0';
+    entry.usd = prices.USD[symbol] || '0';
+    entry.btc = prices.BTC[symbol] || '0';
+  });
+
+  return patchedData;
+}
+
 export function* loadPrices(network) {
   const requestPath = 'ethereum/prices';
   while (true) { // eslint-disable-line no-constant-condition
     try {
       const returnData = yield call(requestWalletAPI, requestPath, network);
-      yield put(loadPricesSuccess(returnData));
+      const patchedData = yield patchPrices(returnData);
+      yield put(loadPricesSuccess(patchedData));
     } catch (err) {
       yield put(loadPricesError(err));
     } finally {

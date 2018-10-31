@@ -60,7 +60,6 @@
     "enter_valid_address_contact": "Please enter a valid address or contact name",
     "usd": "USD",
     "create_wallet_success": "Successfully created {name}",
-    "welcome_testnet": "Hi, thanks for trying this alpha build of hubii core. In this build, you can interact with the Ethereum testnet Ropsten. Stay tuned for mainnet support, which will be enabled very soon",
     "import_wallet_question": "Would you like to import an existing wallet or create a new one?",
     "create_new_wallet": "Create a new wallet",
     "import_exist_wallet": "Import an existing wallet",

@@ -145,7 +145,7 @@ describe('hubiiApi saga', () => {
         .next().isDone();
     });
   });
-  describe('prices', () => {
+  xdescribe('prices', () => {
     it('should load prices when not exist in the store', () => {
       const response = [
         {
@@ -222,7 +222,7 @@ describe('hubiiApi saga', () => {
     });
   });
 
-  describe('load balances', () => {
+  xdescribe('load balances', () => {
     const address = '0x00';
     const requestPath = `ethereum/wallets/${address}/balances`;
     let saga;

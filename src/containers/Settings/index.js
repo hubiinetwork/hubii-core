@@ -43,7 +43,6 @@ export class Settings extends React.PureComponent {
               value={currentNetwork.provider.name}
               style={{ width: '15rem' }}
               onChange={onChangeNetwork}
-              disabled
             >
               {
                 Object.entries(supportedNetworks.toJS()).map(([key]) => {

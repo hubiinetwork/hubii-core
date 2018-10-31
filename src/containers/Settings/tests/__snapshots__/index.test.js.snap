@@ -89,7 +89,6 @@ ShallowWrapper {
                               setting_network
                     </style__StyledSectionHeading>
                     <Select.style
-                              disabled={true}
                               onChange={[Function]}
                               style={
                                         Object {
@@ -169,7 +168,6 @@ ShallowWrapper {
                             setting_network
               </style__StyledSectionHeading>
               <Select.style
-                            disabled={true}
                             onChange={[Function]}
                             style={
                                           Object {
@@ -224,7 +222,6 @@ ShallowWrapper {
                   setting_network
 </style__StyledSectionHeading>,
                 <Select.style
-                  disabled={true}
                   onChange={[Function]}
                   style={
                                     Object {
@@ -276,7 +273,6 @@ ShallowWrapper {
                       Ropsten [TESTNET]
 </Option>,
                   ],
-                  "disabled": true,
                   "onChange": [Function],
                   "style": Object {
                     "width": "15rem",
@@ -416,7 +412,6 @@ ShallowWrapper {
                                     setting_network
                         </style__StyledSectionHeading>
                         <Select.style
-                                    disabled={true}
                                     onChange={[Function]}
                                     style={
                                                 Object {
@@ -496,7 +491,6 @@ ShallowWrapper {
                                 setting_network
                 </style__StyledSectionHeading>
                 <Select.style
-                                disabled={true}
                                 onChange={[Function]}
                                 style={
                                                 Object {
@@ -551,7 +545,6 @@ ShallowWrapper {
                     setting_network
 </style__StyledSectionHeading>,
                   <Select.style
-                    disabled={true}
                     onChange={[Function]}
                     style={
                                         Object {
@@ -603,7 +596,6 @@ ShallowWrapper {
                         Ropsten [TESTNET]
 </Option>,
                     ],
-                    "disabled": true,
                     "onChange": [Function],
                     "style": Object {
                       "width": "15rem",
