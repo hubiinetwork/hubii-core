@@ -44,7 +44,12 @@ export function* loadWalletBalances({ address, noPoll }, _network) {
   const requestPath = `ethereum/wallets/${address}/balances`;
   while (true) { // eslint-disable-line no-constant-condition
     try {
+      // temporarily fetch ETH balance from node until the backend is fixed
+      const ethBal = yield network.provider.getBalance(address);
       const returnData = yield call(requestWalletAPI, requestPath, network);
+      const ethBalIndex = returnData.findIndex((bal) => bal.currency === 'ETH');
+      returnData[ethBalIndex].balance = ethBal;
+
       yield put(loadWalletBalancesSuccess(address, returnData));
     } catch (err) {
       yield put(loadWalletBalancesError(address, err));

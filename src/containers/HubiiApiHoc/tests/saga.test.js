@@ -222,7 +222,7 @@ describe('hubiiApi saga', () => {
     });
   });
 
-  describe('load balances', () => {
+  xdescribe('load balances', () => {
     const address = '0x00';
     const requestPath = `ethereum/wallets/${address}/balances`;
     let saga;
