@@ -1,4 +1,6 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 import { getAbsolutePath } from 'utils/electron';
 
 import Heading from 'components/ui/Heading';
@@ -11,18 +13,26 @@ import {
   Logo,
 } from './index.style';
 
-export const Dex = () => (
-  <Wrapper>
-    <TopHeader>
-      <Heading>Exchange</Heading>
-    </TopHeader>
-    <Container>
-      <Logo src={getAbsolutePath('public/images/hubii-core-logo-wtext.svg')} />
-      <Title>
-        DEX coming soon
-      </Title>
-    </Container>
-  </Wrapper>
-    );
+export const Dex = (props) => {
+  const { formatMessage } = props.intl;
 
-export default Dex;
+  return (
+    <Wrapper>
+      <TopHeader>
+        <Heading>{formatMessage({ id: 'exchange' })}</Heading>
+      </TopHeader>
+      <Container>
+        <Logo src={getAbsolutePath('public/images/hubii-core-logo-wtext.svg')} />
+        <Title>
+          {formatMessage({ id: 'dex_coming_soon' })}
+        </Title>
+      </Container>
+    </Wrapper>
+  );
+};
+
+Dex.propTypes = {
+  intl: PropTypes.object.isRequired,
+};
+
+export default injectIntl(Dex);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { intl } from 'jest/__mocks__/react-intl';
 
 import { Nahmii } from '../index';
 
@@ -9,6 +10,7 @@ describe('<Nahmii />', () => {
     props = {
       history: { location: { pathname: 'some-path' } },
       match: { url: 'some-url' },
+      intl,
       dispatch: () => {},
     };
   });
