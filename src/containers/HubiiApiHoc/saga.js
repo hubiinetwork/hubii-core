@@ -13,8 +13,10 @@ import {
 import { delay } from 'redux-saga';
 import nahmii from 'nahmii-sdk';
 import BigNumber from 'bignumber.js';
+import { Contract } from 'ethers';
 
 import request, { requestWalletAPI } from 'utils/request';
+import erc20Abi from 'utils/abi/erc20Standard';
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { ADD_NEW_WALLET } from 'containers/WalletHoc/constants';
@@ -41,23 +43,43 @@ import {
 import { makeSelectSupportedAssets } from './selectors';
 
 
-export function* loadWalletBalances({ address, noPoll }, _network) {
+export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
   const network = _network || (yield select(makeSelectCurrentNetwork()));
-  const requestPath = `ethereum/wallets/${address}/balances`;
+  let supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+  if (supportedAssets.loading) {
+    yield take(LOAD_SUPPORTED_TOKENS_SUCCESS);
+    supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+  }
+  // const requestPath = `ethereum/wallets/${address}/balances`;
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      // temporarily fetch ETH balance from node until the backend is fixed
-      const ethBal = yield network.provider.getBalance(address);
-      const returnData = yield call(requestWalletAPI, requestPath, network);
-      const ethBalIndex = returnData.findIndex((bal) => bal.currency === 'ETH');
-      returnData[ethBalIndex].balance = ethBal;
+      // const returnData = yield call(requestWalletAPI, requestPath, network);
 
-      yield put(loadWalletBalancesSuccess(address, returnData));
+      /**
+       * temporarily fetching balances from node until the backend is fixed
+       */
+      const ethBal = yield network.provider.getBalance(address);
+      if (onlyEth) {
+        yield put(loadWalletBalancesSuccess(address, [{ currency: 'ETH', address, decimals: 18, balance: ethBal }]));
+        return;
+      }
+      // get all contract addresses. remove last entry because it's ETH
+      const tokenContractAddresses = supportedAssets.assets.map((a) => a.currency).slice(0, -1);
+      const tokenBals = yield all(
+        tokenContractAddresses.map((addr) => new Contract(addr, erc20Abi, network.provider).balanceOf(address))
+      );
+
+      const formattedBalances = tokenBals.reduce((acc, bal, i) => {
+        if (!bal.gt('0')) return acc;
+        const { currency } = supportedAssets.assets[i];
+        return [...acc, { address, currency, balance: bal }];
+      }, []);
+      yield put(loadWalletBalancesSuccess(address, [{ currency: 'ETH', address, decimals: 18, balance: ethBal }, ...formattedBalances]));
     } catch (err) {
       yield put(loadWalletBalancesError(address, err));
     } finally {
-      const FIVE_SEC_IN_MS = 1000 * 5;
-      yield delay(FIVE_SEC_IN_MS);
+      const ONE_MIN_SEC_IN_MS = 1000 * 60;
+      yield delay(ONE_MIN_SEC_IN_MS);
     }
     if (noPoll) break;
   }

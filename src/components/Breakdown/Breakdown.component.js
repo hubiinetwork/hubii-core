@@ -31,7 +31,7 @@ const Breakdown = ({ data = [], value, intl }) => {
           <Heading large>{formatFiat(value, 'USD')}</Heading>
         </div>
       )}
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '30rem' }}>
         <VictoryPie
           labelComponent={
             <VictoryTooltip
@@ -46,7 +46,7 @@ const Breakdown = ({ data = [], value, intl }) => {
           containerComponent={
             <VictoryContainer
               responsive
-              style={{ marginTop: '-2.5rem', width: '65%', paddingBottom: '1rem' }}
+              style={{ marginTop: '-2.5rem', paddingBottom: '1rem' }}
             />
           }
         />

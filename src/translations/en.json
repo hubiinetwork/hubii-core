@@ -173,5 +173,7 @@
     "airdriip_registration_problem": "Sorry, something went wrong during registration: {message}",
     "airdriip_address_is_already_registered": "Address already registered, no further action is required",
     "airdriip_testnet_warning": "hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'.",
-    "warning": "Warning"
+    "warning": "Warning",
+    "why_balance_not_updated": "Why isn't my balance up to date?",
+    "my_balances_notes": "In this alpha build of hubii core, balances may take a few minutes to update. The more wallets you have imported, the slower balance updates will be. Until we improve this, we recommend having less than 4 wallets imported at any one time. If you want to double check a balance, we recommend using Etherscan."
 }
