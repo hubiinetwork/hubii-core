@@ -20,11 +20,12 @@ import {
   LOAD_IDENTITY_SERVICE_TOKEN_SUCCESS,
 } from './constants';
 
-export function loadWalletBalances(address, noPoll) {
+export function loadWalletBalances(address, noPoll, ethOnly) {
   return {
     type: LOAD_WALLET_BALANCES,
     address,
     noPoll,
+    ethOnly,
   };
 }
 

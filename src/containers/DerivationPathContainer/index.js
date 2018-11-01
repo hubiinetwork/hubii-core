@@ -73,8 +73,8 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
     const curAddresses = this.getDeviceInfo(this.props).get('addresses');
     const addresses = curAddresses.valueSeq().toArray();
     addresses.forEach((address) => {
-      if (!balances.get(address)) {
-        this.props.loadWalletBalances(address, true);
+      if (!balances.get(address) && !balances.getIn([address, 'loading'])) {
+        this.props.loadWalletBalances(address, true, true);
       }
     });
   }
