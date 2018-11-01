@@ -129,7 +129,7 @@ class TransferDescription extends React.PureComponent {
           </Balance>
         </Row>
         <Row>
-          <StyledCol span={12}>{formatMessage({ id: 'balance_after' })}</StyledCol>
+          <StyledCol span={12}>{formatMessage({ id: 'total_value_after' })}</StyledCol>
         </Row>
         <Row>
           <Balance large>
