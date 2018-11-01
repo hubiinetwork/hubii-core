@@ -3,8 +3,6 @@
  * WalletHoc actions
  *
  */
-import { utils } from 'ethers';
-import abiDecoder from 'abi-decoder';
 
 import {
   CREATE_WALLET_FROM_MNEMONIC,
@@ -169,28 +167,33 @@ export function transferERC20(payload) {
   };
 }
 
-export function transferSuccess(transaction, token) {
-  const formatedTransaction = {
-    timestamp: new Date().getTime(),
-    token,
-    from: transaction.from,
-    to: transaction.to,
-    hash: transaction.hash,
-    value: parseFloat(utils.formatEther(transaction.value)),
-    input: transaction.data,
-    original: transaction,
-  };
-  if (token !== 'ETH') {
-    const inputData = abiDecoder.decodeMethod(transaction.data);
-    const toAddress = inputData.params.find((param) => param.name === '_to');
-    const tokens = inputData.params.find((param) => param.name === '_tokens');
-    const wei = utils.bigNumberify(tokens.value);
-    formatedTransaction.to = toAddress.value;
-    formatedTransaction.value = parseFloat(utils.formatEther(wei));
-  }
+export function transferSuccess(transaction) {
+  /**
+   * Transaction seems to sometimes (1/20~) come back as null from the LNS.
+   * Cannot rely on the tx not being null until this is resolved
+   */
+
+  // const formatedTransaction = {
+  //   timestamp: new Date().getTime(),
+  //   token,
+  //   from: transaction.from,
+  //   to: transaction.to,
+  //   hash: transaction.hash,
+  //   value: parseFloat(utils.formatEther(transaction.value)),
+  //   input: transaction.data,
+  //   original: transaction,
+  // };
+  // if (token !== 'ETH') {
+  //   const inputData = abiDecoder.decodeMethod(transaction.data);
+  //   const toAddress = inputData.params.find((param) => param.name === '_to');
+  //   const tokens = inputData.params.find((param) => param.name === '_tokens');
+  //   const wei = utils.bigNumberify(tokens.value);
+  //   formatedTransaction.to = toAddress.value;
+  //   formatedTransaction.value = parseFloat(utils.formatEther(wei));
+  // }
   return {
     type: TRANSFER_SUCCESS,
-    transaction: formatedTransaction,
+    transaction: transaction || { to: '0x00' },
   };
 }
 
