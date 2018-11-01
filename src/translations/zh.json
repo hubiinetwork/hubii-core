@@ -45,6 +45,8 @@
     "send": "发送",
     "fee": "费用",
     "DEX": "去中心交易所",
+    "dex_coming_soon": "即将推出～去中心交易所",
+    "exchange": "交易所",
     "confirmations": "确认数",
     "select_asset": "选择汇款资产",
     "select_recipient": "选择接受联系人",

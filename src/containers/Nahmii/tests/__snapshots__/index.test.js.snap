@@ -13,6 +13,11 @@ ShallowWrapper {
             },
           }
     }
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
     match={
         Object {
             "url": "some-url",
@@ -34,7 +39,7 @@ ShallowWrapper {
       "children": Array [
         <TopHeader>
           <Heading>
-                    My nahmii
+                    my_nahmii
           </Heading>
 </TopHeader>,
         <Tabs
@@ -49,7 +54,7 @@ ShallowWrapper {
                                         <Icon
                                                   type="solution"
                                         />
-                                        Airdriip registration
+                                        airdriip_registration
                               </span>
                     }
           >
@@ -69,7 +74,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <Heading>
-            My nahmii
+            my_nahmii
 </Heading>,
         },
         "ref": null,
@@ -78,10 +83,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "My nahmii",
+            "children": "my_nahmii",
           },
           "ref": null,
-          "rendered": "My nahmii",
+          "rendered": "my_nahmii",
           "type": [Function],
         },
         "type": [Function],
@@ -100,7 +105,7 @@ ShallowWrapper {
                                     <Icon
                                                 type="solution"
                                     />
-                                    Airdriip registration
+                                    airdriip_registration
                         </span>
             }
 >
@@ -126,7 +131,7 @@ ShallowWrapper {
               <Icon
                             type="solution"
               />
-              Airdriip registration
+              airdriip_registration
 </span>,
           },
           "ref": null,
@@ -158,7 +163,7 @@ ShallowWrapper {
         "children": Array [
           <TopHeader>
             <Heading>
-                        My nahmii
+                        my_nahmii
             </Heading>
 </TopHeader>,
           <Tabs
@@ -173,7 +178,7 @@ ShallowWrapper {
                                                 <Icon
                                                             type="solution"
                                                 />
-                                                Airdriip registration
+                                                airdriip_registration
                                     </span>
                         }
             >
@@ -193,7 +198,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <Heading>
-              My nahmii
+              my_nahmii
 </Heading>,
           },
           "ref": null,
@@ -202,10 +207,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "My nahmii",
+              "children": "my_nahmii",
             },
             "ref": null,
-            "rendered": "My nahmii",
+            "rendered": "my_nahmii",
             "type": [Function],
           },
           "type": [Function],
@@ -224,7 +229,7 @@ ShallowWrapper {
                                           <Icon
                                                         type="solution"
                                           />
-                                          Airdriip registration
+                                          airdriip_registration
                             </span>
               }
 >
@@ -250,7 +255,7 @@ ShallowWrapper {
                 <Icon
                                 type="solution"
                 />
-                Airdriip registration
+                airdriip_registration
 </span>,
             },
             "ref": null,

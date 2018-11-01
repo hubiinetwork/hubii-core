@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Icon } from 'antd';
+import { injectIntl } from 'react-intl';
 
 import TopHeader from 'components/ui/TopHeader';
 import Heading from 'components/ui/Heading';
@@ -24,10 +25,12 @@ import { OuterWrapper } from './style';
 export class Nahmii extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { match, history, dispatch } = this.props;
+    const { formatMessage } = this.props.intl;
+
     return (
       <OuterWrapper>
         <TopHeader>
-          <Heading>My nahmii</Heading>
+          <Heading>{formatMessage({ id: 'my_nahmii' })}</Heading>
         </TopHeader>
         <Tabs
           activeKey={history.location.pathname}
@@ -38,7 +41,7 @@ export class Nahmii extends React.Component { // eslint-disable-line react/prefe
             tab={
               <span>
                 <Icon type="solution" />
-                Airdriip registration
+                {formatMessage({ id: 'airdriip_registration' })}
               </span>
             }
             key={`${match.url}/airdriip-registration`}
@@ -58,6 +61,7 @@ Nahmii.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -70,4 +74,5 @@ const withConnect = connect(null, mapDispatchToProps);
 
 export default compose(
   withConnect,
+  injectIntl,
 )(Nahmii);
