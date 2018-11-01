@@ -108,8 +108,7 @@ function walletHocReducer(state = initialState, action) {
     case TRANSFER_SUCCESS:
       return state
         .setIn(['currentWallet', 'transfering'], false)
-        .setIn(['currentWallet', 'transferError'], null)
-        .setIn(['currentWallet', 'lastTransaction'], fromJS(action.transaction));
+        .setIn(['currentWallet', 'transferError'], null);
     case TRANSFER_ERROR:
       return state
         .setIn(['currentWallet', 'transfering'], false)
