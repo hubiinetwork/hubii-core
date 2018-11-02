@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col, Alert } from 'antd';
+import { Row, Col } from 'antd';
 import { injectIntl } from 'react-intl';
 
 import { getBreakdown } from 'utils/wallet';
@@ -113,15 +113,6 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
             <Row type="flex" align="top" gutter={16}>
               {walletCards}
             </Row>
-            <Alert
-              message={formatMessage({ id: 'why_balance_not_updated' })}
-              description={
-                <span>{formatMessage({ id: 'my_balances_notes' })}</span>
-              }
-              type="info"
-              showIcon
-              style={{ margin: '2rem 0' }}
-            />
           </Col>
           <Col sm={24} md={12} lg={8}>
             {

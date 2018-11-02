@@ -12,11 +12,11 @@ import {
 
 import { delay } from 'redux-saga';
 import nahmii from 'nahmii-sdk';
+import ethers from 'ethers';
 import BigNumber from 'bignumber.js';
-import { Contract } from 'ethers';
 
 import request, { requestWalletAPI } from 'utils/request';
-import erc20Abi from 'utils/abi/erc20Standard';
+import rpcRequest from 'utils/rpcRequest';
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { ADD_NEW_WALLET } from 'containers/WalletHoc/constants';
@@ -24,6 +24,7 @@ import { ADD_NEW_WALLET } from 'containers/WalletHoc/constants';
 import {
   makeSelectWallets,
 } from 'containers/WalletHoc/selectors';
+
 
 import {
   LOAD_WALLET_BALANCES, LOAD_SUPPORTED_TOKENS_SUCCESS,
@@ -43,6 +44,8 @@ import {
 import { makeSelectSupportedAssets } from './selectors';
 
 
+// https://stackoverflow.com/questions/48228662/get-token-balance-with-ethereum-rpc
+const BALANCE_OF_FUNCTION_ID = ('0x70a08231');
 export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
   const network = _network || (yield select(makeSelectCurrentNetwork()));
   let supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
@@ -58,17 +61,43 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
       /**
        * temporarily fetching balances from node until the backend is fixed
        */
+      // get ETH balance
       const ethBal = yield network.provider.getBalance(address);
       if (onlyEth) {
         yield put(loadWalletBalancesSuccess(address, [{ currency: 'ETH', address, decimals: 18, balance: ethBal }]));
         return;
       }
-      // get all contract addresses. remove last entry because it's ETH
-      const tokenContractAddresses = supportedAssets.assets.map((a) => a.currency).slice(0, -1);
-      const tokenBals = yield all(
-        tokenContractAddresses.map((addr) => new Contract(addr, erc20Abi, network.provider).balanceOf(address))
-      );
 
+      // get token balances, batching all the requests in an array and sending them all at once
+      // https://stackoverflow.com/questions/48228662/get-token-balance-with-ethereum-rpc
+      const tokenContractAddresses = supportedAssets.assets.map((a) => a.currency).slice(0, -1);
+
+      // the first provider in network.provider.providers in an Infura node, which supports RPC calls
+      const jsonRpcProvider = network.provider.providers[0];
+
+      // pad the 20 byte address to 32 bytes
+      const paddedAddr = ethers.utils.hexlify(ethers.utils.padZeros(address, 32));
+
+      // concat the balanceOf('address') function identifier to the padded address. this shows our intention to call the
+      // balanceOf method with address as the parameter
+      const dataArr = ethers.utils.concat([BALANCE_OF_FUNCTION_ID, paddedAddr]);
+      const data = ethers.utils.hexlify(dataArr);
+
+      // send a batch of RPC requests asking for all token balances
+      // https://www.jsonrpc.org/specification#batch
+      const requestBatch = tokenContractAddresses.map((contractAddr) => {
+        const params = [{ from: address, to: contractAddr, data }, 'latest'];
+        return {
+          method: 'eth_call',
+          params,
+          id: 42,
+          jsonrpc: '2.0',
+        };
+      });
+      const response = yield rpcRequest(jsonRpcProvider.url, JSON.stringify(requestBatch));
+
+      // process and return the response
+      const tokenBals = response.map((item) => new BigNumber(item.result));
       const formattedBalances = tokenBals.reduce((acc, bal, i) => {
         if (!bal.gt('0')) return acc;
         const { currency } = supportedAssets.assets[i];
@@ -78,8 +107,8 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
     } catch (err) {
       yield put(loadWalletBalancesError(address, err));
     } finally {
-      const ONE_MIN_SEC_IN_MS = 1000 * 60;
-      yield delay(ONE_MIN_SEC_IN_MS);
+      const TEN_SEC_IN_MS = 1000 * 10;
+      yield delay(TEN_SEC_IN_MS);
     }
     if (noPoll) break;
   }
