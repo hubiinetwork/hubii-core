@@ -107,8 +107,8 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
     } catch (err) {
       yield put(loadWalletBalancesError(address, err));
     } finally {
-      const TEN_SEC_IN_MS = 1000 * 10;
-      yield delay(TEN_SEC_IN_MS);
+      const TWENTY_SEC_IN_MS = 1000 * 20;
+      yield delay(TWENTY_SEC_IN_MS);
     }
     if (noPoll) break;
   }
