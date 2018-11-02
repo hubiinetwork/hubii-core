@@ -18,6 +18,7 @@ import {
   LOAD_TRANSACTIONS_SUCCESS,
   LOAD_TRANSACTIONS_ERROR,
 } from './constants';
+import { ADD_NEW_WALLET } from '../WalletHoc/constants';
 
 export const initialState = fromJS({
   transactions: {},
@@ -85,6 +86,9 @@ function hubiiApiHocReducer(state = initialState, action) {
         .setIn(['prices', 'loading'], true)
         .set('transactions', fromJS({}))
         .set('balances', fromJS({}));
+    case ADD_NEW_WALLET:
+      return state
+        .setIn(['balances', action.newWallet.address], fromJS({ loading: true, error: null, assets: [] }));
     default:
       return state;
   }

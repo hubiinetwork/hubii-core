@@ -25,6 +25,7 @@ import {
 
 
 import hubiiApiHocReducer from '../reducer';
+import { addNewWallet } from '../../WalletHoc/actions';
 
 describe('hubiiApiHocReducer', () => {
   let state;
@@ -178,6 +179,18 @@ describe('hubiiApiHocReducer', () => {
         .set('balances', fromJS({}));
 
       expect(hubiiApiHocReducer(testState, changeNetwork('some network'))).toEqual(expected);
+    });
+  });
+
+  describe('a wallet is added', () => {
+    it('should reset its balance to loading state', () => {
+      const newWalletAddr = '0x00';
+      const testState = state
+        .setIn(['balances', newWalletAddr], fromJS({ assets: ['123'] }));
+      const expected = state
+        .setIn(['balances', newWalletAddr], fromJS({ loading: true, error: null, assets: [] }));
+
+      expect(hubiiApiHocReducer(testState, addNewWallet({ address: newWalletAddr }))).toEqual(expected);
     });
   });
 });
