@@ -12,18 +12,18 @@ export const Slanted = styled.div`
     border-right: 7.14rem solid transparent;
     border-top: 7.14rem solid
       ${(props) =>
-        props.connected ? props.theme.palette.info : props.theme.palette.secondary6};
+        props.active ? props.theme.palette.info : props.theme.palette.secondary6};
   }
   transform: translateZ(0px); /* fix overflow when spinner icon */
   -webkit-transform: translateZ(0px); 
 `;
 
-export const USB = styled.img`
+export const Icon = styled.img`
   position: absolute;
-  width: 0.79rem;
-  height: 1.14rem;
+  max-width: 1.14rem;
+  max-height: 1.14rem;
   top: 0.43rem;
-  left: 0.43rem;
+  left: ${({ walletType }) => walletType === 'hardware' ? '0.43' : '0.17'}rem;
 `;
 
 export const TextWhite = styled.span`

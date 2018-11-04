@@ -5,11 +5,11 @@ import BigNumber from 'bignumber.js';
 import { injectIntl } from 'react-intl';
 
 import { isHardwareWallet, isAddressMatch } from 'utils/wallet';
+import WalletStatusIndicator from 'components/WalletStatusIndicator';
 import DeletionModal from 'components/DeletionModal';
 import ExportPrivateInfo from 'components/ExportPrivateInfo';
 import WalletDetailPopoverContent from './WalletDetailPopoverContent';
 import AssetAmountBubble from './AssetAmountBubble';
-import USBFlag from '../USBFlag';
 import { Modal } from '../ui/Modal';
 import { formatFiat } from '../../utils/numberFormats';
 
@@ -168,7 +168,10 @@ export class WalletItemCard extends React.PureComponent {
     }
     return (
       <OverflowHidden>
-        {isHardwareWallet(type) && <USBFlag connected={connected} />}
+        <WalletStatusIndicator
+          active={connected || isDecrypted}
+          walletType={isHardwareWallet(type) ? 'hardware' : 'software'}
+        />
         <IconsWrapper>
           <CardIcon>
             <Popover

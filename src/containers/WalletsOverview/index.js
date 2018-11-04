@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
 import { injectIntl } from 'react-intl';
 
-import { getBreakdown } from 'utils/wallet';
+import { getBreakdown, isConnected } from 'utils/wallet';
 
 import { deleteWallet, showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHoc/actions';
 import {
@@ -48,7 +48,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
 
   renderWalletCards() {
-    const { priceInfo } = this.props;
+    const { priceInfo, ledgerNanoSInfo, trezorInfo } = this.props;
     const { formatMessage } = this.props.intl;
 
     const wallets = this.props.walletsWithInfo.toJS();
@@ -60,12 +60,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
       );
     }
     return wallets.map((wallet) => {
-      let connected = false;
-      if
-      (
-        (wallet.type === 'lns' && this.props.ledgerNanoSInfo.get('id') === wallet.deviceId) ||
-        (wallet.type === 'trezor' && this.props.trezorInfo.get('id') === wallet.deviceId)
-      ) connected = true;
+      const connected = isConnected(wallet, ledgerNanoSInfo.toJS(), trezorInfo.toJS());
       return (
         <WalletCardsCol
           span={12}

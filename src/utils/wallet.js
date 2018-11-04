@@ -94,6 +94,18 @@ export function deriveAddresses({ publicKey, chainCode, count }) {
   return addresses;
 }
 
+/**
+ * Returns if a hardware wallet is connected
+ */
+export const isConnected = (wallet, ledgerInfo, trezorInfo) => {
+  if
+    (
+      (wallet.type === 'lns' && ledgerInfo.id === wallet.deviceId) ||
+      (wallet.type === 'trezor' && trezorInfo.id === wallet.deviceId)
+    ) return true;
+  return false;
+};
+
 export const walletReady = (walletType, ledgerInfo, trezorInfo) => {
   // check ledger
   if (walletType === 'lns' && !ledgerInfo.get('ethConnected')) {
