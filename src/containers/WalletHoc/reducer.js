@@ -26,6 +26,7 @@ import {
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
   DELETE_WALLET,
+  LOCK_WALLET,
 } from './constants';
 
 
@@ -117,6 +118,9 @@ function walletHocReducer(state = initialState, action) {
     case DELETE_WALLET:
       return state
         .deleteIn(['wallets', findWalletIndex(state, action.address)]);
+    case LOCK_WALLET:
+      return state
+        .deleteIn(['wallets', findWalletIndex(state, action.address), 'decrypted']);
     case CHANGE_NETWORK:
       return state
         .set('prices', initialState.get('prices'))

@@ -8,7 +8,12 @@ import { injectIntl } from 'react-intl';
 
 import { getBreakdown, isConnected } from 'utils/wallet';
 
-import { deleteWallet, showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHoc/actions';
+import {
+  deleteWallet,
+  showDecryptWalletModal,
+  setCurrentWallet,
+  lockWallet,
+} from 'containers/WalletHoc/actions';
 import {
   makeSelectWalletsWithInfo,
   makeSelectTotalBalances,
@@ -39,6 +44,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     super(props);
     this.renderWalletCards = this.renderWalletCards.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
+    this.unlockWallet = this.unlockWallet.bind(this);
   }
 
   handleCardClick(card) {
@@ -46,6 +52,10 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     history.push(`/wallet/${card.address}/overview`);
   }
 
+  unlockWallet(address) {
+    this.props.setCurrentWallet(address);
+    this.props.showDecryptWalletModal();
+  }
 
   renderWalletCards() {
     const { priceInfo, ledgerNanoSInfo, trezorInfo } = this.props;
@@ -86,6 +96,8 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
             handleCardClick={() => this.handleCardClick(wallet)}
             walletList={wallets}
             deleteWallet={() => this.props.deleteWallet(wallet.address)}
+            lock={() => this.props.lockWallet(wallet.address)}
+            unlock={() => this.unlockWallet(wallet.address)}
             priceInfo={priceInfo.toJS().assets}
           />
         </WalletCardsCol>
@@ -131,6 +143,7 @@ WalletsOverview.propTypes = {
   showDecryptWalletModal: PropTypes.func.isRequired,
   setCurrentWallet: PropTypes.func.isRequired,
   deleteWallet: PropTypes.func.isRequired,
+  lockWallet: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   ledgerNanoSInfo: PropTypes.object.isRequired,
   trezorInfo: PropTypes.object.isRequired,
@@ -153,6 +166,7 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     deleteWallet: (...args) => dispatch(deleteWallet(...args)),
+    lockWallet: (addr) => dispatch(lockWallet(addr)),
     showDecryptWalletModal: (...args) => dispatch(showDecryptWalletModal(...args)),
     setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
   };

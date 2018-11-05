@@ -25,6 +25,7 @@ describe('WalletsOverview', () => {
     walletsWithInfo: walletsWithInfoMock,
     showDecryptWalletModal: () => {},
     deleteWallet: () => {},
+    lockWallet: () => {},
     ledgerNanoSInfo: fromJS({ connected: false }),
     trezorInfo: fromJS({ connected: false }),
     setCurrentWallet: () => {},
