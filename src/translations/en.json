@@ -166,7 +166,7 @@
     "select_address_to_register": "Select the address you would like to register",
     "manual_registration": "Manual registration",
     "checking_registration_status": "Checking registration status",
-    "airdriip_manual_registration_instructions": "Sign the keccak-256 hash of the message \"I agree to the terms and conditions for signing up for the nahmii airdriip.\" the same way geth or web3js would, and enter the accociated address and signature below.",
+    "airdriip_manual_registration_instructions": "Sign the keccak-256 hash of the message \"I agree to the terms and conditions for signing up for the nahmii airdriip.\" the same way geth or web3js would, and enter the associated address and signature below.",
     "address_registered": "Address registered",
     "no_further_action_required": "No further action is required",
     "address_not_registered": "Address is not yet registered",
