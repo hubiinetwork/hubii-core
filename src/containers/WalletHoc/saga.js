@@ -43,6 +43,9 @@ import {
   TRANSFER_ERC20,
   CREATE_WALLET_FROM_PRIVATE_KEY,
   CREATE_WALLET_FROM_KEYSTORE,
+  DECRYPT_WALLET_SUCCESS,
+  DECRYPT_WALLET_FAILURE,
+  LOCK_WALLET,
 } from './constants';
 
 import {
@@ -108,13 +111,11 @@ export function* createWalletFromKeystore({ name, keystore }) {
 export function* decryptWallet({ address, encryptedWallet, password }) {
   let callbackAction = yield select(makeSelectCurrentDecryptionCallback());
   try {
-    yield put(notify('info', getIntl().formatMessage({ id: 'unlock_wallet_info' })));
     if (!address) throw new Error(getIntl().formatMessage({ id: 'address_undefined_error' }));
-    const res = yield Wallet.fromEncryptedWallet(encryptedWallet, password);
+    const res = yield call([Wallet, 'fromEncryptedWallet'], encryptedWallet, password);
     if (!res.privateKey) throw res;
     const decryptedWallet = res;
     yield put(decryptWalletSuccess(address, decryptedWallet));
-    yield put(notify('success', getIntl().formatMessage({ id: 'unlock_wallet_success' })));
     yield put(hideDecryptWalletModal());
     if (callbackAction) {
       callbackAction = callbackAction.toJS();
@@ -128,15 +129,10 @@ export function* decryptWallet({ address, encryptedWallet, password }) {
       yield put(callbackAction);
     }
   } catch (e) {
-    yield put(decryptWalletFailed(e));
-    yield put(notify('error', getIntl().formatMessage(
-      {
-        id: 'unlock_wallet_failed_error',
-      },
-      {
-        message: e.message === 'invalid password' ? getIntl().formatMessage({ id: 'invalid_password' }) : e.message,
-      }
-    )));
+    const intlErr = e.message === 'invalid password'
+      ? new Error(getIntl().formatMessage({ id: 'invalid_password' }))
+      : new Error(e.message);
+    yield put(decryptWalletFailed(intlErr));
   }
 }
 
@@ -320,6 +316,22 @@ export function* signPersonalMessage({ message, wallet }) {
   throw new Error('invalid wallet');
 }
 
+export function* tryDecryptHook() {
+  yield put(notify('info', getIntl().formatMessage({ id: 'unlock_wallet_info' })));
+}
+
+export function* decryptSuccessHook() {
+  yield put(notify('success', getIntl().formatMessage({ id: 'unlock_wallet_success' })));
+}
+
+export function* decryptFailedHook({ error }) {
+  yield put(notify('error', getIntl().formatMessage({ id: 'unlock_wallet_failed_error' }, { message: error.message })));
+}
+
+export function* lockHook() {
+  yield put(notify('success', getIntl().formatMessage({ id: 'wallet_locked' })));
+}
+
 // Root watcher
 export default function* walletHoc() {
   yield takeEvery(CREATE_WALLET_FROM_MNEMONIC, createWalletFromMnemonic);
@@ -330,4 +342,8 @@ export default function* walletHoc() {
   yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
   yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
   yield takeEvery(CREATE_WALLET_FROM_KEYSTORE, createWalletFromKeystore);
+  yield takeEvery(DECRYPT_WALLET_SUCCESS, decryptSuccessHook);
+  yield takeEvery(DECRYPT_WALLET_FAILURE, decryptFailedHook);
+  yield takeEvery(DECRYPT_WALLET, tryDecryptHook);
+  yield takeEvery(LOCK_WALLET, lockHook);
 }
