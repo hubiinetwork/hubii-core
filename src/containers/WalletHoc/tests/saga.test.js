@@ -887,7 +887,6 @@ describe('#signPersonalMessage', () => {
   });
 });
 
-
 describe('root Saga', () => {
   const walletHocSaga = walletHoc();
 
