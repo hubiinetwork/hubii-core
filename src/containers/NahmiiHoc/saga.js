@@ -104,14 +104,8 @@ export function* startPaymentChallenge({receipt, stageAmount}) {
 
   receipt = nahmii.Receipt.from(nahmiiProvider, receipt)
   const tx = yield call((...args) => wallet.startChallengeFromPayment(...args), receipt, stageAmount);
-  yield put(actions.loadTxRequestForPaymentChallenge(wallet.address, tx))
-  const txRes = yield call((...args) => nahmiiProvider.waitForTransaction(...args), tx.hash);
-  const txReceipt = yield call((...args) => nahmiiProvider.getTransactionReceipt(...args), txRes.hash);
-  if (txReceipt.status === 1) {
-    yield put(actions.startPaymentChallengeSuccess(wallet.address, txReceipt))
-  } else {
-    yield put(actions.startPaymentChallengeError(wallet.address, txReceipt))
-  }
+
+  yield processTx('start-challenge', nahmiiProvider, tx, wallet.address)
 }
 
 export function* settlePaymentDriip({receipt}) {
@@ -121,13 +115,36 @@ export function* settlePaymentDriip({receipt}) {
 
   receipt = nahmii.Receipt.from(nahmiiProvider, receipt)
   const tx = yield call((...args) => wallet.settleDriipAsPayment(...args), receipt);
-  yield put(actions.loadTxRequestForSettlePaymentDriip(wallet.address, tx))
-  const txRes = yield call((...args) => nahmiiProvider.waitForTransaction(...args), tx.hash);
-  const txReceipt = yield call((...args) => nahmiiProvider.getTransactionReceipt(...args), txRes.hash);
+  
+  yield processTx('settle-payment', nahmiiProvider, tx, wallet.address)
+}
+
+export function* processTx(type, provider, tx, address) {
+  const actionTargets = {
+    success: () => {},
+    error: () => {},
+    loadTxRequest: () => {},
+  }
+
+  if (type === 'settle-payment') {
+    actionTargets.success = actions.settlePaymentDriipSuccess
+    actionTargets.error = actions.settlePaymentDriipError
+    actionTargets.loadTxRequest = actions.loadTxRequestForSettlePaymentDriip
+  }
+
+  if (type === 'start-challenge') {
+    actionTargets.success = actions.startPaymentChallengeSuccess
+    actionTargets.error = actions.startPaymentChallengeError
+    actionTargets.loadTxRequest = actions.loadTxRequestForPaymentChallenge
+  }
+
+  yield put(actionTargets.loadTxRequest(address, tx))
+  const txRes = yield call((...args) => provider.waitForTransaction(...args), tx.hash);
+  const txReceipt = yield call((...args) => provider.getTransactionReceipt(...args), txRes.hash);
   if (txReceipt.status === 1) {
-    yield put(actions.settlePaymentDriipSuccess(wallet.address, txReceipt))
+    yield put(actionTargets.success(address, txReceipt))
   } else {
-    yield put(actions.settlePaymentDriipError(wallet.address, txReceipt))
+    yield put(actionTargets.error(address, txReceipt))
   }
 }
 
