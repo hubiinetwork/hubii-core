@@ -119,6 +119,16 @@ export function* settlePaymentDriip({receipt}) {
   yield processTx('settle-payment', nahmiiProvider, tx, wallet.address)
 }
 
+export function* withdraw({amount}) {
+  const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
+  const nahmiiProvider = yield getNahmiiProvider()
+  const wallet = new nahmii.Wallet(walletDetails.decrypted.privateKey, nahmiiProvider);
+
+  const tx = yield call((...args) => wallet.withdraw(...args), amount);
+  
+  yield processTx('withdraw', nahmiiProvider, tx, wallet.address)
+}
+
 export function* processTx(type, provider, tx, address) {
   const actionTargets = {
     success: () => {},
@@ -138,6 +148,12 @@ export function* processTx(type, provider, tx, address) {
     actionTargets.loadTxRequest = actions.loadTxRequestForPaymentChallenge
   }
 
+  if (type === 'withdraw') {
+    actionTargets.success = actions.withdrawSuccess
+    actionTargets.error = actions.withdrawError
+    actionTargets.loadTxRequest = actions.loadTxRequestForWithdraw
+  }
+
   yield put(actionTargets.loadTxRequest(address, tx))
   const txRes = yield call((...args) => provider.waitForTransaction(...args), tx.hash);
   const txReceipt = yield call((...args) => provider.getTransactionReceipt(...args), txRes.hash);
@@ -155,4 +171,5 @@ export function* listen() {
   yield takeEvery(actionTypes.LOAD_NAHMII_BALANCES, loadBalances);
   yield takeEvery(actionTypes.START_PAYMENT_CHALLENGE, startPaymentChallenge);
   yield takeEvery(actionTypes.SETTLE_PAYMENT_DRIIP, settlePaymentDriip);
+  yield takeEvery(actionTypes.WITHDRAW, withdraw);
 }

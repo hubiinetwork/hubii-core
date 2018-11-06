@@ -16,6 +16,9 @@ import {
   SETTLE_PAYMENT_DRIIP_SUCCESS,
   SETTLE_PAYMENT_DRIIP_ERROR,
   LOAD_SETTLE_PAYMENT_DRIIP_TX_REQUEST,
+  WITHDRAW_SUCCESS,
+  WITHDRAW_ERROR,
+  LOAD_WITHDRAW_TX_REQUEST,
 } from './constants';
 
 export const initialState = fromJS({
@@ -53,6 +56,17 @@ function nahmiiHocReducer(state = initialState, action) {
     case LOAD_SETTLE_PAYMENT_DRIIP_TX_REQUEST:
       return state
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txRequest'], action.txRequest)
+    case WITHDRAW_SUCCESS:
+      return state
+        .setIn(['wallets', action.address, 'lastWithdraw', 'status'], 'success')
+        .setIn(['wallets', action.address, 'lastWithdraw', 'txReceipt'], action.txReceipt)
+    case WITHDRAW_ERROR:
+      return state
+        .setIn(['wallets', action.address, 'lastWithdraw', 'status'], 'failed')
+        .setIn(['wallets', action.address, 'lastWithdraw', 'txReceipt'], action.txReceipt)
+    case LOAD_WITHDRAW_TX_REQUEST:
+      return state
+        .setIn(['wallets', action.address, 'lastWithdraw', 'txRequest'], action.txRequest)
     case LOAD_NAHMII_BALANCES_SUCCESS:
       return state
         .setIn(['balances', action.address, 'loading'], false)

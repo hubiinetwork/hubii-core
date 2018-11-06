@@ -14,6 +14,10 @@ import {
   SETTLE_PAYMENT_DRIIP_SUCCESS,
   SETTLE_PAYMENT_DRIIP_ERROR,
   LOAD_SETTLE_PAYMENT_DRIIP_TX_REQUEST,
+  WITHDRAW,
+  WITHDRAW_SUCCESS,
+  WITHDRAW_ERROR,
+  LOAD_WITHDRAW_TX_REQUEST,
 } from './constants';
 
 export function deposit(address, currency, amount) {
@@ -131,6 +135,37 @@ export function settlePaymentDriipError(address, txReceipt) {
 export function loadTxRequestForSettlePaymentDriip(address, txRequest) {
   return {
     type: LOAD_SETTLE_PAYMENT_DRIIP_TX_REQUEST,
+    address,
+    txRequest,
+  };
+}
+
+export function withdraw(amount) {
+  return {
+    type: WITHDRAW,
+    amount,
+  };
+}
+
+export function withdrawSuccess(address, txReceipt) {
+  return {
+    type: WITHDRAW_SUCCESS,
+    address,
+    txReceipt,
+  };
+}
+
+export function withdrawError(address, txReceipt) {
+  return {
+    type: WITHDRAW_ERROR,
+    address,
+    txReceipt,
+  };
+}
+
+export function loadTxRequestForWithdraw(address, txRequest) {
+  return {
+    type: LOAD_WITHDRAW_TX_REQUEST,
     address,
     txRequest,
   };

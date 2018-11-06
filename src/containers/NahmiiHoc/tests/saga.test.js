@@ -134,7 +134,7 @@ describe('nahmii', () => {
               callCount ++
               if (callCount === 1) {
                 expect(data.args[0].toJSON()).toEqual(receipt)
-                expect(data.args[1].toString()).toEqual(stageAmount.toString())
+                expect(data.args[1].toJSON()).toEqual(stageAmount.toJSON())
                 return txRequest
               }
               if (callCount === 2) {
@@ -158,7 +158,6 @@ describe('nahmii', () => {
 
         return expectSagaObj
           .put(actions.loadTxRequestForPaymentChallenge(wallet.address, txRequest))
-          // .put(actions.startPaymentChallengeSuccess(wallet.address, txReceipt))
           .run()
           .then((result) => {
             const state = result.storeState;
@@ -173,7 +172,7 @@ describe('nahmii', () => {
   describe('settle for a payment driip', () => {
     const tests = [
       {test: 'can settle for a payment driip', params: {txReceipt: {hash, status: 1}}},
-      {test: 'failed settle for a payment driip', params: {txReceipt: {hash, status: 0}}},
+      {test: 'failed to settle for a payment driip', params: {txReceipt: {hash, status: 0}}},
     ]
     tests.forEach(t => {
       it(t.test, () => {
@@ -228,13 +227,83 @@ describe('nahmii', () => {
 
         return expectSagaObj
           .put(actions.loadTxRequestForSettlePaymentDriip(wallet.address, txRequest))
-          // .put(actions.startPaymentChallengeSuccess(wallet.address, txReceipt))
           .run()
           .then((result) => {
             const state = result.storeState;
             expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastSettlePaymentDriip', 'status'])).toEqual(txReceipt.status === 1 ? 'success': 'failed');
             expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastSettlePaymentDriip', 'txReceipt'])).toEqual(txReceipt);
             expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastSettlePaymentDriip', 'txRequest'])).toEqual(txRequest);
+          });
+      })
+    })
+  })
+
+  describe('withdraw from staged balance', () => {
+    const amount = ethers.utils.parseUnits('1', 18)
+    const withdrawAmount = new nahmii.MonetaryAmount(amount, '0x0000000000000000000000000000000000000000', 0)
+    const tests = [
+      {test: 'can withdraw', params: {txReceipt: {hash, status: 1}}},
+      {test: 'failed to withdraw', params: {txReceipt: {hash, status: 0}}},
+    ]
+    tests.forEach(t => {
+      it(t.test, () => {
+        const {txReceipt} = t.params
+        let selectorCount = 0
+        let callCount = 0
+        
+        const expectSagaObj = expectSaga(nahmiiHoc)
+          .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
+          .provide({
+            select() {
+              selectorCount++
+              if (selectorCount === 1) {
+                return {
+                  toJS: () => {
+                    return wallet
+                  }
+                }
+              }
+              if (selectorCount === 2) {
+                return {
+                  walletApiEndpoint: () => '',
+                  identityServiceAppId: '',
+                  identityServiceSecret: '',
+                }
+              }
+            },
+            call(data) {
+              callCount ++
+              if (callCount === 1) {
+                expect(data.args[0].toJSON()).toEqual(withdrawAmount.toJSON())
+                return txRequest
+              }
+              if (callCount === 2) {
+                expect(data.args[0]).toEqual(hash)
+                return txResponse
+              }
+              if (callCount === 3) {
+                expect(data.args[0]).toEqual(hash)
+                return txReceipt
+              }
+            }
+          })
+          .dispatch(actions.withdraw(withdrawAmount))
+          
+        
+        if (txReceipt.status === 1) {
+          expectSagaObj.put(actions.withdrawSuccess(wallet.address, txReceipt))
+        } else {
+          expectSagaObj.put(actions.withdrawError(wallet.address, txReceipt))
+        }
+
+        return expectSagaObj
+          .put(actions.loadTxRequestForWithdraw(wallet.address, txRequest))
+          .run()
+          .then((result) => {
+            const state = result.storeState;
+            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastWithdraw', 'status'])).toEqual(txReceipt.status === 1 ? 'success': 'failed');
+            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastWithdraw', 'txReceipt'])).toEqual(txReceipt);
+            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastWithdraw', 'txRequest'])).toEqual(txRequest);
           });
       })
     })
