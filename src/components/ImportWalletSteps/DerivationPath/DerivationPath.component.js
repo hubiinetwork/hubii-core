@@ -87,6 +87,7 @@ class DerivationPath extends React.Component {
             columns={columns}
             dataSource={addresses}
             size="small"
+            style={{ cursor: 'pointer' }}
           />
         </FormDiv>
       </Form>
