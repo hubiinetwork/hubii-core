@@ -10,6 +10,10 @@ import {
   START_PAYMENT_CHALLENGE_SUCCESS,
   START_PAYMENT_CHALLENGE_ERROR,
   LOAD_START_PAYMENT_CHALLENGE_TX_REQUEST,
+  SETTLE_PAYMENT_DRIIP,
+  SETTLE_PAYMENT_DRIIP_SUCCESS,
+  SETTLE_PAYMENT_DRIIP_ERROR,
+  LOAD_SETTLE_PAYMENT_DRIIP_TX_REQUEST,
 } from './constants';
 
 export function deposit(address, currency, amount) {
@@ -96,6 +100,37 @@ export function startPaymentChallengeError(address, txReceipt) {
 export function loadTxRequestForPaymentChallenge(address, txRequest) {
   return {
     type: LOAD_START_PAYMENT_CHALLENGE_TX_REQUEST,
+    address,
+    txRequest,
+  };
+}
+
+export function settlePaymentDriip(receipt) {
+  return {
+    type: SETTLE_PAYMENT_DRIIP,
+    receipt,
+  };
+}
+
+export function settlePaymentDriipSuccess(address, txReceipt) {
+  return {
+    type: SETTLE_PAYMENT_DRIIP_SUCCESS,
+    address,
+    txReceipt,
+  };
+}
+
+export function settlePaymentDriipError(address, txReceipt) {
+  return {
+    type: SETTLE_PAYMENT_DRIIP_ERROR,
+    address,
+    txReceipt,
+  };
+}
+
+export function loadTxRequestForSettlePaymentDriip(address, txRequest) {
+  return {
+    type: LOAD_SETTLE_PAYMENT_DRIIP_TX_REQUEST,
     address,
     txRequest,
   };

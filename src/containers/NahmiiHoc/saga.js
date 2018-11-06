@@ -114,10 +114,28 @@ export function* startPaymentChallenge({receipt, stageAmount}) {
   }
 }
 
+export function* settlePaymentDriip({receipt}) {
+  const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
+  const nahmiiProvider = yield getNahmiiProvider()
+  const wallet = new nahmii.Wallet(walletDetails.decrypted.privateKey, nahmiiProvider);
+
+  receipt = nahmii.Receipt.from(nahmiiProvider, receipt)
+  const tx = yield call((...args) => wallet.settleDriipAsPayment(...args), receipt);
+  yield put(actions.loadTxRequestForSettlePaymentDriip(wallet.address, tx))
+  const txRes = yield call((...args) => nahmiiProvider.waitForTransaction(...args), tx.hash);
+  const txReceipt = yield call((...args) => nahmiiProvider.getTransactionReceipt(...args), txRes.hash);
+  if (txReceipt.status === 1) {
+    yield put(actions.settlePaymentDriipSuccess(wallet.address, txReceipt))
+  } else {
+    yield put(actions.settlePaymentDriipError(wallet.address, txReceipt))
+  }
+}
+
 export function* listen() {
   yield takeEvery(actionTypes.DEPOSIT, deposit);
   yield takeEvery(actionTypes.DEPOSIT_ETH, depositEth);
   yield takeEvery(actionTypes.DEPOSIT_TOKEN, depositToken);
   yield takeEvery(actionTypes.LOAD_NAHMII_BALANCES, loadBalances);
   yield takeEvery(actionTypes.START_PAYMENT_CHALLENGE, startPaymentChallenge);
+  yield takeEvery(actionTypes.SETTLE_PAYMENT_DRIIP, settlePaymentDriip);
 }

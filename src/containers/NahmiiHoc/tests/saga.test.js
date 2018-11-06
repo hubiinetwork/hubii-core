@@ -170,17 +170,82 @@ describe('nahmii', () => {
     })
   })
 
+  describe('settle for a payment driip', () => {
+    const tests = [
+      {test: 'can settle for a payment driip', params: {txReceipt: {hash, status: 1}}},
+      {test: 'failed settle for a payment driip', params: {txReceipt: {hash, status: 0}}},
+    ]
+    tests.forEach(t => {
+      it(t.test, () => {
+        const {txReceipt} = t.params
+        let selectorCount = 0
+        let callCount = 0
+        
+        const expectSagaObj = expectSaga(nahmiiHoc)
+          .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
+          .provide({
+            select() {
+              selectorCount++
+              if (selectorCount === 1) {
+                return {
+                  toJS: () => {
+                    return wallet
+                  }
+                }
+              }
+              if (selectorCount === 2) {
+                return {
+                  walletApiEndpoint: () => '',
+                  identityServiceAppId: '',
+                  identityServiceSecret: '',
+                }
+              }
+            },
+            call(data) {
+              callCount ++
+              if (callCount === 1) {
+                expect(data.args[0].toJSON()).toEqual(receipt)
+                return txRequest
+              }
+              if (callCount === 2) {
+                expect(data.args[0]).toEqual(hash)
+                return txResponse
+              }
+              if (callCount === 3) {
+                expect(data.args[0]).toEqual(hash)
+                return txReceipt
+              }
+            }
+          })
+          .dispatch(actions.settlePaymentDriip(receipt))
+          
+        
+        if (txReceipt.status === 1) {
+          expectSagaObj.put(actions.settlePaymentDriipSuccess(wallet.address, txReceipt))
+        } else {
+          expectSagaObj.put(actions.settlePaymentDriipError(wallet.address, txReceipt))
+        }
+
+        return expectSagaObj
+          .put(actions.loadTxRequestForSettlePaymentDriip(wallet.address, txRequest))
+          // .put(actions.startPaymentChallengeSuccess(wallet.address, txReceipt))
+          .run()
+          .then((result) => {
+            const state = result.storeState;
+            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastSettlePaymentDriip', 'status'])).toEqual(txReceipt.status === 1 ? 'success': 'failed');
+            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastSettlePaymentDriip', 'txReceipt'])).toEqual(txReceipt);
+            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastSettlePaymentDriip', 'txRequest'])).toEqual(txRequest);
+          });
+      })
+    })
+  })
+
   it('check if it can start new challenge period', () => {
     //poll sdk function
   })
 
   it('check if it can settle a payment driip', () => {
     //poll sdk function
-  })
-
-  it('settle for a payment driip', () => {
-    //store tx hash
-    //wait for tx receipt to return with status=1, status=0 is failure
   })
 
   it('refresh staged balance', () => {
