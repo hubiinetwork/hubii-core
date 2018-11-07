@@ -143,10 +143,10 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
       );
     }
 
-    const { pathBase, lastAddressIndex } = this.state;
+    const { pathBase } = this.state;
     const processedAddresses = [];
     let i;
-    for (i = 0; i <= lastAddressIndex; i += 1) {
+    for (i = 0; i < 100; i += 1) {
       const curDerivationPath = `${pathBase}/${i}`;
       const assetsState = balances.getIn([addresses[curDerivationPath], 'assets']);
       let balance = 'Loading...';
@@ -158,15 +158,9 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
         key: i,
         index: i,
         ethBalance: balance,
-        address: addresses[curDerivationPath] ? `${addresses[curDerivationPath].slice(0, 10)}...${addresses[curDerivationPath].slice(32, 42)}` : 'Loading...',
-      });
-    }
-    while (processedAddresses.length < 100) {
-      processedAddresses.push({
-        key: processedAddresses.length,
-        index: processedAddresses.length,
-        ethBalance: 'Loading...',
-        address: 'Loading...',
+        address: addresses[curDerivationPath]
+          ? `${addresses[curDerivationPath].slice(0, 10)}...${addresses[curDerivationPath].slice(32, 42)}`
+          : 'Loading...',
       });
     }
 
