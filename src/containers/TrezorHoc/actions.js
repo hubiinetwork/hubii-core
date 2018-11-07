@@ -38,10 +38,10 @@ export function trezorDisconnected(deviceId) {
   };
 }
 
-export function fetchTrezorAddresses(pathBase, firstIndex, lastIndex) {
+export function fetchTrezorAddresses(pathTemplate, firstIndex, lastIndex) {
   return {
     type: FETCH_TREZOR_ADDRESSES,
-    pathBase,
+    pathTemplate,
     firstIndex,
     lastIndex,
   };

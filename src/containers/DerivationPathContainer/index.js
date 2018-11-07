@@ -47,12 +47,12 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
   constructor(props) {
     super(props);
     this.state = {
-      pathBase: props.pathBase,
+      pathTemplate: props.pathTemplate,
       firstAddressIndex: 0,
       lastAddressIndex: 9,
     };
     this.fetchAddresses = this.fetchAddresses.bind(this);
-    this.onChangePathBase = this.onChangePathBase.bind(this);
+    this.onChangePathTemplate = this.onChangePathTemplate.bind(this);
     this.onChangePage = this.onChangePage.bind(this);
     this.onSelectAddress = this.onSelectAddress.bind(this);
   }
@@ -80,9 +80,9 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
     });
   }
 
-  onChangePathBase(e) {
+  onChangePathTemplate(e) {
     const newBase = e.target.value;
-    this.setState({ ...this.state, pathBase: newBase },
+    this.setState({ ...this.state, pathTemplate: newBase },
       this.fetchAddresses
     );
   }
@@ -94,7 +94,7 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
   }
 
   onSelectAddress(index) {
-    const derivationPath = `${this.state.pathBase}/${index}`;
+    const derivationPath = this.state.pathTemplate.replace('{index}', index);
     const id = this.getDeviceInfo(this.props).get('id');
     const address = this.getDeviceInfo(this.props).getIn(['addresses', derivationPath]);
     if (!address) {
@@ -116,13 +116,14 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
   }
 
   fetchAddresses() {
-    const { firstAddressIndex, lastAddressIndex, pathBase } = this.state;
+    const { firstAddressIndex, lastAddressIndex, pathTemplate } = this.state;
     const { deviceType } = this.props;
+    const hardened = !this.state.pathTemplate.endsWith('/{index}');
     if (deviceType === 'lns') {
-      this.props.fetchLedgerAddresses(pathBase, firstAddressIndex, lastAddressIndex);
+      this.props.fetchLedgerAddresses(pathTemplate, firstAddressIndex, lastAddressIndex, hardened);
     }
     if (deviceType === 'trezor') {
-      this.props.fetchTrezorAddresses(pathBase, firstAddressIndex, lastAddressIndex);
+      this.props.fetchTrezorAddresses(pathTemplate, firstAddressIndex, lastAddressIndex);
     }
   }
 
@@ -143,11 +144,11 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
       );
     }
 
-    const { pathBase } = this.state;
+    const { pathTemplate } = this.state;
     const processedAddresses = [];
     let i;
     for (i = 0; i < 100; i += 1) {
-      const curDerivationPath = `${pathBase}/${i}`;
+      const curDerivationPath = pathTemplate.replace('{index}', i);
       const assetsState = balances.getIn([addresses[curDerivationPath], 'assets']);
       let balance = 'Loading...';
       if (assetsState) {
@@ -167,9 +168,9 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
     return (
       <div>
         <DerivationPath
-          pathBase={pathBase}
+          pathTemplate={pathTemplate}
           addresses={processedAddresses}
-          onChangePathBase={this.onChangePathBase}
+          onChangePathTemplate={this.onChangePathTemplate}
           onSelectAddress={this.onSelectAddress}
           onChangePage={this.onChangePage}
         />
@@ -185,7 +186,7 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
 
 DerivationPathContainer.propTypes = {
   deviceType: PropTypes.string.isRequired,
-  pathBase: PropTypes.string.isRequired,
+  pathTemplate: PropTypes.string.isRequired,
   // eslint-disable-next-line react/no-unused-prop-types
   ledgerNanoSInfo: PropTypes.object.isRequired,
   // eslint-disable-next-line react/no-unused-prop-types

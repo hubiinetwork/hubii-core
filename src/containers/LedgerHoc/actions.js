@@ -27,12 +27,13 @@ export function initLedger() {
   };
 }
 
-export function fetchLedgerAddresses(pathBase, firstIndex, lastIndex) {
+export function fetchLedgerAddresses(pathTemplate, firstIndex, lastIndex, hardened) {
   return {
     type: FETCH_LEDGER_ADDRESSES,
-    pathBase,
+    pathTemplate,
     firstIndex,
     lastIndex,
+    hardened,
   };
 }
 

@@ -21,20 +21,24 @@ import {
 class DerivationPath extends React.Component {
   render() {
     const {
-      pathBase,
+      pathTemplate,
       addresses,
-      onChangePathBase,
+      onChangePathTemplate,
       intl,
     } = this.props;
     const { formatMessage } = intl;
-    const derivationPathBases = [
+    const derivationPathTemplates = [
       {
-        title: 'm/44\'/60\'/0\'/0',
+        title: "m/44'/60'/0'/0/{index}",
         subtitle: formatMessage({ id: 'derivation_title_1' }),
       },
       {
-        title: 'm/44\'/60\'/0\'',
+        title: "m/44'/60'/0'/{index}",
         subtitle: formatMessage({ id: 'derivation_title_2' }),
+      },
+      {
+        title: "m/44'/60'/{index}'/0/0",
+        subtitle: formatMessage({ id: 'derivation_title_3' }),
       },
     ];
 
@@ -59,11 +63,11 @@ class DerivationPath extends React.Component {
           <div>
             <StyledHeading>{formatMessage({ id: 'select_derivation_path' })}</StyledHeading>
             <RadioGroup
-              defaultValue={pathBase}
+              defaultValue={pathTemplate}
               size="small"
-              onChange={onChangePathBase}
+              onChange={onChangePathTemplate}
             >
-              {derivationPathBases.map((path) => (
+              {derivationPathTemplates.map((path) => (
                 <RadioButtonWrapper key={path.title}>
                   <RadioButton value={path.title}>
                     <Tick type="check" />
@@ -97,9 +101,9 @@ class DerivationPath extends React.Component {
 }
 
 DerivationPath.propTypes = {
-  pathBase: PropTypes.string.isRequired,
+  pathTemplate: PropTypes.string.isRequired,
   addresses: PropTypes.array.isRequired,
-  onChangePathBase: PropTypes.func.isRequired,
+  onChangePathTemplate: PropTypes.func.isRequired,
   onChangePage: PropTypes.func.isRequired,
   onSelectAddress: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,

@@ -231,7 +231,7 @@ describe('ledger saga', () => {
       chainCode: '2bb1c3f7487080d8ce50c6768607c96dc5d17ffe31e19457add5be26e6257c7d',
       publicKey: '04c8429d878d35be22549b5e8d6a2c3af3a145f91823824a9fb602e5dbc0a3cf5212b3609e13427a581736d2afbcf3601ce420968c4abab06b3535899786046603',
     };
-    const pathBase = 'm/44\'/60\'/0\'';
+    const pathTemplate = "m/44'/60'/0'/{index}";
     const expectedAddresses = [
       '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
       '0x7344328668927e8b25ee00751a072f751cbf4993',
@@ -241,7 +241,7 @@ describe('ledger saga', () => {
     ];
     const firstIndex = 0;
     const lastIndex = 4;
-    return expectSaga(fetchLedgerAddresses, { pathBase, firstIndex, lastIndex })
+    return expectSaga(fetchLedgerAddresses, { pathTemplate, firstIndex, lastIndex })
       .withReducer((state, action) => state.set('ledgerHoc', ledgerHocReducer(state.get('ledgerHoc'), action)), fromJS(storeState))
       .provide({
         call(effect) {
@@ -256,7 +256,7 @@ describe('ledger saga', () => {
         const state = result.storeState;
         expect(state.getIn(['ledgerHoc', 'addresses']).count()).toEqual((lastIndex - firstIndex) + 1);
         for (let i = 0; i < expectedAddresses.length; i += 1) {
-          expect(state.getIn(['ledgerHoc', 'addresses', `${pathBase}/${i + firstIndex}`])).toEqual(expectedAddresses[i]);
+          expect(state.getIn(['ledgerHoc', 'addresses', pathTemplate.replace('{index}', i + firstIndex)])).toEqual(expectedAddresses[i]);
         }
       });
   });
