@@ -1,9 +1,8 @@
 import { fromJS } from 'immutable';
 import ethers from 'ethers'
-import { expectSaga, testSaga } from 'redux-saga-test-plan';
+import { expectSaga } from 'redux-saga-test-plan';
 import {listen as nahmiiHoc} from '../saga'
 import nahmiiHocReducer from '../reducer'
-import * as constants from '../constants'
 import * as actions from '../actions'
 import nahmii from 'nahmii-sdk'
 
@@ -161,7 +160,7 @@ describe('nahmii', () => {
           .run()
           .then((result) => {
             const state = result.storeState;
-            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'status'])).toEqual(txReceipt.status === 1 ? 'dispute': 'failed');
+            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'txStatus'])).toEqual(txReceipt.status === 1 ? 'success': 'failed');
             expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'txReceipt'])).toEqual(txReceipt);
             expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'txRequest'])).toEqual(txRequest);
           });
@@ -230,7 +229,7 @@ describe('nahmii', () => {
           .run()
           .then((result) => {
             const state = result.storeState;
-            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastSettlePaymentDriip', 'status'])).toEqual(txReceipt.status === 1 ? 'success': 'failed');
+            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastSettlePaymentDriip', 'txStatus'])).toEqual(txReceipt.status === 1 ? 'success': 'failed');
             expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastSettlePaymentDriip', 'txReceipt'])).toEqual(txReceipt);
             expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastSettlePaymentDriip', 'txRequest'])).toEqual(txRequest);
           });
@@ -301,7 +300,7 @@ describe('nahmii', () => {
           .run()
           .then((result) => {
             const state = result.storeState;
-            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastWithdraw', 'status'])).toEqual(txReceipt.status === 1 ? 'success': 'failed');
+            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastWithdraw', 'txStatus'])).toEqual(txReceipt.status === 1 ? 'success': 'failed');
             expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastWithdraw', 'txReceipt'])).toEqual(txReceipt);
             expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastWithdraw', 'txRequest'])).toEqual(txRequest);
           });
@@ -309,8 +308,88 @@ describe('nahmii', () => {
     })
   })
 
-  it('check if it can start new challenge period', () => {
-    //poll sdk function
+  it('can load phase for current challenge payment', () => {
+    let selectorCount = 0
+    return expectSaga(nahmiiHoc)
+        .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
+        .provide({
+          select() {
+            selectorCount++
+            if (selectorCount === 1) {
+              return {
+                walletApiEndpoint: () => '',
+                identityServiceAppId: '',
+                identityServiceSecret: '',
+              }
+            }
+          },
+          call() {
+            return 'Dispute'
+          }
+        })
+        .dispatch(actions.loadCurrentPaymentChallengePhase(wallet.address))
+        .put(actions.loadCurrentPaymentChallengePhaseSuccess(wallet.address, 'Dispute'))
+        .run({ silenceTimeout: true })
+        .then((result) => {
+          const state = result.storeState;
+          expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'phase'])).toEqual('Dispute');
+        });
+  })
+
+  it('can not load phase for current challenge payment', () => {
+    let selectorCount = 0
+    return expectSaga(nahmiiHoc)
+        .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
+        .provide({
+          select() {
+            selectorCount++
+            if (selectorCount === 1) {
+              return {
+                walletApiEndpoint: () => '',
+                identityServiceAppId: '',
+                identityServiceSecret: '',
+              }
+            }
+          },
+          call() {
+            throw new Error('')
+          }
+        })
+        .dispatch(actions.loadCurrentPaymentChallengePhase(wallet.address))
+        .put(actions.loadCurrentPaymentChallengePhaseError(wallet.address))
+        .run({ silenceTimeout: true })
+        .then((result) => {
+          const state = result.storeState;
+          expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'phase'])).toEqual(null);
+        });
+  })
+
+  it('can load status for current challenge payment', () => {
+    let selectorCount = 0
+    return expectSaga(nahmiiHoc)
+        .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
+        .provide({
+          select() {
+            selectorCount++
+            if (selectorCount === 1) {
+              return {
+                walletApiEndpoint: () => '',
+                identityServiceAppId: '',
+                identityServiceSecret: '',
+              }
+            }
+          },
+          call() {
+            return 'Qualified'
+          }
+        })
+        .dispatch(actions.loadCurrentPaymentChallengeStatus(wallet.address))
+        .put(actions.loadCurrentPaymentChallengeStatusSuccess(wallet.address, 'Qualified'))
+        .run({ silenceTimeout: true })
+        .then((result) => {
+          const state = result.storeState;
+          expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'status'])).toEqual('Qualified');
+        });
   })
 
   it('check if it can settle a payment driip', () => {
@@ -321,13 +400,9 @@ describe('nahmii', () => {
     //poll sdk function
   })
 
-  it('withdraw from staged balance', () => {
-    //store tx hash
-    //wait for tx receipt to return with status=1, status=0 is failure
-  })
-
   it('unstage back into available balance', () => {
     //store tx hash
     //wait for tx receipt to return with status=1, status=0 is failure
   })
+
 })

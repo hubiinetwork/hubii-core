@@ -18,6 +18,12 @@ import {
   WITHDRAW_SUCCESS,
   WITHDRAW_ERROR,
   LOAD_WITHDRAW_TX_REQUEST,
+  LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE,
+  LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS,
+  LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR,
+  LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS,
+  LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS,
+  LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_ERROR,
 } from './constants';
 
 export function deposit(address, currency, amount) {
@@ -168,5 +174,49 @@ export function loadTxRequestForWithdraw(address, txRequest) {
     type: LOAD_WITHDRAW_TX_REQUEST,
     address,
     txRequest,
+  };
+}
+
+export function loadCurrentPaymentChallengePhase(address) {
+  return {
+    type: LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE,
+    address,
+  };
+}
+
+export function loadCurrentPaymentChallengePhaseSuccess(address, phase) {
+  return {
+    type: LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS,
+    address,
+    phase,
+  };
+}
+
+export function loadCurrentPaymentChallengePhaseError(address) {
+  return {
+    type: LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR,
+    address,
+  };
+}
+
+export function loadCurrentPaymentChallengeStatus(address) {
+  return {
+    type: LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS,
+    address,
+  };
+}
+
+export function loadCurrentPaymentChallengeStatusSuccess(address, status) {
+  return {
+    type: LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS,
+    address,
+    status,
+  };
+}
+
+export function loadCurrentPaymentChallengeStatusError(address) {
+  return {
+    type: LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_ERROR,
+    address,
   };
 }

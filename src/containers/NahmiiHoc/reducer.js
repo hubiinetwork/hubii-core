@@ -19,6 +19,10 @@ import {
   WITHDRAW_SUCCESS,
   WITHDRAW_ERROR,
   LOAD_WITHDRAW_TX_REQUEST,
+  LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS,
+  LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR,
+  LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS,
+  LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_ERROR,
 } from './constants';
 
 export const initialState = fromJS({
@@ -36,34 +40,46 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['wallets', action.address, 'depositing'], false);
     case START_PAYMENT_CHALLENGE_SUCCESS:
       return state
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'status'], 'dispute')
+        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txStatus'], 'success')
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txReceipt'], action.txReceipt)
     case START_PAYMENT_CHALLENGE_ERROR:
       return state
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'status'], 'failed')
+        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txStatus'], 'failed')
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txReceipt'], action.txReceipt)
     case LOAD_START_PAYMENT_CHALLENGE_TX_REQUEST:
       return state
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txRequest'], action.txRequest)
     case SETTLE_PAYMENT_DRIIP_SUCCESS:
       return state
-        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'status'], 'success')
+        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txStatus'], 'success')
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txReceipt'], action.txReceipt)
     case SETTLE_PAYMENT_DRIIP_ERROR:
       return state
-        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'status'], 'failed')
+        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txStatus'], 'failed')
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txReceipt'], action.txReceipt)
     case LOAD_SETTLE_PAYMENT_DRIIP_TX_REQUEST:
       return state
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txRequest'], action.txRequest)
     case WITHDRAW_SUCCESS:
       return state
-        .setIn(['wallets', action.address, 'lastWithdraw', 'status'], 'success')
+        .setIn(['wallets', action.address, 'lastWithdraw', 'txStatus'], 'success')
         .setIn(['wallets', action.address, 'lastWithdraw', 'txReceipt'], action.txReceipt)
     case WITHDRAW_ERROR:
       return state
-        .setIn(['wallets', action.address, 'lastWithdraw', 'status'], 'failed')
+        .setIn(['wallets', action.address, 'lastWithdraw', 'txStatus'], 'failed')
         .setIn(['wallets', action.address, 'lastWithdraw', 'txReceipt'], action.txReceipt)
+    case LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS:
+      return state
+        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'phase'], action.phase)
+    case LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR:
+      return state
+        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'phase'], null)
+    case LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS:
+      return state
+        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'status'], action.status)
+    case LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_ERROR:
+      return state
+        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'status'], null)
     case LOAD_WITHDRAW_TX_REQUEST:
       return state
         .setIn(['wallets', action.address, 'lastWithdraw', 'txRequest'], action.txRequest)

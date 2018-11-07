@@ -1,6 +1,7 @@
 import nahmii from 'nahmii-sdk';
 import { utils } from 'ethers';
 import { takeEvery, select, put, call } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import {getNahmiiProvider} from 'containers/HubiiApiHoc/saga'
 import { notify } from 'containers/App/actions';
 import * as actionTypes from './constants';
@@ -164,6 +165,39 @@ export function* processTx(type, provider, tx, address) {
   }
 }
 
+export function* loadCurrentPaymentChallengePhase({ address }) {
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const nahmiiProvider = yield getNahmiiProvider()
+      const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
+      const currentPhase = yield call(() => settlementChallenge.getCurrentPaymentChallengePhase(address));
+      yield put(actions.loadCurrentPaymentChallengePhaseSuccess(address, currentPhase));
+    } catch (err) {
+      yield put(actions.loadCurrentPaymentChallengePhaseError(address));
+    } finally {
+      const TWENTY_SEC_IN_MS = 1000 * 20;
+      yield delay(TWENTY_SEC_IN_MS);
+    }
+  }
+}
+
+export function* loadCurrentPaymentChallengeStatus({ address }) {
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const nahmiiProvider = yield getNahmiiProvider()
+      const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
+      const currentStatus = yield call(() => settlementChallenge.getCurrentPaymentChallengeStatus(address));
+      yield put(actions.loadCurrentPaymentChallengeStatusSuccess(address, currentStatus));
+    } catch (err) {
+      yield put(actions.loadCurrentPaymentChallengeStatusError(address));
+    } finally {
+      const TWENTY_SEC_IN_MS = 1000 * 20;
+      yield delay(TWENTY_SEC_IN_MS);
+    }
+  }
+}
+
+
 export function* listen() {
   yield takeEvery(actionTypes.DEPOSIT, deposit);
   yield takeEvery(actionTypes.DEPOSIT_ETH, depositEth);
@@ -172,4 +206,6 @@ export function* listen() {
   yield takeEvery(actionTypes.START_PAYMENT_CHALLENGE, startPaymentChallenge);
   yield takeEvery(actionTypes.SETTLE_PAYMENT_DRIIP, settlePaymentDriip);
   yield takeEvery(actionTypes.WITHDRAW, withdraw);
+  yield takeEvery(actionTypes.LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE, loadCurrentPaymentChallengePhase);
+  yield takeEvery(actionTypes.LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS, loadCurrentPaymentChallengeStatus);
 }
