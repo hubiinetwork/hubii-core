@@ -392,6 +392,34 @@ describe('nahmii', () => {
         });
   })
 
+  it('can not load status for current challenge payment', () => {
+    let selectorCount = 0
+    return expectSaga(nahmiiHoc)
+        .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
+        .provide({
+          select() {
+            selectorCount++
+            if (selectorCount === 1) {
+              return {
+                walletApiEndpoint: () => '',
+                identityServiceAppId: '',
+                identityServiceSecret: '',
+              }
+            }
+          },
+          call() {
+            throw new Error('')
+          }
+        })
+        .dispatch(actions.loadCurrentPaymentChallengeStatus(wallet.address))
+        .put(actions.loadCurrentPaymentChallengeStatusError(wallet.address))
+        .run({ silenceTimeout: true })
+        .then((result) => {
+          const state = result.storeState;
+          expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'status'])).toEqual(null);
+        });
+  })
+
   it('check if it can settle a payment driip', () => {
     //poll sdk function
   })
