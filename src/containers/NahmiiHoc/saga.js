@@ -13,6 +13,7 @@ import {
   makeSelectCurrentNetwork,
 } from 'containers/App/selectors';
 import * as actions from './actions';
+import {makeSelectReceiptsByAddress} from './selectors';
 
 const config = {
   apiRoot: 'api2.dev.hubii.net',
@@ -197,6 +198,27 @@ export function* loadCurrentPaymentChallengeStatus({ address }) {
   }
 }
 
+export function* loadSettlement({ address }) {
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const nahmiiProvider = yield getNahmiiProvider()
+      const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
+      const receipts = (yield select(makeSelectReceiptsByAddress(address))).toJS();
+      if (!receipts || receipts.length === 0) {
+        throw new Error('No receipts')
+      }
+      const lastNonce = receipts.sort((a, b) => b.nonce - a.nonce)[0].nonce
+      const currentStatus = yield call((...args) => settlementChallenge.getSettlementByNonce(...args), lastNonce);
+      yield put(actions.loadSettlementSuccess(address, currentStatus));
+    } catch (err) {
+      yield put(actions.loadSettlementError(address));
+    } finally {
+      const TWENTY_SEC_IN_MS = 1000 * 20;
+      yield delay(TWENTY_SEC_IN_MS);
+    }
+  }
+}
+
 
 export function* listen() {
   yield takeEvery(actionTypes.DEPOSIT, deposit);
@@ -208,4 +230,5 @@ export function* listen() {
   yield takeEvery(actionTypes.WITHDRAW, withdraw);
   yield takeEvery(actionTypes.LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE, loadCurrentPaymentChallengePhase);
   yield takeEvery(actionTypes.LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS, loadCurrentPaymentChallengeStatus);
+  yield takeEvery(actionTypes.LOAD_SETTLEMENT, loadSettlement);
 }

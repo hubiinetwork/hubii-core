@@ -302,89 +302,146 @@ describe('nahmii', () => {
     })
   })
 
-  it('can load phase for current challenge payment', () => {
-    return expectSaga(nahmiiHoc)
-        .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
-        .provide({
-          select() {
-            return mockNetworkConfig
-          },
-          call() {
-            return 'Dispute'
-          }
-        })
-        .dispatch(actions.loadCurrentPaymentChallengePhase(wallet.address))
-        .put(actions.loadCurrentPaymentChallengePhaseSuccess(wallet.address, 'Dispute'))
-        .run({ silenceTimeout: true })
-        .then((result) => {
-          const state = result.storeState;
-          expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'phase'])).toEqual('Dispute');
-        });
+  describe('poll challenge/settlement status', () => {
+    it('can load phase for current challenge payment', () => {
+      return expectSaga(nahmiiHoc)
+          .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
+          .provide({
+            select() {
+              return mockNetworkConfig
+            },
+            call() {
+              return 'Dispute'
+            }
+          })
+          .dispatch(actions.loadCurrentPaymentChallengePhase(wallet.address))
+          .put(actions.loadCurrentPaymentChallengePhaseSuccess(wallet.address, 'Dispute'))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const state = result.storeState;
+            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'phase'])).toEqual('Dispute');
+          });
+    })
+  
+    it('can not load phase for current challenge payment', () => {
+      return expectSaga(nahmiiHoc)
+          .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
+          .provide({
+            select() {
+              return mockNetworkConfig
+            },
+            call() {
+              throw new Error('')
+            }
+          })
+          .dispatch(actions.loadCurrentPaymentChallengePhase(wallet.address))
+          .put(actions.loadCurrentPaymentChallengePhaseError(wallet.address))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const state = result.storeState;
+            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'phase'])).toEqual(null);
+          });
+    })
+  
+    it('can load status for current challenge payment', () => {
+      return expectSaga(nahmiiHoc)
+          .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
+          .provide({
+            select() {
+              return mockNetworkConfig
+            },
+            call() {
+              return 'Qualified'
+            }
+          })
+          .dispatch(actions.loadCurrentPaymentChallengeStatus(wallet.address))
+          .put(actions.loadCurrentPaymentChallengeStatusSuccess(wallet.address, 'Qualified'))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const state = result.storeState;
+            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'status'])).toEqual('Qualified');
+          });
+    })
+  
+    it('can not load status for current challenge payment', () => {
+      return expectSaga(nahmiiHoc)
+          .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
+          .provide({
+            select() {
+              return mockNetworkConfig
+            },
+            call() {
+              throw new Error('')
+            }
+          })
+          .dispatch(actions.loadCurrentPaymentChallengeStatus(wallet.address))
+          .put(actions.loadCurrentPaymentChallengeStatusError(wallet.address))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const state = result.storeState;
+            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'status'])).toEqual(null);
+          });
+    })
+  
+    it('can load settlement by nonce', () => {
+      const settlement = {nonce: 1}
+      const receiptsList = [{nonce: 1}, {nonce: 2}]
+      const receipts = {[wallet.address]: receiptsList}
+      let selectCount = 0
+      const modifiedState = fromJS(storeState).setIn(['nahmiiHoc', 'receipts'], fromJS(receipts))
+      return expectSaga(nahmiiHoc)
+          .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), modifiedState)
+          .provide({
+            select(effect, next) {
+              selectCount++
+              if (selectCount === 1) {
+                return mockNetworkConfig
+              }
+              return next()
+            },
+            call(effect) {
+              expect(effect.args[0]).toEqual(receipts[wallet.address][receiptsList.length - 1].nonce)
+              return settlement
+            }
+          })
+          .dispatch(actions.loadSettlement(wallet.address))
+          .put(actions.loadSettlementSuccess(wallet.address, settlement))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const state = result.storeState;
+            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastSettlePaymentDriip', 'settlement'])).toEqual(settlement);
+          });
+    })
+  
+    it('can not load settlement by nonce', () => {
+      const receiptsList = [{nonce: 1}, {nonce: 2}]
+      const receipts = {[wallet.address]: receiptsList}
+      let selectCount = 0
+      const modifiedState = fromJS(storeState).setIn(['nahmiiHoc', 'receipts'], fromJS(receipts))
+      return expectSaga(nahmiiHoc)
+          .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), modifiedState)
+          .provide({
+            select(effect, next) {
+              selectCount++
+              if (selectCount === 1) {
+                return mockNetworkConfig
+              }
+              return next()
+            },
+            call() {
+              throw new Error('')
+            }
+          })
+          .dispatch(actions.loadSettlement(wallet.address))
+          .put(actions.loadSettlementError(wallet.address))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const state = result.storeState;
+            expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastSettlePaymentDriip', 'settlement'])).toEqual(null);
+          });
+    })
   })
 
-  it('can not load phase for current challenge payment', () => {
-    return expectSaga(nahmiiHoc)
-        .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
-        .provide({
-          select() {
-            return mockNetworkConfig
-          },
-          call() {
-            throw new Error('')
-          }
-        })
-        .dispatch(actions.loadCurrentPaymentChallengePhase(wallet.address))
-        .put(actions.loadCurrentPaymentChallengePhaseError(wallet.address))
-        .run({ silenceTimeout: true })
-        .then((result) => {
-          const state = result.storeState;
-          expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'phase'])).toEqual(null);
-        });
-  })
-
-  it('can load status for current challenge payment', () => {
-    return expectSaga(nahmiiHoc)
-        .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
-        .provide({
-          select() {
-            return mockNetworkConfig
-          },
-          call() {
-            return 'Qualified'
-          }
-        })
-        .dispatch(actions.loadCurrentPaymentChallengeStatus(wallet.address))
-        .put(actions.loadCurrentPaymentChallengeStatusSuccess(wallet.address, 'Qualified'))
-        .run({ silenceTimeout: true })
-        .then((result) => {
-          const state = result.storeState;
-          expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'status'])).toEqual('Qualified');
-        });
-  })
-
-  it('can not load status for current challenge payment', () => {
-    return expectSaga(nahmiiHoc)
-        .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
-        .provide({
-          select() {
-            return mockNetworkConfig
-          },
-          call() {
-            throw new Error('')
-          }
-        })
-        .dispatch(actions.loadCurrentPaymentChallengeStatus(wallet.address))
-        .put(actions.loadCurrentPaymentChallengeStatusError(wallet.address))
-        .run({ silenceTimeout: true })
-        .then((result) => {
-          const state = result.storeState;
-          expect(state.getIn(['nahmiiHoc', 'wallets', wallet.address, 'lastPaymentChallenge', 'status'])).toEqual(null);
-        });
-  })
-
-  it('check if it can settle a payment driip', () => {
-    //poll sdk function
-  })
 
   it('refresh staged balance', () => {
     //poll sdk function

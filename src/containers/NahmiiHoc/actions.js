@@ -24,6 +24,9 @@ import {
   LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS,
   LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS,
   LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_ERROR,
+  LOAD_SETTLEMENT,
+  LOAD_SETTLEMENT_SUCCESS,
+  LOAD_SETTLEMENT_ERROR,
 } from './constants';
 
 export function deposit(address, currency, amount) {
@@ -217,6 +220,28 @@ export function loadCurrentPaymentChallengeStatusSuccess(address, status) {
 export function loadCurrentPaymentChallengeStatusError(address) {
   return {
     type: LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_ERROR,
+    address,
+  };
+}
+
+export function loadSettlement(address) {
+  return {
+    type: LOAD_SETTLEMENT,
+    address,
+  };
+}
+
+export function loadSettlementSuccess(address, settlement) {
+  return {
+    type: LOAD_SETTLEMENT_SUCCESS,
+    address,
+    settlement,
+  };
+}
+
+export function loadSettlementError(address) {
+  return {
+    type: LOAD_SETTLEMENT_ERROR,
     address,
   };
 }
