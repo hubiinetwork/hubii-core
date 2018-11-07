@@ -442,6 +442,32 @@ describe('nahmii', () => {
     })
   })
 
+  it('can load receipts by wallet', () => {
+    const receiptsList = [{nonce: 1}, {nonce: 2}]
+    let selectCount = 0
+    return expectSaga(nahmiiHoc)
+        .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
+        .provide({
+          select(effect, next) {
+            selectCount++
+            if (selectCount === 1) {
+              return mockNetworkConfig
+            }
+            return next()
+          },
+          call() {
+            return receiptsList
+          }
+        })
+        .dispatch(actions.loadReceipts(wallet.address))
+        .put(actions.loadReceiptsSuccess(wallet.address, receiptsList))
+        .run({ silenceTimeout: true })
+        .then((result) => {
+          const state = result.storeState;
+          expect(state.getIn(['nahmiiHoc', 'receipts', wallet.address])).toEqual(receiptsList);
+        });
+  })
+
 
   it('refresh staged balance', () => {
     //poll sdk function

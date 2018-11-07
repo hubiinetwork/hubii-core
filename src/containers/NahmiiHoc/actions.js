@@ -27,6 +27,9 @@ import {
   LOAD_SETTLEMENT,
   LOAD_SETTLEMENT_SUCCESS,
   LOAD_SETTLEMENT_ERROR,
+  LOAD_RECEIPTS,
+  LOAD_RECEIPTS_SUCCESS,
+  LOAD_RECEIPTS_ERROR,
 } from './constants';
 
 export function deposit(address, currency, amount) {
@@ -242,6 +245,28 @@ export function loadSettlementSuccess(address, settlement) {
 export function loadSettlementError(address) {
   return {
     type: LOAD_SETTLEMENT_ERROR,
+    address,
+  };
+}
+
+export function loadReceipts(address) {
+  return {
+    type: LOAD_RECEIPTS,
+    address,
+  };
+}
+
+export function loadReceiptsSuccess(address, receipts) {
+  return {
+    type: LOAD_RECEIPTS_SUCCESS,
+    address,
+    receipts,
+  };
+}
+
+export function loadReceiptsError(address) {
+  return {
+    type: LOAD_RECEIPTS_ERROR,
     address,
   };
 }

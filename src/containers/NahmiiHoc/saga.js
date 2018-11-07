@@ -208,10 +208,26 @@ export function* loadSettlement({ address }) {
         throw new Error('No receipts')
       }
       const lastNonce = receipts.sort((a, b) => b.nonce - a.nonce)[0].nonce
-      const currentStatus = yield call((...args) => settlementChallenge.getSettlementByNonce(...args), lastNonce);
-      yield put(actions.loadSettlementSuccess(address, currentStatus));
+      const settlement = yield call((...args) => settlementChallenge.getSettlementByNonce(...args), lastNonce);
+      yield put(actions.loadSettlementSuccess(address, settlement));
     } catch (err) {
       yield put(actions.loadSettlementError(address));
+    } finally {
+      const TWENTY_SEC_IN_MS = 1000 * 20;
+      yield delay(TWENTY_SEC_IN_MS);
+    }
+  }
+}
+
+export function* loadReceipts({ address }) {
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const nahmiiProvider = yield getNahmiiProvider()
+      const limit = 1000
+      const receipts = yield call((...args) => nahmiiProvider.getWalletReceipts(...args), address, null, limit);
+      yield put(actions.loadReceiptsSuccess(address, receipts));
+    } catch (err) {
+      yield put(actions.loadReceiptsError(address));
     } finally {
       const TWENTY_SEC_IN_MS = 1000 * 20;
       yield delay(TWENTY_SEC_IN_MS);
@@ -231,4 +247,5 @@ export function* listen() {
   yield takeEvery(actionTypes.LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE, loadCurrentPaymentChallengePhase);
   yield takeEvery(actionTypes.LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS, loadCurrentPaymentChallengeStatus);
   yield takeEvery(actionTypes.LOAD_SETTLEMENT, loadSettlement);
+  yield takeEvery(actionTypes.LOAD_RECEIPTS, loadReceipts);
 }
