@@ -158,7 +158,7 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
         key: i,
         index: i,
         ethBalance: balance,
-        address: addresses[curDerivationPath] ? `${addresses[curDerivationPath].slice(0, 18)}...` : 'Loading...',
+        address: addresses[curDerivationPath] ? `${addresses[curDerivationPath].slice(0, 10)}...${addresses[curDerivationPath].slice(32, 42)}` : 'Loading...',
       });
     }
     while (processedAddresses.length < 100) {
