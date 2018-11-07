@@ -239,8 +239,9 @@ describe('ledger saga', () => {
       '0xddce775e7df165a8cd5b65556712d9074afe2ec6',
       '0x6074a2987aa8a0963d8e0aa618d530fb366f9971',
     ];
-    const count = 5;
-    return expectSaga(fetchLedgerAddresses, { pathBase, count })
+    const firstIndex = 0;
+    const lastIndex = 4;
+    return expectSaga(fetchLedgerAddresses, { pathBase, firstIndex, lastIndex })
       .withReducer((state, action) => state.set('ledgerHoc', ledgerHocReducer(state.get('ledgerHoc'), action)), fromJS(storeState))
       .provide({
         call(effect) {
@@ -253,9 +254,9 @@ describe('ledger saga', () => {
       .run({ silenceTimeout: true })
       .then((result) => {
         const state = result.storeState;
-        expect(state.getIn(['ledgerHoc', 'addresses']).count()).toEqual(count);
+        expect(state.getIn(['ledgerHoc', 'addresses']).count()).toEqual((lastIndex - firstIndex) + 1);
         for (let i = 0; i < expectedAddresses.length; i += 1) {
-          expect(state.getIn(['ledgerHoc', 'addresses', `${pathBase}/${i}`])).toEqual(expectedAddresses[i]);
+          expect(state.getIn(['ledgerHoc', 'addresses', `${pathBase}/${i + firstIndex}`])).toEqual(expectedAddresses[i]);
         }
       });
   });

@@ -79,13 +79,13 @@ export const isValidPrivateKey = (str) => {
   return false;
 };
 
-export function deriveAddresses({ publicKey, chainCode, count }) {
+export function deriveAddresses({ publicKey, chainCode, firstIndex, lastIndex }) {
   const pathBase = 'm';
   const hdk = new HDKey();
   hdk.publicKey = new Buffer(publicKey, 'hex');
   hdk.chainCode = new Buffer(chainCode, 'hex');
   const addresses = [];
-  for (let i = 0; i < count; i += 1) {
+  for (let i = firstIndex; i <= lastIndex; i += 1) {
     const index = i;
     const dkey = hdk.derive(`${pathBase}/${index}`);
     const address = publicToAddress(dkey.publicKey, true).toString('hex');

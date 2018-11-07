@@ -88,6 +88,7 @@ class DerivationPath extends React.Component {
             dataSource={addresses}
             size="small"
             style={{ cursor: 'pointer' }}
+            pagination={{ onChange: this.props.onChangePage }}
           />
         </FormDiv>
       </Form>
@@ -96,24 +97,10 @@ class DerivationPath extends React.Component {
 }
 
 DerivationPath.propTypes = {
-  /**
-   * derivation path base
-   */
   pathBase: PropTypes.string.isRequired,
-
-  /**
-   * addresses avaliable for selection
-   */
   addresses: PropTypes.array.isRequired,
-
-  /**
-   * callback when user changes the path base
-   */
   onChangePathBase: PropTypes.func.isRequired,
-
-  /**
-   * callback when user changes the path base
-   */
+  onChangePage: PropTypes.func.isRequired,
   onSelectAddress: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
 };

@@ -132,7 +132,7 @@ export function* initLedger() {
 }
 
 // Dispatches the address for every derivation path in the input
-export function* fetchLedgerAddresses({ pathBase, count }) {
+export function* fetchLedgerAddresses({ pathBase, firstIndex, lastIndex }) {
   try {
     const ledgerStatus = yield select(makeSelectLedgerHoc());
     if (!ledgerStatus.get('descriptor')) {
@@ -141,11 +141,11 @@ export function* fetchLedgerAddresses({ pathBase, count }) {
     const descriptor = ledgerStatus.get('descriptor');
     const method = 'getpublickey';
     const publicAddressKeyPair = yield call(tryCreateEthTransportActivity, method, { descriptor, path: pathBase });
-    const addresses = deriveAddresses({ publicKey: publicAddressKeyPair.publicKey, chainCode: publicAddressKeyPair.chainCode, count });
+    const addresses = deriveAddresses({ publicKey: publicAddressKeyPair.publicKey, chainCode: publicAddressKeyPair.chainCode, firstIndex, lastIndex });
 
     for (let i = 0; i < addresses.length; i += 1) {
       const address = prependHexToAddress(addresses[i]);
-      yield put(fetchedLedgerAddress(`${pathBase}/${i}`, address));
+      yield put(fetchedLedgerAddress(`${pathBase}/${firstIndex + i}`, address));
     }
   } catch (error) {
     yield put(ledgerError(error));

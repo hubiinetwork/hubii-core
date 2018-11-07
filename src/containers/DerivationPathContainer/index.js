@@ -49,10 +49,11 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
     this.state = {
       pathBase: props.pathBase,
       firstAddressIndex: 0,
-      lastAddressIndex: 19,
+      lastAddressIndex: 9,
     };
     this.fetchAddresses = this.fetchAddresses.bind(this);
     this.onChangePathBase = this.onChangePathBase.bind(this);
+    this.onChangePage = this.onChangePage.bind(this);
     this.onSelectAddress = this.onSelectAddress.bind(this);
   }
 
@@ -86,6 +87,12 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
     );
   }
 
+  onChangePage(pageNum, addressesPerPage) {
+    const firstAddressIndex = (pageNum - 1) * addressesPerPage;
+    const lastAddressIndex = (pageNum * addressesPerPage) - 1;
+    this.setState({ firstAddressIndex, lastAddressIndex }, this.fetchAddresses);
+  }
+
   onSelectAddress(index) {
     const derivationPath = `${this.state.pathBase}/${index}`;
     const id = this.getDeviceInfo(this.props).get('id');
@@ -109,13 +116,13 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
   }
 
   fetchAddresses() {
-    const { lastAddressIndex, pathBase } = this.state;
+    const { firstAddressIndex, lastAddressIndex, pathBase } = this.state;
     const { deviceType } = this.props;
     if (deviceType === 'lns') {
-      this.props.fetchLedgerAddresses(pathBase, lastAddressIndex + 1);
+      this.props.fetchLedgerAddresses(pathBase, firstAddressIndex, lastAddressIndex);
     }
     if (deviceType === 'trezor') {
-      this.props.fetchTrezorAddresses(pathBase, lastAddressIndex + 1);
+      this.props.fetchTrezorAddresses(pathBase, firstAddressIndex, lastAddressIndex);
     }
   }
 
@@ -154,6 +161,14 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
         address: addresses[curDerivationPath] ? `${addresses[curDerivationPath].slice(0, 18)}...` : 'Loading...',
       });
     }
+    while (processedAddresses.length < 100) {
+      processedAddresses.push({
+        key: processedAddresses.length,
+        index: processedAddresses.length,
+        ethBalance: 'Loading...',
+        address: 'Loading...',
+      });
+    }
 
     return (
       <div>
@@ -162,6 +177,7 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
           addresses={processedAddresses}
           onChangePathBase={this.onChangePathBase}
           onSelectAddress={this.onSelectAddress}
+          onChangePage={this.onChangePage}
         />
         <ButtonDiv>
           <StyledButton type={'primary'} onClick={this.props.handleBack}>

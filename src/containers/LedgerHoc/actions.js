@@ -27,11 +27,12 @@ export function initLedger() {
   };
 }
 
-export function fetchLedgerAddresses(pathBase, count) {
+export function fetchLedgerAddresses(pathBase, firstIndex, lastIndex) {
   return {
     type: FETCH_LEDGER_ADDRESSES,
     pathBase,
-    count,
+    firstIndex,
+    lastIndex,
   };
 }
 
