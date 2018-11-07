@@ -173,6 +173,7 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
           onChangePathTemplate={this.onChangePathTemplate}
           onSelectAddress={this.onSelectAddress}
           onChangePage={this.onChangePage}
+          deviceType={deviceType}
         />
         <ButtonDiv>
           <StyledButton type={'primary'} onClick={this.props.handleBack}>

@@ -17,7 +17,7 @@ describe('trezorHocSaga', () => {
         public_key: '04c8429d878d35be22549b5e8d6a2c3af3a145f91823824a9fb602e5dbc0a3cf5212b3609e13427a581736d2afbcf3601ce420968c4abab06b3535899786046603',
       },
     };
-    const pathBase = 'm/44\'/60\'/0\'';
+    const pathTemplate = "m/44'/60'/0/{index}'";
     const expectedAddresses = [
       '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
       '0x7344328668927e8b25ee00751a072f751cbf4993',
@@ -27,7 +27,7 @@ describe('trezorHocSaga', () => {
     ];
     const firstIndex = 0;
     const lastIndex = 4;
-    return expectSaga(getAddresses, { pathBase, firstIndex, lastIndex })
+    return expectSaga(getAddresses, { pathTemplate, firstIndex, lastIndex })
       .withReducer((state, action) => state.set('trezorHoc', trezorHocReducer(state.get('trezorHoc'), action)), fromJS(storeState))
       .provide({
         call() {
@@ -39,7 +39,7 @@ describe('trezorHocSaga', () => {
         const state = result.storeState;
         expect(state.getIn(['trezorHoc', 'addresses']).count()).toEqual((lastIndex - firstIndex) + 1);
         for (let i = 0; i < expectedAddresses.length; i += 1) {
-          expect(state.getIn(['trezorHoc', 'addresses', `${pathBase}/${i + firstIndex}`])).toEqual(expectedAddresses[i]);
+          expect(state.getIn(['trezorHoc', 'addresses', pathTemplate.replace('{index}', i + firstIndex)])).toEqual(expectedAddresses[i]);
         }
       });
   });

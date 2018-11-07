@@ -25,6 +25,7 @@ class DerivationPath extends React.Component {
       addresses,
       onChangePathTemplate,
       intl,
+      deviceType,
     } = this.props;
     const { formatMessage } = intl;
     const derivationPathTemplates = [
@@ -68,8 +69,15 @@ class DerivationPath extends React.Component {
               onChange={onChangePathTemplate}
             >
               {derivationPathTemplates.map((path) => (
-                <RadioButtonWrapper key={path.title}>
-                  <RadioButton value={path.title}>
+                <RadioButtonWrapper
+                  key={path.title}
+                  style={path.title === "m/44'/60'/{index}'/0/0" && deviceType !== 'lns' ? { display: 'none' } : {}}
+                >
+                  <RadioButton
+                    // only enable hardened Ledger Live path for Ledger devices
+                    // disabled={path.title === "m/44'/60'/{index}'/0/0" && deviceType !== 'lns'}
+                    value={path.title}
+                  >
                     <Tick type="check" />
                   </RadioButton>
                   <PathWrapper>
@@ -101,6 +109,7 @@ class DerivationPath extends React.Component {
 }
 
 DerivationPath.propTypes = {
+  deviceType: PropTypes.string.isRequired,
   pathTemplate: PropTypes.string.isRequired,
   addresses: PropTypes.array.isRequired,
   onChangePathTemplate: PropTypes.func.isRequired,
