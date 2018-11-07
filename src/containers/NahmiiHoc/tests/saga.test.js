@@ -96,6 +96,12 @@ describe('nahmii', () => {
     }
   })
 
+  const mockNetworkConfig = {
+    walletApiEndpoint: () => '',
+    identityServiceAppId: '',
+    identityServiceSecret: '',
+  }
+
   describe('start settlement challenge', () => {
     const amount = ethers.utils.parseUnits('1', 18)
     const stageAmount = new nahmii.MonetaryAmount(amount, '0x0000000000000000000000000000000000000000', 0)
@@ -122,11 +128,7 @@ describe('nahmii', () => {
                 }
               }
               if (selectorCount === 2) {
-                return {
-                  walletApiEndpoint: () => '',
-                  identityServiceAppId: '',
-                  identityServiceSecret: '',
-                }
+                return mockNetworkConfig
               }
             },
             call(data) {
@@ -192,11 +194,7 @@ describe('nahmii', () => {
                 }
               }
               if (selectorCount === 2) {
-                return {
-                  walletApiEndpoint: () => '',
-                  identityServiceAppId: '',
-                  identityServiceSecret: '',
-                }
+                return mockNetworkConfig
               }
             },
             call(data) {
@@ -263,11 +261,7 @@ describe('nahmii', () => {
                 }
               }
               if (selectorCount === 2) {
-                return {
-                  walletApiEndpoint: () => '',
-                  identityServiceAppId: '',
-                  identityServiceSecret: '',
-                }
+                return mockNetworkConfig
               }
             },
             call(data) {
@@ -309,19 +303,11 @@ describe('nahmii', () => {
   })
 
   it('can load phase for current challenge payment', () => {
-    let selectorCount = 0
     return expectSaga(nahmiiHoc)
         .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
         .provide({
           select() {
-            selectorCount++
-            if (selectorCount === 1) {
-              return {
-                walletApiEndpoint: () => '',
-                identityServiceAppId: '',
-                identityServiceSecret: '',
-              }
-            }
+            return mockNetworkConfig
           },
           call() {
             return 'Dispute'
@@ -337,19 +323,11 @@ describe('nahmii', () => {
   })
 
   it('can not load phase for current challenge payment', () => {
-    let selectorCount = 0
     return expectSaga(nahmiiHoc)
         .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
         .provide({
           select() {
-            selectorCount++
-            if (selectorCount === 1) {
-              return {
-                walletApiEndpoint: () => '',
-                identityServiceAppId: '',
-                identityServiceSecret: '',
-              }
-            }
+            return mockNetworkConfig
           },
           call() {
             throw new Error('')
@@ -365,19 +343,11 @@ describe('nahmii', () => {
   })
 
   it('can load status for current challenge payment', () => {
-    let selectorCount = 0
     return expectSaga(nahmiiHoc)
         .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
         .provide({
           select() {
-            selectorCount++
-            if (selectorCount === 1) {
-              return {
-                walletApiEndpoint: () => '',
-                identityServiceAppId: '',
-                identityServiceSecret: '',
-              }
-            }
+            return mockNetworkConfig
           },
           call() {
             return 'Qualified'
@@ -393,19 +363,11 @@ describe('nahmii', () => {
   })
 
   it('can not load status for current challenge payment', () => {
-    let selectorCount = 0
     return expectSaga(nahmiiHoc)
         .withReducer((state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action)), fromJS(storeState))
         .provide({
           select() {
-            selectorCount++
-            if (selectorCount === 1) {
-              return {
-                walletApiEndpoint: () => '',
-                identityServiceAppId: '',
-                identityServiceSecret: '',
-              }
-            }
+            return mockNetworkConfig
           },
           call() {
             throw new Error('')
