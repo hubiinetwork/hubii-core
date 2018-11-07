@@ -73,11 +73,7 @@ class DerivationPath extends React.Component {
                   key={path.title}
                   style={path.title === "m/44'/60'/{index}'/0/0" && deviceType !== 'lns' ? { display: 'none' } : {}}
                 >
-                  <RadioButton
-                    // only enable hardened Ledger Live path for Ledger devices
-                    // disabled={path.title === "m/44'/60'/{index}'/0/0" && deviceType !== 'lns'}
-                    value={path.title}
-                  >
+                  <RadioButton value={path.title}>
                     <Tick type="check" />
                   </RadioButton>
                   <PathWrapper>
