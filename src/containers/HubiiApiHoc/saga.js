@@ -277,7 +277,7 @@ export function* getNahmiiProvider() {
     network.identityServiceAppId,
     network.identityServiceSecret
   );
-  return nahmiiProvider
+  return nahmiiProvider;
 }
 
 // Root watcher
