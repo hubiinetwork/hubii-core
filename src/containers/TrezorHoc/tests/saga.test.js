@@ -19,11 +19,11 @@ describe('trezorHocSaga', () => {
     };
     const pathTemplate = "m/44'/60'/0/{index}'";
     const expectedAddresses = [
-      '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
-      '0x7344328668927e8b25ee00751a072f751cbf4993',
-      '0x003ab49013842d8542ef9f2119a1822b1e9002fe',
-      '0xddce775e7df165a8cd5b65556712d9074afe2ec6',
-      '0x6074a2987aa8a0963d8e0aa618d530fb366f9971',
+      '0xe1dddBd012f6a9f3F0A346A2b418aEcd03b058e7',
+      '0x7344328668927e8B25Ee00751a072f751CBf4993',
+      '0x003Ab49013842d8542EF9f2119A1822b1e9002fE',
+      '0xDdCe775e7df165A8cd5b65556712d9074AFE2eC6',
+      '0x6074A2987AA8A0963d8E0aa618D530fB366F9971',
     ];
     const firstIndex = 0;
     const lastIndex = 4;
