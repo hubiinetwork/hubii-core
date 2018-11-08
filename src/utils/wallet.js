@@ -1,5 +1,5 @@
 import { List, Map } from 'immutable';
-import { publicToAddress } from 'ethereumjs-util';
+import { publicToAddress, toChecksumAddress } from 'ethereumjs-util';
 import HDKey from 'hdkey';
 import BigNumber from 'bignumber.js';
 import fatalError from './fatalError';
@@ -89,7 +89,8 @@ export function deriveAddresses({ publicKey, chainCode, firstIndex, lastIndex })
     const index = i;
     const dkey = hdk.derive(`${pathBase}/${index}`);
     const address = publicToAddress(dkey.publicKey, true).toString('hex');
-    addresses.push(address);
+    const checksumAddress = toChecksumAddress(address);
+    addresses.push(checksumAddress);
   }
   return addresses;
 }
