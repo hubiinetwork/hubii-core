@@ -11,6 +11,8 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { utils } from 'ethers';
 
+import { isValidPath } from 'utils/wallet';
+
 import HWPromptContainer from 'containers/HWPromptContainer';
 
 import {
@@ -50,10 +52,13 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
       pathTemplate: props.pathTemplate,
       firstAddressIndex: 0,
       lastAddressIndex: 9,
+      customPathInput: "m/44'/60'/0'",
+      pathValid: true,
     };
     this.fetchAddresses = this.fetchAddresses.bind(this);
     this.onChangePathTemplate = this.onChangePathTemplate.bind(this);
     this.onChangePage = this.onChangePage.bind(this);
+    this.onChangeCustomPath = this.onChangeCustomPath.bind(this);
     this.onSelectAddress = this.onSelectAddress.bind(this);
   }
 
@@ -65,9 +70,10 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
 
   componentDidUpdate(prevProps) {
     const { balances } = this.props;
+    const { pathValid } = this.state;
     const prevStatus = this.getDeviceInfo(prevProps).get('status');
     const curStatus = this.getDeviceInfo(this.props).get('status');
-    if (prevStatus === 'disconnected' && curStatus === 'connected') {
+    if (prevStatus === 'disconnected' && curStatus === 'connected' && pathValid) {
       this.fetchAddresses();
     }
 
@@ -80,9 +86,8 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
     });
   }
 
-  onChangePathTemplate(e) {
-    const newBase = e.target.value;
-    this.setState({ ...this.state, pathTemplate: newBase },
+  onChangePathTemplate(path) {
+    this.setState({ pathTemplate: path, pathValid: true },
       this.fetchAddresses
     );
   }
@@ -90,7 +95,17 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
   onChangePage(pageNum, addressesPerPage) {
     const firstAddressIndex = (pageNum - 1) * addressesPerPage;
     const lastAddressIndex = (pageNum * addressesPerPage) - 1;
-    this.setState({ firstAddressIndex, lastAddressIndex }, this.fetchAddresses);
+    this.setState({ firstAddressIndex, lastAddressIndex },
+      this.fetchAddresses);
+  }
+
+  onChangeCustomPath(customPathInput) {
+    if (isValidPath(customPathInput)) {
+      this.setState({ customPathInput });
+      this.onChangePathTemplate(`${customPathInput}/{index}`);
+    } else {
+      this.setState({ customPathInput, pathValid: false });
+    }
   }
 
   onSelectAddress(index) {
@@ -144,7 +159,7 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
       );
     }
 
-    const { pathTemplate } = this.state;
+    const { pathTemplate, pathValid } = this.state;
     const processedAddresses = [];
     let i;
     for (i = 0; i < 100; i += 1) {
@@ -173,7 +188,10 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
           onChangePathTemplate={this.onChangePathTemplate}
           onSelectAddress={this.onSelectAddress}
           onChangePage={this.onChangePage}
+          onChangeCustomPath={this.onChangeCustomPath}
+          customPathInput={this.state.customPathInput}
           deviceType={deviceType}
+          pathValid={pathValid}
         />
         <ButtonDiv>
           <StyledButton type={'primary'} onClick={this.props.handleBack}>

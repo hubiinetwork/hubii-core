@@ -130,7 +130,7 @@
     "trezor_connect_unlock": "Please connect and unlock your Trezor device to continue",
     "select_derivation_path": "Select a derivation path",
     "select_import_address": "Select the address you would like to import",
-    "derivation_title_1": "hubii core software wallet, Jaxx, Metamask, Exodus, TREZOR (ETH), Digital Bitbox",
+    "derivation_title_1": "Trezor (trezor.io), hubii core software wallet, Jaxx, Metamask, Exodus, Digital Bitbox",
     "derivation_title_2": "Ledger (MyCrypto, MyEtherWallet, Ledger Chrome App)",
     "derivation_title_3": "Ledger (Ledger Live)",
     "index": "Index",
@@ -179,5 +179,6 @@
     "warning": "Warning",
     "lock": "Lock Wallet",
     "unlock": "Unlock Wallet",
-    "wallet_locked": "Wallet locked"
+    "wallet_locked": "Wallet locked",
+    "invalid_dpath": "Please enter a valid derivation path"
 }
