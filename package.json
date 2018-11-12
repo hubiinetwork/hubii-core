@@ -7,7 +7,7 @@
     "url": "https://hubii.com"
   },
   "license": "GPL-3.0-or-later",
-  "description": "Send, recieve and trade Ethereum assets trustlessly without compromise. Powered by striim",
+  "description": "Open source Ethereum wallet manager, by hubii",
   "main": "build/electron/electron.js",
   "homepage": "https://github.com/hubiinetwork/hubii-core",
   "build": {
