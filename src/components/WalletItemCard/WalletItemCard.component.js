@@ -216,7 +216,7 @@ export class WalletItemCard extends React.PureComponent {
           }}
         >
           <LeftSideWrapper>
-            <WalletName>{name}</WalletName>
+            <WalletName large>{name}</WalletName>
             {!balancesLoading && !balancesError &&
               <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
             }
@@ -237,8 +237,8 @@ export class WalletItemCard extends React.PureComponent {
               </AssetsWrapper>
             </div>
             <div style={{ marginTop: '1.25rem' }}>
-              <NahmiiText large />
-              <Text large>
+              <NahmiiText />
+              <Text>
                 &nbsp;balance
               </Text>
               <AssetsWrapper>
