@@ -10,7 +10,7 @@ import { createStructuredSelector } from 'reselect';
 import { getBreakdown } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
 
-import Breakdown from 'components/Breakdown/Breakdown.component';
+import Breakdown from 'components/BreakdownPie';
 import SectionHeading from 'components/ui/SectionHeading';
 
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';

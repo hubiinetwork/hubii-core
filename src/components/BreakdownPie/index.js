@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 import { VictoryPie, VictoryContainer, VictoryTooltip } from 'victory';
+
+import BreakdownList from 'components/BreakdownList';
 import SectionHeading from 'components/ui/SectionHeading';
 import Heading from 'components/ui/Heading';
 import { formatFiat } from 'utils/numberFormats';
-import { Title, Wrapper } from './Breakdown.style';
-import Tokens from './Tokens';
+import { Title, Wrapper } from './style';
 
 /**
  * This component shows user's total coins' convertion in dollar and a relative chart.
@@ -55,7 +56,7 @@ const Breakdown = ({ data = [], value, intl }) => {
         value !== '0' &&
           <div>
             <SectionHeading>{formatMessage({ id: 'assets' })}</SectionHeading>
-            <Tokens data={data} />
+            <BreakdownList data={data} />
           </div>
       }
     </Wrapper>
@@ -64,7 +65,7 @@ const Breakdown = ({ data = [], value, intl }) => {
 
 Breakdown.propTypes = {
   /**
-   * Total  value in dollars.
+   * Total portfolio value in USD.
    */
   value: PropTypes.string.isRequired,
   /**
@@ -73,6 +74,7 @@ Breakdown.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       percentage: PropTypes.number.isRequired,
+      amount: PropTypes.string.isRequired,
       color: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
     })

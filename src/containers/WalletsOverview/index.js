@@ -34,7 +34,7 @@ import {
 
 import SectionHeading from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
-import Breakdown from 'components/Breakdown';
+import Breakdown from 'components/BreakdownPie';
 
 import PlaceholderText from 'components/ui/PlaceholderText';
 import { WalletCardsCol, Wrapper } from './style';

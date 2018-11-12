@@ -2,18 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getAbsolutePath } from 'utils/electron';
 import { formatFiat } from 'utils/numberFormats';
+
+import Text from 'components/ui/Text';
 import {
   Logo,
   Percentage,
   Label,
   FlexContainer,
   FlexItem,
-} from './Tokens.style';
+} from './style';
 
-/**
- * This component is used to show percentage of every coin in the wallet.
- */
-const Tokens = (props) => {
+const BreakdownList = (props) => {
   const sortedData = props.data.filter((item) => item.percentage >= 0).sort((a, b) => b.percentage - a.percentage);
   const items = sortedData.map((item) => (
     <FlexItem key={`token-${item.label}`}>
@@ -21,6 +20,8 @@ const Tokens = (props) => {
         <Logo
           src={getAbsolutePath(`public/images/assets/${item.label}.svg`)}
         />
+        <Text>{item.amount}</Text>
+        &nbsp;
         <Label>{item.label}</Label>
       </div>
       <Percentage>
@@ -31,7 +32,7 @@ const Tokens = (props) => {
   return <FlexContainer>{items}</FlexContainer>;
 };
 
-Tokens.propTypes = {
+BreakdownList.propTypes = {
   /**
    * data prop to populate tokens.
    */
@@ -43,4 +44,4 @@ Tokens.propTypes = {
   ),
 };
 
-export default Tokens;
+export default BreakdownList;
