@@ -19,6 +19,8 @@ import {
   WITHDRAW_SUCCESS,
   WITHDRAW_ERROR,
   LOAD_WITHDRAW_TX_REQUEST,
+  LOAD_CURRENT_PAYMENT_CHALLENGE_SUCCESS,
+  LOAD_CURRENT_PAYMENT_CHALLENGE_ERROR,
   LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS,
   LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR,
   LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS,
@@ -76,6 +78,12 @@ function nahmiiHocReducer(state = initialState, action) {
       return state
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'phase'], action.phase);
     case LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR:
+      return state
+        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'phase'], null);
+    case LOAD_CURRENT_PAYMENT_CHALLENGE_SUCCESS:
+      return state
+        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'challenge'], action.challenge);
+    case LOAD_CURRENT_PAYMENT_CHALLENGE_ERROR:
       return state
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'phase'], null);
     case LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS:

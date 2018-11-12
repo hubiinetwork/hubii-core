@@ -175,5 +175,10 @@
     "airdriip_registration_problem": "Sorry, something went wrong during registration: {message}",
     "airdriip_address_is_already_registered": "Address already registered, no further action is required",
     "airdriip_testnet_warning": "hubii core is currently connected to a nahmii test network. Registrations made on a test network will NOT qualify your wallet for the nahmii airdriip. To register for the real airdriip, you must connect hubii core to the mainnet by navigating to 'Settings', and changing the 'Network' option to 'Homestead [MAINNET]'.",
-    "warning": "Warning"
+    "warning": "Warning",
+    "withdraw": "Withdraw",
+    "settle_payment": "Settle Payment",
+    "settlement_period_ended": "settlement_period_ended",
+    "settlement_period_ended_notice": "settlement_period_ended_notice",
+    "confirm_settlement": "confirm_settlement"
 }

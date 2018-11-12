@@ -33,6 +33,7 @@ import withLedger from 'containers/LedgerHoc';
 import withTrezor from 'containers/TrezorHoc';
 import withHubiiApi from 'containers/HubiiApiHoc';
 import withEthOperations from 'containers/EthOperationsHoc';
+import withNahmii from 'containers/NahmiiHoc';
 
 import ReleaseNotesModal from 'containers/ReleaseNotesModal';
 import { injectIntl } from 'react-intl';
@@ -86,5 +87,6 @@ export default compose(
   withLedger,
   withTrezor,
   withEthOperations,
+  withNahmii,
   withHubiiApi,
 )(injectIntl(App));

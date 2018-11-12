@@ -18,6 +18,9 @@ import {
   WITHDRAW_SUCCESS,
   WITHDRAW_ERROR,
   LOAD_WITHDRAW_TX_REQUEST,
+  LOAD_CURRENT_PAYMENT_CHALLENGE,
+  LOAD_CURRENT_PAYMENT_CHALLENGE_SUCCESS,
+  LOAD_CURRENT_PAYMENT_CHALLENGE_ERROR,
   LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE,
   LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS,
   LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR,
@@ -180,6 +183,28 @@ export function loadTxRequestForWithdraw(address, txRequest) {
     type: LOAD_WITHDRAW_TX_REQUEST,
     address,
     txRequest,
+  };
+}
+
+export function loadCurrentPaymentChallenge(address) {
+  return {
+    type: LOAD_CURRENT_PAYMENT_CHALLENGE,
+    address,
+  };
+}
+
+export function loadCurrentPaymentChallengeSuccess(address, challenge) {
+  return {
+    type: LOAD_CURRENT_PAYMENT_CHALLENGE_SUCCESS,
+    address,
+    challenge,
+  };
+}
+
+export function loadCurrentPaymentChallengeError(address) {
+  return {
+    type: LOAD_CURRENT_PAYMENT_CHALLENGE_ERROR,
+    address,
   };
 }
 
