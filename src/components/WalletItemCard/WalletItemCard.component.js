@@ -5,13 +5,16 @@ import BigNumber from 'bignumber.js';
 import { injectIntl } from 'react-intl';
 
 import { isHardwareWallet, isAddressMatch } from 'utils/wallet';
+import { formatFiat } from 'utils/numberFormats';
 import WalletStatusIndicator from 'components/WalletStatusIndicator';
 import DeletionModal from 'components/DeletionModal';
+import { Modal } from 'components/ui/Modal';
+import NahmiiText from 'components/ui/NahmiiText';
+import Text from 'components/ui/Text';
 import ExportPrivateInfo from 'components/ExportPrivateInfo';
+
 import WalletDetailPopoverContent from './WalletDetailPopoverContent';
 import AssetAmountBubble from './AssetAmountBubble';
-import { Modal } from '../ui/Modal';
-import { formatFiat } from '../../utils/numberFormats';
 
 import {
   AssetsWrapper,
@@ -24,7 +27,7 @@ import {
   MenuItem,
   MenuDivider,
   CardIconSettings,
-  OverflowHidden,
+  Border,
   IconsWrapper,
   WalletName,
   Spinner,
@@ -181,7 +184,7 @@ export class WalletItemCard extends React.PureComponent {
         );
     }
     return (
-      <OverflowHidden>
+      <Border>
         <WalletStatusIndicator
           active={connected || isDecrypted}
           walletType={isHardwareWallet(type) ? 'hardware' : 'software'}
@@ -202,7 +205,7 @@ export class WalletItemCard extends React.PureComponent {
             <Dropdown placement="bottomLeft" overlay={this.settingsMenu(type, isDecrypted)}>
               <Icon
                 type="setting"
-                style={{ marginTop: 65, position: 'absolute', fontSize: '1.4rem' }}
+                style={{ marginTop: -35, position: 'absolute', fontSize: '1.4rem' }}
               />
             </Dropdown>
           </CardIconSettings>
@@ -218,16 +221,39 @@ export class WalletItemCard extends React.PureComponent {
               <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
             }
           </LeftSideWrapper>
-          <AssetsWrapper>
-            {
-              balancesError && <WalletName>{formatMessage({ id: 'fetch_balance_error' })}</WalletName>
-            }
-            {
-              balancesLoading &&
-                <Spinner type="loading" />
-            }
-            {!balancesLoading && !balancesError && assetBubbles}
-          </AssetsWrapper>
+          <div>
+            <div>
+              <Text>Base layer balance</Text>
+              <AssetsWrapper>
+                {
+                  balancesError
+                  && <WalletName>{formatMessage({ id: 'fetch_balance_error' })}</WalletName>
+                }
+                {
+                  balancesLoading &&
+                  <Spinner type="loading" />
+                }
+                {!balancesLoading && !balancesError && assetBubbles}
+              </AssetsWrapper>
+            </div>
+            <div style={{ marginTop: '1.25rem' }}>
+              <NahmiiText large />
+              <Text large>
+                &nbsp;balance
+              </Text>
+              <AssetsWrapper>
+                {
+                  balancesError
+                  && <WalletName>{formatMessage({ id: 'fetch_balance_error' })}</WalletName>
+                }
+                {
+                  balancesLoading
+                  && <Spinner type="loading" />
+                }
+                {!balancesLoading && !balancesError && assetBubbles}
+              </AssetsWrapper>
+            </div>
+          </div>
         </OuterWrapper>
         <Modal
           footer={null}
@@ -243,7 +269,7 @@ export class WalletItemCard extends React.PureComponent {
         >
           {modal}
         </Modal>
-      </OverflowHidden>
+      </Border>
     );
   }
 }
