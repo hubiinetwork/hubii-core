@@ -62,12 +62,15 @@ export const trimDecimals = (amount, currency, currencyPrices) => {
 };
 
 export const getBreakdown = (balances, supportedAssets) => {
-    // convert balances to Map if they're in array form
+  // convert balances to Map if they're in array form
   let formattedBalances = balances;
   if (balances.get('assets') && List.isList(balances.get('assets'))) {
     const assetsAsObj = balances
         .get('assets')
-        .reduce((acc, asset) => acc.set(asset.get('currency'), asset), new Map());
+        .reduce((acc, asset) => acc
+          .set(asset.get('currency'), asset)
+          .setIn([asset.get('currency'), 'amount'], asset.getIn(['balance']))
+        , new Map());
     formattedBalances = balances.set('assets', assetsAsObj);
   }
 
