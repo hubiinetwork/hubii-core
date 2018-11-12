@@ -73,13 +73,22 @@ export const getBreakdown = (balances, supportedAssets) => {
 
   const totalFiat = formattedBalances.getIn(['total', 'usd']);
 
-  return formattedBalances.get('assets').keySeq().map((asset) => ({
-    label: getCurrencySymbol(supportedAssets, asset),
-    value: formattedBalances.getIn(['assets', asset, 'value', 'usd']).toString(),
-    amount: formattedBalances.getIn(['assets', asset, 'amount']).toString(),
-    percentage: (formattedBalances.getIn(['assets', asset, 'value', 'usd']) / totalFiat) * 100,
-    color: supportedAssets.get('assets').find((a) => a.get('currency') === asset).get('color'),
-  })).toJS();
+  return formattedBalances.get('assets').keySeq().map((asset) => {
+    const amount = formattedBalances.getIn(['assets', asset, 'amount']);
+    const usdValue = formattedBalances.getIn(['assets', asset, 'value', 'usd']);
+
+    return ({
+      label: getCurrencySymbol(supportedAssets, asset),
+      value: usdValue.toString(),
+      amount: trimDecimals(
+        amount,
+        asset,
+        { usd: usdValue.div(amount).toString() }
+      ),
+      percentage: usdValue.div(totalFiat).times(100).toNumber(),
+      color: supportedAssets.get('assets').find((a) => a.get('currency') === asset).get('color'),
+    });
+  }).toJS();
 };
 
 export const getCurrencySymbol = (supportedAssets, currency) => supportedAssets
