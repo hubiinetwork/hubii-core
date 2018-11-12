@@ -36,6 +36,31 @@ export const findWalletIndex = (state, address, scopedFatalError = fatalError) =
   }
 };
 
+/*
+ * Trims the amount of decimals on 'amount' so that it is accurate up to 0.01 usd equivilent value
+ */
+export const trimDecimals = (amount, currency, currencyPrices) => {
+  // check to see if this currency is a test token, in which case just use a default number, 5 decimal places
+  if (currencyPrices.usd === '0') {
+    return amount.toFixed(5);
+  }
+
+  // find what 0.01 usd is in the relevant currency
+  const ratio = new BigNumber(0.01).dividedBy(currencyPrices.usd).toString();
+  const ratioSplitByDot = ratio.split('.');
+  const amountSplitByDot = amount.toString().split('.');
+
+  // check to see if the amount was a whole value, in which case just return as there is no need for decimal alteration
+  if (amountSplitByDot.length === 1) {
+    return amount.toString();
+  }
+
+  // otherwise, find how many 0's there are after the decimal place on the ratio + 1, and minus that with the length of the
+  // number of digits after the decimal place on the ratio.
+  const decimalPlacement = (ratioSplitByDot[1].toString().length - parseFloat(ratioSplitByDot[1]).toString().length) + 1;
+  return `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, decimalPlacement)}`;
+};
+
 export const getBreakdown = (balances, supportedAssets) => {
     // convert balances to Map if they're in array form
   let formattedBalances = balances;
@@ -51,6 +76,7 @@ export const getBreakdown = (balances, supportedAssets) => {
   return formattedBalances.get('assets').keySeq().map((asset) => ({
     label: getCurrencySymbol(supportedAssets, asset),
     value: formattedBalances.getIn(['assets', asset, 'value', 'usd']).toString(),
+    amount: formattedBalances.getIn(['assets', asset, 'amount']).toString(),
     percentage: (formattedBalances.getIn(['assets', asset, 'value', 'usd']) / totalFiat) * 100,
     color: supportedAssets.get('assets').find((a) => a.get('currency') === asset).get('color'),
   })).toJS();
