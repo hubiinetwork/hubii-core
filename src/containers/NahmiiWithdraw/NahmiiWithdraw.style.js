@@ -69,4 +69,8 @@ export const SettlementWarning = styled(Alert)`
   margin-bottom: 3rem;
 `;
 
+export const ChallengeWarning = styled(Alert)`
+  margin-bottom: 3rem;
+`;
+
 export { styledCollapse as Collapse };

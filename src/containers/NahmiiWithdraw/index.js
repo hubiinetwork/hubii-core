@@ -9,6 +9,7 @@ import { getAbsolutePath } from 'utils/electron';
 import Select, { Option } from 'components/ui/Select';
 import Input from 'components/ui/Input';
 import ethers from 'ethers';
+import moment from 'moment'
 
 // import {
 //   makeSelectContacts,
@@ -26,6 +27,7 @@ import {
   TransferDescriptionWrapper,
   TransferFormWrapper,
   SettlementWarning,
+  ChallengeWarning,
 } from './NahmiiWithdraw.style';
 
 import * as actions from 'containers/NahmiiHoc/actions';
@@ -62,11 +64,21 @@ export class NahmiiWithdraw extends React.PureComponent {
     this.props.settlePaymentDriip(lastReceipt)
   }
 
+  isChallengeInProgress() {
+    const {lastPaymentChallenge} = this.props
+    const challenge = lastPaymentChallenge.get('challenge')
+    if (challenge && challenge.timeout.toNumber() * 1000 > new Date().getTime()){
+      console.log(challenge.timeout.toNumber() * 1000, new Date().getTime())
+      return true
+    }
+  }
+
   canSettlePaymentDriip() {
     const { intl, currentWalletWithInfo, lastPaymentChallenge, lastSettlePaymentDriip } = this.props;
     const address = currentWalletWithInfo.get('address')
     const settlement = lastSettlePaymentDriip.get('settlement')
     const challenge = lastPaymentChallenge.get('challenge')
+    // console.log(lastSettlePaymentDriip.get('loadingSettlement'))
     
     if (lastPaymentChallenge.get('phase') === 'Dispute' || !lastPaymentChallenge.get('phase'))
       return false;
@@ -75,14 +87,22 @@ export class NahmiiWithdraw extends React.PureComponent {
       return false;
 
     if (!settlement) {
-      return (challenge && challenge.nonce.toNumber()) ? true : false
+      return false
+    }
+
+    if (!challenge.nonce.toNumber()) {
+      return false
+    }
+
+    if (!settlement.origin || !settlement.target) {
+      return true
     }
 
     if (settlement['origin'].done && settlement['origin'].wallet === address)
       return false
     if (settlement['target'].done && settlement['target'].wallet === address)
       return false
-
+    
     return true
   }
 
@@ -96,12 +116,14 @@ export class NahmiiWithdraw extends React.PureComponent {
     const {
       amountToSendInput,
     } = this.state;
+
+    const challenge = lastPaymentChallenge.get('challenge')
     
-    console.log(lastPaymentChallenge.toJS())
-    console.log(lastSettlePaymentDriip.toJS())
-    if (lastPaymentChallenge.toJS().challenge) {
-      console.log(lastPaymentChallenge.toJS().challenge.nonce.toNumber())
-    }
+    // console.log(lastPaymentChallenge.toJS())
+    // console.log(lastSettlePaymentDriip.toJS())
+    // if (lastPaymentChallenge.toJS().challenge) {
+    //   console.log(lastPaymentChallenge.toJS().challenge.nonce.toNumber())
+    // }
     return (
       <OuterWrapper>
         {
@@ -118,6 +140,15 @@ export class NahmiiWithdraw extends React.PureComponent {
                 </StyledButton>
               </div>
             }
+            type="info"
+            showIcon
+          />
+        }
+        {
+          this.isChallengeInProgress() && 
+          <ChallengeWarning
+            message={formatMessage({ id: 'challenge_period_progress' })}
+            description={formatMessage({ id: 'challenge_period_endtime' }, {endtime: moment(challenge.timeout*1000).format('LLLL')})}
             type="info"
             showIcon
           />

@@ -31,7 +31,18 @@ const makeSelectLastPaymentChallenge = () => createSelector(
     const address = currentWallet.get('address')
     const nahmiiWallet = nahmiiWallets.get(address)
     if (!nahmiiWallet) {
-      return null
+      return fromJS({})
+    }
+    return nahmiiWallet.get('lastPaymentChallenge') || fromJS({})
+  }
+);
+
+const makeSelectLastPaymentChallengeByAddress = (address) => createSelector(
+  makeSelectNahmiiWallets(),
+  (nahmiiWallets) => {
+    const nahmiiWallet = nahmiiWallets.get(address)
+    if (!nahmiiWallet) {
+      return fromJS({})
     }
     return nahmiiWallet.get('lastPaymentChallenge') || fromJS({})
   }
@@ -44,7 +55,7 @@ const makeSelectLastSettlePaymentDriip = () => createSelector(
     const address = currentWallet.get('address')
     const nahmiiWallet = nahmiiWallets.get(address)
     if (!nahmiiWallet) {
-      return null
+      return fromJS({})
     }
     return nahmiiWallet.get('lastSettlePaymentDriip') || fromJS({})
   }
@@ -54,5 +65,6 @@ export {
   makeSelectReceipts,
   makeSelectReceiptsByAddress,
   makeSelectLastPaymentChallenge,
+  makeSelectLastPaymentChallengeByAddress,
   makeSelectLastSettlePaymentDriip,
 };

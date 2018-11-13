@@ -180,5 +180,7 @@
     "settle_payment": "Settle Payment",
     "settlement_period_ended": "settlement_period_ended",
     "settlement_period_ended_notice": "settlement_period_ended_notice",
-    "confirm_settlement": "confirm_settlement"
+    "confirm_settlement": "confirm_settlement",
+    "challenge_period_progress": "challenge_period_progress",
+    "challenge_period_endtime": "The end time of this challenge will be {endtime}"
 }

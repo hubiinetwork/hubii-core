@@ -3,6 +3,7 @@ import nahmii from 'nahmii-sdk';
 import { all, fork, takeEvery, select, put, call, take, cancel } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { getNahmiiProvider } from 'containers/HubiiApiHoc/saga';
+import {requestWalletAPI} from 'utils/request'
 // import { notify } from 'containers/App/actions';
 import {
   makeSelectCurrentWalletWithInfo,
@@ -13,7 +14,7 @@ import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants'
 
 import { showDecryptWalletModal } from 'containers/WalletHoc/actions';
 import * as actions from './actions';
-import { makeSelectReceiptsByAddress } from './selectors';
+import { makeSelectLastPaymentChallengeByAddress } from './selectors';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import {makeSelectWallets} from 'containers/WalletHoc/selectors';
 
@@ -64,11 +65,13 @@ import {makeSelectWallets} from 'containers/WalletHoc/selectors';
 //   }
 // }
 
-export function* loadBalances({ address }) {
+export function* loadBalances({ address }, network) {
   try {
-    const balances = yield call((...args) => provider.getNahmiiBalances(...args), address);
+    const path = `trading/wallets/${address}/balances`
+    const balances = yield call((...args) => requestWalletAPI(...args), path, network);
     yield put(actions.loadBalancesSuccess(address, balances));
   } catch (err) {
+    console.log(err)
   }
 }
 
@@ -113,7 +116,7 @@ export function* startPaymentChallenge({ receipt, stageAmount }) {
 
   const receiptObj = nahmii.Receipt.from(nahmiiProvider, receipt);
   const _stageAmount = new nahmii.MonetaryAmount(stageAmount, '0X0000000000000000000000000000000000000000', 0)
-  console.log(receiptObj.toJSON(), _stageAmount.toJSON(), wallet.address, wallet.provider)
+  // console.log(receiptObj.toJSON(), _stageAmount.toJSON(), wallet.address, wallet.provider)
   const tx = yield call((...args) => settlementChallenge.startChallengeFromPayment(...args), receiptObj, _stageAmount, wallet);
   console.log('tx', tx)
   yield processTx('start-challenge', nahmiiProvider, tx, wallet.address);
@@ -240,19 +243,25 @@ export function* loadCurrentPaymentChallengeStatus({ address }, network) {
 }
 
 export function* loadSettlement({ address }, network) {
+  // const nahmiiProvider = yield getNahmiiProvider();
+  const nahmiiProvider = network.provider;
+  const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
+  let lastNonce
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      // const nahmiiProvider = yield getNahmiiProvider();
-      const nahmiiProvider = network.provider;
-      const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
-      const receipts = yield select(makeSelectReceiptsByAddress(address));
-      if (!receipts || receipts.length === 0) {
-        throw new Error('No receipts');
-      }
-      const lastNonce = receipts.sort((a, b) => b.nonce - a.nonce)[0].nonce;
+      const lastSettlementChallenge = (yield select(makeSelectLastPaymentChallengeByAddress(address))).toJS();
+      lastNonce = lastSettlementChallenge.challenge.nonce.toNumber()
+    } catch (error) {
+      const FIVE_SEC_IN_MS = 1000 * 5;
+      yield delay(FIVE_SEC_IN_MS);
+      continue
+    }
+
+    try {
       const settlement = yield call((...args) => settlementChallenge.getSettlementByNonce(...args), lastNonce);
       yield put(actions.loadSettlementSuccess(address, settlement));
     } catch (err) {
+      console.log(err)
       yield put(actions.loadSettlementError(address));
     } finally {
       const TWENTY_SEC_IN_MS = 1000 * 20;
@@ -360,6 +369,7 @@ export function* challengeStatusOrcestrator() {
         ...wallets.map((wallet) => fork(loadCurrentPaymentChallengeStatus, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadReceipts, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadSettlement, { address: wallet.get('address') }, network)),
+        ...wallets.map((wallet) => fork(loadBalances, { address: wallet.get('address') }, network)),
       ]);
 
       // on network change kill all forks and restart
@@ -387,6 +397,6 @@ export default function* listen() {
   yield takeEvery(actionTypes.WITHDRAW, withdraw);
   yield takeEvery(actionTypes.LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE, loadCurrentPaymentChallengePhase);
   yield takeEvery(actionTypes.LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS, loadCurrentPaymentChallengeStatus);
-  yield takeEvery(actionTypes.LOAD_SETTLEMENT, loadSettlement);
+  // yield takeEvery(actionTypes.LOAD_SETTLEMENT, loadSettlement);
   yield takeEvery(actionTypes.LOAD_RECEIPTS, loadReceipts);
 }

@@ -94,10 +94,11 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'status'], null);
     case LOAD_SETTLEMENT_SUCCESS:
       return state
-        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'settlement'], action.settlement);
+        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'settlement'], action.settlement || {})
     case LOAD_SETTLEMENT_ERROR:
       return state
-        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'settlement'], null);
+        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'settlement'], null)
+        
     case LOAD_WITHDRAW_TX_REQUEST:
       return state
         .setIn(['wallets', action.address, 'lastWithdraw', 'txRequest'], action.txRequest);
