@@ -17,6 +17,8 @@ import * as actions from './actions';
 import { makeSelectLastPaymentChallengeByAddress } from './selectors';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import {makeSelectWallets} from 'containers/WalletHoc/selectors';
+import { getIntl } from 'utils/localisation';
+import { notify } from 'containers/App/actions';
 
 // const config = {
 //   apiRoot: 'api2.dev.hubii.net',
@@ -167,12 +169,14 @@ export function* processTx(type, provider, tx, address) {
     actionTargets.success = actions.settlePaymentDriipSuccess;
     actionTargets.error = actions.settlePaymentDriipError;
     actionTargets.loadTxRequest = actions.loadTxRequestForSettlePaymentDriip;
+    yield put(notify('info', getIntl().formatMessage({ id: 'settling_payment' })));
   }
 
   if (type === 'start-challenge') {
     actionTargets.success = actions.startPaymentChallengeSuccess;
     actionTargets.error = actions.startPaymentChallengeError;
     actionTargets.loadTxRequest = actions.loadTxRequestForPaymentChallenge;
+    yield put(notify('info', getIntl().formatMessage({ id: 'starting_payment_challenge' })));
   }
 
   if (type === 'withdraw') {
@@ -185,8 +189,10 @@ export function* processTx(type, provider, tx, address) {
   const txRes = yield call((...args) => provider.waitForTransaction(...args), tx.hash);
   const txReceipt = yield call((...args) => provider.getTransactionReceipt(...args), txRes.hash);
   if (txReceipt.status === 1) {
+    yield put(notify('success', getIntl().formatMessage({ id: 'tx_mined_success' })));
     yield put(actionTargets.success(address, txReceipt));
   } else {
+    yield put(notify('error', getIntl().formatMessage({ id: 'tx_mined_error' })));
     yield put(actionTargets.error(address, txReceipt));
   }
 }
