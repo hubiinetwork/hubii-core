@@ -38,11 +38,12 @@ export function trezorDisconnected(deviceId) {
   };
 }
 
-export function fetchTrezorAddresses(pathBase, count) {
+export function fetchTrezorAddresses(pathTemplate, firstIndex, lastIndex) {
   return {
     type: FETCH_TREZOR_ADDRESSES,
-    pathBase,
-    count,
+    pathTemplate,
+    firstIndex,
+    lastIndex,
   };
 }
 

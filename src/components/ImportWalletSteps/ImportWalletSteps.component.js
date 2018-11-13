@@ -54,7 +54,7 @@ class ImportWalletSteps extends React.Component {
               handleBack={this.handleBack}
               handleNext={this.handleNext}
               deviceType="lns"
-              pathBase={'m/44\'/60\'/0\''}
+              pathTemplate={'m/44\'/60\'/0\'/{index}'}
             />
             ),
         },
@@ -79,7 +79,7 @@ class ImportWalletSteps extends React.Component {
               handleBack={this.handleBack}
               handleNext={this.handleNext}
               deviceType="trezor"
-              pathBase={'m/44\'/60\'/0\'/0'}
+              pathTemplate={'m/44\'/60\'/0\'/0/{index}'}
             />
             ),
         },
