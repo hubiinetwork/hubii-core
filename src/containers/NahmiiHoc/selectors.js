@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { fromJS } from 'immutable';
-import {makeSelectCurrentWallet} from 'containers/WalletHoc/selectors'
+import { makeSelectCurrentWallet } from 'containers/WalletHoc/selectors';
 
 /**
  * Direct selector to the nahmiiHoc state domain
@@ -14,9 +14,7 @@ const makeSelectReceipts = () => createSelector(
 
 const makeSelectReceiptsByAddress = (address) => createSelector(
   makeSelectReceipts(),
-  (receipts) => {
-    return receipts.get(address) || fromJS([])
-  }
+  (receipts) => receipts.get(address) || fromJS([])
 );
 
 const makeSelectNahmiiWallets = () => createSelector(
@@ -28,23 +26,23 @@ const makeSelectLastPaymentChallenge = () => createSelector(
   makeSelectNahmiiWallets(),
   makeSelectCurrentWallet(),
   (nahmiiWallets, currentWallet) => {
-    const address = currentWallet.get('address')
-    const nahmiiWallet = nahmiiWallets.get(address)
+    const address = currentWallet.get('address');
+    const nahmiiWallet = nahmiiWallets.get(address);
     if (!nahmiiWallet) {
-      return fromJS({})
+      return fromJS({});
     }
-    return nahmiiWallet.get('lastPaymentChallenge') || fromJS({})
+    return nahmiiWallet.get('lastPaymentChallenge') || fromJS({});
   }
 );
 
 const makeSelectLastPaymentChallengeByAddress = (address) => createSelector(
   makeSelectNahmiiWallets(),
   (nahmiiWallets) => {
-    const nahmiiWallet = nahmiiWallets.get(address)
+    const nahmiiWallet = nahmiiWallets.get(address);
     if (!nahmiiWallet) {
-      return fromJS({})
+      return fromJS({});
     }
-    return nahmiiWallet.get('lastPaymentChallenge') || fromJS({})
+    return nahmiiWallet.get('lastPaymentChallenge') || fromJS({});
   }
 );
 
@@ -52,12 +50,12 @@ const makeSelectLastSettlePaymentDriip = () => createSelector(
   makeSelectNahmiiWallets(),
   makeSelectCurrentWallet(),
   (nahmiiWallets, currentWallet) => {
-    const address = currentWallet.get('address')
-    const nahmiiWallet = nahmiiWallets.get(address)
+    const address = currentWallet.get('address');
+    const nahmiiWallet = nahmiiWallets.get(address);
     if (!nahmiiWallet) {
-      return fromJS({})
+      return fromJS({});
     }
-    return nahmiiWallet.get('lastSettlePaymentDriip') || fromJS({})
+    return nahmiiWallet.get('lastSettlePaymentDriip') || fromJS({});
   }
 );
 

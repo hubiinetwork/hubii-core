@@ -185,6 +185,6 @@
     "challenge_period_endtime": "The end time of this challenge will be {endtime}",
     "settling_payment": "Settling payment, waiting the transaction to be confirmed...",
     "starting_payment_challenge": "Starting payment challenge, waiting the transaction to be confirmed...",
-    "tx_mined_success": "The last transaction for a payment settlement action was confirmed success",
+    "tx_mined_success": "The last transaction for a payment settlement action was confirmed",
     "tx_mined_error": "The last transaction for a payment settlement action was failed to be confirmed"
 }

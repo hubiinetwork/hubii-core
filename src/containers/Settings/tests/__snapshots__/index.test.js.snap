@@ -9,7 +9,7 @@ ShallowWrapper {
         Object {
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
-            "provider": FallbackProvider {
+            "provider": JsonRpcProvider {
               "_emitted": Object {
                 "block": -1,
               },
@@ -18,6 +18,7 @@ ShallowWrapper {
               "ensAddress": "0x112234455C3a32FD11230C42E7Bccd4A84e02010",
               "name": "ropsten",
               "resetEventsBlock": [Function],
+              "url": "http://localhost:8545",
             },
             "walletApiEndpoint": [Function],
           }
@@ -48,7 +49,7 @@ ShallowWrapper {
                 identityServiceAppId: "appid",
             },
             ropsten: Immutable.Map {
-                provider: FallbackProvider {
+                provider: JsonRpcProvider {
                     "_emitted": Object {
                       "block": -1,
                     },
@@ -57,6 +58,7 @@ ShallowWrapper {
                     "ensAddress": "0x112234455C3a32FD11230C42E7Bccd4A84e02010",
                     "name": "ropsten",
                     "resetEventsBlock": [Function],
+                    "url": "http://localhost:8545",
                   },
                 walletApiEndpoint: [Function],
                 identityServiceSecret: "secret",

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { Collapse } from 'antd';
-import { Alert } from 'antd';
+import { Collapse, Alert } from 'antd';
 
 import Button from 'components/ui/Button';
 import Text from 'components/ui/Text';

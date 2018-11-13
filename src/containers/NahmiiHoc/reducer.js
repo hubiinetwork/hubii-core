@@ -48,23 +48,27 @@ function nahmiiHocReducer(state = initialState, action) {
       return state
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txStatus'], 'success')
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txReceipt'], action.txReceipt);
+        // .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'loadingSettlement'], true);
     case START_PAYMENT_CHALLENGE_ERROR:
       return state
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txStatus'], 'failed')
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txReceipt'], action.txReceipt);
     case LOAD_START_PAYMENT_CHALLENGE_TX_REQUEST:
       return state
+        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txStatus'], 'mining')
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txRequest'], action.txRequest);
     case SETTLE_PAYMENT_DRIIP_SUCCESS:
       return state
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txStatus'], 'success')
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txReceipt'], action.txReceipt);
+        // .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'loadingSettlement'], true);
     case SETTLE_PAYMENT_DRIIP_ERROR:
       return state
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txStatus'], 'failed')
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txReceipt'], action.txReceipt);
     case LOAD_SETTLE_PAYMENT_DRIIP_TX_REQUEST:
       return state
+        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txStatus'], 'mining')
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txRequest'], action.txRequest);
     case WITHDRAW_SUCCESS:
       return state
@@ -82,10 +86,12 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'phase'], null);
     case LOAD_CURRENT_PAYMENT_CHALLENGE_SUCCESS:
       return state
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'challenge'], action.challenge);
+        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'challenge'], action.challenge)
+        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'updatedAt'], new Date());
     case LOAD_CURRENT_PAYMENT_CHALLENGE_ERROR:
       return state
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'phase'], null);
+        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'challenge'], null)
+        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'updatedAt'], new Date());
     case LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS:
       return state
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'status'], action.status);
@@ -95,10 +101,14 @@ function nahmiiHocReducer(state = initialState, action) {
     case LOAD_SETTLEMENT_SUCCESS:
       return state
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'settlement'], action.settlement || {})
+        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'updatedAt'], new Date());
+        // .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'loadingSettlement'], false);
     case LOAD_SETTLEMENT_ERROR:
       return state
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'settlement'], null)
-        
+        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'updatedAt'], new Date());
+        // .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'loadingSettlement'], false);
+
     case LOAD_WITHDRAW_TX_REQUEST:
       return state
         .setIn(['wallets', action.address, 'lastWithdraw', 'txRequest'], action.txRequest);

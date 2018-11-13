@@ -92,27 +92,30 @@ export function loadBalancesSuccess(address, balances) {
   };
 }
 
-export function startPaymentChallenge(receipt, stageAmount) {
+export function startPaymentChallenge(receipt, stageAmount, currency) {
   return {
     type: START_PAYMENT_CHALLENGE,
     receipt,
     stageAmount,
+    currency,
   };
 }
 
-export function startPaymentChallengeSuccess(address, txReceipt) {
+export function startPaymentChallengeSuccess(address, txReceipt, currency) {
   return {
     type: START_PAYMENT_CHALLENGE_SUCCESS,
     address,
     txReceipt,
+    currency,
   };
 }
 
-export function startPaymentChallengeError(address, txReceipt) {
+export function startPaymentChallengeError(address, txReceipt, currency) {
   return {
     type: START_PAYMENT_CHALLENGE_ERROR,
     address,
     txReceipt,
+    currency,
   };
 }
 

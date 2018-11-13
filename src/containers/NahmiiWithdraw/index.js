@@ -5,33 +5,12 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Form, FormItem, FormItemLabel } from 'components/ui/Form';
 import { injectIntl } from 'react-intl';
-import { getAbsolutePath } from 'utils/electron';
+// import { getAbsolutePath } from 'utils/electron';
+import ethers from 'ethers';
+import moment from 'moment';
 import Select, { Option } from 'components/ui/Select';
 import Input from 'components/ui/Input';
-import ethers from 'ethers';
-import moment from 'moment'
-
-// import {
-//   makeSelectContacts,
-// } from 'containers/ContactBook/selectors';
-import * as nahmiiActions from 'containers/NahmiiHoc/actions';
-
-import {
-  OuterWrapper,
-  ETHtoDollar,
-  Image,
-  AdvanceSettingsHeader,
-  Collapse,
-  Panel,
-  StyledButton,
-  TransferDescriptionWrapper,
-  TransferFormWrapper,
-  SettlementWarning,
-  ChallengeWarning,
-} from './NahmiiWithdraw.style';
-
 import * as actions from 'containers/NahmiiHoc/actions';
-
 import {
   makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHoc/selectors';
@@ -41,89 +20,106 @@ import {
   makeSelectLastSettlePaymentDriip,
 } from 'containers/NahmiiHoc/selectors';
 
+import {
+  OuterWrapper,
+  // ETHtoDollar,
+  // Image,
+  // AdvanceSettingsHeader,
+  // Panel,
+  StyledButton,
+  SettlementWarning,
+  ChallengeWarning,
+} from './NahmiiWithdraw.style';
+
 export class NahmiiWithdraw extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {amountToSendInput: 0}
+    this.state = { amountToSendInput: 0, syncTime: new Date() };
     this.startPaymentChallenge = this.startPaymentChallenge.bind(this);
     this.settlePaymentDriip = this.settlePaymentDriip.bind(this);
   }
 
-  startPaymentChallenge() {
-    const {currentWalletWithInfo, allReceipts} = this.props
-    const stageAmount = ethers.utils.parseEther('2.5')
-
-    const lastReceipt = allReceipts.get(currentWalletWithInfo.get('address'))[0]
-    this.props.startPaymentChallenge(lastReceipt, stageAmount)
+  settlePaymentDriip() {
+    const { currentWalletWithInfo, allReceipts, lastPaymentChallenge } = this.props;
+    const challenge = lastPaymentChallenge.get('challenge');
+    const lastReceipt = allReceipts.get(currentWalletWithInfo.get('address')).filter((receipt) => receipt.nonce === challenge.nonce.toNumber())[0];
+    this.props.settlePaymentDriip(lastReceipt);
   }
 
-  settlePaymentDriip() {
-    const {currentWalletWithInfo, allReceipts, lastPaymentChallenge} = this.props
-    const challenge = lastPaymentChallenge.get('challenge')
-    const lastReceipt = allReceipts.get(currentWalletWithInfo.get('address')).filter(receipt => receipt.nonce === challenge.nonce.toNumber())[0]
-    this.props.settlePaymentDriip(lastReceipt)
+  startPaymentChallenge() {
+    const { currentWalletWithInfo, allReceipts } = this.props;
+    const stageAmount = ethers.utils.parseEther('2.5');
+
+    const lastReceipt = allReceipts.get(currentWalletWithInfo.get('address'))[0];
+    this.props.startPaymentChallenge(lastReceipt, stageAmount, '0x0000000000000000000000000000000000000000');
+    this.state.syncTime = moment().add(30, 'seconds').toDate();
   }
 
   isChallengeInProgress() {
-    const {lastPaymentChallenge} = this.props
-    const challenge = lastPaymentChallenge.get('challenge')
-    if (challenge && challenge.timeout.toNumber() * 1000 > new Date().getTime()){
-      console.log(challenge.timeout.toNumber() * 1000, new Date().getTime())
-      return true
+    const { lastPaymentChallenge } = this.props;
+    const challenge = lastPaymentChallenge.get('challenge');
+    if (challenge && challenge.timeout.toNumber() * 1000 > new Date().getTime()) {
+      return true;
     }
+    return false;
   }
 
   canSettlePaymentDriip() {
-    const { intl, currentWalletWithInfo, lastPaymentChallenge, lastSettlePaymentDriip } = this.props;
-    const address = currentWalletWithInfo.get('address')
-    const settlement = lastSettlePaymentDriip.get('settlement')
-    const challenge = lastPaymentChallenge.get('challenge')
+    const { currentWalletWithInfo, lastPaymentChallenge, lastSettlePaymentDriip } = this.props;
+    const address = currentWalletWithInfo.get('address');
+    const settlement = lastSettlePaymentDriip.get('settlement');
+    const challenge = lastPaymentChallenge.get('challenge');
     // console.log(lastSettlePaymentDriip.get('loadingSettlement'))
-    
-    if (lastPaymentChallenge.get('phase') === 'Dispute' || !lastPaymentChallenge.get('phase'))
-      return false;
-    
-    if (lastPaymentChallenge.get('status') === 'Disqualified' || !lastPaymentChallenge.get('status'))
-      return false;
+    if (lastPaymentChallenge.get('phase') === 'Dispute' || !lastPaymentChallenge.get('phase')) { return false; }
+
+    if (lastPaymentChallenge.get('status') === 'Disqualified' || !lastPaymentChallenge.get('status')) { return false; }
 
     if (!settlement) {
-      return false
+      return false;
     }
 
-    if (!challenge.nonce.toNumber()) {
-      return false
+    if (!challenge || !challenge.nonce.toNumber()) {
+      return false;
     }
 
     if (!settlement.origin || !settlement.target) {
-      return true
+      return true;
     }
 
-    if (settlement['origin'].done && settlement['origin'].wallet === address)
-      return false
-    if (settlement['target'].done && settlement['target'].wallet === address)
-      return false
-    
-    return true
+    if (settlement.origin.done && settlement.origin.wallet === address) { return false; }
+    if (settlement.target.done && settlement.target.wallet === address) { return false; }
+
+    return true;
+  }
+
+  canStartPaymentChallenge() {
+    const { lastPaymentChallenge, lastSettlePaymentDriip, allReceipts, currentWalletWithInfo } = this.props;
+    const { syncTime } = this.state;
+    const challengeUpdatedTime = lastPaymentChallenge.get('updatedAt');
+    const challenge = lastPaymentChallenge.get('challenge');
+    const settlementUpdatedTime = lastSettlePaymentDriip.get('updatedAt');
+    const lastReceipt = allReceipts.get(currentWalletWithInfo.get('address')).sort((a, b) => b.nonce - a.nonce)[0];
+
+    return lastPaymentChallenge.get('phase') !== 'Dispute' &&
+           lastPaymentChallenge.get('txStatus') !== 'mining' &&
+           !this.canSettlePaymentDriip() &&
+           lastReceipt && challenge && challenge.nonce.toNumber() < lastReceipt.nonce &&
+           (settlementUpdatedTime && challengeUpdatedTime && syncTime.getTime() < settlementUpdatedTime.getTime() && syncTime.getTime() < challengeUpdatedTime.getTime());
   }
 
   render() {
-    const { intl, lastPaymentChallenge, lastSettlePaymentDriip } = this.props;
+    const { intl, lastPaymentChallenge } = this.props;
     const { formatMessage } = intl;
     const assets = [
-      {symbol: 'ETH'}
-    ]
+      { symbol: 'ETH' },
+    ];
 
     const {
       amountToSendInput,
     } = this.state;
 
-    const challenge = lastPaymentChallenge.get('challenge')
-    
-    // console.log(lastPaymentChallenge.toJS())
-    // console.log(lastSettlePaymentDriip.toJS())
-    // if (lastPaymentChallenge.toJS().challenge) {
-    //   console.log(lastPaymentChallenge.toJS().challenge.nonce.toNumber())
-    // }
+    const challenge = lastPaymentChallenge.get('challenge');
+
     return (
       <OuterWrapper>
         {
@@ -145,10 +141,10 @@ export class NahmiiWithdraw extends React.PureComponent {
           />
         }
         {
-          this.isChallengeInProgress() && 
+          this.isChallengeInProgress() &&
           <ChallengeWarning
             message={formatMessage({ id: 'challenge_period_progress' })}
-            description={formatMessage({ id: 'challenge_period_endtime' }, {endtime: moment(challenge.timeout*1000).format('LLLL')})}
+            description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(challenge.timeout * 1000).format('LLLL') })}
             type="info"
             showIcon
           />
@@ -188,8 +184,8 @@ export class NahmiiWithdraw extends React.PureComponent {
               // onBlur={() => this.onBlurNumberInput('amountToSendInput')}
               // onChange={this.handleAmountToSendChange}
             />
-            <StyledButton onClick={this.startPaymentChallenge} disabled={lastPaymentChallenge.get('phase') === 'Dispute'}>
-              {formatMessage({id: 'settle_payment'})}
+            <StyledButton onClick={this.startPaymentChallenge} disabled={!this.canStartPaymentChallenge()}>
+              {formatMessage({ id: 'settle_payment' })}
             </StyledButton>
           </FormItem>
           <FormItem
@@ -200,7 +196,7 @@ export class NahmiiWithdraw extends React.PureComponent {
               defaultValue={amountToSendInput}
               value={amountToSendInput}
             />
-            <StyledButton>{formatMessage({id: 'withdraw'})}</StyledButton>
+            <StyledButton>{formatMessage({ id: 'withdraw' })}</StyledButton>
           </FormItem>
         </Form>
       </OuterWrapper>
@@ -209,17 +205,13 @@ export class NahmiiWithdraw extends React.PureComponent {
 }
 
 NahmiiWithdraw.propTypes = {
-  // currentWalletWithInfo: PropTypes.object.isRequired,
-  // currentWallet: PropTypes.object.isRequired,
-  // supportedAssets: PropTypes.object.isRequired,
-  // ledgerNanoSInfo: PropTypes.object.isRequired,
-  // trezorInfo: PropTypes.object.isRequired,
-  // transfer: PropTypes.func.isRequired,
-  // history: PropTypes.object.isRequired,
-  // prices: PropTypes.object.isRequired,
-  // contacts: PropTypes.object.isRequired,
-  // errors: PropTypes.object.isRequired,
-  // createContact: PropTypes.func.isRequired,
+  currentWalletWithInfo: PropTypes.object.isRequired,
+  allReceipts: PropTypes.object.isRequired,
+  lastPaymentChallenge: PropTypes.object.isRequired,
+  lastSettlePaymentDriip: PropTypes.object.isRequired,
+  settlePaymentDriip: PropTypes.object.isRequired,
+  startPaymentChallenge: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -227,20 +219,12 @@ const mapStateToProps = createStructuredSelector({
   allReceipts: makeSelectReceipts(),
   lastPaymentChallenge: makeSelectLastPaymentChallenge(),
   lastSettlePaymentDriip: makeSelectLastSettlePaymentDriip(),
-  // ledgerNanoSInfo: makeSelectLedgerHoc(),
-  // trezorInfo: makeSelectTrezorHoc(),
-  // currentWallet: makeSelectCurrentWallet(),
-  // supportedAssets: makeSelectSupportedAssets(),
-  // prices: makeSelectPrices(),
-  // contacts: makeSelectContacts(),
-  // errors: makeSelectErrors(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
     startPaymentChallenge: (...args) => dispatch(actions.startPaymentChallenge(...args)),
     settlePaymentDriip: (...args) => dispatch(actions.settlePaymentDriip(...args)),
-    // createContact: (...args) => dispatch(createContact(...args)),
   };
 }
 

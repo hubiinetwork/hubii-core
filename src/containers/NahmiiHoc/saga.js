@@ -3,22 +3,19 @@ import nahmii from 'nahmii-sdk';
 import { all, fork, takeEvery, select, put, call, take, cancel } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { getNahmiiProvider } from 'containers/HubiiApiHoc/saga';
-import {requestWalletAPI} from 'utils/request'
-// import { notify } from 'containers/App/actions';
+import { requestWalletAPI } from 'utils/request';
+import { getIntl } from 'utils/localisation';
 import {
   makeSelectCurrentWalletWithInfo,
-  // makeSelectSupportedAssets,
+  makeSelectWallets,
 } from 'containers/WalletHoc/selectors';
-import * as actionTypes from './constants';
-import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
-
+import { makeSelectCurrentNetwork } from 'containers/App/selectors';
+import { notify } from 'containers/App/actions';
 import { showDecryptWalletModal } from 'containers/WalletHoc/actions';
+import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import * as actions from './actions';
 import { makeSelectLastPaymentChallengeByAddress } from './selectors';
-import { makeSelectCurrentNetwork } from 'containers/App/selectors';
-import {makeSelectWallets} from 'containers/WalletHoc/selectors';
-import { getIntl } from 'utils/localisation';
-import { notify } from 'containers/App/actions';
+import * as actionTypes from './constants';
 
 // const config = {
 //   apiRoot: 'api2.dev.hubii.net',
@@ -69,11 +66,11 @@ import { notify } from 'containers/App/actions';
 
 export function* loadBalances({ address }, network) {
   try {
-    const path = `trading/wallets/${address}/balances`
+    const path = `trading/wallets/${address}/balances`;
     const balances = yield call((...args) => requestWalletAPI(...args), path, network);
     yield put(actions.loadBalancesSuccess(address, balances));
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 }
 
@@ -102,48 +99,36 @@ export function* loadBalances({ address }, network) {
 //   }
 // }
 
-export function* startPaymentChallenge({ receipt, stageAmount }) {
-  
+export function* startPaymentChallenge({ receipt, stageAmount, currency }) {
   const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
   if (walletDetails.encrypted && !walletDetails.decrypted) {
     yield put(showDecryptWalletModal(actions.startPaymentChallenge(receipt, stageAmount)));
     return;
   }
   const network = yield select(makeSelectCurrentNetwork());
-  // const nahmiiProvider = yield getNahmiiProvider();
-  const nahmiiProvider = network.provider
-  // const wallet = new nahmii.Wallet(walletDetails.decrypted.privateKey, nahmiiProvider);
+  const nahmiiProvider = network.provider;
   const wallet = new nahmii.Wallet(walletDetails.decrypted.privateKey, nahmiiProvider);
-  const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider)
+  const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
 
   const receiptObj = nahmii.Receipt.from(nahmiiProvider, receipt);
-  const _stageAmount = new nahmii.MonetaryAmount(stageAmount, '0X0000000000000000000000000000000000000000', 0)
-  // console.log(receiptObj.toJSON(), _stageAmount.toJSON(), wallet.address, wallet.provider)
+  const _stageAmount = new nahmii.MonetaryAmount(stageAmount, currency, 0);
   const tx = yield call((...args) => settlementChallenge.startChallengeFromPayment(...args), receiptObj, _stageAmount, wallet);
-  console.log('tx', tx)
   yield processTx('start-challenge', nahmiiProvider, tx, wallet.address);
 }
 
 export function* settlePaymentDriip({ receipt }) {
-  // const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
-  // const nahmiiProvider = yield getNahmiiProvider();
-  // const wallet = new nahmii.Wallet(walletDetails.decrypted.privateKey, nahmiiProvider);
-
   const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
   if (walletDetails.encrypted && !walletDetails.decrypted) {
     yield put(showDecryptWalletModal(actions.settlePaymentDriip(receipt)));
     return;
   }
   const network = yield select(makeSelectCurrentNetwork());
-  // const nahmiiProvider = yield getNahmiiProvider();
-  const nahmiiProvider = network.provider
-  // const wallet = new nahmii.Wallet(walletDetails.decrypted.privateKey, nahmiiProvider);
+  const nahmiiProvider = network.provider;
   const wallet = new nahmii.Wallet(walletDetails.decrypted.privateKey, nahmiiProvider);
-  const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider)
+  const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
 
   const receiptObj = nahmii.Receipt.from(nahmiiProvider, receipt);
-  const tx = yield call((...args) => settlementChallenge.settleDriipAsPayment(...args), receiptObj, wallet, {gasLimit: 6e6});
-  console.log('tx', tx)
+  const tx = yield call((...args) => settlementChallenge.settleDriipAsPayment(...args), receiptObj, wallet, { gasLimit: 6e6 });
 
   yield processTx('settle-payment', nahmiiProvider, tx, wallet.address);
 }
@@ -200,7 +185,6 @@ export function* processTx(type, provider, tx, address) {
 export function* loadCurrentPaymentChallenge({ address }, network) {
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      // const nahmiiProvider = yield getNahmiiProvider();
       const nahmiiProvider = network.provider;
       const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
       const currentChallenge = yield call(() => settlementChallenge.getCurrentPaymentChallenge(address));
@@ -217,7 +201,6 @@ export function* loadCurrentPaymentChallenge({ address }, network) {
 export function* loadCurrentPaymentChallengePhase({ address }, network) {
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      // const nahmiiProvider = yield getNahmiiProvider();
       const nahmiiProvider = network.provider;
       const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
       const currentPhase = yield call(() => settlementChallenge.getCurrentPaymentChallengePhase(address));
@@ -234,7 +217,6 @@ export function* loadCurrentPaymentChallengePhase({ address }, network) {
 export function* loadCurrentPaymentChallengeStatus({ address }, network) {
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      // const nahmiiProvider = yield getNahmiiProvider();
       const nahmiiProvider = network.provider;
       const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
       const currentStatus = yield call(() => settlementChallenge.getCurrentPaymentChallengeStatus(address));
@@ -249,25 +231,23 @@ export function* loadCurrentPaymentChallengeStatus({ address }, network) {
 }
 
 export function* loadSettlement({ address }, network) {
-  // const nahmiiProvider = yield getNahmiiProvider();
   const nahmiiProvider = network.provider;
   const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
-  let lastNonce
+  let lastNonce;
   while (true) { // eslint-disable-line no-constant-condition
     try {
       const lastSettlementChallenge = (yield select(makeSelectLastPaymentChallengeByAddress(address))).toJS();
-      lastNonce = lastSettlementChallenge.challenge.nonce.toNumber()
+      lastNonce = lastSettlementChallenge.challenge.nonce.toNumber();
     } catch (error) {
       const FIVE_SEC_IN_MS = 1000 * 5;
       yield delay(FIVE_SEC_IN_MS);
-      continue
+      continue; // eslint-disable-line no-continue
     }
 
     try {
       const settlement = yield call((...args) => settlementChallenge.getSettlementByNonce(...args), lastNonce);
       yield put(actions.loadSettlementSuccess(address, settlement));
     } catch (err) {
-      console.log(err)
       yield put(actions.loadSettlementError(address));
     } finally {
       const TWENTY_SEC_IN_MS = 1000 * 20;
@@ -279,82 +259,79 @@ export function* loadSettlement({ address }, network) {
 export function* loadReceipts({ address }, network) {
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      // const nahmiiProvider = yield getNahmiiProvider();
-      const nahmiiProvider = network.provider;
-      const limit = 1000;
-      // const receipts = yield call((...args) => nahmiiProvider.getWalletReceipts(...args), address, null, limit);
+      const nahmiiProvider = network.provider; // eslint-disable-line no-unused-vars
+      // const limit = 1000;
       const receipts = [{
-        "nonce": 1,
-        "amount": "5000000000000000000",
-        "currency": {
-          "ct": "0x0000000000000000000000000000000000000000",
-          "id": "0"
+        nonce: 1,
+        amount: '5000000000000000000',
+        currency: {
+          ct: '0x0000000000000000000000000000000000000000',
+          id: '0',
         },
-        "sender": {
-          "wallet": "0x97026a8157f39101aefc4A81496C161a6b1Ce46A",
-          "nonce": 1,
-          "balances": {
-            "current": "4800000000000000000",
-            "previous": "10000000000000000000"
+        sender: {
+          wallet: '0x97026a8157f39101aefc4A81496C161a6b1Ce46A',
+          nonce: 1,
+          balances: {
+            current: '4800000000000000000',
+            previous: '10000000000000000000',
           },
-          "fees": {
-            "single": {
-              "amount": "200000000000000000",
-              "currency": {
-                "ct": "0x0000000000000000000000000000000000000000",
-                "id": "0"
-              }
+          fees: {
+            single: {
+              amount: '200000000000000000',
+              currency: {
+                ct: '0x0000000000000000000000000000000000000000',
+                id: '0',
+              },
             },
-            "total": [
+            total: [
               {
-                "amount": "200000000000000000",
-                "currency": {
-                  "ct": "0x0000000000000000000000000000000000000000",
-                  "id": "0"
-                }
-              }
-            ]
-          }
-        },
-        "recipient": {
-          "wallet": "0xBB97f342884eD086dd83a192c8a7e649E095DB7b",
-          "nonce": 1,
-          "balances": {
-            "current": "5000000000000000000",
-            "previous": "0"
+                amount: '200000000000000000',
+                currency: {
+                  ct: '0x0000000000000000000000000000000000000000',
+                  id: '0',
+                },
+              },
+            ],
           },
-          "fees": {
-            "total": []
-          }
         },
-        "transfers": {
-          "single": "5000000000000000000",
-          "total": "10000000000000000000"
-        },
-        "blockNumber": "0",
-        "operatorId": "1",
-        "seals": {
-          "wallet": {
-            "hash": "0x424f956befa5a84763afe5202876bc15cd0fc0c448ead6efa35fa4d8a93e728c",
-            "signature": {
-              "v": 27,
-              "r": "0x3c2ae3eb67ad66db58cbbc263eba3d6507cd437109ea70af5de7c88ae7651c28",
-              "s": "0x5e5b343ea4176bd408f1e126ec4f64e3f5735e1dc2639e54544ba6d686a6924d"
-            }
+        recipient: {
+          wallet: '0xBB97f342884eD086dd83a192c8a7e649E095DB7b',
+          nonce: 1,
+          balances: {
+            current: '5000000000000000000',
+            previous: '0',
           },
-          "operator": {
-            "hash": "0x7aa30cb4577403d15743776ee664956b8005766dc7a5c59b1e97b672fec4be19",
-            "signature": {
-              "v": 27,
-              "r": "0x9f272b1232165eea0914e5ed496f992592acc58b8620e7083446f8c9dc025783",
-              "s": "0x23af84569bae8e03d39020663786536d0f57aa8f49d0f0adc4dff56ffba122c6"
-            }
-          }
-        }
-      }]
+          fees: {
+            total: [],
+          },
+        },
+        transfers: {
+          single: '5000000000000000000',
+          total: '10000000000000000000',
+        },
+        blockNumber: '0',
+        operatorId: '1',
+        seals: {
+          wallet: {
+            hash: '0x424f956befa5a84763afe5202876bc15cd0fc0c448ead6efa35fa4d8a93e728c',
+            signature: {
+              v: 27,
+              r: '0x3c2ae3eb67ad66db58cbbc263eba3d6507cd437109ea70af5de7c88ae7651c28',
+              s: '0x5e5b343ea4176bd408f1e126ec4f64e3f5735e1dc2639e54544ba6d686a6924d',
+            },
+          },
+          operator: {
+            hash: '0x7aa30cb4577403d15743776ee664956b8005766dc7a5c59b1e97b672fec4be19',
+            signature: {
+              v: 27,
+              r: '0x9f272b1232165eea0914e5ed496f992592acc58b8620e7083446f8c9dc025783',
+              s: '0x23af84569bae8e03d39020663786536d0f57aa8f49d0f0adc4dff56ffba122c6',
+            },
+          },
+        },
+      }];
       yield put(actions.loadReceiptsSuccess(address, receipts));
     } catch (err) {
-      console.log(err)
       yield put(actions.loadReceiptsError(address));
     } finally {
       const TWENTY_SEC_IN_MS = 1000 * 20;
@@ -393,16 +370,8 @@ export function* challengeStatusOrcestrator() {
 
 export default function* listen() {
   yield takeEvery(INIT_NETWORK_ACTIVITY, challengeStatusOrcestrator);
-  
-  // yield takeEvery(actionTypes.DEPOSIT, deposit);
-  // yield takeEvery(actionTypes.DEPOSIT_ETH, depositEth);
-  // yield takeEvery(actionTypes.DEPOSIT_TOKEN, depositToken);
-  yield takeEvery(actionTypes.LOAD_NAHMII_BALANCES, loadBalances);
+
   yield takeEvery(actionTypes.START_PAYMENT_CHALLENGE, startPaymentChallenge);
   yield takeEvery(actionTypes.SETTLE_PAYMENT_DRIIP, settlePaymentDriip);
   yield takeEvery(actionTypes.WITHDRAW, withdraw);
-  yield takeEvery(actionTypes.LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE, loadCurrentPaymentChallengePhase);
-  yield takeEvery(actionTypes.LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS, loadCurrentPaymentChallengeStatus);
-  // yield takeEvery(actionTypes.LOAD_SETTLEMENT, loadSettlement);
-  yield takeEvery(actionTypes.LOAD_RECEIPTS, loadReceipts);
 }
