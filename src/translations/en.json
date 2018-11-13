@@ -178,5 +178,11 @@
     "warning": "Warning",
     "lock": "Lock Wallet",
     "unlock": "Unlock Wallet",
-    "wallet_locked": "Wallet locked"
+    "wallet_locked": "Wallet locked",
+    "total_combined_balances": "Total combined balances",
+    "base_layer_balances": "Base layer balances",
+    "balances": "balances",
+    "avaliable": "Avaliable",
+    "staging": "Staging",
+    "staged": "Staged"
 }

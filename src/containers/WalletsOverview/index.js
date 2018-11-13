@@ -34,7 +34,7 @@ import {
 
 import SectionHeading from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
-import Breakdown from 'components/BreakdownPie';
+import BreakdownPie from 'components/BreakdownPie';
 
 import PlaceholderText from 'components/ui/PlaceholderText';
 import { WalletCardsCol, Wrapper } from './style';
@@ -127,10 +127,13 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
               !totalBalances.get('error') &&
               !supportedAssets.get('loading') &&
               !supportedAssets.get('error') &&
-              <Breakdown
-                data={getBreakdown(totalBalances, supportedAssets)}
-                value={(+this.props.totalBalances.getIn(['total', 'usd']).toFixed(6)).toString()}
-              />
+              <div>
+                <SectionHeading>{formatMessage({ id: 'balance_breakdown' })}</SectionHeading>
+                <BreakdownPie
+                  data={getBreakdown(totalBalances, supportedAssets)}
+                  value={(+this.props.totalBalances.getIn(['total', 'usd']).toFixed(6)).toString()}
+                />
+              </div>
             }
           </Col>
         </Row>

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Collapse } from 'antd';
 
 import Button from 'components/ui/Button';
 import Text from 'components/ui/Text';
@@ -37,30 +36,6 @@ export const ETHtoDollar = styled(Text)`
   color: ${({ theme }) => theme.palette.secondary};
 `;
 
-export const Panel = Collapse.Panel;
-
 export const AdvanceSettingsHeader = styled(Text)`
   color: ${({ theme }) => theme.palette.info};
 `;
-
-export const styledCollapse = styled(Collapse)`
-  background: transparent;
-  margin-left: -1.07rem;
-  .ant-collapse-header {
-    color: ${({ theme }) => theme.palette.info} !important;
-  }
-  .ant-collapse-item {
-    border-bottom: none !important;
-  }
-  .ant-collapse-content {
-    padding-right: 0rem !important;
-  }
-  .ant-collapse-header{
-    width: fit-content;
-  }
-  .ant-collapse-content-box {
-    padding-right: 0rem !important;
-  }
-`;
-
-export { styledCollapse as Collapse };

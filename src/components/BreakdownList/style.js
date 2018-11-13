@@ -21,12 +21,11 @@ export const Percentage = styled.div`
 export const FlexContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-top: -0.86rem;
 `;
 
 export const FlexItem = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem 1rem 0 0;
+  margin: 0.5rem 1rem 0 0;
   flex-wrap: wrap;
 `;

@@ -4,10 +4,10 @@ import { injectIntl } from 'react-intl';
 import { VictoryPie, VictoryContainer, VictoryTooltip } from 'victory';
 
 import BreakdownList from 'components/BreakdownList';
-import SectionHeading from 'components/ui/SectionHeading';
 import Heading from 'components/ui/Heading';
+import Text from 'components/ui/Text';
 import { formatFiat } from 'utils/numberFormats';
-import { Title, Wrapper } from './style';
+import { Wrapper } from './style';
 
 /**
  * This component shows user's total coins' convertion in dollar and a relative chart.
@@ -21,17 +21,19 @@ const Breakdown = ({ data = [], value, intl }) => {
   }));
   const colors = data.map((item) => item.color);
   if (chartData.length === 0) {
-    return <div />;
+    return (
+      <div>
+        <Text large>{formatMessage({ id: 'total_fiat_value' })}</Text>
+        <Heading large>{formatFiat(value, 'USD')}</Heading>;
+      </div>
+    );
   }
   return (
     <Wrapper>
-      <SectionHeading>{formatMessage({ id: 'balance_breakdown' })}</SectionHeading>
-      {(
-        <div>
-          <Title>{formatMessage({ id: 'total_fiat_value' })}</Title>
-          <Heading large>{formatFiat(value, 'USD')}</Heading>
-        </div>
-      )}
+      <div>
+        <Text large>{formatMessage({ id: 'total_fiat_value' })}</Text>
+        <Heading large>{formatFiat(value, 'USD')}</Heading>
+      </div>
       <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '30rem' }}>
         <VictoryPie
           labelComponent={
@@ -47,18 +49,12 @@ const Breakdown = ({ data = [], value, intl }) => {
           containerComponent={
             <VictoryContainer
               responsive
-              style={{ marginTop: '-2.5rem', paddingBottom: '1rem' }}
+              style={{ marginTop: '-2.5rem' }}
             />
           }
         />
       </div>
-      {
-        value !== '0' &&
-          <div>
-            <SectionHeading>{formatMessage({ id: 'assets' })}</SectionHeading>
-            <BreakdownList data={data} />
-          </div>
-      }
+      <BreakdownList combinedBalances={data} />
     </Wrapper>
   );
 };
