@@ -93,7 +93,6 @@ export function* loadSettledBalances({ address }, network) { // eslint-disable-l
       // localhost testing: override with local json rpc provider
       const jsonRpcProvider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
 
-      // derive padded contract addr
       const clientFundContractAddress = '0x609ba158e2d59180e871c891059bdbd6c91c6b4a';
 
       // derive function selector
