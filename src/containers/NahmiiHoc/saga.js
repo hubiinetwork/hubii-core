@@ -121,10 +121,11 @@ export function* loadSettledBalances({ address }, network) { // eslint-disable-l
       const tokenBals = response.map((item) => new BigNumber(item.result));
       const formattedBalances = tokenBals.reduce((acc, bal, i) => {
         if (!bal.gt('0')) return acc;
-        const { currency } = supportedAssets.assets[i];
-        return [...acc, { address, currency, balance: bal }];
+        const { currency, symbol } = supportedAssets.assets[i];
+        return [...acc, { address, currency, symbol, balance: bal }];
       }, []);
       console.log(formattedBalances);
+      yield put(actions.loadStagedBalancesSuccess(address, formattedBalances));
     } catch (err) {
       console.log(err);
     } finally {

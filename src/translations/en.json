@@ -187,5 +187,6 @@
     "starting_payment_challenge": "Starting payment challenge, waiting the transaction to be confirmed...",
     "withdrawing": "Withdrawing, waiting the transaction to be confirmed...",
     "tx_mined_success": "The last transaction for a payment settlement action was confirmed",
-    "tx_mined_error": "The last transaction for a payment settlement action was failed to be confirmed"
+    "tx_mined_error": "The last transaction for a payment settlement action was failed to be confirmed",
+    "enter_amount_withdraw": "Enter the amount to withdraw (max withdraw amount: {withdraw_amount} {symbol})"
 }

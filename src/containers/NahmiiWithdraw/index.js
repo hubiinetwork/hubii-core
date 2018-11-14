@@ -8,6 +8,7 @@ import { injectIntl } from 'react-intl';
 // import { getAbsolutePath } from 'utils/electron';
 import ethers from 'ethers';
 import moment from 'moment';
+import BigNumber from 'bignumber.js';
 import Select, { Option } from 'components/ui/Select';
 import Input from 'components/ui/Input';
 import * as actions from 'containers/NahmiiHoc/actions';
@@ -18,7 +19,11 @@ import {
   makeSelectReceipts,
   makeSelectLastPaymentChallenge,
   makeSelectLastSettlePaymentDriip,
+  makeSelectNahmiiBalancesByCurrentWallet,
 } from 'containers/NahmiiHoc/selectors';
+import {
+  makeSelectSupportedAssets,
+} from 'containers/HubiiApiHoc/selectors';
 
 import {
   OuterWrapper,
@@ -119,8 +124,9 @@ export class NahmiiWithdraw extends React.PureComponent {
   }
 
   render() {
-    const { intl, lastPaymentChallenge } = this.props;
+    const { intl, lastPaymentChallenge, nahmiiBalances, supportedAssets } = this.props;
     const { formatMessage } = intl;
+    const { staged } = nahmiiBalances.toJS();
     const assets = [
       { symbol: 'ETH' },
     ];
@@ -130,7 +136,17 @@ export class NahmiiWithdraw extends React.PureComponent {
     } = this.state;
 
     const challenge = lastPaymentChallenge.get('challenge');
+    const assetDetails = supportedAssets
+            .get('assets')
+            .find((a) => a.get('currency') === 'ETH');
 
+    if (!assetDetails || !staged) {
+      return (null);
+    }
+    const assetDecimals = assetDetails.toJS().decimals;
+    console.log('decimal', assetDecimals);
+    const stagedBalance = staged.assets[0] || { balance: new BigNumber('0') };
+    const formattedStagedBalance = stagedBalance.balance.div(new BigNumber('10').pow(assetDecimals)).toString();
     return (
       <OuterWrapper>
         {
@@ -200,7 +216,7 @@ export class NahmiiWithdraw extends React.PureComponent {
             </StyledButton>
           </FormItem>
           <FormItem
-            label={<FormItemLabel>{formatMessage({ id: 'enter_amount' })}</FormItemLabel>}
+            label={<FormItemLabel>{formatMessage({ id: 'enter_amount_withdraw' }, { withdraw_amount: formattedStagedBalance, symbol: 'ETH' })}</FormItemLabel>}
             colon={false}
           >
             <Input
@@ -220,9 +236,11 @@ NahmiiWithdraw.propTypes = {
   allReceipts: PropTypes.object.isRequired,
   lastPaymentChallenge: PropTypes.object.isRequired,
   lastSettlePaymentDriip: PropTypes.object.isRequired,
+  nahmiiBalances: PropTypes.object.isRequired,
   settlePaymentDriip: PropTypes.func.isRequired,
   startPaymentChallenge: PropTypes.func.isRequired,
   withdraw: PropTypes.func.isRequired,
+  supportedAssets: PropTypes.object.isRequired,
   intl: PropTypes.object.isRequired,
 };
 
@@ -231,6 +249,8 @@ const mapStateToProps = createStructuredSelector({
   allReceipts: makeSelectReceipts(),
   lastPaymentChallenge: makeSelectLastPaymentChallenge(),
   lastSettlePaymentDriip: makeSelectLastSettlePaymentDriip(),
+  nahmiiBalances: makeSelectNahmiiBalancesByCurrentWallet(),
+  supportedAssets: makeSelectSupportedAssets(),
 });
 
 export function mapDispatchToProps(dispatch) {

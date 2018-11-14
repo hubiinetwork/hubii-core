@@ -22,6 +22,11 @@ const makeSelectNahmiiWallets = () => createSelector(
   (nahmiiHocDomain) => nahmiiHocDomain.get('wallets') || fromJS({})
 );
 
+const makeSelectNahmiiBalances = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('balances') || fromJS({})
+);
+
 const makeSelectLastPaymentChallenge = () => createSelector(
   makeSelectNahmiiWallets(),
   makeSelectCurrentWallet(),
@@ -59,10 +64,22 @@ const makeSelectLastSettlePaymentDriip = () => createSelector(
   }
 );
 
+const makeSelectNahmiiBalancesByCurrentWallet = () => createSelector(
+  makeSelectNahmiiBalances(),
+  makeSelectCurrentWallet(),
+  (nahmiiBalances, currentWallet) => {
+    const address = currentWallet.get('address');
+    const nahmiiBalance = nahmiiBalances.get(address);
+    return nahmiiBalance || fromJS({});
+  }
+);
+
 export {
   makeSelectReceipts,
   makeSelectReceiptsByAddress,
   makeSelectLastPaymentChallenge,
   makeSelectLastPaymentChallengeByAddress,
   makeSelectLastSettlePaymentDriip,
+  makeSelectNahmiiBalances,
+  makeSelectNahmiiBalancesByCurrentWallet,
 };
