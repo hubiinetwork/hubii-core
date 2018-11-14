@@ -1,16 +1,20 @@
 import nahmii from 'nahmii-sdk';
-// import { utils } from 'ethers';
+import ethers, { utils } from 'ethers';
 import { all, fork, takeEvery, select, put, call, take, cancel } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
+import BigNumber from 'bignumber.js';
 import { requestWalletAPI } from 'utils/request';
 import { getIntl } from 'utils/localisation';
+import rpcRequest from 'utils/rpcRequest';
 import {
   makeSelectCurrentWalletWithInfo,
   makeSelectWallets,
 } from 'containers/WalletHoc/selectors';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
+import { makeSelectSupportedAssets } from 'containers/HubiiApiHoc/selectors';
 import { notify } from 'containers/App/actions';
 import { showDecryptWalletModal } from 'containers/WalletHoc/actions';
+import { LOAD_SUPPORTED_TOKENS_SUCCESS } from 'containers/HubiiApiHoc/constants';
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import * as actions from './actions';
 import { makeSelectLastPaymentChallengeByAddress } from './selectors';
@@ -70,6 +74,63 @@ export function* loadBalances({ address }, network) {
     yield put(actions.loadBalancesSuccess(address, balances));
   } catch (err) {
     console.log(err);
+  }
+}
+
+// https://stackoverflow.com/questions/48228662/get-token-balance-with-ethereum-rpc
+export function* loadSettledBalances({ address }, network) { // eslint-disable-line
+  let supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+  if (supportedAssets.loading) {
+    yield take(LOAD_SUPPORTED_TOKENS_SUCCESS);
+    supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+  }
+
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      // the first provider in network.provider.providers in an Infura node, which supports RPC calls
+      // const jsonRpcProvider = network.provider.providers[0];
+      // localhost testing: override with local json rpc provider
+      const jsonRpcProvider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
+
+      const clientFundContractAddress = '0x609ba158e2d59180e871c891059bdbd6c91c6b4a';
+
+      // derive function selector
+      const funcBytes = utils.solidityKeccak256(['string'], ['stagedBalance(address,address,uint256)']);
+      const funcSelector = funcBytes.slice(0, 10);
+
+      // send a batch of RPC requests asking for all staged balances
+      // https://www.jsonrpc.org/specification#batch
+      const currencyCtList = supportedAssets.assets.map((a) => a.currency);
+      const requestBatch = currencyCtList.map((ct) => {
+        const currencyId = ct === 'ETH' ? '0x0000000000000000000000000000000000000000' : ct;
+        // encode arguments, prepare them for being sent
+        const encodedArgs = utils.AbiCoder.defaultCoder.encode(['address', 'int256', 'int256'], [address, currencyId, 0]);
+        const dataArr = utils.concat([funcSelector, encodedArgs]);
+        const data = utils.hexlify(dataArr);
+        const params = [{ from: address, to: clientFundContractAddress, data }, 'latest'];
+        return {
+          method: 'eth_call',
+          params,
+          id: 42,
+          jsonrpc: '2.0',
+        };
+      });
+      // send all requests at once
+      const response = yield rpcRequest(jsonRpcProvider.url, JSON.stringify(requestBatch));
+      // process the response
+      const tokenBals = response.map((item) => new BigNumber(item.result));
+      const formattedBalances = tokenBals.reduce((acc, bal, i) => {
+        if (!bal.gt('0')) return acc;
+        const { currency } = supportedAssets.assets[i];
+        return [...acc, { address, currency, balance: bal }];
+      }, []);
+      console.log(formattedBalances);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      const TWENTY_SEC_IN_MS = 1000 * 20;
+      yield delay(TWENTY_SEC_IN_MS);
+    }
   }
 }
 
@@ -358,6 +419,7 @@ export function* challengeStatusOrcestrator() {
         ...wallets.map((wallet) => fork(loadReceipts, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadSettlement, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadBalances, { address: wallet.get('address') }, network)),
+        ...wallets.map((wallet) => fork(loadSettledBalances, { address: wallet.get('address') }, network)),
       ]);
 
       // on network change kill all forks and restart
