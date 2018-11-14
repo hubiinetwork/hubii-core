@@ -158,10 +158,11 @@ export function loadTxRequestForSettlePaymentDriip(address, txRequest) {
   };
 }
 
-export function withdraw(amount) {
+export function withdraw(amount, currency) {
   return {
     type: WITHDRAW,
     amount,
+    currency,
   };
 }
 

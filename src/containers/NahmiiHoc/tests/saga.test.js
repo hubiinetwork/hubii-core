@@ -238,7 +238,8 @@ describe('nahmii', () => {
 
   describe('withdraw from staged balance', () => {
     const amount = ethers.utils.parseUnits('1', 18);
-    const withdrawAmount = new nahmii.MonetaryAmount(amount, '0x0000000000000000000000000000000000000000', 0);
+    const currency = '0x0000000000000000000000000000000000000000';
+    const withdrawAmount = new nahmii.MonetaryAmount(amount, currency, 0);
     const tests = [
       { test: 'can withdraw', params: { txReceipt: { hash, status: 1 } } },
       { test: 'failed to withdraw', params: { txReceipt: { hash, status: 0 } } },
@@ -281,7 +282,7 @@ describe('nahmii', () => {
               return next();
             },
           })
-          .dispatch(actions.withdraw(withdrawAmount));
+          .dispatch(actions.withdraw(amount, currency));
 
 
         if (txReceipt.status === 1) {

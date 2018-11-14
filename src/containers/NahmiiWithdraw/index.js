@@ -37,6 +37,7 @@ export class NahmiiWithdraw extends React.PureComponent {
     this.state = { amountToSendInput: 0, syncTime: new Date() };
     this.startPaymentChallenge = this.startPaymentChallenge.bind(this);
     this.settlePaymentDriip = this.settlePaymentDriip.bind(this);
+    this.withdraw = this.withdraw.bind(this);
   }
 
   settlePaymentDriip() {
@@ -53,6 +54,12 @@ export class NahmiiWithdraw extends React.PureComponent {
     const lastReceipt = allReceipts.get(currentWalletWithInfo.get('address'))[0];
     this.props.startPaymentChallenge(lastReceipt, stageAmount, '0x0000000000000000000000000000000000000000');
     this.state.syncTime = moment().add(30, 'seconds').toDate();
+  }
+
+  withdraw() {
+    const amount = ethers.utils.parseEther('2.5');
+    const currency = '0x0000000000000000000000000000000000000000';
+    this.props.withdraw(amount, currency);
   }
 
   isChallengeInProgress() {
@@ -98,7 +105,11 @@ export class NahmiiWithdraw extends React.PureComponent {
     const challengeUpdatedTime = lastPaymentChallenge.get('updatedAt');
     const challenge = lastPaymentChallenge.get('challenge');
     const settlementUpdatedTime = lastSettlePaymentDriip.get('updatedAt');
-    const lastReceipt = allReceipts.get(currentWalletWithInfo.get('address')).sort((a, b) => b.nonce - a.nonce)[0];
+    const walletReceipts = allReceipts.get(currentWalletWithInfo.get('address'));
+    if (!walletReceipts) {
+      return false;
+    }
+    const lastReceipt = walletReceipts.sort((a, b) => b.nonce - a.nonce)[0];
 
     return lastPaymentChallenge.get('phase') !== 'Dispute' &&
            lastPaymentChallenge.get('txStatus') !== 'mining' &&
@@ -196,7 +207,7 @@ export class NahmiiWithdraw extends React.PureComponent {
               defaultValue={amountToSendInput}
               value={amountToSendInput}
             />
-            <StyledButton>{formatMessage({ id: 'withdraw' })}</StyledButton>
+            <StyledButton onClick={this.withdraw}>{formatMessage({ id: 'withdraw' })}</StyledButton>
           </FormItem>
         </Form>
       </OuterWrapper>
@@ -209,8 +220,9 @@ NahmiiWithdraw.propTypes = {
   allReceipts: PropTypes.object.isRequired,
   lastPaymentChallenge: PropTypes.object.isRequired,
   lastSettlePaymentDriip: PropTypes.object.isRequired,
-  settlePaymentDriip: PropTypes.object.isRequired,
+  settlePaymentDriip: PropTypes.func.isRequired,
   startPaymentChallenge: PropTypes.func.isRequired,
+  withdraw: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
 };
 
@@ -225,6 +237,7 @@ export function mapDispatchToProps(dispatch) {
   return {
     startPaymentChallenge: (...args) => dispatch(actions.startPaymentChallenge(...args)),
     settlePaymentDriip: (...args) => dispatch(actions.settlePaymentDriip(...args)),
+    withdraw: (...args) => dispatch(actions.withdraw(...args)),
   };
 }
 

@@ -2,7 +2,6 @@ import nahmii from 'nahmii-sdk';
 // import { utils } from 'ethers';
 import { all, fork, takeEvery, select, put, call, take, cancel } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
-import { getNahmiiProvider } from 'containers/HubiiApiHoc/saga';
 import { requestWalletAPI } from 'utils/request';
 import { getIntl } from 'utils/localisation';
 import {
@@ -102,7 +101,7 @@ export function* loadBalances({ address }, network) {
 export function* startPaymentChallenge({ receipt, stageAmount, currency }) {
   const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
   if (walletDetails.encrypted && !walletDetails.decrypted) {
-    yield put(showDecryptWalletModal(actions.startPaymentChallenge(receipt, stageAmount)));
+    yield put(showDecryptWalletModal(actions.startPaymentChallenge(receipt, stageAmount, currency)));
     return;
   }
   const network = yield select(makeSelectCurrentNetwork());
@@ -133,12 +132,17 @@ export function* settlePaymentDriip({ receipt }) {
   yield processTx('settle-payment', nahmiiProvider, tx, wallet.address);
 }
 
-export function* withdraw({ amount }) {
+export function* withdraw({ amount, currency }) {
   const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
-  const nahmiiProvider = yield getNahmiiProvider();
+  if (walletDetails.encrypted && !walletDetails.decrypted) {
+    yield put(showDecryptWalletModal(actions.withdraw(amount, currency)));
+    return;
+  }
+  const network = yield select(makeSelectCurrentNetwork());
+  const nahmiiProvider = network.provider;
+  const _amount = new nahmii.MonetaryAmount(amount, currency, 0);
   const wallet = new nahmii.Wallet(walletDetails.decrypted.privateKey, nahmiiProvider);
-
-  const tx = yield call((...args) => wallet.withdraw(...args), amount);
+  const tx = yield call((...args) => wallet.withdraw(...args), _amount);
 
   yield processTx('withdraw', nahmiiProvider, tx, wallet.address);
 }
@@ -168,6 +172,7 @@ export function* processTx(type, provider, tx, address) {
     actionTargets.success = actions.withdrawSuccess;
     actionTargets.error = actions.withdrawError;
     actionTargets.loadTxRequest = actions.loadTxRequestForWithdraw;
+    yield put(notify('info', getIntl().formatMessage({ id: 'withdrawing' })));
   }
 
   yield put(actionTargets.loadTxRequest(address, tx));
