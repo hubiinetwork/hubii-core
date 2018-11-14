@@ -39,10 +39,35 @@ import {
 export class NahmiiWithdraw extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = { amountToSendInput: 0, syncTime: new Date() };
+    this.state = { amountToSendInput: 0, syncTime: new Date(), selectedSymbol: 'ETH' };
     this.startPaymentChallenge = this.startPaymentChallenge.bind(this);
     this.settlePaymentDriip = this.settlePaymentDriip.bind(this);
     this.withdraw = this.withdraw.bind(this);
+    this.handleAssetChange = this.handleAssetChange.bind(this);
+  }
+
+  getAssetDetailsBySymbol(symbol) {
+    const { supportedAssets } = this.props;
+    const assetDetails = supportedAssets.get('assets').find((a) => a.get('symbol') === symbol);
+    return assetDetails;
+  }
+
+  getLastReceipt() {
+    const { allReceipts, currentWalletWithInfo } = this.props;
+    const { selectedSymbol } = this.state;
+    const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol);
+    const walletReceipts = allReceipts.get(currentWalletWithInfo.get('address'));
+    if (!assetDetails) {
+      return null;
+    }
+
+    if (!walletReceipts) {
+      return null;
+    }
+
+    const currency = assetDetails.toJS().symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.toJS().symbol;
+    const lastReceipt = walletReceipts.filter((r) => r.currency.ct === currency).sort((a, b) => b.nonce - a.nonce)[0];
+    return lastReceipt;
   }
 
   settlePaymentDriip() {
@@ -53,17 +78,21 @@ export class NahmiiWithdraw extends React.PureComponent {
   }
 
   startPaymentChallenge() {
-    const { currentWalletWithInfo, allReceipts } = this.props;
+    const { selectedSymbol } = this.state;
     const stageAmount = ethers.utils.parseEther('2.5');
 
-    const lastReceipt = allReceipts.get(currentWalletWithInfo.get('address'))[0];
-    this.props.startPaymentChallenge(lastReceipt, stageAmount, '0x0000000000000000000000000000000000000000');
+    const lastReceipt = this.getLastReceipt();
+
+    const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol).toJS();
+    this.props.startPaymentChallenge(lastReceipt, stageAmount, assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency);
     this.state.syncTime = moment().add(30, 'seconds').toDate();
   }
 
   withdraw() {
+    const { selectedSymbol } = this.state;
     const amount = ethers.utils.parseEther('2.5');
-    const currency = '0x0000000000000000000000000000000000000000';
+    const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol).toJS();
+    const currency = assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency;
     this.props.withdraw(amount, currency);
   }
 
@@ -104,17 +133,23 @@ export class NahmiiWithdraw extends React.PureComponent {
     return true;
   }
 
+  handleAssetChange(symbol) {
+    const { supportedAssets } = this.props;
+    const assetDetails = supportedAssets.get('assets').find((a) => a.get('symbol') === symbol).toJS();
+    this.setState({ selectedSymbol: assetDetails.symbol });
+  }
+
   canStartPaymentChallenge() {
-    const { lastPaymentChallenge, lastSettlePaymentDriip, allReceipts, currentWalletWithInfo } = this.props;
+    const { lastPaymentChallenge, lastSettlePaymentDriip } = this.props;
     const { syncTime } = this.state;
     const challengeUpdatedTime = lastPaymentChallenge.get('updatedAt');
     const challenge = lastPaymentChallenge.get('challenge');
     const settlementUpdatedTime = lastSettlePaymentDriip.get('updatedAt');
-    const walletReceipts = allReceipts.get(currentWalletWithInfo.get('address'));
-    if (!walletReceipts) {
+    const lastReceipt = this.getLastReceipt();
+
+    if (!lastReceipt) {
       return false;
     }
-    const lastReceipt = walletReceipts.sort((a, b) => b.nonce - a.nonce)[0];
 
     return lastPaymentChallenge.get('phase') !== 'Dispute' &&
            lastPaymentChallenge.get('txStatus') !== 'mining' &&
@@ -126,25 +161,21 @@ export class NahmiiWithdraw extends React.PureComponent {
   render() {
     const { intl, lastPaymentChallenge, nahmiiBalances, supportedAssets } = this.props;
     const { formatMessage } = intl;
+    const { selectedSymbol } = this.state;
     const { staged } = nahmiiBalances.toJS();
-    const assets = [
-      { symbol: 'ETH' },
-    ];
 
     const {
       amountToSendInput,
     } = this.state;
 
     const challenge = lastPaymentChallenge.get('challenge');
-    const assetDetails = supportedAssets
-            .get('assets')
-            .find((a) => a.get('currency') === 'ETH');
+    const assets = supportedAssets.get('assets').toJS();
+    const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol);
 
     if (!assetDetails || !staged) {
       return (null);
     }
     const assetDecimals = assetDetails.toJS().decimals;
-    console.log('decimal', assetDecimals);
     const stagedBalance = staged.assets[0] || { balance: new BigNumber('0') };
     const formattedStagedBalance = stagedBalance.balance.div(new BigNumber('10').pow(assetDecimals)).toString();
     return (
@@ -188,7 +219,7 @@ export class NahmiiWithdraw extends React.PureComponent {
             <Select
               // disabled={transfering}
               defaultValue={'ETH'}
-              // onSelect={this.handleAssetChange}
+              onSelect={this.handleAssetChange}
               style={{ paddingLeft: '0.5rem' }}
             >
               {assets.map((currency) => (

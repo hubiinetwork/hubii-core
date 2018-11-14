@@ -124,7 +124,6 @@ export function* loadSettledBalances({ address }, network) { // eslint-disable-l
         const { currency, symbol } = supportedAssets.assets[i];
         return [...acc, { address, currency, symbol, balance: bal }];
       }, []);
-      console.log(formattedBalances);
       yield put(actions.loadStagedBalancesSuccess(address, formattedBalances));
     } catch (err) {
       console.log(err);
