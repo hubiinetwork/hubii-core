@@ -2,7 +2,7 @@
 
 <br />
 <p align="center">
-    <img src="public/images/hubii-core-logo-wtext.svg" width="300">
+    <img src="public/images/hubii-core-logo-long.svg" width="500">
 </p>
 
 > hubii core is an Ethereum wallet manager and friendly user interface to the Ethereum scaling solution nahmii, by hubii. Send and recieve crypto assets and trustlessly make instant, cheap payments and trades, all within a secure desktop environment

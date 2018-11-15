@@ -12,6 +12,11 @@ export const DerivationPathText = styled(Text)`
   color: ${({ theme }) => theme.palette.light};
 `;
 
+export const CustomPathWrapper = styled.div`
+  display: flex;
+  align-items: baseline;
+`;
+
 export const PathWrapper = styled.div`
   margin-top: -0.25rem;
   margin-left: 0.5rem;

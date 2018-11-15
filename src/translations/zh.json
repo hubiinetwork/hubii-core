@@ -192,5 +192,6 @@
     "enter_amount_stage": "请输入结算额度 (结算额度上限: )",
     "lock": "锁上钱包",
     "unlock": "解锁钱包",
-    "wallet_locked": "钱包已被锁上"
+    "wallet_locked": "钱包已被锁上",
+    "invalid_dpath": "请输入有效的钱包地址路径"
 }
