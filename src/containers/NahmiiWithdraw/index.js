@@ -122,7 +122,7 @@ export class NahmiiWithdraw extends React.PureComponent {
     const lastReceipt = this.getLastReceipt();
 
     const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol).toJS();
-    this.props.startPaymentChallenge(lastReceipt, amountToStage, assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency);
+    this.props.startPaymentChallenge(lastReceipt, amountToStage || new BigNumber(0), assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency);
     this.state.syncTime = moment().add(30, 'seconds').toDate();
   }
 
@@ -201,13 +201,17 @@ export class NahmiiWithdraw extends React.PureComponent {
 
   canStartPaymentChallenge() {
     const { lastPaymentChallenge, lastSettlePaymentDriip } = this.props;
-    const { syncTime } = this.state;
+    const { syncTime, amountToStage } = this.state;
     const challengeUpdatedTime = lastPaymentChallenge.get('updatedAt');
     const challenge = lastPaymentChallenge.get('challenge');
     const settlementUpdatedTime = lastSettlePaymentDriip.get('updatedAt');
     const lastReceipt = this.getLastReceipt();
 
     if (!lastReceipt) {
+      return false;
+    }
+
+    if (!amountToStage || amountToStage.eq(new BigNumber(0))) {
       return false;
     }
 
