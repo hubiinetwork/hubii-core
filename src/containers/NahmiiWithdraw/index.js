@@ -78,6 +78,13 @@ export class NahmiiWithdraw extends React.PureComponent {
     return assetDetails;
   }
 
+  getAssetDetailsByCurrencyAddress(currency) {
+    const { supportedAssets } = this.props;
+    const address = currency === '0x0000000000000000000000000000000000000000' ? 'ETH' : currency;
+    const assetDetails = supportedAssets.get('assets').find((a) => a.get('currency') === address);
+    return assetDetails;
+  }
+
   getLastReceipt() {
     const { allReceipts, currentWalletWithInfo } = this.props;
     const { selectedSymbol } = this.state;
@@ -94,6 +101,12 @@ export class NahmiiWithdraw extends React.PureComponent {
     const currency = assetDetails.toJS().symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.toJS().symbol;
     const lastReceipt = walletReceipts.filter((r) => r.currency.ct === currency).sort((a, b) => b.nonce - a.nonce)[0];
     return lastReceipt;
+  }
+
+  getReceiptByNonce(nonce) {
+    const { allReceipts, currentWalletWithInfo } = this.props;
+    const receipt = allReceipts.get(currentWalletWithInfo.get('address')).find((r) => r.nonce === nonce);
+    return receipt;
   }
 
   settlePaymentDriip() {
@@ -169,14 +182,14 @@ export class NahmiiWithdraw extends React.PureComponent {
   }
 
   canWithdraw() {
-    const {selectedSymbol, amountToWithdraw} = this.state
-    const {nahmiiBalances} = this.props
-    const {staged} = nahmiiBalances.toJS()
+    const { selectedSymbol, amountToWithdraw } = this.state;
+    const { nahmiiBalances } = this.props;
+    const { staged } = nahmiiBalances.toJS();
     if (!staged || !amountToWithdraw) {
       return false;
     }
     const stagedBalance = staged.assets.find((a) => a.symbol === selectedSymbol).balance || new BigNumber('0');
-    return stagedBalance.gte(amountToWithdraw) && amountToWithdraw.gt(new BigNumber('0'))
+    return stagedBalance.gte(amountToWithdraw) && amountToWithdraw.gt(new BigNumber('0'));
   }
 
   handleAssetChange(symbol) {
@@ -233,22 +246,28 @@ export class NahmiiWithdraw extends React.PureComponent {
   render() {
     const { intl, lastPaymentChallenge, nahmiiBalances, supportedAssets } = this.props;
     const { formatMessage } = intl;
-    const { selectedSymbol } = this.state;
-    const { staged } = nahmiiBalances.toJS();
-
     const {
+      selectedSymbol,
       amountToStageInput,
       amountToWithdrawInput,
     } = this.state;
 
+    const { staged } = nahmiiBalances.toJS();
     const challenge = lastPaymentChallenge.get('challenge');
-    const assets = supportedAssets.get('assets').toJS();
-    const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol);
-
-    if (!assetDetails || !staged) {
+    const selectedAssetDetails = this.getAssetDetailsBySymbol(selectedSymbol);
+    if (!selectedAssetDetails || !staged || !challenge) {
       return (null);
     }
-    const assetDecimals = assetDetails.toJS().decimals;
+
+    let challengeAssetSymbol;
+    const challengeReceipt = this.getReceiptByNonce(challenge.nonce.toNumber());
+    if (challengeReceipt) {
+      const challengeAsssetDetails = this.getAssetDetailsByCurrencyAddress(challengeReceipt.currency.ct);
+      challengeAssetSymbol = challengeAsssetDetails ? challengeAsssetDetails.toJS().symbol : null;
+    }
+
+    const assets = supportedAssets.get('assets').toJS();
+    const assetDecimals = selectedAssetDetails.toJS().decimals;
     const stagedBalance = staged.assets.find((a) => a.symbol === selectedSymbol) || { balance: new BigNumber('0') };
     const formattedStagedBalance = stagedBalance.balance.div(new BigNumber('10').pow(assetDecimals)).toString();
     return (
@@ -260,7 +279,7 @@ export class NahmiiWithdraw extends React.PureComponent {
             description={
               <div>
                 <div>
-                  {formatMessage({ id: 'settlement_period_ended_notice' })}
+                  {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: challengeAssetSymbol })}
                 </div>
                 <StyledButton onClick={this.settlePaymentDriip} disabled={!this.canSettlePaymentDriip()}>
                   {formatMessage({ id: 'confirm_settlement' })}
@@ -275,7 +294,7 @@ export class NahmiiWithdraw extends React.PureComponent {
           this.isChallengeInProgress() &&
           <SettlementWarning
             message={formatMessage({ id: 'challenge_period_progress' })}
-            description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(challenge.timeout * 1000).format('LLLL') })}
+            description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(challenge.timeout * 1000).format('LLLL'), symbol: challengeAssetSymbol })}
             type="warning"
             showIcon
           />

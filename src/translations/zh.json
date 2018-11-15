@@ -175,5 +175,19 @@
     "airdriip_registration_problem": "抱歉，注册过程中发生错误：{message}",
     "airdriip_address_is_already_registered": "钱包地址已经被注册，无需进行更多操作",
     "airdriip_testnet_warning": "hubii core 当前连接的是 nahmii 测试网络。在测试网络的注册将无法获得 nahmii 空投。正确的注册方式，您应该在“设置”中连接到以太坊主网，选择“网络”选项为'Homestead [MAINNET]'。",
-    "warning": "警告"
+    "warning": "警告",
+    "withdraw": "取款",
+    "settle_payment": "结算取款",
+    "settlement_period_ended": "结算验证时间结束",
+    "settlement_period_ended_notice": "为了更新可用（{symbol}）取款的金额，请确认结算。",
+    "confirm_settlement": "确认结算",
+    "challenge_period_progress": "当前正在进行结算验证",
+    "challenge_period_endtime": "结算结束时间为 {endtime}。一旦结算时间结束并且成功，将会弹出一个提示让您确认结算，以便更新可用（{symbol}）取款金额。",
+    "settling_payment": "结算确认请求已经发送，等待确认中...",
+    "starting_payment_challenge": "结算请求已经发送，等待确认中...",
+    "withdrawing": "取款请求已经发送，等待确认中...",
+    "tx_mined_success": "上个请求操作已经被成功确认",
+    "tx_mined_error": "上个请求操作确认失败",
+    "enter_amount_withdraw": "请输入取款额度 (取款上限: {withdraw_amount} {symbol})",
+    "enter_amount_stage": "请输入结算额度 (结算额度上限: )"
 }
