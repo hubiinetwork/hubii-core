@@ -39,8 +39,8 @@ export const SUPPORTED_NETWORKS = {
     identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : HOMESTEAD_IDENTITY_SERVICE_APPID,
   },
   ropsten: {
-    // provider: providers.getDefaultProvider('ropsten'),
-    provider: new providers.JsonRpcProvider('http://localhost:8545', 'ropsten'),
+    provider: providers.getDefaultProvider('ropsten'),
+    // provider: new providers.JsonRpcProvider('http://localhost:8545', 'ropsten'),
     walletApiEndpoint: trimmableWalletApiEndpoint('https://api2.dev.hubii.net/'),
     identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : ROPSTEN_IDENTITY_SERVICE_SECRET,
     identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : ROPSTEN_IDENTITY_SERVICE_APPID,
