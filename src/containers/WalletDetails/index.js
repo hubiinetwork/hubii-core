@@ -8,11 +8,20 @@ import { injectIntl } from 'react-intl';
 import theme from 'themes/darkTheme';
 import { createStructuredSelector } from 'reselect';
 import { Route, Redirect } from 'react-router';
+
+import { isConnected, isHardwareWallet } from 'utils/wallet';
+
 import WalletHeader from 'components/WalletHeader';
 import WalletTransactions from 'containers/WalletTransactions';
 import WalletTransfer from 'containers/WalletTransfer';
 import NahmiiWithdraw from 'containers/NahmiiWithdraw';
 import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHoc/selectors';
+import {
+  makeSelectLedgerHoc,
+} from 'containers/LedgerHoc/selectors';
+import {
+  makeSelectTrezorHoc,
+} from 'containers/TrezorHoc/selectors';
 import { setCurrentWallet } from 'containers/WalletHoc/actions';
 
 import SimplexPage from 'components/SimplexPage';
@@ -43,9 +52,17 @@ export class WalletDetails extends React.PureComponent {
   }
 
   render() {
-    const { history, match, currentWalletDetails, intl } = this.props;
+    const {
+      history,
+      match,
+      currentWalletDetails,
+      intl,
+      ledgerInfo,
+      trezorInfo,
+    } = this.props;
     const { formatMessage } = intl;
     const currentWallet = currentWalletDetails;
+    const connected = isConnected(currentWallet.toJS(), ledgerInfo.toJS(), trezorInfo.toJS());
     if (!currentWallet || currentWallet === fromJS({})) {
       return null;
     }
@@ -60,6 +77,9 @@ export class WalletDetails extends React.PureComponent {
               .getIn(['balances', 'total', 'usd'])
               .toNumber()}
             onIconClick={this.onHomeClick}
+            connected={connected}
+            isDecrypted={!!currentWallet.get('decrypted')}
+            type={isHardwareWallet(currentWallet.get('type')) ? 'hardware' : 'software'}
           />
         </HeaderWrapper>
         <Tabs
@@ -141,12 +161,16 @@ WalletDetails.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   currentWalletDetails: PropTypes.object.isRequired,
+  ledgerInfo: PropTypes.object.isRequired,
+  trezorInfo: PropTypes.object.isRequired,
   setCurrentWallet: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   currentWalletDetails: makeSelectCurrentWalletWithInfo(),
+  ledgerInfo: makeSelectLedgerHoc(),
+  trezorInfo: makeSelectTrezorHoc(),
 });
 
 export function mapDispatchToProps(dispatch) {

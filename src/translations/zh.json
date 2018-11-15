@@ -189,5 +189,8 @@
     "tx_mined_success": "上个请求操作已经被成功确认",
     "tx_mined_error": "上个请求操作确认失败",
     "enter_amount_withdraw": "请输入取款额度 (取款上限: {withdraw_amount} {symbol})",
-    "enter_amount_stage": "请输入结算额度 (结算额度上限: )"
+    "enter_amount_stage": "请输入结算额度 (结算额度上限: )",
+    "lock": "锁上钱包",
+    "unlock": "解锁钱包",
+    "wallet_locked": "钱包已被锁上"
 }

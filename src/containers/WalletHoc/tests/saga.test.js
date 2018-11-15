@@ -3,7 +3,8 @@
  */
 
 /* eslint-disable redux-saga/yield-effects */
-import { takeEvery, put } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga/effects';
+import * as matchers from 'redux-saga-test-plan/matchers';
 import { expectSaga } from 'redux-saga-test-plan';
 import { Wallet, utils } from 'ethers';
 import { fromJS } from 'immutable';
@@ -71,6 +72,10 @@ import walletHoc, {
   sendTransactionForHardwareWallet,
   generateERC20Transaction,
   signPersonalMessage,
+  decryptSuccessHook,
+  decryptFailedHook,
+  lockHook,
+  tryDecryptHook,
 } from '../saga';
 
 import walletHocReducer, { initialState } from '../reducer';
@@ -84,6 +89,10 @@ import {
   TRANSFER_ERC20,
   LEDGER_ERROR,
   CREATE_WALLET_SUCCESS,
+  DECRYPT_WALLET_SUCCESS,
+  DECRYPT_WALLET_FAILURE,
+  LOCK_WALLET,
+  CREATE_WALLET_FROM_KEYSTORE,
 } from '../constants';
 
 import {
@@ -96,6 +105,7 @@ import {
   transferError,
   transfer as transferAction,
   addNewWallet as addNewWalletAction,
+  hideDecryptWalletModal,
 } from '../actions';
 
 const withReducer = (state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action));
@@ -279,47 +289,32 @@ describe('decryptWallet saga', () => {
   const address = '0x00';
   const decryptedWallet = { privateKey: '0x409300caf64bdf96a92d7f99547a5d67702fbdd759bbea4ca19b11a21d9c8528', defaultGasLimit: 1500000, address: '0xA0EcCD7605Bb117DD2A4Cd55979C720Cf00F7fa4', mnemonic: 'movie viable write punch mango arrest cotton page grass dad document practice', path: "m/44'/60'/0'/0/0" };
 
-  it('should dispatch notify action', () => {
-    const decryptWalletGenerator = decryptWallet({ address, encryptedWallet, password });
-    decryptWalletGenerator.next();
-    const putDescriptor = decryptWalletGenerator.next(decryptedWallet).value;
-    expect(putDescriptor).toEqual(put(notify('info', 'unlock_wallet_info')));
+  it('should dispatch the decryptWalletSuccess action, and activate the callback if successful', () => {
+    const callbackAction = { type: 'action123' };
+    const testState = storeMock.setIn(['walletHoc', 'currentDecryptionCallback'], fromJS(callbackAction));
+    return expectSaga(decryptWallet, { address, encryptedWallet, password })
+      .withState(testState)
+      .provide([
+        [matchers.call.fn(Wallet.fromEncryptedWallet), decryptedWallet],
+      ])
+      .put(decryptWalletSuccess(address, decryptedWallet))
+      .put(hideDecryptWalletModal())
+      .put(callbackAction)
+      .run();
   });
 
-  it('should dispatch the decryptWalletSuccess, notify action, and run the callback function if there is one, if successful', () => {
-    const decryptWalletGenerator = decryptWallet({ address, encryptedWallet, password });
-    decryptWalletGenerator.next();
-    decryptWalletGenerator.next();
-    decryptWalletGenerator.next();
-    let putDescriptor = decryptWalletGenerator.next(decryptedWallet).value;
-    expect(JSON.stringify(putDescriptor)).toEqual(JSON.stringify(put(decryptWalletSuccess(address, decryptedWallet))));
-    putDescriptor = decryptWalletGenerator.next().value;
-    expect(putDescriptor).toEqual(put(notify('success', 'unlock_wallet_success')));
-    decryptWalletGenerator.next();
-  });
+  it('should dispatch decryptWalletFailed and notify action if address is undefined', () => expectSaga(decryptWallet, { address: undefined, encryptedWallet, password })
+      .withState(storeMock)
+      .put(decryptWalletFailed(new Error('address_undefined_error')))
+      .run());
 
-  it('should dispatch decryptWalletFailed and notify action if address is undefined', () => {
-    const decryptWalletGenerator = decryptWallet({ encryptedWallet, password });
-    decryptWalletGenerator.next();
-    decryptWalletGenerator.next();
-    let putDescriptor = decryptWalletGenerator.next().value;
-    const error = new Error('address_undefined_error');
-    expect(putDescriptor).toEqual(put(decryptWalletFailed(error)));
-    putDescriptor = decryptWalletGenerator.next().value;
-    expect(putDescriptor).toEqual(put(notify('error', 'unlock_wallet_failed_error')));
-  });
-
-  it('should dispatch the decryptWalletFailed and notify action if decryption fails', () => {
-    const decryptWalletGenerator = decryptWallet({ address, encryptedWallet, password });
-    decryptWalletGenerator.next();
-    decryptWalletGenerator.next();
-    decryptWalletGenerator.next();
-    const error = new Error('some error occured');
-    let putDescriptor = decryptWalletGenerator.next(error).value;
-    expect(putDescriptor).toEqual(put(decryptWalletFailed(error)));
-    putDescriptor = decryptWalletGenerator.next().value;
-    expect(putDescriptor).toEqual(put(notify('error', 'unlock_wallet_failed_error')));
-  });
+  it('should dispatch the decryptWalletFailed and notify action if decryption fails', () => expectSaga(decryptWallet, { address, encryptedWallet, password: 'cats' })
+      .withState(storeMock)
+      .provide([
+        [matchers.call.fn(Wallet.fromEncryptedWallet), new Error('invalid_password')],
+      ])
+      .put(decryptWalletFailed(new Error('invalid_password')))
+      .run());
 });
 
 it('sign transaction for eth payment', () => {
@@ -887,6 +882,35 @@ describe('#signPersonalMessage', () => {
   });
 });
 
+describe('tryDecryptHook saga', () => {
+  it('should dispatch correct notify action', () => expectSaga(tryDecryptHook)
+      .put(notify('info', 'unlock_wallet_info'))
+      .run()
+  );
+});
+
+describe('decryptSuccessHook saga', () => {
+  it('should dispatch correct notify action', () => expectSaga(decryptSuccessHook)
+      .put(notify('success', 'unlock_wallet_success'))
+      .run()
+  );
+});
+
+describe('decryptFailedHook saga', () => {
+  it('should dispatch correct notify action', () => expectSaga(decryptFailedHook, { error: new Error('some msg') })
+      .put(notify('error', 'unlock_wallet_failed_error'))
+      .run()
+  );
+});
+
+describe('lockHook saga', () => {
+  it('should dispatch correct notify action', () => expectSaga(lockHook)
+      .put(notify('success', 'wallet_locked'))
+      .run()
+  );
+});
+
+
 describe('root Saga', () => {
   const walletHocSaga = walletHoc();
 
@@ -915,13 +939,38 @@ describe('root Saga', () => {
     expect(takeDescriptor).toEqual(takeEvery(TRANSFER_ERC20, transferERC20));
   });
 
-  it('should wait for the CREATE_WALLET_FROM_PRIVATE_KEY action', () => {
+  it('should start task to watch for CREATE_WALLET_FROM_PRIVATE_KEY action', () => {
     const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey));
   });
 
-  it('should wait for the CREATE_WALLET_SUCCESS action', () => {
+  it('should start task to watch for CREATE_WALLET_SUCCESS action', () => {
     const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated));
+  });
+
+  it('should start task to watch for CREATE_WALLET_FROM_KEYSTORE action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_FROM_KEYSTORE, createWalletFromKeystore));
+  });
+
+  it('should start task to watch for DECRYPT_WALLET_SUCCESS action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(DECRYPT_WALLET_SUCCESS, decryptSuccessHook));
+  });
+
+  it('should start task to watch for DECRYPT_WALLET_FAILURE action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(DECRYPT_WALLET_FAILURE, decryptFailedHook));
+  });
+
+  it('should start task to watch for DECRYPT_WALLET action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(DECRYPT_WALLET, tryDecryptHook));
+  });
+
+  it('should start task to watch for LOCK_WALLET action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(LOCK_WALLET, lockHook));
   });
 });

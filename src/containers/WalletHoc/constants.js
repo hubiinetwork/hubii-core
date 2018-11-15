@@ -20,6 +20,7 @@ export const DELETE_WALLET = 'src/WalletHoc/DELETE_WALLET';
 export const DECRYPT_WALLET = 'src/WalletHoc/DECRYPT_WALLET';
 export const DECRYPT_WALLET_SUCCESS = 'src/WalletHoc/DECRYPT_WALLET_SUCCESS';
 export const DECRYPT_WALLET_FAILURE = 'src/WalletHoc/DECRYPT_WALLET_FAILURE';
+export const LOCK_WALLET = 'src/WalletHoc/LOCK_WALLET';
 
 export const SHOW_DECRYPT_WALLET_MODAL = 'src/WalletHoc/SHOW_DECRYPT_WALLET_MODAL';
 export const HIDE_DECRYPT_WALLET_MODAL = 'src/WalletHoc/HIDE_DECRYPT_WALLET_MODAL';

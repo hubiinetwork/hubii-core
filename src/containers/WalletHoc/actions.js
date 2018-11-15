@@ -23,8 +23,15 @@ import {
   TRANSFER_SUCCESS,
   TRANSFER_ERROR,
   DELETE_WALLET,
+  LOCK_WALLET,
 } from './constants';
 
+export function lockWallet(address) {
+  return {
+    type: LOCK_WALLET,
+    address,
+  };
+}
 
 export function deleteWallet(address) {
   return {

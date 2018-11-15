@@ -97,6 +97,16 @@ ShallowWrapper {
             "formatMessage": [Function],
           }
     }
+    ledgerInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
     loadBlockHeight={[Function]}
     match={
         Object {
@@ -106,6 +116,16 @@ ShallowWrapper {
           }
     }
     setCurrentWallet={[Function]}
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -124,9 +144,12 @@ ShallowWrapper {
           <WalletHeader
                     address="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
                     balance={81.962044}
+                    connected={false}
                     iconType="home"
+                    isDecrypted={false}
                     name="lns"
                     onIconClick={[Function]}
+                    type="hardware"
           />
 </index.style__HeaderWrapper>,
         <Tabs
@@ -229,9 +252,12 @@ ShallowWrapper {
           "children": <WalletHeader
             address="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
             balance={81.962044}
+            connected={false}
             iconType="home"
+            isDecrypted={false}
             name="lns"
             onIconClick={[Function]}
+            type="hardware"
 />,
         },
         "ref": null,
@@ -242,9 +268,12 @@ ShallowWrapper {
           "props": Object {
             "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
             "balance": 81.962044,
+            "connected": false,
             "iconType": "home",
+            "isDecrypted": false,
             "name": "lns",
             "onIconClick": [Function],
+            "type": "hardware",
           },
           "ref": null,
           "rendered": null,
@@ -509,9 +538,12 @@ ShallowWrapper {
             <WalletHeader
                         address="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
                         balance={81.962044}
+                        connected={false}
                         iconType="home"
+                        isDecrypted={false}
                         name="lns"
                         onIconClick={[Function]}
+                        type="hardware"
             />
 </index.style__HeaderWrapper>,
           <Tabs
@@ -614,9 +646,12 @@ ShallowWrapper {
             "children": <WalletHeader
               address="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
               balance={81.962044}
+              connected={false}
               iconType="home"
+              isDecrypted={false}
               name="lns"
               onIconClick={[Function]}
+              type="hardware"
 />,
           },
           "ref": null,
@@ -627,9 +662,12 @@ ShallowWrapper {
             "props": Object {
               "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
               "balance": 81.962044,
+              "connected": false,
               "iconType": "home",
+              "isDecrypted": false,
               "name": "lns",
               "onIconClick": [Function],
+              "type": "hardware",
             },
             "ref": null,
             "rendered": null,

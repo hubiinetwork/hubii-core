@@ -5,11 +5,11 @@ import BigNumber from 'bignumber.js';
 import { injectIntl } from 'react-intl';
 
 import { isHardwareWallet, isAddressMatch } from 'utils/wallet';
+import WalletStatusIndicator from 'components/WalletStatusIndicator';
 import DeletionModal from 'components/DeletionModal';
 import ExportPrivateInfo from 'components/ExportPrivateInfo';
 import WalletDetailPopoverContent from './WalletDetailPopoverContent';
 import AssetAmountBubble from './AssetAmountBubble';
-import USBFlag from '../USBFlag';
 import { Modal } from '../ui/Modal';
 import { formatFiat } from '../../utils/numberFormats';
 
@@ -47,12 +47,34 @@ export class WalletItemCard extends React.PureComponent {
   }
 
 
-  settingsMenu(walletType) {
+  settingsMenu(walletType, isDecrypted) {
     const menuItems = [];
     const { formatMessage } = this.props.intl;
+    if (walletType === 'software') {
+      if (isDecrypted) {
+        menuItems.push(
+          <MenuItem key="1" onClick={this.props.lock}>
+            {formatMessage({ id: 'lock' })}
+          </MenuItem>
+        );
+      } else {
+        menuItems.push(
+          <MenuItem key="2" onClick={this.props.unlock}>
+            {formatMessage({ id: 'unlock' })}
+          </MenuItem>
+        );
+      }
+      menuItems.push(<MenuDivider key="3" />);
+      menuItems.push(
+        <MenuItem key="4" onClick={this.handleExportSeedWords}>
+          {formatMessage({ id: 'backup_wallet' })}
+        </MenuItem>
+      );
+      menuItems.push(<MenuDivider key="5" />);
+    }
     menuItems.push(
       <MenuItem
-        key="1"
+        key="6"
         onClick={() =>
           this.setState({ modalVisibility: true, modalType: 'deleteWallet' })
         }
@@ -60,14 +82,6 @@ export class WalletItemCard extends React.PureComponent {
         {formatMessage({ id: 'delete_wallet' })}
       </MenuItem>
     );
-    if (walletType === 'software') {
-      menuItems.push(<MenuDivider key="2" />);
-      menuItems.push(
-        <MenuItem key="3" onClick={this.handleExportSeedWords}>
-          {formatMessage({ id: 'backup_wallet' })}
-        </MenuItem>
-      );
-    }
     return <Menu visible singleitem={(menuItems.length === 1).toString()}>{menuItems.map((item) => item)}</Menu>;
   }
 
@@ -168,7 +182,10 @@ export class WalletItemCard extends React.PureComponent {
     }
     return (
       <OverflowHidden>
-        {isHardwareWallet(type) && <USBFlag connected={connected} />}
+        <WalletStatusIndicator
+          active={connected || isDecrypted}
+          walletType={isHardwareWallet(type) ? 'hardware' : 'software'}
+        />
         <IconsWrapper>
           <CardIcon>
             <Popover
@@ -182,7 +199,7 @@ export class WalletItemCard extends React.PureComponent {
             </Popover>
           </CardIcon>
           <CardIconSettings>
-            <Dropdown placement="bottomLeft" overlay={this.settingsMenu(type)}>
+            <Dropdown placement="bottomLeft" overlay={this.settingsMenu(type, isDecrypted)}>
               <Icon
                 type="setting"
                 style={{ marginTop: 65, position: 'absolute', fontSize: '1.4rem' }}
@@ -249,54 +266,19 @@ WalletItemCard.propTypes = {
       amount: PropTypes.number,
     })
   ),
-  /**
-   * primary Address of the wallet.
-   */
   address: PropTypes.string.isRequired,
-  /**
-   * if balances are loading
-   */
   balancesLoading: PropTypes.bool.isRequired,
-  /**
-   * if unable to display balances due to API error
-   */
   balancesError: PropTypes.bool.isRequired,
-  /**
-   * props.type type of the wallet.
-   */
   type: PropTypes.string.isRequired,
-  /**
-   * props.bool shows connection status  of  wallet if  provided.
-   */
   connected: PropTypes.bool,
-  /**
-   * Function which handles the on card click event
-   */
   handleCardClick: PropTypes.func.isRequired,
-  /**
-   * Function whichDeletes a wallet
-   */
   deleteWallet: PropTypes.func.isRequired,
-  /**
-   * Function which decrypts wallet
-   */
+  lock: PropTypes.func.isRequired,
+  unlock: PropTypes.func.isRequired,
   showDecryptWalletModal: PropTypes.func.isRequired,
-  // setCurrentWallet: PropTypes.func.isRequired,
-  /**
-   * Indicates, as a boolean, whether wallet is decrypted or not
-   */
   isDecrypted: PropTypes.bool.isRequired,
-  /**
-   * Wallet's mnemonic
-   */
   mnemonic: PropTypes.string,
-  /**
-   * Wallet's private key
-   */
   privateKey: PropTypes.string,
-  /**
-   * Price list
-   */
   priceInfo: PropTypes.arrayOf(PropTypes.object),
   intl: PropTypes.object,
 };

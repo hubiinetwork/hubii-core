@@ -14,6 +14,7 @@ import {
   transfer,
   deleteWallet,
   addNewWallet,
+  lockWallet,
 } from '../actions';
 
 const wallet = {
@@ -109,6 +110,15 @@ describe('walletHocReducer', () => {
       .setIn(['loading', 'decryptingWallet'], true)
       .set('progress', 0);
       expect(walletHocReducer(state, decryptWallet())).toEqual(expected);
+    });
+
+    it('should handle lockWallet action correctly', () => {
+      const address = '0x00';
+      const testState = state
+        .setIn(['wallets', 0], fromJS({ address, encrypted: { pubKey: '0321' }, decrypted: { pubKey: '0321', privKey: '0x123' } }));
+      const expected = testState
+        .deleteIn(['wallets', 0, 'decrypted']);
+      expect(walletHocReducer(testState, lockWallet(address))).toEqual(expected);
     });
 
     it('should handle createWalletFailed action correctly', () => {

@@ -189,5 +189,8 @@
     "tx_mined_success": "The transaction for the last action was confirmed",
     "tx_mined_error": "The transaction for the last action was failed to be confirmed",
     "enter_amount_withdraw": "Enter the amount to withdraw (max withdraw amount: {withdraw_amount} {symbol})",
-    "enter_amount_stage": "Enter the amount to stage during the settlement (max stage amount: )"
+    "enter_amount_stage": "Enter the amount to stage during the settlement (max stage amount: )",
+    "lock": "Lock Wallet",
+    "unlock": "Unlock Wallet",
+    "wallet_locked": "Wallet locked"
 }

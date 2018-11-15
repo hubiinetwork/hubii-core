@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { walletsWithInfoMock } from 'containers/WalletHoc/tests/mocks/selectors';
+import { ledgerHocConnectedMock } from 'containers/LedgerHoc/tests/mocks/selectors';
+import { trezorHocConnectedMock } from 'containers/TrezorHoc/tests/mocks/selectors';
 
 import { intl } from 'jest/__mocks__/react-intl';
 import { WalletDetails, mapDispatchToProps } from '../index';
@@ -13,6 +15,8 @@ describe('WalletDetails', () => {
     setCurrentWallet: () => {},
     loadBlockHeight: () => {},
     intl,
+    ledgerInfo: ledgerHocConnectedMock,
+    trezorInfo: trezorHocConnectedMock,
   };
   const setCurrentWalletSpy = jest.fn();
   let dom;
