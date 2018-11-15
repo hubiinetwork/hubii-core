@@ -168,6 +168,17 @@ export class NahmiiWithdraw extends React.PureComponent {
     return true;
   }
 
+  canWithdraw() {
+    const {selectedSymbol, amountToWithdraw} = this.state
+    const {nahmiiBalances} = this.props
+    const {staged} = nahmiiBalances.toJS()
+    if (!staged || !amountToWithdraw) {
+      return false;
+    }
+    const stagedBalance = staged.assets.find((a) => a.symbol === selectedSymbol).balance || new BigNumber('0');
+    return stagedBalance.gte(amountToWithdraw) && amountToWithdraw.gt(new BigNumber('0'))
+  }
+
   handleAssetChange(symbol) {
     const { supportedAssets } = this.props;
     const assetDetails = supportedAssets.get('assets').find((a) => a.get('symbol') === symbol).toJS();
@@ -194,7 +205,7 @@ export class NahmiiWithdraw extends React.PureComponent {
            (settlementUpdatedTime && challengeUpdatedTime && syncTime.getTime() < settlementUpdatedTime.getTime() && syncTime.getTime() < challengeUpdatedTime.getTime());
   }
 
-  handleAmountChange(e, inputProp = 'amountToSend') {
+  handleAmountChange(e, inputProp) {
     const { value } = e.target;
     const { amountInputRegex, selectedSymbol } = this.state;
 
@@ -238,7 +249,7 @@ export class NahmiiWithdraw extends React.PureComponent {
       return (null);
     }
     const assetDecimals = assetDetails.toJS().decimals;
-    const stagedBalance = staged.assets[0] || { balance: new BigNumber('0') };
+    const stagedBalance = staged.assets.find((a) => a.symbol === selectedSymbol) || { balance: new BigNumber('0') };
     const formattedStagedBalance = stagedBalance.balance.div(new BigNumber('10').pow(assetDecimals)).toString();
     return (
       <OuterWrapper>
@@ -317,7 +328,7 @@ export class NahmiiWithdraw extends React.PureComponent {
               onBlur={() => this.onBlurNumberInput('amountToWithdrawInput')}
               onChange={(e) => this.handleAmountChange(e, 'amountToWithdraw')}
             />
-            <StyledButton onClick={this.withdraw}>{formatMessage({ id: 'withdraw' })}</StyledButton>
+            <StyledButton onClick={this.withdraw} disabled={!this.canWithdraw()}>{formatMessage({ id: 'withdraw' })}</StyledButton>
           </StyledFormItem>
         </StyledForm>
       </OuterWrapper>
