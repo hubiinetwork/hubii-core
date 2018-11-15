@@ -1,36 +1,60 @@
 import { Radio } from 'antd';
 import styled from 'styled-components';
-import Button from '../../ui/Button';
 
-export const Coins = styled(Radio.Group)`
-  margin-top: 40px;
-  margin-bottom: 50px;
+import Button from 'components/ui/Button';
+
+const RadioButton = Radio.Button;
+
+export const Wrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  .ant-radio-button-wrapper-checked {
-    background-color: ${({ theme }) => theme.palette.info};
-    border: 1px solid ${({ theme }) => theme.palette.info};
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Header = styled.p`
+  &&& {
+    color: white;
+    text-align: center;
+    font-size: 1.7rem;
+    margin-top: 4rem;
+    margin-bottom: 1rem;
   }
 `;
-const RadioButton = Radio.Button;
-export const CoinButton = styled(RadioButton)`
-  margin-top: 15px;
-  padding-top: 8px;
-  background-color: transparent;
-  width: 227px;
-  height: 48px;
-  border-radius: 3px !important;
+
+export const OptionsWrapper = styled(Radio.Group)`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .ant-radio-button-wrapper-checked {
+    border: 0.14rem solid ${({ theme }) => theme.palette.info};
+    box-shadow: none;
+    transition: box-shadow 0s ease;
+  }
 `;
 
-export const Flex = styled.div`
+export const Option = styled(RadioButton)`
+  padding: 0.5rem;
+  margin: 1rem;
   display: flex;
-  color: ${({ theme }) => theme.palette.light};
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.07rem;
+  padding-top: 0.57rem;
+  background-color: transparent;
+  width: 16.21rem;
+  height: 3.43rem;
+  border-radius: 0.21rem !important;
 `;
 
 export const Image = styled.img`
-  width: 90px;
-  height: 30px;
+  max-width: 11rem;
+  max-height: 2.5rem;
+`;
+
+export const OptionText = styled.h3`
+  color: white;
+  vertical-align: center;
 `;
 
 export const Center = styled.div`
@@ -38,43 +62,9 @@ export const Center = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const SpanText = styled.span`
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 19px;
-`;
-export const ButtonDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 26px;
-  margin-top: 1rem;
-`;
+
 export const StyledButton = styled(Button)`
-  margin-top: 80px;
-  background-color: ${({ disabled: white }) =>
-    white && 'transparent !important'};
-  font-size: 12px;
-  font-weight: 500;
-  border-width: 2px;
-  height: 40px;
-  width: 162px;
-  border: ${({ disabled: white, theme }) =>
-    white && `2px solid ${theme.palette.secondary4} !important`};
-  min-width: ${({ current: width }) => (width === 0 ? '260px' : '260px')};
-  color: ${({ disabled: white, theme }) =>
-    white
-      ? `${theme.palette.secondary4} !important`
-      : `${theme.palette.light} !important`};
-  &:hover {
-    background-color: ${({ disabled: white }) =>
-      white && 'transparent !important'};
-    border: ${({ disabled: white, theme }) =>
-      white && `2px solid ${theme.palette.secondary4} !important`};
-  }
-`;
-export const StyledSpan = styled.span`
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 14px;
-  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  width: 18.57rem;
 `;

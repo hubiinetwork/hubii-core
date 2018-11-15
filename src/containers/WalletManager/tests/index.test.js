@@ -1,7 +1,8 @@
 import React from 'react';
 import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
-import Tab from 'components/ui/Tab';
+import Tabs from 'components/ui/Tabs';
+import { intl } from 'jest/__mocks__/react-intl';
 import { WalletManager, mapDispatchToProps } from '../index';
 
 describe('WalletManager', () => {
@@ -22,9 +23,11 @@ describe('WalletManager', () => {
       loading: fromJS(loading),
       errors: fromJS(errors),
       wallets: fromJS([{}]),
+      intl,
     };
     let createWalletFromMnemonicSpy;
     let createWalletFromPrivateKeySpy;
+    let createWalletFromKeystoreSpy;
     let createContactSpy;
 
     let dom;
@@ -33,6 +36,8 @@ describe('WalletManager', () => {
       params.createWalletFromMnemonic = createWalletFromMnemonicSpy;
       createWalletFromPrivateKeySpy = jest.fn();
       params.createWalletFromPrivateKey = createWalletFromPrivateKeySpy;
+      createWalletFromKeystoreSpy = jest.fn();
+      params.createWalletFromKeystore = createWalletFromKeystoreSpy;
 
       createContactSpy = jest.fn();
       params.createContact = createContactSpy;
@@ -57,7 +62,7 @@ describe('WalletManager', () => {
         expect(dom.find('Redirect').length).toEqual(0);
       });
       it('should set activeKey of Tab to the location.pathname', () => {
-        expect(dom.find(Tab).props().activeKey).toEqual(history.location.pathname);
+        expect(dom.find(Tabs).props().activeKey).toEqual(history.location.pathname);
       });
     });
     describe('methods', () => {
@@ -117,12 +122,8 @@ describe('WalletManager', () => {
           name: 'mike',
           address: '0x12312',
         };
-        const newName = args.name.replace(
-          /\w\S*/g,
-          (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-        );
         instance.onCreateContact(args);
-        expect(createContactSpy).toBeCalledWith(newName, args.address);
+        expect(createContactSpy).toBeCalledWith(args.name, args.address);
       });
       it('#handleAddWalletSubmit should call createWalletFromMnemonic action', () => {
         dom = shallow(
@@ -148,7 +149,7 @@ describe('WalletManager', () => {
         );
         const instance = dom.instance();
         const args = [{
-          walletType: 'metamask',
+          walletType: 'Private key',
         }, {
           privateKey: 'privateKey',
           name: 'name',

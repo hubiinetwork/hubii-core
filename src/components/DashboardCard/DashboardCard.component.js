@@ -1,35 +1,43 @@
-import { Icon } from 'antd';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  StyledCard,
   Wrapper,
-  IconSpan,
-  TitleSpan,
+  AntdIcon,
+  CustomIcon as Icon,
+  Title,
 } from './DashboardCard.style';
 
 /**
  * This component shows app's features as options on the main screen.
  */
 
-const DashboardCard = ({ iconType, title }) => (
-  <Wrapper>
-    <StyledCard>
-      <IconSpan>
-        <Icon type={iconType} />
-      </IconSpan>
-      <TitleSpan> {title} </TitleSpan>
-    </StyledCard>
+const DashboardCard = ({ className, iconType, title, iconSrc }) => (
+  <Wrapper className={className}>
+    {iconSrc ? <Icon src={iconSrc} /> : <AntdIcon type={iconType} />}
+    <Title>{title}</Title>
   </Wrapper>
-);
+  );
+
 DashboardCard.propTypes = {
   /**
    * title to show on dashboard card.
    */
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+
   /**
-   * icon to show on dashboard card with title.
+   * antd icon to show on dashboard card with title.
    */
-  iconType: PropTypes.string.isRequired,
+  iconType: PropTypes.string,
+
+  /**
+   * location of icon to show on dashboard card with title.
+   */
+  iconSrc: PropTypes.string,
+
+  /**
+   * styled-components classname
+   */
+  className: PropTypes.string,
 };
+
 export default DashboardCard;

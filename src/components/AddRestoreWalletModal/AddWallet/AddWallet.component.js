@@ -1,26 +1,24 @@
 import * as React from 'react';
-import { Row, Col, Form, Popover } from 'antd';
+import { Row, Col, Form } from 'antd';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import ethers from 'ethers';
 import PropTypes from 'prop-types';
-import { getAbsolutePath } from 'utils/electron';
-import Notification from '../../Notification';
+import { injectIntl } from 'react-intl';
+import Notification from 'components/Notification';
+import Heading from 'components/ui/Heading';
+import Button from 'components/ui/Button';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../../ui/Modal';
 
 import {
-  Info,
-  SeedInfo,
+  WarningPoint,
   SeedText,
   WrapperDiv,
-  InfoContent,
-  RoundButton,
   FinishButton,
-  SeedWrapper,
+  WarningList,
   CenterWrapper,
-  HBT,
-  HBTtext,
   StyledSpin,
 } from './AddWallet.style';
+import { FinalHeader } from '../../ImportWalletSteps/ImportWalletForm.style';
 
 /**
  * This component shows form  to add a wallet.
@@ -40,6 +38,7 @@ class AddWallet extends React.PureComponent {
     this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
     this.compareToFirstPassword = this.compareToFirstPassword.bind(this);
     this.validateToNextPassword = this.validateToNextPassword.bind(this);
+    this.showNotification = this.showNotification.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleConfirmBlur(e) {
@@ -50,8 +49,9 @@ class AddWallet extends React.PureComponent {
   }
   compareToFirstPassword(rule, value, callback) {
     const form = this.props.form;
+    const { formatMessage } = this.props.intl;
     if (value && value !== form.getFieldValue('password')) {
-      callback('The passwords do not match!');
+      callback(formatMessage({ id: 'password_notmatch' }));
     } else {
       callback();
     }
@@ -76,48 +76,55 @@ class AddWallet extends React.PureComponent {
     });
   }
   showNotification() {
+    const { formatMessage } = this.props.intl;
     const success = true;
-    const message = 'Seed words copied to clipboard.';
+    const message = formatMessage({ id: 'mnemonic_clipboard' });
     Notification(success, message);
   }
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { loading } = this.props;
+    const { loading, intl } = this.props;
+    const { formatMessage } = intl;
     return (
       <div>
-        <CenterWrapper>
-          <HBT src={getAbsolutePath('public/asset_images/HBT.svg')} alt="hubii logo" />
-          <HBTtext>Hubii</HBTtext>
-        </CenterWrapper>
         <Row justify="center" type="flex">
           <Col span={18}>
-            <Form onSubmit={this.handleSubmit} disabled>
+            <Form
+              onSubmit={this.handleSubmit}
+              disabled
+              style={{
+                marginTop: '2rem',
+              }}
+            >
+              <FinalHeader>
+                <Heading large>{formatMessage({ id: 'create_new_wallet' })}</Heading>
+              </FinalHeader>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>Give your wallet a Name</ModalFormLabel>}
+                label={<ModalFormLabel>{formatMessage({ id: 'enter_wallet_name' })}</ModalFormLabel>}
               >
                 {getFieldDecorator('name', {
                   rules: [
                     {
                       required: true,
-                      message: 'Please enter your wallet name.',
+                      message: formatMessage({ id: 'please_enter_wallet_name' }),
                     },
                   ],
                 })(<ModalFormInput disabled={loading} />)}
               </ModalFormItem>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>Set a Password</ModalFormLabel>}
+                label={<ModalFormLabel>{formatMessage({ id: 'enter_wallet_password' })}</ModalFormLabel>}
               >
                 {getFieldDecorator('password', {
                   rules: [
                     {
                       required: true,
-                      message: 'Please enter your password!',
+                      message: formatMessage({ id: 'please_enter_wallet_password' }),
                     },
                     {
-                      min: 6,
-                      message: 'The required minimum is 6 characters.',
+                      min: 8,
+                      message: formatMessage({ id: 'password_8chart_min' }),
                     },
                     {
                       validator: this.validateToNextPassword,
@@ -127,13 +134,13 @@ class AddWallet extends React.PureComponent {
               </ModalFormItem>
               <ModalFormItem
                 colon={false}
-                label={<ModalFormLabel>Repeat Password</ModalFormLabel>}
+                label={<ModalFormLabel>{formatMessage({ id: 'repeat_password' })}</ModalFormLabel>}
               >
                 {getFieldDecorator('confirm', {
                   rules: [
                     {
                       required: true,
-                      message: 'Please confirm your password!',
+                      message: formatMessage({ id: 'confirm_password' }),
                     },
                     {
                       validator: this.compareToFirstPassword,
@@ -148,48 +155,36 @@ class AddWallet extends React.PureComponent {
                 )}
               </ModalFormItem>
               <ModalFormItem colon={false}>
-                <SeedWrapper>
-                  <SeedInfo>Save these Seed Words somewhere safe</SeedInfo>
-                  <Popover
-                    overlayStyle={{ width: 270 }}
-                    content={
-                      <InfoContent>
-                        If your computer breaks, you&apos;ll be able to use this
-                        phrase to restore your wallet.
-                      </InfoContent>
-                    }
-                  >
-                    <Info type="info-circle-o" />
-                  </Popover>
-                </SeedWrapper>
+                <WarningList>
+                  <WarningPoint>{formatMessage({ id: 'wallet_mnemonic_phrase_warning_1' })}</WarningPoint>
+                  <WarningPoint>{formatMessage({ id: 'wallet_mnemonic_phrase_warning_2' })}</WarningPoint>
+                  <WarningPoint>{formatMessage({ id: 'wallet_mnemonic_phrase_warning_3' })}</WarningPoint>
+                  <WarningPoint>{formatMessage({ id: 'wallet_mnemonic_phrase_warning_4' })}</WarningPoint>
+                </WarningList>
               </ModalFormItem>
               <ModalFormItem colon={false}>
-                <SeedWrapper>
-                  <CopyToClipboard text={this.state.mnemonic}>
-                    <WrapperDiv>
-                      <SeedText>{this.state.mnemonic}</SeedText>
-                      <RoundButton
-                        type="primary"
-                        shape="circle"
-                        icon="copy"
-                        size={'small'}
-                        onClick={this.showNotification}
-                        key={2}
-                      />
-                    </WrapperDiv>
-                  </CopyToClipboard>
-                </SeedWrapper>
+                <CopyToClipboard text={this.state.mnemonic}>
+                  <WrapperDiv>
+                    <SeedText large>{this.state.mnemonic}</SeedText>
+                    <Button
+                      type="icon"
+                      icon="copy"
+                      size={'small'}
+                      onClick={this.showNotification}
+                      key={2}
+                    />
+                  </WrapperDiv>
+                </CopyToClipboard>
               </ModalFormItem>
               <CenterWrapper>
                 {loading ? (
                   <StyledSpin
                     delay={0}
-                    tip="Creating Wallet..."
                     size="large"
                   />
                 ) : (
                   <FinishButton type="primary" htmlType="submit">
-                    Finish
+                    {formatMessage({ id: 'create_wallet' })}
                   </FinishButton>
                 )}
               </CenterWrapper>
@@ -216,6 +211,7 @@ AddWallet.propTypes = {
    */
 
   loading: PropTypes.bool,
+  intl: PropTypes.object.isRequired,
 };
 
-export default Form.create()(AddWallet);
+export default Form.create()(injectIntl(AddWallet));

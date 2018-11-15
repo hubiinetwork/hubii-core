@@ -1,21 +1,42 @@
 {
-  "name": "hubii-core-ui",
-  "version": "0.1.0",
-  "private": true,
-  "author": "Hubii team",
-  "license": "MIT",
-  "main": "build/public/electron.js",
-  "homepage": "https://github.com/hubiinetwork/omphalos-ui",
+  "name": "hubii-core",
+  "version": "0.7.1",
+  "author": {
+    "name": "hubii",
+    "email": "info@hubii.com",
+    "url": "https://hubii.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "description": "Open source Ethereum wallet manager, by hubii",
+  "main": "build/electron/electron.js",
+  "homepage": "https://github.com/hubiinetwork/hubii-core",
   "build": {
     "appId": "com.hubii.electron-hubii-core",
     "files": [
       "build/**/*"
-    ]
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "hubiinetwork",
+        "repo": "hubii-core"
+      }
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    }
   },
   "scripts": {
-    "electron-dev": "concurrently \"BROWSER=none yarn start:electron\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron-build": "cross-env WALLET_API=https://api2.dev.hubii.net/ npm run build:electron && DEBUG=electron-builder electron-builder --publish never",
-    "electron-pack": "cross-env DEV_TOOLS=1 WALLET_API=https://api2.dev.hubii.net/ npm run build:electron && electron-builder --dir",
+    "release": "electron-builder -lwm -p always",
+    "electron-dev": "concurrently --kill-others \"cross-env NODE_ENV=development yarn electron-compile --watch\" \"cross-env BROWSER=none TARGET=electron yarn start-web\" \"wait-on http://localhost:3000 && yarn electron\"",
+    "preelectron-dev": "electron-rebuild --force --module_dir . -w node-hid",
+    "electron": "electron .",
+    "electron-build": "cross-env TARGET=electron npm run build && cross-env DEBUG=electron-builder electron-builder --publish never",
+    "preelectron-build": "electron-rebuild --force --module_dir . -w node-hid",
+    "electron-pack": "cross-env TARGET=electron npm run build && cross-env DEBUG=electron-builder electron-builder --dir",
+    "electron-compile": "webpack --config internals/webpack/webpack.electron.babel.js",
     "precommit": "npm run lint:staged",
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
@@ -24,16 +45,10 @@
     "npmcheckversion": "node ./internals/scripts/npmcheckversion.js",
     "preinstall": "npm run npmcheckversion",
     "postinstall": "npm run build:dll",
-    "prebuild": "npm run build:clean",
-    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
-    "build:electron": "electron-rebuild --force --module_dir . -w node-hid && electron-builder install-app-deps && cross-env TARGET=electron NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
-    "build:clean": "rimraf ./build",
+    "prebuild": "node ./internals/scripts/pre-build.js",
+    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout && yarn electron-compile",
     "build:dll": "node ./internals/scripts/dependencies.js",
-    "start:electron": "electron-rebuild --force --module_dir . -w node-hid && json-server --watch fake-db.json --port 8000 | cross-env WALLET_API=https://api2.dev.hubii.net/ NODE_ENV=development TARGET=electron node server",
-    "start": "json-server --watch fake-db.json --port 8000 | cross-env NODE_ENV=development WALLET_API=https://api2.dev.hubii.net/ node server",
-    "start:tunnel": "json-server --watch fake-db.json --port 8000 | cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
-    "start:production": "npm run test && npm run build && npm run start:prod",
-    "start:prod": "cross-env NODE_ENV=production node server",
+    "start-web": "cross-env NODE_ENV=development node server",
     "presetup": "npm i chalk shelljs",
     "setup": "node ./internals/scripts/setup.js",
     "postsetup": "npm run build:dll",
@@ -61,7 +76,14 @@
   },
   "babel": {
     "plugins": [
-      "styled-components"
+      "styled-components",
+      [
+        "transform-runtime",
+        {
+          "polyfill": false,
+          "regenerator": true
+        }
+      ]
     ],
     "presets": [
       [
@@ -241,7 +263,11 @@
       "raf/polyfill",
       "<rootDir>/internals/testing/enzyme-setup.js"
     ],
-    "testRegex": "tests/.*\\.test\\.js$"
+    "testRegex": "tests/.*\\.test\\.js$",
+    "roots": [
+      "<rootDir>/",
+      "<rootDir>/src/jest/"
+    ]
   },
   "dependencies": {
     "@fortawesome/fontawesome": "1.1.8",
@@ -249,20 +275,32 @@
     "@fortawesome/react-fontawesome": "0.0.20",
     "@ledgerhq/hw-app-eth": "4.15.0",
     "@ledgerhq/hw-transport-node-hid": "4.16.0",
-    "@ledgerhq/hw-transport-u2f": "4.15.0",
     "@ledgerhq/web3-subprovider": "^4.15.0",
+    "@trodi/electron-splashscreen": "^0.3.1",
     "abi-decoder": "1.1.0",
     "antd": "3.6.2",
     "babel-polyfill": "6.26.0",
     "chalk": "2.3.2",
+    "clean-stack": "^1.3.0",
     "compression": "1.7.2",
     "cross-env": "5.1.4",
     "date-fns": "1.29.0",
+    "dotenv": "^6.0.0",
     "electron-is-dev": "0.3.0",
+    "electron-localshortcut": "^3.1.0",
+    "electron-log": "^2.2.17",
+    "electron-reload": "^1.2.5",
+    "electron-remote": "^1.3.0",
+    "electron-updater": "^3.0.1",
+    "emoji-dictionary": "^1.0.9",
+    "ensure-error": "^1.0.0",
     "ethereumjs-tx": "^1.3.6",
+    "ethereumjs-util": "^5.2.0",
     "ethers": "3.0.22",
     "express": "4.16.3",
     "fontfaceobserver": "2.0.13",
+    "fs-extra": "^7.0.0",
+    "hdkey": "^1.0.0",
     "history": "4.7.2",
     "hoist-non-react-statics": "2.5.0",
     "immutable": "3.8.2",
@@ -271,16 +309,20 @@
     "ip": "1.1.5",
     "jsonwebtoken": "8.3.0",
     "lodash": "4.17.5",
+    "lodash.debounce": "^4.0.8",
     "minimist": "1.2.0",
     "moment": "2.22.2",
+    "nahmii-sdk": "^1.0.0-beta.7",
     "prop-types": "15.6.1",
     "qrcode.react": "0.8.0",
     "react": "16.2.0",
     "react-copy-to-clipboard": "5.0.1",
     "react-dom": "16.2.0",
     "react-helmet": "5.2.0",
+    "react-immutable-proptypes": "^2.1.0",
     "react-intl": "2.4.0",
     "react-loadable": "5.3.1",
+    "react-markdown": "^3.5.0",
     "react-redux": "5.0.7",
     "react-router-dom": "4.2.2",
     "react-router-redux": "5.0.0-alpha.9",
@@ -293,6 +335,8 @@
     "semantic-ui-react": "0.79.1",
     "shortid": "2.2.8",
     "styled-components": "2.3.0",
+    "trezor.js": "^6.17.6",
+    "uuid": "^3.3.2",
     "victory": "0.27.0",
     "warning": "3.0.0",
     "whatwg-fetch": "2.0.4"
@@ -312,6 +356,7 @@
     "babel-plugin-transform-react-inline-elements": "6.22.0",
     "babel-plugin-transform-react-jsx-source": "6.22.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "1.5.1",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
@@ -320,8 +365,8 @@
     "copy-webpack-plugin": "4.5.1",
     "coveralls": "2.13.1",
     "css-loader": "0.28.11",
-    "electron": "2.0.2",
-    "electron-builder": "20.14.7",
+    "electron": "2.0.10",
+    "electron-builder": "20.20.4",
     "electron-devtools-installer": "2.2.4",
     "electron-rebuild": "1.7.3",
     "enzyme": "3.3.0",
@@ -346,7 +391,6 @@
     "jest-fetch-mock": "1.6.2",
     "lint-staged": "3.5.1",
     "mockdate": "2.0.2",
-    "ngrok": "2.2.9",
     "node-plop": "0.7.0",
     "null-loader": "0.1.1",
     "offline-plugin": "4.9.0",

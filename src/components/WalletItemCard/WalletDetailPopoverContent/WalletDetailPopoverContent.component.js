@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
+
+import Text from 'components/ui/Text';
+
 import walletTypeDescriptions from '../walletTypeDescriptions';
 import { Subtitle, Wrapper } from './WalletDetailPopoverContent.style';
+import { humanFriendlyWalletType } from '../../../utils/wallet';
 
 /**
  * This component shows specific content in the popover of WalletItemCard.
@@ -9,11 +14,12 @@ import { Subtitle, Wrapper } from './WalletDetailPopoverContent.style';
 
 const WalletDetailPopoverContent = (props) => {
   const description = walletTypeDescriptions[props.type];
+  const { formatMessage } = props.intl;
   return (
     <Wrapper>
-      <div>{props.type}</div>
+      <Text large>{formatMessage({ id: humanFriendlyWalletType(props.type) })}</Text>
       <Subtitle>{description}</Subtitle>
-      <div>Wallet Address</div>
+      <Text large>{formatMessage({ id: 'address' })}</Text>
       <Subtitle>{props.address}</Subtitle>
     </Wrapper>
   );
@@ -28,6 +34,7 @@ WalletDetailPopoverContent.propTypes = {
    * type of wallet item.
    */
   type: PropTypes.string.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
-export default WalletDetailPopoverContent;
+export default injectIntl(WalletDetailPopoverContent);

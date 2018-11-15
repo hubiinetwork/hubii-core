@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { intl } from 'jest/__mocks__/react-intl';
 import ImportWallet from '../index';
 
 const walletData = [
@@ -9,14 +10,13 @@ const walletData = [
     name: 'ledger',
   },
   {
-    src: 'https://new.consensys.net/wp-content/uploads/2018/01/Metamask.png',
-    name: 'metamask',
+    name: 'Private key',
   },
 ];
 
 describe('<ImportWallet />', () => {
   it('should render correctly', () => {
-    const wrapper = shallow(<ImportWallet wallets={walletData} />);
+    const wrapper = shallow(<ImportWallet wallets={walletData} intl={intl} />);
     expect(wrapper).toMatchSnapshot();
   });
 });

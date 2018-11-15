@@ -5,8 +5,6 @@
  * code.
  */
 
-// Needed for redux-saga es6 generator support
-import 'babel-polyfill';
 
 // Import all the third party stuff
 import React from 'react';
@@ -29,6 +27,7 @@ import dark from 'themes/darkTheme';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
+import { getIntl as initIntl } from 'utils/localisation';
 
 import configureStore from './configureStore';
 
@@ -67,6 +66,9 @@ if (module.hot) {
     render(translationMessages);
   });
 }
+
+// init localisation
+initIntl();
 
 // Chunked polyfill for browsers without Intl support
 if (!window.Intl) {

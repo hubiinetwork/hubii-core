@@ -1,0 +1,365 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SimplexPage /> should render correctly on error 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SimplexPage
+    match={
+        Object {
+            "path": "/wallet/0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0/buyeth",
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": "Unexpected error occured, please try again later",
+      "style": Object {
+        "color": "white",
+      },
+    },
+    "ref": null,
+    "rendered": "Unexpected error occured, please try again later",
+    "type": "p",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": "Unexpected error occured, please try again later",
+        "style": Object {
+          "color": "white",
+        },
+      },
+      "ref": null,
+      "rendered": "Unexpected error occured, please try again later",
+      "type": "p",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<SimplexPage /> should render correctly when couldn't get address from url 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SimplexPage
+    match={
+        Object {
+            "path": "1231",
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": "Unexpected error occured, please try again later",
+      "style": Object {
+        "color": "white",
+      },
+    },
+    "ref": null,
+    "rendered": "Unexpected error occured, please try again later",
+    "type": "p",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": "Unexpected error occured, please try again later",
+        "style": Object {
+          "color": "white",
+        },
+      },
+      "ref": null,
+      "rendered": "Unexpected error occured, please try again later",
+      "type": "p",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<SimplexPage /> should render correctly when loading 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SimplexPage
+    match={
+        Object {
+            "path": "/wallet/0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0/buyeth",
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <styles__StyledSpin
+          size="large"
+          tip="Loading..."
+/>,
+        <webview
+          autosize="on"
+          src="https://simplex.dev.hubii.net/?crypto=ETH"
+          style={
+                    Object {
+                              "visibility": "hidden",
+                            }
+          }
+/>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "size": "large",
+          "tip": "Loading...",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "autosize": "on",
+          "src": "https://simplex.dev.hubii.net/?crypto=ETH",
+          "style": Object {
+            "visibility": "hidden",
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "webview",
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <styles__StyledSpin
+            size="large"
+            tip="Loading..."
+/>,
+          <webview
+            autosize="on"
+            src="https://simplex.dev.hubii.net/?crypto=ETH"
+            style={
+                        Object {
+                                    "visibility": "hidden",
+                                  }
+            }
+/>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "size": "large",
+            "tip": "Loading...",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "autosize": "on",
+            "src": "https://simplex.dev.hubii.net/?crypto=ETH",
+            "style": Object {
+              "visibility": "hidden",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "webview",
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<SimplexPage /> should render correctly when no errors 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SimplexPage
+    match={
+        Object {
+            "path": "/wallet/0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0/buyeth",
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        false,
+        <webview
+          autosize="on"
+          src="https://simplex.dev.hubii.net/?crypto=ETH"
+          style={
+                    Object {
+                              "height": "80vh",
+                              "width": "100%",
+                            }
+          }
+/>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      false,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "autosize": "on",
+          "src": "https://simplex.dev.hubii.net/?crypto=ETH",
+          "style": Object {
+            "height": "80vh",
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "webview",
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          false,
+          <webview
+            autosize="on"
+            src="https://simplex.dev.hubii.net/?crypto=ETH"
+            style={
+                        Object {
+                                    "height": "80vh",
+                                    "width": "100%",
+                                  }
+            }
+/>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        false,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "autosize": "on",
+            "src": "https://simplex.dev.hubii.net/?crypto=ETH",
+            "style": Object {
+              "height": "80vh",
+              "width": "100%",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "webview",
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

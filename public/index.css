@@ -1,129 +1,25 @@
-/** Bold */
-@font-face {
-    font-family: 'SF Text';
-    font-weight: 700;
-    src: url('/public/fonts/SF-UI-Text-Bold.otf');
-  }
-  
-  /** Bold Italic */
-  @font-face {
-    font-family: 'SF Text';
-    font-weight: 700;
-    font-style: italic;
-    src: url('/public/fonts/SF-UI-Text-BoldItalic.otf');
-  }
-  
-  /** Heavy */
-  @font-face {
-    font-family: 'SF Text';
-    font-weight: 800;
-    src: url('/public/fonts/SF-UI-Text-Heavy.otf');
-  }
-  
-  /** Heavy Italic */
-  @font-face {
-    font-family: 'SF Text';
-    font-weight: 800;
-    font-style: italic;
-    src: url('/public/fonts/SF-UI-Text-HeavyItalic.otf');
-  }
-  
-  /** Light */
-  @font-face {
-    font-family: 'SF Text';
-    font-weight: 200;
-    src: url('/public/fonts/SF-UI-Text-Light.otf');
-  }
-  
-  /** Light Italic */
-  @font-face {
-    font-family: 'SF Text';
-    font-weight: 200;
-    font-style: italic;
-    src: url('/public/fonts/SF-UI-Text-HeavyItalic.otf');
-  }
-  
-  /** Medium */
-  @font-face {
-    font-family: 'SF Text';
-    font-weight: 500;
-    src: url('/public/fonts/SF-UI-Text-Medium.otf');
-  }
-  
-  /** Medium Italic */
-  @font-face {
-    font-family: 'SF Text';
-    font-weight: 500;
-    font-style: italic;
-    src: url('/public/fonts/SF-UI-Text-MediumItalic.otf');
-  }
-  
-  /** Regular */
-  @font-face {
-    font-family: 'SF Text';
-    font-weight: 400;
-    src: url('/public/fonts/SF-UI-Text-Regular.otf');
-  }
-  
-  /** Regular Italic */
-  @font-face {
-    font-family: 'SF Text';
-    font-weight: 400;
-    font-style: italic;
-    src: url('/public/fonts/SF-UI-Text-RegularItalic.otf');
-  }
-  
-  /** Semibold */
-  @font-face {
-    font-family: 'SF Text';
-    font-weight: 600;
-    src: url('/public/fonts/SF-UI-Text-Semibold.otf');
-  }
-  
-  /** Semibold Italic */
-  @font-face {
-    font-family: 'SF Text';
-    font-weight: 600;
-    font-style: italic;
-    src: url('/public/fonts/SF-UI-Text-SemiboldItalic.otf');
-  }
-  
-  /** Ultrathin */
-  @font-face {
-    font-family: 'SF Text';
-    font-weight: 100;
-    src: url('/public/fonts/SF-UI-Text-Ultrathin.otf');
-  }
-  
-  /** Ultrathin Italic */
-  @font-face {
-    font-family: 'SF Text';
-    font-weight: 100;
-    font-style: italic;
-    src: url('/public/fonts/SF-UI-Text-UltrathinItalic.otf');
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'SF Text';
-  }
-  
-  div {
-    font-family: 'SF Text';
-  }
-  
-  span {
-    font-family: 'SF Text';
-  }
-  
-  p {
-    font-family: 'SF Text';
-  }
-  
-  input[type='number']::-webkit-inner-spin-button,
-  input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  
+@import url(../public/fonts/Open_Sans/index.css);
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans';
+}
+
+div {
+  font-family: 'Open Sans';
+}
+
+span {
+  font-family: 'Open Sans';
+}
+
+p {
+  font-family: 'Open Sans';
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

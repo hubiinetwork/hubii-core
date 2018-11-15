@@ -3,17 +3,34 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+
+import { walletReady } from 'utils/wallet';
+
 import TransferForm from 'components/TransferForm';
-import LoadingError from 'components/LoadingError';
 import PageLoadingIndicator from 'components/PageLoadingIndicator';
 import {
   makeSelectCurrentWallet,
-  makeSelectCurrentWalletDetails,
-} from 'containers/WalletHOC/selectors';
+  makeSelectCurrentWalletWithInfo,
+  makeSelectErrors,
+} from 'containers/WalletHoc/selectors';
+import {
+  makeSelectSupportedAssets,
+  makeSelectPrices,
+} from 'containers/HubiiApiHoc/selectors';
+import {
+  makeSelectLedgerHoc,
+} from 'containers/LedgerHoc/selectors';
+import {
+  makeSelectTrezorHoc,
+} from 'containers/TrezorHoc/selectors';
 import {
   makeSelectContacts,
 } from 'containers/ContactBook/selectors';
-import { transfer } from 'containers/WalletHOC/actions';
+import {
+  createContact,
+} from 'containers/ContactBook/actions';
+import { transfer } from 'containers/WalletHoc/actions';
+import LoadingError from '../../components/LoadingError';
 
 export class WalletTransfer extends React.PureComponent {
   constructor(props) {
@@ -31,53 +48,87 @@ export class WalletTransfer extends React.PureComponent {
   }
 
   onSend(token, toAddress, amount, gasPrice, gasLimit) {
-    const wallet = this.props.currentWalletDetails;
-    this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit });
+    let contractAddress;
+    const wallet = this.props.currentWalletWithInfo.toJS();
+    if (token !== 'ETH') {
+      const asset = wallet.balances.assets.find((ast) => ast.symbol === token);
+      contractAddress = asset.currency;
+    }
+    this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit, contractAddress });
   }
 
   onCancel() {
-    this.props.history.push(`/wallet/${this.props.currentWalletDetails.address}/overview`);
+    this.props.history.push(`/wallet/${this.props.currentWalletWithInfo.address}/overview`);
   }
 
   render() {
-    const { contacts, currentWallet, currentWalletDetails } = this.props;
-    if (currentWalletDetails.loadingBalancesError) {
-      return <LoadingError pageType="Striim Accounts" error={currentWalletDetails.loadingBalancesError} id={currentWallet.toJS().address} />;
+    const {
+      contacts,
+      currentWallet,
+      prices,
+      currentWalletWithInfo,
+      ledgerNanoSInfo,
+      trezorInfo,
+    } = this.props;
+    if (!currentWalletWithInfo.getIn(['balances', 'assets'])) {
+      return null;
     }
-    if (!currentWalletDetails.balances) {
-      return <PageLoadingIndicator pageType="Loading wallet" id={currentWallet.toJS().address} />;
+    if (currentWalletWithInfo.getIn(['balances', 'loading'])) {
+      return <PageLoadingIndicator pageType="wallet" id={currentWalletWithInfo.get('address')} />;
+    } else if (currentWalletWithInfo.getIn(['balances', 'error'])) {
+      return <LoadingError pageType="wallet" error={{ message: 'Failed to fetch wallet data' }} id={currentWalletWithInfo.get('address')} />;
     }
 
+    // get if the hw wallet is ready to make tx
+    const hwWalletReady = walletReady(currentWalletWithInfo.get('type'), ledgerNanoSInfo, trezorInfo);
     return (
       <TransferForm
-        address="0xf400db37c54c535febca1b470fd1d23d30acdd11"
+        currentWalletUsdBalance={currentWalletWithInfo.getIn(['balances', 'total', 'usd']).toNumber()}
+        supportedAssets={this.props.supportedAssets}
+        ledgerNanoSInfo={this.props.ledgerNanoSInfo}
+        hwWalletReady={hwWalletReady}
+        prices={prices.toJS()}
         recipients={contacts.toJS()}
-        currencies={currentWalletDetails.balances}
+        assets={currentWalletWithInfo.getIn(['balances', 'assets']).toJS()}
         onSend={this.onSend}
-        onCancel={this.onCancel}
         transfering={currentWallet.toJS().transfering}
+        errors={this.props.errors}
+        currentWalletWithInfo={this.props.currentWalletWithInfo}
+        createContact={this.props.createContact}
       />
     );
   }
 }
 
 WalletTransfer.propTypes = {
-  currentWalletDetails: PropTypes.object.isRequired,
+  currentWalletWithInfo: PropTypes.object.isRequired,
   currentWallet: PropTypes.object.isRequired,
+  supportedAssets: PropTypes.object.isRequired,
+  ledgerNanoSInfo: PropTypes.object.isRequired,
+  trezorInfo: PropTypes.object.isRequired,
   transfer: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  prices: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  createContact: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  currentWalletDetails: makeSelectCurrentWalletDetails(),
+  currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
+  ledgerNanoSInfo: makeSelectLedgerHoc(),
+  trezorInfo: makeSelectTrezorHoc(),
   currentWallet: makeSelectCurrentWallet(),
+  supportedAssets: makeSelectSupportedAssets(),
+  prices: makeSelectPrices(),
   contacts: makeSelectContacts(),
+  errors: makeSelectErrors(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
     transfer: (...args) => dispatch(transfer(...args)),
+    createContact: (...args) => dispatch(createContact(...args)),
   };
 }
 

@@ -1,29 +1,33 @@
-import { Icon, Tabs } from 'antd';
+import { Icon } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { fromJS } from 'immutable';
 import { compose } from 'redux';
+import { injectIntl } from 'react-intl';
+import theme from 'themes/darkTheme';
 import { createStructuredSelector } from 'reselect';
 import { Route, Redirect } from 'react-router';
+
+import { isConnected, isHardwareWallet } from 'utils/wallet';
+
 import WalletHeader from 'components/WalletHeader';
-import { getTotalUSDValue } from 'utils/wallet';
 import WalletTransactions from 'containers/WalletTransactions';
 import WalletTransfer from 'containers/WalletTransfer';
+import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHoc/selectors';
 import {
-  makeSelectWalletList,
-  makeSelectCurrentWalletDetails,
-} from 'containers/WalletHOC/selectors';
+  makeSelectLedgerHoc,
+} from 'containers/LedgerHoc/selectors';
 import {
-  setCurrentWallet,
-} from 'containers/WalletHOC/actions';
-import Tab from '../../components/ui/Tab';
+  makeSelectTrezorHoc,
+} from 'containers/TrezorHoc/selectors';
+import { setCurrentWallet } from 'containers/WalletHoc/actions';
 
-import {
-  Wrapper,
-  TabsLayout,
-} from './index.style';
+import SimplexPage from 'components/SimplexPage';
+import Tabs, { TabPane } from 'components/ui/Tabs';
 
-const TabPane = Tabs.TabPane;
+import { Wrapper, HeaderWrapper } from './index.style';
+
 
 export class WalletDetails extends React.PureComponent {
   constructor(props) {
@@ -47,65 +51,115 @@ export class WalletDetails extends React.PureComponent {
   }
 
   render() {
-    const { history, match, currentWalletDetails } = this.props;
+    const {
+      history,
+      match,
+      currentWalletDetails,
+      intl,
+      ledgerInfo,
+      trezorInfo,
+    } = this.props;
+    const { formatMessage } = intl;
     const currentWallet = currentWalletDetails;
-    if (!currentWallet) {
-      return (null);
+    const connected = isConnected(currentWallet.toJS(), ledgerInfo.toJS(), trezorInfo.toJS());
+    if (!currentWallet || currentWallet === fromJS({})) {
+      return null;
     }
-    const totalUSDValue = getTotalUSDValue(currentWallet.balances);
     return (
       <Wrapper>
-        <TabsLayout>
+        <HeaderWrapper>
           <WalletHeader
             iconType="home"
-            name={currentWallet.name}
-            address={`${match.params.address}`}
-            balance={totalUSDValue}
+            name={currentWallet.get('name')}
+            address={currentWallet.get('address')}
+            balance={currentWallet
+              .getIn(['balances', 'total', 'usd'])
+              .toNumber()}
             onIconClick={this.onHomeClick}
+            connected={connected}
+            isDecrypted={!!currentWallet.get('decrypted')}
+            type={isHardwareWallet(currentWallet.get('type')) ? 'hardware' : 'software'}
           />
-        </TabsLayout>
-        <Tab activeKey={history.location.pathname} onChange={this.onTabsChange} animated={false}>
+        </HeaderWrapper>
+        <Tabs
+          activeKey={history.location.pathname}
+          onChange={this.onTabsChange}
+          animated={false}
+        >
           <TabPane
             tab={
               <span>
-                <Icon type="wallet" />Overview
+                <Icon type="wallet" />{formatMessage({ id: 'details' })}
               </span>
             }
             key={`${match.url}/overview`}
           >
-            <Route path={`${match.url}/overview`} component={WalletTransactions} />
+            <Route
+              path={`${match.url}/overview`}
+              component={WalletTransactions}
+            />
           </TabPane>
           <TabPane
             tab={
               <span>
-                <Icon type="contacts" />Transfer
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="26"
+                  viewBox="0 0 18 16"
+                >
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    transform="translate(-5 -4)"
+                  >
+                    <polygon points="0 0 24 0 24 24 0 24" />
+                    <polygon
+                      fill={location.pathname.includes('/transfer') ? theme.palette.info3 : theme.palette.secondary}
+                      points="5.009 19.714 23 12 5.009 4.286 5 10.286 17.857 12 5 13.714"
+                    />
+                  </g>
+                </svg>
+                {formatMessage({ id: 'transfer' })}
               </span>
             }
             key={`${match.url}/transfer`}
           >
             <Route path={`${match.url}/transfer`} component={WalletTransfer} />
           </TabPane>
-        </Tab>
-        {
-          history.location.pathname === match.url &&
+          <TabPane
+            tab={
+              <span>
+                <Icon type="shopping-cart" />{formatMessage({ id: 'buy_eth' })}
+              </span>
+            }
+            key={`${match.url}/buyeth`}
+          >
+            <Route path={`${match.url}/buyeth`} component={SimplexPage} />
+          </TabPane>
+        </Tabs>
+        {history.location.pathname === match.url && (
           <Redirect from={match.url} to={`${match.url}/transfer`} push />
-        }
+        )}
       </Wrapper>
     );
   }
-
 }
 
 WalletDetails.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   currentWalletDetails: PropTypes.object.isRequired,
+  ledgerInfo: PropTypes.object.isRequired,
+  trezorInfo: PropTypes.object.isRequired,
   setCurrentWallet: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  walletList: makeSelectWalletList(),
-  currentWalletDetails: makeSelectCurrentWalletDetails(),
+  currentWalletDetails: makeSelectCurrentWalletWithInfo(),
+  ledgerInfo: makeSelectLedgerHoc(),
+  trezorInfo: makeSelectTrezorHoc(),
 });
 
 export function mapDispatchToProps(dispatch) {
@@ -114,8 +168,9 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
 
-export default compose(
-  withConnect,
-)(WalletDetails);
+export default compose(withConnect, injectIntl)(WalletDetails);

@@ -1,0 +1,1560 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HWPrompt /> should render correctly in lns conf on device stage 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HWPrompt
+    deviceType="lns"
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+    ledgerInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: true,
+        }
+    }
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <style__ConfTxShield
+          src="/public/images/shield.png"
+/>,
+        <style__ConfTxDeviceImg
+          src="/public/images/conf-tx-lns.png"
+/>,
+        <Text
+          large={true}
+>
+          verify_device_details
+</Text>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "src": "/public/images/shield.png",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "src": "/public/images/conf-tx-lns.png",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "verify_device_details",
+          "large": true,
+        },
+        "ref": null,
+        "rendered": "verify_device_details",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <style__ConfTxShield
+            src="/public/images/shield.png"
+/>,
+          <style__ConfTxDeviceImg
+            src="/public/images/conf-tx-lns.png"
+/>,
+          <Text
+            large={true}
+>
+            verify_device_details
+</Text>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "src": "/public/images/shield.png",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "src": "/public/images/conf-tx-lns.png",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "verify_device_details",
+            "large": true,
+          },
+          "ref": null,
+          "rendered": "verify_device_details",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<HWPrompt /> should render correctly in lns connect stage 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HWPrompt
+    deviceType="lns"
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+    ledgerInfo={
+        Immutable.Map {
+            status: "disconnected",
+            addresses: Immutable.Map {
+            },
+            id: null,
+            confTxOnDevice: false,
+        }
+    }
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <style__Row
+          active={true}
+          pos="top"
+>
+          <style__DescriptiveIcon
+                    src="/public/images/hw-wallet-usb-green.png"
+          />
+          <Text>
+                    ledger_connect_unlock
+          </Text>
+          <style__StatusIcon
+                    type="loading"
+          />
+</style__Row>,
+        <style__Row
+          active={false}
+          pos="bottom"
+>
+          <style__DescriptiveIcon
+                    src="/public/images/hw-wallet-eth-grey.png"
+          />
+          <Text>
+                    ledger_open_eth_app
+          </Text>
+          <style__StatusIcon
+                    type="ellipsis"
+          />
+</style__Row>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "active": true,
+          "children": Array [
+            <style__DescriptiveIcon
+              src="/public/images/hw-wallet-usb-green.png"
+/>,
+            <Text>
+              ledger_connect_unlock
+</Text>,
+            <style__StatusIcon
+              type="loading"
+/>,
+          ],
+          "pos": "top",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "src": "/public/images/hw-wallet-usb-green.png",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "ledger_connect_unlock",
+            },
+            "ref": null,
+            "rendered": "ledger_connect_unlock",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "type": "loading",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "active": false,
+          "children": Array [
+            <style__DescriptiveIcon
+              src="/public/images/hw-wallet-eth-grey.png"
+/>,
+            <Text>
+              ledger_open_eth_app
+</Text>,
+            <style__StatusIcon
+              type="ellipsis"
+/>,
+          ],
+          "pos": "bottom",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "src": "/public/images/hw-wallet-eth-grey.png",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "ledger_open_eth_app",
+            },
+            "ref": null,
+            "rendered": "ledger_open_eth_app",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "type": "ellipsis",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <style__Row
+            active={true}
+            pos="top"
+>
+            <style__DescriptiveIcon
+                        src="/public/images/hw-wallet-usb-green.png"
+            />
+            <Text>
+                        ledger_connect_unlock
+            </Text>
+            <style__StatusIcon
+                        type="loading"
+            />
+</style__Row>,
+          <style__Row
+            active={false}
+            pos="bottom"
+>
+            <style__DescriptiveIcon
+                        src="/public/images/hw-wallet-eth-grey.png"
+            />
+            <Text>
+                        ledger_open_eth_app
+            </Text>
+            <style__StatusIcon
+                        type="ellipsis"
+            />
+</style__Row>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "active": true,
+            "children": Array [
+              <style__DescriptiveIcon
+                src="/public/images/hw-wallet-usb-green.png"
+/>,
+              <Text>
+                ledger_connect_unlock
+</Text>,
+              <style__StatusIcon
+                type="loading"
+/>,
+            ],
+            "pos": "top",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "src": "/public/images/hw-wallet-usb-green.png",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "ledger_connect_unlock",
+              },
+              "ref": null,
+              "rendered": "ledger_connect_unlock",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "type": "loading",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "active": false,
+            "children": Array [
+              <style__DescriptiveIcon
+                src="/public/images/hw-wallet-eth-grey.png"
+/>,
+              <Text>
+                ledger_open_eth_app
+</Text>,
+              <style__StatusIcon
+                type="ellipsis"
+/>,
+            ],
+            "pos": "bottom",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "src": "/public/images/hw-wallet-eth-grey.png",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "ledger_open_eth_app",
+              },
+              "ref": null,
+              "rendered": "ledger_open_eth_app",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "type": "ellipsis",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<HWPrompt /> should render correctly in lns connected stage 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HWPrompt
+    deviceType="lns"
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+    ledgerInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <style__Row
+          active={false}
+          pos="top"
+>
+          <style__DescriptiveIcon
+                    src="/public/images/hw-wallet-usb-white.png"
+          />
+          <Text>
+                    ledger_connect_unlock
+          </Text>
+          <style__StatusIcon
+                    type="check"
+          />
+</style__Row>,
+        <style__Row
+          active={true}
+          pos="bottom"
+>
+          <style__DescriptiveIcon
+                    src="/public/images/hw-wallet-eth-green.png"
+          />
+          <Text>
+                    ledger_open_eth_app
+          </Text>
+          <style__StatusIcon
+                    type="loading"
+          />
+</style__Row>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "active": false,
+          "children": Array [
+            <style__DescriptiveIcon
+              src="/public/images/hw-wallet-usb-white.png"
+/>,
+            <Text>
+              ledger_connect_unlock
+</Text>,
+            <style__StatusIcon
+              type="check"
+/>,
+          ],
+          "pos": "top",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "src": "/public/images/hw-wallet-usb-white.png",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "ledger_connect_unlock",
+            },
+            "ref": null,
+            "rendered": "ledger_connect_unlock",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "type": "check",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "active": true,
+          "children": Array [
+            <style__DescriptiveIcon
+              src="/public/images/hw-wallet-eth-green.png"
+/>,
+            <Text>
+              ledger_open_eth_app
+</Text>,
+            <style__StatusIcon
+              type="loading"
+/>,
+          ],
+          "pos": "bottom",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "src": "/public/images/hw-wallet-eth-green.png",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "ledger_open_eth_app",
+            },
+            "ref": null,
+            "rendered": "ledger_open_eth_app",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "type": "loading",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <style__Row
+            active={false}
+            pos="top"
+>
+            <style__DescriptiveIcon
+                        src="/public/images/hw-wallet-usb-white.png"
+            />
+            <Text>
+                        ledger_connect_unlock
+            </Text>
+            <style__StatusIcon
+                        type="check"
+            />
+</style__Row>,
+          <style__Row
+            active={true}
+            pos="bottom"
+>
+            <style__DescriptiveIcon
+                        src="/public/images/hw-wallet-eth-green.png"
+            />
+            <Text>
+                        ledger_open_eth_app
+            </Text>
+            <style__StatusIcon
+                        type="loading"
+            />
+</style__Row>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "active": false,
+            "children": Array [
+              <style__DescriptiveIcon
+                src="/public/images/hw-wallet-usb-white.png"
+/>,
+              <Text>
+                ledger_connect_unlock
+</Text>,
+              <style__StatusIcon
+                type="check"
+/>,
+            ],
+            "pos": "top",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "src": "/public/images/hw-wallet-usb-white.png",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "ledger_connect_unlock",
+              },
+              "ref": null,
+              "rendered": "ledger_connect_unlock",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "type": "check",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "active": true,
+            "children": Array [
+              <style__DescriptiveIcon
+                src="/public/images/hw-wallet-eth-green.png"
+/>,
+              <Text>
+                ledger_open_eth_app
+</Text>,
+              <style__StatusIcon
+                type="loading"
+/>,
+            ],
+            "pos": "bottom",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "src": "/public/images/hw-wallet-eth-green.png",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "ledger_open_eth_app",
+              },
+              "ref": null,
+              "rendered": "ledger_open_eth_app",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "type": "loading",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<HWPrompt /> should render correctly in lns open device stage 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HWPrompt
+    deviceType="lns"
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+    ledgerInfo={
+        Immutable.Map {
+            status: "disconnected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <style__Row
+          active={false}
+          pos="top"
+>
+          <style__DescriptiveIcon
+                    src="/public/images/hw-wallet-usb-white.png"
+          />
+          <Text>
+                    ledger_connect_unlock
+          </Text>
+          <style__StatusIcon
+                    type="check"
+          />
+</style__Row>,
+        <style__Row
+          active={true}
+          pos="bottom"
+>
+          <style__DescriptiveIcon
+                    src="/public/images/hw-wallet-eth-green.png"
+          />
+          <Text>
+                    ledger_open_eth_app
+          </Text>
+          <style__StatusIcon
+                    type="loading"
+          />
+</style__Row>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "active": false,
+          "children": Array [
+            <style__DescriptiveIcon
+              src="/public/images/hw-wallet-usb-white.png"
+/>,
+            <Text>
+              ledger_connect_unlock
+</Text>,
+            <style__StatusIcon
+              type="check"
+/>,
+          ],
+          "pos": "top",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "src": "/public/images/hw-wallet-usb-white.png",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "ledger_connect_unlock",
+            },
+            "ref": null,
+            "rendered": "ledger_connect_unlock",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "type": "check",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "active": true,
+          "children": Array [
+            <style__DescriptiveIcon
+              src="/public/images/hw-wallet-eth-green.png"
+/>,
+            <Text>
+              ledger_open_eth_app
+</Text>,
+            <style__StatusIcon
+              type="loading"
+/>,
+          ],
+          "pos": "bottom",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "src": "/public/images/hw-wallet-eth-green.png",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "ledger_open_eth_app",
+            },
+            "ref": null,
+            "rendered": "ledger_open_eth_app",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "type": "loading",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <style__Row
+            active={false}
+            pos="top"
+>
+            <style__DescriptiveIcon
+                        src="/public/images/hw-wallet-usb-white.png"
+            />
+            <Text>
+                        ledger_connect_unlock
+            </Text>
+            <style__StatusIcon
+                        type="check"
+            />
+</style__Row>,
+          <style__Row
+            active={true}
+            pos="bottom"
+>
+            <style__DescriptiveIcon
+                        src="/public/images/hw-wallet-eth-green.png"
+            />
+            <Text>
+                        ledger_open_eth_app
+            </Text>
+            <style__StatusIcon
+                        type="loading"
+            />
+</style__Row>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "active": false,
+            "children": Array [
+              <style__DescriptiveIcon
+                src="/public/images/hw-wallet-usb-white.png"
+/>,
+              <Text>
+                ledger_connect_unlock
+</Text>,
+              <style__StatusIcon
+                type="check"
+/>,
+            ],
+            "pos": "top",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "src": "/public/images/hw-wallet-usb-white.png",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "ledger_connect_unlock",
+              },
+              "ref": null,
+              "rendered": "ledger_connect_unlock",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "type": "check",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "active": true,
+            "children": Array [
+              <style__DescriptiveIcon
+                src="/public/images/hw-wallet-eth-green.png"
+/>,
+              <Text>
+                ledger_open_eth_app
+</Text>,
+              <style__StatusIcon
+                type="loading"
+/>,
+            ],
+            "pos": "bottom",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "src": "/public/images/hw-wallet-eth-green.png",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "ledger_open_eth_app",
+              },
+              "ref": null,
+              "rendered": "ledger_open_eth_app",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "type": "loading",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<HWPrompt /> should render correctly in trezor conf on device stage 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HWPrompt
+    deviceType="trezor"
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+    ledgerInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+    trezorInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: true,
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <style__ConfTxShield
+          src="/public/images/shield.png"
+/>,
+        <style__ConfTxDeviceImg
+          src="/public/images/conf-tx-trezor.png"
+/>,
+        <Text
+          large={true}
+>
+          verify_device_details
+</Text>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "src": "/public/images/shield.png",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "src": "/public/images/conf-tx-trezor.png",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "verify_device_details",
+          "large": true,
+        },
+        "ref": null,
+        "rendered": "verify_device_details",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <style__ConfTxShield
+            src="/public/images/shield.png"
+/>,
+          <style__ConfTxDeviceImg
+            src="/public/images/conf-tx-trezor.png"
+/>,
+          <Text
+            large={true}
+>
+            verify_device_details
+</Text>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "src": "/public/images/shield.png",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "src": "/public/images/conf-tx-trezor.png",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "verify_device_details",
+            "large": true,
+          },
+          "ref": null,
+          "rendered": "verify_device_details",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<HWPrompt /> should render correctly in trezor connect stage 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HWPrompt
+    deviceType="trezor"
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+    ledgerInfo={
+        Immutable.Map {
+            status: "connected",
+            connected: true,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+    trezorInfo={
+        Immutable.Map {
+            status: "disconnected",
+            connected: false,
+            addresses: Immutable.Map {
+            },
+            id: "ajlsdfkjas",
+            confTxOnDevice: false,
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <style__SingleRowIcon
+          color={undefined}
+          type="loading"
+/>,
+        <Text
+          large={true}
+>
+          trezor_connect_unlock
+</Text>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "color": undefined,
+          "type": "loading",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "trezor_connect_unlock",
+          "large": true,
+        },
+        "ref": null,
+        "rendered": "trezor_connect_unlock",
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <style__SingleRowIcon
+            color={undefined}
+            type="loading"
+/>,
+          <Text
+            large={true}
+>
+            trezor_connect_unlock
+</Text>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "color": undefined,
+            "type": "loading",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "trezor_connect_unlock",
+            "large": true,
+          },
+          "ref": null,
+          "rendered": "trezor_connect_unlock",
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

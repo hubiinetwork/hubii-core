@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { convertWalletsList, findWalletIndex } from '../wallet';
+import { findWalletIndex } from '../wallet';
 
 describe('utils#wallet', () => {
   const wallets = fromJS([
@@ -7,31 +7,6 @@ describe('utils#wallet', () => {
     { encrypted: '{"address": "abcd2"}', address: '0xabcd2', name: 'test2', type: 'software' },
     { encrypted: '{"address": "abcd4"}', address: '0xabcd4', name: 'test4', type: 'software' },
   ]);
-  describe('#convertWalletsList', () => {
-    it('should convert wallets state into array', () => {
-      const walletsList = convertWalletsList(wallets);
-      const expected = [
-                  { encrypted: { address: 'abcd1' }, address: '0xabcd1', name: 'test1', type: 'software' },
-                  { encrypted: { address: 'abcd2' }, address: '0xabcd2', name: 'test2', type: 'software' },
-                  { encrypted: { address: 'abcd4' }, address: '0xabcd4', name: 'test4', type: 'software' },
-      ];
-      expect(walletsList).toEqual(expected);
-    });
-    it('should ignore invalid wallets with invalid encrypted json', () => {
-      const test3Index = wallets.findIndex((wallet) => wallet.name === 'test3');
-      const test4Index = wallets.findIndex((wallet) => wallet.name === 'test4');
-      const walletStates = wallets
-        .setIn([test3Index, 'encrypted'], 'invalid json')
-        .setIn([test4Index, 'encrypted'], '{"address": "abcd4"}');
-      const walletsList = convertWalletsList(walletStates);
-      const expected = [
-                  { encrypted: { address: 'abcd1' }, address: '0xabcd1', name: 'test1', type: 'software' },
-                  { encrypted: { address: 'abcd2' }, address: '0xabcd2', name: 'test2', type: 'software' },
-                  { encrypted: { address: 'abcd4' }, address: '0xabcd4', name: 'test4', type: 'software' },
-      ];
-      expect(walletsList).toEqual(expected);
-    });
-  });
   describe('findWalletIndex', () => {
     const state = fromJS({ wallets });
     it('should return the correct index when a wallet with the address param exists', () => {

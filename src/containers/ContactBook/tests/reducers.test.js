@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 
 import {
   transferSuccess,
-} from 'containers/WalletHOC/actions';
+} from 'containers/WalletHoc/actions';
 
 import {
   createContact,

@@ -1,7 +1,7 @@
 /**
  * COMMON WEBPACK CONFIGURATION
  */
-
+require('dotenv').config();
 const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -140,6 +140,8 @@ module.exports = (options) => ({
     ],
   },
   plugins: options.plugins.concat([
+    new webpack.DefinePlugin({ 'global.GENTLY': false }),
+
     new webpack.ProvidePlugin({
       // make fetch available
       fetch: 'exports-loader?self.fetch!whatwg-fetch',
@@ -151,24 +153,17 @@ module.exports = (options) => ({
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        NETWORK: JSON.stringify(process.env.NETWORK),
-        WALLET_API: JSON.stringify(process.env.WALLET_API),
+        PUBLISH_REPO: JSON.stringify(process.env.npm_package_build_publish_0_repo),
+        PUBLISH_OWNER: JSON.stringify(process.env.npm_package_build_publish_0_owner),
+        ROPSTEN_IDENTITY_SERVICE_APPID: JSON.stringify(process.env.ROPSTEN_IDENTITY_SERVICE_APPID),
+        HOMESTEAD_IDENTITY_SERVICE_APPID: JSON.stringify(process.env.HOMESTEAD_IDENTITY_SERVICE_APPID),
+        ROPSTEN_IDENTITY_SERVICE_SECRET: JSON.stringify(process.env.ROPSTEN_IDENTITY_SERVICE_SECRET),
+        HOMESTEAD_IDENTITY_SERVICE_SECRET: JSON.stringify(process.env.HOMESTEAD_IDENTITY_SERVICE_SECRET),
       },
     }),
     new CopyWebpackPlugin(
       [
         { from: 'public/', to: 'public/' },
-        {
-          from: 'public/electron.js',
-          to: 'public/electron.js',
-          transform(content) {
-            if (!process.env.DEV_TOOLS) {
-              return content;
-            }
-            const templated = content.toString('utf8').replace('process.env.DEV_TOOLS', parseInt(process.env.DEV_TOOLS, 10));
-            return Buffer.from(templated, 'utf8');
-          },
-        },
       ]
     ),
   ]),
@@ -183,6 +178,7 @@ module.exports = (options) => ({
       '.react.js',
       '.css',
       '.less',
+      '.json',
     ],
     mainFields: [
       'browser',
@@ -191,6 +187,9 @@ module.exports = (options) => ({
     ],
     alias: {
       moment$: 'moment/moment.js',
+      inherits: 'inherits/inherits_browser.js',
+      superagent: 'superagent/lib/client',
+      emitter: 'component-emitter',
     },
   },
   devtool: options.devtool,

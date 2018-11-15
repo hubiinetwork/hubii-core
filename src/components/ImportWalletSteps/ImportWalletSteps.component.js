@@ -1,22 +1,24 @@
-/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 
-import LnsDerivationPathContainer from 'containers/LnsDerivationPathContainer';
+import DerivationPathContainer from 'containers/DerivationPathContainer';
+import Text from 'components/ui/Text';
 
 import {
-  Flex,
-  Between,
-  SpanText,
+  NavigationWrapper,
+  Wrapper,
   LeftArrow,
 } from './ImportWalletSteps.style';
 
 import ImportWallet from './ImportWallet';
 import ImportWalletNameForm from './ImportWalletNameForm';
-import ImportWalletMetamaskForm from './ImportWalletMetamaskForm';
+import ImportWalletPrivateKeyForm from './ImportWalletPrivateKeyForm';
+import ImportWalletMnemonicForm from './ImportWalletMnemonicForm';
+import ImportWalletKeystoreForm from './ImportWalletKeystoreForm';
 import FormSteps from '../FormSteps';
 
-export default class ImportWalletSteps extends React.Component {
+class ImportWalletSteps extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,34 +31,9 @@ export default class ImportWalletSteps extends React.Component {
     this.handleNext = this.handleNext.bind(this);
   }
 
-  searchSRC(logoName, wallets) {
-    return wallets.find((wallet) => wallet.name === logoName);
-  }
-
-  handleBack() {
-    this.setState(({ current }) => ({ current: current - 1 }));
-  }
-
-  handleNext(stepData) {
-    const { wallets } = this.props;
-    this.setState((prev) => {
-      const { data, current } = prev;
-      data[current] = stepData;
-      const steps = this.getSteps()
-      if (current === steps.length - 1) {
-        return this.props.handleSubmit(data);
-      }
-      if (current === 0) {
-        const selectedWallet = this.searchSRC(stepData.walletType, wallets);
-        return { data, current: current + 1, selectedWallet };
-      }
-      return { data, current: current + 1 };
-    });
-  }
-
-  getSteps () {
-    const {selectedWallet} = this.state
-    const {wallets} = this.props
+  getSteps() {
+    const { selectedWallet } = this.state;
+    const { wallets, loading } = this.props;
     const steps = [
       {
         title: 'First',
@@ -73,10 +50,12 @@ export default class ImportWalletSteps extends React.Component {
         {
           title: 'Second',
           content: (
-            <LnsDerivationPathContainer
+            <DerivationPathContainer
               handleBack={this.handleBack}
               handleNext={this.handleNext}
-          />
+              deviceType="lns"
+              pathTemplate={'m/44\'/60\'/0\'/{index}'}
+            />
             ),
         },
         {
@@ -86,38 +65,117 @@ export default class ImportWalletSteps extends React.Component {
               wallet={selectedWallet}
               handleBack={this.handleBack}
               handleNext={this.handleNext}
+              loading={loading}
+            />
+          ),
+        },
+
+      ],
+      Trezor: [
+        {
+          title: 'Second',
+          content: (
+            <DerivationPathContainer
+              handleBack={this.handleBack}
+              handleNext={this.handleNext}
+              deviceType="trezor"
+              pathTemplate={'m/44\'/60\'/0\'/0/{index}'}
+            />
+            ),
+        },
+        {
+          title: 'Last',
+          content: (
+            <ImportWalletNameForm
+              wallet={selectedWallet}
+              handleBack={this.handleBack}
+              handleNext={this.handleNext}
+              loading={loading}
+            />
+          ),
+        },
+
+      ],
+      'Private key': [
+        {
+          title: 'Last',
+          content: (
+            <ImportWalletPrivateKeyForm
+              wallet={selectedWallet}
+              handleBack={this.handleBack}
+              handleNext={this.handleNext}
+              loading={loading}
             />
           ),
         },
       ],
-      metamask: [
+      Mnemonic: [
         {
           title: 'Last',
           content: (
-            <ImportWalletMetamaskForm
-              wallet={selectedWallet}
+            <ImportWalletMnemonicForm
               handleBack={this.handleBack}
               handleNext={this.handleNext}
+              loading={loading}
             />
           ),
         },
-      ]
-    }
-    return steps.concat(stepTypes[selectedWallet.name || 'metamask'])
+      ],
+      Keystore: [
+        {
+          title: 'Last',
+          content: (
+            <ImportWalletKeystoreForm
+              handleBack={this.handleBack}
+              handleNext={this.handleNext}
+              loading={loading}
+            />
+          ),
+        },
+      ],
+    };
+    return steps.concat(stepTypes[selectedWallet.name || 'Private key' || 'Mnemonic']);
+  }
+
+  searchSRC(logoName, wallets) {
+    return wallets.find((wallet) => wallet.name === logoName);
+  }
+
+  handleBack() {
+    this.setState(({ current }) => ({ current: current - 1 }));
+  }
+
+  handleNext(stepData) {
+    const { wallets } = this.props;
+    this.setState((prev) => {
+      const { data, current } = prev;
+      data[current] = stepData;
+      const steps = this.getSteps();
+      if (current === steps.length - 1) {
+        return this.props.handleSubmit(data);
+      }
+      if (current === 0) {
+        const selectedWallet = this.searchSRC(stepData.walletType, wallets);
+        return { data, current: current + 1, selectedWallet };
+      }
+      return { data, current: current + 1 };
+    });
   }
 
   render() {
-    const { current, data} = this.state;
-    const { onBackIcon, } = this.props;
+    const { current } = this.state;
+    const { onBackIcon } = this.props;
+    const { formatMessage } = this.props.intl;
+
     const FormNavigation = (
-      <Between>
-        <Flex>
+      <Wrapper>
+        <NavigationWrapper>
           <LeftArrow type="arrow-left" onClick={() => onBackIcon()} />
-          <SpanText>Importing {data[0] && data[0].coin} Wallet</SpanText>
-        </Flex>
-      </Between>
+          <Text large>{formatMessage({ id: 'import_exist_wallet' })}</Text>
+        </NavigationWrapper>
+      </Wrapper>
     );
-    const steps = this.getSteps()
+    const steps = this.getSteps();
     return (
       <FormSteps steps={steps} currentStep={current} beforeContent={FormNavigation} />
     );
@@ -126,6 +184,10 @@ export default class ImportWalletSteps extends React.Component {
 
 ImportWalletSteps.propTypes = {
   wallets: PropTypes.array,
-  handleSubmit: PropTypes.func,
-  onBackIcon: PropTypes.func,
+  handleSubmit: PropTypes.func.isRequired,
+  onBackIcon: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  intl: PropTypes.object.isRequired,
 };
+
+export default injectIntl(ImportWalletSteps);

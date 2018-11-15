@@ -1,24 +1,28 @@
 import styled from 'styled-components';
-import { Menu } from 'antd';
+import { Menu, Icon } from 'antd';
+
+import Text from 'components/ui/Text';
+import Heading from 'components/ui/Heading';
 
 export const AssetsWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
 `;
 
-export const SpaceBetween = styled.div`
+export const IconsWrapper = styled.div`
   display: flex;
+  height: 0%;
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
   right: 0;
   margin-right: 1.65rem;
-  margin-top: 1.2rem;
+  margin-top: 1.29rem;
 `;
 
 export const AssetWrapper = styled.div`
-  margin-right: 12px;
-  margin-top: 6px;
+  margin-right: 0.86rem;
+  margin-top: 0.43rem;
   &:last-child {
     margin-right: 0;
   }
@@ -26,46 +30,59 @@ export const AssetWrapper = styled.div`
 
 export const CardIcon = styled.div`
   color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 20px;
   &:hover {
     color: ${({ theme }) => theme.palette.info};
-    font-size: 20px;
   }
 `;
 
 export const OverflowHidden = styled.div`
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 0.71rem;
 `;
 
 export const CardIconSettings = styled.div`
-  margin-top: 3.6rem;
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
   color: ${({ theme }) => theme.palette.secondary1};
-  font-size: 20px;
   &:hover {
     color: ${({ theme }) => theme.palette.info};
-    font-size: 20px;
   }
+`;
+
+export const Spinner = styled(Icon)`
+  display: flex;
+  margin: auto;
+  font-size: 2rem;
 `;
 
 export const LeftSideWrapper = styled.div`
   display: flex;
-  flex: 1;
-  flex-direction: column;
+  flex-direction: row;
 `;
 
-export const TotalBalance = styled.span`
+export const TotalBalance = styled(Heading)`
   color: ${({ theme }) => theme.palette.info};
-  font-size: 18px;
-  margin-right: 25px;
+  margin-top: -0.25rem;
+  margin-right: 2.14rem;
+  word-wrap: break-word;
+  min-width: 10.71rem;
+  text-align: right;
+  flex: 1;
+`;
+
+export const WalletName = styled(Text)`
+  min-width: 5rem;
+  word-wrap: break-word;
+  margin-bottom: 0.5rem;
 `;
 
 export const OuterWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   flex: 1;
-  justify-content: space-between;
-  min-height: 120px;
-  padding: 18px 24px;
+  min-height: 8.57rem;
+  padding: 1.29rem 1.71rem;
   background-color: ${({ theme }) => theme.palette.primary4};
   color: white;
   cursor: pointer;
@@ -89,6 +106,16 @@ export const RightSideWrapper = styled.div`
 
 export const IconMenu = styled(Menu)`
   background-color: ${({ theme }) => theme.palette.primary3};
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  .ant-dropdown-menu-item:first-child:hover {
+    border-radius: 0.29rem 0.29rem 0 0;
+  }
+  .ant-dropdown-menu-item:last-child:hover {
+  border-radius: ${(props) => props.singleitem === 'true' ? '0.29rem 0.29rem' : '0 0'} 0.29rem 0.29rem;
+  }
+
 `;
 
 export const MenuItem = styled(Menu.Item)`
@@ -101,4 +128,5 @@ export const MenuItem = styled(Menu.Item)`
 
 export const MenuDivider = styled(Menu.Divider)`
   background-color: ${({ theme }) => theme.palette.secondary1};
+  margin: 0;
 `;

@@ -6,5 +6,5 @@ export const WalletCardsCol = styled(Col)`
 `;
 
 export const Wrapper = styled.div`
-  margin-left: 2rem;
+  margin: 0 2rem 2rem 2rem;
 `;

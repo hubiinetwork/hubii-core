@@ -1,13 +1,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
+
+import Text from 'components/ui/Text';
+
 import {
-  Coins,
+  OptionsWrapper,
   Image,
   Center,
-  ButtonDiv,
-  CoinButton,
-  StyledSpan,
+  Option,
   StyledButton,
+  OptionText,
+  Header,
+  Wrapper,
 } from './ImportWallet.style';
 
 class ImportWallet extends React.Component {
@@ -33,23 +38,29 @@ class ImportWallet extends React.Component {
 
   render() {
     const { walletType } = this.state;
+    const { formatMessage } = this.props.intl;
     return (
-      <div>
-        <Coins onChange={this.onChange}>
+      <Wrapper>
+        <Header>{formatMessage({ id: 'store_wallet_question' })}</Header>
+        <OptionsWrapper onChange={this.onChange}>
           {this.props.wallets.map((wallet) => (
-            <CoinButton value={wallet.name} key={wallet.name}>
+            <Option value={wallet.name} key={wallet.name}>
               <Center>
-                <Image src={wallet.src} />
+                {
+                  wallet.src
+                  ?
+                    <Image src={wallet.src} />
+                  :
+                    <OptionText>{wallet.name}</OptionText>
+                }
               </Center>
-            </CoinButton>
+            </Option>
           ))}
-        </Coins>
-        <ButtonDiv>
-          <StyledButton type={'primary'} disabled={walletType === ''} onClick={this.handleNext}>
-            <StyledSpan>Next</StyledSpan>
-          </StyledButton>
-        </ButtonDiv>
-      </div>
+        </OptionsWrapper>
+        <StyledButton type={'primary'} disabled={walletType === ''} onClick={this.handleNext}>
+          <Text>{formatMessage({ id: 'next' })}</Text>
+        </StyledButton>
+      </Wrapper>
     );
   }
 }
@@ -63,7 +74,7 @@ ImportWallet.propTypes = {
    * Function to be executed when next button is pressed
    */
   handleNext: PropTypes.func,
-
+  intl: PropTypes.object.isRequired,
 };
 
-export default ImportWallet;
+export default injectIntl(ImportWallet);

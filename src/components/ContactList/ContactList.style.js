@@ -1,23 +1,15 @@
 import { List } from 'antd';
 import styled from 'styled-components';
 
-export const StyledDiv = styled.div`
-  margin-top: 15px;
-`;
 export const StyledList = styled(List)`
-  margin-right: 18px;
-  margin-left: 0px;
+&&&&&& {
   .ant-list-item-meta-title {
     color: ${({ theme }) => theme.palette.info3};
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 16px;
+    line-height: 1rem;
   }
   .ant-list-item-meta-description {
     color: ${({ theme }) => theme.palette.secondary6};
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 14px;
+    line-height: 1rem;
   }
   .ant-btn-circle.ant-btn-sm,
   .ant-btn-circle-outline.ant-btn-sm {
@@ -26,8 +18,8 @@ export const StyledList = styled(List)`
     border-color: ${({ theme }) => theme.palette.secondary8};
   }
   .ant-list-item {
-    border-bottom: 1px solid ${({ theme }) => theme.palette.secondary7} !important;
-    padding-bottom: 11px;
+    border-bottom: 0.07rem solid ${({ theme }) => theme.palette.secondary7} !important;
+    padding-bottom: 0.79rem;
   }
   em.ant-list-item-action-split {
     display: none;
@@ -40,9 +32,9 @@ export const StyledList = styled(List)`
     }
   }
   .ant-list-item-action {
-    padding-top: 10px;
+    padding-top: 0.71rem;
   }
   .ant-list-item-action > li {
-    padding: 0 4px;
+    padding: 0 0.29rem;
   }
-`;
+}`;

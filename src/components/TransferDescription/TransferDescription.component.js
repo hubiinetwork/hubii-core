@@ -1,193 +1,182 @@
 import { Row } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
+
+import { formatFiat } from 'utils/numberFormats';
+import { isValidAddress } from 'ethereumjs-util';
+import { isHardwareWallet } from 'utils/wallet';
+
+import HWPromptContainer from 'containers/HWPromptContainer';
+
 import {
   StyledCol,
-  StyledDiv,
-  WrapperDiv,
-  BalanceCol,
-  StyledTitle,
+  Balance,
   StyledButton,
   StyledRecipient,
-  StyledButtonCancel,
   StyledSpin,
+  HWPromptWrapper,
 } from './TransferDescription.style';
-import TransferDescriptionList from '../TransferDescriptionList';
+import TransferDescriptionItem from '../TransferDescriptionItem';
 
 /**
  * The TransferDescription Component
  */
-export default class TransferDescription extends React.PureComponent {
+class TransferDescription extends React.PureComponent {
   render() {
     const {
-      title,
+      currentWalletWithInfo,
       recipient,
-      totalAmount,
-      buttonLabel,
+      assetToSend,
       amountToSend,
-      selectedToken,
+      ethBalanceBefore,
+      ethBalanceAfter,
+      assetBalanceAfter,
+      assetBalanceBefore,
+      walletUsdValueBefore,
+      walletUsdValueAfter,
+      usdValueToSend,
       transactionFee,
-      ethInformation,
-      currencySymbol,
       onSend,
-      onCancel,
+      hwWalletReady,
+      intl,
     } = this.props;
 
-    const totalUsd = (parseInt(selectedToken.balance, 10) / (10 ** selectedToken.decimals)) * parseFloat(selectedToken.price.USD);
-    const remainingBalance = totalUsd - (amountToSend * parseFloat(selectedToken.price.USD)) - (transactionFee * parseFloat(ethInformation.price.USD));
+    const { formatMessage } = intl;
+
+    const disableSendButton =
+      amountToSend.isNegative() ||
+      ethBalanceAfter.amount.isNegative() ||
+      assetBalanceAfter.amount.isNegative() ||
+      !isValidAddress(recipient) ||
+      !hwWalletReady;
     return (
-      <WrapperDiv>
+      <div>
         <Row>
-          <StyledTitle span={12}>{title}</StyledTitle>
+          <StyledCol span={12}>{formatMessage({ id: 'send' })}</StyledCol>
         </Row>
         <Row>
-          <StyledCol span={12}>Total {selectedToken.symbol} Balance</StyledCol>
-        </Row>
-        <Row>
-          <TransferDescriptionList
-            label={totalAmount}
-            labelSymbol={selectedToken.symbol}
-            value={(totalAmount * selectedToken.price.USD).toLocaleString('en')}
+          <TransferDescriptionItem
+            main={`${amountToSend.toString()} ${assetToSend.symbol}`}
+            subtitle={formatFiat(usdValueToSend.toNumber(), 'USD')}
           />
         </Row>
         <Row>
-          <StyledCol span={12}>Amount to Send</StyledCol>
-        </Row>
-        <Row>
-          <TransferDescriptionList
-            label={amountToSend}
-            labelSymbol={selectedToken.symbol}
-            value={(amountToSend * selectedToken.price.USD).toLocaleString('en')}
-          />
-        </Row>
-        <Row>
-          <StyledCol span={12}>Send to</StyledCol>
+          <StyledCol span={12}>{formatMessage({ id: 'to' })}</StyledCol>
         </Row>
         <Row>
           <StyledRecipient span={12}>{recipient}</StyledRecipient>
         </Row>
         <Row>
-          <StyledCol span={12}>Transaction Fee</StyledCol>
+          <StyledCol span={12}>{formatMessage({ id: 'fee' })}</StyledCol>
         </Row>
         <Row>
-          <TransferDescriptionList
-            label={transactionFee}
-            labelSymbol={selectedToken.symbol}
-            value={(transactionFee * ethInformation.price.USD).toLocaleString('en')}
+          <TransferDescriptionItem
+            main={`${transactionFee.amount.toString()} ETH`}
+            subtitle={formatFiat(transactionFee.usdValue.toNumber(), 'USD')}
           />
         </Row>
         <Row>
-          <StyledCol span={12}>Total Transaction Amount</StyledCol>
+          <StyledCol span={12}>ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
         </Row>
         <Row>
-          <TransferDescriptionList
-            label={amountToSend + transactionFee}
-            labelSymbol={selectedToken.symbol}
-            value={((amountToSend * parseFloat(selectedToken.price.USD)) + (transactionFee * parseFloat(ethInformation.price.USD))).toLocaleString('en')}
+          <TransferDescriptionItem
+            main={`${ethBalanceBefore.amount.toString()} ETH`}
+            subtitle={formatFiat(ethBalanceBefore.usdValue.toNumber(), 'USD')}
           />
         </Row>
         <Row>
           <StyledCol span={12}>
-            Remaining {selectedToken.symbol} Balance
+            ETH {formatMessage({ id: 'balance_after' })}
           </StyledCol>
         </Row>
         <Row>
-          <TransferDescriptionList
-            label={
-              selectedToken.symbol === 'ETH'
-                ? totalAmount - amountToSend - transactionFee
-                : totalAmount - amountToSend
-            }
-            labelSymbol={selectedToken.symbol}
-            value={(
-              (totalAmount - amountToSend) *
-              +selectedToken.price.USD
-            ).toLocaleString('en')}
+          <TransferDescriptionItem
+            main={`${ethBalanceAfter.amount} ETH`}
+            subtitle={formatFiat(ethBalanceAfter.usdValue.toNumber(), 'USD')}
           />
         </Row>
+        {assetToSend.symbol !== 'ETH' &&
+        <div>
+          <Row>
+            <StyledCol span={12}>{assetToSend.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+          </Row>
+          <Row>
+            <TransferDescriptionItem
+              main={`${assetBalanceBefore.amount} ${assetToSend.symbol}`}
+              subtitle={formatFiat(assetBalanceBefore.usdValue.toNumber(), 'USD')}
+            />
+          </Row>
+          <Row>
+            <StyledCol span={12}>
+              { assetToSend.symbol } {formatMessage({ id: 'balance_after' })}
+            </StyledCol>
+          </Row>
+          <Row>
+            <TransferDescriptionItem
+              main={`${assetBalanceAfter.amount} ${assetToSend.symbol}`}
+              subtitle={formatFiat(assetBalanceAfter.usdValue.toNumber(), 'USD')}
+            />
+          </Row>
+        </div>
+      }
         <Row>
-          <StyledCol span={12}>Remaining Wallet Balance</StyledCol>
+          <StyledCol span={12}>{formatMessage({ id: 'total_value_before' })}</StyledCol>
         </Row>
         <Row>
-          <BalanceCol>
-            {currencySymbol}
-            {remainingBalance.toLocaleString('en')}
-          </BalanceCol>
+          <Balance large>
+            {formatFiat(walletUsdValueBefore, 'USD')}
+          </Balance>
         </Row>
-        {
+        <Row>
+          <StyledCol span={12}>{formatMessage({ id: 'total_value_after' })}</StyledCol>
+        </Row>
+        <Row>
+          <Balance large>
+            {formatFiat(walletUsdValueAfter, 'USD')}
+          </Balance>
+        </Row>
+        <Row>
+          {
+            isHardwareWallet(currentWalletWithInfo.get('type')) &&
+            <HWPromptWrapper>
+              <HWPromptContainer />
+            </HWPromptWrapper>
+          }
+          {
             this.props.transfering ?
             (<StyledSpin
               delay={0}
-              tip="Sending..."
               size="large"
             />) : (
-              <StyledDiv>
-                <StyledButtonCancel type="secondary" onClick={onCancel}>
-                  {'Cancel'}
-                </StyledButtonCancel>
-                <StyledButton type="primary" onClick={onSend} >
-                  {buttonLabel}
-                </StyledButton>
-              </StyledDiv>
+              <StyledButton type="primary" onClick={onSend} disabled={disableSendButton}>
+                {formatMessage({ id: 'send' })}
+              </StyledButton>
             )
           }
-      </WrapperDiv>
+        </Row>
+      </div>
     );
   }
 }
 
-TransferDescription.defaultProps = {
-  title: 'Transaction Description',
-  currencySymbol: '$',
-  buttonLabel: 'Send',
-};
-
 TransferDescription.propTypes = {
-  /**
-   * title of the TransferDescription.
-   */
-  title: PropTypes.string,
-  /**
-   * button label of the TransferDescription.
-   */
-  buttonLabel: PropTypes.string,
-  /**
-   * currency sign of the TransferDescription.
-   */
-  currencySymbol: PropTypes.string,
-  /**
-   * receipient of the TransferDescription.
-   */
   recipient: PropTypes.string.isRequired,
-  /**
-   * totalAmount of the TransferDescription.
-   */
-  totalAmount: PropTypes.number.isRequired,
-  /**
-   * amount to send in the TransferDescription.
-   */
-  amountToSend: PropTypes.number.isRequired,
-  /**
-   * transactionFee in the TransferDescription.
-   */
-  transactionFee: PropTypes.number.isRequired,
-  /**
-   * selectedToken in the TransferDescription.
-   */
-  selectedToken: PropTypes.object.isRequired,
-  /**
-   * ethInformation in the TransferDescription.
-   */
-
-  ethInformation: PropTypes.object.isRequired,
-  /**
-   * onSend function Callback in the TransferDescription.
-   */
+  amountToSend: PropTypes.object.isRequired,
+  transactionFee: PropTypes.object.isRequired,
+  assetToSend: PropTypes.object.isRequired,
+  assetBalanceAfter: PropTypes.object.isRequired,
+  assetBalanceBefore: PropTypes.object.isRequired,
+  ethBalanceAfter: PropTypes.object.isRequired,
+  ethBalanceBefore: PropTypes.object.isRequired,
+  walletUsdValueAfter: PropTypes.number.isRequired,
+  walletUsdValueBefore: PropTypes.number.isRequired,
+  usdValueToSend: PropTypes.object.isRequired,
   onSend: PropTypes.func,
-  /**
-   * onSend function Callback  in the TransferDescription.
-   */
-  onCancel: PropTypes.func,
   transfering: PropTypes.bool,
+  hwWalletReady: PropTypes.bool.isRequired,
+  currentWalletWithInfo: PropTypes.object.isRequired,
+  intl: PropTypes.object.isRequired,
 };
-// export default TransferDescription;
+
+export default injectIntl(TransferDescription);

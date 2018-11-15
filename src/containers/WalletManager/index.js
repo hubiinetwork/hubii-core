@@ -1,4 +1,5 @@
-import { Icon, Tabs } from 'antd';
+import { Icon } from 'antd';
+import { injectIntl } from 'react-intl';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
@@ -8,30 +9,36 @@ import { createStructuredSelector } from 'reselect';
 
 import WalletsOverview from 'containers/WalletsOverview';
 import ContactBook from 'containers/ContactBook';
-import Tab from 'components/ui/Tab';
+import Tabs, { TabPane } from 'components/ui/Tabs';
 import AddRestoreWalletModal from 'components/AddRestoreWalletModal';
-import AddNewContactModal from 'components/AddNewContactModal';
 import { Modal } from 'components/ui/Modal';
 import { makeSelectContacts } from 'containers/ContactBook/selectors';
+import EditContactModal from 'components/EditContactModal';
 
 import {
   createWalletFromMnemonic,
-  saveLedgerAddress,
+  saveTrezorAddress,
   createWalletFromPrivateKey,
-} from 'containers/WalletHOC/actions';
-import { makeSelectLoading, makeSelectWallets } from 'containers/WalletHOC/selectors';
-import { createContact,
- } from '../ContactBook/actions';
+  createWalletFromKeystore,
+} from 'containers/WalletHoc/actions';
+
+import {
+  saveLedgerAddress,
+} from 'containers/LedgerHoc/actions';
+
+import { makeSelectLoading, makeSelectWallets } from 'containers/WalletHoc/selectors';
+
+import TopHeader from 'components/ui/TopHeader';
+import Heading from 'components/ui/Heading';
+
+import { createContact } from '../ContactBook/actions';
 
 
 import {
   Wrapper,
-  TabsLayout,
   StyledButton,
-  WalletsTabHeader,
 } from './index.style';
 
-const TabPane = Tabs.TabPane;
 
 export class WalletManager extends React.PureComponent {
   constructor(props) {
@@ -62,11 +69,7 @@ export class WalletManager extends React.PureComponent {
 
   onCreateContact(contact) {
     if (contact) {
-      const name = contact.name.replace(
-        /\w\S*/g,
-        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-      );
-      this.props.createContact(name, contact.address);
+      this.props.createContact(contact.name, contact.address);
     }
     this.hideModal();
   }
@@ -89,25 +92,42 @@ export class WalletManager extends React.PureComponent {
   }
 
   handleImportWalletSubmit(data) {
-    if (data[0].walletType === 'metamask') {
+    if (data[0].walletType === 'Private key') {
       const { privateKey, name, password } = data[1];
       this.props.createWalletFromPrivateKey(privateKey, name, password);
-    } else if (data[0].walletType === 'ledger') {
+    }
+    if (data[0].walletType === 'ledger') {
       const { derivationPath, deviceId, address } = data[1];
       const { name } = data[2];
       this.props.saveLedgerAddress(name, derivationPath, deviceId, address);
       this.hideModal();
     }
+    if (data[0].walletType === 'Trezor') {
+      const { derivationPath, deviceId, address } = data[1];
+      const { name } = data[2];
+      this.props.saveTrezorAddress(name, derivationPath, deviceId, address);
+      this.hideModal();
+    }
+    if (data[0].walletType === 'Mnemonic') {
+      const { mnemonic, derivationPath, password, name } = data[1];
+      this.props.createWalletFromMnemonic(name, mnemonic, derivationPath, password);
+    }
+    if (data[0].walletType === 'Keystore') {
+      const { name, keystore } = data[1];
+      this.props.createWalletFromKeystore(name, keystore);
+    }
   }
 
   render() {
     const { history, match, contacts, loading } = this.props;
+    const { formatMessage } = this.props.intl;
     let modal;
     switch (this.state.type) {
       case 'addContact':
-        modal = (<AddNewContactModal
-          onSubmit={(contact) => this.onCreateContact(contact)}
+        modal = (<EditContactModal
+          onEdit={(contact) => this.onCreateContact(contact)}
           contacts={contacts.toJS()}
+          confirmText={formatMessage({ id: 'create_contact' })}
         />);
         break;
       default:
@@ -121,37 +141,36 @@ export class WalletManager extends React.PureComponent {
 
     return (
       <Wrapper>
-        <TabsLayout>
-          <WalletsTabHeader>
-            <h2 className="heading">All Wallets</h2>
-            <StyledButton
-              type="primary"
-              onClick={() => this.showModal(history.location.pathname === `${match.url}/overview` ? 'addWallet' : 'addContact')}
-            >
-              <Icon type="plus" />
-              {history.location.pathname === `${match.url}/overview`
-                ? 'Add / Restore Wallet'
-                : 'Add New Contact'}
-            </StyledButton>
-            <Modal
-              footer={null}
-              width={'585px'}
-              maskClosable
-              maskStyle={{ background: 'rgba(232,237,239,.65)' }}
-              style={{ marginTop: '20px' }}
-              visible={this.state.visible}
-              onCancel={this.hideModal}
-              destroyOnClose
-            >
-              {modal}
-            </Modal>
-          </WalletsTabHeader>
-        </TabsLayout>
-        <Tab activeKey={history.location.pathname} onChange={this.onTabsChange} animated={false}>
+        <TopHeader>
+          <Heading>
+            {formatMessage({ id: 'my_wallets' })}
+          </Heading>
+          <StyledButton
+            type="primary"
+            onClick={() => this.showModal(history.location.pathname === `${match.url}/overview` ? 'addWallet' : 'addContact')}
+          >
+            <Icon type="plus" />
+            {history.location.pathname === `${match.url}/overview`
+                ? formatMessage({ id: 'add_wallet' })
+                : formatMessage({ id: 'add_contact' })}
+          </StyledButton>
+          <Modal
+            footer={null}
+            width={'41.79rem'}
+            maskClosable
+            style={{ marginTop: '1.43rem' }}
+            visible={this.state.visible}
+            onCancel={this.hideModal}
+            destroyOnClose
+          >
+            {modal}
+          </Modal>
+        </TopHeader>
+        <Tabs activeKey={history.location.pathname} onChange={this.onTabsChange} animated={false}>
           <TabPane
             tab={
               <span>
-                <Icon type="wallet" />Wallets Overview
+                <Icon type="wallet" />{formatMessage({ id: 'overview' })}
               </span>
             }
             key={`${match.url}/overview`}
@@ -160,13 +179,13 @@ export class WalletManager extends React.PureComponent {
           <TabPane
             tab={
               <span>
-                <Icon type="contacts" />Contacts Book
+                <Icon type="contacts" />{formatMessage({ id: 'contacts' })}
               </span>
             }
             key={`${match.url}/contacts`}
           >
           </TabPane>
-        </Tab>
+        </Tabs>
         <Route path={`${match.url}/overview`} component={WalletsOverview} />
         <Route path={`${match.url}/contacts`} component={ContactBook} />
         {
@@ -184,13 +203,16 @@ WalletManager.propTypes = {
   match: PropTypes.object.isRequired,
   createWalletFromMnemonic: PropTypes.func.isRequired,
   saveLedgerAddress: PropTypes.func,
+  saveTrezorAddress: PropTypes.func,
   createWalletFromPrivateKey: PropTypes.func.isRequired,
+  createWalletFromKeystore: PropTypes.func.isRequired,
   loading: PropTypes.object.isRequired,
   createContact: PropTypes.func,
   contacts: PropTypes.oneOfType(
     [PropTypes.arrayOf(PropTypes.object), PropTypes.object]
   ),
   wallets: PropTypes.object.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -202,8 +224,10 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     saveLedgerAddress: (...args) => dispatch(saveLedgerAddress(...args)),
+    saveTrezorAddress: (...args) => dispatch(saveTrezorAddress(...args)),
     createWalletFromMnemonic: (...args) => dispatch(createWalletFromMnemonic(...args)),
     createWalletFromPrivateKey: (...args) => dispatch(createWalletFromPrivateKey(...args)),
+    createWalletFromKeystore: (...args) => dispatch(createWalletFromKeystore(...args)),
     createContact: (...args) => dispatch(createContact(...args)),
   };
 }
@@ -212,4 +236,4 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(
   withConnect,
-)(WalletManager);
+)(injectIntl(WalletManager));

@@ -1,6 +1,6 @@
 
 import { fromJS } from 'immutable';
-import { initialState as walletHocInitialState } from 'containers/WalletHOC/reducer';
+import { initialState as walletHocInitialState } from 'containers/WalletHoc/reducer';
 import { initialState as contactsInitialState } from 'containers/ContactBook/reducer';
 import { loadState, saveState, filterPersistedState } from '../localStorage';
 
@@ -41,6 +41,20 @@ describe('localStorage', () => {
       localStorage.setItem('state', state);
       const loadedState = loadState();
       const expected = JSON.parse(state);
+      expect(loadedState).toEqual(expected);
+    });
+
+    it('should init the properties from initialState if does not exist in stored state ', () => {
+      const wallets = ['1', '2', '3'];
+      const state = JSON.stringify({ walletHoc: { wallets } });
+      localStorage.setItem('state', state);
+      const loadedState = loadState();
+      const expected = {
+        walletHoc: {
+          ...walletHocInitialState.toJSON(),
+          wallets, // check non default property
+        },
+      };
       expect(loadedState).toEqual(expected);
     });
   });

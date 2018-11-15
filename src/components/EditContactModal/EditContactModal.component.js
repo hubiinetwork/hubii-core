@@ -1,15 +1,17 @@
 import * as React from 'react';
 import { Form, Icon } from 'antd';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
+import { isAddressMatch } from 'utils/wallet';
+import { isValidAddress } from 'ethereumjs-util';
 import {
   Text,
   Wrapper,
   WrapperIcon,
-  StyledButton1,
+  StyledButton,
   ParentDiv,
 } from './EditContactModal.style';
 import { ModalFormLabel, ModalFormInput, ModalFormItem } from '../ui/Modal';
-
 /**
  * Modal component for editing a contact.
  */
@@ -18,114 +20,145 @@ export class EditContactModal extends React.Component {
   constructor(props) {
     super(props);
     this.handleEdit = this.handleEdit.bind(this);
-    this.validateEdit = this.validateEdit.bind(this);
-    this.state = {
-      oldName: null,
-      oldAddress: null,
-    };
-
-    this.validateEdit = this.validateEdit.bind(this);
+    this.validateAddressInUse = this.validateAddressInUse.bind(this);
+    this.validateNameInUse = this.validateNameInUse.bind(this);
+    this.validateInvalid = this.validateInvalid.bind(this);
   }
 
-  componentWillMount() {
-    const { name, address } = this.props;
-    this.setState({
-      oldName: name,
-      oldAddress: address,
-    });
-  }
 
   handleEdit(e) {
     const { onEdit } = this.props;
-    const { oldName, oldAddress } = this.state;
     e.preventDefault();
-    this.props.form.validateFields((err) => {
+    this.props.form.validateFields((err, value) => {
       if (!err) {
-        onEdit({ name: oldName, address: oldAddress });
+        onEdit({ address: value.address.trim(), name: value.name.trim() });
       }
     });
   }
 
-  validateEdit(rule, value, callback) {
-    const { validateEdit } = this.props;
-    const error = validateEdit(value, this.state.oldAddress);
-    if (error) {
-      callback('You have already saved this address');
-    } else {
-      callback();
+  validateAddressInUse(rule, value, callback) {
+    const { contacts, intl } = this.props;
+    const { formatMessage } = intl;
+    if (!value) { callback(); return; } // no address input
+    const sameAddressList = contacts.filter((person) => isAddressMatch(person.address, value.trim()));
+    if (sameAddressList.length && !isAddressMatch(value.trim(), this.props.initialAddress)) {
+      callback(formatMessage({ id: 'contact_address_exist_error' }));
     }
+    callback();
   }
+
+  validateNameInUse(rule, value, callback) {
+    const { contacts } = this.props;
+    if (!value) { callback(); return; } // no name input
+    const sameAddressList = contacts.filter((person) => person.name.toLowerCase() === value.trim().toLowerCase());
+    if (sameAddressList.length && this.props.initialName.toLowerCase() !== value.trim().toLowerCase()) {
+      callback(true);
+    }
+    callback();
+  }
+
+  validateInvalid(rule, value, callback) {
+    const { formatMessage } = this.props.intl;
+    if (!value) { callback(); return; } // no address input
+    if (!isValidAddress(value.trim())) {
+      callback(formatMessage({ id: 'invalid_address' }));
+    }
+    callback();
+  }
+
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { onChange } = this.props;
+    const { confirmText, quickAddAddress, intl } = this.props;
+    const { formatMessage } = intl;
     return (
       <Wrapper>
         <WrapperIcon>
           <Icon type="info-circle-o" />
           <Text>
-            Please be sure that all the information is correct. Once a
-            transaction is made, it can not be changed.
+            {formatMessage({ id: 'contact_info_warning' })}
           </Text>
         </WrapperIcon>
         <Form layout="vertical" onSubmit={this.handleEdit}>
-          <ModalFormItem label={<ModalFormLabel>Name</ModalFormLabel>}>
+          <ModalFormItem label={<ModalFormLabel>{formatMessage({ id: 'contact_name' })}</ModalFormLabel>}>
             {getFieldDecorator('name', {
               rules: [
                 {
-                  message: 'Name is required.',
+                  message: formatMessage({ id: 'contact_enter_name' }),
                   required: true,
                 },
+                {
+                  message: formatMessage({ id: 'contact_name_exist_error' }),
+                  required: true,
+                  validator: (rule, value, callback) => this.validateNameInUse(rule, value, callback),
+                },
+                {
+                  max: 25,
+                  message: formatMessage({ id: 'contact_name_max25_error' }),
+                },
               ],
-              initialValue: this.props.name,
-            })(<ModalFormInput onChange={(e) => onChange(e.target.value, 'name')} />)}
+              initialValue: this.props.initialName,
+            })(<ModalFormInput placeholder="John Doe" />)}
           </ModalFormItem>
           <ModalFormItem
-            label={<ModalFormLabel>Valid Ethereum Address</ModalFormLabel>}
+            label={<ModalFormLabel>{formatMessage({ id: 'contact_address' })}</ModalFormLabel>}
           >
             {getFieldDecorator('address', {
               rules: [
                 {
-                  message: 'Address is required.',
+                  message: formatMessage({ id: 'contact_enter_name' }),
                   required: true,
                 },
                 {
-                  message: 'This address is already under use',
+                  message: formatMessage({ id: 'invalid_address' }),
                   required: true,
-                  validator: (rule, value, callback) => this.validateEdit(rule, value, callback),
+                  validator: (rule, value, callback) => this.validateInvalid(rule, value, callback),
+                },
+                {
+                  message: formatMessage({ id: 'contact_address_exist_error' }),
+                  required: true,
+                  validator: (rule, value, callback) => this.validateAddressInUse(rule, value, callback),
                 },
               ],
-              initialValue: this.props.address,
-            })(<ModalFormInput onChange={(e) => onChange(e.target.value, 'address')} />)}
+              initialValue: this.props.initialAddress || quickAddAddress,
+            })(
+              <ModalFormInput
+                type="textarea"
+                disabled={!!quickAddAddress}
+                placeholder="0xee1636e3eu1969b618ca9334b5baf8e3760ab16a"
+              />
+            )}
           </ModalFormItem>
           <ParentDiv>
-            <StyledButton1
+            <StyledButton
               type="primary"
               htmlType="submit"
               id="button"
             >
-              <Icon type="plus" />
-              Edit Contact
-            </StyledButton1>
+              {confirmText}
+            </StyledButton>
           </ParentDiv>
         </Form>
       </Wrapper>
     );
   }
 }
-EditContactModal.propTypes = {
-  /** Name of contact. */
-  name: PropTypes.string.isRequired,
-  /** Address of contact. */
-  address: PropTypes.string.isRequired,
-  /** Function to be executed when edit button is pressed */
-  onEdit: PropTypes.func,
-  form: PropTypes.object,
-  /** Function to be executed when input is changed */
-  onChange: PropTypes.func,
-  /** Function which  validates Input */
-  validateEdit: PropTypes.func,
+
+EditContactModal.defaultProps = {
+  initialName: '',
+  initialAddress: '',
 };
 
-export default Form.create()(EditContactModal);
+EditContactModal.propTypes = {
+  initialName: PropTypes.string,
+  initialAddress: PropTypes.string,
+  onEdit: PropTypes.func,
+  form: PropTypes.object,
+  contacts: PropTypes.arrayOf(PropTypes.object),
+  confirmText: PropTypes.string.isRequired,
+  quickAddAddress: PropTypes.string,
+  intl: PropTypes.object.isRequired,
+};
+
+export default Form.create()(injectIntl(EditContactModal));
 

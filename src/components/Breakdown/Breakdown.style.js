@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 
-export const TotalAmount = styled.div`
+import Text from 'components/ui/Text';
+
+
+export const Title = styled(Text)`
   color: ${({ theme }) => theme.palette.light};
-  font-size: 28px;
-  font-weight: 500;
-  line-height: 34px;
+  margin-top: 0.21rem;
 `;
 
-export const Title = styled.h3`
-  color: ${({ theme }) => theme.palette.light};
-  font-weight: 500;
-  font-size: 14px;
-  margin-top: 3px;
-  line-height: 16px;
+export const Wrapper = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 `;

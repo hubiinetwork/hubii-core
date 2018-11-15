@@ -3,28 +3,51 @@ import { shallow } from 'enzyme';
 import ContactList from 'components/ContactList';
 import DeletionModal from 'components/DeletionModal';
 import EditContactModal from 'components/EditContactModal';
+import { intl } from 'jest/__mocks__/react-intl';
 
 describe('<ContactList/>', () => {
-  const contacts = [
-    {
-      name: 'mike',
-      address: '0x3123123',
-    },
-    {
-      name: 'joe',
-      address: '0x123123123',
-    },
-  ];
-  const onDelete = jest.fn();
-  const onEdit = jest.fn();
+  const props = {
+    data: [
+      {
+        name: 'mike',
+        address: '0x3123123',
+      },
+      {
+        name: 'joe',
+        address: '0x123123123',
+      },
+    ],
+    empty: false,
+    onDelete: jest.fn(),
+    onEdit: jest.fn(),
+    intl,
+  };
 
   describe('shallow mount', () => {
     it('should render <ContactList/> with data', () => {
       const shallowWrapper = shallow(
         <ContactList
-          data={contacts}
-          onEdit={onEdit}
-          onDelete={onDelete}
+          {...props}
+        />
+      );
+      expect(shallowWrapper).toMatchSnapshot();
+    });
+
+    it('should render <ContactList/> when empty', () => {
+      const shallowWrapper = shallow(
+        <ContactList
+          {...props}
+          empty
+        />
+      );
+      expect(shallowWrapper).toMatchSnapshot();
+    });
+
+    it('should render with custom message', () => {
+      const shallowWrapper = shallow(
+        <ContactList
+          {...props}
+          message="custom message"
         />
       );
       expect(shallowWrapper).toMatchSnapshot();
@@ -33,9 +56,8 @@ describe('<ContactList/>', () => {
     it('should render <ContactList/> without data', () => {
       const shallowWrapper = shallow(
         <ContactList
+          {...props}
           data={[]}
-          onEdit={onEdit}
-          onDelete={onDelete}
         />
       );
       expect(shallowWrapper).toMatchSnapshot();
@@ -48,9 +70,7 @@ describe('<ContactList/>', () => {
     beforeEach(() => {
       wrapper = shallow(
         <ContactList
-          data={contacts}
-          onEdit={onEdit}
-          onDelete={onDelete}
+          {...props}
         />
       );
       contactList = wrapper.instance();
@@ -63,8 +83,8 @@ describe('<ContactList/>', () => {
         };
         const modalType = 'edit';
         contactList.showModal(item, modalType);
-        expect(contactList.state.name).toEqual(item.name);
-        expect(contactList.state.address).toEqual(item.address);
+        expect(contactList.state.oldName).toEqual(item.name);
+        expect(contactList.state.oldAddress).toEqual(item.address);
         expect(contactList.state.modalType).toEqual(modalType);
         expect(contactList.state.modalVisibility).toEqual(true);
       });
@@ -91,19 +111,6 @@ describe('<ContactList/>', () => {
       contactList.handleDelete();
       expect(contactList.state.modalVisibility).toBe(false);
       expect(contactList.props.onDelete).toHaveBeenCalledTimes(1);
-    });
-
-    describe('validateEdit function', () => {
-      it('should return false from the validateEdit function', () => {
-        const address = '0x324234234';
-        const oldAddress = '0x213123123';
-        expect(contactList.validateEdit(address, oldAddress)).toBeFalsy();
-      });
-      it('should return true from the validateEdit function', () => {
-        const address = '0x123123123';
-        const oldAddress = '0x213123123';
-        expect(contactList.validateEdit(address, oldAddress)).toBeTruthy();
-      });
     });
 
     it('should execute the onChange function', () => {

@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { initialState as walletHocInitialState } from 'containers/WalletHOC/reducer';
+import { initialState as walletHocInitialState } from 'containers/WalletHoc/reducer';
 import { initialState as contactsInitialState } from 'containers/ContactBook/reducer';
 
 
@@ -10,7 +10,19 @@ export const loadState = () => {
     if (serializedState === null) {
       return {};
     }
-    return JSON.parse(serializedState);
+    const restoredState = JSON.parse(serializedState);
+
+    if (restoredState.walletHoc) {
+      // init the properties from initialState if does not exist in stored state
+      const walletHocInitialStateJSON = walletHocInitialState.toJSON();
+      Object.keys(walletHocInitialStateJSON).forEach((prop) => {
+        if (restoredState.walletHoc[prop] === undefined || restoredState.walletHoc[prop] === null) {
+          restoredState.walletHoc[prop] = walletHocInitialStateJSON[prop];
+        }
+      });
+    }
+
+    return restoredState;
   } catch (e) {
     return {};
   }
@@ -41,7 +53,7 @@ export const filterPersistedState = (state) => {
   persistedState = persistedState.set('walletHoc', walletHocInitialState);
 
   /*
-   * Sanitised software wallets from WalletHOC
+   * Sanitised software wallets from WalletHoc
    */
 
   // Get software wallets ensuring the decrypted property is filtered out
@@ -66,6 +78,12 @@ export const filterPersistedState = (state) => {
   persistedState = persistedState
     .set('contacts', state.get('contacts'));
 
+
+  /**
+   * Language Setting
+   */
+  persistedState = persistedState
+    .set('language', state.get('language'));
 
   return persistedState;
 };

@@ -1,228 +1,136 @@
 import React from 'react';
 import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
-import { deleteWallet } from 'containers/WalletHOC/actions';
-import { convertWalletsList } from 'utils/wallet';
-import { makeSelectWalletList } from 'containers/WalletHOC/selectors';
+import { deleteWallet } from 'containers/WalletHoc/actions';
+import {
+  walletsWithInfoMock,
+  walletsWithInfoEmptyMock,
+  totalBalancesLoadedMock,
+  totalBalancesLoadingMock,
+  totalBalancesErrorMock,
+} from 'containers/WalletHoc/tests/mocks/selectors';
+
+import {
+  supportedAssetsLoadedMock,
+  supportedAssetsLoadingMock,
+  supportedAssetsErrorMock,
+  pricesLoadedMock,
+} from 'containers/HubiiApiHoc/tests/mocks/selectors';
+
+import { intl } from 'jest/__mocks__/react-intl';
 import { WalletsOverview, mapDispatchToProps } from '../index';
+
 describe('WalletsOverview', () => {
-  describe('shallow mount', () => {
-    const wallets = [
-      {
-        name: 'test1',
-        address: '0x00',
-        type: 'software',
-        encrypted: '{"address": "abcd1"}',
-        decrypted: { privateKey: '0x123123123', mnemonic: 'the cat ran over' },
-      },
-      {
-        name: 'test2',
-        address: '0x00',
-        type: 'software',
-        encrypted: '{"address": "abcd2"}',
-        decrypted: { privateKey: '0x123123223', mnemonic: 'the dog ran over' },
-      },
-    ];
-    const state = fromJS({ walletHoc: { wallets } });
-    const test1Index = state.getIn(['walletHoc', 'wallets']).findIndex((wallet) => wallet.name === 'test1');
-    const balances = [
-      [
-        {
-          symbol: 'ETH',
-          balance: '10000',
-          decimals: 4,
-          price: { USD: 1 },
-          primaryColor: 'c1',
-        },
-        {
-          symbol: 'SII',
-          balance: '10000',
-          decimals: 4,
-          price: { USD: 1 },
-          primaryColor: 'c2',
-        },
-      ],
-      [
-        {
-          symbol: 'ETH',
-          balance: '10000',
-          decimals: 4,
-          price: { USD: 1 },
-          primaryColor: 'c1',
-        },
-        {
-          symbol: 'SII',
-          balance: '10000',
-          decimals: 4,
-          price: { USD: 1 },
-          primaryColor: 'c2',
-        },
-      ],
-    ];
-    const params = {
-      walletList: convertWalletsList(fromJS(wallets)),
-      ledgerNanoSInfo: { id: '123' },
-    };
-    let loadWalletsSpy;
-    let loadWalletsBalancesSpy;
+  const props = {
+    walletsWithInfo: walletsWithInfoMock,
+    showDecryptWalletModal: () => {},
+    deleteWallet: () => {},
+    lockWallet: () => {},
+    ledgerNanoSInfo: fromJS({ connected: false }),
+    trezorInfo: fromJS({ connected: false }),
+    setCurrentWallet: () => {},
+    totalBalances: totalBalancesLoadedMock,
+    supportedAssets: supportedAssetsLoadedMock,
+    history: { push: () => {} },
+    priceInfo: pricesLoadedMock,
+    intl,
+  };
 
-    let dom;
-    beforeEach(() => {
-      loadWalletsSpy = jest.fn();
-      loadWalletsBalancesSpy = jest.fn();
-      params.loadWallets = loadWalletsSpy;
-      params.loadWalletBalances = loadWalletsBalancesSpy;
+  it('should render correctly when there are wallets', () => {
+    const wrapper = shallow(
+      <WalletsOverview
+        {...props}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
 
-      dom = shallow(
-        <WalletsOverview
-          {...params}
-        />
-            );
-    });
-    describe('render', () => {
-      describe('WalletItemCard', () => {
-        it('number of WalletItemCard should be same as the number of wallets in state', () => {
-          expect(dom.find('WalletItemCard').length).toEqual(wallets.length);
-        });
-      });
-      describe('Breakdown', () => {
-        xit('Breakdown should be no available when balance is no available', () => {
-          expect(dom.find('Breakdown').length).toEqual(0);
-        });
-        it('Breakdown should be available when all balances are available', () => {
-          const walletsState = state
-            .setIn(['walletHoc', 'wallets', 0, 'balances'], balances[0])
-            .setIn(['walletHoc', 'wallets', 1, 'balances'], balances[1]);
+  it('should render correctly when there are no wallets', () => {
+    const wrapper = shallow(
+      <WalletsOverview
+        {...props}
+        walletsWithInfo={walletsWithInfoEmptyMock}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
 
-          const walletsList = makeSelectWalletList()(walletsState);
-          const overviewDom = shallow(
-            <WalletsOverview
-              {...params}
-              walletList={walletsList}
-            />
-                    );
-          expect(overviewDom.find('Breakdown').length).toEqual(1);
-          const breakdown = overviewDom.find('Breakdown').props().data;
-          const totalValue = overviewDom.find('Breakdown').props().value;
-          expect(totalValue).toEqual(4);
-          expect(breakdown).toEqual([
-                        { label: 'ETH', percentage: 50, color: 'c1' },
-                        { label: 'SII', percentage: 50, color: 'c2' },
-          ]);
-        });
-        it('Breakdown should be also available when no all balances are available', () => {
-          const walletsState = state.setIn(['walletHoc', 'wallets', test1Index, 'balances'], balances[0]);
-          const walletsList = makeSelectWalletList()(walletsState);
-          const overviewDom = shallow(
-            <WalletsOverview
-              {...params}
-              walletList={walletsList}
-            />
-                    );
-          expect(overviewDom.find('Breakdown').length).toEqual(1);
-          const breakdown = overviewDom.find('Breakdown').props().data;
-          const totalValue = overviewDom.find('Breakdown').props().value;
-          expect(totalValue).toEqual(2);
-          expect(breakdown).toEqual([
-                        { label: 'ETH', percentage: 50, color: 'c1' },
-                        { label: 'SII', percentage: 50, color: 'c2' },
-          ]);
-        });
-      });
+  it('should render correctly when totalBalances is loading', () => {
+    const wrapper = shallow(
+      <WalletsOverview
+        {...props}
+        totalBalances={totalBalancesLoadingMock}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when totalBalances is errored', () => {
+    const wrapper = shallow(
+      <WalletsOverview
+        {...props}
+        totalBalances={totalBalancesErrorMock}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when supportedAssets is loading', () => {
+    const wrapper = shallow(
+      <WalletsOverview
+        {...props}
+        supportedAssets={supportedAssetsLoadingMock}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when supportedAssets is errored', () => {
+    const wrapper = shallow(
+      <WalletsOverview
+        {...props}
+        supportedAssets={supportedAssetsErrorMock}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when there are no wallets', () => {
+    const wrapper = shallow(
+      <WalletsOverview
+        {...props}
+        walletsWithInfo={fromJS([])}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  describe('#handleCardClick', () => {
+    it('should push history with a path with wallet address', () => {
+      const historySpy = jest.fn();
+      const history = { push: historySpy };
+      const wrapper = shallow(<WalletsOverview
+        {...props}
+        history={history}
+      />);
+      const instance = wrapper.instance();
+      const address = '0xabcd';
+      instance.handleCardClick({ address });
+      expect(historySpy).toBeCalledWith(`/wallet/${address}/overview`);
     });
-    describe('#getWalletCardsData', () => {
-      it('should transform wallets array into cards structure with decrypted information', () => {
-        const instance = dom.instance();
-        const walletsState = state
-          .setIn(['walletHoc', 'wallets', 0, 'balances'], balances[0])
-          .setIn(['walletHoc', 'wallets', 1, 'balances'], balances[1]);
-        const walletsList = makeSelectWalletList()(walletsState);
-        const cardsData = instance.getWalletCardsData(walletsList);
-        expect(cardsData.length).toEqual(walletsList.length);
-        cardsData.forEach((card, index) => {
-          expect(card.isDecrypted).toEqual(true);
-          expect(card.mnemonic).toEqual(walletsList[index].decrypted.mnemonic);
-          expect(card.privateKey).toEqual(walletsList[index].decrypted.privateKey);
-          expect(card.name).toEqual(walletsList[index].name);
-          expect(card.type).toEqual(walletsList[index].type);
-          expect(card.address).toEqual(walletsList[index].address);
-          expect(card.totalBalance).toEqual(walletsList[index].balances.reduce((accumulator, current) => accumulator + (parseInt(current.balance, 10) / (10 ** current.decimals)), 0));
-          card.assets.forEach((asset, i) => {
-            expect(asset.name).toEqual(balances[index][i].symbol);
-            expect(asset.amount).toEqual(parseInt(balances[index][i].balance, 10) / (10 ** balances[index][i].decimals));
-            expect(asset.price).toEqual(balances[index][i].price);
-            expect(asset.color).toEqual(balances[index][i].primaryColor);
-          });
-        });
-      });
-      it('should transform wallets array into cards structure with non decrypted information', () => {
-        const instance = dom.instance();
-        const walletsState = state
-          .setIn(['walletHoc', 'wallets', 0, 'balances'], balances[0])
-          .setIn(['walletHoc', 'wallets', 1, 'balances'], balances[1])
-          .setIn(['walletHoc', 'wallets', 0, 'decrypted'], null)
-          .setIn(['walletHoc', 'wallets', 1, 'decrypted'], null);
-        const walletsList = makeSelectWalletList()(walletsState);
-        const cardsData = instance.getWalletCardsData(walletsList);
-        expect(cardsData.length).toEqual(walletsList.length);
-        cardsData.forEach((card, index) => {
-          expect(card.isDecrypted).toEqual(false);
-          expect(card.mnemonic).toEqual(null);
-          expect(card.privateKey).toEqual(null);
-          expect(card.name).toEqual(walletsList[index].name);
-          expect(card.type).toEqual(walletsList[index].type);
-          expect(card.address).toEqual(walletsList[index].address);
-          expect(card.totalBalance).toEqual(walletsList[index].balances.reduce((accumulator, current) => accumulator + (parseInt(current.balance, 10) / (10 ** current.decimals)), 0));
-          card.assets.forEach((asset, i) => {
-            expect(asset.name).toEqual(balances[index][i].symbol);
-            expect(asset.amount).toEqual(parseInt(balances[index][i].balance, 10) / (10 ** balances[index][i].decimals));
-            expect(asset.price).toEqual(balances[index][i].price);
-            expect(asset.color).toEqual(balances[index][i].primaryColor);
-          });
-        });
-      });
-      it('should handle wallets that do not have balances', () => {
-        const instance = dom.instance();
-        const walletsList = makeSelectWalletList()(state);
-        const cardsData = instance.getWalletCardsData(walletsList);
-        expect(cardsData.length).toEqual(walletsList.length);
-        cardsData.forEach((card, index) => {
-          const name = wallets[index].name;
-          expect(card.name).toEqual(name);
-          expect(card.type).toEqual(wallets[index].type);
-          expect(card.address).toEqual(walletsList[index].address);
-          expect(card.totalBalance).toEqual(0);
-          expect(card.assets).toEqual([]);
-        });
-      });
-    });
-    describe('#handleCardClick', () => {
-      it('should push history with a path with wallet address', () => {
-        const historySpy = jest.fn();
-        const history = { push: historySpy };
-        const overviewDom = shallow(<WalletsOverview
-          {...params}
-          history={history}
-        />);
-        const instance = overviewDom.instance();
-        const address = '0xabcd';
-        instance.handleCardClick({ address });
-        expect(historySpy).toBeCalledWith(`/wallet/${address}`);
-      });
-    });
-    describe('mapDispatchToProps', () => {
-      describe('deleteWallet', () => {
-        it('should call dispatch', () => {
-          const walletToRemove = {
-            type: 'software',
-            name: '12123',
-            address: '0x234234',
-          };
-          const dispatch = jest.fn();
-          const result = mapDispatchToProps(dispatch);
-          result.deleteWallet(walletToRemove);
-          expect(dispatch).toHaveBeenCalledWith(deleteWallet(walletToRemove));
-        });
+  });
+  describe('mapDispatchToProps', () => {
+    describe('deleteWallet', () => {
+      it('should call dispatch', () => {
+        const walletToRemove = {
+          type: 'software',
+          name: '12123',
+          address: '0x234234',
+        };
+        const dispatch = jest.fn();
+        const result = mapDispatchToProps(dispatch);
+        result.deleteWallet(walletToRemove);
+        expect(dispatch).toHaveBeenCalledWith(deleteWallet(walletToRemove));
       });
     });
   });

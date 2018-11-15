@@ -13,55 +13,78 @@
 
 import React from 'react';
 import { compose } from 'redux';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import Helmet from 'react-helmet';
+import { Switch, Route } from 'react-router-dom';
 
 import { getAbsolutePath } from 'utils/electron';
 import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
 
+import HomeScreen from 'components/HomeScreen';
 import SideBar from 'components/SideBar';
-import Striim from 'containers/Striim';
 import WalletManager from 'containers/WalletManager';
 import WalletDetails from 'containers/WalletDetails';
+import Dex from 'containers/Dex';
+import Settings from 'containers/Settings';
+import Nahmii from 'containers/Nahmii';
 
-import withExchangeRate from 'containers/ExchangeRateHOC';
-import WalletHOC from 'containers/WalletHOC';
+import WalletHoc from 'containers/WalletHoc';
+import withLedger from 'containers/LedgerHoc';
+import withTrezor from 'containers/TrezorHoc';
+import withHubiiApi from 'containers/HubiiApiHoc';
+import withEthOperations from 'containers/EthOperationsHoc';
 
+import ReleaseNotesModal from 'containers/ReleaseNotesModal';
+import { injectIntl } from 'react-intl';
+
+import reducer from './reducer';
 import saga from './saga';
 
-export function App() {
+function App() {
   const menuItems = [
     {
       to: '/wallets',
       icon: 'wallet',
-      name: 'Wallet Manager',
+      key: 'wallet',
     },
     {
-      to: '/striim',
-      icon: 'striim',
-      name: 'striim detail',
+      to: '/nahmii/airdriip-registration',
+      icon: 'nahmii-token',
+      key: 'nahmii',
     },
     {
       to: '/dex',
       icon: 'dex',
-      name: 'dex detail',
+      key: 'dex',
     },
   ];
   return (
-    <SideBar menuItems={menuItems} logoSrc={getAbsolutePath('public/Images/corerz-logo.svg')}>
+    <SideBar menuItems={menuItems} logoSrc={getAbsolutePath('public/images/hubii-core-logo.svg')}>
+      <Helmet>
+        <title>hubii core</title>
+      </Helmet>
       <Switch>
         <Route path="/wallets" component={WalletManager} />
         <Route path="/wallet/:address" component={WalletDetails} />
-        <Route path="/striim" component={Striim} />
-        <Redirect from="/" to="/wallets" />
+        <Route path="/dex" component={Dex} />
+        <Route path="/nahmii" component={Nahmii} />
+        <Route path="/settings" component={Settings} />
+        <Route component={HomeScreen} />
       </Switch>
+      <ReleaseNotesModal />
     </SideBar>
   );
 }
 
+const withReducer = injectReducer({ key: 'app', reducer });
 const withSaga = injectSaga({ key: 'app', saga });
 
 export default compose(
+  withReducer,
   withSaga,
-  withExchangeRate,
-  WalletHOC,
-)(App);
+  WalletHoc,
+  withLedger,
+  withTrezor,
+  withEthOperations,
+  withHubiiApi,
+)(injectIntl(App));

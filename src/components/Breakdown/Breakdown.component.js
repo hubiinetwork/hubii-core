@@ -1,34 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 import { VictoryPie, VictoryContainer, VictoryTooltip } from 'victory';
-import { SectionHeading } from '../ui/SectionHeading';
-import { TotalAmount, Title } from './Breakdown.style';
+import SectionHeading from 'components/ui/SectionHeading';
+import Heading from 'components/ui/Heading';
+import { formatFiat } from 'utils/numberFormats';
+import { Title, Wrapper } from './Breakdown.style';
 import Tokens from './Tokens';
 
 /**
  * This component shows user's total coins' convertion in dollar and a relative chart.
  */
-const Breakdown = ({ data, value }) => {
+const Breakdown = ({ data = [], value, intl }) => {
+  const { formatMessage } = intl;
   const chartData = data.map((item) => ({
     x: item.percentage,
     y: 2 * item.percentage,
-    label: `${item.label}: ${item.percentage}%`,
+    label: `${item.label}: ${item.percentage.toFixed(0)}%`,
   }));
   const colors = data.map((item) => item.color);
-  const labels = data.map((item) => ({
-    label: item.label,
-    percentage: item.percentage,
-  }));
+  if (chartData.length === 0) {
+    return <div />;
+  }
   return (
-    <div>
-      <SectionHeading>Breakdown</SectionHeading>
+    <Wrapper>
+      <SectionHeading>{formatMessage({ id: 'balance_breakdown' })}</SectionHeading>
       {(
         <div>
-          <Title>Total Value</Title>
-          <TotalAmount>${value.toLocaleString('en')}</TotalAmount>
+          <Title>{formatMessage({ id: 'total_fiat_value' })}</Title>
+          <Heading large>{formatFiat(value, 'USD')}</Heading>
         </div>
       )}
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '30rem' }}>
         <VictoryPie
           labelComponent={
             <VictoryTooltip
@@ -38,26 +41,24 @@ const Breakdown = ({ data, value }) => {
             />
           }
           innerRadius={90}
-          animate={{
-            onLoad: {
-              duration: 1200,
-              before: () => ({ _y: -1200, label: ' ' }),
-              after: (datum) => ({ _y: datum._y }),
-            },
-          }}
           colorScale={colors}
           data={chartData}
           containerComponent={
             <VictoryContainer
               responsive
-              style={{ marginTop: '-35px', width: '65%' }}
+              style={{ marginTop: '-2.5rem', paddingBottom: '1rem' }}
             />
           }
         />
       </div>
-      <SectionHeading>Tokens</SectionHeading>
-      <Tokens data={labels} />
-    </div>
+      {
+        value !== '0' &&
+          <div>
+            <SectionHeading>{formatMessage({ id: 'assets' })}</SectionHeading>
+            <Tokens data={data} />
+          </div>
+      }
+    </Wrapper>
   );
 };
 
@@ -65,7 +66,7 @@ Breakdown.propTypes = {
   /**
    * Total  value in dollars.
    */
-  value: PropTypes.node,
+  value: PropTypes.string.isRequired,
   /**
    * data  to populate  the Breakdowwn Component.
    */
@@ -76,5 +77,6 @@ Breakdown.propTypes = {
       label: PropTypes.string.isRequired,
     })
   ),
+  intl: PropTypes.object,
 };
-export default Breakdown;
+export default injectIntl(Breakdown);
