@@ -1,5 +1,6 @@
 import nahmii from 'nahmii-sdk';
-import ethers, { utils } from 'ethers';
+import ClientFundContract from 'nahmii-sdk/lib/client-fund-contract';
+import { utils } from 'ethers';
 import { all, fork, takeEvery, select, put, call, take, cancel } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import BigNumber from 'bignumber.js';
@@ -78,21 +79,23 @@ export function* loadBalances({ address }, network) {
 }
 
 // https://stackoverflow.com/questions/48228662/get-token-balance-with-ethereum-rpc
-export function* loadSettledBalances({ address }, network) { // eslint-disable-line
+export function* loadStagedBalances({ address }, network) {
   let supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
   if (supportedAssets.loading) {
     yield take(LOAD_SUPPORTED_TOKENS_SUCCESS);
     supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
   }
 
+  const provider = network.provider;
+  const clientFundContract = new ClientFundContract(provider);
+
   while (true) { // eslint-disable-line no-constant-condition
     try {
       // the first provider in network.provider.providers in an Infura node, which supports RPC calls
       // const jsonRpcProvider = network.provider.providers[0];
       // localhost testing: override with local json rpc provider
-      const jsonRpcProvider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
 
-      const clientFundContractAddress = '0x609ba158e2d59180e871c891059bdbd6c91c6b4a';
+      const clientFundContractAddress = clientFundContract.address;
 
       // derive function selector
       const funcBytes = utils.solidityKeccak256(['string'], ['stagedBalance(address,address,uint256)']);
@@ -116,7 +119,7 @@ export function* loadSettledBalances({ address }, network) { // eslint-disable-l
         };
       });
       // send all requests at once
-      const response = yield rpcRequest(jsonRpcProvider.url, JSON.stringify(requestBatch));
+      const response = yield rpcRequest(provider.url, JSON.stringify(requestBatch));
       // process the response
       const tokenBals = response.map((item) => new BigNumber(item.result));
       const formattedBalances = tokenBals.reduce((acc, bal, i) => {
@@ -419,7 +422,7 @@ export function* challengeStatusOrcestrator() {
         ...wallets.map((wallet) => fork(loadReceipts, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadSettlement, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadBalances, { address: wallet.get('address') }, network)),
-        ...wallets.map((wallet) => fork(loadSettledBalances, { address: wallet.get('address') }, network)),
+        ...wallets.map((wallet) => fork(loadStagedBalances, { address: wallet.get('address') }, network)),
       ]);
 
       // on network change kill all forks and restart
