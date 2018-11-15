@@ -1,20 +1,8 @@
 import styled from 'styled-components';
-import { Collapse, Alert } from 'antd';
-
+import { Alert } from 'antd';
+import { Form, FormItem } from 'components/ui/Form';
+import Input from 'components/ui/Input';
 import Button from 'components/ui/Button';
-import Text from 'components/ui/Text';
-
-export const TransferDescriptionWrapper = styled.div`
-  min-width: 34rem;
-  margin-bottom: 3rem;
-`;
-
-export const TransferFormWrapper = styled.div`
-  display: flex;
-  margin-right: 2rem;
-  margin-bottom: 3rem;
-  flex: 1;
-`;
 
 export const OuterWrapper = styled.div`
   display: flex;
@@ -34,42 +22,28 @@ export const Image = styled.img`
   padding-bottom: 0.29rem;
 `;
 
-export const ETHtoDollar = styled(Text)`
-  color: ${({ theme }) => theme.palette.secondary};
-`;
-
-export const Panel = Collapse.Panel;
-
-export const AdvanceSettingsHeader = styled(Text)`
-  color: ${({ theme }) => theme.palette.info};
-`;
-
-export const styledCollapse = styled(Collapse)`
-  background: transparent;
-  margin-left: -1.07rem;
-  .ant-collapse-header {
-    color: ${({ theme }) => theme.palette.info} !important;
-  }
-  .ant-collapse-item {
-    border-bottom: none !important;
-  }
-  .ant-collapse-content {
-    padding-right: 0rem !important;
-  }
-  .ant-collapse-header{
-    width: fit-content;
-  }
-  .ant-collapse-content-box {
-    padding-right: 0rem !important;
-  }
-`;
-
 export const SettlementWarning = styled(Alert)`
   margin-bottom: 3rem;
+  border: none;
+  background-color: transparent;
+  color: #C0CDD3;
+  .ant-alert-message {
+    color: #C0CDD3;
+  }
 `;
 
-export const ChallengeWarning = styled(Alert)`
-  margin-bottom: 3rem;
+export const StyledFormItem = styled(FormItem)`
+  .ant-form-item-children {
+    align-items: baseline;
+  }
 `;
 
-export { styledCollapse as Collapse };
+export const StyledInput = styled(Input)`
+  width: 200px;
+  margin-right: 20px;
+`;
+
+export const StyledForm = styled(Form)`
+  margin: 0 auto;
+  width: 500px
+`;

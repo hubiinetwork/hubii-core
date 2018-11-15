@@ -73,7 +73,7 @@ export function* loadBalances({ address }, network) {
     const balances = yield call((...args) => requestWalletAPI(...args), path, network);
     yield put(actions.loadBalancesSuccess(address, balances));
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 }
 

@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { Form, FormItem, FormItemLabel } from 'components/ui/Form';
 import { injectIntl } from 'react-intl';
-// import { getAbsolutePath } from 'utils/electron';
-import ethers from 'ethers';
+import { getAbsolutePath } from 'utils/electron';
 import moment from 'moment';
 import BigNumber from 'bignumber.js';
+import { FormItem, FormItemLabel } from 'components/ui/Form';
 import Select, { Option } from 'components/ui/Select';
-import Input from 'components/ui/Input';
 import * as actions from 'containers/NahmiiHoc/actions';
 import {
   makeSelectCurrentWalletWithInfo,
@@ -27,23 +25,51 @@ import {
 
 import {
   OuterWrapper,
-  // ETHtoDollar,
-  // Image,
-  // AdvanceSettingsHeader,
-  // Panel,
+  Image,
   StyledButton,
   SettlementWarning,
-  ChallengeWarning,
+  StyledForm,
+  StyledFormItem,
+  StyledInput,
 } from './NahmiiWithdraw.style';
 
 export class NahmiiWithdraw extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = { amountToSendInput: 0, syncTime: new Date(), selectedSymbol: 'ETH' };
+
+    this.state = { amountToStageInput: '0', amountToWithdrawInput: '0', syncTime: new Date(), selectedSymbol: 'ETH' };
+    this.state.amountInputRegex = this.getInputRegex();
     this.startPaymentChallenge = this.startPaymentChallenge.bind(this);
     this.settlePaymentDriip = this.settlePaymentDriip.bind(this);
     this.withdraw = this.withdraw.bind(this);
     this.handleAssetChange = this.handleAssetChange.bind(this);
+    this.onBlurNumberInput = this.onBlurNumberInput.bind(this);
+    this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
+    this.handleAmountChange = this.handleAmountChange.bind(this);
+  }
+
+  onFocusNumberInput(input) {
+    if (this.state[input] === '0') {
+      this.setState({ [input]: '' });
+    }
+  }
+
+  onBlurNumberInput(input) {
+    if (this.state[input] === '') {
+      this.setState({ [input]: '0' });
+    }
+  }
+
+  getInputRegex() {
+    const { selectedSymbol } = this.state;
+    let assetToSendMaxDecimals;
+    try {
+      assetToSendMaxDecimals = this.getAssetDetailsBySymbol(selectedSymbol).get('decimals');
+    } catch (error) {
+      assetToSendMaxDecimals = 18;
+    }
+    const amountInputRegex = new RegExp(`^\\d+(\\.\\d{0,${assetToSendMaxDecimals}})?$`);
+    return amountInputRegex;
   }
 
   getAssetDetailsBySymbol(symbol) {
@@ -75,25 +101,23 @@ export class NahmiiWithdraw extends React.PureComponent {
     const challenge = lastPaymentChallenge.get('challenge');
     const lastReceipt = allReceipts.get(currentWalletWithInfo.get('address')).filter((receipt) => receipt.nonce === challenge.nonce.toNumber())[0];
     this.props.settlePaymentDriip(lastReceipt);
+    this.state.syncTime = moment().add(30, 'seconds').toDate();
   }
 
   startPaymentChallenge() {
-    const { selectedSymbol } = this.state;
-    const stageAmount = ethers.utils.parseEther('2.5');
-
+    const { selectedSymbol, amountToStage } = this.state;
     const lastReceipt = this.getLastReceipt();
 
     const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol).toJS();
-    this.props.startPaymentChallenge(lastReceipt, stageAmount, assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency);
+    this.props.startPaymentChallenge(lastReceipt, amountToStage, assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency);
     this.state.syncTime = moment().add(30, 'seconds').toDate();
   }
 
   withdraw() {
-    const { selectedSymbol } = this.state;
-    const amount = ethers.utils.parseEther('2.5');
+    const { selectedSymbol, amountToWithdraw } = this.state;
     const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol).toJS();
     const currency = assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency;
-    this.props.withdraw(amount, currency);
+    this.props.withdraw(amountToWithdraw, currency);
   }
 
   isChallengeInProgress() {
@@ -107,10 +131,21 @@ export class NahmiiWithdraw extends React.PureComponent {
 
   canSettlePaymentDriip() {
     const { currentWalletWithInfo, lastPaymentChallenge, lastSettlePaymentDriip } = this.props;
+    const { syncTime } = this.state;
     const address = currentWalletWithInfo.get('address');
     const settlement = lastSettlePaymentDriip.get('settlement');
     const challenge = lastPaymentChallenge.get('challenge');
-    // console.log(lastSettlePaymentDriip.get('loadingSettlement'))
+    const challengeUpdatedTime = lastPaymentChallenge.get('updatedAt');
+    const settlementUpdatedTime = lastSettlePaymentDriip.get('updatedAt');
+
+    if (!challengeUpdatedTime || !settlementUpdatedTime) {
+      return false;
+    }
+
+    if (syncTime.getTime() > challengeUpdatedTime.getTime() || syncTime.getTime() > settlementUpdatedTime.getTime()) {
+      return false;
+    }
+
     if (lastPaymentChallenge.get('phase') === 'Dispute' || !lastPaymentChallenge.get('phase')) { return false; }
 
     if (lastPaymentChallenge.get('status') === 'Disqualified' || !lastPaymentChallenge.get('status')) { return false; }
@@ -136,7 +171,8 @@ export class NahmiiWithdraw extends React.PureComponent {
   handleAssetChange(symbol) {
     const { supportedAssets } = this.props;
     const assetDetails = supportedAssets.get('assets').find((a) => a.get('symbol') === symbol).toJS();
-    this.setState({ selectedSymbol: assetDetails.symbol });
+    const amountInputRegex = this.getInputRegex();
+    this.setState({ selectedSymbol: assetDetails.symbol, amountInputRegex });
   }
 
   canStartPaymentChallenge() {
@@ -158,6 +194,31 @@ export class NahmiiWithdraw extends React.PureComponent {
            (settlementUpdatedTime && challengeUpdatedTime && syncTime.getTime() < settlementUpdatedTime.getTime() && syncTime.getTime() < challengeUpdatedTime.getTime());
   }
 
+  handleAmountChange(e, inputProp = 'amountToSend') {
+    const { value } = e.target;
+    const { amountInputRegex, selectedSymbol } = this.state;
+
+    // allow an empty input to represent 0
+    if (value === '') {
+      this.setState({ [`${inputProp}Input`]: '', [inputProp]: new BigNumber('0') });
+    }
+
+    // don't update if invalid regex (numbers followed by at most 1 . followed by max possible decimals)
+    if (!amountInputRegex.test(value)) return;
+
+    // don't update if is an infeasible amount of Ether (> 100x entire circulating supply as of Aug 2018)
+    if (!isNaN(value) && Number(value) > 10000000000) return;
+
+    // update amount to send if it's a real number
+    if (!isNaN(value)) {
+      const maxDecimals = this.getAssetDetailsBySymbol(selectedSymbol).get('decimals');
+      this.setState({ [inputProp]: (new BigNumber(value)).times(new BigNumber('10').pow(maxDecimals)) });
+    }
+
+    // update the input (this could be an invalid number, such as '12.')
+    this.setState({ [`${inputProp}Input`]: value });
+  }
+
   render() {
     const { intl, lastPaymentChallenge, nahmiiBalances, supportedAssets } = this.props;
     const { formatMessage } = intl;
@@ -165,7 +226,8 @@ export class NahmiiWithdraw extends React.PureComponent {
     const { staged } = nahmiiBalances.toJS();
 
     const {
-      amountToSendInput,
+      amountToStageInput,
+      amountToWithdrawInput,
     } = this.state;
 
     const challenge = lastPaymentChallenge.get('challenge');
@@ -189,35 +251,34 @@ export class NahmiiWithdraw extends React.PureComponent {
                 <div>
                   {formatMessage({ id: 'settlement_period_ended_notice' })}
                 </div>
-                <StyledButton onClick={this.settlePaymentDriip}>
+                <StyledButton onClick={this.settlePaymentDriip} disabled={!this.canSettlePaymentDriip()}>
                   {formatMessage({ id: 'confirm_settlement' })}
                 </StyledButton>
               </div>
             }
-            type="info"
+            type="warning"
             showIcon
           />
         }
         {
           this.isChallengeInProgress() &&
-          <ChallengeWarning
+          <SettlementWarning
             message={formatMessage({ id: 'challenge_period_progress' })}
             description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(challenge.timeout * 1000).format('LLLL') })}
-            type="info"
+            type="warning"
             showIcon
           />
         }
-        <Form>
+        <StyledForm>
           <FormItem
             label={<FormItemLabel>{formatMessage({ id: 'select_asset' })}</FormItemLabel>}
             colon={false}
           >
-            {/* <Image
-              src={getAbsolutePath(`public/images/assets/${assets[0].symbol}.svg`)}
+            <Image
+              src={getAbsolutePath(`public/images/assets/${selectedSymbol}.svg`)}
               alt="logo"
-            /> */}
+            />
             <Select
-              // disabled={transfering}
               defaultValue={'ETH'}
               onSelect={this.handleAssetChange}
               style={{ paddingLeft: '0.5rem' }}
@@ -229,34 +290,36 @@ export class NahmiiWithdraw extends React.PureComponent {
             ))}
             </Select>
           </FormItem>
-          <FormItem
-            label={<FormItemLabel>{formatMessage({ id: 'enter_amount' })}</FormItemLabel>}
+          <StyledFormItem
+            label={<FormItemLabel>{formatMessage({ id: 'enter_amount_stage' })}</FormItemLabel>}
             colon={false}
             // help={<HelperText left={formatFiat(usdValueToSend, 'USD')} right={formatMessage({ id: 'usd' })} />}
           >
-            <Input
-              // disabled={transfering}
-              defaultValue={amountToSendInput}
-              value={amountToSendInput}
-              // onFocus={() => this.onFocusNumberInput('amountToSendInput')}
-              // onBlur={() => this.onBlurNumberInput('amountToSendInput')}
-              // onChange={this.handleAmountToSendChange}
+            <StyledInput
+              defaultValue={amountToStageInput}
+              value={amountToStageInput}
+              onFocus={() => this.onFocusNumberInput('amountToStageInput')}
+              onBlur={() => this.onBlurNumberInput('amountToStageInput')}
+              onChange={(e) => this.handleAmountChange(e, 'amountToStage')}
             />
             <StyledButton onClick={this.startPaymentChallenge} disabled={!this.canStartPaymentChallenge()}>
               {formatMessage({ id: 'settle_payment' })}
             </StyledButton>
-          </FormItem>
-          <FormItem
+          </StyledFormItem>
+          <StyledFormItem
             label={<FormItemLabel>{formatMessage({ id: 'enter_amount_withdraw' }, { withdraw_amount: formattedStagedBalance, symbol: 'ETH' })}</FormItemLabel>}
             colon={false}
           >
-            <Input
-              defaultValue={amountToSendInput}
-              value={amountToSendInput}
+            <StyledInput
+              defaultValue={amountToWithdrawInput}
+              value={amountToWithdrawInput}
+              onFocus={() => this.onFocusNumberInput('amountToWithdrawInput')}
+              onBlur={() => this.onBlurNumberInput('amountToWithdrawInput')}
+              onChange={(e) => this.handleAmountChange(e, 'amountToWithdraw')}
             />
             <StyledButton onClick={this.withdraw}>{formatMessage({ id: 'withdraw' })}</StyledButton>
-          </FormItem>
-        </Form>
+          </StyledFormItem>
+        </StyledForm>
       </OuterWrapper>
     );
   }
