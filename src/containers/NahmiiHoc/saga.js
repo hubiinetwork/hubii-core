@@ -1,7 +1,7 @@
 import nahmii from 'nahmii-sdk';
 import ClientFundContract from 'nahmii-sdk/lib/client-fund-contract';
 import { utils } from 'ethers';
-import { all, fork, takeEvery, select, put, call, take, cancel } from 'redux-saga/effects';
+import { all, fork, takeEvery, select, put, call, take, cancel, race } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import BigNumber from 'bignumber.js';
 import { requestWalletAPI } from 'utils/request';
@@ -17,6 +17,8 @@ import { notify } from 'containers/App/actions';
 import { showDecryptWalletModal } from 'containers/WalletHoc/actions';
 import { LOAD_SUPPORTED_TOKENS_SUCCESS } from 'containers/HubiiApiHoc/constants';
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
+import { ADD_NEW_WALLET } from 'containers/WalletHoc/constants';
+import { requestToken } from 'containers/HubiiApiHoc/saga';
 import * as actions from './actions';
 import { makeSelectLastPaymentChallengeByAddress } from './selectors';
 import * as actionTypes from './constants';
@@ -343,6 +345,8 @@ export function* loadReceipts({ address }, network) {
 export function* challengeStatusOrcestrator() {
   try {
     while (true) { // eslint-disable-line no-constant-condition
+      yield requestToken();
+
       const network = yield select(makeSelectCurrentNetwork());
       const wallets = yield select(makeSelectWallets());
       const allTasks = yield all([
@@ -355,8 +359,11 @@ export function* challengeStatusOrcestrator() {
         ...wallets.map((wallet) => fork(loadStagedBalances, { address: wallet.get('address') }, network)),
       ]);
 
-      // on network change kill all forks and restart
-      yield take(CHANGE_NETWORK);
+      const ONE_MINUTE_IN_MS = 60 * 1000;
+      yield race({
+        timer: call(delay, ONE_MINUTE_IN_MS),
+        override: take([CHANGE_NETWORK, ADD_NEW_WALLET]),
+      });
       yield cancel(...allTasks);
     }
   } catch (e) {
