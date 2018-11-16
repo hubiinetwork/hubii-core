@@ -128,7 +128,7 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['receipts', action.address], action.receipts);
     case LOAD_RECEIPTS_ERROR:
       return state
-        .setIn(['receipts', action.address], null);
+        .setIn(['receipts', action.address], []);
     default:
       return state;
   }
