@@ -1,4 +1,5 @@
 import React from 'react';
+import { Spring } from 'react-spring';
 import { compose } from 'redux';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
@@ -6,7 +7,6 @@ import { getAbsolutePath } from 'utils/electron';
 import { formatFiat } from 'utils/numberFormats';
 
 import Text from 'components/ui/Text';
-import Collapse, { Panel } from 'components/ui/Collapse';
 import NahmiiText from 'components/ui/NahmiiText';
 import {
   Logo,
@@ -40,32 +40,12 @@ const generateList = (data, extraInfo = false) => {
 };
 
 class BreakdownList extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = { dropdownOpen: false };
-    this.onToggleDropdown = this.onToggleDropdown.bind(this);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.dropdownOpen && !prevState.dropdownOpen) {
-      setTimeout(() => window.scrollBy({
-        top: 1000,
-        left: 0,
-        behavior: 'smooth',
-      }), 150);
-    }
-  }
-
-  onToggleDropdown(keys) {
-    if (keys.includes('1')) {
-      this.setState({ dropdownOpen: true });
-    } else {
-      this.setState({ dropdownOpen: false });
-    }
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
-    const { combinedBalances } = this.props;
+    const { combinedBalances, expandList } = this.props;
     const { formatMessage } = this.props.intl;
     const combinedBalanceList = generateList(combinedBalances, true);
     const baseLayerBalanceList = generateList(combinedBalances);
@@ -75,37 +55,49 @@ class BreakdownList extends React.PureComponent {
     const nahmiiStagedBalanceList = generateList(combinedBalances);
 
     return (
-      <div>
-        <Text large>{formatMessage({ id: 'total_combined_balances' })}</Text>
-        <FlexContainer>{combinedBalanceList}</FlexContainer>
-        <br />
-        <Text large>{formatMessage({ id: 'base_layer_balances' })}</Text>
-        <FlexContainer>{baseLayerBalanceList}</FlexContainer>
-        <br />
-        <span><NahmiiText large /><Text large> { formatMessage({ id: 'balances' }) }</Text></span>
-        <FlexContainer>{nahmiiBalanceList}</FlexContainer>
-        <Collapse
-          bordered={false}
-          onChange={this.onToggleDropdown}
-        >
-          <Panel
-            header="Show nahmii balance breakdown"
-            key="1"
-            forceRender
-          >
-            <div style={{ marginLeft: '2rem' }}>
-              <Text>{formatMessage({ id: 'avaliable' })}</Text>
-              <FlexContainer>{nahmiiAvaliableBalanceList}</FlexContainer>
+      <Spring
+        from={{ expanded: 0 }}
+        to={{ expanded: expandList ? 1 : 0 }}
+      >
+        {
+          (props) =>
+            (<div style={{ marginTop: `${props.expanded * 2}rem`, overflow: 'hidden' }}>
+              <Text large>{formatMessage({ id: 'total_combined_balances' })}</Text>
+              <FlexContainer>{combinedBalanceList}</FlexContainer>
               <br />
-              <Text>{formatMessage({ id: 'staging' })}</Text>
-              <FlexContainer>{nahmiiStagingBalanceList}</FlexContainer>
+              <Text large>{formatMessage({ id: 'base_layer_balances' })}</Text>
+              <FlexContainer>{baseLayerBalanceList}</FlexContainer>
               <br />
-              <Text>{formatMessage({ id: 'staged' })}</Text>
-              <FlexContainer>{nahmiiStagedBalanceList}</FlexContainer>
-            </div>
-          </Panel>
-        </Collapse>
-      </div>
+              <span >
+                <NahmiiText large /><Text large> { formatMessage({ id: 'balances' }) }</Text>
+              </span>
+              <FlexContainer>{nahmiiBalanceList}</FlexContainer>
+              <div
+                style={{
+                  ...props,
+                  transform: `translate3d(0,${200 - (props.expanded * 200)}px,0)`,
+                  opacity: props.expanded,
+                  marginTop: '1rem',
+                  height: props.height,
+                  flexDirection: 'column',
+                  marginLeft: '0.5rem',
+                  paddingLeft: '1rem',
+                  borderLeft: '1px solid black',
+                }}
+              >
+                <Text>{formatMessage({ id: 'avaliable' })}</Text>
+                <FlexContainer>{nahmiiAvaliableBalanceList}</FlexContainer>
+                <br />
+                <Text>{formatMessage({ id: 'staging' })}</Text>
+                <FlexContainer>{nahmiiStagingBalanceList}</FlexContainer>
+                <br />
+                <Text>{formatMessage({ id: 'staged' })}</Text>
+                <FlexContainer>{nahmiiStagedBalanceList}</FlexContainer>
+              </div>
+
+            </div>)
+          }
+      </Spring>
     );
   }
 }
@@ -119,6 +111,7 @@ BreakdownList.propTypes = {
       amount: PropTypes.string.isRequired,
     }).isRequired
   ),
+  expandList: PropTypes.bool.isRequired,
   intl: PropTypes.object.isRequired,
 };
 
