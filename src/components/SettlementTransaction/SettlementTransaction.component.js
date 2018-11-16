@@ -71,12 +71,12 @@ const SettlementTransaction = (props) => {
 
 SettlementTransaction.propTypes = {
   time: PropTypes.object.isRequired,
-  symbol: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   viewOnBlockExplorerClick: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   defaultOpen: PropTypes.bool.isRequired,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  symbol: PropTypes.string,
   intl: PropTypes.object.isRequired,
 };
 
