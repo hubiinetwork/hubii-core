@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { fromJS } from 'immutable';
+import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { makeSelectCurrentWallet } from 'containers/WalletHoc/selectors';
 
 /**
@@ -25,6 +26,11 @@ const makeSelectNahmiiWallets = () => createSelector(
 const makeSelectNahmiiBalances = () => createSelector(
   selectNahmiiHocDomain,
   (nahmiiHocDomain) => nahmiiHocDomain.get('balances') || fromJS({})
+);
+
+const makeSelectNahmiiSettlementTransactions = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('transactions') || fromJS({})
 );
 
 const makeSelectLastPaymentChallenge = () => createSelector(
@@ -74,6 +80,30 @@ const makeSelectNahmiiBalancesByCurrentWallet = () => createSelector(
   }
 );
 
+const makeSelectNahmiiSettlementTransactionsByCurrentWallet = () => createSelector(
+  makeSelectNahmiiSettlementTransactions(),
+  makeSelectCurrentWallet(),
+  makeSelectCurrentNetwork(),
+  (nahmiiSettlementTransactions, currentWallet, network) => {
+    const address = currentWallet.get('address');
+    const txs = nahmiiSettlementTransactions.get(address);
+    const txsByCurrency = {};
+    if (txs) {
+      const _txs = txs.toJS();
+      Object.keys(_txs).forEach((currency) => {
+        txsByCurrency[currency] = [];
+        Object.keys(_txs[currency]).forEach((hash) => {
+          txsByCurrency[currency].push(_txs[currency][hash]);
+        });
+        txsByCurrency[currency]
+          .filter((a) => a.network === network.provider.name)
+          .sort((a, b) => b.createdAt - a.createdAt);
+      });
+    }
+    return txsByCurrency;
+  }
+);
+
 export {
   makeSelectReceipts,
   makeSelectReceiptsByAddress,
@@ -82,4 +112,5 @@ export {
   makeSelectLastSettlePaymentDriip,
   makeSelectNahmiiBalances,
   makeSelectNahmiiBalancesByCurrentWallet,
+  makeSelectNahmiiSettlementTransactionsByCurrentWallet,
 };

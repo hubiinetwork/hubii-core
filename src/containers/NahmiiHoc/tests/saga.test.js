@@ -153,13 +153,13 @@ describe('nahmii', () => {
 
 
         if (txReceipt.status === 1) {
-          expectSagaObj.put(actions.startPaymentChallengeSuccess(wallet.address, txReceipt));
+          expectSagaObj.put(actions.startPaymentChallengeSuccess(wallet.address, txReceipt, currency));
         } else {
-          expectSagaObj.put(actions.startPaymentChallengeError(wallet.address, txReceipt));
+          expectSagaObj.put(actions.startPaymentChallengeError(wallet.address, txReceipt, currency));
         }
 
         return expectSagaObj
-          .put(actions.loadTxRequestForPaymentChallenge(wallet.address, txRequest))
+          .put(actions.loadTxRequestForPaymentChallenge(wallet.address, txRequest, currency))
           .run({ silenceTimeout: true })
           .then((result) => {
             const state = result.storeState;
@@ -286,13 +286,13 @@ describe('nahmii', () => {
 
 
         if (txReceipt.status === 1) {
-          expectSagaObj.put(actions.withdrawSuccess(wallet.address, txReceipt));
+          expectSagaObj.put(actions.withdrawSuccess(wallet.address, txReceipt, currency));
         } else {
-          expectSagaObj.put(actions.withdrawError(wallet.address, txReceipt));
+          expectSagaObj.put(actions.withdrawError(wallet.address, txReceipt, currency));
         }
 
         return expectSagaObj
-          .put(actions.loadTxRequestForWithdraw(wallet.address, txRequest))
+          .put(actions.loadTxRequestForWithdraw(wallet.address, txRequest, currency))
           .run({ silenceTimeout: true })
           .then((result) => {
             const state = result.storeState;

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Alert } from 'antd';
+import { media } from 'utils/style-utils';
 import { Form, FormItem } from 'components/ui/Form';
 import Input from 'components/ui/Input';
 import Button from 'components/ui/Button';
@@ -9,6 +10,7 @@ export const OuterWrapper = styled.div`
   flex-wrap: wrap;
   flex: 1;
   flex-direction: column;
+  margin-bottom: 2rem;
 `;
 
 export const StyledButton = styled(Button)`
@@ -46,4 +48,17 @@ export const StyledInput = styled(Input)`
 export const StyledForm = styled(Form)`
   margin: 0 auto;
   width: 500px
+`;
+
+export const TransactionsWrapper = styled.div`
+  max-width: 60rem;
+  min-width: 45rem;
+  ${media.tablet`
+    max-width: 100rem;
+  `}
+  flex: 1;
+`;
+
+export const TransactionWrapper = styled.div`
+  margin-bottom: 0.5rem;
 `;

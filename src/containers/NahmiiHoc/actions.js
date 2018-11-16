@@ -136,42 +136,49 @@ export function startPaymentChallengeError(address, txReceipt, currency) {
   };
 }
 
-export function loadTxRequestForPaymentChallenge(address, txRequest) {
+export function loadTxRequestForPaymentChallenge(address, txRequest, currency, networkName) {
   return {
     type: LOAD_START_PAYMENT_CHALLENGE_TX_REQUEST,
     address,
     txRequest,
+    currency,
+    networkName,
   };
 }
 
-export function settlePaymentDriip(receipt) {
+export function settlePaymentDriip(receipt, currency) {
   return {
     type: SETTLE_PAYMENT_DRIIP,
     receipt,
+    currency,
   };
 }
 
-export function settlePaymentDriipSuccess(address, txReceipt) {
+export function settlePaymentDriipSuccess(address, txReceipt, currency) {
   return {
     type: SETTLE_PAYMENT_DRIIP_SUCCESS,
     address,
     txReceipt,
+    currency,
   };
 }
 
-export function settlePaymentDriipError(address, txReceipt) {
+export function settlePaymentDriipError(address, txReceipt, currency) {
   return {
     type: SETTLE_PAYMENT_DRIIP_ERROR,
     address,
     txReceipt,
+    currency,
   };
 }
 
-export function loadTxRequestForSettlePaymentDriip(address, txRequest) {
+export function loadTxRequestForSettlePaymentDriip(address, txRequest, currency, networkName) {
   return {
     type: LOAD_SETTLE_PAYMENT_DRIIP_TX_REQUEST,
     address,
     txRequest,
+    currency,
+    networkName,
   };
 }
 
@@ -183,27 +190,31 @@ export function withdraw(amount, currency) {
   };
 }
 
-export function withdrawSuccess(address, txReceipt) {
+export function withdrawSuccess(address, txReceipt, currency) {
   return {
     type: WITHDRAW_SUCCESS,
     address,
     txReceipt,
+    currency,
   };
 }
 
-export function withdrawError(address, txReceipt) {
+export function withdrawError(address, txReceipt, currency) {
   return {
     type: WITHDRAW_ERROR,
     address,
     txReceipt,
+    currency,
   };
 }
 
-export function loadTxRequestForWithdraw(address, txRequest) {
+export function loadTxRequestForWithdraw(address, txRequest, currency, networkName) {
   return {
     type: LOAD_WITHDRAW_TX_REQUEST,
     address,
     txRequest,
+    currency,
+    networkName,
   };
 }
 

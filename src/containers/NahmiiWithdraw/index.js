@@ -2,14 +2,20 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { shell } from 'electron';
+import uuid from 'uuid/v4';
 import { createStructuredSelector } from 'reselect';
 import { injectIntl } from 'react-intl';
 import { getAbsolutePath } from 'utils/electron';
+import { isAddressMatch } from 'utils/wallet';
 import moment from 'moment';
 import BigNumber from 'bignumber.js';
 import { FormItem, FormItemLabel } from 'components/ui/Form';
 import Select, { Option } from 'components/ui/Select';
+import SettlementTransaction from 'components/SettlementTransaction';
+import SectionHeading from 'components/ui/SectionHeading';
 import * as actions from 'containers/NahmiiHoc/actions';
+import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import {
   makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHoc/selectors';
@@ -18,6 +24,7 @@ import {
   makeSelectLastPaymentChallenge,
   makeSelectLastSettlePaymentDriip,
   makeSelectNahmiiBalancesByCurrentWallet,
+  makeSelectNahmiiSettlementTransactionsByCurrentWallet,
 } from 'containers/NahmiiHoc/selectors';
 import {
   makeSelectSupportedAssets,
@@ -31,13 +38,15 @@ import {
   StyledForm,
   StyledFormItem,
   StyledInput,
+  TransactionsWrapper,
+  TransactionWrapper,
 } from './NahmiiWithdraw.style';
 
 export class NahmiiWithdraw extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { amountToStageInput: '0', amountToWithdrawInput: '0', syncTime: new Date(), selectedSymbol: 'ETH' };
+    this.state = { amountToStageInput: '0', amountToWithdrawInput: '0', syncTime: new Date(), selectedSymbol: 'ETH', expandedTxs: new Set() };
     this.state.amountInputRegex = this.getInputRegex();
     this.startPaymentChallenge = this.startPaymentChallenge.bind(this);
     this.settlePaymentDriip = this.settlePaymentDriip.bind(this);
@@ -46,6 +55,7 @@ export class NahmiiWithdraw extends React.PureComponent {
     this.onBlurNumberInput = this.onBlurNumberInput.bind(this);
     this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
     this.handleAmountChange = this.handleAmountChange.bind(this);
+    this.updateExpandedTx = this.updateExpandedTx.bind(this);
   }
 
   onFocusNumberInput(input) {
@@ -98,7 +108,7 @@ export class NahmiiWithdraw extends React.PureComponent {
       return null;
     }
 
-    const currency = assetDetails.toJS().symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.toJS().symbol;
+    const currency = assetDetails.toJS().symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.toJS().currency;
     const lastReceipt = walletReceipts.filter((r) => r.currency.ct === currency).sort((a, b) => b.nonce - a.nonce)[0];
     return lastReceipt;
   }
@@ -110,10 +120,12 @@ export class NahmiiWithdraw extends React.PureComponent {
   }
 
   settlePaymentDriip() {
+    const { selectedSymbol } = this.state;
     const { currentWalletWithInfo, allReceipts, lastPaymentChallenge } = this.props;
     const challenge = lastPaymentChallenge.get('challenge');
+    const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol).toJS();
     const lastReceipt = allReceipts.get(currentWalletWithInfo.get('address')).filter((receipt) => receipt.nonce === challenge.nonce.toNumber())[0];
-    this.props.settlePaymentDriip(lastReceipt);
+    this.props.settlePaymentDriip(lastReceipt, assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency);
     this.state.syncTime = moment().add(30, 'seconds').toDate();
   }
 
@@ -175,8 +187,8 @@ export class NahmiiWithdraw extends React.PureComponent {
       return true;
     }
 
-    if (settlement.origin.done && settlement.origin.wallet === address) { return false; }
-    if (settlement.target.done && settlement.target.wallet === address) { return false; }
+    if (settlement.origin.done && isAddressMatch(settlement.origin.wallet, address)) { return false; }
+    if (settlement.target.done && isAddressMatch(settlement.target.wallet, address)) { return false; }
 
     return true;
   }
@@ -188,7 +200,11 @@ export class NahmiiWithdraw extends React.PureComponent {
     if (!staged || !amountToWithdraw) {
       return false;
     }
-    const stagedBalance = staged.assets.find((a) => a.symbol === selectedSymbol).balance || new BigNumber('0');
+    const currencyAsset = staged.assets.find((a) => a.symbol === selectedSymbol);
+    if (!currencyAsset) {
+      return false;
+    }
+    const stagedBalance = currencyAsset.balance || new BigNumber('0');
     return stagedBalance.gte(amountToWithdraw) && amountToWithdraw.gt(new BigNumber('0'));
   }
 
@@ -225,11 +241,11 @@ export class NahmiiWithdraw extends React.PureComponent {
   hasValidReceiptForNewChallenge() {
     const { lastPaymentChallenge } = this.props;
     const challenge = lastPaymentChallenge.get('challenge');
-    const lastReceipt = this.getLastReceipt()
+    const lastReceipt = this.getLastReceipt();
     if (lastReceipt && challenge && challenge.nonce.toNumber() < lastReceipt.nonce) {
-      return true
+      return true;
     }
-    return false
+    return false;
   }
 
   handleAmountChange(e, inputProp) {
@@ -257,10 +273,21 @@ export class NahmiiWithdraw extends React.PureComponent {
     this.setState({ [`${inputProp}Input`]: value });
   }
 
+  updateExpandedTx(id) {
+    const { expandedTxs } = this.state;
+    if (!expandedTxs.has(id)) {
+      expandedTxs.add(id);
+    } else {
+      expandedTxs.delete(id);
+    }
+    this.setState({ expandedTxs });
+  }
+
   render() {
-    const { intl, lastPaymentChallenge, nahmiiBalances, supportedAssets } = this.props;
+    const { intl, currentNetwork, lastPaymentChallenge, nahmiiBalances, supportedAssets, transactions } = this.props;
     const { formatMessage } = intl;
     const {
+      expandedTxs,
       selectedSymbol,
       amountToStageInput,
       amountToWithdrawInput,
@@ -281,9 +308,23 @@ export class NahmiiWithdraw extends React.PureComponent {
     }
 
     const assets = supportedAssets.get('assets').toJS();
-    const assetDecimals = selectedAssetDetails.toJS().decimals;
+    const { decimals } = selectedAssetDetails.toJS();
     const stagedBalance = staged.assets.find((a) => a.symbol === selectedSymbol) || { balance: new BigNumber('0') };
-    const formattedStagedBalance = stagedBalance.balance.div(new BigNumber('10').pow(assetDecimals)).toString();
+    const formattedStagedBalance = stagedBalance.balance.div(new BigNumber('10').pow(decimals)).toString();
+
+    const txs = Object.keys(transactions).reduce((acc, currency) => {
+      transactions[currency].map((tx) => {
+        const _tx = tx;
+        _tx.currency = currency;
+        const asset = this.getAssetDetailsByCurrencyAddress(currency);
+        if (asset) {
+          _tx.symbol = asset.toJS().symbol;
+        }
+        return _tx;
+      });
+      return acc.concat(transactions[currency]);
+    }, []).sort((a, b) => b.createdAt - a.createdAt);
+
     return (
       <OuterWrapper>
         {
@@ -314,7 +355,7 @@ export class NahmiiWithdraw extends React.PureComponent {
           />
         }
         {
-          !this.hasValidReceiptForNewChallenge() &&
+          !this.isChallengeInProgress() && !this.canSettlePaymentDriip() && !this.hasValidReceiptForNewChallenge() &&
           <SettlementWarning
             message={formatMessage({ id: 'no_valid_receipt_for_new_challenge' })}
             description={formatMessage({ id: 'need_valid_receipt_for_new_challenge' })}
@@ -373,6 +414,38 @@ export class NahmiiWithdraw extends React.PureComponent {
             <StyledButton onClick={this.withdraw} disabled={!this.canWithdraw()}>{formatMessage({ id: 'withdraw' })}</StyledButton>
           </StyledFormItem>
         </StyledForm>
+        <TransactionsWrapper>
+          <SectionHeading>{formatMessage({ id: 'transaction_history' })}</SectionHeading>
+          {txs.map((tx) => (
+            <TransactionWrapper key={uuid()}>
+              <SettlementTransaction
+                time={new Date(tx.createdAt)}
+                type={tx.type}
+                symbol={tx.symbol}
+                viewOnBlockExplorerClick={
+                  currentNetwork.provider.name === 'ropsten' ?
+                    () => shell.openExternal(`https://ropsten.etherscan.io/tx/${tx.request.hash}`) :
+                    () => shell.openExternal(`https://etherscan.io/tx/${tx.request.hash}`)
+                  }
+                onChange={() => this.updateExpandedTx(`${tx.request.hash}`)}
+                defaultOpen={expandedTxs.has(`${tx.request.hash}`)}
+              />
+            </TransactionWrapper>
+            // <div>{tx.createdAt}</div>
+            // <Transaction
+            //   key={uuid()}
+            //   time={new Date(tx.createdAt)}
+            //   // counterpartyAddress={tx.counterpartyAddress}
+            //   // amount={tx.decimalAmount}
+            //   // fiatEquivilent={formatFiat(tx.fiatValue, 'USD')}
+            //   symbol={tx.symbol}
+            //   confirmations={tx.confirmations}
+            //   type={tx.type}
+            //   defaultOpen={expandedTxs.has(`${tx.hash}${tx.type}${tx.symbol}`)}
+            // />
+            )
+          )}
+        </TransactionsWrapper>
       </OuterWrapper>
     );
   }
@@ -388,6 +461,8 @@ NahmiiWithdraw.propTypes = {
   startPaymentChallenge: PropTypes.func.isRequired,
   withdraw: PropTypes.func.isRequired,
   supportedAssets: PropTypes.object.isRequired,
+  transactions: PropTypes.object.isRequired,
+  currentNetwork: PropTypes.object.isRequired,
   intl: PropTypes.object.isRequired,
 };
 
@@ -398,6 +473,8 @@ const mapStateToProps = createStructuredSelector({
   lastSettlePaymentDriip: makeSelectLastSettlePaymentDriip(),
   nahmiiBalances: makeSelectNahmiiBalancesByCurrentWallet(),
   supportedAssets: makeSelectSupportedAssets(),
+  transactions: makeSelectNahmiiSettlementTransactionsByCurrentWallet(),
+  currentNetwork: makeSelectCurrentNetwork(),
 });
 
 export function mapDispatchToProps(dispatch) {
