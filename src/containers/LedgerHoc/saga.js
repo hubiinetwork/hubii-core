@@ -132,20 +132,39 @@ export function* initLedger() {
 }
 
 // Dispatches the address for every derivation path in the input
-export function* fetchLedgerAddresses({ pathBase, count }) {
+export function* fetchLedgerAddresses({ pathTemplate, firstIndex, lastIndex, hardened }) {
+  let descriptor;
   try {
     const ledgerStatus = yield select(makeSelectLedgerHoc());
     if (!ledgerStatus.get('descriptor')) {
       throw new Error('no descriptor available');
     }
-    const descriptor = ledgerStatus.get('descriptor');
-    const method = 'getpublickey';
-    const publicAddressKeyPair = yield call(tryCreateEthTransportActivity, method, { descriptor, path: pathBase });
-    const addresses = deriveAddresses({ publicKey: publicAddressKeyPair.publicKey, chainCode: publicAddressKeyPair.chainCode, count });
+    descriptor = ledgerStatus.get('descriptor');
+    /**
+     * Flush anything the device may be in the process of returning
+     * WARNING!!! Without flushing the device it may return an INCORRECT address or public key for the specified derivation path!
+     * This occurs when the user switches from a hardened path before the saga has finished.
+     */
+    yield call(tryCreateEthTransportActivity, 'getaddress', { descriptor, path: "m/44'/60'/0'/0/0" });
+    yield call(tryCreateEthTransportActivity, 'getpublickey', { descriptor, path: "m/44'/60'/0'/0" });
 
-    for (let i = 0; i < addresses.length; i += 1) {
-      const address = prependHexToAddress(addresses[i]);
-      yield put(fetchedLedgerAddress(`${pathBase}/${i}`, address));
+    if (hardened) {
+      const method = 'getaddress';
+      for (let i = firstIndex; i <= lastIndex; i += 1) {
+        const path = pathTemplate.replace('{index}', i);
+        const response = yield call(tryCreateEthTransportActivity, method, { descriptor, path });
+        yield put(fetchedLedgerAddress(pathTemplate.replace('{index}', i), response.address));
+      }
+    } else {
+      const method = 'getpublickey';
+      const pathRoot = pathTemplate.replace('{index}', '');
+      const publicAddressKeyPair = yield call(tryCreateEthTransportActivity, method, { descriptor, path: pathRoot });
+      const addresses = deriveAddresses({ publicKey: publicAddressKeyPair.publicKey, chainCode: publicAddressKeyPair.chainCode, firstIndex, lastIndex });
+
+      for (let i = 0; i < addresses.length; i += 1) {
+        const address = prependHexToAddress(addresses[i]);
+        yield put(fetchedLedgerAddress(pathTemplate.replace('{index}', firstIndex + i), address));
+      }
     }
   } catch (error) {
     yield put(ledgerError(error));
@@ -231,7 +250,7 @@ export function* signPersonalMessageByLedger(walletDetails, txHash) {
 // Root watcher
 export default function* watch() {
   yield takeEvery(INIT_LEDGER, initLedger);
-  yield takeLatest(FETCH_LEDGER_ADDRESSES, fetchLedgerAddresses);
   yield takeEvery(LEDGER_CONNECTED, pollEthApp);
   yield takeEvery(LEDGER_DISCONNECTED, hookLedgerDisconnected);
+  yield takeLatest(FETCH_LEDGER_ADDRESSES, fetchLedgerAddresses);
 }

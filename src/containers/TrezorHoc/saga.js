@@ -41,14 +41,15 @@ export const listenTrezorDevicesChannel = () => eventChannel((emit) => {
   return () => { };
 });
 
-export function* getAddresses({ pathBase, count }) {
+export function* getAddresses({ pathTemplate, firstIndex, lastIndex }) {
   const trezorInfo = yield select(makeSelectTrezorHoc());
   try {
+    const pathBase = pathTemplate.replace('/{index}', '');
     const key = yield call(requestHardwareWalletAPI, 'getpublickey', { id: trezorInfo.get('id'), path: pathBase });
-    const addresses = deriveAddresses({ publicKey: key.node.public_key, chainCode: key.node.chain_code, count });
+    const addresses = deriveAddresses({ publicKey: key.node.public_key, chainCode: key.node.chain_code, firstIndex, lastIndex });
     for (let i = 0; i < addresses.length; i += 1) {
       const address = prependHexToAddress(addresses[i]);
-      yield put(fetchedTrezorAddress(`${pathBase}/${i}`, address));
+      yield put(fetchedTrezorAddress(pathTemplate.replace('{index}', firstIndex + i), address));
     }
   } catch (error) {
     const refinedError = trezorError(error);

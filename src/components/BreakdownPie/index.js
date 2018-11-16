@@ -20,7 +20,7 @@ const Breakdown = ({ data = [], value, intl }) => {
     label: `${item.label}: ${item.percentage.toFixed(0)}%`,
   }));
   const colors = data.map((item) => item.color);
-  if (chartData.length === 0) {
+  if (value === '0') {
     return (
       <div>
         <Text large>{formatMessage({ id: 'total_fiat_value' })}</Text>

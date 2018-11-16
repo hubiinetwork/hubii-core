@@ -1,5 +1,5 @@
 import { List, Map } from 'immutable';
-import { publicToAddress } from 'ethereumjs-util';
+import { publicToAddress, toChecksumAddress } from 'ethereumjs-util';
 import HDKey from 'hdkey';
 import BigNumber from 'bignumber.js';
 import fatalError from './fatalError';
@@ -117,17 +117,18 @@ export const isValidPrivateKey = (str) => {
   return false;
 };
 
-export function deriveAddresses({ publicKey, chainCode, count }) {
+export function deriveAddresses({ publicKey, chainCode, firstIndex, lastIndex }) {
   const pathBase = 'm';
   const hdk = new HDKey();
   hdk.publicKey = new Buffer(publicKey, 'hex');
   hdk.chainCode = new Buffer(chainCode, 'hex');
   const addresses = [];
-  for (let i = 0; i < count; i += 1) {
+  for (let i = firstIndex; i <= lastIndex; i += 1) {
     const index = i;
     const dkey = hdk.derive(`${pathBase}/${index}`);
     const address = publicToAddress(dkey.publicKey, true).toString('hex');
-    addresses.push(address);
+    const checksumAddress = toChecksumAddress(address);
+    addresses.push(checksumAddress);
   }
   return addresses;
 }
@@ -168,3 +169,18 @@ export const parseBigNumber = (bignumber, decimals) => parseInt(bignumber, 10) /
 export const isHardwareWallet = (type) => type === 'lns' || type === 'trezor';
 
 export const prependHexToAddress = (address) => address.startsWith('0x') ? address : `0x${address}`;
+
+// Regex credit to the MyCrypto team
+// Full length deterministic wallet paths from BIP44
+// https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki
+// normal path length is 4, ledger is the exception at 3
+
+// m / purpose' / coin_type' / account' / change / address_index
+//   |          |            |          |        |
+//   | constant |   index    |  index   | 0 or 1 |
+//   |__________|____________|__________|________|
+
+// whitespace strings are evaluated the same way as nospace strings, except they allow optional spaces between each portion of the string
+// ie. "m / 44' / 0' / 0'" is valid, "m / 4 4' / 0' / 0'" is invalid
+const dPathRegex = /m\/44'\/[0-9]+'\/[0-9]+('+$|'+(\/[0-1]+$))/;
+export const isValidPath = (path) => dPathRegex.test(path);
