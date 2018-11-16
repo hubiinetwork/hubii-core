@@ -203,7 +203,7 @@ export class NahmiiWithdraw extends React.PureComponent {
     const { lastPaymentChallenge, lastSettlePaymentDriip } = this.props;
     const { syncTime, amountToStage } = this.state;
     const challengeUpdatedTime = lastPaymentChallenge.get('updatedAt');
-    const challenge = lastPaymentChallenge.get('challenge');
+    // const challenge = lastPaymentChallenge.get('challenge');
     const settlementUpdatedTime = lastSettlePaymentDriip.get('updatedAt');
     const lastReceipt = this.getLastReceipt();
 
@@ -218,8 +218,18 @@ export class NahmiiWithdraw extends React.PureComponent {
     return lastPaymentChallenge.get('phase') !== 'Dispute' &&
            lastPaymentChallenge.get('txStatus') !== 'mining' &&
            !this.canSettlePaymentDriip() &&
-           lastReceipt && challenge && challenge.nonce.toNumber() < lastReceipt.nonce &&
+           this.hasValidReceiptForNewChallenge() &&
            (settlementUpdatedTime && challengeUpdatedTime && syncTime.getTime() < settlementUpdatedTime.getTime() && syncTime.getTime() < challengeUpdatedTime.getTime());
+  }
+
+  hasValidReceiptForNewChallenge() {
+    const { lastPaymentChallenge } = this.props;
+    const challenge = lastPaymentChallenge.get('challenge');
+    const lastReceipt = this.getLastReceipt()
+    if (lastReceipt && challenge && challenge.nonce.toNumber() < lastReceipt.nonce) {
+      return true
+    }
+    return false
   }
 
   handleAmountChange(e, inputProp) {
@@ -299,6 +309,15 @@ export class NahmiiWithdraw extends React.PureComponent {
           <SettlementWarning
             message={formatMessage({ id: 'challenge_period_progress' })}
             description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(challenge.timeout * 1000).format('LLLL'), symbol: challengeAssetSymbol })}
+            type="warning"
+            showIcon
+          />
+        }
+        {
+          !this.hasValidReceiptForNewChallenge() &&
+          <SettlementWarning
+            message={formatMessage({ id: 'no_valid_receipt_for_new_challenge' })}
+            description={formatMessage({ id: 'need_valid_receipt_for_new_challenge' })}
             type="warning"
             showIcon
           />
