@@ -14,6 +14,7 @@ import {
   Label,
   FlexContainer,
   FlexItem,
+  NahmiiBalancesWrapper,
 } from './style';
 
 const generateList = (data, extraInfo = false) => {
@@ -72,19 +73,8 @@ class BreakdownList extends React.PureComponent {
                 <NahmiiText large /><Text large> { formatMessage({ id: 'balances' }) }</Text>
               </span>
               <FlexContainer>{nahmiiBalanceList}</FlexContainer>
-              <div
-                style={{
-                  ...props,
-                  transform: `translate3d(0,${200 - (props.expanded * 200)}px,0)`,
-                  opacity: props.expanded,
-                  marginTop: '1rem',
-                  height: props.height,
-                  flexDirection: 'column',
-                  marginLeft: '0.5rem',
-                  paddingLeft: '1rem',
-                  borderLeft: '1px solid black',
-                }}
-              >
+              <NahmiiBalancesWrapper {...props}>
+
                 <Text>{formatMessage({ id: 'avaliable' })}</Text>
                 <FlexContainer>{nahmiiAvaliableBalanceList}</FlexContainer>
                 <br />
@@ -93,9 +83,9 @@ class BreakdownList extends React.PureComponent {
                 <br />
                 <Text>{formatMessage({ id: 'staged' })}</Text>
                 <FlexContainer>{nahmiiStagedBalanceList}</FlexContainer>
-              </div>
-
-            </div>)
+              </NahmiiBalancesWrapper>
+            </div>
+            )
           }
       </Spring>
     );

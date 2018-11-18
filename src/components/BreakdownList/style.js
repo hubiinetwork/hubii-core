@@ -29,3 +29,13 @@ export const FlexItem = styled.div`
   margin: 0.5rem 1rem 0 0;
   flex-wrap: wrap;
 `;
+
+export const NahmiiBalancesWrapper = styled.div`
+  transform: ${({ expanded }) => `translate3d(0,${200 - (expanded * 200)}px,0)`};
+  opacity: ${({ expanded }) => expanded};
+  margin-top: 1rem;
+  flex-direction: column;
+  margin-left: 0.5rem;
+  padding-left: 1rem;
+  border-left: 1px solid ${({ theme }) => theme.palette.info2};
+`;
