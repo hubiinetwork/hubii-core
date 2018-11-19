@@ -270,6 +270,16 @@ export function* networkApiOrcestrator() {
   }
 }
 
+export function* getNahmiiProvider() {
+  const network = yield select(makeSelectCurrentNetwork());
+  const nahmiiProvider = new nahmii.NahmiiProvider(
+    network.walletApiEndpoint(true),
+    network.identityServiceAppId,
+    network.identityServiceSecret
+  );
+  return nahmiiProvider;
+}
+
 // Root watcher
 export default function* watch() {
   yield takeEvery(INIT_NETWORK_ACTIVITY, networkApiOrcestrator);

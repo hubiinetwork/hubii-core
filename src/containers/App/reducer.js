@@ -16,7 +16,7 @@ import {
 } from './constants';
 
 export const initialState = fromJS({
-  currentNetwork: SUPPORTED_NETWORKS.homestead,
+  currentNetwork: SUPPORTED_NETWORKS.ropsten,
   supportedNetworks: SUPPORTED_NETWORKS,
   releaseNotes: {
     show: false,
