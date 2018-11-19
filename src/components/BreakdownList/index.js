@@ -41,10 +41,6 @@ const generateList = (data, extraInfo = false) => {
 };
 
 class BreakdownList extends React.PureComponent {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   render() {
     const { combinedBalances, expandList } = this.props;
     const { formatMessage } = this.props.intl;

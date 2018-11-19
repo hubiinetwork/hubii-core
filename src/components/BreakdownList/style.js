@@ -31,6 +31,7 @@ export const FlexItem = styled.div`
 `;
 
 export const NahmiiBalancesWrapper = styled.div`
+  display: ${({ expanded }) => expanded > 0 ? 'block' : 'none'};
   transform: ${({ expanded }) => `translate3d(0,${200 - (expanded * 200)}px,0)`};
   opacity: ${({ expanded }) => expanded};
   margin-top: 1rem;
