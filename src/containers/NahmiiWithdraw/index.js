@@ -126,7 +126,6 @@ export class NahmiiWithdraw extends React.PureComponent {
     const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol).toJS();
     const lastReceipt = allReceipts.get(currentWalletWithInfo.get('address')).filter((receipt) => receipt.nonce === challenge.nonce.toNumber())[0];
     this.props.settlePaymentDriip(lastReceipt, assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency);
-    this.state.syncTime = moment().add(30, 'seconds').toDate();
   }
 
   startPaymentChallenge() {
@@ -135,7 +134,6 @@ export class NahmiiWithdraw extends React.PureComponent {
 
     const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol).toJS();
     this.props.startPaymentChallenge(lastReceipt, amountToStage || new BigNumber(0), assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency);
-    this.state.syncTime = moment().add(30, 'seconds').toDate();
   }
 
   withdraw() {
@@ -284,7 +282,7 @@ export class NahmiiWithdraw extends React.PureComponent {
   }
 
   render() {
-    const { intl, currentNetwork, lastPaymentChallenge, nahmiiBalances, supportedAssets, transactions } = this.props;
+    const { intl, currentNetwork, lastPaymentChallenge, lastSettlePaymentDriip, nahmiiBalances, supportedAssets, transactions } = this.props;
     const { formatMessage } = intl;
     const {
       expandedTxs,
@@ -298,6 +296,13 @@ export class NahmiiWithdraw extends React.PureComponent {
     const selectedAssetDetails = this.getAssetDetailsBySymbol(selectedSymbol);
     if (!selectedAssetDetails || !staged || !challenge) {
       return (null);
+    }
+
+    const challengeTxStatus = lastPaymentChallenge.get('txStatus');
+    const settlementTxStatus = lastSettlePaymentDriip.get('txStatus');
+    const needToUpdateSyncTime = this.state.syncTime.getTime() < new Date().getTime();
+    if ((challengeTxStatus === 'mining' || settlementTxStatus === 'mining') && needToUpdateSyncTime) {
+      this.state.syncTime = moment().add(30, 'seconds').toDate();
     }
 
     let challengeAssetSymbol;

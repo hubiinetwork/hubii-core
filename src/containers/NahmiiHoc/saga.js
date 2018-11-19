@@ -183,7 +183,7 @@ export function* startPaymentChallenge({ receipt, stageAmount, currency }) {
 export function* settlePaymentDriip({ receipt, currency }) {
   const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
   if (walletDetails.encrypted && !walletDetails.decrypted) {
-    yield put(showDecryptWalletModal(actions.settlePaymentDriip(receipt)));
+    yield put(showDecryptWalletModal(actions.settlePaymentDriip(receipt, currency)));
     return;
   }
   const network = yield select(makeSelectCurrentNetwork());
