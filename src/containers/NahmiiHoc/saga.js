@@ -74,7 +74,11 @@ export function* loadBalances({ address }, network) {
   try {
     const path = `trading/wallets/${address}/balances`;
     const balances = yield call((...args) => requestWalletAPI(...args), path, network);
-    yield put(actions.loadBalancesSuccess(address, balances));
+    const formattedBalances = balances.map((bal) => ({
+      balance: bal.amount,
+      currency: bal.currency,
+    }));
+    yield put(actions.loadBalancesSuccess(address, formattedBalances));
   } catch (err) {
     // console.log(err);
   }

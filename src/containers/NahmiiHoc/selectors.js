@@ -59,10 +59,10 @@ const makeSelectNahmiiBalances = () => createSelector(
           if (assetIndex === -1) {
             assets = assets.push(cur.getIn(['assets', j]));
           } else {
-            // asset in total, add to the amount
+            // asset in total, add to the balance
             assets = assets.setIn(
-            [assetIndex, 'amount'],
-            new BigNumber(assets.getIn([assetIndex, 'amount'])).plus(cur.getIn(['assets', j, 'amount'])).toString());
+            [assetIndex, 'balance'],
+            new BigNumber(assets.getIn([assetIndex, 'balance'])).plus(cur.getIn(['assets', j, 'balance'])).toString());
           }
         }
         return acc.set('assets', assets);
