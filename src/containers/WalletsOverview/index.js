@@ -14,6 +14,7 @@ import {
   setCurrentWallet,
   lockWallet,
 } from 'containers/WalletHoc/actions';
+
 import {
   makeSelectWalletsWithInfo,
   makeSelectTotalBalances,
