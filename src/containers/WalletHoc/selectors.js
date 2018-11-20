@@ -4,7 +4,7 @@ import { fromJS, List } from 'immutable';
 import BigNumber from 'bignumber.js';
 
 import {
-  makeSelectBalances,
+  makeSelectBalances as makeSelectBaseLayerBalances,
   makeSelectSupportedAssets,
   makeSelectPrices,
   makeSelectTransactionsWithInfo,
@@ -49,9 +49,9 @@ const makeSelectCurrentWallet = () => createSelector(
   (walletHocDomain) => walletHocDomain.get('currentWallet')
 );
 
-const makeSelectTotalBalances = () => createSelector(
+const makeSelectTotalBaseLayerBalances = () => createSelector(
   makeSelectWallets(),
-  makeSelectBalances(),
+  makeSelectBaseLayerBalances(),
   makeSelectPrices(),
   makeSelectSupportedAssets(),
   (wallets, balances, prices, supportedAssets) => {
@@ -121,7 +121,7 @@ const makeSelectTotalBalances = () => createSelector(
 
 const makeSelectWalletsWithInfo = () => createSelector(
   makeSelectWallets(),
-  makeSelectBalances(),
+  makeSelectBaseLayerBalances(),
   makeSelectPrices(),
   makeSelectSupportedAssets(),
   makeSelectTransactionsWithInfo(),
@@ -232,7 +232,7 @@ const makeSelectCurrentDecryptionCallback = () => createSelector(
 
 export {
   selectWalletHocDomain,
-  makeSelectTotalBalances,
+  makeSelectTotalBaseLayerBalances,
   makeSelectSelectedWalletName,
   makeSelectWallets,
   makeSelectDerivationPathInput,

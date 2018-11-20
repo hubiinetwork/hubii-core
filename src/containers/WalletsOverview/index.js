@@ -17,7 +17,7 @@ import {
 
 import {
   makeSelectWalletsWithInfo,
-  makeSelectTotalBalances,
+  makeSelectTotalBaseLayerBalances,
 } from 'containers/WalletHoc/selectors';
 
 import {
@@ -160,7 +160,7 @@ WalletsOverview.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   walletsWithInfo: makeSelectWalletsWithInfo(),
-  totalBalances: makeSelectTotalBalances(),
+  totalBalances: makeSelectTotalBaseLayerBalances(),
   supportedAssets: makeSelectSupportedAssets(),
   ledgerNanoSInfo: makeSelectLedgerHoc(),
   trezorInfo: makeSelectTrezorHoc(),

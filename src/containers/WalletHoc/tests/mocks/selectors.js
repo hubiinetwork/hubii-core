@@ -22,7 +22,7 @@ export const walletsMock = fromJS([
   trezorWalletMock,
 ]);
 
-// makeSelectTotalBalances
+// makeSelectTotalBaseLayerBalances
 export const totalBalancesErrorMock = fromJS({ assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } });
 export const totalBalancesLoadingMock = fromJS({ assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } });
 

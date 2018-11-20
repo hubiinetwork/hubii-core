@@ -18,7 +18,7 @@ import {
   makeSelectErrors,
   makeSelectCurrentWalletWithInfo,
   makeSelectWalletsWithInfo,
-  makeSelectTotalBalances,
+  makeSelectTotalBaseLayerBalances,
 } from '../selectors';
 
 import {
@@ -202,8 +202,8 @@ describe('makeSelectWalletsWithInfo', () => {
   });
 });
 
-describe('makeSelectTotalBalances', () => {
-  const totalBalancesSelector = makeSelectTotalBalances();
+describe('makeSelectTotalBaseLayerBalances', () => {
+  const totalBalancesSelector = makeSelectTotalBaseLayerBalances();
   it('should correctly combine balances, prices and supportedAssets state', () => {
     const expected = totalBalancesLoadedMock;
     expect(totalBalancesSelector(storeMock)).toEqual(expected);
