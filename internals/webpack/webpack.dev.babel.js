@@ -44,7 +44,7 @@ if (dllPlugin) {
 const additionalEntry = [];
 let additionalAlias = {};
 
-if (process.env.CONTRACTS) {
+if (process.env.CONTRACT_PATH) {
   additionalEntry.push(path.join(process.cwd(), 'src/mocks/containers/NahmiiHoc/_fetch.js'));
   additionalAlias = {
     'config/constants': 'mocks/config/constants',
