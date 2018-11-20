@@ -49,7 +49,7 @@ const makeSelectCurrentWallet = () => createSelector(
   (walletHocDomain) => walletHocDomain.get('currentWallet')
 );
 
-const makeSelectTotalBaseLayerBalances = () => createSelector(
+const makeSelectTotalBalances = () => createSelector(
   makeSelectWallets(),
   makeSelectBaseLayerBalances(),
   makeSelectPrices(),
@@ -232,7 +232,7 @@ const makeSelectCurrentDecryptionCallback = () => createSelector(
 
 export {
   selectWalletHocDomain,
-  makeSelectTotalBaseLayerBalances,
+  makeSelectTotalBalances,
   makeSelectSelectedWalletName,
   makeSelectWallets,
   makeSelectDerivationPathInput,
