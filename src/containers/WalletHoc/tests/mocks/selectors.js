@@ -30,12 +30,13 @@ export const totalBalancesLoadedMock = fromJS({
   baseLayer: {
     assets: {
       ETH: { amount: new BigNumber('0.198937'), value: { usd: new BigNumber('81.962044') } },
-      '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { amount: new BigNumber('1.231288e-12'), value: { usd: new BigNumber('0') } },
+      '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { amount: new BigNumber('1.231288e-12'), value: { usd: new BigNumber('1.231288e-12') } },
     },
     loading: false,
-    total: { usd: new BigNumber('81.962044') },
+    total: { usd: new BigNumber('81.962044000001231288') },
   },
 });
+
 // makeSelectWalletsWithInfo
 export const walletsWithInfoEmptyMock = fromJS([]);
 
@@ -66,12 +67,16 @@ export const walletsWithInfoMock = fromJS([
           currency: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
           symbol: 'BOKKY',
           value: {
-            eth: new BigNumber('0'),
-            btc: new BigNumber('0'),
-            usd: new BigNumber('0'),
+            eth: new BigNumber('0.0000000000001231288'),
+            btc: new BigNumber('0.000000000000001231288'),
+            usd: new BigNumber('0.000000000001231288'),
           },
         }],
-        total: { eth: new BigNumber('0.198937'), btc: new BigNumber('0.00198937'), usd: new BigNumber('81.962044') },
+        total: {
+          eth: new BigNumber('0.1989370000001231288'),
+          btc: new BigNumber('0.001989370000001231288'),
+          usd: new BigNumber('81.962044000001231288'),
+        },
       },
     },
   },
