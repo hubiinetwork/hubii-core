@@ -28,7 +28,6 @@ const makeSelectNahmiiBalances = () => createSelector(
   selectNahmiiHocDomain,
   (nahmiiHocDomain) => {
     const balances = nahmiiHocDomain.get('balances') || fromJS({});
-    // console.log(nahmiiHocDomain.get('balances').toJS());
 
     // create a 'total' balance entry for each address
     let balancesWithTotal = balances;

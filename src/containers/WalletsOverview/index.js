@@ -72,6 +72,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     }
     return wallets.map((wallet) => {
       const connected = isConnected(wallet, ledgerNanoSInfo.toJS(), trezorInfo.toJS());
+      const baseLayerBalance = wallet.balances.baseLayer;
       return (
         <WalletCardsCol
           span={12}
@@ -82,13 +83,13 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
         >
           <WalletItemCard
             name={wallet.name}
-            totalBalance={(wallet.balances.loading || wallet.balances.error) ? 0 : wallet.balances.total.usd.toNumber()}
-            balancesLoading={wallet.balances.loading}
-            balancesError={!!wallet.balances.error}
+            totalBalance={(baseLayerBalance.loading || baseLayerBalance.error) ? 0 : baseLayerBalance.total.usd.toNumber()}
+            balancesLoading={baseLayerBalance.loading}
+            balancesError={!!baseLayerBalance.error}
             address={wallet.address}
             type={wallet.type}
             connected={connected}
-            assets={wallet.balances.assets}
+            assets={baseLayerBalance.assets}
             mnemonic={wallet.decrypted ? wallet.decrypted.mnemonic : null}
             privateKey={wallet.decrypted ? wallet.decrypted.privateKey : null}
             isDecrypted={!!wallet.decrypted}
@@ -110,6 +111,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
   render() {
     const { totalBalances, supportedAssets } = this.props;
     const { formatMessage } = this.props.intl;
+    const baseLayerTotalBalances = totalBalances.get('baseLayer');
     const walletCards = this.renderWalletCards();
     return (
       <Wrapper>
@@ -124,15 +126,15 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           </Col>
           <Col sm={24} md={12} lg={8}>
             {
-              !totalBalances.get('loading') &&
-              !totalBalances.get('error') &&
+              !baseLayerTotalBalances.get('loading') &&
+              !baseLayerTotalBalances.get('error') &&
               !supportedAssets.get('loading') &&
               !supportedAssets.get('error') &&
               <div>
                 <SectionHeading>{formatMessage({ id: 'balance_breakdown' })}</SectionHeading>
                 <BreakdownPie
-                  data={getBreakdown(totalBalances, supportedAssets)}
-                  value={(+this.props.totalBalances.getIn(['total', 'usd']).toFixed(6)).toString()}
+                  data={getBreakdown(baseLayerTotalBalances, supportedAssets)}
+                  value={(+baseLayerTotalBalances.getIn(['total', 'usd']).toFixed(6)).toString()}
                 />
               </div>
             }

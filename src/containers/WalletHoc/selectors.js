@@ -10,6 +10,10 @@ import {
   makeSelectTransactionsWithInfo,
 } from 'containers/HubiiApiHoc/selectors';
 
+import {
+  makeSelectNahmiiBalances,
+} from 'containers/NahmiiHoc/selectors';
+
 /**
  * Direct selector to the walletHoc state domain
  */
@@ -54,78 +58,97 @@ const makeSelectTotalBalances = () => createSelector(
   makeSelectBaseLayerBalances(),
   makeSelectPrices(),
   makeSelectSupportedAssets(),
-  (wallets, balances, prices, supportedAssets) => {
+  (wallets, baseLayerBalances, prices, supportedAssets) => {
     if (
       supportedAssets.get('loading') ||
       prices.get('loading')
     ) {
-      return fromJS({ assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } });
+      return fromJS({ baseLayer: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } } });
     }
 
     if (
       supportedAssets.get('error') ||
       prices.get('error')
     ) {
-      return fromJS({ assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } });
+      return fromJS({ baseLayer: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } } });
     }
 
-    // Caclulate total amount and value of each asset
-    let totalBalances = fromJS({ assets: {}, loading: false, total: { usd: new BigNumber('0') } });
-    balances.keySeq().forEach((address) => {
-      // Check address balance is avaliable, and owned by the user
-      const addressBalances = balances.get(address);
-      if (
+    // Caclulate total amount and value of each asset in each type of balance
+    const allBalances = [['baseLayer', baseLayerBalances]];
+    let totalBalances = fromJS({ baseLayer: { assets: {}, loading: false, total: { usd: new BigNumber('0') } } });
+    allBalances.forEach(([balanceType, balances]) => {
+      balances.keySeq().forEach((address) => {
+        // Check address balance is avaliable, and owned by the user
+        const addressBalances = balances.get(address);
+        if (
         !addressBalances ||
         addressBalances.get('error') ||
         addressBalances.get('loading') ||
         !wallets.find((w) => w.get('address') === address)
-      ) return;
+        ) return;
 
-      // Look through each address's, summing the balances for each token
-      addressBalances.get('assets').forEach((balance) => {
-        const currency = balance.get('currency');
+        // Look through each address's, summing the balances for each token
+        addressBalances.get('assets').forEach((balance) => {
+          const currency = balance.get('currency');
 
-        // try to locate the asset from supportedAssets
-        const assetDetails = supportedAssets
+          // try to locate the asset from supportedAssets
+          const assetDetails = supportedAssets
             .get('assets')
             .find((a) => a.get('currency') === currency);
 
-        // ignore unsupported assets
-        if (!assetDetails) return;
+          // ignore unsupported assets
+          if (!assetDetails) return;
 
-        const decimals = assetDetails.get('decimals');
+          const decimals = assetDetails.get('decimals');
 
-        const divisionFactor = new BigNumber('10').pow(decimals);
-        const thisBalance = new BigNumber(balance.get('balance')).dividedBy(divisionFactor);
+          const divisionFactor = new BigNumber('10').pow(decimals);
+          const thisBalance = new BigNumber(balance.get('balance')).dividedBy(divisionFactor);
 
-        const prevAmount = totalBalances.getIn(['assets', currency, 'amount']) || new BigNumber('0');
-        const nextAmount = prevAmount.plus(thisBalance);
+          const prevAmount = totalBalances.getIn([balanceType, 'assets', currency, 'amount']) || new BigNumber('0');
+          const nextAmount = prevAmount.plus(thisBalance);
 
-        const price = prices.get('assets').find((p) => p.get('currency') === balance.get('currency')).get('usd');
-        totalBalances = totalBalances.setIn(['assets', currency], fromJS({ amount: nextAmount, value: { usd: nextAmount.times(price) } }));
+          const price = prices.get('assets').find((p) => p.get('currency') === balance.get('currency')).get('usd');
+          totalBalances = totalBalances.setIn([balanceType, 'assets', currency], fromJS({ amount: nextAmount, value: { usd: nextAmount.times(price) } }));
+        });
       });
-    });
 
-    // Calculate total USD value
-    totalBalances.get('assets').keySeq().forEach((currency) => {
-      const amount = totalBalances.getIn(['assets', currency, 'amount']);
-      const price = prices.get('assets').find((p) => p.get('currency') === currency).get('usd');
-      const value = amount.times(price);
+      // Calculate total USD value
+      totalBalances.getIn([balanceType, 'assets']).keySeq().forEach((currency) => {
+        const amount = totalBalances.getIn([balanceType, 'assets', currency, 'amount']);
+        const price = prices.get('assets').find((p) => p.get('currency') === currency).get('usd');
+        const value = amount.times(price);
 
-      const prevAmount = totalBalances.getIn(['total', 'usd']) || new BigNumber('0');
-      totalBalances = totalBalances.setIn(['total', 'usd'], prevAmount.plus(value));
+        const prevAmount = totalBalances.getIn([balanceType, 'total', 'usd']) || new BigNumber('0');
+        totalBalances = totalBalances.setIn([balanceType, 'total', 'usd'], prevAmount.plus(value));
+      });
     });
     return totalBalances;
   }
 );
 
+// Check if any critical selectors for getting balance info are in error state
+const requiredDataHasError = (supportedAssets, prices, walletBalances) => (
+  supportedAssets.get('error')
+  || prices.get('error')
+  || (walletBalances && walletBalances.get('error'))
+);
+
+// Check if any critical selectors for getting balance info are in loading state
+const requiredDataLoading = (supportedAssets, prices, walletBalances) => (
+  supportedAssets.get('loading')
+  || prices.get('loading')
+  || !walletBalances
+  || walletBalances.get('loading')
+);
+
 const makeSelectWalletsWithInfo = () => createSelector(
   makeSelectWallets(),
   makeSelectBaseLayerBalances(),
+  makeSelectNahmiiBalances(),
   makeSelectPrices(),
   makeSelectSupportedAssets(),
   makeSelectTransactionsWithInfo(),
-  (wallets, balances, prices, supportedAssets, transactions) => {
+  (wallets, baseLayerBalances, nahmiiBalances, prices, supportedAssets, transactions) => {
     const walletsWithInfo = wallets.map((wallet) => {
       let walletWithInfo = wallet;
       const walletAddress = wallet.get('address');
@@ -143,69 +166,59 @@ const makeSelectWalletsWithInfo = () => createSelector(
       }
       walletWithInfo = walletWithInfo.set('transactions', walletTransactions);
 
-      // Check if any critical selectors are in error state
-      if (
-        supportedAssets.get('error') ||
-        prices.get('error') ||
-        (balances.get(walletAddress) && balances.getIn([walletAddress, 'error']))
-      ) {
-        walletBalances = fromJS({ loading: false, error: true, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } });
-      // Check if any critical selectors are loading
-      } else if (
-        supportedAssets.get('loading') ||
-        prices.get('loading') ||
-        !balances.get(walletAddress) ||
-        balances.getIn([walletAddress, 'loading'])
-      ) {
-        walletBalances = fromJS({ loading: true, error: null, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } });
-      } else {
-        // Have all information needed to construct walletWithInfo balance
-        walletBalances = balances.get(wallet.get('address'));
-        walletBalances = walletBalances.set('assets', walletBalances.get('assets').reduce((result, asset) => {
-          let walletAsset = asset;
+      const allBalances = [['baseLayer', baseLayerBalances]];
+      allBalances.forEach(([balanceType, balances]) => {
+        if (requiredDataHasError(supportedAssets, prices, balances.get(walletAddress))) {
+          walletBalances = fromJS({ loading: false, error: true, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } });
+        } else if (requiredDataLoading(supportedAssets, prices, balances.get(walletAddress))) {
+          walletBalances = fromJS({ loading: true, error: null, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } });
+        } else {
+          // Have all information needed to construct walletWithInfo balance
+          walletBalances = balances.get(wallet.get('address'));
+          walletBalances = walletBalances.set('assets', walletBalances.get('assets').reduce((result, asset) => {
+            let walletAsset = asset;
 
-          const supportedAssetInfo = supportedAssets
-            .get('assets')
-            .find((a) => a.get('currency') === asset.get('currency'));
+            const supportedAssetInfo = supportedAssets
+              .get('assets')
+              .find((a) => a.get('currency') === asset.get('currency'));
 
-          // ignore unsupported assets
-          if (!supportedAssetInfo) return result;
+            // ignore unsupported assets
+            if (!supportedAssetInfo) return result;
 
-          const priceInfo = prices
-            .get('assets')
-            .find((p) => p.get('currency') === asset.get('currency'));
+            const priceInfo = prices
+              .get('assets')
+              .find((p) => p.get('currency') === asset.get('currency'));
 
-          // Remove redundant value
-          walletAsset = walletAsset.delete('address');
+            // Remove redundant value
+            walletAsset = walletAsset.delete('address');
 
-          // Get decimal balance
-          const dividingFactor = new BigNumber('10').pow(supportedAssetInfo.get('decimals'));
-          const decimalBalance = new BigNumber(walletAsset.get('balance')).dividedBy(dividingFactor);
-          walletAsset = walletAsset.set('balance', decimalBalance);
+            // Get decimal balance
+            const dividingFactor = new BigNumber('10').pow(supportedAssetInfo.get('decimals'));
+            const decimalBalance = new BigNumber(walletAsset.get('balance')).dividedBy(dividingFactor);
+            walletAsset = walletAsset.set('balance', decimalBalance);
 
-          // Add symbol for each asset
-          const symbol = supportedAssetInfo.get('symbol');
-          walletAsset = walletAsset.set('symbol', symbol);
+            // Add symbol for each asset
+            const symbol = supportedAssetInfo.get('symbol');
+            walletAsset = walletAsset.set('symbol', symbol);
 
+            // Add reference currency values for each asset
+            referenceCurrencies.forEach((currency) => {
+              walletAsset = walletAsset
+                .setIn(['value', currency], new BigNumber(priceInfo.get(currency)).times(walletAsset.get('balance')));
+            });
 
-          // Add reference currency values for each asset
+            return result.push(walletAsset);
+          }, new List()));
+
+          // Add total balance info for each wallet
           referenceCurrencies.forEach((currency) => {
-            walletAsset = walletAsset
-              .setIn(['value', currency], new BigNumber(priceInfo.get(currency)).times(walletAsset.get('balance')));
+            walletBalances = walletBalances
+              .setIn(['total', currency], walletBalances.get('assets').reduce((acc, asset) => acc.plus(asset.getIn(['value', currency])), new BigNumber('0')));
           });
+        }
+        walletWithInfo = walletWithInfo.setIn(['balances', balanceType], walletBalances);
+      });
 
-
-          return result.push(walletAsset);
-        }, new List()));
-
-        // Add total balance info for each wallet
-        referenceCurrencies.forEach((currency) => {
-          walletBalances = walletBalances
-            .setIn(['total', currency], walletBalances.get('assets').reduce((acc, asset) => acc.plus(asset.getIn(['value', currency])), new BigNumber('0')));
-        });
-      }
-
-      walletWithInfo = walletWithInfo.set('balances', walletBalances);
       return walletWithInfo;
     });
 
