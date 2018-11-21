@@ -100,6 +100,7 @@ export class NahmiiWithdraw extends React.PureComponent {
     const { selectedSymbol } = this.state;
     const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol);
     const walletReceipts = allReceipts.get(currentWalletWithInfo.get('address'));
+
     if (!assetDetails) {
       return null;
     }

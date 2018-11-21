@@ -11,8 +11,8 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+import saga from 'containers/NahmiiHoc/saga';
 import reducer from './reducer';
-import saga from './saga';
 
 function withNahmii(WrappedComponent) {
   class NahmiiHoc extends React.Component { // eslint-disable-line react/prefer-stateless-function
