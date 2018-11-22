@@ -14,6 +14,28 @@ import {
   makeSelectNahmiiBalances,
 } from 'containers/NahmiiHoc/selectors';
 
+const balanceTypes = (baseLayerBalances, nahmiiBalances) => [
+  {
+    label: 'baseLayer',
+    balances: baseLayerBalances,
+  },
+  {
+    label: 'nahmiiAvaliable',
+    key: 'avaliable',
+    balances: nahmiiBalances,
+  },
+  {
+    label: 'nahmiiStaging',
+    key: 'staging',
+    balances: nahmiiBalances,
+  },
+  // {
+  //   label: 'nahmiiStaged',
+  //   key: 'staged',
+  //   balances: nahmiiBalances,
+  // },
+];
+
 /**
  * Direct selector to the walletHoc state domain
  */
@@ -166,15 +188,16 @@ const makeSelectWalletsWithInfo = () => createSelector(
       }
       walletWithInfo = walletWithInfo.set('transactions', walletTransactions);
 
-      const allBalances = [['baseLayer', baseLayerBalances]];
-      allBalances.forEach(([balanceType, balances]) => {
-        if (requiredDataHasError(supportedAssets, prices, balances.get(walletAddress))) {
-          walletBalances = fromJS({ loading: false, error: true, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } });
-        } else if (requiredDataLoading(supportedAssets, prices, balances.get(walletAddress))) {
-          walletBalances = fromJS({ loading: true, error: null, total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } });
+      balanceTypes(baseLayerBalances, nahmiiBalances).forEach(({ label, key, balances }) => {
+        // Have all information needed to construct walletWithInfo balance
+        walletBalances = key
+            ? balances.getIn([wallet.get('address'), key])
+            : balances.get(wallet.get('address'));
+        if (requiredDataHasError(supportedAssets, prices, walletBalances)) {
+          walletBalances = fromJS({ loading: false, error: true, assets: [], total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } });
+        } else if (requiredDataLoading(supportedAssets, prices, walletBalances)) {
+          walletBalances = fromJS({ loading: true, error: null, assets: [], total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } });
         } else {
-          // Have all information needed to construct walletWithInfo balance
-          walletBalances = balances.get(wallet.get('address'));
           walletBalances = walletBalances.set('assets', walletBalances.get('assets').reduce((result, asset) => {
             let walletAsset = asset;
 
@@ -216,7 +239,7 @@ const makeSelectWalletsWithInfo = () => createSelector(
               .setIn(['total', currency], walletBalances.get('assets').reduce((acc, asset) => acc.plus(asset.getIn(['value', currency])), new BigNumber('0')));
           });
         }
-        walletWithInfo = walletWithInfo.setIn(['balances', balanceType], walletBalances);
+        walletWithInfo = walletWithInfo.setIn(['balances', label], walletBalances);
       });
 
       return walletWithInfo;
