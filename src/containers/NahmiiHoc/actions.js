@@ -87,10 +87,18 @@ export function loadBalances(address) {
 }
 
 export function loadBalancesSuccess(address, balances) {
+  // remove currency id to be consistent with the rest of the data in the app.
+  // should do an app-wide change once the backend becomes consistent
+  const assets = balances.assets
+      .map((asset) => ({ ...asset, currency: asset.currency.ct }));
+  const modifiedBalances = {
+    ...balances,
+    assets,
+  };
   return {
     type: LOAD_NAHMII_BALANCES_SUCCESS,
     address,
-    balances,
+    balances: modifiedBalances,
   };
 }
 

@@ -1,7 +1,11 @@
 import { fromJS } from 'immutable';
 
-import { walletsMock } from 'containers/WalletHoc/tests/mocks/selectors';
-// import BigNumber from 'bignumber.js';
+import {
+  lnsWalletMock,
+  trezorWalletMock,
+  encryptedSoftwareWallet1Mock,
+  decryptedSoftwareWallet1Mock,
+} from 'containers/WalletHoc/tests/mocks';
 
 import {
   balanceState,
@@ -11,10 +15,10 @@ import {
 // makeSelectNahmiiBalances
 export const balancesEmpty = fromJS({});
 export const balances = balanceState
-  .setIn([walletsMock.getIn([0, 'address']), 'total'], totalExpected)
-  .setIn([walletsMock.getIn([1, 'address']), 'total'], totalExpected.set('assets', fromJS([])))
-  .setIn([walletsMock.getIn([2, 'address']), 'total'], totalExpected.set('assets', fromJS([])).set('error', 'someerror'))
-  .setIn([walletsMock.getIn([3, 'address']), 'total'], totalExpected.set('assets', fromJS([])).set('loading', true));
+  .setIn([lnsWalletMock.get('address'), 'total'], totalExpected)
+  .setIn([trezorWalletMock.get('address'), 'total'], totalExpected.set('assets', fromJS([])))
+  .setIn([encryptedSoftwareWallet1Mock.get('address'), 'total'], totalExpected.set('assets', fromJS([])).set('error', 'someerror'))
+  .setIn([decryptedSoftwareWallet1Mock.get('address'), 'total'], totalExpected.set('assets', fromJS([])).set('loading', true));
 
 // selectNahmiiHocDomain
 export const nahmiiHocMock = fromJS({

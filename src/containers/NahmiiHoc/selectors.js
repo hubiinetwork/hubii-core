@@ -53,7 +53,7 @@ const makeSelectNahmiiBalances = () => createSelector(
 
         let assets = acc.get('assets');
         for (let j = 0; j < cur.get('assets').size; j += 1) {
-          const assetIndex = assets.findIndex((asset) => asset.get('currency').equals(cur.getIn(['assets', j, 'currency'])));
+          const assetIndex = assets.findIndex((asset) => asset.get('currency') === cur.getIn(['assets', j, 'currency']));
           // asset not yet in total, add it
           if (assetIndex === -1) {
             assets = assets.push(cur.getIn(['assets', j]));
