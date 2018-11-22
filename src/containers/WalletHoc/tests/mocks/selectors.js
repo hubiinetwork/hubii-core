@@ -29,7 +29,15 @@ export const totalBalancesErrorMock = totalBalAllError;
 export const totalBalancesLoadingMock = totalBallAllLoading;
 
 export const totalBalancesLoadedMock = fromJS({
-  baseLayer: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
+  baseLayer: {
+    assets: {
+      ETH: { amount: new BigNumber('0.198937'), value: { usd: new BigNumber('81.962044') } },
+      '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { amount: new BigNumber('0.000000000001231288'), value: { usd: new BigNumber('0.000000000001231288') } },
+    },
+    loading: false,
+    error: null,
+    total: { usd: new BigNumber('81.962044000001231288') },
+  },
   nahmiiAvaliable: {
     assets: {
       ETH: { amount: new BigNumber('0.1'), value: { usd: new BigNumber('41.2') } },
@@ -43,12 +51,12 @@ export const totalBalancesLoadedMock = fromJS({
   nahmiiStaged: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
   combined: {
     assets: {
-      ETH: { value: { usd: new BigNumber('82.4') }, amount: new BigNumber('0.2') },
-      '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { value: { usd: new BigNumber('0.13') }, amount: new BigNumber('0.13') },
+      ETH: { value: { usd: new BigNumber('164.362044') }, amount: new BigNumber('0.398937') },
+      '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { value: { usd: new BigNumber('0.130000000001231288') }, amount: new BigNumber('0.130000000001231288') },
     },
     loading: false,
     error: null,
-    total: { usd: new BigNumber('82.53') },
+    total: { usd: new BigNumber('164.492044000001231288') },
   },
 });
 

@@ -107,7 +107,7 @@ const makeSelectTotalBalances = () => createSelector(
     balanceTypes(baseLayerBalances, nahmiiBalances).forEach(({ label, key, balances }) => {
       balances.keySeq().forEach((address) => {
         // Check address balance is avaliable, and owned by the app user
-        const addressBalances = key ? balances.getIn([address, key]) : balances.get('address');
+        const addressBalances = key ? balances.getIn([address, key]) : balances.get(address);
         if (
         !addressBalances ||
         addressBalances.get('error') ||
