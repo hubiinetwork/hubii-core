@@ -10,6 +10,8 @@ import {
   decryptedSoftwareWallet2Mock,
   lnsWalletMock,
   trezorWalletMock,
+  totalBalAllError,
+  totalBallAllLoading,
 } from './index';
 
 // makeSelectWallets
@@ -23,17 +25,30 @@ export const walletsMock = fromJS([
 ]);
 
 // makeSelectTotalBalances
-export const totalBalancesErrorMock = fromJS({ baseLayer: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } } });
-export const totalBalancesLoadingMock = fromJS({ baseLayer: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } } });
+export const totalBalancesErrorMock = totalBalAllError;
+export const totalBalancesLoadingMock = totalBallAllLoading;
 
 export const totalBalancesLoadedMock = fromJS({
-  baseLayer: {
+  baseLayer: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
+  nahmiiAvaliable: {
     assets: {
-      ETH: { amount: new BigNumber('0.198937'), value: { usd: new BigNumber('81.962044') } },
-      '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { amount: new BigNumber('1.231288e-12'), value: { usd: new BigNumber('1.231288e-12') } },
+      ETH: { amount: new BigNumber('0.1'), value: { usd: new BigNumber('41.2') } },
+      '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { amount: new BigNumber('0.13'), value: { usd: new BigNumber('0.13') } },
     },
     loading: false,
-    total: { usd: new BigNumber('81.962044000001231288') },
+    error: null,
+    total: { usd: new BigNumber('41.33') },
+  },
+  nahmiiStaging: { assets: { ETH: { amount: new BigNumber('0.1'), value: { usd: new BigNumber('41.2') } } }, loading: false, error: null, total: { usd: new BigNumber('41.2') } },
+  nahmiiStaged: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
+  combined: {
+    assets: {
+      ETH: { value: { usd: new BigNumber('82.4') }, amount: new BigNumber('0.2') },
+      '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { value: { usd: new BigNumber('0.13') }, amount: new BigNumber('0.13') },
+    },
+    loading: false,
+    error: null,
+    total: { usd: new BigNumber('82.53') },
   },
 });
 
@@ -126,6 +141,38 @@ export const walletsWithInfoMock = fromJS([
           usd: new BigNumber('41.2'),
         },
       },
+      nahmiiStaged: { loading: false, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
+      combined: {
+        loading: false,
+        error: null,
+        assets: [
+          {
+            balance: new BigNumber('0.398937'),
+            currency: 'ETH',
+            symbol: 'ETH',
+            value: {
+              eth: new BigNumber('0.398937'),
+              btc: new BigNumber('0.00398937'),
+              usd: new BigNumber('164.362044'),
+            },
+          },
+          {
+            balance: new BigNumber('0.130000000001231288'),
+            currency: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
+            symbol: 'BOKKY',
+            value: {
+              eth: new BigNumber('0.0130000000001231288'),
+              btc: new BigNumber('0.000130000000001231288'),
+              usd: new BigNumber('0.130000000001231288'),
+            },
+          },
+        ],
+        total: {
+          eth: new BigNumber('0.4119370000001231288'),
+          btc: new BigNumber('0.004119370000001231288'),
+          usd: new BigNumber('164.492044000001231288'),
+        },
+      },
     },
   },
   {
@@ -138,6 +185,8 @@ export const walletsWithInfoMock = fromJS([
       baseLayer: { loading: false, error: true, assets: [], total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } },
       nahmiiAvaliable: { loading: false, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
       nahmiiStaging: { loading: false, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
+      nahmiiStaged: { loading: false, error: true, assets: [], total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } },
+      combined: { loading: false, error: true, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
     },
   },
   {
@@ -155,6 +204,8 @@ export const walletsWithInfoMock = fromJS([
       baseLayer: { loading: true, error: null, assets: [], total: { usd: new BigNumber('0'), eth: new BigNumber(new BigNumber('0')), btc: new BigNumber('0') } },
       nahmiiAvaliable: { loading: false, error: null, assets: [], total: { eth: new BigNumber(new BigNumber('0')), btc: new BigNumber('0'), usd: new BigNumber('0') } },
       nahmiiStaging: { loading: true, error: null, assets: [], total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } },
+      nahmiiStaged: { loading: false, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
+      combined: { loading: true, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
     },
   },
   {
@@ -168,6 +219,8 @@ export const walletsWithInfoMock = fromJS([
       baseLayer: { loading: true, error: null, assets: [], total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } },
       nahmiiAvaliable: { loading: false, error: null, assets: [], total: { eth: new BigNumber(new BigNumber('0')), btc: new BigNumber('0'), usd: new BigNumber('0') } },
       nahmiiStaging: { loading: false, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
+      nahmiiStaged: { loading: false, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
+      combined: { loading: true, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
     },
   },
 ]);
