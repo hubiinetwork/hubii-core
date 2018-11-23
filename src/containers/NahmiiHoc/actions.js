@@ -8,6 +8,8 @@ import {
   LOAD_NAHMII_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGED_BALANCES,
   LOAD_NAHMII_STAGED_BALANCES_SUCCESS,
+  LOAD_NAHMII_STAGING_BALANCES,
+  LOAD_NAHMII_STAGING_BALANCES_SUCCESS,
   START_PAYMENT_CHALLENGE,
   START_PAYMENT_CHALLENGE_SUCCESS,
   START_PAYMENT_CHALLENGE_ERROR,
@@ -104,6 +106,21 @@ export function loadStagedBalances(address) {
 export function loadStagedBalancesSuccess(address, balances) {
   return {
     type: LOAD_NAHMII_STAGED_BALANCES_SUCCESS,
+    address,
+    balances,
+  };
+}
+
+export function loadStagingBalances(address) {
+  return {
+    type: LOAD_NAHMII_STAGING_BALANCES,
+    address,
+  };
+}
+
+export function loadStagingBalancesSuccess(address, balances) {
+  return {
+    type: LOAD_NAHMII_STAGING_BALANCES_SUCCESS,
     address,
     balances,
   };

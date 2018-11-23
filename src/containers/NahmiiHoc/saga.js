@@ -79,9 +79,23 @@ export function* loadBalances({ address }, network) {
       // should do an app-wide change once the backend becomes consistent
       const formattedBalances = balances.map((bal) => ({
         balance: bal.amount,
-        currency: bal.currency.ct,
+        currency: bal.currency.ct === '0x0000000000000000000000000000000000000000' ? 'ETH' : bal.currency.ct,
       }));
       yield put(actions.loadBalancesSuccess(address, formattedBalances));
+    } catch (err) {
+      console.log(err); // eslint-disable-line
+    } finally {
+      const TWENTY_SEC_IN_MS = 1000 * 20;
+      yield delay(TWENTY_SEC_IN_MS);
+    }
+  }
+}
+
+export function* loadStagingBalances({ address }) {
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const emptyResponse = [];
+      yield put(actions.loadStagingBalancesSuccess(address, emptyResponse));
     } catch (err) {
       console.log(err); // eslint-disable-line
     } finally {
@@ -141,7 +155,7 @@ export function* loadStagedBalances({ address }, network) {
       }, []);
       yield put(actions.loadStagedBalancesSuccess(address, formattedBalances));
     } catch (err) {
-      console.log(err);
+      console.log(err); // eslint-disable-line
     } finally {
       const TWENTY_SEC_IN_MS = 1000 * 20;
       yield delay(TWENTY_SEC_IN_MS);
@@ -368,6 +382,7 @@ export function* challengeStatusOrcestrator() {
         ...wallets.map((wallet) => fork(loadSettlement, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadBalances, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadStagedBalances, { address: wallet.get('address') }, network)),
+        ...wallets.map((wallet) => fork(loadStagingBalances, { address: wallet.get('address') }, network)),
       ]);
 
       const ONE_MINUTE_IN_MS = 60 * 1000;

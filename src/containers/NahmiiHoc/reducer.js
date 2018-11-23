@@ -11,6 +11,7 @@ import {
   DEPOSIT_SUCCESS,
   LOAD_NAHMII_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGED_BALANCES_SUCCESS,
+  LOAD_NAHMII_STAGING_BALANCES_SUCCESS,
   START_PAYMENT_CHALLENGE_SUCCESS,
   START_PAYMENT_CHALLENGE_ERROR,
   LOAD_START_PAYMENT_CHALLENGE_TX_REQUEST,
@@ -141,6 +142,11 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['balances', action.address, 'staged', 'loading'], false)
         .setIn(['balances', action.address, 'staged', 'error'], null)
         .setIn(['balances', action.address, 'staged', 'assets'], fromJS(action.balances));
+    case LOAD_NAHMII_STAGING_BALANCES_SUCCESS:
+      return state
+        .setIn(['balances', action.address, 'staging', 'loading'], false)
+        .setIn(['balances', action.address, 'staging', 'error'], null)
+        .setIn(['balances', action.address, 'staging', 'assets'], fromJS(action.balances));
     case LOAD_RECEIPTS_SUCCESS:
       return state
         .setIn(['receipts', action.address], action.receipts);
