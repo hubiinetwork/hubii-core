@@ -73,6 +73,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     return wallets.map((wallet) => {
       const connected = isConnected(wallet, ledgerNanoSInfo.toJS(), trezorInfo.toJS());
       const baseLayerBalance = wallet.balances.baseLayer;
+      const nahmiiBalance = wallet.balances.nahmiiCombined;
       return (
         <WalletCardsCol
           span={12}
@@ -84,12 +85,15 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           <WalletItemCard
             name={wallet.name}
             totalBalance={(baseLayerBalance.loading || baseLayerBalance.error) ? 0 : baseLayerBalance.total.usd.toNumber()}
-            balancesLoading={baseLayerBalance.loading}
-            balancesError={!!baseLayerBalance.error}
+            baseLayerBalancesLoading={baseLayerBalance.loading}
+            baseLayerBalancesError={!!baseLayerBalance.error}
+            nahmiiBalancesLoading={nahmiiBalance.loading}
+            nahmiiBalancesError={!!nahmiiBalance.error}
             address={wallet.address}
             type={wallet.type}
             connected={connected}
-            assets={baseLayerBalance.assets}
+            baseLayerAssets={baseLayerBalance.assets}
+            nahmiiAssets={nahmiiBalance.assets}
             mnemonic={wallet.decrypted ? wallet.decrypted.mnemonic : null}
             privateKey={wallet.decrypted ? wallet.decrypted.privateKey : null}
             isDecrypted={!!wallet.decrypted}

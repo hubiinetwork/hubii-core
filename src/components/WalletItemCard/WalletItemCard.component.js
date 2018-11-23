@@ -102,14 +102,17 @@ export class WalletItemCard extends React.PureComponent {
     const {
       address,
       name,
-      balancesLoading,
-      balancesError,
+      baseLayerBalancesLoading,
+      baseLayerBalancesError,
+      nahmiiBalancesLoading,
+      nahmiiBalancesError,
       connected,
       type,
       handleCardClick,
       totalBalance,
       isDecrypted,
-      assets,
+      baseLayerAssets,
+      nahmiiAssets,
       mnemonic,
       privateKey,
     } = this.props;
@@ -118,15 +121,35 @@ export class WalletItemCard extends React.PureComponent {
 
     const { modalVisibility, modalType } = this.state;
 
-    let assetBubbles = null;
-    if (assets) {
-      assetBubbles = assets.map((asset) => (
+    let baseLayerAssetBubbles = null;
+    let nahmiiAssetBubbles = null;
+    if (baseLayerAssets) {
+      baseLayerAssetBubbles = baseLayerAssets.map((asset) => (
         <AssetWrapper key={asset.currency}>
           <AssetAmountBubble
             name={asset.symbol}
             amount={trimDecimals(asset.balance, asset.currency, this.props.priceInfo.find((c) => isAddressMatch(c.currency, asset.currency)))}
           />
         </AssetWrapper>
+      ));
+    }
+    if (nahmiiAssets) {
+      nahmiiAssetBubbles = nahmiiAssets.length === 0
+        ? (
+          <AssetWrapper>
+            <AssetAmountBubble
+              name={'ETH'}
+              amount={'0'}
+            />
+          </AssetWrapper>
+        )
+        : nahmiiAssets.map((asset) => (
+          <AssetWrapper key={asset.currency}>
+            <AssetAmountBubble
+              name={asset.symbol}
+              amount={trimDecimals(asset.balance, asset.currency, this.props.priceInfo.find((c) => isAddressMatch(c.currency, asset.currency)))}
+            />
+          </AssetWrapper>
       ));
     }
 
@@ -189,7 +212,7 @@ export class WalletItemCard extends React.PureComponent {
         >
           <LeftSideWrapper>
             <WalletName large>{name}</WalletName>
-            {!balancesLoading && !balancesError &&
+            {!baseLayerBalancesLoading && !baseLayerBalancesError &&
               <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
             }
           </LeftSideWrapper>
@@ -198,14 +221,14 @@ export class WalletItemCard extends React.PureComponent {
               <Text>Base layer balance</Text>
               <AssetsWrapper>
                 {
-                  balancesError
+                  baseLayerBalancesError
                   && <WalletName>{formatMessage({ id: 'fetch_balance_error' })}</WalletName>
                 }
                 {
-                  balancesLoading &&
+                  baseLayerBalancesLoading &&
                   <Spinner type="loading" />
                 }
-                {!balancesLoading && !balancesError && assetBubbles}
+                {!baseLayerBalancesLoading && !baseLayerBalancesError && baseLayerAssetBubbles}
               </AssetsWrapper>
             </div>
             <div style={{ marginTop: '1.25rem' }}>
@@ -215,14 +238,14 @@ export class WalletItemCard extends React.PureComponent {
               </Text>
               <AssetsWrapper>
                 {
-                  balancesError
+                  nahmiiBalancesError
                   && <WalletName>{formatMessage({ id: 'fetch_balance_error' })}</WalletName>
                 }
                 {
-                  balancesLoading
+                  nahmiiBalancesLoading
                   && <Spinner type="loading" />
                 }
-                {!balancesLoading && !balancesError && assetBubbles}
+                {!nahmiiBalancesLoading && !nahmiiBalancesError && nahmiiAssetBubbles}
               </AssetsWrapper>
             </div>
           </div>
@@ -258,15 +281,23 @@ WalletItemCard.propTypes = {
   /**
    * assets/coins in a wallet.
    */
-  assets: PropTypes.arrayOf(
+  baseLayerAssets: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      amount: PropTypes.number,
+    })
+  ),
+  nahmiiAssets: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
       amount: PropTypes.number,
     })
   ),
   address: PropTypes.string.isRequired,
-  balancesLoading: PropTypes.bool.isRequired,
-  balancesError: PropTypes.bool.isRequired,
+  baseLayerBalancesLoading: PropTypes.bool.isRequired,
+  baseLayerBalancesError: PropTypes.bool.isRequired,
+  nahmiiBalancesLoading: PropTypes.bool.isRequired,
+  nahmiiBalancesError: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
   connected: PropTypes.bool,
   handleCardClick: PropTypes.func.isRequired,
