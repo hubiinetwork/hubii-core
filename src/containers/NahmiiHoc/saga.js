@@ -71,16 +71,23 @@ import * as actionTypes from './constants';
 // }
 
 export function* loadBalances({ address }, network) {
-  try {
-    const path = `trading/wallets/${address}/balances`;
-    const balances = yield call((...args) => requestWalletAPI(...args), path, network);
-    const formattedBalances = balances.map((bal) => ({
-      balance: bal.amount,
-      currency: bal.currency,
-    }));
-    yield put(actions.loadBalancesSuccess(address, formattedBalances));
-  } catch (err) {
-    // console.log(err);
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const path = `trading/wallets/${address}/balances`;
+      const balances = yield call((...args) => requestWalletAPI(...args), path, network);
+      // remove currency id to be consistent with the rest of the data in the app.
+      // should do an app-wide change once the backend becomes consistent
+      const formattedBalances = balances.map((bal) => ({
+        balance: bal.amount,
+        currency: bal.currency.ct,
+      }));
+      yield put(actions.loadBalancesSuccess(address, formattedBalances));
+    } catch (err) {
+      console.log(err); // eslint-disable-line
+    } finally {
+      const TWENTY_SEC_IN_MS = 1000 * 20;
+      yield delay(TWENTY_SEC_IN_MS);
+    }
   }
 }
 

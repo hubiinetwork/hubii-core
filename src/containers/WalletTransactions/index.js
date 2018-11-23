@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { injectIntl } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
-import { getBreakdown } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
 
 import Breakdown from 'components/BreakdownPie';
@@ -170,8 +169,8 @@ export class WalletsTransactions extends React.Component {
         </TransactionsWrapper>
         <BreakdownWrapper>
           <Breakdown
-            data={getBreakdown(currentWalletWithInfo.getIn(['balances', 'baseLayer']), supportedAssets)}
-            value={currentWalletWithInfo.getIn(['balances', 'baseLayer', 'total', 'usd']).toString()}
+            totalBalances={currentWalletWithInfo.get('balances')}
+            supportedAssets={supportedAssets}
           />
         </BreakdownWrapper>
       </OuterWrapper>

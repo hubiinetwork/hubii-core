@@ -8,7 +8,7 @@ import {
 } from 'containers/WalletHoc/tests/mocks';
 
 export const loadedEmptyBalanceState = fromJS({
-  avaliable: {
+  available: {
     loading: false,
     error: null,
     assets: [],
@@ -38,7 +38,7 @@ export const loadingBalanceState = loadedEmptyBalanceState
   );
 
 export const loadedBalanceState = loadedEmptyBalanceState.setIn(
-  ['avaliable', 'assets'],
+  ['available', 'assets'],
   fromJS([
     { currency: 'ETH', balance: '100000000000000000' },
     { currency: '0x583cbbb8a8443b38abcc0c956bece47340ea1367', balance: '130000000000000000' },

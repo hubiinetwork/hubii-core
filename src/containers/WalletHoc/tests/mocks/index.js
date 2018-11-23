@@ -63,7 +63,7 @@ export const contactsEmptyMock = fromJS([]);
 
 export const totalBalAllEmpty = fromJS({
   baseLayer: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
-  nahmiiAvaliable: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
+  nahmiiAvailable: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
   nahmiiStaging: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
   nahmiiStaged: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
   nahmiiCombined: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
@@ -72,7 +72,7 @@ export const totalBalAllEmpty = fromJS({
 
 export const totalBalAllError = fromJS({
   baseLayer: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } },
-  nahmiiAvaliable: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } },
+  nahmiiAvailable: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } },
   nahmiiStaging: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } },
   nahmiiStaged: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } },
   nahmiiCombined: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
@@ -81,7 +81,7 @@ export const totalBalAllError = fromJS({
 
 export const totalBallAllLoading = fromJS({
   baseLayer: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } },
-  nahmiiAvaliable: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } },
+  nahmiiAvailable: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } },
   nahmiiStaging: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } },
   nahmiiStaged: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } },
   nahmiiCombined: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },

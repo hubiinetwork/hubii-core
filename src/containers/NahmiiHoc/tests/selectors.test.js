@@ -18,8 +18,8 @@ describe('makeSelectNahmiiBalances', () => {
     expect(nahmiiBalancesSelector(storeMock)).toEqual(expected);
   });
 
-  it('should return loading total if avaliable assets are loading', () => {
-    const mockedState = storeMock.setIn(['nahmiiHoc', 'balances', 0, 'avaliable', 'loading'], true);
+  it('should return loading total if available assets are loading', () => {
+    const mockedState = storeMock.setIn(['nahmiiHoc', 'balances', 0, 'available', 'loading'], true);
     expect(nahmiiBalancesSelector(mockedState).getIn([0, 'total', 'loading'])).toEqual(true);
   });
 
@@ -33,7 +33,7 @@ describe('makeSelectNahmiiBalances', () => {
     expect(nahmiiBalancesSelector(mockedState).getIn([0, 'total', 'loading'])).toEqual(true);
   });
 
-  it('should return errored total if avaliable assets are errored', () => {
+  it('should return errored total if available assets are errored', () => {
     const mockedState = storeMock.setIn(['nahmiiHoc', 'balances', 0, 'staging', 'error'], 'someerror');
     expect(nahmiiBalancesSelector(mockedState).getIn([0, 'total', 'error'])).toEqual('someerror');
   });

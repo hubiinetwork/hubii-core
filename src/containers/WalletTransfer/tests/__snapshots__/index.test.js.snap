@@ -106,7 +106,7 @@ ShallowWrapper {
                         usd: "81.962044000001231288",
                     },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                     loading: false,
                     error: null,
                     assets: Immutable.List [
@@ -465,7 +465,7 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                         loading: false,
                         error: null,
                         assets: Immutable.List [
@@ -816,7 +816,7 @@ ShallowWrapper {
                                         usd: "81.962044000001231288",
                               },
                     },
-                    nahmiiAvaliable: Immutable.Map {
+                    nahmiiAvailable: Immutable.Map {
                               loading: false,
                               error: null,
                               assets: Immutable.List [
@@ -1176,7 +1176,7 @@ ShallowWrapper {
                         usd: "81.962044000001231288",
                     },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                     loading: false,
                     error: null,
                     assets: Immutable.List [
@@ -1538,7 +1538,7 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                         loading: false,
                         error: null,
                         assets: Immutable.List [
@@ -1892,7 +1892,7 @@ ShallowWrapper {
                                         usd: "81.962044000001231288",
                               },
                     },
-                    nahmiiAvaliable: Immutable.Map {
+                    nahmiiAvailable: Immutable.Map {
                               loading: false,
                               error: null,
                               assets: Immutable.List [
@@ -2255,7 +2255,7 @@ ShallowWrapper {
                         usd: "81.962044000001231288",
                     },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                     loading: false,
                     error: null,
                     assets: Immutable.List [
@@ -2615,7 +2615,7 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                         loading: false,
                         error: null,
                         assets: Immutable.List [
@@ -2967,7 +2967,7 @@ ShallowWrapper {
                                         usd: "81.962044000001231288",
                               },
                     },
-                    nahmiiAvaliable: Immutable.Map {
+                    nahmiiAvailable: Immutable.Map {
                               loading: false,
                               error: null,
                               assets: Immutable.List [
@@ -3328,7 +3328,7 @@ ShallowWrapper {
                         usd: "81.962044000001231288",
                     },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                     loading: false,
                     error: null,
                     assets: Immutable.List [
@@ -3687,7 +3687,7 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                         loading: false,
                         error: null,
                         assets: Immutable.List [
@@ -4038,7 +4038,7 @@ ShallowWrapper {
                                         usd: "81.962044000001231288",
                               },
                     },
-                    nahmiiAvaliable: Immutable.Map {
+                    nahmiiAvailable: Immutable.Map {
                               loading: false,
                               error: null,
                               assets: Immutable.List [
@@ -4398,7 +4398,7 @@ ShallowWrapper {
                         usd: "81.962044000001231288",
                     },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                     loading: false,
                     error: null,
                     assets: Immutable.List [
@@ -4716,7 +4716,7 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                         loading: false,
                         error: null,
                         assets: Immutable.List [
@@ -5025,7 +5025,7 @@ ShallowWrapper {
                                         usd: "81.962044000001231288",
                               },
                     },
-                    nahmiiAvaliable: Immutable.Map {
+                    nahmiiAvailable: Immutable.Map {
                               loading: false,
                               error: null,
                               assets: Immutable.List [
@@ -5343,7 +5343,7 @@ ShallowWrapper {
                         usd: "81.962044000001231288",
                     },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                     loading: false,
                     error: null,
                     assets: Immutable.List [
@@ -5661,7 +5661,7 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                         loading: false,
                         error: null,
                         assets: Immutable.List [
@@ -5970,7 +5970,7 @@ ShallowWrapper {
                                         usd: "81.962044000001231288",
                               },
                     },
-                    nahmiiAvaliable: Immutable.Map {
+                    nahmiiAvailable: Immutable.Map {
                               loading: false,
                               error: null,
                               assets: Immutable.List [
@@ -6288,7 +6288,7 @@ ShallowWrapper {
                         usd: "81.962044000001231288",
                     },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                     loading: false,
                     error: null,
                     assets: Immutable.List [
@@ -6611,7 +6611,7 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                         loading: false,
                         error: null,
                         assets: Immutable.List [
@@ -6926,7 +6926,7 @@ ShallowWrapper {
                                         usd: "81.962044000001231288",
                               },
                     },
-                    nahmiiAvaliable: Immutable.Map {
+                    nahmiiAvailable: Immutable.Map {
                               loading: false,
                               error: null,
                               assets: Immutable.List [
@@ -7250,7 +7250,7 @@ ShallowWrapper {
                         usd: "81.962044000001231288",
                     },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                     loading: false,
                     error: null,
                     assets: Immutable.List [
@@ -7573,7 +7573,7 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                         loading: false,
                         error: null,
                         assets: Immutable.List [
@@ -7888,7 +7888,7 @@ ShallowWrapper {
                                         usd: "81.962044000001231288",
                               },
                     },
-                    nahmiiAvaliable: Immutable.Map {
+                    nahmiiAvailable: Immutable.Map {
                               loading: false,
                               error: null,
                               assets: Immutable.List [
@@ -8212,7 +8212,7 @@ ShallowWrapper {
                         usd: "81.962044000001231288",
                     },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                     loading: false,
                     error: null,
                     assets: Immutable.List [
@@ -8571,7 +8571,7 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
-                nahmiiAvaliable: Immutable.Map {
+                nahmiiAvailable: Immutable.Map {
                         loading: false,
                         error: null,
                         assets: Immutable.List [
@@ -8922,7 +8922,7 @@ ShallowWrapper {
                                         usd: "81.962044000001231288",
                               },
                     },
-                    nahmiiAvaliable: Immutable.Map {
+                    nahmiiAvailable: Immutable.Map {
                               loading: false,
                               error: null,
                               assets: Immutable.List [

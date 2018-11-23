@@ -135,12 +135,12 @@ function nahmiiHocReducer(state = initialState, action) {
       return state
         .setIn(['balances', action.address, 'available', 'loading'], false)
         .setIn(['balances', action.address, 'available', 'error'], null)
-        .setIn(['balances', action.address, 'available', 'assets'], action.balances);
+        .setIn(['balances', action.address, 'available', 'assets'], fromJS(action.balances));
     case LOAD_NAHMII_STAGED_BALANCES_SUCCESS:
       return state
         .setIn(['balances', action.address, 'staged', 'loading'], false)
         .setIn(['balances', action.address, 'staged', 'error'], null)
-        .setIn(['balances', action.address, 'staged', 'assets'], action.balances);
+        .setIn(['balances', action.address, 'staged', 'assets'], fromJS(action.balances));
     case LOAD_RECEIPTS_SUCCESS:
       return state
         .setIn(['receipts', action.address], action.receipts);

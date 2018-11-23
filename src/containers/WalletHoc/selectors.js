@@ -26,8 +26,8 @@ const balanceTypes = (baseLayerBalances, nahmiiBalances) => [
     balances: baseLayerBalances,
   },
   {
-    label: 'nahmiiAvaliable',
-    key: 'avaliable',
+    label: 'nahmiiAvailable',
+    key: 'available',
     balances: nahmiiBalances,
   },
   {
@@ -106,7 +106,7 @@ const makeSelectTotalBalances = () => createSelector(
     let totalBalances = totalBalAllEmpty;
     balanceTypes(baseLayerBalances, nahmiiBalances).forEach(({ label, key, balances }) => {
       balances.keySeq().forEach((address) => {
-        // Check address balance is avaliable, and owned by the app user
+        // Check address balance is available, and owned by the app user
         const addressBalances = key ? balances.getIn([address, key]) : balances.get(address);
         if (
         !addressBalances ||
@@ -195,6 +195,7 @@ const requiredDataLoading = (supportedAssets, prices, walletBalances) => (
   supportedAssets.get('loading')
   || prices.get('loading')
   || !walletBalances
+  || !walletBalances.get('assets')
   || walletBalances.get('loading')
 );
 
@@ -287,9 +288,6 @@ const makeSelectWalletsWithInfo = () => createSelector(
         return walletWithInfo.get('balances').reduce((acc, balance, balanceType) => {
           if (ignore.includes(balanceType)) return acc;
           // if any of the wallet's assets are loading or errored out, set combined to the appropriate state
-          if (acc.get('loading') || acc.get('error')) return acc;
-          if (balance.get('loading')) return combined.set('loading', true);
-          if (balance.get('error')) return combined.set('error', balance.get('error'));
           return acc
           .setIn(['total', 'eth'], acc.getIn(['total', 'eth']).plus(balance.getIn(['total', 'eth'])))
           .setIn(['total', 'btc'], acc.getIn(['total', 'btc']).plus(balance.getIn(['total', 'btc'])))

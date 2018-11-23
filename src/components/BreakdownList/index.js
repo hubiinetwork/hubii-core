@@ -65,7 +65,7 @@ class BreakdownList extends React.PureComponent {
     const {
       combinedBreakdown,
       baseLayerBreakdown,
-      nahmiiAvaliableBreakdown,
+      nahmiiAvailableBreakdown,
       nahmiiCombinedBreakdown,
       nahmiiStagedBreakdown,
       nahmiiStagingBreakdown,
@@ -75,7 +75,7 @@ class BreakdownList extends React.PureComponent {
     const combinedBalanceList = generateList(combinedBreakdown, true);
     const baseLayerBalanceList = generateList(baseLayerBreakdown);
     const nahmiiBalanceList = generateList(nahmiiCombinedBreakdown);
-    const nahmiiAvaliableBalanceList = generateList(nahmiiAvaliableBreakdown);
+    const nahmiiAvailableBalanceList = generateList(nahmiiAvailableBreakdown);
     const nahmiiStagingBalanceList = generateList(nahmiiStagingBreakdown);
     const nahmiiStagedBalanceList = generateList(nahmiiStagedBreakdown);
 
@@ -99,8 +99,8 @@ class BreakdownList extends React.PureComponent {
               <FlexContainer>{nahmiiBalanceList}</FlexContainer>
               <NahmiiBalancesWrapper {...props}>
 
-                <Text>{formatMessage({ id: 'avaliable' })}</Text>
-                <FlexContainer>{nahmiiAvaliableBalanceList}</FlexContainer>
+                <Text>{formatMessage({ id: 'available' })}</Text>
+                <FlexContainer>{nahmiiAvailableBalanceList}</FlexContainer>
                 <br />
                 <Text>{formatMessage({ id: 'staging' })}</Text>
                 <FlexContainer>{nahmiiStagingBalanceList}</FlexContainer>
@@ -121,7 +121,7 @@ BreakdownList.propTypes = {
   combinedBreakdown: PropTypes.array.isRequired,
   nahmiiCombinedBreakdown: PropTypes.array.isRequired,
   baseLayerBreakdown: PropTypes.array.isRequired,
-  nahmiiAvaliableBreakdown: PropTypes.array.isRequired,
+  nahmiiAvailableBreakdown: PropTypes.array.isRequired,
   nahmiiStagingBreakdown: PropTypes.array.isRequired,
   nahmiiStagedBreakdown: PropTypes.array.isRequired,
   intl: PropTypes.object.isRequired,
