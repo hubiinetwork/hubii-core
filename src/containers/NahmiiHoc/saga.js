@@ -375,11 +375,11 @@ export function* challengeStatusOrcestrator() {
       const network = yield select(makeSelectCurrentNetwork());
       const wallets = yield select(makeSelectWallets());
       const allTasks = yield all([
-        ...wallets.map((wallet) => fork(loadCurrentPaymentChallenge, { address: wallet.get('address') }, network)),
-        ...wallets.map((wallet) => fork(loadCurrentPaymentChallengePhase, { address: wallet.get('address') }, network)),
-        ...wallets.map((wallet) => fork(loadCurrentPaymentChallengeStatus, { address: wallet.get('address') }, network)),
-        ...wallets.map((wallet) => fork(loadReceipts, { address: wallet.get('address') }, network)),
-        ...wallets.map((wallet) => fork(loadSettlement, { address: wallet.get('address') }, network)),
+        // ...wallets.map((wallet) => fork(loadCurrentPaymentChallenge, { address: wallet.get('address') }, network)),
+        // ...wallets.map((wallet) => fork(loadCurrentPaymentChallengePhase, { address: wallet.get('address') }, network)),
+        // ...wallets.map((wallet) => fork(loadCurrentPaymentChallengeStatus, { address: wallet.get('address') }, network)),
+        // ...wallets.map((wallet) => fork(loadReceipts, { address: wallet.get('address') }, network)),
+        // ...wallets.map((wallet) => fork(loadSettlement, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadBalances, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadStagedBalances, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadStagingBalances, { address: wallet.get('address') }, network)),

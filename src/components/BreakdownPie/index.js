@@ -56,54 +56,59 @@ class Breakdown extends React.Component {
           <Heading large>{formatFiat(value, 'USD')}</Heading>
         </div>
         <Spring
-          from={{ height: 'auto', opacity: 1 }}
-          to={{ height: showPie ? 'auto' : 0, opacity: showPie ? 1 : 0 }}
+          from={{ height: 'auto', opacity: 1, listExpanded: 0 }}
+          to={{ height: showPie ? 'auto' : 0, opacity: showPie ? 1 : 0, listExpanded: showPie ? 0 : 1 }}
         >
           {
             (props) =>
-              (<div
-                style={{
-                  ...props,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  maxWidth: '30rem',
-                }}
-              >
-                <VictoryPie
-                  labelComponent={
-                    <VictoryTooltip
-                      flyoutStyle={{ stroke: 'transparent', fill: 'rgba(0,0,0,0.5)' }}
-                      style={{ fill: 'white' }}
-                      width={90}
-                    />
+              (<div>
+                <div
+                  style={{
+                    ...props,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    maxWidth: '30rem',
+                    maxHeight: '25rem',
+                    marginBottom: '1rem',
+                  }}
+                >
+                  <VictoryPie
+                    labelComponent={
+                      <VictoryTooltip
+                        flyoutStyle={{ stroke: 'transparent', fill: 'rgba(0,0,0,0.5)' }}
+                        style={{ fill: 'white' }}
+                        width={90}
+                      />
                   }
-                  innerRadius={90}
-                  colorScale={colors}
-                  data={chartData}
-                  containerComponent={
-                    <VictoryContainer
-                      responsive
-                    />
+                    innerRadius={90}
+                    colorScale={colors}
+                    data={chartData}
+                    containerComponent={
+                      <VictoryContainer
+                        responsive
+                      />
                   }
-                />
-              </div>)
+                  />
+                </div>
+                <div
+                  onMouseEnter={() => this.togglePie(false)}
+                  onMouseLeave={() => this.togglePie(true)}
+                >
+                  <BreakdownList
+                    onExpandList={this.togglePie}
+                    expandedAmount={props.listExpanded}
+                    combinedBreakdown={combinedBreakdown}
+                    baseLayerBreakdown={getBreakdown(totalBalances.get('baseLayer'), supportedAssets)}
+                    nahmiiAvailableBreakdown={getBreakdown(totalBalances.get('nahmiiAvailable'), supportedAssets)}
+                    nahmiiCombinedBreakdown={getBreakdown(totalBalances.get('nahmiiCombined'), supportedAssets)}
+                    nahmiiStagingBreakdown={getBreakdown(totalBalances.get('nahmiiStaging'), supportedAssets)}
+                    nahmiiStagedBreakdown={getBreakdown(totalBalances.get('nahmiiStaged'), supportedAssets)}
+                  />
+                </div>
+              </div>
+              )
             }
         </Spring>
-        <div
-          onMouseEnter={() => this.togglePie(false)}
-          onMouseLeave={() => this.togglePie(true)}
-        >
-          <BreakdownList
-            onExpandList={this.togglePie}
-            expandList={!this.state.showPie}
-            combinedBreakdown={combinedBreakdown}
-            baseLayerBreakdown={getBreakdown(totalBalances.get('baseLayer'), supportedAssets)}
-            nahmiiAvailableBreakdown={getBreakdown(totalBalances.get('nahmiiAvailable'), supportedAssets)}
-            nahmiiCombinedBreakdown={getBreakdown(totalBalances.get('nahmiiCombined'), supportedAssets)}
-            nahmiiStagingBreakdown={getBreakdown(totalBalances.get('nahmiiStaging'), supportedAssets)}
-            nahmiiStagedBreakdown={getBreakdown(totalBalances.get('nahmiiStaged'), supportedAssets)}
-          />
-        </div>
       </Wrapper>
     );
   }
