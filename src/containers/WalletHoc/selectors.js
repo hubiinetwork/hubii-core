@@ -288,19 +288,22 @@ const makeSelectWalletsWithInfo = () => createSelector(
         return walletWithInfo.get('balances').reduce((acc, balance, balanceType) => {
           if (ignore.includes(balanceType)) return acc;
           // if any of the wallet's assets are loading or errored out, set combined to the appropriate state
+          if (acc.get('loading') || acc.get('error')) return acc;
+          if (balance.get('loading')) return combined.set('loading', true);
+          if (balance.get('error')) return combined.set('error', true).set('assets', fromJS([]));
           return acc
-          .setIn(['total', 'eth'], acc.getIn(['total', 'eth']).plus(balance.getIn(['total', 'eth'])))
-          .setIn(['total', 'btc'], acc.getIn(['total', 'btc']).plus(balance.getIn(['total', 'btc'])))
-          .setIn(['total', 'usd'], acc.getIn(['total', 'usd']).plus(balance.getIn(['total', 'usd'])))
-          .set('assets', balance.get('assets').reduce((combinedAssets, asset) => {
-            const index = combinedAssets.findIndex((existingAsset) => existingAsset.get('currency') === asset.get('currency'));
-            if (index === -1) return combinedAssets.push(asset);
-            return combinedAssets
-              .setIn([index, 'balance'], combinedAssets.getIn([index, 'balance']).plus(asset.get('balance')))
-              .setIn([index, 'value', 'eth'], combinedAssets.getIn([index, 'value', 'eth']).plus(asset.getIn(['value', 'eth'])))
-              .setIn([index, 'value', 'usd'], combinedAssets.getIn([index, 'value', 'usd']).plus(asset.getIn(['value', 'usd'])))
-              .setIn([index, 'value', 'btc'], combinedAssets.getIn([index, 'value', 'btc']).plus(asset.getIn(['value', 'btc'])));
-          }, acc.get('assets')));
+            .setIn(['total', 'eth'], acc.getIn(['total', 'eth']).plus(balance.getIn(['total', 'eth'])))
+            .setIn(['total', 'btc'], acc.getIn(['total', 'btc']).plus(balance.getIn(['total', 'btc'])))
+            .setIn(['total', 'usd'], acc.getIn(['total', 'usd']).plus(balance.getIn(['total', 'usd'])))
+            .set('assets', balance.get('assets').reduce((combinedAssets, asset) => {
+              const index = combinedAssets.findIndex((existingAsset) => existingAsset.get('currency') === asset.get('currency'));
+              if (index === -1) return combinedAssets.push(asset);
+              return combinedAssets
+                .setIn([index, 'balance'], combinedAssets.getIn([index, 'balance']).plus(asset.get('balance')))
+                .setIn([index, 'value', 'eth'], combinedAssets.getIn([index, 'value', 'eth']).plus(asset.getIn(['value', 'eth'])))
+                .setIn([index, 'value', 'usd'], combinedAssets.getIn([index, 'value', 'usd']).plus(asset.getIn(['value', 'usd'])))
+                .setIn([index, 'value', 'btc'], combinedAssets.getIn([index, 'value', 'btc']).plus(asset.getIn(['value', 'btc'])));
+            }, acc.get('assets')));
         }, combined);
       };
 
