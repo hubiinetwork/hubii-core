@@ -106,6 +106,131 @@ ShallowWrapper {
                         usd: "81.962044000001231288",
                     },
                 },
+                nahmiiAvaliable: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.113",
+                        btc: "0.00113",
+                        usd: "41.33",
+                    },
+                },
+                nahmiiStaging: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.1",
+                        btc: "0.001",
+                        usd: "41.2",
+                    },
+                },
+                nahmiiStaged: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                    ],
+                    total: Immutable.Map {
+                        eth: "0",
+                        btc: "0",
+                        usd: "0",
+                    },
+                },
+                nahmiiCombined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.2",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.2",
+                                btc: "0.002",
+                                usd: "82.4",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.213",
+                        btc: "0.00213",
+                        usd: "82.53",
+                    },
+                },
+                combined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            balance: "0.398937",
+                            currency: "ETH",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.398937",
+                                btc: "0.00398937",
+                                usd: "164.362044",
+                            },
+                        },
+                        Immutable.Map {
+                            balance: "0.130000000001231288",
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.0130000000001231288",
+                                btc: "0.000130000000001231288",
+                                usd: "0.130000000001231288",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.4119370000001231288",
+                        btc: "0.004119370000001231288",
+                        usd: "164.492044000001231288",
+                    },
+                },
             },
         }
     }
@@ -340,6 +465,131 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
+                nahmiiAvaliable: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.113",
+                                btc: "0.00113",
+                                usd: "41.33",
+                        },
+                },
+                nahmiiStaging: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                        },
+                },
+                nahmiiStaged: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                        ],
+                        total: Immutable.Map {
+                                eth: "0",
+                                btc: "0",
+                                usd: "0",
+                        },
+                },
+                nahmiiCombined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.2",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.2",
+                                                btc: "0.002",
+                                                usd: "82.4",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.213",
+                                btc: "0.00213",
+                                usd: "82.53",
+                        },
+                },
+                combined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        balance: "0.398937",
+                                        currency: "ETH",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.398937",
+                                                btc: "0.00398937",
+                                                usd: "164.362044",
+                                        },
+                                },
+                                Immutable.Map {
+                                        balance: "0.130000000001231288",
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.0130000000001231288",
+                                                btc: "0.000130000000001231288",
+                                                usd: "0.130000000001231288",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.4119370000001231288",
+                                btc: "0.004119370000001231288",
+                                usd: "164.492044000001231288",
+                        },
+                },
         },
 },
       "errors": Object {},
@@ -564,6 +814,131 @@ ShallowWrapper {
                                         eth: "0.1989370000001231288",
                                         btc: "0.001989370000001231288",
                                         usd: "81.962044000001231288",
+                              },
+                    },
+                    nahmiiAvaliable: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.113",
+                                        btc: "0.00113",
+                                        usd: "41.33",
+                              },
+                    },
+                    nahmiiStaging: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.1",
+                                        btc: "0.001",
+                                        usd: "41.2",
+                              },
+                    },
+                    nahmiiStaged: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0",
+                                        btc: "0",
+                                        usd: "0",
+                              },
+                    },
+                    nahmiiCombined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.2",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.2",
+                                                            btc: "0.002",
+                                                            usd: "82.4",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.213",
+                                        btc: "0.00213",
+                                        usd: "82.53",
+                              },
+                    },
+                    combined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  balance: "0.398937",
+                                                  currency: "ETH",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.398937",
+                                                            btc: "0.00398937",
+                                                            usd: "164.362044",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  balance: "0.130000000001231288",
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.0130000000001231288",
+                                                            btc: "0.000130000000001231288",
+                                                            usd: "0.130000000001231288",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.4119370000001231288",
+                                        btc: "0.004119370000001231288",
+                                        usd: "164.492044000001231288",
                               },
                     },
           },
@@ -799,6 +1174,131 @@ ShallowWrapper {
                         eth: "0.1989370000001231288",
                         btc: "0.001989370000001231288",
                         usd: "81.962044000001231288",
+                    },
+                },
+                nahmiiAvaliable: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.113",
+                        btc: "0.00113",
+                        usd: "41.33",
+                    },
+                },
+                nahmiiStaging: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.1",
+                        btc: "0.001",
+                        usd: "41.2",
+                    },
+                },
+                nahmiiStaged: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                    ],
+                    total: Immutable.Map {
+                        eth: "0",
+                        btc: "0",
+                        usd: "0",
+                    },
+                },
+                nahmiiCombined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.2",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.2",
+                                btc: "0.002",
+                                usd: "82.4",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.213",
+                        btc: "0.00213",
+                        usd: "82.53",
+                    },
+                },
+                combined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            balance: "0.398937",
+                            currency: "ETH",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.398937",
+                                btc: "0.00398937",
+                                usd: "164.362044",
+                            },
+                        },
+                        Immutable.Map {
+                            balance: "0.130000000001231288",
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.0130000000001231288",
+                                btc: "0.000130000000001231288",
+                                usd: "0.130000000001231288",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.4119370000001231288",
+                        btc: "0.004119370000001231288",
+                        usd: "164.492044000001231288",
                     },
                 },
                 error: Object {
@@ -1038,6 +1538,131 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
+                nahmiiAvaliable: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.113",
+                                btc: "0.00113",
+                                usd: "41.33",
+                        },
+                },
+                nahmiiStaging: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                        },
+                },
+                nahmiiStaged: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                        ],
+                        total: Immutable.Map {
+                                eth: "0",
+                                btc: "0",
+                                usd: "0",
+                        },
+                },
+                nahmiiCombined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.2",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.2",
+                                                btc: "0.002",
+                                                usd: "82.4",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.213",
+                                btc: "0.00213",
+                                usd: "82.53",
+                        },
+                },
+                combined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        balance: "0.398937",
+                                        currency: "ETH",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.398937",
+                                                btc: "0.00398937",
+                                                usd: "164.362044",
+                                        },
+                                },
+                                Immutable.Map {
+                                        balance: "0.130000000001231288",
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.0130000000001231288",
+                                                btc: "0.000130000000001231288",
+                                                usd: "0.130000000001231288",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.4119370000001231288",
+                                btc: "0.004119370000001231288",
+                                usd: "164.492044000001231288",
+                        },
+                },
                 error: Object {
                         "message": "some error",
                       },
@@ -1265,6 +1890,131 @@ ShallowWrapper {
                                         eth: "0.1989370000001231288",
                                         btc: "0.001989370000001231288",
                                         usd: "81.962044000001231288",
+                              },
+                    },
+                    nahmiiAvaliable: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.113",
+                                        btc: "0.00113",
+                                        usd: "41.33",
+                              },
+                    },
+                    nahmiiStaging: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.1",
+                                        btc: "0.001",
+                                        usd: "41.2",
+                              },
+                    },
+                    nahmiiStaged: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0",
+                                        btc: "0",
+                                        usd: "0",
+                              },
+                    },
+                    nahmiiCombined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.2",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.2",
+                                                            btc: "0.002",
+                                                            usd: "82.4",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.213",
+                                        btc: "0.00213",
+                                        usd: "82.53",
+                              },
+                    },
+                    combined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  balance: "0.398937",
+                                                  currency: "ETH",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.398937",
+                                                            btc: "0.00398937",
+                                                            usd: "164.362044",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  balance: "0.130000000001231288",
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.0130000000001231288",
+                                                            btc: "0.000130000000001231288",
+                                                            usd: "0.130000000001231288",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.4119370000001231288",
+                                        btc: "0.004119370000001231288",
+                                        usd: "164.492044000001231288",
                               },
                     },
                     error: Object {
@@ -1505,6 +2255,131 @@ ShallowWrapper {
                         usd: "81.962044000001231288",
                     },
                 },
+                nahmiiAvaliable: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.113",
+                        btc: "0.00113",
+                        usd: "41.33",
+                    },
+                },
+                nahmiiStaging: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.1",
+                        btc: "0.001",
+                        usd: "41.2",
+                    },
+                },
+                nahmiiStaged: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                    ],
+                    total: Immutable.Map {
+                        eth: "0",
+                        btc: "0",
+                        usd: "0",
+                    },
+                },
+                nahmiiCombined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.2",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.2",
+                                btc: "0.002",
+                                usd: "82.4",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.213",
+                        btc: "0.00213",
+                        usd: "82.53",
+                    },
+                },
+                combined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            balance: "0.398937",
+                            currency: "ETH",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.398937",
+                                btc: "0.00398937",
+                                usd: "164.362044",
+                            },
+                        },
+                        Immutable.Map {
+                            balance: "0.130000000001231288",
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.0130000000001231288",
+                                btc: "0.000130000000001231288",
+                                usd: "0.130000000001231288",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.4119370000001231288",
+                        btc: "0.004119370000001231288",
+                        usd: "164.492044000001231288",
+                    },
+                },
                 loading: true,
             },
         }
@@ -1740,6 +2615,131 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
+                nahmiiAvaliable: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.113",
+                                btc: "0.00113",
+                                usd: "41.33",
+                        },
+                },
+                nahmiiStaging: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                        },
+                },
+                nahmiiStaged: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                        ],
+                        total: Immutable.Map {
+                                eth: "0",
+                                btc: "0",
+                                usd: "0",
+                        },
+                },
+                nahmiiCombined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.2",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.2",
+                                                btc: "0.002",
+                                                usd: "82.4",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.213",
+                                btc: "0.00213",
+                                usd: "82.53",
+                        },
+                },
+                combined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        balance: "0.398937",
+                                        currency: "ETH",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.398937",
+                                                btc: "0.00398937",
+                                                usd: "164.362044",
+                                        },
+                                },
+                                Immutable.Map {
+                                        balance: "0.130000000001231288",
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.0130000000001231288",
+                                                btc: "0.000130000000001231288",
+                                                usd: "0.130000000001231288",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.4119370000001231288",
+                                btc: "0.004119370000001231288",
+                                usd: "164.492044000001231288",
+                        },
+                },
                 loading: true,
         },
 },
@@ -1965,6 +2965,131 @@ ShallowWrapper {
                                         eth: "0.1989370000001231288",
                                         btc: "0.001989370000001231288",
                                         usd: "81.962044000001231288",
+                              },
+                    },
+                    nahmiiAvaliable: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.113",
+                                        btc: "0.00113",
+                                        usd: "41.33",
+                              },
+                    },
+                    nahmiiStaging: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.1",
+                                        btc: "0.001",
+                                        usd: "41.2",
+                              },
+                    },
+                    nahmiiStaged: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0",
+                                        btc: "0",
+                                        usd: "0",
+                              },
+                    },
+                    nahmiiCombined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.2",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.2",
+                                                            btc: "0.002",
+                                                            usd: "82.4",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.213",
+                                        btc: "0.00213",
+                                        usd: "82.53",
+                              },
+                    },
+                    combined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  balance: "0.398937",
+                                                  currency: "ETH",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.398937",
+                                                            btc: "0.00398937",
+                                                            usd: "164.362044",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  balance: "0.130000000001231288",
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.0130000000001231288",
+                                                            btc: "0.000130000000001231288",
+                                                            usd: "0.130000000001231288",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.4119370000001231288",
+                                        btc: "0.004119370000001231288",
+                                        usd: "164.492044000001231288",
                               },
                     },
                     loading: true,
@@ -2203,6 +3328,131 @@ ShallowWrapper {
                         usd: "81.962044000001231288",
                     },
                 },
+                nahmiiAvaliable: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.113",
+                        btc: "0.00113",
+                        usd: "41.33",
+                    },
+                },
+                nahmiiStaging: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.1",
+                        btc: "0.001",
+                        usd: "41.2",
+                    },
+                },
+                nahmiiStaged: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                    ],
+                    total: Immutable.Map {
+                        eth: "0",
+                        btc: "0",
+                        usd: "0",
+                    },
+                },
+                nahmiiCombined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.2",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.2",
+                                btc: "0.002",
+                                usd: "82.4",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.213",
+                        btc: "0.00213",
+                        usd: "82.53",
+                    },
+                },
+                combined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            balance: "0.398937",
+                            currency: "ETH",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.398937",
+                                btc: "0.00398937",
+                                usd: "164.362044",
+                            },
+                        },
+                        Immutable.Map {
+                            balance: "0.130000000001231288",
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.0130000000001231288",
+                                btc: "0.000130000000001231288",
+                                usd: "0.130000000001231288",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.4119370000001231288",
+                        btc: "0.004119370000001231288",
+                        usd: "164.492044000001231288",
+                    },
+                },
             },
         }
     }
@@ -2437,6 +3687,131 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
+                nahmiiAvaliable: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.113",
+                                btc: "0.00113",
+                                usd: "41.33",
+                        },
+                },
+                nahmiiStaging: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                        },
+                },
+                nahmiiStaged: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                        ],
+                        total: Immutable.Map {
+                                eth: "0",
+                                btc: "0",
+                                usd: "0",
+                        },
+                },
+                nahmiiCombined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.2",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.2",
+                                                btc: "0.002",
+                                                usd: "82.4",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.213",
+                                btc: "0.00213",
+                                usd: "82.53",
+                        },
+                },
+                combined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        balance: "0.398937",
+                                        currency: "ETH",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.398937",
+                                                btc: "0.00398937",
+                                                usd: "164.362044",
+                                        },
+                                },
+                                Immutable.Map {
+                                        balance: "0.130000000001231288",
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.0130000000001231288",
+                                                btc: "0.000130000000001231288",
+                                                usd: "0.130000000001231288",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.4119370000001231288",
+                                btc: "0.004119370000001231288",
+                                usd: "164.492044000001231288",
+                        },
+                },
         },
 },
       "errors": Object {},
@@ -2661,6 +4036,131 @@ ShallowWrapper {
                                         eth: "0.1989370000001231288",
                                         btc: "0.001989370000001231288",
                                         usd: "81.962044000001231288",
+                              },
+                    },
+                    nahmiiAvaliable: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.113",
+                                        btc: "0.00113",
+                                        usd: "41.33",
+                              },
+                    },
+                    nahmiiStaging: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.1",
+                                        btc: "0.001",
+                                        usd: "41.2",
+                              },
+                    },
+                    nahmiiStaged: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0",
+                                        btc: "0",
+                                        usd: "0",
+                              },
+                    },
+                    nahmiiCombined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.2",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.2",
+                                                            btc: "0.002",
+                                                            usd: "82.4",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.213",
+                                        btc: "0.00213",
+                                        usd: "82.53",
+                              },
+                    },
+                    combined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  balance: "0.398937",
+                                                  currency: "ETH",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.398937",
+                                                            btc: "0.00398937",
+                                                            usd: "164.362044",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  balance: "0.130000000001231288",
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.0130000000001231288",
+                                                            btc: "0.000130000000001231288",
+                                                            usd: "0.130000000001231288",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.4119370000001231288",
+                                        btc: "0.004119370000001231288",
+                                        usd: "164.492044000001231288",
                               },
                     },
           },
@@ -2898,6 +4398,131 @@ ShallowWrapper {
                         usd: "81.962044000001231288",
                     },
                 },
+                nahmiiAvaliable: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.113",
+                        btc: "0.00113",
+                        usd: "41.33",
+                    },
+                },
+                nahmiiStaging: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.1",
+                        btc: "0.001",
+                        usd: "41.2",
+                    },
+                },
+                nahmiiStaged: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                    ],
+                    total: Immutable.Map {
+                        eth: "0",
+                        btc: "0",
+                        usd: "0",
+                    },
+                },
+                nahmiiCombined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.2",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.2",
+                                btc: "0.002",
+                                usd: "82.4",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.213",
+                        btc: "0.00213",
+                        usd: "82.53",
+                    },
+                },
+                combined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            balance: "0.398937",
+                            currency: "ETH",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.398937",
+                                btc: "0.00398937",
+                                usd: "164.362044",
+                            },
+                        },
+                        Immutable.Map {
+                            balance: "0.130000000001231288",
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.0130000000001231288",
+                                btc: "0.000130000000001231288",
+                                usd: "0.130000000001231288",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.4119370000001231288",
+                        btc: "0.004119370000001231288",
+                        usd: "164.492044000001231288",
+                    },
+                },
             },
         }
     }
@@ -3091,6 +4716,131 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
+                nahmiiAvaliable: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.113",
+                                btc: "0.00113",
+                                usd: "41.33",
+                        },
+                },
+                nahmiiStaging: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                        },
+                },
+                nahmiiStaged: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                        ],
+                        total: Immutable.Map {
+                                eth: "0",
+                                btc: "0",
+                                usd: "0",
+                        },
+                },
+                nahmiiCombined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.2",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.2",
+                                                btc: "0.002",
+                                                usd: "82.4",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.213",
+                                btc: "0.00213",
+                                usd: "82.53",
+                        },
+                },
+                combined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        balance: "0.398937",
+                                        currency: "ETH",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.398937",
+                                                btc: "0.00398937",
+                                                usd: "164.362044",
+                                        },
+                                },
+                                Immutable.Map {
+                                        balance: "0.130000000001231288",
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.0130000000001231288",
+                                                btc: "0.000130000000001231288",
+                                                usd: "0.130000000001231288",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.4119370000001231288",
+                                btc: "0.004119370000001231288",
+                                usd: "164.492044000001231288",
+                        },
+                },
         },
 },
       "errors": Object {},
@@ -3273,6 +5023,131 @@ ShallowWrapper {
                                         eth: "0.1989370000001231288",
                                         btc: "0.001989370000001231288",
                                         usd: "81.962044000001231288",
+                              },
+                    },
+                    nahmiiAvaliable: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.113",
+                                        btc: "0.00113",
+                                        usd: "41.33",
+                              },
+                    },
+                    nahmiiStaging: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.1",
+                                        btc: "0.001",
+                                        usd: "41.2",
+                              },
+                    },
+                    nahmiiStaged: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0",
+                                        btc: "0",
+                                        usd: "0",
+                              },
+                    },
+                    nahmiiCombined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.2",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.2",
+                                                            btc: "0.002",
+                                                            usd: "82.4",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.213",
+                                        btc: "0.00213",
+                                        usd: "82.53",
+                              },
+                    },
+                    combined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  balance: "0.398937",
+                                                  currency: "ETH",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.398937",
+                                                            btc: "0.00398937",
+                                                            usd: "164.362044",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  balance: "0.130000000001231288",
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.0130000000001231288",
+                                                            btc: "0.000130000000001231288",
+                                                            usd: "0.130000000001231288",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.4119370000001231288",
+                                        btc: "0.004119370000001231288",
+                                        usd: "164.492044000001231288",
                               },
                     },
           },
@@ -3468,6 +5343,131 @@ ShallowWrapper {
                         usd: "81.962044000001231288",
                     },
                 },
+                nahmiiAvaliable: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.113",
+                        btc: "0.00113",
+                        usd: "41.33",
+                    },
+                },
+                nahmiiStaging: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.1",
+                        btc: "0.001",
+                        usd: "41.2",
+                    },
+                },
+                nahmiiStaged: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                    ],
+                    total: Immutable.Map {
+                        eth: "0",
+                        btc: "0",
+                        usd: "0",
+                    },
+                },
+                nahmiiCombined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.2",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.2",
+                                btc: "0.002",
+                                usd: "82.4",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.213",
+                        btc: "0.00213",
+                        usd: "82.53",
+                    },
+                },
+                combined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            balance: "0.398937",
+                            currency: "ETH",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.398937",
+                                btc: "0.00398937",
+                                usd: "164.362044",
+                            },
+                        },
+                        Immutable.Map {
+                            balance: "0.130000000001231288",
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.0130000000001231288",
+                                btc: "0.000130000000001231288",
+                                usd: "0.130000000001231288",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.4119370000001231288",
+                        btc: "0.004119370000001231288",
+                        usd: "164.492044000001231288",
+                    },
+                },
             },
         }
     }
@@ -3661,6 +5661,131 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
+                nahmiiAvaliable: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.113",
+                                btc: "0.00113",
+                                usd: "41.33",
+                        },
+                },
+                nahmiiStaging: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                        },
+                },
+                nahmiiStaged: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                        ],
+                        total: Immutable.Map {
+                                eth: "0",
+                                btc: "0",
+                                usd: "0",
+                        },
+                },
+                nahmiiCombined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.2",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.2",
+                                                btc: "0.002",
+                                                usd: "82.4",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.213",
+                                btc: "0.00213",
+                                usd: "82.53",
+                        },
+                },
+                combined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        balance: "0.398937",
+                                        currency: "ETH",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.398937",
+                                                btc: "0.00398937",
+                                                usd: "164.362044",
+                                        },
+                                },
+                                Immutable.Map {
+                                        balance: "0.130000000001231288",
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.0130000000001231288",
+                                                btc: "0.000130000000001231288",
+                                                usd: "0.130000000001231288",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.4119370000001231288",
+                                btc: "0.004119370000001231288",
+                                usd: "164.492044000001231288",
+                        },
+                },
         },
 },
       "errors": Object {},
@@ -3843,6 +5968,131 @@ ShallowWrapper {
                                         eth: "0.1989370000001231288",
                                         btc: "0.001989370000001231288",
                                         usd: "81.962044000001231288",
+                              },
+                    },
+                    nahmiiAvaliable: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.113",
+                                        btc: "0.00113",
+                                        usd: "41.33",
+                              },
+                    },
+                    nahmiiStaging: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.1",
+                                        btc: "0.001",
+                                        usd: "41.2",
+                              },
+                    },
+                    nahmiiStaged: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0",
+                                        btc: "0",
+                                        usd: "0",
+                              },
+                    },
+                    nahmiiCombined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.2",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.2",
+                                                            btc: "0.002",
+                                                            usd: "82.4",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.213",
+                                        btc: "0.00213",
+                                        usd: "82.53",
+                              },
+                    },
+                    combined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  balance: "0.398937",
+                                                  currency: "ETH",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.398937",
+                                                            btc: "0.00398937",
+                                                            usd: "164.362044",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  balance: "0.130000000001231288",
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.0130000000001231288",
+                                                            btc: "0.000130000000001231288",
+                                                            usd: "0.130000000001231288",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.4119370000001231288",
+                                        btc: "0.004119370000001231288",
+                                        usd: "164.492044000001231288",
                               },
                     },
           },
@@ -4036,6 +6286,131 @@ ShallowWrapper {
                         eth: "0.1989370000001231288",
                         btc: "0.001989370000001231288",
                         usd: "81.962044000001231288",
+                    },
+                },
+                nahmiiAvaliable: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.113",
+                        btc: "0.00113",
+                        usd: "41.33",
+                    },
+                },
+                nahmiiStaging: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.1",
+                        btc: "0.001",
+                        usd: "41.2",
+                    },
+                },
+                nahmiiStaged: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                    ],
+                    total: Immutable.Map {
+                        eth: "0",
+                        btc: "0",
+                        usd: "0",
+                    },
+                },
+                nahmiiCombined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.2",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.2",
+                                btc: "0.002",
+                                usd: "82.4",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.213",
+                        btc: "0.00213",
+                        usd: "82.53",
+                    },
+                },
+                combined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            balance: "0.398937",
+                            currency: "ETH",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.398937",
+                                btc: "0.00398937",
+                                usd: "164.362044",
+                            },
+                        },
+                        Immutable.Map {
+                            balance: "0.130000000001231288",
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.0130000000001231288",
+                                btc: "0.000130000000001231288",
+                                usd: "0.130000000001231288",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.4119370000001231288",
+                        btc: "0.004119370000001231288",
+                        usd: "164.492044000001231288",
                     },
                 },
             },
@@ -4236,6 +6611,131 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
+                nahmiiAvaliable: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.113",
+                                btc: "0.00113",
+                                usd: "41.33",
+                        },
+                },
+                nahmiiStaging: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                        },
+                },
+                nahmiiStaged: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                        ],
+                        total: Immutable.Map {
+                                eth: "0",
+                                btc: "0",
+                                usd: "0",
+                        },
+                },
+                nahmiiCombined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.2",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.2",
+                                                btc: "0.002",
+                                                usd: "82.4",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.213",
+                                btc: "0.00213",
+                                usd: "82.53",
+                        },
+                },
+                combined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        balance: "0.398937",
+                                        currency: "ETH",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.398937",
+                                                btc: "0.00398937",
+                                                usd: "164.362044",
+                                        },
+                                },
+                                Immutable.Map {
+                                        balance: "0.130000000001231288",
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.0130000000001231288",
+                                                btc: "0.000130000000001231288",
+                                                usd: "0.130000000001231288",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.4119370000001231288",
+                                btc: "0.004119370000001231288",
+                                usd: "164.492044000001231288",
+                        },
+                },
         },
 },
       "errors": Object {},
@@ -4424,6 +6924,131 @@ ShallowWrapper {
                                         eth: "0.1989370000001231288",
                                         btc: "0.001989370000001231288",
                                         usd: "81.962044000001231288",
+                              },
+                    },
+                    nahmiiAvaliable: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.113",
+                                        btc: "0.00113",
+                                        usd: "41.33",
+                              },
+                    },
+                    nahmiiStaging: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.1",
+                                        btc: "0.001",
+                                        usd: "41.2",
+                              },
+                    },
+                    nahmiiStaged: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0",
+                                        btc: "0",
+                                        usd: "0",
+                              },
+                    },
+                    nahmiiCombined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.2",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.2",
+                                                            btc: "0.002",
+                                                            usd: "82.4",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.213",
+                                        btc: "0.00213",
+                                        usd: "82.53",
+                              },
+                    },
+                    combined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  balance: "0.398937",
+                                                  currency: "ETH",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.398937",
+                                                            btc: "0.00398937",
+                                                            usd: "164.362044",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  balance: "0.130000000001231288",
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.0130000000001231288",
+                                                            btc: "0.000130000000001231288",
+                                                            usd: "0.130000000001231288",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.4119370000001231288",
+                                        btc: "0.004119370000001231288",
+                                        usd: "164.492044000001231288",
                               },
                     },
           },
@@ -4625,6 +7250,131 @@ ShallowWrapper {
                         usd: "81.962044000001231288",
                     },
                 },
+                nahmiiAvaliable: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.113",
+                        btc: "0.00113",
+                        usd: "41.33",
+                    },
+                },
+                nahmiiStaging: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.1",
+                        btc: "0.001",
+                        usd: "41.2",
+                    },
+                },
+                nahmiiStaged: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                    ],
+                    total: Immutable.Map {
+                        eth: "0",
+                        btc: "0",
+                        usd: "0",
+                    },
+                },
+                nahmiiCombined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.2",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.2",
+                                btc: "0.002",
+                                usd: "82.4",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.213",
+                        btc: "0.00213",
+                        usd: "82.53",
+                    },
+                },
+                combined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            balance: "0.398937",
+                            currency: "ETH",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.398937",
+                                btc: "0.00398937",
+                                usd: "164.362044",
+                            },
+                        },
+                        Immutable.Map {
+                            balance: "0.130000000001231288",
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.0130000000001231288",
+                                btc: "0.000130000000001231288",
+                                usd: "0.130000000001231288",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.4119370000001231288",
+                        btc: "0.004119370000001231288",
+                        usd: "164.492044000001231288",
+                    },
+                },
             },
         }
     }
@@ -4823,6 +7573,131 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
+                nahmiiAvaliable: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.113",
+                                btc: "0.00113",
+                                usd: "41.33",
+                        },
+                },
+                nahmiiStaging: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                        },
+                },
+                nahmiiStaged: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                        ],
+                        total: Immutable.Map {
+                                eth: "0",
+                                btc: "0",
+                                usd: "0",
+                        },
+                },
+                nahmiiCombined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.2",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.2",
+                                                btc: "0.002",
+                                                usd: "82.4",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.213",
+                                btc: "0.00213",
+                                usd: "82.53",
+                        },
+                },
+                combined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        balance: "0.398937",
+                                        currency: "ETH",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.398937",
+                                                btc: "0.00398937",
+                                                usd: "164.362044",
+                                        },
+                                },
+                                Immutable.Map {
+                                        balance: "0.130000000001231288",
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.0130000000001231288",
+                                                btc: "0.000130000000001231288",
+                                                usd: "0.130000000001231288",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.4119370000001231288",
+                                btc: "0.004119370000001231288",
+                                usd: "164.492044000001231288",
+                        },
+                },
         },
 },
       "errors": Object {},
@@ -5011,6 +7886,131 @@ ShallowWrapper {
                                         eth: "0.1989370000001231288",
                                         btc: "0.001989370000001231288",
                                         usd: "81.962044000001231288",
+                              },
+                    },
+                    nahmiiAvaliable: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.113",
+                                        btc: "0.00113",
+                                        usd: "41.33",
+                              },
+                    },
+                    nahmiiStaging: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.1",
+                                        btc: "0.001",
+                                        usd: "41.2",
+                              },
+                    },
+                    nahmiiStaged: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0",
+                                        btc: "0",
+                                        usd: "0",
+                              },
+                    },
+                    nahmiiCombined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.2",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.2",
+                                                            btc: "0.002",
+                                                            usd: "82.4",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.213",
+                                        btc: "0.00213",
+                                        usd: "82.53",
+                              },
+                    },
+                    combined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  balance: "0.398937",
+                                                  currency: "ETH",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.398937",
+                                                            btc: "0.00398937",
+                                                            usd: "164.362044",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  balance: "0.130000000001231288",
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.0130000000001231288",
+                                                            btc: "0.000130000000001231288",
+                                                            usd: "0.130000000001231288",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.4119370000001231288",
+                                        btc: "0.004119370000001231288",
+                                        usd: "164.492044000001231288",
                               },
                     },
           },
@@ -5210,6 +8210,131 @@ ShallowWrapper {
                         eth: "0.1989370000001231288",
                         btc: "0.001989370000001231288",
                         usd: "81.962044000001231288",
+                    },
+                },
+                nahmiiAvaliable: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.113",
+                        btc: "0.00113",
+                        usd: "41.33",
+                    },
+                },
+                nahmiiStaging: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.1",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.1",
+                        btc: "0.001",
+                        usd: "41.2",
+                    },
+                },
+                nahmiiStaged: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                    ],
+                    total: Immutable.Map {
+                        eth: "0",
+                        btc: "0",
+                        usd: "0",
+                    },
+                },
+                nahmiiCombined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            currency: "ETH",
+                            balance: "0.2",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.2",
+                                btc: "0.002",
+                                usd: "82.4",
+                            },
+                        },
+                        Immutable.Map {
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            balance: "0.13",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.013",
+                                btc: "0.00013",
+                                usd: "0.13",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.213",
+                        btc: "0.00213",
+                        usd: "82.53",
+                    },
+                },
+                combined: Immutable.Map {
+                    loading: false,
+                    error: null,
+                    assets: Immutable.List [
+                        Immutable.Map {
+                            balance: "0.398937",
+                            currency: "ETH",
+                            symbol: "ETH",
+                            value: Immutable.Map {
+                                eth: "0.398937",
+                                btc: "0.00398937",
+                                usd: "164.362044",
+                            },
+                        },
+                        Immutable.Map {
+                            balance: "0.130000000001231288",
+                            currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                            symbol: "BOKKY",
+                            value: Immutable.Map {
+                                eth: "0.0130000000001231288",
+                                btc: "0.000130000000001231288",
+                                usd: "0.130000000001231288",
+                            },
+                        },
+                    ],
+                    total: Immutable.Map {
+                        eth: "0.4119370000001231288",
+                        btc: "0.004119370000001231288",
+                        usd: "164.492044000001231288",
                     },
                 },
             },
@@ -5446,6 +8571,131 @@ ShallowWrapper {
                                 usd: "81.962044000001231288",
                         },
                 },
+                nahmiiAvaliable: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.113",
+                                btc: "0.00113",
+                                usd: "41.33",
+                        },
+                },
+                nahmiiStaging: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.1",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.1",
+                                                btc: "0.001",
+                                                usd: "41.2",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.1",
+                                btc: "0.001",
+                                usd: "41.2",
+                        },
+                },
+                nahmiiStaged: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                        ],
+                        total: Immutable.Map {
+                                eth: "0",
+                                btc: "0",
+                                usd: "0",
+                        },
+                },
+                nahmiiCombined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        currency: "ETH",
+                                        balance: "0.2",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.2",
+                                                btc: "0.002",
+                                                usd: "82.4",
+                                        },
+                                },
+                                Immutable.Map {
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        balance: "0.13",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.013",
+                                                btc: "0.00013",
+                                                usd: "0.13",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.213",
+                                btc: "0.00213",
+                                usd: "82.53",
+                        },
+                },
+                combined: Immutable.Map {
+                        loading: false,
+                        error: null,
+                        assets: Immutable.List [
+                                Immutable.Map {
+                                        balance: "0.398937",
+                                        currency: "ETH",
+                                        symbol: "ETH",
+                                        value: Immutable.Map {
+                                                eth: "0.398937",
+                                                btc: "0.00398937",
+                                                usd: "164.362044",
+                                        },
+                                },
+                                Immutable.Map {
+                                        balance: "0.130000000001231288",
+                                        currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                        symbol: "BOKKY",
+                                        value: Immutable.Map {
+                                                eth: "0.0130000000001231288",
+                                                btc: "0.000130000000001231288",
+                                                usd: "0.130000000001231288",
+                                        },
+                                },
+                        ],
+                        total: Immutable.Map {
+                                eth: "0.4119370000001231288",
+                                btc: "0.004119370000001231288",
+                                usd: "164.492044000001231288",
+                        },
+                },
         },
 },
       "errors": Object {},
@@ -5670,6 +8920,131 @@ ShallowWrapper {
                                         eth: "0.1989370000001231288",
                                         btc: "0.001989370000001231288",
                                         usd: "81.962044000001231288",
+                              },
+                    },
+                    nahmiiAvaliable: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.113",
+                                        btc: "0.00113",
+                                        usd: "41.33",
+                              },
+                    },
+                    nahmiiStaging: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.1",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.1",
+                                                            btc: "0.001",
+                                                            usd: "41.2",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.1",
+                                        btc: "0.001",
+                                        usd: "41.2",
+                              },
+                    },
+                    nahmiiStaged: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0",
+                                        btc: "0",
+                                        usd: "0",
+                              },
+                    },
+                    nahmiiCombined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  currency: "ETH",
+                                                  balance: "0.2",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.2",
+                                                            btc: "0.002",
+                                                            usd: "82.4",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  balance: "0.13",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.013",
+                                                            btc: "0.00013",
+                                                            usd: "0.13",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.213",
+                                        btc: "0.00213",
+                                        usd: "82.53",
+                              },
+                    },
+                    combined: Immutable.Map {
+                              loading: false,
+                              error: null,
+                              assets: Immutable.List [
+                                        Immutable.Map {
+                                                  balance: "0.398937",
+                                                  currency: "ETH",
+                                                  symbol: "ETH",
+                                                  value: Immutable.Map {
+                                                            eth: "0.398937",
+                                                            btc: "0.00398937",
+                                                            usd: "164.362044",
+                                                  },
+                                        },
+                                        Immutable.Map {
+                                                  balance: "0.130000000001231288",
+                                                  currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                                                  symbol: "BOKKY",
+                                                  value: Immutable.Map {
+                                                            eth: "0.0130000000001231288",
+                                                            btc: "0.000130000000001231288",
+                                                            usd: "0.130000000001231288",
+                                                  },
+                                        },
+                              ],
+                              total: Immutable.Map {
+                                        eth: "0.4119370000001231288",
+                                        btc: "0.004119370000001231288",
+                                        usd: "164.492044000001231288",
                               },
                     },
           },

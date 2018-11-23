@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 import { Spring } from 'react-spring';
 import { VictoryPie, VictoryContainer, VictoryTooltip } from 'victory';
+import { getBreakdown } from 'utils/wallet';
 
 import BreakdownList from 'components/BreakdownList';
 import Heading from 'components/ui/Heading';
@@ -26,14 +27,20 @@ class Breakdown extends React.Component {
 
   render() {
     const { showPie } = this.state;
-    const { data, value, intl } = this.props;
+    const {
+      totalBalances,
+      supportedAssets,
+      intl,
+    } = this.props;
     const { formatMessage } = intl;
-    const chartData = data.map((item) => ({
+    const combinedBreakdown = getBreakdown(totalBalances.get('combined'), supportedAssets);
+    const value = +totalBalances.getIn(['combined', 'total', 'usd']).toFixed(6);
+    const chartData = combinedBreakdown.map((item) => ({
       x: item.percentage,
       y: 2 * item.percentage,
       label: `${item.label}: ${item.percentage.toFixed(0)}%`,
     }));
-    const colors = data.map((item) => item.color);
+    const colors = combinedBreakdown.map((item) => item.color);
     if (value === '0') {
       return (
         <div>
@@ -89,7 +96,12 @@ class Breakdown extends React.Component {
           <BreakdownList
             onExpandList={this.togglePie}
             expandList={!this.state.showPie}
-            combinedBalances={data}
+            combinedBreakdown={combinedBreakdown}
+            baseLayerBreakdown={getBreakdown(totalBalances.get('baseLayer'), supportedAssets)}
+            nahmiiAvaliableBreakdown={getBreakdown(totalBalances.get('nahmiiAvaliable'), supportedAssets)}
+            nahmiiCombinedBreakdown={getBreakdown(totalBalances.get('nahmiiCombined'), supportedAssets)}
+            nahmiiStagingBreakdown={getBreakdown(totalBalances.get('nahmiiStaging'), supportedAssets)}
+            nahmiiStagedBreakdown={getBreakdown(totalBalances.get('nahmiiStaged'), supportedAssets)}
           />
         </div>
       </Wrapper>
@@ -101,18 +113,8 @@ Breakdown.propTypes = {
   /**
    * Total portfolio value in USD.
    */
-  value: PropTypes.string.isRequired,
-  /**
-   * data  to populate  the Breakdowwn Component.
-   */
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      percentage: PropTypes.number.isRequired,
-      amount: PropTypes.string.isRequired,
-      color: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-    })
-  ),
+  totalBalances: PropTypes.object.isRequired,
+  supportedAssets: PropTypes.object.isRequired,
   intl: PropTypes.object,
 };
 export default injectIntl(Breakdown);

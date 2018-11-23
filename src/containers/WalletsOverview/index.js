@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
 import { injectIntl } from 'react-intl';
 
-import { getBreakdown, isConnected } from 'utils/wallet';
+import { isConnected } from 'utils/wallet';
 
 import {
   deleteWallet,
@@ -111,7 +111,6 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
   render() {
     const { totalBalances, supportedAssets } = this.props;
     const { formatMessage } = this.props.intl;
-    const baseLayerTotalBalances = totalBalances.get('baseLayer');
     const walletCards = this.renderWalletCards();
     return (
       <Wrapper>
@@ -126,15 +125,13 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           </Col>
           <Col sm={24} md={12} lg={8}>
             {
-              !baseLayerTotalBalances.get('loading') &&
-              !baseLayerTotalBalances.get('error') &&
               !supportedAssets.get('loading') &&
               !supportedAssets.get('error') &&
               <div>
                 <SectionHeading>{formatMessage({ id: 'balance_breakdown' })}</SectionHeading>
                 <BreakdownPie
-                  data={getBreakdown(baseLayerTotalBalances, supportedAssets)}
-                  value={(+baseLayerTotalBalances.getIn(['total', 'usd']).toFixed(6)).toString()}
+                  totalBalances={totalBalances}
+                  supportedAssets={supportedAssets}
                 />
               </div>
             }

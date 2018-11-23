@@ -49,6 +49,15 @@ export const totalBalancesLoadedMock = fromJS({
   },
   nahmiiStaging: { assets: { ETH: { amount: new BigNumber('0.1'), value: { usd: new BigNumber('41.2') } } }, loading: false, error: null, total: { usd: new BigNumber('41.2') } },
   nahmiiStaged: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
+  nahmiiCombined: {
+    assets: {
+      ETH: { value: { usd: new BigNumber('82.4') }, amount: new BigNumber('0.2') },
+      '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { value: { usd: new BigNumber('0.13') }, amount: new BigNumber('0.13') },
+    },
+    loading: false,
+    error: null,
+    total: { usd: new BigNumber('82.53') },
+  },
   combined: {
     assets: {
       ETH: { value: { usd: new BigNumber('164.362044') }, amount: new BigNumber('0.398937') },
@@ -150,6 +159,37 @@ export const walletsWithInfoMock = fromJS([
         },
       },
       nahmiiStaged: { loading: false, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
+      nahmiiCombined: {
+        loading: false,
+        error: null,
+        assets: [
+          {
+            currency: 'ETH',
+            balance: new BigNumber('0.2'),
+            symbol: 'ETH',
+            value: {
+              eth: new BigNumber('0.2'),
+              btc: new BigNumber('0.002'),
+              usd: new BigNumber('82.4'),
+            },
+          },
+          {
+            currency: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
+            balance: new BigNumber('0.13'),
+            symbol: 'BOKKY',
+            value: {
+              eth: new BigNumber('0.013'),
+              btc: new BigNumber('0.00013'),
+              usd: new BigNumber('0.13'),
+            },
+          },
+        ],
+        total: {
+          eth: new BigNumber('0.213'),
+          btc: new BigNumber('0.00213'),
+          usd: new BigNumber('82.53'),
+        },
+      },
       combined: {
         loading: false,
         error: null,
@@ -194,6 +234,7 @@ export const walletsWithInfoMock = fromJS([
       nahmiiAvaliable: { loading: false, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
       nahmiiStaging: { loading: false, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
       nahmiiStaged: { loading: false, error: true, assets: [], total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } },
+      nahmiiCombined: { loading: false, error: true, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
       combined: { loading: false, error: true, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
     },
   },
@@ -213,6 +254,7 @@ export const walletsWithInfoMock = fromJS([
       nahmiiAvaliable: { loading: false, error: null, assets: [], total: { eth: new BigNumber(new BigNumber('0')), btc: new BigNumber('0'), usd: new BigNumber('0') } },
       nahmiiStaging: { loading: true, error: null, assets: [], total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } },
       nahmiiStaged: { loading: false, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
+      nahmiiCombined: { loading: true, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
       combined: { loading: true, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
     },
   },
@@ -228,6 +270,7 @@ export const walletsWithInfoMock = fromJS([
       nahmiiAvaliable: { loading: false, error: null, assets: [], total: { eth: new BigNumber(new BigNumber('0')), btc: new BigNumber('0'), usd: new BigNumber('0') } },
       nahmiiStaging: { loading: false, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
       nahmiiStaged: { loading: false, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
+      nahmiiCombined: { loading: false, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
       combined: { loading: true, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
     },
   },

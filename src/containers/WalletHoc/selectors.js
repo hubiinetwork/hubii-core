@@ -152,29 +152,31 @@ const makeSelectTotalBalances = () => createSelector(
     });
 
     // calculate combined balances
-    totalBalances.forEach((balance) => {
-      balance.get('assets').forEach((assetDetails, asset) => {
-        // update asset specific values
-        const prevAmount = totalBalances.getIn(['combined', 'assets', asset, 'amount']) || new BigNumber('0');
-        const nextAmount = prevAmount.plus(assetDetails.get('amount'));
+    const calcCombinedBalances = (assetDetails, asset, label) => {
+      const prevAmount = totalBalances.getIn([label, 'assets', asset, 'amount']) || new BigNumber('0');
+      const nextAmount = prevAmount.plus(assetDetails.get('amount'));
 
-        const prevValue = totalBalances.getIn(['combined', 'assets', asset, 'value']) || fromJS({ usd: new BigNumber('0') });
-        const nextValue = assetDetails
+      const prevValue = totalBalances.getIn([label, 'assets', asset, 'value']) || fromJS({ usd: new BigNumber('0') });
+      const nextValue = assetDetails
           .get('value')
           .reduce((acc, value, currency) => acc.set(currency, value.plus(acc.get(currency) || '0')), prevValue);
 
-        totalBalances = totalBalances
-          .setIn(['combined', 'assets', asset, 'value'], nextValue)
-          .setIn(['combined', 'assets', asset, 'amount'], nextAmount);
-
         // update total values
-        const prevTotalValue = totalBalances.getIn(['combined', 'total']) || new BigNumber('0');
-        const nextTotalValue = assetDetails
+      const prevTotalValue = totalBalances.getIn([label, 'total']) || new BigNumber('0');
+      const nextTotalValue = assetDetails
           .get('value')
           .reduce((acc, value, currency) => acc.set(currency, value.plus(acc.get(currency) || '0')), prevTotalValue);
 
-        totalBalances = totalBalances
-          .setIn(['combined', 'total'], nextTotalValue);
+      totalBalances = totalBalances
+          .setIn([label, 'assets', asset, 'value'], nextValue)
+          .setIn([label, 'assets', asset, 'amount'], nextAmount)
+          .setIn([label, 'total'], nextTotalValue);
+    };
+
+    totalBalances.forEach((balance, balanceType) => {
+      balance.get('assets').forEach((assetDetails, asset) => {
+        calcCombinedBalances(assetDetails, asset, 'combined');
+        if (balanceType !== 'baseLayer') calcCombinedBalances(assetDetails, asset, 'nahmiiCombined');
       });
     });
     return totalBalances;
@@ -275,18 +277,20 @@ const makeSelectWalletsWithInfo = () => createSelector(
       });
 
       // add a 'combined' balance type which is the sum of all different types of balance in the wallet
-      let combined = fromJS({
-        loading: false,
-        error: null,
-        assets: [],
-        total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') },
-      });
-      combined = walletWithInfo.get('balances').reduce((acc, balance) => {
-        // if any of the wallet's assets are loading or errored out, set combined to the appropriate state
-        if (acc.get('loading') || acc.get('error')) return acc;
-        if (balance.get('loading')) return combined.set('loading', true);
-        if (balance.get('error')) return combined.set('error', balance.get('error'));
-        return acc
+      const calcCombinedBalances = (...ignore) => {
+        const combined = fromJS({
+          loading: false,
+          error: null,
+          assets: [],
+          total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') },
+        });
+        return walletWithInfo.get('balances').reduce((acc, balance, balanceType) => {
+          if (ignore.includes(balanceType)) return acc;
+          // if any of the wallet's assets are loading or errored out, set combined to the appropriate state
+          if (acc.get('loading') || acc.get('error')) return acc;
+          if (balance.get('loading')) return combined.set('loading', true);
+          if (balance.get('error')) return combined.set('error', balance.get('error'));
+          return acc
           .setIn(['total', 'eth'], acc.getIn(['total', 'eth']).plus(balance.getIn(['total', 'eth'])))
           .setIn(['total', 'btc'], acc.getIn(['total', 'btc']).plus(balance.getIn(['total', 'btc'])))
           .setIn(['total', 'usd'], acc.getIn(['total', 'usd']).plus(balance.getIn(['total', 'usd'])))
@@ -299,9 +303,15 @@ const makeSelectWalletsWithInfo = () => createSelector(
               .setIn([index, 'value', 'usd'], combinedAssets.getIn([index, 'value', 'usd']).plus(asset.getIn(['value', 'usd'])))
               .setIn([index, 'value', 'btc'], combinedAssets.getIn([index, 'value', 'btc']).plus(asset.getIn(['value', 'btc'])));
           }, acc.get('assets')));
-      }, combined);
+        }, combined);
+      };
 
-      walletWithInfo = walletWithInfo.setIn(['balances', 'combined'], combined);
+      const nahmiiCombined = calcCombinedBalances('baseLayer');
+      const combined = calcCombinedBalances();
+
+      walletWithInfo = walletWithInfo
+        .setIn(['balances', 'nahmiiCombined'], nahmiiCombined)
+        .setIn(['balances', 'combined'], combined);
 
       return walletWithInfo;
     });

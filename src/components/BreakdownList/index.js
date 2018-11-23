@@ -18,6 +18,26 @@ import {
 } from './style';
 
 const generateList = (data, extraInfo = false) => {
+  if (data.length === 0) {
+    return (
+      <FlexItem>
+        <div>
+          <Logo
+            src={getAbsolutePath('public/images/assets/ETH.svg')}
+          />
+          <Text>0</Text>
+        &nbsp;
+          <Label>ETH</Label>
+        </div>
+        {
+        extraInfo &&
+        <Percentage>
+          {`${formatFiat(0, 'USD')}`}
+        </Percentage>
+      }
+      </FlexItem>
+    );
+  }
   const sortedData = data.filter((item) => item.percentage >= 0).sort((a, b) => b.percentage - a.percentage);
   return sortedData.map((item) => (
     <FlexItem key={`token-${item.label}`}>
@@ -42,14 +62,22 @@ const generateList = (data, extraInfo = false) => {
 
 class BreakdownList extends React.PureComponent {
   render() {
-    const { combinedBalances, expandList } = this.props;
+    const {
+      combinedBreakdown,
+      baseLayerBreakdown,
+      nahmiiAvaliableBreakdown,
+      nahmiiCombinedBreakdown,
+      nahmiiStagedBreakdown,
+      nahmiiStagingBreakdown,
+      expandList,
+    } = this.props;
     const { formatMessage } = this.props.intl;
-    const combinedBalanceList = generateList(combinedBalances, true);
-    const baseLayerBalanceList = generateList(combinedBalances);
-    const nahmiiBalanceList = generateList(combinedBalances);
-    const nahmiiAvaliableBalanceList = generateList(combinedBalances);
-    const nahmiiStagingBalanceList = generateList(combinedBalances);
-    const nahmiiStagedBalanceList = generateList(combinedBalances);
+    const combinedBalanceList = generateList(combinedBreakdown, true);
+    const baseLayerBalanceList = generateList(baseLayerBreakdown);
+    const nahmiiBalanceList = generateList(nahmiiCombinedBreakdown);
+    const nahmiiAvaliableBalanceList = generateList(nahmiiAvaliableBreakdown);
+    const nahmiiStagingBalanceList = generateList(nahmiiStagingBreakdown);
+    const nahmiiStagedBalanceList = generateList(nahmiiStagedBreakdown);
 
     return (
       <Spring
@@ -89,15 +117,13 @@ class BreakdownList extends React.PureComponent {
 }
 
 BreakdownList.propTypes = {
-  combinedBalances: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      percentage: PropTypes.number.isRequired,
-      value: PropTypes.string.isRequired,
-      amount: PropTypes.string.isRequired,
-    }).isRequired
-  ),
   expandList: PropTypes.bool.isRequired,
+  combinedBreakdown: PropTypes.array.isRequired,
+  nahmiiCombinedBreakdown: PropTypes.array.isRequired,
+  baseLayerBreakdown: PropTypes.array.isRequired,
+  nahmiiAvaliableBreakdown: PropTypes.array.isRequired,
+  nahmiiStagingBreakdown: PropTypes.array.isRequired,
+  nahmiiStagedBreakdown: PropTypes.array.isRequired,
   intl: PropTypes.object.isRequired,
 };
 
