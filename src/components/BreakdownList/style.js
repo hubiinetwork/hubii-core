@@ -30,9 +30,12 @@ export const FlexItem = styled.div`
   flex-wrap: wrap;
 `;
 
-export const NahmiiBalancesWrapper = styled.div`
-  transform: ${({ expanded }) => `translate3d(0,${20 - (expanded * 20)}px,0)`};
-  opacity: ${({ expanded }) => expanded};
+export const NahmiiBalancesWrapper = styled.div.attrs({
+  style: ({ expanded }) => ({
+    transform: `translate3d(0,${20 - (expanded * 20)}px,0)`,
+    opacity: expanded,
+  }),
+})`
   margin-top: 1rem;
   flex-direction: column;
   margin-left: 0.5rem;

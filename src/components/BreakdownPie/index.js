@@ -50,7 +50,10 @@ class Breakdown extends React.Component {
       );
     }
     return (
-      <Wrapper allowOverflow={!showPie}>
+      <Wrapper
+        style={{ minHeight: '90vh' }}
+        allowOverflow={!showPie}
+      >
         <div>
           <Text large>{formatMessage({ id: 'total_fiat_value' })}</Text>
           <Heading large>{formatFiat(value, 'USD')}</Heading>
@@ -91,6 +94,7 @@ class Breakdown extends React.Component {
                   />
                 </div>
                 <div
+                  style={{ height: '100%', flex: '1' }}
                   onMouseEnter={() => this.togglePie(false)}
                   onMouseLeave={() => this.togglePie(true)}
                 >
