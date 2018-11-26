@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Icon } from 'antd';
 
 import Text from 'components/ui/Text';
 
@@ -30,13 +31,22 @@ export const FlexItem = styled.div`
   flex-wrap: wrap;
 `;
 
+export const ToggleExpandedArrow = styled(Icon).attrs({
+  type: 'down',
+  style: ({ expanded }) => ({
+    transform: `rotate(${expanded * 180}deg)`,
+  }),
+})`
+  margin-left: 0.5rem;
+  color: ${({ theme }) => theme.palette.info};
+`;
+
 export const NahmiiBalancesWrapper = styled.div.attrs({
   style: ({ expanded }) => ({
     transform: `translate3d(0,${20 - (expanded * 20)}px,0)`,
     opacity: expanded,
   }),
 })`
-  margin-bottom: 100%;
   margin-top: 1rem;
   flex-direction: column;
   margin-left: 0.5rem;

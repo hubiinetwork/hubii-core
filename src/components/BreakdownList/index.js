@@ -12,6 +12,7 @@ import {
   Percentage,
   Label,
   FlexContainer,
+  ToggleExpandedArrow,
   FlexItem,
   NahmiiBalancesWrapper,
 } from './style';
@@ -86,12 +87,14 @@ class BreakdownList extends React.PureComponent {
         <Text large>{formatMessage({ id: 'base_layer_balances' })}</Text>
         <FlexContainer>{baseLayerBalanceList}</FlexContainer>
         <br />
-        <span >
+        <a onClick={this.props.togglePie} role="button" tabIndex="0" style={{ textDecoration: 'none' }}>
           <NahmiiText large /><Text large> { formatMessage({ id: 'balances' }) }</Text>
-        </span>
+          <ToggleExpandedArrow
+            expanded={expandedAmount}
+          />
+        </a>
         <FlexContainer>{nahmiiBalanceList}</FlexContainer>
         <NahmiiBalancesWrapper expanded={expandedAmount}>
-
           <Text>{formatMessage({ id: 'available' })}</Text>
           <FlexContainer>{nahmiiAvailableBalanceList}</FlexContainer>
           <br />
@@ -107,6 +110,7 @@ class BreakdownList extends React.PureComponent {
   }
 
 BreakdownList.propTypes = {
+  togglePie: PropTypes.func.isRequired,
   expandedAmount: PropTypes.number.isRequired,
   combinedBreakdown: PropTypes.array.isRequired,
   nahmiiCombinedBreakdown: PropTypes.array.isRequired,

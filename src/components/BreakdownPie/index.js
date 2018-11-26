@@ -21,8 +21,8 @@ class Breakdown extends React.Component {
     this.togglePie = this.togglePie.bind(this);
   }
 
-  togglePie(showPie) {
-    this.setState({ showPie });
+  togglePie() {
+    this.setState({ showPie: !this.state.showPie });
   }
 
   render() {
@@ -90,13 +90,9 @@ class Breakdown extends React.Component {
                   }
                   />
                 </div>
-                <div
-                  style={{ height: '100%', flex: '1' }}
-                  onMouseEnter={() => this.togglePie(false)}
-                  onMouseLeave={() => this.togglePie(true)}
-                >
+                <div>
                   <BreakdownList
-                    onExpandList={this.togglePie}
+                    togglePie={this.togglePie}
                     expandedAmount={props.listExpanded}
                     combinedBreakdown={combinedBreakdown}
                     baseLayerBreakdown={getBreakdown(totalBalances.get('baseLayer'), supportedAssets)}
