@@ -721,7 +721,7 @@ async-eventemitter@^0.2.2:
   dependencies:
     async "^2.4.0"
 
-"async-eventemitter@github:ahultgren/async-eventemitter#fa06e39e56786ba541c180061dbf2c0a5bbf951c":
+async-eventemitter@ahultgren/async-eventemitter#fa06e39e56786ba541c180061dbf2c0a5bbf951c:
   version "0.2.3"
   resolved "https://codeload.github.com/ahultgren/async-eventemitter/tar.gz/fa06e39e56786ba541c180061dbf2c0a5bbf951c"
   dependencies:
@@ -9791,9 +9791,9 @@ mute-stream@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
 
-"nahmii-sdk@github:hubiinetwork/nahmii-sdk#master":
-  version "1.0.0-beta.17"
-  resolved "https://codeload.github.com/hubiinetwork/nahmii-sdk/tar.gz/b71b3651a86db753fb730b8c8833a3858696f424"
+nahmii-sdk@1.0.0-beta.7:
+  version "1.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-1.0.0-beta.7.tgz#4500d11c42579ca8aaed9b1705ea0a67bf263cf3"
   dependencies:
     ethereumjs-util "^5.2.0"
     ethers "^3.0.26"
