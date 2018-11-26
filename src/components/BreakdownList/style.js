@@ -36,6 +36,7 @@ export const NahmiiBalancesWrapper = styled.div.attrs({
     opacity: expanded,
   }),
 })`
+  margin-bottom: 100%;
   margin-top: 1rem;
   flex-direction: column;
   margin-left: 0.5rem;

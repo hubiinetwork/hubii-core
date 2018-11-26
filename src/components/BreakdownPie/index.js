@@ -50,10 +50,7 @@ class Breakdown extends React.Component {
       );
     }
     return (
-      <Wrapper
-        style={{ minHeight: '90vh' }}
-        allowOverflow={!showPie}
-      >
+      <Wrapper>
         <div>
           <Text large>{formatMessage({ id: 'total_fiat_value' })}</Text>
           <Heading large>{formatFiat(value, 'USD')}</Heading>
