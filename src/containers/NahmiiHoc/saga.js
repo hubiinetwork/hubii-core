@@ -58,7 +58,7 @@ export function* loadStagingBalances({ address }) {
 // https://stackoverflow.com/questions/48228662/get-token-balance-with-ethereum-rpc
 export function* loadStagedBalances({ address }, network) {
   if (network.provider.name === 'homestead') {
-    yield put(actions.loadBalancesSuccess(address, []));
+    yield put(actions.loadStagedBalancesSuccess(address, []));
     return;
   }
   let supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
