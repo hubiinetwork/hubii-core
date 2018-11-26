@@ -33,15 +33,8 @@ class Breakdown extends React.Component {
       intl,
     } = this.props;
     const { formatMessage } = intl;
-    const combinedBreakdown = getBreakdown(totalBalances.get('combined'), supportedAssets);
     const value = +totalBalances.getIn(['combined', 'total', 'usd']).toFixed(6);
-    const chartData = combinedBreakdown.map((item) => ({
-      x: item.percentage,
-      y: 2 * item.percentage,
-      label: `${item.label}: ${item.percentage.toFixed(0)}%`,
-    }));
-    const colors = combinedBreakdown.map((item) => item.color);
-    if (value === '0') {
+    if (value === '0' || supportedAssets.get('loading') || supportedAssets.get('error')) {
       return (
         <div>
           <Text large>{formatMessage({ id: 'total_fiat_value' })}</Text>
@@ -49,6 +42,13 @@ class Breakdown extends React.Component {
       </div>
       );
     }
+    const combinedBreakdown = getBreakdown(totalBalances.get('combined'), supportedAssets);
+    const chartData = combinedBreakdown.map((item) => ({
+      x: item.percentage,
+      y: 2 * item.percentage,
+      label: `${item.label}: ${item.percentage.toFixed(0)}%`,
+    }));
+    const colors = combinedBreakdown.map((item) => item.color);
     return (
       <Wrapper>
         <div>
