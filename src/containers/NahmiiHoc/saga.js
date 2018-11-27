@@ -20,7 +20,7 @@ import { requestToken } from 'containers/HubiiApiHoc/saga';
 import * as actions from './actions';
 import {
   NAHMII_APPROVE_TOKEN_DEPOSIT_SUCCESS,
-  NAHMII_APPROVE_TOKEN_DEPOSIT_FAILED,
+  NAHMII_DEPOSIT_FAILED,
   NAHMII_DEPOSIT,
   NAHMII_DEPOSIT_ETH,
   // NAHMII_APPROVE_TOKEN_DEPOSIT,
@@ -40,7 +40,7 @@ export function* deposit({ address, currency, amount, options }) {
       yield put(actions.nahmiiApproveTokenDeposit(address, currency, amount, options));
       const { approvalSuccess } = yield race({
         approvalSuccess: take(NAHMII_APPROVE_TOKEN_DEPOSIT_SUCCESS),
-        approvalFailed: take(NAHMII_APPROVE_TOKEN_DEPOSIT_FAILED),
+        approvalFailed: take(NAHMII_DEPOSIT_FAILED),
       });
       if (approvalSuccess) {
         yield put(actions.nahmiiCompleteTokenDeposit(address, currency, amount, options));

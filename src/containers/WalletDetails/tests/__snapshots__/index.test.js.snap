@@ -354,15 +354,16 @@ ShallowWrapper {
                     tab={
                               <span>
                                         <Icon
-                                                  type="shopping-cart"
+                                                  type="login"
                                         />
-                                        buy_eth
+                                        <Unknown />
+                                         deposit
                               </span>
                     }
           >
                     <Route
                               component={[Function]}
-                              path="undefined/buyeth"
+                              path="undefined/nahmii-deposit"
                     />
           </TabPane>
 </Tabs>,
@@ -486,15 +487,16 @@ ShallowWrapper {
               tab={
                             <span>
                                           <Icon
-                                                        type="shopping-cart"
+                                                        type="login"
                                           />
-                                          buy_eth
+                                          <Unknown />
+                                           deposit
                             </span>
               }
 >
               <Route
                             component={[Function]}
-                            path="undefined/buyeth"
+                            path="undefined/nahmii-deposit"
               />
 </TabPane>,
           ],
@@ -617,19 +619,20 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": "undefined/buyeth",
+            "key": "undefined/nahmii-deposit",
             "nodeType": "class",
             "props": Object {
               "children": <Route
                 component={[Function]}
-                path="undefined/buyeth"
+                path="undefined/nahmii-deposit"
 />,
               "placeholder": null,
               "tab": <span>
                 <Icon
-                                type="shopping-cart"
+                                type="login"
                 />
-                buy_eth
+                <Unknown />
+                 deposit
 </span>,
             },
             "ref": null,
@@ -639,7 +642,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "component": [Function],
-                "path": "undefined/buyeth",
+                "path": "undefined/nahmii-deposit",
               },
               "ref": null,
               "rendered": null,
@@ -748,15 +751,16 @@ ShallowWrapper {
                         tab={
                                     <span>
                                                 <Icon
-                                                            type="shopping-cart"
+                                                            type="login"
                                                 />
-                                                buy_eth
+                                                <Unknown />
+                                                 deposit
                                     </span>
                         }
             >
                         <Route
                                     component={[Function]}
-                                    path="undefined/buyeth"
+                                    path="undefined/nahmii-deposit"
                         />
             </TabPane>
 </Tabs>,
@@ -880,15 +884,16 @@ ShallowWrapper {
                 tab={
                                 <span>
                                                 <Icon
-                                                                type="shopping-cart"
+                                                                type="login"
                                                 />
-                                                buy_eth
+                                                <Unknown />
+                                                 deposit
                                 </span>
                 }
 >
                 <Route
                                 component={[Function]}
-                                path="undefined/buyeth"
+                                path="undefined/nahmii-deposit"
                 />
 </TabPane>,
             ],
@@ -1011,19 +1016,20 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "undefined/buyeth",
+              "key": "undefined/nahmii-deposit",
               "nodeType": "class",
               "props": Object {
                 "children": <Route
                   component={[Function]}
-                  path="undefined/buyeth"
+                  path="undefined/nahmii-deposit"
 />,
                 "placeholder": null,
                 "tab": <span>
                   <Icon
-                                    type="shopping-cart"
+                                    type="login"
                   />
-                  buy_eth
+                  <Unknown />
+                   deposit
 </span>,
               },
               "ref": null,
@@ -1033,7 +1039,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "component": [Function],
-                  "path": "undefined/buyeth",
+                  "path": "undefined/nahmii-deposit",
                 },
                 "ref": null,
                 "rendered": null,
