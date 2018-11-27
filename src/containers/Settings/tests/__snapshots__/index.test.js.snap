@@ -9,6 +9,17 @@ ShallowWrapper {
         Object {
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_emitted": Object {
+                "block": -1,
+              },
+              "_events": Object {},
+              "chainId": 3,
+              "ensAddress": "0x112234455C3a32FD11230C42E7Bccd4A84e02010",
+              "name": "ropsten",
+              "resetEventsBlock": [Function],
+              "url": "http://geth-ropsten.dev.hubii.net",
+            },
             "provider": FallbackProvider {
               "_emitted": Object {
                 "block": -1,
@@ -43,6 +54,17 @@ ShallowWrapper {
                     "name": "homestead",
                     "resetEventsBlock": [Function],
                   },
+                nahmiiProvider: NahmiiProvider {
+                    "_emitted": Object {
+                      "block": -1,
+                    },
+                    "_events": Object {},
+                    "chainId": 3,
+                    "ensAddress": "0x112234455C3a32FD11230C42E7Bccd4A84e02010",
+                    "name": "ropsten",
+                    "resetEventsBlock": [Function],
+                    "url": "http://geth-ropsten.dev.hubii.net",
+                  },
                 walletApiEndpoint: [Function],
                 identityServiceSecret: "secret",
                 identityServiceAppId: "appid",
@@ -57,6 +79,17 @@ ShallowWrapper {
                     "ensAddress": "0x112234455C3a32FD11230C42E7Bccd4A84e02010",
                     "name": "ropsten",
                     "resetEventsBlock": [Function],
+                  },
+                nahmiiProvider: NahmiiProvider {
+                    "_emitted": Object {
+                      "block": -1,
+                    },
+                    "_events": Object {},
+                    "chainId": 3,
+                    "ensAddress": "0x112234455C3a32FD11230C42E7Bccd4A84e02010",
+                    "name": "ropsten",
+                    "resetEventsBlock": [Function],
+                    "url": "http://geth-ropsten.dev.hubii.net",
                   },
                 walletApiEndpoint: [Function],
                 identityServiceSecret: "secret",

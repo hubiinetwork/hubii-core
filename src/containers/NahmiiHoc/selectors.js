@@ -7,6 +7,11 @@ import BigNumber from 'bignumber.js';
  */
 const selectNahmiiHocDomain = (state) => state.get('nahmiiHoc');
 
+const makeSelectDepositStatus = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('depositStatus')
+);
+
 const makeSelectNahmiiBalances = () => createSelector(
   selectNahmiiHocDomain,
   (nahmiiHocDomain) => {
@@ -58,4 +63,5 @@ const makeSelectNahmiiBalances = () => createSelector(
 
 export {
   makeSelectNahmiiBalances,
+  makeSelectDepositStatus,
 };
