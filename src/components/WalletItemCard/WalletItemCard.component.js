@@ -218,7 +218,7 @@ export class WalletItemCard extends React.PureComponent {
           </LeftSideWrapper>
           <div>
             <div>
-              <Text>Base layer balance</Text>
+              <Text>{formatMessage({ id: 'base_layer_balances' })}</Text>
               <AssetsWrapper>
                 {
                   baseLayerBalancesError
