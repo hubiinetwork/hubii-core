@@ -7,10 +7,9 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { injectIntl } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
-import { getBreakdown } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
 
-import Breakdown from 'components/Breakdown/Breakdown.component';
+import Breakdown from 'components/BreakdownPie';
 import SectionHeading from 'components/ui/SectionHeading';
 
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
@@ -90,7 +89,7 @@ export class WalletsTransactions extends React.Component {
 
     if
     (
-      currentWalletWithInfo.getIn(['balances', 'loading']) ||
+      currentWalletWithInfo.getIn(['balances', 'baseLayer', 'loading']) ||
       supportedAssets.get('loading') ||
       currentWalletWithInfo.getIn(['transactions', 'loading'])
     ) {
@@ -103,7 +102,7 @@ export class WalletsTransactions extends React.Component {
     if
     (
       currentWalletWithInfo.getIn(['transactions', 'error']) ||
-      currentWalletWithInfo.getIn(['balances', 'error']) ||
+      currentWalletWithInfo.getIn(['balances', 'baseLayer', 'error']) ||
       supportedAssets.get('error')
     ) {
       return <NoTxPlaceholder>{ formatMessage({ id: 'fetch_transactions_error' }) }</NoTxPlaceholder>;
@@ -170,8 +169,8 @@ export class WalletsTransactions extends React.Component {
         </TransactionsWrapper>
         <BreakdownWrapper>
           <Breakdown
-            data={getBreakdown(currentWalletWithInfo.get('balances'), supportedAssets)}
-            value={currentWalletWithInfo.getIn(['balances', 'total', 'usd']).toString()}
+            totalBalances={currentWalletWithInfo.get('balances')}
+            supportedAssets={supportedAssets}
           />
         </BreakdownWrapper>
       </OuterWrapper>

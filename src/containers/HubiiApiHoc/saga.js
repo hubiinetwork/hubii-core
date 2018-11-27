@@ -101,9 +101,9 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
       const formattedBalances = tokenBals.reduce((acc, bal, i) => {
         if (!bal.gt('0')) return acc;
         const { currency } = supportedAssets.assets[i];
-        return [...acc, { address, currency, balance: bal }];
+        return [...acc, { address, currency, balance: bal.toString() }];
       }, []);
-      yield put(loadWalletBalancesSuccess(address, [{ currency: 'ETH', address, decimals: 18, balance: ethBal }, ...formattedBalances]));
+      yield put(loadWalletBalancesSuccess(address, [{ currency: 'ETH', address, balance: ethBal.toString() }, ...formattedBalances]));
     } catch (err) {
       yield put(loadWalletBalancesError(address, err));
     } finally {
@@ -268,6 +268,16 @@ export function* networkApiOrcestrator() {
     // never happen
     throw new Error(e);
   }
+}
+
+export function* getNahmiiProvider() {
+  const network = yield select(makeSelectCurrentNetwork());
+  const nahmiiProvider = new nahmii.NahmiiProvider(
+    network.walletApiEndpoint(true),
+    network.identityServiceAppId,
+    network.identityServiceSecret
+  );
+  return nahmiiProvider;
 }
 
 // Root watcher

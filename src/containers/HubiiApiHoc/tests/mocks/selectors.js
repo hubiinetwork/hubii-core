@@ -56,7 +56,7 @@ export const transactionsWithInfoMock = transactionsMock.setIn(
       symbol: 'BOKKY',
       recipient: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
       type: 'sent',
-      fiatValue: '0',
+      fiatValue: '0.000000000000000005',
       confirmations: '3',
     },
   ])
@@ -134,9 +134,9 @@ export const pricesLoadedMock = fromJS({
     },
     {
       currency: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
-      eth: 0,
-      btc: 0,
-      usd: 0,
+      eth: 0.1,
+      btc: 0.001,
+      usd: 1,
       timestamp: '2018-07-25T01:33:34.908Z',
     },
     {

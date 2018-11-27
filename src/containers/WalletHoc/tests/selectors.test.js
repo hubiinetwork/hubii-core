@@ -141,8 +141,8 @@ describe('makeSelectWalletsWithInfo', () => {
       .setIn(['hubiiApiHoc', 'supportedAssets'], supportedAssetsLoadingMock);
     const walletsWithInfo = walletsWithInfoSelector(mockedState);
     walletsWithInfo.forEach((w) => {
-      if (!w.getIn(['balances', 'error'])) {
-        expect(w.getIn(['balances', 'loading'])).toEqual(true);
+      if (!w.getIn(['balances', 'baseLayer', 'error'])) {
+        expect(w.getIn(['balances', 'baseLayer', 'loading'])).toEqual(true);
       }
     });
   });
@@ -152,8 +152,8 @@ describe('makeSelectWalletsWithInfo', () => {
       .setIn(['hubiiApiHoc', 'prices'], pricesLoadingMock);
     const walletsWithInfo = walletsWithInfoSelector(mockedState);
     walletsWithInfo.forEach((w) => {
-      if (!w.getIn(['balances', 'error'])) {
-        expect(w.getIn(['balances', 'loading'])).toEqual(true);
+      if (!w.getIn(['balances', 'baseLayer', 'error'])) {
+        expect(w.getIn(['balances', 'baseLayer', 'loading'])).toEqual(true);
       }
     });
   });
@@ -163,7 +163,7 @@ describe('makeSelectWalletsWithInfo', () => {
       .setIn(['hubiiApiHoc', 'balances', currentWalletSoftwareMock.get('address')], null);
     const walletsWithInfo = walletsWithInfoSelector(mockedState);
     const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletSoftwareMock.get('address'));
-    expect(wallet.getIn(['balances', 'loading'])).toEqual(true);
+    expect(wallet.getIn(['balances', 'baseLayer', 'loading'])).toEqual(true);
   });
 
   it('should set a wallet\'s balance to loading if it\'s balance state is loadng', () => {
@@ -172,7 +172,7 @@ describe('makeSelectWalletsWithInfo', () => {
       .setIn(['hubiiApiHoc', 'balances', currentWalletSoftwareMock.get('address'), 'error'], false);
     const walletsWithInfo = walletsWithInfoSelector(mockedState);
     const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletSoftwareMock.get('address'));
-    expect(wallet.getIn(['balances', 'loading'])).toEqual(true);
+    expect(wallet.getIn(['balances', 'baseLayer', 'loading'])).toEqual(true);
   });
 
   it('should set all walletBalances to errored if supportedAssets is errored', () => {
@@ -180,7 +180,7 @@ describe('makeSelectWalletsWithInfo', () => {
       .setIn(['hubiiApiHoc', 'supportedAssets'], supportedAssetsErrorMock);
     const walletsWithInfo = walletsWithInfoSelector(mockedState);
     walletsWithInfo.forEach((w) => {
-      expect(w.getIn(['balances', 'error'])).toEqual(true);
+      expect(w.getIn(['balances', 'baseLayer', 'error'])).toEqual(true);
     });
   });
 
@@ -189,7 +189,7 @@ describe('makeSelectWalletsWithInfo', () => {
       .setIn(['hubiiApiHoc', 'prices'], pricesErrorMock);
     const walletsWithInfo = walletsWithInfoSelector(mockedState);
     walletsWithInfo.forEach((w) => {
-      expect(w.getIn(['balances', 'error'])).toEqual(true);
+      expect(w.getIn(['balances', 'baseLayer', 'error'])).toEqual(true);
     });
   });
 
@@ -198,7 +198,7 @@ describe('makeSelectWalletsWithInfo', () => {
         .setIn(['hubiiApiHoc', 'balances', currentWalletSoftwareMock.get('address'), 'error'], true);
     const walletsWithInfo = walletsWithInfoSelector(mockedState);
     const wallet = walletsWithInfo.find((w) => w.get('address') === currentWalletSoftwareMock.get('address'));
-    expect(wallet.getIn(['balances', 'error'])).toEqual(true);
+    expect(wallet.getIn(['balances', 'baseLayer', 'error'])).toEqual(true);
   });
 });
 

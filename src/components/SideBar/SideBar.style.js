@@ -38,7 +38,7 @@ const SideBarMenu = styled(Menu)`
     line-height: 6.5rem;
     padding: 0rem 1.43rem !important;
     margin-bottom: 0rem !important;
-    position: absolute !important;
+    position: fixed !important;
     .setting-icon {
       font-size: 2.29rem !important;
     }

@@ -11,13 +11,14 @@ export const AssetsWrapper = styled.div`
 
 export const IconsWrapper = styled.div`
   display: flex;
-  height: 0%;
+  height: 100%;
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
   right: 0;
   margin-right: 1.65rem;
   margin-top: 1.29rem;
+  margin-bottom: 1.29rem;
 `;
 
 export const AssetWrapper = styled.div`
@@ -35,7 +36,7 @@ export const CardIcon = styled.div`
   }
 `;
 
-export const OverflowHidden = styled.div`
+export const Border = styled.div`
   overflow: hidden;
   border-radius: 0.71rem;
 `;
