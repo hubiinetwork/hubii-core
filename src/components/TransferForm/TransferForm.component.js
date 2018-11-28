@@ -3,7 +3,13 @@ import { Icon } from 'antd';
 import BigNumber from 'bignumber.js';
 import PropTypes from 'prop-types';
 import { isValidAddress } from 'ethereumjs-util';
-import { gweiToWei, gweiToEther, isAddressMatch } from 'utils/wallet';
+import {
+  gweiToWei,
+  gweiToEther,
+  isAddressMatch,
+  gweiRegex,
+  gasLimitRegex,
+} from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
 import { getAbsolutePath } from 'utils/electron';
 import { injectIntl } from 'react-intl';
@@ -27,13 +33,6 @@ import {
   TransferFormWrapper,
 } from './TransferForm.style';
 import TransferDescription from '../TransferDescription';
-
-
-// valid gwei number is numbers, optionally followed by a . at most 9 more numbers
-const gweiRegex = new RegExp('^\\d+(\\.\\d{0,9})?$');
-
-// only match whole numbers
-const gasLimitRegex = new RegExp('^\\d+$');
 
 // TODO: This component is buggy. Just merging because a lot of eslint issue have been resolved in this branch
 class TransferForm extends React.PureComponent {
