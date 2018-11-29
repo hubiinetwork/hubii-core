@@ -11,7 +11,7 @@ import { Row } from 'antd';
 import { getAbsolutePath } from 'utils/electron';
 import {
   gweiToEther,
-  // gweiToWei,
+  gweiToWei,
   gweiRegex,
   gasLimitRegex,
   isHardwareWallet,
@@ -54,7 +54,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     super(props);
 
     const baseLayerAssets = props.currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
-    const assetToDeposit = baseLayerAssets[0];
+    const assetToDeposit = baseLayerAssets[0] || { currency: 'ETH', deciamls: 18, balance: new BigNumber('0') };
 
     // max decimals possible for current asset
     const assetToDepositMaxDecimals = this.props.supportedAssets
@@ -76,9 +76,9 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       amountToDepositInputRegex,
       gasPriceGweiInput: '10',
       gasPriceGwei: new BigNumber('10'),
-      gasLimit: 21000,
+      gasLimit: 600000,
       addContactModalVisibility: false,
-      gasLimitInput: '21000',
+      gasLimitInput: '600000',
     };
     this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
     this.onBlurNumberInput = this.onBlurNumberInput.bind(this);
@@ -462,7 +462,16 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                 delay={0}
                 size="large"
               />) : (
-                <StyledButton type="primary" onClick={() => { }} disabled={disableDepositButton}>
+                <StyledButton
+                  type="primary"
+                  onClick={() => this.props.nahmiiDeposit(
+                    currentWalletWithInfo.get('address'),
+                    assetToDeposit.currency,
+                    amountToDeposit,
+                    { gasLimit, gasPrice: gweiToWei(gasPriceGwei) }
+                    )}
+                  disabled={disableDepositButton}
+                >
                   <span>Deposit</span>
                 </StyledButton>
                 )
@@ -480,7 +489,7 @@ NahmiiDeposit.propTypes = {
   // trezorInfo: PropTypes.object.isRequired,
   prices: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
-  // nahmiiDeposit: PropTypes.func.isRequired,
+  nahmiiDeposit: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
 };
 

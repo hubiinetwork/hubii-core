@@ -30,7 +30,7 @@ export function* deposit({ address, currency, amount, options }) {
   try {
     const wallet = (yield select(makeSelectWallets())).toJS().find((w) => w.address === address);
     if (wallet.encrypted && !wallet.decrypted) {
-      yield put(showDecryptWalletModal(actions.nahmiiDeposit(wallet, currency, amount, options)));
+      yield put(showDecryptWalletModal(actions.nahmiiDeposit(address, currency, amount, options)));
       yield put(actions.nahmiiDepositFailed(new Error(getIntl().formatMessage({ id: 'wallet_encrypted_error' }))));
       return;
     }
@@ -57,7 +57,7 @@ export function* depositEth({ address, amount, gasPrice, gasLimit }) {
     const wallet = (yield select(makeSelectWallets())).toJS().find((w) => w.address === address);
     const nahmiiWallet = new nahmii.Wallet(wallet.decrypted.privateKey, nahmiiProvider);
     yield call(() => nahmiiWallet.depositEth(amount, { gasPrice, gasLimit }));
-    // console.log(hash);
+    // const
   } catch (e) {
     yield put(actions.nahmiiDepositFailed(`An error occured: ${e.message}`));
   }
