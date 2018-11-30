@@ -56,13 +56,16 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     super(props);
 
     const baseLayerAssets = props.currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
-    const assetToDeposit = baseLayerAssets[0] || { symbol: 'ETH', currency: 'ETH', deciamls: 18, balance: new BigNumber('0') };
+    const assetToDeposit = baseLayerAssets[0] || { symbol: 'ETH', currency: 'ETH', balance: new BigNumber('0') };
 
     // max decimals possible for current asset
-    const assetToDepositMaxDecimals = this.props.supportedAssets
-      .get('assets')
-      .find((a) => a.get('currency') === assetToDeposit.currency)
-      .get('decimals');
+    let assetToDepositMaxDecimals = 18;
+    if (props.supportedAssets.get('assets').size !== 0) {
+      assetToDepositMaxDecimals = props.supportedAssets && props.supportedAssets
+        .get('assets')
+        .find((a) => a.get('currency') === assetToDeposit.currency)
+        .get('decimals');
+    }
 
     // regex for amount input
     // only allow one dot and integers, and not more decimal places than possible for the
@@ -119,16 +122,10 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     // https://stackoverflow.com/questions/30435918/regex-pattern-to-have-only-one-dot-and-match-integer-and-decimal-numbers
     const amountToDepositInputRegex = new RegExp(`^\\d+(\\.\\d{0,${assetToDepositMaxDecimals}})?$`);
 
-    // set a higher gas limit for erc20 tokens
-    let gasLimit = 21000;
-    if (newSymbol !== 'ETH') gasLimit = 100000;
-
     this.setState({
       assetToDeposit,
       amountToDepositInputRegex,
       assetToDepositMaxDecimals,
-      gasLimit,
-      gasLimitInput: gasLimit.toString(),
     });
   }
 
