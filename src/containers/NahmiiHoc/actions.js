@@ -15,30 +15,30 @@ import {
   NAHMII_DEPOSIT_FAILED,
 } from './constants';
 
-export function nahmiiDeposit(address, currency, amount, options) {
+export function nahmiiDeposit(address, symbol, amount, options) {
   return {
     type: NAHMII_DEPOSIT,
     address,
-    currency,
+    symbol,
     amount,
     options,
   };
 }
 
-export function nahmiiApproveTokenDeposit(address, currency, amount, options) {
+export function nahmiiApproveTokenDeposit(address, symbol, amount, options) {
   return {
     type: NAHMII_APPROVE_TOKEN_DEPOSIT,
-    currency,
+    symbol,
     address,
     amount,
     options,
   };
 }
 
-export function nahmiiCompleteTokenDeposit(address, currency, amount, options) {
+export function nahmiiCompleteTokenDeposit(address, symbol, amount, options) {
   return {
     type: NAHMII_COMPLETE_TOKEN_DEPOSIT,
-    currency,
+    symbol,
     address,
     amount,
     options,
@@ -72,9 +72,10 @@ export function nahmiiCompleteTokenDepositSuccess() {
   };
 }
 
-export function nahmiiDepositFailed() {
+export function nahmiiDepositFailed(errorMessage) {
   return {
     type: NAHMII_DEPOSIT_FAILED,
+    error: errorMessage,
   };
 }
 

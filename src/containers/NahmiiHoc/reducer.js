@@ -56,7 +56,7 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['depositStatus', 'error'], null);
     case NAHMII_COMPLETE_TOKEN_DEPOSIT_SUCCESS:
       return state
-        .setIn(['depositStatus', 'approvingTokenDeposit'], false)
+        .setIn(['depositStatus', 'completingTokenDeposit'], false)
         .setIn(['depositStatus', 'error'], null);
     case NAHMII_DEPOSIT_FAILED:
       return state

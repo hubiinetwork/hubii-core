@@ -1,6 +1,6 @@
 import ClientFundContract from 'nahmii-sdk/lib/client-fund-contract';
 import nahmii from 'nahmii-sdk';
-import { getIntl } from 'utils/localisation';
+// import { getIntl } from 'utils/localisation';
 import { utils } from 'ethers';
 import { all, fork, takeEvery, takeLatest, select, put, call, take, cancel, race } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
@@ -23,27 +23,27 @@ import {
   NAHMII_DEPOSIT_FAILED,
   NAHMII_DEPOSIT,
   NAHMII_DEPOSIT_ETH,
-  // NAHMII_APPROVE_TOKEN_DEPOSIT,
+  NAHMII_APPROVE_TOKEN_DEPOSIT,
+  NAHMII_COMPLETE_TOKEN_DEPOSIT,
 } from './constants';
 
-export function* deposit({ address, currency, amount, options }) {
+export function* deposit({ address, symbol, amount, options }) {
   try {
     const wallet = (yield select(makeSelectWallets())).toJS().find((w) => w.address === address);
     if (wallet.encrypted && !wallet.decrypted) {
-      yield put(showDecryptWalletModal(actions.nahmiiDeposit(address, currency, amount, options)));
-      yield put(actions.nahmiiDepositFailed(new Error(getIntl().formatMessage({ id: 'wallet_encrypted_error' }))));
+      yield put(showDecryptWalletModal(actions.nahmiiDeposit(address, symbol, amount, options)));
       return;
     }
-    if (currency === 'ETH') {
+    if (symbol === 'ETH') {
       yield put(actions.nahmiiDepositEth(address, amount, options));
     } else {
-      yield put(actions.nahmiiApproveTokenDeposit(address, currency, amount, options));
+      yield put(actions.nahmiiApproveTokenDeposit(address, symbol, amount, options));
       const { approvalSuccess } = yield race({
         approvalSuccess: take(NAHMII_APPROVE_TOKEN_DEPOSIT_SUCCESS),
         approvalFailed: take(NAHMII_DEPOSIT_FAILED),
       });
       if (approvalSuccess) {
-        yield put(actions.nahmiiCompleteTokenDeposit(address, currency, amount, options));
+        yield put(actions.nahmiiCompleteTokenDeposit(address, symbol, amount, options));
       }
     }
   } catch (e) {
@@ -51,35 +51,44 @@ export function* deposit({ address, currency, amount, options }) {
   }
 }
 
-export function* depositEth({ address, amount, gasPrice, gasLimit }) {
+export function* depositEth({ address, amount, options }) {
   try {
     const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
     const wallet = (yield select(makeSelectWallets())).toJS().find((w) => w.address === address);
     const nahmiiWallet = new nahmii.Wallet(wallet.decrypted.privateKey, nahmiiProvider);
-    yield call(() => nahmiiWallet.depositEth(amount, { gasPrice, gasLimit }));
-    // const
+    const { hash } = yield call(() => nahmiiWallet.depositEth(amount, options));
+    yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
+    yield put(actions.nahmiiDepositEthSuccess());
   } catch (e) {
     yield put(actions.nahmiiDepositFailed(`An error occured: ${e.message}`));
   }
 }
 
-// export function* approveTokenDeposit({ address, currency, amount, gasPrice, gasLimit }) {
-//   try {
-//     const wallet = (yield select(makeSelectWallets())).toJS().find((w) => w.address === address);
-//   } catch (e) {
-    // yield put(actions.nahmiiDepositFailed(`An error occured: ${e.message}`));
+export function* approveTokenDeposit({ address, symbol, amount, options }) {
+  try {
+    const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
+    const wallet = (yield select(makeSelectWallets())).toJS().find((w) => w.address === address);
+    const nahmiiWallet = new nahmii.Wallet(wallet.decrypted.privateKey, nahmiiProvider);
+    const { hash } = yield call(() => nahmiiWallet.approveTokenDeposit(amount, symbol, options));
+    yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
+    yield put(actions.nahmiiApproveTokenDepositSuccess());
+  } catch (e) {
+    yield put(actions.nahmiiDepositFailed(`An error occured: ${e.message}`));
+  }
+}
 
-//   }
-// }
-
-// export function* completeTokenDeposit({ address, currency, amount, gasPrice, gasLimit }) {
-//   try {
-//     const wallet = (yield select(makeSelectWallets())).toJS().find((w) => w.address === address);
-//   } catch (e) {
-    // yield put(actions.nahmiiDepositFailed(`An error occured: ${e.message}`));
-
-//   }
-// }
+export function* completeTokenDeposit({ address, symbol, amount, options }) {
+  try {
+    const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
+    const wallet = (yield select(makeSelectWallets())).toJS().find((w) => w.address === address);
+    const nahmiiWallet = new nahmii.Wallet(wallet.decrypted.privateKey, nahmiiProvider);
+    const { hash } = yield call(() => nahmiiWallet.completeTokenDeposit(amount, symbol, options));
+    yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
+    yield put(actions.nahmiiCompleteTokenDepositSuccess());
+  } catch (e) {
+    yield put(actions.nahmiiDepositFailed(`An error occured: ${e.message}`));
+  }
+}
 
 
 export function* loadBalances({ address }, network) {
@@ -217,6 +226,8 @@ export default function* listen() {
   yield takeEvery(INIT_NETWORK_ACTIVITY, challengeStatusOrcestrator);
   yield takeLatest(NAHMII_DEPOSIT, deposit);
   yield takeLatest(NAHMII_DEPOSIT_ETH, depositEth);
+  yield takeLatest(NAHMII_APPROVE_TOKEN_DEPOSIT, approveTokenDeposit);
+  yield takeLatest(NAHMII_COMPLETE_TOKEN_DEPOSIT, completeTokenDeposit);
   // yield takeLatest(NAHMII_APPROVE_TOKEN_DEPOSIT, approveTokenDeposit);
   // yield takeLatest(NAHMII_COMPLETE_TOKEN_DEPOSIT, completeTokenDeposit);
 }

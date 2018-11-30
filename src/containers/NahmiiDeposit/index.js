@@ -7,7 +7,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Row } from 'antd';
+import { shell } from 'electron';
+import { Row, Icon, Alert } from 'antd';
 import { getAbsolutePath } from 'utils/electron';
 import {
   gweiToEther,
@@ -24,11 +25,13 @@ import { compose } from 'redux';
 import { Form, FormItem, FormItemLabel } from 'components/ui/Form';
 import Collapse, { Panel } from 'components/ui/Collapse';
 import HelperText from 'components/ui/HelperText';
+import Text from 'components/ui/Text';
 import Input from 'components/ui/Input';
 import Select, { Option } from 'components/ui/Select';
 import TransferDescriptionItem from 'components/TransferDescriptionItem';
 import HWPromptContainer from 'containers/HWPromptContainer';
 import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHoc/selectors';
+import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import {
   makeSelectSupportedAssets,
   makeSelectPrices,
@@ -50,6 +53,7 @@ import {
   LoadingWrapper,
   NoTxPlaceholder,
 } from './style';
+
 
 export class NahmiiDeposit extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -91,6 +95,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     this.handleAssetChange = this.handleAssetChange.bind(this);
     this.handleGasLimitChange = this.handleGasLimitChange.bind(this);
     this.handleGasPriceChange = this.handleGasPriceChange.bind(this);
+    this.generateTransferingText = this.generateTransferingText.bind(this);
   }
 
   onFocusNumberInput(input) {
@@ -195,6 +200,15 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     this.setState({ gasLimitInput: value, gasLimit: parseInt(value, 10) });
   }
 
+  generateTransferingText(depositStatus) {
+    let ratio;
+    if (depositStatus.get('depositingEth')) ratio = '1/1';
+    if (depositStatus.get('approvingTokenDeposit')) ratio = '1/2';
+    if (depositStatus.get('completingTokenDeposit')) ratio = '2/2';
+    if (!ratio) return null;
+    return `Waiting for transaction ${ratio} to be mined...`;
+  }
+
   render() {
     const {
       assetToDeposit,
@@ -210,6 +224,8 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       prices,
       intl,
       supportedAssets,
+      depositStatus,
+      currentNetwork,
     } = this.props;
     const { formatMessage } = intl;
 
@@ -290,7 +306,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     };
 
     const disableDepositButton = false;
-    const transfering = false;
+    const transferingText = this.generateTransferingText(depositStatus);
     return (
       <div style={{ display: 'flex' }}>
         <div style={{ flex: '1', marginRight: '2rem' }}>
@@ -478,11 +494,28 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             </HWPromptWrapper>
             }
             {
-            transfering ?
-              (<StyledSpin
-                delay={0}
-                size="large"
-              />) : (
+              depositStatus.get('error') &&
+              <Alert message={depositStatus.get('error')} type="error" showIcon style={{ marginTop: '2rem' }} />
+            }
+            {
+            transferingText ?
+              (
+                <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }}>
+                  <div>
+                    <span><Text large>{transferingText}</Text></span>
+                    <Icon style={{ color: 'white', fontSize: '1.5rem', marginLeft: '1rem' }} type="loading" />
+                  </div>
+                  <a
+                    role="link"
+                    tabIndex={0}
+                    onClick={
+                    currentNetwork.provider.name === 'ropsten' ?
+                      () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
+                      () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
+                  }
+                  >{'Track progress on Etherscan'}</a>
+                </div>
+              ) : (
                 <StyledButton
                   type="primary"
                   onClick={() => this.props.nahmiiDeposit(
@@ -510,6 +543,8 @@ NahmiiDeposit.propTypes = {
   // trezorInfo: PropTypes.object.isRequired,
   prices: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
+  depositStatus: PropTypes.object.isRequired,
+  currentNetwork: PropTypes.object.isRequired,
   nahmiiDeposit: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
 };
@@ -521,6 +556,7 @@ const mapStateToProps = createStructuredSelector({
   trezorInfo: makeSelectTrezorHoc(),
   prices: makeSelectPrices(),
   supportedAssets: makeSelectSupportedAssets(),
+  currentNetwork: makeSelectCurrentNetwork(),
 });
 
 function mapDispatchToProps(dispatch) {
