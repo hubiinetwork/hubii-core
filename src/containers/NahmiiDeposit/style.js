@@ -42,3 +42,16 @@ export const StyledSpin = styled(Spin)`
 export const HWPromptWrapper = styled.div`
   margin-top: 2rem;
 `;
+
+export const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
+`;
+
+export const NoTxPlaceholder = styled.div`
+  color: ${({ theme }) => theme.palette.secondary};
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-left: 1rem;
+`;

@@ -47,6 +47,8 @@ import {
   StyledSpin,
   StyledButton,
   HWPromptWrapper,
+  LoadingWrapper,
+  NoTxPlaceholder,
 } from './style';
 
 export class NahmiiDeposit extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -54,7 +56,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     super(props);
 
     const baseLayerAssets = props.currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
-    const assetToDeposit = baseLayerAssets[0] || { currency: 'ETH', deciamls: 18, balance: new BigNumber('0') };
+    const assetToDeposit = baseLayerAssets[0] || { symbol: 'ETH', currency: 'ETH', deciamls: 18, balance: new BigNumber('0') };
 
     // max decimals possible for current asset
     const assetToDepositMaxDecimals = this.props.supportedAssets
@@ -210,8 +212,30 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       currentWalletWithInfo,
       prices,
       intl,
+      supportedAssets,
     } = this.props;
     const { formatMessage } = intl;
+
+    if
+    (
+      currentWalletWithInfo.getIn(['balances', 'combined', 'loading']) ||
+      supportedAssets.get('loading') ||
+      prices.get('loading')
+    ) {
+      return (
+        <LoadingWrapper>
+          <StyledSpin size="large" tip={formatMessage({ id: 'synchronising' })}></StyledSpin>
+        </LoadingWrapper>
+      );
+    }
+    if
+    (
+      currentWalletWithInfo.getIn(['balances', 'combined', 'error']) ||
+      supportedAssets.get('error') ||
+      prices.get('error')
+    ) {
+      return <NoTxPlaceholder>{"There's a problem with hubii core's connection. Please try again later"}</NoTxPlaceholder>;
+    }
 
     const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
     const nahmiiAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiCombined', 'assets']).toJS();
@@ -466,9 +490,9 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                   type="primary"
                   onClick={() => this.props.nahmiiDeposit(
                     currentWalletWithInfo.get('address'),
-                    assetToDeposit.currency,
+                    assetToDeposit.symbol,
                     amountToDeposit,
-                    { gasLimit, gasPrice: gweiToWei(gasPriceGwei) }
+                    { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() }
                     )}
                   disabled={disableDepositButton}
                 >
