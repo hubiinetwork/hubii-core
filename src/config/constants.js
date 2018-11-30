@@ -38,14 +38,22 @@ const HOMESTEAD_URL = 'https://api.nahmii.io/';
 export const SUPPORTED_NETWORKS = {
   homestead: {
     provider: providers.getDefaultProvider('homestead'),
-    nahmiiProvider: new nahmii.NahmiiProvider(HOMESTEAD_URL, HOMESTEAD_IDENTITY_SERVICE_APPID, HOMESTEAD_IDENTITY_SERVICE_SECRET),
+    nahmiiProvider: new nahmii.NahmiiProvider(
+      trimmableWalletApiEndpoint(HOMESTEAD_URL)(true),
+      HOMESTEAD_IDENTITY_SERVICE_APPID,
+      HOMESTEAD_IDENTITY_SERVICE_SECRET
+    ),
     walletApiEndpoint: trimmableWalletApiEndpoint(HOMESTEAD_URL),
     identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : HOMESTEAD_IDENTITY_SERVICE_SECRET,
     identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : HOMESTEAD_IDENTITY_SERVICE_APPID,
   },
   ropsten: {
     provider: providers.getDefaultProvider('ropsten'),
-    nahmiiProvider: new nahmii.NahmiiProvider(ROPSTEN_URL, ROPSTEN_IDENTITY_SERVICE_APPID, ROPSTEN_IDENTITY_SERVICE_SECRET),
+    nahmiiProvider: new nahmii.NahmiiProvider(
+      trimmableWalletApiEndpoint(ROPSTEN_URL)(true),
+      ROPSTEN_IDENTITY_SERVICE_APPID,
+      ROPSTEN_IDENTITY_SERVICE_SECRET
+      ),
     walletApiEndpoint: trimmableWalletApiEndpoint(ROPSTEN_URL),
     identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : ROPSTEN_IDENTITY_SERVICE_SECRET,
     identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : ROPSTEN_IDENTITY_SERVICE_APPID,
