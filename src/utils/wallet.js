@@ -62,7 +62,7 @@ export const trimDecimals = (amount, currency, currencyPrices) => {
     decimalPlacement += 1;
     trimmedAmount = `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, decimalPlacement)}`;
   }
-  return trimmedAmount;
+  return new BigNumber(trimmedAmount).toString(); // remove any trailing 0s and return
 };
 
 export const getBreakdown = (balances, supportedAssets) => {
