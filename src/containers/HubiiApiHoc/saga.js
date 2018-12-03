@@ -118,7 +118,11 @@ export function* loadSupportedTokens(network) {
   const requestPath = 'ethereum/supported-tokens';
   try {
     const returnData = yield call(requestWalletAPI, requestPath, network);
-    yield put(loadSupportedTokensSuccess(returnData));
+    // temporarily filter out the ETH asset details that comes back from backend.
+    // in the future we should remove our own ETH asset we add in actions, and
+    // start relying on the one from the backend.
+    // see https://github.com/hubiinetwork/hubii-core/issues/630
+    yield put(loadSupportedTokensSuccess(returnData.filter((asset) => asset.symbol !== 'ETH')));
   } catch (err) {
     yield put(loadSupportedTokensError(err));
   }
