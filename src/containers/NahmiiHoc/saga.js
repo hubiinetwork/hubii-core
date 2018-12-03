@@ -1,4 +1,5 @@
 import ClientFundContract from 'nahmii-sdk/lib/client-fund-contract';
+import DriipSettlementChallengeContract from 'nahmii-sdk/lib/driip-settlement-challenge-contract';
 import { utils } from 'ethers';
 import { all, fork, takeEvery, select, put, call, take, cancel, race } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
@@ -41,11 +42,58 @@ export function* loadBalances({ address }, network) {
   }
 }
 
-export function* loadStagingBalances({ address }) {
+export function* loadStagingBalances({ address }, network) {
+  if (network.provider.name === 'homestead') {
+    yield put(actions.loadStagingBalancesSuccess(address, []));
+    return;
+  }
+  let supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+  if (supportedAssets.loading) {
+    yield take(LOAD_SUPPORTED_TOKENS_SUCCESS);
+    supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+  }
+
+  const provider = network.provider;
+  const driipSettlementChallengeContract = new DriipSettlementChallengeContract(provider);
+
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const emptyResponse = [];
-      yield put(actions.loadStagingBalancesSuccess(address, emptyResponse));
+      // the first provider in network.provider.providers in an Infura node, which supports RPC calls
+      const jsonRpcProvider = provider.providers ? provider.providers[0] : provider;
+
+      const driipSettlementChallengeContractAddress = driipSettlementChallengeContract.address;
+
+      // derive function selector
+      const funcBytes = utils.solidityKeccak256(['string'], ['proposalStageAmount(address,address,uint256)']);
+      const funcSelector = funcBytes.slice(0, 10);
+
+      // send a batch of RPC requests asking for all staging balances
+      // https://www.jsonrpc.org/specification#batch
+      const currencyCtList = supportedAssets.assets.map((a) => a.currency);
+      const requestBatch = currencyCtList.map((ct) => {
+        const currencyId = ct === 'ETH' ? '0x0000000000000000000000000000000000000000' : ct;
+        // encode arguments, prepare them for being sent
+        const encodedArgs = utils.AbiCoder.defaultCoder.encode(['address', 'address', 'int256'], [address, currencyId, 0]);
+        const dataArr = utils.concat([funcSelector, encodedArgs]);
+        const data = utils.hexlify(dataArr);
+        const params = [{ from: address, to: driipSettlementChallengeContractAddress, data }, 'latest'];
+        return {
+          method: 'eth_call',
+          params,
+          id: 42,
+          jsonrpc: '2.0',
+        };
+      });
+      // send all requests at once
+      const response = yield rpcRequest(jsonRpcProvider.url, JSON.stringify(requestBatch));
+      // process the response
+      const formattedBalances = response.reduce((acc, { result }, i) => {
+        // result is the hex balance. if the response comes back as '0x', it actually means 0.
+        if (result === '0x') return acc;
+        const { currency, symbol } = supportedAssets.assets[i];
+        return [...acc, { address, currency, symbol, balance: new BigNumber(result) }];
+      }, []);
+      yield put(actions.loadStagingBalancesSuccess(address, formattedBalances));
     } catch (err) {
       console.log(err); // eslint-disable-line
     } finally {

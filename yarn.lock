@@ -9791,9 +9791,9 @@ mute-stream@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
 
-nahmii-sdk@1.0.0-beta.17:
+"nahmii-sdk@github:hubiinetwork/nahmii-sdk#feature/ropsten-pre-release-6":
   version "1.0.0-beta.17"
-  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-1.0.0-beta.17.tgz#e6921f376e19b5a2e94300e1dffa7b437a42f3cd"
+  resolved "https://codeload.github.com/hubiinetwork/nahmii-sdk/tar.gz/ff3e5de4c3b0626526f7221e1e97c6f07aea25af"
   dependencies:
     ethereumjs-util "^5.2.0"
     ethers "^3.0.26"
