@@ -1,6 +1,7 @@
 import React from 'react';
 import { Icon } from 'antd';
 import BigNumber from 'bignumber.js';
+import { Spring } from 'react-spring';
 import PropTypes from 'prop-types';
 import { isValidAddress } from 'ethereumjs-util';
 import { gweiToWei, gweiToEther, isAddressMatch } from 'utils/wallet';
@@ -13,6 +14,8 @@ import Input from 'components/ui/Input';
 import Select, { Option } from 'components/ui/Select';
 import { Form, FormItem, FormItemLabel } from 'components/ui/Form';
 import HelperText from 'components/ui/HelperText';
+import NahmiiText from 'components/ui/NahmiiText';
+import Text from 'components/ui/Text';
 import { Modal } from 'components/ui/Modal';
 import Collapse, { Panel } from 'components/ui/Collapse';
 import EditContactModal from 'components/EditContactModal';
@@ -25,6 +28,7 @@ import {
   StyledButton,
   TransferDescriptionWrapper,
   TransferFormWrapper,
+  NahmiiSwitch,
 } from './TransferForm.style';
 import TransferDescription from '../TransferDescription';
 
@@ -64,6 +68,8 @@ class TransferForm extends React.PureComponent {
       gasLimit: 21000,
       addContactModalVisibility: false,
       gasLimitInput: '21000',
+      layer: 'baseLayer',
+      showAdv: false,
     };
     this.handleAmountToSendChange = this.handleAmountToSendChange.bind(this);
     this.handleAssetChange = this.handleAssetChange.bind(this);
@@ -76,14 +82,23 @@ class TransferForm extends React.PureComponent {
     this.onCreateContact = this.onCreateContact.bind(this);
     this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
     this.onBlurNumberInput = this.onBlurNumberInput.bind(this);
+    this.handleLayerSwitch = this.handleLayerSwitch.bind(this);
   }
 
   onSend() {
-    const { assetToSend, address, amountToSend, gasPriceGwei, gasLimit, assetToSendMaxDecimals } = this.state;
+    const {
+      assetToSend,
+      address,
+      amountToSend,
+      gasPriceGwei,
+      gasLimit,
+      assetToSendMaxDecimals,
+      layer,
+    } = this.state;
 
     // convert amountToSend into wei or equivilent for an ERC20 token
     const amountToSendWeiOrEquivilent = amountToSend.times(new BigNumber('10').pow(assetToSendMaxDecimals));
-    this.props.onSend(assetToSend.symbol, address, amountToSendWeiOrEquivilent, gweiToWei(gasPriceGwei), gasLimit);
+    this.props.onSend(assetToSend.symbol, address, amountToSendWeiOrEquivilent, layer, gweiToWei(gasPriceGwei), gasLimit);
   }
 
   onCreateContact(contact) {
@@ -102,6 +117,15 @@ class TransferForm extends React.PureComponent {
   onBlurNumberInput(input) {
     if (this.state[input] === '') {
       this.setState({ [input]: '0' });
+    }
+  }
+
+  handleLayerSwitch() {
+    const newLayer = this.state.layer === 'nahmii' ? 'baseLayer' : 'nahmii';
+    if (newLayer === 'nahmii') {
+      this.setState({ layer: newLayer, showAdv: false });
+    } else {
+      this.setState({ layer: newLayer });
     }
   }
 
@@ -234,9 +258,17 @@ class TransferForm extends React.PureComponent {
       gasPriceGweiInput,
       gasLimitInput,
       addContactModalVisibility,
+      layer,
     } = this.state;
 
-    const { currentWalletUsdBalance, assets, prices, recipients, transfering, intl } = this.props;
+    const {
+      currentWalletUsdBalance,
+      assets,
+      prices,
+      recipients,
+      transfering,
+      intl,
+    } = this.props;
     const { formatMessage } = intl;
 
     const assetToSendUsdValue = prices.assets
@@ -367,37 +399,69 @@ class TransferForm extends React.PureComponent {
                   onChange={this.handleAmountToSendChange}
                 />
               </FormItem>
-              <Collapse bordered={false} defaultActiveKey={['2']}>
-                <Panel
-                  header={<AdvanceSettingsHeader>{formatMessage({ id: 'advanced_settings' })}</AdvanceSettingsHeader>}
-                  key="1"
-                >
-                  <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_price' })}</FormItemLabel>} colon={false}>
-                    <Input
-                      disabled={transfering}
-                      min={0}
-                      defaultValue={gasPriceGweiInput}
-                      value={gasPriceGweiInput}
-                      onChange={this.handleGasPriceChange}
-                      onFocus={() => this.onFocusNumberInput('gasPriceGweiInput')}
-                      onBlur={() => this.onBlurNumberInput('gasPriceGweiInput')}
-                    />
-                  </FormItem>
-                  <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_limit' })}</FormItemLabel>} colon={false}>
-                    <Input
-                      disabled={transfering}
-                      value={gasLimitInput}
-                      defaultValue={gasLimitInput}
-                      onChange={this.handleGasLimitChange}
-                      onFocus={() => this.onFocusNumberInput('gasLimitInput')}
-                      onBlur={() => this.onBlurNumberInput('gasLimitInput')}
-                    />
-                  </FormItem>
-                </Panel>
-              </Collapse>
-              <ETHtoDollar>
-                {`1 ${assetToSend.symbol} = ${formatFiat(assetToSendUsdValue, 'USD')}`}
-              </ETHtoDollar>
+              <div>
+                <Text large>Save fees and send instantly with </Text>
+                <NahmiiText large style={{ marginRight: '0.5rem' }} />
+                <NahmiiSwitch checked={layer === 'nahmii'} onChange={(() => this.handleLayerSwitch())} />
+              </div>
+              <Spring
+                from={{ noAdvProg: 0 }}
+                to={{ noAdvProg: layer === 'baseLayer' ? 0 : 1 }}
+              >
+                {
+                  (props) => (
+                    <div
+                      style={{
+                        transform: `translate3d(0,${-20 * props.noAdvProg}px,0)`,
+                        width: '12rem',
+                      }}
+                    >
+                      <Collapse
+                        style={{
+                          opacity: ((props.noAdvProg - 1) * -1),
+                        }}
+                        bordered={false}
+                        activeKey={this.state.showAdv ? '1' : '0'}
+                      >
+                        <Panel
+                          header={
+                            <AdvanceSettingsHeader
+                              onClick={() => this.setState({ showAdv: !this.state.showAdv })}
+                            >
+                              {formatMessage({ id: 'advanced_settings' })}
+                            </AdvanceSettingsHeader>}
+                          key="1"
+                        >
+                          <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_price' })}</FormItemLabel>} colon={false}>
+                            <Input
+                              disabled={transfering}
+                              min={0}
+                              defaultValue={gasPriceGweiInput}
+                              value={gasPriceGweiInput}
+                              onChange={this.handleGasPriceChange}
+                              onFocus={() => this.onFocusNumberInput('gasPriceGweiInput')}
+                              onBlur={() => this.onBlurNumberInput('gasPriceGweiInput')}
+                            />
+                          </FormItem>
+                          <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_limit' })}</FormItemLabel>} colon={false}>
+                            <Input
+                              disabled={transfering}
+                              value={gasLimitInput}
+                              defaultValue={gasLimitInput}
+                              onChange={this.handleGasLimitChange}
+                              onFocus={() => this.onFocusNumberInput('gasLimitInput')}
+                              onBlur={() => this.onBlurNumberInput('gasLimitInput')}
+                            />
+                          </FormItem>
+                        </Panel>
+                      </Collapse>
+                      <ETHtoDollar>
+                        {`1 ${assetToSend.symbol} = ${formatFiat(assetToSendUsdValue, 'USD')}`}
+                      </ETHtoDollar>
+                    </div>
+                  )
+                }
+              </Spring>
             </Form>
           </TransferFormWrapper>
           <TransferDescriptionWrapper>
@@ -442,4 +506,5 @@ TransferForm.propTypes = {
   createContact: PropTypes.func.isRequired,
   intl: PropTypes.object,
 };
+
 export default injectIntl(TransferForm);
