@@ -51,7 +51,7 @@ export class WalletTransfer extends React.PureComponent {
     let contractAddress;
     const wallet = this.props.currentWalletWithInfo.toJS();
     if (token !== 'ETH') {
-      const asset = wallet.balances.assets.find((ast) => ast.symbol === token);
+      const asset = wallet.balances.baseLayer.assets.find((ast) => ast.symbol === token);
       contractAddress = asset.currency;
     }
     this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit, contractAddress });
@@ -70,12 +70,12 @@ export class WalletTransfer extends React.PureComponent {
       ledgerNanoSInfo,
       trezorInfo,
     } = this.props;
-    if (!currentWalletWithInfo.getIn(['balances', 'assets'])) {
+    if (!currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets'])) {
       return null;
     }
-    if (currentWalletWithInfo.getIn(['balances', 'loading'])) {
+    if (currentWalletWithInfo.getIn(['balances', 'baseLayer', 'loading'])) {
       return <PageLoadingIndicator pageType="wallet" id={currentWalletWithInfo.get('address')} />;
-    } else if (currentWalletWithInfo.getIn(['balances', 'error'])) {
+    } else if (currentWalletWithInfo.getIn(['balances', 'baseLayer', 'error'])) {
       return <LoadingError pageType="wallet" error={{ message: 'Failed to fetch wallet data' }} id={currentWalletWithInfo.get('address')} />;
     }
 
@@ -83,13 +83,13 @@ export class WalletTransfer extends React.PureComponent {
     const hwWalletReady = walletReady(currentWalletWithInfo.get('type'), ledgerNanoSInfo, trezorInfo);
     return (
       <TransferForm
-        currentWalletUsdBalance={currentWalletWithInfo.getIn(['balances', 'total', 'usd']).toNumber()}
+        currentWalletUsdBalance={currentWalletWithInfo.getIn(['balances', 'baseLayer', 'total', 'usd']).toNumber()}
         supportedAssets={this.props.supportedAssets}
         ledgerNanoSInfo={this.props.ledgerNanoSInfo}
         hwWalletReady={hwWalletReady}
         prices={prices.toJS()}
         recipients={contacts.toJS()}
-        assets={currentWalletWithInfo.getIn(['balances', 'assets']).toJS()}
+        assets={currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS()}
         onSend={this.onSend}
         transfering={currentWallet.toJS().transfering}
         errors={this.props.errors}

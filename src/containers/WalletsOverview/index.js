@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
 import { injectIntl } from 'react-intl';
 
-import { getBreakdown, isConnected } from 'utils/wallet';
+import { isConnected } from 'utils/wallet';
 
 import {
   deleteWallet,
@@ -14,6 +14,7 @@ import {
   setCurrentWallet,
   lockWallet,
 } from 'containers/WalletHoc/actions';
+
 import {
   makeSelectWalletsWithInfo,
   makeSelectTotalBalances,
@@ -34,7 +35,7 @@ import {
 
 import SectionHeading from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
-import Breakdown from 'components/Breakdown';
+import BreakdownPie from 'components/BreakdownPie';
 
 import PlaceholderText from 'components/ui/PlaceholderText';
 import { WalletCardsCol, Wrapper } from './style';
@@ -71,6 +72,8 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     }
     return wallets.map((wallet) => {
       const connected = isConnected(wallet, ledgerNanoSInfo.toJS(), trezorInfo.toJS());
+      const baseLayerBalance = wallet.balances.baseLayer;
+      const nahmiiBalance = wallet.balances.nahmiiCombined;
       return (
         <WalletCardsCol
           span={12}
@@ -81,13 +84,16 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
         >
           <WalletItemCard
             name={wallet.name}
-            totalBalance={(wallet.balances.loading || wallet.balances.error) ? 0 : wallet.balances.total.usd.toNumber()}
-            balancesLoading={wallet.balances.loading}
-            balancesError={!!wallet.balances.error}
+            totalBalance={(baseLayerBalance.loading || baseLayerBalance.error) ? 0 : baseLayerBalance.total.usd.toNumber()}
+            baseLayerBalancesLoading={baseLayerBalance.loading}
+            baseLayerBalancesError={!!baseLayerBalance.error}
+            nahmiiBalancesLoading={nahmiiBalance.loading}
+            nahmiiBalancesError={!!nahmiiBalance.error}
             address={wallet.address}
             type={wallet.type}
             connected={connected}
-            assets={wallet.balances.assets}
+            baseLayerAssets={baseLayerBalance.assets}
+            nahmiiAssets={nahmiiBalance.assets}
             mnemonic={wallet.decrypted ? wallet.decrypted.mnemonic : null}
             privateKey={wallet.decrypted ? wallet.decrypted.privateKey : null}
             isDecrypted={!!wallet.decrypted}
@@ -123,14 +129,15 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           </Col>
           <Col sm={24} md={12} lg={8}>
             {
-              !totalBalances.get('loading') &&
-              !totalBalances.get('error') &&
               !supportedAssets.get('loading') &&
               !supportedAssets.get('error') &&
-              <Breakdown
-                data={getBreakdown(totalBalances, supportedAssets)}
-                value={(+this.props.totalBalances.getIn(['total', 'usd']).toFixed(6)).toString()}
-              />
+              <div>
+                <SectionHeading>{formatMessage({ id: 'balance_breakdown' })}</SectionHeading>
+                <BreakdownPie
+                  totalBalances={totalBalances}
+                  supportedAssets={supportedAssets}
+                />
+              </div>
             }
           </Col>
         </Row>

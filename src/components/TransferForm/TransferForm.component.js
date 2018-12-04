@@ -14,6 +14,7 @@ import Select, { Option } from 'components/ui/Select';
 import { Form, FormItem, FormItemLabel } from 'components/ui/Form';
 import HelperText from 'components/ui/HelperText';
 import { Modal } from 'components/ui/Modal';
+import Collapse, { Panel } from 'components/ui/Collapse';
 import EditContactModal from 'components/EditContactModal';
 
 import {
@@ -21,8 +22,6 @@ import {
   ETHtoDollar,
   Image,
   AdvanceSettingsHeader,
-  Collapse,
-  Panel,
   StyledButton,
   TransferDescriptionWrapper,
   TransferFormWrapper,

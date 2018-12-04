@@ -21,6 +21,8 @@ import {
   currentNetworkMock,
 } from 'containers/App/tests/mocks/selectors';
 
+import { nahmiiHocMock } from 'containers/NahmiiHoc/tests/mocks/selectors';
+
 import {
   hubiiApiHocMock,
   pricesLoadedMock,
@@ -351,6 +353,7 @@ it('sign transaction for erc20 payment', () => {
   const storeState = {
     ethOperationsHoc: ethOperationsHocMock,
     app: appMock,
+    nahmiiHoc: nahmiiHocMock,
     hubiiApiHoc: hubiiApiHocMock,
     walletHoc: {
       wallets: [{
@@ -420,6 +423,7 @@ describe('payment transfer', () => {
       let storeState = fromJS({
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
+        nahmiiHoc: nahmiiHocMock,
         app: appMock,
         walletHoc: {
           wallets: [{
@@ -465,6 +469,7 @@ describe('payment transfer', () => {
       const storeState = {
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
+        nahmiiHoc: nahmiiHocMock,
         app: appMock,
         walletHoc: {
           wallets: [{
@@ -573,6 +578,7 @@ describe('payment transfer', () => {
       const storeState = {
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
+        nahmiiHoc: nahmiiHocMock,
         app: appMock,
         walletHoc: {
           wallets: [{
@@ -628,6 +634,7 @@ describe('payment transfer', () => {
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
         app: appMock,
+        nahmiiHoc: nahmiiHocMock,
         walletHoc: {
           balances: balancesMock,
           prices: pricesLoadedMock,
@@ -689,6 +696,7 @@ describe('payment transfer', () => {
       const storeState = fromJS({
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
+        nahmiiHoc: nahmiiHocMock,
         app: appMock,
         walletHoc: {
           balances: balancesMock,

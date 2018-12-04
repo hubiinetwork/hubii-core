@@ -72,9 +72,11 @@ export class WalletDetails extends React.PureComponent {
             iconType="home"
             name={currentWallet.get('name')}
             address={currentWallet.get('address')}
-            balance={currentWallet
-              .getIn(['balances', 'total', 'usd'])
-              .toNumber()}
+            balance={
+              currentWallet
+                .getIn(['balances', 'baseLayer', 'total', 'usd'])
+                .toNumber()
+            }
             onIconClick={this.onHomeClick}
             connected={connected}
             isDecrypted={!!currentWallet.get('decrypted')}

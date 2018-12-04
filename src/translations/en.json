@@ -180,5 +180,11 @@
     "lock": "Lock Wallet",
     "unlock": "Unlock Wallet",
     "wallet_locked": "Wallet locked",
-    "invalid_dpath": "Please enter a valid derivation path"
+    "invalid_dpath": "Please enter a valid derivation path",
+    "total_combined_balances": "Total combined balances",
+    "base_layer_balances": "Base layer balances",
+    "balances": "balances",
+    "available": "Available",
+    "staging": "Staging",
+    "staged": "Staged"
 }
