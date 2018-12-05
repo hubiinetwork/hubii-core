@@ -1,4 +1,4 @@
-import { providers } from 'ethers';
+import { getDefaultProvider } from 'ethers';
 
 // eslint-disable-next-line no-unused-vars
 const intFromEnv = (key, def) => {
@@ -33,13 +33,13 @@ const trimmableWalletApiEndpoint = (endpoint) => (trimmed) => {
 
 export const SUPPORTED_NETWORKS = {
   homestead: {
-    provider: providers.getDefaultProvider('homestead'),
+    provider: getDefaultProvider('homestead'),
     walletApiEndpoint: trimmableWalletApiEndpoint('https://api.nahmii.io/'),
     identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : HOMESTEAD_IDENTITY_SERVICE_SECRET,
     identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : HOMESTEAD_IDENTITY_SERVICE_APPID,
   },
   ropsten: {
-    provider: providers.getDefaultProvider('ropsten'),
+    provider: getDefaultProvider('ropsten'),
     walletApiEndpoint: trimmableWalletApiEndpoint('https://api2.dev.hubii.net/'),
     identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : ROPSTEN_IDENTITY_SERVICE_SECRET,
     identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : ROPSTEN_IDENTITY_SERVICE_APPID,

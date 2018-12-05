@@ -1,4 +1,4 @@
-import ethers from 'ethers';
+import { utils as ethersUtils } from 'ethers';
 import { fromRpcSig, bufferToHex } from 'ethereumjs-util';
 import utils from 'nahmii-sdk/lib/utils';
 import { take, takeEvery, put, select, call } from 'redux-saga/effects';
@@ -63,7 +63,7 @@ export function* register() {
         return;
       }
       address = wallet.address;
-      const messageHashArr = ethers.utils.arrayify(MESSAGE_HASH);
+      const messageHashArr = ethersUtils.arrayify(MESSAGE_HASH);
       sig = yield call(signPersonalMessage, { message: messageHashArr, wallet });
     } else {
       address = nahmiiAirdriipState.manualRegistrationInfo.address;

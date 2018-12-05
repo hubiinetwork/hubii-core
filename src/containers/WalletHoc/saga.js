@@ -4,7 +4,7 @@ import {
   call,
   select,
 } from 'redux-saga/effects';
-import { Wallet, utils, Contract } from 'ethers';
+import { Wallet, Signer, utils, Contract } from 'ethers';
 import { fromRpcSig } from 'ethereumjs-util';
 
 import { notify } from 'containers/App/actions';
@@ -112,7 +112,7 @@ export function* decryptWallet({ address, encryptedWallet, password }) {
   let callbackAction = yield select(makeSelectCurrentDecryptionCallback());
   try {
     if (!address) throw new Error(getIntl().formatMessage({ id: 'address_undefined_error' }));
-    const res = yield call([Wallet, 'fromEncryptedWallet'], encryptedWallet, password);
+    const res = yield call([Wallet, 'fromEncryptedJson'], encryptedWallet, password);
     if (!res.privateKey) throw res;
     const decryptedWallet = res;
     yield put(decryptWalletSuccess(address, decryptedWallet));
@@ -171,9 +171,8 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
     if (isHardwareWallet(walletDetails.type)) {
       transaction = yield call(sendTransactionForHardwareWallet, { toAddress, amount, gasPrice, gasLimit });
     } else {
-      const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
-      etherWallet.provider = network.provider;
-      transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
+      const etherWallet = new Wallet(walletDetails.decrypted.privateKey, network.provider);
+      transaction = yield call((...args) => etherWallet.sendTransaction(...args), { to: toAddress, value: amount, ...options });
     }
     yield put(transferSuccess(transaction, 'ETH'));
     yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
@@ -201,8 +200,7 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
       }, options);
       transaction = yield call(sendTransactionForHardwareWallet, { ...tx, amount: tx.value, toAddress: tx.to });
     } else {
-      const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
-      etherWallet.provider = provider;
+      const etherWallet = new Wallet(walletDetails.decrypted.privateKey, provider);
       const contract = new Contract(contractAddress, contractAbiFragment, etherWallet);
       transaction = yield call((...args) => contract.transfer(...args), toAddress, amount, options);
     }
@@ -221,13 +219,18 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
 // hook into etherjs's sign function get generated erc20 transaction object for further process
 export function generateERC20Transaction({ contractAddress, walletAddress, toAddress, amount, provider }, options) {
   return new Promise((resolve) => {
-    const contract = new Contract(contractAddress, ERC20ABI, {
-      provider,
-      getAddress: () => walletAddress,
-      sign: (tx) => {
-        resolve(tx);
-      },
-    });
+    const signer = new Signer();
+    signer.provider = provider;
+    signer.sendTransaction = async (tx) => {
+      tx.to.then((address) => {
+        resolve({
+          ...tx,
+          to: address.toLowerCase(),
+        });
+      });
+    };
+
+    const contract = new Contract(contractAddress, ERC20ABI, signer);
     contract.transfer(toAddress, amount, options).catch(() => {});
   });
 }
@@ -256,7 +259,7 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
     nonceValue = yield call([provider, 'getTransactionCount'], walletDetails.address, 'pending');
   }
   const amountHex = amount ? amount.toHexString() : '0x00';
-  const chainId = provider.chainId;
+  const chainId = provider.network.chainId;
 
   // generate raw tx for ledger nano to sign
   const rawTx = generateRawTx({
@@ -291,15 +294,15 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   // regenerate tx hex string
   const txHex = `0x${rawTx.serialize().toString('hex')}`;
   // broadcast transaction
-  const txHash = yield call([provider, 'sendTransaction'], txHex);
+  const { hash } = yield call([provider, 'sendTransaction'], txHex);
   // get transaction details
-  return yield call([provider, 'getTransaction'], txHash);
+  return yield call([provider, 'getTransaction'], hash);
 }
 
 export function* signPersonalMessage({ message, wallet }) {
   if (wallet.type === 'software') {
     const etherWallet = new Wallet(wallet.decrypted.privateKey);
-    const rpcSig = etherWallet.signMessage(message);
+    const rpcSig = yield call([etherWallet, 'signMessage'], message);
     const bufferParams = fromRpcSig(rpcSig);
     return {
       v: bufferParams.v,

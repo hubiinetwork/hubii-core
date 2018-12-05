@@ -297,7 +297,7 @@ describe('decryptWallet saga', () => {
     return expectSaga(decryptWallet, { address, encryptedWallet, password })
       .withState(testState)
       .provide([
-        [matchers.call.fn(Wallet.fromEncryptedWallet), decryptedWallet],
+        [matchers.call.fn(Wallet.fromEncryptedJson), decryptedWallet],
       ])
       .put(decryptWalletSuccess(address, decryptedWallet))
       .put(hideDecryptWalletModal())
@@ -313,7 +313,7 @@ describe('decryptWallet saga', () => {
   it('should dispatch the decryptWalletFailed and notify action if decryption fails', () => expectSaga(decryptWallet, { address, encryptedWallet, password: 'cats' })
       .withState(storeMock)
       .provide([
-        [matchers.call.fn(Wallet.fromEncryptedWallet), new Error('invalid_password')],
+        [matchers.call.fn(Wallet.fromEncryptedJson), new Error('invalid_password')],
       ])
       .put(decryptWalletFailed(new Error('invalid_password')))
       .run());
@@ -674,7 +674,7 @@ describe('payment transfer', () => {
               }
               if (effect.args[0].startsWith('0xf8')) {
                 signedTxHex = effect.args[0];
-                return 'hash';
+                return { hash: 'hash' };
               }
               if (effect.fn === getTransaction) {
                 return { value: 1 };
@@ -757,7 +757,7 @@ describe('payment transfer', () => {
               }
               if (effect.args[0].startsWith('0xf8')) {
                 signedTxHex = effect.args[0];
-                return 'hash';
+                return { hash: 'hash' };
               }
               if (effect.fn === getTransaction) {
                 return { value: 1 };
@@ -824,14 +824,12 @@ describe('#signPersonalMessage', () => {
     v: 28,
   };
 
-  it('should run the function relevant to a software wallet', () => {
+  it('should run the function relevant to a software wallet', async () => {
     const wallet = decryptedSoftwareWallet1Mock.toJS();
-    const expectedResult = {
-      done: true,
-      value: expandedSig,
-    };
-    const putDescriptor = signPersonalMessage({ message, wallet }).next();
-    expect(putDescriptor).toEqual(expectedResult);
+
+    const { returnValue } = await expectSaga(signPersonalMessage, { wallet, message })
+        .run({ silenceTimeout: true });
+    expect(returnValue).toEqual(expandedSig);
   });
   it('should run the function relevant to a lns', async () => {
     const ledgerExpandedSig = {
