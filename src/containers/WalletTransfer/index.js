@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import nahmii from 'nahmii-sdk';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
@@ -29,7 +30,8 @@ import {
 import {
   createContact,
 } from 'containers/ContactBook/actions';
-import { transfer } from 'containers/WalletHoc/actions';
+import { transfer as baseLayerTransfer } from 'containers/WalletHoc/actions';
+import { makeNahmiiPayment as nahmiiTransfer } from 'containers/NahmiiHoc/actions';
 import LoadingError from '../../components/LoadingError';
 
 export class WalletTransfer extends React.PureComponent {
@@ -37,6 +39,7 @@ export class WalletTransfer extends React.PureComponent {
     super(props);
     this.onSend = this.onSend.bind(this);
     this.onCancel = this.onCancel.bind(this);
+    this.sendBaseLayer = this.sendBaseLayer.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -47,18 +50,38 @@ export class WalletTransfer extends React.PureComponent {
     }
   }
 
-  onSend(token, toAddress, amount, gasPrice, gasLimit) {
-    let contractAddress;
-    const wallet = this.props.currentWalletWithInfo.toJS();
-    if (token !== 'ETH') {
-      const asset = wallet.balances.baseLayer.assets.find((ast) => ast.symbol === token);
-      contractAddress = asset.currency;
+  onSend(symbol, toAddress, amount, layer, gasPrice, gasLimit) {
+    if (layer === 'nahmii') {
+      this.sendNahmii(symbol, toAddress, amount);
+    } else {
+      this.sendBaseLayer(symbol, toAddress, amount, gasPrice, gasLimit);
     }
-    this.props.transfer({ wallet, token, toAddress, amount, gasPrice, gasLimit, contractAddress });
   }
 
   onCancel() {
     this.props.history.push(`/wallet/${this.props.currentWalletWithInfo.address}/overview`);
+  }
+
+  sendBaseLayer(symbol, toAddress, amount, gasPrice, gasLimit) {
+    let contractAddress;
+    const wallet = this.props.currentWalletWithInfo.toJS();
+    if (symbol !== 'ETH') {
+      const asset = wallet.balances.baseLayer.assets.find((ast) => ast.symbol === symbol);
+      contractAddress = asset.currency;
+    }
+    this.props.baseLayerTransfer({ wallet, symbol, toAddress, amount, gasPrice, gasLimit, contractAddress });
+  }
+
+  sendNahmii(symbol, toAddress, amount) {
+    const { supportedAssets } = this.props;
+    let ct;
+    if (symbol === 'ETH') {
+      ct = '0x0000000000000000000000000000000000000000';
+    } else {
+      ct = supportedAssets.get('assets').find((a) => a.get('symbol') === symbol).get('currency');
+    }
+    const monetaryAmount = new nahmii.MonetaryAmount(amount, ct);
+    this.props.nahmiiTransfer(monetaryAmount, toAddress);
   }
 
   render() {
@@ -89,7 +112,6 @@ export class WalletTransfer extends React.PureComponent {
         hwWalletReady={hwWalletReady}
         prices={prices.toJS()}
         recipients={contacts.toJS()}
-        assets={currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS()}
         onSend={this.onSend}
         transfering={currentWallet.toJS().transfering}
         errors={this.props.errors}
@@ -106,7 +128,8 @@ WalletTransfer.propTypes = {
   supportedAssets: PropTypes.object.isRequired,
   ledgerNanoSInfo: PropTypes.object.isRequired,
   trezorInfo: PropTypes.object.isRequired,
-  transfer: PropTypes.func.isRequired,
+  baseLayerTransfer: PropTypes.func.isRequired,
+  nahmiiTransfer: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   prices: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
@@ -127,7 +150,8 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    transfer: (...args) => dispatch(transfer(...args)),
+    baseLayerTransfer: (...args) => dispatch(baseLayerTransfer(...args)),
+    nahmiiTransfer: (...args) => dispatch(nahmiiTransfer(...args)),
     createContact: (...args) => dispatch(createContact(...args)),
   };
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Icon } from 'antd';
 import BigNumber from 'bignumber.js';
+import { fromJS } from 'immutable';
 import { Spring } from 'react-spring';
 import PropTypes from 'prop-types';
 import { isValidAddress } from 'ethereumjs-util';
@@ -43,25 +44,23 @@ const gasLimitRegex = new RegExp('^\\d+$');
 class TransferForm extends React.PureComponent {
   constructor(props) {
     super(props);
-
-    // max decimals possible for current asset
-    const assetToSendMaxDecimals = this.props.supportedAssets
+    // const assetToSend = this.props.currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets', 0]).toJS();
+    const assetToSend = this.props.supportedAssets
       .get('assets')
-      .find((a) => a.get('currency') === this.props.assets[0].currency)
-      .get('decimals');
+      .find((a) => a.get('symbol') === 'ETH')
+      .toJS();
 
     // regex for amount input
     // only allow one dot and integers, and not more decimal places than possible for the
     // current asset
     // https://stackoverflow.com/questions/30435918/regex-pattern-to-have-only-one-dot-and-match-integer-and-decimal-numbers
-    const amountToSendInputRegex = new RegExp(`^\\d+(\\.\\d{0,${assetToSendMaxDecimals}})?$`);
+    const amountToSendInputRegex = new RegExp(`^\\d+(\\.\\d{0,${assetToSend.decimals}})?$`);
 
     this.state = {
       amountToSendInput: '0',
       amountToSend: new BigNumber('0'),
       address: this.props.recipients[0] ? this.props.recipients[0].address : '',
-      assetToSend: this.props.assets[0],
-      assetToSendMaxDecimals,
+      assetToSend,
       amountToSendInputRegex,
       gasPriceGweiInput: '10',
       gasPriceGwei: new BigNumber('10'),
@@ -92,12 +91,11 @@ class TransferForm extends React.PureComponent {
       amountToSend,
       gasPriceGwei,
       gasLimit,
-      assetToSendMaxDecimals,
       layer,
     } = this.state;
 
     // convert amountToSend into wei or equivilent for an ERC20 token
-    const amountToSendWeiOrEquivilent = amountToSend.times(new BigNumber('10').pow(assetToSendMaxDecimals));
+    const amountToSendWeiOrEquivilent = amountToSend.times(new BigNumber('10').pow(assetToSend.decimals));
     this.props.onSend(assetToSend.symbol, address, amountToSendWeiOrEquivilent, layer, gweiToWei(gasPriceGwei), gasLimit);
   }
 
@@ -172,19 +170,16 @@ class TransferForm extends React.PureComponent {
   }
 
   handleAssetChange(newSymbol) {
-    const assetToSend = this.props.assets.find((a) => a.symbol === newSymbol);
-
-    // max decimals possible for current asset
-    const assetToSendMaxDecimals = this.props.supportedAssets
+    const assetToSend = this.props.supportedAssets
       .get('assets')
-      .find((a) => a.get('currency') === assetToSend.currency)
-      .get('decimals');
+      .find((a) => a.get('symbol') === newSymbol)
+      .toJS();
 
     // regex for amount input
     // only allow one dot and integers, and not more decimal places than possible for the
     // current asset
     // https://stackoverflow.com/questions/30435918/regex-pattern-to-have-only-one-dot-and-match-integer-and-decimal-numbers
-    const amountToSendInputRegex = new RegExp(`^\\d+(\\.\\d{0,${assetToSendMaxDecimals}})?$`);
+    const amountToSendInputRegex = new RegExp(`^\\d+(\\.\\d{0,${assetToSend.decimals}})?$`);
 
     // set a higher gas limit for erc20 tokens
     let gasLimit = 21000;
@@ -193,7 +188,6 @@ class TransferForm extends React.PureComponent {
     this.setState({
       assetToSend,
       amountToSendInputRegex,
-      assetToSendMaxDecimals,
       gasLimit,
       gasLimitInput: gasLimit.toString(),
     });
@@ -262,8 +256,8 @@ class TransferForm extends React.PureComponent {
     } = this.state;
 
     const {
+      currentWalletWithInfo,
       currentWalletUsdBalance,
-      assets,
       prices,
       recipients,
       transfering,
@@ -271,48 +265,73 @@ class TransferForm extends React.PureComponent {
     } = this.props;
     const { formatMessage } = intl;
 
+    const balKey = layer === 'baseLayer' ? 'baseLayer' : 'nahmiiAvailable';
+
     const assetToSendUsdValue = prices.assets
-      .find((a) => a.currency === assetToSend.currency).usd;
+      .find((a) => a.currency === assetToSend.currency)
+      .usd;
     const usdValueToSend = amountToSend
       .times(assetToSendUsdValue);
     const ethUsdValue = prices.assets
       .find((a) => a.currency === 'ETH').usd;
 
 
-    const ethBalance = this.props.assets
+    const baseLayerEthBalance = currentWalletWithInfo
+      .getIn(['balances', balKey, 'assets'])
+      .toJS()
       .find((currency) => currency.symbol === 'ETH');
 
     // construct tx fee info
-    const txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit);
-    const txFeeUsdValue = txFeeAmt.times(ethUsdValue);
+    let txFeeAmt;
+    let txFeeSymbol;
+    if (layer === 'baseLayer') {
+      txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit);
+      txFeeSymbol = 'ETH';
+    } else {
+      txFeeAmt = new BigNumber('0.00000001');
+      txFeeSymbol = assetToSend.symbol;
+    }
+    const txFeeUsdValue = txFeeAmt.times(
+      prices.assets
+      .find((a) => a.currency === assetToSend.currency)
+      .usd
+      );
     const transactionFee = {
       amount: txFeeAmt,
       usdValue: txFeeUsdValue,
+      symbol: txFeeSymbol,
     };
 
     // construct asset before and after balances
+    const assetBalBeforeAmt = (currentWalletWithInfo
+      .getIn(['balances', balKey, 'assets'])
+      .find((a) => a.get('currency') === assetToSend.currency) || fromJS({ balance: new BigNumber('0') }))
+      .get('balance');
+
     const assetBalanceBefore = {
-      amount: assetToSend.balance,
-      usdValue: assetToSend.balance.times(assetToSendUsdValue),
+      amount: assetBalBeforeAmt,
+      usdValue: assetBalBeforeAmt.times(assetToSendUsdValue),
     };
-    const assetBalAfterAmt = assetBalanceBefore.amount.minus(amountToSend);
+    const assetBalAfterAmt = layer === 'nahmii'
+      ? assetBalanceBefore.amount.minus(amountToSend).minus(transactionFee.amount)
+      : assetBalanceBefore.amount.minus(amountToSend);
     const assetBalanceAfter = {
       amount: assetBalAfterAmt,
       usdValue: assetBalAfterAmt.times(assetToSendUsdValue),
     };
 
     // constuct ether before and after balances
-    const ethBalanceBefore = {
-      amount: ethBalance.balance,
-      usdValue: ethBalance.balance.times(ethUsdValue),
+    const baseLayerEthBalanceBefore = {
+      amount: baseLayerEthBalance.balance,
+      usdValue: baseLayerEthBalance.balance.times(ethUsdValue),
     };
 
-    const ethBalanceAfterAmount = assetToSend.symbol === 'ETH'
-        ? ethBalanceBefore.amount.minus(amountToSend).minus(transactionFee.amount)
-        : ethBalanceBefore.amount.minus(transactionFee.amount);
-    const ethBalanceAfter = {
-      amount: ethBalanceAfterAmount,
-      usdValue: ethBalanceAfterAmount.times(ethUsdValue),
+    const baseLayerEthBalanceAfterAmount = assetToSend.symbol === 'ETH'
+        ? baseLayerEthBalanceBefore.amount.minus(amountToSend).minus(transactionFee.amount)
+        : baseLayerEthBalanceBefore.amount.minus(transactionFee.amount);
+    const baseLayerEthBalanceAfter = {
+      amount: baseLayerEthBalanceAfterAmount,
+      usdValue: baseLayerEthBalanceAfterAmount.times(ethUsdValue),
     };
 
     const walletUsdValueAfter = currentWalletUsdBalance - (usdValueToSend.plus(transactionFee.usdValue)).toNumber();
@@ -353,7 +372,7 @@ class TransferForm extends React.PureComponent {
                   onSelect={this.handleAssetChange}
                   style={{ paddingLeft: '0.5rem' }}
                 >
-                  {assets.map((currency) => (
+                  {currentWalletWithInfo.getIn(['balances', balKey, 'assets']).toJS().map((currency) => (
                     <Option value={currency.symbol} key={currency.symbol}>
                       {currency.symbol}
                     </Option>
@@ -400,8 +419,9 @@ class TransferForm extends React.PureComponent {
                 />
               </FormItem>
               <div>
-                <Text large>Save fees and send instantly with </Text>
-                <NahmiiText large style={{ marginRight: '0.5rem' }} />
+                <Text large>Send instantly on the </Text>
+                <NahmiiText large />
+                <Text large style={{ marginRight: '0.5rem' }}> second layer</Text>
                 <NahmiiSwitch checked={layer === 'nahmii'} onChange={(() => this.handleLayerSwitch())} />
               </div>
               <Spring
@@ -419,6 +439,7 @@ class TransferForm extends React.PureComponent {
                       <Collapse
                         style={{
                           opacity: ((props.noAdvProg - 1) * -1),
+                          visibility: props.noAdvProg === 1 ? 'hidden' : 'visible',
                         }}
                         bordered={false}
                         activeKey={this.state.showAdv ? '1' : '0'}
@@ -466,12 +487,13 @@ class TransferForm extends React.PureComponent {
           </TransferFormWrapper>
           <TransferDescriptionWrapper>
             <TransferDescription
+              layer={layer}
               transactionFee={transactionFee}
               amountToSend={amountToSend}
               assetToSend={assetToSend}
               usdValueToSend={usdValueToSend}
-              ethBalanceBefore={ethBalanceBefore}
-              ethBalanceAfter={ethBalanceAfter}
+              baseLayerEthBalanceBefore={baseLayerEthBalanceBefore}
+              baseLayerEthBalanceAfter={baseLayerEthBalanceAfter}
               assetBalanceBefore={assetBalanceBefore}
               assetBalanceAfter={assetBalanceAfter}
               walletUsdValueBefore={currentWalletUsdBalance}
@@ -490,7 +512,6 @@ class TransferForm extends React.PureComponent {
   }
 }
 TransferForm.propTypes = {
-  assets: PropTypes.array.isRequired,
   currentWalletUsdBalance: PropTypes.number.isRequired,
   prices: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,

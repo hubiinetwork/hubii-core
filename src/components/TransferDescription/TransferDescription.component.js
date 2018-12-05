@@ -29,8 +29,8 @@ class TransferDescription extends React.PureComponent {
       recipient,
       assetToSend,
       amountToSend,
-      ethBalanceBefore,
-      ethBalanceAfter,
+      baseLayerEthBalanceBefore,
+      baseLayerEthBalanceAfter,
       assetBalanceAfter,
       assetBalanceBefore,
       walletUsdValueBefore,
@@ -39,6 +39,7 @@ class TransferDescription extends React.PureComponent {
       transactionFee,
       onSend,
       hwWalletReady,
+      layer,
       intl,
     } = this.props;
 
@@ -46,7 +47,7 @@ class TransferDescription extends React.PureComponent {
 
     const disableSendButton =
       amountToSend.isNegative() ||
-      ethBalanceAfter.amount.isNegative() ||
+      baseLayerEthBalanceAfter.amount.isNegative() ||
       assetBalanceAfter.amount.isNegative() ||
       !isValidAddress(recipient) ||
       !hwWalletReady;
@@ -72,31 +73,35 @@ class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           <TransferDescriptionItem
-            main={`${transactionFee.amount.toString()} ETH`}
+            main={`${transactionFee.amount.toString()} ${transactionFee.symbol}`}
             subtitle={formatFiat(transactionFee.usdValue.toNumber(), 'USD')}
           />
         </Row>
-        <Row>
-          <StyledCol span={12}>ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
-        </Row>
-        <Row>
-          <TransferDescriptionItem
-            main={`${ethBalanceBefore.amount.toString()} ETH`}
-            subtitle={formatFiat(ethBalanceBefore.usdValue.toNumber(), 'USD')}
-          />
-        </Row>
-        <Row>
-          <StyledCol span={12}>
+        {layer === 'baseLayer' &&
+        <div>
+          <Row>
+            <StyledCol span={12}>ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+          </Row>
+          <Row>
+            <TransferDescriptionItem
+              main={`${baseLayerEthBalanceBefore.amount.toString()} ETH`}
+              subtitle={formatFiat(baseLayerEthBalanceBefore.usdValue.toNumber(), 'USD')}
+            />
+          </Row>
+          <Row>
+            <StyledCol span={12}>
             ETH {formatMessage({ id: 'balance_after' })}
-          </StyledCol>
-        </Row>
-        <Row>
-          <TransferDescriptionItem
-            main={`${ethBalanceAfter.amount} ETH`}
-            subtitle={formatFiat(ethBalanceAfter.usdValue.toNumber(), 'USD')}
-          />
-        </Row>
-        {assetToSend.symbol !== 'ETH' &&
+            </StyledCol>
+          </Row>
+          <Row>
+            <TransferDescriptionItem
+              main={`${baseLayerEthBalanceAfter.amount} ETH`}
+              subtitle={formatFiat(baseLayerEthBalanceAfter.usdValue.toNumber(), 'USD')}
+            />
+          </Row>
+        </div>
+        }
+        {(layer === 'nahmii' || assetToSend.symbol !== 'ETH') &&
         <div>
           <Row>
             <StyledCol span={12}>{assetToSend.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
@@ -162,13 +167,14 @@ class TransferDescription extends React.PureComponent {
 
 TransferDescription.propTypes = {
   recipient: PropTypes.string.isRequired,
+  layer: PropTypes.oneOf(['baseLayer', 'nahmii']).isRequired,
   amountToSend: PropTypes.object.isRequired,
   transactionFee: PropTypes.object.isRequired,
   assetToSend: PropTypes.object.isRequired,
   assetBalanceAfter: PropTypes.object.isRequired,
   assetBalanceBefore: PropTypes.object.isRequired,
-  ethBalanceAfter: PropTypes.object.isRequired,
-  ethBalanceBefore: PropTypes.object.isRequired,
+  baseLayerEthBalanceAfter: PropTypes.object.isRequired,
+  baseLayerEthBalanceBefore: PropTypes.object.isRequired,
   walletUsdValueAfter: PropTypes.number.isRequired,
   walletUsdValueBefore: PropTypes.number.isRequired,
   usdValueToSend: PropTypes.object.isRequired,
