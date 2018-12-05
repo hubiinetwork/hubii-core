@@ -11,7 +11,7 @@ import { fromJS } from 'immutable';
 import BigNumber from 'bignumber.js';
 
 import { requestHardwareWalletAPI } from 'utils/request';
-import { getTransaction, prependHexToAddress } from 'utils/wallet';
+import { getTransaction, prependHexToAddress, ERC20ABI } from 'utils/wallet';
 import { storeMock } from 'mocks/store';
 
 import { notify } from 'containers/App/actions';
@@ -72,7 +72,7 @@ import walletHoc, {
   transferEther,
   hookNewWalletCreated,
   sendTransactionForHardwareWallet,
-  generateERC20Transaction,
+  generateContractTransaction,
   signPersonalMessage,
   decryptSuccessHook,
   decryptFailedHook,
@@ -548,7 +548,7 @@ describe('payment transfer', () => {
           .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
           .run({ silenceTimeout: true });
     });
-    it('#generateERC20Transaction should generate transaction object using etherjs contract', async () => {
+    it('#generateContractTransaction should generate transaction object using etherjs contract', async () => {
       const nonce = 1;
       const gas = {
         gasPrice: 30000000,
@@ -565,13 +565,12 @@ describe('payment transfer', () => {
         ...gas,
         nonce, // override the nonce so etherjs wont call #getTransactionCount for testing
       };
-      const tx = await generateERC20Transaction({
+      const tx = await generateContractTransaction({
         contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
-        walletAddress: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
-        toAddress: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
-        amount: utils.parseEther(amount.toString()),
+        abi: ERC20ABI,
+        execute: ['transfer', ['0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88', utils.parseEther(amount.toString()), options]],
         provider: currentNetworkMock.provider,
-      }, options);
+      });
       expect(tx).toEqual(expectedTx);
     });
     it('transfer erc20 should pass params correctly to sendTransactionForHardwareWallet', () => {
@@ -612,7 +611,7 @@ describe('payment transfer', () => {
       return expectSaga(transferERC20, params)
           .provide({
             call(effect, next) {
-              if (effect.fn === generateERC20Transaction) {
+              if (effect.fn === generateContractTransaction) {
                 return tx;
               }
               if (effect.fn === sendTransactionForHardwareWallet) {

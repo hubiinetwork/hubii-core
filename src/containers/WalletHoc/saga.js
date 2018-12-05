@@ -191,13 +191,12 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
   try {
     const options = { gasPrice, gasLimit };
     if (isHardwareWallet(walletDetails.type)) {
-      const tx = yield call(generateERC20Transaction, {
+      const tx = yield call(generateContractTransaction, {
         contractAddress,
-        walletAddress: walletDetails.address,
-        toAddress,
-        amount,
+        abi: ERC20ABI,
+        execute: ['transfer', [toAddress, amount, options]],
         provider,
-      }, options);
+      });
       transaction = yield call(sendTransactionForHardwareWallet, { ...tx, amount: tx.value, toAddress: tx.to });
     } else {
       const etherWallet = new Wallet(walletDetails.decrypted.privateKey, provider);
@@ -217,7 +216,7 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
 }
 
 // hook into etherjs's sign function get generated erc20 transaction object for further process
-export function generateERC20Transaction({ contractAddress, walletAddress, toAddress, amount, provider }, options) {
+export function generateContractTransaction({ contractAddress, abi, execute, provider }) {
   return new Promise((resolve) => {
     const signer = new Signer();
     signer.provider = provider;
@@ -230,8 +229,11 @@ export function generateERC20Transaction({ contractAddress, walletAddress, toAdd
       });
     };
 
-    const contract = new Contract(contractAddress, ERC20ABI, signer);
-    contract.transfer(toAddress, amount, options).catch(() => {});
+    const contract = new Contract(contractAddress, abi, signer);
+    const func = execute[0];
+    const args = execute[1];
+
+    contract[func](...args).catch(() => {});
   });
 }
 
