@@ -1172,6 +1172,26 @@ ShallowWrapper {
         Object {
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "provider": FallbackProvider {
               "_emitted": Object {
                 "block": -1,
@@ -1798,6 +1818,26 @@ ShallowWrapper {
         Object {
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "provider": FallbackProvider {
               "_emitted": Object {
                 "block": -1,
@@ -3424,6 +3464,26 @@ ShallowWrapper {
         Object {
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "provider": FallbackProvider {
               "_emitted": Object {
                 "block": -1,
@@ -3882,6 +3942,26 @@ ShallowWrapper {
         Object {
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "provider": FallbackProvider {
               "_emitted": Object {
                 "block": -1,
@@ -4376,6 +4456,26 @@ ShallowWrapper {
         Object {
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "provider": Object {
               "_emitted": Object {
                 "block": -1,

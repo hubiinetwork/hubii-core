@@ -9,6 +9,26 @@ ShallowWrapper {
         Object {
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "provider": FallbackProvider {
               "_emitted": Object {
                 "block": -1,
@@ -43,6 +63,26 @@ ShallowWrapper {
                     "name": "homestead",
                     "resetEventsBlock": [Function],
                   },
+                nahmiiProvider: NahmiiProvider {
+                    "_balances": Object {},
+                    "_emitted": Object {
+                      "block": -2,
+                    },
+                    "_events": Array [],
+                    "_fastQueryDate": 0,
+                    "_lastBlockNumber": -2,
+                    "_network": Object {
+                      "_defaultProvider": [Function],
+                      "chainId": 3,
+                      "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                      "name": "ropsten",
+                    },
+                    "_pollingInterval": 4000,
+                    "connection": Object {
+                      "url": "http://geth-ropsten.dev.hubii.net",
+                    },
+                    "ready": Promise {},
+                  },
                 walletApiEndpoint: [Function],
                 identityServiceSecret: "secret",
                 identityServiceAppId: "appid",
@@ -57,6 +97,26 @@ ShallowWrapper {
                     "ensAddress": "0x112234455C3a32FD11230C42E7Bccd4A84e02010",
                     "name": "ropsten",
                     "resetEventsBlock": [Function],
+                  },
+                nahmiiProvider: NahmiiProvider {
+                    "_balances": Object {},
+                    "_emitted": Object {
+                      "block": -2,
+                    },
+                    "_events": Array [],
+                    "_fastQueryDate": 0,
+                    "_lastBlockNumber": -2,
+                    "_network": Object {
+                      "_defaultProvider": [Function],
+                      "chainId": 3,
+                      "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                      "name": "ropsten",
+                    },
+                    "_pollingInterval": 4000,
+                    "connection": Object {
+                      "url": "http://geth-ropsten.dev.hubii.net",
+                    },
+                    "ready": Promise {},
                   },
                 walletApiEndpoint: [Function],
                 identityServiceSecret: "secret",

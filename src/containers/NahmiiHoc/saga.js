@@ -1,20 +1,48 @@
 import ClientFundContract from 'nahmii-sdk/lib/client-fund-contract';
 import { utils } from 'ethers';
+import nahmii from 'nahmii-sdk';
 import { all, fork, takeEvery, select, put, call, take, cancel, race } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import BigNumber from 'bignumber.js';
 import { requestWalletAPI } from 'utils/request';
 import rpcRequest from 'utils/rpcRequest';
+import { getIntl } from 'utils/localisation';
 import {
   makeSelectWallets,
+  makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHoc/selectors';
+import { notify } from 'containers/App/actions';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { makeSelectSupportedAssets } from 'containers/HubiiApiHoc/selectors';
 import { LOAD_SUPPORTED_TOKENS_SUCCESS } from 'containers/HubiiApiHoc/constants';
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import { ADD_NEW_WALLET } from 'containers/WalletHoc/constants';
+import { showDecryptWalletModal } from 'containers/WalletHoc/actions';
 import { requestToken } from 'containers/HubiiApiHoc/saga';
 import * as actions from './actions';
+import { MAKE_NAHMII_PAYMENT } from './constants';
+
+export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
+  try {
+    const wallet = walletOverride || (yield (select(makeSelectCurrentWalletWithInfo()))).toJS();
+    if (wallet.encrypted && !wallet.decrypted) {
+      yield put(showDecryptWalletModal(actions.makeNahmiiPayment({ monetaryAmount, recipient, walletOverride })));
+      yield put(actions.nahmiiPaymentError(new Error(getIntl().formatMessage({ id: 'wallet_encrypted_error' }))));
+      return;
+    }
+    const network = yield select(makeSelectCurrentNetwork());
+    const nahmiiProvider = network.nahmiiProvider;
+    const nahmiiWallet = new nahmii.Wallet(wallet.decrypted.privateKey, nahmiiProvider);
+    const payment = new nahmii.Payment(nahmiiWallet, monetaryAmount, wallet.address, recipient);
+    yield payment.sign();
+    yield payment.register();
+    yield put(actions.nahmiiPaymentSuccess());
+    yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
+  } catch (e) {
+    yield put(actions.nahmiiPaymentError(e.message));
+    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: getIntl().formatMessage({ id: e.message }) })));
+  }
+}
 
 export function* loadBalances({ address }, network) {
   if (network.provider.name === 'homestead') {
@@ -68,7 +96,7 @@ export function* loadStagedBalances({ address }, network) {
   }
 
   const provider = network.provider;
-  const clientFundContract = new ClientFundContract(provider);
+  const clientFundContract = new ClientFundContract(network.nahmiiProvider);
 
   while (true) { // eslint-disable-line no-constant-condition
     try {
@@ -149,4 +177,5 @@ export function* challengeStatusOrcestrator() {
 
 export default function* listen() {
   yield takeEvery(INIT_NETWORK_ACTIVITY, challengeStatusOrcestrator);
+  yield takeEvery(MAKE_NAHMII_PAYMENT, makePayment);
 }
