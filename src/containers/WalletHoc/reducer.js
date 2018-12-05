@@ -9,6 +9,11 @@ import { ERC20ABI, findWalletIndex } from 'utils/wallet';
 import abiDecoder from 'abi-decoder';
 
 import { CHANGE_NETWORK } from 'containers/App/constants';
+import {
+  MAKE_NAHMII_PAYMENT,
+  MAKE_NAHMII_PAYMENT_SUCCESS,
+  MAKE_NAHMII_PAYMENT_ERROR,
+} from 'containers/NahmiiHoc/constants';
 
 import {
   CREATE_WALLET_FROM_MNEMONIC,
@@ -102,15 +107,18 @@ function walletHocReducer(state = initialState, action) {
         .setIn(['currentWallet', 'transferError'], null)
         .setIn(['currentWallet', 'lastTransaction'], null);
     case TRANSFER:
+    case MAKE_NAHMII_PAYMENT:
       return state
         .setIn(['currentWallet', 'transfering'], true)
         .setIn(['currentWallet', 'transferError'], null)
         .setIn(['currentWallet', 'lastTransaction'], null);
     case TRANSFER_SUCCESS:
+    case MAKE_NAHMII_PAYMENT_SUCCESS:
       return state
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], null);
     case TRANSFER_ERROR:
+    case MAKE_NAHMII_PAYMENT_ERROR:
       return state
         .setIn(['currentWallet', 'transfering'], false)
         .setIn(['currentWallet', 'transferError'], action.error.message)

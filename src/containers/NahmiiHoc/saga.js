@@ -26,7 +26,7 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
   try {
     const wallet = walletOverride || (yield (select(makeSelectCurrentWalletWithInfo()))).toJS();
     if (wallet.encrypted && !wallet.decrypted) {
-      yield put(showDecryptWalletModal(actions.makeNahmiiPayment({ monetaryAmount, recipient, walletOverride })));
+      yield put(showDecryptWalletModal(actions.makeNahmiiPayment(monetaryAmount, recipient, walletOverride)));
       yield put(actions.nahmiiPaymentError(new Error(getIntl().formatMessage({ id: 'wallet_encrypted_error' }))));
       return;
     }
