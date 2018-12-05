@@ -47,10 +47,10 @@ let additionalAlias = {};
 if (process.env.CONTRACT_PATH) {
   additionalEntry.push(path.join(process.cwd(), 'src/mocks/containers/NahmiiHoc/_fetch.js'));
   additionalAlias = {
-    'config/constants': 'mocks/config/constants',
-    './abis/ClientFund': 'mocks/sdk/abis/ClientFund.js',
-    './abis/DriipSettlement': 'mocks/sdk/abis/DriipSettlement.js',
-    './abis/DriipSettlementChallenge': 'mocks/sdk/abis/DriipSettlementChallenge.js',
+    'config/constants': path.join(process.cwd(), 'src/mocks/config/constants'),
+    './abis/ClientFund': path.join(process.cwd(), 'src/mocks/sdk/abis/ClientFund.js'),
+    './abis/DriipSettlement': path.join(process.cwd(), 'src/mocks/sdk/abis/DriipSettlement.js'),
+    './abis/DriipSettlementChallenge': path.join(process.cwd(), 'src/mocks/sdk/abis/DriipSettlementChallenge.js'),
   };
 }
 

@@ -14,6 +14,7 @@ import { isConnected, isHardwareWallet } from 'utils/wallet';
 import WalletHeader from 'components/WalletHeader';
 import WalletTransactions from 'containers/WalletTransactions';
 import WalletTransfer from 'containers/WalletTransfer';
+import NahmiiWithdraw from 'containers/NahmiiWithdraw';
 import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHoc/selectors';
 import {
   makeSelectLedgerHoc,
@@ -138,6 +139,16 @@ export class WalletDetails extends React.PureComponent {
             key={`${match.url}/buyeth`}
           >
             <Route path={`${match.url}/buyeth`} component={SimplexPage} />
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <Icon type="logout" />{formatMessage({ id: 'withdraw' })}
+              </span>
+            }
+            key={`${match.url}/withdraw`}
+          >
+            <Route path={`${match.url}/withdraw`} component={NahmiiWithdraw} />
           </TabPane>
         </Tabs>
         {history.location.pathname === match.url && (

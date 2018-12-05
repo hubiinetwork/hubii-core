@@ -76,5 +76,11 @@ global.fetch = (url, opts) => {
       resolve({ status: 200, json: () => receipts });
     });
   }
+  if (url.indexOf('ethereum/supported-tokens') !== -1) {
+    return new Promise((resolve) => {
+      const result = [{currency: "0x0000000000000000000000000000000000000000", symbol: "ETH", decimals: 18, color: "#0063A5"}]
+      resolve({ status: 200, json: () => result });
+    });
+  }
   return f(url, opts);
 };

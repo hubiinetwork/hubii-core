@@ -73,7 +73,7 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
       const tokenContractAddresses = supportedAssets.assets.map((a) => a.currency).slice(0, -1);
 
       // the first provider in network.provider.providers in an Infura node, which supports RPC calls
-      const jsonRpcProvider = network.provider.providers[0];
+      const jsonRpcProvider = network.provider.providers? network.provider.providers[0] : network.provider;
 
       // pad the 20 byte address to 32 bytes
       const paddedAddr = ethersUtils.hexlify(ethersUtils.padZeros(address, 32));
