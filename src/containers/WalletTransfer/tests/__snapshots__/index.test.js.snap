@@ -570,16 +570,7 @@ ShallowWrapper {
                 },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -898,16 +889,7 @@ ShallowWrapper {
                     },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -1601,16 +1583,7 @@ ShallowWrapper {
                       },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -1932,16 +1905,7 @@ ShallowWrapper {
                             },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -2631,16 +2595,7 @@ ShallowWrapper {
                 loading: true,
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -2960,16 +2915,7 @@ ShallowWrapper {
                     loading: true,
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -3657,16 +3603,7 @@ ShallowWrapper {
                 },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: true,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -3985,16 +3922,7 @@ ShallowWrapper {
                     },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: true,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -4641,16 +4569,7 @@ ShallowWrapper {
                 },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [],
@@ -4927,16 +4846,7 @@ ShallowWrapper {
                     },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [],
@@ -5541,16 +5451,7 @@ ShallowWrapper {
                 },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [],
@@ -5827,16 +5728,7 @@ ShallowWrapper {
                     },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [],
@@ -6446,16 +6338,7 @@ ShallowWrapper {
                 },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -6738,16 +6621,7 @@ ShallowWrapper {
                     },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -7363,16 +7237,7 @@ ShallowWrapper {
                 },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -7655,16 +7520,7 @@ ShallowWrapper {
                     },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -8316,16 +8172,7 @@ ShallowWrapper {
                 },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -8644,16 +8491,7 @@ ShallowWrapper {
                     },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [

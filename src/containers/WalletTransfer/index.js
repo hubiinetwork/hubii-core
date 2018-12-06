@@ -12,7 +12,6 @@ import PageLoadingIndicator from 'components/PageLoadingIndicator';
 import {
   makeSelectCurrentWallet,
   makeSelectCurrentWalletWithInfo,
-  makeSelectErrors,
 } from 'containers/WalletHoc/selectors';
 import {
   makeSelectSupportedAssets,
@@ -107,13 +106,11 @@ export class WalletTransfer extends React.PureComponent {
     return (
       <TransferForm
         supportedAssets={this.props.supportedAssets}
-        ledgerNanoSInfo={this.props.ledgerNanoSInfo}
         hwWalletReady={hwWalletReady}
         prices={prices.toJS()}
         recipients={contacts.toJS()}
         onSend={this.onSend}
         transfering={currentWallet.toJS().transfering}
-        errors={this.props.errors}
         currentWalletWithInfo={this.props.currentWalletWithInfo}
         createContact={this.props.createContact}
       />
@@ -132,7 +129,6 @@ WalletTransfer.propTypes = {
   history: PropTypes.object.isRequired,
   prices: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
   createContact: PropTypes.func.isRequired,
 };
 
@@ -144,7 +140,6 @@ const mapStateToProps = createStructuredSelector({
   supportedAssets: makeSelectSupportedAssets(),
   prices: makeSelectPrices(),
   contacts: makeSelectContacts(),
-  errors: makeSelectErrors(),
 });
 
 export function mapDispatchToProps(dispatch) {
