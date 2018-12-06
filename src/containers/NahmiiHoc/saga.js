@@ -46,44 +46,12 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     }
     const network = yield select(makeSelectCurrentNetwork());
     const nahmiiProvider = network.nahmiiProvider;
-    let signer;
-    let confOnDevice;
-    let confOnDeviceDone;
-    if (wallet.type === 'lns') {
-      signer = {
-        signMessage: nahmiiSdkSignMessageLns,
-        signTransaction: nahmiiSdkSignTransactionLns,
-        address: wallet.address,
-      };
-      confOnDevice = ledgerConfirmTxOnDevice();
-      confOnDeviceDone = ledgerConfirmTxOnDeviceDone();
-    } else if (wallet.type === 'trezor') {
-      const trezorInfo = yield select(makeSelectTrezorHoc());
-      const deviceId = trezorInfo.get('id');
-      const path = wallet.derivationPath;
-      const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
-      if (!isAddressMatch(`0x${publicAddressKeyPair.address}`, wallet.address)) {
-        throw new Error('PASSPHRASE_MISMATCH');
-      }
-      signer = {
-        signMessage: async (message) => trezorSignMessage(message, deviceId, path),
-        signTransaction: () => {},
-        address: wallet.address,
-      };
-      confOnDevice = trezorConfirmTxOnDevice();
-      confOnDeviceDone = trezorConfirmTxOnDeviceDone();
-    } else {
-      signer = wallet.decrypted.privateKey;
-    }
+    const { signer, confOnDevice, confOnDeviceDone } = yield getSdkWalletSigner(wallet);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     const payment = new nahmii.Payment(nahmiiWallet, monetaryAmount, wallet.address, recipient);
-    if (confOnDevice) {
-      yield put(confOnDevice);
-    }
+    if (confOnDevice) yield put(confOnDevice);
     yield payment.sign();
-    if (confOnDeviceDone) {
-      yield put(confOnDeviceDone);
-    }
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield payment.register();
     yield put(actions.nahmiiPaymentSuccess());
     yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
@@ -91,6 +59,43 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     yield put(actions.nahmiiPaymentError(e.message));
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: getIntl().formatMessage({ id: e.message }) })));
   }
+}
+
+/*
+ * returns object containing an SDK signer, and device confirmation actions to be dispatched
+ * if applicable
+ */
+function* getSdkWalletSigner(wallet) {
+  let signer;
+  let confOnDevice;
+  let confOnDeviceDone;
+  if (wallet.type === 'lns') {
+    signer = {
+      signMessage: nahmiiSdkSignMessageLns,
+      signTransaction: nahmiiSdkSignTransactionLns,
+      address: wallet.address,
+    };
+    confOnDevice = ledgerConfirmTxOnDevice();
+    confOnDeviceDone = ledgerConfirmTxOnDeviceDone();
+  } else if (wallet.type === 'trezor') {
+    const trezorInfo = yield select(makeSelectTrezorHoc());
+    const deviceId = trezorInfo.get('id');
+    const path = wallet.derivationPath;
+    const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
+    if (!isAddressMatch(`0x${publicAddressKeyPair.address}`, wallet.address)) {
+      throw new Error('PASSPHRASE_MISMATCH');
+    }
+    signer = {
+      signMessage: async (message) => trezorSignMessage(message, deviceId, path),
+      signTransaction: () => {},
+      address: wallet.address,
+    };
+    confOnDevice = trezorConfirmTxOnDevice();
+    confOnDeviceDone = trezorConfirmTxOnDeviceDone();
+  } else {
+    signer = wallet.decrypted.privateKey;
+  }
+  return { signer, confOnDevice, confOnDeviceDone };
 }
 
 const trezorSignMessage = async (_message, deviceId, path) => {
