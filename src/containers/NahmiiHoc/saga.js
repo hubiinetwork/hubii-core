@@ -16,6 +16,7 @@ import { notify } from 'containers/App/actions';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { makeSelectSupportedAssets } from 'containers/HubiiApiHoc/selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
+import { makeSelectLedgerHoc } from 'containers/LedgerHoc/selectors';
 import { LOAD_SUPPORTED_TOKENS_SUCCESS } from 'containers/HubiiApiHoc/constants';
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import { ADD_NEW_WALLET } from 'containers/WalletHoc/constants';
@@ -29,12 +30,9 @@ import {
   ledgerConfirmTxOnDevice,
   ledgerConfirmTxOnDeviceDone,
 } from 'containers/LedgerHoc/actions';
-import {
-  nahmiiSdkSignMessage as nahmiiSdkSignMessageLns,
-  nahmiiSdkSignTransaction as nahmiiSdkSignTransactionLns,
-} from 'electron/wallets/lns';
 import * as actions from './actions';
 import { MAKE_NAHMII_PAYMENT } from './constants';
+import { requestEthTransportActivity } from '../LedgerHoc/saga';
 
 export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
   try {
@@ -70,9 +68,10 @@ function* getSdkWalletSigner(wallet) {
   let confOnDevice;
   let confOnDeviceDone;
   if (wallet.type === 'lns') {
+    const ledgerNanoSInfo = yield select(makeSelectLedgerHoc());
     signer = {
-      signMessage: nahmiiSdkSignMessageLns,
-      signTransaction: nahmiiSdkSignTransactionLns,
+      signMessage: async (message) => ledgerSignerSignMessage(message, wallet.derivationPath, ledgerNanoSInfo.get('descriptor')),
+      signTransaction: async () => {},
       address: wallet.address,
     };
     confOnDevice = ledgerConfirmTxOnDevice();
@@ -86,7 +85,7 @@ function* getSdkWalletSigner(wallet) {
       throw new Error('PASSPHRASE_MISMATCH');
     }
     signer = {
-      signMessage: async (message) => trezorSignMessage(message, deviceId, path),
+      signMessage: async (message) => trezorSignerSignMessage(message, deviceId, path),
       signTransaction: () => {},
       address: wallet.address,
     };
@@ -98,7 +97,7 @@ function* getSdkWalletSigner(wallet) {
   return { signer, confOnDevice, confOnDeviceDone };
 }
 
-const trezorSignMessage = async (_message, deviceId, path) => {
+const trezorSignerSignMessage = async (_message, deviceId, path) => {
   let message = _message;
   if (typeof message === 'string') {
     message = await utils.toUtf8Bytes(_message);
@@ -113,6 +112,18 @@ const trezorSignMessage = async (_message, deviceId, path) => {
     }
   );
   return `0x${signedTx.message.signature}`;
+};
+
+const ledgerSignerSignMessage = async (message, path, descriptor) => {
+  const signature = await requestEthTransportActivity({
+    method: 'signpersonalmessage',
+    params: { descriptor, path: path.toString(), message: Buffer.from(message).toString('hex') },
+  });
+  return utils.joinSignature({
+    r: `0x${signature.r}`,
+    s: `0x${signature.s}`,
+    v: signature.v,
+  });
 };
 
 export function* loadBalances({ address }, network) {
