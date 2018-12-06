@@ -365,7 +365,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -694,7 +693,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -1395,7 +1393,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -1727,7 +1724,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -2429,7 +2425,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -2759,7 +2754,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -3458,7 +3452,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -3787,7 +3780,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -4444,7 +4436,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -4731,7 +4722,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -5346,7 +5336,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -5633,7 +5622,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -6253,7 +6241,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -6546,7 +6533,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -7172,7 +7158,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -7465,7 +7450,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -8127,7 +8111,6 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -8456,7 +8439,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",

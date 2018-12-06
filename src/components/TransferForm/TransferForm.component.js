@@ -257,13 +257,14 @@ class TransferForm extends React.PureComponent {
 
     const {
       currentWalletWithInfo,
-      currentWalletUsdBalance,
       prices,
       recipients,
       transfering,
       intl,
     } = this.props;
     const { formatMessage } = intl;
+
+    const currentWalletUsdBalance = currentWalletWithInfo.getIn(['balances', 'combined', 'total', 'usd']).toNumber();
 
     const balKey = layer === 'baseLayer' ? 'baseLayer' : 'nahmiiAvailable';
 
@@ -512,7 +513,6 @@ class TransferForm extends React.PureComponent {
   }
 }
 TransferForm.propTypes = {
-  currentWalletUsdBalance: PropTypes.number.isRequired,
   prices: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,

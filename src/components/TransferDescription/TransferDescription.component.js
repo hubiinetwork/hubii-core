@@ -47,10 +47,11 @@ class TransferDescription extends React.PureComponent {
 
     const disableSendButton =
       amountToSend.isNegative() ||
-      baseLayerEthBalanceAfter.amount.isNegative() ||
+      (baseLayerEthBalanceAfter.amount.isNegative() && layer === 'baseLayer') ||
       assetBalanceAfter.amount.isNegative() ||
       !isValidAddress(recipient) ||
-      !hwWalletReady;
+      !hwWalletReady ||
+      (amountToSend.toNumber() === 0 && layer === 'nahmii');
     return (
       <div>
         <Row>

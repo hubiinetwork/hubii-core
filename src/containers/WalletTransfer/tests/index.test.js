@@ -155,7 +155,7 @@ describe('WalletTransfer', () => {
       instance.onSend(symbol, toAddress, amount, 'baseLayer', gasPrice, gasLimit);
       const args = {
         wallet: props.currentWalletWithInfo.toJS(),
-        symbol,
+        token: symbol,
         toAddress,
         amount,
         gasPrice,

@@ -69,7 +69,7 @@ export class WalletTransfer extends React.PureComponent {
       const asset = wallet.balances.baseLayer.assets.find((ast) => ast.symbol === symbol);
       contractAddress = asset.currency;
     }
-    this.props.baseLayerTransfer({ wallet, symbol, toAddress, amount, gasPrice, gasLimit, contractAddress });
+    this.props.baseLayerTransfer({ wallet, token: symbol, toAddress, amount, gasPrice, gasLimit, contractAddress });
   }
 
   sendNahmii(symbol, toAddress, amount) {
@@ -106,7 +106,6 @@ export class WalletTransfer extends React.PureComponent {
     const hwWalletReady = walletReady(currentWalletWithInfo.get('type'), ledgerNanoSInfo, trezorInfo);
     return (
       <TransferForm
-        currentWalletUsdBalance={currentWalletWithInfo.getIn(['balances', 'baseLayer', 'total', 'usd']).toNumber()}
         supportedAssets={this.props.supportedAssets}
         ledgerNanoSInfo={this.props.ledgerNanoSInfo}
         hwWalletReady={hwWalletReady}

@@ -54,8 +54,8 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     yield put(actions.nahmiiPaymentSuccess());
     yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
   } catch (e) {
-    yield put(actions.nahmiiPaymentError(e.message));
-    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: getIntl().formatMessage({ id: e.message }) })));
+    yield put(actions.nahmiiPaymentError(e));
+    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
   }
 }
 
