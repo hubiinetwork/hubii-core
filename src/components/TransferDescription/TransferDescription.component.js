@@ -105,7 +105,9 @@ class TransferDescription extends React.PureComponent {
         {(layer === 'nahmii' || assetToSend.symbol !== 'ETH') &&
         <div>
           <Row>
-            <StyledCol span={12}>{assetToSend.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+            <StyledCol span={12}>
+              {layer === 'nahmii' ? 'Available' : ''} {assetToSend.symbol} {formatMessage({ id: 'balance_before' })}
+            </StyledCol>
           </Row>
           <Row>
             <TransferDescriptionItem
@@ -115,7 +117,7 @@ class TransferDescription extends React.PureComponent {
           </Row>
           <Row>
             <StyledCol span={12}>
-              { assetToSend.symbol } {formatMessage({ id: 'balance_after' })}
+              {layer === 'nahmii' ? 'Available' : ''} { assetToSend.symbol } {formatMessage({ id: 'balance_after' })}
             </StyledCol>
           </Row>
           <Row>
