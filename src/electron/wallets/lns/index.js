@@ -61,3 +61,5 @@ const createEthTransportActivity = async (descriptor, activityFn) => {
     }
   }
 };
+
+export const PROTOCOL_NAME = 'lns';
