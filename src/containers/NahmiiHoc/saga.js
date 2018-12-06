@@ -4,8 +4,9 @@ import nahmii from 'nahmii-sdk';
 import { all, fork, takeEvery, select, put, call, take, cancel, race } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import BigNumber from 'bignumber.js';
-import { requestWalletAPI } from 'utils/request';
+import { requestWalletAPI, requestHardwareWalletAPI } from 'utils/request';
 import rpcRequest from 'utils/rpcRequest';
+import { isAddressMatch } from 'utils/wallet';
 import { getIntl } from 'utils/localisation';
 import {
   makeSelectWallets,
@@ -14,11 +15,24 @@ import {
 import { notify } from 'containers/App/actions';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { makeSelectSupportedAssets } from 'containers/HubiiApiHoc/selectors';
+import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
 import { LOAD_SUPPORTED_TOKENS_SUCCESS } from 'containers/HubiiApiHoc/constants';
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import { ADD_NEW_WALLET } from 'containers/WalletHoc/constants';
 import { showDecryptWalletModal } from 'containers/WalletHoc/actions';
 import { requestToken } from 'containers/HubiiApiHoc/saga';
+import {
+  trezorConfirmTxOnDevice,
+  trezorConfirmTxOnDeviceDone,
+} from 'containers/TrezorHoc/actions';
+import {
+  ledgerConfirmTxOnDevice,
+  ledgerConfirmTxOnDeviceDone,
+} from 'containers/LedgerHoc/actions';
+import {
+  nahmiiSdkSignMessage as nahmiiSdkSignMessageLns,
+  nahmiiSdkSignTransaction as nahmiiSdkSignTransactionLns,
+} from 'electron/wallets/lns';
 import * as actions from './actions';
 import { MAKE_NAHMII_PAYMENT } from './constants';
 
@@ -32,9 +46,44 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     }
     const network = yield select(makeSelectCurrentNetwork());
     const nahmiiProvider = network.nahmiiProvider;
-    const nahmiiWallet = new nahmii.Wallet(wallet.decrypted.privateKey, nahmiiProvider);
+    let signer;
+    let confOnDevice;
+    let confOnDeviceDone;
+    if (wallet.type === 'lns') {
+      signer = {
+        signMessage: nahmiiSdkSignMessageLns,
+        signTransaction: nahmiiSdkSignTransactionLns,
+        address: wallet.address,
+      };
+      confOnDevice = ledgerConfirmTxOnDevice();
+      confOnDeviceDone = ledgerConfirmTxOnDeviceDone();
+    } else if (wallet.type === 'trezor') {
+      const trezorInfo = yield select(makeSelectTrezorHoc());
+      const deviceId = trezorInfo.get('id');
+      const path = wallet.derivationPath;
+      const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
+      if (!isAddressMatch(`0x${publicAddressKeyPair.address}`, wallet.address)) {
+        throw new Error('PASSPHRASE_MISMATCH');
+      }
+      signer = {
+        signMessage: async (message) => trezorSignMessage(message, deviceId, path),
+        signTransaction: () => {},
+        address: wallet.address,
+      };
+      confOnDevice = trezorConfirmTxOnDevice();
+      confOnDeviceDone = trezorConfirmTxOnDeviceDone();
+    } else {
+      signer = wallet.decrypted.privateKey;
+    }
+    const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     const payment = new nahmii.Payment(nahmiiWallet, monetaryAmount, wallet.address, recipient);
+    if (confOnDevice) {
+      yield put(confOnDevice);
+    }
     yield payment.sign();
+    if (confOnDeviceDone) {
+      yield put(confOnDeviceDone);
+    }
     yield payment.register();
     yield put(actions.nahmiiPaymentSuccess());
     yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
@@ -43,6 +92,23 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: getIntl().formatMessage({ id: e.message }) })));
   }
 }
+
+const trezorSignMessage = async (_message, deviceId, path) => {
+  let message = _message;
+  if (typeof message === 'string') {
+    message = await utils.toUtf8Bytes(_message);
+  }
+  const messageHex = await utils.hexlify(message).substring(2);
+  const signedTx = await requestHardwareWalletAPI(
+    'signpersonalmessage',
+    {
+      id: deviceId,
+      path,
+      message: messageHex,
+    }
+  );
+  return `0x${signedTx.message.signature}`;
+};
 
 export function* loadBalances({ address }, network) {
   if (network.provider.name === 'homestead') {
