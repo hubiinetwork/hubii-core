@@ -420,9 +420,9 @@ class TransferForm extends React.PureComponent {
                 />
               </FormItem>
               <div>
-                <Text large>Send instantly on the </Text>
+                <Text large>{formatMessage({ id: 'send_on_the' })} </Text>
                 <NahmiiText large />
-                <Text large style={{ marginRight: '0.5rem' }}> second layer</Text>
+                <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
                 <NahmiiSwitch checked={layer === 'nahmii'} onChange={(() => this.handleLayerSwitch())} />
               </div>
               <Spring
