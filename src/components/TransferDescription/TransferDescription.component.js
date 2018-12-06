@@ -185,7 +185,7 @@ TransferDescription.propTypes = {
   transfering: PropTypes.bool,
   hwWalletReady: PropTypes.bool.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired,
+  intl: PropTypes.object,
 };
 
 export default injectIntl(TransferDescription);
