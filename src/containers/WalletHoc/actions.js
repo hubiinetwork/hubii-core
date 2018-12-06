@@ -143,7 +143,7 @@ export function transfer(payload) {
   return {
     type: TRANSFER,
     wallet: payload.wallet,
-    token: payload.token,
+    token: payload.symbol,
     toAddress: payload.toAddress,
     amount: payload.amount,
     gasPrice: payload.gasPrice,
