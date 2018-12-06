@@ -1,4 +1,5 @@
 import {
+  SET_SELECTED_WALLET_CURRENCY,
   LOAD_NAHMII_BALANCES,
   LOAD_NAHMII_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGED_BALANCES,
@@ -38,6 +39,13 @@ import {
   LOAD_RECEIPTS_SUCCESS,
   LOAD_RECEIPTS_ERROR,
 } from './constants';
+
+export function setSelectedWalletCurrency(currencyAddress) {
+  return {
+    type: SET_SELECTED_WALLET_CURRENCY,
+    currencyAddress,
+  };
+}
 
 export function loadBalances(address) {
   return {

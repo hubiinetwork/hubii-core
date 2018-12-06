@@ -7,6 +7,7 @@
 import { fromJS } from 'immutable';
 
 import {
+  SET_SELECTED_WALLET_CURRENCY,
   LOAD_NAHMII_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGED_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGING_BALANCES_SUCCESS,
@@ -38,10 +39,13 @@ export const initialState = fromJS({
   balances: {},
   receipts: {},
   transactions: {},
+  selectedCurrency: 'ETH',
 });
 
 function nahmiiHocReducer(state = initialState, action) {
   switch (action.type) {
+    case SET_SELECTED_WALLET_CURRENCY:
+      return state.set('selectedCurrency', action.currencyAddress);
     case LOAD_NAHMII_BALANCES_SUCCESS:
       return state
         .setIn(['balances', action.address, 'available', 'loading'], false)

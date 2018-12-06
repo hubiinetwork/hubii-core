@@ -25,6 +25,7 @@ import {
   makeSelectLastSettlePaymentDriip,
   makeSelectNahmiiBalancesByCurrentWallet,
   makeSelectNahmiiSettlementTransactionsByCurrentWallet,
+  makeSelectWalletCurrency,
 } from 'containers/NahmiiHoc/selectors';
 import {
   makeSelectSupportedAssets,
@@ -56,6 +57,14 @@ export class NahmiiWithdraw extends React.PureComponent {
     this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
     this.handleAmountChange = this.handleAmountChange.bind(this);
     this.updateExpandedTx = this.updateExpandedTx.bind(this);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const {setSelectedWalletCurrency} = this.props;
+    if (this.state.selectedSymbol !== prevState.selectedSymbol) {
+      const assetDetails = this.getAssetDetailsBySymbol(this.state.selectedSymbol);
+      setSelectedWalletCurrency(assetDetails.get('currency'));
+    }
   }
 
   onFocusNumberInput(input) {
@@ -295,8 +304,8 @@ export class NahmiiWithdraw extends React.PureComponent {
     const { staged } = nahmiiBalances.toJS();
     const challenge = lastPaymentChallenge.get('challenge');
     const selectedAssetDetails = this.getAssetDetailsBySymbol(selectedSymbol);
-    console.log(selectedAssetDetails, staged, challenge)
-    if (!selectedAssetDetails || !staged || !challenge) {
+
+    if (!selectedAssetDetails || !staged) {
       return (null);
     }
 
@@ -308,7 +317,7 @@ export class NahmiiWithdraw extends React.PureComponent {
     }
 
     let challengeAssetSymbol;
-    const challengeReceipt = this.getReceiptByNonce(challenge.nonce.toNumber());
+    let challengeReceipt// = this.getReceiptByNonce(challenge.nonce.toNumber());
     if (challengeReceipt) {
       const challengeAsssetDetails = this.getAssetDetailsByCurrencyAddress(challengeReceipt.currency.ct);
       challengeAssetSymbol = challengeAsssetDetails ? challengeAsssetDetails.toJS().symbol : null;
@@ -356,7 +365,7 @@ export class NahmiiWithdraw extends React.PureComponent {
           this.isChallengeInProgress() &&
           <SettlementWarning
             message={formatMessage({ id: 'challenge_period_progress' })}
-            description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(challenge.timeout * 1000).format('LLLL'), symbol: challengeAssetSymbol })}
+            // description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(challenge.timeout * 1000).format('LLLL'), symbol: challengeAssetSymbol })}
             type="warning"
             showIcon
           />
@@ -488,6 +497,7 @@ export function mapDispatchToProps(dispatch) {
   return {
     startPaymentChallenge: (...args) => dispatch(actions.startPaymentChallenge(...args)),
     settlePaymentDriip: (...args) => dispatch(actions.settlePaymentDriip(...args)),
+    setSelectedWalletCurrency: (...args) => dispatch(actions.setSelectedWalletCurrency(...args)),
     withdraw: (...args) => dispatch(actions.withdraw(...args)),
   };
 }

@@ -24,6 +24,11 @@ const makeSelectNahmiiWallets = () => createSelector(
   (nahmiiHocDomain) => nahmiiHocDomain.get('wallets') || fromJS({})
 );
 
+const makeSelectWalletCurrency = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('selectedCurrency')
+);
+
 const makeSelectNahmiiSettlementTransactions = () => createSelector(
   selectNahmiiHocDomain,
   (nahmiiHocDomain) => nahmiiHocDomain.get('transactions') || fromJS({})
@@ -150,6 +155,7 @@ const makeSelectNahmiiBalances = () => createSelector(
 
 
 export {
+  makeSelectWalletCurrency,
   makeSelectReceipts,
   makeSelectReceiptsByAddress,
   makeSelectLastPaymentChallenge,
