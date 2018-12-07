@@ -16,6 +16,7 @@ import {
   gweiRegex,
   gasLimitRegex,
   isHardwareWallet,
+  walletReady,
 } from 'utils/wallet';
 import BigNumber from 'bignumber.js';
 import { formatFiat } from 'utils/numberFormats';
@@ -226,6 +227,8 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       supportedAssets,
       depositStatus,
       currentNetwork,
+      ledgerNanoSInfo,
+      trezorInfo,
     } = this.props;
     const { formatMessage } = intl;
 
@@ -306,7 +309,11 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       usdValue: baseLayerEthBalanceAfterAmount.times(ethUsdValue),
     };
 
-    const disableDepositButton = false;
+    const disableDepositButton =
+      amountToDeposit.toNumber() <= 0 ||
+      baseLayerBalAfterAmt.isNegative() ||
+      baseLayerEthBalanceAfterAmount.isNegative() ||
+      !walletReady(currentWalletWithInfo.get('type'), ledgerNanoSInfo, trezorInfo);
     const transferingText = this.generateTransferingText(depositStatus);
     return (
       <div style={{ display: 'flex', flex: '1', flexWrap: 'wrap' }}>
@@ -540,8 +547,8 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
 
 NahmiiDeposit.propTypes = {
   currentWalletWithInfo: PropTypes.object.isRequired,
-  // ledgerNanoSInfo: PropTypes.object.isRequired,
-  // trezorInfo: PropTypes.object.isRequired,
+  ledgerNanoSInfo: PropTypes.object.isRequired,
+  trezorInfo: PropTypes.object.isRequired,
   prices: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   depositStatus: PropTypes.object.isRequired,
