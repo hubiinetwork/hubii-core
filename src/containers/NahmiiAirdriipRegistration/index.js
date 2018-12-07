@@ -166,7 +166,7 @@ export class NahmiiAirdriipRegistration extends React.Component {
     return (
       <OuterWrapper>
         {
-          currentNetwork.provider.name !== 'homestead' &&
+          currentNetwork.provider.network.name !== 'homestead' &&
           <NetworkWarning
             message={intl.formatMessage({ id: 'warning' })}
             description={intl.formatMessage({ id: 'airdriip_testnet_warning' })}

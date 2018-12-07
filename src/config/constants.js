@@ -1,5 +1,5 @@
-import { providers } from 'ethers';
 import nahmii from 'nahmii-sdk';
+import { getDefaultProvider } from 'ethers';
 
 // eslint-disable-next-line no-unused-vars
 const intFromEnv = (key, def) => {
@@ -37,7 +37,7 @@ const HOMESTEAD_URL = 'https://api.nahmii.io/';
 
 export const SUPPORTED_NETWORKS = {
   homestead: {
-    provider: providers.getDefaultProvider('homestead'),
+    provider: getDefaultProvider('homestead'),
     nahmiiProvider: new nahmii.NahmiiProvider(
       trimmableWalletApiEndpoint(HOMESTEAD_URL)(true),
       HOMESTEAD_IDENTITY_SERVICE_APPID,
@@ -48,7 +48,7 @@ export const SUPPORTED_NETWORKS = {
     identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : HOMESTEAD_IDENTITY_SERVICE_APPID,
   },
   ropsten: {
-    provider: providers.getDefaultProvider('ropsten'),
+    provider: getDefaultProvider('ropsten'),
     nahmiiProvider: new nahmii.NahmiiProvider(
       trimmableWalletApiEndpoint(ROPSTEN_URL)(true),
       ROPSTEN_IDENTITY_SERVICE_APPID,

@@ -12,7 +12,7 @@ import {
 
 import { delay } from 'redux-saga';
 import nahmii from 'nahmii-sdk';
-import ethers from 'ethers';
+import { utils as ethersUtils } from 'ethers';
 import BigNumber from 'bignumber.js';
 
 import request, { requestWalletAPI } from 'utils/request';
@@ -76,12 +76,12 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
       const jsonRpcProvider = network.provider.providers[0];
 
       // pad the 20 byte address to 32 bytes
-      const paddedAddr = ethers.utils.hexlify(ethers.utils.padZeros(address, 32));
+      const paddedAddr = ethersUtils.hexlify(ethersUtils.padZeros(address, 32));
 
       // concat the balanceOf('address') function identifier to the padded address. this shows our intention to call the
       // balanceOf method with address as the parameter
-      const dataArr = ethers.utils.concat([BALANCE_OF_FUNCTION_ID, paddedAddr]);
-      const data = ethers.utils.hexlify(dataArr);
+      const dataArr = ethersUtils.concat([BALANCE_OF_FUNCTION_ID, paddedAddr]);
+      const data = ethersUtils.hexlify(dataArr);
 
       // send a batch of RPC requests asking for all token balances
       // https://www.jsonrpc.org/specification#batch
@@ -94,7 +94,7 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
           jsonrpc: '2.0',
         };
       });
-      const response = yield rpcRequest(jsonRpcProvider.url, JSON.stringify(requestBatch));
+      const response = yield rpcRequest(jsonRpcProvider.connection.url, JSON.stringify(requestBatch));
 
       // process and return the response
       const tokenBals = response.map((item) => new BigNumber(item.result));
@@ -118,7 +118,11 @@ export function* loadSupportedTokens(network) {
   const requestPath = 'ethereum/supported-tokens';
   try {
     const returnData = yield call(requestWalletAPI, requestPath, network);
-    yield put(loadSupportedTokensSuccess(returnData));
+    // temporarily filter out the ETH asset details that comes back from backend.
+    // in the future we should remove our own ETH asset we add in actions, and
+    // start relying on the one from the backend.
+    // see https://github.com/hubiinetwork/hubii-core/issues/630
+    yield put(loadSupportedTokensSuccess(returnData.filter((asset) => asset.symbol !== 'ETH')));
   } catch (err) {
     yield put(loadSupportedTokensError(err));
   }

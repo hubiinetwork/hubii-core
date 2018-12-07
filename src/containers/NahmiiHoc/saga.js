@@ -162,7 +162,7 @@ export function* loadStagedBalances({ address }, network) {
       const requestBatch = currencyCtList.map((ct) => {
         const currencyId = ct === 'ETH' ? '0x0000000000000000000000000000000000000000' : ct;
         // encode arguments, prepare them for being sent
-        const encodedArgs = utils.AbiCoder.defaultCoder.encode(['address', 'int256', 'int256'], [address, currencyId, 0]);
+        const encodedArgs = utils.defaultAbiCoder.encode(['address', 'int256', 'int256'], [address, currencyId, 0]);
         const dataArr = utils.concat([funcSelector, encodedArgs]);
         const data = utils.hexlify(dataArr);
         const params = [{ from: address, to: clientFundContractAddress, data }, 'latest'];
@@ -174,7 +174,7 @@ export function* loadStagedBalances({ address }, network) {
         };
       });
       // send all requests at once
-      const response = yield rpcRequest(jsonRpcProvider.url, JSON.stringify(requestBatch));
+      const response = yield rpcRequest(jsonRpcProvider.connection.url, JSON.stringify(requestBatch));
       // process the response
       const tokenBals = response.map((item) => new BigNumber(item.result));
       const formattedBalances = tokenBals.reduce((acc, bal, i) => {

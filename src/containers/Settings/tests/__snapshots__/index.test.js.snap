@@ -21,14 +21,63 @@ ShallowWrapper {
               "url": "http://geth-ropsten.dev.hubii.net",
             },
             "provider": FallbackProvider {
+              "_balances": Object {},
               "_emitted": Object {
-                "block": -1,
+                "block": -2,
               },
-              "_events": Object {},
-              "chainId": 3,
-              "ensAddress": "0x112234455C3a32FD11230C42E7Bccd4A84e02010",
-              "name": "ropsten",
-              "resetEventsBlock": [Function],
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "_providers": Array [
+                InfuraProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiAccessToken": null,
+                  "connection": Object {
+                    "url": "https://ropsten.infura.io/",
+                  },
+                  "ready": Promise {},
+                },
+                EtherscanProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiKey": undefined,
+                  "baseUrl": "https://api-ropsten.etherscan.io",
+                  "ready": Promise {},
+                },
+              ],
+              "ready": Promise {},
             },
             "walletApiEndpoint": [Function],
           }
@@ -45,14 +94,63 @@ ShallowWrapper {
         Immutable.Map {
             homestead: Immutable.Map {
                 provider: FallbackProvider {
+                    "_balances": Object {},
                     "_emitted": Object {
-                      "block": -1,
+                      "block": -2,
                     },
-                    "_events": Object {},
-                    "chainId": 1,
-                    "ensAddress": "0x314159265dD8dbb310642f98f50C066173C1259b",
-                    "name": "homestead",
-                    "resetEventsBlock": [Function],
+                    "_events": Array [],
+                    "_fastQueryDate": 0,
+                    "_lastBlockNumber": -2,
+                    "_network": Object {
+                      "_defaultProvider": [Function],
+                      "chainId": 1,
+                      "ensAddress": "0x314159265dd8dbb310642f98f50c066173c1259b",
+                      "name": "homestead",
+                    },
+                    "_pollingInterval": 4000,
+                    "_providers": Array [
+                      InfuraProvider {
+                        "_balances": Object {},
+                        "_emitted": Object {
+                          "block": -2,
+                        },
+                        "_events": Array [],
+                        "_fastQueryDate": 0,
+                        "_lastBlockNumber": -2,
+                        "_network": Object {
+                          "_defaultProvider": [Function],
+                          "chainId": 1,
+                          "ensAddress": "0x314159265dd8dbb310642f98f50c066173c1259b",
+                          "name": "homestead",
+                        },
+                        "_pollingInterval": 4000,
+                        "apiAccessToken": null,
+                        "connection": Object {
+                          "url": "https://mainnet.infura.io/",
+                        },
+                        "ready": Promise {},
+                      },
+                      EtherscanProvider {
+                        "_balances": Object {},
+                        "_emitted": Object {
+                          "block": -2,
+                        },
+                        "_events": Array [],
+                        "_fastQueryDate": 0,
+                        "_lastBlockNumber": -2,
+                        "_network": Object {
+                          "_defaultProvider": [Function],
+                          "chainId": 1,
+                          "ensAddress": "0x314159265dd8dbb310642f98f50c066173c1259b",
+                          "name": "homestead",
+                        },
+                        "_pollingInterval": 4000,
+                        "apiKey": undefined,
+                        "baseUrl": "https://api.etherscan.io",
+                        "ready": Promise {},
+                      },
+                    ],
+                    "ready": Promise {},
                   },
                 nahmiiProvider: NahmiiProvider {
                     "_emitted": Object {
@@ -71,14 +169,63 @@ ShallowWrapper {
             },
             ropsten: Immutable.Map {
                 provider: FallbackProvider {
+                    "_balances": Object {},
                     "_emitted": Object {
-                      "block": -1,
+                      "block": -2,
                     },
-                    "_events": Object {},
-                    "chainId": 3,
-                    "ensAddress": "0x112234455C3a32FD11230C42E7Bccd4A84e02010",
-                    "name": "ropsten",
-                    "resetEventsBlock": [Function],
+                    "_events": Array [],
+                    "_fastQueryDate": 0,
+                    "_lastBlockNumber": -2,
+                    "_network": Object {
+                      "_defaultProvider": [Function],
+                      "chainId": 3,
+                      "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                      "name": "ropsten",
+                    },
+                    "_pollingInterval": 4000,
+                    "_providers": Array [
+                      InfuraProvider {
+                        "_balances": Object {},
+                        "_emitted": Object {
+                          "block": -2,
+                        },
+                        "_events": Array [],
+                        "_fastQueryDate": 0,
+                        "_lastBlockNumber": -2,
+                        "_network": Object {
+                          "_defaultProvider": [Function],
+                          "chainId": 3,
+                          "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                          "name": "ropsten",
+                        },
+                        "_pollingInterval": 4000,
+                        "apiAccessToken": null,
+                        "connection": Object {
+                          "url": "https://ropsten.infura.io/",
+                        },
+                        "ready": Promise {},
+                      },
+                      EtherscanProvider {
+                        "_balances": Object {},
+                        "_emitted": Object {
+                          "block": -2,
+                        },
+                        "_events": Array [],
+                        "_fastQueryDate": 0,
+                        "_lastBlockNumber": -2,
+                        "_network": Object {
+                          "_defaultProvider": [Function],
+                          "chainId": 3,
+                          "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                          "name": "ropsten",
+                        },
+                        "_pollingInterval": 4000,
+                        "apiKey": undefined,
+                        "baseUrl": "https://api-ropsten.etherscan.io",
+                        "ready": Promise {},
+                      },
+                    ],
+                    "ready": Promise {},
                   },
                 nahmiiProvider: NahmiiProvider {
                     "_emitted": Object {
