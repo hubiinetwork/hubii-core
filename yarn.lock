@@ -11254,9 +11254,10 @@ mute-stream@0.0.7:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
   integrity sha1-MHXOk7whuPq0PhvE2n6BFe0ee6s=
 
-"nahmii-sdk@github:hubiinetwork/nahmii-sdk#feature/custom-signer-support":
+nahmii-sdk@1.0.0-beta.18:
   version "1.0.0-beta.18"
-  resolved "https://codeload.github.com/hubiinetwork/nahmii-sdk/tar.gz/9e6f3a0b8efe95118e2c42631233548359cf5a0e"
+  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-1.0.0-beta.18.tgz#bac098b32a2cb47f671cddd0177c237b9a74ac31"
+  integrity sha512-zGxxByCISgw5ZIiwRulUqV3Tt1xhX8yXaV7FKzpnkLknQxvRzPKAt65rNJySjP/rR6xwduNkiabxLV6fYWGKZA==
   dependencies:
     chai-as-promised "^7.1.1"
     ethereumjs-util "^5.2.0"
