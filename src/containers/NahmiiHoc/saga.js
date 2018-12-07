@@ -143,7 +143,7 @@ export function* loadStagedBalances({ address }, network) {
   }
 
   const provider = network.provider;
-  const clientFundContract = new ClientFundContract(provider);
+  const clientFundContract = new ClientFundContract(network.nahmiiProvider);
 
   while (true) { // eslint-disable-line no-constant-condition
     try {
