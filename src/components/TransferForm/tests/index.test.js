@@ -17,7 +17,7 @@ import {
   walletsWithInfoMock,
 } from 'containers/WalletHoc/tests/mocks/selectors';
 
-import { TransferForm } from '../index';
+import { TransferForm } from '../TransferForm.component';
 
 describe('TransferForm', () => {
   const props = {
