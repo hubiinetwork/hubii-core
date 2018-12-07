@@ -262,7 +262,8 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       .find((currency) => currency.symbol === 'ETH');
 
     // construct tx fee info
-    const txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit);
+    let txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit);
+    if (assetToDeposit.currency !== 'ETH') txFeeAmt = txFeeAmt.times('2');
     const txFeeUsdValue = txFeeAmt.times(ethUsdValue);
     const transactionFee = {
       amount: txFeeAmt,
@@ -308,8 +309,8 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     const disableDepositButton = false;
     const transferingText = this.generateTransferingText(depositStatus);
     return (
-      <div style={{ display: 'flex' }}>
-        <div style={{ flex: '1', marginRight: '2rem' }}>
+      <div style={{ display: 'flex', flex: '1', flexWrap: 'wrap' }}>
+        <div style={{ flex: '1', marginRight: '2rem', marginBottom: '3rem' }}>
           <Form>
             <FormItem
               label={<FormItemLabel>Select an asset to deposit</FormItemLabel>}
