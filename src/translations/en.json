@@ -186,5 +186,7 @@
     "balances": "balances",
     "available": "Available",
     "staging": "Staging",
-    "staged": "Staged"
+    "staged": "Staged",
+    "send_on_the": "Send on the",
+    "second_layer": "second layer"
 }

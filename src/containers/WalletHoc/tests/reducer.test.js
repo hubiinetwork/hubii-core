@@ -1,5 +1,11 @@
 import { fromJS } from 'immutable';
 
+import {
+  makeNahmiiPayment,
+  nahmiiPaymentError,
+  nahmiiPaymentSuccess,
+} from 'containers/NahmiiHoc/actions';
+
 import walletHocReducer from '../reducer';
 import {
   createWalletFromMnemonic,
@@ -15,6 +21,7 @@ import {
   deleteWallet,
   addNewWallet,
   lockWallet,
+  transferSuccess,
 } from '../actions';
 
 const wallet = {
@@ -173,6 +180,40 @@ describe('walletHocReducer', () => {
 
       expect(walletHocReducer(state, transfer({}))).toEqual(expected);
     });
+    it('MAKE_NAHMII_PAYMENT', () => {
+      const currentWallet = {
+        address: '',
+        transfering: true,
+        transferError: null,
+        lastTransaction: null,
+      };
+      const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+      expect(walletHocReducer(state, makeNahmiiPayment())).toEqual(expected);
+    });
+    it('TRANSFER_SUCCESS', () => {
+      const currentWallet = {
+        address: '',
+        transfering: false,
+        transferError: null,
+      };
+      const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+      expect(walletHocReducer(state, transferSuccess({}))).toEqual(expected);
+    });
+    it('MAKE_NAHMII_PAYMENT_SUCCESS', () => {
+      const currentWallet = {
+        address: '',
+        transfering: false,
+        transferError: null,
+      };
+      const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+      expect(walletHocReducer(state, nahmiiPaymentSuccess())).toEqual(expected);
+    });
     it('TRANSFER_ERROR', () => {
       const error = { message: 'error' };
       const currentWallet = {
@@ -185,6 +226,19 @@ describe('walletHocReducer', () => {
           .set('currentWallet', fromJS(currentWallet));
 
       expect(walletHocReducer(state, transferError(error))).toEqual(expected);
+    });
+    it('MAKE_NAHMII_PAYMENT_ERROR', () => {
+      const error = { message: 'error' };
+      const currentWallet = {
+        address: '',
+        transfering: false,
+        transferError: error.message,
+        lastTransaction: null,
+      };
+      const expected = state
+          .set('currentWallet', fromJS(currentWallet));
+
+      expect(walletHocReducer(state, nahmiiPaymentError(error))).toEqual(expected);
     });
     it('SHOW_DECRYPT_WALLET_MODAL', () => {
       const currentWallet = {

@@ -13,6 +13,9 @@ import {
   NAHMII_COMPLETE_TOKEN_DEPOSIT,
   NAHMII_DEPOSIT_ETH,
   NAHMII_DEPOSIT_FAILED,
+  MAKE_NAHMII_PAYMENT,
+  MAKE_NAHMII_PAYMENT_ERROR,
+  MAKE_NAHMII_PAYMENT_SUCCESS,
 } from './constants';
 
 export function nahmiiDeposit(address, symbol, amount, options) {
@@ -76,6 +79,28 @@ export function nahmiiDepositFailed(errorMessage) {
   return {
     type: NAHMII_DEPOSIT_FAILED,
     error: errorMessage,
+  };
+}
+
+export function makeNahmiiPayment(monetaryAmount, recipient, walletOverride = null) {
+  return {
+    type: MAKE_NAHMII_PAYMENT,
+    monetaryAmount,
+    recipient,
+    walletOverride,
+  };
+}
+
+export function nahmiiPaymentError(error) {
+  return {
+    type: MAKE_NAHMII_PAYMENT_ERROR,
+    error,
+  };
+}
+
+export function nahmiiPaymentSuccess() {
+  return {
+    type: MAKE_NAHMII_PAYMENT_SUCCESS,
   };
 }
 

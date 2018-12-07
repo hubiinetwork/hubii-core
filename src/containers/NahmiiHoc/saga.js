@@ -5,18 +5,33 @@ import { utils } from 'ethers';
 import { all, fork, takeEvery, takeLatest, select, put, call, take, cancel, race } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import BigNumber from 'bignumber.js';
-import { requestWalletAPI } from 'utils/request';
+import { requestWalletAPI, requestHardwareWalletAPI } from 'utils/request';
 import rpcRequest from 'utils/rpcRequest';
+import { isAddressMatch } from 'utils/wallet';
+import { getIntl } from 'utils/localisation';
 import {
   makeSelectWallets,
+  makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHoc/selectors';
+import { notify } from 'containers/App/actions';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { makeSelectSupportedAssets } from 'containers/HubiiApiHoc/selectors';
+import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
+import { makeSelectLedgerHoc } from 'containers/LedgerHoc/selectors';
 import { LOAD_SUPPORTED_TOKENS_SUCCESS } from 'containers/HubiiApiHoc/constants';
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import { ADD_NEW_WALLET } from 'containers/WalletHoc/constants';
 import { showDecryptWalletModal } from 'containers/WalletHoc/actions';
 import { requestToken } from 'containers/HubiiApiHoc/saga';
+import {
+  trezorConfirmTxOnDevice,
+  trezorConfirmTxOnDeviceDone,
+} from 'containers/TrezorHoc/actions';
+import {
+  ledgerConfirmTxOnDevice,
+  ledgerConfirmTxOnDeviceDone,
+} from 'containers/LedgerHoc/actions';
+import { requestEthTransportActivity } from 'containers/LedgerHoc/saga';
 import * as actions from './actions';
 import {
   NAHMII_APPROVE_TOKEN_DEPOSIT_SUCCESS,
@@ -25,6 +40,7 @@ import {
   NAHMII_DEPOSIT_ETH,
   NAHMII_APPROVE_TOKEN_DEPOSIT,
   NAHMII_COMPLETE_TOKEN_DEPOSIT,
+  MAKE_NAHMII_PAYMENT,
 } from './constants';
 
 export function* deposit({ address, symbol, amount, options }) {
@@ -90,6 +106,97 @@ export function* completeTokenDeposit({ address, symbol, amount, options }) {
   }
 }
 
+export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
+  try {
+    const wallet = walletOverride || (yield (select(makeSelectCurrentWalletWithInfo()))).toJS();
+    if (wallet.encrypted && !wallet.decrypted) {
+      yield put(showDecryptWalletModal(actions.makeNahmiiPayment(monetaryAmount, recipient, walletOverride)));
+      yield put(actions.nahmiiPaymentError(new Error(getIntl().formatMessage({ id: 'wallet_encrypted_error' }))));
+      return;
+    }
+    const network = yield select(makeSelectCurrentNetwork());
+    const nahmiiProvider = network.nahmiiProvider;
+    const { signer, confOnDevice, confOnDeviceDone } = yield call(getSdkWalletSigner, wallet);
+    const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
+    const payment = new nahmii.Payment(nahmiiWallet, monetaryAmount, wallet.address, recipient);
+    if (confOnDevice) yield put(confOnDevice);
+    yield call([payment, 'sign']);
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
+    yield call([payment, 'register']);
+    yield put(actions.nahmiiPaymentSuccess());
+    yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
+  } catch (e) {
+    yield put(actions.nahmiiPaymentError(e));
+    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
+  }
+}
+
+/*
+ * returns object containing an SDK signer, and device confirmation actions to be dispatched
+ * if applicable
+ */
+export function* getSdkWalletSigner(wallet) {
+  let signer;
+  let confOnDevice;
+  let confOnDeviceDone;
+  if (wallet.type === 'lns') {
+    const ledgerNanoSInfo = yield select(makeSelectLedgerHoc());
+    signer = {
+      signMessage: async (message) => ledgerSignerSignMessage(message, wallet.derivationPath, ledgerNanoSInfo.get('descriptor')),
+      signTransaction: async () => {},
+      address: wallet.address,
+    };
+    confOnDevice = ledgerConfirmTxOnDevice();
+    confOnDeviceDone = ledgerConfirmTxOnDeviceDone();
+  } else if (wallet.type === 'trezor') {
+    const trezorInfo = yield select(makeSelectTrezorHoc());
+    const deviceId = trezorInfo.get('id');
+    const path = wallet.derivationPath;
+    const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
+    if (!isAddressMatch(`0x${publicAddressKeyPair.address}`, wallet.address)) {
+      throw new Error('PASSPHRASE_MISMATCH');
+    }
+    signer = {
+      signMessage: async (message) => trezorSignerSignMessage(message, deviceId, path),
+      signTransaction: () => {},
+      address: wallet.address,
+    };
+    confOnDevice = trezorConfirmTxOnDevice();
+    confOnDeviceDone = trezorConfirmTxOnDeviceDone();
+  } else {
+    signer = wallet.decrypted.privateKey;
+  }
+  return { signer, confOnDevice, confOnDeviceDone };
+}
+
+export const trezorSignerSignMessage = async (_message, deviceId, path) => {
+  let message = _message;
+  if (typeof message === 'string') {
+    message = await utils.toUtf8Bytes(_message);
+  }
+  const messageHex = await utils.hexlify(message).substring(2);
+  const signedTx = await requestHardwareWalletAPI(
+    'signpersonalmessage',
+    {
+      id: deviceId,
+      path,
+      message: messageHex,
+    }
+  );
+  return `0x${signedTx.message.signature}`;
+};
+
+export const ledgerSignerSignMessage = async (message, path, descriptor) => {
+  const signature = await requestEthTransportActivity({
+    method: 'signpersonalmessage',
+    params: { descriptor, path: path.toString(), message: Buffer.from(message).toString('hex') },
+  });
+  return utils.joinSignature({
+    r: `0x${signature.r}`,
+    s: `0x${signature.s}`,
+    v: signature.v,
+  });
+};
 
 export function* loadBalances({ address }, network) {
   if (network.provider.name === 'homestead') {
@@ -228,6 +335,5 @@ export default function* listen() {
   yield takeLatest(NAHMII_DEPOSIT_ETH, depositEth);
   yield takeLatest(NAHMII_APPROVE_TOKEN_DEPOSIT, approveTokenDeposit);
   yield takeLatest(NAHMII_COMPLETE_TOKEN_DEPOSIT, completeTokenDeposit);
-  // yield takeLatest(NAHMII_APPROVE_TOKEN_DEPOSIT, approveTokenDeposit);
-  // yield takeLatest(NAHMII_COMPLETE_TOKEN_DEPOSIT, completeTokenDeposit);
+  yield takeEvery(MAKE_NAHMII_PAYMENT, makePayment);
 }
