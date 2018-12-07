@@ -81,6 +81,7 @@ export function* depositEth({ address, amount, options }) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
     yield put(actions.nahmiiDepositEthSuccess());
+    yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
   } catch (e) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
@@ -123,6 +124,7 @@ export function* completeTokenDeposit({ address, symbol, amount, options }) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
     yield put(actions.nahmiiCompleteTokenDepositSuccess());
+    yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
   } catch (e) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));

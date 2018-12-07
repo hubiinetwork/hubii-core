@@ -1852,7 +1852,6 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                   <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                null,
                 <div
                   style={
                                     Object {
@@ -1913,7 +1912,6 @@ ShallowWrapper {
                 },
                 "type": [Function],
               },
-              null,
               Object {
                 "instance": null,
                 "key": undefined,
@@ -3493,7 +3491,6 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                     <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                  null,
                   <div
                     style={
                                         Object {
@@ -3554,7 +3551,6 @@ ShallowWrapper {
                   },
                   "type": [Function],
                 },
-                null,
                 Object {
                   "instance": null,
                   "key": undefined,
@@ -5557,7 +5553,6 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                   <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                null,
                 <div
                   style={
                                     Object {
@@ -5618,7 +5613,6 @@ ShallowWrapper {
                 },
                 "type": [Function],
               },
-              null,
               Object {
                 "instance": null,
                 "key": undefined,
@@ -7198,7 +7192,6 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                     <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                  null,
                   <div
                     style={
                                         Object {
@@ -7259,7 +7252,6 @@ ShallowWrapper {
                   },
                   "type": [Function],
                 },
-                null,
                 Object {
                   "instance": null,
                   "key": undefined,
@@ -9262,7 +9254,6 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                   <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                null,
                 <div
                   style={
                                     Object {
@@ -9323,7 +9314,6 @@ ShallowWrapper {
                 },
                 "type": [Function],
               },
-              null,
               Object {
                 "instance": null,
                 "key": undefined,
@@ -10903,7 +10893,6 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                     <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                  null,
                   <div
                     style={
                                         Object {
@@ -10964,7 +10953,6 @@ ShallowWrapper {
                   },
                   "type": [Function],
                 },
-                null,
                 Object {
                   "instance": null,
                   "key": undefined,
@@ -11775,16 +11763,6 @@ ShallowWrapper {
                     <style__HWPromptWrapper>
                               <Connect(HWPromptContainer) />
                     </style__HWPromptWrapper>
-                    <Alert
-                              message="some error message"
-                              showIcon={true}
-                              style={
-                                        Object {
-                                                  "marginTop": "2rem",
-                                                }
-                              }
-                              type="error"
-                    />
                     <style__StyledButton
                               disabled={true}
                               onClick={[Function]}
@@ -12501,16 +12479,6 @@ ShallowWrapper {
               <style__HWPromptWrapper>
                             <Connect(HWPromptContainer) />
               </style__HWPromptWrapper>
-              <Alert
-                            message="some error message"
-                            showIcon={true}
-                            style={
-                                          Object {
-                                                        "marginTop": "2rem",
-                                                      }
-                            }
-                            type="error"
-              />
               <style__StyledButton
                             disabled={true}
                             onClick={[Function]}
@@ -12933,16 +12901,6 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                   <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                <Alert
-                  message="some error message"
-                  showIcon={true}
-                  style={
-                                    Object {
-                                                      "marginTop": "2rem",
-                                                    }
-                  }
-                  type="error"
-/>,
                 <style__StyledButton
                   disabled={true}
                   onClick={[Function]}
@@ -12974,22 +12932,6 @@ ShallowWrapper {
                   "rendered": null,
                   "type": [Function],
                 },
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "message": "some error message",
-                  "showIcon": true,
-                  "style": Object {
-                    "marginTop": "2rem",
-                  },
-                  "type": "error",
-                },
-                "ref": null,
-                "rendered": null,
                 "type": [Function],
               },
               Object {
@@ -13275,16 +13217,6 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
-                        <Alert
-                                    message="some error message"
-                                    showIcon={true}
-                                    style={
-                                                Object {
-                                                            "marginTop": "2rem",
-                                                          }
-                                    }
-                                    type="error"
-                        />
                         <style__StyledButton
                                     disabled={true}
                                     onClick={[Function]}
@@ -14001,16 +13933,6 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                                 <Connect(HWPromptContainer) />
                 </style__HWPromptWrapper>
-                <Alert
-                                message="some error message"
-                                showIcon={true}
-                                style={
-                                                Object {
-                                                                "marginTop": "2rem",
-                                                              }
-                                }
-                                type="error"
-                />
                 <style__StyledButton
                                 disabled={true}
                                 onClick={[Function]}
@@ -14433,16 +14355,6 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                     <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                  <Alert
-                    message="some error message"
-                    showIcon={true}
-                    style={
-                                        Object {
-                                                            "marginTop": "2rem",
-                                                          }
-                    }
-                    type="error"
-/>,
                   <style__StyledButton
                     disabled={true}
                     onClick={[Function]}
@@ -14474,22 +14386,6 @@ ShallowWrapper {
                     "rendered": null,
                     "type": [Function],
                   },
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "message": "some error message",
-                    "showIcon": true,
-                    "style": Object {
-                      "marginTop": "2rem",
-                    },
-                    "type": "error",
-                  },
-                  "ref": null,
-                  "rendered": null,
                   "type": [Function],
                 },
                 Object {
@@ -16336,7 +16232,6 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                   <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                null,
                 <style__StyledButton
                   disabled={true}
                   onClick={[Function]}
@@ -16370,7 +16265,6 @@ ShallowWrapper {
                 },
                 "type": [Function],
               },
-              null,
               Object {
                 "instance": null,
                 "key": undefined,
@@ -17792,7 +17686,6 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                     <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                  null,
                   <style__StyledButton
                     disabled={true}
                     onClick={[Function]}
@@ -17826,7 +17719,6 @@ ShallowWrapper {
                   },
                   "type": [Function],
                 },
-                null,
                 Object {
                   "instance": null,
                   "key": undefined,

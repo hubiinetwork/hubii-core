@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { shell } from 'electron';
-import { Row, Icon, Alert } from 'antd';
+import { Row, Icon } from 'antd';
 import { getAbsolutePath } from 'utils/electron';
 import {
   gweiToEther,
@@ -502,10 +502,6 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             </HWPromptWrapper>
             }
             {
-              depositStatus.get('error') &&
-              <Alert message={depositStatus.get('error')} type="error" showIcon style={{ marginTop: '2rem' }} />
-            }
-            {
             transferingText ?
               (
                 <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }}>
@@ -517,7 +513,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                     role="link"
                     tabIndex={0}
                     onClick={
-                    currentNetwork.provider.name === 'ropsten' ?
+                    currentNetwork.provider._network.name === 'ropsten' ?
                       () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
                       () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
                   }
