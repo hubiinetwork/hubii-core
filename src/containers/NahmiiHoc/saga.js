@@ -68,45 +68,72 @@ export function* deposit({ address, symbol, amount, options }) {
 }
 
 export function* depositEth({ address, amount, options }) {
+  let confOnDeviceDone;
+  let confOnDevice;
+  let signer;
   try {
     const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
     const wallet = (yield select(makeSelectWallets())).toJS().find((w) => w.address === address);
-    const nahmiiWallet = new nahmii.Wallet(wallet.decrypted.privateKey, nahmiiProvider);
+    [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
+    const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
+    if (confOnDevice) yield put(confOnDevice);
     const { hash } = yield call(() => nahmiiWallet.depositEth(amount, options));
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
     yield put(actions.nahmiiDepositEthSuccess());
   } catch (e) {
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
+    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
     yield put(actions.nahmiiDepositFailed(`An error occured: ${e.message}`));
   }
 }
 
 export function* approveTokenDeposit({ address, symbol, amount, options }) {
+  let confOnDeviceDone;
+  let confOnDevice;
+  let signer;
   try {
     const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
     const wallet = (yield select(makeSelectWallets())).toJS().find((w) => w.address === address);
-    const nahmiiWallet = new nahmii.Wallet(wallet.decrypted.privateKey, nahmiiProvider);
+    [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
+    const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
+    if (confOnDevice) yield put(confOnDevice);
     const { hash } = yield call(() => nahmiiWallet.approveTokenDeposit(amount, symbol, options));
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
     yield put(actions.nahmiiApproveTokenDepositSuccess());
   } catch (e) {
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
+    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
     yield put(actions.nahmiiDepositFailed(`An error occured: ${e.message}`));
   }
 }
 
 export function* completeTokenDeposit({ address, symbol, amount, options }) {
+  let confOnDeviceDone;
+  let confOnDevice;
+  let signer;
   try {
     const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
     const wallet = (yield select(makeSelectWallets())).toJS().find((w) => w.address === address);
-    const nahmiiWallet = new nahmii.Wallet(wallet.decrypted.privateKey, nahmiiProvider);
+    [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
+    const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
+    if (confOnDevice) yield put(confOnDevice);
     const { hash } = yield call(() => nahmiiWallet.completeTokenDeposit(amount, symbol, options));
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
     yield put(actions.nahmiiCompleteTokenDepositSuccess());
   } catch (e) {
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
+    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
     yield put(actions.nahmiiDepositFailed(`An error occured: ${e.message}`));
   }
 }
 
 export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
+  let confOnDeviceDone;
+  let confOnDevice;
+  let signer;
   try {
     const wallet = walletOverride || (yield (select(makeSelectCurrentWalletWithInfo()))).toJS();
     if (wallet.encrypted && !wallet.decrypted) {
@@ -116,7 +143,7 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     }
     const network = yield select(makeSelectCurrentNetwork());
     const nahmiiProvider = network.nahmiiProvider;
-    const { signer, confOnDevice, confOnDeviceDone } = yield call(getSdkWalletSigner, wallet);
+    [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     const payment = new nahmii.Payment(nahmiiWallet, monetaryAmount, wallet.address, recipient);
     if (confOnDevice) yield put(confOnDevice);
@@ -126,6 +153,7 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     yield put(actions.nahmiiPaymentSuccess());
     yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
   } catch (e) {
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield put(actions.nahmiiPaymentError(e));
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
   }
@@ -143,7 +171,7 @@ export function* getSdkWalletSigner(wallet) {
     const ledgerNanoSInfo = yield select(makeSelectLedgerHoc());
     signer = {
       signMessage: async (message) => ledgerSignerSignMessage(message, wallet.derivationPath, ledgerNanoSInfo.get('descriptor')),
-      signTransaction: async () => {},
+      signTransaction: async (message) => ledgerSignerSignTransaction(message, wallet.derivationPath, ledgerNanoSInfo.get('descriptor')),
       address: wallet.address,
     };
     confOnDevice = ledgerConfirmTxOnDevice();
@@ -158,7 +186,7 @@ export function* getSdkWalletSigner(wallet) {
     }
     signer = {
       signMessage: async (message) => trezorSignerSignMessage(message, deviceId, path),
-      signTransaction: () => {},
+      signTransaction: async (unresolvedTx) => trezorSignerSignTransaction(unresolvedTx, deviceId, path),
       address: wallet.address,
     };
     confOnDevice = trezorConfirmTxOnDevice();
@@ -166,8 +194,36 @@ export function* getSdkWalletSigner(wallet) {
   } else {
     signer = wallet.decrypted.privateKey;
   }
-  return { signer, confOnDevice, confOnDeviceDone };
+  return [signer, confOnDevice, confOnDeviceDone];
 }
+
+export const trezorSignerSignTransaction = async (unresolvedTx, deviceId, path) => {
+  const tx = await utils.resolveProperties(unresolvedTx);
+  const trezorTx = { ...tx };
+  Object.keys(tx).forEach((k) => {
+    let val = tx[k];
+    if (k === 'chainId') return;
+    val = utils.hexlify(val); // transform into hex
+    val = val.substring(2); // remove 0x prefix
+    val = (val.length % 2) ? `0${val}` : val; // pad with a leading 0 if uneven
+    trezorTx[k] = val;
+  });
+  trezorTx.toAddress = trezorTx.to;
+  const signature = await requestHardwareWalletAPI(
+    'signtx',
+    {
+      id: deviceId,
+      path,
+      tx: trezorTx,
+    }
+  );
+  const prefixedSig = {
+    r: `0x${signature.r}`,
+    s: `0x${signature.s}`,
+    v: signature.v,
+  };
+  return utils.serializeTransaction(tx, prefixedSig);
+};
 
 export const trezorSignerSignMessage = async (_message, deviceId, path) => {
   let message = _message;
@@ -196,6 +252,21 @@ export const ledgerSignerSignMessage = async (message, path, descriptor) => {
     s: `0x${signature.s}`,
     v: signature.v,
   });
+};
+
+export const ledgerSignerSignTransaction = async (unresolvedTx, path, descriptor) => {
+  const tx = await utils.resolveProperties(unresolvedTx);
+  const serializedTx = utils.serializeTransaction(tx);
+  const signature = await requestEthTransportActivity({
+    method: 'signtx',
+    params: { descriptor, path: path.toString(), rawTxHex: serializedTx.substring(2) },
+  });
+  const prefixedSig = {
+    r: `0x${signature.r}`,
+    s: `0x${signature.s}`,
+    v: signature.v,
+  };
+  return utils.serializeTransaction(tx, prefixedSig);
 };
 
 export function* loadBalances({ address }, network) {

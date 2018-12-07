@@ -40,11 +40,11 @@ describe('nahmiiHocSaga', () => {
       .provide({
         call(effect, next) {
           if (effect.fn === getSdkWalletSigner) {
-            return {
-              signer: signerMock,
-              confOnDevice: { type: 'ACTION1' },
-              confOnDeviceDone: { type: 'ACTION2' },
-            };
+            return [
+              signerMock,
+              { type: 'ACTION1' },
+              { type: 'ACTION2' },
+            ];
           }
           if (effect.fn === nahmii.Payment.prototype.sign) {
             return true;
@@ -69,11 +69,11 @@ describe('nahmiiHocSaga', () => {
       .provide({
         call(effect, next) {
           if (effect.fn === getSdkWalletSigner) {
-            return {
-              signer: signerMock,
-              confOnDevice: { type: 'ACTION1' },
-              confOnDeviceDone: { type: 'ACTION2' },
-            };
+            return [
+              signerMock,
+              { type: 'ACTION1' },
+              { type: 'ACTION2' },
+            ];
           }
           if (effect.fn === nahmii.Payment.prototype.sign) {
             throw errorMock;
@@ -94,11 +94,11 @@ describe('nahmiiHocSaga', () => {
       .provide({
         call(effect, next) {
           if (effect.fn === getSdkWalletSigner) {
-            return {
-              signer: signerMock,
-              confOnDevice: { type: 'ACTION1' },
-              confOnDeviceDone: { type: 'ACTION2' },
-            };
+            return [
+              signerMock,
+              { type: 'ACTION1' },
+              { type: 'ACTION2' },
+            ];
           }
           if (effect.fn === nahmii.Payment.prototype.sign) {
             return true;
