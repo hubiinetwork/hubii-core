@@ -44,13 +44,13 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     }
     const network = yield select(makeSelectCurrentNetwork());
     const nahmiiProvider = network.nahmiiProvider;
-    const { signer, confOnDevice, confOnDeviceDone } = yield getSdkWalletSigner(wallet);
+    const { signer, confOnDevice, confOnDeviceDone } = yield call(getSdkWalletSigner, wallet);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     const payment = new nahmii.Payment(nahmiiWallet, monetaryAmount, wallet.address, recipient);
     if (confOnDevice) yield put(confOnDevice);
-    yield payment.sign();
+    yield call([payment, 'sign']);
     if (confOnDeviceDone) yield put(confOnDeviceDone);
-    yield payment.register();
+    yield call([payment, 'register']);
     yield put(actions.nahmiiPaymentSuccess());
     yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
   } catch (e) {
@@ -63,7 +63,7 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
  * returns object containing an SDK signer, and device confirmation actions to be dispatched
  * if applicable
  */
-function* getSdkWalletSigner(wallet) {
+export function* getSdkWalletSigner(wallet) {
   let signer;
   let confOnDevice;
   let confOnDeviceDone;
@@ -97,7 +97,7 @@ function* getSdkWalletSigner(wallet) {
   return { signer, confOnDevice, confOnDeviceDone };
 }
 
-const trezorSignerSignMessage = async (_message, deviceId, path) => {
+export const trezorSignerSignMessage = async (_message, deviceId, path) => {
   let message = _message;
   if (typeof message === 'string') {
     message = await utils.toUtf8Bytes(_message);
@@ -114,7 +114,7 @@ const trezorSignerSignMessage = async (_message, deviceId, path) => {
   return `0x${signedTx.message.signature}`;
 };
 
-const ledgerSignerSignMessage = async (message, path, descriptor) => {
+export const ledgerSignerSignMessage = async (message, path, descriptor) => {
   const signature = await requestEthTransportActivity({
     method: 'signpersonalmessage',
     params: { descriptor, path: path.toString(), message: Buffer.from(message).toString('hex') },
