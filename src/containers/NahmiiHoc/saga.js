@@ -35,6 +35,9 @@ import { MAKE_NAHMII_PAYMENT } from './constants';
 import { requestEthTransportActivity } from '../LedgerHoc/saga';
 
 export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
+  let signer;
+  let confOnDevice;
+  let confOnDeviceDone;
   try {
     const wallet = walletOverride || (yield (select(makeSelectCurrentWalletWithInfo()))).toJS();
     if (wallet.encrypted && !wallet.decrypted) {
@@ -44,7 +47,7 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     }
     const network = yield select(makeSelectCurrentNetwork());
     const nahmiiProvider = network.nahmiiProvider;
-    const { signer, confOnDevice, confOnDeviceDone } = yield call(getSdkWalletSigner, wallet);
+    [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     const payment = new nahmii.Payment(nahmiiWallet, monetaryAmount, wallet.address, recipient);
     if (confOnDevice) yield put(confOnDevice);
@@ -54,6 +57,7 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     yield put(actions.nahmiiPaymentSuccess());
     yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
   } catch (e) {
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield put(actions.nahmiiPaymentError(e));
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
   }
@@ -94,7 +98,7 @@ export function* getSdkWalletSigner(wallet) {
   } else {
     signer = wallet.decrypted.privateKey;
   }
-  return { signer, confOnDevice, confOnDeviceDone };
+  return [signer, confOnDevice, confOnDeviceDone];
 }
 
 export const trezorSignerSignMessage = async (_message, deviceId, path) => {

@@ -40,11 +40,11 @@ describe('nahmiiHocSaga', () => {
       .provide({
         call(effect, next) {
           if (effect.fn === getSdkWalletSigner) {
-            return {
-              signer: signerMock,
-              confOnDevice: { type: 'ACTION1' },
-              confOnDeviceDone: { type: 'ACTION2' },
-            };
+            return [
+              signerMock,
+              { type: 'ACTION1' },
+              { type: 'ACTION2' },
+            ];
           }
           if (effect.fn === nahmii.Payment.prototype.sign) {
             return true;
@@ -69,11 +69,11 @@ describe('nahmiiHocSaga', () => {
       .provide({
         call(effect, next) {
           if (effect.fn === getSdkWalletSigner) {
-            return {
-              signer: signerMock,
-              confOnDevice: { type: 'ACTION1' },
-              confOnDeviceDone: { type: 'ACTION2' },
-            };
+            return [
+              signerMock,
+              { type: 'ACTION1' },
+              { type: 'ACTION2' },
+            ];
           }
           if (effect.fn === nahmii.Payment.prototype.sign) {
             throw errorMock;
@@ -82,6 +82,7 @@ describe('nahmiiHocSaga', () => {
         },
       })
       .put({ type: 'ACTION1' })
+      .put({ type: 'ACTION2' })
       .put(actions.nahmiiPaymentError(errorMock))
       .put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMock.message })))
       .run({ silenceTimeout: true });
@@ -94,11 +95,11 @@ describe('nahmiiHocSaga', () => {
       .provide({
         call(effect, next) {
           if (effect.fn === getSdkWalletSigner) {
-            return {
-              signer: signerMock,
-              confOnDevice: { type: 'ACTION1' },
-              confOnDeviceDone: { type: 'ACTION2' },
-            };
+            return [
+              signerMock,
+              { type: 'ACTION1' },
+              { type: 'ACTION2' },
+            ];
           }
           if (effect.fn === nahmii.Payment.prototype.sign) {
             return true;
