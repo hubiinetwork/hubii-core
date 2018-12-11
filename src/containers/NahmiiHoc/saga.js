@@ -17,7 +17,7 @@ import { requestToken } from 'containers/HubiiApiHoc/saga';
 import * as actions from './actions';
 
 export function* loadBalances({ address }, network) {
-  if (network.provider.name === 'homestead') {
+  if (network.provider._network.name === 'homestead') {
     yield put(actions.loadBalancesSuccess(address, []));
     return;
   }
@@ -57,7 +57,7 @@ export function* loadStagingBalances({ address }) {
 
 // https://stackoverflow.com/questions/48228662/get-token-balance-with-ethereum-rpc
 export function* loadStagedBalances({ address }, network) {
-  if (network.provider.name === 'homestead') {
+  if (network.provider._network.name === 'homestead') {
     yield put(actions.loadStagedBalancesSuccess(address, []));
     return;
   }
