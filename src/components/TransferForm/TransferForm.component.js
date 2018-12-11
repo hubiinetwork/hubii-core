@@ -289,7 +289,7 @@ export class TransferForm extends React.PureComponent {
       txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit);
       txFeeSymbol = 'ETH';
     } else {
-      txFeeAmt = new BigNumber('0.00000001');
+      txFeeAmt = new BigNumber('0');
       txFeeSymbol = assetToSend.symbol;
     }
     const txFeeUsdValue = txFeeAmt.times(
