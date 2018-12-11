@@ -6,6 +6,7 @@
 
 import { fromJS } from 'immutable';
 
+import { CHANGE_NETWORK } from 'containers/App/constants';
 import {
   LOAD_NAHMII_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGED_BALANCES_SUCCESS,
@@ -36,6 +37,11 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['balances', action.address, 'staging', 'loading'], false)
         .setIn(['balances', action.address, 'staging', 'error'], null)
         .setIn(['balances', action.address, 'staging', 'assets'], fromJS(action.balances));
+    case CHANGE_NETWORK:
+      return state
+        .set('balances', initialState.get('balances'))
+        .set('receipts', initialState.get('receipts'))
+        .set('transactions', initialState.get('transactions'));
     default:
       return state;
   }
