@@ -19,8 +19,10 @@ import {
   WITHDRAW_ERROR,
   LOAD_WITHDRAW_TX_REQUEST,
   LOAD_CURRENT_PAYMENT_CHALLENGE,
-  LOAD_CURRENT_PAYMENT_CHALLENGE_SUCCESS,
-  LOAD_CURRENT_PAYMENT_CHALLENGE_ERROR,
+  LOAD_ONGOING_CHALLENGES_SUCCESS,
+  LOAD_ONGOING_CHALLENGES_ERROR,
+  LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
+  LOAD_SETTLEABLE_CHALLENGES_ERROR,
   LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE,
   LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS,
   LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR,
@@ -300,18 +302,37 @@ export function loadCurrentPaymentChallenge(address) {
   };
 }
 
-export function loadCurrentPaymentChallengeSuccess(address, challenge) {
+export function loadOngoingChallengesSuccess(address, currencyAddress, challenges) {
   return {
-    type: LOAD_CURRENT_PAYMENT_CHALLENGE_SUCCESS,
+    type: LOAD_ONGOING_CHALLENGES_SUCCESS,
     address,
-    challenge,
+    currencyAddress,
+    challenges,
   };
 }
 
-export function loadCurrentPaymentChallengeError(address) {
+export function loadOngoingChallengesError(address, currencyAddress) {
   return {
-    type: LOAD_CURRENT_PAYMENT_CHALLENGE_ERROR,
+    type: LOAD_ONGOING_CHALLENGES_ERROR,
     address,
+    currencyAddress,
+  };
+}
+
+export function loadSettleableChallengesSuccess(address, currencyAddress, challenges) {
+  return {
+    type: LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
+    address,
+    currencyAddress,
+    challenges,
+  };
+}
+
+export function loadSettleableChallengesError(address, currencyAddress) {
+  return {
+    type: LOAD_SETTLEABLE_CHALLENGES_ERROR,
+    address,
+    currencyAddress,
   };
 }
 

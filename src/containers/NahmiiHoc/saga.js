@@ -461,15 +461,49 @@ export function* processTx(type, provider, tx, address, currency) {
   }
 }
 
+export function* loadOngoingChallenges({ address }, network) {
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const nahmiiProvider = network.provider;
+      const settlement = new nahmii.Settlement(nahmiiProvider);
+      const currencyAddress = yield select(makeSelectWalletCurrency());
+      const ongoingChallenges = yield call(() => settlement.getOngoingChallenges(address, currencyAddress, 0));
+      yield put(actions.loadOngoingChallengesSuccess(address, currencyAddress, ongoingChallenges));
+    } catch (err) {
+      yield put(actions.loadOngoingChallengesError(address, currencyAddress));
+    } finally {
+      const TWENTY_SEC_IN_MS = 1000 * 20;
+      yield delay(TWENTY_SEC_IN_MS);
+    }
+  }
+}
+
+export function* loadSettleableChallenges({ address }, network) {
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const nahmiiProvider = network.provider;
+      const settlement = new nahmii.Settlement(nahmiiProvider);
+      const currencyAddress = yield select(makeSelectWalletCurrency());
+      const settleableChallenges = yield call(() => settlement.getSettleableChallenges(address, currencyAddress, 0));
+      yield put(actions.loadSettleableChallengesSuccess(address, currencyAddress, settleableChallenges));
+    } catch (err) {
+      yield put(actions.loadSettleableChallengesError(address, currencyAddress));
+    } finally {
+      const TWENTY_SEC_IN_MS = 1000 * 20;
+      yield delay(TWENTY_SEC_IN_MS);
+    }
+  }
+}
+
 export function* loadCurrentPaymentChallenge({ address }, network) {
   while (true) { // eslint-disable-line no-constant-condition
     try {
       const nahmiiProvider = network.provider;
       const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
       const currentChallenge = yield call(() => settlementChallenge.getCurrentPaymentChallenge(address));
-      yield put(actions.loadCurrentPaymentChallengeSuccess(address, currentChallenge));
+      yield put(actions.loadOngoingChallengesSuccess(address, currentChallenge));
     } catch (err) {
-      yield put(actions.loadCurrentPaymentChallengeError(address));
+      yield put(actions.loadOngoingChallengesError(address));
     } finally {
       const TWENTY_SEC_IN_MS = 1000 * 20;
       yield delay(TWENTY_SEC_IN_MS);

@@ -21,8 +21,10 @@ import {
   WITHDRAW_SUCCESS,
   WITHDRAW_ERROR,
   LOAD_WITHDRAW_TX_REQUEST,
-  LOAD_CURRENT_PAYMENT_CHALLENGE_SUCCESS,
-  LOAD_CURRENT_PAYMENT_CHALLENGE_ERROR,
+  LOAD_ONGOING_CHALLENGES_SUCCESS,
+  LOAD_ONGOING_CHALLENGES_ERROR,
+  LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
+  LOAD_SETTLEABLE_CHALLENGES_ERROR,
   LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS,
   LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR,
   LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS,
@@ -163,14 +165,22 @@ function nahmiiHocReducer(state = initialState, action) {
     case LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR:
       return state
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'phase'], null);
-    case LOAD_CURRENT_PAYMENT_CHALLENGE_SUCCESS:
+    case LOAD_ONGOING_CHALLENGES_SUCCESS:
       return state
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'challenge'], action.challenge)
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'updatedAt'], new Date());
-    case LOAD_CURRENT_PAYMENT_CHALLENGE_ERROR:
+        .setIn(['wallets', action.address, 'assets', action.currencyAddress, 'ongogingChallenges', 'details'], action.challenges)
+        .setIn(['wallets', action.address, 'assets', action.currencyAddress, 'ongogingChallenges', 'updatedAt'], new Date());
+    case LOAD_ONGOING_CHALLENGES_ERROR:
       return state
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'challenge'], null)
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'updatedAt'], new Date());
+        .setIn(['wallets', action.address, 'assets', action.currencyAddress, 'ongogingChallenges', 'details'], null)
+        .setIn(['wallets', action.address, 'assets', action.currencyAddress, 'ongogingChallenges', 'updatedAt'], new Date());
+    case LOAD_SETTLEABLE_CHALLENGES_SUCCESS:
+      return state
+        .setIn(['wallets', action.address, 'assets', action.currencyAddress, 'settleableChallenges', 'details'], action.challenges)
+        .setIn(['wallets', action.address, 'assets', action.currencyAddress, 'settleableChallenges', 'updatedAt'], new Date());
+    case LOAD_SETTLEABLE_CHALLENGES_ERROR:
+      return state
+        .setIn(['wallets', action.address, 'assets', action.currencyAddress, 'settleableChallenges', 'details'], null)
+        .setIn(['wallets', action.address, 'assets', action.currencyAddress, 'settleableChallenges', 'updatedAt'], new Date());
     case LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS:
       return state
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'status'], action.status);
