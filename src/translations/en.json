@@ -187,6 +187,8 @@
     "available": "Available",
     "staging": "Staging",
     "staged": "Staged",
+    "send_on_the": "Send on the",
+    "second_layer": "second layer",
     "withdraw": "Withdraw",
     "settle_payment": "Settle Payment",
     "settlement_period_ended": "Settlement challenge period is ended",

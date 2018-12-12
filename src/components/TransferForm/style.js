@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Switch } from 'antd';
 
 import Button from 'components/ui/Button';
 import Text from 'components/ui/Text';
@@ -38,4 +39,10 @@ export const ETHtoDollar = styled(Text)`
 
 export const AdvanceSettingsHeader = styled(Text)`
   color: ${({ theme }) => theme.palette.info};
+`;
+
+export const NahmiiSwitch = styled(Switch)`
+  &&& {
+    ${({ checked, theme }) => checked ? `background-color: ${theme.palette.info3};` : null}
+  }
 `;

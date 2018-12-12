@@ -125,7 +125,7 @@ export class WalletsTransactions extends React.Component {
               confirmations={tx.confirmations}
               type={tx.type}
               viewOnBlockExplorerClick={
-                currentNetwork.provider.name === 'ropsten' ?
+                currentNetwork.provider._network.name === 'ropsten' ?
                   () => shell.openExternal(`https://ropsten.etherscan.io/tx/${tx.hash}`) :
                   () => shell.openExternal(`https://etherscan.io/tx/${tx.hash}`)
               }
@@ -154,7 +154,7 @@ export class WalletsTransactions extends React.Component {
                   role="link"
                   tabIndex={0}
                   onClick={
-                    currentNetwork.provider.name === 'ropsten' ?
+                    currentNetwork.provider._network.name === 'ropsten' ?
                       () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
                       () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
                   }

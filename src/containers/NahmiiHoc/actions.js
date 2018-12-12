@@ -6,11 +6,6 @@ import {
   LOAD_NAHMII_STAGED_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGING_BALANCES,
   LOAD_NAHMII_STAGING_BALANCES_SUCCESS,
-  DEPOSIT,
-  DEPOSIT_ETH,
-  DEPOSIT_TOKEN,
-  DEPOSIT_SUCCESS,
-  PAY_SUCCESS,
   START_PAYMENT_CHALLENGE,
   START_PAYMENT_CHALLENGE_SUCCESS,
   START_PAYMENT_CHALLENGE_ERROR,
@@ -38,12 +33,37 @@ import {
   LOAD_RECEIPTS,
   LOAD_RECEIPTS_SUCCESS,
   LOAD_RECEIPTS_ERROR,
+  MAKE_NAHMII_PAYMENT,
+  MAKE_NAHMII_PAYMENT_ERROR,
+  MAKE_NAHMII_PAYMENT_SUCCESS,
 } from './constants';
 
 export function setSelectedWalletCurrency(currencyAddress) {
   return {
     type: SET_SELECTED_WALLET_CURRENCY,
     currencyAddress,
+  };
+}
+
+export function makeNahmiiPayment(monetaryAmount, recipient, walletOverride = null) {
+  return {
+    type: MAKE_NAHMII_PAYMENT,
+    monetaryAmount,
+    recipient,
+    walletOverride,
+  };
+}
+
+export function nahmiiPaymentError(error) {
+  return {
+    type: MAKE_NAHMII_PAYMENT_ERROR,
+    error,
+  };
+}
+
+export function nahmiiPaymentSuccess() {
+  return {
+    type: MAKE_NAHMII_PAYMENT_SUCCESS,
   };
 }
 

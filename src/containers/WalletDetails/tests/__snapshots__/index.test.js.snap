@@ -349,6 +349,22 @@ ShallowWrapper {
                               path="undefined/buyeth"
                     />
           </TabPane>
+          <TabPane
+                    placeholder={null}
+                    tab={
+                              <span>
+                                        <Icon
+                                                  type="logout"
+                                        />
+                                        withdraw
+                              </span>
+                    }
+          >
+                    <Route
+                              component={[Function]}
+                              path="undefined/withdraw"
+                    />
+          </TabPane>
 </Tabs>,
         false,
       ],
@@ -463,6 +479,22 @@ ShallowWrapper {
               <Route
                             component={[Function]}
                             path="undefined/buyeth"
+              />
+</TabPane>,
+            <TabPane
+              placeholder={null}
+              tab={
+                            <span>
+                                          <Icon
+                                                        type="logout"
+                                          />
+                                          withdraw
+                            </span>
+              }
+>
+              <Route
+                            component={[Function]}
+                            path="undefined/withdraw"
               />
 </TabPane>,
           ],
@@ -583,6 +615,38 @@ ShallowWrapper {
             },
             "type": [Function],
           },
+          Object {
+            "instance": null,
+            "key": "undefined/withdraw",
+            "nodeType": "class",
+            "props": Object {
+              "children": <Route
+                component={[Function]}
+                path="undefined/withdraw"
+/>,
+              "placeholder": null,
+              "tab": <span>
+                <Icon
+                                type="logout"
+                />
+                withdraw
+</span>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "path": "undefined/withdraw",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
         ],
         "type": [Function],
       },
@@ -677,6 +741,22 @@ ShallowWrapper {
                         <Route
                                     component={[Function]}
                                     path="undefined/buyeth"
+                        />
+            </TabPane>
+            <TabPane
+                        placeholder={null}
+                        tab={
+                                    <span>
+                                                <Icon
+                                                            type="logout"
+                                                />
+                                                withdraw
+                                    </span>
+                        }
+            >
+                        <Route
+                                    component={[Function]}
+                                    path="undefined/withdraw"
                         />
             </TabPane>
 </Tabs>,
@@ -795,6 +875,22 @@ ShallowWrapper {
                                 path="undefined/buyeth"
                 />
 </TabPane>,
+              <TabPane
+                placeholder={null}
+                tab={
+                                <span>
+                                                <Icon
+                                                                type="logout"
+                                                />
+                                                withdraw
+                                </span>
+                }
+>
+                <Route
+                                component={[Function]}
+                                path="undefined/withdraw"
+                />
+</TabPane>,
             ],
             "onChange": [Function],
           },
@@ -906,6 +1002,38 @@ ShallowWrapper {
                 "props": Object {
                   "component": [Function],
                   "path": "undefined/buyeth",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "undefined/withdraw",
+              "nodeType": "class",
+              "props": Object {
+                "children": <Route
+                  component={[Function]}
+                  path="undefined/withdraw"
+/>,
+                "placeholder": null,
+                "tab": <span>
+                  <Icon
+                                    type="logout"
+                  />
+                  withdraw
+</span>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "component": [Function],
+                  "path": "undefined/withdraw",
                 },
                 "ref": null,
                 "rendered": null,
