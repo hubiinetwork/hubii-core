@@ -170,6 +170,12 @@ export const isHardwareWallet = (type) => type === 'lns' || type === 'trezor';
 
 export const prependHexToAddress = (address) => address.startsWith('0x') ? address : `0x${address}`;
 
+// valid gwei number is numbers, optionally followed by a . at most 9 more numbers
+export const gweiRegex = new RegExp('^\\d+(\\.\\d{0,9})?$');
+
+// only match whole numbers
+export const gasLimitRegex = new RegExp('^\\d+$');
+
 // Regex credit to the MyCrypto team
 // Full length deterministic wallet paths from BIP44
 // https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki

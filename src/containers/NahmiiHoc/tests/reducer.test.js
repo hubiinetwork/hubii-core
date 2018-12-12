@@ -17,6 +17,12 @@ describe('nahmiiHocReducer', () => {
       balances: {},
       receipts: {},
       transactions: {},
+      depositStatus: {
+        depositingEth: false,
+        approvingTokenDeposit: false,
+        completingTokenDeposit: false,
+        error: null,
+      },
     });
   });
 
