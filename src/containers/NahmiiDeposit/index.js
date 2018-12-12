@@ -28,6 +28,7 @@ import { Form, FormItem, FormItemLabel } from 'components/ui/Form';
 import Collapse, { Panel } from 'components/ui/Collapse';
 import HelperText from 'components/ui/HelperText';
 import Text from 'components/ui/Text';
+import SectionHeading from 'components/ui/SectionHeading';
 import Input from 'components/ui/Input';
 import Select, { Option } from 'components/ui/Select';
 import TransferDescriptionItem from 'components/TransferDescriptionItem';
@@ -217,14 +218,16 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
   }
 
   generateTransferingStatus(depositStatus, ledgerNanoSInfo, trezorInfo) {
-    const { currentWalletWithInfo, currentNetwork } = this.props;
+    const { currentWalletWithInfo, currentNetwork, intl } = this.props;
+    const { formatMessage } = intl;
     const confOnDevice = ledgerNanoSInfo.get('confTxOnDevice') || trezorInfo.get('confTxOnDevice');
     let ratio;
     if (depositStatus.get('depositingEth')) ratio = '1/1';
     if (depositStatus.get('approvingTokenDeposit')) ratio = '1/2';
     if (depositStatus.get('completingTokenDeposit')) ratio = '2/2';
     if (!ratio) return null;
-    const transferingText = `Waiting for transaction ${ratio} to be ${confOnDevice ? 'signed' : 'mined...'}`;
+    const transferingText =
+      `${formatMessage({ id: 'waiting_for_deposit_to_be' }, { ratio })} ${confOnDevice ? formatMessage({ id: 'signed' }) : `${formatMessage({ id: 'mined' })}...`}`;
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <span>
@@ -287,7 +290,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       supportedAssets.get('error') ||
       prices.get('error')
     ) {
-      return <NoTxPlaceholder>{"There's a problem with hubii core's connection. Please try again later"}</NoTxPlaceholder>;
+      return <NoTxPlaceholder>{formatMessage({ id: 'connection_problem' })}</NoTxPlaceholder>;
     }
 
     const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
@@ -358,7 +361,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
         <div style={{ flex: '1', marginRight: '2rem', marginBottom: '3rem' }}>
           <Form>
             <FormItem
-              label={<FormItemLabel>Select an asset to deposit</FormItemLabel>}
+              label={<FormItemLabel>{formatMessage({ id: 'select_asset_to_deposit' })}</FormItemLabel>}
               colon={false}
             >
               <Image
@@ -384,7 +387,6 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               help={<HelperText left={formatFiat(usdValueToDeposit, 'USD')} right={formatMessage({ id: 'usd' })} />}
             >
               <Input
-                // disabled={transfering}
                 defaultValue={amountToDepositInput}
                 value={amountToDepositInput}
                 onFocus={() => this.onFocusNumberInput('amountToDepositInput')}
@@ -399,7 +401,6 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               >
                 <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_price' })}</FormItemLabel>} colon={false}>
                   <Input
-                    // disabled={transfering}
                     min={0}
                     defaultValue={gasPriceGweiInput}
                     value={gasPriceGweiInput}
@@ -410,7 +411,6 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                 </FormItem>
                 <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_limit' })}</FormItemLabel>} colon={false}>
                   <Input
-                    // disabled={transfering}
                     value={gasLimitInput}
                     defaultValue={gasLimitInput}
                     onChange={this.handleGasLimitChange}
@@ -436,7 +436,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             />
           </Row>
           <Row>
-            <StyledCol span={12}>Base layer fee</StyledCol>
+            <StyledCol span={12}>{formatMessage({ id: 'base_layer_fee' })}</StyledCol>
           </Row>
           <Row>
             <TransferDescriptionItem
@@ -445,7 +445,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             />
           </Row>
           <Row>
-            <StyledCol span={12}>Base layer ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+            <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
           </Row>
           <Row>
             <TransferDescriptionItem
@@ -455,7 +455,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
           </Row>
           <Row>
             <StyledCol span={12}>
-              Base layer ETH {formatMessage({ id: 'balance_after' })}
+              {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
             </StyledCol>
           </Row>
           <Row>
@@ -467,7 +467,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
           {assetToDeposit.symbol === 'ETH' &&
           <div>
             <Row>
-              <StyledCol span={12}>nahmii ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+              <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
             </Row>
             <Row>
               <TransferDescriptionItem
@@ -477,7 +477,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             </Row>
             <Row>
               <StyledCol span={12}>
-                nahmii ETH {formatMessage({ id: 'balance_after' })}
+                {formatMessage({ id: 'nahmii' })} ETH {formatMessage({ id: 'balance_after' })}
               </StyledCol>
             </Row>
             <Row>
@@ -491,7 +491,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
           {assetToDeposit.symbol !== 'ETH' &&
           <div>
             <Row>
-              <StyledCol span={12}>Base layer {assetToDeposit.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+              <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} {assetToDeposit.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
             </Row>
             <Row>
               <TransferDescriptionItem
@@ -501,7 +501,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             </Row>
             <Row>
               <StyledCol span={12}>
-                Base layer { assetToDeposit.symbol } {formatMessage({ id: 'balance_after' })}
+                {formatMessage({ id: 'base_layer' })} { assetToDeposit.symbol } {formatMessage({ id: 'balance_after' })}
               </StyledCol>
             </Row>
             <Row>
@@ -511,7 +511,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               />
             </Row>
             <Row>
-              <StyledCol span={12}>nahmii {assetToDeposit.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+              <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} {assetToDeposit.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
             </Row>
             <Row>
               <TransferDescriptionItem
@@ -521,7 +521,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             </Row>
             <Row>
               <StyledCol span={12}>
-                nahmii { assetToDeposit.symbol } {formatMessage({ id: 'balance_after' })}
+                {formatMessage({ id: 'nahmii' })} { assetToDeposit.symbol } {formatMessage({ id: 'balance_after' })}
               </StyledCol>
             </Row>
             <Row>
@@ -556,11 +556,14 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                     )}
                   disabled={disableDepositButton}
                 >
-                  <span>Deposit</span>
+                  <span>{formatMessage({ id: 'deposit' })}</span>
                 </StyledButton>
                 )
               }
           </Row>
+          <SectionHeading style={{ marginTop: '2rem', maxWidth: '25rem' }}>
+            Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+          </SectionHeading>
         </div>
       </div>
     );

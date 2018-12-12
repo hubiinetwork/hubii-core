@@ -1,6 +1,5 @@
 import ClientFundContract from 'nahmii-sdk/lib/client-fund-contract';
 import nahmii from 'nahmii-sdk';
-// import { getIntl } from 'utils/localisation';
 import { utils } from 'ethers';
 import { all, fork, takeEvery, takeLatest, select, put, call, take, cancel, race } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
@@ -81,7 +80,7 @@ export function* depositEth({ address, amount, options }) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
     yield put(actions.nahmiiDepositEthSuccess());
-    yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
+    yield put(notify('success', getIntl().formatMessage({ id: 'deposit_success' })));
   } catch (e) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
@@ -124,7 +123,7 @@ export function* completeTokenDeposit({ address, symbol, amount, options }) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
     yield put(actions.nahmiiCompleteTokenDepositSuccess());
-    yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
+    yield put(notify('success', getIntl().formatMessage({ id: 'deposit_success' })));
   } catch (e) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
@@ -154,7 +153,7 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield call([payment, 'register']);
     yield put(actions.nahmiiPaymentSuccess());
-    yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
+    yield put(notify('success', getIntl().formatMessage({ id: 'deposit_success' })));
   } catch (e) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield put(actions.nahmiiPaymentError(e));
