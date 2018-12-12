@@ -7,6 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { shell } from 'electron';
 import { Row, Icon } from 'antd';
 import { getAbsolutePath } from 'utils/electron';
@@ -96,7 +97,21 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     this.handleAssetChange = this.handleAssetChange.bind(this);
     this.handleGasLimitChange = this.handleGasLimitChange.bind(this);
     this.handleGasPriceChange = this.handleGasPriceChange.bind(this);
-    this.generateTransferingText = this.generateTransferingText.bind(this);
+    this.generateTransferingStatus = this.generateTransferingStatus.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { depositStatus, goWalletDetails, currentWalletWithInfo } = this.props;
+    const prevFinalDepositStage =
+      prevProps.depositStatus.get('depositingEth')
+      || prevProps.depositStatus.get('completingTokenDeposit');
+    if
+      (
+        prevFinalDepositStage
+        && !depositStatus.get('depositingEth')
+        && !depositStatus.get('completingTokenDeposit')
+        && !depositStatus.get('error')
+        ) goWalletDetails(currentWalletWithInfo.get('address'));
   }
 
   onFocusNumberInput(input) {
@@ -201,13 +216,36 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     this.setState({ gasLimitInput: value, gasLimit: parseInt(value, 10) });
   }
 
-  generateTransferingText(depositStatus) {
+  generateTransferingStatus(depositStatus, ledgerNanoSInfo, trezorInfo) {
+    const { currentWalletWithInfo, currentNetwork } = this.props;
+    const confOnDevice = ledgerNanoSInfo.get('confTxOnDevice') || trezorInfo.get('confTxOnDevice');
     let ratio;
     if (depositStatus.get('depositingEth')) ratio = '1/1';
     if (depositStatus.get('approvingTokenDeposit')) ratio = '1/2';
     if (depositStatus.get('completingTokenDeposit')) ratio = '2/2';
     if (!ratio) return null;
-    return `Waiting for transaction ${ratio} to be mined...`;
+    const transferingText = `Waiting for transaction ${ratio} to be ${confOnDevice ? 'signed' : 'mined...'}`;
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <span>
+          <Text large>{transferingText}</Text>
+          {!confOnDevice && <Icon style={{ color: 'white', fontSize: '1.5rem', marginLeft: '1rem' }} type="loading" />}
+        </span>
+        {!confOnDevice &&
+        <a
+          role="link"
+          tabIndex={0}
+          onClick={
+                    currentNetwork.provider._network.name === 'ropsten' ?
+                      () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
+                      () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
+                  }
+        >
+          {'Track progress on Etherscan'}
+        </a>
+                  }
+      </div>
+    );
   }
 
   render() {
@@ -226,7 +264,6 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       intl,
       supportedAssets,
       depositStatus,
-      currentNetwork,
       ledgerNanoSInfo,
       trezorInfo,
     } = this.props;
@@ -309,12 +346,13 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       usdValue: baseLayerEthBalanceAfterAmount.times(ethUsdValue),
     };
 
+    const walletType = currentWalletWithInfo.get('type');
     const disableDepositButton =
       amountToDeposit.toNumber() <= 0 ||
       baseLayerBalAfterAmt.isNegative() ||
       baseLayerEthBalanceAfterAmount.isNegative() ||
-      !walletReady(currentWalletWithInfo.get('type'), ledgerNanoSInfo, trezorInfo);
-    const transferingText = this.generateTransferingText(depositStatus);
+      !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
+    const TransferingStatus = this.generateTransferingStatus(depositStatus, ledgerNanoSInfo, trezorInfo);
     return (
       <div style={{ display: 'flex', flex: '1', flexWrap: 'wrap' }}>
         <div style={{ flex: '1', marginRight: '2rem', marginBottom: '3rem' }}>
@@ -502,22 +540,10 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             </HWPromptWrapper>
             }
             {
-            transferingText ?
+            TransferingStatus ?
               (
                 <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }}>
-                  <div>
-                    <span><Text large>{transferingText}</Text></span>
-                    <Icon style={{ color: 'white', fontSize: '1.5rem', marginLeft: '1rem' }} type="loading" />
-                  </div>
-                  <a
-                    role="link"
-                    tabIndex={0}
-                    onClick={
-                    currentNetwork.provider._network.name === 'ropsten' ?
-                      () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
-                      () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
-                  }
-                  >{'Track progress on Etherscan'}</a>
+                  {TransferingStatus}
                 </div>
               ) : (
                 <StyledButton
@@ -551,6 +577,7 @@ NahmiiDeposit.propTypes = {
   currentNetwork: PropTypes.object.isRequired,
   nahmiiDeposit: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
+  goWalletDetails: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -566,6 +593,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     nahmiiDeposit: (...args) => dispatch(nahmiiDeposit(...args)),
+    goWalletDetails: (address) => dispatch(push(`/wallet/${address}/overview`)),
   };
 }
 
