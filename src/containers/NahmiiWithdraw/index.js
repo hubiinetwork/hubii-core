@@ -60,7 +60,7 @@ export class NahmiiWithdraw extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const {setSelectedWalletCurrency} = this.props;
+    const { setSelectedWalletCurrency } = this.props;
     if (this.state.selectedSymbol !== prevState.selectedSymbol) {
       const assetDetails = this.getAssetDetailsBySymbol(this.state.selectedSymbol);
       setSelectedWalletCurrency(assetDetails.get('currency'));
@@ -317,7 +317,7 @@ export class NahmiiWithdraw extends React.PureComponent {
     }
 
     let challengeAssetSymbol;
-    let challengeReceipt// = this.getReceiptByNonce(challenge.nonce.toNumber());
+    let challengeReceipt;// = this.getReceiptByNonce(challenge.nonce.toNumber());
     if (challengeReceipt) {
       const challengeAsssetDetails = this.getAssetDetailsByCurrencyAddress(challengeReceipt.currency.ct);
       challengeAssetSymbol = challengeAsssetDetails ? challengeAsssetDetails.toJS().symbol : null;

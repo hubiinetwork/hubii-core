@@ -18,6 +18,12 @@ describe('nahmiiHocReducer', () => {
       receipts: {},
       transactions: {},
       selectedCurrency: 'ETH',
+      depositStatus: {
+        depositingEth: false,
+        approvingTokenDeposit: false,
+        completingTokenDeposit: false,
+        error: null,
+      },
     });
   });
 

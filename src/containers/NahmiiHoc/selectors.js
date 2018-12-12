@@ -105,6 +105,11 @@ const makeSelectNahmiiSettlementTransactionsByCurrentWallet = () => createSelect
   }
 );
 
+const makeSelectDepositStatus = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('depositStatus')
+);
+
 const makeSelectNahmiiBalances = () => createSelector(
   selectNahmiiHocDomain,
   (nahmiiHocDomain) => {
@@ -164,4 +169,5 @@ export {
   makeSelectNahmiiBalances,
   makeSelectNahmiiBalancesByCurrentWallet,
   makeSelectNahmiiSettlementTransactionsByCurrentWallet,
+  makeSelectDepositStatus,
 };

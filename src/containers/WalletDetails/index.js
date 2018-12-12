@@ -12,7 +12,9 @@ import { Route, Redirect } from 'react-router';
 import { isConnected, isHardwareWallet } from 'utils/wallet';
 
 import WalletHeader from 'components/WalletHeader';
+import NahmiiText from 'components/ui/NahmiiText';
 import WalletTransactions from 'containers/WalletTransactions';
+import NahmiiDeposit from 'containers/NahmiiDeposit';
 import WalletTransfer from 'containers/WalletTransfer';
 import NahmiiWithdraw from 'containers/NahmiiWithdraw';
 import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHoc/selectors';
@@ -149,6 +151,16 @@ export class WalletDetails extends React.PureComponent {
             key={`${match.url}/withdraw`}
           >
             <Route path={`${match.url}/withdraw`} component={NahmiiWithdraw} />
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <Icon type="login" /><NahmiiText />{formatMessage({ id: 'deposit' })}
+              </span>
+            }
+            key={`${match.url}/nahmii-deposit`}
+          >
+            <Route path={`${match.url}/nahmii-deposit`} component={NahmiiDeposit} />
           </TabPane>
         </Tabs>
         {history.location.pathname === match.url && (

@@ -33,6 +33,14 @@ import {
   LOAD_RECEIPTS,
   LOAD_RECEIPTS_SUCCESS,
   LOAD_RECEIPTS_ERROR,
+  NAHMII_DEPOSIT,
+  NAHMII_DEPOSIT_ETH_SUCCESS,
+  NAHMII_APPROVE_TOKEN_DEPOSIT_SUCCESS,
+  NAHMII_COMPLETE_TOKEN_DEPOSIT_SUCCESS,
+  NAHMII_APPROVE_TOKEN_DEPOSIT,
+  NAHMII_COMPLETE_TOKEN_DEPOSIT,
+  NAHMII_DEPOSIT_ETH,
+  NAHMII_DEPOSIT_FAILED,
   MAKE_NAHMII_PAYMENT,
   MAKE_NAHMII_PAYMENT_ERROR,
   MAKE_NAHMII_PAYMENT_SUCCESS,
@@ -42,6 +50,70 @@ export function setSelectedWalletCurrency(currencyAddress) {
   return {
     type: SET_SELECTED_WALLET_CURRENCY,
     currencyAddress,
+  };
+}
+
+export function nahmiiDeposit(address, symbol, amount, options) {
+  return {
+    type: NAHMII_DEPOSIT,
+    address,
+    symbol,
+    amount,
+    options,
+  };
+}
+
+export function nahmiiApproveTokenDeposit(address, symbol, amount, options) {
+  return {
+    type: NAHMII_APPROVE_TOKEN_DEPOSIT,
+    symbol,
+    address,
+    amount,
+    options,
+  };
+}
+
+export function nahmiiCompleteTokenDeposit(address, symbol, amount, options) {
+  return {
+    type: NAHMII_COMPLETE_TOKEN_DEPOSIT,
+    symbol,
+    address,
+    amount,
+    options,
+  };
+}
+
+export function nahmiiDepositEth(address, amount, options) {
+  return {
+    type: NAHMII_DEPOSIT_ETH,
+    address,
+    amount,
+    options,
+  };
+}
+
+export function nahmiiDepositEthSuccess() {
+  return {
+    type: NAHMII_DEPOSIT_ETH_SUCCESS,
+  };
+}
+
+export function nahmiiApproveTokenDepositSuccess() {
+  return {
+    type: NAHMII_APPROVE_TOKEN_DEPOSIT_SUCCESS,
+  };
+}
+
+export function nahmiiCompleteTokenDepositSuccess() {
+  return {
+    type: NAHMII_COMPLETE_TOKEN_DEPOSIT_SUCCESS,
+  };
+}
+
+export function nahmiiDepositFailed(errorMessage) {
+  return {
+    type: NAHMII_DEPOSIT_FAILED,
+    error: errorMessage,
   };
 }
 
