@@ -82,6 +82,7 @@ describe('nahmiiHocSaga', () => {
         },
       })
       .put({ type: 'ACTION1' })
+      .put({ type: 'ACTION2' })
       .put(actions.nahmiiPaymentError(errorMock))
       .put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMock.message })))
       .run({ silenceTimeout: true });

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Row, Col, Form } from 'antd';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import ethers from 'ethers';
+import { utils } from 'ethers';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 import Notification from 'components/Notification';
@@ -27,8 +27,8 @@ import { FinalHeader } from '../../ImportWalletSteps/ImportWalletForm.style';
 class AddWallet extends React.PureComponent {
   constructor(props) {
     super(props);
-    const mnemonic = ethers.HDNode.entropyToMnemonic(
-      ethers.utils.randomBytes(16)
+    const mnemonic = utils.HDNode.entropyToMnemonic(
+      utils.randomBytes(16)
     );
     this.state = {
       mnemonic: mnemonic.toString(),

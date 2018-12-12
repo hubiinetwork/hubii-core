@@ -5,6 +5,15 @@ import { currentNetworkMock } from 'containers/App/tests/mocks/selectors';
 import {
   walletsWithInfoMock,
 } from 'containers/WalletHoc/tests/mocks/selectors';
+import {
+  ledgerHocDisconnectedMock,
+  ledgerHocConnectedMock,
+} from 'containers/LedgerHoc/tests/mocks/selectors';
+
+import {
+  trezorHocConnectedMock,
+  trezorHocDisconnectedMock,
+} from 'containers/TrezorHoc/tests/mocks/selectors';
 
 import {
   depositStatusNone,
@@ -36,12 +45,34 @@ describe('<NahmiiDeposit />', () => {
       intl,
       currentNetwork: currentNetworkMock,
       depositStatus: depositStatusNone,
+      ledgerNanoSInfo: ledgerHocDisconnectedMock,
+      trezorInfo: trezorHocDisconnectedMock,
     };
   });
   it('should render correctly when everything is loaded', () => {
     const wrapper = shallow(
       <NahmiiDeposit
         {...props}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when ledger connected', () => {
+    const wrapper = shallow(
+      <NahmiiDeposit
+        {...props}
+        ledgerNanoSInfo={ledgerHocConnectedMock}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly when trezor connected', () => {
+    const wrapper = shallow(
+      <NahmiiDeposit
+        {...props}
+        trezorInfo={trezorHocConnectedMock}
       />
     );
     expect(wrapper).toMatchSnapshot();

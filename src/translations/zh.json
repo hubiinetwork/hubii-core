@@ -186,5 +186,7 @@
     "balances": "资产",
     "available": "可用",
     "staging": "结算中",
-    "staged": "可取款"
+    "staged": "可取款",
+    "send_on_the": "发送于",
+    "second_layer": "二级链"
 }

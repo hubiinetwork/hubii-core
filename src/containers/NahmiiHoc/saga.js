@@ -132,10 +132,11 @@ export function* completeTokenDeposit({ address, symbol, amount, options }) {
   }
 }
 
+
 export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
-  let confOnDeviceDone;
-  let confOnDevice;
   let signer;
+  let confOnDevice;
+  let confOnDeviceDone;
   try {
     const wallet = walletOverride || (yield (select(makeSelectCurrentWalletWithInfo()))).toJS();
     if (wallet.encrypted && !wallet.decrypted) {
@@ -272,7 +273,7 @@ export const ledgerSignerSignTransaction = async (unresolvedTx, path, descriptor
 };
 
 export function* loadBalances({ address }, network) {
-  if (network.provider.name === 'homestead') {
+  if (network.provider._network.name === 'homestead') {
     yield put(actions.loadBalancesSuccess(address, []));
     return;
   }
@@ -312,7 +313,7 @@ export function* loadStagingBalances({ address }) {
 
 // https://stackoverflow.com/questions/48228662/get-token-balance-with-ethereum-rpc
 export function* loadStagedBalances({ address }, network) {
-  if (network.provider.name === 'homestead') {
+  if (network.provider._network.name === 'homestead') {
     yield put(actions.loadStagedBalancesSuccess(address, []));
     return;
   }
