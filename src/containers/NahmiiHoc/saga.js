@@ -1,4 +1,4 @@
-import ClientFundContract from 'nahmii-sdk/lib/client-fund-contract';
+import BalanceTrackerContract from 'nahmii-sdk/lib/balance-tracker-contract';
 import DriipSettlementChallengeContract from 'nahmii-sdk/lib/driip-settlement-challenge-contract';
 import nahmii from 'nahmii-sdk';
 import { utils } from 'ethers';
@@ -298,7 +298,7 @@ export function* loadBalances({ address }, network) {
 }
 
 export function* loadStagingBalances({ address }, network) {
-  if (network.provider.name === 'homestead') {
+  if (network.provider._network.name === 'homestead') {
     yield put(actions.loadStagingBalancesSuccess(address, []));
     return;
   }
@@ -328,7 +328,7 @@ export function* loadStagingBalances({ address }, network) {
       const requestBatch = currencyCtList.map((ct) => {
         const currencyId = ct === 'ETH' ? '0x0000000000000000000000000000000000000000' : ct;
         // encode arguments, prepare them for being sent
-        const encodedArgs = utils.AbiCoder.defaultCoder.encode(['address', 'address', 'int256'], [address, currencyId, 0]);
+        const encodedArgs = utils.defaultAbiCoder.encode(['address', 'address', 'int256'], [address, currencyId, 0]);
         const dataArr = utils.concat([funcSelector, encodedArgs]);
         const data = utils.hexlify(dataArr);
         const params = [{ from: address, to: driipSettlementChallengeContractAddress, data }, 'latest'];
@@ -340,7 +340,7 @@ export function* loadStagingBalances({ address }, network) {
         };
       });
       // send all requests at once
-      const response = yield rpcRequest(jsonRpcProvider.url, JSON.stringify(requestBatch));
+      const response = yield rpcRequest(jsonRpcProvider.connection.url, JSON.stringify(requestBatch));
       // process the response
       const formattedBalances = response.reduce((acc, { result }, i) => {
         // result is the hex balance. if the response comes back as '0x', it actually means 0.
@@ -371,29 +371,31 @@ export function* loadStagedBalances({ address }, network) {
   }
 
   const provider = network.provider;
-  const clientFundContract = new ClientFundContract(network.nahmiiProvider);
+  const balanceTrackerContract = new BalanceTrackerContract(network.nahmiiProvider);
 
   while (true) { // eslint-disable-line no-constant-condition
     try {
       // the first provider in network.provider.providers in an Infura node, which supports RPC calls
       const jsonRpcProvider = provider.providers ? provider.providers[0] : provider;
 
-      const clientFundContractAddress = clientFundContract.address;
+      const balanceTrackerContractAddress = balanceTrackerContract.address;
 
       // derive function selector
-      const funcBytes = utils.solidityKeccak256(['string'], ['stagedBalance(address,address,uint256)']);
+      const balanceType = yield balanceTrackerContract.stagedBalanceType();
+      const funcBytes = utils.solidityKeccak256(['string'], ['get(address,bytes32,address,uint256)']);
       const funcSelector = funcBytes.slice(0, 10);
 
       // send a batch of RPC requests asking for all staged balances
       // https://www.jsonrpc.org/specification#batch
       const currencyCtList = supportedAssets.assets.map((a) => a.currency);
       const requestBatch = currencyCtList.map((ct) => {
-        const currencyId = ct === 'ETH' ? '0x0000000000000000000000000000000000000000' : ct;
+        const currencyAddress = ct === 'ETH' ? '0x0000000000000000000000000000000000000000' : ct;
         // encode arguments, prepare them for being sent
-        const encodedArgs = utils.defaultAbiCoder.encode(['address', 'int256', 'int256'], [address, currencyId, 0]);
+        const encodedArgs = utils.defaultAbiCoder.encode(['address', 'bytes32', 'address', 'int256'], [address, balanceType, currencyAddress, 0]);
+        // const encodedArgs = utils.defaultAbiCoder.encode(['address', 'int256', 'int256'], [address, currencyId, 0]);
         const dataArr = utils.concat([funcSelector, encodedArgs]);
         const data = utils.hexlify(dataArr);
-        const params = [{ from: address, to: clientFundContractAddress, data }, 'latest'];
+        const params = [{ from: address, to: balanceTrackerContractAddress, data }, 'latest'];
         return {
           method: 'eth_call',
           params,

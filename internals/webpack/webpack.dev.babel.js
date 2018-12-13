@@ -51,6 +51,7 @@ if (process.env.CONTRACT_PATH) {
     './abis/ClientFund': 'mocks/sdk/abis/ClientFund.js',
     './abis/DriipSettlement': 'mocks/sdk/abis/DriipSettlement.js',
     './abis/DriipSettlementChallenge': 'mocks/sdk/abis/DriipSettlementChallenge.js',
+    './abis/BalanceTracker': 'mocks/sdk/abis/BalanceTracker.js',
   };
 }
 
