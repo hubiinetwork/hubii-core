@@ -52,7 +52,9 @@ describe('<NahmiiAirdriipRegistration />', () => {
             ...currentNetworkMock,
             provider: {
               ...currentNetworkMock.provider,
-              name: 'homestead',
+              network: {
+                name: 'homestead',
+              },
             },
           }}
         />);

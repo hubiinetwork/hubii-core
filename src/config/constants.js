@@ -1,4 +1,5 @@
-import { providers } from 'ethers';
+import nahmii from 'nahmii-sdk';
+import { getDefaultProvider } from 'ethers';
 
 // eslint-disable-next-line no-unused-vars
 const intFromEnv = (key, def) => {
@@ -31,16 +32,29 @@ const trimmableWalletApiEndpoint = (endpoint) => (trimmed) => {
   return endpoint;
 };
 
+const ROPSTEN_URL = 'https://api2.dev.hubii.net/';
+const HOMESTEAD_URL = 'https://api.nahmii.io/';
+
 export const SUPPORTED_NETWORKS = {
   homestead: {
-    provider: providers.getDefaultProvider('homestead'),
-    walletApiEndpoint: trimmableWalletApiEndpoint('https://api.nahmii.io/'),
+    provider: getDefaultProvider('homestead'),
+    nahmiiProvider: new nahmii.NahmiiProvider(
+      trimmableWalletApiEndpoint(HOMESTEAD_URL)(true),
+      HOMESTEAD_IDENTITY_SERVICE_APPID,
+      HOMESTEAD_IDENTITY_SERVICE_SECRET
+    ),
+    walletApiEndpoint: trimmableWalletApiEndpoint(HOMESTEAD_URL),
     identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : HOMESTEAD_IDENTITY_SERVICE_SECRET,
     identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : HOMESTEAD_IDENTITY_SERVICE_APPID,
   },
   ropsten: {
-    provider: providers.getDefaultProvider('ropsten'),
-    walletApiEndpoint: trimmableWalletApiEndpoint('https://api2.dev.hubii.net/'),
+    provider: getDefaultProvider('ropsten'),
+    nahmiiProvider: new nahmii.NahmiiProvider(
+      trimmableWalletApiEndpoint(ROPSTEN_URL)(true),
+      ROPSTEN_IDENTITY_SERVICE_APPID,
+      ROPSTEN_IDENTITY_SERVICE_SECRET
+      ),
+    walletApiEndpoint: trimmableWalletApiEndpoint(ROPSTEN_URL),
     identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : ROPSTEN_IDENTITY_SERVICE_SECRET,
     identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : ROPSTEN_IDENTITY_SERVICE_APPID,
   },

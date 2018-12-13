@@ -5,6 +5,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <WalletTransfer
+    baseLayerTransfer={[Function]}
     contacts={
         Immutable.List [
             Immutable.Map {
@@ -246,6 +247,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    nahmiiTransfer={[Function]}
     prices={
         Immutable.Map {
             loading: false,
@@ -339,7 +341,6 @@ ShallowWrapper {
             ],
         }
     }
-    transfer={[Function]}
     trezorInfo={
         Immutable.Map {
             status: "connected",
@@ -363,30 +364,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "assets": Array [
-        Object {
-          "balance": "0.198937",
-          "currency": "ETH",
-          "symbol": "ETH",
-          "value": Object {
-            "btc": "0.00198937",
-            "eth": "0.198937",
-            "usd": "81.962044",
-          },
-        },
-        Object {
-          "balance": "1.231288e-12",
-          "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-          "symbol": "BOKKY",
-          "value": Object {
-            "btc": "1.231288e-15",
-            "eth": "1.231288e-13",
-            "usd": "1.231288e-12",
-          },
-        },
-      ],
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -592,16 +570,7 @@ ShallowWrapper {
                 },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -714,30 +683,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "assets": Array [
-          Object {
-            "balance": "0.198937",
-            "currency": "ETH",
-            "symbol": "ETH",
-            "value": Object {
-              "btc": "0.00198937",
-              "eth": "0.198937",
-              "usd": "81.962044",
-            },
-          },
-          Object {
-            "balance": "1.231288e-12",
-            "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-            "symbol": "BOKKY",
-            "value": Object {
-              "btc": "1.231288e-15",
-              "eth": "1.231288e-13",
-              "usd": "1.231288e-12",
-            },
-          },
-        ],
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -943,16 +889,7 @@ ShallowWrapper {
                     },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -1075,6 +1012,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <WalletTransfer
+    baseLayerTransfer={[Function]}
     contacts={
         Immutable.List [
             Immutable.Map {
@@ -1319,6 +1257,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    nahmiiTransfer={[Function]}
     prices={
         Immutable.Map {
             loading: false,
@@ -1412,7 +1351,6 @@ ShallowWrapper {
             ],
         }
     }
-    transfer={[Function]}
     trezorInfo={
         Immutable.Map {
             status: "connected",
@@ -1436,30 +1374,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "assets": Array [
-        Object {
-          "balance": "0.198937",
-          "currency": "ETH",
-          "symbol": "ETH",
-          "value": Object {
-            "btc": "0.00198937",
-            "eth": "0.198937",
-            "usd": "81.962044",
-          },
-        },
-        Object {
-          "balance": "1.231288e-12",
-          "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-          "symbol": "BOKKY",
-          "value": Object {
-            "btc": "1.231288e-15",
-            "eth": "1.231288e-13",
-            "usd": "1.231288e-12",
-          },
-        },
-      ],
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -1668,16 +1583,7 @@ ShallowWrapper {
                       },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -1790,30 +1696,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "assets": Array [
-          Object {
-            "balance": "0.198937",
-            "currency": "ETH",
-            "symbol": "ETH",
-            "value": Object {
-              "btc": "0.00198937",
-              "eth": "0.198937",
-              "usd": "81.962044",
-            },
-          },
-          Object {
-            "balance": "1.231288e-12",
-            "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-            "symbol": "BOKKY",
-            "value": Object {
-              "btc": "1.231288e-15",
-              "eth": "1.231288e-13",
-              "usd": "1.231288e-12",
-            },
-          },
-        ],
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -2022,16 +1905,7 @@ ShallowWrapper {
                             },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -2154,6 +2028,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <WalletTransfer
+    baseLayerTransfer={[Function]}
     contacts={
         Immutable.List [
             Immutable.Map {
@@ -2396,6 +2271,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    nahmiiTransfer={[Function]}
     prices={
         Immutable.Map {
             loading: false,
@@ -2489,7 +2365,6 @@ ShallowWrapper {
             ],
         }
     }
-    transfer={[Function]}
     trezorInfo={
         Immutable.Map {
             status: "connected",
@@ -2513,30 +2388,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "assets": Array [
-        Object {
-          "balance": "0.198937",
-          "currency": "ETH",
-          "symbol": "ETH",
-          "value": Object {
-            "btc": "0.00198937",
-            "eth": "0.198937",
-            "usd": "81.962044",
-          },
-        },
-        Object {
-          "balance": "1.231288e-12",
-          "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-          "symbol": "BOKKY",
-          "value": Object {
-            "btc": "1.231288e-15",
-            "eth": "1.231288e-13",
-            "usd": "1.231288e-12",
-          },
-        },
-      ],
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -2743,16 +2595,7 @@ ShallowWrapper {
                 loading: true,
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -2865,30 +2708,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "assets": Array [
-          Object {
-            "balance": "0.198937",
-            "currency": "ETH",
-            "symbol": "ETH",
-            "value": Object {
-              "btc": "0.00198937",
-              "eth": "0.198937",
-              "usd": "81.962044",
-            },
-          },
-          Object {
-            "balance": "1.231288e-12",
-            "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-            "symbol": "BOKKY",
-            "value": Object {
-              "btc": "1.231288e-15",
-              "eth": "1.231288e-13",
-              "usd": "1.231288e-12",
-            },
-          },
-        ],
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -3095,16 +2915,7 @@ ShallowWrapper {
                     loading: true,
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -3227,6 +3038,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <WalletTransfer
+    baseLayerTransfer={[Function]}
     contacts={
         Immutable.List [
             Immutable.Map {
@@ -3468,6 +3280,7 @@ ShallowWrapper {
             confTxOnDevice: true,
         }
     }
+    nahmiiTransfer={[Function]}
     prices={
         Immutable.Map {
             loading: false,
@@ -3561,7 +3374,6 @@ ShallowWrapper {
             ],
         }
     }
-    transfer={[Function]}
     trezorInfo={
         Immutable.Map {
             status: "connected",
@@ -3585,30 +3397,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "assets": Array [
-        Object {
-          "balance": "0.198937",
-          "currency": "ETH",
-          "symbol": "ETH",
-          "value": Object {
-            "btc": "0.00198937",
-            "eth": "0.198937",
-            "usd": "81.962044",
-          },
-        },
-        Object {
-          "balance": "1.231288e-12",
-          "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-          "symbol": "BOKKY",
-          "value": Object {
-            "btc": "1.231288e-15",
-            "eth": "1.231288e-13",
-            "usd": "1.231288e-12",
-          },
-        },
-      ],
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -3814,16 +3603,7 @@ ShallowWrapper {
                 },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: true,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -3936,30 +3716,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "assets": Array [
-          Object {
-            "balance": "0.198937",
-            "currency": "ETH",
-            "symbol": "ETH",
-            "value": Object {
-              "btc": "0.00198937",
-              "eth": "0.198937",
-              "usd": "81.962044",
-            },
-          },
-          Object {
-            "balance": "1.231288e-12",
-            "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-            "symbol": "BOKKY",
-            "value": Object {
-              "btc": "1.231288e-15",
-              "eth": "1.231288e-13",
-              "usd": "1.231288e-12",
-            },
-          },
-        ],
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -4165,16 +3922,7 @@ ShallowWrapper {
                     },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: true,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -4297,6 +4045,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <WalletTransfer
+    baseLayerTransfer={[Function]}
     contacts={
         Immutable.List [
             Immutable.Map {
@@ -4538,6 +4287,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    nahmiiTransfer={[Function]}
     prices={
         Immutable.Map {
             loading: false,
@@ -4590,7 +4340,6 @@ ShallowWrapper {
             ],
         }
     }
-    transfer={[Function]}
     trezorInfo={
         Immutable.Map {
             status: "connected",
@@ -4614,30 +4363,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "assets": Array [
-        Object {
-          "balance": "0.198937",
-          "currency": "ETH",
-          "symbol": "ETH",
-          "value": Object {
-            "btc": "0.00198937",
-            "eth": "0.198937",
-            "usd": "81.962044",
-          },
-        },
-        Object {
-          "balance": "1.231288e-12",
-          "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-          "symbol": "BOKKY",
-          "value": Object {
-            "btc": "1.231288e-15",
-            "eth": "1.231288e-13",
-            "usd": "1.231288e-12",
-          },
-        },
-      ],
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -4843,16 +4569,7 @@ ShallowWrapper {
                 },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [],
@@ -4923,30 +4640,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "assets": Array [
-          Object {
-            "balance": "0.198937",
-            "currency": "ETH",
-            "symbol": "ETH",
-            "value": Object {
-              "btc": "0.00198937",
-              "eth": "0.198937",
-              "usd": "81.962044",
-            },
-          },
-          Object {
-            "balance": "1.231288e-12",
-            "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-            "symbol": "BOKKY",
-            "value": Object {
-              "btc": "1.231288e-15",
-              "eth": "1.231288e-13",
-              "usd": "1.231288e-12",
-            },
-          },
-        ],
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -5152,16 +4846,7 @@ ShallowWrapper {
                     },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [],
@@ -5242,6 +4927,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <WalletTransfer
+    baseLayerTransfer={[Function]}
     contacts={
         Immutable.List [
             Immutable.Map {
@@ -5483,6 +5169,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    nahmiiTransfer={[Function]}
     prices={
         Immutable.Map {
             loading: true,
@@ -5535,7 +5222,6 @@ ShallowWrapper {
             ],
         }
     }
-    transfer={[Function]}
     trezorInfo={
         Immutable.Map {
             status: "connected",
@@ -5559,30 +5245,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "assets": Array [
-        Object {
-          "balance": "0.198937",
-          "currency": "ETH",
-          "symbol": "ETH",
-          "value": Object {
-            "btc": "0.00198937",
-            "eth": "0.198937",
-            "usd": "81.962044",
-          },
-        },
-        Object {
-          "balance": "1.231288e-12",
-          "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-          "symbol": "BOKKY",
-          "value": Object {
-            "btc": "1.231288e-15",
-            "eth": "1.231288e-13",
-            "usd": "1.231288e-12",
-          },
-        },
-      ],
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -5788,16 +5451,7 @@ ShallowWrapper {
                 },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [],
@@ -5868,30 +5522,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "assets": Array [
-          Object {
-            "balance": "0.198937",
-            "currency": "ETH",
-            "symbol": "ETH",
-            "value": Object {
-              "btc": "0.00198937",
-              "eth": "0.198937",
-              "usd": "81.962044",
-            },
-          },
-          Object {
-            "balance": "1.231288e-12",
-            "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-            "symbol": "BOKKY",
-            "value": Object {
-              "btc": "1.231288e-15",
-              "eth": "1.231288e-13",
-              "usd": "1.231288e-12",
-            },
-          },
-        ],
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -6097,16 +5728,7 @@ ShallowWrapper {
                     },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [],
@@ -6187,6 +5809,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <WalletTransfer
+    baseLayerTransfer={[Function]}
     contacts={
         Immutable.List [
             Immutable.Map {
@@ -6428,6 +6051,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    nahmiiTransfer={[Function]}
     prices={
         Immutable.Map {
             loading: false,
@@ -6485,7 +6109,6 @@ ShallowWrapper {
             ],
         }
     }
-    transfer={[Function]}
     trezorInfo={
         Immutable.Map {
             status: "connected",
@@ -6509,30 +6132,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "assets": Array [
-        Object {
-          "balance": "0.198937",
-          "currency": "ETH",
-          "symbol": "ETH",
-          "value": Object {
-            "btc": "0.00198937",
-            "eth": "0.198937",
-            "usd": "81.962044",
-          },
-        },
-        Object {
-          "balance": "1.231288e-12",
-          "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-          "symbol": "BOKKY",
-          "value": Object {
-            "btc": "1.231288e-15",
-            "eth": "1.231288e-13",
-            "usd": "1.231288e-12",
-          },
-        },
-      ],
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -6738,16 +6338,7 @@ ShallowWrapper {
                 },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -6824,30 +6415,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "assets": Array [
-          Object {
-            "balance": "0.198937",
-            "currency": "ETH",
-            "symbol": "ETH",
-            "value": Object {
-              "btc": "0.00198937",
-              "eth": "0.198937",
-              "usd": "81.962044",
-            },
-          },
-          Object {
-            "balance": "1.231288e-12",
-            "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-            "symbol": "BOKKY",
-            "value": Object {
-              "btc": "1.231288e-15",
-              "eth": "1.231288e-13",
-              "usd": "1.231288e-12",
-            },
-          },
-        ],
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -7053,16 +6621,7 @@ ShallowWrapper {
                     },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -7149,6 +6708,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <WalletTransfer
+    baseLayerTransfer={[Function]}
     contacts={
         Immutable.List [
             Immutable.Map {
@@ -7390,6 +6950,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    nahmiiTransfer={[Function]}
     prices={
         Immutable.Map {
             loading: false,
@@ -7447,7 +7008,6 @@ ShallowWrapper {
             ],
         }
     }
-    transfer={[Function]}
     trezorInfo={
         Immutable.Map {
             status: "connected",
@@ -7471,30 +7031,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "assets": Array [
-        Object {
-          "balance": "0.198937",
-          "currency": "ETH",
-          "symbol": "ETH",
-          "value": Object {
-            "btc": "0.00198937",
-            "eth": "0.198937",
-            "usd": "81.962044",
-          },
-        },
-        Object {
-          "balance": "1.231288e-12",
-          "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-          "symbol": "BOKKY",
-          "value": Object {
-            "btc": "1.231288e-15",
-            "eth": "1.231288e-13",
-            "usd": "1.231288e-12",
-          },
-        },
-      ],
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -7700,16 +7237,7 @@ ShallowWrapper {
                 },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -7786,30 +7314,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "assets": Array [
-          Object {
-            "balance": "0.198937",
-            "currency": "ETH",
-            "symbol": "ETH",
-            "value": Object {
-              "btc": "0.00198937",
-              "eth": "0.198937",
-              "usd": "81.962044",
-            },
-          },
-          Object {
-            "balance": "1.231288e-12",
-            "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-            "symbol": "BOKKY",
-            "value": Object {
-              "btc": "1.231288e-15",
-              "eth": "1.231288e-13",
-              "usd": "1.231288e-12",
-            },
-          },
-        ],
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -8015,16 +7520,7 @@ ShallowWrapper {
                     },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
@@ -8111,6 +7607,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <WalletTransfer
+    baseLayerTransfer={[Function]}
     contacts={
         Immutable.List [
             Immutable.Map {
@@ -8352,6 +7849,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    nahmiiTransfer={[Function]}
     prices={
         Immutable.Map {
             loading: false,
@@ -8445,7 +7943,6 @@ ShallowWrapper {
             ],
         }
     }
-    transfer={[Function]}
     trezorInfo={
         Immutable.Map {
             status: "connected",
@@ -8469,30 +7966,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "assets": Array [
-        Object {
-          "balance": "0.198937",
-          "currency": "ETH",
-          "symbol": "ETH",
-          "value": Object {
-            "btc": "0.00198937",
-            "eth": "0.198937",
-            "usd": "81.962044",
-          },
-        },
-        Object {
-          "balance": "1.231288e-12",
-          "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-          "symbol": "BOKKY",
-          "value": Object {
-            "btc": "1.231288e-15",
-            "eth": "1.231288e-13",
-            "usd": "1.231288e-12",
-          },
-        },
-      ],
       "createContact": [Function],
-      "currentWalletUsdBalance": 81.96204400000123,
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -8698,16 +8172,7 @@ ShallowWrapper {
                 },
         },
 },
-      "errors": Object {},
       "hwWalletReady": false,
-      "ledgerNanoSInfo": Immutable.Map {
-        status: "connected",
-        connected: true,
-        addresses: Immutable.Map {
-        },
-        id: "ajlsdfkjas",
-        confTxOnDevice: false,
-},
       "onSend": [Function],
       "prices": Object {
         "assets": Array [
@@ -8820,30 +8285,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "assets": Array [
-          Object {
-            "balance": "0.198937",
-            "currency": "ETH",
-            "symbol": "ETH",
-            "value": Object {
-              "btc": "0.00198937",
-              "eth": "0.198937",
-              "usd": "81.962044",
-            },
-          },
-          Object {
-            "balance": "1.231288e-12",
-            "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
-            "symbol": "BOKKY",
-            "value": Object {
-              "btc": "1.231288e-15",
-              "eth": "1.231288e-13",
-              "usd": "1.231288e-12",
-            },
-          },
-        ],
         "createContact": [Function],
-        "currentWalletUsdBalance": 81.96204400000123,
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -9049,16 +8491,7 @@ ShallowWrapper {
                     },
           },
 },
-        "errors": Object {},
         "hwWalletReady": false,
-        "ledgerNanoSInfo": Immutable.Map {
-          status: "connected",
-          connected: true,
-          addresses: Immutable.Map {
-          },
-          id: "ajlsdfkjas",
-          confTxOnDevice: false,
-},
         "onSend": [Function],
         "prices": Object {
           "assets": Array [
