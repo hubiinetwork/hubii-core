@@ -49,8 +49,11 @@ if (process.env.CONTRACT_PATH) {
   additionalAlias = {
     'config/constants': path.join(process.cwd(), 'src/mocks/config/constants'),
     './abis/ClientFund': path.join(process.cwd(), 'src/mocks/sdk/abis/ClientFund.js'),
+    './abis/BalanceTracker': path.join(process.cwd(), 'src/mocks/sdk/abis/BalanceTracker.js'),
     './abis/DriipSettlement': path.join(process.cwd(), 'src/mocks/sdk/abis/DriipSettlement.js'),
     './abis/DriipSettlementChallenge': path.join(process.cwd(), 'src/mocks/sdk/abis/DriipSettlementChallenge.js'),
+    './abis/NullSettlement': path.join(process.cwd(), 'src/mocks/sdk/abis/NullSettlement.js'),
+    './abis/NullSettlementChallenge': path.join(process.cwd(), 'src/mocks/sdk/abis/NullSettlementChallenge.js'),
   };
 }
 

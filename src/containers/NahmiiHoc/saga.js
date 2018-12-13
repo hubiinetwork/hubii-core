@@ -324,7 +324,7 @@ export function* loadStagedBalances({ address }, network) {
   }
 
   const provider = network.provider;
-  const balanceTrackerContract = new BalanceTrackerContract(network.nahmiiProvider);
+  const balanceTrackerContract = new BalanceTrackerContract(provider);
 
   while (true) { // eslint-disable-line no-constant-condition
     try {
@@ -464,15 +464,15 @@ export function* processTx(type, provider, tx, address, currency) {
 export function* loadOngoingChallenges({ address }, network) {
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const nahmiiProvider = network.provider;
-      const settlement = new nahmii.Settlement(nahmiiProvider);
+      const provider = network.provider;
+      const settlement = new nahmii.Settlement(provider);
       const currencyAddress = yield select(makeSelectWalletCurrency());
       const ongoingChallenges = yield call(() => settlement.getOngoingChallenges(address, currencyAddress, 0));
       yield put(actions.loadOngoingChallengesSuccess(address, currencyAddress, ongoingChallenges));
     } catch (err) {
       yield put(actions.loadOngoingChallengesError(address, currencyAddress));
     } finally {
-      const TWENTY_SEC_IN_MS = 1000 * 20;
+      const TWENTY_SEC_IN_MS = 1000 * 59;
       yield delay(TWENTY_SEC_IN_MS);
     }
   }
@@ -481,15 +481,15 @@ export function* loadOngoingChallenges({ address }, network) {
 export function* loadSettleableChallenges({ address }, network) {
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const nahmiiProvider = network.provider;
-      const settlement = new nahmii.Settlement(nahmiiProvider);
+      const provider = network.provider;
+      const settlement = new nahmii.Settlement(provider);
       const currencyAddress = yield select(makeSelectWalletCurrency());
       const settleableChallenges = yield call(() => settlement.getSettleableChallenges(address, currencyAddress, 0));
       yield put(actions.loadSettleableChallengesSuccess(address, currencyAddress, settleableChallenges));
     } catch (err) {
       yield put(actions.loadSettleableChallengesError(address, currencyAddress));
     } finally {
-      const TWENTY_SEC_IN_MS = 1000 * 20;
+      const TWENTY_SEC_IN_MS = 1000 * 59;
       yield delay(TWENTY_SEC_IN_MS);
     }
   }
@@ -597,6 +597,8 @@ export function* challengeStatusOrcestrator() {
         ...wallets.map((wallet) => fork(loadBalances, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadStagedBalances, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadStagingBalances, { address: wallet.get('address') }, network)),
+        ...wallets.map((wallet) => fork(loadOngoingChallenges, { address: wallet.get('address') }, network)),
+        ...wallets.map((wallet) => fork(loadSettleableChallenges, { address: wallet.get('address') }, network)),
         // ...wallets.map((wallet) => fork(loadCurrentPaymentChallenge, { address: wallet.get('address') }, network)),
         // ...wallets.map((wallet) => fork(loadCurrentPaymentChallengePhase, { address: wallet.get('address') }, network)),
         // ...wallets.map((wallet) => fork(loadCurrentPaymentChallengeStatus, { address: wallet.get('address') }, network)),

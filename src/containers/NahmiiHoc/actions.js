@@ -51,7 +51,7 @@ import {
 export function setSelectedWalletCurrency(currencyAddress) {
   return {
     type: SET_SELECTED_WALLET_CURRENCY,
-    currencyAddress,
+    currencyAddress: currencyAddress === 'ETH' ? '0x0000000000000000000000000000000000000000' : currencyAddress,
   };
 }
 

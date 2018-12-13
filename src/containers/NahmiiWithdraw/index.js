@@ -26,6 +26,8 @@ import {
   makeSelectNahmiiBalancesByCurrentWallet,
   makeSelectNahmiiSettlementTransactionsByCurrentWallet,
   makeSelectWalletCurrency,
+  makeSelectOngoingChallengesForCurrentWalletCurrency,
+  makeSelectSettleableChallengesForCurrentWalletCurrency,
 } from 'containers/NahmiiHoc/selectors';
 import {
   makeSelectSupportedAssets,
@@ -60,6 +62,8 @@ export class NahmiiWithdraw extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log('ongoing', this.props.ongoingChallenges.toJS())
+    console.log('settleable', this.props.settleableChallenges.toJS())
     const { setSelectedWalletCurrency } = this.props;
     if (this.state.selectedSymbol !== prevState.selectedSymbol) {
       const assetDetails = this.getAssetDetailsBySymbol(this.state.selectedSymbol);
@@ -292,7 +296,17 @@ export class NahmiiWithdraw extends React.PureComponent {
   }
 
   render() {
-    const { intl, currentNetwork, lastPaymentChallenge, lastSettlePaymentDriip, nahmiiBalances, supportedAssets, transactions } = this.props;
+    const { 
+      intl, 
+      currentNetwork, 
+      lastPaymentChallenge, 
+      lastSettlePaymentDriip, 
+      nahmiiBalances, 
+      supportedAssets, 
+      transactions,
+      ongoingChallenges,
+      settleableChallenges,
+    } = this.props;
     const { formatMessage } = intl;
     const {
       expandedTxs,
@@ -344,33 +358,39 @@ export class NahmiiWithdraw extends React.PureComponent {
     return (
       <OuterWrapper>
         {
-          this.canSettlePaymentDriip() &&
-          <SettlementWarning
-            message={formatMessage({ id: 'settlement_period_ended' })}
-            description={
-              <div>
-                <div>
-                  {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: challengeAssetSymbol })}
-                </div>
-                <StyledButton onClick={this.settlePaymentDriip} disabled={!this.canSettlePaymentDriip()}>
-                  {formatMessage({ id: 'confirm_settlement' })}
-                </StyledButton>
-              </div>
-            }
-            type="warning"
-            showIcon
-          />
+          settleableChallenges.get('details').map(challenge => {
+            return (
+              <SettlementWarning
+                message={formatMessage({ id: 'settlement_period_ended' })}
+                description={
+                  <div>
+                    <div>
+                      {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: selectedSymbol })}
+                    </div>
+                    <StyledButton onClick={this.settlePaymentDriip} disabled={!this.canSettlePaymentDriip()}>
+                      {formatMessage({ id: 'confirm_settlement' })}
+                    </StyledButton>
+                  </div>
+                }
+                type="warning"
+                showIcon
+              />
+            )
+          })
         }
         {
-          this.isChallengeInProgress() &&
-          <SettlementWarning
-            message={formatMessage({ id: 'challenge_period_progress' })}
-            // description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(challenge.timeout * 1000).format('LLLL'), symbol: challengeAssetSymbol })}
-            type="warning"
-            showIcon
-          />
+          ongoingChallenges.get('details').map(challenge => {
+            return (
+              <SettlementWarning
+                message={formatMessage({ id: 'challenge_period_progress' })}
+                description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(challenge.expirationTime).format('LLLL'), symbol: selectedSymbol })}
+                type="warning"
+                showIcon
+              />
+            )
+          })
         }
-        {
+        {/* {
           !this.isChallengeInProgress() && !this.canSettlePaymentDriip() && !this.hasValidReceiptForNewChallenge() &&
           <SettlementWarning
             message={formatMessage({ id: 'no_valid_receipt_for_new_challenge' })}
@@ -378,7 +398,7 @@ export class NahmiiWithdraw extends React.PureComponent {
             type="warning"
             showIcon
           />
-        }
+        } */}
         <StyledForm>
           <FormItem
             label={<FormItemLabel>{formatMessage({ id: 'select_asset' })}</FormItemLabel>}
@@ -491,6 +511,8 @@ const mapStateToProps = createStructuredSelector({
   supportedAssets: makeSelectSupportedAssets(),
   transactions: makeSelectNahmiiSettlementTransactionsByCurrentWallet(),
   currentNetwork: makeSelectCurrentNetwork(),
+  ongoingChallenges: makeSelectOngoingChallengesForCurrentWalletCurrency(),
+  settleableChallenges: makeSelectSettleableChallengesForCurrentWalletCurrency(),
 });
 
 export function mapDispatchToProps(dispatch) {
