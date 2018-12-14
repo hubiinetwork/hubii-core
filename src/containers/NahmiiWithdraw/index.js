@@ -8,7 +8,7 @@ import uuid from 'uuid/v4';
 import { createStructuredSelector } from 'reselect';
 import { injectIntl } from 'react-intl';
 import { getAbsolutePath } from 'utils/electron';
-import { isAddressMatch } from 'utils/wallet';
+import { isAddressMatch, isHardwareWallet } from 'utils/wallet';
 import moment from 'moment';
 import BigNumber from 'bignumber.js';
 import { FormItem, FormItemLabel } from 'components/ui/Form';
@@ -17,6 +17,7 @@ import SettlementTransaction from 'components/SettlementTransaction';
 import SectionHeading from 'components/ui/SectionHeading';
 import * as actions from 'containers/NahmiiHoc/actions';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
+import HWPromptContainer from 'containers/HWPromptContainer';
 import {
   makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHoc/selectors';
@@ -44,6 +45,7 @@ import {
   StyledInput,
   TransactionsWrapper,
   TransactionWrapper,
+  HWPromptWrapper,
 } from './NahmiiWithdraw.style';
 
 export class NahmiiWithdraw extends React.PureComponent {
@@ -246,6 +248,7 @@ export class NahmiiWithdraw extends React.PureComponent {
   render() {
     const { 
       intl, 
+      currentWalletWithInfo,
       currentNetwork, 
       lastPaymentChallenge, 
       lastSettlePaymentDriip, 
@@ -317,6 +320,12 @@ export class NahmiiWithdraw extends React.PureComponent {
 
     return (
       <OuterWrapper>
+        {
+            isHardwareWallet(currentWalletWithInfo.get('type')) &&
+            <HWPromptWrapper>
+              <HWPromptContainer />
+            </HWPromptWrapper>
+        }
         {
           settleableChallenges.get('details').length > 0 &&
           <SettlementWarning

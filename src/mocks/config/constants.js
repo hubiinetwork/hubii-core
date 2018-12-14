@@ -3,6 +3,7 @@ import * as configs from '../../config/constants';
 
 const provider = new providers.JsonRpcProvider('http://localhost:8545', 'ropsten');
 provider.getWalletReceipts = () => {
+    return [];
     return [{
         "nonce": 1,
         "amount": "5000000000000000000",
@@ -76,6 +77,12 @@ provider.getWalletReceipts = () => {
         }
       }]
 }
+
+provider.getTransactionConfirmation = (transactionHash) => {
+    return provider.getTransactionReceipt(transactionHash);
+}
+
 configs.SUPPORTED_NETWORKS.ropsten.provider = provider;
+configs.SUPPORTED_NETWORKS.ropsten.nahmiiProvider = provider;
 
 export * from '../../config/constants';

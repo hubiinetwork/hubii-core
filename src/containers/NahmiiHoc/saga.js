@@ -83,6 +83,7 @@ export function* depositEth({ address, amount, options }) {
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     if (confOnDevice) yield put(confOnDevice);
+    console.log(amount.toString(), options, nahmiiWallet.address, nahmiiProvider);
     const { hash } = yield call(() => nahmiiWallet.depositEth(amount, options));
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
@@ -379,38 +380,80 @@ export function* loadStagedBalances({ address }, network) {
   }
 }
 
+//   let confOnDeviceDone;
+//   let confOnDevice;
+//   let signer;
+//   try {
+//     const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
+//     const wallet = (yield select(makeSelectWallets())).toJS().find((w) => w.address === address);
+//     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
+//     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
+//     if (confOnDevice) yield put(confOnDevice);
+//     const { hash } = yield call(() => nahmiiWallet.approveTokenDeposit(amount, symbol, options));
+//     if (confOnDeviceDone) yield put(confOnDeviceDone);
+//     yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
+//     yield put(actions.nahmiiApproveTokenDepositSuccess());
+//   } catch (e) {
+//     if (confOnDeviceDone) yield put(confOnDeviceDone);
+//     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
+//     yield put(actions.nahmiiDepositFailed(`An error occured: ${e.message}`));
+//   }
+
 export function* startChallenge({ stageAmount, currency }) {
-  const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
-  if (walletDetails.encrypted && !walletDetails.decrypted) {
-    yield put(showDecryptWalletModal(actions.startChallenge(stageAmount, currency)));
-    return;
-  }
-  const network = yield select(makeSelectCurrentNetwork());
-  const nahmiiProvider = network.provider;
-  const wallet = new nahmii.Wallet(walletDetails.decrypted.privateKey, nahmiiProvider);
-  const settlement = new nahmii.Settlement(nahmiiProvider);
-  
-  const _stageAmount = new nahmii.MonetaryAmount(stageAmount, currency, 0);
-  const txs = yield call((...args) => settlement.startChallenge(...args), _stageAmount, wallet);
-  for (let tx of txs) {
-    yield processTx('start-challenge', nahmiiProvider, tx, walletDetails.address, currency);
+  let confOnDeviceDone;
+  let confOnDevice;
+  let signer;
+
+  try {
+    const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
+    if (walletDetails.encrypted && !walletDetails.decrypted) {
+      yield put(showDecryptWalletModal(actions.startChallenge(stageAmount, currency)));
+      return;
+    }
+    const network = yield select(makeSelectCurrentNetwork());
+    const nahmiiProvider = network.provider;
+    [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, walletDetails);
+    const _stageAmount = new nahmii.MonetaryAmount(stageAmount, currency, 0);
+    const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
+    const settlement = new nahmii.Settlement(nahmiiProvider);
+    if (confOnDevice) yield put(confOnDevice);
+    const txs = yield call((...args) => settlement.startChallenge(...args), _stageAmount, nahmiiWallet);
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
+    for (let tx of txs) {
+      yield processTx('start-challenge', nahmiiProvider, tx, walletDetails.address, currency);
+    }
+  } catch (e) {
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
+    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
   }
 }
 
 export function* settle({ currency }) {
-  const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
-  if (walletDetails.encrypted && !walletDetails.decrypted) {
-    yield put(showDecryptWalletModal(actions.settle(currency)));
-    return;
-  }
-  const network = yield select(makeSelectCurrentNetwork());
-  const nahmiiProvider = network.provider;
-  const wallet = new nahmii.Wallet(walletDetails.decrypted.privateKey, nahmiiProvider);
-  const settlement = new nahmii.Settlement(nahmiiProvider);
+  let confOnDeviceDone;
+  let confOnDevice;
+  let signer;
 
-  const txs = yield call((...args) => settlement.settle(...args), currency, 0, wallet, { gasLimit: 6e6 });
-  for (let tx of txs) {
-    yield processTx('settle-payment', nahmiiProvider, tx, walletDetails.address, currency);
+  try {
+    const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
+    if (walletDetails.encrypted && !walletDetails.decrypted) {
+      yield put(showDecryptWalletModal(actions.settle(currency)));
+      return;
+    }
+    const network = yield select(makeSelectCurrentNetwork());
+    const nahmiiProvider = network.provider;
+    [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, walletDetails);
+    const settlement = new nahmii.Settlement(nahmiiProvider);
+    const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
+  
+    if (confOnDevice) yield put(confOnDevice);
+    const txs = yield call((...args) => settlement.settle(...args), currency, 0, nahmiiWallet, { gasLimit: 6e6 });
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
+    for (let tx of txs) {
+      yield processTx('settle-payment', nahmiiProvider, tx, walletDetails.address, currency);
+    }
+  } catch (e) {
+    if (confOnDeviceDone) yield put(confOnDeviceDone);
+    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
   }
 }
 

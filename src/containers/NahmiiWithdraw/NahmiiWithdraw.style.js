@@ -62,3 +62,7 @@ export const TransactionsWrapper = styled.div`
 export const TransactionWrapper = styled.div`
   margin-bottom: 0.5rem;
 `;
+
+export const HWPromptWrapper = styled.div`
+  margin-top: 2rem;
+`;
