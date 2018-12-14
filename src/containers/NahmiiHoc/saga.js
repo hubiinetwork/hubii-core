@@ -154,7 +154,7 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield call([payment, 'register']);
     yield put(actions.nahmiiPaymentSuccess());
-    yield put(notify('success', getIntl().formatMessage({ id: 'deposit_success' })));
+    yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
   } catch (e) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield put(actions.nahmiiPaymentError(e));
