@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {utils as ethersUtils} from 'ethers';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -51,19 +52,21 @@ export class NahmiiWithdraw extends React.PureComponent {
 
     this.state = { amountToStageInput: '0', amountToWithdrawInput: '0', syncTime: new Date(), selectedSymbol: 'ETH', expandedTxs: new Set() };
     this.state.amountInputRegex = this.getInputRegex();
-    this.startPaymentChallenge = this.startPaymentChallenge.bind(this);
-    this.settlePaymentDriip = this.settlePaymentDriip.bind(this);
+    this.startChallenge = this.startChallenge.bind(this);
+    this.settle = this.settle.bind(this);
     this.withdraw = this.withdraw.bind(this);
     this.handleAssetChange = this.handleAssetChange.bind(this);
     this.onBlurNumberInput = this.onBlurNumberInput.bind(this);
     this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
     this.handleAmountChange = this.handleAmountChange.bind(this);
     this.updateExpandedTx = this.updateExpandedTx.bind(this);
+
+    props.setSelectedWalletCurrency('0x0000000000000000000000000000000000000000');
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('ongoing', this.props.ongoingChallenges.toJS())
-    console.log('settleable', this.props.settleableChallenges.toJS())
+    // console.log('ongoing', this.props.ongoingChallenges.toJS())
+    // console.log('settleable', this.props.settleableChallenges.toJS())
     const { setSelectedWalletCurrency } = this.props;
     if (this.state.selectedSymbol !== prevState.selectedSymbol) {
       const assetDetails = this.getAssetDetailsBySymbol(this.state.selectedSymbol);
@@ -133,21 +136,18 @@ export class NahmiiWithdraw extends React.PureComponent {
     return receipt;
   }
 
-  settlePaymentDriip() {
+  settle() {
     const { selectedSymbol } = this.state;
-    const { currentWalletWithInfo, allReceipts, lastPaymentChallenge } = this.props;
-    const challenge = lastPaymentChallenge.get('challenge');
     const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol).toJS();
-    const lastReceipt = allReceipts.get(currentWalletWithInfo.get('address')).filter((receipt) => receipt.nonce === challenge.nonce.toNumber())[0];
-    this.props.settlePaymentDriip(lastReceipt, assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency);
+    const currency = assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency;
+    this.props.settle(currency);
   }
 
-  startPaymentChallenge() {
+  startChallenge() {
     const { selectedSymbol, amountToStage } = this.state;
-    const lastReceipt = this.getLastReceipt();
 
     const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol).toJS();
-    this.props.startPaymentChallenge(lastReceipt, amountToStage || new BigNumber(0), assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency);
+    this.props.startChallenge(amountToStage || new BigNumber(0), assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency);
   }
 
   withdraw() {
@@ -166,42 +166,7 @@ export class NahmiiWithdraw extends React.PureComponent {
     return false;
   }
 
-  canSettlePaymentDriip() {
-    const { currentWalletWithInfo, lastPaymentChallenge, lastSettlePaymentDriip } = this.props;
-    const { syncTime } = this.state;
-    const address = currentWalletWithInfo.get('address');
-    const settlement = lastSettlePaymentDriip.get('settlement');
-    const challenge = lastPaymentChallenge.get('challenge');
-    const challengeUpdatedTime = lastPaymentChallenge.get('updatedAt');
-    const settlementUpdatedTime = lastSettlePaymentDriip.get('updatedAt');
-
-    if (!challengeUpdatedTime || !settlementUpdatedTime) {
-      return false;
-    }
-
-    if (syncTime.getTime() > challengeUpdatedTime.getTime() || syncTime.getTime() > settlementUpdatedTime.getTime()) {
-      return false;
-    }
-
-    if (lastPaymentChallenge.get('phase') === 'Dispute' || !lastPaymentChallenge.get('phase')) { return false; }
-
-    if (lastPaymentChallenge.get('status') === 'Disqualified' || !lastPaymentChallenge.get('status')) { return false; }
-
-    if (!settlement) {
-      return false;
-    }
-
-    if (!challenge || !challenge.nonce.toNumber()) {
-      return false;
-    }
-
-    if (!settlement.origin || !settlement.target) {
-      return true;
-    }
-
-    if (settlement.origin.done && isAddressMatch(settlement.origin.wallet, address)) { return false; }
-    if (settlement.target.done && isAddressMatch(settlement.target.wallet, address)) { return false; }
-
+  canSettle() {
     return true;
   }
 
@@ -227,27 +192,10 @@ export class NahmiiWithdraw extends React.PureComponent {
     this.setState({ selectedSymbol: assetDetails.symbol, amountInputRegex });
   }
 
-  canStartPaymentChallenge() {
-    const { lastPaymentChallenge, lastSettlePaymentDriip } = this.props;
-    const { syncTime, amountToStage } = this.state;
-    const challengeUpdatedTime = lastPaymentChallenge.get('updatedAt');
-    // const challenge = lastPaymentChallenge.get('challenge');
-    const settlementUpdatedTime = lastSettlePaymentDriip.get('updatedAt');
-    const lastReceipt = this.getLastReceipt();
+  canStartChallenge() {
+    const { amountToStage } = this.state;
 
-    if (!lastReceipt) {
-      return false;
-    }
-
-    if (!amountToStage || amountToStage.eq(new BigNumber(0))) {
-      return false;
-    }
-
-    return lastPaymentChallenge.get('phase') !== 'Dispute' &&
-           lastPaymentChallenge.get('txStatus') !== 'mining' &&
-           !this.canSettlePaymentDriip() &&
-           this.hasValidReceiptForNewChallenge() &&
-           (settlementUpdatedTime && challengeUpdatedTime && syncTime.getTime() < settlementUpdatedTime.getTime() && syncTime.getTime() < challengeUpdatedTime.getTime());
+    return true;
   }
 
   hasValidReceiptForNewChallenge() {
@@ -355,43 +303,49 @@ export class NahmiiWithdraw extends React.PureComponent {
       return acc.concat(transactions[currency]);
     }, []).sort((a, b) => b.createdAt - a.createdAt);
 
+    const totalIntendedStageAmountBN = settleableChallenges.get('details').reduce((sum, challenge) => {
+      const {amount} = challenge.intendedStageAmount.toJSON();
+      const intendedStageAmount = ethersUtils.bigNumberify(amount);
+      return sum.add(intendedStageAmount);
+    }, ethersUtils.bigNumberify(0));
+    const totalIntendedStageAmount = ethersUtils.formatUnits(totalIntendedStageAmountBN, decimals);
+
+    const maxExpirationTime = ongoingChallenges.get('details').reduce((max, challenge) => {
+      const {expirationTime} = challenge;
+      return max > expirationTime ? max : expirationTime;
+    }, 0);
+
     return (
       <OuterWrapper>
         {
-          settleableChallenges.get('details').map(challenge => {
-            return (
-              <SettlementWarning
-                message={formatMessage({ id: 'settlement_period_ended' })}
-                description={
-                  <div>
-                    <div>
-                      {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: selectedSymbol })}
-                    </div>
-                    <StyledButton onClick={this.settlePaymentDriip} disabled={!this.canSettlePaymentDriip()}>
-                      {formatMessage({ id: 'confirm_settlement' })}
-                    </StyledButton>
-                  </div>
-                }
-                type="warning"
-                showIcon
-              />
-            )
-          })
+          settleableChallenges.get('details').length > 0 &&
+          <SettlementWarning
+            message={formatMessage({ id: 'settlement_period_ended' })}
+            description={
+              <div>
+                <div>
+                  {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: selectedSymbol, intended_stage_amount: totalIntendedStageAmount })}
+                </div>
+                <StyledButton onClick={this.settle} disabled={!this.canSettle()}>
+                  {formatMessage({ id: 'confirm_settlement' })}
+                </StyledButton>
+              </div>
+            }
+            type="warning"
+            showIcon
+          />
         }
         {
-          ongoingChallenges.get('details').map(challenge => {
-            return (
-              <SettlementWarning
-                message={formatMessage({ id: 'challenge_period_progress' })}
-                description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(challenge.expirationTime).format('LLLL'), symbol: selectedSymbol })}
-                type="warning"
-                showIcon
-              />
-            )
-          })
+          ongoingChallenges.get('details').length > 0 &&
+          <SettlementWarning
+            message={formatMessage({ id: 'challenge_period_progress' })}
+            description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(maxExpirationTime).format('LLLL'), symbol: selectedSymbol })}
+            type="warning"
+            showIcon
+          />
         }
         {/* {
-          !this.isChallengeInProgress() && !this.canSettlePaymentDriip() && !this.hasValidReceiptForNewChallenge() &&
+          !this.isChallengeInProgress() && !this.canSettle() && !this.hasValidReceiptForNewChallenge() &&
           <SettlementWarning
             message={formatMessage({ id: 'no_valid_receipt_for_new_challenge' })}
             description={formatMessage({ id: 'need_valid_receipt_for_new_challenge' })}
@@ -432,7 +386,7 @@ export class NahmiiWithdraw extends React.PureComponent {
               onBlur={() => this.onBlurNumberInput('amountToStageInput')}
               onChange={(e) => this.handleAmountChange(e, 'amountToStage')}
             />
-            <StyledButton onClick={this.startPaymentChallenge} disabled={!this.canStartPaymentChallenge()}>
+            <StyledButton onClick={this.startChallenge} disabled={!this.canStartChallenge()}>
               {formatMessage({ id: 'settle_payment' })}
             </StyledButton>
           </StyledFormItem>
@@ -493,8 +447,8 @@ NahmiiWithdraw.propTypes = {
   lastPaymentChallenge: PropTypes.object.isRequired,
   lastSettlePaymentDriip: PropTypes.object.isRequired,
   nahmiiBalances: PropTypes.object.isRequired,
-  settlePaymentDriip: PropTypes.func.isRequired,
-  startPaymentChallenge: PropTypes.func.isRequired,
+  settle: PropTypes.func.isRequired,
+  startChallenge: PropTypes.func.isRequired,
   withdraw: PropTypes.func.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   transactions: PropTypes.object.isRequired,
@@ -517,8 +471,8 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    startPaymentChallenge: (...args) => dispatch(actions.startPaymentChallenge(...args)),
-    settlePaymentDriip: (...args) => dispatch(actions.settlePaymentDriip(...args)),
+    startChallenge: (...args) => dispatch(actions.startChallenge(...args)),
+    settle: (...args) => dispatch(actions.settle(...args)),
     setSelectedWalletCurrency: (...args) => dispatch(actions.setSelectedWalletCurrency(...args)),
     withdraw: (...args) => dispatch(actions.withdraw(...args)),
   };

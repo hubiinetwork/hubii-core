@@ -12,12 +12,12 @@ import {
   LOAD_NAHMII_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGED_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGING_BALANCES_SUCCESS,
-  START_PAYMENT_CHALLENGE_SUCCESS,
-  START_PAYMENT_CHALLENGE_ERROR,
-  LOAD_START_PAYMENT_CHALLENGE_TX_REQUEST,
-  SETTLE_PAYMENT_DRIIP_SUCCESS,
-  SETTLE_PAYMENT_DRIIP_ERROR,
-  LOAD_SETTLE_PAYMENT_DRIIP_TX_REQUEST,
+  START_CHALLENGE_SUCCESS,
+  START_CHALLENGE_ERROR,
+  LOAD_START_CHALLENGE_TX_REQUEST,
+  SETTLE_SUCCESS,
+  SETTLE_ERROR,
+  LOAD_SETTLE_TX_REQUEST,
   WITHDRAW_SUCCESS,
   WITHDRAW_ERROR,
   LOAD_WITHDRAW_TX_REQUEST,
@@ -107,17 +107,17 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['balances', action.address, 'staging', 'loading'], false)
         .setIn(['balances', action.address, 'staging', 'error'], null)
         .setIn(['balances', action.address, 'staging', 'assets'], fromJS(action.balances));
-    case START_PAYMENT_CHALLENGE_SUCCESS:
+    case START_CHALLENGE_SUCCESS:
       return state
           .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txStatus'], 'success')
           .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txReceipt'], action.txReceipt)
           .setIn(['transactions', action.address, action.currency, action.txReceipt.transactionHash, 'receipt'], action.txReceipt);
-    case START_PAYMENT_CHALLENGE_ERROR:
+    case START_CHALLENGE_ERROR:
       return state
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txStatus'], 'failed')
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txReceipt'], action.txReceipt)
         .setIn(['transactions', action.address, action.currency, action.txReceipt.transactionHash, 'receipt'], action.txReceipt);
-    case LOAD_START_PAYMENT_CHALLENGE_TX_REQUEST:
+    case LOAD_START_CHALLENGE_TX_REQUEST:
       return state
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txStatus'], 'mining')
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txRequest'], action.txRequest)
@@ -125,17 +125,17 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'network'], action.networkName)
         .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'createdAt'], new Date().getTime())
         .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'request'], action.txRequest);
-    case SETTLE_PAYMENT_DRIIP_SUCCESS:
+    case SETTLE_SUCCESS:
       return state
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txStatus'], 'success')
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txReceipt'], action.txReceipt)
         .setIn(['transactions', action.address, action.currency, action.txReceipt.transactionHash, 'receipt'], action.txReceipt);
-    case SETTLE_PAYMENT_DRIIP_ERROR:
+    case SETTLE_ERROR:
       return state
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txStatus'], 'failed')
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txReceipt'], action.txReceipt)
         .setIn(['transactions', action.address, action.currency, action.txReceipt.transactionHash, 'receipt'], action.txReceipt);
-    case LOAD_SETTLE_PAYMENT_DRIIP_TX_REQUEST:
+    case LOAD_SETTLE_TX_REQUEST:
       return state
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txStatus'], 'mining')
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txRequest'], action.txRequest)

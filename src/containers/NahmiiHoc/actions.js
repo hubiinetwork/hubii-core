@@ -6,14 +6,14 @@ import {
   LOAD_NAHMII_STAGED_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGING_BALANCES,
   LOAD_NAHMII_STAGING_BALANCES_SUCCESS,
-  START_PAYMENT_CHALLENGE,
-  START_PAYMENT_CHALLENGE_SUCCESS,
-  START_PAYMENT_CHALLENGE_ERROR,
-  LOAD_START_PAYMENT_CHALLENGE_TX_REQUEST,
-  SETTLE_PAYMENT_DRIIP,
-  SETTLE_PAYMENT_DRIIP_SUCCESS,
-  SETTLE_PAYMENT_DRIIP_ERROR,
-  LOAD_SETTLE_PAYMENT_DRIIP_TX_REQUEST,
+  START_CHALLENGE,
+  START_CHALLENGE_SUCCESS,
+  START_CHALLENGE_ERROR,
+  LOAD_START_CHALLENGE_TX_REQUEST,
+  SETTLE,
+  SETTLE_SUCCESS,
+  SETTLE_ERROR,
+  LOAD_SETTLE_TX_REQUEST,
   WITHDRAW,
   WITHDRAW_SUCCESS,
   WITHDRAW_ERROR,
@@ -186,27 +186,26 @@ export function loadStagingBalancesSuccess(address, balances) {
   };
 }
 
-export function startPaymentChallenge(receipt, stageAmount, currency) {
+export function startChallenge(stageAmount, currency) {
   return {
-    type: START_PAYMENT_CHALLENGE,
-    receipt,
+    type: START_CHALLENGE,
     stageAmount,
     currency,
   };
 }
 
-export function startPaymentChallengeSuccess(address, txReceipt, currency) {
+export function startChallengeSuccess(address, txReceipt, currency) {
   return {
-    type: START_PAYMENT_CHALLENGE_SUCCESS,
+    type: START_CHALLENGE_SUCCESS,
     address,
     txReceipt,
     currency,
   };
 }
 
-export function startPaymentChallengeError(address, txReceipt, currency) {
+export function startChallengeError(address, txReceipt, currency) {
   return {
-    type: START_PAYMENT_CHALLENGE_ERROR,
+    type: START_CHALLENGE_ERROR,
     address,
     txReceipt,
     currency,
@@ -215,7 +214,7 @@ export function startPaymentChallengeError(address, txReceipt, currency) {
 
 export function loadTxRequestForPaymentChallenge(address, txRequest, currency, networkName) {
   return {
-    type: LOAD_START_PAYMENT_CHALLENGE_TX_REQUEST,
+    type: LOAD_START_CHALLENGE_TX_REQUEST,
     address,
     txRequest,
     currency,
@@ -223,26 +222,25 @@ export function loadTxRequestForPaymentChallenge(address, txRequest, currency, n
   };
 }
 
-export function settlePaymentDriip(receipt, currency) {
+export function settle(currency) {
   return {
-    type: SETTLE_PAYMENT_DRIIP,
-    receipt,
+    type: SETTLE,
     currency,
   };
 }
 
-export function settlePaymentDriipSuccess(address, txReceipt, currency) {
+export function settleSuccess(address, txReceipt, currency) {
   return {
-    type: SETTLE_PAYMENT_DRIIP_SUCCESS,
+    type: SETTLE_SUCCESS,
     address,
     txReceipt,
     currency,
   };
 }
 
-export function settlePaymentDriipError(address, txReceipt, currency) {
+export function settleError(address, txReceipt, currency) {
   return {
-    type: SETTLE_PAYMENT_DRIIP_ERROR,
+    type: SETTLE_ERROR,
     address,
     txReceipt,
     currency,
@@ -251,7 +249,7 @@ export function settlePaymentDriipError(address, txReceipt, currency) {
 
 export function loadTxRequestForSettlePaymentDriip(address, txRequest, currency, networkName) {
   return {
-    type: LOAD_SETTLE_PAYMENT_DRIIP_TX_REQUEST,
+    type: LOAD_SETTLE_TX_REQUEST,
     address,
     txRequest,
     currency,
