@@ -198,5 +198,6 @@
     "select_asset_to_deposit": "选择充值的资产类别",
     "deposit": "充值",
     "deposit_success": "充值成功",
-    "connection_problem": "hubii core 的网络连接出现异常。请稍后重试。"
+    "connection_problem": "hubii core 的网络连接出现异常。请稍后重试。",
+    "nahmii_mainnet": "nahmii 还无法在主网上使用。"
 }
