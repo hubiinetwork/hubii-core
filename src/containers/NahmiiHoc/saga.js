@@ -441,7 +441,9 @@ export function* challengeStatusOrcestrator() {
         timer: call(delay, ONE_MINUTE_IN_MS),
         override: take([CHANGE_NETWORK, ADD_NEW_WALLET]),
       });
-      yield cancel(...allTasks);
+      if (allTasks.length > 0) {
+        yield cancel(...allTasks);
+      }
     }
   } catch (e) {
     // errors in the forked processes themselves should be caught
