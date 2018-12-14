@@ -21,6 +21,9 @@ import {
   makeSelectLedgerHoc,
 } from 'containers/LedgerHoc/selectors';
 import {
+  makeSelectCurrentNetwork,
+} from 'containers/App/selectors';
+import {
   makeSelectTrezorHoc,
 } from 'containers/TrezorHoc/selectors';
 import {
@@ -106,6 +109,7 @@ export class WalletTransfer extends React.PureComponent {
     return (
       <TransferForm
         supportedAssets={this.props.supportedAssets}
+        currentNetwork={this.props.currentNetwork}
         hwWalletReady={hwWalletReady}
         prices={prices.toJS()}
         recipients={contacts.toJS()}
@@ -129,11 +133,13 @@ WalletTransfer.propTypes = {
   history: PropTypes.object.isRequired,
   prices: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
+  currentNetwork: PropTypes.object.isRequired,
   createContact: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
+  currentNetwork: makeSelectCurrentNetwork(),
   ledgerNanoSInfo: makeSelectLedgerHoc(),
   trezorInfo: makeSelectTrezorHoc(),
   currentWallet: makeSelectCurrentWallet(),

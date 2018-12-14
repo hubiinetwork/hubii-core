@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from 'antd';
+import { Icon, Tooltip } from 'antd';
 import BigNumber from 'bignumber.js';
 import { fromJS } from 'immutable';
 import { Spring } from 'react-spring';
@@ -344,6 +344,8 @@ export class TransferForm extends React.PureComponent {
 
     const walletUsdValueAfter = currentWalletUsdBalance - (usdValueToSend.plus(transactionFee.usdValue)).toNumber();
 
+    const disableNahmiiPayments = this.props.currentNetwork.provider._network.name === 'homestead';
+
     return (
       <div>
         <Modal
@@ -426,11 +428,17 @@ export class TransferForm extends React.PureComponent {
                   onChange={this.handleAmountToSendChange}
                 />
               </FormItem>
-              <div>
+              <div style={{ marignRight: 'auto' }}>
                 <Text large>{formatMessage({ id: 'send_on_the' })} </Text>
-                <NahmiiText large />
-                <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
-                <NahmiiSwitch checked={layer === 'nahmii'} onChange={(() => this.handleLayerSwitch())} />
+                <Tooltip
+                  placement="right"
+                  overlayStyle={!disableNahmiiPayments && { display: 'none' }}
+                  title={<span>{formatMessage({ id: 'nahmii_mainnet' })}</span>}
+                >
+                  <NahmiiText large />
+                  <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
+                  <NahmiiSwitch disabled={disableNahmiiPayments} checked={layer === 'nahmii'} onChange={(() => this.handleLayerSwitch())} />
+                </Tooltip>
               </div>
               <Spring
                 from={{ noAdvProg: 0 }}
@@ -520,6 +528,7 @@ export class TransferForm extends React.PureComponent {
 }
 TransferForm.propTypes = {
   prices: PropTypes.object.isRequired,
+  currentNetwork: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,
   recipients: PropTypes.arrayOf(PropTypes.shape({

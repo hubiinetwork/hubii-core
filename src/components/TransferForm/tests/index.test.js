@@ -9,6 +9,10 @@ import {
 } from 'containers/HubiiApiHoc/tests/mocks/selectors';
 
 import {
+  currentNetworkMock,
+} from 'containers/App/tests/mocks/selectors';
+
+import {
   contacts,
   contactsEmpty,
 } from 'containers/ContactBook/tests/mocks/selectors';
@@ -25,6 +29,7 @@ describe('TransferForm', () => {
     supportedAssets: supportedAssetsLoadedMock,
     currentWalletWithInfo: walletsWithInfoMock.get(0),
     recipients: contacts.toJS(),
+    currentNetwork: currentNetworkMock,
     onSend: () => {},
     transfering: false,
     hwWalletReady: false,
