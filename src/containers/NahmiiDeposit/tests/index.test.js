@@ -42,6 +42,7 @@ describe('<NahmiiDeposit />', () => {
       prices: pricesLoadedMock,
       supportedAssets: supportedAssetsLoadedMock,
       nahmiiDeposit: () => {},
+      goWalletDetails: () => {},
       intl,
       currentNetwork: currentNetworkMock,
       depositStatus: depositStatusNone,

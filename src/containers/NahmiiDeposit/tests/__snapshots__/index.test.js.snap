@@ -306,6 +306,7 @@ ShallowWrapper {
             error: null,
         }
     }
+    goWalletDetails={[Function]}
     intl={
         Object {
             "formatMessage": [Function],
@@ -4238,6 +4239,7 @@ ShallowWrapper {
             error: null,
         }
     }
+    goWalletDetails={[Function]}
     intl={
         Object {
             "formatMessage": [Function],
@@ -8170,6 +8172,7 @@ ShallowWrapper {
             error: null,
         }
     }
+    goWalletDetails={[Function]}
     intl={
         Object {
             "formatMessage": [Function],
@@ -12102,6 +12105,7 @@ ShallowWrapper {
             error: "some error message",
         }
     }
+    goWalletDetails={[Function]}
     intl={
         Object {
             "formatMessage": [Function],
@@ -15854,6 +15858,7 @@ ShallowWrapper {
             error: null,
         }
     }
+    goWalletDetails={[Function]}
     intl={
         Object {
             "formatMessage": [Function],
@@ -19606,6 +19611,7 @@ ShallowWrapper {
             error: null,
         }
     }
+    goWalletDetails={[Function]}
     intl={
         Object {
             "formatMessage": [Function],
@@ -23359,6 +23365,7 @@ ShallowWrapper {
             error: null,
         }
     }
+    goWalletDetails={[Function]}
     intl={
         Object {
             "formatMessage": [Function],
@@ -23784,6 +23791,7 @@ ShallowWrapper {
             error: null,
         }
     }
+    goWalletDetails={[Function]}
     intl={
         Object {
             "formatMessage": [Function],
@@ -24237,6 +24245,7 @@ ShallowWrapper {
             error: null,
         }
     }
+    goWalletDetails={[Function]}
     intl={
         Object {
             "formatMessage": [Function],
@@ -24667,6 +24676,7 @@ ShallowWrapper {
             error: null,
         }
     }
+    goWalletDetails={[Function]}
     intl={
         Object {
             "formatMessage": [Function],
@@ -25125,6 +25135,7 @@ ShallowWrapper {
             error: null,
         }
     }
+    goWalletDetails={[Function]}
     intl={
         Object {
             "formatMessage": [Function],
