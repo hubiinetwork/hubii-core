@@ -20,6 +20,20 @@ export const balances = balanceState
   .setIn([encryptedSoftwareWallet1Mock.get('address'), 'total'], totalExpected.set('assets', fromJS([])).set('error', 'someerror'))
   .setIn([decryptedSoftwareWallet2Mock.get('address'), 'total'], totalExpected.set('assets', fromJS([])).set('loading', true));
 
+// makeSelectDepositStatus
+export const depositStatusNone = fromJS({
+  depositingEth: false,
+  approvingTokenDeposit: false,
+  completingTokenDeposit: false,
+  error: null,
+});
+
+export const depositStatusEth = depositStatusNone.set('depositingEth', true);
+export const depositStatusApproving = depositStatusNone.set('approvingTokenDeposit', true);
+export const depositStatusCompleting = depositStatusNone.set('completingTokenDeposit', true);
+export const depositStatusError = depositStatusNone.set('error', 'some error message');
+
+
 // selectNahmiiHocDomain
 export const nahmiiHocMock = fromJS({
   balances: balanceState,

@@ -154,7 +154,6 @@ ShallowWrapper {
 >
           $164.49
 </Heading>,
-        ";",
       ],
     },
     "ref": null,
@@ -183,7 +182,6 @@ ShallowWrapper {
         "rendered": "$164.49",
         "type": [Function],
       },
-      ";",
     ],
     "type": "div",
   },
@@ -204,7 +202,6 @@ ShallowWrapper {
 >
             $164.49
 </Heading>,
-          ";",
         ],
       },
       "ref": null,
@@ -233,7 +230,6 @@ ShallowWrapper {
           "rendered": "$164.49",
           "type": [Function],
         },
-        ";",
       ],
       "type": "div",
     },
@@ -402,7 +398,6 @@ ShallowWrapper {
 >
           $164.49
 </Heading>,
-        ";",
       ],
     },
     "ref": null,
@@ -431,7 +426,6 @@ ShallowWrapper {
         "rendered": "$164.49",
         "type": [Function],
       },
-      ";",
     ],
     "type": "div",
   },
@@ -452,7 +446,6 @@ ShallowWrapper {
 >
             $164.49
 </Heading>,
-          ";",
         ],
       },
       "ref": null,
@@ -481,7 +474,6 @@ ShallowWrapper {
           "rendered": "$164.49",
           "type": [Function],
         },
-        ";",
       ],
       "type": "div",
     },
@@ -619,50 +611,19 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "host",
     "props": Object {
       "children": Array [
-        <div>
-          <Text
-                    large={true}
-          >
-                    total_fiat_value
-          </Text>
-          <Heading
-                    large={true}
-          >
-                    $0.00
-          </Heading>
-</div>,
-        <Spring
-          config={
-                    Object {
-                              "friction": 26,
-                              "tension": 170,
-                            }
-          }
-          force={false}
-          from={
-                    Object {
-                              "height": "auto",
-                              "listExpanded": 0,
-                              "opacity": 1,
-                            }
-          }
-          immediate={false}
-          inject={[Function]}
-          native={false}
-          reset={false}
-          to={
-                    Object {
-                              "height": "auto",
-                              "listExpanded": 0,
-                              "opacity": 1,
-                            }
-          }
+        <Text
+          large={true}
 >
-          [Function]
-</Spring>,
+          total_fiat_value
+</Text>,
+        <Heading
+          large={true}
+>
+          $0.00
+</Heading>,
       ],
     },
     "ref": null,
@@ -670,131 +631,47 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "class",
         "props": Object {
-          "children": Array [
-            <Text
-              large={true}
->
-              total_fiat_value
-</Text>,
-            <Heading
-              large={true}
->
-              $0.00
-</Heading>,
-          ],
+          "children": "total_fiat_value",
+          "large": true,
         },
         "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": "total_fiat_value",
-              "large": true,
-            },
-            "ref": null,
-            "rendered": "total_fiat_value",
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": "$0.00",
-              "large": true,
-            },
-            "ref": null,
-            "rendered": "$0.00",
-            "type": [Function],
-          },
-        ],
-        "type": "div",
+        "rendered": "total_fiat_value",
+        "type": [Function],
       },
       Object {
         "instance": null,
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": [Function],
-          "config": Object {
-            "friction": 26,
-            "tension": 170,
-          },
-          "force": false,
-          "from": Object {
-            "height": "auto",
-            "listExpanded": 0,
-            "opacity": 1,
-          },
-          "immediate": false,
-          "inject": [Function],
-          "native": false,
-          "reset": false,
-          "to": Object {
-            "height": "auto",
-            "listExpanded": 0,
-            "opacity": 1,
-          },
+          "children": "$0.00",
+          "large": true,
         },
         "ref": null,
-        "rendered": [Function],
+        "rendered": "$0.00",
         "type": [Function],
       },
     ],
-    "type": [Function],
+    "type": "div",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "host",
       "props": Object {
         "children": Array [
-          <div>
-            <Text
-                        large={true}
-            >
-                        total_fiat_value
-            </Text>
-            <Heading
-                        large={true}
-            >
-                        $0.00
-            </Heading>
-</div>,
-          <Spring
-            config={
-                        Object {
-                                    "friction": 26,
-                                    "tension": 170,
-                                  }
-            }
-            force={false}
-            from={
-                        Object {
-                                    "height": "auto",
-                                    "listExpanded": 0,
-                                    "opacity": 1,
-                                  }
-            }
-            immediate={false}
-            inject={[Function]}
-            native={false}
-            reset={false}
-            to={
-                        Object {
-                                    "height": "auto",
-                                    "listExpanded": 0,
-                                    "opacity": 1,
-                                  }
-            }
+          <Text
+            large={true}
 >
-            [Function]
-</Spring>,
+            total_fiat_value
+</Text>,
+          <Heading
+            large={true}
+>
+            $0.00
+</Heading>,
         ],
       },
       "ref": null,
@@ -802,82 +679,29 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "class",
           "props": Object {
-            "children": Array [
-              <Text
-                large={true}
->
-                total_fiat_value
-</Text>,
-              <Heading
-                large={true}
->
-                $0.00
-</Heading>,
-            ],
+            "children": "total_fiat_value",
+            "large": true,
           },
           "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "total_fiat_value",
-                "large": true,
-              },
-              "ref": null,
-              "rendered": "total_fiat_value",
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "$0.00",
-                "large": true,
-              },
-              "ref": null,
-              "rendered": "$0.00",
-              "type": [Function],
-            },
-          ],
-          "type": "div",
+          "rendered": "total_fiat_value",
+          "type": [Function],
         },
         Object {
           "instance": null,
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": [Function],
-            "config": Object {
-              "friction": 26,
-              "tension": 170,
-            },
-            "force": false,
-            "from": Object {
-              "height": "auto",
-              "listExpanded": 0,
-              "opacity": 1,
-            },
-            "immediate": false,
-            "inject": [Function],
-            "native": false,
-            "reset": false,
-            "to": Object {
-              "height": "auto",
-              "listExpanded": 0,
-              "opacity": 1,
-            },
+            "children": "$0.00",
+            "large": true,
           },
           "ref": null,
-          "rendered": [Function],
+          "rendered": "$0.00",
           "type": [Function],
         },
       ],
-      "type": [Function],
+      "type": "div",
     },
   ],
   Symbol(enzyme.__options__): Object {
@@ -1013,50 +837,19 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "host",
     "props": Object {
       "children": Array [
-        <div>
-          <Text
-                    large={true}
-          >
-                    total_fiat_value
-          </Text>
-          <Heading
-                    large={true}
-          >
-                    $0.00
-          </Heading>
-</div>,
-        <Spring
-          config={
-                    Object {
-                              "friction": 26,
-                              "tension": 170,
-                            }
-          }
-          force={false}
-          from={
-                    Object {
-                              "height": "auto",
-                              "listExpanded": 0,
-                              "opacity": 1,
-                            }
-          }
-          immediate={false}
-          inject={[Function]}
-          native={false}
-          reset={false}
-          to={
-                    Object {
-                              "height": "auto",
-                              "listExpanded": 0,
-                              "opacity": 1,
-                            }
-          }
+        <Text
+          large={true}
 >
-          [Function]
-</Spring>,
+          total_fiat_value
+</Text>,
+        <Heading
+          large={true}
+>
+          $0.00
+</Heading>,
       ],
     },
     "ref": null,
@@ -1064,131 +857,47 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "class",
         "props": Object {
-          "children": Array [
-            <Text
-              large={true}
->
-              total_fiat_value
-</Text>,
-            <Heading
-              large={true}
->
-              $0.00
-</Heading>,
-          ],
+          "children": "total_fiat_value",
+          "large": true,
         },
         "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": "total_fiat_value",
-              "large": true,
-            },
-            "ref": null,
-            "rendered": "total_fiat_value",
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": "$0.00",
-              "large": true,
-            },
-            "ref": null,
-            "rendered": "$0.00",
-            "type": [Function],
-          },
-        ],
-        "type": "div",
+        "rendered": "total_fiat_value",
+        "type": [Function],
       },
       Object {
         "instance": null,
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": [Function],
-          "config": Object {
-            "friction": 26,
-            "tension": 170,
-          },
-          "force": false,
-          "from": Object {
-            "height": "auto",
-            "listExpanded": 0,
-            "opacity": 1,
-          },
-          "immediate": false,
-          "inject": [Function],
-          "native": false,
-          "reset": false,
-          "to": Object {
-            "height": "auto",
-            "listExpanded": 0,
-            "opacity": 1,
-          },
+          "children": "$0.00",
+          "large": true,
         },
         "ref": null,
-        "rendered": [Function],
+        "rendered": "$0.00",
         "type": [Function],
       },
     ],
-    "type": [Function],
+    "type": "div",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "host",
       "props": Object {
         "children": Array [
-          <div>
-            <Text
-                        large={true}
-            >
-                        total_fiat_value
-            </Text>
-            <Heading
-                        large={true}
-            >
-                        $0.00
-            </Heading>
-</div>,
-          <Spring
-            config={
-                        Object {
-                                    "friction": 26,
-                                    "tension": 170,
-                                  }
-            }
-            force={false}
-            from={
-                        Object {
-                                    "height": "auto",
-                                    "listExpanded": 0,
-                                    "opacity": 1,
-                                  }
-            }
-            immediate={false}
-            inject={[Function]}
-            native={false}
-            reset={false}
-            to={
-                        Object {
-                                    "height": "auto",
-                                    "listExpanded": 0,
-                                    "opacity": 1,
-                                  }
-            }
+          <Text
+            large={true}
 >
-            [Function]
-</Spring>,
+            total_fiat_value
+</Text>,
+          <Heading
+            large={true}
+>
+            $0.00
+</Heading>,
         ],
       },
       "ref": null,
@@ -1196,82 +905,29 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "class",
           "props": Object {
-            "children": Array [
-              <Text
-                large={true}
->
-                total_fiat_value
-</Text>,
-              <Heading
-                large={true}
->
-                $0.00
-</Heading>,
-            ],
+            "children": "total_fiat_value",
+            "large": true,
           },
           "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "total_fiat_value",
-                "large": true,
-              },
-              "ref": null,
-              "rendered": "total_fiat_value",
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "$0.00",
-                "large": true,
-              },
-              "ref": null,
-              "rendered": "$0.00",
-              "type": [Function],
-            },
-          ],
-          "type": "div",
+          "rendered": "total_fiat_value",
+          "type": [Function],
         },
         Object {
           "instance": null,
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": [Function],
-            "config": Object {
-              "friction": 26,
-              "tension": 170,
-            },
-            "force": false,
-            "from": Object {
-              "height": "auto",
-              "listExpanded": 0,
-              "opacity": 1,
-            },
-            "immediate": false,
-            "inject": [Function],
-            "native": false,
-            "reset": false,
-            "to": Object {
-              "height": "auto",
-              "listExpanded": 0,
-              "opacity": 1,
-            },
+            "children": "$0.00",
+            "large": true,
           },
           "ref": null,
-          "rendered": [Function],
+          "rendered": "$0.00",
           "type": [Function],
         },
       ],
-      "type": [Function],
+      "type": "div",
     },
   ],
   Symbol(enzyme.__options__): Object {

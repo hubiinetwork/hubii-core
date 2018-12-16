@@ -43,7 +43,7 @@ export const SUPPORTED_NETWORKS = {
       HOMESTEAD_IDENTITY_SERVICE_APPID,
       HOMESTEAD_IDENTITY_SERVICE_SECRET
     ),
-    walletApiEndpoint: trimmableWalletApiEndpoint('https://api.nahmii.io/'),
+    walletApiEndpoint: trimmableWalletApiEndpoint(HOMESTEAD_URL),
     identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : HOMESTEAD_IDENTITY_SERVICE_SECRET,
     identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : HOMESTEAD_IDENTITY_SERVICE_APPID,
   },

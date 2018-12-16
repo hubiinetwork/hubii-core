@@ -92,6 +92,11 @@ const makeSelectReceiptsWithInfo = () => createSelector(
   }
 );
 
+const makeSelectDepositStatus = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('depositStatus')
+);
+
 const makeSelectNahmiiBalances = () => createSelector(
   selectNahmiiHocDomain,
   (nahmiiHocDomain) => {
@@ -145,4 +150,5 @@ export {
   makeSelectNahmiiBalances,
   makeSelectReceipts,
   makeSelectReceiptsWithInfo,
+  makeSelectDepositStatus,
 };

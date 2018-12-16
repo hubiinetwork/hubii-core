@@ -40,13 +40,12 @@ export const findWalletIndex = (state, address, scopedFatalError = fatalError) =
  * Trims the amount of decimals on 'amount' so that it is accurate up to 0.01 usd equivilent value
  */
 export const trimDecimals = (amount, currency, currencyPrices) => {
-  // check to see if this currency is a test token, in which case just use a default number, 5 decimal places
-  if (currencyPrices.usd === '0') {
-    return amount.toFixed(5);
-  }
+  // check to see if this currency is a test token, in which case give it an arbitrary price of $100
+  const usdPrice = currencyPrices.usd === '0' ? '100' : currencyPrices.usd;
 
-  // find what 0.01 usd is in the relevant currency
-  const ratio = new BigNumber(0.01).dividedBy(currencyPrices.usd).toString();
+  // find what 0.01 usd is in the relevant currency. force ratio to be a decimal.
+  let ratio = new BigNumber(0.01).dividedBy(usdPrice).toString();
+  if (!ratio.includes('.')) ratio += '0.0001';
   const ratioSplitByDot = ratio.split('.');
   const amountSplitByDot = amount.toString().split('.');
 
@@ -57,8 +56,13 @@ export const trimDecimals = (amount, currency, currencyPrices) => {
 
   // otherwise, find how many 0's there are after the decimal place on the ratio + 1, and minus that with the length of the
   // number of digits after the decimal place on the ratio.
-  const decimalPlacement = (ratioSplitByDot[1].toString().length - parseFloat(ratioSplitByDot[1]).toString().length) + 1;
-  return `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, decimalPlacement)}`;
+  let decimalPlacement = (ratioSplitByDot[1].toString().length - parseFloat(ratioSplitByDot[1]).toString().length) + 1;
+  let trimmedAmount = `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, decimalPlacement)}`;
+  while (new BigNumber(trimmedAmount).eq('0')) {
+    decimalPlacement += 1;
+    trimmedAmount = `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, decimalPlacement)}`;
+  }
+  return new BigNumber(trimmedAmount).toString(); // remove any trailing 0s and return
 };
 
 export const getBreakdown = (balances, supportedAssets) => {
@@ -169,6 +173,12 @@ export const parseBigNumber = (bignumber, decimals) => parseInt(bignumber, 10) /
 export const isHardwareWallet = (type) => type === 'lns' || type === 'trezor';
 
 export const prependHexToAddress = (address) => address.startsWith('0x') ? address : `0x${address}`;
+
+// valid gwei number is numbers, optionally followed by a . at most 9 more numbers
+export const gweiRegex = new RegExp('^\\d+(\\.\\d{0,9})?$');
+
+// only match whole numbers
+export const gasLimitRegex = new RegExp('^\\d+$');
 
 // Regex credit to the MyCrypto team
 // Full length deterministic wallet paths from BIP44
