@@ -8,6 +8,9 @@ import {
   MAKE_NAHMII_PAYMENT,
   MAKE_NAHMII_PAYMENT_ERROR,
   MAKE_NAHMII_PAYMENT_SUCCESS,
+  LOAD_NAHMII_RECEIPTS,
+  LOAD_NAHMII_RECEIPTS_SUCCESS,
+  LOAD_NAHMII_RECEIPTS_ERROR,
 } from './constants';
 
 export function makeNahmiiPayment(monetaryAmount, recipient, walletOverride = null) {
@@ -74,5 +77,28 @@ export function loadStagingBalancesSuccess(address, balances) {
     type: LOAD_NAHMII_STAGING_BALANCES_SUCCESS,
     address,
     balances,
+  };
+}
+
+export function loadReceipts(address) {
+  return {
+    type: LOAD_NAHMII_RECEIPTS,
+    address,
+  };
+}
+
+export function loadReceiptsSuccess(address, receipts) {
+  return {
+    type: LOAD_NAHMII_RECEIPTS_SUCCESS,
+    address,
+    receipts,
+  };
+}
+
+export function loadReceiptsError(address, error) {
+  return {
+    type: LOAD_NAHMII_RECEIPTS_ERROR,
+    address,
+    error,
   };
 }
