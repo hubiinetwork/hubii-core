@@ -152,15 +152,17 @@ class TransferDescription extends React.PureComponent {
             </HWPromptWrapper>
           }
           {
-            this.props.transfering ?
-            (<StyledSpin
+            this.props.transfering &&
+            <StyledSpin
               delay={0}
               size="large"
-            />) : (
+            />
+          }
+          {
+            !this.props.transfering &&
               <StyledButton type="primary" onClick={onSend} disabled={disableSendButton}>
                 {formatMessage({ id: 'send' })}
               </StyledButton>
-            )
           }
         </Row>
       </div>

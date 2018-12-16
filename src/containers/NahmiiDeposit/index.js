@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { shell } from 'electron';
-import { Row, Icon } from 'antd';
+import { Row, Icon, Tooltip } from 'antd';
 import { getAbsolutePath } from 'utils/electron';
 import {
   gweiToEther,
@@ -350,7 +350,10 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     };
 
     const walletType = currentWalletWithInfo.get('type');
+
+    const unsupportedNetwork = this.props.currentNetwork.provider._network.name === 'homestead';
     const disableDepositButton =
+      unsupportedNetwork ||
       amountToDeposit.toNumber() <= 0 ||
       baseLayerBalAfterAmt.isNegative() ||
       baseLayerEthBalanceAfterAmount.isNegative() ||
@@ -546,18 +549,26 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                   {TransferingStatus}
                 </div>
               ) : (
-                <StyledButton
-                  type="primary"
-                  onClick={() => this.props.nahmiiDeposit(
+                <Tooltip
+                  placement="bottom"
+                  overlayStyle={!unsupportedNetwork && { display: 'none' }}
+                  title={<span>{formatMessage({ id: 'nahmii_mainnet' })}</span>}
+                >
+                  <div style={{ width: 'fit-content' }}>
+                    <StyledButton
+                      type="primary"
+                      onClick={() => this.props.nahmiiDeposit(
                     currentWalletWithInfo.get('address'),
                     assetToDeposit.symbol,
                     amountToDeposit,
                     { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() }
                     )}
-                  disabled={disableDepositButton}
-                >
-                  <span>{formatMessage({ id: 'deposit' })}</span>
-                </StyledButton>
+                      disabled={disableDepositButton}
+                    >
+                      <span>{formatMessage({ id: 'deposit' })}</span>
+                    </StyledButton>
+                  </div>
+                </Tooltip>
                 )
               }
           </Row>

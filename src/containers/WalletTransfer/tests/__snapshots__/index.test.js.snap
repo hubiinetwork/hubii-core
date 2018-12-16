@@ -19,6 +19,92 @@ ShallowWrapper {
         ]
     }
     createContact={[Function]}
+    currentNetwork={
+        Object {
+            "identityServiceAppId": "appid",
+            "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
+            "provider": FallbackProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "_providers": Array [
+                InfuraProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiAccessToken": null,
+                  "connection": Object {
+                    "url": "https://ropsten.infura.io/",
+                  },
+                  "ready": Promise {},
+                },
+                EtherscanProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiKey": undefined,
+                  "baseUrl": "https://api-ropsten.etherscan.io",
+                  "ready": Promise {},
+                },
+              ],
+              "ready": Promise {},
+            },
+            "walletApiEndpoint": [Function],
+          }
+    }
     currentWallet={
         Immutable.Map {
             deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
@@ -365,6 +451,90 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
+      "currentNetwork": Object {
+        "identityServiceAppId": "appid",
+        "identityServiceSecret": "secret",
+        "nahmiiProvider": NahmiiProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "connection": Object {
+            "url": "http://geth-ropsten.dev.hubii.net",
+          },
+          "ready": Promise {},
+        },
+        "provider": FallbackProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "_providers": Array [
+            InfuraProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiAccessToken": null,
+              "connection": Object {
+                "url": "https://ropsten.infura.io/",
+              },
+              "ready": Promise {},
+            },
+            EtherscanProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiKey": undefined,
+              "baseUrl": "https://api-ropsten.etherscan.io",
+              "ready": Promise {},
+            },
+          ],
+          "ready": Promise {},
+        },
+        "walletApiEndpoint": [Function],
+      },
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -684,6 +854,90 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
+        "currentNetwork": Object {
+          "identityServiceAppId": "appid",
+          "identityServiceSecret": "secret",
+          "nahmiiProvider": NahmiiProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "connection": Object {
+              "url": "http://geth-ropsten.dev.hubii.net",
+            },
+            "ready": Promise {},
+          },
+          "provider": FallbackProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "_providers": Array [
+              InfuraProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiAccessToken": null,
+                "connection": Object {
+                  "url": "https://ropsten.infura.io/",
+                },
+                "ready": Promise {},
+              },
+              EtherscanProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiKey": undefined,
+                "baseUrl": "https://api-ropsten.etherscan.io",
+                "ready": Promise {},
+              },
+            ],
+            "ready": Promise {},
+          },
+          "walletApiEndpoint": [Function],
+        },
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -1026,6 +1280,92 @@ ShallowWrapper {
         ]
     }
     createContact={[Function]}
+    currentNetwork={
+        Object {
+            "identityServiceAppId": "appid",
+            "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
+            "provider": FallbackProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "_providers": Array [
+                InfuraProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiAccessToken": null,
+                  "connection": Object {
+                    "url": "https://ropsten.infura.io/",
+                  },
+                  "ready": Promise {},
+                },
+                EtherscanProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiKey": undefined,
+                  "baseUrl": "https://api-ropsten.etherscan.io",
+                  "ready": Promise {},
+                },
+              ],
+              "ready": Promise {},
+            },
+            "walletApiEndpoint": [Function],
+          }
+    }
     currentWallet={
         Immutable.Map {
             deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
@@ -1375,6 +1715,90 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
+      "currentNetwork": Object {
+        "identityServiceAppId": "appid",
+        "identityServiceSecret": "secret",
+        "nahmiiProvider": NahmiiProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "connection": Object {
+            "url": "http://geth-ropsten.dev.hubii.net",
+          },
+          "ready": Promise {},
+        },
+        "provider": FallbackProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "_providers": Array [
+            InfuraProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiAccessToken": null,
+              "connection": Object {
+                "url": "https://ropsten.infura.io/",
+              },
+              "ready": Promise {},
+            },
+            EtherscanProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiKey": undefined,
+              "baseUrl": "https://api-ropsten.etherscan.io",
+              "ready": Promise {},
+            },
+          ],
+          "ready": Promise {},
+        },
+        "walletApiEndpoint": [Function],
+      },
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -1697,6 +2121,90 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
+        "currentNetwork": Object {
+          "identityServiceAppId": "appid",
+          "identityServiceSecret": "secret",
+          "nahmiiProvider": NahmiiProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "connection": Object {
+              "url": "http://geth-ropsten.dev.hubii.net",
+            },
+            "ready": Promise {},
+          },
+          "provider": FallbackProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "_providers": Array [
+              InfuraProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiAccessToken": null,
+                "connection": Object {
+                  "url": "https://ropsten.infura.io/",
+                },
+                "ready": Promise {},
+              },
+              EtherscanProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiKey": undefined,
+                "baseUrl": "https://api-ropsten.etherscan.io",
+                "ready": Promise {},
+              },
+            ],
+            "ready": Promise {},
+          },
+          "walletApiEndpoint": [Function],
+        },
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -2042,6 +2550,92 @@ ShallowWrapper {
         ]
     }
     createContact={[Function]}
+    currentNetwork={
+        Object {
+            "identityServiceAppId": "appid",
+            "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
+            "provider": FallbackProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "_providers": Array [
+                InfuraProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiAccessToken": null,
+                  "connection": Object {
+                    "url": "https://ropsten.infura.io/",
+                  },
+                  "ready": Promise {},
+                },
+                EtherscanProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiKey": undefined,
+                  "baseUrl": "https://api-ropsten.etherscan.io",
+                  "ready": Promise {},
+                },
+              ],
+              "ready": Promise {},
+            },
+            "walletApiEndpoint": [Function],
+          }
+    }
     currentWallet={
         Immutable.Map {
             deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
@@ -2389,6 +2983,90 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
+      "currentNetwork": Object {
+        "identityServiceAppId": "appid",
+        "identityServiceSecret": "secret",
+        "nahmiiProvider": NahmiiProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "connection": Object {
+            "url": "http://geth-ropsten.dev.hubii.net",
+          },
+          "ready": Promise {},
+        },
+        "provider": FallbackProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "_providers": Array [
+            InfuraProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiAccessToken": null,
+              "connection": Object {
+                "url": "https://ropsten.infura.io/",
+              },
+              "ready": Promise {},
+            },
+            EtherscanProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiKey": undefined,
+              "baseUrl": "https://api-ropsten.etherscan.io",
+              "ready": Promise {},
+            },
+          ],
+          "ready": Promise {},
+        },
+        "walletApiEndpoint": [Function],
+      },
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -2709,6 +3387,90 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
+        "currentNetwork": Object {
+          "identityServiceAppId": "appid",
+          "identityServiceSecret": "secret",
+          "nahmiiProvider": NahmiiProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "connection": Object {
+              "url": "http://geth-ropsten.dev.hubii.net",
+            },
+            "ready": Promise {},
+          },
+          "provider": FallbackProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "_providers": Array [
+              InfuraProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiAccessToken": null,
+                "connection": Object {
+                  "url": "https://ropsten.infura.io/",
+                },
+                "ready": Promise {},
+              },
+              EtherscanProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiKey": undefined,
+                "baseUrl": "https://api-ropsten.etherscan.io",
+                "ready": Promise {},
+              },
+            ],
+            "ready": Promise {},
+          },
+          "walletApiEndpoint": [Function],
+        },
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -3052,6 +3814,92 @@ ShallowWrapper {
         ]
     }
     createContact={[Function]}
+    currentNetwork={
+        Object {
+            "identityServiceAppId": "appid",
+            "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
+            "provider": FallbackProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "_providers": Array [
+                InfuraProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiAccessToken": null,
+                  "connection": Object {
+                    "url": "https://ropsten.infura.io/",
+                  },
+                  "ready": Promise {},
+                },
+                EtherscanProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiKey": undefined,
+                  "baseUrl": "https://api-ropsten.etherscan.io",
+                  "ready": Promise {},
+                },
+              ],
+              "ready": Promise {},
+            },
+            "walletApiEndpoint": [Function],
+          }
+    }
     currentWallet={
         Immutable.Map {
             deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
@@ -3398,6 +4246,90 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
+      "currentNetwork": Object {
+        "identityServiceAppId": "appid",
+        "identityServiceSecret": "secret",
+        "nahmiiProvider": NahmiiProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "connection": Object {
+            "url": "http://geth-ropsten.dev.hubii.net",
+          },
+          "ready": Promise {},
+        },
+        "provider": FallbackProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "_providers": Array [
+            InfuraProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiAccessToken": null,
+              "connection": Object {
+                "url": "https://ropsten.infura.io/",
+              },
+              "ready": Promise {},
+            },
+            EtherscanProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiKey": undefined,
+              "baseUrl": "https://api-ropsten.etherscan.io",
+              "ready": Promise {},
+            },
+          ],
+          "ready": Promise {},
+        },
+        "walletApiEndpoint": [Function],
+      },
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -3717,6 +4649,90 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
+        "currentNetwork": Object {
+          "identityServiceAppId": "appid",
+          "identityServiceSecret": "secret",
+          "nahmiiProvider": NahmiiProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "connection": Object {
+              "url": "http://geth-ropsten.dev.hubii.net",
+            },
+            "ready": Promise {},
+          },
+          "provider": FallbackProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "_providers": Array [
+              InfuraProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiAccessToken": null,
+                "connection": Object {
+                  "url": "https://ropsten.infura.io/",
+                },
+                "ready": Promise {},
+              },
+              EtherscanProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiKey": undefined,
+                "baseUrl": "https://api-ropsten.etherscan.io",
+                "ready": Promise {},
+              },
+            ],
+            "ready": Promise {},
+          },
+          "walletApiEndpoint": [Function],
+        },
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -4059,6 +5075,92 @@ ShallowWrapper {
         ]
     }
     createContact={[Function]}
+    currentNetwork={
+        Object {
+            "identityServiceAppId": "appid",
+            "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
+            "provider": FallbackProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "_providers": Array [
+                InfuraProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiAccessToken": null,
+                  "connection": Object {
+                    "url": "https://ropsten.infura.io/",
+                  },
+                  "ready": Promise {},
+                },
+                EtherscanProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiKey": undefined,
+                  "baseUrl": "https://api-ropsten.etherscan.io",
+                  "ready": Promise {},
+                },
+              ],
+              "ready": Promise {},
+            },
+            "walletApiEndpoint": [Function],
+          }
+    }
     currentWallet={
         Immutable.Map {
             deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
@@ -4364,6 +5466,90 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
+      "currentNetwork": Object {
+        "identityServiceAppId": "appid",
+        "identityServiceSecret": "secret",
+        "nahmiiProvider": NahmiiProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "connection": Object {
+            "url": "http://geth-ropsten.dev.hubii.net",
+          },
+          "ready": Promise {},
+        },
+        "provider": FallbackProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "_providers": Array [
+            InfuraProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiAccessToken": null,
+              "connection": Object {
+                "url": "https://ropsten.infura.io/",
+              },
+              "ready": Promise {},
+            },
+            EtherscanProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiKey": undefined,
+              "baseUrl": "https://api-ropsten.etherscan.io",
+              "ready": Promise {},
+            },
+          ],
+          "ready": Promise {},
+        },
+        "walletApiEndpoint": [Function],
+      },
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -4641,6 +5827,90 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
+        "currentNetwork": Object {
+          "identityServiceAppId": "appid",
+          "identityServiceSecret": "secret",
+          "nahmiiProvider": NahmiiProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "connection": Object {
+              "url": "http://geth-ropsten.dev.hubii.net",
+            },
+            "ready": Promise {},
+          },
+          "provider": FallbackProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "_providers": Array [
+              InfuraProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiAccessToken": null,
+                "connection": Object {
+                  "url": "https://ropsten.infura.io/",
+                },
+                "ready": Promise {},
+              },
+              EtherscanProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiKey": undefined,
+                "baseUrl": "https://api-ropsten.etherscan.io",
+                "ready": Promise {},
+              },
+            ],
+            "ready": Promise {},
+          },
+          "walletApiEndpoint": [Function],
+        },
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -4941,6 +6211,92 @@ ShallowWrapper {
         ]
     }
     createContact={[Function]}
+    currentNetwork={
+        Object {
+            "identityServiceAppId": "appid",
+            "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
+            "provider": FallbackProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "_providers": Array [
+                InfuraProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiAccessToken": null,
+                  "connection": Object {
+                    "url": "https://ropsten.infura.io/",
+                  },
+                  "ready": Promise {},
+                },
+                EtherscanProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiKey": undefined,
+                  "baseUrl": "https://api-ropsten.etherscan.io",
+                  "ready": Promise {},
+                },
+              ],
+              "ready": Promise {},
+            },
+            "walletApiEndpoint": [Function],
+          }
+    }
     currentWallet={
         Immutable.Map {
             deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
@@ -5246,6 +6602,90 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
+      "currentNetwork": Object {
+        "identityServiceAppId": "appid",
+        "identityServiceSecret": "secret",
+        "nahmiiProvider": NahmiiProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "connection": Object {
+            "url": "http://geth-ropsten.dev.hubii.net",
+          },
+          "ready": Promise {},
+        },
+        "provider": FallbackProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "_providers": Array [
+            InfuraProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiAccessToken": null,
+              "connection": Object {
+                "url": "https://ropsten.infura.io/",
+              },
+              "ready": Promise {},
+            },
+            EtherscanProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiKey": undefined,
+              "baseUrl": "https://api-ropsten.etherscan.io",
+              "ready": Promise {},
+            },
+          ],
+          "ready": Promise {},
+        },
+        "walletApiEndpoint": [Function],
+      },
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -5523,6 +6963,90 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
+        "currentNetwork": Object {
+          "identityServiceAppId": "appid",
+          "identityServiceSecret": "secret",
+          "nahmiiProvider": NahmiiProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "connection": Object {
+              "url": "http://geth-ropsten.dev.hubii.net",
+            },
+            "ready": Promise {},
+          },
+          "provider": FallbackProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "_providers": Array [
+              InfuraProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiAccessToken": null,
+                "connection": Object {
+                  "url": "https://ropsten.infura.io/",
+                },
+                "ready": Promise {},
+              },
+              EtherscanProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiKey": undefined,
+                "baseUrl": "https://api-ropsten.etherscan.io",
+                "ready": Promise {},
+              },
+            ],
+            "ready": Promise {},
+          },
+          "walletApiEndpoint": [Function],
+        },
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -5823,6 +7347,92 @@ ShallowWrapper {
         ]
     }
     createContact={[Function]}
+    currentNetwork={
+        Object {
+            "identityServiceAppId": "appid",
+            "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
+            "provider": FallbackProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "_providers": Array [
+                InfuraProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiAccessToken": null,
+                  "connection": Object {
+                    "url": "https://ropsten.infura.io/",
+                  },
+                  "ready": Promise {},
+                },
+                EtherscanProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiKey": undefined,
+                  "baseUrl": "https://api-ropsten.etherscan.io",
+                  "ready": Promise {},
+                },
+              ],
+              "ready": Promise {},
+            },
+            "walletApiEndpoint": [Function],
+          }
+    }
     currentWallet={
         Immutable.Map {
             deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
@@ -6133,6 +7743,90 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
+      "currentNetwork": Object {
+        "identityServiceAppId": "appid",
+        "identityServiceSecret": "secret",
+        "nahmiiProvider": NahmiiProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "connection": Object {
+            "url": "http://geth-ropsten.dev.hubii.net",
+          },
+          "ready": Promise {},
+        },
+        "provider": FallbackProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "_providers": Array [
+            InfuraProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiAccessToken": null,
+              "connection": Object {
+                "url": "https://ropsten.infura.io/",
+              },
+              "ready": Promise {},
+            },
+            EtherscanProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiKey": undefined,
+              "baseUrl": "https://api-ropsten.etherscan.io",
+              "ready": Promise {},
+            },
+          ],
+          "ready": Promise {},
+        },
+        "walletApiEndpoint": [Function],
+      },
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -6416,6 +8110,90 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
+        "currentNetwork": Object {
+          "identityServiceAppId": "appid",
+          "identityServiceSecret": "secret",
+          "nahmiiProvider": NahmiiProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "connection": Object {
+              "url": "http://geth-ropsten.dev.hubii.net",
+            },
+            "ready": Promise {},
+          },
+          "provider": FallbackProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "_providers": Array [
+              InfuraProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiAccessToken": null,
+                "connection": Object {
+                  "url": "https://ropsten.infura.io/",
+                },
+                "ready": Promise {},
+              },
+              EtherscanProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiKey": undefined,
+                "baseUrl": "https://api-ropsten.etherscan.io",
+                "ready": Promise {},
+              },
+            ],
+            "ready": Promise {},
+          },
+          "walletApiEndpoint": [Function],
+        },
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -6722,6 +8500,92 @@ ShallowWrapper {
         ]
     }
     createContact={[Function]}
+    currentNetwork={
+        Object {
+            "identityServiceAppId": "appid",
+            "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
+            "provider": FallbackProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "_providers": Array [
+                InfuraProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiAccessToken": null,
+                  "connection": Object {
+                    "url": "https://ropsten.infura.io/",
+                  },
+                  "ready": Promise {},
+                },
+                EtherscanProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiKey": undefined,
+                  "baseUrl": "https://api-ropsten.etherscan.io",
+                  "ready": Promise {},
+                },
+              ],
+              "ready": Promise {},
+            },
+            "walletApiEndpoint": [Function],
+          }
+    }
     currentWallet={
         Immutable.Map {
             deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
@@ -7032,6 +8896,90 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
+      "currentNetwork": Object {
+        "identityServiceAppId": "appid",
+        "identityServiceSecret": "secret",
+        "nahmiiProvider": NahmiiProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "connection": Object {
+            "url": "http://geth-ropsten.dev.hubii.net",
+          },
+          "ready": Promise {},
+        },
+        "provider": FallbackProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "_providers": Array [
+            InfuraProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiAccessToken": null,
+              "connection": Object {
+                "url": "https://ropsten.infura.io/",
+              },
+              "ready": Promise {},
+            },
+            EtherscanProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiKey": undefined,
+              "baseUrl": "https://api-ropsten.etherscan.io",
+              "ready": Promise {},
+            },
+          ],
+          "ready": Promise {},
+        },
+        "walletApiEndpoint": [Function],
+      },
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -7315,6 +9263,90 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
+        "currentNetwork": Object {
+          "identityServiceAppId": "appid",
+          "identityServiceSecret": "secret",
+          "nahmiiProvider": NahmiiProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "connection": Object {
+              "url": "http://geth-ropsten.dev.hubii.net",
+            },
+            "ready": Promise {},
+          },
+          "provider": FallbackProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "_providers": Array [
+              InfuraProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiAccessToken": null,
+                "connection": Object {
+                  "url": "https://ropsten.infura.io/",
+                },
+                "ready": Promise {},
+              },
+              EtherscanProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiKey": undefined,
+                "baseUrl": "https://api-ropsten.etherscan.io",
+                "ready": Promise {},
+              },
+            ],
+            "ready": Promise {},
+          },
+          "walletApiEndpoint": [Function],
+        },
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -7621,6 +9653,92 @@ ShallowWrapper {
         ]
     }
     createContact={[Function]}
+    currentNetwork={
+        Object {
+            "identityServiceAppId": "appid",
+            "identityServiceSecret": "secret",
+            "nahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
+            "provider": FallbackProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "_providers": Array [
+                InfuraProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiAccessToken": null,
+                  "connection": Object {
+                    "url": "https://ropsten.infura.io/",
+                  },
+                  "ready": Promise {},
+                },
+                EtherscanProvider {
+                  "_balances": Object {},
+                  "_emitted": Object {
+                    "block": -2,
+                  },
+                  "_events": Array [],
+                  "_fastQueryDate": 0,
+                  "_lastBlockNumber": -2,
+                  "_network": Object {
+                    "_defaultProvider": [Function],
+                    "chainId": 3,
+                    "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                    "name": "ropsten",
+                  },
+                  "_pollingInterval": 4000,
+                  "apiKey": undefined,
+                  "baseUrl": "https://api-ropsten.etherscan.io",
+                  "ready": Promise {},
+                },
+              ],
+              "ready": Promise {},
+            },
+            "walletApiEndpoint": [Function],
+          }
+    }
     currentWallet={
         Immutable.Map {
             deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
@@ -7967,6 +10085,90 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "createContact": [Function],
+      "currentNetwork": Object {
+        "identityServiceAppId": "appid",
+        "identityServiceSecret": "secret",
+        "nahmiiProvider": NahmiiProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "connection": Object {
+            "url": "http://geth-ropsten.dev.hubii.net",
+          },
+          "ready": Promise {},
+        },
+        "provider": FallbackProvider {
+          "_balances": Object {},
+          "_emitted": Object {
+            "block": -2,
+          },
+          "_events": Array [],
+          "_fastQueryDate": 0,
+          "_lastBlockNumber": -2,
+          "_network": Object {
+            "_defaultProvider": [Function],
+            "chainId": 3,
+            "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+            "name": "ropsten",
+          },
+          "_pollingInterval": 4000,
+          "_providers": Array [
+            InfuraProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiAccessToken": null,
+              "connection": Object {
+                "url": "https://ropsten.infura.io/",
+              },
+              "ready": Promise {},
+            },
+            EtherscanProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "apiKey": undefined,
+              "baseUrl": "https://api-ropsten.etherscan.io",
+              "ready": Promise {},
+            },
+          ],
+          "ready": Promise {},
+        },
+        "walletApiEndpoint": [Function],
+      },
       "currentWalletWithInfo": Immutable.Map {
         deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
         address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -8286,6 +10488,90 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "createContact": [Function],
+        "currentNetwork": Object {
+          "identityServiceAppId": "appid",
+          "identityServiceSecret": "secret",
+          "nahmiiProvider": NahmiiProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "connection": Object {
+              "url": "http://geth-ropsten.dev.hubii.net",
+            },
+            "ready": Promise {},
+          },
+          "provider": FallbackProvider {
+            "_balances": Object {},
+            "_emitted": Object {
+              "block": -2,
+            },
+            "_events": Array [],
+            "_fastQueryDate": 0,
+            "_lastBlockNumber": -2,
+            "_network": Object {
+              "_defaultProvider": [Function],
+              "chainId": 3,
+              "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+              "name": "ropsten",
+            },
+            "_pollingInterval": 4000,
+            "_providers": Array [
+              InfuraProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiAccessToken": null,
+                "connection": Object {
+                  "url": "https://ropsten.infura.io/",
+                },
+                "ready": Promise {},
+              },
+              EtherscanProvider {
+                "_balances": Object {},
+                "_emitted": Object {
+                  "block": -2,
+                },
+                "_events": Array [],
+                "_fastQueryDate": 0,
+                "_lastBlockNumber": -2,
+                "_network": Object {
+                  "_defaultProvider": [Function],
+                  "chainId": 3,
+                  "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                  "name": "ropsten",
+                },
+                "_pollingInterval": 4000,
+                "apiKey": undefined,
+                "baseUrl": "https://api-ropsten.etherscan.io",
+                "ready": Promise {},
+              },
+            ],
+            "ready": Promise {},
+          },
+          "walletApiEndpoint": [Function],
+        },
         "currentWalletWithInfo": Immutable.Map {
           deviceId: "041ca8e96420e95a106e8c9bb3c9fb9e8c00d4b11cac562888c898000b5cec366c03a0f84574716fac6c7a7df47a925f0e30f5286546adf3179b5a08dc9d8e09da",
           address: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",

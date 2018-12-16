@@ -4,10 +4,6 @@ import darkTheme from './themes/darkTheme';
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
 &&&& {
-  .ant-tooltip {
-    display: none;
-  }
-
   html * {
     font-size: 14px;
     font-family: "Open Sans";
@@ -32,9 +28,6 @@ injectGlobal`
     line-height: 1.5em;
   }
 
-  .ant-tooltip {
-    display: none;
-  }
   .ant-popover-inner,
   .ant-popover-arrow {
     background-color: ${darkTheme.palette.primary1};
@@ -103,5 +96,4 @@ injectGlobal`
     display: flex;
     align-items: center;
   }
-}
 }`;

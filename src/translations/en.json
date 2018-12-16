@@ -198,5 +198,6 @@
     "select_asset_to_deposit": "Select an asset to deposit",
     "deposit": "Deposit",
     "deposit_success": "Deposit success",
-    "connection_problem": "There's a problem with hubii core's connection. Please try again later."
+    "connection_problem": "There's a problem with hubii core's connection. Please try again later.",
+    "nahmii_mainnet": "nahmii is not yet avaliable on mainnet"
 }
