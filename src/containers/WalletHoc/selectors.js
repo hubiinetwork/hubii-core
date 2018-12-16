@@ -7,12 +7,15 @@ import {
   makeSelectBalances as makeSelectBaseLayerBalances,
   makeSelectSupportedAssets,
   makeSelectPrices,
-  makeSelectTransactionsWithInfo,
 } from 'containers/HubiiApiHoc/selectors';
 
 import {
   makeSelectNahmiiBalances,
 } from 'containers/NahmiiHoc/selectors';
+
+import {
+  makeSelectCombinedTransactions,
+} from 'containers/NahmiiHoc/combined-selectors';
 
 import {
   totalBalAllEmpty,
@@ -205,7 +208,7 @@ const makeSelectWalletsWithInfo = () => createSelector(
   makeSelectNahmiiBalances(),
   makeSelectPrices(),
   makeSelectSupportedAssets(),
-  makeSelectTransactionsWithInfo(),
+  makeSelectCombinedTransactions(),
   (wallets, baseLayerBalances, nahmiiBalances, prices, supportedAssets, transactions) => {
     const walletsWithInfo = wallets.map((wallet) => {
       let walletWithInfo = wallet;
