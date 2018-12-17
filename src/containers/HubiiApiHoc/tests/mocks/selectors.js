@@ -46,7 +46,7 @@ export const transactionsWithInfoMock = transactionsMock.setIn(
       decimalAmount: '0.000000000000000005',
       counterpartyAddress: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
       block: {
-        number: 3780091,
+        number: 3780089,
         timestamp: '2018-08-06T02:32:00.000Z',
       },
       hash:
@@ -59,7 +59,7 @@ export const transactionsWithInfoMock = transactionsMock.setIn(
       recipient: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
       type: 'sent',
       fiatValue: '0.000000000000000005',
-      confirmations: '3',
+      confirmations: '5',
     },
   ])
 );

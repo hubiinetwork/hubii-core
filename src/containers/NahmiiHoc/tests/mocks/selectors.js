@@ -161,7 +161,7 @@ export const receiptsLoaded = fromJS({
           nonce: 2,
           balances: { current: '10000000000000000', previous: '0' },
         },
-        blockNumber: '4642009',
+        blockNumber: '3780090',
         operatorId: '0',
         created: '2018-11-16T22:40:54.951Z',
         updated: '2018-11-16T22:40:55.049Z',
@@ -187,7 +187,7 @@ export const receiptsWithInfo = receiptsLoaded
   )
   .setIn(
     ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 1, 'blockNumber'],
-    4642009
+    3780090
   )
   .setIn(
     ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 1, 'layer'],
