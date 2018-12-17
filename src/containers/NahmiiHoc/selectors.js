@@ -31,21 +31,31 @@ const makeSelectReceiptsWithInfo = () => createSelector(
       prices.get('loading') ||
       prices.get('error')
     ) {
-      receiptsWithInfo = receipts.map((address) => address.set('loading', true));
+      receiptsWithInfo = receipts
+        .map((address) => address
+          .set('loading', true)
+          .set('receipts', fromJS([])));
       return receiptsWithInfo;
     }
 
     receiptsWithInfo = receipts.map((addressObj, address) => {
       const addressReceiptsWithInfo = addressObj.get('receipts').reduce((result, receipt) => {
+        let receiptWithInfo = receipt;
+        // set currency to be consistent with other types of transaction
+        if (receipt.getIn(['currency', 'ct']) === '0x0000000000000000000000000000000000000000') {
+          receiptWithInfo = receiptWithInfo.set('currency', 'ETH');
+        } else {
+          receiptWithInfo = receiptWithInfo.set('currency', receiptWithInfo.getIn(['currency', 'ct']));
+        }
+
         // try to locate the asset from supportedAssets
         const assetDetails = supportedAssets
           .get('assets')
-          .find((a) => a.get('currency') === receipt.getIn(['currency', 'ct']));
+          .find((a) => a.get('currency') === receiptWithInfo.get('currency'));
 
         // ignore unsupported assets
         if (!assetDetails) return result;
 
-        let receiptWithInfo = receipt;
 
         // get receipt type
         const type = address.toLowerCase() === receipt.getIn(['sender', 'wallet']).toLowerCase() ?
@@ -74,13 +84,20 @@ const makeSelectReceiptsWithInfo = () => createSelector(
         // get fiat value of this receipt
         const assetPrices = prices
             .get('assets')
-            .find((a) => a.get('currency') === receipt.getIn(['currency', 'ct']));
+            .find((a) => a.get('currency') === receiptWithInfo.get('currency'));
         const receiptFiatValue = new BigNumber(receiptWithInfo.get('decimalAmount')).times(assetPrices.get('usd'));
         receiptWithInfo = receiptWithInfo.set('fiatValue', receiptFiatValue.toString());
 
         // set 'confirmed' to true. when we add data from the payments endpoint, set the
         // conf status of those receipt to false.
         receiptWithInfo = receiptWithInfo.set('confirmed', true);
+
+        // set blockNumber to a number instead of string
+        receiptWithInfo = receiptWithInfo
+          .set('blockNumber', parseInt(receiptWithInfo.get('blockNumber'), 10));
+
+        // set layer
+        receiptWithInfo = receiptWithInfo.set('layer', 'nahmii');
 
         return result.push(receiptWithInfo);
       }, new List());

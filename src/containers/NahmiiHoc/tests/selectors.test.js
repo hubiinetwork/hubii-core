@@ -4,11 +4,15 @@ import { storeMock } from 'mocks/store';
 
 import {
   makeSelectNahmiiBalances,
+  makeSelectReceipts,
+  makeSelectReceiptsWithInfo,
 } from '../selectors';
 
 import {
   balances,
   balancesEmpty,
+  receiptsLoaded,
+  receiptsWithInfo,
 } from './mocks/selectors';
 
 describe('makeSelectNahmiiBalances', () => {
@@ -56,5 +60,57 @@ describe('makeSelectNahmiiBalances', () => {
   it('should return an empty object if balances undefined', () => {
     const mockedState = storeMock.deleteIn(['nahmiiHoc', 'balances']);
     expect(nahmiiBalancesSelector(mockedState)).toEqual(balancesEmpty);
+  });
+});
+
+describe('makeSelectReceipts', () => {
+  const receiptsSelector = makeSelectReceipts();
+  it('should select receipts from the store state', () => {
+    const expected = receiptsLoaded;
+    expect(receiptsSelector(storeMock)).toEqual(expected);
+  });
+});
+
+describe('makeSelectReceiptsWithInfo', () => {
+  const receiptsWithInfoSelector = makeSelectReceiptsWithInfo();
+  it('should construct receipts with info', () => {
+    const expected = receiptsWithInfo;
+    expect(receiptsWithInfoSelector(storeMock)).toEqual(expected);
+  });
+
+  it('should set all addresses to loading when supported assets are loading', () => {
+    const mockedState = storeMock.setIn(['hubiiApiHoc', 'supportedAssets', 'loading'], true);
+    const expected = receiptsWithInfo
+      .map((address) => address
+        .set('loading', true)
+        .set('receipts', fromJS([])));
+    expect(receiptsWithInfoSelector(mockedState)).toEqual(expected);
+  });
+
+  it('should set all addresses to loading when prices are loading', () => {
+    const mockedState = storeMock.setIn(['hubiiApiHoc', 'prices', 'loading'], true);
+    const expected = receiptsWithInfo
+      .map((address) => address
+        .set('loading', true)
+        .set('receipts', fromJS([])));
+    expect(receiptsWithInfoSelector(mockedState)).toEqual(expected);
+  });
+
+  it('should set all addresses to loading when prices are errored', () => {
+    const mockedState = storeMock.setIn(['hubiiApiHoc', 'prices', 'error'], true);
+    const expected = receiptsWithInfo
+      .map((address) => address
+        .set('loading', true)
+        .set('receipts', fromJS([])));
+    expect(receiptsWithInfoSelector(mockedState)).toEqual(expected);
+  });
+
+  it('should set all addresses to loading when supported assets are errored', () => {
+    const mockedState = storeMock.setIn(['hubiiApiHoc', 'supportedAssets', 'error'], true);
+    const expected = receiptsWithInfo
+      .map((address) => address
+        .set('loading', true)
+        .set('receipts', fromJS([])));
+    expect(receiptsWithInfoSelector(mockedState)).toEqual(expected);
   });
 });

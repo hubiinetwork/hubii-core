@@ -33,6 +33,7 @@ export const transactionsWithInfoMock = transactionsMock.setIn(
       hash:
         '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c',
       currency: 'ETH',
+      layer: 'baseLayer',
       sender: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
       amount: '100000000',
       symbol: 'ETH',
@@ -51,6 +52,7 @@ export const transactionsWithInfoMock = transactionsMock.setIn(
       hash:
         '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c',
       currency: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
+      layer: 'baseLayer',
       sender: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
       amount: '5',
       symbol: 'BOKKY',
