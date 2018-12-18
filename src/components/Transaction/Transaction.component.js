@@ -105,7 +105,7 @@ const Transaction = (props) => {
               {
                 layer === 'nahmii' &&
                 <GreenTextWrapper>
-                  Confirmed
+                  {formatMessage({ id: 'confirmed' })}
                 </GreenTextWrapper>
               }
             </div>
@@ -117,7 +117,7 @@ const Transaction = (props) => {
             }
             {
               layer === 'nahmii' &&
-              <TransactionId disabled>View on nahmii explorer (coming soon)</TransactionId>
+              <TransactionId disabled>{formatMessage({ id: 'view_nahmii_explorer' })}</TransactionId>
             }
           </CollapsableContent>
         </DetailPanel>

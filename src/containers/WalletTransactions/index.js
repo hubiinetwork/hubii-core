@@ -134,9 +134,9 @@ export class WalletsTransactions extends React.Component {
               onChange={this.handleFilterChange}
               value={this.state.filter}
             >
-              <Option key={'all'}>All</Option>
-              <Option key={'nahmii'}>Only nahmii</Option>
-              <Option key={'baseLayer'}>Only base layer</Option>
+              <Option key={'all'}>{formatMessage({ id: 'all' })}</Option>
+              <Option key={'nahmii'}>{formatMessage({ id: 'only_nahmii' })}</Option>
+              <Option key={'baseLayer'}>{formatMessage({ id: 'only_base_layer' })}</Option>
             </Select>
           </div>
           {txToShow.map((tx) => (
