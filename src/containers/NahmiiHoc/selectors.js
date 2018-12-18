@@ -56,7 +56,6 @@ const makeSelectReceiptsWithInfo = () => createSelector(
         // ignore unsupported assets
         if (!assetDetails) return result;
 
-
         // get receipt type
         const type = address.toLowerCase() === receipt.getIn(['sender', 'wallet']).toLowerCase() ?
                 'sent' :
@@ -98,6 +97,12 @@ const makeSelectReceiptsWithInfo = () => createSelector(
 
         // set layer
         receiptWithInfo = receiptWithInfo.set('layer', 'nahmii');
+
+        // set timestamp
+        receiptWithInfo = receiptWithInfo.set(
+          'timestamp',
+          receiptWithInfo.get('updated')
+        );
 
         return result.push(receiptWithInfo);
       }, new List());

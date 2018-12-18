@@ -115,6 +115,12 @@ const makeSelectTransactionsWithInfo = () => createSelector(
           // set layer
           txWithInfo = txWithInfo.set('layer', 'baseLayer');
 
+          // set timestamp
+          txWithInfo = txWithInfo.set(
+            'timestamp',
+            txWithInfo.getIn(['block', 'timestamp'])
+          );
+
           return result.push(txWithInfo);
         }, new List());
 

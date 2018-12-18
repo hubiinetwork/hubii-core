@@ -143,6 +143,7 @@ ShallowWrapper {
                                 previous: "999997988889900",
                             },
                         },
+                        timestamp: "2018-12-17T01:59:03.776Z",
                         seals: Immutable.Map {
                             wallet: Immutable.Map {
                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -194,6 +195,7 @@ ShallowWrapper {
                         currency: "ETH",
                         layer: "baseLayer",
                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        timestamp: "2018-08-06T02:32:00.000Z",
                         amount: "100000000",
                         symbol: "ETH",
                         recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -241,6 +243,7 @@ ShallowWrapper {
                                 previous: "100000000000000000",
                             },
                         },
+                        timestamp: "2018-11-16T22:40:55.049Z",
                         seals: Immutable.Map {
                             wallet: Immutable.Map {
                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -292,6 +295,7 @@ ShallowWrapper {
                         currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                         layer: "baseLayer",
                         sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                        timestamp: "2018-08-06T02:32:00.000Z",
                         amount: "5",
                         symbol: "BOKKY",
                         recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -889,6 +893,7 @@ ShallowWrapper {
                                                                                                     previous: "999997988889900",
                                                                                           },
                                                                                 },
+                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                 seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                     hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -940,6 +945,7 @@ ShallowWrapper {
                                                                                 currency: "ETH",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "100000000",
                                                                                 symbol: "ETH",
                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -987,6 +993,7 @@ ShallowWrapper {
                                                                                                     previous: "100000000000000000",
                                                                                           },
                                                                                 },
+                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                 seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                     hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -1038,6 +1045,7 @@ ShallowWrapper {
                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "5",
                                                                                 symbol: "BOKKY",
                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -1562,6 +1570,7 @@ ShallowWrapper {
                                                                                                                               previous: "999997988889900",
                                                                                                                 },
                                                                                                   },
+                                                                                                  timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                   seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                               hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -1613,6 +1622,7 @@ ShallowWrapper {
                                                                                                   currency: "ETH",
                                                                                                   layer: "baseLayer",
                                                                                                   sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                  timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                   amount: "100000000",
                                                                                                   symbol: "ETH",
                                                                                                   recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -1660,6 +1670,7 @@ ShallowWrapper {
                                                                                                                               previous: "100000000000000000",
                                                                                                                 },
                                                                                                   },
+                                                                                                  timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                   seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                               hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -1711,6 +1722,7 @@ ShallowWrapper {
                                                                                                   currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                   layer: "baseLayer",
                                                                                                   sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                  timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                   amount: "5",
                                                                                                   symbol: "BOKKY",
                                                                                                   recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -2766,6 +2778,7 @@ ShallowWrapper {
                                                                                                                                 previous: "999997988889900",
                                                                                                                 },
                                                                                                 },
+                                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                 seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -2817,6 +2830,7 @@ ShallowWrapper {
                                                                                                 currency: "ETH",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "100000000",
                                                                                                 symbol: "ETH",
                                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -2864,6 +2878,7 @@ ShallowWrapper {
                                                                                                                                 previous: "100000000000000000",
                                                                                                                 },
                                                                                                 },
+                                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                 seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -2915,6 +2930,7 @@ ShallowWrapper {
                                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "5",
                                                                                                 symbol: "BOKKY",
                                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -3180,6 +3196,7 @@ ShallowWrapper {
                                                                                                             previous: "999997988889900",
                                                                                           },
                                                                         },
+                                                                        timestamp: "2018-12-17T01:59:03.776Z",
                                                                         seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                             hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -3231,6 +3248,7 @@ ShallowWrapper {
                                                                         currency: "ETH",
                                                                         layer: "baseLayer",
                                                                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                        timestamp: "2018-08-06T02:32:00.000Z",
                                                                         amount: "100000000",
                                                                         symbol: "ETH",
                                                                         recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -3278,6 +3296,7 @@ ShallowWrapper {
                                                                                                             previous: "100000000000000000",
                                                                                           },
                                                                         },
+                                                                        timestamp: "2018-11-16T22:40:55.049Z",
                                                                         seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                             hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -3329,6 +3348,7 @@ ShallowWrapper {
                                                                         currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                         layer: "baseLayer",
                                                                         sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                        timestamp: "2018-08-06T02:32:00.000Z",
                                                                         amount: "5",
                                                                         symbol: "BOKKY",
                                                                         recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -3827,6 +3847,7 @@ ShallowWrapper {
                                                                                                                         previous: "999997988889900",
                                                                                                             },
                                                                                                 },
+                                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                 seals: Immutable.Map {
                                                                                                             wallet: Immutable.Map {
                                                                                                                         hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -3878,6 +3899,7 @@ ShallowWrapper {
                                                                                                 currency: "ETH",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "100000000",
                                                                                                 symbol: "ETH",
                                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -3925,6 +3947,7 @@ ShallowWrapper {
                                                                                                                         previous: "100000000000000000",
                                                                                                             },
                                                                                                 },
+                                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                 seals: Immutable.Map {
                                                                                                             wallet: Immutable.Map {
                                                                                                                         hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -3976,6 +3999,7 @@ ShallowWrapper {
                                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "5",
                                                                                                 symbol: "BOKKY",
                                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -4500,6 +4524,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "999997988889900",
                                                                                                                                 },
                                                                                                                 },
+                                                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                                 seals: Immutable.Map {
                                                                                                                                 wallet: Immutable.Map {
                                                                                                                                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -4551,6 +4576,7 @@ ShallowWrapper {
                                                                                                                 currency: "ETH",
                                                                                                                 layer: "baseLayer",
                                                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                                 amount: "100000000",
                                                                                                                 symbol: "ETH",
                                                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -4598,6 +4624,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "100000000000000000",
                                                                                                                                 },
                                                                                                                 },
+                                                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                                 seals: Immutable.Map {
                                                                                                                                 wallet: Immutable.Map {
                                                                                                                                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -4649,6 +4676,7 @@ ShallowWrapper {
                                                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                                 layer: "baseLayer",
                                                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                                 amount: "5",
                                                                                                                 symbol: "BOKKY",
                                                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -5704,6 +5732,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "999997988889900",
                                                                                                                               },
                                                                                                             },
+                                                                                                            timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                             seals: Immutable.Map {
                                                                                                                               wallet: Immutable.Map {
                                                                                                                                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -5755,6 +5784,7 @@ ShallowWrapper {
                                                                                                             currency: "ETH",
                                                                                                             layer: "baseLayer",
                                                                                                             sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                            timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                             amount: "100000000",
                                                                                                             symbol: "ETH",
                                                                                                             recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -5802,6 +5832,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "100000000000000000",
                                                                                                                               },
                                                                                                             },
+                                                                                                            timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                             seals: Immutable.Map {
                                                                                                                               wallet: Immutable.Map {
                                                                                                                                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -5853,6 +5884,7 @@ ShallowWrapper {
                                                                                                             currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                             layer: "baseLayer",
                                                                                                             sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                            timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                             amount: "5",
                                                                                                             symbol: "BOKKY",
                                                                                                             recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -6118,6 +6150,7 @@ ShallowWrapper {
                                                                                                                         previous: "999997988889900",
                                                                                                     },
                                                                                 },
+                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                 seals: Immutable.Map {
                                                                                                     wallet: Immutable.Map {
                                                                                                                         hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -6169,6 +6202,7 @@ ShallowWrapper {
                                                                                 currency: "ETH",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "100000000",
                                                                                 symbol: "ETH",
                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -6216,6 +6250,7 @@ ShallowWrapper {
                                                                                                                         previous: "100000000000000000",
                                                                                                     },
                                                                                 },
+                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                 seals: Immutable.Map {
                                                                                                     wallet: Immutable.Map {
                                                                                                                         hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -6267,6 +6302,7 @@ ShallowWrapper {
                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "5",
                                                                                 symbol: "BOKKY",
                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -6615,6 +6651,7 @@ ShallowWrapper {
                                 previous: "999997988889900",
                             },
                         },
+                        timestamp: "2018-12-17T01:59:03.776Z",
                         seals: Immutable.Map {
                             wallet: Immutable.Map {
                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -6666,6 +6703,7 @@ ShallowWrapper {
                         currency: "ETH",
                         layer: "baseLayer",
                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        timestamp: "2018-08-06T02:32:00.000Z",
                         amount: "100000000",
                         symbol: "ETH",
                         recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -6713,6 +6751,7 @@ ShallowWrapper {
                                 previous: "100000000000000000",
                             },
                         },
+                        timestamp: "2018-11-16T22:40:55.049Z",
                         seals: Immutable.Map {
                             wallet: Immutable.Map {
                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -6764,6 +6803,7 @@ ShallowWrapper {
                         currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                         layer: "baseLayer",
                         sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                        timestamp: "2018-08-06T02:32:00.000Z",
                         amount: "5",
                         symbol: "BOKKY",
                         recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -7312,6 +7352,7 @@ ShallowWrapper {
                                                                                                     previous: "999997988889900",
                                                                                           },
                                                                                 },
+                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                 seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                     hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -7363,6 +7404,7 @@ ShallowWrapper {
                                                                                 currency: "ETH",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "100000000",
                                                                                 symbol: "ETH",
                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -7410,6 +7452,7 @@ ShallowWrapper {
                                                                                                     previous: "100000000000000000",
                                                                                           },
                                                                                 },
+                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                 seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                     hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -7461,6 +7504,7 @@ ShallowWrapper {
                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "5",
                                                                                 symbol: "BOKKY",
                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -7938,6 +7982,7 @@ ShallowWrapper {
                                                                                                                               previous: "999997988889900",
                                                                                                                 },
                                                                                                   },
+                                                                                                  timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                   seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                               hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -7989,6 +8034,7 @@ ShallowWrapper {
                                                                                                   currency: "ETH",
                                                                                                   layer: "baseLayer",
                                                                                                   sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                  timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                   amount: "100000000",
                                                                                                   symbol: "ETH",
                                                                                                   recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -8036,6 +8082,7 @@ ShallowWrapper {
                                                                                                                               previous: "100000000000000000",
                                                                                                                 },
                                                                                                   },
+                                                                                                  timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                   seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                               hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -8087,6 +8134,7 @@ ShallowWrapper {
                                                                                                   currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                   layer: "baseLayer",
                                                                                                   sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                  timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                   amount: "5",
                                                                                                   symbol: "BOKKY",
                                                                                                   recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -9074,6 +9122,7 @@ ShallowWrapper {
                                                                                                                                 previous: "999997988889900",
                                                                                                                 },
                                                                                                 },
+                                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                 seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -9125,6 +9174,7 @@ ShallowWrapper {
                                                                                                 currency: "ETH",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "100000000",
                                                                                                 symbol: "ETH",
                                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -9172,6 +9222,7 @@ ShallowWrapper {
                                                                                                                                 previous: "100000000000000000",
                                                                                                                 },
                                                                                                 },
+                                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                 seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -9223,6 +9274,7 @@ ShallowWrapper {
                                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "5",
                                                                                                 symbol: "BOKKY",
                                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -9488,6 +9540,7 @@ ShallowWrapper {
                                                                                                             previous: "999997988889900",
                                                                                           },
                                                                         },
+                                                                        timestamp: "2018-12-17T01:59:03.776Z",
                                                                         seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                             hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -9539,6 +9592,7 @@ ShallowWrapper {
                                                                         currency: "ETH",
                                                                         layer: "baseLayer",
                                                                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                        timestamp: "2018-08-06T02:32:00.000Z",
                                                                         amount: "100000000",
                                                                         symbol: "ETH",
                                                                         recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -9586,6 +9640,7 @@ ShallowWrapper {
                                                                                                             previous: "100000000000000000",
                                                                                           },
                                                                         },
+                                                                        timestamp: "2018-11-16T22:40:55.049Z",
                                                                         seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                             hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -9637,6 +9692,7 @@ ShallowWrapper {
                                                                         currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                         layer: "baseLayer",
                                                                         sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                        timestamp: "2018-08-06T02:32:00.000Z",
                                                                         amount: "5",
                                                                         symbol: "BOKKY",
                                                                         recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -10101,6 +10157,7 @@ ShallowWrapper {
                                                                                                                         previous: "999997988889900",
                                                                                                             },
                                                                                                 },
+                                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                 seals: Immutable.Map {
                                                                                                             wallet: Immutable.Map {
                                                                                                                         hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -10152,6 +10209,7 @@ ShallowWrapper {
                                                                                                 currency: "ETH",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "100000000",
                                                                                                 symbol: "ETH",
                                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -10199,6 +10257,7 @@ ShallowWrapper {
                                                                                                                         previous: "100000000000000000",
                                                                                                             },
                                                                                                 },
+                                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                 seals: Immutable.Map {
                                                                                                             wallet: Immutable.Map {
                                                                                                                         hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -10250,6 +10309,7 @@ ShallowWrapper {
                                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "5",
                                                                                                 symbol: "BOKKY",
                                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -10727,6 +10787,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "999997988889900",
                                                                                                                                 },
                                                                                                                 },
+                                                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                                 seals: Immutable.Map {
                                                                                                                                 wallet: Immutable.Map {
                                                                                                                                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -10778,6 +10839,7 @@ ShallowWrapper {
                                                                                                                 currency: "ETH",
                                                                                                                 layer: "baseLayer",
                                                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                                 amount: "100000000",
                                                                                                                 symbol: "ETH",
                                                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -10825,6 +10887,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "100000000000000000",
                                                                                                                                 },
                                                                                                                 },
+                                                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                                 seals: Immutable.Map {
                                                                                                                                 wallet: Immutable.Map {
                                                                                                                                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -10876,6 +10939,7 @@ ShallowWrapper {
                                                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                                 layer: "baseLayer",
                                                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                                 amount: "5",
                                                                                                                 symbol: "BOKKY",
                                                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -11863,6 +11927,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "999997988889900",
                                                                                                                               },
                                                                                                             },
+                                                                                                            timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                             seals: Immutable.Map {
                                                                                                                               wallet: Immutable.Map {
                                                                                                                                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -11914,6 +11979,7 @@ ShallowWrapper {
                                                                                                             currency: "ETH",
                                                                                                             layer: "baseLayer",
                                                                                                             sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                            timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                             amount: "100000000",
                                                                                                             symbol: "ETH",
                                                                                                             recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -11961,6 +12027,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "100000000000000000",
                                                                                                                               },
                                                                                                             },
+                                                                                                            timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                             seals: Immutable.Map {
                                                                                                                               wallet: Immutable.Map {
                                                                                                                                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -12012,6 +12079,7 @@ ShallowWrapper {
                                                                                                             currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                             layer: "baseLayer",
                                                                                                             sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                            timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                             amount: "5",
                                                                                                             symbol: "BOKKY",
                                                                                                             recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -12277,6 +12345,7 @@ ShallowWrapper {
                                                                                                                         previous: "999997988889900",
                                                                                                     },
                                                                                 },
+                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                 seals: Immutable.Map {
                                                                                                     wallet: Immutable.Map {
                                                                                                                         hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -12328,6 +12397,7 @@ ShallowWrapper {
                                                                                 currency: "ETH",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "100000000",
                                                                                 symbol: "ETH",
                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -12375,6 +12445,7 @@ ShallowWrapper {
                                                                                                                         previous: "100000000000000000",
                                                                                                     },
                                                                                 },
+                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                 seals: Immutable.Map {
                                                                                                     wallet: Immutable.Map {
                                                                                                                         hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -12426,6 +12497,7 @@ ShallowWrapper {
                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "5",
                                                                                 symbol: "BOKKY",
                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -12774,6 +12846,7 @@ ShallowWrapper {
                                 previous: "999997988889900",
                             },
                         },
+                        timestamp: "2018-12-17T01:59:03.776Z",
                         seals: Immutable.Map {
                             wallet: Immutable.Map {
                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -12825,6 +12898,7 @@ ShallowWrapper {
                         currency: "ETH",
                         layer: "baseLayer",
                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        timestamp: "2018-08-06T02:32:00.000Z",
                         amount: "100000000",
                         symbol: "ETH",
                         recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -12872,6 +12946,7 @@ ShallowWrapper {
                                 previous: "100000000000000000",
                             },
                         },
+                        timestamp: "2018-11-16T22:40:55.049Z",
                         seals: Immutable.Map {
                             wallet: Immutable.Map {
                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -12923,6 +12998,7 @@ ShallowWrapper {
                         currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                         layer: "baseLayer",
                         sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                        timestamp: "2018-08-06T02:32:00.000Z",
                         amount: "5",
                         symbol: "BOKKY",
                         recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -13520,6 +13596,7 @@ ShallowWrapper {
                                                                                                     previous: "999997988889900",
                                                                                           },
                                                                                 },
+                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                 seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                     hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -13571,6 +13648,7 @@ ShallowWrapper {
                                                                                 currency: "ETH",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "100000000",
                                                                                 symbol: "ETH",
                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -13618,6 +13696,7 @@ ShallowWrapper {
                                                                                                     previous: "100000000000000000",
                                                                                           },
                                                                                 },
+                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                 seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                     hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -13669,6 +13748,7 @@ ShallowWrapper {
                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "5",
                                                                                 symbol: "BOKKY",
                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -14193,6 +14273,7 @@ ShallowWrapper {
                                                                                                                               previous: "999997988889900",
                                                                                                                 },
                                                                                                   },
+                                                                                                  timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                   seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                               hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -14244,6 +14325,7 @@ ShallowWrapper {
                                                                                                   currency: "ETH",
                                                                                                   layer: "baseLayer",
                                                                                                   sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                  timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                   amount: "100000000",
                                                                                                   symbol: "ETH",
                                                                                                   recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -14291,6 +14373,7 @@ ShallowWrapper {
                                                                                                                               previous: "100000000000000000",
                                                                                                                 },
                                                                                                   },
+                                                                                                  timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                   seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                               hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -14342,6 +14425,7 @@ ShallowWrapper {
                                                                                                   currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                   layer: "baseLayer",
                                                                                                   sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                  timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                   amount: "5",
                                                                                                   symbol: "BOKKY",
                                                                                                   recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -15397,6 +15481,7 @@ ShallowWrapper {
                                                                                                                                 previous: "999997988889900",
                                                                                                                 },
                                                                                                 },
+                                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                 seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -15448,6 +15533,7 @@ ShallowWrapper {
                                                                                                 currency: "ETH",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "100000000",
                                                                                                 symbol: "ETH",
                                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -15495,6 +15581,7 @@ ShallowWrapper {
                                                                                                                                 previous: "100000000000000000",
                                                                                                                 },
                                                                                                 },
+                                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                 seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -15546,6 +15633,7 @@ ShallowWrapper {
                                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "5",
                                                                                                 symbol: "BOKKY",
                                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -15811,6 +15899,7 @@ ShallowWrapper {
                                                                                                             previous: "999997988889900",
                                                                                           },
                                                                         },
+                                                                        timestamp: "2018-12-17T01:59:03.776Z",
                                                                         seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                             hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -15862,6 +15951,7 @@ ShallowWrapper {
                                                                         currency: "ETH",
                                                                         layer: "baseLayer",
                                                                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                        timestamp: "2018-08-06T02:32:00.000Z",
                                                                         amount: "100000000",
                                                                         symbol: "ETH",
                                                                         recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -15909,6 +15999,7 @@ ShallowWrapper {
                                                                                                             previous: "100000000000000000",
                                                                                           },
                                                                         },
+                                                                        timestamp: "2018-11-16T22:40:55.049Z",
                                                                         seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                             hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -15960,6 +16051,7 @@ ShallowWrapper {
                                                                         currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                         layer: "baseLayer",
                                                                         sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                        timestamp: "2018-08-06T02:32:00.000Z",
                                                                         amount: "5",
                                                                         symbol: "BOKKY",
                                                                         recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -16458,6 +16550,7 @@ ShallowWrapper {
                                                                                                                         previous: "999997988889900",
                                                                                                             },
                                                                                                 },
+                                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                 seals: Immutable.Map {
                                                                                                             wallet: Immutable.Map {
                                                                                                                         hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -16509,6 +16602,7 @@ ShallowWrapper {
                                                                                                 currency: "ETH",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "100000000",
                                                                                                 symbol: "ETH",
                                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -16556,6 +16650,7 @@ ShallowWrapper {
                                                                                                                         previous: "100000000000000000",
                                                                                                             },
                                                                                                 },
+                                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                 seals: Immutable.Map {
                                                                                                             wallet: Immutable.Map {
                                                                                                                         hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -16607,6 +16702,7 @@ ShallowWrapper {
                                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "5",
                                                                                                 symbol: "BOKKY",
                                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -17131,6 +17227,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "999997988889900",
                                                                                                                                 },
                                                                                                                 },
+                                                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                                 seals: Immutable.Map {
                                                                                                                                 wallet: Immutable.Map {
                                                                                                                                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -17182,6 +17279,7 @@ ShallowWrapper {
                                                                                                                 currency: "ETH",
                                                                                                                 layer: "baseLayer",
                                                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                                 amount: "100000000",
                                                                                                                 symbol: "ETH",
                                                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -17229,6 +17327,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "100000000000000000",
                                                                                                                                 },
                                                                                                                 },
+                                                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                                 seals: Immutable.Map {
                                                                                                                                 wallet: Immutable.Map {
                                                                                                                                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -17280,6 +17379,7 @@ ShallowWrapper {
                                                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                                 layer: "baseLayer",
                                                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                                 amount: "5",
                                                                                                                 symbol: "BOKKY",
                                                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -18335,6 +18435,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "999997988889900",
                                                                                                                               },
                                                                                                             },
+                                                                                                            timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                             seals: Immutable.Map {
                                                                                                                               wallet: Immutable.Map {
                                                                                                                                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -18386,6 +18487,7 @@ ShallowWrapper {
                                                                                                             currency: "ETH",
                                                                                                             layer: "baseLayer",
                                                                                                             sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                            timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                             amount: "100000000",
                                                                                                             symbol: "ETH",
                                                                                                             recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -18433,6 +18535,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "100000000000000000",
                                                                                                                               },
                                                                                                             },
+                                                                                                            timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                             seals: Immutable.Map {
                                                                                                                               wallet: Immutable.Map {
                                                                                                                                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -18484,6 +18587,7 @@ ShallowWrapper {
                                                                                                             currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                             layer: "baseLayer",
                                                                                                             sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                            timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                             amount: "5",
                                                                                                             symbol: "BOKKY",
                                                                                                             recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -18749,6 +18853,7 @@ ShallowWrapper {
                                                                                                                         previous: "999997988889900",
                                                                                                     },
                                                                                 },
+                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                 seals: Immutable.Map {
                                                                                                     wallet: Immutable.Map {
                                                                                                                         hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -18800,6 +18905,7 @@ ShallowWrapper {
                                                                                 currency: "ETH",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "100000000",
                                                                                 symbol: "ETH",
                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -18847,6 +18953,7 @@ ShallowWrapper {
                                                                                                                         previous: "100000000000000000",
                                                                                                     },
                                                                                 },
+                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                 seals: Immutable.Map {
                                                                                                     wallet: Immutable.Map {
                                                                                                                         hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -18898,6 +19005,7 @@ ShallowWrapper {
                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "5",
                                                                                 symbol: "BOKKY",
                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -19246,6 +19354,7 @@ ShallowWrapper {
                                 previous: "999997988889900",
                             },
                         },
+                        timestamp: "2018-12-17T01:59:03.776Z",
                         seals: Immutable.Map {
                             wallet: Immutable.Map {
                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -19297,6 +19406,7 @@ ShallowWrapper {
                         currency: "ETH",
                         layer: "baseLayer",
                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                        timestamp: "2018-08-06T02:32:00.000Z",
                         amount: "100000000",
                         symbol: "ETH",
                         recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -19344,6 +19454,7 @@ ShallowWrapper {
                                 previous: "100000000000000000",
                             },
                         },
+                        timestamp: "2018-11-16T22:40:55.049Z",
                         seals: Immutable.Map {
                             wallet: Immutable.Map {
                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -19395,6 +19506,7 @@ ShallowWrapper {
                         currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                         layer: "baseLayer",
                         sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                        timestamp: "2018-08-06T02:32:00.000Z",
                         amount: "5",
                         symbol: "BOKKY",
                         recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -19992,6 +20104,7 @@ ShallowWrapper {
                                                                                                     previous: "999997988889900",
                                                                                           },
                                                                                 },
+                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                 seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                     hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -20043,6 +20156,7 @@ ShallowWrapper {
                                                                                 currency: "ETH",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "100000000",
                                                                                 symbol: "ETH",
                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -20090,6 +20204,7 @@ ShallowWrapper {
                                                                                                     previous: "100000000000000000",
                                                                                           },
                                                                                 },
+                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                 seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                     hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -20141,6 +20256,7 @@ ShallowWrapper {
                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "5",
                                                                                 symbol: "BOKKY",
                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -20665,6 +20781,7 @@ ShallowWrapper {
                                                                                                                               previous: "999997988889900",
                                                                                                                 },
                                                                                                   },
+                                                                                                  timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                   seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                               hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -20716,6 +20833,7 @@ ShallowWrapper {
                                                                                                   currency: "ETH",
                                                                                                   layer: "baseLayer",
                                                                                                   sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                  timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                   amount: "100000000",
                                                                                                   symbol: "ETH",
                                                                                                   recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -20763,6 +20881,7 @@ ShallowWrapper {
                                                                                                                               previous: "100000000000000000",
                                                                                                                 },
                                                                                                   },
+                                                                                                  timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                   seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                               hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -20814,6 +20933,7 @@ ShallowWrapper {
                                                                                                   currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                   layer: "baseLayer",
                                                                                                   sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                  timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                   amount: "5",
                                                                                                   symbol: "BOKKY",
                                                                                                   recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -21869,6 +21989,7 @@ ShallowWrapper {
                                                                                                                                 previous: "999997988889900",
                                                                                                                 },
                                                                                                 },
+                                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                 seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -21920,6 +22041,7 @@ ShallowWrapper {
                                                                                                 currency: "ETH",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "100000000",
                                                                                                 symbol: "ETH",
                                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -21967,6 +22089,7 @@ ShallowWrapper {
                                                                                                                                 previous: "100000000000000000",
                                                                                                                 },
                                                                                                 },
+                                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                 seals: Immutable.Map {
                                                                                                                 wallet: Immutable.Map {
                                                                                                                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -22018,6 +22141,7 @@ ShallowWrapper {
                                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "5",
                                                                                                 symbol: "BOKKY",
                                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -22283,6 +22407,7 @@ ShallowWrapper {
                                                                                                             previous: "999997988889900",
                                                                                           },
                                                                         },
+                                                                        timestamp: "2018-12-17T01:59:03.776Z",
                                                                         seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                             hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -22334,6 +22459,7 @@ ShallowWrapper {
                                                                         currency: "ETH",
                                                                         layer: "baseLayer",
                                                                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                        timestamp: "2018-08-06T02:32:00.000Z",
                                                                         amount: "100000000",
                                                                         symbol: "ETH",
                                                                         recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -22381,6 +22507,7 @@ ShallowWrapper {
                                                                                                             previous: "100000000000000000",
                                                                                           },
                                                                         },
+                                                                        timestamp: "2018-11-16T22:40:55.049Z",
                                                                         seals: Immutable.Map {
                                                                                           wallet: Immutable.Map {
                                                                                                             hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -22432,6 +22559,7 @@ ShallowWrapper {
                                                                         currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                         layer: "baseLayer",
                                                                         sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                        timestamp: "2018-08-06T02:32:00.000Z",
                                                                         amount: "5",
                                                                         symbol: "BOKKY",
                                                                         recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -22930,6 +23058,7 @@ ShallowWrapper {
                                                                                                                         previous: "999997988889900",
                                                                                                             },
                                                                                                 },
+                                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                 seals: Immutable.Map {
                                                                                                             wallet: Immutable.Map {
                                                                                                                         hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -22981,6 +23110,7 @@ ShallowWrapper {
                                                                                                 currency: "ETH",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "100000000",
                                                                                                 symbol: "ETH",
                                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -23028,6 +23158,7 @@ ShallowWrapper {
                                                                                                                         previous: "100000000000000000",
                                                                                                             },
                                                                                                 },
+                                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                 seals: Immutable.Map {
                                                                                                             wallet: Immutable.Map {
                                                                                                                         hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -23079,6 +23210,7 @@ ShallowWrapper {
                                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                 layer: "baseLayer",
                                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                 amount: "5",
                                                                                                 symbol: "BOKKY",
                                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -23603,6 +23735,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "999997988889900",
                                                                                                                                 },
                                                                                                                 },
+                                                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                                 seals: Immutable.Map {
                                                                                                                                 wallet: Immutable.Map {
                                                                                                                                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -23654,6 +23787,7 @@ ShallowWrapper {
                                                                                                                 currency: "ETH",
                                                                                                                 layer: "baseLayer",
                                                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                                 amount: "100000000",
                                                                                                                 symbol: "ETH",
                                                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -23701,6 +23835,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "100000000000000000",
                                                                                                                                 },
                                                                                                                 },
+                                                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                                 seals: Immutable.Map {
                                                                                                                                 wallet: Immutable.Map {
                                                                                                                                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -23752,6 +23887,7 @@ ShallowWrapper {
                                                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                                 layer: "baseLayer",
                                                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                                 amount: "5",
                                                                                                                 symbol: "BOKKY",
                                                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -24807,6 +24943,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "999997988889900",
                                                                                                                               },
                                                                                                             },
+                                                                                                            timestamp: "2018-12-17T01:59:03.776Z",
                                                                                                             seals: Immutable.Map {
                                                                                                                               wallet: Immutable.Map {
                                                                                                                                                 hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -24858,6 +24995,7 @@ ShallowWrapper {
                                                                                                             currency: "ETH",
                                                                                                             layer: "baseLayer",
                                                                                                             sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                                            timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                             amount: "100000000",
                                                                                                             symbol: "ETH",
                                                                                                             recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -24905,6 +25043,7 @@ ShallowWrapper {
                                                                                                                                                 previous: "100000000000000000",
                                                                                                                               },
                                                                                                             },
+                                                                                                            timestamp: "2018-11-16T22:40:55.049Z",
                                                                                                             seals: Immutable.Map {
                                                                                                                               wallet: Immutable.Map {
                                                                                                                                                 hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -24956,6 +25095,7 @@ ShallowWrapper {
                                                                                                             currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                                             layer: "baseLayer",
                                                                                                             sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                                            timestamp: "2018-08-06T02:32:00.000Z",
                                                                                                             amount: "5",
                                                                                                             symbol: "BOKKY",
                                                                                                             recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -25221,6 +25361,7 @@ ShallowWrapper {
                                                                                                                         previous: "999997988889900",
                                                                                                     },
                                                                                 },
+                                                                                timestamp: "2018-12-17T01:59:03.776Z",
                                                                                 seals: Immutable.Map {
                                                                                                     wallet: Immutable.Map {
                                                                                                                         hash: "0x57d9cf4ffc4b2aecce23d2e56083c7b437f5e105be74c1cd17d8522999b5d0be",
@@ -25272,6 +25413,7 @@ ShallowWrapper {
                                                                                 currency: "ETH",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "100000000",
                                                                                 symbol: "ETH",
                                                                                 recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -25319,6 +25461,7 @@ ShallowWrapper {
                                                                                                                         previous: "100000000000000000",
                                                                                                     },
                                                                                 },
+                                                                                timestamp: "2018-11-16T22:40:55.049Z",
                                                                                 seals: Immutable.Map {
                                                                                                     wallet: Immutable.Map {
                                                                                                                         hash: "0x0b7d6d30e9665016246e6370e82579a35bc4d9c0cf88c65b38d538f7ad8ee828",
@@ -25370,6 +25513,7 @@ ShallowWrapper {
                                                                                 currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                                 layer: "baseLayer",
                                                                                 sender: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
+                                                                                timestamp: "2018-08-06T02:32:00.000Z",
                                                                                 amount: "5",
                                                                                 symbol: "BOKKY",
                                                                                 recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",

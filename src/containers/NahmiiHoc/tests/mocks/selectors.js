@@ -183,6 +183,10 @@ export const receiptsWithInfo = receiptsLoaded
     'sent'
   )
   .setIn(
+    ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 1, 'timestamp'],
+    receiptsLoaded.getIn(['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 1, 'updated']),
+  )
+  .setIn(
     ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 1, 'fiatValue'],
     '0.01'
   )
@@ -217,6 +221,10 @@ export const receiptsWithInfo = receiptsLoaded
   .setIn(
     ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 0, 'type'],
     'received'
+  )
+  .setIn(
+    ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 0, 'timestamp'],
+    receiptsLoaded.getIn(['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 0, 'updated']),
   )
   .setIn(
     ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 0, 'fiatValue'],
