@@ -2,6 +2,12 @@ import { Form, Input, Modal } from 'antd';
 import styled from 'styled-components';
 
 export default styled(Modal)`
+  .ant-modal-header {
+    background: transparent;
+  }
+  .ant-modal-title {
+    color: ${({ theme }) => theme.palette.light};
+  }
   .ant-modal-content {
     padding-top: 0.36rem;
     border-radius: 0.57rem;

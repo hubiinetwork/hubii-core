@@ -564,6 +564,7 @@ ShallowWrapper {
                               <div
                                         style={
                                                   Object {
+                                                            "display": "flex",
                                                             "marignRight": "auto",
                                                           }
                                         }
@@ -572,7 +573,6 @@ ShallowWrapper {
                                                   large={true}
                                         >
                                                   send_on_the
-                                                   
                                         </Text>
                                         <Tooltip
                                                   arrowPointAtCenter={false}
@@ -593,26 +593,34 @@ ShallowWrapper {
                                                   }
                                                   transitionName="zoom-big-fast"
                                         >
+                                                   
                                                   <Unknown
                                                             large={true}
                                                   />
+                                                   
                                                   <Text
                                                             large={true}
-                                                            style={
-                                                                      Object {
-                                                                                "marginRight": "0.5rem",
-                                                                              }
-                                                            }
                                                   >
-                                                             
                                                             second_layer
                                                   </Text>
                                                   <style__NahmiiSwitch
                                                             checked={false}
                                                             disabled={false}
                                                             onChange={[Function]}
+                                                            style={
+                                                                      Object {
+                                                                                "marginLeft": "0.5rem",
+                                                                              }
+                                                            }
                                                   />
                                         </Tooltip>
+                                        <NahmiiTutorialBtn
+                                                  style={
+                                                            Object {
+                                                                      "marginLeft": "0.5rem",
+                                                                    }
+                                                  }
+                                        />
                               </div>
                               <Spring
                                         config={
@@ -1075,6 +1083,7 @@ ShallowWrapper {
                             <div
                                           style={
                                                         Object {
+                                                                      "display": "flex",
                                                                       "marignRight": "auto",
                                                                     }
                                           }
@@ -1083,7 +1092,6 @@ ShallowWrapper {
                                                         large={true}
                                           >
                                                         send_on_the
-                                                         
                                           </Text>
                                           <Tooltip
                                                         arrowPointAtCenter={false}
@@ -1104,26 +1112,34 @@ ShallowWrapper {
                                                         }
                                                         transitionName="zoom-big-fast"
                                           >
+                                                         
                                                         <Unknown
                                                                       large={true}
                                                         />
+                                                         
                                                         <Text
                                                                       large={true}
-                                                                      style={
-                                                                                    Object {
-                                                                                                  "marginRight": "0.5rem",
-                                                                                                }
-                                                                      }
                                                         >
-                                                                       
                                                                       second_layer
                                                         </Text>
                                                         <style__NahmiiSwitch
                                                                       checked={false}
                                                                       disabled={false}
                                                                       onChange={[Function]}
+                                                                      style={
+                                                                                    Object {
+                                                                                                  "marginLeft": "0.5rem",
+                                                                                                }
+                                                                      }
                                                         />
                                           </Tooltip>
+                                          <NahmiiTutorialBtn
+                                                        style={
+                                                                      Object {
+                                                                                    "marginLeft": "0.5rem",
+                                                                                  }
+                                                        }
+                                          />
                             </div>
                             <Spring
                                           config={
@@ -1517,6 +1533,7 @@ ShallowWrapper {
                 <div
                                 style={
                                                 Object {
+                                                                "display": "flex",
                                                                 "marignRight": "auto",
                                                               }
                                 }
@@ -1525,7 +1542,6 @@ ShallowWrapper {
                                                 large={true}
                                 >
                                                 send_on_the
-                                                 
                                 </Text>
                                 <Tooltip
                                                 arrowPointAtCenter={false}
@@ -1546,26 +1562,34 @@ ShallowWrapper {
                                                 }
                                                 transitionName="zoom-big-fast"
                                 >
+                                                 
                                                 <Unknown
                                                                 large={true}
                                                 />
+                                                 
                                                 <Text
                                                                 large={true}
-                                                                style={
-                                                                                Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                }
                                                 >
-                                                                 
                                                                 second_layer
                                                 </Text>
                                                 <style__NahmiiSwitch
                                                                 checked={false}
                                                                 disabled={false}
                                                                 onChange={[Function]}
+                                                                style={
+                                                                                Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                                }
                                                 />
                                 </Tooltip>
+                                <NahmiiTutorialBtn
+                                                style={
+                                                                Object {
+                                                                                "marginLeft": "0.5rem",
+                                                                              }
+                                                }
+                                />
                 </div>
                 <Spring
                                 config={
@@ -1697,6 +1721,7 @@ ShallowWrapper {
                   <div
                     style={
                                         Object {
+                                                            "display": "flex",
                                                             "marignRight": "auto",
                                                           }
                     }
@@ -1705,7 +1730,6 @@ ShallowWrapper {
                                         large={true}
                     >
                                         send_on_the
-                                         
                     </Text>
                     <Tooltip
                                         arrowPointAtCenter={false}
@@ -1726,26 +1750,34 @@ ShallowWrapper {
                                         }
                                         transitionName="zoom-big-fast"
                     >
+                                         
                                         <Unknown
                                                             large={true}
                                         />
+                                         
                                         <Text
                                                             large={true}
-                                                            style={
-                                                                                Object {
-                                                                                                    "marginRight": "0.5rem",
-                                                                                                  }
-                                                            }
                                         >
-                                                             
                                                             second_layer
                                         </Text>
                                         <style__NahmiiSwitch
                                                             checked={false}
                                                             disabled={false}
                                                             onChange={[Function]}
+                                                            style={
+                                                                                Object {
+                                                                                                    "marginLeft": "0.5rem",
+                                                                                                  }
+                                                            }
                                         />
                     </Tooltip>
+                    <NahmiiTutorialBtn
+                                        style={
+                                                            Object {
+                                                                                "marginLeft": "0.5rem",
+                                                                              }
+                                        }
+                    />
 </div>,
                   <Spring
                     config={
@@ -2000,7 +2032,6 @@ ShallowWrapper {
                         large={true}
 >
                         send_on_the
-                         
 </Text>,
                       <Tooltip
                         arrowPointAtCenter={false}
@@ -2021,28 +2052,37 @@ ShallowWrapper {
                         }
                         transitionName="zoom-big-fast"
 >
+                         
                         <Unknown
                                                 large={true}
                         />
+                         
                         <Text
                                                 large={true}
-                                                style={
-                                                                        Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                }
                         >
-                                                 
                                                 second_layer
                         </Text>
                         <style__NahmiiSwitch
                                                 checked={false}
                                                 disabled={false}
                                                 onChange={[Function]}
+                                                style={
+                                                                        Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                }
                         />
 </Tooltip>,
+                      <NahmiiTutorialBtn
+                        style={
+                                                Object {
+                                                                        "marginLeft": "0.5rem",
+                                                                      }
+                        }
+/>,
                     ],
                     "style": Object {
+                      "display": "flex",
                       "marignRight": "auto",
                     },
                   },
@@ -2053,17 +2093,11 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": Array [
-                          "send_on_the",
-                          " ",
-                        ],
+                        "children": "send_on_the",
                         "large": true,
                       },
                       "ref": null,
-                      "rendered": Array [
-                        "send_on_the",
-                        " ",
-                      ],
+                      "rendered": "send_on_the",
                       "type": [Function],
                     },
                     Object {
@@ -2074,24 +2108,25 @@ ShallowWrapper {
                         "arrowPointAtCenter": false,
                         "autoAdjustOverflow": true,
                         "children": Array [
+                          " ",
                           <Unknown
                             large={true}
 />,
+                          " ",
                           <Text
                             large={true}
-                            style={
-                                                        Object {
-                                                                                    "marginRight": "0.5rem",
-                                                                                  }
-                            }
 >
-                             
                             second_layer
 </Text>,
                           <style__NahmiiSwitch
                             checked={false}
                             disabled={false}
                             onChange={[Function]}
+                            style={
+                                                        Object {
+                                                                                    "marginLeft": "0.5rem",
+                                                                                  }
+                            }
 />,
                         ],
                         "mouseEnterDelay": 0.1,
@@ -2108,6 +2143,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
+                        " ",
                         Object {
                           "instance": null,
                           "key": undefined,
@@ -2119,25 +2155,17 @@ ShallowWrapper {
                           "rendered": null,
                           "type": [Function],
                         },
+                        " ",
                         Object {
                           "instance": null,
                           "key": undefined,
                           "nodeType": "class",
                           "props": Object {
-                            "children": Array [
-                              " ",
-                              "second_layer",
-                            ],
+                            "children": "second_layer",
                             "large": true,
-                            "style": Object {
-                              "marginRight": "0.5rem",
-                            },
                           },
                           "ref": null,
-                          "rendered": Array [
-                            " ",
-                            "second_layer",
-                          ],
+                          "rendered": "second_layer",
                           "type": [Function],
                         },
                         Object {
@@ -2148,12 +2176,28 @@ ShallowWrapper {
                             "checked": false,
                             "disabled": false,
                             "onChange": [Function],
+                            "style": Object {
+                              "marginLeft": "0.5rem",
+                            },
                           },
                           "ref": null,
                           "rendered": null,
                           "type": [Function],
                         },
                       ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "style": Object {
+                          "marginLeft": "0.5rem",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": null,
                       "type": [Function],
                     },
                   ],
@@ -2854,6 +2898,7 @@ ShallowWrapper {
                                     <div
                                                 style={
                                                             Object {
+                                                                        "display": "flex",
                                                                         "marignRight": "auto",
                                                                       }
                                                 }
@@ -2862,7 +2907,6 @@ ShallowWrapper {
                                                             large={true}
                                                 >
                                                             send_on_the
-                                                             
                                                 </Text>
                                                 <Tooltip
                                                             arrowPointAtCenter={false}
@@ -2883,26 +2927,34 @@ ShallowWrapper {
                                                             }
                                                             transitionName="zoom-big-fast"
                                                 >
+                                                             
                                                             <Unknown
                                                                         large={true}
                                                             />
+                                                             
                                                             <Text
                                                                         large={true}
-                                                                        style={
-                                                                                    Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                        }
                                                             >
-                                                                         
                                                                         second_layer
                                                             </Text>
                                                             <style__NahmiiSwitch
                                                                         checked={false}
                                                                         disabled={false}
                                                                         onChange={[Function]}
+                                                                        style={
+                                                                                    Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                                        }
                                                             />
                                                 </Tooltip>
+                                                <NahmiiTutorialBtn
+                                                            style={
+                                                                        Object {
+                                                                                    "marginLeft": "0.5rem",
+                                                                                  }
+                                                            }
+                                                />
                                     </div>
                                     <Spring
                                                 config={
@@ -3365,6 +3417,7 @@ ShallowWrapper {
                                 <div
                                                 style={
                                                                 Object {
+                                                                                "display": "flex",
                                                                                 "marignRight": "auto",
                                                                               }
                                                 }
@@ -3373,7 +3426,6 @@ ShallowWrapper {
                                                                 large={true}
                                                 >
                                                                 send_on_the
-                                                                 
                                                 </Text>
                                                 <Tooltip
                                                                 arrowPointAtCenter={false}
@@ -3394,26 +3446,34 @@ ShallowWrapper {
                                                                 }
                                                                 transitionName="zoom-big-fast"
                                                 >
+                                                                 
                                                                 <Unknown
                                                                                 large={true}
                                                                 />
+                                                                 
                                                                 <Text
                                                                                 large={true}
-                                                                                style={
-                                                                                                Object {
-                                                                                                                "marginRight": "0.5rem",
-                                                                                                              }
-                                                                                }
                                                                 >
-                                                                                 
                                                                                 second_layer
                                                                 </Text>
                                                                 <style__NahmiiSwitch
                                                                                 checked={false}
                                                                                 disabled={false}
                                                                                 onChange={[Function]}
+                                                                                style={
+                                                                                                Object {
+                                                                                                                "marginLeft": "0.5rem",
+                                                                                                              }
+                                                                                }
                                                                 />
                                                 </Tooltip>
+                                                <NahmiiTutorialBtn
+                                                                style={
+                                                                                Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                                }
+                                                />
                                 </div>
                                 <Spring
                                                 config={
@@ -3807,6 +3867,7 @@ ShallowWrapper {
                   <div
                                     style={
                                                       Object {
+                                                                        "display": "flex",
                                                                         "marignRight": "auto",
                                                                       }
                                     }
@@ -3815,7 +3876,6 @@ ShallowWrapper {
                                                       large={true}
                                     >
                                                       send_on_the
-                                                       
                                     </Text>
                                     <Tooltip
                                                       arrowPointAtCenter={false}
@@ -3836,26 +3896,34 @@ ShallowWrapper {
                                                       }
                                                       transitionName="zoom-big-fast"
                                     >
+                                                       
                                                       <Unknown
                                                                         large={true}
                                                       />
+                                                       
                                                       <Text
                                                                         large={true}
-                                                                        style={
-                                                                                          Object {
-                                                                                                            "marginRight": "0.5rem",
-                                                                                                          }
-                                                                        }
                                                       >
-                                                                         
                                                                         second_layer
                                                       </Text>
                                                       <style__NahmiiSwitch
                                                                         checked={false}
                                                                         disabled={false}
                                                                         onChange={[Function]}
+                                                                        style={
+                                                                                          Object {
+                                                                                                            "marginLeft": "0.5rem",
+                                                                                                          }
+                                                                        }
                                                       />
                                     </Tooltip>
+                                    <NahmiiTutorialBtn
+                                                      style={
+                                                                        Object {
+                                                                                          "marginLeft": "0.5rem",
+                                                                                        }
+                                                      }
+                                    />
                   </div>
                   <Spring
                                     config={
@@ -3987,6 +4055,7 @@ ShallowWrapper {
                     <div
                       style={
                                             Object {
+                                                                  "display": "flex",
                                                                   "marignRight": "auto",
                                                                 }
                       }
@@ -3995,7 +4064,6 @@ ShallowWrapper {
                                             large={true}
                       >
                                             send_on_the
-                                             
                       </Text>
                       <Tooltip
                                             arrowPointAtCenter={false}
@@ -4016,26 +4084,34 @@ ShallowWrapper {
                                             }
                                             transitionName="zoom-big-fast"
                       >
+                                             
                                             <Unknown
                                                                   large={true}
                                             />
+                                             
                                             <Text
                                                                   large={true}
-                                                                  style={
-                                                                                        Object {
-                                                                                                              "marginRight": "0.5rem",
-                                                                                                            }
-                                                                  }
                                             >
-                                                                   
                                                                   second_layer
                                             </Text>
                                             <style__NahmiiSwitch
                                                                   checked={false}
                                                                   disabled={false}
                                                                   onChange={[Function]}
+                                                                  style={
+                                                                                        Object {
+                                                                                                              "marginLeft": "0.5rem",
+                                                                                                            }
+                                                                  }
                                             />
                       </Tooltip>
+                      <NahmiiTutorialBtn
+                                            style={
+                                                                  Object {
+                                                                                        "marginLeft": "0.5rem",
+                                                                                      }
+                                            }
+                      />
 </div>,
                     <Spring
                       config={
@@ -4290,7 +4366,6 @@ ShallowWrapper {
                           large={true}
 >
                           send_on_the
-                           
 </Text>,
                         <Tooltip
                           arrowPointAtCenter={false}
@@ -4311,28 +4386,37 @@ ShallowWrapper {
                           }
                           transitionName="zoom-big-fast"
 >
+                           
                           <Unknown
                                                     large={true}
                           />
+                           
                           <Text
                                                     large={true}
-                                                    style={
-                                                                              Object {
-                                                                                                        "marginRight": "0.5rem",
-                                                                                                      }
-                                                    }
                           >
-                                                     
                                                     second_layer
                           </Text>
                           <style__NahmiiSwitch
                                                     checked={false}
                                                     disabled={false}
                                                     onChange={[Function]}
+                                                    style={
+                                                                              Object {
+                                                                                                        "marginLeft": "0.5rem",
+                                                                                                      }
+                                                    }
                           />
 </Tooltip>,
+                        <NahmiiTutorialBtn
+                          style={
+                                                    Object {
+                                                                              "marginLeft": "0.5rem",
+                                                                            }
+                          }
+/>,
                       ],
                       "style": Object {
+                        "display": "flex",
                         "marignRight": "auto",
                       },
                     },
@@ -4343,17 +4427,11 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "children": Array [
-                            "send_on_the",
-                            " ",
-                          ],
+                          "children": "send_on_the",
                           "large": true,
                         },
                         "ref": null,
-                        "rendered": Array [
-                          "send_on_the",
-                          " ",
-                        ],
+                        "rendered": "send_on_the",
                         "type": [Function],
                       },
                       Object {
@@ -4364,24 +4442,25 @@ ShallowWrapper {
                           "arrowPointAtCenter": false,
                           "autoAdjustOverflow": true,
                           "children": Array [
+                            " ",
                             <Unknown
                               large={true}
 />,
+                            " ",
                             <Text
                               large={true}
-                              style={
-                                                            Object {
-                                                                                          "marginRight": "0.5rem",
-                                                                                        }
-                              }
 >
-                               
                               second_layer
 </Text>,
                             <style__NahmiiSwitch
                               checked={false}
                               disabled={false}
                               onChange={[Function]}
+                              style={
+                                                            Object {
+                                                                                          "marginLeft": "0.5rem",
+                                                                                        }
+                              }
 />,
                           ],
                           "mouseEnterDelay": 0.1,
@@ -4398,6 +4477,7 @@ ShallowWrapper {
                         },
                         "ref": null,
                         "rendered": Array [
+                          " ",
                           Object {
                             "instance": null,
                             "key": undefined,
@@ -4409,25 +4489,17 @@ ShallowWrapper {
                             "rendered": null,
                             "type": [Function],
                           },
+                          " ",
                           Object {
                             "instance": null,
                             "key": undefined,
                             "nodeType": "class",
                             "props": Object {
-                              "children": Array [
-                                " ",
-                                "second_layer",
-                              ],
+                              "children": "second_layer",
                               "large": true,
-                              "style": Object {
-                                "marginRight": "0.5rem",
-                              },
                             },
                             "ref": null,
-                            "rendered": Array [
-                              " ",
-                              "second_layer",
-                            ],
+                            "rendered": "second_layer",
                             "type": [Function],
                           },
                           Object {
@@ -4438,12 +4510,28 @@ ShallowWrapper {
                               "checked": false,
                               "disabled": false,
                               "onChange": [Function],
+                              "style": Object {
+                                "marginLeft": "0.5rem",
+                              },
                             },
                             "ref": null,
                             "rendered": null,
                             "type": [Function],
                           },
                         ],
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "style": Object {
+                            "marginLeft": "0.5rem",
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
                         "type": [Function],
                       },
                     ],
@@ -5529,6 +5617,7 @@ ShallowWrapper {
                               <div
                                         style={
                                                   Object {
+                                                            "display": "flex",
                                                             "marignRight": "auto",
                                                           }
                                         }
@@ -5537,7 +5626,6 @@ ShallowWrapper {
                                                   large={true}
                                         >
                                                   send_on_the
-                                                   
                                         </Text>
                                         <Tooltip
                                                   arrowPointAtCenter={false}
@@ -5558,26 +5646,34 @@ ShallowWrapper {
                                                   }
                                                   transitionName="zoom-big-fast"
                                         >
+                                                   
                                                   <Unknown
                                                             large={true}
                                                   />
+                                                   
                                                   <Text
                                                             large={true}
-                                                            style={
-                                                                      Object {
-                                                                                "marginRight": "0.5rem",
-                                                                              }
-                                                            }
                                                   >
-                                                             
                                                             second_layer
                                                   </Text>
                                                   <style__NahmiiSwitch
                                                             checked={false}
                                                             disabled={false}
                                                             onChange={[Function]}
+                                                            style={
+                                                                      Object {
+                                                                                "marginLeft": "0.5rem",
+                                                                              }
+                                                            }
                                                   />
                                         </Tooltip>
+                                        <NahmiiTutorialBtn
+                                                  style={
+                                                            Object {
+                                                                      "marginLeft": "0.5rem",
+                                                                    }
+                                                  }
+                                        />
                               </div>
                               <Spring
                                         config={
@@ -5993,6 +6089,7 @@ ShallowWrapper {
                             <div
                                           style={
                                                         Object {
+                                                                      "display": "flex",
                                                                       "marignRight": "auto",
                                                                     }
                                           }
@@ -6001,7 +6098,6 @@ ShallowWrapper {
                                                         large={true}
                                           >
                                                         send_on_the
-                                                         
                                           </Text>
                                           <Tooltip
                                                         arrowPointAtCenter={false}
@@ -6022,26 +6118,34 @@ ShallowWrapper {
                                                         }
                                                         transitionName="zoom-big-fast"
                                           >
+                                                         
                                                         <Unknown
                                                                       large={true}
                                                         />
+                                                         
                                                         <Text
                                                                       large={true}
-                                                                      style={
-                                                                                    Object {
-                                                                                                  "marginRight": "0.5rem",
-                                                                                                }
-                                                                      }
                                                         >
-                                                                       
                                                                       second_layer
                                                         </Text>
                                                         <style__NahmiiSwitch
                                                                       checked={false}
                                                                       disabled={false}
                                                                       onChange={[Function]}
+                                                                      style={
+                                                                                    Object {
+                                                                                                  "marginLeft": "0.5rem",
+                                                                                                }
+                                                                      }
                                                         />
                                           </Tooltip>
+                                          <NahmiiTutorialBtn
+                                                        style={
+                                                                      Object {
+                                                                                    "marginLeft": "0.5rem",
+                                                                                  }
+                                                        }
+                                          />
                             </div>
                             <Spring
                                           config={
@@ -6416,6 +6520,7 @@ ShallowWrapper {
                 <div
                                 style={
                                                 Object {
+                                                                "display": "flex",
                                                                 "marignRight": "auto",
                                                               }
                                 }
@@ -6424,7 +6529,6 @@ ShallowWrapper {
                                                 large={true}
                                 >
                                                 send_on_the
-                                                 
                                 </Text>
                                 <Tooltip
                                                 arrowPointAtCenter={false}
@@ -6445,26 +6549,34 @@ ShallowWrapper {
                                                 }
                                                 transitionName="zoom-big-fast"
                                 >
+                                                 
                                                 <Unknown
                                                                 large={true}
                                                 />
+                                                 
                                                 <Text
                                                                 large={true}
-                                                                style={
-                                                                                Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                }
                                                 >
-                                                                 
                                                                 second_layer
                                                 </Text>
                                                 <style__NahmiiSwitch
                                                                 checked={false}
                                                                 disabled={false}
                                                                 onChange={[Function]}
+                                                                style={
+                                                                                Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                                }
                                                 />
                                 </Tooltip>
+                                <NahmiiTutorialBtn
+                                                style={
+                                                                Object {
+                                                                                "marginLeft": "0.5rem",
+                                                                              }
+                                                }
+                                />
                 </div>
                 <Spring
                                 config={
@@ -6577,6 +6689,7 @@ ShallowWrapper {
                   <div
                     style={
                                         Object {
+                                                            "display": "flex",
                                                             "marignRight": "auto",
                                                           }
                     }
@@ -6585,7 +6698,6 @@ ShallowWrapper {
                                         large={true}
                     >
                                         send_on_the
-                                         
                     </Text>
                     <Tooltip
                                         arrowPointAtCenter={false}
@@ -6606,26 +6718,34 @@ ShallowWrapper {
                                         }
                                         transitionName="zoom-big-fast"
                     >
+                                         
                                         <Unknown
                                                             large={true}
                                         />
+                                         
                                         <Text
                                                             large={true}
-                                                            style={
-                                                                                Object {
-                                                                                                    "marginRight": "0.5rem",
-                                                                                                  }
-                                                            }
                                         >
-                                                             
                                                             second_layer
                                         </Text>
                                         <style__NahmiiSwitch
                                                             checked={false}
                                                             disabled={false}
                                                             onChange={[Function]}
+                                                            style={
+                                                                                Object {
+                                                                                                    "marginLeft": "0.5rem",
+                                                                                                  }
+                                                            }
                                         />
                     </Tooltip>
+                    <NahmiiTutorialBtn
+                                        style={
+                                                            Object {
+                                                                                "marginLeft": "0.5rem",
+                                                                              }
+                                        }
+                    />
 </div>,
                   <Spring
                     config={
@@ -6850,7 +6970,6 @@ ShallowWrapper {
                         large={true}
 >
                         send_on_the
-                         
 </Text>,
                       <Tooltip
                         arrowPointAtCenter={false}
@@ -6871,28 +6990,37 @@ ShallowWrapper {
                         }
                         transitionName="zoom-big-fast"
 >
+                         
                         <Unknown
                                                 large={true}
                         />
+                         
                         <Text
                                                 large={true}
-                                                style={
-                                                                        Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                }
                         >
-                                                 
                                                 second_layer
                         </Text>
                         <style__NahmiiSwitch
                                                 checked={false}
                                                 disabled={false}
                                                 onChange={[Function]}
+                                                style={
+                                                                        Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                }
                         />
 </Tooltip>,
+                      <NahmiiTutorialBtn
+                        style={
+                                                Object {
+                                                                        "marginLeft": "0.5rem",
+                                                                      }
+                        }
+/>,
                     ],
                     "style": Object {
+                      "display": "flex",
                       "marignRight": "auto",
                     },
                   },
@@ -6903,17 +7031,11 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": Array [
-                          "send_on_the",
-                          " ",
-                        ],
+                        "children": "send_on_the",
                         "large": true,
                       },
                       "ref": null,
-                      "rendered": Array [
-                        "send_on_the",
-                        " ",
-                      ],
+                      "rendered": "send_on_the",
                       "type": [Function],
                     },
                     Object {
@@ -6924,24 +7046,25 @@ ShallowWrapper {
                         "arrowPointAtCenter": false,
                         "autoAdjustOverflow": true,
                         "children": Array [
+                          " ",
                           <Unknown
                             large={true}
 />,
+                          " ",
                           <Text
                             large={true}
-                            style={
-                                                        Object {
-                                                                                    "marginRight": "0.5rem",
-                                                                                  }
-                            }
 >
-                             
                             second_layer
 </Text>,
                           <style__NahmiiSwitch
                             checked={false}
                             disabled={false}
                             onChange={[Function]}
+                            style={
+                                                        Object {
+                                                                                    "marginLeft": "0.5rem",
+                                                                                  }
+                            }
 />,
                         ],
                         "mouseEnterDelay": 0.1,
@@ -6958,6 +7081,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
+                        " ",
                         Object {
                           "instance": null,
                           "key": undefined,
@@ -6969,25 +7093,17 @@ ShallowWrapper {
                           "rendered": null,
                           "type": [Function],
                         },
+                        " ",
                         Object {
                           "instance": null,
                           "key": undefined,
                           "nodeType": "class",
                           "props": Object {
-                            "children": Array [
-                              " ",
-                              "second_layer",
-                            ],
+                            "children": "second_layer",
                             "large": true,
-                            "style": Object {
-                              "marginRight": "0.5rem",
-                            },
                           },
                           "ref": null,
-                          "rendered": Array [
-                            " ",
-                            "second_layer",
-                          ],
+                          "rendered": "second_layer",
                           "type": [Function],
                         },
                         Object {
@@ -6998,12 +7114,28 @@ ShallowWrapper {
                             "checked": false,
                             "disabled": false,
                             "onChange": [Function],
+                            "style": Object {
+                              "marginLeft": "0.5rem",
+                            },
                           },
                           "ref": null,
                           "rendered": null,
                           "type": [Function],
                         },
                       ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "style": Object {
+                          "marginLeft": "0.5rem",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": null,
                       "type": [Function],
                     },
                   ],
@@ -7670,6 +7802,7 @@ ShallowWrapper {
                                     <div
                                                 style={
                                                             Object {
+                                                                        "display": "flex",
                                                                         "marignRight": "auto",
                                                                       }
                                                 }
@@ -7678,7 +7811,6 @@ ShallowWrapper {
                                                             large={true}
                                                 >
                                                             send_on_the
-                                                             
                                                 </Text>
                                                 <Tooltip
                                                             arrowPointAtCenter={false}
@@ -7699,26 +7831,34 @@ ShallowWrapper {
                                                             }
                                                             transitionName="zoom-big-fast"
                                                 >
+                                                             
                                                             <Unknown
                                                                         large={true}
                                                             />
+                                                             
                                                             <Text
                                                                         large={true}
-                                                                        style={
-                                                                                    Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                        }
                                                             >
-                                                                         
                                                                         second_layer
                                                             </Text>
                                                             <style__NahmiiSwitch
                                                                         checked={false}
                                                                         disabled={false}
                                                                         onChange={[Function]}
+                                                                        style={
+                                                                                    Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                                        }
                                                             />
                                                 </Tooltip>
+                                                <NahmiiTutorialBtn
+                                                            style={
+                                                                        Object {
+                                                                                    "marginLeft": "0.5rem",
+                                                                                  }
+                                                            }
+                                                />
                                     </div>
                                     <Spring
                                                 config={
@@ -8134,6 +8274,7 @@ ShallowWrapper {
                                 <div
                                                 style={
                                                                 Object {
+                                                                                "display": "flex",
                                                                                 "marignRight": "auto",
                                                                               }
                                                 }
@@ -8142,7 +8283,6 @@ ShallowWrapper {
                                                                 large={true}
                                                 >
                                                                 send_on_the
-                                                                 
                                                 </Text>
                                                 <Tooltip
                                                                 arrowPointAtCenter={false}
@@ -8163,26 +8303,34 @@ ShallowWrapper {
                                                                 }
                                                                 transitionName="zoom-big-fast"
                                                 >
+                                                                 
                                                                 <Unknown
                                                                                 large={true}
                                                                 />
+                                                                 
                                                                 <Text
                                                                                 large={true}
-                                                                                style={
-                                                                                                Object {
-                                                                                                                "marginRight": "0.5rem",
-                                                                                                              }
-                                                                                }
                                                                 >
-                                                                                 
                                                                                 second_layer
                                                                 </Text>
                                                                 <style__NahmiiSwitch
                                                                                 checked={false}
                                                                                 disabled={false}
                                                                                 onChange={[Function]}
+                                                                                style={
+                                                                                                Object {
+                                                                                                                "marginLeft": "0.5rem",
+                                                                                                              }
+                                                                                }
                                                                 />
                                                 </Tooltip>
+                                                <NahmiiTutorialBtn
+                                                                style={
+                                                                                Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                                }
+                                                />
                                 </div>
                                 <Spring
                                                 config={
@@ -8557,6 +8705,7 @@ ShallowWrapper {
                   <div
                                     style={
                                                       Object {
+                                                                        "display": "flex",
                                                                         "marignRight": "auto",
                                                                       }
                                     }
@@ -8565,7 +8714,6 @@ ShallowWrapper {
                                                       large={true}
                                     >
                                                       send_on_the
-                                                       
                                     </Text>
                                     <Tooltip
                                                       arrowPointAtCenter={false}
@@ -8586,26 +8734,34 @@ ShallowWrapper {
                                                       }
                                                       transitionName="zoom-big-fast"
                                     >
+                                                       
                                                       <Unknown
                                                                         large={true}
                                                       />
+                                                       
                                                       <Text
                                                                         large={true}
-                                                                        style={
-                                                                                          Object {
-                                                                                                            "marginRight": "0.5rem",
-                                                                                                          }
-                                                                        }
                                                       >
-                                                                         
                                                                         second_layer
                                                       </Text>
                                                       <style__NahmiiSwitch
                                                                         checked={false}
                                                                         disabled={false}
                                                                         onChange={[Function]}
+                                                                        style={
+                                                                                          Object {
+                                                                                                            "marginLeft": "0.5rem",
+                                                                                                          }
+                                                                        }
                                                       />
                                     </Tooltip>
+                                    <NahmiiTutorialBtn
+                                                      style={
+                                                                        Object {
+                                                                                          "marginLeft": "0.5rem",
+                                                                                        }
+                                                      }
+                                    />
                   </div>
                   <Spring
                                     config={
@@ -8718,6 +8874,7 @@ ShallowWrapper {
                     <div
                       style={
                                             Object {
+                                                                  "display": "flex",
                                                                   "marignRight": "auto",
                                                                 }
                       }
@@ -8726,7 +8883,6 @@ ShallowWrapper {
                                             large={true}
                       >
                                             send_on_the
-                                             
                       </Text>
                       <Tooltip
                                             arrowPointAtCenter={false}
@@ -8747,26 +8903,34 @@ ShallowWrapper {
                                             }
                                             transitionName="zoom-big-fast"
                       >
+                                             
                                             <Unknown
                                                                   large={true}
                                             />
+                                             
                                             <Text
                                                                   large={true}
-                                                                  style={
-                                                                                        Object {
-                                                                                                              "marginRight": "0.5rem",
-                                                                                                            }
-                                                                  }
                                             >
-                                                                   
                                                                   second_layer
                                             </Text>
                                             <style__NahmiiSwitch
                                                                   checked={false}
                                                                   disabled={false}
                                                                   onChange={[Function]}
+                                                                  style={
+                                                                                        Object {
+                                                                                                              "marginLeft": "0.5rem",
+                                                                                                            }
+                                                                  }
                                             />
                       </Tooltip>
+                      <NahmiiTutorialBtn
+                                            style={
+                                                                  Object {
+                                                                                        "marginLeft": "0.5rem",
+                                                                                      }
+                                            }
+                      />
 </div>,
                     <Spring
                       config={
@@ -8991,7 +9155,6 @@ ShallowWrapper {
                           large={true}
 >
                           send_on_the
-                           
 </Text>,
                         <Tooltip
                           arrowPointAtCenter={false}
@@ -9012,28 +9175,37 @@ ShallowWrapper {
                           }
                           transitionName="zoom-big-fast"
 >
+                           
                           <Unknown
                                                     large={true}
                           />
+                           
                           <Text
                                                     large={true}
-                                                    style={
-                                                                              Object {
-                                                                                                        "marginRight": "0.5rem",
-                                                                                                      }
-                                                    }
                           >
-                                                     
                                                     second_layer
                           </Text>
                           <style__NahmiiSwitch
                                                     checked={false}
                                                     disabled={false}
                                                     onChange={[Function]}
+                                                    style={
+                                                                              Object {
+                                                                                                        "marginLeft": "0.5rem",
+                                                                                                      }
+                                                    }
                           />
 </Tooltip>,
+                        <NahmiiTutorialBtn
+                          style={
+                                                    Object {
+                                                                              "marginLeft": "0.5rem",
+                                                                            }
+                          }
+/>,
                       ],
                       "style": Object {
+                        "display": "flex",
                         "marignRight": "auto",
                       },
                     },
@@ -9044,17 +9216,11 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "children": Array [
-                            "send_on_the",
-                            " ",
-                          ],
+                          "children": "send_on_the",
                           "large": true,
                         },
                         "ref": null,
-                        "rendered": Array [
-                          "send_on_the",
-                          " ",
-                        ],
+                        "rendered": "send_on_the",
                         "type": [Function],
                       },
                       Object {
@@ -9065,24 +9231,25 @@ ShallowWrapper {
                           "arrowPointAtCenter": false,
                           "autoAdjustOverflow": true,
                           "children": Array [
+                            " ",
                             <Unknown
                               large={true}
 />,
+                            " ",
                             <Text
                               large={true}
-                              style={
-                                                            Object {
-                                                                                          "marginRight": "0.5rem",
-                                                                                        }
-                              }
 >
-                               
                               second_layer
 </Text>,
                             <style__NahmiiSwitch
                               checked={false}
                               disabled={false}
                               onChange={[Function]}
+                              style={
+                                                            Object {
+                                                                                          "marginLeft": "0.5rem",
+                                                                                        }
+                              }
 />,
                           ],
                           "mouseEnterDelay": 0.1,
@@ -9099,6 +9266,7 @@ ShallowWrapper {
                         },
                         "ref": null,
                         "rendered": Array [
+                          " ",
                           Object {
                             "instance": null,
                             "key": undefined,
@@ -9110,25 +9278,17 @@ ShallowWrapper {
                             "rendered": null,
                             "type": [Function],
                           },
+                          " ",
                           Object {
                             "instance": null,
                             "key": undefined,
                             "nodeType": "class",
                             "props": Object {
-                              "children": Array [
-                                " ",
-                                "second_layer",
-                              ],
+                              "children": "second_layer",
                               "large": true,
-                              "style": Object {
-                                "marginRight": "0.5rem",
-                              },
                             },
                             "ref": null,
-                            "rendered": Array [
-                              " ",
-                              "second_layer",
-                            ],
+                            "rendered": "second_layer",
                             "type": [Function],
                           },
                           Object {
@@ -9139,12 +9299,28 @@ ShallowWrapper {
                               "checked": false,
                               "disabled": false,
                               "onChange": [Function],
+                              "style": Object {
+                                "marginLeft": "0.5rem",
+                              },
                             },
                             "ref": null,
                             "rendered": null,
                             "type": [Function],
                           },
                         ],
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "style": Object {
+                            "marginLeft": "0.5rem",
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
                         "type": [Function],
                       },
                     ],
@@ -10279,6 +10455,7 @@ ShallowWrapper {
                               <div
                                         style={
                                                   Object {
+                                                            "display": "flex",
                                                             "marignRight": "auto",
                                                           }
                                         }
@@ -10287,7 +10464,6 @@ ShallowWrapper {
                                                   large={true}
                                         >
                                                   send_on_the
-                                                   
                                         </Text>
                                         <Tooltip
                                                   arrowPointAtCenter={false}
@@ -10308,26 +10484,34 @@ ShallowWrapper {
                                                   }
                                                   transitionName="zoom-big-fast"
                                         >
+                                                   
                                                   <Unknown
                                                             large={true}
                                                   />
+                                                   
                                                   <Text
                                                             large={true}
-                                                            style={
-                                                                      Object {
-                                                                                "marginRight": "0.5rem",
-                                                                              }
-                                                            }
                                                   >
-                                                             
                                                             second_layer
                                                   </Text>
                                                   <style__NahmiiSwitch
                                                             checked={false}
                                                             disabled={false}
                                                             onChange={[Function]}
+                                                            style={
+                                                                      Object {
+                                                                                "marginLeft": "0.5rem",
+                                                                              }
+                                                            }
                                                   />
                                         </Tooltip>
+                                        <NahmiiTutorialBtn
+                                                  style={
+                                                            Object {
+                                                                      "marginLeft": "0.5rem",
+                                                                    }
+                                                  }
+                                        />
                               </div>
                               <Spring
                                         config={
@@ -10790,6 +10974,7 @@ ShallowWrapper {
                             <div
                                           style={
                                                         Object {
+                                                                      "display": "flex",
                                                                       "marignRight": "auto",
                                                                     }
                                           }
@@ -10798,7 +10983,6 @@ ShallowWrapper {
                                                         large={true}
                                           >
                                                         send_on_the
-                                                         
                                           </Text>
                                           <Tooltip
                                                         arrowPointAtCenter={false}
@@ -10819,26 +11003,34 @@ ShallowWrapper {
                                                         }
                                                         transitionName="zoom-big-fast"
                                           >
+                                                         
                                                         <Unknown
                                                                       large={true}
                                                         />
+                                                         
                                                         <Text
                                                                       large={true}
-                                                                      style={
-                                                                                    Object {
-                                                                                                  "marginRight": "0.5rem",
-                                                                                                }
-                                                                      }
                                                         >
-                                                                       
                                                                       second_layer
                                                         </Text>
                                                         <style__NahmiiSwitch
                                                                       checked={false}
                                                                       disabled={false}
                                                                       onChange={[Function]}
+                                                                      style={
+                                                                                    Object {
+                                                                                                  "marginLeft": "0.5rem",
+                                                                                                }
+                                                                      }
                                                         />
                                           </Tooltip>
+                                          <NahmiiTutorialBtn
+                                                        style={
+                                                                      Object {
+                                                                                    "marginLeft": "0.5rem",
+                                                                                  }
+                                                        }
+                                          />
                             </div>
                             <Spring
                                           config={
@@ -11232,6 +11424,7 @@ ShallowWrapper {
                 <div
                                 style={
                                                 Object {
+                                                                "display": "flex",
                                                                 "marignRight": "auto",
                                                               }
                                 }
@@ -11240,7 +11433,6 @@ ShallowWrapper {
                                                 large={true}
                                 >
                                                 send_on_the
-                                                 
                                 </Text>
                                 <Tooltip
                                                 arrowPointAtCenter={false}
@@ -11261,26 +11453,34 @@ ShallowWrapper {
                                                 }
                                                 transitionName="zoom-big-fast"
                                 >
+                                                 
                                                 <Unknown
                                                                 large={true}
                                                 />
+                                                 
                                                 <Text
                                                                 large={true}
-                                                                style={
-                                                                                Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                }
                                                 >
-                                                                 
                                                                 second_layer
                                                 </Text>
                                                 <style__NahmiiSwitch
                                                                 checked={false}
                                                                 disabled={false}
                                                                 onChange={[Function]}
+                                                                style={
+                                                                                Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                                }
                                                 />
                                 </Tooltip>
+                                <NahmiiTutorialBtn
+                                                style={
+                                                                Object {
+                                                                                "marginLeft": "0.5rem",
+                                                                              }
+                                                }
+                                />
                 </div>
                 <Spring
                                 config={
@@ -11412,6 +11612,7 @@ ShallowWrapper {
                   <div
                     style={
                                         Object {
+                                                            "display": "flex",
                                                             "marignRight": "auto",
                                                           }
                     }
@@ -11420,7 +11621,6 @@ ShallowWrapper {
                                         large={true}
                     >
                                         send_on_the
-                                         
                     </Text>
                     <Tooltip
                                         arrowPointAtCenter={false}
@@ -11441,26 +11641,34 @@ ShallowWrapper {
                                         }
                                         transitionName="zoom-big-fast"
                     >
+                                         
                                         <Unknown
                                                             large={true}
                                         />
+                                         
                                         <Text
                                                             large={true}
-                                                            style={
-                                                                                Object {
-                                                                                                    "marginRight": "0.5rem",
-                                                                                                  }
-                                                            }
                                         >
-                                                             
                                                             second_layer
                                         </Text>
                                         <style__NahmiiSwitch
                                                             checked={false}
                                                             disabled={false}
                                                             onChange={[Function]}
+                                                            style={
+                                                                                Object {
+                                                                                                    "marginLeft": "0.5rem",
+                                                                                                  }
+                                                            }
                                         />
                     </Tooltip>
+                    <NahmiiTutorialBtn
+                                        style={
+                                                            Object {
+                                                                                "marginLeft": "0.5rem",
+                                                                              }
+                                        }
+                    />
 </div>,
                   <Spring
                     config={
@@ -11715,7 +11923,6 @@ ShallowWrapper {
                         large={true}
 >
                         send_on_the
-                         
 </Text>,
                       <Tooltip
                         arrowPointAtCenter={false}
@@ -11736,28 +11943,37 @@ ShallowWrapper {
                         }
                         transitionName="zoom-big-fast"
 >
+                         
                         <Unknown
                                                 large={true}
                         />
+                         
                         <Text
                                                 large={true}
-                                                style={
-                                                                        Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                }
                         >
-                                                 
                                                 second_layer
                         </Text>
                         <style__NahmiiSwitch
                                                 checked={false}
                                                 disabled={false}
                                                 onChange={[Function]}
+                                                style={
+                                                                        Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                }
                         />
 </Tooltip>,
+                      <NahmiiTutorialBtn
+                        style={
+                                                Object {
+                                                                        "marginLeft": "0.5rem",
+                                                                      }
+                        }
+/>,
                     ],
                     "style": Object {
+                      "display": "flex",
                       "marignRight": "auto",
                     },
                   },
@@ -11768,17 +11984,11 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": Array [
-                          "send_on_the",
-                          " ",
-                        ],
+                        "children": "send_on_the",
                         "large": true,
                       },
                       "ref": null,
-                      "rendered": Array [
-                        "send_on_the",
-                        " ",
-                      ],
+                      "rendered": "send_on_the",
                       "type": [Function],
                     },
                     Object {
@@ -11789,24 +11999,25 @@ ShallowWrapper {
                         "arrowPointAtCenter": false,
                         "autoAdjustOverflow": true,
                         "children": Array [
+                          " ",
                           <Unknown
                             large={true}
 />,
+                          " ",
                           <Text
                             large={true}
-                            style={
-                                                        Object {
-                                                                                    "marginRight": "0.5rem",
-                                                                                  }
-                            }
 >
-                             
                             second_layer
 </Text>,
                           <style__NahmiiSwitch
                             checked={false}
                             disabled={false}
                             onChange={[Function]}
+                            style={
+                                                        Object {
+                                                                                    "marginLeft": "0.5rem",
+                                                                                  }
+                            }
 />,
                         ],
                         "mouseEnterDelay": 0.1,
@@ -11823,6 +12034,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
+                        " ",
                         Object {
                           "instance": null,
                           "key": undefined,
@@ -11834,25 +12046,17 @@ ShallowWrapper {
                           "rendered": null,
                           "type": [Function],
                         },
+                        " ",
                         Object {
                           "instance": null,
                           "key": undefined,
                           "nodeType": "class",
                           "props": Object {
-                            "children": Array [
-                              " ",
-                              "second_layer",
-                            ],
+                            "children": "second_layer",
                             "large": true,
-                            "style": Object {
-                              "marginRight": "0.5rem",
-                            },
                           },
                           "ref": null,
-                          "rendered": Array [
-                            " ",
-                            "second_layer",
-                          ],
+                          "rendered": "second_layer",
                           "type": [Function],
                         },
                         Object {
@@ -11863,12 +12067,28 @@ ShallowWrapper {
                             "checked": false,
                             "disabled": false,
                             "onChange": [Function],
+                            "style": Object {
+                              "marginLeft": "0.5rem",
+                            },
                           },
                           "ref": null,
                           "rendered": null,
                           "type": [Function],
                         },
                       ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "style": Object {
+                          "marginLeft": "0.5rem",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": null,
                       "type": [Function],
                     },
                   ],
@@ -12569,6 +12789,7 @@ ShallowWrapper {
                                     <div
                                                 style={
                                                             Object {
+                                                                        "display": "flex",
                                                                         "marignRight": "auto",
                                                                       }
                                                 }
@@ -12577,7 +12798,6 @@ ShallowWrapper {
                                                             large={true}
                                                 >
                                                             send_on_the
-                                                             
                                                 </Text>
                                                 <Tooltip
                                                             arrowPointAtCenter={false}
@@ -12598,26 +12818,34 @@ ShallowWrapper {
                                                             }
                                                             transitionName="zoom-big-fast"
                                                 >
+                                                             
                                                             <Unknown
                                                                         large={true}
                                                             />
+                                                             
                                                             <Text
                                                                         large={true}
-                                                                        style={
-                                                                                    Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                        }
                                                             >
-                                                                         
                                                                         second_layer
                                                             </Text>
                                                             <style__NahmiiSwitch
                                                                         checked={false}
                                                                         disabled={false}
                                                                         onChange={[Function]}
+                                                                        style={
+                                                                                    Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                                        }
                                                             />
                                                 </Tooltip>
+                                                <NahmiiTutorialBtn
+                                                            style={
+                                                                        Object {
+                                                                                    "marginLeft": "0.5rem",
+                                                                                  }
+                                                            }
+                                                />
                                     </div>
                                     <Spring
                                                 config={
@@ -13080,6 +13308,7 @@ ShallowWrapper {
                                 <div
                                                 style={
                                                                 Object {
+                                                                                "display": "flex",
                                                                                 "marignRight": "auto",
                                                                               }
                                                 }
@@ -13088,7 +13317,6 @@ ShallowWrapper {
                                                                 large={true}
                                                 >
                                                                 send_on_the
-                                                                 
                                                 </Text>
                                                 <Tooltip
                                                                 arrowPointAtCenter={false}
@@ -13109,26 +13337,34 @@ ShallowWrapper {
                                                                 }
                                                                 transitionName="zoom-big-fast"
                                                 >
+                                                                 
                                                                 <Unknown
                                                                                 large={true}
                                                                 />
+                                                                 
                                                                 <Text
                                                                                 large={true}
-                                                                                style={
-                                                                                                Object {
-                                                                                                                "marginRight": "0.5rem",
-                                                                                                              }
-                                                                                }
                                                                 >
-                                                                                 
                                                                                 second_layer
                                                                 </Text>
                                                                 <style__NahmiiSwitch
                                                                                 checked={false}
                                                                                 disabled={false}
                                                                                 onChange={[Function]}
+                                                                                style={
+                                                                                                Object {
+                                                                                                                "marginLeft": "0.5rem",
+                                                                                                              }
+                                                                                }
                                                                 />
                                                 </Tooltip>
+                                                <NahmiiTutorialBtn
+                                                                style={
+                                                                                Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                                }
+                                                />
                                 </div>
                                 <Spring
                                                 config={
@@ -13522,6 +13758,7 @@ ShallowWrapper {
                   <div
                                     style={
                                                       Object {
+                                                                        "display": "flex",
                                                                         "marignRight": "auto",
                                                                       }
                                     }
@@ -13530,7 +13767,6 @@ ShallowWrapper {
                                                       large={true}
                                     >
                                                       send_on_the
-                                                       
                                     </Text>
                                     <Tooltip
                                                       arrowPointAtCenter={false}
@@ -13551,26 +13787,34 @@ ShallowWrapper {
                                                       }
                                                       transitionName="zoom-big-fast"
                                     >
+                                                       
                                                       <Unknown
                                                                         large={true}
                                                       />
+                                                       
                                                       <Text
                                                                         large={true}
-                                                                        style={
-                                                                                          Object {
-                                                                                                            "marginRight": "0.5rem",
-                                                                                                          }
-                                                                        }
                                                       >
-                                                                         
                                                                         second_layer
                                                       </Text>
                                                       <style__NahmiiSwitch
                                                                         checked={false}
                                                                         disabled={false}
                                                                         onChange={[Function]}
+                                                                        style={
+                                                                                          Object {
+                                                                                                            "marginLeft": "0.5rem",
+                                                                                                          }
+                                                                        }
                                                       />
                                     </Tooltip>
+                                    <NahmiiTutorialBtn
+                                                      style={
+                                                                        Object {
+                                                                                          "marginLeft": "0.5rem",
+                                                                                        }
+                                                      }
+                                    />
                   </div>
                   <Spring
                                     config={
@@ -13702,6 +13946,7 @@ ShallowWrapper {
                     <div
                       style={
                                             Object {
+                                                                  "display": "flex",
                                                                   "marignRight": "auto",
                                                                 }
                       }
@@ -13710,7 +13955,6 @@ ShallowWrapper {
                                             large={true}
                       >
                                             send_on_the
-                                             
                       </Text>
                       <Tooltip
                                             arrowPointAtCenter={false}
@@ -13731,26 +13975,34 @@ ShallowWrapper {
                                             }
                                             transitionName="zoom-big-fast"
                       >
+                                             
                                             <Unknown
                                                                   large={true}
                                             />
+                                             
                                             <Text
                                                                   large={true}
-                                                                  style={
-                                                                                        Object {
-                                                                                                              "marginRight": "0.5rem",
-                                                                                                            }
-                                                                  }
                                             >
-                                                                   
                                                                   second_layer
                                             </Text>
                                             <style__NahmiiSwitch
                                                                   checked={false}
                                                                   disabled={false}
                                                                   onChange={[Function]}
+                                                                  style={
+                                                                                        Object {
+                                                                                                              "marginLeft": "0.5rem",
+                                                                                                            }
+                                                                  }
                                             />
                       </Tooltip>
+                      <NahmiiTutorialBtn
+                                            style={
+                                                                  Object {
+                                                                                        "marginLeft": "0.5rem",
+                                                                                      }
+                                            }
+                      />
 </div>,
                     <Spring
                       config={
@@ -14005,7 +14257,6 @@ ShallowWrapper {
                           large={true}
 >
                           send_on_the
-                           
 </Text>,
                         <Tooltip
                           arrowPointAtCenter={false}
@@ -14026,28 +14277,37 @@ ShallowWrapper {
                           }
                           transitionName="zoom-big-fast"
 >
+                           
                           <Unknown
                                                     large={true}
                           />
+                           
                           <Text
                                                     large={true}
-                                                    style={
-                                                                              Object {
-                                                                                                        "marginRight": "0.5rem",
-                                                                                                      }
-                                                    }
                           >
-                                                     
                                                     second_layer
                           </Text>
                           <style__NahmiiSwitch
                                                     checked={false}
                                                     disabled={false}
                                                     onChange={[Function]}
+                                                    style={
+                                                                              Object {
+                                                                                                        "marginLeft": "0.5rem",
+                                                                                                      }
+                                                    }
                           />
 </Tooltip>,
+                        <NahmiiTutorialBtn
+                          style={
+                                                    Object {
+                                                                              "marginLeft": "0.5rem",
+                                                                            }
+                          }
+/>,
                       ],
                       "style": Object {
+                        "display": "flex",
                         "marignRight": "auto",
                       },
                     },
@@ -14058,17 +14318,11 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "children": Array [
-                            "send_on_the",
-                            " ",
-                          ],
+                          "children": "send_on_the",
                           "large": true,
                         },
                         "ref": null,
-                        "rendered": Array [
-                          "send_on_the",
-                          " ",
-                        ],
+                        "rendered": "send_on_the",
                         "type": [Function],
                       },
                       Object {
@@ -14079,24 +14333,25 @@ ShallowWrapper {
                           "arrowPointAtCenter": false,
                           "autoAdjustOverflow": true,
                           "children": Array [
+                            " ",
                             <Unknown
                               large={true}
 />,
+                            " ",
                             <Text
                               large={true}
-                              style={
-                                                            Object {
-                                                                                          "marginRight": "0.5rem",
-                                                                                        }
-                              }
 >
-                               
                               second_layer
 </Text>,
                             <style__NahmiiSwitch
                               checked={false}
                               disabled={false}
                               onChange={[Function]}
+                              style={
+                                                            Object {
+                                                                                          "marginLeft": "0.5rem",
+                                                                                        }
+                              }
 />,
                           ],
                           "mouseEnterDelay": 0.1,
@@ -14113,6 +14368,7 @@ ShallowWrapper {
                         },
                         "ref": null,
                         "rendered": Array [
+                          " ",
                           Object {
                             "instance": null,
                             "key": undefined,
@@ -14124,25 +14380,17 @@ ShallowWrapper {
                             "rendered": null,
                             "type": [Function],
                           },
+                          " ",
                           Object {
                             "instance": null,
                             "key": undefined,
                             "nodeType": "class",
                             "props": Object {
-                              "children": Array [
-                                " ",
-                                "second_layer",
-                              ],
+                              "children": "second_layer",
                               "large": true,
-                              "style": Object {
-                                "marginRight": "0.5rem",
-                              },
                             },
                             "ref": null,
-                            "rendered": Array [
-                              " ",
-                              "second_layer",
-                            ],
+                            "rendered": "second_layer",
                             "type": [Function],
                           },
                           Object {
@@ -14153,12 +14401,28 @@ ShallowWrapper {
                               "checked": false,
                               "disabled": false,
                               "onChange": [Function],
+                              "style": Object {
+                                "marginLeft": "0.5rem",
+                              },
                             },
                             "ref": null,
                             "rendered": null,
                             "type": [Function],
                           },
                         ],
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "style": Object {
+                            "marginLeft": "0.5rem",
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
                         "type": [Function],
                       },
                     ],
@@ -15293,6 +15557,7 @@ ShallowWrapper {
                               <div
                                         style={
                                                   Object {
+                                                            "display": "flex",
                                                             "marignRight": "auto",
                                                           }
                                         }
@@ -15301,7 +15566,6 @@ ShallowWrapper {
                                                   large={true}
                                         >
                                                   send_on_the
-                                                   
                                         </Text>
                                         <Tooltip
                                                   arrowPointAtCenter={false}
@@ -15322,26 +15586,34 @@ ShallowWrapper {
                                                   }
                                                   transitionName="zoom-big-fast"
                                         >
+                                                   
                                                   <Unknown
                                                             large={true}
                                                   />
+                                                   
                                                   <Text
                                                             large={true}
-                                                            style={
-                                                                      Object {
-                                                                                "marginRight": "0.5rem",
-                                                                              }
-                                                            }
                                                   >
-                                                             
                                                             second_layer
                                                   </Text>
                                                   <style__NahmiiSwitch
                                                             checked={false}
                                                             disabled={false}
                                                             onChange={[Function]}
+                                                            style={
+                                                                      Object {
+                                                                                "marginLeft": "0.5rem",
+                                                                              }
+                                                            }
                                                   />
                                         </Tooltip>
+                                        <NahmiiTutorialBtn
+                                                  style={
+                                                            Object {
+                                                                      "marginLeft": "0.5rem",
+                                                                    }
+                                                  }
+                                        />
                               </div>
                               <Spring
                                         config={
@@ -15804,6 +16076,7 @@ ShallowWrapper {
                             <div
                                           style={
                                                         Object {
+                                                                      "display": "flex",
                                                                       "marignRight": "auto",
                                                                     }
                                           }
@@ -15812,7 +16085,6 @@ ShallowWrapper {
                                                         large={true}
                                           >
                                                         send_on_the
-                                                         
                                           </Text>
                                           <Tooltip
                                                         arrowPointAtCenter={false}
@@ -15833,26 +16105,34 @@ ShallowWrapper {
                                                         }
                                                         transitionName="zoom-big-fast"
                                           >
+                                                         
                                                         <Unknown
                                                                       large={true}
                                                         />
+                                                         
                                                         <Text
                                                                       large={true}
-                                                                      style={
-                                                                                    Object {
-                                                                                                  "marginRight": "0.5rem",
-                                                                                                }
-                                                                      }
                                                         >
-                                                                       
                                                                       second_layer
                                                         </Text>
                                                         <style__NahmiiSwitch
                                                                       checked={false}
                                                                       disabled={false}
                                                                       onChange={[Function]}
+                                                                      style={
+                                                                                    Object {
+                                                                                                  "marginLeft": "0.5rem",
+                                                                                                }
+                                                                      }
                                                         />
                                           </Tooltip>
+                                          <NahmiiTutorialBtn
+                                                        style={
+                                                                      Object {
+                                                                                    "marginLeft": "0.5rem",
+                                                                                  }
+                                                        }
+                                          />
                             </div>
                             <Spring
                                           config={
@@ -16246,6 +16526,7 @@ ShallowWrapper {
                 <div
                                 style={
                                                 Object {
+                                                                "display": "flex",
                                                                 "marignRight": "auto",
                                                               }
                                 }
@@ -16254,7 +16535,6 @@ ShallowWrapper {
                                                 large={true}
                                 >
                                                 send_on_the
-                                                 
                                 </Text>
                                 <Tooltip
                                                 arrowPointAtCenter={false}
@@ -16275,26 +16555,34 @@ ShallowWrapper {
                                                 }
                                                 transitionName="zoom-big-fast"
                                 >
+                                                 
                                                 <Unknown
                                                                 large={true}
                                                 />
+                                                 
                                                 <Text
                                                                 large={true}
-                                                                style={
-                                                                                Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                }
                                                 >
-                                                                 
                                                                 second_layer
                                                 </Text>
                                                 <style__NahmiiSwitch
                                                                 checked={false}
                                                                 disabled={false}
                                                                 onChange={[Function]}
+                                                                style={
+                                                                                Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                                }
                                                 />
                                 </Tooltip>
+                                <NahmiiTutorialBtn
+                                                style={
+                                                                Object {
+                                                                                "marginLeft": "0.5rem",
+                                                                              }
+                                                }
+                                />
                 </div>
                 <Spring
                                 config={
@@ -16426,6 +16714,7 @@ ShallowWrapper {
                   <div
                     style={
                                         Object {
+                                                            "display": "flex",
                                                             "marignRight": "auto",
                                                           }
                     }
@@ -16434,7 +16723,6 @@ ShallowWrapper {
                                         large={true}
                     >
                                         send_on_the
-                                         
                     </Text>
                     <Tooltip
                                         arrowPointAtCenter={false}
@@ -16455,26 +16743,34 @@ ShallowWrapper {
                                         }
                                         transitionName="zoom-big-fast"
                     >
+                                         
                                         <Unknown
                                                             large={true}
                                         />
+                                         
                                         <Text
                                                             large={true}
-                                                            style={
-                                                                                Object {
-                                                                                                    "marginRight": "0.5rem",
-                                                                                                  }
-                                                            }
                                         >
-                                                             
                                                             second_layer
                                         </Text>
                                         <style__NahmiiSwitch
                                                             checked={false}
                                                             disabled={false}
                                                             onChange={[Function]}
+                                                            style={
+                                                                                Object {
+                                                                                                    "marginLeft": "0.5rem",
+                                                                                                  }
+                                                            }
                                         />
                     </Tooltip>
+                    <NahmiiTutorialBtn
+                                        style={
+                                                            Object {
+                                                                                "marginLeft": "0.5rem",
+                                                                              }
+                                        }
+                    />
 </div>,
                   <Spring
                     config={
@@ -16729,7 +17025,6 @@ ShallowWrapper {
                         large={true}
 >
                         send_on_the
-                         
 </Text>,
                       <Tooltip
                         arrowPointAtCenter={false}
@@ -16750,28 +17045,37 @@ ShallowWrapper {
                         }
                         transitionName="zoom-big-fast"
 >
+                         
                         <Unknown
                                                 large={true}
                         />
+                         
                         <Text
                                                 large={true}
-                                                style={
-                                                                        Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                }
                         >
-                                                 
                                                 second_layer
                         </Text>
                         <style__NahmiiSwitch
                                                 checked={false}
                                                 disabled={false}
                                                 onChange={[Function]}
+                                                style={
+                                                                        Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                }
                         />
 </Tooltip>,
+                      <NahmiiTutorialBtn
+                        style={
+                                                Object {
+                                                                        "marginLeft": "0.5rem",
+                                                                      }
+                        }
+/>,
                     ],
                     "style": Object {
+                      "display": "flex",
                       "marignRight": "auto",
                     },
                   },
@@ -16782,17 +17086,11 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": Array [
-                          "send_on_the",
-                          " ",
-                        ],
+                        "children": "send_on_the",
                         "large": true,
                       },
                       "ref": null,
-                      "rendered": Array [
-                        "send_on_the",
-                        " ",
-                      ],
+                      "rendered": "send_on_the",
                       "type": [Function],
                     },
                     Object {
@@ -16803,24 +17101,25 @@ ShallowWrapper {
                         "arrowPointAtCenter": false,
                         "autoAdjustOverflow": true,
                         "children": Array [
+                          " ",
                           <Unknown
                             large={true}
 />,
+                          " ",
                           <Text
                             large={true}
-                            style={
-                                                        Object {
-                                                                                    "marginRight": "0.5rem",
-                                                                                  }
-                            }
 >
-                             
                             second_layer
 </Text>,
                           <style__NahmiiSwitch
                             checked={false}
                             disabled={false}
                             onChange={[Function]}
+                            style={
+                                                        Object {
+                                                                                    "marginLeft": "0.5rem",
+                                                                                  }
+                            }
 />,
                         ],
                         "mouseEnterDelay": 0.1,
@@ -16837,6 +17136,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
+                        " ",
                         Object {
                           "instance": null,
                           "key": undefined,
@@ -16848,25 +17148,17 @@ ShallowWrapper {
                           "rendered": null,
                           "type": [Function],
                         },
+                        " ",
                         Object {
                           "instance": null,
                           "key": undefined,
                           "nodeType": "class",
                           "props": Object {
-                            "children": Array [
-                              " ",
-                              "second_layer",
-                            ],
+                            "children": "second_layer",
                             "large": true,
-                            "style": Object {
-                              "marginRight": "0.5rem",
-                            },
                           },
                           "ref": null,
-                          "rendered": Array [
-                            " ",
-                            "second_layer",
-                          ],
+                          "rendered": "second_layer",
                           "type": [Function],
                         },
                         Object {
@@ -16877,12 +17169,28 @@ ShallowWrapper {
                             "checked": false,
                             "disabled": false,
                             "onChange": [Function],
+                            "style": Object {
+                              "marginLeft": "0.5rem",
+                            },
                           },
                           "ref": null,
                           "rendered": null,
                           "type": [Function],
                         },
                       ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "style": Object {
+                          "marginLeft": "0.5rem",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": null,
                       "type": [Function],
                     },
                   ],
@@ -17583,6 +17891,7 @@ ShallowWrapper {
                                     <div
                                                 style={
                                                             Object {
+                                                                        "display": "flex",
                                                                         "marignRight": "auto",
                                                                       }
                                                 }
@@ -17591,7 +17900,6 @@ ShallowWrapper {
                                                             large={true}
                                                 >
                                                             send_on_the
-                                                             
                                                 </Text>
                                                 <Tooltip
                                                             arrowPointAtCenter={false}
@@ -17612,26 +17920,34 @@ ShallowWrapper {
                                                             }
                                                             transitionName="zoom-big-fast"
                                                 >
+                                                             
                                                             <Unknown
                                                                         large={true}
                                                             />
+                                                             
                                                             <Text
                                                                         large={true}
-                                                                        style={
-                                                                                    Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                        }
                                                             >
-                                                                         
                                                                         second_layer
                                                             </Text>
                                                             <style__NahmiiSwitch
                                                                         checked={false}
                                                                         disabled={false}
                                                                         onChange={[Function]}
+                                                                        style={
+                                                                                    Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                                        }
                                                             />
                                                 </Tooltip>
+                                                <NahmiiTutorialBtn
+                                                            style={
+                                                                        Object {
+                                                                                    "marginLeft": "0.5rem",
+                                                                                  }
+                                                            }
+                                                />
                                     </div>
                                     <Spring
                                                 config={
@@ -18094,6 +18410,7 @@ ShallowWrapper {
                                 <div
                                                 style={
                                                                 Object {
+                                                                                "display": "flex",
                                                                                 "marignRight": "auto",
                                                                               }
                                                 }
@@ -18102,7 +18419,6 @@ ShallowWrapper {
                                                                 large={true}
                                                 >
                                                                 send_on_the
-                                                                 
                                                 </Text>
                                                 <Tooltip
                                                                 arrowPointAtCenter={false}
@@ -18123,26 +18439,34 @@ ShallowWrapper {
                                                                 }
                                                                 transitionName="zoom-big-fast"
                                                 >
+                                                                 
                                                                 <Unknown
                                                                                 large={true}
                                                                 />
+                                                                 
                                                                 <Text
                                                                                 large={true}
-                                                                                style={
-                                                                                                Object {
-                                                                                                                "marginRight": "0.5rem",
-                                                                                                              }
-                                                                                }
                                                                 >
-                                                                                 
                                                                                 second_layer
                                                                 </Text>
                                                                 <style__NahmiiSwitch
                                                                                 checked={false}
                                                                                 disabled={false}
                                                                                 onChange={[Function]}
+                                                                                style={
+                                                                                                Object {
+                                                                                                                "marginLeft": "0.5rem",
+                                                                                                              }
+                                                                                }
                                                                 />
                                                 </Tooltip>
+                                                <NahmiiTutorialBtn
+                                                                style={
+                                                                                Object {
+                                                                                                "marginLeft": "0.5rem",
+                                                                                              }
+                                                                }
+                                                />
                                 </div>
                                 <Spring
                                                 config={
@@ -18536,6 +18860,7 @@ ShallowWrapper {
                   <div
                                     style={
                                                       Object {
+                                                                        "display": "flex",
                                                                         "marignRight": "auto",
                                                                       }
                                     }
@@ -18544,7 +18869,6 @@ ShallowWrapper {
                                                       large={true}
                                     >
                                                       send_on_the
-                                                       
                                     </Text>
                                     <Tooltip
                                                       arrowPointAtCenter={false}
@@ -18565,26 +18889,34 @@ ShallowWrapper {
                                                       }
                                                       transitionName="zoom-big-fast"
                                     >
+                                                       
                                                       <Unknown
                                                                         large={true}
                                                       />
+                                                       
                                                       <Text
                                                                         large={true}
-                                                                        style={
-                                                                                          Object {
-                                                                                                            "marginRight": "0.5rem",
-                                                                                                          }
-                                                                        }
                                                       >
-                                                                         
                                                                         second_layer
                                                       </Text>
                                                       <style__NahmiiSwitch
                                                                         checked={false}
                                                                         disabled={false}
                                                                         onChange={[Function]}
+                                                                        style={
+                                                                                          Object {
+                                                                                                            "marginLeft": "0.5rem",
+                                                                                                          }
+                                                                        }
                                                       />
                                     </Tooltip>
+                                    <NahmiiTutorialBtn
+                                                      style={
+                                                                        Object {
+                                                                                          "marginLeft": "0.5rem",
+                                                                                        }
+                                                      }
+                                    />
                   </div>
                   <Spring
                                     config={
@@ -18716,6 +19048,7 @@ ShallowWrapper {
                     <div
                       style={
                                             Object {
+                                                                  "display": "flex",
                                                                   "marignRight": "auto",
                                                                 }
                       }
@@ -18724,7 +19057,6 @@ ShallowWrapper {
                                             large={true}
                       >
                                             send_on_the
-                                             
                       </Text>
                       <Tooltip
                                             arrowPointAtCenter={false}
@@ -18745,26 +19077,34 @@ ShallowWrapper {
                                             }
                                             transitionName="zoom-big-fast"
                       >
+                                             
                                             <Unknown
                                                                   large={true}
                                             />
+                                             
                                             <Text
                                                                   large={true}
-                                                                  style={
-                                                                                        Object {
-                                                                                                              "marginRight": "0.5rem",
-                                                                                                            }
-                                                                  }
                                             >
-                                                                   
                                                                   second_layer
                                             </Text>
                                             <style__NahmiiSwitch
                                                                   checked={false}
                                                                   disabled={false}
                                                                   onChange={[Function]}
+                                                                  style={
+                                                                                        Object {
+                                                                                                              "marginLeft": "0.5rem",
+                                                                                                            }
+                                                                  }
                                             />
                       </Tooltip>
+                      <NahmiiTutorialBtn
+                                            style={
+                                                                  Object {
+                                                                                        "marginLeft": "0.5rem",
+                                                                                      }
+                                            }
+                      />
 </div>,
                     <Spring
                       config={
@@ -19019,7 +19359,6 @@ ShallowWrapper {
                           large={true}
 >
                           send_on_the
-                           
 </Text>,
                         <Tooltip
                           arrowPointAtCenter={false}
@@ -19040,28 +19379,37 @@ ShallowWrapper {
                           }
                           transitionName="zoom-big-fast"
 >
+                           
                           <Unknown
                                                     large={true}
                           />
+                           
                           <Text
                                                     large={true}
-                                                    style={
-                                                                              Object {
-                                                                                                        "marginRight": "0.5rem",
-                                                                                                      }
-                                                    }
                           >
-                                                     
                                                     second_layer
                           </Text>
                           <style__NahmiiSwitch
                                                     checked={false}
                                                     disabled={false}
                                                     onChange={[Function]}
+                                                    style={
+                                                                              Object {
+                                                                                                        "marginLeft": "0.5rem",
+                                                                                                      }
+                                                    }
                           />
 </Tooltip>,
+                        <NahmiiTutorialBtn
+                          style={
+                                                    Object {
+                                                                              "marginLeft": "0.5rem",
+                                                                            }
+                          }
+/>,
                       ],
                       "style": Object {
+                        "display": "flex",
                         "marignRight": "auto",
                       },
                     },
@@ -19072,17 +19420,11 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "children": Array [
-                            "send_on_the",
-                            " ",
-                          ],
+                          "children": "send_on_the",
                           "large": true,
                         },
                         "ref": null,
-                        "rendered": Array [
-                          "send_on_the",
-                          " ",
-                        ],
+                        "rendered": "send_on_the",
                         "type": [Function],
                       },
                       Object {
@@ -19093,24 +19435,25 @@ ShallowWrapper {
                           "arrowPointAtCenter": false,
                           "autoAdjustOverflow": true,
                           "children": Array [
+                            " ",
                             <Unknown
                               large={true}
 />,
+                            " ",
                             <Text
                               large={true}
-                              style={
-                                                            Object {
-                                                                                          "marginRight": "0.5rem",
-                                                                                        }
-                              }
 >
-                               
                               second_layer
 </Text>,
                             <style__NahmiiSwitch
                               checked={false}
                               disabled={false}
                               onChange={[Function]}
+                              style={
+                                                            Object {
+                                                                                          "marginLeft": "0.5rem",
+                                                                                        }
+                              }
 />,
                           ],
                           "mouseEnterDelay": 0.1,
@@ -19127,6 +19470,7 @@ ShallowWrapper {
                         },
                         "ref": null,
                         "rendered": Array [
+                          " ",
                           Object {
                             "instance": null,
                             "key": undefined,
@@ -19138,25 +19482,17 @@ ShallowWrapper {
                             "rendered": null,
                             "type": [Function],
                           },
+                          " ",
                           Object {
                             "instance": null,
                             "key": undefined,
                             "nodeType": "class",
                             "props": Object {
-                              "children": Array [
-                                " ",
-                                "second_layer",
-                              ],
+                              "children": "second_layer",
                               "large": true,
-                              "style": Object {
-                                "marginRight": "0.5rem",
-                              },
                             },
                             "ref": null,
-                            "rendered": Array [
-                              " ",
-                              "second_layer",
-                            ],
+                            "rendered": "second_layer",
                             "type": [Function],
                           },
                           Object {
@@ -19167,12 +19503,28 @@ ShallowWrapper {
                               "checked": false,
                               "disabled": false,
                               "onChange": [Function],
+                              "style": Object {
+                                "marginLeft": "0.5rem",
+                              },
                             },
                             "ref": null,
                             "rendered": null,
                             "type": [Function],
                           },
                         ],
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "style": Object {
+                            "marginLeft": "0.5rem",
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
                         "type": [Function],
                       },
                     ],

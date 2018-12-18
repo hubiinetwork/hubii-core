@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { getAbsolutePath } from 'utils/electron';
 import { formatFiat } from 'utils/numberFormats';
 
+import NahmiiTutorialBtn from 'containers/NahmiiTutorialBtn';
 import Text from 'components/ui/Text';
 import NahmiiText from 'components/ui/NahmiiText';
 import {
@@ -90,12 +91,15 @@ class BreakdownList extends React.PureComponent {
         <Text large>{formatMessage({ id: 'base_layer_balances' })}</Text>
         <FlexContainer>{baseLayerBalanceList}</FlexContainer>
         <br />
-        <a onClick={this.props.togglePie} role="button" tabIndex="0" style={{ textDecoration: 'none' }}>
-          <NahmiiText large /><Text large> { formatMessage({ id: 'balances' }) }</Text>
-          <ToggleExpandedArrow
-            expanded={expandedAmount}
-          />
-        </a>
+        <div style={{ display: 'flex' }}>
+          <a onClick={this.props.togglePie} role="button" tabIndex="0" style={{ textDecoration: 'none' }}>
+            <NahmiiText large /><Text large> { formatMessage({ id: 'balances' }) }</Text>
+            <ToggleExpandedArrow
+              expanded={expandedAmount}
+            />
+          </a>
+          <NahmiiTutorialBtn style={{ marginLeft: '0.5rem' }} />
+        </div>
         <FlexContainer>{nahmiiBalanceList}</FlexContainer>
         <NahmiiBalancesWrapper expanded={expandedAmount}>
           <Text>{formatMessage({ id: 'available' })}</Text>

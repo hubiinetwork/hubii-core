@@ -38,6 +38,7 @@ import {
   TransferFormWrapper,
   NahmiiSwitch,
 } from './style';
+import NahmiiTutorialBtn from '../../containers/NahmiiTutorialBtn';
 
 // TODO: This component is buggy. Just merging because a lot of eslint issue have been resolved in this branch
 export class TransferForm extends React.PureComponent {
@@ -428,17 +429,23 @@ export class TransferForm extends React.PureComponent {
                   onChange={this.handleAmountToSendChange}
                 />
               </FormItem>
-              <div style={{ marignRight: 'auto' }}>
-                <Text large>{formatMessage({ id: 'send_on_the' })} </Text>
+              <div style={{ marignRight: 'auto', display: 'flex' }}>
+                <Text large>{formatMessage({ id: 'send_on_the' })}</Text>
                 <Tooltip
                   placement="right"
                   overlayStyle={!disableNahmiiPayments && { display: 'none' }}
                   title={<span>{formatMessage({ id: 'nahmii_mainnet' })}</span>}
                 >
-                  <NahmiiText large />
-                  <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
-                  <NahmiiSwitch disabled={disableNahmiiPayments} checked={layer === 'nahmii'} onChange={(() => this.handleLayerSwitch())} />
+                  &nbsp;<NahmiiText large />&nbsp;
+                  <Text large>{formatMessage({ id: 'second_layer' })}</Text>
+                  <NahmiiSwitch
+                    disabled={disableNahmiiPayments}
+                    checked={layer === 'nahmii'}
+                    onChange={(() => this.handleLayerSwitch())}
+                    style={{ marginLeft: '0.5rem' }}
+                  />
                 </Tooltip>
+                <NahmiiTutorialBtn style={{ marginLeft: '0.5rem' }} />
               </div>
               <Spring
                 from={{ noAdvProg: 0 }}
