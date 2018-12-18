@@ -11,8 +11,8 @@ export const transactionsEmptyMock = fromJS({});
 
 export const transactionsMock = fromJS({
   ...loadedWalletTransactions.toJS(),
-  ...loadingWalletTransactions.toJS(),
   ...errorWalletTransactions.toJS(),
+  ...loadingWalletTransactions.toJS(),
   '0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb': {
     loading: true,
     error: null,

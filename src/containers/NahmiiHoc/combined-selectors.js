@@ -63,10 +63,12 @@ const makeSelectCombinedTransactions = () => createSelector(
         || nahmiiReceipts.getIn([address, 'loading'])
         || baseLayerTransactions.getIn([address, 'loading']);
       let error = null;
-      const nahmiiReceiptsError = nahmiiReceipts.get(address) && nahmiiReceipts.getIn([address, 'error']);
-      const baseLayerTransactionsError = baseLayerTransactions.getIn([address, 'error']);
-      if (nahmiiReceiptsError) error = nahmiiReceiptsError;
-      if (baseLayerTransactionsError) error = baseLayerTransactionsError;
+      if (!loading) {
+        const nahmiiReceiptsError = nahmiiReceipts.get(address) && nahmiiReceipts.getIn([address, 'error']);
+        const baseLayerTransactionsError = baseLayerTransactions.getIn([address, 'error']);
+        if (nahmiiReceiptsError) error = nahmiiReceiptsError;
+        if (baseLayerTransactionsError) error = baseLayerTransactionsError;
+      }
       return fromJS({
         loading,
         error,

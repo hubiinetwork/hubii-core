@@ -20,7 +20,7 @@ import {
 
 describe('makeSelectCombinedTransactions', () => {
   const combinedTransactionsSelector = makeSelectCombinedTransactions();
-  it.only('should combine base layer and nahmii transactions correctly', () => {
+  it('should combine base layer and nahmii transactions correctly', () => {
     const expected = combinedTransactions;
     expect(combinedTransactionsSelector(storeMock)).toEqual(expected);
   });
@@ -31,7 +31,7 @@ describe('makeSelectCombinedTransactions', () => {
       fromJS([])
     );
     const expected = transactionsWithInfoMock
-      .setIn(['0xF4db7c6030c9c5754A6A712212d6342DCA52e25d', 'loading'], true);
+      .setIn(['0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb', 'loading'], true);
     expect(combinedTransactionsSelector(testState)).toEqual(expected);
   });
 
@@ -46,11 +46,11 @@ describe('makeSelectCombinedTransactions', () => {
     ).deleteIn(
       ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts']
     ).setIn(
+      ['0xF4db7c6030c9c5754A6A712212d6342DCA52e25d'],
+      fromJS({ loading: false, error: true, transactions: [] })
+    ).setIn(
       ['0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5'],
       fromJS({ loading: true, error: null, transactions: [] })
-    ).setIn(
-      ['0xF4db7c6030c9c5754A6A712212d6342DCA52e25d'],
-      fromJS({ loading: true, error: true, transactions: [] })
     ).setIn(
       ['0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb'],
       fromJS({ loading: true, error: null, transactions: [] })

@@ -169,6 +169,11 @@ export const receiptsLoaded = fromJS({
       },
     ],
   },
+  '0xF4db7c6030c9c5754A6A712212d6342DCA52e25d': {
+    loading: false,
+    error: true,
+    receipts: [],
+  },
 });
 
 // makeSelectReceiptsWithInfo
