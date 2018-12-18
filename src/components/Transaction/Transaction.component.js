@@ -138,7 +138,7 @@ Transaction.propTypes = {
   className: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   defaultOpen: PropTypes.bool.isRequired,
-  layer: PropTypes.oneOf(['baseLayer', 'nahmii']),
+  layer: PropTypes.oneOf(['baseLayer', 'nahmii']).isRequired,
   intl: PropTypes.object.isRequired,
 };
 
