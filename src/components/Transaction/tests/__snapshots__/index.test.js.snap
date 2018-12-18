@@ -58,9 +58,17 @@ ShallowWrapper {
                                 <Transaction.style__FiatValue>
                                         ($123.34 USD)
                                 </Transaction.style__FiatValue>
-                                <Transaction.style__TransactionHistoryTime>
-                                        01/09/1995
-                                </Transaction.style__TransactionHistoryTime>
+                                <div
+                                        style={
+                                                Object {
+                                                        "marginLeft": "auto",
+                                                      }
+                                        }
+                                >
+                                        <Transaction.style__TransactionHistoryTime>
+                                                01/09/1995
+                                        </Transaction.style__TransactionHistoryTime>
+                                </div>
                         </Transaction.style__HeaderWrapper>
                 }
                 showArrow={false}
@@ -85,19 +93,8 @@ ShallowWrapper {
                                               }
                                 }
                         >
-                                <Transaction.style__SubtitleText>
-                                        confirmations
-                                        :
-                                </Transaction.style__SubtitleText>
-                                <Transaction.style__GreenTextWrapper>
-                                        204
-                                </Transaction.style__GreenTextWrapper>
+                                
                         </div>
-                        <Transaction.style__TransactionId
-                                onClick={[Function]}
-                        >
-                                view_etherscan
-                        </Transaction.style__TransactionId>
                 </Transaction.style__CollapsableContent>
         </Transaction.style__DetailPanel>
 </Transaction.style__DetailCollapse>,
@@ -130,9 +127,17 @@ ShallowWrapper {
                               <Transaction.style__FiatValue>
                                         ($123.34 USD)
                               </Transaction.style__FiatValue>
-                              <Transaction.style__TransactionHistoryTime>
-                                        01/09/1995
-                              </Transaction.style__TransactionHistoryTime>
+                              <div
+                                        style={
+                                                  Object {
+                                                            "marginLeft": "auto",
+                                                          }
+                                        }
+                              >
+                                        <Transaction.style__TransactionHistoryTime>
+                                                  01/09/1995
+                                        </Transaction.style__TransactionHistoryTime>
+                              </div>
                     </Transaction.style__HeaderWrapper>
           }
           showArrow={false}
@@ -157,19 +162,8 @@ ShallowWrapper {
                                                 }
                               }
                     >
-                              <Transaction.style__SubtitleText>
-                                        confirmations
-                                        :
-                              </Transaction.style__SubtitleText>
-                              <Transaction.style__GreenTextWrapper>
-                                        204
-                              </Transaction.style__GreenTextWrapper>
+                              
                     </div>
-                    <Transaction.style__TransactionId
-                              onClick={[Function]}
-                    >
-                              view_etherscan
-                    </Transaction.style__TransactionId>
           </Transaction.style__CollapsableContent>
 </Transaction.style__DetailPanel>,
         "defaultActiveKey": null,
@@ -201,19 +195,8 @@ ShallowWrapper {
                                               }
                         }
             >
-                        <Transaction.style__SubtitleText>
-                                    confirmations
-                                    :
-                        </Transaction.style__SubtitleText>
-                        <Transaction.style__GreenTextWrapper>
-                                    204
-                        </Transaction.style__GreenTextWrapper>
+                        
             </div>
-            <Transaction.style__TransactionId
-                        onClick={[Function]}
-            >
-                        view_etherscan
-            </Transaction.style__TransactionId>
 </Transaction.style__CollapsableContent>,
           "header": <Transaction.style__HeaderWrapper>
             <Transaction.style__Image
@@ -233,9 +216,17 @@ ShallowWrapper {
             <Transaction.style__FiatValue>
                         ($123.34 USD)
             </Transaction.style__FiatValue>
-            <Transaction.style__TransactionHistoryTime>
-                        01/09/1995
-            </Transaction.style__TransactionHistoryTime>
+            <div
+                        style={
+                                    Object {
+                                                "marginLeft": "auto",
+                                              }
+                        }
+            >
+                        <Transaction.style__TransactionHistoryTime>
+                                    01/09/1995
+                        </Transaction.style__TransactionHistoryTime>
+            </div>
 </Transaction.style__HeaderWrapper>,
           "showArrow": false,
         },
@@ -265,19 +256,10 @@ ShallowWrapper {
                                               }
                 }
 >
-                <Transaction.style__SubtitleText>
-                                confirmations
-                                :
-                </Transaction.style__SubtitleText>
-                <Transaction.style__GreenTextWrapper>
-                                204
-                </Transaction.style__GreenTextWrapper>
+                
 </div>,
-              <Transaction.style__TransactionId
-                onClick={[Function]}
->
-                view_etherscan
-</Transaction.style__TransactionId>,
+              false,
+              false,
             ],
           },
           "ref": null,
@@ -336,13 +318,8 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <Transaction.style__SubtitleText>
-                    confirmations
-                    :
-</Transaction.style__SubtitleText>,
-                  <Transaction.style__GreenTextWrapper>
-                    204
-</Transaction.style__GreenTextWrapper>,
+                  false,
+                  false,
                 ],
                 "style": Object {
                   "display": "flex",
@@ -350,49 +327,13 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": Array [
-                      "confirmations",
-                      ":",
-                    ],
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    "confirmations",
-                    ":",
-                  ],
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "204",
-                  },
-                  "ref": null,
-                  "rendered": "204",
-                  "type": [Function],
-                },
+                false,
+                false,
               ],
               "type": "div",
             },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "view_etherscan",
-                "onClick": [Function],
-              },
-              "ref": null,
-              "rendered": "view_etherscan",
-              "type": [Function],
-            },
+            false,
+            false,
           ],
           "type": [Function],
         },
@@ -433,9 +374,17 @@ ShallowWrapper {
                                         <Transaction.style__FiatValue>
                                                   ($123.34 USD)
                                         </Transaction.style__FiatValue>
-                                        <Transaction.style__TransactionHistoryTime>
-                                                  01/09/1995
-                                        </Transaction.style__TransactionHistoryTime>
+                                        <div
+                                                  style={
+                                                            Object {
+                                                                      "marginLeft": "auto",
+                                                                    }
+                                                  }
+                                        >
+                                                  <Transaction.style__TransactionHistoryTime>
+                                                            01/09/1995
+                                                  </Transaction.style__TransactionHistoryTime>
+                                        </div>
                               </Transaction.style__HeaderWrapper>
                     }
                     showArrow={false}
@@ -460,19 +409,8 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        <Transaction.style__SubtitleText>
-                                                  confirmations
-                                                  :
-                                        </Transaction.style__SubtitleText>
-                                        <Transaction.style__GreenTextWrapper>
-                                                  204
-                                        </Transaction.style__GreenTextWrapper>
+                                        
                               </div>
-                              <Transaction.style__TransactionId
-                                        onClick={[Function]}
-                              >
-                                        view_etherscan
-                              </Transaction.style__TransactionId>
                     </Transaction.style__CollapsableContent>
           </Transaction.style__DetailPanel>
 </Transaction.style__DetailCollapse>,
@@ -505,9 +443,17 @@ ShallowWrapper {
                                     <Transaction.style__FiatValue>
                                                 ($123.34 USD)
                                     </Transaction.style__FiatValue>
-                                    <Transaction.style__TransactionHistoryTime>
-                                                01/09/1995
-                                    </Transaction.style__TransactionHistoryTime>
+                                    <div
+                                                style={
+                                                            Object {
+                                                                        "marginLeft": "auto",
+                                                                      }
+                                                }
+                                    >
+                                                <Transaction.style__TransactionHistoryTime>
+                                                            01/09/1995
+                                                </Transaction.style__TransactionHistoryTime>
+                                    </div>
                         </Transaction.style__HeaderWrapper>
             }
             showArrow={false}
@@ -532,19 +478,8 @@ ShallowWrapper {
                                                           }
                                     }
                         >
-                                    <Transaction.style__SubtitleText>
-                                                confirmations
-                                                :
-                                    </Transaction.style__SubtitleText>
-                                    <Transaction.style__GreenTextWrapper>
-                                                204
-                                    </Transaction.style__GreenTextWrapper>
+                                    
                         </div>
-                        <Transaction.style__TransactionId
-                                    onClick={[Function]}
-                        >
-                                    view_etherscan
-                        </Transaction.style__TransactionId>
             </Transaction.style__CollapsableContent>
 </Transaction.style__DetailPanel>,
           "defaultActiveKey": null,
@@ -576,19 +511,8 @@ ShallowWrapper {
                                                       }
                             }
               >
-                            <Transaction.style__SubtitleText>
-                                          confirmations
-                                          :
-                            </Transaction.style__SubtitleText>
-                            <Transaction.style__GreenTextWrapper>
-                                          204
-                            </Transaction.style__GreenTextWrapper>
+                            
               </div>
-              <Transaction.style__TransactionId
-                            onClick={[Function]}
-              >
-                            view_etherscan
-              </Transaction.style__TransactionId>
 </Transaction.style__CollapsableContent>,
             "header": <Transaction.style__HeaderWrapper>
               <Transaction.style__Image
@@ -608,9 +532,17 @@ ShallowWrapper {
               <Transaction.style__FiatValue>
                             ($123.34 USD)
               </Transaction.style__FiatValue>
-              <Transaction.style__TransactionHistoryTime>
-                            01/09/1995
-              </Transaction.style__TransactionHistoryTime>
+              <div
+                            style={
+                                          Object {
+                                                        "marginLeft": "auto",
+                                                      }
+                            }
+              >
+                            <Transaction.style__TransactionHistoryTime>
+                                          01/09/1995
+                            </Transaction.style__TransactionHistoryTime>
+              </div>
 </Transaction.style__HeaderWrapper>,
             "showArrow": false,
           },
@@ -640,19 +572,10 @@ ShallowWrapper {
                                                     }
                   }
 >
-                  <Transaction.style__SubtitleText>
-                                    confirmations
-                                    :
-                  </Transaction.style__SubtitleText>
-                  <Transaction.style__GreenTextWrapper>
-                                    204
-                  </Transaction.style__GreenTextWrapper>
+                  
 </div>,
-                <Transaction.style__TransactionId
-                  onClick={[Function]}
->
-                  view_etherscan
-</Transaction.style__TransactionId>,
+                false,
+                false,
               ],
             },
             "ref": null,
@@ -711,13 +634,8 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": Array [
-                    <Transaction.style__SubtitleText>
-                      confirmations
-                      :
-</Transaction.style__SubtitleText>,
-                    <Transaction.style__GreenTextWrapper>
-                      204
-</Transaction.style__GreenTextWrapper>,
+                    false,
+                    false,
                   ],
                   "style": Object {
                     "display": "flex",
@@ -725,49 +643,13 @@ ShallowWrapper {
                 },
                 "ref": null,
                 "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": Array [
-                        "confirmations",
-                        ":",
-                      ],
-                    },
-                    "ref": null,
-                    "rendered": Array [
-                      "confirmations",
-                      ":",
-                    ],
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": "204",
-                    },
-                    "ref": null,
-                    "rendered": "204",
-                    "type": [Function],
-                  },
+                  false,
+                  false,
                 ],
                 "type": "div",
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "view_etherscan",
-                  "onClick": [Function],
-                },
-                "ref": null,
-                "rendered": "view_etherscan",
-                "type": [Function],
-              },
+              false,
+              false,
             ],
             "type": [Function],
           },
@@ -846,9 +728,17 @@ ShallowWrapper {
                                 <Transaction.style__FiatValue>
                                         ($123.34 USD)
                                 </Transaction.style__FiatValue>
-                                <Transaction.style__TransactionHistoryTime>
-                                        01/09/1995
-                                </Transaction.style__TransactionHistoryTime>
+                                <div
+                                        style={
+                                                Object {
+                                                        "marginLeft": "auto",
+                                                      }
+                                        }
+                                >
+                                        <Transaction.style__TransactionHistoryTime>
+                                                01/09/1995
+                                        </Transaction.style__TransactionHistoryTime>
+                                </div>
                         </Transaction.style__HeaderWrapper>
                 }
                 showArrow={false}
@@ -875,19 +765,8 @@ ShallowWrapper {
                                               }
                                 }
                         >
-                                <Transaction.style__SubtitleText>
-                                        confirmations
-                                        :
-                                </Transaction.style__SubtitleText>
-                                <Transaction.style__GreenTextWrapper>
-                                        204
-                                </Transaction.style__GreenTextWrapper>
+                                
                         </div>
-                        <Transaction.style__TransactionId
-                                onClick={[Function]}
-                        >
-                                view_etherscan
-                        </Transaction.style__TransactionId>
                 </Transaction.style__CollapsableContent>
         </Transaction.style__DetailPanel>
 </Transaction.style__DetailCollapse>,
@@ -920,9 +799,17 @@ ShallowWrapper {
                               <Transaction.style__FiatValue>
                                         ($123.34 USD)
                               </Transaction.style__FiatValue>
-                              <Transaction.style__TransactionHistoryTime>
-                                        01/09/1995
-                              </Transaction.style__TransactionHistoryTime>
+                              <div
+                                        style={
+                                                  Object {
+                                                            "marginLeft": "auto",
+                                                          }
+                                        }
+                              >
+                                        <Transaction.style__TransactionHistoryTime>
+                                                  01/09/1995
+                                        </Transaction.style__TransactionHistoryTime>
+                              </div>
                     </Transaction.style__HeaderWrapper>
           }
           showArrow={false}
@@ -949,19 +836,8 @@ ShallowWrapper {
                                                 }
                               }
                     >
-                              <Transaction.style__SubtitleText>
-                                        confirmations
-                                        :
-                              </Transaction.style__SubtitleText>
-                              <Transaction.style__GreenTextWrapper>
-                                        204
-                              </Transaction.style__GreenTextWrapper>
+                              
                     </div>
-                    <Transaction.style__TransactionId
-                              onClick={[Function]}
-                    >
-                              view_etherscan
-                    </Transaction.style__TransactionId>
           </Transaction.style__CollapsableContent>
 </Transaction.style__DetailPanel>,
         "defaultActiveKey": null,
@@ -995,19 +871,8 @@ ShallowWrapper {
                                               }
                         }
             >
-                        <Transaction.style__SubtitleText>
-                                    confirmations
-                                    :
-                        </Transaction.style__SubtitleText>
-                        <Transaction.style__GreenTextWrapper>
-                                    204
-                        </Transaction.style__GreenTextWrapper>
+                        
             </div>
-            <Transaction.style__TransactionId
-                        onClick={[Function]}
-            >
-                        view_etherscan
-            </Transaction.style__TransactionId>
 </Transaction.style__CollapsableContent>,
           "header": <Transaction.style__HeaderWrapper>
             <Transaction.style__Image
@@ -1027,9 +892,17 @@ ShallowWrapper {
             <Transaction.style__FiatValue>
                         ($123.34 USD)
             </Transaction.style__FiatValue>
-            <Transaction.style__TransactionHistoryTime>
-                        01/09/1995
-            </Transaction.style__TransactionHistoryTime>
+            <div
+                        style={
+                                    Object {
+                                                "marginLeft": "auto",
+                                              }
+                        }
+            >
+                        <Transaction.style__TransactionHistoryTime>
+                                    01/09/1995
+                        </Transaction.style__TransactionHistoryTime>
+            </div>
 </Transaction.style__HeaderWrapper>,
           "showArrow": false,
         },
@@ -1061,19 +934,10 @@ ShallowWrapper {
                                               }
                 }
 >
-                <Transaction.style__SubtitleText>
-                                confirmations
-                                :
-                </Transaction.style__SubtitleText>
-                <Transaction.style__GreenTextWrapper>
-                                204
-                </Transaction.style__GreenTextWrapper>
+                
 </div>,
-              <Transaction.style__TransactionId
-                onClick={[Function]}
->
-                view_etherscan
-</Transaction.style__TransactionId>,
+              false,
+              false,
             ],
           },
           "ref": null,
@@ -1134,13 +998,8 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <Transaction.style__SubtitleText>
-                    confirmations
-                    :
-</Transaction.style__SubtitleText>,
-                  <Transaction.style__GreenTextWrapper>
-                    204
-</Transaction.style__GreenTextWrapper>,
+                  false,
+                  false,
                 ],
                 "style": Object {
                   "display": "flex",
@@ -1148,49 +1007,13 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": Array [
-                      "confirmations",
-                      ":",
-                    ],
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    "confirmations",
-                    ":",
-                  ],
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "204",
-                  },
-                  "ref": null,
-                  "rendered": "204",
-                  "type": [Function],
-                },
+                false,
+                false,
               ],
               "type": "div",
             },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "view_etherscan",
-                "onClick": [Function],
-              },
-              "ref": null,
-              "rendered": "view_etherscan",
-              "type": [Function],
-            },
+            false,
+            false,
           ],
           "type": [Function],
         },
@@ -1231,9 +1054,17 @@ ShallowWrapper {
                                         <Transaction.style__FiatValue>
                                                   ($123.34 USD)
                                         </Transaction.style__FiatValue>
-                                        <Transaction.style__TransactionHistoryTime>
-                                                  01/09/1995
-                                        </Transaction.style__TransactionHistoryTime>
+                                        <div
+                                                  style={
+                                                            Object {
+                                                                      "marginLeft": "auto",
+                                                                    }
+                                                  }
+                                        >
+                                                  <Transaction.style__TransactionHistoryTime>
+                                                            01/09/1995
+                                                  </Transaction.style__TransactionHistoryTime>
+                                        </div>
                               </Transaction.style__HeaderWrapper>
                     }
                     showArrow={false}
@@ -1260,19 +1091,8 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        <Transaction.style__SubtitleText>
-                                                  confirmations
-                                                  :
-                                        </Transaction.style__SubtitleText>
-                                        <Transaction.style__GreenTextWrapper>
-                                                  204
-                                        </Transaction.style__GreenTextWrapper>
+                                        
                               </div>
-                              <Transaction.style__TransactionId
-                                        onClick={[Function]}
-                              >
-                                        view_etherscan
-                              </Transaction.style__TransactionId>
                     </Transaction.style__CollapsableContent>
           </Transaction.style__DetailPanel>
 </Transaction.style__DetailCollapse>,
@@ -1305,9 +1125,17 @@ ShallowWrapper {
                                     <Transaction.style__FiatValue>
                                                 ($123.34 USD)
                                     </Transaction.style__FiatValue>
-                                    <Transaction.style__TransactionHistoryTime>
-                                                01/09/1995
-                                    </Transaction.style__TransactionHistoryTime>
+                                    <div
+                                                style={
+                                                            Object {
+                                                                        "marginLeft": "auto",
+                                                                      }
+                                                }
+                                    >
+                                                <Transaction.style__TransactionHistoryTime>
+                                                            01/09/1995
+                                                </Transaction.style__TransactionHistoryTime>
+                                    </div>
                         </Transaction.style__HeaderWrapper>
             }
             showArrow={false}
@@ -1334,19 +1162,8 @@ ShallowWrapper {
                                                           }
                                     }
                         >
-                                    <Transaction.style__SubtitleText>
-                                                confirmations
-                                                :
-                                    </Transaction.style__SubtitleText>
-                                    <Transaction.style__GreenTextWrapper>
-                                                204
-                                    </Transaction.style__GreenTextWrapper>
+                                    
                         </div>
-                        <Transaction.style__TransactionId
-                                    onClick={[Function]}
-                        >
-                                    view_etherscan
-                        </Transaction.style__TransactionId>
             </Transaction.style__CollapsableContent>
 </Transaction.style__DetailPanel>,
           "defaultActiveKey": null,
@@ -1380,19 +1197,8 @@ ShallowWrapper {
                                                       }
                             }
               >
-                            <Transaction.style__SubtitleText>
-                                          confirmations
-                                          :
-                            </Transaction.style__SubtitleText>
-                            <Transaction.style__GreenTextWrapper>
-                                          204
-                            </Transaction.style__GreenTextWrapper>
+                            
               </div>
-              <Transaction.style__TransactionId
-                            onClick={[Function]}
-              >
-                            view_etherscan
-              </Transaction.style__TransactionId>
 </Transaction.style__CollapsableContent>,
             "header": <Transaction.style__HeaderWrapper>
               <Transaction.style__Image
@@ -1412,9 +1218,17 @@ ShallowWrapper {
               <Transaction.style__FiatValue>
                             ($123.34 USD)
               </Transaction.style__FiatValue>
-              <Transaction.style__TransactionHistoryTime>
-                            01/09/1995
-              </Transaction.style__TransactionHistoryTime>
+              <div
+                            style={
+                                          Object {
+                                                        "marginLeft": "auto",
+                                                      }
+                            }
+              >
+                            <Transaction.style__TransactionHistoryTime>
+                                          01/09/1995
+                            </Transaction.style__TransactionHistoryTime>
+              </div>
 </Transaction.style__HeaderWrapper>,
             "showArrow": false,
           },
@@ -1446,19 +1260,10 @@ ShallowWrapper {
                                                     }
                   }
 >
-                  <Transaction.style__SubtitleText>
-                                    confirmations
-                                    :
-                  </Transaction.style__SubtitleText>
-                  <Transaction.style__GreenTextWrapper>
-                                    204
-                  </Transaction.style__GreenTextWrapper>
+                  
 </div>,
-                <Transaction.style__TransactionId
-                  onClick={[Function]}
->
-                  view_etherscan
-</Transaction.style__TransactionId>,
+                false,
+                false,
               ],
             },
             "ref": null,
@@ -1519,13 +1324,8 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": Array [
-                    <Transaction.style__SubtitleText>
-                      confirmations
-                      :
-</Transaction.style__SubtitleText>,
-                    <Transaction.style__GreenTextWrapper>
-                      204
-</Transaction.style__GreenTextWrapper>,
+                    false,
+                    false,
                   ],
                   "style": Object {
                     "display": "flex",
@@ -1533,49 +1333,13 @@ ShallowWrapper {
                 },
                 "ref": null,
                 "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": Array [
-                        "confirmations",
-                        ":",
-                      ],
-                    },
-                    "ref": null,
-                    "rendered": Array [
-                      "confirmations",
-                      ":",
-                    ],
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": "204",
-                    },
-                    "ref": null,
-                    "rendered": "204",
-                    "type": [Function],
-                  },
+                  false,
+                  false,
                 ],
                 "type": "div",
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "view_etherscan",
-                  "onClick": [Function],
-                },
-                "ref": null,
-                "rendered": "view_etherscan",
-                "type": [Function],
-              },
+              false,
+              false,
             ],
             "type": [Function],
           },
@@ -1654,9 +1418,17 @@ ShallowWrapper {
                                 <Transaction.style__FiatValue>
                                         ($123.34 USD)
                                 </Transaction.style__FiatValue>
-                                <Transaction.style__TransactionHistoryTime>
-                                        01/09/1995
-                                </Transaction.style__TransactionHistoryTime>
+                                <div
+                                        style={
+                                                Object {
+                                                        "marginLeft": "auto",
+                                                      }
+                                        }
+                                >
+                                        <Transaction.style__TransactionHistoryTime>
+                                                01/09/1995
+                                        </Transaction.style__TransactionHistoryTime>
+                                </div>
                         </Transaction.style__HeaderWrapper>
                 }
                 showArrow={false}
@@ -1683,19 +1455,8 @@ ShallowWrapper {
                                               }
                                 }
                         >
-                                <Transaction.style__SubtitleText>
-                                        confirmations
-                                        :
-                                </Transaction.style__SubtitleText>
-                                <Transaction.style__GreenTextWrapper>
-                                        204
-                                </Transaction.style__GreenTextWrapper>
+                                
                         </div>
-                        <Transaction.style__TransactionId
-                                onClick={[Function]}
-                        >
-                                view_etherscan
-                        </Transaction.style__TransactionId>
                 </Transaction.style__CollapsableContent>
         </Transaction.style__DetailPanel>
 </Transaction.style__DetailCollapse>,
@@ -1728,9 +1489,17 @@ ShallowWrapper {
                               <Transaction.style__FiatValue>
                                         ($123.34 USD)
                               </Transaction.style__FiatValue>
-                              <Transaction.style__TransactionHistoryTime>
-                                        01/09/1995
-                              </Transaction.style__TransactionHistoryTime>
+                              <div
+                                        style={
+                                                  Object {
+                                                            "marginLeft": "auto",
+                                                          }
+                                        }
+                              >
+                                        <Transaction.style__TransactionHistoryTime>
+                                                  01/09/1995
+                                        </Transaction.style__TransactionHistoryTime>
+                              </div>
                     </Transaction.style__HeaderWrapper>
           }
           showArrow={false}
@@ -1757,19 +1526,8 @@ ShallowWrapper {
                                                 }
                               }
                     >
-                              <Transaction.style__SubtitleText>
-                                        confirmations
-                                        :
-                              </Transaction.style__SubtitleText>
-                              <Transaction.style__GreenTextWrapper>
-                                        204
-                              </Transaction.style__GreenTextWrapper>
+                              
                     </div>
-                    <Transaction.style__TransactionId
-                              onClick={[Function]}
-                    >
-                              view_etherscan
-                    </Transaction.style__TransactionId>
           </Transaction.style__CollapsableContent>
 </Transaction.style__DetailPanel>,
         "defaultActiveKey": null,
@@ -1803,19 +1561,8 @@ ShallowWrapper {
                                               }
                         }
             >
-                        <Transaction.style__SubtitleText>
-                                    confirmations
-                                    :
-                        </Transaction.style__SubtitleText>
-                        <Transaction.style__GreenTextWrapper>
-                                    204
-                        </Transaction.style__GreenTextWrapper>
+                        
             </div>
-            <Transaction.style__TransactionId
-                        onClick={[Function]}
-            >
-                        view_etherscan
-            </Transaction.style__TransactionId>
 </Transaction.style__CollapsableContent>,
           "header": <Transaction.style__HeaderWrapper>
             <Transaction.style__Image
@@ -1835,9 +1582,17 @@ ShallowWrapper {
             <Transaction.style__FiatValue>
                         ($123.34 USD)
             </Transaction.style__FiatValue>
-            <Transaction.style__TransactionHistoryTime>
-                        01/09/1995
-            </Transaction.style__TransactionHistoryTime>
+            <div
+                        style={
+                                    Object {
+                                                "marginLeft": "auto",
+                                              }
+                        }
+            >
+                        <Transaction.style__TransactionHistoryTime>
+                                    01/09/1995
+                        </Transaction.style__TransactionHistoryTime>
+            </div>
 </Transaction.style__HeaderWrapper>,
           "showArrow": false,
         },
@@ -1869,19 +1624,10 @@ ShallowWrapper {
                                               }
                 }
 >
-                <Transaction.style__SubtitleText>
-                                confirmations
-                                :
-                </Transaction.style__SubtitleText>
-                <Transaction.style__GreenTextWrapper>
-                                204
-                </Transaction.style__GreenTextWrapper>
+                
 </div>,
-              <Transaction.style__TransactionId
-                onClick={[Function]}
->
-                view_etherscan
-</Transaction.style__TransactionId>,
+              false,
+              false,
             ],
           },
           "ref": null,
@@ -1942,13 +1688,8 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <Transaction.style__SubtitleText>
-                    confirmations
-                    :
-</Transaction.style__SubtitleText>,
-                  <Transaction.style__GreenTextWrapper>
-                    204
-</Transaction.style__GreenTextWrapper>,
+                  false,
+                  false,
                 ],
                 "style": Object {
                   "display": "flex",
@@ -1956,49 +1697,13 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": Array [
-                      "confirmations",
-                      ":",
-                    ],
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    "confirmations",
-                    ":",
-                  ],
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "204",
-                  },
-                  "ref": null,
-                  "rendered": "204",
-                  "type": [Function],
-                },
+                false,
+                false,
               ],
               "type": "div",
             },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "view_etherscan",
-                "onClick": [Function],
-              },
-              "ref": null,
-              "rendered": "view_etherscan",
-              "type": [Function],
-            },
+            false,
+            false,
           ],
           "type": [Function],
         },
@@ -2039,9 +1744,17 @@ ShallowWrapper {
                                         <Transaction.style__FiatValue>
                                                   ($123.34 USD)
                                         </Transaction.style__FiatValue>
-                                        <Transaction.style__TransactionHistoryTime>
-                                                  01/09/1995
-                                        </Transaction.style__TransactionHistoryTime>
+                                        <div
+                                                  style={
+                                                            Object {
+                                                                      "marginLeft": "auto",
+                                                                    }
+                                                  }
+                                        >
+                                                  <Transaction.style__TransactionHistoryTime>
+                                                            01/09/1995
+                                                  </Transaction.style__TransactionHistoryTime>
+                                        </div>
                               </Transaction.style__HeaderWrapper>
                     }
                     showArrow={false}
@@ -2068,19 +1781,8 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        <Transaction.style__SubtitleText>
-                                                  confirmations
-                                                  :
-                                        </Transaction.style__SubtitleText>
-                                        <Transaction.style__GreenTextWrapper>
-                                                  204
-                                        </Transaction.style__GreenTextWrapper>
+                                        
                               </div>
-                              <Transaction.style__TransactionId
-                                        onClick={[Function]}
-                              >
-                                        view_etherscan
-                              </Transaction.style__TransactionId>
                     </Transaction.style__CollapsableContent>
           </Transaction.style__DetailPanel>
 </Transaction.style__DetailCollapse>,
@@ -2113,9 +1815,17 @@ ShallowWrapper {
                                     <Transaction.style__FiatValue>
                                                 ($123.34 USD)
                                     </Transaction.style__FiatValue>
-                                    <Transaction.style__TransactionHistoryTime>
-                                                01/09/1995
-                                    </Transaction.style__TransactionHistoryTime>
+                                    <div
+                                                style={
+                                                            Object {
+                                                                        "marginLeft": "auto",
+                                                                      }
+                                                }
+                                    >
+                                                <Transaction.style__TransactionHistoryTime>
+                                                            01/09/1995
+                                                </Transaction.style__TransactionHistoryTime>
+                                    </div>
                         </Transaction.style__HeaderWrapper>
             }
             showArrow={false}
@@ -2142,19 +1852,8 @@ ShallowWrapper {
                                                           }
                                     }
                         >
-                                    <Transaction.style__SubtitleText>
-                                                confirmations
-                                                :
-                                    </Transaction.style__SubtitleText>
-                                    <Transaction.style__GreenTextWrapper>
-                                                204
-                                    </Transaction.style__GreenTextWrapper>
+                                    
                         </div>
-                        <Transaction.style__TransactionId
-                                    onClick={[Function]}
-                        >
-                                    view_etherscan
-                        </Transaction.style__TransactionId>
             </Transaction.style__CollapsableContent>
 </Transaction.style__DetailPanel>,
           "defaultActiveKey": null,
@@ -2188,19 +1887,8 @@ ShallowWrapper {
                                                       }
                             }
               >
-                            <Transaction.style__SubtitleText>
-                                          confirmations
-                                          :
-                            </Transaction.style__SubtitleText>
-                            <Transaction.style__GreenTextWrapper>
-                                          204
-                            </Transaction.style__GreenTextWrapper>
+                            
               </div>
-              <Transaction.style__TransactionId
-                            onClick={[Function]}
-              >
-                            view_etherscan
-              </Transaction.style__TransactionId>
 </Transaction.style__CollapsableContent>,
             "header": <Transaction.style__HeaderWrapper>
               <Transaction.style__Image
@@ -2220,9 +1908,17 @@ ShallowWrapper {
               <Transaction.style__FiatValue>
                             ($123.34 USD)
               </Transaction.style__FiatValue>
-              <Transaction.style__TransactionHistoryTime>
-                            01/09/1995
-              </Transaction.style__TransactionHistoryTime>
+              <div
+                            style={
+                                          Object {
+                                                        "marginLeft": "auto",
+                                                      }
+                            }
+              >
+                            <Transaction.style__TransactionHistoryTime>
+                                          01/09/1995
+                            </Transaction.style__TransactionHistoryTime>
+              </div>
 </Transaction.style__HeaderWrapper>,
             "showArrow": false,
           },
@@ -2254,19 +1950,10 @@ ShallowWrapper {
                                                     }
                   }
 >
-                  <Transaction.style__SubtitleText>
-                                    confirmations
-                                    :
-                  </Transaction.style__SubtitleText>
-                  <Transaction.style__GreenTextWrapper>
-                                    204
-                  </Transaction.style__GreenTextWrapper>
+                  
 </div>,
-                <Transaction.style__TransactionId
-                  onClick={[Function]}
->
-                  view_etherscan
-</Transaction.style__TransactionId>,
+                false,
+                false,
               ],
             },
             "ref": null,
@@ -2327,13 +2014,8 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": Array [
-                    <Transaction.style__SubtitleText>
-                      confirmations
-                      :
-</Transaction.style__SubtitleText>,
-                    <Transaction.style__GreenTextWrapper>
-                      204
-</Transaction.style__GreenTextWrapper>,
+                    false,
+                    false,
                   ],
                   "style": Object {
                     "display": "flex",
@@ -2341,49 +2023,13 @@ ShallowWrapper {
                 },
                 "ref": null,
                 "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": Array [
-                        "confirmations",
-                        ":",
-                      ],
-                    },
-                    "ref": null,
-                    "rendered": Array [
-                      "confirmations",
-                      ":",
-                    ],
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": "204",
-                    },
-                    "ref": null,
-                    "rendered": "204",
-                    "type": [Function],
-                  },
+                  false,
+                  false,
                 ],
                 "type": "div",
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "view_etherscan",
-                  "onClick": [Function],
-                },
-                "ref": null,
-                "rendered": "view_etherscan",
-                "type": [Function],
-              },
+              false,
+              false,
             ],
             "type": [Function],
           },

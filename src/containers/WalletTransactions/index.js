@@ -117,13 +117,14 @@ export class WalletsTransactions extends React.Component {
           {txToShow.map((tx) => (
             <StyledTransaction
               key={uuid()}
-              time={new Date(tx.block.timestamp)}
+              time={new Date(tx.timestamp)}
               counterpartyAddress={tx.counterpartyAddress}
               amount={tx.decimalAmount}
               fiatEquivilent={formatFiat(tx.fiatValue, 'USD')}
               symbol={tx.symbol}
               confirmations={tx.confirmations}
               type={tx.type}
+              layer={tx.layer}
               viewOnBlockExplorerClick={
                 currentNetwork.provider._network.name === 'ropsten' ?
                   () => shell.openExternal(`https://ropsten.etherscan.io/tx/${tx.hash}`) :

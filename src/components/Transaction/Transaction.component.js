@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { injectIntl } from 'react-intl';
 import { getAbsolutePath } from 'utils/electron';
+import NahmiiText from 'components/ui/NahmiiText';
 import {
   Wrapper,
   Image,
@@ -33,6 +34,7 @@ const Transaction = (props) => {
     type,
     onChange,
     defaultOpen,
+    layer,
     intl,
   } = props;
   const { formatMessage } = intl;
@@ -61,9 +63,15 @@ const Transaction = (props) => {
                 {amount} {symbol}
               </Amount>
               <FiatValue>{`(${fiatEquivilent})`}</FiatValue>
-              <TransactionHistoryTime>
-                {moment(time).calendar()}
-              </TransactionHistoryTime>
+              <div style={{ marginLeft: 'auto' }}>
+                {
+                  layer === 'nahmii' &&
+                  <NahmiiText style={{ marginRight: '0.5rem' }} />
+                }
+                <TransactionHistoryTime>
+                  {moment(time).calendar()}
+                </TransactionHistoryTime>
+              </div>
             </HeaderWrapper>
             }
         >
@@ -83,16 +91,34 @@ const Transaction = (props) => {
               </GreenTextWrapper>
             </div>
             <div style={{ display: 'flex' }}>
-              <SubtitleText>
-                {formatMessage({ id: 'confirmations' })}:
-              </SubtitleText>
-              <GreenTextWrapper>
-                {confirmations}
-              </GreenTextWrapper>
+              {
+                layer === 'baseLayer' &&
+                <div>
+                  <SubtitleText>
+                    {formatMessage({ id: 'confirmations' })}:
+                  </SubtitleText>
+                  <GreenTextWrapper>
+                    {confirmations}
+                  </GreenTextWrapper>
+                </div>
+              }
+              {
+                layer === 'nahmii' &&
+                <GreenTextWrapper>
+                  Confirmed
+                </GreenTextWrapper>
+              }
             </div>
-            <TransactionId
-              onClick={viewOnBlockExplorerClick}
-            >{formatMessage({ id: 'view_etherscan' })}</TransactionId>
+            {
+              layer === 'baseLayer' &&
+              <TransactionId
+                onClick={viewOnBlockExplorerClick}
+              >{formatMessage({ id: 'view_etherscan' })}</TransactionId>
+            }
+            {
+              layer === 'nahmii' &&
+              <TransactionId disabled>View on nahmii explorer (coming soon)</TransactionId>
+            }
           </CollapsableContent>
         </DetailPanel>
       </DetailCollapse>
@@ -106,12 +132,13 @@ Transaction.propTypes = {
   amount: PropTypes.string.isRequired,
   fiatEquivilent: PropTypes.string.isRequired,
   symbol: PropTypes.string.isRequired,
-  confirmations: PropTypes.string.isRequired,
+  confirmations: PropTypes.string,
   type: PropTypes.string.isRequired,
   viewOnBlockExplorerClick: PropTypes.func.isRequired,
   className: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   defaultOpen: PropTypes.bool.isRequired,
+  layer: PropTypes.oneOf(['baseLayer', 'nahmii']),
   intl: PropTypes.object.isRequired,
 };
 
