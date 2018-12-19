@@ -346,7 +346,7 @@ ShallowWrapper {
           </style__SettingWrapper>
           <style__SettingWrapper>
                     <style__StyledSectionHeading>
-                              nahmii info button preferences
+                              nahmii_info_button
                     </style__StyledSectionHeading>
                     <div
                               style={
@@ -365,12 +365,14 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        Show a 
+                                        show_a
+                                         
                                         <Connect(NahmiiInfoBtn)
                                                   forceIcon={true}
                                                   iconOnly={true}
                                         />
-                                         button beside nahmii UI
+                                         
+                                        button_beside_nahmii_ui
                               </style__NahmiiInfoCheckbox>
                     </div>
           </style__SettingWrapper>
@@ -455,7 +457,7 @@ ShallowWrapper {
 </style__SettingWrapper>,
             <style__SettingWrapper>
               <style__StyledSectionHeading>
-                            nahmii info button preferences
+                            nahmii_info_button
               </style__StyledSectionHeading>
               <div
                             style={
@@ -474,12 +476,14 @@ ShallowWrapper {
                                                                     }
                                           }
                             >
-                                          Show a 
+                                          show_a
+                                           
                                           <Connect(NahmiiInfoBtn)
                                                         forceIcon={true}
                                                         iconOnly={true}
                                           />
-                                           button beside nahmii UI
+                                           
+                                          button_beside_nahmii_ui
                             </style__NahmiiInfoCheckbox>
               </div>
 </style__SettingWrapper>,
@@ -670,7 +674,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <style__StyledSectionHeading>
-                  nahmii info button preferences
+                  nahmii_info_button
 </style__StyledSectionHeading>,
                 <div
                   style={
@@ -689,12 +693,14 @@ ShallowWrapper {
                                                                       }
                                     }
                   >
-                                    Show a 
+                                    show_a
+                                     
                                     <Connect(NahmiiInfoBtn)
                                                       forceIcon={true}
                                                       iconOnly={true}
                                     />
-                                     button beside nahmii UI
+                                     
+                                    button_beside_nahmii_ui
                   </style__NahmiiInfoCheckbox>
 </div>,
               ],
@@ -706,10 +712,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "nahmii info button preferences",
+                  "children": "nahmii_info_button",
                 },
                 "ref": null,
-                "rendered": "nahmii info button preferences",
+                "rendered": "nahmii_info_button",
                 "type": [Function],
               },
               Object {
@@ -727,12 +733,14 @@ ShallowWrapper {
                                                           }
                     }
 >
-                    Show a 
+                    show_a
+                     
                     <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
                                         iconOnly={true}
                     />
-                     button beside nahmii UI
+                     
+                    button_beside_nahmii_ui
 </style__NahmiiInfoCheckbox>,
                   "style": Object {
                     "display": "flex",
@@ -746,12 +754,14 @@ ShallowWrapper {
                   "props": Object {
                     "checked": true,
                     "children": Array [
-                      "Show a ",
+                      "show_a",
+                      " ",
                       <Connect(NahmiiInfoBtn)
                         forceIcon={true}
                         iconOnly={true}
 />,
-                      " button beside nahmii UI",
+                      " ",
+                      "button_beside_nahmii_ui",
                     ],
                     "onChange": [Function],
                     "style": Object {
@@ -761,7 +771,8 @@ ShallowWrapper {
                   },
                   "ref": null,
                   "rendered": Array [
-                    "Show a ",
+                    "show_a",
+                    " ",
                     Object {
                       "instance": null,
                       "key": undefined,
@@ -774,7 +785,8 @@ ShallowWrapper {
                       "rendered": null,
                       "type": [Function],
                     },
-                    " button beside nahmii UI",
+                    " ",
+                    "button_beside_nahmii_ui",
                   ],
                   "type": [Function],
                 },
@@ -849,7 +861,7 @@ ShallowWrapper {
             </style__SettingWrapper>
             <style__SettingWrapper>
                         <style__StyledSectionHeading>
-                                    nahmii info button preferences
+                                    nahmii_info_button
                         </style__StyledSectionHeading>
                         <div
                                     style={
@@ -868,12 +880,14 @@ ShallowWrapper {
                                                                       }
                                                 }
                                     >
-                                                Show a 
+                                                show_a
+                                                 
                                                 <Connect(NahmiiInfoBtn)
                                                             forceIcon={true}
                                                             iconOnly={true}
                                                 />
-                                                 button beside nahmii UI
+                                                 
+                                                button_beside_nahmii_ui
                                     </style__NahmiiInfoCheckbox>
                         </div>
             </style__SettingWrapper>
@@ -958,7 +972,7 @@ ShallowWrapper {
 </style__SettingWrapper>,
               <style__SettingWrapper>
                 <style__StyledSectionHeading>
-                                nahmii info button preferences
+                                nahmii_info_button
                 </style__StyledSectionHeading>
                 <div
                                 style={
@@ -977,12 +991,14 @@ ShallowWrapper {
                                                                               }
                                                 }
                                 >
-                                                Show a 
+                                                show_a
+                                                 
                                                 <Connect(NahmiiInfoBtn)
                                                                 forceIcon={true}
                                                                 iconOnly={true}
                                                 />
-                                                 button beside nahmii UI
+                                                 
+                                                button_beside_nahmii_ui
                                 </style__NahmiiInfoCheckbox>
                 </div>
 </style__SettingWrapper>,
@@ -1173,7 +1189,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <style__StyledSectionHeading>
-                    nahmii info button preferences
+                    nahmii_info_button
 </style__StyledSectionHeading>,
                   <div
                     style={
@@ -1192,12 +1208,14 @@ ShallowWrapper {
                                                                               }
                                         }
                     >
-                                        Show a 
+                                        show_a
+                                         
                                         <Connect(NahmiiInfoBtn)
                                                             forceIcon={true}
                                                             iconOnly={true}
                                         />
-                                         button beside nahmii UI
+                                         
+                                        button_beside_nahmii_ui
                     </style__NahmiiInfoCheckbox>
 </div>,
                 ],
@@ -1209,10 +1227,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "nahmii info button preferences",
+                    "children": "nahmii_info_button",
                   },
                   "ref": null,
-                  "rendered": "nahmii info button preferences",
+                  "rendered": "nahmii_info_button",
                   "type": [Function],
                 },
                 Object {
@@ -1230,12 +1248,14 @@ ShallowWrapper {
                                                                 }
                       }
 >
-                      Show a 
+                      show_a
+                       
                       <Connect(NahmiiInfoBtn)
                                             forceIcon={true}
                                             iconOnly={true}
                       />
-                       button beside nahmii UI
+                       
+                      button_beside_nahmii_ui
 </style__NahmiiInfoCheckbox>,
                     "style": Object {
                       "display": "flex",
@@ -1249,12 +1269,14 @@ ShallowWrapper {
                     "props": Object {
                       "checked": true,
                       "children": Array [
-                        "Show a ",
+                        "show_a",
+                        " ",
                         <Connect(NahmiiInfoBtn)
                           forceIcon={true}
                           iconOnly={true}
 />,
-                        " button beside nahmii UI",
+                        " ",
+                        "button_beside_nahmii_ui",
                       ],
                       "onChange": [Function],
                       "style": Object {
@@ -1264,7 +1286,8 @@ ShallowWrapper {
                     },
                     "ref": null,
                     "rendered": Array [
-                      "Show a ",
+                      "show_a",
+                      " ",
                       Object {
                         "instance": null,
                         "key": undefined,
@@ -1277,7 +1300,8 @@ ShallowWrapper {
                         "rendered": null,
                         "type": [Function],
                       },
-                      " button beside nahmii UI",
+                      " ",
+                      "button_beside_nahmii_ui",
                     ],
                     "type": [Function],
                   },

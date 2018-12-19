@@ -708,7 +708,8 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        nahmii deposits are disabled on mainnet 
+                                        nahmii_deposits_disabled_mainnet
+                                         
                               </SectionHeading>
                               <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
@@ -1496,7 +1497,8 @@ ShallowWrapper {
                                                                     }
                                           }
                             >
-                                          nahmii deposits are disabled on mainnet 
+                                          nahmii_deposits_disabled_mainnet
+                                           
                             </SectionHeading>
                             <Connect(NahmiiInfoBtn)
                                           forceIcon={true}
@@ -2000,7 +2002,8 @@ ShallowWrapper {
                                                                       }
                                     }
                   >
-                                    nahmii deposits are disabled on mainnet 
+                                    nahmii_deposits_disabled_mainnet
+                                     
                   </SectionHeading>
                   <Connect(NahmiiInfoBtn)
                                     forceIcon={true}
@@ -2086,7 +2089,8 @@ ShallowWrapper {
                                                                 }
                       }
 >
-                      nahmii deposits are disabled on mainnet 
+                      nahmii_deposits_disabled_mainnet
+                       
 </SectionHeading>,
                     <Connect(NahmiiInfoBtn)
                       forceIcon={true}
@@ -2107,13 +2111,19 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "children": "nahmii deposits are disabled on mainnet ",
+                      "children": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
                       "style": Object {
                         "marginBottom": "0",
                       },
                     },
                     "ref": null,
-                    "rendered": "nahmii deposits are disabled on mainnet ",
+                    "rendered": Array [
+                      "nahmii_deposits_disabled_mainnet",
+                      " ",
+                    ],
                     "type": [Function],
                   },
                   Object {
@@ -2582,7 +2592,8 @@ ShallowWrapper {
                                                                       }
                                                 }
                                     >
-                                                nahmii deposits are disabled on mainnet 
+                                                nahmii_deposits_disabled_mainnet
+                                                 
                                     </SectionHeading>
                                     <Connect(NahmiiInfoBtn)
                                                 forceIcon={true}
@@ -3370,7 +3381,8 @@ ShallowWrapper {
                                                                               }
                                                 }
                                 >
-                                                nahmii deposits are disabled on mainnet 
+                                                nahmii_deposits_disabled_mainnet
+                                                 
                                 </SectionHeading>
                                 <Connect(NahmiiInfoBtn)
                                                 forceIcon={true}
@@ -3874,7 +3886,8 @@ ShallowWrapper {
                                                                               }
                                         }
                     >
-                                        nahmii deposits are disabled on mainnet 
+                                        nahmii_deposits_disabled_mainnet
+                                         
                     </SectionHeading>
                     <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
@@ -3960,7 +3973,8 @@ ShallowWrapper {
                                                                       }
                         }
 >
-                        nahmii deposits are disabled on mainnet 
+                        nahmii_deposits_disabled_mainnet
+                         
 </SectionHeading>,
                       <Connect(NahmiiInfoBtn)
                         forceIcon={true}
@@ -3981,13 +3995,19 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": "nahmii deposits are disabled on mainnet ",
+                        "children": Array [
+                          "nahmii_deposits_disabled_mainnet",
+                          " ",
+                        ],
                         "style": Object {
                           "marginBottom": "0",
                         },
                       },
                       "ref": null,
-                      "rendered": "nahmii deposits are disabled on mainnet ",
+                      "rendered": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
                       "type": [Function],
                     },
                     Object {
@@ -4905,7 +4925,8 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        nahmii deposits are disabled on mainnet 
+                                        nahmii_deposits_disabled_mainnet
+                                         
                               </SectionHeading>
                               <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
@@ -5693,7 +5714,8 @@ ShallowWrapper {
                                                                     }
                                           }
                             >
-                                          nahmii deposits are disabled on mainnet 
+                                          nahmii_deposits_disabled_mainnet
+                                           
                             </SectionHeading>
                             <Connect(NahmiiInfoBtn)
                                           forceIcon={true}
@@ -6197,7 +6219,8 @@ ShallowWrapper {
                                                                       }
                                     }
                   >
-                                    nahmii deposits are disabled on mainnet 
+                                    nahmii_deposits_disabled_mainnet
+                                     
                   </SectionHeading>
                   <Connect(NahmiiInfoBtn)
                                     forceIcon={true}
@@ -6283,7 +6306,8 @@ ShallowWrapper {
                                                                 }
                       }
 >
-                      nahmii deposits are disabled on mainnet 
+                      nahmii_deposits_disabled_mainnet
+                       
 </SectionHeading>,
                     <Connect(NahmiiInfoBtn)
                       forceIcon={true}
@@ -6304,13 +6328,19 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "children": "nahmii deposits are disabled on mainnet ",
+                      "children": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
                       "style": Object {
                         "marginBottom": "0",
                       },
                     },
                     "ref": null,
-                    "rendered": "nahmii deposits are disabled on mainnet ",
+                    "rendered": Array [
+                      "nahmii_deposits_disabled_mainnet",
+                      " ",
+                    ],
                     "type": [Function],
                   },
                   Object {
@@ -6779,7 +6809,8 @@ ShallowWrapper {
                                                                       }
                                                 }
                                     >
-                                                nahmii deposits are disabled on mainnet 
+                                                nahmii_deposits_disabled_mainnet
+                                                 
                                     </SectionHeading>
                                     <Connect(NahmiiInfoBtn)
                                                 forceIcon={true}
@@ -7567,7 +7598,8 @@ ShallowWrapper {
                                                                               }
                                                 }
                                 >
-                                                nahmii deposits are disabled on mainnet 
+                                                nahmii_deposits_disabled_mainnet
+                                                 
                                 </SectionHeading>
                                 <Connect(NahmiiInfoBtn)
                                                 forceIcon={true}
@@ -8071,7 +8103,8 @@ ShallowWrapper {
                                                                               }
                                         }
                     >
-                                        nahmii deposits are disabled on mainnet 
+                                        nahmii_deposits_disabled_mainnet
+                                         
                     </SectionHeading>
                     <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
@@ -8157,7 +8190,8 @@ ShallowWrapper {
                                                                       }
                         }
 >
-                        nahmii deposits are disabled on mainnet 
+                        nahmii_deposits_disabled_mainnet
+                         
 </SectionHeading>,
                       <Connect(NahmiiInfoBtn)
                         forceIcon={true}
@@ -8178,13 +8212,19 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": "nahmii deposits are disabled on mainnet ",
+                        "children": Array [
+                          "nahmii_deposits_disabled_mainnet",
+                          " ",
+                        ],
                         "style": Object {
                           "marginBottom": "0",
                         },
                       },
                       "ref": null,
-                      "rendered": "nahmii deposits are disabled on mainnet ",
+                      "rendered": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
                       "type": [Function],
                     },
                     Object {
@@ -9102,7 +9142,8 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        nahmii deposits are disabled on mainnet 
+                                        nahmii_deposits_disabled_mainnet
+                                         
                               </SectionHeading>
                               <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
@@ -9890,7 +9931,8 @@ ShallowWrapper {
                                                                     }
                                           }
                             >
-                                          nahmii deposits are disabled on mainnet 
+                                          nahmii_deposits_disabled_mainnet
+                                           
                             </SectionHeading>
                             <Connect(NahmiiInfoBtn)
                                           forceIcon={true}
@@ -10394,7 +10436,8 @@ ShallowWrapper {
                                                                       }
                                     }
                   >
-                                    nahmii deposits are disabled on mainnet 
+                                    nahmii_deposits_disabled_mainnet
+                                     
                   </SectionHeading>
                   <Connect(NahmiiInfoBtn)
                                     forceIcon={true}
@@ -10480,7 +10523,8 @@ ShallowWrapper {
                                                                 }
                       }
 >
-                      nahmii deposits are disabled on mainnet 
+                      nahmii_deposits_disabled_mainnet
+                       
 </SectionHeading>,
                     <Connect(NahmiiInfoBtn)
                       forceIcon={true}
@@ -10501,13 +10545,19 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "children": "nahmii deposits are disabled on mainnet ",
+                      "children": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
                       "style": Object {
                         "marginBottom": "0",
                       },
                     },
                     "ref": null,
-                    "rendered": "nahmii deposits are disabled on mainnet ",
+                    "rendered": Array [
+                      "nahmii_deposits_disabled_mainnet",
+                      " ",
+                    ],
                     "type": [Function],
                   },
                   Object {
@@ -10976,7 +11026,8 @@ ShallowWrapper {
                                                                       }
                                                 }
                                     >
-                                                nahmii deposits are disabled on mainnet 
+                                                nahmii_deposits_disabled_mainnet
+                                                 
                                     </SectionHeading>
                                     <Connect(NahmiiInfoBtn)
                                                 forceIcon={true}
@@ -11764,7 +11815,8 @@ ShallowWrapper {
                                                                               }
                                                 }
                                 >
-                                                nahmii deposits are disabled on mainnet 
+                                                nahmii_deposits_disabled_mainnet
+                                                 
                                 </SectionHeading>
                                 <Connect(NahmiiInfoBtn)
                                                 forceIcon={true}
@@ -12268,7 +12320,8 @@ ShallowWrapper {
                                                                               }
                                         }
                     >
-                                        nahmii deposits are disabled on mainnet 
+                                        nahmii_deposits_disabled_mainnet
+                                         
                     </SectionHeading>
                     <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
@@ -12354,7 +12407,8 @@ ShallowWrapper {
                                                                       }
                         }
 >
-                        nahmii deposits are disabled on mainnet 
+                        nahmii_deposits_disabled_mainnet
+                         
 </SectionHeading>,
                       <Connect(NahmiiInfoBtn)
                         forceIcon={true}
@@ -12375,13 +12429,19 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": "nahmii deposits are disabled on mainnet ",
+                        "children": Array [
+                          "nahmii_deposits_disabled_mainnet",
+                          " ",
+                        ],
                         "style": Object {
                           "marginBottom": "0",
                         },
                       },
                       "ref": null,
-                      "rendered": "nahmii deposits are disabled on mainnet ",
+                      "rendered": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
                       "type": [Function],
                     },
                     Object {
@@ -13299,7 +13359,8 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        nahmii deposits are disabled on mainnet 
+                                        nahmii_deposits_disabled_mainnet
+                                         
                               </SectionHeading>
                               <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
@@ -14081,7 +14142,8 @@ ShallowWrapper {
                                                                     }
                                           }
                             >
-                                          nahmii deposits are disabled on mainnet 
+                                          nahmii_deposits_disabled_mainnet
+                                           
                             </SectionHeading>
                             <Connect(NahmiiInfoBtn)
                                           forceIcon={true}
@@ -14579,7 +14641,8 @@ ShallowWrapper {
                                                                       }
                                     }
                   >
-                                    nahmii deposits are disabled on mainnet 
+                                    nahmii_deposits_disabled_mainnet
+                                     
                   </SectionHeading>
                   <Connect(NahmiiInfoBtn)
                                     forceIcon={true}
@@ -14659,7 +14722,8 @@ ShallowWrapper {
                                                                 }
                       }
 >
-                      nahmii deposits are disabled on mainnet 
+                      nahmii_deposits_disabled_mainnet
+                       
 </SectionHeading>,
                     <Connect(NahmiiInfoBtn)
                       forceIcon={true}
@@ -14680,13 +14744,19 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "children": "nahmii deposits are disabled on mainnet ",
+                      "children": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
                       "style": Object {
                         "marginBottom": "0",
                       },
                     },
                     "ref": null,
-                    "rendered": "nahmii deposits are disabled on mainnet ",
+                    "rendered": Array [
+                      "nahmii_deposits_disabled_mainnet",
+                      " ",
+                    ],
                     "type": [Function],
                   },
                   Object {
@@ -15083,7 +15153,8 @@ ShallowWrapper {
                                                                       }
                                                 }
                                     >
-                                                nahmii deposits are disabled on mainnet 
+                                                nahmii_deposits_disabled_mainnet
+                                                 
                                     </SectionHeading>
                                     <Connect(NahmiiInfoBtn)
                                                 forceIcon={true}
@@ -15865,7 +15936,8 @@ ShallowWrapper {
                                                                               }
                                                 }
                                 >
-                                                nahmii deposits are disabled on mainnet 
+                                                nahmii_deposits_disabled_mainnet
+                                                 
                                 </SectionHeading>
                                 <Connect(NahmiiInfoBtn)
                                                 forceIcon={true}
@@ -16363,7 +16435,8 @@ ShallowWrapper {
                                                                               }
                                         }
                     >
-                                        nahmii deposits are disabled on mainnet 
+                                        nahmii_deposits_disabled_mainnet
+                                         
                     </SectionHeading>
                     <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
@@ -16443,7 +16516,8 @@ ShallowWrapper {
                                                                       }
                         }
 >
-                        nahmii deposits are disabled on mainnet 
+                        nahmii_deposits_disabled_mainnet
+                         
 </SectionHeading>,
                       <Connect(NahmiiInfoBtn)
                         forceIcon={true}
@@ -16464,13 +16538,19 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": "nahmii deposits are disabled on mainnet ",
+                        "children": Array [
+                          "nahmii_deposits_disabled_mainnet",
+                          " ",
+                        ],
                         "style": Object {
                           "marginBottom": "0",
                         },
                       },
                       "ref": null,
-                      "rendered": "nahmii deposits are disabled on mainnet ",
+                      "rendered": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
                       "type": [Function],
                     },
                     Object {
@@ -17316,7 +17396,8 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        nahmii deposits are disabled on mainnet 
+                                        nahmii_deposits_disabled_mainnet
+                                         
                               </SectionHeading>
                               <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
@@ -18098,7 +18179,8 @@ ShallowWrapper {
                                                                     }
                                           }
                             >
-                                          nahmii deposits are disabled on mainnet 
+                                          nahmii_deposits_disabled_mainnet
+                                           
                             </SectionHeading>
                             <Connect(NahmiiInfoBtn)
                                           forceIcon={true}
@@ -18596,7 +18678,8 @@ ShallowWrapper {
                                                                       }
                                     }
                   >
-                                    nahmii deposits are disabled on mainnet 
+                                    nahmii_deposits_disabled_mainnet
+                                     
                   </SectionHeading>
                   <Connect(NahmiiInfoBtn)
                                     forceIcon={true}
@@ -18676,7 +18759,8 @@ ShallowWrapper {
                                                                 }
                       }
 >
-                      nahmii deposits are disabled on mainnet 
+                      nahmii_deposits_disabled_mainnet
+                       
 </SectionHeading>,
                     <Connect(NahmiiInfoBtn)
                       forceIcon={true}
@@ -18697,13 +18781,19 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "children": "nahmii deposits are disabled on mainnet ",
+                      "children": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
                       "style": Object {
                         "marginBottom": "0",
                       },
                     },
                     "ref": null,
-                    "rendered": "nahmii deposits are disabled on mainnet ",
+                    "rendered": Array [
+                      "nahmii_deposits_disabled_mainnet",
+                      " ",
+                    ],
                     "type": [Function],
                   },
                   Object {
@@ -19100,7 +19190,8 @@ ShallowWrapper {
                                                                       }
                                                 }
                                     >
-                                                nahmii deposits are disabled on mainnet 
+                                                nahmii_deposits_disabled_mainnet
+                                                 
                                     </SectionHeading>
                                     <Connect(NahmiiInfoBtn)
                                                 forceIcon={true}
@@ -19882,7 +19973,8 @@ ShallowWrapper {
                                                                               }
                                                 }
                                 >
-                                                nahmii deposits are disabled on mainnet 
+                                                nahmii_deposits_disabled_mainnet
+                                                 
                                 </SectionHeading>
                                 <Connect(NahmiiInfoBtn)
                                                 forceIcon={true}
@@ -20380,7 +20472,8 @@ ShallowWrapper {
                                                                               }
                                         }
                     >
-                                        nahmii deposits are disabled on mainnet 
+                                        nahmii_deposits_disabled_mainnet
+                                         
                     </SectionHeading>
                     <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
@@ -20460,7 +20553,8 @@ ShallowWrapper {
                                                                       }
                         }
 >
-                        nahmii deposits are disabled on mainnet 
+                        nahmii_deposits_disabled_mainnet
+                         
 </SectionHeading>,
                       <Connect(NahmiiInfoBtn)
                         forceIcon={true}
@@ -20481,13 +20575,19 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": "nahmii deposits are disabled on mainnet ",
+                        "children": Array [
+                          "nahmii_deposits_disabled_mainnet",
+                          " ",
+                        ],
                         "style": Object {
                           "marginBottom": "0",
                         },
                       },
                       "ref": null,
-                      "rendered": "nahmii deposits are disabled on mainnet ",
+                      "rendered": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
                       "type": [Function],
                     },
                     Object {
@@ -21334,7 +21434,8 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        nahmii deposits are disabled on mainnet 
+                                        nahmii_deposits_disabled_mainnet
+                                         
                               </SectionHeading>
                               <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
@@ -22116,7 +22217,8 @@ ShallowWrapper {
                                                                     }
                                           }
                             >
-                                          nahmii deposits are disabled on mainnet 
+                                          nahmii_deposits_disabled_mainnet
+                                           
                             </SectionHeading>
                             <Connect(NahmiiInfoBtn)
                                           forceIcon={true}
@@ -22614,7 +22716,8 @@ ShallowWrapper {
                                                                       }
                                     }
                   >
-                                    nahmii deposits are disabled on mainnet 
+                                    nahmii_deposits_disabled_mainnet
+                                     
                   </SectionHeading>
                   <Connect(NahmiiInfoBtn)
                                     forceIcon={true}
@@ -22694,7 +22797,8 @@ ShallowWrapper {
                                                                 }
                       }
 >
-                      nahmii deposits are disabled on mainnet 
+                      nahmii_deposits_disabled_mainnet
+                       
 </SectionHeading>,
                     <Connect(NahmiiInfoBtn)
                       forceIcon={true}
@@ -22715,13 +22819,19 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "children": "nahmii deposits are disabled on mainnet ",
+                      "children": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
                       "style": Object {
                         "marginBottom": "0",
                       },
                     },
                     "ref": null,
-                    "rendered": "nahmii deposits are disabled on mainnet ",
+                    "rendered": Array [
+                      "nahmii_deposits_disabled_mainnet",
+                      " ",
+                    ],
                     "type": [Function],
                   },
                   Object {
@@ -23118,7 +23228,8 @@ ShallowWrapper {
                                                                       }
                                                 }
                                     >
-                                                nahmii deposits are disabled on mainnet 
+                                                nahmii_deposits_disabled_mainnet
+                                                 
                                     </SectionHeading>
                                     <Connect(NahmiiInfoBtn)
                                                 forceIcon={true}
@@ -23900,7 +24011,8 @@ ShallowWrapper {
                                                                               }
                                                 }
                                 >
-                                                nahmii deposits are disabled on mainnet 
+                                                nahmii_deposits_disabled_mainnet
+                                                 
                                 </SectionHeading>
                                 <Connect(NahmiiInfoBtn)
                                                 forceIcon={true}
@@ -24398,7 +24510,8 @@ ShallowWrapper {
                                                                               }
                                         }
                     >
-                                        nahmii deposits are disabled on mainnet 
+                                        nahmii_deposits_disabled_mainnet
+                                         
                     </SectionHeading>
                     <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
@@ -24478,7 +24591,8 @@ ShallowWrapper {
                                                                       }
                         }
 >
-                        nahmii deposits are disabled on mainnet 
+                        nahmii_deposits_disabled_mainnet
+                         
 </SectionHeading>,
                       <Connect(NahmiiInfoBtn)
                         forceIcon={true}
@@ -24499,13 +24613,19 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": "nahmii deposits are disabled on mainnet ",
+                        "children": Array [
+                          "nahmii_deposits_disabled_mainnet",
+                          " ",
+                        ],
                         "style": Object {
                           "marginBottom": "0",
                         },
                       },
                       "ref": null,
-                      "rendered": "nahmii deposits are disabled on mainnet ",
+                      "rendered": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
                       "type": [Function],
                     },
                     Object {
@@ -27145,7 +27265,8 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        nahmii deposits are disabled on mainnet 
+                                        nahmii_deposits_disabled_mainnet
+                                         
                               </SectionHeading>
                               <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
@@ -27927,7 +28048,8 @@ ShallowWrapper {
                                                                     }
                                           }
                             >
-                                          nahmii deposits are disabled on mainnet 
+                                          nahmii_deposits_disabled_mainnet
+                                           
                             </SectionHeading>
                             <Connect(NahmiiInfoBtn)
                                           forceIcon={true}
@@ -28425,7 +28547,8 @@ ShallowWrapper {
                                                                       }
                                     }
                   >
-                                    nahmii deposits are disabled on mainnet 
+                                    nahmii_deposits_disabled_mainnet
+                                     
                   </SectionHeading>
                   <Connect(NahmiiInfoBtn)
                                     forceIcon={true}
@@ -28505,7 +28628,8 @@ ShallowWrapper {
                                                                 }
                       }
 >
-                      nahmii deposits are disabled on mainnet 
+                      nahmii_deposits_disabled_mainnet
+                       
 </SectionHeading>,
                     <Connect(NahmiiInfoBtn)
                       forceIcon={true}
@@ -28526,13 +28650,19 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "children": "nahmii deposits are disabled on mainnet ",
+                      "children": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
                       "style": Object {
                         "marginBottom": "0",
                       },
                     },
                     "ref": null,
-                    "rendered": "nahmii deposits are disabled on mainnet ",
+                    "rendered": Array [
+                      "nahmii_deposits_disabled_mainnet",
+                      " ",
+                    ],
                     "type": [Function],
                   },
                   Object {
@@ -28929,7 +29059,8 @@ ShallowWrapper {
                                                                       }
                                                 }
                                     >
-                                                nahmii deposits are disabled on mainnet 
+                                                nahmii_deposits_disabled_mainnet
+                                                 
                                     </SectionHeading>
                                     <Connect(NahmiiInfoBtn)
                                                 forceIcon={true}
@@ -29711,7 +29842,8 @@ ShallowWrapper {
                                                                               }
                                                 }
                                 >
-                                                nahmii deposits are disabled on mainnet 
+                                                nahmii_deposits_disabled_mainnet
+                                                 
                                 </SectionHeading>
                                 <Connect(NahmiiInfoBtn)
                                                 forceIcon={true}
@@ -30209,7 +30341,8 @@ ShallowWrapper {
                                                                               }
                                         }
                     >
-                                        nahmii deposits are disabled on mainnet 
+                                        nahmii_deposits_disabled_mainnet
+                                         
                     </SectionHeading>
                     <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
@@ -30289,7 +30422,8 @@ ShallowWrapper {
                                                                       }
                         }
 >
-                        nahmii deposits are disabled on mainnet 
+                        nahmii_deposits_disabled_mainnet
+                         
 </SectionHeading>,
                       <Connect(NahmiiInfoBtn)
                         forceIcon={true}
@@ -30310,13 +30444,19 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": "nahmii deposits are disabled on mainnet ",
+                        "children": Array [
+                          "nahmii_deposits_disabled_mainnet",
+                          " ",
+                        ],
                         "style": Object {
                           "marginBottom": "0",
                         },
                       },
                       "ref": null,
-                      "rendered": "nahmii deposits are disabled on mainnet ",
+                      "rendered": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
                       "type": [Function],
                     },
                     Object {
