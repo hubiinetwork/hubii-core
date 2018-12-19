@@ -7,6 +7,10 @@ import {
   loadBalancesSuccess,
   loadStagedBalancesSuccess,
   loadStagingBalancesSuccess,
+  enableNahmiiMainnet,
+  disableNahmiiMainnet,
+  showInfoBtn,
+  hideInfoBtn,
 } from '../actions';
 
 describe('nahmiiHocReducer', () => {
@@ -22,6 +26,10 @@ describe('nahmiiHocReducer', () => {
         approvingTokenDeposit: false,
         completingTokenDeposit: false,
         error: null,
+      },
+      disclaimerModal: {
+        showBtn: true,
+        enableMainnet: false,
       },
     });
   });
@@ -67,6 +75,38 @@ describe('nahmiiHocReducer', () => {
       .setIn(['balances', address, 'staging', 'error'], null)
       .setIn(['balances', address, 'staging', 'assets'], balances);
     expect(nahmiiHocReducer(testState, loadStagingBalancesSuccess(address, balances))).toEqual(expected);
+  });
+
+  it('should handle enableNahmiiMainnet action correctly', () => {
+    const testState = state
+      .setIn(['disclaimerModal', 'enableMainnet'], false);
+    const expected = state
+      .setIn(['disclaimerModal', 'enableMainnet'], true);
+    expect(nahmiiHocReducer(testState, enableNahmiiMainnet())).toEqual(expected);
+  });
+
+  it('should handle disableNahmiiMainnet action correctly', () => {
+    const testState = state
+      .setIn(['disclaimerModal', 'enableMainnet'], true);
+    const expected = state
+      .setIn(['disclaimerModal', 'enableMainnet'], false);
+    expect(nahmiiHocReducer(testState, disableNahmiiMainnet())).toEqual(expected);
+  });
+
+  it('should handle showInfoBtn action correctly', () => {
+    const testState = state
+      .setIn(['disclaimerModal', 'showBtn'], false);
+    const expected = state
+      .setIn(['disclaimerModal', 'showBtn'], true);
+    expect(nahmiiHocReducer(testState, showInfoBtn())).toEqual(expected);
+  });
+
+  it('should handle hideInfoBtn action correctly', () => {
+    const testState = state
+      .setIn(['disclaimerModal', 'showBtn'], true);
+    const expected = state
+      .setIn(['disclaimerModal', 'showBtn'], false);
+    expect(nahmiiHocReducer(testState, hideInfoBtn())).toEqual(expected);
   });
 
   it('should handle changeNetwork correctly', () => {

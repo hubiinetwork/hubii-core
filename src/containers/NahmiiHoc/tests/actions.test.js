@@ -114,4 +114,40 @@ describe('nahmiiHoc actions', () => {
       expect(actions.loadStagingBalancesSuccess(address)).toEqual(expected);
     });
   });
+
+  describe('enableNahmiiMainnet', () => {
+    it('should return the correct payload', () => {
+      const expected = {
+        type: constants.ENABLE_NAHMII_MAINNET,
+      };
+      expect(actions.enableNahmiiMainnet()).toEqual(expected);
+    });
+  });
+
+  describe('disableNahmiiMainnet', () => {
+    it('should return the correct payload', () => {
+      const expected = {
+        type: constants.DISABLE_NAHMII_MAINNET,
+      };
+      expect(actions.disableNahmiiMainnet()).toEqual(expected);
+    });
+  });
+
+  describe('hideInfoBtn', () => {
+    it('should return the correct payload', () => {
+      const expected = {
+        type: constants.HIDE_INFO_BTN,
+      };
+      expect(actions.hideInfoBtn()).toEqual(expected);
+    });
+  });
+
+  describe('showInfoBtn', () => {
+    it('should return the correct payload', () => {
+      const expected = {
+        type: constants.SHOW_INFO_BTN,
+      };
+      expect(actions.showInfoBtn()).toEqual(expected);
+    });
+  });
 });

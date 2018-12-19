@@ -4,12 +4,21 @@ import { storeMock } from 'mocks/store';
 
 import {
   makeSelectNahmiiBalances,
+  makeSelectDisclaimerModal,
 } from '../selectors';
 
 import {
   balances,
   balancesEmpty,
 } from './mocks/selectors';
+
+describe('makeSelectDisclaimerModal', () => {
+  const disclaimerModalSelector = makeSelectDisclaimerModal();
+  it('should select the correct state', () => {
+    const expected = storeMock.getIn(['nahmiiHoc', 'disclaimerModal']);
+    expect(disclaimerModalSelector(storeMock)).toEqual(expected);
+  });
+});
 
 describe('makeSelectNahmiiBalances', () => {
   const nahmiiBalancesSelector = makeSelectNahmiiBalances();

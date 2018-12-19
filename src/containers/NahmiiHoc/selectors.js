@@ -12,6 +12,11 @@ const makeSelectDepositStatus = () => createSelector(
   (nahmiiHocDomain) => nahmiiHocDomain.get('depositStatus')
 );
 
+const makeSelectDisclaimerModal = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('disclaimerModal')
+);
+
 const makeSelectNahmiiBalances = () => createSelector(
   selectNahmiiHocDomain,
   (nahmiiHocDomain) => {
@@ -64,4 +69,5 @@ const makeSelectNahmiiBalances = () => createSelector(
 export {
   makeSelectNahmiiBalances,
   makeSelectDepositStatus,
+  makeSelectDisclaimerModal,
 };
