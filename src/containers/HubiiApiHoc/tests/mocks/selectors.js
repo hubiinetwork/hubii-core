@@ -11,8 +11,8 @@ export const transactionsEmptyMock = fromJS({});
 
 export const transactionsMock = fromJS({
   ...loadedWalletTransactions.toJS(),
-  ...loadingWalletTransactions.toJS(),
   ...errorWalletTransactions.toJS(),
+  ...loadingWalletTransactions.toJS(),
   '0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb': {
     loading: true,
     error: null,
@@ -33,7 +33,9 @@ export const transactionsWithInfoMock = transactionsMock.setIn(
       hash:
         '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c',
       currency: 'ETH',
+      layer: 'baseLayer',
       sender: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
+      timestamp: '2018-08-06T02:32:00.000Z',
       amount: '100000000',
       symbol: 'ETH',
       recipient: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
@@ -45,19 +47,21 @@ export const transactionsWithInfoMock = transactionsMock.setIn(
       decimalAmount: '0.000000000000000005',
       counterpartyAddress: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
       block: {
-        number: 3780091,
+        number: 3780089,
         timestamp: '2018-08-06T02:32:00.000Z',
       },
       hash:
         '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c',
       currency: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
+      layer: 'baseLayer',
       sender: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
+      timestamp: '2018-08-06T02:32:00.000Z',
       amount: '5',
       symbol: 'BOKKY',
       recipient: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
       type: 'sent',
       fiatValue: '0.000000000000000005',
-      confirmations: '3',
+      confirmations: '5',
     },
   ])
 );

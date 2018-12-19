@@ -199,5 +199,10 @@
     "deposit": "充值",
     "deposit_success": "充值成功",
     "connection_problem": "hubii core 的网络连接出现异常。请稍后重试。",
-    "nahmii_mainnet": "nahmii 还无法在主网上使用。"
+    "nahmii_mainnet": "nahmii 还无法在主网上使用。",
+    "view_nahmii_explorer": "在 nahmii 浏览器上查看 (即将推出)",
+    "confirmed": "已确定",
+    "all": "全部",
+    "only_nahmii": "只适用于 nahmii",
+    "only_base_layer": "只适用于基础链"
 }
