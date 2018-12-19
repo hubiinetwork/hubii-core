@@ -58,7 +58,7 @@ export const filterPersistedState = (state) => {
    * Sanitised software wallets from WalletHoc
    */
 
-  // Get software wallets ensuring the decrypted property is filtered out
+  // Get wallets ensuring the decrypted property is filtered out
   const sanitizedSoftwareWallets = state
     .getIn(['walletHoc', 'wallets'])
     .map(((w) => w.delete('decrypted', null)));
@@ -66,13 +66,11 @@ export const filterPersistedState = (state) => {
   persistedState = persistedState
     .setIn(['walletHoc', 'wallets'], sanitizedSoftwareWallets);
 
-
   /**
-   * Saved hardware wallets
+   * nahmii mainnet disclaimer modal
    */
   persistedState = persistedState
-    .setIn(['walletHoc', 'wallets', 'hardware'], state.getIn(['walletHoc', 'wallets', 'hardware']));
-
+    .setIn(['nahmiiHoc', 'disclaimerModal'], state.getIn(['nahmiiHoc', 'disclaimerModal']));
 
   /**
    * Contacts
