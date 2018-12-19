@@ -614,7 +614,7 @@ ShallowWrapper {
                                                             }
                                                   />
                                         </Tooltip>
-                                        <NahmiiTutorialBtn
+                                        <Connect(NahmiiTutorialBtn)
                                                   style={
                                                             Object {
                                                                       "marginLeft": "0.5rem",
@@ -1133,7 +1133,7 @@ ShallowWrapper {
                                                                       }
                                                         />
                                           </Tooltip>
-                                          <NahmiiTutorialBtn
+                                          <Connect(NahmiiTutorialBtn)
                                                         style={
                                                                       Object {
                                                                                     "marginLeft": "0.5rem",
@@ -1583,7 +1583,7 @@ ShallowWrapper {
                                                                 }
                                                 />
                                 </Tooltip>
-                                <NahmiiTutorialBtn
+                                <Connect(NahmiiTutorialBtn)
                                                 style={
                                                                 Object {
                                                                                 "marginLeft": "0.5rem",
@@ -1771,7 +1771,7 @@ ShallowWrapper {
                                                             }
                                         />
                     </Tooltip>
-                    <NahmiiTutorialBtn
+                    <Connect(NahmiiTutorialBtn)
                                         style={
                                                             Object {
                                                                                 "marginLeft": "0.5rem",
@@ -2073,7 +2073,7 @@ ShallowWrapper {
                                                 }
                         />
 </Tooltip>,
-                      <NahmiiTutorialBtn
+                      <Connect(NahmiiTutorialBtn)
                         style={
                                                 Object {
                                                                         "marginLeft": "0.5rem",
@@ -2948,7 +2948,7 @@ ShallowWrapper {
                                                                         }
                                                             />
                                                 </Tooltip>
-                                                <NahmiiTutorialBtn
+                                                <Connect(NahmiiTutorialBtn)
                                                             style={
                                                                         Object {
                                                                                     "marginLeft": "0.5rem",
@@ -3467,7 +3467,7 @@ ShallowWrapper {
                                                                                 }
                                                                 />
                                                 </Tooltip>
-                                                <NahmiiTutorialBtn
+                                                <Connect(NahmiiTutorialBtn)
                                                                 style={
                                                                                 Object {
                                                                                                 "marginLeft": "0.5rem",
@@ -3917,7 +3917,7 @@ ShallowWrapper {
                                                                         }
                                                       />
                                     </Tooltip>
-                                    <NahmiiTutorialBtn
+                                    <Connect(NahmiiTutorialBtn)
                                                       style={
                                                                         Object {
                                                                                           "marginLeft": "0.5rem",
@@ -4105,7 +4105,7 @@ ShallowWrapper {
                                                                   }
                                             />
                       </Tooltip>
-                      <NahmiiTutorialBtn
+                      <Connect(NahmiiTutorialBtn)
                                             style={
                                                                   Object {
                                                                                         "marginLeft": "0.5rem",
@@ -4407,7 +4407,7 @@ ShallowWrapper {
                                                     }
                           />
 </Tooltip>,
-                        <NahmiiTutorialBtn
+                        <Connect(NahmiiTutorialBtn)
                           style={
                                                     Object {
                                                                               "marginLeft": "0.5rem",
@@ -5667,7 +5667,7 @@ ShallowWrapper {
                                                             }
                                                   />
                                         </Tooltip>
-                                        <NahmiiTutorialBtn
+                                        <Connect(NahmiiTutorialBtn)
                                                   style={
                                                             Object {
                                                                       "marginLeft": "0.5rem",
@@ -6139,7 +6139,7 @@ ShallowWrapper {
                                                                       }
                                                         />
                                           </Tooltip>
-                                          <NahmiiTutorialBtn
+                                          <Connect(NahmiiTutorialBtn)
                                                         style={
                                                                       Object {
                                                                                     "marginLeft": "0.5rem",
@@ -6570,7 +6570,7 @@ ShallowWrapper {
                                                                 }
                                                 />
                                 </Tooltip>
-                                <NahmiiTutorialBtn
+                                <Connect(NahmiiTutorialBtn)
                                                 style={
                                                                 Object {
                                                                                 "marginLeft": "0.5rem",
@@ -6739,7 +6739,7 @@ ShallowWrapper {
                                                             }
                                         />
                     </Tooltip>
-                    <NahmiiTutorialBtn
+                    <Connect(NahmiiTutorialBtn)
                                         style={
                                                             Object {
                                                                                 "marginLeft": "0.5rem",
@@ -7011,7 +7011,7 @@ ShallowWrapper {
                                                 }
                         />
 </Tooltip>,
-                      <NahmiiTutorialBtn
+                      <Connect(NahmiiTutorialBtn)
                         style={
                                                 Object {
                                                                         "marginLeft": "0.5rem",
@@ -7852,7 +7852,7 @@ ShallowWrapper {
                                                                         }
                                                             />
                                                 </Tooltip>
-                                                <NahmiiTutorialBtn
+                                                <Connect(NahmiiTutorialBtn)
                                                             style={
                                                                         Object {
                                                                                     "marginLeft": "0.5rem",
@@ -8324,7 +8324,7 @@ ShallowWrapper {
                                                                                 }
                                                                 />
                                                 </Tooltip>
-                                                <NahmiiTutorialBtn
+                                                <Connect(NahmiiTutorialBtn)
                                                                 style={
                                                                                 Object {
                                                                                                 "marginLeft": "0.5rem",
@@ -8755,7 +8755,7 @@ ShallowWrapper {
                                                                         }
                                                       />
                                     </Tooltip>
-                                    <NahmiiTutorialBtn
+                                    <Connect(NahmiiTutorialBtn)
                                                       style={
                                                                         Object {
                                                                                           "marginLeft": "0.5rem",
@@ -8924,7 +8924,7 @@ ShallowWrapper {
                                                                   }
                                             />
                       </Tooltip>
-                      <NahmiiTutorialBtn
+                      <Connect(NahmiiTutorialBtn)
                                             style={
                                                                   Object {
                                                                                         "marginLeft": "0.5rem",
@@ -9196,7 +9196,7 @@ ShallowWrapper {
                                                     }
                           />
 </Tooltip>,
-                        <NahmiiTutorialBtn
+                        <Connect(NahmiiTutorialBtn)
                           style={
                                                     Object {
                                                                               "marginLeft": "0.5rem",
@@ -10505,7 +10505,7 @@ ShallowWrapper {
                                                             }
                                                   />
                                         </Tooltip>
-                                        <NahmiiTutorialBtn
+                                        <Connect(NahmiiTutorialBtn)
                                                   style={
                                                             Object {
                                                                       "marginLeft": "0.5rem",
@@ -11024,7 +11024,7 @@ ShallowWrapper {
                                                                       }
                                                         />
                                           </Tooltip>
-                                          <NahmiiTutorialBtn
+                                          <Connect(NahmiiTutorialBtn)
                                                         style={
                                                                       Object {
                                                                                     "marginLeft": "0.5rem",
@@ -11474,7 +11474,7 @@ ShallowWrapper {
                                                                 }
                                                 />
                                 </Tooltip>
-                                <NahmiiTutorialBtn
+                                <Connect(NahmiiTutorialBtn)
                                                 style={
                                                                 Object {
                                                                                 "marginLeft": "0.5rem",
@@ -11662,7 +11662,7 @@ ShallowWrapper {
                                                             }
                                         />
                     </Tooltip>
-                    <NahmiiTutorialBtn
+                    <Connect(NahmiiTutorialBtn)
                                         style={
                                                             Object {
                                                                                 "marginLeft": "0.5rem",
@@ -11964,7 +11964,7 @@ ShallowWrapper {
                                                 }
                         />
 </Tooltip>,
-                      <NahmiiTutorialBtn
+                      <Connect(NahmiiTutorialBtn)
                         style={
                                                 Object {
                                                                         "marginLeft": "0.5rem",
@@ -12839,7 +12839,7 @@ ShallowWrapper {
                                                                         }
                                                             />
                                                 </Tooltip>
-                                                <NahmiiTutorialBtn
+                                                <Connect(NahmiiTutorialBtn)
                                                             style={
                                                                         Object {
                                                                                     "marginLeft": "0.5rem",
@@ -13358,7 +13358,7 @@ ShallowWrapper {
                                                                                 }
                                                                 />
                                                 </Tooltip>
-                                                <NahmiiTutorialBtn
+                                                <Connect(NahmiiTutorialBtn)
                                                                 style={
                                                                                 Object {
                                                                                                 "marginLeft": "0.5rem",
@@ -13808,7 +13808,7 @@ ShallowWrapper {
                                                                         }
                                                       />
                                     </Tooltip>
-                                    <NahmiiTutorialBtn
+                                    <Connect(NahmiiTutorialBtn)
                                                       style={
                                                                         Object {
                                                                                           "marginLeft": "0.5rem",
@@ -13996,7 +13996,7 @@ ShallowWrapper {
                                                                   }
                                             />
                       </Tooltip>
-                      <NahmiiTutorialBtn
+                      <Connect(NahmiiTutorialBtn)
                                             style={
                                                                   Object {
                                                                                         "marginLeft": "0.5rem",
@@ -14298,7 +14298,7 @@ ShallowWrapper {
                                                     }
                           />
 </Tooltip>,
-                        <NahmiiTutorialBtn
+                        <Connect(NahmiiTutorialBtn)
                           style={
                                                     Object {
                                                                               "marginLeft": "0.5rem",
@@ -15607,7 +15607,7 @@ ShallowWrapper {
                                                             }
                                                   />
                                         </Tooltip>
-                                        <NahmiiTutorialBtn
+                                        <Connect(NahmiiTutorialBtn)
                                                   style={
                                                             Object {
                                                                       "marginLeft": "0.5rem",
@@ -16126,7 +16126,7 @@ ShallowWrapper {
                                                                       }
                                                         />
                                           </Tooltip>
-                                          <NahmiiTutorialBtn
+                                          <Connect(NahmiiTutorialBtn)
                                                         style={
                                                                       Object {
                                                                                     "marginLeft": "0.5rem",
@@ -16576,7 +16576,7 @@ ShallowWrapper {
                                                                 }
                                                 />
                                 </Tooltip>
-                                <NahmiiTutorialBtn
+                                <Connect(NahmiiTutorialBtn)
                                                 style={
                                                                 Object {
                                                                                 "marginLeft": "0.5rem",
@@ -16764,7 +16764,7 @@ ShallowWrapper {
                                                             }
                                         />
                     </Tooltip>
-                    <NahmiiTutorialBtn
+                    <Connect(NahmiiTutorialBtn)
                                         style={
                                                             Object {
                                                                                 "marginLeft": "0.5rem",
@@ -17066,7 +17066,7 @@ ShallowWrapper {
                                                 }
                         />
 </Tooltip>,
-                      <NahmiiTutorialBtn
+                      <Connect(NahmiiTutorialBtn)
                         style={
                                                 Object {
                                                                         "marginLeft": "0.5rem",
@@ -17941,7 +17941,7 @@ ShallowWrapper {
                                                                         }
                                                             />
                                                 </Tooltip>
-                                                <NahmiiTutorialBtn
+                                                <Connect(NahmiiTutorialBtn)
                                                             style={
                                                                         Object {
                                                                                     "marginLeft": "0.5rem",
@@ -18460,7 +18460,7 @@ ShallowWrapper {
                                                                                 }
                                                                 />
                                                 </Tooltip>
-                                                <NahmiiTutorialBtn
+                                                <Connect(NahmiiTutorialBtn)
                                                                 style={
                                                                                 Object {
                                                                                                 "marginLeft": "0.5rem",
@@ -18910,7 +18910,7 @@ ShallowWrapper {
                                                                         }
                                                       />
                                     </Tooltip>
-                                    <NahmiiTutorialBtn
+                                    <Connect(NahmiiTutorialBtn)
                                                       style={
                                                                         Object {
                                                                                           "marginLeft": "0.5rem",
@@ -19098,7 +19098,7 @@ ShallowWrapper {
                                                                   }
                                             />
                       </Tooltip>
-                      <NahmiiTutorialBtn
+                      <Connect(NahmiiTutorialBtn)
                                             style={
                                                                   Object {
                                                                                         "marginLeft": "0.5rem",
@@ -19400,7 +19400,7 @@ ShallowWrapper {
                                                     }
                           />
 </Tooltip>,
-                        <NahmiiTutorialBtn
+                        <Connect(NahmiiTutorialBtn)
                           style={
                                                     Object {
                                                                               "marginLeft": "0.5rem",
