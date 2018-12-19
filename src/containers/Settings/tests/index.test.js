@@ -11,6 +11,8 @@ describe('Settings', () => {
   const props = {
     onChangeNetwork: () => {},
     onChangeLocale: () => {},
+    showDisclaimerBtn: () => {},
+    hideDisclaimerBtn: () => {},
     currentNetwork: currentNetworkMock,
     supportedNetworks: fromJS(SUPPORTED_NETWORKS),
     disclaimerModal: disclaimerModalShowBtn,

@@ -21,6 +21,7 @@ import {
   depositStatusApproving,
   depositStatusCompleting,
   depositStatusError,
+  disclaimerModalShowBtn,
 } from 'containers/NahmiiHoc/tests/mocks/selectors';
 
 import {
@@ -45,6 +46,7 @@ describe('<NahmiiDeposit />', () => {
       goWalletDetails: () => {},
       intl,
       currentNetwork: currentNetworkMock,
+      disclaimerModal: disclaimerModalShowBtn,
       depositStatus: depositStatusNone,
       ledgerNanoSInfo: ledgerHocDisconnectedMock,
       trezorInfo: trezorHocDisconnectedMock,

@@ -105,7 +105,7 @@ export class Settings extends React.PureComponent {
           </SettingWrapper>
           <SettingWrapper>
             <StyledSectionHeading>
-              nahmii info button
+              nahmii info button preferences
             </StyledSectionHeading>
             <div
               style={{ display: 'flex' }}

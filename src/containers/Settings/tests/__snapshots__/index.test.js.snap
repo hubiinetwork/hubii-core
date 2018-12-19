@@ -97,6 +97,7 @@ ShallowWrapper {
             enableMainnet: false,
         }
     }
+    hideDisclaimerBtn={[Function]}
     intl={
         Object {
             "formatMessage": [Function],
@@ -105,6 +106,7 @@ ShallowWrapper {
     locale="en"
     onChangeLocale={[Function]}
     onChangeNetwork={[Function]}
+    showDisclaimerBtn={[Function]}
     supportedNetworks={
         Immutable.Map {
             homestead: Immutable.Map {
@@ -344,7 +346,7 @@ ShallowWrapper {
           </style__SettingWrapper>
           <style__SettingWrapper>
                     <style__StyledSectionHeading>
-                              nahmii info button
+                              nahmii info button preferences
                     </style__StyledSectionHeading>
                     <div
                               style={
@@ -453,7 +455,7 @@ ShallowWrapper {
 </style__SettingWrapper>,
             <style__SettingWrapper>
               <style__StyledSectionHeading>
-                            nahmii info button
+                            nahmii info button preferences
               </style__StyledSectionHeading>
               <div
                             style={
@@ -668,7 +670,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <style__StyledSectionHeading>
-                  nahmii info button
+                  nahmii info button preferences
 </style__StyledSectionHeading>,
                 <div
                   style={
@@ -704,10 +706,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "nahmii info button",
+                  "children": "nahmii info button preferences",
                 },
                 "ref": null,
-                "rendered": "nahmii info button",
+                "rendered": "nahmii info button preferences",
                 "type": [Function],
               },
               Object {
@@ -847,7 +849,7 @@ ShallowWrapper {
             </style__SettingWrapper>
             <style__SettingWrapper>
                         <style__StyledSectionHeading>
-                                    nahmii info button
+                                    nahmii info button preferences
                         </style__StyledSectionHeading>
                         <div
                                     style={
@@ -956,7 +958,7 @@ ShallowWrapper {
 </style__SettingWrapper>,
               <style__SettingWrapper>
                 <style__StyledSectionHeading>
-                                nahmii info button
+                                nahmii info button preferences
                 </style__StyledSectionHeading>
                 <div
                                 style={
@@ -1171,7 +1173,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <style__StyledSectionHeading>
-                    nahmii info button
+                    nahmii info button preferences
 </style__StyledSectionHeading>,
                   <div
                     style={
@@ -1207,10 +1209,10 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "nahmii info button",
+                    "children": "nahmii info button preferences",
                   },
                   "ref": null,
-                  "rendered": "nahmii info button",
+                  "rendered": "nahmii info button preferences",
                   "type": [Function],
                 },
                 Object {

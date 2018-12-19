@@ -27,6 +27,7 @@ import { compose } from 'redux';
 import { Form, FormItem, FormItemLabel } from 'components/ui/Form';
 import Collapse, { Panel } from 'components/ui/Collapse';
 import HelperText from 'components/ui/HelperText';
+import NahmiiInfoBtn from 'containers/NahmiiInfoBtn';
 import Text from 'components/ui/Text';
 import SectionHeading from 'components/ui/SectionHeading';
 import Input from 'components/ui/Input';
@@ -41,7 +42,10 @@ import {
 } from 'containers/HubiiApiHoc/selectors';
 import { makeSelectLedgerHoc } from 'containers/LedgerHoc/selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
-import { makeSelectDepositStatus } from 'containers/NahmiiHoc/selectors';
+import {
+  makeSelectDepositStatus,
+  makeSelectDisclaimerModal,
+} from 'containers/NahmiiHoc/selectors';
 import { nahmiiDeposit } from 'containers/NahmiiHoc/actions';
 import { injectIntl } from 'react-intl';
 
@@ -351,13 +355,16 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
 
     const walletType = currentWalletWithInfo.get('type');
 
-    const unsupportedNetwork = this.props.currentNetwork.provider._network.name === 'homestead';
+    const mainnet = this.props.currentNetwork.provider._network.name === 'homestead';
+    const enableNahmiiMainnet = this.props.disclaimerModal.get('enableMainnet');
+    const showEnablePrompt = mainnet && !enableNahmiiMainnet;
     const disableDepositButton =
-      unsupportedNetwork ||
-      amountToDeposit.toNumber() <= 0 ||
-      baseLayerBalAfterAmt.isNegative() ||
-      baseLayerEthBalanceAfterAmount.isNegative() ||
-      !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
+      mainnet
+      || (!enableNahmiiMainnet && mainnet)
+      || amountToDeposit.toNumber() <= 0
+      || baseLayerBalAfterAmt.isNegative()
+      || baseLayerEthBalanceAfterAmount.isNegative()
+      || !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
     const TransferingStatus = this.generateTransferingStatus(depositStatus, ledgerNanoSInfo, trezorInfo);
     return (
       <div style={{ display: 'flex', flex: '1', flexWrap: 'wrap' }}>
@@ -542,6 +549,20 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               <HWPromptContainer />
             </HWPromptWrapper>
             }
+            <div
+              style={{
+                display: 'flex',
+                marginTop: showEnablePrompt ? '1rem' : '0',
+                maxWidth: '25rem',
+                overflow: 'hidden',
+                height: showEnablePrompt ? 'auto' : '0',
+              }}
+            >
+              <SectionHeading style={{ marginBottom: '0' }}>
+                nahmii deposits are disabled on mainnet&nbsp;
+              </SectionHeading>
+              <NahmiiInfoBtn forceIcon />
+            </div>
             {
             TransferingStatus ?
               (
@@ -551,7 +572,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               ) : (
                 <Tooltip
                   placement="bottom"
-                  overlayStyle={!unsupportedNetwork && { display: 'none' }}
+                  overlayStyle={!mainnet ? { display: 'none' } : null}
                   title={<span>{formatMessage({ id: 'nahmii_mainnet' })}</span>}
                 >
                   <div style={{ width: 'fit-content' }}>
@@ -591,11 +612,13 @@ NahmiiDeposit.propTypes = {
   currentNetwork: PropTypes.object.isRequired,
   nahmiiDeposit: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
+  disclaimerModal: PropTypes.object.isRequired,
   goWalletDetails: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   depositStatus: makeSelectDepositStatus(),
+  disclaimerModal: makeSelectDisclaimerModal(),
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
   ledgerNanoSInfo: makeSelectLedgerHoc(),
   trezorInfo: makeSelectTrezorHoc(),
