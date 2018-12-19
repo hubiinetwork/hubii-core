@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { getAbsolutePath } from 'utils/electron';
 import { formatFiat } from 'utils/numberFormats';
 
-import NahmiiTutorialBtn from 'containers/NahmiiTutorialBtn';
+import NahmiiInfoBtn from 'containers/NahmiiInfoBtn';
 import Text from 'components/ui/Text';
 import NahmiiText from 'components/ui/NahmiiText';
 import {
@@ -98,7 +98,7 @@ class BreakdownList extends React.PureComponent {
               expanded={expandedAmount}
             />
           </a>
-          <NahmiiTutorialBtn style={{ marginLeft: '0.5rem' }} />
+          <NahmiiInfoBtn style={{ marginLeft: '0.5rem' }} />
         </div>
         <FlexContainer>{nahmiiBalanceList}</FlexContainer>
         <NahmiiBalancesWrapper expanded={expandedAmount}>

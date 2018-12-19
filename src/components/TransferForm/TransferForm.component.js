@@ -16,6 +16,7 @@ import { formatFiat } from 'utils/numberFormats';
 import { getAbsolutePath } from 'utils/electron';
 import { injectIntl } from 'react-intl';
 
+import NahmiiInfoBtn from 'containers/NahmiiInfoBtn';
 import ComboBoxSelect from 'components/ComboBoxSelect';
 import Input from 'components/ui/Input';
 import Select, { Option } from 'components/ui/Select';
@@ -38,7 +39,6 @@ import {
   TransferFormWrapper,
   NahmiiSwitch,
 } from './style';
-import NahmiiTutorialBtn from '../../containers/NahmiiTutorialBtn';
 
 // TODO: This component is buggy. Just merging because a lot of eslint issue have been resolved in this branch
 export class TransferForm extends React.PureComponent {
@@ -445,7 +445,7 @@ export class TransferForm extends React.PureComponent {
                     style={{ marginLeft: '0.5rem' }}
                   />
                 </Tooltip>
-                <NahmiiTutorialBtn style={{ marginLeft: '0.5rem' }} />
+                <NahmiiInfoBtn style={{ marginLeft: '0.5rem' }} />
               </div>
               <Spring
                 from={{ noAdvProg: 0 }}

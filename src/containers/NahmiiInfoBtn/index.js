@@ -1,6 +1,6 @@
 /**
  *
- * NahmiiTutorialBtn
+ * NahmiiInfoBtn
  *
  */
 
@@ -30,7 +30,7 @@ import {
 } from './style';
 
 
-class NahmiiTutorialBtn extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+class NahmiiInfoBtn extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     const mainnetEnabled = props.disclaimerModal.get('enableMainnet');
@@ -116,7 +116,7 @@ class NahmiiTutorialBtn extends React.PureComponent { // eslint-disable-line rea
   }
 }
 
-NahmiiTutorialBtn.propTypes = {
+NahmiiInfoBtn.propTypes = {
   style: PropTypes.object,
   iconOnly: PropTypes.bool,
   forceIcon: PropTypes.bool,
@@ -141,4 +141,4 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 export default compose(
   withConnect,
   injectIntl,
-)(NahmiiTutorialBtn);
+)(NahmiiInfoBtn);

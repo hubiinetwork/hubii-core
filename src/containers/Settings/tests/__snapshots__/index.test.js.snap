@@ -364,7 +364,7 @@ ShallowWrapper {
                                         }
                               >
                                         Show a 
-                                        <Connect(NahmiiTutorialBtn)
+                                        <Connect(NahmiiInfoBtn)
                                                   forceIcon={true}
                                                   iconOnly={true}
                                         />
@@ -473,7 +473,7 @@ ShallowWrapper {
                                           }
                             >
                                           Show a 
-                                          <Connect(NahmiiTutorialBtn)
+                                          <Connect(NahmiiInfoBtn)
                                                         forceIcon={true}
                                                         iconOnly={true}
                                           />
@@ -688,7 +688,7 @@ ShallowWrapper {
                                     }
                   >
                                     Show a 
-                                    <Connect(NahmiiTutorialBtn)
+                                    <Connect(NahmiiInfoBtn)
                                                       forceIcon={true}
                                                       iconOnly={true}
                                     />
@@ -726,7 +726,7 @@ ShallowWrapper {
                     }
 >
                     Show a 
-                    <Connect(NahmiiTutorialBtn)
+                    <Connect(NahmiiInfoBtn)
                                         forceIcon={true}
                                         iconOnly={true}
                     />
@@ -745,7 +745,7 @@ ShallowWrapper {
                     "checked": true,
                     "children": Array [
                       "Show a ",
-                      <Connect(NahmiiTutorialBtn)
+                      <Connect(NahmiiInfoBtn)
                         forceIcon={true}
                         iconOnly={true}
 />,
@@ -867,7 +867,7 @@ ShallowWrapper {
                                                 }
                                     >
                                                 Show a 
-                                                <Connect(NahmiiTutorialBtn)
+                                                <Connect(NahmiiInfoBtn)
                                                             forceIcon={true}
                                                             iconOnly={true}
                                                 />
@@ -976,7 +976,7 @@ ShallowWrapper {
                                                 }
                                 >
                                                 Show a 
-                                                <Connect(NahmiiTutorialBtn)
+                                                <Connect(NahmiiInfoBtn)
                                                                 forceIcon={true}
                                                                 iconOnly={true}
                                                 />
@@ -1191,7 +1191,7 @@ ShallowWrapper {
                                         }
                     >
                                         Show a 
-                                        <Connect(NahmiiTutorialBtn)
+                                        <Connect(NahmiiInfoBtn)
                                                             forceIcon={true}
                                                             iconOnly={true}
                                         />
@@ -1229,7 +1229,7 @@ ShallowWrapper {
                       }
 >
                       Show a 
-                      <Connect(NahmiiTutorialBtn)
+                      <Connect(NahmiiInfoBtn)
                                             forceIcon={true}
                                             iconOnly={true}
                       />
@@ -1248,7 +1248,7 @@ ShallowWrapper {
                       "checked": true,
                       "children": Array [
                         "Show a ",
-                        <Connect(NahmiiTutorialBtn)
+                        <Connect(NahmiiInfoBtn)
                           forceIcon={true}
                           iconOnly={true}
 />,

@@ -10,6 +10,7 @@ import { makeSelectCurrentNetwork, makeSelectSupportedNetworks } from 'container
 import { changeNetwork } from 'containers/App/actions';
 import { changeLocale } from 'containers/LanguageProvider/actions';
 
+import NahmiiInfoBtn from 'containers/NahmiiInfoBtn';
 import TopHeader from 'components/ui/TopHeader';
 import Heading from 'components/ui/Heading';
 import Select, { Option } from 'components/ui/Select';
@@ -30,7 +31,6 @@ import {
   StyledSectionHeading,
   NahmiiInfoCheckbox,
 } from './style';
-import NahmiiTutorialBtn from '../NahmiiTutorialBtn';
 
 export class Settings extends React.PureComponent {
   constructor() {
@@ -115,7 +115,7 @@ export class Settings extends React.PureComponent {
                 onChange={this.onChangeNahmiiDisclaimerBtn}
                 style={{ width: '20rem', display: 'flex' }}
               >
-                Show a&nbsp;<NahmiiTutorialBtn iconOnly forceIcon />&nbsp;button beside nahmii UI
+                Show a&nbsp;<NahmiiInfoBtn iconOnly forceIcon />&nbsp;button beside nahmii UI
             </NahmiiInfoCheckbox>
             </div>
           </SettingWrapper>
