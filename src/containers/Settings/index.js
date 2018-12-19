@@ -105,7 +105,7 @@ export class Settings extends React.PureComponent {
           </SettingWrapper>
           <SettingWrapper>
             <StyledSectionHeading>
-              nahmii info button preferences
+              {formatMessage({ id: 'nahmii_info_button' })}
             </StyledSectionHeading>
             <div
               style={{ display: 'flex' }}
@@ -115,8 +115,8 @@ export class Settings extends React.PureComponent {
                 onChange={this.onChangeNahmiiDisclaimerBtn}
                 style={{ width: '20rem', display: 'flex' }}
               >
-                Show a&nbsp;<NahmiiInfoBtn iconOnly forceIcon />&nbsp;button beside nahmii UI
-            </NahmiiInfoCheckbox>
+                {formatMessage({ id: 'show_a' })}&nbsp;<NahmiiInfoBtn iconOnly forceIcon />&nbsp;{formatMessage({ id: 'button_beside_nahmii_ui' })}
+              </NahmiiInfoCheckbox>
             </div>
           </SettingWrapper>
         </Body>

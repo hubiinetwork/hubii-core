@@ -559,7 +559,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               }}
             >
               <SectionHeading style={{ marginBottom: '0' }}>
-                nahmii deposits are disabled on mainnet&nbsp;
+                {formatMessage({ id: 'nahmii_deposits_disabled_mainnet' })}&nbsp;
               </SectionHeading>
               <NahmiiInfoBtn forceIcon />
             </div>

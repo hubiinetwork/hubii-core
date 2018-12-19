@@ -62,7 +62,8 @@ class NahmiiInfoBtn extends React.PureComponent { // eslint-disable-line react/p
 
   render() {
     const { cb1Checked, cb2Checked } = this.state;
-    const { disclaimerModal, iconOnly, forceIcon } = this.props;
+    const { disclaimerModal, iconOnly, forceIcon, intl } = this.props;
+    const { formatMessage } = intl;
     const showIcon = forceIcon || disclaimerModal.get('showBtn');
     return (
       <div style={{ ...this.props.style, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -72,42 +73,42 @@ class NahmiiInfoBtn extends React.PureComponent { // eslint-disable-line react/p
           style={!showIcon ? { display: 'none' } : {}}
         />
         <Modal
-          title="What is nahmii?"
+          title={formatMessage({ id: 'what_is_nahmii' })}
           visible={this.state.visible}
           footer={null}
           onOk={this.hideModal}
           onCancel={this.hideModal}
         >
-          <p>nahmii is a second layer scaling solution for the Ethereum blockchain, which offers faster and cheaper transactions than the Ethereum base layer.</p>
-          <p>To move funds in and out of the nahmii second layer, you need to send on-chain transactions to a nahmii smart contract. You can easily make these on-chain transactions using hubii core, the nahmii SDK or the nahmii CLI.</p>
-          <p>Once your funds are in the nahmii smart contract, you can use them to transact on the nahmii network, again using core, the SDK, or CLI.</p>
-          <p>nahmii is experimental technology. While in these early stages, we recommend only using nahmii on the Ethereum testnet Ropsten.</p>
-          <p>If you wish to use nahmii on the Ethereum mainnet, you must acknowledge that due to risk of bugs, any funds deposited into nahmii may be lost forever. Only deposit funds you are willing to lose.</p>
+          <p>{formatMessage({ id: 'nahmii_disclaimer_txt_1' })}</p>
+          <p>{formatMessage({ id: 'nahmii_disclaimer_txt_2' })}</p>
+          <p>{formatMessage({ id: 'nahmii_disclaimer_txt_3' })}</p>
+          <p>{formatMessage({ id: 'nahmii_disclaimer_txt_4' })}</p>
+          <p>{formatMessage({ id: 'nahmii_disclaimer_txt_5' })}</p>
           <Checkbox
             disabled={disclaimerModal.get('enableMainnet')}
             checked={disclaimerModal.get('enableMainnet') || cb1Checked}
             onChange={() => this.setState({ cb1Checked: !cb1Checked })}
           >
-            I understand nahmii is experimental technology and there is no guarantee funds deposited will not be lost forever
+            {formatMessage({ id: 'nahmii_disclaimer_cb_1' })}
           </Checkbox>
           <Checkbox
             disabled={disclaimerModal.get('enableMainnet')}
             checked={disclaimerModal.get('enableMainnet') || cb2Checked}
             onChange={() => this.setState({ cb2Checked: !cb2Checked })}
           >
-            I understand withdrawals on the nahmii mainnet are disabled until Q1 2019
+            {formatMessage({ id: 'nahmii_disclaimer_cb_2' })}
           </Checkbox>
           <Checkbox
             disabled={!cb1Checked || !cb2Checked}
             checked={disclaimerModal.get('enableMainnet')}
             onChange={this.toggleMainnet}
           >
-            Enable nahmii deposits on the Ethereum mainnet
+            {formatMessage({ id: 'nahmii_disclaimer_cb_3' })}
           </Checkbox>
           <br />
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
             <Button onClick={this.hideModal}>
-              Close
+              {formatMessage({ id: 'close' })}
             </Button>
           </div>
         </Modal>
@@ -118,6 +119,7 @@ class NahmiiInfoBtn extends React.PureComponent { // eslint-disable-line react/p
 
 NahmiiInfoBtn.propTypes = {
   style: PropTypes.object,
+  intl: PropTypes.object,
   iconOnly: PropTypes.bool,
   forceIcon: PropTypes.bool,
   enableMainnet: PropTypes.func.isRequired,

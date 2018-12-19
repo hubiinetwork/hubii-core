@@ -199,5 +199,19 @@
     "deposit": "Deposit",
     "deposit_success": "Deposit success",
     "connection_problem": "There's a problem with hubii core's connection. Please try again later.",
-    "nahmii_mainnet": "nahmii is not yet avaliable on mainnet"
+    "nahmii_mainnet": "nahmii is not yet avaliable on mainnet",
+    "nahmii_info_button": "nahmii info button",
+    "show_a": "Show a",
+    "button_beside_nahmii_ui": "button beside nahmii UI",
+    "nahmii_disclaimer_txt_1": "nahmii is a second layer scaling solution for the Ethereum blockchain, which offers faster and cheaper transactions than the Ethereum base layer.",
+    "nahmii_disclaimer_txt_2": "To move funds in and out of the nahmii second layer, you need to send on-chain transactions to a nahmii smart contract. You can easily make these on-chain transactions using hubii core, the nahmii SDK or the nahmii CLI.",
+    "nahmii_disclaimer_txt_3": "Once your funds are in the nahmii smart contract, you can use them to transact on the nahmii network, again using core, the SDK, or CLI.",
+    "nahmii_disclaimer_txt_4": "nahmii is experimental technology. While in these early stages, we recommend only using nahmii on the Ethereum testnet Ropsten.",
+    "nahmii_disclaimer_txt_5": "If you wish to use nahmii on the Ethereum mainnet, you must acknowledge that due to risk of bugs, any funds deposited into nahmii may be lost forever. Only deposit funds you are willing to lose.",
+    "nahmii_disclaimer_cb_1": "I understand nahmii is experimental technology and there is no guarantee funds deposited will not be lost forever",
+    "nahmii_disclaimer_cb_2": "I understand withdrawals on the nahmii mainnet are disabled until Q1 2019",
+    "nahmii_disclaimer_cb_3": "Enable nahmii deposits on the Ethereum mainnet",
+    "nahmii_deposits_disabled_mainnet": "nahmii deposits are disabled on mainnet",
+    "close": "Close",
+    "what_is_nahmii": "What is nahmii?"
 }
