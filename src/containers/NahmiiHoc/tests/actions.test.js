@@ -133,21 +133,21 @@ describe('nahmiiHoc actions', () => {
     });
   });
 
-  describe('hideInfoBtn', () => {
+  describe('hideDisclaimerBtn', () => {
     it('should return the correct payload', () => {
       const expected = {
-        type: constants.HIDE_INFO_BTN,
+        type: constants.HIDE_DISCLAIMER_BTN,
       };
-      expect(actions.hideInfoBtn()).toEqual(expected);
+      expect(actions.hideDisclaimerBtn()).toEqual(expected);
     });
   });
 
-  describe('showInfoBtn', () => {
+  describe('showDisclaimerBtn', () => {
     it('should return the correct payload', () => {
       const expected = {
-        type: constants.SHOW_INFO_BTN,
+        type: constants.SHOW_DISCLAIMER_BTN,
       };
-      expect(actions.showInfoBtn()).toEqual(expected);
+      expect(actions.showDisclaimerBtn()).toEqual(expected);
     });
   });
 });

@@ -15,6 +15,12 @@ import Heading from 'components/ui/Heading';
 import Select, { Option } from 'components/ui/Select';
 
 import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
+import { makeSelectDisclaimerModal } from 'containers/NahmiiHoc/selectors';
+import {
+  hideDisclaimerBtn,
+  showDisclaimerBtn,
+ } from 'containers/NahmiiHoc/actions';
+
 import { translationMessages } from '../../i18n';
 
 import {
@@ -22,12 +28,34 @@ import {
   SettingWrapper,
   Body,
   StyledSectionHeading,
+  NahmiiInfoCheckbox,
 } from './style';
+import NahmiiTutorialBtn from '../NahmiiTutorialBtn';
 
 export class Settings extends React.PureComponent {
+  constructor() {
+    super();
+    this.onChangeNahmiiDisclaimerBtn = this.onChangeNahmiiDisclaimerBtn.bind(this);
+  }
+
+  onChangeNahmiiDisclaimerBtn(e) {
+    if (e.target.checked) {
+      this.props.showDisclaimerBtn();
+    } else {
+      this.props.hideDisclaimerBtn();
+    }
+  }
 
   render() {
-    const { locale, onChangeNetwork, onChangeLocale, currentNetwork, supportedNetworks, intl } = this.props;
+    const {
+      locale,
+      onChangeNetwork,
+      onChangeLocale,
+      currentNetwork,
+      supportedNetworks,
+      disclaimerModal,
+      intl,
+    } = this.props;
     const { formatMessage } = intl;
     return (
       <Wrapper>
@@ -41,7 +69,7 @@ export class Settings extends React.PureComponent {
             </StyledSectionHeading>
             <Select
               value={currentNetwork.provider.network.name}
-              style={{ width: '15rem' }}
+              style={{ width: '20rem' }}
               onChange={onChangeNetwork}
             >
               {
@@ -63,7 +91,7 @@ export class Settings extends React.PureComponent {
             </StyledSectionHeading>
             <Select
               value={locale}
-              style={{ width: '15rem' }}
+              style={{ width: '20rem' }}
               onChange={onChangeLocale}
             >
               {
@@ -75,6 +103,22 @@ export class Settings extends React.PureComponent {
               }
             </Select>
           </SettingWrapper>
+          <SettingWrapper>
+            <StyledSectionHeading>
+              nahmii info button
+            </StyledSectionHeading>
+            <div
+              style={{ display: 'flex' }}
+            >
+              <NahmiiInfoCheckbox
+                checked={disclaimerModal.get('showBtn')}
+                onChange={this.onChangeNahmiiDisclaimerBtn}
+                style={{ width: '20rem', display: 'flex' }}
+              >
+                Show a&nbsp;<NahmiiTutorialBtn iconOnly forceIcon />&nbsp;button beside nahmii UI
+            </NahmiiInfoCheckbox>
+            </div>
+          </SettingWrapper>
         </Body>
       </Wrapper>
     );
@@ -84,20 +128,26 @@ export class Settings extends React.PureComponent {
 Settings.propTypes = {
   onChangeNetwork: PropTypes.func.isRequired,
   onChangeLocale: PropTypes.func.isRequired,
+  showDisclaimerBtn: PropTypes.func.isRequired,
+  hideDisclaimerBtn: PropTypes.func.isRequired,
   currentNetwork: PropTypes.object.isRequired,
   supportedNetworks: ImmutablePropTypes.map.isRequired,
   locale: PropTypes.string.isRequired,
+  disclaimerModal: PropTypes.object.isRequired,
   intl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   currentNetwork: makeSelectCurrentNetwork(),
+  disclaimerModal: makeSelectDisclaimerModal(),
   supportedNetworks: makeSelectSupportedNetworks(),
   locale: makeSelectLocale(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
+    hideDisclaimerBtn: () => dispatch(hideDisclaimerBtn()),
+    showDisclaimerBtn: () => dispatch(showDisclaimerBtn()),
     onChangeNetwork: (...args) => dispatch(changeNetwork(...args)),
     onChangeLocale: (...args) => dispatch(changeLocale(...args)),
   };

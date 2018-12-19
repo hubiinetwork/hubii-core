@@ -20,8 +20,8 @@ import {
   NAHMII_DEPOSIT_FAILED,
   ENABLE_NAHMII_MAINNET,
   DISABLE_NAHMII_MAINNET,
-  HIDE_INFO_BTN,
-  SHOW_INFO_BTN,
+  HIDE_DISCLAIMER_BTN,
+  SHOW_DISCLAIMER_BTN,
 } from './constants';
 
 export const initialState = fromJS({
@@ -99,10 +99,10 @@ function nahmiiHocReducer(state = initialState, action) {
     case DISABLE_NAHMII_MAINNET:
       return state
         .setIn(['disclaimerModal', 'enableMainnet'], false);
-    case SHOW_INFO_BTN:
+    case SHOW_DISCLAIMER_BTN:
       return state
         .setIn(['disclaimerModal', 'showBtn'], true);
-    case HIDE_INFO_BTN:
+    case HIDE_DISCLAIMER_BTN:
       return state
         .setIn(['disclaimerModal', 'showBtn'], false);
     default:

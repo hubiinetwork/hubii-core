@@ -62,12 +62,14 @@ class NahmiiTutorialBtn extends React.PureComponent { // eslint-disable-line rea
 
   render() {
     const { cb1Checked, cb2Checked } = this.state;
-    const { disclaimerModal } = this.props;
+    const { disclaimerModal, iconOnly, forceIcon } = this.props;
+    const showIcon = forceIcon || disclaimerModal.get('showBtn');
     return (
       <div style={{ ...this.props.style, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <StyledIcon
-          onClick={this.showModal}
+          onClick={!iconOnly ? this.showModal : null}
           type="question-circle"
+          style={!showIcon ? { display: 'none' } : {}}
         />
         <Modal
           title="What is nahmii?"
@@ -116,6 +118,8 @@ class NahmiiTutorialBtn extends React.PureComponent { // eslint-disable-line rea
 
 NahmiiTutorialBtn.propTypes = {
   style: PropTypes.object,
+  iconOnly: PropTypes.bool,
+  forceIcon: PropTypes.bool,
   enableMainnet: PropTypes.func.isRequired,
   disableMainnet: PropTypes.func.isRequired,
   disclaimerModal: PropTypes.object.isRequired,

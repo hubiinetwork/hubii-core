@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import SectionHeading from 'components/ui/SectionHeading';
-import { Switch } from 'antd';
+import { Switch, Checkbox } from 'antd';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -34,4 +34,15 @@ export const SettingWrapper = styled.div`
 
 export const StyledSectionHeading = styled(SectionHeading)`
   margin-bottom: 0.5rem;
+`;
+
+export const NahmiiInfoCheckbox = styled(Checkbox)`
+&&&& {
+  & > span {
+    display: flex;
+  }
+  width: 20rem;
+  display: flex;
+  align-items: flex-end;
+}
 `;

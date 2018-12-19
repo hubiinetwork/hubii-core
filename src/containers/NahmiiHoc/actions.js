@@ -18,8 +18,8 @@ import {
   MAKE_NAHMII_PAYMENT_SUCCESS,
   ENABLE_NAHMII_MAINNET,
   DISABLE_NAHMII_MAINNET,
-  HIDE_INFO_BTN,
-  SHOW_INFO_BTN,
+  HIDE_DISCLAIMER_BTN,
+  SHOW_DISCLAIMER_BTN,
 } from './constants';
 
 export function nahmiiDeposit(address, symbol, amount, options) {
@@ -165,14 +165,14 @@ export function disableNahmiiMainnet() {
   };
 }
 
-export function hideInfoBtn() {
+export function hideDisclaimerBtn() {
   return {
-    type: HIDE_INFO_BTN,
+    type: HIDE_DISCLAIMER_BTN,
   };
 }
 
-export function showInfoBtn() {
+export function showDisclaimerBtn() {
   return {
-    type: SHOW_INFO_BTN,
+    type: SHOW_DISCLAIMER_BTN,
   };
 }

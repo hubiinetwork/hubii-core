@@ -9,8 +9,8 @@ import {
   loadStagingBalancesSuccess,
   enableNahmiiMainnet,
   disableNahmiiMainnet,
-  showInfoBtn,
-  hideInfoBtn,
+  showDisclaimerBtn,
+  hideDisclaimerBtn,
 } from '../actions';
 
 describe('nahmiiHocReducer', () => {
@@ -93,20 +93,20 @@ describe('nahmiiHocReducer', () => {
     expect(nahmiiHocReducer(testState, disableNahmiiMainnet())).toEqual(expected);
   });
 
-  it('should handle showInfoBtn action correctly', () => {
+  it('should handle showDisclaimerBtn action correctly', () => {
     const testState = state
       .setIn(['disclaimerModal', 'showBtn'], false);
     const expected = state
       .setIn(['disclaimerModal', 'showBtn'], true);
-    expect(nahmiiHocReducer(testState, showInfoBtn())).toEqual(expected);
+    expect(nahmiiHocReducer(testState, showDisclaimerBtn())).toEqual(expected);
   });
 
-  it('should handle hideInfoBtn action correctly', () => {
+  it('should handle hideDisclaimerBtn action correctly', () => {
     const testState = state
       .setIn(['disclaimerModal', 'showBtn'], true);
     const expected = state
       .setIn(['disclaimerModal', 'showBtn'], false);
-    expect(nahmiiHocReducer(testState, hideInfoBtn())).toEqual(expected);
+    expect(nahmiiHocReducer(testState, hideDisclaimerBtn())).toEqual(expected);
   });
 
   it('should handle changeNetwork correctly', () => {
