@@ -215,7 +215,9 @@
     "nahmii_disclaimer_txt_5": "If you wish to use nahmii on the Ethereum mainnet, you must acknowledge that due to risk of bugs, any funds deposited into nahmii may be lost forever. Only deposit funds you are willing to lose.",
     "nahmii_disclaimer_cb_1": "I understand nahmii is experimental technology and there is no guarantee funds deposited will not be lost forever",
     "nahmii_disclaimer_cb_2": "I understand withdrawals on the nahmii mainnet are disabled until Q1 2019",
-    "nahmii_disclaimer_cb_3": "Enable nahmii deposits on the Ethereum mainnet",
+    "nahmii_disclaimer_cb_3a": "I have read and agree to the nahmii",
+    "nahmii_disclaimer_cb_3b": "Terms and Conditions",
+    "nahmii_disclaimer_cb_4": "Enable nahmii deposits on the Ethereum mainnet",
     "nahmii_deposits_disabled_mainnet": "nahmii deposits are disabled on mainnet",
     "close": "Close",
     "what_is_nahmii": "What is nahmii?"

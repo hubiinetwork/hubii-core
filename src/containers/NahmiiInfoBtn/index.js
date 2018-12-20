@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-// import { shell } from 'electron';
+import { shell } from 'electron';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -34,7 +34,12 @@ class NahmiiInfoBtn extends React.PureComponent { // eslint-disable-line react/p
   constructor(props) {
     super(props);
     const mainnetEnabled = props.disclaimerModal.get('enableMainnet');
-    this.state = { visible: false, cb1Checked: mainnetEnabled, cb2Checked: mainnetEnabled };
+    this.state = {
+      visible: false,
+      cb1Checked: mainnetEnabled,
+      cb2Checked: mainnetEnabled,
+      cb3Checked: mainnetEnabled,
+    };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.toggleMainnet = this.toggleMainnet.bind(this);
@@ -61,7 +66,7 @@ class NahmiiInfoBtn extends React.PureComponent { // eslint-disable-line react/p
   }
 
   render() {
-    const { cb1Checked, cb2Checked } = this.state;
+    const { cb1Checked, cb2Checked, cb3Checked } = this.state;
     const { disclaimerModal, iconOnly, forceIcon, intl } = this.props;
     const { formatMessage } = intl;
     const showIcon = forceIcon || disclaimerModal.get('showBtn');
@@ -99,11 +104,27 @@ class NahmiiInfoBtn extends React.PureComponent { // eslint-disable-line react/p
             {formatMessage({ id: 'nahmii_disclaimer_cb_2' })}
           </Checkbox>
           <Checkbox
-            disabled={!cb1Checked || !cb2Checked}
+            disabled={disclaimerModal.get('enableMainnet')}
+            checked={disclaimerModal.get('enableMainnet') || cb3Checked}
+            onChange={() => this.setState({ cb3Checked: !cb3Checked })}
+          >
+            {formatMessage({ id: 'nahmii_disclaimer_cb_3a' })}
+          </Checkbox>
+          &nbsp;
+          <a
+            onClick={() => shell.openExternal('https://www.google.com/')}
+            role="link"
+            tabIndex="0"
+            style={{ marginLeft: '-8px' }} // allow a natural space between checkbox and T&C link
+          >
+            {formatMessage({ id: 'nahmii_disclaimer_cb_3b' })}
+          </a>
+          <Checkbox
+            disabled={!cb1Checked || !cb2Checked || !cb3Checked}
             checked={disclaimerModal.get('enableMainnet')}
             onChange={this.toggleMainnet}
           >
-            {formatMessage({ id: 'nahmii_disclaimer_cb_3' })}
+            {formatMessage({ id: 'nahmii_disclaimer_cb_4' })}
           </Checkbox>
           <br />
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
