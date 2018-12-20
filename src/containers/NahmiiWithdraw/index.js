@@ -266,7 +266,7 @@ export class NahmiiWithdraw extends React.PureComponent {
       amountToWithdrawInput,
     } = this.state;
 
-    const { staged } = nahmiiBalances.toJS();
+    const { available, staged } = nahmiiBalances.toJS();
     const challenge = lastPaymentChallenge.get('challenge');
     const selectedAssetDetails = this.getAssetDetailsBySymbol(selectedSymbol);
 
@@ -313,6 +313,10 @@ export class NahmiiWithdraw extends React.PureComponent {
     }, ethersUtils.bigNumberify(0));
     const totalIntendedStageAmount = ethersUtils.formatUnits(totalIntendedStageAmountBN, decimals);
 
+    const availableAsset = available.assets.find(a => a.currency === selectedSymbol) || {balance: '0'};
+    const availableBalanceBN = ethersUtils.bigNumberify(availableAsset.balance);
+    const availableBalanceAmount = ethersUtils.formatUnits(availableBalanceBN, decimals);
+    
     const maxExpirationTime = ongoingChallenges.get('details').reduce((max, challenge) => {
       const {expirationTime} = challenge;
       return max > expirationTime ? max : expirationTime;
@@ -384,7 +388,7 @@ export class NahmiiWithdraw extends React.PureComponent {
             </Select>
           </FormItem>
           <StyledFormItem
-            label={<FormItemLabel>{formatMessage({ id: 'enter_amount_stage' })}</FormItemLabel>}
+            label={<FormItemLabel>{formatMessage({ id: 'enter_amount_stage' }, {nahmii_balance: availableBalanceAmount})}</FormItemLabel>}
             colon={false}
             // help={<HelperText left={formatFiat(usdValueToSend, 'USD')} right={formatMessage({ id: 'usd' })} />}
           >
@@ -414,7 +418,7 @@ export class NahmiiWithdraw extends React.PureComponent {
           </StyledFormItem>
         </StyledForm>
         <TransactionsWrapper>
-          <SectionHeading>{formatMessage({ id: 'transaction_history' })}</SectionHeading>
+          <SectionHeading>{formatMessage({ id: 'settlement_history' })}</SectionHeading>
           {txs.map((tx) => (
             <TransactionWrapper key={uuid()}>
               <SettlementTransaction

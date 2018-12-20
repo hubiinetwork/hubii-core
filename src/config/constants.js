@@ -52,8 +52,10 @@ export const SUPPORTED_NETWORKS = {
     nahmiiProvider: new nahmii.NahmiiProvider(
       trimmableWalletApiEndpoint(ROPSTEN_URL)(true),
       ROPSTEN_IDENTITY_SERVICE_APPID,
-      ROPSTEN_IDENTITY_SERVICE_SECRET
-      ),
+      ROPSTEN_IDENTITY_SERVICE_SECRET,
+      'http://geth-ropsten.dev.hubii.net',
+      3
+    ),
     walletApiEndpoint: trimmableWalletApiEndpoint(ROPSTEN_URL),
     identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : ROPSTEN_IDENTITY_SERVICE_SECRET,
     identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : ROPSTEN_IDENTITY_SERVICE_APPID,

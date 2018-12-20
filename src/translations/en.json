@@ -212,10 +212,16 @@
     "tx_mined_success": "The transaction for the last action was confirmed",
     "tx_mined_error": "The transaction for the last action was failed to be confirmed",
     "enter_amount_withdraw": "Enter the amount to withdraw (max withdraw amount: {withdraw_amount} {symbol})",
-    "enter_amount_stage": "Enter the amount to stage during the settlement (max stage amount: )",
+    "enter_amount_stage": "Enter the amount to stage during the settlement (max stage amount: {nahmii_balance})",
     "no_valid_receipt_for_new_challenge": "No valid nahmii payment receipts to be used for starting new payment challenge.",
     "need_valid_receipt_for_new_challenge": "Require a nahmii payment receipt to start new payment challenge.",
     "start_payment_challenge_type": "Start Payment Challenge",
     "settle_payment_type": "Settlement",
-    "withdraw_type": "Withdraw"
+    "settlement_history": "Settlement History",
+    "withdraw_type": "Withdraw",
+    "gas_limit_too_low": "Gas limit is too low, please try increase the gas limit.",
+    "checks_before_settling": "Preparing settlement...",
+    "requesting_settle": "Requesting settlement...",
+    "update_settle_stage_balance": "Updating stage balance...",
+    "unable_start_challenges": "Unable to start new settlements, please check if there are ongoing settlements that have not expired yet."
 }
