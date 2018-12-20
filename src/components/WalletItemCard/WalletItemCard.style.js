@@ -66,15 +66,12 @@ export const TotalBalance = styled(Heading)`
   color: ${({ theme }) => theme.palette.info};
   margin-top: -0.25rem;
   margin-right: 2.14rem;
-  word-wrap: break-word;
-  min-width: 10.71rem;
-  text-align: right;
-  flex: 1;
+  margin-left: auto;
 `;
 
 export const WalletName = styled(Text)`
-  min-width: 5rem;
-  word-wrap: break-word;
+  margin-right: 1rem;
+  word-break: break-word;
   margin-bottom: 0.5rem;
 `;
 
