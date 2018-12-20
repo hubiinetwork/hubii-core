@@ -422,6 +422,24 @@ export function* loadStagedBalances({ address }, network) {
   }
 }
 
+export function* loadWalletReceipts({ address }, network) {
+  if (network.provider._network.name === 'homestead') {
+    yield put(actions.loadReceiptsSuccess(address, []));
+    return;
+  }
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const receipts = yield network.nahmiiProvider.getWalletReceipts(address);
+      yield put(actions.loadReceiptsSuccess(address, receipts));
+    } catch (e) {
+      yield put(actions.loadReceiptsError(address, e));
+    } finally {
+      const FIVE_SEC_IN_MS = 1000 * 5;
+      yield delay(FIVE_SEC_IN_MS);
+    }
+  }
+}
+
 // manages calling of complex ethOperations
 export function* challengeStatusOrcestrator() {
   try {
@@ -434,6 +452,7 @@ export function* challengeStatusOrcestrator() {
         ...wallets.map((wallet) => fork(loadBalances, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadStagedBalances, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadStagingBalances, { address: wallet.get('address') }, network)),
+        ...wallets.map((wallet) => fork(loadWalletReceipts, { address: wallet.get('address') }, network)),
       ]);
 
       const ONE_MINUTE_IN_MS = 60 * 1000;
