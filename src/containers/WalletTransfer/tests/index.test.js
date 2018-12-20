@@ -1,10 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import nahmii from 'nahmii-sdk';
 import { fromJS } from 'immutable';
 import {
   walletsWithInfoMock,
   walletsMock,
 } from 'containers/WalletHoc/tests/mocks/selectors';
+
+import {
+  currentNetworkMock,
+} from 'containers/App/tests/mocks/selectors';
 
 import {
   pricesLoadedMock,
@@ -32,11 +37,13 @@ import { WalletTransfer, mapDispatchToProps } from '../index';
 describe('WalletTransfer', () => {
   const props = {
     prices: pricesLoadedMock,
+    currentNetwork: currentNetworkMock,
     currentWallet: walletsMock.get(0),
     supportedAssets: supportedAssetsLoadedMock,
     currentWalletWithInfo: walletsWithInfoMock.get(0),
     contacts: contactsMock,
-    transfer: () => {},
+    nahmiiTransfer: () => {},
+    baseLayerTransfer: () => {},
     history: {},
     errors: {},
     ledgerNanoSInfo: ledgerHocConnectedMock,
@@ -134,33 +141,54 @@ describe('WalletTransfer', () => {
   });
 
   describe('#onSend', () => {
-    it('should trigger transfer action', () => {
-      const transferSpy = jest.fn();
+    it('should trigger baseLayerTransfer action when layer is set to baseLayer', () => {
+      const baseLayerTransferSpy = jest.fn();
       const historySpy = jest.fn();
       const wrapper = shallow(
         <WalletTransfer
           {...props}
-          transfer={transferSpy}
+          baseLayerTransfer={baseLayerTransferSpy}
           history={{ push: historySpy }}
         />
         );
       const instance = wrapper.instance();
-      const token = 'BOKKY';
+      const symbol = 'BOKKY';
       const toAddress = 'abcd';
       const amount = 1;
       const gasPrice = 1;
       const gasLimit = 1;
-      instance.onSend(token, toAddress, amount, gasPrice, gasLimit);
+      instance.onSend(symbol, toAddress, amount, 'baseLayer', gasPrice, gasLimit);
       const args = {
         wallet: props.currentWalletWithInfo.toJS(),
-        token,
+        token: symbol,
         toAddress,
         amount,
         gasPrice,
         gasLimit,
         contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
       };
-      expect(transferSpy).toBeCalledWith(args);
+      expect(baseLayerTransferSpy).toBeCalledWith(args);
+    });
+
+    it('should trigger nahmiiTransfer action when layer is set to nahmii', () => {
+      const nahmiiTransferSpy = jest.fn();
+      const historySpy = jest.fn();
+      const wrapper = shallow(
+        <WalletTransfer
+          {...props}
+          nahmiiTransfer={nahmiiTransferSpy}
+          history={{ push: historySpy }}
+        />
+        );
+      const instance = wrapper.instance();
+      const symbol = 'BOKKY';
+      const toAddress = 'abcd';
+      const amount = 1;
+      const gasPrice = 1;
+      const gasLimit = 1;
+      const monetaryAmount = new nahmii.MonetaryAmount(amount, '0x583cbbb8a8443b38abcc0c956bece47340ea1367');
+      instance.onSend(symbol, toAddress, amount, 'nahmii', gasPrice, gasLimit);
+      expect(nahmiiTransferSpy).toBeCalledWith(monetaryAmount, toAddress);
     });
   });
   describe('#componentDidUpdate', () => {

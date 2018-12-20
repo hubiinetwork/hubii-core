@@ -11,7 +11,7 @@ import { fromJS } from 'immutable';
 import BigNumber from 'bignumber.js';
 
 import { requestHardwareWalletAPI } from 'utils/request';
-import { getTransaction, prependHexToAddress } from 'utils/wallet';
+import { getTransaction, prependHexToAddress, ERC20ABI } from 'utils/wallet';
 import { storeMock } from 'mocks/store';
 
 import { notify } from 'containers/App/actions';
@@ -20,6 +20,8 @@ import {
   appMock,
   currentNetworkMock,
 } from 'containers/App/tests/mocks/selectors';
+
+import { nahmiiHocMock } from 'containers/NahmiiHoc/tests/mocks/selectors';
 
 import {
   hubiiApiHocMock,
@@ -70,7 +72,7 @@ import walletHoc, {
   transferEther,
   hookNewWalletCreated,
   sendTransactionForHardwareWallet,
-  generateERC20Transaction,
+  generateContractTransaction,
   signPersonalMessage,
   decryptSuccessHook,
   decryptFailedHook,
@@ -295,7 +297,7 @@ describe('decryptWallet saga', () => {
     return expectSaga(decryptWallet, { address, encryptedWallet, password })
       .withState(testState)
       .provide([
-        [matchers.call.fn(Wallet.fromEncryptedWallet), decryptedWallet],
+        [matchers.call.fn(Wallet.fromEncryptedJson), decryptedWallet],
       ])
       .put(decryptWalletSuccess(address, decryptedWallet))
       .put(hideDecryptWalletModal())
@@ -311,7 +313,7 @@ describe('decryptWallet saga', () => {
   it('should dispatch the decryptWalletFailed and notify action if decryption fails', () => expectSaga(decryptWallet, { address, encryptedWallet, password: 'cats' })
       .withState(storeMock)
       .provide([
-        [matchers.call.fn(Wallet.fromEncryptedWallet), new Error('invalid_password')],
+        [matchers.call.fn(Wallet.fromEncryptedJson), new Error('invalid_password')],
       ])
       .put(decryptWalletFailed(new Error('invalid_password')))
       .run());
@@ -351,6 +353,7 @@ it('sign transaction for erc20 payment', () => {
   const storeState = {
     ethOperationsHoc: ethOperationsHocMock,
     app: appMock,
+    nahmiiHoc: nahmiiHocMock,
     hubiiApiHoc: hubiiApiHocMock,
     walletHoc: {
       wallets: [{
@@ -420,6 +423,7 @@ describe('payment transfer', () => {
       let storeState = fromJS({
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
+        nahmiiHoc: nahmiiHocMock,
         app: appMock,
         walletHoc: {
           wallets: [{
@@ -465,6 +469,7 @@ describe('payment transfer', () => {
       const storeState = {
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
+        nahmiiHoc: nahmiiHocMock,
         app: appMock,
         walletHoc: {
           wallets: [{
@@ -543,7 +548,7 @@ describe('payment transfer', () => {
           .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
           .run({ silenceTimeout: true });
     });
-    it('#generateERC20Transaction should generate transaction object using etherjs contract', async () => {
+    it('#generateContractTransaction should generate transaction object using etherjs contract', async () => {
       const nonce = 1;
       const gas = {
         gasPrice: 30000000,
@@ -560,19 +565,19 @@ describe('payment transfer', () => {
         ...gas,
         nonce, // override the nonce so etherjs wont call #getTransactionCount for testing
       };
-      const tx = await generateERC20Transaction({
+      const tx = await generateContractTransaction({
         contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
-        walletAddress: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
-        toAddress: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
-        amount: utils.parseEther(amount.toString()),
+        abi: ERC20ABI,
+        execute: ['transfer', ['0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88', utils.parseEther(amount.toString()), options]],
         provider: currentNetworkMock.provider,
-      }, options);
+      });
       expect(tx).toEqual(expectedTx);
     });
     it('transfer erc20 should pass params correctly to sendTransactionForHardwareWallet', () => {
       const storeState = {
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
+        nahmiiHoc: nahmiiHocMock,
         app: appMock,
         walletHoc: {
           wallets: [{
@@ -606,7 +611,7 @@ describe('payment transfer', () => {
       return expectSaga(transferERC20, params)
           .provide({
             call(effect, next) {
-              if (effect.fn === generateERC20Transaction) {
+              if (effect.fn === generateContractTransaction) {
                 return tx;
               }
               if (effect.fn === sendTransactionForHardwareWallet) {
@@ -628,6 +633,7 @@ describe('payment transfer', () => {
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
         app: appMock,
+        nahmiiHoc: nahmiiHocMock,
         walletHoc: {
           balances: balancesMock,
           prices: pricesLoadedMock,
@@ -667,7 +673,7 @@ describe('payment transfer', () => {
               }
               if (effect.args[0].startsWith('0xf8')) {
                 signedTxHex = effect.args[0];
-                return 'hash';
+                return { hash: 'hash' };
               }
               if (effect.fn === getTransaction) {
                 return { value: 1 };
@@ -689,6 +695,7 @@ describe('payment transfer', () => {
       const storeState = fromJS({
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
+        nahmiiHoc: nahmiiHocMock,
         app: appMock,
         walletHoc: {
           balances: balancesMock,
@@ -749,7 +756,7 @@ describe('payment transfer', () => {
               }
               if (effect.args[0].startsWith('0xf8')) {
                 signedTxHex = effect.args[0];
-                return 'hash';
+                return { hash: 'hash' };
               }
               if (effect.fn === getTransaction) {
                 return { value: 1 };
@@ -816,14 +823,12 @@ describe('#signPersonalMessage', () => {
     v: 28,
   };
 
-  it('should run the function relevant to a software wallet', () => {
+  it('should run the function relevant to a software wallet', async () => {
     const wallet = decryptedSoftwareWallet1Mock.toJS();
-    const expectedResult = {
-      done: true,
-      value: expandedSig,
-    };
-    const putDescriptor = signPersonalMessage({ message, wallet }).next();
-    expect(putDescriptor).toEqual(expectedResult);
+
+    const { returnValue } = await expectSaga(signPersonalMessage, { wallet, message })
+        .run({ silenceTimeout: true });
+    expect(returnValue).toEqual(expandedSig);
   });
   it('should run the function relevant to a lns', async () => {
     const ledgerExpandedSig = {

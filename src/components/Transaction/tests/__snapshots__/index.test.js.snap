@@ -15,6 +15,7 @@ ShallowWrapper {
             "formatMessage": [Function],
           }
     }
+    layer="baseLayer"
     onChange={[Function]}
     symbol="UKG"
     time={1995-01-09T04:19:09.000Z}
@@ -58,9 +59,17 @@ ShallowWrapper {
                                 <Transaction.style__FiatValue>
                                         ($123.34 USD)
                                 </Transaction.style__FiatValue>
-                                <Transaction.style__TransactionHistoryTime>
-                                        01/09/1995
-                                </Transaction.style__TransactionHistoryTime>
+                                <div
+                                        style={
+                                                Object {
+                                                        "marginLeft": "auto",
+                                                      }
+                                        }
+                                >
+                                        <Transaction.style__TransactionHistoryTime>
+                                                01/09/1995
+                                        </Transaction.style__TransactionHistoryTime>
+                                </div>
                         </Transaction.style__HeaderWrapper>
                 }
                 showArrow={false}
@@ -85,13 +94,15 @@ ShallowWrapper {
                                               }
                                 }
                         >
-                                <Transaction.style__SubtitleText>
-                                        confirmations
-                                        :
-                                </Transaction.style__SubtitleText>
-                                <Transaction.style__GreenTextWrapper>
-                                        204
-                                </Transaction.style__GreenTextWrapper>
+                                <div>
+                                        <Transaction.style__SubtitleText>
+                                                confirmations
+                                                :
+                                        </Transaction.style__SubtitleText>
+                                        <Transaction.style__GreenTextWrapper>
+                                                204
+                                        </Transaction.style__GreenTextWrapper>
+                                </div>
                         </div>
                         <Transaction.style__TransactionId
                                 onClick={[Function]}
@@ -130,9 +141,17 @@ ShallowWrapper {
                               <Transaction.style__FiatValue>
                                         ($123.34 USD)
                               </Transaction.style__FiatValue>
-                              <Transaction.style__TransactionHistoryTime>
-                                        01/09/1995
-                              </Transaction.style__TransactionHistoryTime>
+                              <div
+                                        style={
+                                                  Object {
+                                                            "marginLeft": "auto",
+                                                          }
+                                        }
+                              >
+                                        <Transaction.style__TransactionHistoryTime>
+                                                  01/09/1995
+                                        </Transaction.style__TransactionHistoryTime>
+                              </div>
                     </Transaction.style__HeaderWrapper>
           }
           showArrow={false}
@@ -157,13 +176,15 @@ ShallowWrapper {
                                                 }
                               }
                     >
-                              <Transaction.style__SubtitleText>
-                                        confirmations
-                                        :
-                              </Transaction.style__SubtitleText>
-                              <Transaction.style__GreenTextWrapper>
-                                        204
-                              </Transaction.style__GreenTextWrapper>
+                              <div>
+                                        <Transaction.style__SubtitleText>
+                                                  confirmations
+                                                  :
+                                        </Transaction.style__SubtitleText>
+                                        <Transaction.style__GreenTextWrapper>
+                                                  204
+                                        </Transaction.style__GreenTextWrapper>
+                              </div>
                     </div>
                     <Transaction.style__TransactionId
                               onClick={[Function]}
@@ -201,13 +222,15 @@ ShallowWrapper {
                                               }
                         }
             >
-                        <Transaction.style__SubtitleText>
-                                    confirmations
-                                    :
-                        </Transaction.style__SubtitleText>
-                        <Transaction.style__GreenTextWrapper>
-                                    204
-                        </Transaction.style__GreenTextWrapper>
+                        <div>
+                                    <Transaction.style__SubtitleText>
+                                                confirmations
+                                                :
+                                    </Transaction.style__SubtitleText>
+                                    <Transaction.style__GreenTextWrapper>
+                                                204
+                                    </Transaction.style__GreenTextWrapper>
+                        </div>
             </div>
             <Transaction.style__TransactionId
                         onClick={[Function]}
@@ -233,9 +256,17 @@ ShallowWrapper {
             <Transaction.style__FiatValue>
                         ($123.34 USD)
             </Transaction.style__FiatValue>
-            <Transaction.style__TransactionHistoryTime>
-                        01/09/1995
-            </Transaction.style__TransactionHistoryTime>
+            <div
+                        style={
+                                    Object {
+                                                "marginLeft": "auto",
+                                              }
+                        }
+            >
+                        <Transaction.style__TransactionHistoryTime>
+                                    01/09/1995
+                        </Transaction.style__TransactionHistoryTime>
+            </div>
 </Transaction.style__HeaderWrapper>,
           "showArrow": false,
         },
@@ -265,19 +296,22 @@ ShallowWrapper {
                                               }
                 }
 >
-                <Transaction.style__SubtitleText>
-                                confirmations
-                                :
-                </Transaction.style__SubtitleText>
-                <Transaction.style__GreenTextWrapper>
-                                204
-                </Transaction.style__GreenTextWrapper>
+                <div>
+                                <Transaction.style__SubtitleText>
+                                                confirmations
+                                                :
+                                </Transaction.style__SubtitleText>
+                                <Transaction.style__GreenTextWrapper>
+                                                204
+                                </Transaction.style__GreenTextWrapper>
+                </div>
 </div>,
               <Transaction.style__TransactionId
                 onClick={[Function]}
 >
                 view_etherscan
 </Transaction.style__TransactionId>,
+              false,
             ],
           },
           "ref": null,
@@ -336,13 +370,16 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <Transaction.style__SubtitleText>
-                    confirmations
-                    :
-</Transaction.style__SubtitleText>,
-                  <Transaction.style__GreenTextWrapper>
-                    204
-</Transaction.style__GreenTextWrapper>,
+                  <div>
+                    <Transaction.style__SubtitleText>
+                                        confirmations
+                                        :
+                    </Transaction.style__SubtitleText>
+                    <Transaction.style__GreenTextWrapper>
+                                        204
+                    </Transaction.style__GreenTextWrapper>
+</div>,
+                  false,
                 ],
                 "style": Object {
                   "display": "flex",
@@ -353,31 +390,52 @@ ShallowWrapper {
                 Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "class",
+                  "nodeType": "host",
                   "props": Object {
                     "children": Array [
-                      "confirmations",
-                      ":",
+                      <Transaction.style__SubtitleText>
+                        confirmations
+                        :
+</Transaction.style__SubtitleText>,
+                      <Transaction.style__GreenTextWrapper>
+                        204
+</Transaction.style__GreenTextWrapper>,
                     ],
                   },
                   "ref": null,
                   "rendered": Array [
-                    "confirmations",
-                    ":",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": Array [
+                          "confirmations",
+                          ":",
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        "confirmations",
+                        ":",
+                      ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "204",
+                      },
+                      "ref": null,
+                      "rendered": "204",
+                      "type": [Function],
+                    },
                   ],
-                  "type": [Function],
+                  "type": "div",
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "204",
-                  },
-                  "ref": null,
-                  "rendered": "204",
-                  "type": [Function],
-                },
+                false,
               ],
               "type": "div",
             },
@@ -393,6 +451,7 @@ ShallowWrapper {
               "rendered": "view_etherscan",
               "type": [Function],
             },
+            false,
           ],
           "type": [Function],
         },
@@ -433,9 +492,17 @@ ShallowWrapper {
                                         <Transaction.style__FiatValue>
                                                   ($123.34 USD)
                                         </Transaction.style__FiatValue>
-                                        <Transaction.style__TransactionHistoryTime>
-                                                  01/09/1995
-                                        </Transaction.style__TransactionHistoryTime>
+                                        <div
+                                                  style={
+                                                            Object {
+                                                                      "marginLeft": "auto",
+                                                                    }
+                                                  }
+                                        >
+                                                  <Transaction.style__TransactionHistoryTime>
+                                                            01/09/1995
+                                                  </Transaction.style__TransactionHistoryTime>
+                                        </div>
                               </Transaction.style__HeaderWrapper>
                     }
                     showArrow={false}
@@ -460,13 +527,15 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        <Transaction.style__SubtitleText>
-                                                  confirmations
-                                                  :
-                                        </Transaction.style__SubtitleText>
-                                        <Transaction.style__GreenTextWrapper>
-                                                  204
-                                        </Transaction.style__GreenTextWrapper>
+                                        <div>
+                                                  <Transaction.style__SubtitleText>
+                                                            confirmations
+                                                            :
+                                                  </Transaction.style__SubtitleText>
+                                                  <Transaction.style__GreenTextWrapper>
+                                                            204
+                                                  </Transaction.style__GreenTextWrapper>
+                                        </div>
                               </div>
                               <Transaction.style__TransactionId
                                         onClick={[Function]}
@@ -505,9 +574,17 @@ ShallowWrapper {
                                     <Transaction.style__FiatValue>
                                                 ($123.34 USD)
                                     </Transaction.style__FiatValue>
-                                    <Transaction.style__TransactionHistoryTime>
-                                                01/09/1995
-                                    </Transaction.style__TransactionHistoryTime>
+                                    <div
+                                                style={
+                                                            Object {
+                                                                        "marginLeft": "auto",
+                                                                      }
+                                                }
+                                    >
+                                                <Transaction.style__TransactionHistoryTime>
+                                                            01/09/1995
+                                                </Transaction.style__TransactionHistoryTime>
+                                    </div>
                         </Transaction.style__HeaderWrapper>
             }
             showArrow={false}
@@ -532,13 +609,15 @@ ShallowWrapper {
                                                           }
                                     }
                         >
-                                    <Transaction.style__SubtitleText>
-                                                confirmations
-                                                :
-                                    </Transaction.style__SubtitleText>
-                                    <Transaction.style__GreenTextWrapper>
-                                                204
-                                    </Transaction.style__GreenTextWrapper>
+                                    <div>
+                                                <Transaction.style__SubtitleText>
+                                                            confirmations
+                                                            :
+                                                </Transaction.style__SubtitleText>
+                                                <Transaction.style__GreenTextWrapper>
+                                                            204
+                                                </Transaction.style__GreenTextWrapper>
+                                    </div>
                         </div>
                         <Transaction.style__TransactionId
                                     onClick={[Function]}
@@ -576,13 +655,15 @@ ShallowWrapper {
                                                       }
                             }
               >
-                            <Transaction.style__SubtitleText>
-                                          confirmations
-                                          :
-                            </Transaction.style__SubtitleText>
-                            <Transaction.style__GreenTextWrapper>
-                                          204
-                            </Transaction.style__GreenTextWrapper>
+                            <div>
+                                          <Transaction.style__SubtitleText>
+                                                        confirmations
+                                                        :
+                                          </Transaction.style__SubtitleText>
+                                          <Transaction.style__GreenTextWrapper>
+                                                        204
+                                          </Transaction.style__GreenTextWrapper>
+                            </div>
               </div>
               <Transaction.style__TransactionId
                             onClick={[Function]}
@@ -608,9 +689,17 @@ ShallowWrapper {
               <Transaction.style__FiatValue>
                             ($123.34 USD)
               </Transaction.style__FiatValue>
-              <Transaction.style__TransactionHistoryTime>
-                            01/09/1995
-              </Transaction.style__TransactionHistoryTime>
+              <div
+                            style={
+                                          Object {
+                                                        "marginLeft": "auto",
+                                                      }
+                            }
+              >
+                            <Transaction.style__TransactionHistoryTime>
+                                          01/09/1995
+                            </Transaction.style__TransactionHistoryTime>
+              </div>
 </Transaction.style__HeaderWrapper>,
             "showArrow": false,
           },
@@ -640,19 +729,22 @@ ShallowWrapper {
                                                     }
                   }
 >
-                  <Transaction.style__SubtitleText>
-                                    confirmations
-                                    :
-                  </Transaction.style__SubtitleText>
-                  <Transaction.style__GreenTextWrapper>
-                                    204
-                  </Transaction.style__GreenTextWrapper>
+                  <div>
+                                    <Transaction.style__SubtitleText>
+                                                      confirmations
+                                                      :
+                                    </Transaction.style__SubtitleText>
+                                    <Transaction.style__GreenTextWrapper>
+                                                      204
+                                    </Transaction.style__GreenTextWrapper>
+                  </div>
 </div>,
                 <Transaction.style__TransactionId
                   onClick={[Function]}
 >
                   view_etherscan
 </Transaction.style__TransactionId>,
+                false,
               ],
             },
             "ref": null,
@@ -711,13 +803,16 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": Array [
-                    <Transaction.style__SubtitleText>
-                      confirmations
-                      :
-</Transaction.style__SubtitleText>,
-                    <Transaction.style__GreenTextWrapper>
-                      204
-</Transaction.style__GreenTextWrapper>,
+                    <div>
+                      <Transaction.style__SubtitleText>
+                                            confirmations
+                                            :
+                      </Transaction.style__SubtitleText>
+                      <Transaction.style__GreenTextWrapper>
+                                            204
+                      </Transaction.style__GreenTextWrapper>
+</div>,
+                    false,
                   ],
                   "style": Object {
                     "display": "flex",
@@ -728,31 +823,52 @@ ShallowWrapper {
                   Object {
                     "instance": null,
                     "key": undefined,
-                    "nodeType": "class",
+                    "nodeType": "host",
                     "props": Object {
                       "children": Array [
-                        "confirmations",
-                        ":",
+                        <Transaction.style__SubtitleText>
+                          confirmations
+                          :
+</Transaction.style__SubtitleText>,
+                        <Transaction.style__GreenTextWrapper>
+                          204
+</Transaction.style__GreenTextWrapper>,
                       ],
                     },
                     "ref": null,
                     "rendered": Array [
-                      "confirmations",
-                      ":",
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": Array [
+                            "confirmations",
+                            ":",
+                          ],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          "confirmations",
+                          ":",
+                        ],
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": "204",
+                        },
+                        "ref": null,
+                        "rendered": "204",
+                        "type": [Function],
+                      },
                     ],
-                    "type": [Function],
+                    "type": "div",
                   },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": "204",
-                    },
-                    "ref": null,
-                    "rendered": "204",
-                    "type": [Function],
-                  },
+                  false,
                 ],
                 "type": "div",
               },
@@ -768,6 +884,7 @@ ShallowWrapper {
                 "rendered": "view_etherscan",
                 "type": [Function],
               },
+              false,
             ],
             "type": [Function],
           },
@@ -803,6 +920,7 @@ ShallowWrapper {
             "formatMessage": [Function],
           }
     }
+    layer="baseLayer"
     onChange={[Function]}
     symbol="UKG"
     time={1995-01-09T04:19:09.000Z}
@@ -846,9 +964,17 @@ ShallowWrapper {
                                 <Transaction.style__FiatValue>
                                         ($123.34 USD)
                                 </Transaction.style__FiatValue>
-                                <Transaction.style__TransactionHistoryTime>
-                                        01/09/1995
-                                </Transaction.style__TransactionHistoryTime>
+                                <div
+                                        style={
+                                                Object {
+                                                        "marginLeft": "auto",
+                                                      }
+                                        }
+                                >
+                                        <Transaction.style__TransactionHistoryTime>
+                                                01/09/1995
+                                        </Transaction.style__TransactionHistoryTime>
+                                </div>
                         </Transaction.style__HeaderWrapper>
                 }
                 showArrow={false}
@@ -875,13 +1001,15 @@ ShallowWrapper {
                                               }
                                 }
                         >
-                                <Transaction.style__SubtitleText>
-                                        confirmations
-                                        :
-                                </Transaction.style__SubtitleText>
-                                <Transaction.style__GreenTextWrapper>
-                                        204
-                                </Transaction.style__GreenTextWrapper>
+                                <div>
+                                        <Transaction.style__SubtitleText>
+                                                confirmations
+                                                :
+                                        </Transaction.style__SubtitleText>
+                                        <Transaction.style__GreenTextWrapper>
+                                                204
+                                        </Transaction.style__GreenTextWrapper>
+                                </div>
                         </div>
                         <Transaction.style__TransactionId
                                 onClick={[Function]}
@@ -920,9 +1048,17 @@ ShallowWrapper {
                               <Transaction.style__FiatValue>
                                         ($123.34 USD)
                               </Transaction.style__FiatValue>
-                              <Transaction.style__TransactionHistoryTime>
-                                        01/09/1995
-                              </Transaction.style__TransactionHistoryTime>
+                              <div
+                                        style={
+                                                  Object {
+                                                            "marginLeft": "auto",
+                                                          }
+                                        }
+                              >
+                                        <Transaction.style__TransactionHistoryTime>
+                                                  01/09/1995
+                                        </Transaction.style__TransactionHistoryTime>
+                              </div>
                     </Transaction.style__HeaderWrapper>
           }
           showArrow={false}
@@ -949,13 +1085,15 @@ ShallowWrapper {
                                                 }
                               }
                     >
-                              <Transaction.style__SubtitleText>
-                                        confirmations
-                                        :
-                              </Transaction.style__SubtitleText>
-                              <Transaction.style__GreenTextWrapper>
-                                        204
-                              </Transaction.style__GreenTextWrapper>
+                              <div>
+                                        <Transaction.style__SubtitleText>
+                                                  confirmations
+                                                  :
+                                        </Transaction.style__SubtitleText>
+                                        <Transaction.style__GreenTextWrapper>
+                                                  204
+                                        </Transaction.style__GreenTextWrapper>
+                              </div>
                     </div>
                     <Transaction.style__TransactionId
                               onClick={[Function]}
@@ -995,13 +1133,15 @@ ShallowWrapper {
                                               }
                         }
             >
-                        <Transaction.style__SubtitleText>
-                                    confirmations
-                                    :
-                        </Transaction.style__SubtitleText>
-                        <Transaction.style__GreenTextWrapper>
-                                    204
-                        </Transaction.style__GreenTextWrapper>
+                        <div>
+                                    <Transaction.style__SubtitleText>
+                                                confirmations
+                                                :
+                                    </Transaction.style__SubtitleText>
+                                    <Transaction.style__GreenTextWrapper>
+                                                204
+                                    </Transaction.style__GreenTextWrapper>
+                        </div>
             </div>
             <Transaction.style__TransactionId
                         onClick={[Function]}
@@ -1027,9 +1167,17 @@ ShallowWrapper {
             <Transaction.style__FiatValue>
                         ($123.34 USD)
             </Transaction.style__FiatValue>
-            <Transaction.style__TransactionHistoryTime>
-                        01/09/1995
-            </Transaction.style__TransactionHistoryTime>
+            <div
+                        style={
+                                    Object {
+                                                "marginLeft": "auto",
+                                              }
+                        }
+            >
+                        <Transaction.style__TransactionHistoryTime>
+                                    01/09/1995
+                        </Transaction.style__TransactionHistoryTime>
+            </div>
 </Transaction.style__HeaderWrapper>,
           "showArrow": false,
         },
@@ -1061,19 +1209,22 @@ ShallowWrapper {
                                               }
                 }
 >
-                <Transaction.style__SubtitleText>
-                                confirmations
-                                :
-                </Transaction.style__SubtitleText>
-                <Transaction.style__GreenTextWrapper>
-                                204
-                </Transaction.style__GreenTextWrapper>
+                <div>
+                                <Transaction.style__SubtitleText>
+                                                confirmations
+                                                :
+                                </Transaction.style__SubtitleText>
+                                <Transaction.style__GreenTextWrapper>
+                                                204
+                                </Transaction.style__GreenTextWrapper>
+                </div>
 </div>,
               <Transaction.style__TransactionId
                 onClick={[Function]}
 >
                 view_etherscan
 </Transaction.style__TransactionId>,
+              false,
             ],
           },
           "ref": null,
@@ -1134,13 +1285,16 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <Transaction.style__SubtitleText>
-                    confirmations
-                    :
-</Transaction.style__SubtitleText>,
-                  <Transaction.style__GreenTextWrapper>
-                    204
-</Transaction.style__GreenTextWrapper>,
+                  <div>
+                    <Transaction.style__SubtitleText>
+                                        confirmations
+                                        :
+                    </Transaction.style__SubtitleText>
+                    <Transaction.style__GreenTextWrapper>
+                                        204
+                    </Transaction.style__GreenTextWrapper>
+</div>,
+                  false,
                 ],
                 "style": Object {
                   "display": "flex",
@@ -1151,31 +1305,52 @@ ShallowWrapper {
                 Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "class",
+                  "nodeType": "host",
                   "props": Object {
                     "children": Array [
-                      "confirmations",
-                      ":",
+                      <Transaction.style__SubtitleText>
+                        confirmations
+                        :
+</Transaction.style__SubtitleText>,
+                      <Transaction.style__GreenTextWrapper>
+                        204
+</Transaction.style__GreenTextWrapper>,
                     ],
                   },
                   "ref": null,
                   "rendered": Array [
-                    "confirmations",
-                    ":",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": Array [
+                          "confirmations",
+                          ":",
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        "confirmations",
+                        ":",
+                      ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "204",
+                      },
+                      "ref": null,
+                      "rendered": "204",
+                      "type": [Function],
+                    },
                   ],
-                  "type": [Function],
+                  "type": "div",
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "204",
-                  },
-                  "ref": null,
-                  "rendered": "204",
-                  "type": [Function],
-                },
+                false,
               ],
               "type": "div",
             },
@@ -1191,6 +1366,7 @@ ShallowWrapper {
               "rendered": "view_etherscan",
               "type": [Function],
             },
+            false,
           ],
           "type": [Function],
         },
@@ -1231,9 +1407,17 @@ ShallowWrapper {
                                         <Transaction.style__FiatValue>
                                                   ($123.34 USD)
                                         </Transaction.style__FiatValue>
-                                        <Transaction.style__TransactionHistoryTime>
-                                                  01/09/1995
-                                        </Transaction.style__TransactionHistoryTime>
+                                        <div
+                                                  style={
+                                                            Object {
+                                                                      "marginLeft": "auto",
+                                                                    }
+                                                  }
+                                        >
+                                                  <Transaction.style__TransactionHistoryTime>
+                                                            01/09/1995
+                                                  </Transaction.style__TransactionHistoryTime>
+                                        </div>
                               </Transaction.style__HeaderWrapper>
                     }
                     showArrow={false}
@@ -1260,13 +1444,15 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        <Transaction.style__SubtitleText>
-                                                  confirmations
-                                                  :
-                                        </Transaction.style__SubtitleText>
-                                        <Transaction.style__GreenTextWrapper>
-                                                  204
-                                        </Transaction.style__GreenTextWrapper>
+                                        <div>
+                                                  <Transaction.style__SubtitleText>
+                                                            confirmations
+                                                            :
+                                                  </Transaction.style__SubtitleText>
+                                                  <Transaction.style__GreenTextWrapper>
+                                                            204
+                                                  </Transaction.style__GreenTextWrapper>
+                                        </div>
                               </div>
                               <Transaction.style__TransactionId
                                         onClick={[Function]}
@@ -1305,9 +1491,17 @@ ShallowWrapper {
                                     <Transaction.style__FiatValue>
                                                 ($123.34 USD)
                                     </Transaction.style__FiatValue>
-                                    <Transaction.style__TransactionHistoryTime>
-                                                01/09/1995
-                                    </Transaction.style__TransactionHistoryTime>
+                                    <div
+                                                style={
+                                                            Object {
+                                                                        "marginLeft": "auto",
+                                                                      }
+                                                }
+                                    >
+                                                <Transaction.style__TransactionHistoryTime>
+                                                            01/09/1995
+                                                </Transaction.style__TransactionHistoryTime>
+                                    </div>
                         </Transaction.style__HeaderWrapper>
             }
             showArrow={false}
@@ -1334,13 +1528,15 @@ ShallowWrapper {
                                                           }
                                     }
                         >
-                                    <Transaction.style__SubtitleText>
-                                                confirmations
-                                                :
-                                    </Transaction.style__SubtitleText>
-                                    <Transaction.style__GreenTextWrapper>
-                                                204
-                                    </Transaction.style__GreenTextWrapper>
+                                    <div>
+                                                <Transaction.style__SubtitleText>
+                                                            confirmations
+                                                            :
+                                                </Transaction.style__SubtitleText>
+                                                <Transaction.style__GreenTextWrapper>
+                                                            204
+                                                </Transaction.style__GreenTextWrapper>
+                                    </div>
                         </div>
                         <Transaction.style__TransactionId
                                     onClick={[Function]}
@@ -1380,13 +1576,15 @@ ShallowWrapper {
                                                       }
                             }
               >
-                            <Transaction.style__SubtitleText>
-                                          confirmations
-                                          :
-                            </Transaction.style__SubtitleText>
-                            <Transaction.style__GreenTextWrapper>
-                                          204
-                            </Transaction.style__GreenTextWrapper>
+                            <div>
+                                          <Transaction.style__SubtitleText>
+                                                        confirmations
+                                                        :
+                                          </Transaction.style__SubtitleText>
+                                          <Transaction.style__GreenTextWrapper>
+                                                        204
+                                          </Transaction.style__GreenTextWrapper>
+                            </div>
               </div>
               <Transaction.style__TransactionId
                             onClick={[Function]}
@@ -1412,9 +1610,17 @@ ShallowWrapper {
               <Transaction.style__FiatValue>
                             ($123.34 USD)
               </Transaction.style__FiatValue>
-              <Transaction.style__TransactionHistoryTime>
-                            01/09/1995
-              </Transaction.style__TransactionHistoryTime>
+              <div
+                            style={
+                                          Object {
+                                                        "marginLeft": "auto",
+                                                      }
+                            }
+              >
+                            <Transaction.style__TransactionHistoryTime>
+                                          01/09/1995
+                            </Transaction.style__TransactionHistoryTime>
+              </div>
 </Transaction.style__HeaderWrapper>,
             "showArrow": false,
           },
@@ -1446,19 +1652,22 @@ ShallowWrapper {
                                                     }
                   }
 >
-                  <Transaction.style__SubtitleText>
-                                    confirmations
-                                    :
-                  </Transaction.style__SubtitleText>
-                  <Transaction.style__GreenTextWrapper>
-                                    204
-                  </Transaction.style__GreenTextWrapper>
+                  <div>
+                                    <Transaction.style__SubtitleText>
+                                                      confirmations
+                                                      :
+                                    </Transaction.style__SubtitleText>
+                                    <Transaction.style__GreenTextWrapper>
+                                                      204
+                                    </Transaction.style__GreenTextWrapper>
+                  </div>
 </div>,
                 <Transaction.style__TransactionId
                   onClick={[Function]}
 >
                   view_etherscan
 </Transaction.style__TransactionId>,
+                false,
               ],
             },
             "ref": null,
@@ -1519,13 +1728,16 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": Array [
-                    <Transaction.style__SubtitleText>
-                      confirmations
-                      :
-</Transaction.style__SubtitleText>,
-                    <Transaction.style__GreenTextWrapper>
-                      204
-</Transaction.style__GreenTextWrapper>,
+                    <div>
+                      <Transaction.style__SubtitleText>
+                                            confirmations
+                                            :
+                      </Transaction.style__SubtitleText>
+                      <Transaction.style__GreenTextWrapper>
+                                            204
+                      </Transaction.style__GreenTextWrapper>
+</div>,
+                    false,
                   ],
                   "style": Object {
                     "display": "flex",
@@ -1536,31 +1748,52 @@ ShallowWrapper {
                   Object {
                     "instance": null,
                     "key": undefined,
-                    "nodeType": "class",
+                    "nodeType": "host",
                     "props": Object {
                       "children": Array [
-                        "confirmations",
-                        ":",
+                        <Transaction.style__SubtitleText>
+                          confirmations
+                          :
+</Transaction.style__SubtitleText>,
+                        <Transaction.style__GreenTextWrapper>
+                          204
+</Transaction.style__GreenTextWrapper>,
                       ],
                     },
                     "ref": null,
                     "rendered": Array [
-                      "confirmations",
-                      ":",
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": Array [
+                            "confirmations",
+                            ":",
+                          ],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          "confirmations",
+                          ":",
+                        ],
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": "204",
+                        },
+                        "ref": null,
+                        "rendered": "204",
+                        "type": [Function],
+                      },
                     ],
-                    "type": [Function],
+                    "type": "div",
                   },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": "204",
-                    },
-                    "ref": null,
-                    "rendered": "204",
-                    "type": [Function],
-                  },
+                  false,
                 ],
                 "type": "div",
               },
@@ -1576,6 +1809,7 @@ ShallowWrapper {
                 "rendered": "view_etherscan",
                 "type": [Function],
               },
+              false,
             ],
             "type": [Function],
           },
@@ -1611,6 +1845,7 @@ ShallowWrapper {
             "formatMessage": [Function],
           }
     }
+    layer="baseLayer"
     onChange={[Function]}
     symbol="UKG"
     time={1995-01-09T04:19:09.000Z}
@@ -1654,9 +1889,17 @@ ShallowWrapper {
                                 <Transaction.style__FiatValue>
                                         ($123.34 USD)
                                 </Transaction.style__FiatValue>
-                                <Transaction.style__TransactionHistoryTime>
-                                        01/09/1995
-                                </Transaction.style__TransactionHistoryTime>
+                                <div
+                                        style={
+                                                Object {
+                                                        "marginLeft": "auto",
+                                                      }
+                                        }
+                                >
+                                        <Transaction.style__TransactionHistoryTime>
+                                                01/09/1995
+                                        </Transaction.style__TransactionHistoryTime>
+                                </div>
                         </Transaction.style__HeaderWrapper>
                 }
                 showArrow={false}
@@ -1683,13 +1926,15 @@ ShallowWrapper {
                                               }
                                 }
                         >
-                                <Transaction.style__SubtitleText>
-                                        confirmations
-                                        :
-                                </Transaction.style__SubtitleText>
-                                <Transaction.style__GreenTextWrapper>
-                                        204
-                                </Transaction.style__GreenTextWrapper>
+                                <div>
+                                        <Transaction.style__SubtitleText>
+                                                confirmations
+                                                :
+                                        </Transaction.style__SubtitleText>
+                                        <Transaction.style__GreenTextWrapper>
+                                                204
+                                        </Transaction.style__GreenTextWrapper>
+                                </div>
                         </div>
                         <Transaction.style__TransactionId
                                 onClick={[Function]}
@@ -1728,9 +1973,17 @@ ShallowWrapper {
                               <Transaction.style__FiatValue>
                                         ($123.34 USD)
                               </Transaction.style__FiatValue>
-                              <Transaction.style__TransactionHistoryTime>
-                                        01/09/1995
-                              </Transaction.style__TransactionHistoryTime>
+                              <div
+                                        style={
+                                                  Object {
+                                                            "marginLeft": "auto",
+                                                          }
+                                        }
+                              >
+                                        <Transaction.style__TransactionHistoryTime>
+                                                  01/09/1995
+                                        </Transaction.style__TransactionHistoryTime>
+                              </div>
                     </Transaction.style__HeaderWrapper>
           }
           showArrow={false}
@@ -1757,13 +2010,15 @@ ShallowWrapper {
                                                 }
                               }
                     >
-                              <Transaction.style__SubtitleText>
-                                        confirmations
-                                        :
-                              </Transaction.style__SubtitleText>
-                              <Transaction.style__GreenTextWrapper>
-                                        204
-                              </Transaction.style__GreenTextWrapper>
+                              <div>
+                                        <Transaction.style__SubtitleText>
+                                                  confirmations
+                                                  :
+                                        </Transaction.style__SubtitleText>
+                                        <Transaction.style__GreenTextWrapper>
+                                                  204
+                                        </Transaction.style__GreenTextWrapper>
+                              </div>
                     </div>
                     <Transaction.style__TransactionId
                               onClick={[Function]}
@@ -1803,13 +2058,15 @@ ShallowWrapper {
                                               }
                         }
             >
-                        <Transaction.style__SubtitleText>
-                                    confirmations
-                                    :
-                        </Transaction.style__SubtitleText>
-                        <Transaction.style__GreenTextWrapper>
-                                    204
-                        </Transaction.style__GreenTextWrapper>
+                        <div>
+                                    <Transaction.style__SubtitleText>
+                                                confirmations
+                                                :
+                                    </Transaction.style__SubtitleText>
+                                    <Transaction.style__GreenTextWrapper>
+                                                204
+                                    </Transaction.style__GreenTextWrapper>
+                        </div>
             </div>
             <Transaction.style__TransactionId
                         onClick={[Function]}
@@ -1835,9 +2092,17 @@ ShallowWrapper {
             <Transaction.style__FiatValue>
                         ($123.34 USD)
             </Transaction.style__FiatValue>
-            <Transaction.style__TransactionHistoryTime>
-                        01/09/1995
-            </Transaction.style__TransactionHistoryTime>
+            <div
+                        style={
+                                    Object {
+                                                "marginLeft": "auto",
+                                              }
+                        }
+            >
+                        <Transaction.style__TransactionHistoryTime>
+                                    01/09/1995
+                        </Transaction.style__TransactionHistoryTime>
+            </div>
 </Transaction.style__HeaderWrapper>,
           "showArrow": false,
         },
@@ -1869,19 +2134,22 @@ ShallowWrapper {
                                               }
                 }
 >
-                <Transaction.style__SubtitleText>
-                                confirmations
-                                :
-                </Transaction.style__SubtitleText>
-                <Transaction.style__GreenTextWrapper>
-                                204
-                </Transaction.style__GreenTextWrapper>
+                <div>
+                                <Transaction.style__SubtitleText>
+                                                confirmations
+                                                :
+                                </Transaction.style__SubtitleText>
+                                <Transaction.style__GreenTextWrapper>
+                                                204
+                                </Transaction.style__GreenTextWrapper>
+                </div>
 </div>,
               <Transaction.style__TransactionId
                 onClick={[Function]}
 >
                 view_etherscan
 </Transaction.style__TransactionId>,
+              false,
             ],
           },
           "ref": null,
@@ -1942,13 +2210,16 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <Transaction.style__SubtitleText>
-                    confirmations
-                    :
-</Transaction.style__SubtitleText>,
-                  <Transaction.style__GreenTextWrapper>
-                    204
-</Transaction.style__GreenTextWrapper>,
+                  <div>
+                    <Transaction.style__SubtitleText>
+                                        confirmations
+                                        :
+                    </Transaction.style__SubtitleText>
+                    <Transaction.style__GreenTextWrapper>
+                                        204
+                    </Transaction.style__GreenTextWrapper>
+</div>,
+                  false,
                 ],
                 "style": Object {
                   "display": "flex",
@@ -1959,31 +2230,52 @@ ShallowWrapper {
                 Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "class",
+                  "nodeType": "host",
                   "props": Object {
                     "children": Array [
-                      "confirmations",
-                      ":",
+                      <Transaction.style__SubtitleText>
+                        confirmations
+                        :
+</Transaction.style__SubtitleText>,
+                      <Transaction.style__GreenTextWrapper>
+                        204
+</Transaction.style__GreenTextWrapper>,
                     ],
                   },
                   "ref": null,
                   "rendered": Array [
-                    "confirmations",
-                    ":",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": Array [
+                          "confirmations",
+                          ":",
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        "confirmations",
+                        ":",
+                      ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "204",
+                      },
+                      "ref": null,
+                      "rendered": "204",
+                      "type": [Function],
+                    },
                   ],
-                  "type": [Function],
+                  "type": "div",
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "204",
-                  },
-                  "ref": null,
-                  "rendered": "204",
-                  "type": [Function],
-                },
+                false,
               ],
               "type": "div",
             },
@@ -1999,6 +2291,7 @@ ShallowWrapper {
               "rendered": "view_etherscan",
               "type": [Function],
             },
+            false,
           ],
           "type": [Function],
         },
@@ -2039,9 +2332,17 @@ ShallowWrapper {
                                         <Transaction.style__FiatValue>
                                                   ($123.34 USD)
                                         </Transaction.style__FiatValue>
-                                        <Transaction.style__TransactionHistoryTime>
-                                                  01/09/1995
-                                        </Transaction.style__TransactionHistoryTime>
+                                        <div
+                                                  style={
+                                                            Object {
+                                                                      "marginLeft": "auto",
+                                                                    }
+                                                  }
+                                        >
+                                                  <Transaction.style__TransactionHistoryTime>
+                                                            01/09/1995
+                                                  </Transaction.style__TransactionHistoryTime>
+                                        </div>
                               </Transaction.style__HeaderWrapper>
                     }
                     showArrow={false}
@@ -2068,13 +2369,15 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        <Transaction.style__SubtitleText>
-                                                  confirmations
-                                                  :
-                                        </Transaction.style__SubtitleText>
-                                        <Transaction.style__GreenTextWrapper>
-                                                  204
-                                        </Transaction.style__GreenTextWrapper>
+                                        <div>
+                                                  <Transaction.style__SubtitleText>
+                                                            confirmations
+                                                            :
+                                                  </Transaction.style__SubtitleText>
+                                                  <Transaction.style__GreenTextWrapper>
+                                                            204
+                                                  </Transaction.style__GreenTextWrapper>
+                                        </div>
                               </div>
                               <Transaction.style__TransactionId
                                         onClick={[Function]}
@@ -2113,9 +2416,17 @@ ShallowWrapper {
                                     <Transaction.style__FiatValue>
                                                 ($123.34 USD)
                                     </Transaction.style__FiatValue>
-                                    <Transaction.style__TransactionHistoryTime>
-                                                01/09/1995
-                                    </Transaction.style__TransactionHistoryTime>
+                                    <div
+                                                style={
+                                                            Object {
+                                                                        "marginLeft": "auto",
+                                                                      }
+                                                }
+                                    >
+                                                <Transaction.style__TransactionHistoryTime>
+                                                            01/09/1995
+                                                </Transaction.style__TransactionHistoryTime>
+                                    </div>
                         </Transaction.style__HeaderWrapper>
             }
             showArrow={false}
@@ -2142,13 +2453,15 @@ ShallowWrapper {
                                                           }
                                     }
                         >
-                                    <Transaction.style__SubtitleText>
-                                                confirmations
-                                                :
-                                    </Transaction.style__SubtitleText>
-                                    <Transaction.style__GreenTextWrapper>
-                                                204
-                                    </Transaction.style__GreenTextWrapper>
+                                    <div>
+                                                <Transaction.style__SubtitleText>
+                                                            confirmations
+                                                            :
+                                                </Transaction.style__SubtitleText>
+                                                <Transaction.style__GreenTextWrapper>
+                                                            204
+                                                </Transaction.style__GreenTextWrapper>
+                                    </div>
                         </div>
                         <Transaction.style__TransactionId
                                     onClick={[Function]}
@@ -2188,13 +2501,15 @@ ShallowWrapper {
                                                       }
                             }
               >
-                            <Transaction.style__SubtitleText>
-                                          confirmations
-                                          :
-                            </Transaction.style__SubtitleText>
-                            <Transaction.style__GreenTextWrapper>
-                                          204
-                            </Transaction.style__GreenTextWrapper>
+                            <div>
+                                          <Transaction.style__SubtitleText>
+                                                        confirmations
+                                                        :
+                                          </Transaction.style__SubtitleText>
+                                          <Transaction.style__GreenTextWrapper>
+                                                        204
+                                          </Transaction.style__GreenTextWrapper>
+                            </div>
               </div>
               <Transaction.style__TransactionId
                             onClick={[Function]}
@@ -2220,9 +2535,17 @@ ShallowWrapper {
               <Transaction.style__FiatValue>
                             ($123.34 USD)
               </Transaction.style__FiatValue>
-              <Transaction.style__TransactionHistoryTime>
-                            01/09/1995
-              </Transaction.style__TransactionHistoryTime>
+              <div
+                            style={
+                                          Object {
+                                                        "marginLeft": "auto",
+                                                      }
+                            }
+              >
+                            <Transaction.style__TransactionHistoryTime>
+                                          01/09/1995
+                            </Transaction.style__TransactionHistoryTime>
+              </div>
 </Transaction.style__HeaderWrapper>,
             "showArrow": false,
           },
@@ -2254,19 +2577,22 @@ ShallowWrapper {
                                                     }
                   }
 >
-                  <Transaction.style__SubtitleText>
-                                    confirmations
-                                    :
-                  </Transaction.style__SubtitleText>
-                  <Transaction.style__GreenTextWrapper>
-                                    204
-                  </Transaction.style__GreenTextWrapper>
+                  <div>
+                                    <Transaction.style__SubtitleText>
+                                                      confirmations
+                                                      :
+                                    </Transaction.style__SubtitleText>
+                                    <Transaction.style__GreenTextWrapper>
+                                                      204
+                                    </Transaction.style__GreenTextWrapper>
+                  </div>
 </div>,
                 <Transaction.style__TransactionId
                   onClick={[Function]}
 >
                   view_etherscan
 </Transaction.style__TransactionId>,
+                false,
               ],
             },
             "ref": null,
@@ -2327,13 +2653,16 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": Array [
-                    <Transaction.style__SubtitleText>
-                      confirmations
-                      :
-</Transaction.style__SubtitleText>,
-                    <Transaction.style__GreenTextWrapper>
-                      204
-</Transaction.style__GreenTextWrapper>,
+                    <div>
+                      <Transaction.style__SubtitleText>
+                                            confirmations
+                                            :
+                      </Transaction.style__SubtitleText>
+                      <Transaction.style__GreenTextWrapper>
+                                            204
+                      </Transaction.style__GreenTextWrapper>
+</div>,
+                    false,
                   ],
                   "style": Object {
                     "display": "flex",
@@ -2344,31 +2673,52 @@ ShallowWrapper {
                   Object {
                     "instance": null,
                     "key": undefined,
-                    "nodeType": "class",
+                    "nodeType": "host",
                     "props": Object {
                       "children": Array [
-                        "confirmations",
-                        ":",
+                        <Transaction.style__SubtitleText>
+                          confirmations
+                          :
+</Transaction.style__SubtitleText>,
+                        <Transaction.style__GreenTextWrapper>
+                          204
+</Transaction.style__GreenTextWrapper>,
                       ],
                     },
                     "ref": null,
                     "rendered": Array [
-                      "confirmations",
-                      ":",
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": Array [
+                            "confirmations",
+                            ":",
+                          ],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          "confirmations",
+                          ":",
+                        ],
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": "204",
+                        },
+                        "ref": null,
+                        "rendered": "204",
+                        "type": [Function],
+                      },
                     ],
-                    "type": [Function],
+                    "type": "div",
                   },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": "204",
-                    },
-                    "ref": null,
-                    "rendered": "204",
-                    "type": [Function],
-                  },
+                  false,
                 ],
                 "type": "div",
               },
@@ -2384,6 +2734,932 @@ ShallowWrapper {
                 "rendered": "view_etherscan",
                 "type": [Function],
               },
+              false,
+            ],
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<Transaction /> should render nahmii tx correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Transaction
+    amount="0.000000000000000001"
+    confirmations="204"
+    counterpartyAddress="0x00"
+    defaultOpen={false}
+    fiatEquivilent="$123.34 USD"
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+    layer="baseLayer"
+    onChange={[Function]}
+    symbol="UKG"
+    time={1995-01-09T04:19:09.000Z}
+    type="nahmii"
+    viewOnBlockExplorerClick={[Function]}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": <Transaction.style__DetailCollapse
+        bordered={false}
+        defaultActiveKey={null}
+        onChange={[Function]}
+>
+        <Transaction.style__DetailPanel
+                header={
+                        <Transaction.style__HeaderWrapper>
+                                <Transaction.style__Image
+                                        src="/public/images/assets/UKG.svg"
+                                />
+                                <Transaction.style__TypeIcon
+                                        type="upload"
+                                />
+                                <Transaction.style__TypeText>
+                                        sent
+                                </Transaction.style__TypeText>
+                                <Transaction.style__Amount>
+                                        0.000000000000000001
+                                         
+                                        UKG
+                                </Transaction.style__Amount>
+                                <Transaction.style__FiatValue>
+                                        ($123.34 USD)
+                                </Transaction.style__FiatValue>
+                                <div
+                                        style={
+                                                Object {
+                                                        "marginLeft": "auto",
+                                                      }
+                                        }
+                                >
+                                        <Transaction.style__TransactionHistoryTime>
+                                                01/09/1995
+                                        </Transaction.style__TransactionHistoryTime>
+                                </div>
+                        </Transaction.style__HeaderWrapper>
+                }
+                showArrow={false}
+        >
+                <Transaction.style__CollapsableContent>
+                        <div
+                                style={
+                                        Object {
+                                                "display": "flex",
+                                              }
+                                }
+                        >
+                                <Transaction.style__SubtitleText>
+                                        to:
+                                </Transaction.style__SubtitleText>
+                                <Transaction.style__GreenTextWrapper>
+                                        0x00
+                                </Transaction.style__GreenTextWrapper>
+                        </div>
+                        <div
+                                style={
+                                        Object {
+                                                "display": "flex",
+                                              }
+                                }
+                        >
+                                <div>
+                                        <Transaction.style__SubtitleText>
+                                                confirmations
+                                                :
+                                        </Transaction.style__SubtitleText>
+                                        <Transaction.style__GreenTextWrapper>
+                                                204
+                                        </Transaction.style__GreenTextWrapper>
+                                </div>
+                        </div>
+                        <Transaction.style__TransactionId
+                                onClick={[Function]}
+                        >
+                                view_etherscan
+                        </Transaction.style__TransactionId>
+                </Transaction.style__CollapsableContent>
+        </Transaction.style__DetailPanel>
+</Transaction.style__DetailCollapse>,
+      "className": undefined,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "bordered": false,
+        "children": <Transaction.style__DetailPanel
+          header={
+                    <Transaction.style__HeaderWrapper>
+                              <Transaction.style__Image
+                                        src="/public/images/assets/UKG.svg"
+                              />
+                              <Transaction.style__TypeIcon
+                                        type="upload"
+                              />
+                              <Transaction.style__TypeText>
+                                        sent
+                              </Transaction.style__TypeText>
+                              <Transaction.style__Amount>
+                                        0.000000000000000001
+                                         
+                                        UKG
+                              </Transaction.style__Amount>
+                              <Transaction.style__FiatValue>
+                                        ($123.34 USD)
+                              </Transaction.style__FiatValue>
+                              <div
+                                        style={
+                                                  Object {
+                                                            "marginLeft": "auto",
+                                                          }
+                                        }
+                              >
+                                        <Transaction.style__TransactionHistoryTime>
+                                                  01/09/1995
+                                        </Transaction.style__TransactionHistoryTime>
+                              </div>
+                    </Transaction.style__HeaderWrapper>
+          }
+          showArrow={false}
+>
+          <Transaction.style__CollapsableContent>
+                    <div
+                              style={
+                                        Object {
+                                                  "display": "flex",
+                                                }
+                              }
+                    >
+                              <Transaction.style__SubtitleText>
+                                        to:
+                              </Transaction.style__SubtitleText>
+                              <Transaction.style__GreenTextWrapper>
+                                        0x00
+                              </Transaction.style__GreenTextWrapper>
+                    </div>
+                    <div
+                              style={
+                                        Object {
+                                                  "display": "flex",
+                                                }
+                              }
+                    >
+                              <div>
+                                        <Transaction.style__SubtitleText>
+                                                  confirmations
+                                                  :
+                                        </Transaction.style__SubtitleText>
+                                        <Transaction.style__GreenTextWrapper>
+                                                  204
+                                        </Transaction.style__GreenTextWrapper>
+                              </div>
+                    </div>
+                    <Transaction.style__TransactionId
+                              onClick={[Function]}
+                    >
+                              view_etherscan
+                    </Transaction.style__TransactionId>
+          </Transaction.style__CollapsableContent>
+</Transaction.style__DetailPanel>,
+        "defaultActiveKey": null,
+        "onChange": [Function],
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": "1",
+        "nodeType": "class",
+        "props": Object {
+          "children": <Transaction.style__CollapsableContent>
+            <div
+                        style={
+                                    Object {
+                                                "display": "flex",
+                                              }
+                        }
+            >
+                        <Transaction.style__SubtitleText>
+                                    to:
+                        </Transaction.style__SubtitleText>
+                        <Transaction.style__GreenTextWrapper>
+                                    0x00
+                        </Transaction.style__GreenTextWrapper>
+            </div>
+            <div
+                        style={
+                                    Object {
+                                                "display": "flex",
+                                              }
+                        }
+            >
+                        <div>
+                                    <Transaction.style__SubtitleText>
+                                                confirmations
+                                                :
+                                    </Transaction.style__SubtitleText>
+                                    <Transaction.style__GreenTextWrapper>
+                                                204
+                                    </Transaction.style__GreenTextWrapper>
+                        </div>
+            </div>
+            <Transaction.style__TransactionId
+                        onClick={[Function]}
+            >
+                        view_etherscan
+            </Transaction.style__TransactionId>
+</Transaction.style__CollapsableContent>,
+          "header": <Transaction.style__HeaderWrapper>
+            <Transaction.style__Image
+                        src="/public/images/assets/UKG.svg"
+            />
+            <Transaction.style__TypeIcon
+                        type="upload"
+            />
+            <Transaction.style__TypeText>
+                        sent
+            </Transaction.style__TypeText>
+            <Transaction.style__Amount>
+                        0.000000000000000001
+                         
+                        UKG
+            </Transaction.style__Amount>
+            <Transaction.style__FiatValue>
+                        ($123.34 USD)
+            </Transaction.style__FiatValue>
+            <div
+                        style={
+                                    Object {
+                                                "marginLeft": "auto",
+                                              }
+                        }
+            >
+                        <Transaction.style__TransactionHistoryTime>
+                                    01/09/1995
+                        </Transaction.style__TransactionHistoryTime>
+            </div>
+</Transaction.style__HeaderWrapper>,
+          "showArrow": false,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <div
+                style={
+                                Object {
+                                                "display": "flex",
+                                              }
+                }
+>
+                <Transaction.style__SubtitleText>
+                                to:
+                </Transaction.style__SubtitleText>
+                <Transaction.style__GreenTextWrapper>
+                                0x00
+                </Transaction.style__GreenTextWrapper>
+</div>,
+              <div
+                style={
+                                Object {
+                                                "display": "flex",
+                                              }
+                }
+>
+                <div>
+                                <Transaction.style__SubtitleText>
+                                                confirmations
+                                                :
+                                </Transaction.style__SubtitleText>
+                                <Transaction.style__GreenTextWrapper>
+                                                204
+                                </Transaction.style__GreenTextWrapper>
+                </div>
+</div>,
+              <Transaction.style__TransactionId
+                onClick={[Function]}
+>
+                view_etherscan
+</Transaction.style__TransactionId>,
+              false,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <Transaction.style__SubtitleText>
+                    to:
+</Transaction.style__SubtitleText>,
+                  <Transaction.style__GreenTextWrapper>
+                    0x00
+</Transaction.style__GreenTextWrapper>,
+                ],
+                "style": Object {
+                  "display": "flex",
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      false,
+                      "to:",
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    false,
+                    "to:",
+                  ],
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "0x00",
+                  },
+                  "ref": null,
+                  "rendered": "0x00",
+                  "type": [Function],
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div>
+                    <Transaction.style__SubtitleText>
+                                        confirmations
+                                        :
+                    </Transaction.style__SubtitleText>
+                    <Transaction.style__GreenTextWrapper>
+                                        204
+                    </Transaction.style__GreenTextWrapper>
+</div>,
+                  false,
+                ],
+                "style": Object {
+                  "display": "flex",
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <Transaction.style__SubtitleText>
+                        confirmations
+                        :
+</Transaction.style__SubtitleText>,
+                      <Transaction.style__GreenTextWrapper>
+                        204
+</Transaction.style__GreenTextWrapper>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": Array [
+                          "confirmations",
+                          ":",
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        "confirmations",
+                        ":",
+                      ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "204",
+                      },
+                      "ref": null,
+                      "rendered": "204",
+                      "type": [Function],
+                    },
+                  ],
+                  "type": "div",
+                },
+                false,
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "view_etherscan",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "view_etherscan",
+              "type": [Function],
+            },
+            false,
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <Transaction.style__DetailCollapse
+          bordered={false}
+          defaultActiveKey={null}
+          onChange={[Function]}
+>
+          <Transaction.style__DetailPanel
+                    header={
+                              <Transaction.style__HeaderWrapper>
+                                        <Transaction.style__Image
+                                                  src="/public/images/assets/UKG.svg"
+                                        />
+                                        <Transaction.style__TypeIcon
+                                                  type="upload"
+                                        />
+                                        <Transaction.style__TypeText>
+                                                  sent
+                                        </Transaction.style__TypeText>
+                                        <Transaction.style__Amount>
+                                                  0.000000000000000001
+                                                   
+                                                  UKG
+                                        </Transaction.style__Amount>
+                                        <Transaction.style__FiatValue>
+                                                  ($123.34 USD)
+                                        </Transaction.style__FiatValue>
+                                        <div
+                                                  style={
+                                                            Object {
+                                                                      "marginLeft": "auto",
+                                                                    }
+                                                  }
+                                        >
+                                                  <Transaction.style__TransactionHistoryTime>
+                                                            01/09/1995
+                                                  </Transaction.style__TransactionHistoryTime>
+                                        </div>
+                              </Transaction.style__HeaderWrapper>
+                    }
+                    showArrow={false}
+          >
+                    <Transaction.style__CollapsableContent>
+                              <div
+                                        style={
+                                                  Object {
+                                                            "display": "flex",
+                                                          }
+                                        }
+                              >
+                                        <Transaction.style__SubtitleText>
+                                                  to:
+                                        </Transaction.style__SubtitleText>
+                                        <Transaction.style__GreenTextWrapper>
+                                                  0x00
+                                        </Transaction.style__GreenTextWrapper>
+                              </div>
+                              <div
+                                        style={
+                                                  Object {
+                                                            "display": "flex",
+                                                          }
+                                        }
+                              >
+                                        <div>
+                                                  <Transaction.style__SubtitleText>
+                                                            confirmations
+                                                            :
+                                                  </Transaction.style__SubtitleText>
+                                                  <Transaction.style__GreenTextWrapper>
+                                                            204
+                                                  </Transaction.style__GreenTextWrapper>
+                                        </div>
+                              </div>
+                              <Transaction.style__TransactionId
+                                        onClick={[Function]}
+                              >
+                                        view_etherscan
+                              </Transaction.style__TransactionId>
+                    </Transaction.style__CollapsableContent>
+          </Transaction.style__DetailPanel>
+</Transaction.style__DetailCollapse>,
+        "className": undefined,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "bordered": false,
+          "children": <Transaction.style__DetailPanel
+            header={
+                        <Transaction.style__HeaderWrapper>
+                                    <Transaction.style__Image
+                                                src="/public/images/assets/UKG.svg"
+                                    />
+                                    <Transaction.style__TypeIcon
+                                                type="upload"
+                                    />
+                                    <Transaction.style__TypeText>
+                                                sent
+                                    </Transaction.style__TypeText>
+                                    <Transaction.style__Amount>
+                                                0.000000000000000001
+                                                 
+                                                UKG
+                                    </Transaction.style__Amount>
+                                    <Transaction.style__FiatValue>
+                                                ($123.34 USD)
+                                    </Transaction.style__FiatValue>
+                                    <div
+                                                style={
+                                                            Object {
+                                                                        "marginLeft": "auto",
+                                                                      }
+                                                }
+                                    >
+                                                <Transaction.style__TransactionHistoryTime>
+                                                            01/09/1995
+                                                </Transaction.style__TransactionHistoryTime>
+                                    </div>
+                        </Transaction.style__HeaderWrapper>
+            }
+            showArrow={false}
+>
+            <Transaction.style__CollapsableContent>
+                        <div
+                                    style={
+                                                Object {
+                                                            "display": "flex",
+                                                          }
+                                    }
+                        >
+                                    <Transaction.style__SubtitleText>
+                                                to:
+                                    </Transaction.style__SubtitleText>
+                                    <Transaction.style__GreenTextWrapper>
+                                                0x00
+                                    </Transaction.style__GreenTextWrapper>
+                        </div>
+                        <div
+                                    style={
+                                                Object {
+                                                            "display": "flex",
+                                                          }
+                                    }
+                        >
+                                    <div>
+                                                <Transaction.style__SubtitleText>
+                                                            confirmations
+                                                            :
+                                                </Transaction.style__SubtitleText>
+                                                <Transaction.style__GreenTextWrapper>
+                                                            204
+                                                </Transaction.style__GreenTextWrapper>
+                                    </div>
+                        </div>
+                        <Transaction.style__TransactionId
+                                    onClick={[Function]}
+                        >
+                                    view_etherscan
+                        </Transaction.style__TransactionId>
+            </Transaction.style__CollapsableContent>
+</Transaction.style__DetailPanel>,
+          "defaultActiveKey": null,
+          "onChange": [Function],
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": "1",
+          "nodeType": "class",
+          "props": Object {
+            "children": <Transaction.style__CollapsableContent>
+              <div
+                            style={
+                                          Object {
+                                                        "display": "flex",
+                                                      }
+                            }
+              >
+                            <Transaction.style__SubtitleText>
+                                          to:
+                            </Transaction.style__SubtitleText>
+                            <Transaction.style__GreenTextWrapper>
+                                          0x00
+                            </Transaction.style__GreenTextWrapper>
+              </div>
+              <div
+                            style={
+                                          Object {
+                                                        "display": "flex",
+                                                      }
+                            }
+              >
+                            <div>
+                                          <Transaction.style__SubtitleText>
+                                                        confirmations
+                                                        :
+                                          </Transaction.style__SubtitleText>
+                                          <Transaction.style__GreenTextWrapper>
+                                                        204
+                                          </Transaction.style__GreenTextWrapper>
+                            </div>
+              </div>
+              <Transaction.style__TransactionId
+                            onClick={[Function]}
+              >
+                            view_etherscan
+              </Transaction.style__TransactionId>
+</Transaction.style__CollapsableContent>,
+            "header": <Transaction.style__HeaderWrapper>
+              <Transaction.style__Image
+                            src="/public/images/assets/UKG.svg"
+              />
+              <Transaction.style__TypeIcon
+                            type="upload"
+              />
+              <Transaction.style__TypeText>
+                            sent
+              </Transaction.style__TypeText>
+              <Transaction.style__Amount>
+                            0.000000000000000001
+                             
+                            UKG
+              </Transaction.style__Amount>
+              <Transaction.style__FiatValue>
+                            ($123.34 USD)
+              </Transaction.style__FiatValue>
+              <div
+                            style={
+                                          Object {
+                                                        "marginLeft": "auto",
+                                                      }
+                            }
+              >
+                            <Transaction.style__TransactionHistoryTime>
+                                          01/09/1995
+                            </Transaction.style__TransactionHistoryTime>
+              </div>
+</Transaction.style__HeaderWrapper>,
+            "showArrow": false,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <div
+                  style={
+                                    Object {
+                                                      "display": "flex",
+                                                    }
+                  }
+>
+                  <Transaction.style__SubtitleText>
+                                    to:
+                  </Transaction.style__SubtitleText>
+                  <Transaction.style__GreenTextWrapper>
+                                    0x00
+                  </Transaction.style__GreenTextWrapper>
+</div>,
+                <div
+                  style={
+                                    Object {
+                                                      "display": "flex",
+                                                    }
+                  }
+>
+                  <div>
+                                    <Transaction.style__SubtitleText>
+                                                      confirmations
+                                                      :
+                                    </Transaction.style__SubtitleText>
+                                    <Transaction.style__GreenTextWrapper>
+                                                      204
+                                    </Transaction.style__GreenTextWrapper>
+                  </div>
+</div>,
+                <Transaction.style__TransactionId
+                  onClick={[Function]}
+>
+                  view_etherscan
+</Transaction.style__TransactionId>,
+                false,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <Transaction.style__SubtitleText>
+                      to:
+</Transaction.style__SubtitleText>,
+                    <Transaction.style__GreenTextWrapper>
+                      0x00
+</Transaction.style__GreenTextWrapper>,
+                  ],
+                  "style": Object {
+                    "display": "flex",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": Array [
+                        false,
+                        "to:",
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      false,
+                      "to:",
+                    ],
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "0x00",
+                    },
+                    "ref": null,
+                    "rendered": "0x00",
+                    "type": [Function],
+                  },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div>
+                      <Transaction.style__SubtitleText>
+                                            confirmations
+                                            :
+                      </Transaction.style__SubtitleText>
+                      <Transaction.style__GreenTextWrapper>
+                                            204
+                      </Transaction.style__GreenTextWrapper>
+</div>,
+                    false,
+                  ],
+                  "style": Object {
+                    "display": "flex",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <Transaction.style__SubtitleText>
+                          confirmations
+                          :
+</Transaction.style__SubtitleText>,
+                        <Transaction.style__GreenTextWrapper>
+                          204
+</Transaction.style__GreenTextWrapper>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": Array [
+                            "confirmations",
+                            ":",
+                          ],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          "confirmations",
+                          ":",
+                        ],
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": "204",
+                        },
+                        "ref": null,
+                        "rendered": "204",
+                        "type": [Function],
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  false,
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "view_etherscan",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "view_etherscan",
+                "type": [Function],
+              },
+              false,
             ],
             "type": [Function],
           },

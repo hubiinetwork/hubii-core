@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable';
+import BigNumber from 'bignumber.js';
 
 export const encryptedSoftwareWallet1Mock = fromJS({
   name: 'software-wallet-mock1',
@@ -59,3 +60,30 @@ export const contactsMock = fromJS([
 ]);
 
 export const contactsEmptyMock = fromJS([]);
+
+export const totalBalAllEmpty = fromJS({
+  baseLayer: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
+  nahmiiAvailable: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
+  nahmiiStaging: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
+  nahmiiStaged: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
+  nahmiiCombined: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
+  combined: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
+});
+
+export const totalBalAllError = fromJS({
+  baseLayer: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } },
+  nahmiiAvailable: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } },
+  nahmiiStaging: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } },
+  nahmiiStaged: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } },
+  nahmiiCombined: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
+  combined: { assets: {}, loading: false, error: true, total: { usd: new BigNumber('0') } },
+});
+
+export const totalBallAllLoading = fromJS({
+  baseLayer: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } },
+  nahmiiAvailable: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } },
+  nahmiiStaging: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } },
+  nahmiiStaged: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } },
+  nahmiiCombined: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
+  combined: { assets: {}, loading: true, error: null, total: { usd: new BigNumber('0') } },
+});

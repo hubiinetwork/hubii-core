@@ -12,7 +12,7 @@ import {
 
 import { delay } from 'redux-saga';
 import nahmii from 'nahmii-sdk';
-import ethers from 'ethers';
+import { utils as ethersUtils } from 'ethers';
 import BigNumber from 'bignumber.js';
 
 import request, { requestWalletAPI } from 'utils/request';
@@ -76,12 +76,12 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
       const jsonRpcProvider = network.provider.providers[0];
 
       // pad the 20 byte address to 32 bytes
-      const paddedAddr = ethers.utils.hexlify(ethers.utils.padZeros(address, 32));
+      const paddedAddr = ethersUtils.hexlify(ethersUtils.padZeros(address, 32));
 
       // concat the balanceOf('address') function identifier to the padded address. this shows our intention to call the
       // balanceOf method with address as the parameter
-      const dataArr = ethers.utils.concat([BALANCE_OF_FUNCTION_ID, paddedAddr]);
-      const data = ethers.utils.hexlify(dataArr);
+      const dataArr = ethersUtils.concat([BALANCE_OF_FUNCTION_ID, paddedAddr]);
+      const data = ethersUtils.hexlify(dataArr);
 
       // send a batch of RPC requests asking for all token balances
       // https://www.jsonrpc.org/specification#batch
@@ -94,16 +94,16 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
           jsonrpc: '2.0',
         };
       });
-      const response = yield rpcRequest(jsonRpcProvider.url, JSON.stringify(requestBatch));
+      const response = yield rpcRequest(jsonRpcProvider.connection.url, JSON.stringify(requestBatch));
 
       // process and return the response
       const tokenBals = response.map((item) => new BigNumber(item.result));
       const formattedBalances = tokenBals.reduce((acc, bal, i) => {
         if (!bal.gt('0')) return acc;
         const { currency } = supportedAssets.assets[i];
-        return [...acc, { address, currency, balance: bal }];
+        return [...acc, { address, currency, balance: bal.toString() }];
       }, []);
-      yield put(loadWalletBalancesSuccess(address, [{ currency: 'ETH', address, decimals: 18, balance: ethBal }, ...formattedBalances]));
+      yield put(loadWalletBalancesSuccess(address, [{ currency: 'ETH', address, balance: ethBal.toString() }, ...formattedBalances]));
     } catch (err) {
       yield put(loadWalletBalancesError(address, err));
     } finally {
@@ -263,7 +263,9 @@ export function* networkApiOrcestrator() {
         timer: call(delay, ONE_MINUTE_IN_MS),
         override: take([CHANGE_NETWORK, ADD_NEW_WALLET]),
       });
-      yield cancel(...allTasks);
+      if (allTasks.length > 0) {
+        yield cancel(...allTasks);
+      }
     }
   } catch (e) {
     // errors in the forked processes themselves should be caught
@@ -272,6 +274,16 @@ export function* networkApiOrcestrator() {
     // never happen
     throw new Error(e);
   }
+}
+
+export function* getNahmiiProvider() {
+  const network = yield select(makeSelectCurrentNetwork());
+  const nahmiiProvider = new nahmii.NahmiiProvider(
+    network.walletApiEndpoint(true),
+    network.identityServiceAppId,
+    network.identityServiceSecret
+  );
+  return nahmiiProvider;
 }
 
 // Root watcher

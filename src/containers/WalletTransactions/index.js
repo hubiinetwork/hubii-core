@@ -7,11 +7,11 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { injectIntl } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
-import { getBreakdown } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
 
-import Breakdown from 'components/Breakdown/Breakdown.component';
+import Breakdown from 'components/BreakdownPie';
 import SectionHeading from 'components/ui/SectionHeading';
+import Select, { Option } from 'components/ui/Select';
 
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 
@@ -41,9 +41,10 @@ import {
 export class WalletsTransactions extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { currentPage: 1, expandedTxs: new Set() };
+    this.state = { currentPage: 1, expandedTxs: new Set(), filter: 'all' };
     this.onPaginationChange = this.onPaginationChange.bind(this);
     this.updateExpandedTx = this.updateExpandedTx.bind(this);
+    this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -55,13 +56,19 @@ export class WalletsTransactions extends React.Component {
       (this.props.currentWalletWithInfo.getIn(['transactions', 'transactions']).size !==
       nextProps.currentWalletWithInfo.getIn(['transactions', 'transactions']).size) ||
       this.state.currentPage !== nextState.currentPage ||
-      this.props.blockHeight.get('height') !== nextProps.blockHeight.get('height')
+      this.props.blockHeight.get('height') !== nextProps.blockHeight.get('height') ||
+      (this.state.filter !== nextState.filter)
     ) return true;
     return false;
   }
 
+
   onPaginationChange(newPage) {
     this.setState({ currentPage: newPage });
+  }
+
+  handleFilterChange(filter) {
+    this.setState({ filter });
   }
 
   // Every time this component rerenders it resets if a transaction is expanded or
@@ -80,17 +87,23 @@ export class WalletsTransactions extends React.Component {
 
   render() {
     const { currentWalletWithInfo, supportedAssets, currentNetwork, intl } = this.props;
-    const { expandedTxs, currentPage } = this.state;
+    const { expandedTxs, currentPage, filter } = this.state;
     const { formatMessage } = intl;
     const start = (currentPage - 1) * 10;
     const end = start + 10;
-    const txToShow = currentWalletWithInfo.getIn(['transactions', 'transactions'])
+    let filtered = currentWalletWithInfo.getIn(['transactions', 'transactions']);
+    if (filter !== 'all') {
+      filtered = currentWalletWithInfo
+        .getIn(['transactions', 'transactions'])
+        .filter((t) => t.get('layer') === filter);
+    }
+    const txToShow = filtered
       .toJS()
       .slice(start, end);
 
     if
     (
-      currentWalletWithInfo.getIn(['balances', 'loading']) ||
+      currentWalletWithInfo.getIn(['balances', 'baseLayer', 'loading']) ||
       supportedAssets.get('loading') ||
       currentWalletWithInfo.getIn(['transactions', 'loading'])
     ) {
@@ -103,7 +116,7 @@ export class WalletsTransactions extends React.Component {
     if
     (
       currentWalletWithInfo.getIn(['transactions', 'error']) ||
-      currentWalletWithInfo.getIn(['balances', 'error']) ||
+      currentWalletWithInfo.getIn(['balances', 'baseLayer', 'error']) ||
       supportedAssets.get('error')
     ) {
       return <NoTxPlaceholder>{ formatMessage({ id: 'fetch_transactions_error' }) }</NoTxPlaceholder>;
@@ -114,34 +127,49 @@ export class WalletsTransactions extends React.Component {
     return (
       <OuterWrapper>
         <TransactionsWrapper>
-          <SectionHeading>{formatMessage({ id: 'transaction_history' })}</SectionHeading>
+          <div style={{ display: 'flex' }}>
+            <SectionHeading>{formatMessage({ id: 'transaction_history' })}</SectionHeading>
+            <Select
+              style={{ width: '10rem', marginLeft: 'auto', marginBottom: '0.5rem' }}
+              onChange={this.handleFilterChange}
+              value={this.state.filter}
+            >
+              <Option key={'all'}>{formatMessage({ id: 'all' })}</Option>
+              <Option key={'nahmii'}>{formatMessage({ id: 'only_nahmii' })}</Option>
+              <Option key={'baseLayer'}>{formatMessage({ id: 'only_base_layer' })}</Option>
+            </Select>
+          </div>
           {txToShow.map((tx) => (
             <StyledTransaction
               key={uuid()}
-              time={new Date(tx.block.timestamp)}
+              time={new Date(tx.timestamp)}
               counterpartyAddress={tx.counterpartyAddress}
               amount={tx.decimalAmount}
               fiatEquivilent={formatFiat(tx.fiatValue, 'USD')}
               symbol={tx.symbol}
               confirmations={tx.confirmations}
               type={tx.type}
+              layer={tx.layer}
               viewOnBlockExplorerClick={
-                currentNetwork.provider.name === 'ropsten' ?
+                currentNetwork.provider._network.name === 'ropsten' ?
                   () => shell.openExternal(`https://ropsten.etherscan.io/tx/${tx.hash}`) :
                   () => shell.openExternal(`https://etherscan.io/tx/${tx.hash}`)
               }
-              onChange={() => this.updateExpandedTx(`${tx.hash}${tx.type}${tx.symbol}`)}
-              defaultOpen={expandedTxs.has(`${tx.hash}${tx.type}${tx.symbol}`)}
+              onChange={() => this.updateExpandedTx(`${tx.hash}${tx.type}${tx.symbol}${tx.id}`)}
+              defaultOpen={expandedTxs.has(`${tx.hash}${tx.type}${tx.symbol}${tx.id}`)}
             />
-            )
-            )}
-          <StyledPagination
-            total={currentWalletWithInfo.getIn(['transactions', 'transactions']).size}
-            pageSize={10}
-            defaultCurrent={currentPage}
-            current={currentPage}
-            onChange={this.onPaginationChange}
-          />
+            ))
+          }
+          {
+            filtered.size > 0 &&
+            <StyledPagination
+              total={filtered.size}
+              pageSize={10}
+              defaultCurrent={currentPage}
+              current={currentPage}
+              onChange={this.onPaginationChange}
+            />
+          }
           <Alert
             message={formatMessage({ id: 'where_my_transaction' })}
             description={
@@ -155,7 +183,7 @@ export class WalletsTransactions extends React.Component {
                   role="link"
                   tabIndex={0}
                   onClick={
-                    currentNetwork.provider.name === 'ropsten' ?
+                    currentNetwork.provider._network.name === 'ropsten' ?
                       () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
                       () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
                   }
@@ -170,8 +198,8 @@ export class WalletsTransactions extends React.Component {
         </TransactionsWrapper>
         <BreakdownWrapper>
           <Breakdown
-            data={getBreakdown(currentWalletWithInfo.get('balances'), supportedAssets)}
-            value={currentWalletWithInfo.getIn(['balances', 'total', 'usd']).toString()}
+            totalBalances={currentWalletWithInfo.get('balances')}
+            supportedAssets={supportedAssets}
           />
         </BreakdownWrapper>
       </OuterWrapper>

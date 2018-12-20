@@ -12,7 +12,9 @@ import { Route, Redirect } from 'react-router';
 import { isConnected, isHardwareWallet } from 'utils/wallet';
 
 import WalletHeader from 'components/WalletHeader';
+import NahmiiText from 'components/ui/NahmiiText';
 import WalletTransactions from 'containers/WalletTransactions';
+import NahmiiDeposit from 'containers/NahmiiDeposit';
 import WalletTransfer from 'containers/WalletTransfer';
 import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHoc/selectors';
 import {
@@ -72,9 +74,11 @@ export class WalletDetails extends React.PureComponent {
             iconType="home"
             name={currentWallet.get('name')}
             address={currentWallet.get('address')}
-            balance={currentWallet
-              .getIn(['balances', 'total', 'usd'])
-              .toNumber()}
+            balance={
+              currentWallet
+                .getIn(['balances', 'baseLayer', 'total', 'usd'])
+                .toNumber()
+            }
             onIconClick={this.onHomeClick}
             connected={connected}
             isDecrypted={!!currentWallet.get('decrypted')}
@@ -126,6 +130,16 @@ export class WalletDetails extends React.PureComponent {
             key={`${match.url}/transfer`}
           >
             <Route path={`${match.url}/transfer`} component={WalletTransfer} />
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <Icon type="login" /><NahmiiText /> deposit
+              </span>
+            }
+            key={`${match.url}/nahmii-deposit`}
+          >
+            <Route path={`${match.url}/nahmii-deposit`} component={NahmiiDeposit} />
           </TabPane>
           <TabPane
             tab={

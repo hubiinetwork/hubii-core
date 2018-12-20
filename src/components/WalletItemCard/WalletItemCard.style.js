@@ -11,13 +11,14 @@ export const AssetsWrapper = styled.div`
 
 export const IconsWrapper = styled.div`
   display: flex;
-  height: 0%;
+  height: 100%;
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
   right: 0;
   margin-right: 1.65rem;
   margin-top: 1.29rem;
+  margin-bottom: 1.29rem;
 `;
 
 export const AssetWrapper = styled.div`
@@ -35,7 +36,7 @@ export const CardIcon = styled.div`
   }
 `;
 
-export const OverflowHidden = styled.div`
+export const Border = styled.div`
   overflow: hidden;
   border-radius: 0.71rem;
 `;
@@ -65,15 +66,12 @@ export const TotalBalance = styled(Heading)`
   color: ${({ theme }) => theme.palette.info};
   margin-top: -0.25rem;
   margin-right: 2.14rem;
-  word-wrap: break-word;
-  min-width: 10.71rem;
-  text-align: right;
-  flex: 1;
+  margin-left: auto;
 `;
 
 export const WalletName = styled(Text)`
-  min-width: 5rem;
-  word-wrap: break-word;
+  margin-right: 1rem;
+  word-break: break-word;
   margin-bottom: 0.5rem;
 `;
 
