@@ -148,7 +148,7 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     const nahmiiProvider = network.nahmiiProvider;
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
-    const payment = new nahmii.Payment(nahmiiWallet, monetaryAmount, wallet.address, recipient);
+    const payment = new nahmii.Payment(monetaryAmount, wallet.address, recipient, nahmiiWallet);
     if (confOnDevice) yield put(confOnDevice);
     yield call([payment, 'sign']);
     if (confOnDeviceDone) yield put(confOnDeviceDone);
