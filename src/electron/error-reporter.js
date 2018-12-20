@@ -71,6 +71,13 @@ module.exports = () => {
     }, 200);
     window.addEventListener('unhandledrejection', (event) => {
       event.preventDefault();
+      // should remove this conditional when SDK is patched
+      // https://github.com/hubiinetwork/nahmii-sdk/issues/67
+      // https://github.com/hubiinetwork/hubii-core/issues/660
+      if (event.reason.url === 'https://api2.dev.hubii.net/identity/apptoken') {
+        console.error('Unhandled promise rejection from SDK: ', event); // eslint-disable-line
+        return;
+      }
       rejectionHandler(event.reason);
     });
   } else {

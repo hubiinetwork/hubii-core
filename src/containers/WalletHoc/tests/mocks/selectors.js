@@ -2,8 +2,8 @@ import { fromJS } from 'immutable';
 import BigNumber from 'bignumber.js';
 
 import {
-  transactionsWithInfoMock,
-} from 'containers/HubiiApiHoc/tests/mocks/selectors';
+  combinedTransactions,
+} from 'containers/NahmiiHoc/tests/mocks/combined-selectors';
 
 import {
   encryptedSoftwareWallet1Mock,
@@ -79,7 +79,7 @@ export const walletsWithInfoMock = fromJS([
     type: 'lns',
     name: 'lns',
     derivationPath: 'm/44\'/60\'/0\'/0',
-    transactions: transactionsWithInfoMock.get('0x1c7429f62595097315289ceBaC1fDbdA587Ad512'),
+    transactions: combinedTransactions.get('0x1c7429f62595097315289ceBaC1fDbdA587Ad512'),
     balances: {
       baseLayer: {
         loading: false,
@@ -228,7 +228,7 @@ export const walletsWithInfoMock = fromJS([
     address: '0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5',
     type: 'software',
     encrypted: '{"address":"82191e2863e0b6afc0a7d538cdabfd509aa648b5","id":"2c8ffa0a-5624-4191-94a3-3869ae170702","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"30d2c35f4ebb46423e782814c735ff94"},"ciphertext":"d2e98cdb8c6d7ddb9192d5f1a633df3e37f02ec3a950c8673f98d03dc011e477","kdf":"scrypt","kdfparams":{"salt":"14c5ee2eb9dfe1f10bfd3fc7dde4de93197883477e74e5eb51bef5786865b401","n":131072,"dklen":32,"p":1,"r":8},"mac":"9f2740c399e9a2f141fefb816ed2fe2aeee8de2ebc8c73f7c87890b4ae928501"},"x-ethers":{"client":"ethers.js","gethFilename":"UTC--2018-08-13T05-04-04.0Z--82191e2863e0b6afc0a7d538cdabfd509aa648b5","mnemonicCounter":"631a83199112cb4398ee94dd2e9d105c","mnemonicCiphertext":"a92457ab3b87724a76536873f8eb5e28","version":"0.1"}}',
-    transactions: transactionsWithInfoMock.get('0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5'),
+    transactions: combinedTransactions.get('0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5'),
     balances: {
       baseLayer: { loading: false, error: true, assets: [], total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } },
       nahmiiAvailable: { loading: false, error: null, assets: [], total: { eth: new BigNumber('0'), btc: new BigNumber('0'), usd: new BigNumber('0') } },
@@ -248,7 +248,7 @@ export const walletsWithInfoMock = fromJS([
       defaultGasLimit: 1500000,
       address: '0xF4db7c6030c9c5754A6A712212d6342DCA52e25d',
       path: 'm/44\'/60\'/0\'/0/0' },
-    transactions: transactionsWithInfoMock.get('0xF4db7c6030c9c5754A6A712212d6342DCA52e25d'),
+    transactions: combinedTransactions.get('0xF4db7c6030c9c5754A6A712212d6342DCA52e25d'),
     balances: {
       baseLayer: { loading: true, error: null, assets: [], total: { usd: new BigNumber('0'), eth: new BigNumber(new BigNumber('0')), btc: new BigNumber('0') } },
       nahmiiAvailable: { loading: false, error: null, assets: [], total: { eth: new BigNumber(new BigNumber('0')), btc: new BigNumber('0'), usd: new BigNumber('0') } },
@@ -264,7 +264,7 @@ export const walletsWithInfoMock = fromJS([
     type: 'trezor',
     name: 'trezor',
     derivationPath: 'm/44\'/60\'/0\'/0/1',
-    transactions: transactionsWithInfoMock.get('0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb'),
+    transactions: combinedTransactions.get('0x2ba8dc656a85d6d36f93c5e2e17ca910efa5faeb'),
     balances: {
       baseLayer: { loading: true, error: null, assets: [], total: { usd: new BigNumber('0'), eth: new BigNumber('0'), btc: new BigNumber('0') } },
       nahmiiAvailable: { loading: false, error: null, assets: [], total: { eth: new BigNumber(new BigNumber('0')), btc: new BigNumber('0'), usd: new BigNumber('0') } },

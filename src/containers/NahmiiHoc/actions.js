@@ -20,6 +20,9 @@ import {
   DISABLE_NAHMII_MAINNET,
   HIDE_DISCLAIMER_BTN,
   SHOW_DISCLAIMER_BTN,
+  LOAD_NAHMII_RECEIPTS,
+  LOAD_NAHMII_RECEIPTS_SUCCESS,
+  LOAD_NAHMII_RECEIPTS_ERROR,
 } from './constants';
 
 export function nahmiiDeposit(address, symbol, amount, options) {
@@ -174,5 +177,28 @@ export function hideDisclaimerBtn() {
 export function showDisclaimerBtn() {
   return {
     type: SHOW_DISCLAIMER_BTN,
+  };
+}
+
+export function loadReceipts(address) {
+  return {
+    type: LOAD_NAHMII_RECEIPTS,
+    address,
+  };
+}
+
+export function loadReceiptsSuccess(address, receipts) {
+  return {
+    type: LOAD_NAHMII_RECEIPTS_SUCCESS,
+    address,
+    receipts,
+  };
+}
+
+export function loadReceiptsError(address, error) {
+  return {
+    type: LOAD_NAHMII_RECEIPTS_ERROR,
+    address,
+    error,
   };
 }

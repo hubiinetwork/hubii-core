@@ -36,7 +36,6 @@ export const TransactionHistoryTime = styled(Text)`
   color: ${({ theme }) => theme.palette.secondary1};
   white-space: nowrap;
   overflow: hidden;
-  margin-left: auto;
   margin-right: 1rem;
 `;
 
@@ -116,16 +115,19 @@ export const Wrapper = styled.div`
 `;
 
 export const TransactionId = styled.a`
+&&&& {
   color: ${({ theme }) => theme.palette.secondary};
   word-break: break-all;
-  &:active {
-    color: ${({ theme }) => theme.palette.info};
-  }
-  &:hover {
-    color: ${({ theme }) => theme.palette.info};
-    text-decoration: underline;
-  }
-  &:focus {
-    color: ${({ theme }) => theme.palette.info};
-  }
-`;
+  ${({ disabled, theme }) => !disabled && `
+    &:active {
+      color: ${theme.palette.info};
+    }
+    &:hover {
+      color: ${theme.palette.info};
+      text-decoration: underline;
+    }
+    &:focus {
+      color: ${theme.palette.info};
+    }
+  `}
+}`;
