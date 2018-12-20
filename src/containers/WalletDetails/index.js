@@ -134,22 +134,22 @@ export class WalletDetails extends React.PureComponent {
           <TabPane
             tab={
               <span>
-                <Icon type="shopping-cart" />{formatMessage({ id: 'buy_eth' })}
-              </span>
-            }
-            key={`${match.url}/buyeth`}
-          >
-            <Route path={`${match.url}/buyeth`} component={SimplexPage} />
-          </TabPane>
-          <TabPane
-            tab={
-              <span>
                 <Icon type="login" /><NahmiiText /> deposit
               </span>
             }
             key={`${match.url}/nahmii-deposit`}
           >
             <Route path={`${match.url}/nahmii-deposit`} component={NahmiiDeposit} />
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <Icon type="shopping-cart" />{formatMessage({ id: 'buy_eth' })}
+              </span>
+            }
+            key={`${match.url}/buyeth`}
+          >
+            <Route path={`${match.url}/buyeth`} component={SimplexPage} />
           </TabPane>
         </Tabs>
         {history.location.pathname === match.url && (
