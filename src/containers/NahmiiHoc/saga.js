@@ -46,6 +46,9 @@ import {
   START_CHALLENGE_SUCCESS,
   SETTLE,
   SETTLE_SUCCESS,
+  WITHDRAW,
+  WITHDRAW_SUCCESS,
+  WITHDRAW_ERROR,
 } from './constants';
 import { makeSelectCurrentWallet } from '../WalletHoc/selectors';
 
@@ -319,7 +322,7 @@ export function* loadStagingBalances({ address }) {
 }
 
 // https://stackoverflow.com/questions/48228662/get-token-balance-with-ethereum-rpc
-export function* loadStagedBalances({ address }, network) {
+export function* loadStagedBalances({ address }, network, noPoll) {
   if (network.provider._network.name === 'homestead') {
     yield put(actions.loadStagedBalancesSuccess(address, []));
     return;
@@ -374,6 +377,9 @@ export function* loadStagedBalances({ address }, network) {
     } catch (err) {
       console.log(err); // eslint-disable-line
     } finally {
+      if (noPoll) {
+        return;
+      }
       const TWENTY_SEC_IN_MS = 1000 * 20;
       yield delay(TWENTY_SEC_IN_MS);
     }
@@ -430,7 +436,9 @@ export function* startChallenge({ stageAmount, currency, gasLimit, gasPrice }) {
   } catch (e) {
     let errorMessage = e.message;
     if (e.asStringified) {
-      const isGasExceeded = e.asStringified().match(/gas.*required.*exceeds/i);
+      const nestedErrorMsg = e.asStringified();
+      console.error(nestedErrorMsg)
+      const isGasExceeded = nestedErrorMsg.match(/gas.*required.*exceeds/i);
       if (isGasExceeded) {
         errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
       }
@@ -555,10 +563,12 @@ export function* loadSettleableChallenges({ address }, network, noPoll) {
       const settlement = new nahmii.Settlement(provider);
       const currencyAddress = yield select(makeSelectWalletCurrency());
       const {settleableChallenges} = yield call(() => settlement.getSettleableChallenges(address, currencyAddress, 0));
-      console.log(settleableChallenges)
       yield put(actions.loadSettleableChallengesSuccess(address, currencyAddress, settleableChallenges));
     } catch (err) {
-      console.log(err.asStringified())
+      if (e.asStringified) {
+        const nestedErrorMsg = e.asStringified();
+        console.error(nestedErrorMsg)
+      }
       yield put(actions.loadSettleableChallengesError(address, currencyAddress));
     } finally {
       if (noPoll) {
@@ -700,6 +710,7 @@ export function* challengeStatusOrcestrator() {
 export function* hookTxSuccessOperations({address}) {
   const network = yield select(makeSelectCurrentNetwork());
   const walletAddress = address || (yield select(makeSelectCurrentWallet())).get('address');
+  yield loadStagedBalances({address: walletAddress}, network, true);
   yield loadOngoingChallenges({address: walletAddress}, network, true);
   yield loadSettleableChallenges({address: walletAddress}, network, true);
 }
@@ -713,7 +724,9 @@ export default function* listen() {
   yield takeEvery(MAKE_NAHMII_PAYMENT, makePayment);
   yield takeEvery(START_CHALLENGE, startChallenge);
   yield takeEvery(SETTLE, settle);
+  yield takeEvery(WITHDRAW, withdraw);
   yield takeEvery(START_CHALLENGE_SUCCESS, hookTxSuccessOperations);
   yield takeEvery(SETTLE_SUCCESS, hookTxSuccessOperations);
+  yield takeEvery(WITHDRAW_SUCCESS, hookTxSuccessOperations);
   yield takeEvery(SET_SELECTED_WALLET_CURRENCY, hookTxSuccessOperations);
 }

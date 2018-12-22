@@ -186,9 +186,10 @@ export function loadStagingBalancesSuccess(address, balances) {
   };
 }
 
-export function startChallenge(stageAmount, currency) {
+export function startChallenge(address, currency, stageAmount) {
   return {
     type: START_CHALLENGE,
+    address,
     stageAmount,
     currency,
   };

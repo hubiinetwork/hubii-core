@@ -1,79 +1,175 @@
-import * as React from 'react';
-import {utils as ethersUtils} from 'ethers';
+/**
+ *
+ * NahmiiWithdraw
+ *
+ */
+
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { push } from 'react-router-redux';
 import { shell } from 'electron';
-import uuid from 'uuid/v4';
-import { createStructuredSelector } from 'reselect';
-import { injectIntl } from 'react-intl';
-import { getAbsolutePath } from 'utils/electron';
-import { isAddressMatch, isHardwareWallet } from 'utils/wallet';
+import {utils as ethersUtils} from 'ethers';
 import moment from 'moment';
+import { Row, Icon } from 'antd';
+import { getAbsolutePath } from 'utils/electron';
+import {
+  gweiToEther,
+  gweiToWei,
+  gweiRegex,
+  gasLimitRegex,
+  isHardwareWallet,
+  walletReady,
+} from 'utils/wallet';
 import BigNumber from 'bignumber.js';
-import { FormItem, FormItemLabel } from 'components/ui/Form';
-import Select, { Option } from 'components/ui/Select';
-import SettlementTransaction from 'components/SettlementTransaction';
+import { formatFiat } from 'utils/numberFormats';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
+
+import { Form, FormItem, FormItemLabel } from 'components/ui/Form';
+import Collapse, { Panel } from 'components/ui/Collapse';
+import HelperText from 'components/ui/HelperText';
+import Text from 'components/ui/Text';
 import SectionHeading from 'components/ui/SectionHeading';
-import * as actions from 'containers/NahmiiHoc/actions';
-import { makeSelectCurrentNetwork } from 'containers/App/selectors';
+import Input from 'components/ui/Input';
+import Select, { Option } from 'components/ui/Select';
+import TransferDescriptionItem from 'components/TransferDescriptionItem';
 import HWPromptContainer from 'containers/HWPromptContainer';
+import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHoc/selectors';
+import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import {
-  makeSelectCurrentWalletWithInfo,
-} from 'containers/WalletHoc/selectors';
-import {
-  makeSelectReceipts,
-  makeSelectLastPaymentChallenge,
-  makeSelectLastSettlePaymentDriip,
-  makeSelectNahmiiBalancesByCurrentWallet,
-  makeSelectNahmiiSettlementTransactionsByCurrentWallet,
-  makeSelectWalletCurrency,
+  makeSelectSupportedAssets,
+  makeSelectPrices,
+} from 'containers/HubiiApiHoc/selectors';
+import { makeSelectLedgerHoc } from 'containers/LedgerHoc/selectors';
+import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
+import { 
+  makeSelectDepositStatus,
   makeSelectOngoingChallengesForCurrentWalletCurrency,
   makeSelectSettleableChallengesForCurrentWalletCurrency,
 } from 'containers/NahmiiHoc/selectors';
-import {
-  makeSelectSupportedAssets,
-} from 'containers/HubiiApiHoc/selectors';
+import { 
+  setSelectedWalletCurrency,
+  startChallenge,
+  settle,
+  withdraw, 
+} from 'containers/NahmiiHoc/actions';
+import { injectIntl } from 'react-intl';
 
 import {
-  OuterWrapper,
+  AdvancedSettingsHeader,
   Image,
+  DollarPrice,
+  StyledCol,
+  StyledSpin,
   StyledButton,
-  SettlementWarning,
-  StyledForm,
-  StyledFormItem,
-  StyledInput,
-  TransactionsWrapper,
-  TransactionWrapper,
   HWPromptWrapper,
-} from './NahmiiWithdraw.style';
+  LoadingWrapper,
+  NoTxPlaceholder,
+  SettlementWarning,
+} from './style';
 
-export class NahmiiWithdraw extends React.PureComponent {
+
+export class NahmiiWithdraw extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
 
-    this.state = { amountToStageInput: '0', amountToWithdrawInput: '0', syncTime: new Date(), selectedSymbol: 'ETH', expandedTxs: new Set() };
-    this.state.amountInputRegex = this.getInputRegex();
+    const baseLayerAssets = props.currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
+    const assetToWithdraw = baseLayerAssets[0] || { symbol: 'ETH', currency: 'ETH', balance: new BigNumber('0') };
+
+    // max decimals possible for current asset
+    let assetToWithdrawMaxDecimals = 18;
+    if (props.supportedAssets.get('assets').size !== 0) {
+      assetToWithdrawMaxDecimals = props.supportedAssets && props.supportedAssets
+        .get('assets')
+        .find((a) => a.get('currency') === assetToWithdraw.currency)
+        .get('decimals');
+    }
+
+    // regex for amount input
+    // only allow one dot and integers, and not more decimal places than possible for the
+    // current asset
+    // https://stackoverflow.com/questions/30435918/regex-pattern-to-have-only-one-dot-and-match-integer-and-decimal-numbers
+    const amountToWithdrawInputRegex = new RegExp(`^\\d+(\\.\\d{0,${assetToWithdrawMaxDecimals}})?$`);
+
+    this.state = {
+      amountToWithdrawInput: '0',
+      amountToWithdraw: new BigNumber('0'),
+      assetToWithdraw,
+      assetToWithdrawMaxDecimals,
+      amountToWithdrawInputRegex,
+      gasPriceGweiInput: '10',
+      gasPriceGwei: new BigNumber('10'),
+      gasLimit: 600000,
+      addContactModalVisibility: false,
+      gasLimitInput: '600000',
+    };
+    this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
+    this.onBlurNumberInput = this.onBlurNumberInput.bind(this);
+    this.handleAmountToWithdrawChange = this.handleAmountToWithdrawChange.bind(this);
+    this.handleAssetChange = this.handleAssetChange.bind(this);
+    this.handleGasLimitChange = this.handleGasLimitChange.bind(this);
+    this.handleGasPriceChange = this.handleGasPriceChange.bind(this);
+    this.generateTransferingStatus = this.generateTransferingStatus.bind(this);
+    this.getRequiredSettlementAmount = this.getRequiredSettlementAmount.bind(this);
     this.startChallenge = this.startChallenge.bind(this);
     this.settle = this.settle.bind(this);
     this.withdraw = this.withdraw.bind(this);
-    this.handleAssetChange = this.handleAssetChange.bind(this);
-    this.onBlurNumberInput = this.onBlurNumberInput.bind(this);
-    this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
-    this.handleAmountChange = this.handleAmountChange.bind(this);
-    this.updateExpandedTx = this.updateExpandedTx.bind(this);
 
     props.setSelectedWalletCurrency('0x0000000000000000000000000000000000000000');
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // console.log('ongoing', this.props.ongoingChallenges.toJS())
-    // console.log('settleable', this.props.settleableChallenges.toJS())
-    const { setSelectedWalletCurrency } = this.props;
-    if (this.state.selectedSymbol !== prevState.selectedSymbol) {
-      const assetDetails = this.getAssetDetailsBySymbol(this.state.selectedSymbol);
-      setSelectedWalletCurrency(assetDetails.get('currency'));
+  componentDidUpdate(prevProps) {
+    const {assetToWithdraw} = this.state;
+    const { depositStatus, goWalletDetails, currentWalletWithInfo, ongoingChallenges } = this.props;
+    const prevFinalDepositStage =
+      prevProps.depositStatus.get('depositingEth')
+      || prevProps.depositStatus.get('completingTokenDeposit');
+    if
+      (
+        prevFinalDepositStage
+        && !depositStatus.get('depositingEth')
+        && !depositStatus.get('completingTokenDeposit')
+        && !depositStatus.get('error')
+        ) goWalletDetails(currentWalletWithInfo.get('address'));
+    
+    const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
+    const asset = baseLayerAssets.find((a) => a.symbol === assetToWithdraw.symbol);
+    if (asset && asset.balance.toString() !== assetToWithdraw.balance.toString()) {
+      assetToWithdraw.balance = asset.balance;
     }
+    const currentChallengeTxStatus = ongoingChallenges.get('status');
+    const prevChallengeTxStatus = prevProps.ongoingChallenges.get('status');
+    if (currentChallengeTxStatus === 'started' && prevChallengeTxStatus !== 'started') {
+      this.setState({ amountToWithdrawInput: '0', amountToWithdraw: new BigNumber('0') });
+    }
+  }
+
+  getRequiredSettlementAmount(stagedAmount, amountToWithdraw) {
+    if (amountToWithdraw.gt(stagedAmount)) {
+      return amountToWithdraw.minus(stagedAmount);
+    }
+    return null;
+  }
+
+  startChallenge(stageAmount, assetToWithdraw) {
+    const { currentWalletWithInfo } = this.props;
+    const {assetToWithdrawMaxDecimals} = this.state;
+    const currency = assetToWithdraw.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetToWithdraw.currency;
+    const stageAmountBN = stageAmount.times(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
+    this.props.startChallenge(currentWalletWithInfo.get('address'), currency, stageAmountBN);
+  }
+  
+  settle(assetToWithdraw) {
+    const currency = assetToWithdraw.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetToWithdraw.currency;
+    this.props.settle(currency);
+  }
+
+  withdraw(amountToWithdraw, assetToWithdraw) {
+    const {assetToWithdrawMaxDecimals} = this.state;
+    const currency = assetToWithdraw.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetToWithdraw.currency;
+    const amountToWithdrawBN = amountToWithdraw.times(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
+    this.props.withdraw(amountToWithdrawBN, currency);
   }
 
   onFocusNumberInput(input) {
@@ -88,406 +184,556 @@ export class NahmiiWithdraw extends React.PureComponent {
     }
   }
 
-  getInputRegex() {
-    const { selectedSymbol } = this.state;
-    let assetToSendMaxDecimals;
-    try {
-      assetToSendMaxDecimals = this.getAssetDetailsBySymbol(selectedSymbol).get('decimals');
-    } catch (error) {
-      assetToSendMaxDecimals = 18;
-    }
-    const amountInputRegex = new RegExp(`^\\d+(\\.\\d{0,${assetToSendMaxDecimals}})?$`);
-    return amountInputRegex;
+  handleAssetChange(newSymbol) {
+    const { currentWalletWithInfo, supportedAssets } = this.props;
+    const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
+    const assetToWithdraw = baseLayerAssets.find((a) => a.symbol === newSymbol);
+
+    // max decimals possible for current asset
+    const assetToWithdrawMaxDecimals = supportedAssets
+      .get('assets')
+      .find((a) => a.get('currency') === assetToWithdraw.currency)
+      .get('decimals');
+
+    // regex for amount input
+    // only allow one dot and integers, and not more decimal places than possible for the
+    // current asset
+    // https://stackoverflow.com/questions/30435918/regex-pattern-to-have-only-one-dot-and-match-integer-and-decimal-numbers
+    const amountToWithdrawInputRegex = new RegExp(`^\\d+(\\.\\d{0,${assetToWithdrawMaxDecimals}})?$`);
+
+    this.setState({
+      assetToWithdraw,
+      amountToWithdrawInputRegex,
+      assetToWithdrawMaxDecimals,
+    });
   }
 
-  getAssetDetailsBySymbol(symbol) {
-    const { supportedAssets } = this.props;
-    const assetDetails = supportedAssets.get('assets').find((a) => a.get('symbol') === symbol);
-    return assetDetails;
-  }
-
-  getAssetDetailsByCurrencyAddress(currency) {
-    const { supportedAssets } = this.props;
-    const address = currency === '0x0000000000000000000000000000000000000000' ? 'ETH' : currency;
-    const assetDetails = supportedAssets.get('assets').find((a) => a.get('currency') === address);
-    return assetDetails;
-  }
-
-  getLastReceipt() {
-    const { allReceipts, currentWalletWithInfo } = this.props;
-    const { selectedSymbol } = this.state;
-    const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol);
-    const walletReceipts = allReceipts.get(currentWalletWithInfo.get('address'));
-
-    if (!assetDetails) {
-      return null;
-    }
-
-    if (!walletReceipts) {
-      return null;
-    }
-
-    const currency = assetDetails.toJS().symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.toJS().currency;
-    const lastReceipt = walletReceipts.filter((r) => r.currency.ct === currency).sort((a, b) => b.nonce - a.nonce)[0];
-    return lastReceipt;
-  }
-
-  getReceiptByNonce(nonce) {
-    const { allReceipts, currentWalletWithInfo } = this.props;
-    const receipt = allReceipts.get(currentWalletWithInfo.get('address')).find((r) => r.nonce === nonce);
-    return receipt;
-  }
-
-  settle() {
-    const { selectedSymbol } = this.state;
-    const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol).toJS();
-    const currency = assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency;
-    this.props.settle(currency);
-  }
-
-  startChallenge() {
-    const { selectedSymbol, amountToStage } = this.state;
-
-    const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol).toJS();
-    this.props.startChallenge(amountToStage || new BigNumber(0), assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency);
-  }
-
-  withdraw() {
-    const { selectedSymbol, amountToWithdraw } = this.state;
-    const assetDetails = this.getAssetDetailsBySymbol(selectedSymbol).toJS();
-    const currency = assetDetails.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetDetails.currency;
-    this.props.withdraw(amountToWithdraw, currency);
-  }
-
-  isChallengeInProgress() {
-    const { lastPaymentChallenge } = this.props;
-    const challenge = lastPaymentChallenge.get('challenge');
-    if (challenge && challenge.timeout.toNumber() * 1000 > new Date().getTime()) {
-      return true;
-    }
-    return false;
-  }
-
-  canSettle() {
-    return true;
-  }
-
-  canWithdraw() {
-    const { selectedSymbol, amountToWithdraw } = this.state;
-    const { nahmiiBalances } = this.props;
-    const { staged } = nahmiiBalances.toJS();
-    if (!staged || !amountToWithdraw) {
-      return false;
-    }
-    const currencyAsset = staged.assets.find((a) => a.symbol === selectedSymbol);
-    if (!currencyAsset) {
-      return false;
-    }
-    const stagedBalance = currencyAsset.balance || new BigNumber('0');
-    return stagedBalance.gte(amountToWithdraw) && amountToWithdraw.gt(new BigNumber('0'));
-  }
-
-  handleAssetChange(symbol) {
-    const { supportedAssets } = this.props;
-    const assetDetails = supportedAssets.get('assets').find((a) => a.get('symbol') === symbol).toJS();
-    const amountInputRegex = this.getInputRegex();
-    this.setState({ selectedSymbol: assetDetails.symbol, amountInputRegex });
-  }
-
-  canStartChallenge() {
-    const { amountToStage } = this.state;
-
-    return true;
-  }
-
-  hasValidReceiptForNewChallenge() {
-    const { lastPaymentChallenge } = this.props;
-    const challenge = lastPaymentChallenge.get('challenge');
-    const lastReceipt = this.getLastReceipt();
-    if (lastReceipt && challenge && challenge.nonce.toNumber() < lastReceipt.nonce) {
-      return true;
-    }
-    return false;
-  }
-
-  handleAmountChange(e, inputProp) {
+  handleAmountToWithdrawChange(e) {
     const { value } = e.target;
-    const { amountInputRegex, selectedSymbol } = this.state;
+    const { amountToWithdrawInputRegex } = this.state;
 
     // allow an empty input to represent 0
     if (value === '') {
-      this.setState({ [`${inputProp}Input`]: '', [inputProp]: new BigNumber('0') });
+      this.setState({ amountToWithdrawInput: '', amountToWithdraw: new BigNumber('0') });
     }
 
     // don't update if invalid regex (numbers followed by at most 1 . followed by max possible decimals)
-    if (!amountInputRegex.test(value)) return;
+    if (!amountToWithdrawInputRegex.test(value)) return;
 
     // don't update if is an infeasible amount of Ether (> 100x entire circulating supply as of Aug 2018)
     if (!isNaN(value) && Number(value) > 10000000000) return;
 
-    // update amount to send if it's a real number
+    // update amount to Deposit if it's a real number
     if (!isNaN(value)) {
-      const maxDecimals = this.getAssetDetailsBySymbol(selectedSymbol).get('decimals');
-      this.setState({ [inputProp]: (new BigNumber(value)).times(new BigNumber('10').pow(maxDecimals)) });
+      this.setState({ amountToWithdraw: new BigNumber(value) });
     }
 
     // update the input (this could be an invalid number, such as '12.')
-    this.setState({ [`${inputProp}Input`]: value });
+    this.setState({ amountToWithdrawInput: value });
   }
 
-  updateExpandedTx(id) {
-    const { expandedTxs } = this.state;
-    if (!expandedTxs.has(id)) {
-      expandedTxs.add(id);
-    } else {
-      expandedTxs.delete(id);
+  handleGasPriceChange(e) {
+    const { value } = e.target;
+    // allow an empty input to represent 0
+    if (value === '') {
+      this.setState({ gasPriceGwei: new BigNumber('0'), gasPriceGweiInput: '' });
     }
-    this.setState({ expandedTxs });
+
+    // don't update if invalid regex
+    // (numbers followed by at most 1 . followed by at most 9 decimals)
+    if (!gweiRegex.test(value)) return;
+
+    // don't update if a single gas is an infeasible amount of Ether
+    // (> 100x entire circulating supply as of Aug 2018)
+    if (!isNaN(value) && Number(value) > 10000000000000000000) return;
+
+    // update the input (this could be an invalid number, such as '12.')
+    this.setState({ gasPriceGweiInput: value });
+
+    // update actual gwei if it's a real number
+    if (!isNaN(value)) {
+      this.setState({ gasPriceGwei: new BigNumber(value) });
+    }
+  }
+
+  handleGasLimitChange(e) {
+    const { value } = e.target;
+    // allow an empty input to represent 0
+    if (value === '') {
+      this.setState({ gasLimitInput: '', gasLimit: 0 });
+    }
+
+    // only allow whole numbers
+    if (!gasLimitRegex.test(value)) return;
+
+    // don't allow infeasible amount of gas
+    // (gas limit per block almost never exeeds 10 million as of Aug 2018  )
+    const ONE_HUNDRED_MILLION = 100000000;
+    if (value > ONE_HUNDRED_MILLION) return;
+
+    this.setState({ gasLimitInput: value, gasLimit: parseInt(value, 10) });
+  }
+
+  generateTransferingStatus(depositStatus, ledgerNanoSInfo, trezorInfo) {
+    const { currentWalletWithInfo, currentNetwork, intl } = this.props;
+    const { formatMessage } = intl;
+    const confOnDevice = ledgerNanoSInfo.get('confTxOnDevice') || trezorInfo.get('confTxOnDevice');
+    let ratio;
+    if (depositStatus.get('depositingEth')) ratio = '1/1';
+    if (depositStatus.get('approvingTokenDeposit')) ratio = '1/2';
+    if (depositStatus.get('completingTokenDeposit')) ratio = '2/2';
+    if (!ratio) return null;
+    const transferingText =
+      `${formatMessage({ id: 'waiting_for_deposit_to_be' }, { ratio })} ${confOnDevice ? formatMessage({ id: 'signed' }) : `${formatMessage({ id: 'mined' })}...`}`;
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <span>
+          <Text large>{transferingText}</Text>
+          {!confOnDevice && <Icon style={{ color: 'white', fontSize: '1.5rem', marginLeft: '1rem' }} type="loading" />}
+        </span>
+        {!confOnDevice &&
+        <a
+          role="link"
+          tabIndex={0}
+          onClick={
+            currentNetwork.provider._network.name === 'ropsten' ?
+              () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
+              () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
+          }
+        >
+          {'Track progress on Etherscan'}
+        </a>
+        }
+      </div>
+    );
   }
 
   render() {
-    const { 
-      intl, 
+    const {
+      assetToWithdraw,
+      gasLimitInput,
+      gasPriceGweiInput,
+      amountToWithdrawInput,
+      amountToWithdraw,
+      gasPriceGwei,
+      gasLimit,
+      assetToWithdrawMaxDecimals,
+    } = this.state;
+    const {
       currentWalletWithInfo,
-      currentNetwork, 
-      lastPaymentChallenge, 
-      lastSettlePaymentDriip, 
-      nahmiiBalances, 
-      supportedAssets, 
-      transactions,
+      prices,
+      intl,
+      supportedAssets,
+      depositStatus,
+      ledgerNanoSInfo,
+      trezorInfo,
       ongoingChallenges,
       settleableChallenges,
     } = this.props;
     const { formatMessage } = intl;
-    const {
-      expandedTxs,
-      selectedSymbol,
-      amountToStageInput,
-      amountToWithdrawInput,
-    } = this.state;
 
-    const { available, staged } = nahmiiBalances.toJS();
-    const challenge = lastPaymentChallenge.get('challenge');
-    const selectedAssetDetails = this.getAssetDetailsBySymbol(selectedSymbol);
-
-    if (!selectedAssetDetails || !staged) {
-      return (null);
+    if
+    (
+      currentWalletWithInfo.getIn(['balances', 'combined', 'loading']) ||
+      supportedAssets.get('loading') ||
+      prices.get('loading')
+    ) {
+      return (
+        <LoadingWrapper>
+          <StyledSpin size="large" tip={formatMessage({ id: 'synchronising' })}></StyledSpin>
+        </LoadingWrapper>
+      );
+    }
+    if
+    (
+      currentWalletWithInfo.getIn(['balances', 'combined', 'error']) ||
+      supportedAssets.get('error') ||
+      prices.get('error')
+    ) {
+      return <NoTxPlaceholder>{formatMessage({ id: 'connection_problem' })}</NoTxPlaceholder>;
     }
 
-    const challengeTxStatus = lastPaymentChallenge.get('txStatus');
-    const settlementTxStatus = lastSettlePaymentDriip.get('txStatus');
-    const needToUpdateSyncTime = this.state.syncTime.getTime() < new Date().getTime();
-    if ((challengeTxStatus === 'mining' || settlementTxStatus === 'mining') && needToUpdateSyncTime) {
-      this.state.syncTime = moment().add(30, 'seconds').toDate();
-    }
+    const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
+    const nahmiiStagedAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiStaged', 'assets']).toJS();
 
-    let challengeAssetSymbol;
-    let challengeReceipt;// = this.getReceiptByNonce(challenge.nonce.toNumber());
-    if (challengeReceipt) {
-      const challengeAsssetDetails = this.getAssetDetailsByCurrencyAddress(challengeReceipt.currency.ct);
-      challengeAssetSymbol = challengeAsssetDetails ? challengeAsssetDetails.toJS().symbol : null;
-    }
+    const nahmiiAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiCombined', 'assets']).toJS();
+    const assetToWithdrawUsdValue = prices.toJS().assets
+      .find((a) => a.currency === assetToWithdraw.currency).usd;
+    const usdValueToWithdraw = amountToWithdraw
+      .times(assetToWithdrawUsdValue);
+    const ethUsdValue = prices.toJS().assets
+      .find((a) => a.currency === 'ETH').usd;
+    const baseLayerEthBalance = baseLayerAssets
+      .find((currency) => currency.symbol === 'ETH');
 
-    const assets = supportedAssets.get('assets').toJS();
-    const { decimals } = selectedAssetDetails.toJS();
-    const stagedBalance = staged.assets.find((a) => a.symbol === selectedSymbol) || { balance: new BigNumber('0') };
-    const formattedStagedBalance = stagedBalance.balance.div(new BigNumber('10').pow(decimals)).toString();
+    // construct tx fee info
+    let txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit);
+    if (assetToWithdraw.currency !== 'ETH') txFeeAmt = txFeeAmt.times('2');
+    const txFeeUsdValue = txFeeAmt.times(ethUsdValue);
+    const transactionFee = {
+      amount: txFeeAmt,
+      usdValue: txFeeUsdValue,
+    };
 
-    const txs = Object.keys(transactions).reduce((acc, currency) => {
-      transactions[currency].map((tx) => {
-        const _tx = tx;
-        _tx.currency = currency;
-        const asset = this.getAssetDetailsByCurrencyAddress(currency);
-        if (asset) {
-          _tx.symbol = asset.toJS().symbol;
-        }
-        return _tx;
-      });
-      return acc.concat(transactions[currency]);
-    }, []).sort((a, b) => b.createdAt - a.createdAt);
+    // construct asset before and after balances
+    const baseLayerBalanceBefore = {
+      amount: assetToWithdraw.balance,
+      usdValue: assetToWithdraw.balance.times(assetToWithdrawUsdValue),
+    };
+    const nahmiiBalanceBeforeAmt = (nahmiiAssets
+      .find((asset) => asset.currency === assetToWithdraw.currency) || { balance: new BigNumber('0') })
+      .balance;
+    const nahmiiBalanceBefore = {
+      amount: nahmiiBalanceBeforeAmt,
+      usdValue: nahmiiBalanceBeforeAmt.times(assetToWithdrawUsdValue),
+    };
+    const nahmiiBalanceAfterAmt = nahmiiBalanceBeforeAmt.minus(amountToWithdraw);
+    const nahmiiBalanceAfter = {
+      amount: nahmiiBalanceAfterAmt,
+      usdValue: nahmiiBalanceAfterAmt.times(assetToWithdrawUsdValue),
+    };
+    const baseLayerBalAfterAmt = baseLayerBalanceBefore.amount.minus(amountToWithdraw);
+    const baseLayerBalanceAfter = {
+      amount: baseLayerBalAfterAmt,
+      usdValue: baseLayerBalAfterAmt.times(assetToWithdrawUsdValue),
+    };
 
-    const totalIntendedStageAmountBN = settleableChallenges.get('details').reduce((sum, challenge) => {
-      const {amount} = challenge.intendedStageAmount.toJSON();
-      const intendedStageAmount = ethersUtils.bigNumberify(amount);
-      return sum.add(intendedStageAmount);
-    }, ethersUtils.bigNumberify(0));
-    const totalIntendedStageAmount = ethersUtils.formatUnits(totalIntendedStageAmountBN, decimals);
+    // constuct ether before and after balances
+    const baseLayerEthBalanceBefore = {
+      amount: baseLayerEthBalance.balance,
+      usdValue: baseLayerEthBalance.balance.times(ethUsdValue),
+    };
+    const baseLayerEthBalanceAfterAmount = assetToWithdraw.symbol === 'ETH'
+        ? baseLayerEthBalanceBefore.amount.plus(amountToWithdraw).minus(transactionFee.amount)
+        : baseLayerEthBalanceBefore.amount.minus(transactionFee.amount);
+    const baseLayerEthBalanceAfter = {
+      amount: baseLayerEthBalanceAfterAmount,
+      usdValue: baseLayerEthBalanceAfterAmount.times(ethUsdValue),
+    };
 
-    const availableAsset = available.assets.find(a => a.currency === selectedSymbol) || {balance: '0'};
-    const availableBalanceBN = ethersUtils.bigNumberify(availableAsset.balance);
-    const availableBalanceAmount = ethersUtils.formatUnits(availableBalanceBN, decimals);
-    
     const maxExpirationTime = ongoingChallenges.get('details').reduce((max, challenge) => {
       const {expirationTime} = challenge;
       return max > expirationTime ? max : expirationTime;
     }, 0);
+    const totalStagingAmountBN = ongoingChallenges.get('details').reduce((sum, challenge) => {
+      const {intendedStageAmount} = challenge;
+      const {amount} = intendedStageAmount.toJSON();
+      return sum.plus(new BigNumber(amount))
+    }, new BigNumber(0));
+    const totalStagingAmount = totalStagingAmountBN.div(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
+
+    const stagedAsset = nahmiiStagedAssets.find((a) => a.symbol === assetToWithdraw.symbol) || {balance: new BigNumber(0)};
+    const requiredSettlementAmount = this.getRequiredSettlementAmount(stagedAsset.balance, amountToWithdraw);
+
+    const totalSettleableStageAmountBN = settleableChallenges.get('details').reduce((sum, challenge) => {
+      const {amount} = challenge.intendedStageAmount.toJSON();
+      const intendedStageAmount = new BigNumber(amount);
+      return sum.plus(intendedStageAmount);
+    }, new BigNumber(0));
+    
+    const totalSettleableStageAmount = totalSettleableStageAmountBN.div(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
+
+    const walletType = currentWalletWithInfo.get('type');
+    const disableWithdrawButton =
+      amountToWithdraw.toNumber() <= 0 ||
+      baseLayerBalAfterAmt.isNegative() ||
+      baseLayerEthBalanceAfterAmount.isNegative() ||
+      !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
+    const TransferingStatus = this.generateTransferingStatus(depositStatus, ledgerNanoSInfo, trezorInfo);
 
     return (
-      <OuterWrapper>
-        {
-            isHardwareWallet(currentWalletWithInfo.get('type')) &&
-            <HWPromptWrapper>
-              <HWPromptContainer />
-            </HWPromptWrapper>
-        }
-        {
-          settleableChallenges.get('details').length > 0 &&
-          <SettlementWarning
-            message={formatMessage({ id: 'settlement_period_ended' })}
-            description={
-              <div>
-                <div>
-                  {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: selectedSymbol, intended_stage_amount: totalIntendedStageAmount })}
-                </div>
-                <StyledButton onClick={this.settle} disabled={!this.canSettle()}>
-                  {formatMessage({ id: 'confirm_settlement' })}
-                </StyledButton>
-              </div>
-            }
-            type="warning"
-            showIcon
-          />
-        }
-        {
-          ongoingChallenges.get('details').length > 0 &&
-          <SettlementWarning
-            message={formatMessage({ id: 'challenge_period_progress' })}
-            description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(maxExpirationTime).format('LLLL'), symbol: selectedSymbol })}
-            type="warning"
-            showIcon
-          />
-        }
-        {/* {
-          !this.isChallengeInProgress() && !this.canSettle() && !this.hasValidReceiptForNewChallenge() &&
-          <SettlementWarning
-            message={formatMessage({ id: 'no_valid_receipt_for_new_challenge' })}
-            description={formatMessage({ id: 'need_valid_receipt_for_new_challenge' })}
-            type="warning"
-            showIcon
-          />
-        } */}
-        <StyledForm>
-          <FormItem
-            label={<FormItemLabel>{formatMessage({ id: 'select_asset' })}</FormItemLabel>}
-            colon={false}
-          >
-            <Image
-              src={getAbsolutePath(`public/images/assets/${selectedSymbol}.svg`)}
-              alt="logo"
-            />
-            <Select
-              defaultValue={'ETH'}
-              onSelect={this.handleAssetChange}
-              style={{ paddingLeft: '0.5rem' }}
+      <div style={{ display: 'flex', flex: '1', flexWrap: 'wrap' }}>
+        <div style={{ flex: '1', marginRight: '2rem', marginBottom: '3rem' }}>
+          <Form>
+            <FormItem
+              label={<FormItemLabel>{formatMessage({ id: 'select_asset_to_withdraw' })}</FormItemLabel>}
+              colon={false}
             >
-              {assets.map((currency) => (
-                <Option value={currency.symbol} key={currency.symbol}>
-                  {currency.symbol}
-                </Option>
-            ))}
-            </Select>
-          </FormItem>
-          <StyledFormItem
-            label={<FormItemLabel>{formatMessage({ id: 'enter_amount_stage' }, {nahmii_balance: availableBalanceAmount})}</FormItemLabel>}
-            colon={false}
-            // help={<HelperText left={formatFiat(usdValueToSend, 'USD')} right={formatMessage({ id: 'usd' })} />}
-          >
-            <StyledInput
-              defaultValue={amountToStageInput}
-              value={amountToStageInput}
-              onFocus={() => this.onFocusNumberInput('amountToStageInput')}
-              onBlur={() => this.onBlurNumberInput('amountToStageInput')}
-              onChange={(e) => this.handleAmountChange(e, 'amountToStage')}
-            />
-            <StyledButton onClick={this.startChallenge} disabled={!this.canStartChallenge()}>
-              {formatMessage({ id: 'settle_payment' })}
-            </StyledButton>
-          </StyledFormItem>
-          <StyledFormItem
-            label={<FormItemLabel>{formatMessage({ id: 'enter_amount_withdraw' }, { withdraw_amount: formattedStagedBalance, symbol: 'ETH' })}</FormItemLabel>}
-            colon={false}
-          >
-            <StyledInput
-              defaultValue={amountToWithdrawInput}
-              value={amountToWithdrawInput}
-              onFocus={() => this.onFocusNumberInput('amountToWithdrawInput')}
-              onBlur={() => this.onBlurNumberInput('amountToWithdrawInput')}
-              onChange={(e) => this.handleAmountChange(e, 'amountToWithdraw')}
-            />
-            <StyledButton onClick={this.withdraw} disabled={!this.canWithdraw()}>{formatMessage({ id: 'withdraw' })}</StyledButton>
-          </StyledFormItem>
-        </StyledForm>
-        <TransactionsWrapper>
-          <SectionHeading>{formatMessage({ id: 'settlement_history' })}</SectionHeading>
-          {txs.map((tx) => (
-            <TransactionWrapper key={uuid()}>
-              <SettlementTransaction
-                time={new Date(tx.createdAt)}
-                type={tx.type}
-                symbol={tx.symbol}
-                viewOnBlockExplorerClick={
-                  currentNetwork.provider.name === 'ropsten' ?
-                    () => shell.openExternal(`https://ropsten.etherscan.io/tx/${tx.request.hash}`) :
-                    () => shell.openExternal(`https://etherscan.io/tx/${tx.request.hash}`)
-                  }
-                onChange={() => this.updateExpandedTx(`${tx.request.hash}`)}
-                defaultOpen={expandedTxs.has(`${tx.request.hash}`)}
+              <Image
+                src={getAbsolutePath(`public/images/assets/${assetToWithdraw.symbol}.svg`)}
+                alt="logo"
               />
-            </TransactionWrapper>
-            // <div>{tx.createdAt}</div>
-            // <Transaction
-            //   key={uuid()}
-            //   time={new Date(tx.createdAt)}
-            //   // counterpartyAddress={tx.counterpartyAddress}
-            //   // amount={tx.decimalAmount}
-            //   // fiatEquivilent={formatFiat(tx.fiatValue, 'USD')}
-            //   symbol={tx.symbol}
-            //   confirmations={tx.confirmations}
-            //   type={tx.type}
-            //   defaultOpen={expandedTxs.has(`${tx.hash}${tx.type}${tx.symbol}`)}
-            // />
+              <Select
+                // disabled={transfering}
+                defaultValue={assetToWithdraw.symbol}
+                onSelect={this.handleAssetChange}
+                style={{ paddingLeft: '0.5rem' }}
+              >
+                {baseLayerAssets.map((currency) => (
+                  <Option value={currency.symbol} key={currency.symbol}>
+                    {currency.symbol}
+                  </Option>
+                ))}
+              </Select>
+            </FormItem>
+            <FormItem
+              label={<FormItemLabel>{formatMessage({ id: 'enter_amount_withdraw' }, {staged_amount: stagedAsset.balance.toNumber(), symbol: assetToWithdraw.symbol})} </FormItemLabel>}
+              colon={false}
+              help={<HelperText left={formatFiat(usdValueToWithdraw, 'USD')} right={formatMessage({ id: 'usd' })} />}
+            >
+              <Input
+                defaultValue={amountToWithdrawInput}
+                value={amountToWithdrawInput}
+                onFocus={() => this.onFocusNumberInput('amountToWithdrawInput')}
+                onBlur={() => this.onBlurNumberInput('amountToWithdrawInput')}
+                onChange={this.handleAmountToWithdrawChange}
+              />
+            </FormItem>
+            <Collapse bordered={false} defaultActiveKey={['2']}>
+              <Panel
+                header={<AdvancedSettingsHeader>{formatMessage({ id: 'advanced_settings' })}</AdvancedSettingsHeader>}
+                key="1"
+              >
+                <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_price' })}</FormItemLabel>} colon={false}>
+                  <Input
+                    min={0}
+                    defaultValue={gasPriceGweiInput}
+                    value={gasPriceGweiInput}
+                    onChange={this.handleGasPriceChange}
+                    onFocus={() => this.onFocusNumberInput('gasPriceGweiInput')}
+                    onBlur={() => this.onBlurNumberInput('gasPriceGweiInput')}
+                  />
+                </FormItem>
+                <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_limit' })}</FormItemLabel>} colon={false}>
+                  <Input
+                    value={gasLimitInput}
+                    defaultValue={gasLimitInput}
+                    onChange={this.handleGasLimitChange}
+                    onFocus={() => this.onFocusNumberInput('gasLimitInput')}
+                    onBlur={() => this.onBlurNumberInput('gasLimitInput')}
+                  />
+                </FormItem>
+              </Panel>
+            </Collapse>
+            <DollarPrice>
+              {`1 ${assetToWithdraw.symbol} = ${formatFiat(assetToWithdrawUsdValue, 'USD')}`}
+            </DollarPrice>
+          </Form>
+        </div>
+        <div style={{ flex: 1, minWidth: '34rem' }}>
+          {
+            ongoingChallenges.get('details').length > 0 &&
+            <SettlementWarning
+              message={formatMessage({ id: 'challenge_period_progress' }, {staging_amount: totalStagingAmount.toString(), symbol: assetToWithdraw.symbol})}
+              description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(maxExpirationTime).format('LLLL'), symbol: assetToWithdraw.symbol })}
+              type="warning"
+              showIcon
+            />
+          }
+          {
+            settleableChallenges.get('details').length > 0 ? 
+            (<SettlementWarning
+              message={formatMessage({ id: 'settlement_period_ended' })}
+              description={
+                <div>
+                  <div>
+                    {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: assetToWithdraw.symbol, intended_stage_amount: totalSettleableStageAmount, tx_count: settleableChallenges.get('details').length })}
+                  </div>
+                  <StyledButton onClick={() => this.settle(assetToWithdraw)}>
+                    {formatMessage({ id: 'confirm_settlement' })}
+                  </StyledButton>
+                </div>
+              }
+              type="warning"
+              showIcon
+            />) : (
+              requiredSettlementAmount ?
+              (
+                <div>
+                  <Row>
+                    <StyledCol span={12}>{formatMessage({ id: 'required_stage_amount' })}</StyledCol>
+                  </Row>
+                  <Row>
+                    <TransferDescriptionItem
+                      main={`${requiredSettlementAmount} ${assetToWithdraw.symbol}`}
+                      subtitle={formatFiat(requiredSettlementAmount.times(assetToWithdrawUsdValue), 'USD')}
+                    />
+                  </Row>
+                  <Row>
+                    <StyledButton onClick={() => this.startChallenge(requiredSettlementAmount, assetToWithdraw)}>
+                      {formatMessage({ id: 'settle_payment' })}
+                    </StyledButton>
+                  </Row>
+                </div>
+              ) : (
+                <div>
+                  <Row>
+                    <StyledCol span={12}>{formatMessage({ id: 'withdraw' })}</StyledCol>
+                  </Row>
+                  <Row>
+                    <TransferDescriptionItem
+                      main={`${amountToWithdraw.toString()} ${assetToWithdraw.symbol}`}
+                      subtitle={formatFiat(usdValueToWithdraw.toNumber(), 'USD')}
+                    />
+                  </Row>
+                  <Row>
+                    <StyledCol span={12}>{formatMessage({ id: 'base_layer_fee' })}</StyledCol>
+                  </Row>
+                  <Row>
+                    <TransferDescriptionItem
+                      main={`${transactionFee.amount.toString()} ETH`}
+                      subtitle={formatFiat(transactionFee.usdValue.toNumber(), 'USD')}
+                    />
+                  </Row>
+                  <Row>
+                    <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+                  </Row>
+                  <Row>
+                    <TransferDescriptionItem
+                      main={`${baseLayerEthBalanceBefore.amount.toString()} ETH`}
+                      subtitle={formatFiat(baseLayerEthBalanceBefore.usdValue.toNumber(), 'USD')}
+                    />
+                  </Row>
+                  <Row>
+                    <StyledCol span={12}>
+                      {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
+                    </StyledCol>
+                  </Row>
+                  <Row>
+                    <TransferDescriptionItem
+                      main={`${baseLayerEthBalanceAfter.amount} ETH`}
+                      subtitle={formatFiat(baseLayerEthBalanceAfter.usdValue.toNumber(), 'USD')}
+                    />
+                  </Row>
+                  {assetToWithdraw.symbol === 'ETH' &&
+                  <div>
+                    <Row>
+                      <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+                    </Row>
+                    <Row>
+                      <TransferDescriptionItem
+                        main={`${nahmiiBalanceBefore.amount.toString()} ETH`}
+                        subtitle={formatFiat(nahmiiBalanceBefore.usdValue.toNumber(), 'USD')}
+                      />
+                    </Row>
+                    <Row>
+                      <StyledCol span={12}>
+                        {formatMessage({ id: 'nahmii' })} ETH {formatMessage({ id: 'balance_after' })}
+                      </StyledCol>
+                    </Row>
+                    <Row>
+                      <TransferDescriptionItem
+                        main={`${nahmiiBalanceAfter.amount} ETH`}
+                        subtitle={formatFiat(nahmiiBalanceAfter.usdValue.toNumber(), 'USD')}
+                      />
+                    </Row>
+                  </div>
+                  }
+                  {assetToWithdraw.symbol !== 'ETH' &&
+                  <div>
+                    <Row>
+                      <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+                    </Row>
+                    <Row>
+                      <TransferDescriptionItem
+                        main={`${baseLayerBalanceBefore.amount} ${assetToWithdraw.symbol}`}
+                        subtitle={formatFiat(baseLayerBalanceBefore.usdValue.toNumber(), 'USD')}
+                      />
+                    </Row>
+                    <Row>
+                      <StyledCol span={12}>
+                        {formatMessage({ id: 'base_layer' })} { assetToWithdraw.symbol } {formatMessage({ id: 'balance_after' })}
+                      </StyledCol>
+                    </Row>
+                    <Row>
+                      <TransferDescriptionItem
+                        main={`${baseLayerBalanceAfter.amount} ${assetToWithdraw.symbol}`}
+                        subtitle={formatFiat(baseLayerBalanceAfter.usdValue.toNumber(), 'USD')}
+                      />
+                    </Row>
+                    <Row>
+                      <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+                    </Row>
+                    <Row>
+                      <TransferDescriptionItem
+                        main={`${nahmiiBalanceBefore.amount} ${assetToWithdraw.symbol}`}
+                        subtitle={formatFiat(nahmiiBalanceBefore.usdValue.toNumber(), 'USD')}
+                      />
+                    </Row>
+                    <Row>
+                      <StyledCol span={12}>
+                        {formatMessage({ id: 'nahmii' })} { assetToWithdraw.symbol } {formatMessage({ id: 'balance_after' })}
+                      </StyledCol>
+                    </Row>
+                    <Row>
+                      <TransferDescriptionItem
+                        main={`${nahmiiBalanceAfter.amount} ${assetToWithdraw.symbol}`}
+                        subtitle={formatFiat(nahmiiBalanceAfter.usdValue.toNumber(), 'USD')}
+                      />
+                    </Row>
+                  </div>
+                  }
+                  <Row>
+                    {
+                    isHardwareWallet(currentWalletWithInfo.get('type')) &&
+                    <HWPromptWrapper>
+                      <HWPromptContainer />
+                    </HWPromptWrapper>
+                    }
+                    {
+                    TransferingStatus ?
+                      (
+                        <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }}>
+                          {TransferingStatus}
+                        </div>
+                      ) : (
+                        <StyledButton
+                          type="primary"
+                          onClick={() => this.withdraw(amountToWithdraw, assetToWithdraw)}
+                          disabled={disableWithdrawButton}
+                        >
+                          <span>{formatMessage({ id: 'withdraw' })}</span>
+                        </StyledButton>
+                        )
+                      }
+                  </Row>
+                  <SectionHeading style={{ marginTop: '2rem', maxWidth: '25rem' }}>
+                    Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                  </SectionHeading>
+                </div>
+              )
             )
-          )}
-        </TransactionsWrapper>
-      </OuterWrapper>
+          }
+        </div>
+      </div>
     );
   }
 }
 
 NahmiiWithdraw.propTypes = {
   currentWalletWithInfo: PropTypes.object.isRequired,
-  allReceipts: PropTypes.object.isRequired,
-  lastPaymentChallenge: PropTypes.object.isRequired,
-  lastSettlePaymentDriip: PropTypes.object.isRequired,
-  nahmiiBalances: PropTypes.object.isRequired,
-  settle: PropTypes.func.isRequired,
-  startChallenge: PropTypes.func.isRequired,
-  withdraw: PropTypes.func.isRequired,
+  ledgerNanoSInfo: PropTypes.object.isRequired,
+  trezorInfo: PropTypes.object.isRequired,
+  prices: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
-  transactions: PropTypes.object.isRequired,
+  depositStatus: PropTypes.object.isRequired,
   currentNetwork: PropTypes.object.isRequired,
+  nahmiiWithdraw: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
+  goWalletDetails: PropTypes.func.isRequired,
+  startChallenge: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
+  depositStatus: makeSelectDepositStatus(),
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
-  allReceipts: makeSelectReceipts(),
-  lastPaymentChallenge: makeSelectLastPaymentChallenge(),
-  lastSettlePaymentDriip: makeSelectLastSettlePaymentDriip(),
-  nahmiiBalances: makeSelectNahmiiBalancesByCurrentWallet(),
+  ledgerNanoSInfo: makeSelectLedgerHoc(),
+  trezorInfo: makeSelectTrezorHoc(),
+  prices: makeSelectPrices(),
   supportedAssets: makeSelectSupportedAssets(),
-  transactions: makeSelectNahmiiSettlementTransactionsByCurrentWallet(),
   currentNetwork: makeSelectCurrentNetwork(),
   ongoingChallenges: makeSelectOngoingChallengesForCurrentWalletCurrency(),
   settleableChallenges: makeSelectSettleableChallengesForCurrentWalletCurrency(),
 });
 
-export function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
-    startChallenge: (...args) => dispatch(actions.startChallenge(...args)),
-    settle: (...args) => dispatch(actions.settle(...args)),
-    setSelectedWalletCurrency: (...args) => dispatch(actions.setSelectedWalletCurrency(...args)),
-    withdraw: (...args) => dispatch(actions.withdraw(...args)),
+    nahmiiWithdraw: (...args) => dispatch(withdraw(...args)),
+    startChallenge: (...args) => dispatch(startChallenge(...args)),
+    settle: (...args) => dispatch(settle(...args)),
+    withdraw: (...args) => dispatch(withdraw(...args)),
+    goWalletDetails: (address) => dispatch(push(`/wallet/${address}/overview`)),
+    setSelectedWalletCurrency: (...args) => dispatch(setSelectedWalletCurrency(...args)),
   };
 }
 

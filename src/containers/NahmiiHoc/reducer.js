@@ -12,6 +12,7 @@ import {
   LOAD_NAHMII_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGED_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGING_BALANCES_SUCCESS,
+  START_CHALLENGE,
   START_CHALLENGE_SUCCESS,
   START_CHALLENGE_ERROR,
   LOAD_START_CHALLENGE_TX_REQUEST,
@@ -107,20 +108,25 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['balances', action.address, 'staging', 'loading'], false)
         .setIn(['balances', action.address, 'staging', 'error'], null)
         .setIn(['balances', action.address, 'staging', 'assets'], fromJS(action.balances));
+    case START_CHALLENGE:
+      return state
+          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'starting')
     case START_CHALLENGE_SUCCESS:
       return state
-          .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txStatus'], 'success')
-          .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txReceipt'], action.txReceipt)
+          // .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txStatus'], 'success')
+          // .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txReceipt'], action.txReceipt)
+          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'started')
           .setIn(['transactions', action.address, action.currency, action.txReceipt.transactionHash, 'receipt'], action.txReceipt);
     case START_CHALLENGE_ERROR:
       return state
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txStatus'], 'failed')
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txReceipt'], action.txReceipt)
-        .setIn(['transactions', action.address, action.currency, action.txReceipt.transactionHash, 'receipt'], action.txReceipt);
+        // .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txStatus'], 'failed')
+        // .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txReceipt'], action.txReceipt)
+          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'failed')
+          .setIn(['transactions', action.address, action.currency, action.txReceipt.transactionHash, 'receipt'], action.txReceipt);
     case LOAD_START_CHALLENGE_TX_REQUEST:
       return state
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txStatus'], 'mining')
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txRequest'], action.txRequest)
+        // .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txStatus'], 'mining')
+        // .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txRequest'], action.txRequest)
         .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'type'], 'start_payment_challenge')
         .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'network'], action.networkName)
         .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'createdAt'], new Date().getTime())

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Alert } from 'antd';
+import { Alert, Col } from 'antd';
 import { media } from 'utils/style-utils';
 import { Form, FormItem } from 'components/ui/Form';
 import Input from 'components/ui/Input';
@@ -10,6 +10,27 @@ export const OuterWrapper = styled.div`
   flex-wrap: wrap;
   flex: 1;
   flex-direction: column;
+  margin-bottom: 2rem;
+`;
+
+export const WithdrawalWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  margin-bottom: 2rem;
+`;
+
+export const WithdrawalFormWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  margin-bottom: 2rem;
+`;
+
+export const WithdrawalDescriptionWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
   margin-bottom: 2rem;
 `;
 
@@ -65,4 +86,11 @@ export const TransactionWrapper = styled.div`
 
 export const HWPromptWrapper = styled.div`
   margin-top: 2rem;
+`;
+
+export const StyledCol = styled(Col)`
+  margin-top: 1.43rem;
+  margin-bottom: 0.43rem;
+  white-space: nowrap;
+  color: ${({ theme }) => theme.palette.secondary};
 `;

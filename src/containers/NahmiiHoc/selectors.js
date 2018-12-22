@@ -3,6 +3,7 @@ import { fromJS } from 'immutable';
 import BigNumber from 'bignumber.js';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { makeSelectCurrentWallet } from 'containers/WalletHoc/selectors';
+import { from } from 'nahmii-sdk/lib/monetary-amount';
 
 /**
  * Direct selector to the nahmiiHoc state domain

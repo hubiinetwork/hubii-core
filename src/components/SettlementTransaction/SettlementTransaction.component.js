@@ -31,7 +31,7 @@ const SettlementTransaction = (props) => {
   const typeTexts = {
     start_payment_challenge: formatMessage({ id: 'start_payment_challenge_type' }),
     settle_payment: formatMessage({ id: 'settle_payment_type' }),
-    withdraw: formatMessage({ id: 'withdraw_type' }),
+    withdraw: formatMessage({ id: 'withdraw' }),
   };
 
   return (
