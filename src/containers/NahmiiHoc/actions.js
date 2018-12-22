@@ -46,6 +46,9 @@ import {
   MAKE_NAHMII_PAYMENT,
   MAKE_NAHMII_PAYMENT_ERROR,
   MAKE_NAHMII_PAYMENT_SUCCESS,
+  LOAD_NAHMII_RECEIPTS,
+  LOAD_NAHMII_RECEIPTS_SUCCESS,
+  LOAD_NAHMII_RECEIPTS_ERROR,
 } from './constants';
 
 export function setSelectedWalletCurrency(currencyAddress) {
@@ -403,22 +406,23 @@ export function loadSettlementError(address) {
 
 export function loadReceipts(address) {
   return {
-    type: LOAD_RECEIPTS,
+    type: LOAD_NAHMII_RECEIPTS,
     address,
   };
 }
 
 export function loadReceiptsSuccess(address, receipts) {
   return {
-    type: LOAD_RECEIPTS_SUCCESS,
+    type: LOAD_NAHMII_RECEIPTS_SUCCESS,
     address,
     receipts,
   };
 }
 
-export function loadReceiptsError(address) {
+export function loadReceiptsError(address, error) {
   return {
-    type: LOAD_RECEIPTS_ERROR,
+    type: LOAD_NAHMII_RECEIPTS_ERROR,
     address,
+    error,
   };
 }

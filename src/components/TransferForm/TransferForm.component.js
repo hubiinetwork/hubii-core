@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from 'antd';
+import { Icon, Tooltip } from 'antd';
 import BigNumber from 'bignumber.js';
 import { fromJS } from 'immutable';
 import { Spring } from 'react-spring';
@@ -276,11 +276,6 @@ export class TransferForm extends React.PureComponent {
       .find((a) => a.currency === 'ETH').usd;
 
 
-    const baseLayerEthBalance = currentWalletWithInfo
-      .getIn(['balances', balKey, 'assets'])
-      .toJS()
-      .find((currency) => currency.symbol === 'ETH');
-
     // construct tx fee info
     let txFeeAmt;
     let txFeeSymbol;
@@ -288,7 +283,15 @@ export class TransferForm extends React.PureComponent {
       txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit);
       txFeeSymbol = 'ETH';
     } else {
-      txFeeAmt = new BigNumber('0');
+      const divFactor = new BigNumber('10').pow(assetToSend.decimals);
+      const minFee = new BigNumber('1').div(divFactor);
+      if (amountToSend.eq('0')) {
+        txFeeAmt = new BigNumber('0');
+      } else if (amountToSend.times('0.001').gt(minFee)) {
+        txFeeAmt = amountToSend.times('0.001');
+      } else {
+        txFeeAmt = minFee;
+      }
       txFeeSymbol = assetToSend.symbol;
     }
     const txFeeUsdValue = txFeeAmt.times(
@@ -321,6 +324,11 @@ export class TransferForm extends React.PureComponent {
     };
 
     // constuct ether before and after balances
+    const baseLayerEthBalance = currentWalletWithInfo
+      .getIn(['balances', 'baseLayer', 'assets'])
+      .toJS()
+      .find((currency) => currency.symbol === 'ETH');
+
     const baseLayerEthBalanceBefore = {
       amount: baseLayerEthBalance.balance,
       usdValue: baseLayerEthBalance.balance.times(ethUsdValue),
@@ -335,6 +343,8 @@ export class TransferForm extends React.PureComponent {
     };
 
     const walletUsdValueAfter = currentWalletUsdBalance - (usdValueToSend.plus(transactionFee.usdValue)).toNumber();
+
+    const disableNahmiiPayments = this.props.currentNetwork.provider._network.name === 'homestead';
 
     return (
       <div>
@@ -418,11 +428,17 @@ export class TransferForm extends React.PureComponent {
                   onChange={this.handleAmountToSendChange}
                 />
               </FormItem>
-              <div>
+              <div style={{ marignRight: 'auto' }}>
                 <Text large>{formatMessage({ id: 'send_on_the' })} </Text>
-                <NahmiiText large />
-                <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
-                <NahmiiSwitch checked={layer === 'nahmii'} onChange={(() => this.handleLayerSwitch())} />
+                <Tooltip
+                  placement="right"
+                  overlayStyle={!disableNahmiiPayments && { display: 'none' }}
+                  title={<span>{formatMessage({ id: 'nahmii_mainnet' })}</span>}
+                >
+                  <NahmiiText large />
+                  <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
+                  <NahmiiSwitch disabled={disableNahmiiPayments} checked={layer === 'nahmii'} onChange={(() => this.handleLayerSwitch())} />
+                </Tooltip>
               </div>
               <Spring
                 from={{ noAdvProg: 0 }}
@@ -512,6 +528,7 @@ export class TransferForm extends React.PureComponent {
 }
 TransferForm.propTypes = {
   prices: PropTypes.object.isRequired,
+  currentNetwork: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,
   recipients: PropTypes.arrayOf(PropTypes.shape({

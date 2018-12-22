@@ -42,7 +42,7 @@ export const loadedWalletTransactions = fromJS({
     },
     {
       amount: '5',
-      block: { number: 3780091, timestamp: '2018-08-06T02:32:00.000Z' },
+      block: { number: 3780089, timestamp: '2018-08-06T02:32:00.000Z' },
       currency: '0x583cbbb8a8443b38abcc0c956bece47340ea1367', // BOKKY
       hash: '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c',
       recipient: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',

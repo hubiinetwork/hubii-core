@@ -24,6 +24,8 @@ describe('nahmiiHocReducer', () => {
         completingTokenDeposit: false,
         error: null,
       },
+      ongoingChallenges: {},
+      settleableChallenges: {},
     });
   });
 

@@ -16,6 +16,7 @@ describe('<Transaction />', () => {
     viewOnBlockExplorerClick: () => {},
     onChange: () => {},
     defaultOpen: false,
+    layer: 'baseLayer',
     intl,
   };
 
@@ -40,6 +41,15 @@ describe('<Transaction />', () => {
       <Transaction
         {...props}
         counterpartyAddress=""
+      />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render nahmii tx correctly', () => {
+    const wrapper = shallow(
+      <Transaction
+        {...props}
+        type={'nahmii'}
       />);
     expect(wrapper).toMatchSnapshot();
   });

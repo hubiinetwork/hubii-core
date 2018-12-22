@@ -8,6 +8,10 @@ import {
 } from 'containers/WalletHoc/tests/mocks/selectors';
 
 import {
+  currentNetworkMock,
+} from 'containers/App/tests/mocks/selectors';
+
+import {
   pricesLoadedMock,
   supportedAssetsLoadedMock,
   supportedAssetsLoadingMock,
@@ -33,6 +37,7 @@ import { WalletTransfer, mapDispatchToProps } from '../index';
 describe('WalletTransfer', () => {
   const props = {
     prices: pricesLoadedMock,
+    currentNetwork: currentNetworkMock,
     currentWallet: walletsMock.get(0),
     supportedAssets: supportedAssetsLoadedMock,
     currentWalletWithInfo: walletsWithInfoMock.get(0),

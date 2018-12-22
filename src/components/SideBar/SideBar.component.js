@@ -2,12 +2,13 @@ import { Icon, Layout, Menu } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SideBarLayout, SideBarMenu } from './SideBar.style';
 import SvgIcon from '../ui/SvgIcon';
 import darkTheme from '../../themes/darkTheme';
 
 import NahmiiGrey from '../../../public/images/nahmii-token-grey.png';
 import NahmiiGreen from '../../../public/images/nahmii-token-green.png';
+
+import { SideBarLayout, SideBarMenu } from './SideBar.style';
 
 const { Sider } = Layout;
 
@@ -38,12 +39,13 @@ export class SideBar extends React.Component {
     }
     return (
       <SideBarLayout style={{ minHeight: '100vh' }}>
-        <Sider collapsed collapsedWidth="72" trigger={null}>
+        <Sider>
           <SideBarMenu
             defaultSelectedKeys={[menuItems[0].key]}
             mode="inline"
             onSelect={this.handleChange}
             selectedKeys={selectedKeys}
+            forceSubMenuRender
           >
             <Menu.Item key="/" className="menu-logo">
               <Link to="/">
@@ -53,7 +55,6 @@ export class SideBar extends React.Component {
                     src={logoSrc}
                     alt="logo"
                   />
-                  <span>hubii core</span>
                 </div>
               </Link>
             </Menu.Item>
@@ -116,7 +117,6 @@ export class SideBar extends React.Component {
               <Link to="/settings">
                 <div>
                   <Icon className="setting-icon" type="setting" />
-                  <span>Settings</span>
                 </div>
               </Link>
             </Menu.Item>

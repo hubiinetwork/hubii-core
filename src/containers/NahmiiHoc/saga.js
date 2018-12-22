@@ -1,4 +1,5 @@
 import BalanceTrackerContract from 'nahmii-sdk/lib/balance-tracker-contract';
+import DriipSettlementChallengeContract from 'nahmii-sdk/lib/driip-settlement-challenge-contract';
 import nahmii from 'nahmii-sdk';
 import { utils } from 'ethers';
 import { all, fork, takeEvery, takeLatest, select, put, call, take, cancel, race } from 'redux-saga/effects';
@@ -158,13 +159,13 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     const nahmiiProvider = network.nahmiiProvider;
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
-    const payment = new nahmii.Payment(nahmiiWallet, monetaryAmount, wallet.address, recipient);
+    const payment = new nahmii.Payment(monetaryAmount, wallet.address, recipient, nahmiiWallet);
     if (confOnDevice) yield put(confOnDevice);
     yield call([payment, 'sign']);
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield call([payment, 'register']);
     yield put(actions.nahmiiPaymentSuccess());
-    yield put(notify('success', getIntl().formatMessage({ id: 'deposit_success' })));
+    yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
   } catch (e) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield put(actions.nahmiiPaymentError(e));
@@ -307,11 +308,59 @@ export function* loadBalances({ address }, network) {
   }
 }
 
-export function* loadStagingBalances({ address }) {
+export function* loadStagingBalances({ address }, network) {
+  if (network.provider._network.name === 'homestead') {
+    yield put(actions.loadStagingBalancesSuccess(address, []));
+    return;
+  }
+  let supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+  if (supportedAssets.loading) {
+    yield take(LOAD_SUPPORTED_TOKENS_SUCCESS);
+    supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+  }
+
+  const provider = network.provider;
+  const driipSettlementChallengeContract = new DriipSettlementChallengeContract(provider);
+
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const emptyResponse = [];
-      yield put(actions.loadStagingBalancesSuccess(address, emptyResponse));
+      // the first provider in network.provider.providers in an Infura node, which supports RPC calls
+      const jsonRpcProvider = provider.providers ? provider.providers[0] : provider;
+
+      const driipSettlementChallengeContractAddress = driipSettlementChallengeContract.address;
+
+      // derive function selector
+      const funcBytes = utils.solidityKeccak256(['string'], ['proposalStageAmount(address,address,uint256)']);
+      const funcSelector = funcBytes.slice(0, 10);
+
+      // send a batch of RPC requests asking for all staging balances
+      // https://www.jsonrpc.org/specification#batch
+      const currencyCtList = supportedAssets.assets.map((a) => a.currency);
+      const requestBatch = currencyCtList.map((ct) => {
+        const currencyId = ct === 'ETH' ? '0x0000000000000000000000000000000000000000' : ct;
+        // encode arguments, prepare them for being sent
+        const encodedArgs = utils.defaultAbiCoder.encode(['address', 'address', 'int256'], [address, currencyId, 0]);
+        const dataArr = utils.concat([funcSelector, encodedArgs]);
+        const data = utils.hexlify(dataArr);
+        const params = [{ from: address, to: driipSettlementChallengeContractAddress, data }, 'latest'];
+        return {
+          method: 'eth_call',
+          params,
+          id: 42,
+          jsonrpc: '2.0',
+        };
+      });
+      // send all requests at once
+      const response = yield rpcRequest(jsonRpcProvider.connection.url, JSON.stringify(requestBatch));
+
+      // process the response
+      const formattedBalances = response.reduce((acc, { result }, i) => {
+        // result is the hex balance. if the response comes back as '0x', it actually means 0.
+        if (result === '0x') return acc;
+        const { currency, symbol } = supportedAssets.assets[i];
+        return [...acc, { address, currency, symbol, balance: new BigNumber(result || 0) }];
+      }, []);
+      yield put(actions.loadStagingBalancesSuccess(address, formattedBalances));
     } catch (err) {
       console.log(err); // eslint-disable-line
     } finally {
@@ -670,6 +719,24 @@ export function* loadReceipts({ address }, network) {
   }
 }
 
+export function* loadWalletReceipts({ address }, network) {
+  if (network.provider._network.name === 'homestead') {
+    yield put(actions.loadReceiptsSuccess(address, []));
+    return;
+  }
+  while (true) { // eslint-disable-line no-constant-condition
+    try {
+      const receipts = yield network.nahmiiProvider.getWalletReceipts(address);
+      yield put(actions.loadReceiptsSuccess(address, receipts));
+    } catch (e) {
+      yield put(actions.loadReceiptsError(address, e));
+    } finally {
+      const FIVE_SEC_IN_MS = 1000 * 5;
+      yield delay(FIVE_SEC_IN_MS);
+    }
+  }
+}
+
 // manages calling of complex ethOperations
 export function* challengeStatusOrcestrator() {
   try {
@@ -682,6 +749,7 @@ export function* challengeStatusOrcestrator() {
         ...wallets.map((wallet) => fork(loadBalances, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadStagedBalances, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadStagingBalances, { address: wallet.get('address') }, network)),
+        ...wallets.map((wallet) => fork(loadWalletReceipts, { address: wallet.get('address') }, network)),
         // ...wallets.map((wallet) => fork(loadOngoingChallenges, { address: wallet.get('address') }, network)),
         // ...wallets.map((wallet) => fork(loadSettleableChallenges, { address: wallet.get('address') }, network)),
         // ...wallets.map((wallet) => fork(loadCurrentPaymentChallenge, { address: wallet.get('address') }, network)),
@@ -696,7 +764,9 @@ export function* challengeStatusOrcestrator() {
         timer: call(delay, ONE_MINUTE_IN_MS),
         override: take([CHANGE_NETWORK, ADD_NEW_WALLET]),
       });
-      yield cancel(...allTasks);
+      if (allTasks.length > 0) {
+        yield cancel(...allTasks);
+      }
     }
   } catch (e) {
     // errors in the forked processes themselves should be caught

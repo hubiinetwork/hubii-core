@@ -32,8 +32,9 @@ import {
   LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_ERROR,
   LOAD_SETTLEMENT_SUCCESS,
   LOAD_SETTLEMENT_ERROR,
-  LOAD_RECEIPTS_SUCCESS,
-  LOAD_RECEIPTS_ERROR,
+  LOAD_NAHMII_RECEIPTS,
+  LOAD_NAHMII_RECEIPTS_SUCCESS,
+  LOAD_NAHMII_RECEIPTS_ERROR,
   NAHMII_DEPOSIT_ETH,
   NAHMII_DEPOSIT_ETH_SUCCESS,
   NAHMII_APPROVE_TOKEN_DEPOSIT,
@@ -48,7 +49,7 @@ export const initialState = fromJS({
   balances: {},
   receipts: {},
   transactions: {},
-  selectedCurrency: '0x0000000000000000000000000000000000000000',
+  selectedCurrency: 'ETH',
   depositStatus: {
     depositingEth: false,
     approvingTokenDeposit: false,
@@ -205,12 +206,21 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'settlement'], null)
         .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'updatedAt'], new Date());
         // .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'loadingSettlement'], false);
-    case LOAD_RECEIPTS_SUCCESS:
+    case LOAD_NAHMII_RECEIPTS:
       return state
-        .setIn(['receipts', action.address], action.receipts);
-    case LOAD_RECEIPTS_ERROR:
+        .setIn(['receipts', action.address, 'available', 'loading'], true)
+        .setIn(['receipts', action.address, 'available', 'error'], null)
+        .setIn(['receipts', action.address, 'available', 'assets'], fromJS([]));
+    case LOAD_NAHMII_RECEIPTS_SUCCESS:
       return state
-        .setIn(['receipts', action.address], []);
+        .setIn(['receipts', action.address, 'loading'], false)
+        .setIn(['receipts', action.address, 'error'], null)
+        .setIn(['receipts', action.address, 'receipts'], fromJS(action.receipts));
+    case LOAD_NAHMII_RECEIPTS_ERROR:
+      return state
+        .setIn(['receipts', action.address, 'loading'], false)
+        .setIn(['receipts', action.address, 'error'], action.error)
+        .setIn(['receipts', action.address, 'receipts'], fromJS([]));
     case CHANGE_NETWORK:
       return state
         .set('balances', initialState.get('balances'))

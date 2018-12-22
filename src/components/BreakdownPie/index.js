@@ -34,12 +34,12 @@ class Breakdown extends React.Component {
     } = this.props;
     const { formatMessage } = intl;
     const value = +totalBalances.getIn(['combined', 'total', 'usd']).toFixed(6);
-    if (value === '0' || supportedAssets.get('loading') || supportedAssets.get('error')) {
+    if (value === 0 || supportedAssets.get('loading') || supportedAssets.get('error')) {
       return (
         <div>
           <Text large>{formatMessage({ id: 'total_fiat_value' })}</Text>
-          <Heading large>{formatFiat(value, 'USD')}</Heading>;
-      </div>
+          <Heading large>{formatFiat(value, 'USD')}</Heading>
+        </div>
       );
     }
     const combinedBreakdown = getBreakdown(totalBalances.get('combined'), supportedAssets);
