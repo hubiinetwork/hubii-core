@@ -462,7 +462,7 @@ export function* startChallenge({ stageAmount, currency, gasLimit, gasPrice }) {
   try {
     const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
     if (walletDetails.encrypted && !walletDetails.decrypted) {
-      yield put(showDecryptWalletModal(actions.startChallenge(stageAmount, currency)));
+      yield put(showDecryptWalletModal(actions.startChallenge(walletDetails.address, currency, stageAmount)));
       return;
     }
     const network = yield select(makeSelectCurrentNetwork());
