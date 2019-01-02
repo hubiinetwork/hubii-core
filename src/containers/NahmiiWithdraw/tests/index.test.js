@@ -48,15 +48,17 @@ describe('<NahmiiWithdraw />', () => {
       supportedAssets: supportedAssetsLoadedMock,
       ongoingChallenges: ongoingChallengesNone,
       settleableChallenges: settleableChallengesNone,
-      nahmiiWithdraw: () => {},
-      goWalletDetails: () => {},
-      setSelectedWalletCurrency: () => {},
-      startChallenge: () => {},
       intl,
       currentNetwork: currentNetworkMock,
       depositStatus: depositStatusNone,
       ledgerNanoSInfo: ledgerHocDisconnectedMock,
       trezorInfo: trezorHocDisconnectedMock,
+      nahmiiWithdraw: () => {},
+      goWalletDetails: () => {},
+      setSelectedWalletCurrency: () => {},
+      startChallenge: () => {},
+      settle: () => {},
+      withdraw: () => {},
     };
   });
   it('should render correctly when everything is loaded', () => {

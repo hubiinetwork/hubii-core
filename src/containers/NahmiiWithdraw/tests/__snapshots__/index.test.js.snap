@@ -543,6 +543,7 @@ ShallowWrapper {
         }
     }
     setSelectedWalletCurrency={[Function]}
+    settle={[Function]}
     settleableChallenges={
         Immutable.Map {
             details: Array [],
@@ -603,6 +604,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    withdraw={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -4948,6 +4950,7 @@ ShallowWrapper {
         }
     }
     setSelectedWalletCurrency={[Function]}
+    settle={[Function]}
     settleableChallenges={
         Immutable.Map {
             details: Array [],
@@ -5008,6 +5011,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    withdraw={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -9353,6 +9357,7 @@ ShallowWrapper {
         }
     }
     setSelectedWalletCurrency={[Function]}
+    settle={[Function]}
     settleableChallenges={
         Immutable.Map {
             details: Array [],
@@ -9413,6 +9418,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    withdraw={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -13758,6 +13764,7 @@ ShallowWrapper {
         }
     }
     setSelectedWalletCurrency={[Function]}
+    settle={[Function]}
     settleableChallenges={
         Immutable.Map {
             details: Array [],
@@ -13818,6 +13825,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    withdraw={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -17627,6 +17635,7 @@ ShallowWrapper {
         }
     }
     setSelectedWalletCurrency={[Function]}
+    settle={[Function]}
     settleableChallenges={
         Immutable.Map {
             details: Array [],
@@ -17687,6 +17696,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    withdraw={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -21497,6 +21507,7 @@ ShallowWrapper {
         }
     }
     setSelectedWalletCurrency={[Function]}
+    settle={[Function]}
     settleableChallenges={
         Immutable.Map {
             details: Array [],
@@ -21557,6 +21568,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    withdraw={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -25325,6 +25337,7 @@ ShallowWrapper {
         }
     }
     setSelectedWalletCurrency={[Function]}
+    settle={[Function]}
     settleableChallenges={
         Immutable.Map {
             details: Array [],
@@ -25385,6 +25398,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    withdraw={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -25929,6 +25943,7 @@ ShallowWrapper {
         }
     }
     setSelectedWalletCurrency={[Function]}
+    settle={[Function]}
     settleableChallenges={
         Immutable.Map {
             details: Array [],
@@ -25989,6 +26004,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    withdraw={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -26602,6 +26618,7 @@ ShallowWrapper {
         }
     }
     setSelectedWalletCurrency={[Function]}
+    settle={[Function]}
     settleableChallenges={
         Immutable.Map {
             details: Array [],
@@ -26626,6 +26643,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    withdraw={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -27211,6 +27229,7 @@ ShallowWrapper {
         }
     }
     setSelectedWalletCurrency={[Function]}
+    settle={[Function]}
     settleableChallenges={
         Immutable.Map {
             details: Array [],
@@ -27235,6 +27254,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    withdraw={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -27848,6 +27868,7 @@ ShallowWrapper {
         }
     }
     setSelectedWalletCurrency={[Function]}
+    settle={[Function]}
     settleableChallenges={
         Immutable.Map {
             details: Array [],
@@ -27908,6 +27929,7 @@ ShallowWrapper {
             confTxOnDevice: false,
         }
     }
+    withdraw={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
