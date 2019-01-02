@@ -3,7 +3,6 @@ import { fromJS, List } from 'immutable';
 import BigNumber from 'bignumber.js';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { makeSelectCurrentWallet } from 'containers/WalletHoc/selectors';
-import { from } from 'nahmii-sdk/lib/monetary-amount';
 
 import {
   makeSelectPrices,
@@ -115,7 +114,7 @@ const makeSelectReceiptsWithInfo = () => createSelector(
 
     return receiptsWithInfo;
   }
-)
+);
 
 const makeSelectReceiptsByAddress = (address) => createSelector(
   makeSelectReceipts(),
@@ -154,7 +153,7 @@ const makeSelectOngoingChallengesForCurrentWalletCurrency = () => createSelector
   (ongoingChallenges, currentWallet, selectedCurrency) => {
     const address = currentWallet.get('address');
     const challenges = ongoingChallenges.getIn([address, selectedCurrency]);
-    return challenges || fromJS({details: []});
+    return challenges || fromJS({ details: [] });
   }
 );
 
@@ -165,7 +164,7 @@ const makeSelectSettleableChallengesForCurrentWalletCurrency = () => createSelec
   (settleableChallenges, currentWallet, selectedCurrency) => {
     const address = currentWallet.get('address');
     const challenges = settleableChallenges.getIn([address, selectedCurrency]);
-    return challenges || fromJS({details: []});
+    return challenges || fromJS({ details: [] });
   }
 );
 

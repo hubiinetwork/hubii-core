@@ -1,7 +1,7 @@
 const Intl = jest.genMockFromModule('react-intl');
 
 Intl.intl = {
-  formatMessage: ({ id }) => id,
+  formatMessage: ({ id }, params) => params ? `${id} ${JSON.stringify(params)}` : id,
 };
 
 Intl.injectIntl = (Node) => Node;

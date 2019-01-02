@@ -111,7 +111,7 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['balances', action.address, 'staging', 'assets'], fromJS(action.balances));
     case START_CHALLENGE:
       return state
-          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'starting')
+          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'starting');
     case START_CHALLENGE_SUCCESS:
       return state
           // .setIn(['wallets', action.address, 'lastPaymentChallenge', 'txStatus'], 'success')
@@ -176,19 +176,19 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['wallets', action.address, 'lastPaymentChallenge', 'phase'], null);
     case LOAD_ONGOING_CHALLENGES_SUCCESS:
       return state
-        .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], action.challenges)
+        .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], action.challenges);
         // .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
     case LOAD_ONGOING_CHALLENGES_ERROR:
       return state
-        .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], null)
+        .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], null);
         // .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
     case LOAD_SETTLEABLE_CHALLENGES_SUCCESS:
       return state
-        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], action.challenges)
+        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], action.challenges);
         // .setIn(['settleableChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
     case LOAD_SETTLEABLE_CHALLENGES_ERROR:
       return state
-        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], null)
+        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], null);
         // .setIn(['settleableChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
     case LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS:
       return state

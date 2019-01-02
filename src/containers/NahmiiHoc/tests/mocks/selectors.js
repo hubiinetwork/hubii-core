@@ -298,6 +298,9 @@ export const depositStatusError = depositStatusNone.set(
   'some error message'
 );
 
+export const ongoingChallengesNone = fromJS({}).set('details', []);
+export const settleableChallengesNone = fromJS({}).set('details', []);
+
 // selectNahmiiHocDomain
 export const nahmiiHocMock = fromJS({
   balances: balanceState,
