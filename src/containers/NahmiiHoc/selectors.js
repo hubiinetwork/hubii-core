@@ -152,8 +152,11 @@ const makeSelectOngoingChallengesForCurrentWalletCurrency = () => createSelector
   makeSelectWalletCurrency(),
   (ongoingChallenges, currentWallet, selectedCurrency) => {
     const address = currentWallet.get('address');
-    const challenges = ongoingChallenges.getIn([address, selectedCurrency]);
-    return challenges || fromJS({ details: [] });
+    let challenges = ongoingChallenges.getIn([address, selectedCurrency]) || fromJS({});
+    if (!challenges.get('details')) {
+      challenges = challenges.set('details', []);
+    }
+    return challenges;
   }
 );
 

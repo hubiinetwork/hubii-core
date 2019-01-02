@@ -155,10 +155,10 @@ describe('nahmiiHocSaga', () => {
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
-              if (effect.fn.name === 'getRequiredChallengesForIntendedStageAmount') {
+              if (effect.fn.name.includes('getRequiredChallengesForIntendedStageAmount')) {
                 return { requiredChallenges };
               }
-              if (effect.fn.name === 'startByRequiredChallenge') {
+              if (effect.fn.name.includes('startByRequiredChallenge')) {
                 return fakeTxs[0];
               }
               if (effect.fn.name === 'waitForTransaction') {
@@ -195,10 +195,10 @@ describe('nahmiiHocSaga', () => {
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
-              if (effect.fn.name === 'getRequiredChallengesForIntendedStageAmount') {
+              if (effect.fn.name.includes('getRequiredChallengesForIntendedStageAmount')) {
                 return { requiredChallenges };
               }
-              if (effect.fn.name === 'startByRequiredChallenge') {
+              if (effect.fn.name.includes('startByRequiredChallenge')) {
                 return fakeTxs[startedChallenges];
               }
               if (effect.fn.name === 'waitForTransaction') {
@@ -269,10 +269,10 @@ describe('nahmiiHocSaga', () => {
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
-              if (effect.fn.name === 'getRequiredChallengesForIntendedStageAmount') {
+              if (effect.fn.name.includes('getRequiredChallengesForIntendedStageAmount')) {
                 return { requiredChallenges };
               }
-              if (effect.fn.name === 'startByRequiredChallenge') {
+              if (effect.fn.name.includes('startByRequiredChallenge')) {
                 return fakeTxs[0];
               }
               if (effect.fn.name === 'waitForTransaction') {
@@ -317,10 +317,10 @@ describe('nahmiiHocSaga', () => {
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
-              if (effect.fn.name === 'getSettleableChallenges') {
+              if (effect.fn.name.includes('getSettleableChallenges')) {
                 return { settleableChallenges };
               }
-              if (effect.fn.name === 'settleBySettleableChallenge') {
+              if (effect.fn.name.includes('settleBySettleableChallenge')) {
                 return fakeTxs[0];
               }
               if (effect.fn.name === 'waitForTransaction') {
@@ -357,10 +357,10 @@ describe('nahmiiHocSaga', () => {
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
-              if (effect.fn.name === 'getSettleableChallenges') {
+              if (effect.fn.name.includes('getSettleableChallenges')) {
                 return { settleableChallenges };
               }
-              if (effect.fn.name === 'settleBySettleableChallenge') {
+              if (effect.fn.name.includes('settleBySettleableChallenge')) {
                 return fakeTxs[settledChallenges];
               }
               if (effect.fn.name === 'waitForTransaction') {
@@ -402,7 +402,7 @@ describe('nahmiiHocSaga', () => {
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
-              if (effect.fn.name === 'getSettleableChallenges') {
+              if (effect.fn.name.includes('getSettleableChallenges')) {
                 throw fakeError;
               }
               if (effect.fn === getSdkWalletSigner) {
@@ -432,10 +432,10 @@ describe('nahmiiHocSaga', () => {
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
-              if (effect.fn.name === 'getSettleableChallenges') {
+              if (effect.fn.name.includes('getSettleableChallenges')) {
                 return { settleableChallenges };
               }
-              if (effect.fn.name === 'settleBySettleableChallenge') {
+              if (effect.fn.name.includes('settleBySettleableChallenge')) {
                 return fakeTxs[0];
               }
               if (effect.fn.name === 'waitForTransaction') {
@@ -480,7 +480,7 @@ describe('nahmiiHocSaga', () => {
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
-              if (effect.fn.name === 'nahmiiWithdraw') {
+              if (effect.fn.name.includes('withdraw')) {
                 return fakeTxs[0];
               }
               if (effect.fn.name === 'waitForTransaction') {
@@ -516,7 +516,7 @@ describe('nahmiiHocSaga', () => {
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
-              if (effect.fn.name === 'nahmiiWithdraw') {
+              if (effect.fn.name.includes('withdraw')) {
                 throw fakeError;
               }
               if (effect.fn === getSdkWalletSigner) {

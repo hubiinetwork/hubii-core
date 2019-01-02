@@ -14,6 +14,7 @@ import { Row, Icon } from 'antd';
 import { getAbsolutePath } from 'utils/electron';
 import {
   gweiToEther,
+  gweiToWei,
   gweiRegex,
   gasLimitRegex,
   isHardwareWallet,
@@ -162,23 +163,24 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
   }
 
   settle(assetToWithdraw) {
+    const { gasLimit, gasPriceGwei } = this.state;
     const currency = assetToWithdraw.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetToWithdraw.currency;
-    this.props.settle(currency);
+    this.props.settle(currency, { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() });
   }
 
   startChallenge(stageAmount, assetToWithdraw) {
     const { currentWalletWithInfo } = this.props;
-    const { assetToWithdrawMaxDecimals } = this.state;
+    const { assetToWithdrawMaxDecimals, gasLimit, gasPriceGwei } = this.state;
     const currency = assetToWithdraw.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetToWithdraw.currency;
     const stageAmountBN = stageAmount.times(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
-    this.props.startChallenge(currentWalletWithInfo.get('address'), currency, stageAmountBN);
+    this.props.startChallenge(currentWalletWithInfo.get('address'), currency, stageAmountBN, { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() });
   }
 
   withdraw(amountToWithdraw, assetToWithdraw) {
-    const { assetToWithdrawMaxDecimals } = this.state;
+    const { assetToWithdrawMaxDecimals, gasLimit, gasPriceGwei } = this.state;
     const currency = assetToWithdraw.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetToWithdraw.currency;
     const amountToWithdrawBN = amountToWithdraw.times(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
-    this.props.withdraw(amountToWithdrawBN, currency);
+    this.props.withdraw(amountToWithdrawBN, currency, { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() });
   }
 
   handleAssetChange(newSymbol) {
