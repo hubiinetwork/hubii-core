@@ -728,7 +728,7 @@ export function* loadWalletReceipts({ address }, network) {
   }
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const receipts = yield network.nahmiiProvider.getWalletReceipts(address);
+      const receipts = yield call(network.nahmiiProvider.getWalletReceipts.bind(network.nahmiiProvider), address);
       yield put(actions.loadReceiptsSuccess(address, receipts));
     } catch (e) {
       yield put(actions.loadReceiptsError(address, e));
