@@ -186,12 +186,13 @@ export function loadStagingBalancesSuccess(address, balances) {
   };
 }
 
-export function startChallenge(address, currency, stageAmount) {
+export function startChallenge(address, currency, stageAmount, options) {
   return {
     type: START_CHALLENGE,
     address,
     stageAmount,
     currency,
+    options,
   };
 }
 
@@ -204,11 +205,10 @@ export function startChallengeSuccess(address, txReceipt, currency) {
   };
 }
 
-export function startChallengeError(address, txReceipt, currency) {
+export function startChallengeError(address, currency) {
   return {
     type: START_CHALLENGE_ERROR,
     address,
-    txReceipt,
     currency,
   };
 }
@@ -223,10 +223,11 @@ export function loadTxRequestForPaymentChallenge(address, txRequest, currency, n
   };
 }
 
-export function settle(currency) {
+export function settle(currency, options) {
   return {
     type: SETTLE,
     currency,
+    options,
   };
 }
 
@@ -239,11 +240,10 @@ export function settleSuccess(address, txReceipt, currency) {
   };
 }
 
-export function settleError(address, txReceipt, currency) {
+export function settleError(address, currency) {
   return {
     type: SETTLE_ERROR,
     address,
-    txReceipt,
     currency,
   };
 }
@@ -258,11 +258,12 @@ export function loadTxRequestForSettlePaymentDriip(address, txRequest, currency,
   };
 }
 
-export function withdraw(amount, currency) {
+export function withdraw(amount, currency, options) {
   return {
     type: WITHDRAW,
     amount,
     currency,
+    options,
   };
 }
 
@@ -275,11 +276,10 @@ export function withdrawSuccess(address, txReceipt, currency) {
   };
 }
 
-export function withdrawError(address, txReceipt, currency) {
+export function withdrawError(address, currency) {
   return {
     type: WITHDRAW_ERROR,
     address,
-    txReceipt,
     currency,
   };
 }
