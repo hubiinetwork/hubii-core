@@ -182,7 +182,7 @@ describe('nahmiiHocSaga', () => {
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
             const tx = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'transactions', fakeTxReceipts[0].transactionHash]);
-            expect(status).toEqual('started');
+            expect(status).toEqual('success');
             expect(tx).toEqual(fakeTxReceipts[0]);
           });
       }
@@ -224,7 +224,7 @@ describe('nahmiiHocSaga', () => {
           .run({ silenceTimeout: true })
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
-            expect(status).toEqual('started');
+            expect(status).toEqual('success');
             const tx1 = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'transactions', fakeTxReceipts[0].transactionHash]);
             const tx2 = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'transactions', fakeTxReceipts[1].transactionHash]);
             expect(tx1).toEqual(fakeTxReceipts[0]);
@@ -344,7 +344,7 @@ describe('nahmiiHocSaga', () => {
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'status']);
             const tx = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'transactions', fakeTxReceipts[0].transactionHash]);
-            expect(status).toEqual('settled');
+            expect(status).toEqual('success');
             expect(tx).toEqual(fakeTxReceipts[0]);
           });
       }
@@ -386,7 +386,7 @@ describe('nahmiiHocSaga', () => {
           .run({ silenceTimeout: true })
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'status']);
-            expect(status).toEqual('settled');
+            expect(status).toEqual('success');
             const tx1 = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'transactions', fakeTxReceipts[0].transactionHash]);
             const tx2 = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'transactions', fakeTxReceipts[1].transactionHash]);
             expect(tx1).toEqual(fakeTxReceipts[0]);
@@ -503,7 +503,7 @@ describe('nahmiiHocSaga', () => {
           .run({ silenceTimeout: true })
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'withdrawals', signerMock.address, currency, 'status']);
-            expect(status).toEqual('withdrew');
+            expect(status).toEqual('success');
             const tx = result.storeState.getIn(['nahmiiHoc', 'withdrawals', signerMock.address, currency, 'transactions', fakeTxReceipts[0].transactionHash]);
             expect(tx).toEqual(fakeTxReceipts[0]);
           })

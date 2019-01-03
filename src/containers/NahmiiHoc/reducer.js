@@ -24,16 +24,16 @@ import {
   WITHDRAW_SUCCESS,
   WITHDRAW_ERROR,
   LOAD_WITHDRAW_TX_REQUEST,
-  LOAD_ONGOING_CHALLENGES_SUCCESS,
-  LOAD_ONGOING_CHALLENGES_ERROR,
-  LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
-  LOAD_SETTLEABLE_CHALLENGES_ERROR,
-  LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS,
-  LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR,
-  LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS,
-  LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_ERROR,
-  LOAD_SETTLEMENT_SUCCESS,
-  LOAD_SETTLEMENT_ERROR,
+  // LOAD_ONGOING_CHALLENGES_SUCCESS,
+  // LOAD_ONGOING_CHALLENGES_ERROR,
+  // LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
+  // LOAD_SETTLEABLE_CHALLENGES_ERROR,
+  // LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS,
+  // LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR,
+  // LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS,
+  // LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_ERROR,
+  // LOAD_SETTLEMENT_SUCCESS,
+  // LOAD_SETTLEMENT_ERROR,
   LOAD_NAHMII_RECEIPTS,
   LOAD_NAHMII_RECEIPTS_SUCCESS,
   LOAD_NAHMII_RECEIPTS_ERROR,
@@ -113,10 +113,10 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['balances', action.address, 'staging', 'assets'], fromJS(action.balances));
     case START_CHALLENGE:
       return state
-          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'starting');
+          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'processing');
     case START_CHALLENGE_SUCCESS:
       return state
-          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'started')
+          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'success')
           .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
     case START_CHALLENGE_ERROR:
       return state
@@ -126,10 +126,10 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txRequest.hash], action.txRequest);
     case SETTLE:
       return state
-        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'settling');
+        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'processing');
     case SETTLE_SUCCESS:
       return state
-        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'settled')
+        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'success')
         .setIn(['settleableChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
     case SETTLE_ERROR:
       return state
@@ -144,10 +144,10 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'request'], action.txRequest);
     case WITHDRAW:
       return state
-        .setIn(['withdrawals', action.address, action.currency, 'status'], 'withdrawing');
+        .setIn(['withdrawals', action.address, action.currency, 'status'], 'processing');
     case WITHDRAW_SUCCESS:
       return state
-        .setIn(['withdrawals', action.address, action.currency, 'status'], 'withdrew')
+        .setIn(['withdrawals', action.address, action.currency, 'status'], 'success')
         .setIn(['withdrawals', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
     case WITHDRAW_ERROR:
       return state
@@ -160,44 +160,44 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'createdAt'], new Date().getTime())
         .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'request'], action.txRequest);
 
-    case LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS:
-      return state
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'phase'], action.phase);
-    case LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR:
-      return state
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'phase'], null);
-    case LOAD_ONGOING_CHALLENGES_SUCCESS:
-      return state
-        .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], action.challenges);
-        // .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
-    case LOAD_ONGOING_CHALLENGES_ERROR:
-      return state
-        .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], null);
-        // .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
-    case LOAD_SETTLEABLE_CHALLENGES_SUCCESS:
-      return state
-        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], action.challenges);
-        // .setIn(['settleableChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
-    case LOAD_SETTLEABLE_CHALLENGES_ERROR:
-      return state
-        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], null);
-        // .setIn(['settleableChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
-    case LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS:
-      return state
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'status'], action.status);
-    case LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_ERROR:
-      return state
-        .setIn(['wallets', action.address, 'lastPaymentChallenge', 'status'], null);
-    case LOAD_SETTLEMENT_SUCCESS:
-      return state
-        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'settlement'], action.settlement || {})
-        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'updatedAt'], new Date());
-        // .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'loadingSettlement'], false);
-    case LOAD_SETTLEMENT_ERROR:
-      return state
-        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'settlement'], null)
-        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'updatedAt'], new Date());
-        // .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'loadingSettlement'], false);
+    // case LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS:
+    //   return state
+    //     .setIn(['wallets', action.address, 'lastPaymentChallenge', 'phase'], action.phase);
+    // case LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR:
+    //   return state
+    //     .setIn(['wallets', action.address, 'lastPaymentChallenge', 'phase'], null);
+    // case LOAD_ONGOING_CHALLENGES_SUCCESS:
+    //   return state
+    //     .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], action.challenges);
+    //     // .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
+    // case LOAD_ONGOING_CHALLENGES_ERROR:
+    //   return state
+    //     .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], null);
+    //     // .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
+    // case LOAD_SETTLEABLE_CHALLENGES_SUCCESS:
+    //   return state
+    //     .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], action.challenges);
+    //     // .setIn(['settleableChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
+    // case LOAD_SETTLEABLE_CHALLENGES_ERROR:
+    //   return state
+    //     .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], null);
+    //     // .setIn(['settleableChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
+    // case LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS:
+    //   return state
+    //     .setIn(['wallets', action.address, 'lastPaymentChallenge', 'status'], action.status);
+    // case LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_ERROR:
+    //   return state
+    //     .setIn(['wallets', action.address, 'lastPaymentChallenge', 'status'], null);
+    // case LOAD_SETTLEMENT_SUCCESS:
+    //   return state
+    //     .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'settlement'], action.settlement || {})
+    //     .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'updatedAt'], new Date());
+    //     // .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'loadingSettlement'], false);
+    // case LOAD_SETTLEMENT_ERROR:
+    //   return state
+    //     .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'settlement'], null)
+    //     .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'updatedAt'], new Date());
+    //     // .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'loadingSettlement'], false);
     case LOAD_NAHMII_RECEIPTS:
       return state
         .setIn(['receipts', action.address, 'available', 'loading'], true)
