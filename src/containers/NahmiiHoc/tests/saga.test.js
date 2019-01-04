@@ -177,6 +177,7 @@ describe('nahmiiHocSaga', () => {
               return next();
             },
           })
+          .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[0], currency))
           .put(actions.startChallengeSuccess(signerMock.address, fakeTxReceipts[0], currency))
           .run({ silenceTimeout: true })
           .then((result) => {
@@ -219,6 +220,8 @@ describe('nahmiiHocSaga', () => {
               return next();
             },
           })
+          .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[0], currency))
+          .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[1], currency))
           .put(actions.startChallengeSuccess(signerMock.address, fakeTxReceipts[0], currency))
           .put(actions.startChallengeSuccess(signerMock.address, fakeTxReceipts[1], currency))
           .run({ silenceTimeout: true })
@@ -291,6 +294,7 @@ describe('nahmiiHocSaga', () => {
               return next();
             },
           })
+          .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[0], currency))
           .run({ silenceTimeout: true })
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
@@ -339,6 +343,7 @@ describe('nahmiiHocSaga', () => {
               return next();
             },
           })
+          .put(actions.loadTxRequestForSettlingSuccess(signerMock.address, fakeTxs[0], currency))
           .put(actions.settleSuccess(signerMock.address, fakeTxReceipts[0], currency))
           .run({ silenceTimeout: true })
           .then((result) => {
@@ -381,6 +386,8 @@ describe('nahmiiHocSaga', () => {
               return next();
             },
           })
+          .put(actions.loadTxRequestForSettlingSuccess(signerMock.address, fakeTxs[0], currency))
+          .put(actions.loadTxRequestForSettlingSuccess(signerMock.address, fakeTxs[1], currency))
           .put(actions.settleSuccess(signerMock.address, fakeTxReceipts[0], currency))
           .put(actions.settleSuccess(signerMock.address, fakeTxReceipts[1], currency))
           .run({ silenceTimeout: true })
@@ -499,6 +506,7 @@ describe('nahmiiHocSaga', () => {
               return next();
             },
           })
+          .put(actions.loadTxRequestForWithdrawSuccess(signerMock.address, fakeTxs[0], currency))
           .put(actions.withdrawSuccess(signerMock.address, fakeTxReceipts[0], currency))
           .run({ silenceTimeout: true })
           .then((result) => {
