@@ -8,6 +8,7 @@ import BigNumber from 'bignumber.js';
 import { requestWalletAPI, requestHardwareWalletAPI } from 'utils/request';
 import rpcRequest from 'utils/rpcRequest';
 import { isAddressMatch } from 'utils/wallet';
+import { logErrorMsg } from 'utils/friendlyErrors';
 import { getIntl } from 'utils/localisation';
 import {
   makeSelectWallets,
@@ -468,13 +469,9 @@ export function* startChallenge({ stageAmount, currency, options }) {
       yield processTx('start-challenge', nahmiiProvider, tx, nahmiiWallet.address, currency);
     }
   } catch (e) {
-    let errorMessage = e.message;
-    if (e.asStringified) {
-      const nestedErrorMsg = e.asStringified();
-      console.log(nestedErrorMsg)//eslint-disable-line
-      if (nestedErrorMsg.match(/gas.*required.*exceeds/i) || nestedErrorMsg.match(/out.*of.*gas/i)) {
-        errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
-      }
+    let errorMessage = logErrorMsg(e);
+    if (errorMessage.match(/gas.*required.*exceeds/i) || errorMessage.match(/out.*of.*gas/i)) {
+      errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
     }
 
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMessage })));
@@ -511,13 +508,9 @@ export function* settle({ currency, options }) {
       yield processTx('settle-payment', nahmiiProvider, tx, walletDetails.address, currency);
     }
   } catch (e) {
-    let errorMessage = e.message;
-    if (e.asStringified) {
-      const nestedErrorMsg = e.asStringified();
-      console.error(nestedErrorMsg) //eslint-disable-line
-      if (nestedErrorMsg.match(/gas.*required.*exceeds/i) || nestedErrorMsg.match(/out.*of.*gas/i)) {
-        errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
-      }
+    let errorMessage = logErrorMsg(e);
+    if (errorMessage.match(/gas.*required.*exceeds/i) || errorMessage.match(/out.*of.*gas/i)) {
+      errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
     }
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMessage })));
     yield put(actions.settleError(walletDetails.address, currency));
@@ -548,13 +541,10 @@ export function* withdraw({ amount, currency, options }) {
 
     yield processTx('withdraw', nahmiiProvider, tx, walletDetails.address, currency);
   } catch (e) {
-    let errorMessage = e.message;
-    if (e.asStringified) {
-      const nestedErrorMsg = e.asStringified();
-      console.log(nestedErrorMsg)//eslint-disable-line
-      if (nestedErrorMsg.match(/gas.*required.*exceeds/i) || nestedErrorMsg.match(/out.*of.*gas/i)) {
-        errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
-      }
+    let errorMessage = logErrorMsg(e);
+
+    if (errorMessage.match(/gas.*required.*exceeds/i) || errorMessage.match(/out.*of.*gas/i)) {
+      errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
     }
     yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMessage })));
     yield put(actions.withdrawError(walletDetails.address, currency));
