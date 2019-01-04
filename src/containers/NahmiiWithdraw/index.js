@@ -42,9 +42,9 @@ import {
 import { makeSelectLedgerHoc } from 'containers/LedgerHoc/selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
 import {
-  makeSelectDepositStatus,
   makeSelectOngoingChallengesForCurrentWalletCurrency,
   makeSelectSettleableChallengesForCurrentWalletCurrency,
+  makeSelectWithdrawalsForCurrentWalletCurrency,
 } from 'containers/NahmiiHoc/selectors';
 import {
   setSelectedWalletCurrency,
@@ -119,17 +119,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
 
   componentDidUpdate(prevProps) {
     const { assetToWithdraw } = this.state;
-    const { depositStatus, goWalletDetails, currentWalletWithInfo, ongoingChallenges } = this.props;
-    const prevFinalDepositStage =
-      prevProps.depositStatus.get('depositingEth')
-      || prevProps.depositStatus.get('completingTokenDeposit');
-    if
-      (
-        prevFinalDepositStage
-        && !depositStatus.get('depositingEth')
-        && !depositStatus.get('completingTokenDeposit')
-        && !depositStatus.get('error')
-        ) goWalletDetails(currentWalletWithInfo.get('address'));
+    const { currentWalletWithInfo, ongoingChallenges } = this.props;
 
     const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
     const asset = baseLayerAssets.find((a) => a.symbol === assetToWithdraw.symbol);
@@ -138,7 +128,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     }
     const currentChallengeTxStatus = ongoingChallenges.get('status');
     const prevChallengeTxStatus = prevProps.ongoingChallenges.get('status');
-    if (currentChallengeTxStatus === 'started' && prevChallengeTxStatus !== 'started') {
+    if (currentChallengeTxStatus === 'success' && prevChallengeTxStatus !== 'success') {
       this.setState({ amountToWithdrawInput: '0', amountToWithdraw: new BigNumber('0') }); // eslint-disable-line
     }
   }
@@ -222,7 +212,6 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     // don't update if is an infeasible amount of Ether (> 100x entire circulating supply as of Aug 2018)
     if (!isNaN(value) && Number(value) > 10000000000) return;
 
-    // update amount to Deposit if it's a real number
     if (!isNaN(value)) {
       this.setState({ amountToWithdraw: new BigNumber(value) });
     }
@@ -273,17 +262,36 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     this.setState({ gasLimitInput: value, gasLimit: parseInt(value, 10) });
   }
 
-  generateTransferingStatus(depositStatus, ledgerNanoSInfo, trezorInfo) {
-    const { currentWalletWithInfo, currentNetwork, intl } = this.props;
+  generateTransferingStatus() {
+    const {
+      currentWalletWithInfo,
+      withdrawals,
+      ongoingChallenges,
+      settleableChallenges,
+      currentNetwork,
+      intl,
+      ledgerNanoSInfo,
+      trezorInfo,
+    } = this.props;
     const { formatMessage } = intl;
     const confOnDevice = ledgerNanoSInfo.get('confTxOnDevice') || trezorInfo.get('confTxOnDevice');
     let ratio;
-    if (depositStatus.get('depositingEth')) ratio = '1/1';
-    if (depositStatus.get('approvingTokenDeposit')) ratio = '1/2';
-    if (depositStatus.get('completingTokenDeposit')) ratio = '2/2';
+    let type;
+    const activities = [withdrawals, ongoingChallenges, settleableChallenges];
+    for (const activity of activities) { //eslint-disable-line
+      if (activity.get('status') === 'requesting') ratio = '1/2';
+      if (activity.get('status') === 'mining') ratio = '2/2';
+
+      if (ratio && activity === withdrawals) type = 'withdraw';
+      if (ratio && activity === ongoingChallenges) type = 'start_challenge';
+      if (ratio && activity === settleableChallenges) type = 'confirm_settle';
+
+      if (ratio) break;
+    }
+
     if (!ratio) return null;
     const transferingText =
-      `${formatMessage({ id: 'waiting_for_deposit_to_be' }, { ratio })} ${confOnDevice ? formatMessage({ id: 'signed' }) : `${formatMessage({ id: 'mined' })}...`}`;
+      `${formatMessage({ id: `waiting_for_${type}_to_be` }, { ratio })} ${confOnDevice ? formatMessage({ id: 'signed' }) : `${formatMessage({ id: 'mined' })}...`}`;
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <span>
@@ -323,7 +331,6 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       prices,
       intl,
       supportedAssets,
-      depositStatus,
       ledgerNanoSInfo,
       trezorInfo,
       ongoingChallenges,
@@ -438,7 +445,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       baseLayerBalAfterAmt.isNegative() ||
       baseLayerEthBalanceAfterAmount.isNegative() ||
       !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
-    const TransferingStatus = this.generateTransferingStatus(depositStatus, ledgerNanoSInfo, trezorInfo);
+    const TransferingStatus = this.generateTransferingStatus();
 
     return (
       <div style={{ display: 'flex', flex: '1', flexWrap: 'wrap' }}>
@@ -530,9 +537,18 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                   <div>
                     {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: assetToWithdraw.symbol, intended_stage_amount: totalSettleableStageAmount, tx_count: settleableChallenges.get('details').length })}
                   </div>
-                  <StyledButton onClick={() => this.settle(assetToWithdraw)}>
-                    {formatMessage({ id: 'confirm_settlement' })}
-                  </StyledButton>
+                  {
+                    TransferingStatus ?
+                      (
+                        <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="confirm-tx-status">
+                          {TransferingStatus}
+                        </div>
+                      ) : (
+                        <StyledButton className="confirm-btn" onClick={() => this.settle(assetToWithdraw)}>
+                          {formatMessage({ id: 'confirm_settlement' })}
+                        </StyledButton>
+                      )
+                  }
                 </div>
               }
               type="warning"
@@ -551,9 +567,18 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                     />
                   </Row>
                   <Row>
-                    <StyledButton onClick={() => this.startChallenge(requiredSettlementAmount, assetToWithdraw)}>
-                      {formatMessage({ id: 'settle_payment' })}
-                    </StyledButton>
+                    {
+                    TransferingStatus ?
+                      (
+                        <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="challenge-tx-status">
+                          {TransferingStatus}
+                        </div>
+                      ) : (
+                        <StyledButton className="challenge-btn" onClick={() => this.startChallenge(requiredSettlementAmount, assetToWithdraw)}>
+                          {formatMessage({ id: 'settle_payment' })}
+                        </StyledButton>
+                      )
+                  }
                   </Row>
                 </div>
               ) : (
@@ -668,12 +693,13 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                     {
                     TransferingStatus ?
                       (
-                        <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="withdraw-status">
                           {TransferingStatus}
                         </div>
                       ) : (
                         <StyledButton
                           type="primary"
+                          className="withdraw-btn"
                           onClick={() => this.withdraw(amountToWithdraw, assetToWithdraw)}
                           disabled={disableWithdrawButton}
                         >
@@ -682,9 +708,6 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         )
                       }
                   </Row>
-                  {/* <SectionHeading style={{ marginTop: '2rem', maxWidth: '25rem' }}>
-                    Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
-                  </SectionHeading> */}
                 </div>
               )
             )
@@ -707,12 +730,11 @@ NahmiiWithdraw.propTypes = {
   trezorInfo: PropTypes.object.isRequired,
   prices: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
-  depositStatus: PropTypes.object.isRequired,
   currentNetwork: PropTypes.object.isRequired,
   intl: PropTypes.object.isRequired,
-  goWalletDetails: PropTypes.func.isRequired,
   ongoingChallenges: PropTypes.object.isRequired,
   settleableChallenges: PropTypes.object.isRequired,
+  withdrawals: PropTypes.object.isRequired,
   setSelectedWalletCurrency: PropTypes.func.isRequired,
   startChallenge: PropTypes.func.isRequired,
   settle: PropTypes.func.isRequired,
@@ -720,7 +742,6 @@ NahmiiWithdraw.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  depositStatus: makeSelectDepositStatus(),
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
   ledgerNanoSInfo: makeSelectLedgerHoc(),
   trezorInfo: makeSelectTrezorHoc(),
@@ -729,6 +750,7 @@ const mapStateToProps = createStructuredSelector({
   currentNetwork: makeSelectCurrentNetwork(),
   ongoingChallenges: makeSelectOngoingChallengesForCurrentWalletCurrency(),
   settleableChallenges: makeSelectSettleableChallengesForCurrentWalletCurrency(),
+  withdrawals: makeSelectWithdrawalsForCurrentWalletCurrency(),
 });
 
 function mapDispatchToProps(dispatch) {

@@ -141,6 +141,11 @@ const makeSelectSettleableChallenges = () => createSelector(
   (nahmiiHocDomain) => nahmiiHocDomain.get('settleableChallenges')
 );
 
+const makeSelectWithdrawals = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('withdrawals')
+);
+
 const makeSelectNahmiiSettlementTransactions = () => createSelector(
   selectNahmiiHocDomain,
   (nahmiiHocDomain) => nahmiiHocDomain.get('transactions') || fromJS({})
@@ -166,8 +171,25 @@ const makeSelectSettleableChallengesForCurrentWalletCurrency = () => createSelec
   makeSelectWalletCurrency(),
   (settleableChallenges, currentWallet, selectedCurrency) => {
     const address = currentWallet.get('address');
-    const challenges = settleableChallenges.getIn([address, selectedCurrency]);
-    return challenges || fromJS({ details: [] });
+    let challenges = settleableChallenges.getIn([address, selectedCurrency]) || fromJS({});
+    if (!challenges.get('details')) {
+      challenges = challenges.set('details', []);
+    }
+    return challenges;
+  }
+);
+
+const makeSelectWithdrawalsForCurrentWalletCurrency = () => createSelector(
+  makeSelectWithdrawals(),
+  makeSelectCurrentWallet(),
+  makeSelectWalletCurrency(),
+  (withdrawals, currentWallet, selectedCurrency) => {
+    const address = currentWallet.get('address');
+    let withdrawlsObj = withdrawals.getIn([address, selectedCurrency]) || fromJS({});
+    if (!withdrawlsObj.get('details')) {
+      withdrawlsObj = withdrawlsObj.set('details', []);
+    }
+    return withdrawlsObj;
   }
 );
 
@@ -310,4 +332,5 @@ export {
   makeSelectDepositStatus,
   makeSelectOngoingChallengesForCurrentWalletCurrency,
   makeSelectSettleableChallengesForCurrentWalletCurrency,
+  makeSelectWithdrawalsForCurrentWalletCurrency,
 };

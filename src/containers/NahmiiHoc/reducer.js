@@ -60,6 +60,7 @@ export const initialState = fromJS({
   },
   ongoingChallenges: {},
   settleableChallenges: {},
+  withdrawals: {},
 });
 
 function nahmiiHocReducer(state = initialState, action) {
@@ -113,7 +114,7 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['balances', action.address, 'staging', 'assets'], fromJS(action.balances));
     case START_CHALLENGE:
       return state
-          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'processing');
+          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'requesting');
     case START_CHALLENGE_SUCCESS:
       return state
           .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'success')
@@ -123,10 +124,11 @@ function nahmiiHocReducer(state = initialState, action) {
           .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'failed');
     case LOAD_START_CHALLENGE_TX_REQUEST:
       return state
+        .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'mining')
         .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txRequest.hash], action.txRequest);
     case SETTLE:
       return state
-        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'processing');
+        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'requesting');
     case SETTLE_SUCCESS:
       return state
         .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'success')
@@ -136,15 +138,11 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'failed');
     case LOAD_SETTLE_TX_REQUEST:
       return state
-        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txStatus'], 'mining')
-        .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'txRequest'], action.txRequest)
-        .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'type'], 'settle_payment')
-        .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'network'], action.networkName)
-        .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'createdAt'], new Date().getTime())
-        .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'request'], action.txRequest);
+        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'mining')
+        .setIn(['settleableChallenges', action.address, action.currency, 'transactions', action.txRequest.hash], action.txRequest);
     case WITHDRAW:
       return state
-        .setIn(['withdrawals', action.address, action.currency, 'status'], 'processing');
+        .setIn(['withdrawals', action.address, action.currency, 'status'], 'requesting');
     case WITHDRAW_SUCCESS:
       return state
         .setIn(['withdrawals', action.address, action.currency, 'status'], 'success')
@@ -154,11 +152,8 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['withdrawals', action.address, action.currency, 'status'], 'failed');
     case LOAD_WITHDRAW_TX_REQUEST:
       return state
-        .setIn(['wallets', action.address, 'lastWithdraw', 'txRequest'], action.txRequest)
-        .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'type'], 'withdraw')
-        .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'network'], action.networkName)
-        .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'createdAt'], new Date().getTime())
-        .setIn(['transactions', action.address, action.currency, action.txRequest.hash, 'request'], action.txRequest);
+        .setIn(['withdrawals', action.address, action.currency, 'status'], 'mining')
+        .setIn(['withdrawals', action.address, action.currency, 'transactions', action.txRequest.transactionHash], action.txRequest);
 
     // case LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS:
     //   return state

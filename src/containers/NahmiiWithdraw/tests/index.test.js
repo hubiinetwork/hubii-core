@@ -26,6 +26,7 @@ import {
   depositStatusError,
   ongoingChallengesNone,
   settleableChallengesNone,
+  withdrawalsNone,
 } from 'containers/NahmiiHoc/tests/mocks/selectors';
 
 import {
@@ -48,6 +49,7 @@ describe('<NahmiiWithdraw />', () => {
       supportedAssets: supportedAssetsLoadedMock,
       ongoingChallenges: ongoingChallengesNone,
       settleableChallenges: settleableChallengesNone,
+      withdrawals: withdrawalsNone,
       intl,
       currentNetwork: currentNetworkMock,
       depositStatus: depositStatusNone,
@@ -134,6 +136,119 @@ describe('<NahmiiWithdraw />', () => {
         wrapper.setState({ amountToWithdraw: new BigNumber(2) });
         expect(wrapper.find('.start-settlement')).toHaveLength(0);
         expect(wrapper.find('.withdraw-review')).toHaveLength(1);
+      });
+    });
+  });
+
+  describe('notice element for withdrawal/settlement statuses', () => {
+    describe('start challenge', () => {
+      [
+        { status: 'requesting', text: /waiting_for_start_challenge_to_be/i },
+        { status: 'mining', text: /waiting_for_start_challenge_to_be/i },
+      ].forEach((t) => {
+        it(`should hide the settle button and show the transaction status when status is ${t.status}`, () => {
+          const wrapper = shallow(
+            <NahmiiWithdraw
+              {...props}
+              ongoingChallenges={ongoingChallengesNone.set('status', t.status)}
+            />
+          );
+          wrapper.setState({ amountToWithdraw: new BigNumber(1) });
+          expect(wrapper.find('.start-settlement')).toHaveLength(1);
+          expect(wrapper.find('.challenge-btn')).toHaveLength(0);
+          expect(wrapper.find('.challenge-tx-status')).toHaveLength(1);
+          expect(wrapper.find('.challenge-tx-status Text').html()).toMatch(t.text);
+        });
+      });
+      ['failed', null].forEach((t) => {
+        it(`should display the settle button and hide the transaction status when status is ${t}`, () => {
+          const wrapper = shallow(
+            <NahmiiWithdraw
+              {...props}
+              ongoingChallenges={ongoingChallengesNone.set('status', t)}
+            />
+          );
+          wrapper.setState({ amountToWithdraw: new BigNumber(1) });
+          expect(wrapper.find('.start-settlement')).toHaveLength(1);
+          expect(wrapper.find('.challenge-btn')).toHaveLength(1);
+          expect(wrapper.find('.challenge-tx-status')).toHaveLength(0);
+        });
+      });
+    });
+    describe('confirm settling', () => {
+      [
+        { status: 'requesting', text: /waiting_for_confirm_settle_to_be/i },
+        { status: 'mining', text: /waiting_for_confirm_settle_to_be/i },
+      ].forEach((t) => {
+        it(`should hide the confirm button and show the transaction status when status is ${t.status}`, () => {
+          const wrapper = shallow(
+            <NahmiiWithdraw
+              {...props}
+              settleableChallenges={settleableChallengesNone.set('details', [
+                { intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+                { intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+              ]).set('status', t.status)}
+            />
+          );
+          const noticeNode = wrapper.find('style__SettlementWarning');
+          expect(noticeNode).toHaveLength(1);
+          expect(noticeNode.props().message).toEqual('settlement_period_ended');
+
+          const noticeNodeShallow = shallow(noticeNode.props().description);
+          expect(noticeNodeShallow.find('.confirm-btn')).toHaveLength(0);
+          expect(noticeNodeShallow.find('.confirm-tx-status')).toHaveLength(1);
+          expect(noticeNodeShallow.find('.confirm-tx-status Text').html()).toMatch(t.text);
+        });
+      });
+      ['failed', null].forEach((t) => {
+        it(`should show the confirm button and hide the transaction status when status is ${t}`, () => {
+          const wrapper = shallow(
+            <NahmiiWithdraw
+              {...props}
+              settleableChallenges={settleableChallengesNone.set('details', [
+                { intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+                { intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+              ]).set('status', t)}
+            />
+          );
+          const noticeNode = wrapper.find('style__SettlementWarning');
+          expect(noticeNode).toHaveLength(1);
+          expect(noticeNode.props().message).toEqual('settlement_period_ended');
+
+          const noticeNodeShallow = shallow(noticeNode.props().description);
+          expect(noticeNodeShallow.find('.confirm-btn')).toHaveLength(1);
+          expect(noticeNodeShallow.find('.confirm-tx-status')).toHaveLength(0);
+        });
+      });
+    });
+    describe('withdrawal', () => {
+      [
+        { status: 'requesting', text: /waiting_for_withdraw_to_be/i },
+        { status: 'mining', text: /waiting_for_withdraw_to_be/i },
+      ].forEach((t) => {
+        it(`should hide the withdraw button and show the transaction status when status is ${t.status}`, () => {
+          const wrapper = shallow(
+            <NahmiiWithdraw
+              {...props}
+              withdrawals={fromJS({ status: t.status })}
+            />
+          );
+          expect(wrapper.find('.withdraw-btn')).toHaveLength(0);
+          expect(wrapper.find('.withdraw-status')).toHaveLength(1);
+          expect(wrapper.find('.withdraw-status Text').html()).toMatch(t.text);
+        });
+      });
+      ['failed', null].forEach((t) => {
+        it(`should show the withdraw button and hide the transaction status when status is ${t}`, () => {
+          const wrapper = shallow(
+            <NahmiiWithdraw
+              {...props}
+              withdrawals={fromJS({ status: t })}
+            />
+          );
+          expect(wrapper.find('.withdraw-btn')).toHaveLength(1);
+          expect(wrapper.find('.withdraw-status')).toHaveLength(0);
+        });
       });
     });
   });

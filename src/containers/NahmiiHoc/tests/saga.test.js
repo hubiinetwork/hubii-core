@@ -125,7 +125,7 @@ describe('nahmiiHocSaga', () => {
       .run({ silenceTimeout: true });
     });
   });
-  describe.only('settlement operations', () => {
+  describe('settlement operations', () => {
     const options = { gasLimit: 1, gasPrice: 1 };
     const currency = '0x1';
     const stageAmount = new BigNumber(1000);
