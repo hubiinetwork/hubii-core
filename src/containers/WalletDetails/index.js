@@ -135,7 +135,7 @@ export class WalletDetails extends React.PureComponent {
           <TabPane
             tab={
               <span>
-                <Icon type="login" /><NahmiiText /> deposit
+                <Icon type="login" /><NahmiiText /> {formatMessage({ id: 'deposit' })}
               </span>
             }
             key={`${match.url}/nahmii-deposit`}
@@ -145,7 +145,7 @@ export class WalletDetails extends React.PureComponent {
           <TabPane
             tab={
               <span>
-                <Icon type="logout" />{formatMessage({ id: 'withdraw' })}
+                <Icon type="logout" /><NahmiiText /> {formatMessage({ id: 'withdraw' })}
               </span>
             }
             key={`${match.url}/withdraw`}
