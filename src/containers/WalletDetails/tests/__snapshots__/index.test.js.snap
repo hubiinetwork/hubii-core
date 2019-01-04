@@ -507,7 +507,8 @@ ShallowWrapper {
                                                   type="login"
                                         />
                                         <Unknown />
-                                         deposit
+                                         
+                                        deposit
                               </span>
                     }
           >
@@ -523,6 +524,8 @@ ShallowWrapper {
                                         <Icon
                                                   type="logout"
                                         />
+                                        <Unknown />
+                                         
                                         withdraw
                               </span>
                     }
@@ -656,7 +659,8 @@ ShallowWrapper {
                                                         type="login"
                                           />
                                           <Unknown />
-                                           deposit
+                                           
+                                          deposit
                             </span>
               }
 >
@@ -672,6 +676,8 @@ ShallowWrapper {
                                           <Icon
                                                         type="logout"
                                           />
+                                          <Unknown />
+                                           
                                           withdraw
                             </span>
               }
@@ -798,7 +804,8 @@ ShallowWrapper {
                                 type="login"
                 />
                 <Unknown />
-                 deposit
+                 
+                deposit
 </span>,
             },
             "ref": null,
@@ -830,6 +837,8 @@ ShallowWrapper {
                 <Icon
                                 type="logout"
                 />
+                <Unknown />
+                 
                 withdraw
 </span>,
             },
@@ -968,7 +977,8 @@ ShallowWrapper {
                                                             type="login"
                                                 />
                                                 <Unknown />
-                                                 deposit
+                                                 
+                                                deposit
                                     </span>
                         }
             >
@@ -984,6 +994,8 @@ ShallowWrapper {
                                                 <Icon
                                                             type="logout"
                                                 />
+                                                <Unknown />
+                                                 
                                                 withdraw
                                     </span>
                         }
@@ -1117,7 +1129,8 @@ ShallowWrapper {
                                                                 type="login"
                                                 />
                                                 <Unknown />
-                                                 deposit
+                                                 
+                                                deposit
                                 </span>
                 }
 >
@@ -1133,6 +1146,8 @@ ShallowWrapper {
                                                 <Icon
                                                                 type="logout"
                                                 />
+                                                <Unknown />
+                                                 
                                                 withdraw
                                 </span>
                 }
@@ -1259,7 +1274,8 @@ ShallowWrapper {
                                     type="login"
                   />
                   <Unknown />
-                   deposit
+                   
+                  deposit
 </span>,
               },
               "ref": null,
@@ -1291,6 +1307,8 @@ ShallowWrapper {
                   <Icon
                                     type="logout"
                   />
+                  <Unknown />
+                   
                   withdraw
 </span>,
               },

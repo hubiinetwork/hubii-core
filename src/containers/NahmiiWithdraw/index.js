@@ -119,17 +119,20 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
 
   componentDidUpdate(prevProps) {
     const { assetToWithdraw } = this.state;
-    const { currentWalletWithInfo, ongoingChallenges } = this.props;
+    const { currentWalletWithInfo } = this.props;
 
     const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
     const asset = baseLayerAssets.find((a) => a.symbol === assetToWithdraw.symbol);
     if (asset && asset.balance.toString() !== assetToWithdraw.balance.toString()) {
       assetToWithdraw.balance = asset.balance;
     }
-    const currentChallengeTxStatus = ongoingChallenges.get('status');
-    const prevChallengeTxStatus = prevProps.ongoingChallenges.get('status');
-    if (currentChallengeTxStatus === 'success' && prevChallengeTxStatus !== 'success') {
-      this.setState({ amountToWithdrawInput: '0', amountToWithdraw: new BigNumber('0') }); // eslint-disable-line
+
+    for (let type of ['ongoingChallenges', 'settleableChallenges', 'withdrawals']) { // eslint-disable-line
+      const currentChallengeTxStatus = this.props[type].get('status');
+      const prevChallengeTxStatus = prevProps[type].get('status');
+      if (currentChallengeTxStatus === 'success' && prevChallengeTxStatus !== 'success') {
+        this.setState({ amountToWithdrawInput: '0', amountToWithdraw: new BigNumber('0') }); // eslint-disable-line
+      }
     }
   }
 
@@ -482,6 +485,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
               help={<HelperText left={formatFiat(usdValueToWithdraw, 'USD')} right={formatMessage({ id: 'usd' })} />}
             >
               <Input
+                className="withdraw-input"
                 defaultValue={amountToWithdrawInput}
                 value={amountToWithdrawInput}
                 onFocus={() => this.onFocusNumberInput('amountToWithdrawInput')}

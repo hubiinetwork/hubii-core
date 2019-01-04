@@ -160,7 +160,7 @@ describe('<NahmiiWithdraw />', () => {
           expect(wrapper.find('.challenge-tx-status Text').html()).toMatch(t.text);
         });
       });
-      ['failed', null].forEach((t) => {
+      ['failed', null, 'success'].forEach((t) => {
         it(`should display the settle button and hide the transaction status when status is ${t}`, () => {
           const wrapper = shallow(
             <NahmiiWithdraw
@@ -173,6 +173,24 @@ describe('<NahmiiWithdraw />', () => {
           expect(wrapper.find('.challenge-btn')).toHaveLength(1);
           expect(wrapper.find('.challenge-tx-status')).toHaveLength(0);
         });
+      });
+
+      it('should clear withdraw input when status is success', () => {
+        const wrapper = shallow(
+          <NahmiiWithdraw
+            {...props}
+          />
+        );
+
+        wrapper.setState({
+          amountToWithdrawInput: '1',
+          amountToWithdraw: new BigNumber('1'),
+        });
+        expect(wrapper.find('.withdraw-input').props().value).toEqual('1');
+        wrapper.setProps({
+          ongoingChallenges: ongoingChallengesNone.set('status', 'success'),
+        });
+        expect(wrapper.find('.withdraw-input').props().value).toEqual('0');
       });
     });
     describe('confirm settling', () => {
@@ -200,7 +218,7 @@ describe('<NahmiiWithdraw />', () => {
           expect(noticeNodeShallow.find('.confirm-tx-status Text').html()).toMatch(t.text);
         });
       });
-      ['failed', null].forEach((t) => {
+      ['failed', null, 'success'].forEach((t) => {
         it(`should show the confirm button and hide the transaction status when status is ${t}`, () => {
           const wrapper = shallow(
             <NahmiiWithdraw
@@ -220,6 +238,26 @@ describe('<NahmiiWithdraw />', () => {
           expect(noticeNodeShallow.find('.confirm-tx-status')).toHaveLength(0);
         });
       });
+      it('should clear withdraw input when status is success', () => {
+        const wrapper = shallow(
+          <NahmiiWithdraw
+            {...props}
+          />
+        );
+
+        wrapper.setState({
+          amountToWithdrawInput: '1',
+          amountToWithdraw: new BigNumber('1'),
+        });
+        expect(wrapper.find('.withdraw-input').props().value).toEqual('1');
+        wrapper.setProps({
+          settleableChallenges: settleableChallengesNone.set('details', [
+            { intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+            { intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+          ]).set('status', 'success'),
+        });
+        expect(wrapper.find('.withdraw-input').props().value).toEqual('0');
+      });
     });
     describe('withdrawal', () => {
       [
@@ -238,7 +276,7 @@ describe('<NahmiiWithdraw />', () => {
           expect(wrapper.find('.withdraw-status Text').html()).toMatch(t.text);
         });
       });
-      ['failed', null].forEach((t) => {
+      ['failed', null, 'success'].forEach((t) => {
         it(`should show the withdraw button and hide the transaction status when status is ${t}`, () => {
           const wrapper = shallow(
             <NahmiiWithdraw
@@ -249,6 +287,24 @@ describe('<NahmiiWithdraw />', () => {
           expect(wrapper.find('.withdraw-btn')).toHaveLength(1);
           expect(wrapper.find('.withdraw-status')).toHaveLength(0);
         });
+      });
+
+      it('should clear withdraw input when status is success', () => {
+        const wrapper = shallow(
+          <NahmiiWithdraw
+            {...props}
+          />
+        );
+
+        wrapper.setState({
+          amountToWithdrawInput: '1',
+          amountToWithdraw: new BigNumber('1'),
+        });
+        expect(wrapper.find('.withdraw-input').props().value).toEqual('1');
+        wrapper.setProps({
+          withdrawals: fromJS({ status: 'success' }),
+        });
+        expect(wrapper.find('.withdraw-input').props().value).toEqual('0');
       });
     });
   });

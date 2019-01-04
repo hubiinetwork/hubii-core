@@ -683,6 +683,7 @@ ShallowWrapper {
                               }
                     >
                               <Input.style
+                                        className="withdraw-input"
                                         defaultValue="0"
                                         onBlur={[Function]}
                                         onChange={[Function]}
@@ -951,6 +952,7 @@ ShallowWrapper {
                         }
             >
                         <Input.style
+                                    className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -1074,6 +1076,7 @@ ShallowWrapper {
                 }
 >
                 <Input.style
+                                className="withdraw-input"
                                 defaultValue="0"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -1249,6 +1252,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <Input.style
+                  className="withdraw-input"
                   defaultValue="0"
                   onBlur={[Function]}
                   onChange={[Function]}
@@ -1271,6 +1275,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
+                  "className": "withdraw-input",
                   "defaultValue": "0",
                   "onBlur": [Function],
                   "onChange": [Function],
@@ -2312,6 +2317,7 @@ ShallowWrapper {
                                     }
                         >
                                     <Input.style
+                                                className="withdraw-input"
                                                 defaultValue="0"
                                                 onBlur={[Function]}
                                                 onChange={[Function]}
@@ -2580,6 +2586,7 @@ ShallowWrapper {
                             }
               >
                             <Input.style
+                                          className="withdraw-input"
                                           defaultValue="0"
                                           onBlur={[Function]}
                                           onChange={[Function]}
@@ -2703,6 +2710,7 @@ ShallowWrapper {
                   }
 >
                   <Input.style
+                                    className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -2878,6 +2886,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": <Input.style
+                    className="withdraw-input"
                     defaultValue="0"
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -2900,6 +2909,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
+                    "className": "withdraw-input",
                     "defaultValue": "0",
                     "onBlur": [Function],
                     "onChange": [Function],
@@ -4569,6 +4579,7 @@ ShallowWrapper {
                               }
                     >
                               <Input.style
+                                        className="withdraw-input"
                                         defaultValue="0"
                                         onBlur={[Function]}
                                         onChange={[Function]}
@@ -4837,6 +4848,7 @@ ShallowWrapper {
                         }
             >
                         <Input.style
+                                    className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -4960,6 +4972,7 @@ ShallowWrapper {
                 }
 >
                 <Input.style
+                                className="withdraw-input"
                                 defaultValue="0"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -5135,6 +5148,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <Input.style
+                  className="withdraw-input"
                   defaultValue="0"
                   onBlur={[Function]}
                   onChange={[Function]}
@@ -5157,6 +5171,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
+                  "className": "withdraw-input",
                   "defaultValue": "0",
                   "onBlur": [Function],
                   "onChange": [Function],
@@ -6198,6 +6213,7 @@ ShallowWrapper {
                                     }
                         >
                                     <Input.style
+                                                className="withdraw-input"
                                                 defaultValue="0"
                                                 onBlur={[Function]}
                                                 onChange={[Function]}
@@ -6466,6 +6482,7 @@ ShallowWrapper {
                             }
               >
                             <Input.style
+                                          className="withdraw-input"
                                           defaultValue="0"
                                           onBlur={[Function]}
                                           onChange={[Function]}
@@ -6589,6 +6606,7 @@ ShallowWrapper {
                   }
 >
                   <Input.style
+                                    className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -6764,6 +6782,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": <Input.style
+                    className="withdraw-input"
                     defaultValue="0"
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -6786,6 +6805,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
+                    "className": "withdraw-input",
                     "defaultValue": "0",
                     "onBlur": [Function],
                     "onChange": [Function],
@@ -8455,6 +8475,7 @@ ShallowWrapper {
                               }
                     >
                               <Input.style
+                                        className="withdraw-input"
                                         defaultValue="0"
                                         onBlur={[Function]}
                                         onChange={[Function]}
@@ -8723,6 +8744,7 @@ ShallowWrapper {
                         }
             >
                         <Input.style
+                                    className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -8846,6 +8868,7 @@ ShallowWrapper {
                 }
 >
                 <Input.style
+                                className="withdraw-input"
                                 defaultValue="0"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -9021,6 +9044,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <Input.style
+                  className="withdraw-input"
                   defaultValue="0"
                   onBlur={[Function]}
                   onChange={[Function]}
@@ -9043,6 +9067,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
+                  "className": "withdraw-input",
                   "defaultValue": "0",
                   "onBlur": [Function],
                   "onChange": [Function],
@@ -10084,6 +10109,7 @@ ShallowWrapper {
                                     }
                         >
                                     <Input.style
+                                                className="withdraw-input"
                                                 defaultValue="0"
                                                 onBlur={[Function]}
                                                 onChange={[Function]}
@@ -10352,6 +10378,7 @@ ShallowWrapper {
                             }
               >
                             <Input.style
+                                          className="withdraw-input"
                                           defaultValue="0"
                                           onBlur={[Function]}
                                           onChange={[Function]}
@@ -10475,6 +10502,7 @@ ShallowWrapper {
                   }
 >
                   <Input.style
+                                    className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -10650,6 +10678,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": <Input.style
+                    className="withdraw-input"
                     defaultValue="0"
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -10672,6 +10701,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
+                    "className": "withdraw-input",
                     "defaultValue": "0",
                     "onBlur": [Function],
                     "onChange": [Function],
@@ -12341,6 +12371,7 @@ ShallowWrapper {
                               }
                     >
                               <Input.style
+                                        className="withdraw-input"
                                         defaultValue="0"
                                         onBlur={[Function]}
                                         onChange={[Function]}
@@ -12609,6 +12640,7 @@ ShallowWrapper {
                         }
             >
                         <Input.style
+                                    className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -12732,6 +12764,7 @@ ShallowWrapper {
                 }
 >
                 <Input.style
+                                className="withdraw-input"
                                 defaultValue="0"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -12907,6 +12940,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <Input.style
+                  className="withdraw-input"
                   defaultValue="0"
                   onBlur={[Function]}
                   onChange={[Function]}
@@ -12929,6 +12963,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
+                  "className": "withdraw-input",
                   "defaultValue": "0",
                   "onBlur": [Function],
                   "onChange": [Function],
@@ -13970,6 +14005,7 @@ ShallowWrapper {
                                     }
                         >
                                     <Input.style
+                                                className="withdraw-input"
                                                 defaultValue="0"
                                                 onBlur={[Function]}
                                                 onChange={[Function]}
@@ -14238,6 +14274,7 @@ ShallowWrapper {
                             }
               >
                             <Input.style
+                                          className="withdraw-input"
                                           defaultValue="0"
                                           onBlur={[Function]}
                                           onChange={[Function]}
@@ -14361,6 +14398,7 @@ ShallowWrapper {
                   }
 >
                   <Input.style
+                                    className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -14536,6 +14574,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": <Input.style
+                    className="withdraw-input"
                     defaultValue="0"
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -14558,6 +14597,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
+                    "className": "withdraw-input",
                     "defaultValue": "0",
                     "onBlur": [Function],
                     "onChange": [Function],
@@ -16227,6 +16267,7 @@ ShallowWrapper {
                               }
                     >
                               <Input.style
+                                        className="withdraw-input"
                                         defaultValue="0"
                                         onBlur={[Function]}
                                         onChange={[Function]}
@@ -16495,6 +16536,7 @@ ShallowWrapper {
                         }
             >
                         <Input.style
+                                    className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -16618,6 +16660,7 @@ ShallowWrapper {
                 }
 >
                 <Input.style
+                                className="withdraw-input"
                                 defaultValue="0"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -16793,6 +16836,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <Input.style
+                  className="withdraw-input"
                   defaultValue="0"
                   onBlur={[Function]}
                   onChange={[Function]}
@@ -16815,6 +16859,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
+                  "className": "withdraw-input",
                   "defaultValue": "0",
                   "onBlur": [Function],
                   "onChange": [Function],
@@ -17856,6 +17901,7 @@ ShallowWrapper {
                                     }
                         >
                                     <Input.style
+                                                className="withdraw-input"
                                                 defaultValue="0"
                                                 onBlur={[Function]}
                                                 onChange={[Function]}
@@ -18124,6 +18170,7 @@ ShallowWrapper {
                             }
               >
                             <Input.style
+                                          className="withdraw-input"
                                           defaultValue="0"
                                           onBlur={[Function]}
                                           onChange={[Function]}
@@ -18247,6 +18294,7 @@ ShallowWrapper {
                   }
 >
                   <Input.style
+                                    className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -18422,6 +18470,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": <Input.style
+                    className="withdraw-input"
                     defaultValue="0"
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -18444,6 +18493,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
+                    "className": "withdraw-input",
                     "defaultValue": "0",
                     "onBlur": [Function],
                     "onChange": [Function],
@@ -20114,6 +20164,7 @@ ShallowWrapper {
                               }
                     >
                               <Input.style
+                                        className="withdraw-input"
                                         defaultValue="0"
                                         onBlur={[Function]}
                                         onChange={[Function]}
@@ -20382,6 +20433,7 @@ ShallowWrapper {
                         }
             >
                         <Input.style
+                                    className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -20505,6 +20557,7 @@ ShallowWrapper {
                 }
 >
                 <Input.style
+                                className="withdraw-input"
                                 defaultValue="0"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -20680,6 +20733,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <Input.style
+                  className="withdraw-input"
                   defaultValue="0"
                   onBlur={[Function]}
                   onChange={[Function]}
@@ -20702,6 +20756,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
+                  "className": "withdraw-input",
                   "defaultValue": "0",
                   "onBlur": [Function],
                   "onChange": [Function],
@@ -21743,6 +21798,7 @@ ShallowWrapper {
                                     }
                         >
                                     <Input.style
+                                                className="withdraw-input"
                                                 defaultValue="0"
                                                 onBlur={[Function]}
                                                 onChange={[Function]}
@@ -22011,6 +22067,7 @@ ShallowWrapper {
                             }
               >
                             <Input.style
+                                          className="withdraw-input"
                                           defaultValue="0"
                                           onBlur={[Function]}
                                           onChange={[Function]}
@@ -22134,6 +22191,7 @@ ShallowWrapper {
                   }
 >
                   <Input.style
+                                    className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -22309,6 +22367,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": <Input.style
+                    className="withdraw-input"
                     defaultValue="0"
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -22331,6 +22390,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
+                    "className": "withdraw-input",
                     "defaultValue": "0",
                     "onBlur": [Function],
                     "onChange": [Function],
@@ -26510,6 +26570,7 @@ ShallowWrapper {
                               }
                     >
                               <Input.style
+                                        className="withdraw-input"
                                         defaultValue="0"
                                         onBlur={[Function]}
                                         onChange={[Function]}
@@ -26778,6 +26839,7 @@ ShallowWrapper {
                         }
             >
                         <Input.style
+                                    className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -26901,6 +26963,7 @@ ShallowWrapper {
                 }
 >
                 <Input.style
+                                className="withdraw-input"
                                 defaultValue="0"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -27076,6 +27139,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <Input.style
+                  className="withdraw-input"
                   defaultValue="0"
                   onBlur={[Function]}
                   onChange={[Function]}
@@ -27098,6 +27162,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
+                  "className": "withdraw-input",
                   "defaultValue": "0",
                   "onBlur": [Function],
                   "onChange": [Function],
@@ -28139,6 +28204,7 @@ ShallowWrapper {
                                     }
                         >
                                     <Input.style
+                                                className="withdraw-input"
                                                 defaultValue="0"
                                                 onBlur={[Function]}
                                                 onChange={[Function]}
@@ -28407,6 +28473,7 @@ ShallowWrapper {
                             }
               >
                             <Input.style
+                                          className="withdraw-input"
                                           defaultValue="0"
                                           onBlur={[Function]}
                                           onChange={[Function]}
@@ -28530,6 +28597,7 @@ ShallowWrapper {
                   }
 >
                   <Input.style
+                                    className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -28705,6 +28773,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": <Input.style
+                    className="withdraw-input"
                     defaultValue="0"
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -28727,6 +28796,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
+                    "className": "withdraw-input",
                     "defaultValue": "0",
                     "onBlur": [Function],
                     "onChange": [Function],
