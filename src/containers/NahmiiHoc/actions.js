@@ -213,7 +213,7 @@ export function startChallengeError(address, currency) {
   };
 }
 
-export function loadTxRequestForPaymentChallenge(address, txRequest, currency, networkName) {
+export function loadTxRequestForPaymentChallengeSuccess(address, txRequest, currency, networkName) {
   return {
     type: LOAD_START_CHALLENGE_TX_REQUEST,
     address,
@@ -248,7 +248,7 @@ export function settleError(address, currency) {
   };
 }
 
-export function loadTxRequestForSettlePaymentDriip(address, txRequest, currency, networkName) {
+export function loadTxRequestForSettlingSuccess(address, txRequest, currency, networkName) {
   return {
     type: LOAD_SETTLE_TX_REQUEST,
     address,
@@ -284,7 +284,7 @@ export function withdrawError(address, currency) {
   };
 }
 
-export function loadTxRequestForWithdraw(address, txRequest, currency, networkName) {
+export function loadTxRequestForWithdrawSuccess(address, txRequest, currency, networkName) {
   return {
     type: LOAD_WITHDRAW_TX_REQUEST,
     address,
