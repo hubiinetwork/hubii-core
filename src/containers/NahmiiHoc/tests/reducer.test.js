@@ -76,11 +76,15 @@ describe('nahmiiHocReducer', () => {
   it('should handle changeNetwork correctly', () => {
     const testState = state
       .set('balances', fromJS({ '0x001': '123' }))
-      .set('transactions', fromJS({ '0x001': '123' }))
+      .set('ongoingChallenges', fromJS({ '0x001': '123' }))
+      .set('settleableChallenges', fromJS({ '0x001': '123' }))
+      .set('withdrawals', fromJS({ '0x001': '123' }))
       .set('receipts', fromJS({ '0x001': '123' }));
     const expected = state
       .set('balances', fromJS({}))
-      .set('transactions', fromJS({}))
+      .set('ongoingChallenges', fromJS({}))
+      .set('settleableChallenges', fromJS({}))
+      .set('withdrawals', fromJS({}))
       .set('receipts', fromJS({}));
     expect(nahmiiHocReducer(testState, changeNetwork())).toEqual(expected);
   });

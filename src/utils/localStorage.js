@@ -87,11 +87,5 @@ export const filterPersistedState = (state) => {
   persistedState = persistedState
     .set('language', state.get('language'));
 
-  /**
-   * Nahmii withdraw/settlement transactions
-   */
-  persistedState = persistedState
-    .setIn(['nahmiiHoc', 'transactions'], state.getIn(['nahmiiHoc', 'transactions']));
-
   return persistedState;
 };

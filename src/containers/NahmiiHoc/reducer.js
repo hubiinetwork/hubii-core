@@ -24,16 +24,6 @@ import {
   WITHDRAW_SUCCESS,
   WITHDRAW_ERROR,
   LOAD_WITHDRAW_TX_REQUEST,
-  // LOAD_ONGOING_CHALLENGES_SUCCESS,
-  // LOAD_ONGOING_CHALLENGES_ERROR,
-  // LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
-  // LOAD_SETTLEABLE_CHALLENGES_ERROR,
-  // LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS,
-  // LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR,
-  // LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS,
-  // LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_ERROR,
-  // LOAD_SETTLEMENT_SUCCESS,
-  // LOAD_SETTLEMENT_ERROR,
   LOAD_NAHMII_RECEIPTS,
   LOAD_NAHMII_RECEIPTS_SUCCESS,
   LOAD_NAHMII_RECEIPTS_ERROR,
@@ -155,44 +145,6 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['withdrawals', action.address, action.currency, 'status'], 'mining')
         .setIn(['withdrawals', action.address, action.currency, 'transactions', action.txRequest.transactionHash], action.txRequest);
 
-    // case LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS:
-    //   return state
-    //     .setIn(['wallets', action.address, 'lastPaymentChallenge', 'phase'], action.phase);
-    // case LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR:
-    //   return state
-    //     .setIn(['wallets', action.address, 'lastPaymentChallenge', 'phase'], null);
-    // case LOAD_ONGOING_CHALLENGES_SUCCESS:
-    //   return state
-    //     .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], action.challenges);
-    //     // .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
-    // case LOAD_ONGOING_CHALLENGES_ERROR:
-    //   return state
-    //     .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], null);
-    //     // .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
-    // case LOAD_SETTLEABLE_CHALLENGES_SUCCESS:
-    //   return state
-    //     .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], action.challenges);
-    //     // .setIn(['settleableChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
-    // case LOAD_SETTLEABLE_CHALLENGES_ERROR:
-    //   return state
-    //     .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], null);
-    //     // .setIn(['settleableChallenges', action.address, action.currencyAddress, 'updatedAt'], new Date());
-    // case LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS:
-    //   return state
-    //     .setIn(['wallets', action.address, 'lastPaymentChallenge', 'status'], action.status);
-    // case LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_ERROR:
-    //   return state
-    //     .setIn(['wallets', action.address, 'lastPaymentChallenge', 'status'], null);
-    // case LOAD_SETTLEMENT_SUCCESS:
-    //   return state
-    //     .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'settlement'], action.settlement || {})
-    //     .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'updatedAt'], new Date());
-    //     // .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'loadingSettlement'], false);
-    // case LOAD_SETTLEMENT_ERROR:
-    //   return state
-    //     .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'settlement'], null)
-    //     .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'updatedAt'], new Date());
-    //     // .setIn(['wallets', action.address, 'lastSettlePaymentDriip', 'loadingSettlement'], false);
     case LOAD_NAHMII_RECEIPTS:
       return state
         .setIn(['receipts', action.address, 'available', 'loading'], true)
@@ -212,7 +164,9 @@ function nahmiiHocReducer(state = initialState, action) {
       return state
         .set('balances', initialState.get('balances'))
         .set('receipts', initialState.get('receipts'))
-        .set('transactions', initialState.get('transactions'));
+        .set('ongoingChallenges', initialState.get('ongoingChallenges'))
+        .set('settleableChallenges', initialState.get('settleableChallenges'))
+        .set('withdrawals', initialState.get('withdrawals'));
     default:
       return state;
   }
