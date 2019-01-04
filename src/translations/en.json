@@ -227,10 +227,13 @@
     "settlement_history": "Settlement History",
     "gas_limit_too_low": "Gas limit is too low, please try increase the gas limit.",
     "checks_before_settling": "Preparing settlement...",
+    "checks_before_confirming_settle": "Confirming settlement...",
     "requesting_settle": "Requesting settlement...",
     "update_settle_stage_balance": "Updating stage balance...",
     "unable_start_challenges": "Unable to start new settlements, please check if there are ongoing settlements that have not expired yet.",
     "required_stage_amount": "Required stage amount",
     "nahmii_balance_before": "nahmii balance before",
-    "nahmii_balance_after": "nahmii balance after"
+    "waiting_for_start_challenge_to_be": "Waiting for transaction {ratio} to be",
+    "waiting_for_confirm_settle_to_be": "Waiting for transaction {ratio} to be",
+    "waiting_for_withdraw_to_be": "Waiting for transaction {ratio} to be"
 }

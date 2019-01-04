@@ -471,8 +471,8 @@ export function* startChallenge({ stageAmount, currency, options }) {
     let errorMessage = e.message;
     if (e.asStringified) {
       const nestedErrorMsg = e.asStringified();
-      const isGasExceeded = nestedErrorMsg.match(/gas.*required.*exceeds/i);
-      if (isGasExceeded) {
+      console.log(nestedErrorMsg)//eslint-disable-line
+      if (nestedErrorMsg.match(/gas.*required.*exceeds/i) || nestedErrorMsg.match(/out.*of.*gas/i)) {
         errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
       }
     }
@@ -503,7 +503,7 @@ export function* settle({ currency, options }) {
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
 
     if (confOnDevice) yield put(confOnDevice);
-    yield put(notify('info', getIntl().formatMessage({ id: 'update_settle_stage_balance' })));
+    yield put(notify('info', getIntl().formatMessage({ id: 'checks_before_confirming_settle' })));
     const { settleableChallenges } = yield call(settlement.getSettleableChallenges.bind(settlement), nahmiiWallet.address, currency, 0);
     for (let i = 0; i < settleableChallenges.length; i += 1) {
       const settleableChallenge = settleableChallenges[i];
@@ -511,7 +511,15 @@ export function* settle({ currency, options }) {
       yield processTx('settle-payment', nahmiiProvider, tx, walletDetails.address, currency);
     }
   } catch (e) {
-    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
+    let errorMessage = e.message;
+    if (e.asStringified) {
+      const nestedErrorMsg = e.asStringified();
+      console.error(nestedErrorMsg) //eslint-disable-line
+      if (nestedErrorMsg.match(/gas.*required.*exceeds/i) || nestedErrorMsg.match(/out.*of.*gas/i)) {
+        errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
+      }
+    }
+    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMessage })));
     yield put(actions.settleError(walletDetails.address, currency));
   } finally {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
@@ -540,7 +548,15 @@ export function* withdraw({ amount, currency, options }) {
 
     yield processTx('withdraw', nahmiiProvider, tx, walletDetails.address, currency);
   } catch (e) {
-    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
+    let errorMessage = e.message;
+    if (e.asStringified) {
+      const nestedErrorMsg = e.asStringified();
+      console.log(nestedErrorMsg)//eslint-disable-line
+      if (nestedErrorMsg.match(/gas.*required.*exceeds/i) || nestedErrorMsg.match(/out.*of.*gas/i)) {
+        errorMessage = getIntl().formatMessage({ id: 'gas_limit_too_low' });
+      }
+    }
+    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMessage })));
     yield put(actions.withdrawError(walletDetails.address, currency));
   } finally {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
@@ -594,6 +610,7 @@ export function* loadOngoingChallenges({ address }, network, noPoll) {
     try {
       const settlement = new nahmii.Settlement(provider);
       const ongoingChallenges = yield call(() => settlement.getOngoingChallenges(address, currencyAddress, 0));
+
       yield put(actions.loadOngoingChallengesSuccess(address, currencyAddress, ongoingChallenges));
     } catch (err) {
       yield put(actions.loadOngoingChallengesError(address, currencyAddress));
@@ -618,7 +635,7 @@ export function* loadSettleableChallenges({ address }, network, noPoll) {
     } catch (err) {
       if (err.asStringified) {
         const nestedErrorMsg = err.asStringified();
-        console.error(nestedErrorMsg);
+        console.error(nestedErrorMsg);//eslint-disable-line
       }
       yield put(actions.loadSettleableChallengesError(address, currencyAddress));
     } finally {
@@ -678,14 +695,15 @@ export function* challengeStatusOrcestrator() {
         ...wallets.map((wallet) => fork(loadStagedBalances, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadStagingBalances, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadWalletReceipts, { address: wallet.get('address') }, network)),
-        // ...wallets.map((wallet) => fork(loadOngoingChallenges, { address: wallet.get('address') }, network)),
-        // ...wallets.map((wallet) => fork(loadSettleableChallenges, { address: wallet.get('address') }, network)),
-        // ...wallets.map((wallet) => fork(loadCurrentPaymentChallenge, { address: wallet.get('address') }, network)),
-        // ...wallets.map((wallet) => fork(loadCurrentPaymentChallengePhase, { address: wallet.get('address') }, network)),
-        // ...wallets.map((wallet) => fork(loadCurrentPaymentChallengeStatus, { address: wallet.get('address') }, network)),
-        // ...wallets.map((wallet) => fork(loadReceipts, { address: wallet.get('address') }, network)),
-        // ...wallets.map((wallet) => fork(loadSettlement, { address: wallet.get('address') }, network)),
       ]);
+
+      const currentWalletAddress = (yield select(makeSelectCurrentWallet())).get('address');
+      if (currentWalletAddress) {
+        yield all([
+          fork(loadOngoingChallenges, { address: currentWalletAddress }, network, true),
+          fork(loadSettleableChallenges, { address: currentWalletAddress }, network, true),
+        ]);
+      }
 
       const ONE_MINUTE_IN_MS = 60 * 1000;
       yield race({

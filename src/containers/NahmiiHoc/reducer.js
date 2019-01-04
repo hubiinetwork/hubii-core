@@ -34,6 +34,10 @@ import {
   NAHMII_COMPLETE_TOKEN_DEPOSIT,
   NAHMII_COMPLETE_TOKEN_DEPOSIT_SUCCESS,
   NAHMII_DEPOSIT_FAILED,
+  LOAD_ONGOING_CHALLENGES_SUCCESS,
+  LOAD_ONGOING_CHALLENGES_ERROR,
+  LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
+  LOAD_SETTLEABLE_CHALLENGES_ERROR,
 } from './constants';
 
 export const initialState = fromJS({
@@ -102,6 +106,18 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['balances', action.address, 'staging', 'loading'], false)
         .setIn(['balances', action.address, 'staging', 'error'], null)
         .setIn(['balances', action.address, 'staging', 'assets'], fromJS(action.balances));
+    case LOAD_ONGOING_CHALLENGES_SUCCESS:
+      return state
+        .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], action.challenges);
+    case LOAD_ONGOING_CHALLENGES_ERROR:
+      return state
+        .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], null);
+    case LOAD_SETTLEABLE_CHALLENGES_SUCCESS:
+      return state
+        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], action.challenges);
+    case LOAD_SETTLEABLE_CHALLENGES_ERROR:
+      return state
+        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], null);
     case START_CHALLENGE:
       return state
           .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'requesting');

@@ -98,9 +98,9 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       amountToWithdrawInputRegex,
       gasPriceGweiInput: '10',
       gasPriceGwei: new BigNumber('10'),
-      gasLimit: 600000,
+      gasLimit: 10000000,
       addContactModalVisibility: false,
-      gasLimitInput: '600000',
+      gasLimitInput: '10000000',
     };
     this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
     this.onBlurNumberInput = this.onBlurNumberInput.bind(this);
@@ -153,9 +153,10 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
   }
 
   settle(assetToWithdraw) {
+    const { currentWalletWithInfo } = this.props;
     const { gasLimit, gasPriceGwei } = this.state;
     const currency = assetToWithdraw.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetToWithdraw.currency;
-    this.props.settle(currency, { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() });
+    this.props.settle(currentWalletWithInfo.get('address'), currency, { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() });
   }
 
   startChallenge(stageAmount, assetToWithdraw) {
@@ -167,10 +168,11 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
   }
 
   withdraw(amountToWithdraw, assetToWithdraw) {
+    const { currentWalletWithInfo } = this.props;
     const { assetToWithdrawMaxDecimals, gasLimit, gasPriceGwei } = this.state;
     const currency = assetToWithdraw.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetToWithdraw.currency;
     const amountToWithdrawBN = amountToWithdraw.times(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
-    this.props.withdraw(amountToWithdrawBN, currency, { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() });
+    this.props.withdraw(amountToWithdrawBN, currentWalletWithInfo.get('address'), currency, { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() });
   }
 
   handleAssetChange(newSymbol) {
@@ -445,6 +447,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       baseLayerBalAfterAmt.isNegative() ||
       baseLayerEthBalanceAfterAmount.isNegative() ||
       !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
+    const disableSettleButton = !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
+    const disableConfirmSettleButton = !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
     const TransferingStatus = this.generateTransferingStatus();
 
     return (
@@ -544,7 +548,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                           {TransferingStatus}
                         </div>
                       ) : (
-                        <StyledButton className="confirm-btn" onClick={() => this.settle(assetToWithdraw)}>
+                        <StyledButton className="confirm-btn" onClick={() => this.settle(assetToWithdraw)} disabled={disableConfirmSettleButton}>
                           {formatMessage({ id: 'confirm_settlement' })}
                         </StyledButton>
                       )
@@ -574,7 +578,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                           {TransferingStatus}
                         </div>
                       ) : (
-                        <StyledButton className="challenge-btn" onClick={() => this.startChallenge(requiredSettlementAmount, assetToWithdraw)}>
+                        <StyledButton className="challenge-btn" onClick={() => this.startChallenge(requiredSettlementAmount, assetToWithdraw)} disabled={disableSettleButton}>
                           {formatMessage({ id: 'settle_payment' })}
                         </StyledButton>
                       )

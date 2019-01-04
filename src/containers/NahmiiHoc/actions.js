@@ -213,9 +213,10 @@ export function loadTxRequestForPaymentChallengeSuccess(address, txRequest, curr
   };
 }
 
-export function settle(currency, options) {
+export function settle(address, currency, options) {
   return {
     type: SETTLE,
+    address,
     currency,
     options,
   };
@@ -248,10 +249,11 @@ export function loadTxRequestForSettlingSuccess(address, txRequest, currency, ne
   };
 }
 
-export function withdraw(amount, currency, options) {
+export function withdraw(amount, address, currency, options) {
   return {
     type: WITHDRAW,
     amount,
+    address,
     currency,
     options,
   };

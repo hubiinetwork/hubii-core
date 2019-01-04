@@ -2,7 +2,8 @@ import { providers } from 'ethers';
 import * as configs from '../../config/constants';
 
 const provider = new providers.JsonRpcProvider('http://localhost:8545', 'ropsten');
-provider.getWalletReceipts = () => []
+provider.getWalletReceipts = () => {
+  return [];
   // return [{
   //   nonce: 1,
   //   amount: '5000000000000000000',
@@ -54,7 +55,7 @@ provider.getWalletReceipts = () => []
   //     single: '5000000000000000000',
   //     total: '10000000000000000000',
   //   },
-  //   blockNumber: '303',
+  //   blockNumber: '282',
   //   operatorId: '1',
   //   seals: {
   //     wallet: {
@@ -75,6 +76,7 @@ provider.getWalletReceipts = () => []
   //     },
   //   },
   // }];
+}
 ;
 
 provider.getTransactionConfirmation = (transactionHash) => provider.getTransactionReceipt(transactionHash);
