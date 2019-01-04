@@ -18,20 +18,10 @@ import {
   WITHDRAW_SUCCESS,
   WITHDRAW_ERROR,
   LOAD_WITHDRAW_TX_REQUEST,
-  LOAD_CURRENT_PAYMENT_CHALLENGE,
   LOAD_ONGOING_CHALLENGES_SUCCESS,
   LOAD_ONGOING_CHALLENGES_ERROR,
   LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
   LOAD_SETTLEABLE_CHALLENGES_ERROR,
-  LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE,
-  LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS,
-  LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR,
-  LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS,
-  LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS,
-  LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_ERROR,
-  LOAD_SETTLEMENT,
-  LOAD_SETTLEMENT_SUCCESS,
-  LOAD_SETTLEMENT_ERROR,
   NAHMII_DEPOSIT,
   NAHMII_DEPOSIT_ETH_SUCCESS,
   NAHMII_APPROVE_TOKEN_DEPOSIT_SUCCESS,
@@ -294,13 +284,6 @@ export function loadTxRequestForWithdrawSuccess(address, txRequest, currency, ne
   };
 }
 
-export function loadCurrentPaymentChallenge(address) {
-  return {
-    type: LOAD_CURRENT_PAYMENT_CHALLENGE,
-    address,
-  };
-}
-
 export function loadOngoingChallengesSuccess(address, currencyAddress, challenges) {
   return {
     type: LOAD_ONGOING_CHALLENGES_SUCCESS,
@@ -332,72 +315,6 @@ export function loadSettleableChallengesError(address, currencyAddress) {
     type: LOAD_SETTLEABLE_CHALLENGES_ERROR,
     address,
     currencyAddress,
-  };
-}
-
-export function loadCurrentPaymentChallengePhase(address) {
-  return {
-    type: LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE,
-    address,
-  };
-}
-
-export function loadCurrentPaymentChallengePhaseSuccess(address, phase) {
-  return {
-    type: LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_SUCCESS,
-    address,
-    phase,
-  };
-}
-
-export function loadCurrentPaymentChallengePhaseError(address) {
-  return {
-    type: LOAD_CURRENT_PAYMENT_CHALLENGE_PHASE_ERROR,
-    address,
-  };
-}
-
-export function loadCurrentPaymentChallengeStatus(address) {
-  return {
-    type: LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS,
-    address,
-  };
-}
-
-export function loadCurrentPaymentChallengeStatusSuccess(address, status) {
-  return {
-    type: LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_SUCCESS,
-    address,
-    status,
-  };
-}
-
-export function loadCurrentPaymentChallengeStatusError(address) {
-  return {
-    type: LOAD_CURRENT_PAYMENT_CHALLENGE_STATUS_ERROR,
-    address,
-  };
-}
-
-export function loadSettlement(address) {
-  return {
-    type: LOAD_SETTLEMENT,
-    address,
-  };
-}
-
-export function loadSettlementSuccess(address, settlement) {
-  return {
-    type: LOAD_SETTLEMENT_SUCCESS,
-    address,
-    settlement,
-  };
-}
-
-export function loadSettlementError(address) {
-  return {
-    type: LOAD_SETTLEMENT_ERROR,
-    address,
   };
 }
 

@@ -17,7 +17,7 @@ import {
 import { notify } from 'containers/App/actions';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { makeSelectSupportedAssets } from 'containers/HubiiApiHoc/selectors';
-import { makeSelectWalletCurrency, makeSelectLastPaymentChallengeByAddress } from 'containers/NahmiiHoc/selectors';
+import { makeSelectWalletCurrency } from 'containers/NahmiiHoc/selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
 import { makeSelectLedgerHoc } from 'containers/LedgerHoc/selectors';
 import { LOAD_SUPPORTED_TOKENS_SUCCESS } from 'containers/HubiiApiHoc/constants';
@@ -627,80 +627,6 @@ export function* loadSettleableChallenges({ address }, network, noPoll) {
     }
     if (noPoll) {
       return;
-    }
-  }
-}
-
-export function* loadCurrentPaymentChallenge({ address }, network) {
-  while (true) { // eslint-disable-line no-constant-condition
-    try {
-      const nahmiiProvider = network.provider;
-      const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
-      const currentChallenge = yield call(() => settlementChallenge.getCurrentPaymentChallenge(address));
-      yield put(actions.loadOngoingChallengesSuccess(address, currentChallenge));
-    } catch (err) {
-      yield put(actions.loadOngoingChallengesError(address));
-    } finally {
-      const TWENTY_SEC_IN_MS = 1000 * 20;
-      yield delay(TWENTY_SEC_IN_MS);
-    }
-  }
-}
-
-export function* loadCurrentPaymentChallengePhase({ address }, network) {
-  while (true) { // eslint-disable-line no-constant-condition
-    try {
-      const nahmiiProvider = network.provider;
-      const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
-      const currentPhase = yield call(() => settlementChallenge.getCurrentPaymentChallengePhase(address));
-      yield put(actions.loadCurrentPaymentChallengePhaseSuccess(address, currentPhase));
-    } catch (err) {
-      yield put(actions.loadCurrentPaymentChallengePhaseError(address));
-    } finally {
-      const TWENTY_SEC_IN_MS = 1000 * 20;
-      yield delay(TWENTY_SEC_IN_MS);
-    }
-  }
-}
-
-export function* loadCurrentPaymentChallengeStatus({ address }, network) {
-  while (true) { // eslint-disable-line no-constant-condition
-    try {
-      const nahmiiProvider = network.provider;
-      const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
-      const currentStatus = yield call(() => settlementChallenge.getCurrentPaymentChallengeStatus(address));
-      yield put(actions.loadCurrentPaymentChallengeStatusSuccess(address, currentStatus));
-    } catch (err) {
-      yield put(actions.loadCurrentPaymentChallengeStatusError(address));
-    } finally {
-      const TWENTY_SEC_IN_MS = 1000 * 20;
-      yield delay(TWENTY_SEC_IN_MS);
-    }
-  }
-}
-
-export function* loadSettlement({ address }, network) {
-  const nahmiiProvider = network.provider;
-  const settlementChallenge = new nahmii.SettlementChallenge(nahmiiProvider);
-  let lastNonce;
-  while (true) { // eslint-disable-line no-constant-condition
-    try {
-      const lastSettlementChallenge = (yield select(makeSelectLastPaymentChallengeByAddress(address))).toJS();
-      lastNonce = lastSettlementChallenge.challenge.nonce.toNumber();
-    } catch (error) {
-      const FIVE_SEC_IN_MS = 1000 * 5;
-      yield delay(FIVE_SEC_IN_MS);
-      continue; // eslint-disable-line no-continue
-    }
-
-    try {
-      const settlement = yield call((...args) => settlementChallenge.getSettlementByNonce(...args), lastNonce);
-      yield put(actions.loadSettlementSuccess(address, settlement));
-    } catch (err) {
-      yield put(actions.loadSettlementError(address));
-    } finally {
-      const TWENTY_SEC_IN_MS = 1000 * 20;
-      yield delay(TWENTY_SEC_IN_MS);
     }
   }
 }
