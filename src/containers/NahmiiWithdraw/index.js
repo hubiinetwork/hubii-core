@@ -286,6 +286,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     for (const activity of activities) { //eslint-disable-line
       if (activity.get('status') === 'requesting') ratio = '1/2';
       if (activity.get('status') === 'mining') ratio = '2/2';
+      if (activity.get('status') === 'receipt') ratio = '2/2';
 
       if (ratio && activity === withdrawals) type = 'withdraw';
       if (ratio && activity === ongoingChallenges) type = 'start_challenge';

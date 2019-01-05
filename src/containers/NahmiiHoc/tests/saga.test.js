@@ -284,9 +284,9 @@ describe('nahmiiHocSaga', () => {
             const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
             expect(status).toEqual('failed');
             const tx1 = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'transactions', fakeTxReceipts[0].transactionHash]);
-            const tx2 = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'transactions', fakeTxs[1].hash]);
+            const tx2 = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'transactions', failedTxReceipt.transactionHash]);
             expect(tx1).toEqual(fakeTxReceipts[0]);
-            expect(tx2).toEqual(fakeTxs[1]);
+            expect(tx2).toEqual(failedTxReceipt);
           });
       }
       );
@@ -358,6 +358,8 @@ describe('nahmiiHocSaga', () => {
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
             expect(status).toEqual('failed');
+            const tx1 = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'transactions', failedTx.transactionHash]);
+            expect(tx1).toEqual(failedTx);
           });
       }
       );
@@ -509,9 +511,9 @@ describe('nahmiiHocSaga', () => {
             const status = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'status']);
             expect(status).toEqual('failed');
             const tx1 = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'transactions', fakeTxReceipts[0].transactionHash]);
-            const tx2 = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'transactions', fakeTxs[1].hash]);
+            const tx2 = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'transactions', failedTxReceipt.transactionHash]);
             expect(tx1).toEqual(fakeTxReceipts[0]);
-            expect(tx2).toEqual(fakeTxs[1]);
+            expect(tx2).toEqual(failedTxReceipt);
           });
       }
       );
@@ -548,7 +550,7 @@ describe('nahmiiHocSaga', () => {
 
       it('should correctly update store when failed to mine transaction', () => {
         const settleableChallenges = [{ type: 'payment-driip' }];
-        const failedTx = { status: 0, transactionHash: fakeTxReceipts[0].transactionHash };
+        const failedTxReceipt = { status: 0, transactionHash: fakeTxReceipts[0].transactionHash };
 
         return expectSaga(settle, { currency, options })
           .withReducer(withReducer, storeMock)
@@ -564,7 +566,7 @@ describe('nahmiiHocSaga', () => {
                 return fakeTxs[0];
               }
               if (effect.fn.name === 'getTransactionReceipt') {
-                return failedTx;
+                return failedTxReceipt;
               }
               if (effect.fn === getSdkWalletSigner) {
                 return [
@@ -582,6 +584,8 @@ describe('nahmiiHocSaga', () => {
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'status']);
             expect(status).toEqual('failed');
+            const tx = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'transactions', failedTxReceipt.transactionHash]);
+            expect(tx).toEqual(failedTxReceipt);
           });
       }
       );
@@ -632,6 +636,42 @@ describe('nahmiiHocSaga', () => {
             expect(tx).toEqual(fakeTxReceipts[0]);
           })
       );
+
+      it('should correctly update store after failed to mine the transaction', () => {
+        const failedTxReceipt = { status: 0, transactionHash: fakeTxReceipts[0].transactionHash };
+        return expectSaga(withdraw, { amount, currency, options })
+          .withReducer(withReducer, storeMock)
+          .provide({
+            call(effect, next) {
+              if (effect.fn.name.includes('withdraw')) {
+                return fakeTxs[0];
+              }
+              if (effect.fn.name === 'waitForTransaction') {
+                return fakeTxs[0];
+              }
+              if (effect.fn.name === 'getTransactionReceipt') {
+                return failedTxReceipt;
+              }
+              if (effect.fn === getSdkWalletSigner) {
+                return [
+                  signerMock,
+                  { type: 'ACTION1' },
+                  { type: 'ACTION2' },
+                ];
+              }
+              return next();
+            },
+          })
+          .put(actions.loadTxRequestForWithdrawSuccess(signerMock.address, fakeTxs[0], currency))
+          .put(actions.withdrawError(signerMock.address, currency))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const status = result.storeState.getIn(['nahmiiHoc', 'withdrawals', signerMock.address, currency, 'status']);
+            expect(status).toEqual('failed');
+            const tx = result.storeState.getIn(['nahmiiHoc', 'withdrawals', signerMock.address, currency, 'transactions', failedTxReceipt.transactionHash]);
+            expect(tx).toEqual(failedTxReceipt);
+          });
+      });
 
       it('should correctly update store when wallet.withdraw throws exception', () => {
         const fakeError = new Error('error');

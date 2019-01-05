@@ -17,15 +17,18 @@ import {
   START_CHALLENGE_ERROR,
   START_REQUIRED_CHALLENGES_SUCCESS,
   LOAD_START_CHALLENGE_TX_REQUEST,
+  LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS,
   SETTLE,
   SETTLE_SUCCESS,
   SETTLE_ERROR,
   SETTLE_ALL_CHALLENGES_SUCCESS,
   LOAD_SETTLE_TX_REQUEST,
+  LOAD_SETTLE_TX_RECEIPT_SUCCESS,
   WITHDRAW,
   WITHDRAW_SUCCESS,
   WITHDRAW_ERROR,
   LOAD_WITHDRAW_TX_REQUEST,
+  LOAD_WITHDRAW_TX_RECEIPT_SUCCESS,
   LOAD_NAHMII_RECEIPTS,
   LOAD_NAHMII_RECEIPTS_SUCCESS,
   LOAD_NAHMII_RECEIPTS_ERROR,
@@ -137,6 +140,10 @@ function nahmiiHocReducer(state = initialState, action) {
       return state
         .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'mining')
         .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txRequest.hash], action.txRequest);
+    case LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS:
+      return state
+        .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'receipt')
+        .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
     case SETTLE:
       return state
         .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'requesting');
@@ -153,6 +160,10 @@ function nahmiiHocReducer(state = initialState, action) {
       return state
         .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'mining')
         .setIn(['settleableChallenges', action.address, action.currency, 'transactions', action.txRequest.hash], action.txRequest);
+    case LOAD_SETTLE_TX_RECEIPT_SUCCESS:
+      return state
+        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'receipt')
+        .setIn(['settleableChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
     case WITHDRAW:
       return state
         .setIn(['withdrawals', action.address, action.currency, 'status'], 'requesting');
@@ -166,8 +177,11 @@ function nahmiiHocReducer(state = initialState, action) {
     case LOAD_WITHDRAW_TX_REQUEST:
       return state
         .setIn(['withdrawals', action.address, action.currency, 'status'], 'mining')
-        .setIn(['withdrawals', action.address, action.currency, 'transactions', action.txRequest.transactionHash], action.txRequest);
-
+        .setIn(['withdrawals', action.address, action.currency, 'transactions', action.txRequest.hash], action.txRequest);
+    case LOAD_WITHDRAW_TX_RECEIPT_SUCCESS:
+      return state
+        .setIn(['withdrawals', action.address, action.currency, 'status'], 'receipt')
+        .setIn(['withdrawals', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
     case LOAD_NAHMII_RECEIPTS:
       return state
         .setIn(['receipts', action.address, 'available', 'loading'], true)

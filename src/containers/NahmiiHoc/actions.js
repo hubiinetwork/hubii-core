@@ -11,14 +11,17 @@ import {
   START_CHALLENGE_ERROR,
   START_REQUIRED_CHALLENGES_SUCCESS,
   LOAD_START_CHALLENGE_TX_REQUEST,
+  LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS,
   SETTLE,
   SETTLE_SUCCESS,
   SETTLE_ERROR,
   LOAD_SETTLE_TX_REQUEST,
+  LOAD_SETTLE_TX_RECEIPT_SUCCESS,
   WITHDRAW,
   WITHDRAW_SUCCESS,
   WITHDRAW_ERROR,
   LOAD_WITHDRAW_TX_REQUEST,
+  LOAD_WITHDRAW_TX_RECEIPT_SUCCESS,
   LOAD_ONGOING_CHALLENGES_SUCCESS,
   LOAD_ONGOING_CHALLENGES_ERROR,
   LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
@@ -223,6 +226,15 @@ export function loadTxRequestForPaymentChallengeSuccess(address, txRequest, curr
   };
 }
 
+export function loadTxReceiptForPaymentChallengeSuccess(address, txReceipt, currency) {
+  return {
+    type: LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS,
+    address,
+    txReceipt,
+    currency,
+  };
+}
+
 export function settle(address, currency, options) {
   return {
     type: SETTLE,
@@ -267,6 +279,15 @@ export function loadTxRequestForSettlingSuccess(address, txRequest, currency, ne
   };
 }
 
+export function loadTxReceiptForSettlingSuccess(address, txReceipt, currency) {
+  return {
+    type: LOAD_SETTLE_TX_RECEIPT_SUCCESS,
+    address,
+    txReceipt,
+    currency,
+  };
+}
+
 export function withdraw(amount, address, currency, options) {
   return {
     type: WITHDRAW,
@@ -301,6 +322,15 @@ export function loadTxRequestForWithdrawSuccess(address, txRequest, currency, ne
     txRequest,
     currency,
     networkName,
+  };
+}
+
+export function loadTxReceiptForWithdrawSuccess(address, txReceipt, currency) {
+  return {
+    type: LOAD_WITHDRAW_TX_RECEIPT_SUCCESS,
+    address,
+    txReceipt,
+    currency,
   };
 }
 

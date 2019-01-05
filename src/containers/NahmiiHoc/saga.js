@@ -567,24 +567,28 @@ export function* processTx(type, provider, tx, address, currency) {
   if (type === 'start-challenge') {
     actionTargets.success = actions.startChallengeSuccess;
     actionTargets.loadTxRequestSuccess = actions.loadTxRequestForPaymentChallengeSuccess;
+    actionTargets.loadTxReceiptSuccess = actions.loadTxReceiptForPaymentChallengeSuccess;
     yield put(notify('info', getIntl().formatMessage({ id: 'starting_payment_challenge' })));
   }
 
   if (type === 'settle-payment') {
     actionTargets.success = actions.settleSuccess;
     actionTargets.loadTxRequestSuccess = actions.loadTxRequestForSettlingSuccess;
+    actionTargets.loadTxReceiptSuccess = actions.loadTxReceiptForSettlingSuccess;
     yield put(notify('info', getIntl().formatMessage({ id: 'settling_payment' })));
   }
 
   if (type === 'withdraw') {
     actionTargets.success = actions.withdrawSuccess;
     actionTargets.loadTxRequestSuccess = actions.loadTxRequestForWithdrawSuccess;
+    actionTargets.loadTxReceiptSuccess = actions.loadTxReceiptForWithdrawSuccess;
     yield put(notify('info', getIntl().formatMessage({ id: 'withdrawing' })));
   }
 
   yield put(actionTargets.loadTxRequestSuccess(address, tx, currency, provider.name));
   const txRes = yield call(waitForTransaction, provider, tx.hash);
   const txReceipt = yield call(getTransactionReceipt, provider, txRes.transactionHash);
+  yield put(actionTargets.loadTxReceiptSuccess(address, txReceipt, currency));
   if (txReceipt.status === 1) {
     yield put(notify('success', getIntl().formatMessage({ id: 'tx_mined_success' })));
     yield put(actionTargets.success(address, txReceipt, currency));

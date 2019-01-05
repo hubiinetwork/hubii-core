@@ -133,6 +133,7 @@ describe('<NahmiiWithdraw />', () => {
       [
         { status: 'requesting', text: /waiting_for_start_challenge_to_be/i },
         { status: 'mining', text: /waiting_for_start_challenge_to_be/i },
+        { status: 'receipt', text: /waiting_for_start_challenge_to_be/i },
       ].forEach((t) => {
         it(`should hide the settle button and show the transaction status when status is ${t.status}`, () => {
           const wrapper = shallow(
@@ -185,6 +186,7 @@ describe('<NahmiiWithdraw />', () => {
       [
         { status: 'requesting', text: /waiting_for_confirm_settle_to_be/i },
         { status: 'mining', text: /waiting_for_confirm_settle_to_be/i },
+        { status: 'receipt', text: /waiting_for_confirm_settle_to_be/i },
       ].forEach((t) => {
         it(`should hide the confirm button and show the transaction status when status is ${t.status}`, () => {
           const wrapper = shallow(
@@ -251,6 +253,7 @@ describe('<NahmiiWithdraw />', () => {
       [
         { status: 'requesting', text: /waiting_for_withdraw_to_be/i },
         { status: 'mining', text: /waiting_for_withdraw_to_be/i },
+        { status: 'receipt', text: /waiting_for_withdraw_to_be/i },
       ].forEach((t) => {
         it(`should hide the withdraw button and show the transaction status when status is ${t.status}`, () => {
           const wrapper = shallow(
