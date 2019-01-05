@@ -601,10 +601,10 @@ export function* processTx(type, provider, tx, address, currency) {
 
 export function* loadOngoingChallenges({ address }, network, noPoll) {
   while (true) { // eslint-disable-line no-constant-condition
-    const provider = network.provider;
+    const {nahmiiProvider} = network;
     const currencyAddress = yield select(makeSelectWalletCurrency());
     try {
-      const settlement = new nahmii.Settlement(provider);
+      const settlement = new nahmii.Settlement(nahmiiProvider);
       const ongoingChallenges = yield call(() => settlement.getOngoingChallenges(address, currencyAddress, 0));
 
       yield put(actions.loadOngoingChallengesSuccess(address, currencyAddress, ongoingChallenges));
@@ -622,10 +622,10 @@ export function* loadOngoingChallenges({ address }, network, noPoll) {
 
 export function* loadSettleableChallenges({ address }, network, noPoll) {
   while (true) { // eslint-disable-line no-constant-condition
-    const provider = network.provider;
+    const {nahmiiProvider} = network;
     const currencyAddress = yield select(makeSelectWalletCurrency());
     try {
-      const settlement = new nahmii.Settlement(provider);
+      const settlement = new nahmii.Settlement(nahmiiProvider);
       const { settleableChallenges } = yield call(() => settlement.getSettleableChallenges(address, currencyAddress, 0));
       yield put(actions.loadSettleableChallengesSuccess(address, currencyAddress, settleableChallenges));
     } catch (err) {
