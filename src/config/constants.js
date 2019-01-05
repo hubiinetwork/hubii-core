@@ -35,13 +35,18 @@ const trimmableWalletApiEndpoint = (endpoint) => (trimmed) => {
 const ROPSTEN_URL = 'https://api2.dev.hubii.net/';
 const HOMESTEAD_URL = 'https://api.nahmii.io/';
 
+const ROPSTEN_NODE = 'http://geth-ropsten.dev.hubii.net';
+const HOMESTEAD_NODE = 'http://ethereum.hubii.com:8545';
+
 export const SUPPORTED_NETWORKS = {
   homestead: {
     provider: getDefaultProvider('homestead'),
     nahmiiProvider: new nahmii.NahmiiProvider(
       trimmableWalletApiEndpoint(HOMESTEAD_URL)(true),
       HOMESTEAD_IDENTITY_SERVICE_APPID,
-      HOMESTEAD_IDENTITY_SERVICE_SECRET
+      HOMESTEAD_IDENTITY_SERVICE_SECRET,
+      HOMESTEAD_NODE,
+      1
     ),
     walletApiEndpoint: trimmableWalletApiEndpoint(HOMESTEAD_URL),
     identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : HOMESTEAD_IDENTITY_SERVICE_SECRET,
@@ -53,7 +58,7 @@ export const SUPPORTED_NETWORKS = {
       trimmableWalletApiEndpoint(ROPSTEN_URL)(true),
       ROPSTEN_IDENTITY_SERVICE_APPID,
       ROPSTEN_IDENTITY_SERVICE_SECRET,
-      'http://geth-ropsten.dev.hubii.net',
+      ROPSTEN_NODE,
       3
     ),
     walletApiEndpoint: trimmableWalletApiEndpoint(ROPSTEN_URL),
