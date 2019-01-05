@@ -365,14 +365,14 @@ describe('nahmiiHocSaga', () => {
       );
     });
     describe('#settle', () => {
-      it('should dispatch correct actions when wallet is encrypted', () => expectSaga(settle, { currency, options })
+      it('should dispatch correct actions when wallet is encrypted', () => expectSaga(settle, { address: signerMock.address, currency, options })
           .withState(storeMock)
           .provide({
             select() {
               return fromJS({ address: signerMock.address, encrypted: {}, decrypted: null });
             },
           })
-          .put(showDecryptWalletModal(actions.settle(currency, options)))
+          .put(showDecryptWalletModal(actions.settle(signerMock.address, currency, options)))
           .put(actions.settleError(signerMock.address, currency))
           .not.put(actions.settleAllChallengesSuccess(signerMock.address, currency))
           .run({ silenceTimeout: true }));
