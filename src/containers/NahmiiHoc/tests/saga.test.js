@@ -147,6 +147,7 @@ describe('nahmiiHocSaga', () => {
           })
           .put(showDecryptWalletModal(actions.startChallenge(signerMock.address, currency, stageAmount, options)))
           .put(actions.startChallengeError(signerMock.address, currency))
+          .not.put(actions.startRequiredChallengesSuccess(signerMock.address, currency))
           .run({ silenceTimeout: true }));
 
       it('should correctly update store after successfully started a new challenge', () => {
@@ -179,6 +180,7 @@ describe('nahmiiHocSaga', () => {
           })
           .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[0], currency))
           .put(actions.startChallengeSuccess(signerMock.address, fakeTxReceipts[0], currency))
+          .put(actions.startRequiredChallengesSuccess(signerMock.address, currency))
           .run({ silenceTimeout: true })
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
@@ -224,6 +226,7 @@ describe('nahmiiHocSaga', () => {
           .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[1], currency))
           .put(actions.startChallengeSuccess(signerMock.address, fakeTxReceipts[0], currency))
           .put(actions.startChallengeSuccess(signerMock.address, fakeTxReceipts[1], currency))
+          .put(actions.startRequiredChallengesSuccess(signerMock.address, currency))
           .run({ silenceTimeout: true })
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
@@ -232,6 +235,58 @@ describe('nahmiiHocSaga', () => {
             const tx2 = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'transactions', fakeTxReceipts[1].transactionHash]);
             expect(tx1).toEqual(fakeTxReceipts[0]);
             expect(tx2).toEqual(fakeTxReceipts[1]);
+          });
+      }
+      );
+
+      it('should correctly update store after failed to start one of the required challenges', () => {
+        const requiredChallenges = [{ type: 'payment-driip' }, { type: 'null' }];
+        const failedTxReceipt = { transactionHash: 'hash2', status: 0 };
+        let startedChallenges = 0;
+        return expectSaga(startChallenge, { address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
+          .withReducer(withReducer, storeMock)
+          .provide({
+            call(effect, next) {
+              if (effect.fn.name.includes('getRequiredChallengesForIntendedStageAmount')) {
+                return { requiredChallenges };
+              }
+              if (effect.fn.name.includes('startByRequiredChallenge')) {
+                return fakeTxs[startedChallenges];
+              }
+              if (effect.fn.name === 'waitForTransaction') {
+                return fakeTxs[startedChallenges];
+              }
+              if (effect.fn.name === 'getTransactionReceipt') {
+                const receipt = fakeTxReceipts[startedChallenges];
+                if (startedChallenges === 1) {
+                  return failedTxReceipt;
+                }
+                startedChallenges += 1;
+                return receipt;
+              }
+              if (effect.fn === getSdkWalletSigner) {
+                return [
+                  signerMock,
+                  { type: 'ACTION1' },
+                  { type: 'ACTION2' },
+                ];
+              }
+              return next();
+            },
+          })
+          .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[0], currency))
+          .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[1], currency))
+          .put(actions.startChallengeSuccess(signerMock.address, fakeTxReceipts[0], currency))
+          .put(actions.startChallengeError(signerMock.address, currency))
+          .not.put(actions.startRequiredChallengesSuccess(signerMock.address, currency))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
+            expect(status).toEqual('failed');
+            const tx1 = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'transactions', fakeTxReceipts[0].transactionHash]);
+            const tx2 = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'transactions', fakeTxs[1].hash]);
+            expect(tx1).toEqual(fakeTxReceipts[0]);
+            expect(tx2).toEqual(fakeTxs[1]);
           });
       }
       );
@@ -256,6 +311,8 @@ describe('nahmiiHocSaga', () => {
               return next();
             },
           })
+          .put(actions.startChallengeError(signerMock.address, currency))
+          .not.put(actions.startRequiredChallengesSuccess(signerMock.address, currency))
           .run({ silenceTimeout: true })
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
@@ -295,6 +352,8 @@ describe('nahmiiHocSaga', () => {
             },
           })
           .put(actions.loadTxRequestForPaymentChallengeSuccess(signerMock.address, fakeTxs[0], currency))
+          .put(actions.startChallengeError(signerMock.address, currency))
+          .not.put(actions.startRequiredChallengesSuccess(signerMock.address, currency))
           .run({ silenceTimeout: true })
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'status']);
@@ -313,6 +372,7 @@ describe('nahmiiHocSaga', () => {
           })
           .put(showDecryptWalletModal(actions.settle(currency, options)))
           .put(actions.settleError(signerMock.address, currency))
+          .not.put(actions.settleAllChallengesSuccess(signerMock.address, currency))
           .run({ silenceTimeout: true }));
 
       it('should correctly update store after successfully settle a challenge', () => {
@@ -345,6 +405,7 @@ describe('nahmiiHocSaga', () => {
           })
           .put(actions.loadTxRequestForSettlingSuccess(signerMock.address, fakeTxs[0], currency))
           .put(actions.settleSuccess(signerMock.address, fakeTxReceipts[0], currency))
+          .put(actions.settleAllChallengesSuccess(signerMock.address, currency))
           .run({ silenceTimeout: true })
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'status']);
@@ -390,6 +451,7 @@ describe('nahmiiHocSaga', () => {
           .put(actions.loadTxRequestForSettlingSuccess(signerMock.address, fakeTxs[1], currency))
           .put(actions.settleSuccess(signerMock.address, fakeTxReceipts[0], currency))
           .put(actions.settleSuccess(signerMock.address, fakeTxReceipts[1], currency))
+          .put(actions.settleAllChallengesSuccess(signerMock.address, currency))
           .run({ silenceTimeout: true })
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'status']);
@@ -398,6 +460,58 @@ describe('nahmiiHocSaga', () => {
             const tx2 = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'transactions', fakeTxReceipts[1].transactionHash]);
             expect(tx1).toEqual(fakeTxReceipts[0]);
             expect(tx2).toEqual(fakeTxReceipts[1]);
+          });
+      }
+      );
+
+      it('should correctly update store after failed to settle one of the required challenges', () => {
+        const settleableChallenges = [{ type: 'payment-driip' }, { type: 'null' }];
+        const failedTxReceipt = { transactionHash: 'hash2', status: 0 };
+        let settledChallenges = 0;
+        return expectSaga(settle, { currency, options })
+          .withReducer(withReducer, storeMock)
+          .provide({
+            call(effect, next) {
+              if (effect.fn.name.includes('getSettleableChallenges')) {
+                return { settleableChallenges };
+              }
+              if (effect.fn.name.includes('settleBySettleableChallenge')) {
+                return fakeTxs[settledChallenges];
+              }
+              if (effect.fn.name === 'waitForTransaction') {
+                return fakeTxs[settledChallenges];
+              }
+              if (effect.fn.name === 'getTransactionReceipt') {
+                if (settledChallenges === 1) {
+                  return failedTxReceipt;
+                }
+                const receipt = fakeTxReceipts[settledChallenges];
+                settledChallenges += 1;
+                return receipt;
+              }
+              if (effect.fn === getSdkWalletSigner) {
+                return [
+                  signerMock,
+                  { type: 'ACTION1' },
+                  { type: 'ACTION2' },
+                ];
+              }
+              return next();
+            },
+          })
+          .put(actions.loadTxRequestForSettlingSuccess(signerMock.address, fakeTxs[0], currency))
+          .put(actions.loadTxRequestForSettlingSuccess(signerMock.address, fakeTxs[1], currency))
+          .put(actions.settleSuccess(signerMock.address, fakeTxReceipts[0], currency))
+          .put(actions.settleError(signerMock.address, currency))
+          .not.put(actions.settleAllChallengesSuccess(signerMock.address, currency))
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const status = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'status']);
+            expect(status).toEqual('failed');
+            const tx1 = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'transactions', fakeTxReceipts[0].transactionHash]);
+            const tx2 = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'transactions', fakeTxs[1].hash]);
+            expect(tx1).toEqual(fakeTxReceipts[0]);
+            expect(tx2).toEqual(fakeTxs[1]);
           });
       }
       );
@@ -423,6 +537,7 @@ describe('nahmiiHocSaga', () => {
             },
           })
           .put(actions.settleError(signerMock.address, currency))
+          .not.put(actions.settleAllChallengesSuccess(signerMock.address, currency))
           .run({ silenceTimeout: true })
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'status']);
@@ -462,6 +577,7 @@ describe('nahmiiHocSaga', () => {
             },
           })
           .put(actions.settleError(signerMock.address, currency))
+          .not.put(actions.settleAllChallengesSuccess(signerMock.address, currency))
           .run({ silenceTimeout: true })
           .then((result) => {
             const status = result.storeState.getIn(['nahmiiHoc', 'settleableChallenges', signerMock.address, currency, 'status']);

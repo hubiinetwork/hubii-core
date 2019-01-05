@@ -9,6 +9,7 @@ import {
   START_CHALLENGE,
   START_CHALLENGE_SUCCESS,
   START_CHALLENGE_ERROR,
+  START_REQUIRED_CHALLENGES_SUCCESS,
   LOAD_START_CHALLENGE_TX_REQUEST,
   SETTLE,
   SETTLE_SUCCESS,
@@ -36,6 +37,7 @@ import {
   LOAD_NAHMII_RECEIPTS,
   LOAD_NAHMII_RECEIPTS_SUCCESS,
   LOAD_NAHMII_RECEIPTS_ERROR,
+  SETTLE_ALL_CHALLENGES_SUCCESS,
 } from './constants';
 
 export function setSelectedWalletCurrency(currencyAddress) {
@@ -203,6 +205,14 @@ export function startChallengeError(address, currency) {
   };
 }
 
+export function startRequiredChallengesSuccess(address, currency) {
+  return {
+    type: START_REQUIRED_CHALLENGES_SUCCESS,
+    address,
+    currency,
+  };
+}
+
 export function loadTxRequestForPaymentChallengeSuccess(address, txRequest, currency, networkName) {
   return {
     type: LOAD_START_CHALLENGE_TX_REQUEST,
@@ -234,6 +244,14 @@ export function settleSuccess(address, txReceipt, currency) {
 export function settleError(address, currency) {
   return {
     type: SETTLE_ERROR,
+    address,
+    currency,
+  };
+}
+
+export function settleAllChallengesSuccess(address, currency) {
+  return {
+    type: SETTLE_ALL_CHALLENGES_SUCCESS,
     address,
     currency,
   };

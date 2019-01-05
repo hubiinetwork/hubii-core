@@ -15,10 +15,12 @@ import {
   START_CHALLENGE,
   START_CHALLENGE_SUCCESS,
   START_CHALLENGE_ERROR,
+  START_REQUIRED_CHALLENGES_SUCCESS,
   LOAD_START_CHALLENGE_TX_REQUEST,
   SETTLE,
   SETTLE_SUCCESS,
   SETTLE_ERROR,
+  SETTLE_ALL_CHALLENGES_SUCCESS,
   LOAD_SETTLE_TX_REQUEST,
   WITHDRAW,
   WITHDRAW_SUCCESS,
@@ -121,6 +123,9 @@ function nahmiiHocReducer(state = initialState, action) {
     case START_CHALLENGE:
       return state
           .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'requesting');
+    case START_REQUIRED_CHALLENGES_SUCCESS:
+      return state
+          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'success');
     case START_CHALLENGE_SUCCESS:
       return state
           .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'success')
@@ -135,9 +140,11 @@ function nahmiiHocReducer(state = initialState, action) {
     case SETTLE:
       return state
         .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'requesting');
+    case SETTLE_ALL_CHALLENGES_SUCCESS:
+      return state
+        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'success');
     case SETTLE_SUCCESS:
       return state
-        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'success')
         .setIn(['settleableChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
     case SETTLE_ERROR:
       return state

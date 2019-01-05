@@ -468,6 +468,8 @@ export function* startChallenge({ stageAmount, currency, options }) {
       const tx = yield call(settlement.startByRequiredChallenge.bind(settlement), requiredChallenge, nahmiiWallet, { gasLimit, gasPrice });
       yield processTx('start-challenge', nahmiiProvider, tx, nahmiiWallet.address, currency);
     }
+
+    yield put(actions.startRequiredChallengesSuccess(nahmiiWallet.address, currency));
   } catch (e) {
     let errorMessage = logErrorMsg(e);
     if (errorMessage.match(/gas.*required.*exceeds/i) || errorMessage.match(/out.*of.*gas/i)) {
@@ -507,6 +509,8 @@ export function* settle({ currency, options }) {
       const tx = yield call(settlement.settleBySettleableChallenge.bind(settlement), settleableChallenge, nahmiiWallet, { gasLimit, gasPrice });
       yield processTx('settle-payment', nahmiiProvider, tx, walletDetails.address, currency);
     }
+
+    yield put(actions.settleAllChallengesSuccess(nahmiiWallet.address, currency));
   } catch (e) {
     let errorMessage = logErrorMsg(e);
     if (errorMessage.match(/gas.*required.*exceeds/i) || errorMessage.match(/out.*of.*gas/i)) {
@@ -562,21 +566,18 @@ export function* processTx(type, provider, tx, address, currency) {
 
   if (type === 'start-challenge') {
     actionTargets.success = actions.startChallengeSuccess;
-    actionTargets.error = actions.startChallengeError;
     actionTargets.loadTxRequestSuccess = actions.loadTxRequestForPaymentChallengeSuccess;
     yield put(notify('info', getIntl().formatMessage({ id: 'starting_payment_challenge' })));
   }
 
   if (type === 'settle-payment') {
     actionTargets.success = actions.settleSuccess;
-    actionTargets.error = actions.settleError;
     actionTargets.loadTxRequestSuccess = actions.loadTxRequestForSettlingSuccess;
     yield put(notify('info', getIntl().formatMessage({ id: 'settling_payment' })));
   }
 
   if (type === 'withdraw') {
     actionTargets.success = actions.withdrawSuccess;
-    actionTargets.error = actions.withdrawError;
     actionTargets.loadTxRequestSuccess = actions.loadTxRequestForWithdrawSuccess;
     yield put(notify('info', getIntl().formatMessage({ id: 'withdrawing' })));
   }
@@ -588,8 +589,9 @@ export function* processTx(type, provider, tx, address, currency) {
     yield put(notify('success', getIntl().formatMessage({ id: 'tx_mined_success' })));
     yield put(actionTargets.success(address, txReceipt, currency));
   } else {
-    yield put(notify('error', getIntl().formatMessage({ id: 'tx_mined_error' })));
-    yield put(actionTargets.error(address, currency));
+    const errorMsg = getIntl().formatMessage({ id: 'tx_mined_error' });
+    yield put(notify('error', errorMsg));
+    throw new Error(errorMsg);
   }
 }
 
