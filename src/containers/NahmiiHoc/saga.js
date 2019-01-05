@@ -483,7 +483,7 @@ export function* startChallenge({ stageAmount, currency, options }) {
   }
 }
 
-export function* settle({ currency, options }) {
+export function* settle({ address, currency, options }) {
   let confOnDeviceDone;
   let confOnDevice;
   let signer;
@@ -491,7 +491,7 @@ export function* settle({ currency, options }) {
   const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
   try {
     if (walletDetails.encrypted && !walletDetails.decrypted) {
-      yield put(showDecryptWalletModal(actions.settle(currency, options)));
+      yield put(showDecryptWalletModal(actions.settle(address, currency, options)));
       yield put(actions.settleError(walletDetails.address, currency));
       return;
     }
@@ -601,7 +601,7 @@ export function* processTx(type, provider, tx, address, currency) {
 
 export function* loadOngoingChallenges({ address }, network, noPoll) {
   while (true) { // eslint-disable-line no-constant-condition
-    const {nahmiiProvider} = network;
+    const { nahmiiProvider } = network;
     const currencyAddress = yield select(makeSelectWalletCurrency());
     try {
       const settlement = new nahmii.Settlement(nahmiiProvider);
@@ -622,7 +622,7 @@ export function* loadOngoingChallenges({ address }, network, noPoll) {
 
 export function* loadSettleableChallenges({ address }, network, noPoll) {
   while (true) { // eslint-disable-line no-constant-condition
-    const {nahmiiProvider} = network;
+    const { nahmiiProvider } = network;
     const currencyAddress = yield select(makeSelectWalletCurrency());
     try {
       const settlement = new nahmii.Settlement(nahmiiProvider);

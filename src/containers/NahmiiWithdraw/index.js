@@ -159,7 +159,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     const { currentWalletWithInfo } = this.props;
     const { gasLimit, gasPriceGwei } = this.state;
     const currency = assetToWithdraw.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetToWithdraw.currency;
-    this.props.settle(currentWalletWithInfo.get('address'), currency, { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() });
+    const options = { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() };
+    this.props.settle(currentWalletWithInfo.get('address'), currency, options);
   }
 
   startChallenge(stageAmount, assetToWithdraw) {
@@ -167,7 +168,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     const { assetToWithdrawMaxDecimals, gasLimit, gasPriceGwei } = this.state;
     const currency = assetToWithdraw.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetToWithdraw.currency;
     const stageAmountBN = stageAmount.times(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
-    this.props.startChallenge(currentWalletWithInfo.get('address'), currency, stageAmountBN, { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() });
+    const options = { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() };
+    this.props.startChallenge(currentWalletWithInfo.get('address'), currency, stageAmountBN, options);
   }
 
   withdraw(amountToWithdraw, assetToWithdraw) {
@@ -175,7 +177,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     const { assetToWithdrawMaxDecimals, gasLimit, gasPriceGwei } = this.state;
     const currency = assetToWithdraw.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetToWithdraw.currency;
     const amountToWithdrawBN = amountToWithdraw.times(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
-    this.props.withdraw(amountToWithdrawBN, currentWalletWithInfo.get('address'), currency, { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() });
+    const options = { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() };
+    this.props.withdraw(amountToWithdrawBN, currentWalletWithInfo.get('address'), currency, options);
   }
 
   handleAssetChange(newSymbol) {
