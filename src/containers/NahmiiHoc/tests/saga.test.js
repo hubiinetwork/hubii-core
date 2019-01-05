@@ -592,14 +592,14 @@ describe('nahmiiHocSaga', () => {
     });
     describe('#withdraw', () => {
       const amount = stageAmount;
-      it('should dispatch correct actions when wallet is encrypted', () => expectSaga(withdraw, { amount, currency, options })
+      it('should dispatch correct actions when wallet is encrypted', () => expectSaga(withdraw, { amount, address: signerMock.address, currency, options })
           .withState(storeMock)
           .provide({
             select() {
               return fromJS({ address: signerMock.address, encrypted: {}, decrypted: null });
             },
           })
-          .put(showDecryptWalletModal(actions.withdraw(amount, currency, options)))
+          .put(showDecryptWalletModal(actions.withdraw(amount, signerMock.address, currency, options)))
           .put(actions.withdrawError(signerMock.address, currency))
           .run({ silenceTimeout: true }));
 
