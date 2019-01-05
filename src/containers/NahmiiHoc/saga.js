@@ -523,7 +523,7 @@ export function* settle({ address, currency, options }) {
   }
 }
 
-export function* withdraw({ amount, currency, options }) {
+export function* withdraw({ amount, address, currency, options }) {
   let confOnDeviceDone;
   let confOnDevice;
   let signer;
@@ -531,7 +531,7 @@ export function* withdraw({ amount, currency, options }) {
   const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
   try {
     if (walletDetails.encrypted && !walletDetails.decrypted) {
-      yield put(showDecryptWalletModal(actions.withdraw(amount, currency, options)));
+      yield put(showDecryptWalletModal(actions.withdraw(amount, address, currency, options)));
       yield put(actions.withdrawError(walletDetails.address, currency));
       return;
     }
