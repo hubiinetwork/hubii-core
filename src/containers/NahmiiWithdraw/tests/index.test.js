@@ -10,20 +10,13 @@ import {
 } from 'containers/WalletHoc/tests/mocks/selectors';
 import {
   ledgerHocDisconnectedMock,
-  ledgerHocConnectedMock,
 } from 'containers/LedgerHoc/tests/mocks/selectors';
 
 import {
-  trezorHocConnectedMock,
   trezorHocDisconnectedMock,
 } from 'containers/TrezorHoc/tests/mocks/selectors';
 
 import {
-  depositStatusNone,
-  depositStatusEth,
-  depositStatusApproving,
-  depositStatusCompleting,
-  depositStatusError,
   ongoingChallengesNone,
   settleableChallengesNone,
   withdrawalsNone,
@@ -31,11 +24,7 @@ import {
 
 import {
   pricesLoadedMock,
-  pricesLoadingMock,
-  pricesErrorMock,
   supportedAssetsLoadedMock,
-  supportedAssetsLoadingMock,
-  supportedAssetsErrorMock,
 } from 'containers/HubiiApiHoc/tests/mocks/selectors';
 
 import { NahmiiWithdraw } from '../index';
@@ -52,7 +41,6 @@ describe('<NahmiiWithdraw />', () => {
       withdrawals: withdrawalsNone,
       intl,
       currentNetwork: currentNetworkMock,
-      depositStatus: depositStatusNone,
       ledgerNanoSInfo: ledgerHocDisconnectedMock,
       trezorInfo: trezorHocDisconnectedMock,
       nahmiiWithdraw: () => {},
@@ -307,106 +295,5 @@ describe('<NahmiiWithdraw />', () => {
         expect(wrapper.find('.withdraw-input').props().value).toEqual('0');
       });
     });
-  });
-
-
-  it('should render correctly when ledger connected', () => {
-    const wrapper = shallow(
-      <NahmiiWithdraw
-        {...props}
-        ledgerNanoSInfo={ledgerHocConnectedMock}
-      />
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render correctly when trezor connected', () => {
-    const wrapper = shallow(
-      <NahmiiWithdraw
-        {...props}
-        trezorInfo={trezorHocConnectedMock}
-      />
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render correctly when prices are loading', () => {
-    const wrapper = shallow(
-      <NahmiiWithdraw
-        {...props}
-        prices={pricesLoadingMock}
-      />
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render correctly when prices are errored', () => {
-    const wrapper = shallow(
-      <NahmiiWithdraw
-        {...props}
-        prices={pricesErrorMock}
-      />
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render correctly when depositing eth', () => {
-    const wrapper = shallow(
-      <NahmiiWithdraw
-        {...props}
-        depositStatus={depositStatusEth}
-      />
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render correctly when approving a token deposit', () => {
-    const wrapper = shallow(
-      <NahmiiWithdraw
-        {...props}
-        depositStatus={depositStatusApproving}
-      />
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render correctly when completing a token deposit', () => {
-    const wrapper = shallow(
-      <NahmiiWithdraw
-        {...props}
-        depositStatus={depositStatusCompleting}
-      />
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render correctly when depositstatus is errored', () => {
-    const wrapper = shallow(
-      <NahmiiWithdraw
-        {...props}
-        depositStatus={depositStatusError}
-      />
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render correctly when supportedAssets are loading', () => {
-    const wrapper = shallow(
-      <NahmiiWithdraw
-        {...props}
-        supportedAssets={supportedAssetsLoadingMock}
-      />
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render correctly when supportedAssets are errored', () => {
-    const wrapper = shallow(
-      <NahmiiWithdraw
-        {...props}
-        supportedAssets={supportedAssetsErrorMock}
-      />
-    );
-    expect(wrapper).toMatchSnapshot();
   });
 });
