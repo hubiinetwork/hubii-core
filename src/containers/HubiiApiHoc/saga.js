@@ -220,11 +220,7 @@ export function* requestToken() {
     let nahmiiProvider;
     try {
       const network = yield select(makeSelectCurrentNetwork());
-      nahmiiProvider = new nahmii.NahmiiProvider(
-        network.walletApiEndpoint(true),
-        network.identityServiceAppId,
-        network.identityServiceSecret
-      );
+      nahmiiProvider = network.nahmiiProvider;
       const token = yield call([nahmiiProvider, 'getApiAccessToken']);
       yield put(loadIdentityServiceTokenSuccess(token));
       return;
