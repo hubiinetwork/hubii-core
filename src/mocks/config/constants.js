@@ -1,8 +1,16 @@
 import { providers } from 'ethers';
+import nahmii from 'nahmii-sdk';
 import * as configs from '../../config/constants';
 
 const provider = new providers.JsonRpcProvider('http://localhost:8545', 'ropsten');
-provider.getWalletReceipts = () => [{
+const nahmiiProvider = new nahmii.NahmiiProvider(
+  'api2.dev.hubii.net',
+  configs.ROPSTEN_IDENTITY_SERVICE_APPID,
+  configs.ROPSTEN_IDENTITY_SERVICE_SECRET,
+  'http://localhost:8545',
+  3
+);
+nahmiiProvider.getWalletReceipts = () => [{
   nonce: 1,
   amount: '5000000000000000000',
   currency: {
@@ -53,7 +61,7 @@ provider.getWalletReceipts = () => [{
     single: '5000000000000000000',
     total: '10000000000000000000',
   },
-  blockNumber: '282',
+  blockNumber: '283',
   operatorId: '1',
   seals: {
     wallet: {
@@ -73,13 +81,11 @@ provider.getWalletReceipts = () => [{
       },
     },
   },
-}]
-
-;
+}];
 
 provider.getTransactionConfirmation = (transactionHash) => provider.getTransactionReceipt(transactionHash);
 
 configs.SUPPORTED_NETWORKS.ropsten.provider = provider;
-configs.SUPPORTED_NETWORKS.ropsten.nahmiiProvider = provider;
+configs.SUPPORTED_NETWORKS.ropsten.nahmiiProvider = nahmiiProvider;
 
 export * from '../../config/constants';
