@@ -218,7 +218,7 @@
     "withdrawing": "Withdrawing, waiting the transaction to be confirmed...",
     "tx_mined_success": "The transaction for the last action was confirmed",
     "tx_mined_error": "The transaction for the last action was failed to be confirmed",
-    "enter_amount_withdraw": "Enter the amount to withdraw (staged amount: {staged_amount} {symbol})",
+    "enter_amount_withdraw": "Enter the amount to withdraw",
     "enter_amount_stage": "Enter the amount to stage during the settlement (max stage amount: {nahmii_balance})",
     "no_valid_receipt_for_new_challenge": "No valid nahmii payment receipts to be used for starting new payment challenge.",
     "need_valid_receipt_for_new_challenge": "Require a nahmii payment receipt to start new payment challenge.",
@@ -235,5 +235,6 @@
     "nahmii_balance_before": "nahmii balance before",
     "waiting_for_start_challenge_to_be": "Waiting for transaction {ratio} to be",
     "waiting_for_confirm_settle_to_be": "Waiting for transaction {ratio} to be",
-    "waiting_for_withdraw_to_be": "Waiting for transaction {ratio} to be"
+    "waiting_for_withdraw_to_be": "Waiting for transaction {ratio} to be",
+    "nahmii_staged": "nahmii staged"
 }

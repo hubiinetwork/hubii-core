@@ -669,7 +669,7 @@ ShallowWrapper {
                               }
                               label={
                                         <Form.style__FormItemLabel>
-                                                  enter_amount_withdraw {"staged_amount":0,"symbol":"ETH"}
+                                                  enter_amount_withdraw
                                                    
                                         </Form.style__FormItemLabel>
                               }
@@ -828,7 +828,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_staged
                                                    ETH 
                                                   balance_before
                                         </style__StyledCol>
@@ -837,8 +837,9 @@ ShallowWrapper {
                                         gutter={0}
                               >
                                         <TransferDescriptionItem
-                                                  main="0.2 ETH"
-                                                  subtitle="$82.40"
+                                                  className="staged-balance-before"
+                                                  main="0 ETH"
+                                                  subtitle="$0.00"
                                         />
                               </Row>
                               <Row
@@ -847,7 +848,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                   span={12}
                                         >
-                                                  nahmii
+                                                  nahmii_staged
                                                    ETH 
                                                   balance_after
                                         </style__StyledCol>
@@ -856,8 +857,9 @@ ShallowWrapper {
                                         gutter={0}
                               >
                                         <TransferDescriptionItem
-                                                  main="0.2 ETH"
-                                                  subtitle="$82.40"
+                                                  className="staged-balance-after"
+                                                  main="0 ETH"
+                                                  subtitle="$0.00"
                                         />
                               </Row>
                     </div>
@@ -938,7 +940,7 @@ ShallowWrapper {
                         }
                         label={
                                     <Form.style__FormItemLabel>
-                                                enter_amount_withdraw {"staged_amount":0,"symbol":"ETH"}
+                                                enter_amount_withdraw
                                                  
                                     </Form.style__FormItemLabel>
                         }
@@ -1062,7 +1064,7 @@ ShallowWrapper {
                 }
                 label={
                                 <Form.style__FormItemLabel>
-                                                enter_amount_withdraw {"staged_amount":0,"symbol":"ETH"}
+                                                enter_amount_withdraw
                                                  
                                 </Form.style__FormItemLabel>
                 }
@@ -1257,7 +1259,7 @@ ShallowWrapper {
                   right="usd"
 />,
                 "label": <Form.style__FormItemLabel>
-                  enter_amount_withdraw {"staged_amount":0,"symbol":"ETH"}
+                  enter_amount_withdraw
                    
 </Form.style__FormItemLabel>,
               },
@@ -1560,7 +1562,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_staged
                                                          ETH 
                                                         balance_before
                                           </style__StyledCol>
@@ -1569,8 +1571,9 @@ ShallowWrapper {
                                           gutter={0}
                             >
                                           <TransferDescriptionItem
-                                                        main="0.2 ETH"
-                                                        subtitle="$82.40"
+                                                        className="staged-balance-before"
+                                                        main="0 ETH"
+                                                        subtitle="$0.00"
                                           />
                             </Row>
                             <Row
@@ -1579,7 +1582,7 @@ ShallowWrapper {
                                           <style__StyledCol
                                                         span={12}
                                           >
-                                                        nahmii
+                                                        nahmii_staged
                                                          ETH 
                                                         balance_after
                                           </style__StyledCol>
@@ -1588,8 +1591,9 @@ ShallowWrapper {
                                           gutter={0}
                             >
                                           <TransferDescriptionItem
-                                                        main="0.2 ETH"
-                                                        subtitle="$82.40"
+                                                        className="staged-balance-after"
+                                                        main="0 ETH"
+                                                        subtitle="$0.00"
                                           />
                             </Row>
               </div>
@@ -1705,7 +1709,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_staged
                                                        ETH 
                                                       balance_before
                                     </style__StyledCol>
@@ -1714,8 +1718,9 @@ ShallowWrapper {
                                     gutter={0}
                   >
                                     <TransferDescriptionItem
-                                                      main="0.2 ETH"
-                                                      subtitle="$82.40"
+                                                      className="staged-balance-before"
+                                                      main="0 ETH"
+                                                      subtitle="$0.00"
                                     />
                   </Row>
                   <Row
@@ -1724,7 +1729,7 @@ ShallowWrapper {
                                     <style__StyledCol
                                                       span={12}
                                     >
-                                                      nahmii
+                                                      nahmii_staged
                                                        ETH 
                                                       balance_after
                                     </style__StyledCol>
@@ -1733,8 +1738,9 @@ ShallowWrapper {
                                     gutter={0}
                   >
                                     <TransferDescriptionItem
-                                                      main="0.2 ETH"
-                                                      subtitle="$82.40"
+                                                      className="staged-balance-after"
+                                                      main="0 ETH"
+                                                      subtitle="$0.00"
                                     />
                   </Row>
 </div>,
@@ -2002,7 +2008,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_staged
                                              ETH 
                                             balance_before
                       </style__StyledCol>
@@ -2011,8 +2017,9 @@ ShallowWrapper {
                       gutter={0}
 >
                       <TransferDescriptionItem
-                                            main="0.2 ETH"
-                                            subtitle="$82.40"
+                                            className="staged-balance-before"
+                                            main="0 ETH"
+                                            subtitle="$0.00"
                       />
 </Row>,
                     <Row
@@ -2021,7 +2028,7 @@ ShallowWrapper {
                       <style__StyledCol
                                             span={12}
                       >
-                                            nahmii
+                                            nahmii_staged
                                              ETH 
                                             balance_after
                       </style__StyledCol>
@@ -2030,8 +2037,9 @@ ShallowWrapper {
                       gutter={0}
 >
                       <TransferDescriptionItem
-                                            main="0.2 ETH"
-                                            subtitle="$82.40"
+                                            className="staged-balance-after"
+                                            main="0 ETH"
+                                            subtitle="$0.00"
                       />
 </Row>,
                   ],
@@ -2046,7 +2054,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_staged
                          ETH 
                         balance_before
 </style__StyledCol>,
@@ -2059,7 +2067,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_staged",
                           " ETH ",
                           "balance_before",
                         ],
@@ -2067,7 +2075,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_staged",
                         " ETH ",
                         "balance_before",
                       ],
@@ -2081,8 +2089,9 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": <TransferDescriptionItem
-                        main="0.2 ETH"
-                        subtitle="$82.40"
+                        className="staged-balance-before"
+                        main="0 ETH"
+                        subtitle="$0.00"
 />,
                       "gutter": 0,
                     },
@@ -2092,8 +2101,9 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "function",
                       "props": Object {
-                        "main": "0.2 ETH",
-                        "subtitle": "$82.40",
+                        "className": "staged-balance-before",
+                        "main": "0 ETH",
+                        "subtitle": "$0.00",
                       },
                       "ref": null,
                       "rendered": null,
@@ -2109,7 +2119,7 @@ ShallowWrapper {
                       "children": <style__StyledCol
                         span={12}
 >
-                        nahmii
+                        nahmii_staged
                          ETH 
                         balance_after
 </style__StyledCol>,
@@ -2122,7 +2132,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": Array [
-                          "nahmii",
+                          "nahmii_staged",
                           " ETH ",
                           "balance_after",
                         ],
@@ -2130,7 +2140,7 @@ ShallowWrapper {
                       },
                       "ref": null,
                       "rendered": Array [
-                        "nahmii",
+                        "nahmii_staged",
                         " ETH ",
                         "balance_after",
                       ],
@@ -2144,8 +2154,9 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": <TransferDescriptionItem
-                        main="0.2 ETH"
-                        subtitle="$82.40"
+                        className="staged-balance-after"
+                        main="0 ETH"
+                        subtitle="$0.00"
 />,
                       "gutter": 0,
                     },
@@ -2155,8 +2166,9 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "function",
                       "props": Object {
-                        "main": "0.2 ETH",
-                        "subtitle": "$82.40",
+                        "className": "staged-balance-after",
+                        "main": "0 ETH",
+                        "subtitle": "$0.00",
                       },
                       "ref": null,
                       "rendered": null,
@@ -2303,7 +2315,7 @@ ShallowWrapper {
                                     }
                                     label={
                                                 <Form.style__FormItemLabel>
-                                                            enter_amount_withdraw {"staged_amount":0,"symbol":"ETH"}
+                                                            enter_amount_withdraw
                                                              
                                                 </Form.style__FormItemLabel>
                                     }
@@ -2462,7 +2474,7 @@ ShallowWrapper {
                                                 <style__StyledCol
                                                             span={12}
                                                 >
-                                                            nahmii
+                                                            nahmii_staged
                                                              ETH 
                                                             balance_before
                                                 </style__StyledCol>
@@ -2471,8 +2483,9 @@ ShallowWrapper {
                                                 gutter={0}
                                     >
                                                 <TransferDescriptionItem
-                                                            main="0.2 ETH"
-                                                            subtitle="$82.40"
+                                                            className="staged-balance-before"
+                                                            main="0 ETH"
+                                                            subtitle="$0.00"
                                                 />
                                     </Row>
                                     <Row
@@ -2481,7 +2494,7 @@ ShallowWrapper {
                                                 <style__StyledCol
                                                             span={12}
                                                 >
-                                                            nahmii
+                                                            nahmii_staged
                                                              ETH 
                                                             balance_after
                                                 </style__StyledCol>
@@ -2490,8 +2503,9 @@ ShallowWrapper {
                                                 gutter={0}
                                     >
                                                 <TransferDescriptionItem
-                                                            main="0.2 ETH"
-                                                            subtitle="$82.40"
+                                                            className="staged-balance-after"
+                                                            main="0 ETH"
+                                                            subtitle="$0.00"
                                                 />
                                     </Row>
                         </div>
@@ -2572,7 +2586,7 @@ ShallowWrapper {
                             }
                             label={
                                           <Form.style__FormItemLabel>
-                                                        enter_amount_withdraw {"staged_amount":0,"symbol":"ETH"}
+                                                        enter_amount_withdraw
                                                          
                                           </Form.style__FormItemLabel>
                             }
@@ -2696,7 +2710,7 @@ ShallowWrapper {
                   }
                   label={
                                     <Form.style__FormItemLabel>
-                                                      enter_amount_withdraw {"staged_amount":0,"symbol":"ETH"}
+                                                      enter_amount_withdraw
                                                        
                                     </Form.style__FormItemLabel>
                   }
@@ -2891,7 +2905,7 @@ ShallowWrapper {
                     right="usd"
 />,
                   "label": <Form.style__FormItemLabel>
-                    enter_amount_withdraw {"staged_amount":0,"symbol":"ETH"}
+                    enter_amount_withdraw
                      
 </Form.style__FormItemLabel>,
                 },
@@ -3194,7 +3208,7 @@ ShallowWrapper {
                                                 <style__StyledCol
                                                                 span={12}
                                                 >
-                                                                nahmii
+                                                                nahmii_staged
                                                                  ETH 
                                                                 balance_before
                                                 </style__StyledCol>
@@ -3203,8 +3217,9 @@ ShallowWrapper {
                                                 gutter={0}
                                 >
                                                 <TransferDescriptionItem
-                                                                main="0.2 ETH"
-                                                                subtitle="$82.40"
+                                                                className="staged-balance-before"
+                                                                main="0 ETH"
+                                                                subtitle="$0.00"
                                                 />
                                 </Row>
                                 <Row
@@ -3213,7 +3228,7 @@ ShallowWrapper {
                                                 <style__StyledCol
                                                                 span={12}
                                                 >
-                                                                nahmii
+                                                                nahmii_staged
                                                                  ETH 
                                                                 balance_after
                                                 </style__StyledCol>
@@ -3222,8 +3237,9 @@ ShallowWrapper {
                                                 gutter={0}
                                 >
                                                 <TransferDescriptionItem
-                                                                main="0.2 ETH"
-                                                                subtitle="$82.40"
+                                                                className="staged-balance-after"
+                                                                main="0 ETH"
+                                                                subtitle="$0.00"
                                                 />
                                 </Row>
                 </div>
@@ -3339,7 +3355,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                             span={12}
                                         >
-                                                            nahmii
+                                                            nahmii_staged
                                                              ETH 
                                                             balance_before
                                         </style__StyledCol>
@@ -3348,8 +3364,9 @@ ShallowWrapper {
                                         gutter={0}
                     >
                                         <TransferDescriptionItem
-                                                            main="0.2 ETH"
-                                                            subtitle="$82.40"
+                                                            className="staged-balance-before"
+                                                            main="0 ETH"
+                                                            subtitle="$0.00"
                                         />
                     </Row>
                     <Row
@@ -3358,7 +3375,7 @@ ShallowWrapper {
                                         <style__StyledCol
                                                             span={12}
                                         >
-                                                            nahmii
+                                                            nahmii_staged
                                                              ETH 
                                                             balance_after
                                         </style__StyledCol>
@@ -3367,8 +3384,9 @@ ShallowWrapper {
                                         gutter={0}
                     >
                                         <TransferDescriptionItem
-                                                            main="0.2 ETH"
-                                                            subtitle="$82.40"
+                                                            className="staged-balance-after"
+                                                            main="0 ETH"
+                                                            subtitle="$0.00"
                                         />
                     </Row>
 </div>,
@@ -3636,7 +3654,7 @@ ShallowWrapper {
                         <style__StyledCol
                                                 span={12}
                         >
-                                                nahmii
+                                                nahmii_staged
                                                  ETH 
                                                 balance_before
                         </style__StyledCol>
@@ -3645,8 +3663,9 @@ ShallowWrapper {
                         gutter={0}
 >
                         <TransferDescriptionItem
-                                                main="0.2 ETH"
-                                                subtitle="$82.40"
+                                                className="staged-balance-before"
+                                                main="0 ETH"
+                                                subtitle="$0.00"
                         />
 </Row>,
                       <Row
@@ -3655,7 +3674,7 @@ ShallowWrapper {
                         <style__StyledCol
                                                 span={12}
                         >
-                                                nahmii
+                                                nahmii_staged
                                                  ETH 
                                                 balance_after
                         </style__StyledCol>
@@ -3664,8 +3683,9 @@ ShallowWrapper {
                         gutter={0}
 >
                         <TransferDescriptionItem
-                                                main="0.2 ETH"
-                                                subtitle="$82.40"
+                                                className="staged-balance-after"
+                                                main="0 ETH"
+                                                subtitle="$0.00"
                         />
 </Row>,
                     ],
@@ -3680,7 +3700,7 @@ ShallowWrapper {
                         "children": <style__StyledCol
                           span={12}
 >
-                          nahmii
+                          nahmii_staged
                            ETH 
                           balance_before
 </style__StyledCol>,
@@ -3693,7 +3713,7 @@ ShallowWrapper {
                         "nodeType": "class",
                         "props": Object {
                           "children": Array [
-                            "nahmii",
+                            "nahmii_staged",
                             " ETH ",
                             "balance_before",
                           ],
@@ -3701,7 +3721,7 @@ ShallowWrapper {
                         },
                         "ref": null,
                         "rendered": Array [
-                          "nahmii",
+                          "nahmii_staged",
                           " ETH ",
                           "balance_before",
                         ],
@@ -3715,8 +3735,9 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": <TransferDescriptionItem
-                          main="0.2 ETH"
-                          subtitle="$82.40"
+                          className="staged-balance-before"
+                          main="0 ETH"
+                          subtitle="$0.00"
 />,
                         "gutter": 0,
                       },
@@ -3726,8 +3747,9 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "function",
                         "props": Object {
-                          "main": "0.2 ETH",
-                          "subtitle": "$82.40",
+                          "className": "staged-balance-before",
+                          "main": "0 ETH",
+                          "subtitle": "$0.00",
                         },
                         "ref": null,
                         "rendered": null,
@@ -3743,7 +3765,7 @@ ShallowWrapper {
                         "children": <style__StyledCol
                           span={12}
 >
-                          nahmii
+                          nahmii_staged
                            ETH 
                           balance_after
 </style__StyledCol>,
@@ -3756,7 +3778,7 @@ ShallowWrapper {
                         "nodeType": "class",
                         "props": Object {
                           "children": Array [
-                            "nahmii",
+                            "nahmii_staged",
                             " ETH ",
                             "balance_after",
                           ],
@@ -3764,7 +3786,7 @@ ShallowWrapper {
                         },
                         "ref": null,
                         "rendered": Array [
-                          "nahmii",
+                          "nahmii_staged",
                           " ETH ",
                           "balance_after",
                         ],
@@ -3778,8 +3800,9 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": <TransferDescriptionItem
-                          main="0.2 ETH"
-                          subtitle="$82.40"
+                          className="staged-balance-after"
+                          main="0 ETH"
+                          subtitle="$0.00"
 />,
                         "gutter": 0,
                       },
@@ -3789,8 +3812,9 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "function",
                         "props": Object {
-                          "main": "0.2 ETH",
-                          "subtitle": "$82.40",
+                          "className": "staged-balance-after",
+                          "main": "0 ETH",
+                          "subtitle": "$0.00",
                         },
                         "ref": null,
                         "rendered": null,

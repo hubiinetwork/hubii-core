@@ -152,7 +152,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     if (amountToWithdraw.gt(stagedAmount)) {
       return amountToWithdraw.minus(stagedAmount);
     }
-    return null;
+    return 0;
   }
 
   settle(assetToWithdraw) {
@@ -402,10 +402,17 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       amount: nahmiiBalanceBeforeAmt,
       usdValue: nahmiiBalanceBeforeAmt.times(assetToWithdrawUsdValue),
     };
-    const nahmiiBalanceAfterAmt = nahmiiBalanceBeforeAmt.minus(amountToWithdraw);
-    const nahmiiBalanceAfter = {
-      amount: nahmiiBalanceAfterAmt,
-      usdValue: nahmiiBalanceAfterAmt.times(assetToWithdrawUsdValue),
+    const nahmiiStagedBalanceBeforeAmt = (nahmiiStagedAssets
+      .find((asset) => asset.currency === assetToWithdraw.currency) || { balance: new BigNumber('0') })
+      .balance;
+    const nahmiiStagedBalanceBefore = {
+      amount: nahmiiStagedBalanceBeforeAmt,
+      usdValue: nahmiiStagedBalanceBeforeAmt.times(assetToWithdrawUsdValue),
+    };
+    const nahmiiStagedBalanceAfterAmt = nahmiiStagedBalanceBeforeAmt.minus(amountToWithdraw);
+    const nahmiiStagedBalanceAfter = {
+      amount: nahmiiStagedBalanceAfterAmt,
+      usdValue: nahmiiStagedBalanceAfterAmt.times(assetToWithdrawUsdValue),
     };
     const baseLayerBalAfterAmt = baseLayerBalanceBefore.amount.minus(amountToWithdraw);
     const baseLayerBalanceAfter = {
@@ -439,7 +446,11 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
 
     const stagedAsset = nahmiiStagedAssets.find((a) => a.symbol === assetToWithdraw.symbol) || { balance: new BigNumber(0) };
     const requiredSettlementAmount = this.getRequiredSettlementAmount(stagedAsset.balance, amountToWithdraw);
-
+    const nahmiiBalanceAfterStagingAmt = nahmiiBalanceBeforeAmt.minus(requiredSettlementAmount);
+    const nahmiiBalanceAfterStaging = {
+      amount: nahmiiBalanceAfterStagingAmt,
+      usdValue: nahmiiBalanceAfterStagingAmt.times(assetToWithdrawUsdValue),
+    };
     const totalSettleableStageAmountBN = settleableChallenges.get('details').reduce((sum, challenge) => {
       const { amount } = challenge.intendedStageAmount.toJSON();
       const intendedStageAmount = new BigNumber(amount);
@@ -454,7 +465,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       baseLayerBalAfterAmt.isNegative() ||
       baseLayerEthBalanceAfterAmount.isNegative() ||
       !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
-    const disableSettleButton = !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
+
+    const disableSettleButton = nahmiiBalanceAfterStagingAmt.isNegative() || !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
     const disableConfirmSettleButton = !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
     const TransferingStatus = this.generateTransferingStatus();
 
@@ -484,7 +496,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
               </Select>
             </FormItem>
             <FormItem
-              label={<FormItemLabel>{formatMessage({ id: 'enter_amount_withdraw' }, { staged_amount: stagedAsset.balance.toNumber(), symbol: assetToWithdraw.symbol })} </FormItemLabel>}
+              label={<FormItemLabel>{formatMessage({ id: 'enter_amount_withdraw' })} </FormItemLabel>}
               colon={false}
               help={<HelperText left={formatFiat(usdValueToWithdraw, 'USD')} right={formatMessage({ id: 'usd' })} />}
             >
@@ -579,6 +591,28 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                     />
                   </Row>
                   <Row>
+                    <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+                  </Row>
+                  <Row>
+                    <TransferDescriptionItem
+                      className="nahmii-balance-before-staging"
+                      main={`${nahmiiBalanceBefore.amount.toString()} ${assetToWithdraw.symbol}`}
+                      subtitle={formatFiat(nahmiiBalanceBefore.usdValue.toNumber(), 'USD')}
+                    />
+                  </Row>
+                  <Row>
+                    <StyledCol span={12}>
+                      {formatMessage({ id: 'nahmii' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_after' })}
+                    </StyledCol>
+                  </Row>
+                  <Row>
+                    <TransferDescriptionItem
+                      className="nahmii-balance-after-staging"
+                      main={`${nahmiiBalanceAfterStaging.amount} ${assetToWithdraw.symbol}`}
+                      subtitle={formatFiat(nahmiiBalanceAfterStaging.usdValue.toNumber(), 'USD')}
+                    />
+                  </Row>
+                  <Row>
                     {
                     TransferingStatus ?
                       (
@@ -636,23 +670,25 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                   {assetToWithdraw.symbol === 'ETH' &&
                   <div>
                     <Row>
-                      <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+                      <StyledCol span={12}>{formatMessage({ id: 'nahmii_staged' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
                     </Row>
                     <Row>
                       <TransferDescriptionItem
-                        main={`${nahmiiBalanceBefore.amount.toString()} ETH`}
-                        subtitle={formatFiat(nahmiiBalanceBefore.usdValue.toNumber(), 'USD')}
+                        className="staged-balance-before"
+                        main={`${nahmiiStagedBalanceBefore.amount.toString()} ETH`}
+                        subtitle={formatFiat(nahmiiStagedBalanceBefore.usdValue.toNumber(), 'USD')}
                       />
                     </Row>
                     <Row>
                       <StyledCol span={12}>
-                        {formatMessage({ id: 'nahmii' })} ETH {formatMessage({ id: 'balance_after' })}
+                        {formatMessage({ id: 'nahmii_staged' })} ETH {formatMessage({ id: 'balance_after' })}
                       </StyledCol>
                     </Row>
                     <Row>
                       <TransferDescriptionItem
-                        main={`${nahmiiBalanceAfter.amount} ETH`}
-                        subtitle={formatFiat(nahmiiBalanceAfter.usdValue.toNumber(), 'USD')}
+                        className="staged-balance-after"
+                        main={`${nahmiiStagedBalanceAfter.amount} ETH`}
+                        subtitle={formatFiat(nahmiiStagedBalanceAfter.usdValue.toNumber(), 'USD')}
                       />
                     </Row>
                   </div>
@@ -680,23 +716,25 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                       />
                     </Row>
                     <Row>
-                      <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+                      <StyledCol span={12}>{formatMessage({ id: 'nahmii_staged' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
                     </Row>
                     <Row>
                       <TransferDescriptionItem
-                        main={`${nahmiiBalanceBefore.amount} ${assetToWithdraw.symbol}`}
-                        subtitle={formatFiat(nahmiiBalanceBefore.usdValue.toNumber(), 'USD')}
+                        className="staged-balance-before"
+                        main={`${nahmiiStagedBalanceBefore.amount.toString()} ${assetToWithdraw.symbol}`}
+                        subtitle={formatFiat(nahmiiStagedBalanceBefore.usdValue.toNumber(), 'USD')}
                       />
                     </Row>
                     <Row>
                       <StyledCol span={12}>
-                        {formatMessage({ id: 'nahmii' })} { assetToWithdraw.symbol } {formatMessage({ id: 'balance_after' })}
+                        {formatMessage({ id: 'nahmii_staged' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_after' })}
                       </StyledCol>
                     </Row>
                     <Row>
                       <TransferDescriptionItem
-                        main={`${nahmiiBalanceAfter.amount} ${assetToWithdraw.symbol}`}
-                        subtitle={formatFiat(nahmiiBalanceAfter.usdValue.toNumber(), 'USD')}
+                        className="staged-balance-after"
+                        main={`${nahmiiStagedBalanceAfter.amount} ${assetToWithdraw.symbol}`}
+                        subtitle={formatFiat(nahmiiStagedBalanceAfter.usdValue.toNumber(), 'USD')}
                       />
                     </Row>
                   </div>
