@@ -91,7 +91,7 @@ export class SideBar extends React.Component {
                         >
                           <polygon points="0 0 32 0 32 32 0 32" />
                           <polygon
-                            fill={currentRoute === menuItem.to ? info : dark2}
+                            fill={menuItem.to.startsWith(currentRoute) ? info : dark2}
                             fillRule="nonzero"
                             points="21.333 8 24.387 11.053 17.88 17.56 12.547 12.227 2.667 22.12 4.547 24 12.547 16 17.88 21.333 26.28 12.947 29.333 16 29.333 8"
                           />

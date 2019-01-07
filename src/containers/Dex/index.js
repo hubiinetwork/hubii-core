@@ -1,8 +1,11 @@
 import * as React from 'react';
+import { Icon } from 'antd';
 import PropTypes from 'prop-types';
-import { injectIntl } from 'react-intl';
+// import { injectIntl } from 'react-intl';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+import { Route } from 'react-router';
 import { createStructuredSelector } from 'reselect';
 
 import injectSaga from 'utils/injectSaga';
@@ -10,6 +13,7 @@ import injectReducer from 'utils/injectReducer';
 
 import Heading from 'components/ui/Heading';
 import CandleStickChart from 'components/CandleStickChart';
+import Tabs, { TabPane } from 'components/ui/Tabs';
 
 import {
   Wrapper,
@@ -35,6 +39,7 @@ export class DexContainer extends React.PureComponent {
     props.listenLatestPrice(this.state.currency);
   }
   render() {
+    const { dispatch, match, history, priceHistory, latestPrice } = this.props;
     if (!this.props.priceHistory || !this.props.priceHistory.getIn([this.state.currency, 'history'])) {
       return null;
     }
@@ -43,9 +48,34 @@ export class DexContainer extends React.PureComponent {
         <TopHeader>
           <Heading>Exchange</Heading>
         </TopHeader>
-        <Container>
-          <CandleStickChart priceHistory={this.props.priceHistory} latestPrice={this.props.latestPrice} currency={this.state.currency} />
-        </Container>
+        <Tabs
+          activeKey={history.location.pathname}
+          onChange={(route) => dispatch(push(route))}
+          animated={false}
+        >
+          <TabPane
+            tab={
+              <span>
+                <Icon type="solution" />
+                  Exchange
+              </span>
+            }
+            key={`${match.url}/exchange`}
+          >
+            <Route
+              path={`${match.url}/exchange`}
+              component={() => (
+                <Container>
+                  <CandleStickChart
+                    priceHistory={priceHistory}
+                    latestPrice={latestPrice}
+                    currency={this.state.currency}
+                  />
+                </Container>
+              )}
+            />
+          </TabPane>
+        </Tabs>
       </Wrapper>
     );
   }
@@ -54,14 +84,13 @@ export class DexContainer extends React.PureComponent {
 const mapStateToProps = createStructuredSelector({
   priceHistory: makeSelectPriceHistory(),
   latestPrice: makeSelectLatestPrice(),
-  // contacts: makeSelectContacts(),
-  // wallets: makeSelectWallets(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
     loadPriceHistory: (...args) => dispatch(actions.loadPriceHistory(...args)),
     listenLatestPrice: (...args) => dispatch(actions.listenLatestPrice(...args)),
+    dispatch,
   };
 }
 
@@ -78,13 +107,16 @@ export const Dex = compose(
 DexContainer.propTypes = {
   loadPriceHistory: PropTypes.func.isRequired,
   listenLatestPrice: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
   latestPrice: PropTypes.number.isRequired,
   priceHistory: PropTypes.object.isRequired,
   // intl: PropTypes.object.isRequired,
 };
 
 export default compose(
-  injectIntl,
+  // injectIntl,
   withReducer,
   withSaga,
   withConnect,
