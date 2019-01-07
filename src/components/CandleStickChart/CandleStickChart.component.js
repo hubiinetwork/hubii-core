@@ -131,6 +131,7 @@ export default class CandleStickChart extends React.Component {
                     O <span class="candlestickchart-tooltip-value">${open}</span>
                   </div>`;
         },
+        /* eslint-enable consistent-return */
       },
 
       series: [{
