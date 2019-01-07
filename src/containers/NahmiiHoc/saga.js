@@ -1,5 +1,5 @@
-import BalanceTrackerContract from 'nahmii-sdk/lib/balance-tracker-contract';
-import DriipSettlementChallengeContract from 'nahmii-sdk/lib/driip-settlement-challenge-contract';
+import BalanceTrackerContract from 'nahmii-sdk/lib/wallet/balance-tracker-contract';
+import DriipSettlementChallengeContract from 'nahmii-sdk/lib/settlement/driip-settlement-challenge-contract';
 import nahmii from 'nahmii-sdk';
 import { utils } from 'ethers';
 import { all, fork, takeEvery, takeLatest, select, put, call, take, cancel, race } from 'redux-saga/effects';
