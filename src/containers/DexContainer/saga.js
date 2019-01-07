@@ -26,21 +26,21 @@ export function* loadPriceHistory({ currency }) {
 }
 
 let latestPriceChannel;
-export const createLatestPriceChannel = (currency) => eventChannel((emit) => {
+export const createLatestPriceChannel = (currency) => eventChannel((emit) => { // eslint-disable-line
   if (latestPriceChannel) {
     latestPriceChannel.close();
   }
-  const mock = {
-    date: '2-2-2018',
-    open: 10237.3,
-    high: 10288.8,
-    low: 8812.28,
-    close: 9170.54,
-    volume: 9959400000,
-  };
-  setInterval(() => {
-    emit({ currency, price: mock });
-  }, 1000);
+  // const mock = {
+  //   date: '2-2-2018',
+  //   open: 10237.3,
+  //   high: 10288.8,
+  //   low: 8812.28,
+  //   close: 9170.54,
+  //   volume: 9959400000,
+  // };
+  // setInterval(() => {
+  //   emit({ currency, price: mock });
+  // }, 1000);
   return () => { };
 });
 

@@ -7,21 +7,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CandleStickChart from 'components/CandleStickChart';
 
 import {
   Container,
+  PriceChartWrapper,
+  DepthChart,
+  OrderBook,
+  BookDepthChartWrapper,
+  Markets,
+  History,
+  Trading,
 } from './style';
 
 
-const Trading = (props) => (
+const TradingTab = () => (
   <div>
     <Container>
-      <CandleStickChart
-        priceHistory={props.priceHistory}
-        latestPrice={props.latestPrice}
-        currency={props.currency}
-      />
+      <PriceChartWrapper>Price Chart</PriceChartWrapper>
+      <Markets>Markets</Markets>
+      <Trading>Trading</Trading>
+      <BookDepthChartWrapper>
+        <DepthChart>Depth Chart</DepthChart>
+        <OrderBook>Order Book</OrderBook>
+      </BookDepthChartWrapper>
+      <History>History</History>
     </Container>
   </div>
   );
@@ -32,4 +41,4 @@ Trading.propTypes = {
   currency: PropTypes.string.isRequired,
 };
 
-export default Trading;
+export default TradingTab;
