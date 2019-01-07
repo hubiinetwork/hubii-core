@@ -35,7 +35,7 @@ class HomeScreen extends React.PureComponent {
               title={formatMessage({ id: 'my_nahmii' })}
             />
           </StyledLink>
-          <StyledLink to="/dex/exchange">
+          <StyledLink to="/dex/trading">
             <DashboardCard
               iconSrc={getAbsolutePath('public/images/dex-icon-green.png')}
               title={formatMessage({ id: 'exchange' })}

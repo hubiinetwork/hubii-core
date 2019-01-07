@@ -7,12 +7,6 @@ export const Wrapper = styled.div`
   background: ${({ theme }) => theme.palette.primary1};
 `;
 
-export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-`;
-
 export const Title = styled.div`
   margin-top: 2rem;
   font-size: 2rem;

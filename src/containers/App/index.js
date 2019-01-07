@@ -54,7 +54,7 @@ function App() {
       key: 'nahmii',
     },
     {
-      to: '/dex/exchange',
+      to: '/dex/trading',
       icon: 'dex',
       key: 'dex',
     },
