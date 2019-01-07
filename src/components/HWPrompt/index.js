@@ -37,8 +37,20 @@ const singleRowMsg = (msg, iconType, iconColor) => (
   </SingleRowWrapper>
 );
 
+let previousLnsError;
 const lnsPrompt = (ledgerInfo, { formatMessage }) => {
   const error = ledgerInfo.get('error');
+  if (
+    (previousLnsError && previousLnsError.includes('ledger_connected_not_browser_support_error')) &&
+    (error && error.includes('ledger_not_detected_error'))
+  ) {
+    return singleRowMsg(
+      formatMessage({ id: 'ledger_set_browser_support_no' })
+    );
+  }
+
+  previousLnsError = error;
+
   // check if device is connected
   if (ledgerInfo.get('ethConnected')) {
     return singleRowMsg(
