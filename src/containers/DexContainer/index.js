@@ -57,7 +57,7 @@ export class DexContainer extends React.PureComponent {
             tab={
               <span>
                 <Icon type="solution" />
-                  Exchange
+                  Trading
               </span>
             }
             key={`${match.url}/exchange`}
@@ -98,19 +98,13 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 const withReducer = injectReducer({ key: 'dex', reducer });
 const withSaga = injectSaga({ key: 'dex', saga });
 
-export const Dex = compose(
-  withReducer,
-  withSaga,
-  withConnect,
-)(DexContainer);
-
 DexContainer.propTypes = {
   loadPriceHistory: PropTypes.func.isRequired,
   listenLatestPrice: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
-  latestPrice: PropTypes.number.isRequired,
+  latestPrice: PropTypes.object.isRequired,
   priceHistory: PropTypes.object.isRequired,
   // intl: PropTypes.object.isRequired,
 };

@@ -2,10 +2,9 @@ import {
   takeEvery,
   put,
   call,
-  select,
   take,
 } from 'redux-saga/effects';
-import { delay, eventChannel } from 'redux-saga';
+import { eventChannel } from 'redux-saga';
 
 import request from 'utils/request';
 
@@ -15,7 +14,7 @@ import {
 
 import * as actions from './actions';
 
-export function* loadPriceHistory({ currency, toCcy, interval }) {
+export function* loadPriceHistory({ currency }) {
   try {
     const requestPath = `/smartvikisogn/cryptocurrency/master/${currency}.json`;
     const endpoint = 'https://raw.githubusercontent.com';
@@ -45,7 +44,7 @@ export const createLatestPriceChannel = (currency) => eventChannel((emit) => {
   return () => { };
 });
 
-export function* listenLatestPrice({ currency, toCcy, interval }) {
+export function* listenLatestPrice({ currency }) {
   const chan = yield call(createLatestPriceChannel, currency);
 
   while (true) { // eslint-disable-line no-constant-condition
