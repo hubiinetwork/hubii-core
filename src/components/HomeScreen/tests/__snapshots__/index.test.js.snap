@@ -45,11 +45,11 @@ ShallowWrapper {
                     />
           </StyledLink>
           <StyledLink
-                    to="/dex"
+                    to="/dex/trading"
           >
                     <DashboardCard
                               iconSrc="/public/images/dex-icon-green.png"
-                              title="DEX"
+                              title="exchange"
                     />
           </StyledLink>
           <StyledLink
@@ -99,11 +99,11 @@ ShallowWrapper {
               />
 </StyledLink>,
             <StyledLink
-              to="/dex"
+              to="/dex/trading"
 >
               <DashboardCard
                             iconSrc="/public/images/dex-icon-green.png"
-                            title="DEX"
+                            title="exchange"
               />
 </StyledLink>,
             <StyledLink
@@ -177,9 +177,9 @@ ShallowWrapper {
             "props": Object {
               "children": <DashboardCard
                 iconSrc="/public/images/dex-icon-green.png"
-                title="DEX"
+                title="exchange"
 />,
-              "to": "/dex",
+              "to": "/dex/trading",
             },
             "ref": null,
             "rendered": Object {
@@ -188,7 +188,7 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "iconSrc": "/public/images/dex-icon-green.png",
-                "title": "DEX",
+                "title": "exchange",
               },
               "ref": null,
               "rendered": null,
@@ -256,11 +256,11 @@ ShallowWrapper {
                         />
             </StyledLink>
             <StyledLink
-                        to="/dex"
+                        to="/dex/trading"
             >
                         <DashboardCard
                                     iconSrc="/public/images/dex-icon-green.png"
-                                    title="DEX"
+                                    title="exchange"
                         />
             </StyledLink>
             <StyledLink
@@ -310,11 +310,11 @@ ShallowWrapper {
                 />
 </StyledLink>,
               <StyledLink
-                to="/dex"
+                to="/dex/trading"
 >
                 <DashboardCard
                                 iconSrc="/public/images/dex-icon-green.png"
-                                title="DEX"
+                                title="exchange"
                 />
 </StyledLink>,
               <StyledLink
@@ -388,9 +388,9 @@ ShallowWrapper {
               "props": Object {
                 "children": <DashboardCard
                   iconSrc="/public/images/dex-icon-green.png"
-                  title="DEX"
+                  title="exchange"
 />,
-                "to": "/dex",
+                "to": "/dex/trading",
               },
               "ref": null,
               "rendered": Object {
@@ -399,7 +399,7 @@ ShallowWrapper {
                 "nodeType": "function",
                 "props": Object {
                   "iconSrc": "/public/images/dex-icon-green.png",
-                  "title": "DEX",
+                  "title": "exchange",
                 },
                 "ref": null,
                 "rendered": null,

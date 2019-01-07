@@ -51,6 +51,7 @@ export class DexContainer extends React.PureComponent {
           activeKey={history.location.pathname}
           onChange={(route) => dispatch(push(route))}
           animated={false}
+          noPadding
         >
           <TabPane
             tab={
