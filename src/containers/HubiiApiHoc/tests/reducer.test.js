@@ -1,5 +1,7 @@
 import { fromJS } from 'immutable';
 
+import { changeNetwork } from 'containers/App/actions';
+
 import {
   supportedAssetsLoadedMock,
   pricesLoadedMock,
@@ -23,6 +25,7 @@ import {
 
 
 import hubiiApiHocReducer from '../reducer';
+import { addNewWallet } from '../../WalletHoc/actions';
 
 describe('hubiiApiHocReducer', () => {
   let state;
@@ -143,7 +146,7 @@ describe('hubiiApiHocReducer', () => {
 
   describe('prices', () => {
     it('handle LOAD_PRICES_SUCCESS correctly', () => {
-      const prices = pricesLoadedMock.get('assets').delete(pricesLoadedMock.get('assets').size - 1);
+      const prices = pricesLoadedMock.get('assets');
       const expected = state
         .setIn(['prices', 'loading'], false)
         .setIn(['prices', 'error'], null)
@@ -159,6 +162,35 @@ describe('hubiiApiHocReducer', () => {
         .setIn(['prices', 'error'], error);
 
       expect(hubiiApiHocReducer(state, loadPricesError(error))).toEqual(expected);
+    });
+  });
+
+  describe('a network change', () => {
+    it('should reset values to loading/empty', () => {
+      const testState = state
+        .setIn(['supportedAssets', 'loading'], false)
+        .setIn(['prices', 'loading'], false)
+        .set('transactions', fromJS({ '0x00': {} }))
+        .set('balances', fromJS({ '0x00': {} }));
+      const expected = state
+        .setIn(['supportedAssets', 'loading'], true)
+        .setIn(['prices', 'loading'], true)
+        .set('transactions', fromJS({}))
+        .set('balances', fromJS({}));
+
+      expect(hubiiApiHocReducer(testState, changeNetwork('some network'))).toEqual(expected);
+    });
+  });
+
+  describe('a wallet is added', () => {
+    it('should reset its balance to loading state', () => {
+      const newWalletAddr = '0x00';
+      const testState = state
+        .setIn(['balances', newWalletAddr], fromJS({ assets: ['123'] }));
+      const expected = state
+        .setIn(['balances', newWalletAddr], fromJS({ loading: true, error: null, assets: [] }));
+
+      expect(hubiiApiHocReducer(testState, addNewWallet({ address: newWalletAddr }))).toEqual(expected);
     });
   });
 });

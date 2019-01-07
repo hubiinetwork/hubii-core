@@ -1,0 +1,1389 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BreakdownPie should render correctly when supportedAssets are errored 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Breakdown
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+    supportedAssets={
+        Immutable.Map {
+            loading: false,
+            error: true,
+            assets: Immutable.List [
+            ],
+        }
+    }
+    totalBalances={
+        Immutable.Map {
+            baseLayer: Immutable.Map {
+                assets: Immutable.Map {
+                    ETH: Immutable.Map {
+                        amount: "0.198937",
+                        value: Immutable.Map {
+                            usd: "81.962044",
+                        },
+                    },
+                    0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                        amount: "1.231288e-12",
+                        value: Immutable.Map {
+                            usd: "1.231288e-12",
+                        },
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "81.962044000001231288",
+                },
+            },
+            nahmiiAvailable: Immutable.Map {
+                assets: Immutable.Map {
+                    ETH: Immutable.Map {
+                        amount: "0.1",
+                        value: Immutable.Map {
+                            usd: "41.2",
+                        },
+                    },
+                    0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                        amount: "0.13",
+                        value: Immutable.Map {
+                            usd: "0.13",
+                        },
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "41.33",
+                },
+            },
+            nahmiiStaging: Immutable.Map {
+                assets: Immutable.Map {
+                    ETH: Immutable.Map {
+                        amount: "0.1",
+                        value: Immutable.Map {
+                            usd: "41.2",
+                        },
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "41.2",
+                },
+            },
+            nahmiiStaged: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+            nahmiiCombined: Immutable.Map {
+                assets: Immutable.Map {
+                    ETH: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "82.4",
+                        },
+                        amount: "0.2",
+                    },
+                    0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "0.13",
+                        },
+                        amount: "0.13",
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "82.53",
+                },
+            },
+            combined: Immutable.Map {
+                assets: Immutable.Map {
+                    ETH: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "164.362044",
+                        },
+                        amount: "0.398937",
+                    },
+                    0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "0.130000000001231288",
+                        },
+                        amount: "0.130000000001231288",
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "164.492044000001231288",
+                },
+            },
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Text
+          large={true}
+>
+          total_fiat_value
+</Text>,
+        <Heading
+          large={true}
+>
+          $164.49
+</Heading>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "total_fiat_value",
+          "large": true,
+        },
+        "ref": null,
+        "rendered": "total_fiat_value",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "$164.49",
+          "large": true,
+        },
+        "ref": null,
+        "rendered": "$164.49",
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Text
+            large={true}
+>
+            total_fiat_value
+</Text>,
+          <Heading
+            large={true}
+>
+            $164.49
+</Heading>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "total_fiat_value",
+            "large": true,
+          },
+          "ref": null,
+          "rendered": "total_fiat_value",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "$164.49",
+            "large": true,
+          },
+          "ref": null,
+          "rendered": "$164.49",
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`BreakdownPie should render correctly when supportedAssets are loading 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Breakdown
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+    supportedAssets={
+        Immutable.Map {
+            loading: true,
+            error: null,
+            assets: Immutable.List [
+            ],
+        }
+    }
+    totalBalances={
+        Immutable.Map {
+            baseLayer: Immutable.Map {
+                assets: Immutable.Map {
+                    ETH: Immutable.Map {
+                        amount: "0.198937",
+                        value: Immutable.Map {
+                            usd: "81.962044",
+                        },
+                    },
+                    0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                        amount: "1.231288e-12",
+                        value: Immutable.Map {
+                            usd: "1.231288e-12",
+                        },
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "81.962044000001231288",
+                },
+            },
+            nahmiiAvailable: Immutable.Map {
+                assets: Immutable.Map {
+                    ETH: Immutable.Map {
+                        amount: "0.1",
+                        value: Immutable.Map {
+                            usd: "41.2",
+                        },
+                    },
+                    0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                        amount: "0.13",
+                        value: Immutable.Map {
+                            usd: "0.13",
+                        },
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "41.33",
+                },
+            },
+            nahmiiStaging: Immutable.Map {
+                assets: Immutable.Map {
+                    ETH: Immutable.Map {
+                        amount: "0.1",
+                        value: Immutable.Map {
+                            usd: "41.2",
+                        },
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "41.2",
+                },
+            },
+            nahmiiStaged: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+            nahmiiCombined: Immutable.Map {
+                assets: Immutable.Map {
+                    ETH: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "82.4",
+                        },
+                        amount: "0.2",
+                    },
+                    0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "0.13",
+                        },
+                        amount: "0.13",
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "82.53",
+                },
+            },
+            combined: Immutable.Map {
+                assets: Immutable.Map {
+                    ETH: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "164.362044",
+                        },
+                        amount: "0.398937",
+                    },
+                    0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "0.130000000001231288",
+                        },
+                        amount: "0.130000000001231288",
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "164.492044000001231288",
+                },
+            },
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Text
+          large={true}
+>
+          total_fiat_value
+</Text>,
+        <Heading
+          large={true}
+>
+          $164.49
+</Heading>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "total_fiat_value",
+          "large": true,
+        },
+        "ref": null,
+        "rendered": "total_fiat_value",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "$164.49",
+          "large": true,
+        },
+        "ref": null,
+        "rendered": "$164.49",
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Text
+            large={true}
+>
+            total_fiat_value
+</Text>,
+          <Heading
+            large={true}
+>
+            $164.49
+</Heading>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "total_fiat_value",
+            "large": true,
+          },
+          "ref": null,
+          "rendered": "total_fiat_value",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "$164.49",
+            "large": true,
+          },
+          "ref": null,
+          "rendered": "$164.49",
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`BreakdownPie should render correctly when totalBalances are errored 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Breakdown
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+    supportedAssets={
+        Immutable.Map {
+            loading: false,
+            error: null,
+            assets: Immutable.List [
+                Immutable.Map {
+                    currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+                    symbol: "My20",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+                    symbol: "HBT",
+                    decimals: 15,
+                    color: "0063A5",
+                },
+                Immutable.Map {
+                    currency: "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+                    symbol: "SBT",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+                    symbol: "WETH",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                    symbol: "BOKKY",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "ETH",
+                    symbol: "ETH",
+                    decimals: 18,
+                    color: "5C78E4",
+                },
+            ],
+        }
+    }
+    totalBalances={
+        Immutable.Map {
+            baseLayer: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: false,
+                error: true,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+            nahmiiAvailable: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: false,
+                error: true,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+            nahmiiStaging: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: false,
+                error: true,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+            nahmiiStaged: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: false,
+                error: true,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+            nahmiiCombined: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+            combined: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: false,
+                error: true,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Text
+          large={true}
+>
+          total_fiat_value
+</Text>,
+        <Heading
+          large={true}
+>
+          $0.00
+</Heading>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "total_fiat_value",
+          "large": true,
+        },
+        "ref": null,
+        "rendered": "total_fiat_value",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "$0.00",
+          "large": true,
+        },
+        "ref": null,
+        "rendered": "$0.00",
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Text
+            large={true}
+>
+            total_fiat_value
+</Text>,
+          <Heading
+            large={true}
+>
+            $0.00
+</Heading>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "total_fiat_value",
+            "large": true,
+          },
+          "ref": null,
+          "rendered": "total_fiat_value",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "$0.00",
+            "large": true,
+          },
+          "ref": null,
+          "rendered": "$0.00",
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`BreakdownPie should render correctly when totalbalances are loading 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Breakdown
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+    supportedAssets={
+        Immutable.Map {
+            loading: false,
+            error: null,
+            assets: Immutable.List [
+                Immutable.Map {
+                    currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+                    symbol: "My20",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+                    symbol: "HBT",
+                    decimals: 15,
+                    color: "0063A5",
+                },
+                Immutable.Map {
+                    currency: "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+                    symbol: "SBT",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+                    symbol: "WETH",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                    symbol: "BOKKY",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "ETH",
+                    symbol: "ETH",
+                    decimals: 18,
+                    color: "5C78E4",
+                },
+            ],
+        }
+    }
+    totalBalances={
+        Immutable.Map {
+            baseLayer: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: true,
+                error: null,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+            nahmiiAvailable: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: true,
+                error: null,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+            nahmiiStaging: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: true,
+                error: null,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+            nahmiiStaged: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: true,
+                error: null,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+            nahmiiCombined: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+            combined: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: true,
+                error: null,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Text
+          large={true}
+>
+          total_fiat_value
+</Text>,
+        <Heading
+          large={true}
+>
+          $0.00
+</Heading>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "total_fiat_value",
+          "large": true,
+        },
+        "ref": null,
+        "rendered": "total_fiat_value",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "$0.00",
+          "large": true,
+        },
+        "ref": null,
+        "rendered": "$0.00",
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Text
+            large={true}
+>
+            total_fiat_value
+</Text>,
+          <Heading
+            large={true}
+>
+            $0.00
+</Heading>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "total_fiat_value",
+            "large": true,
+          },
+          "ref": null,
+          "rendered": "total_fiat_value",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "$0.00",
+            "large": true,
+          },
+          "ref": null,
+          "rendered": "$0.00",
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`BreakdownPie should render correctly with all props loaded 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Breakdown
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+    supportedAssets={
+        Immutable.Map {
+            loading: false,
+            error: null,
+            assets: Immutable.List [
+                Immutable.Map {
+                    currency: "0x8899544F1fc4E0D570f3c998cC7e5857140dC322",
+                    symbol: "My20",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a",
+                    symbol: "HBT",
+                    decimals: 15,
+                    color: "0063A5",
+                },
+                Immutable.Map {
+                    currency: "0xcda3f98783d8ee980ee21f548bfe42965d13d64d",
+                    symbol: "SBT",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0xc00fd9820cd2898cc4c054b7bf142de637ad129a",
+                    symbol: "WETH",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
+                    symbol: "BOKKY",
+                    decimals: 18,
+                    color: "FFAA00",
+                },
+                Immutable.Map {
+                    currency: "ETH",
+                    symbol: "ETH",
+                    decimals: 18,
+                    color: "5C78E4",
+                },
+            ],
+        }
+    }
+    totalBalances={
+        Immutable.Map {
+            baseLayer: Immutable.Map {
+                assets: Immutable.Map {
+                    ETH: Immutable.Map {
+                        amount: "0.198937",
+                        value: Immutable.Map {
+                            usd: "81.962044",
+                        },
+                    },
+                    0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                        amount: "1.231288e-12",
+                        value: Immutable.Map {
+                            usd: "1.231288e-12",
+                        },
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "81.962044000001231288",
+                },
+            },
+            nahmiiAvailable: Immutable.Map {
+                assets: Immutable.Map {
+                    ETH: Immutable.Map {
+                        amount: "0.1",
+                        value: Immutable.Map {
+                            usd: "41.2",
+                        },
+                    },
+                    0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                        amount: "0.13",
+                        value: Immutable.Map {
+                            usd: "0.13",
+                        },
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "41.33",
+                },
+            },
+            nahmiiStaging: Immutable.Map {
+                assets: Immutable.Map {
+                    ETH: Immutable.Map {
+                        amount: "0.1",
+                        value: Immutable.Map {
+                            usd: "41.2",
+                        },
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "41.2",
+                },
+            },
+            nahmiiStaged: Immutable.Map {
+                assets: Immutable.Map {
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "0",
+                },
+            },
+            nahmiiCombined: Immutable.Map {
+                assets: Immutable.Map {
+                    ETH: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "82.4",
+                        },
+                        amount: "0.2",
+                    },
+                    0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "0.13",
+                        },
+                        amount: "0.13",
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "82.53",
+                },
+            },
+            combined: Immutable.Map {
+                assets: Immutable.Map {
+                    ETH: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "164.362044",
+                        },
+                        amount: "0.398937",
+                    },
+                    0x583cbbb8a8443b38abcc0c956bece47340ea1367: Immutable.Map {
+                        value: Immutable.Map {
+                            usd: "0.130000000001231288",
+                        },
+                        amount: "0.130000000001231288",
+                    },
+                },
+                loading: false,
+                error: null,
+                total: Immutable.Map {
+                    usd: "164.492044000001231288",
+                },
+            },
+        }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <div>
+          <Text
+                    large={true}
+          >
+                    total_fiat_value
+          </Text>
+          <Heading
+                    large={true}
+          >
+                    $164.49
+          </Heading>
+</div>,
+        <Spring
+          config={
+                    Object {
+                              "friction": 26,
+                              "tension": 170,
+                            }
+          }
+          force={false}
+          from={
+                    Object {
+                              "height": "auto",
+                              "listExpanded": 0,
+                              "opacity": 1,
+                            }
+          }
+          immediate={false}
+          inject={[Function]}
+          native={false}
+          reset={false}
+          to={
+                    Object {
+                              "height": "auto",
+                              "listExpanded": 0,
+                              "opacity": 1,
+                            }
+          }
+>
+          [Function]
+</Spring>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <Text
+              large={true}
+>
+              total_fiat_value
+</Text>,
+            <Heading
+              large={true}
+>
+              $164.49
+</Heading>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "total_fiat_value",
+              "large": true,
+            },
+            "ref": null,
+            "rendered": "total_fiat_value",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "$164.49",
+              "large": true,
+            },
+            "ref": null,
+            "rendered": "$164.49",
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": [Function],
+          "config": Object {
+            "friction": 26,
+            "tension": 170,
+          },
+          "force": false,
+          "from": Object {
+            "height": "auto",
+            "listExpanded": 0,
+            "opacity": 1,
+          },
+          "immediate": false,
+          "inject": [Function],
+          "native": false,
+          "reset": false,
+          "to": Object {
+            "height": "auto",
+            "listExpanded": 0,
+            "opacity": 1,
+          },
+        },
+        "ref": null,
+        "rendered": [Function],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <div>
+            <Text
+                        large={true}
+            >
+                        total_fiat_value
+            </Text>
+            <Heading
+                        large={true}
+            >
+                        $164.49
+            </Heading>
+</div>,
+          <Spring
+            config={
+                        Object {
+                                    "friction": 26,
+                                    "tension": 170,
+                                  }
+            }
+            force={false}
+            from={
+                        Object {
+                                    "height": "auto",
+                                    "listExpanded": 0,
+                                    "opacity": 1,
+                                  }
+            }
+            immediate={false}
+            inject={[Function]}
+            native={false}
+            reset={false}
+            to={
+                        Object {
+                                    "height": "auto",
+                                    "listExpanded": 0,
+                                    "opacity": 1,
+                                  }
+            }
+>
+            [Function]
+</Spring>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <Text
+                large={true}
+>
+                total_fiat_value
+</Text>,
+              <Heading
+                large={true}
+>
+                $164.49
+</Heading>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "total_fiat_value",
+                "large": true,
+              },
+              "ref": null,
+              "rendered": "total_fiat_value",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "$164.49",
+                "large": true,
+              },
+              "ref": null,
+              "rendered": "$164.49",
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": [Function],
+            "config": Object {
+              "friction": 26,
+              "tension": 170,
+            },
+            "force": false,
+            "from": Object {
+              "height": "auto",
+              "listExpanded": 0,
+              "opacity": 1,
+            },
+            "immediate": false,
+            "inject": [Function],
+            "native": false,
+            "reset": false,
+            "to": Object {
+              "height": "auto",
+              "listExpanded": 0,
+              "opacity": 1,
+            },
+          },
+          "ref": null,
+          "rendered": [Function],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

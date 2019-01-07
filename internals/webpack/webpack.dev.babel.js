@@ -41,6 +41,20 @@ if (dllPlugin) {
   });
 }
 
+const additionalEntry = [];
+let additionalAlias = {};
+
+if (process.env.CONTRACT_PATH) {
+  additionalEntry.push(path.join(process.cwd(), 'src/mocks/containers/NahmiiHoc/_fetch.js'));
+  additionalAlias = {
+    'config/constants': 'mocks/config/constants',
+    './abis/ClientFund': 'mocks/sdk/abis/ClientFund.js',
+    './abis/DriipSettlement': 'mocks/sdk/abis/DriipSettlement.js',
+    './abis/DriipSettlementChallenge': 'mocks/sdk/abis/DriipSettlementChallenge.js',
+    './abis/BalanceTracker': 'mocks/sdk/abis/BalanceTracker.js',
+  };
+}
+
 module.exports = require('./webpack.base.babel')({
   mode: 'development',
 
@@ -51,6 +65,7 @@ module.exports = require('./webpack.base.babel')({
     path.join(process.cwd(), 'node_modules/antd/dist/antd.css'),
     path.join(process.cwd(), 'node_modules/sanitize.css/sanitize.css'),
     path.join(process.cwd(), 'public/fonts/Open_Sans/index.css'),
+    ...additionalEntry,
     path.join(process.cwd(), 'src/app.js'), // Start with js/app.js
   ],
 
@@ -73,6 +88,9 @@ module.exports = require('./webpack.base.babel')({
 
   performance: {
     hints: false,
+  },
+  resolve: {
+    alias: additionalAlias,
   },
 });
 

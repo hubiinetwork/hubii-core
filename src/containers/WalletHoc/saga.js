@@ -4,7 +4,8 @@ import {
   call,
   select,
 } from 'redux-saga/effects';
-import { Wallet, utils, Contract } from 'ethers';
+import { Wallet, Signer, utils, Contract } from 'ethers';
+import { fromRpcSig } from 'ethereumjs-util';
 
 import { notify } from 'containers/App/actions';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
@@ -42,6 +43,9 @@ import {
   TRANSFER_ERC20,
   CREATE_WALLET_FROM_PRIVATE_KEY,
   CREATE_WALLET_FROM_KEYSTORE,
+  DECRYPT_WALLET_SUCCESS,
+  DECRYPT_WALLET_FAILURE,
+  LOCK_WALLET,
 } from './constants';
 
 import {
@@ -107,22 +111,28 @@ export function* createWalletFromKeystore({ name, keystore }) {
 export function* decryptWallet({ address, encryptedWallet, password }) {
   let callbackAction = yield select(makeSelectCurrentDecryptionCallback());
   try {
-    yield put(notify('info', getIntl().formatMessage({ id: 'unlock_wallet_info' })));
     if (!address) throw new Error(getIntl().formatMessage({ id: 'address_undefined_error' }));
-    const res = yield Wallet.fromEncryptedWallet(encryptedWallet, password);
+    const res = yield call([Wallet, 'fromEncryptedJson'], encryptedWallet, password);
     if (!res.privateKey) throw res;
     const decryptedWallet = res;
     yield put(decryptWalletSuccess(address, decryptedWallet));
-    yield put(notify('success', getIntl().formatMessage({ id: 'unlock_wallet_success' })));
     yield put(hideDecryptWalletModal());
     if (callbackAction) {
       callbackAction = callbackAction.toJS();
-      callbackAction.wallet.decrypted = decryptedWallet;
+      // the transfer saga recieves the wallet via an action. if the callback action
+      // had a wallet property, add the decrypted field.
+      // ideally instead of this, the wallet property should be taken from the store
+      // via a selector, instead of through the callback.
+      if (callbackAction.wallet) {
+        callbackAction.wallet.decrypted = decryptedWallet;
+      }
       yield put(callbackAction);
     }
   } catch (e) {
-    yield put(decryptWalletFailed(e));
-    yield put(notify('error', getIntl().formatMessage({ id: 'unlock_wallet_failed_error' }, { message: getIntl().formatMessage({ id: e.message }) })));
+    const intlErr = e.message === 'invalid password'
+      ? new Error(getIntl().formatMessage({ id: 'invalid_password' }))
+      : new Error(e.message);
+    yield put(decryptWalletFailed(intlErr));
   }
 }
 
@@ -161,9 +171,8 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
     if (isHardwareWallet(walletDetails.type)) {
       transaction = yield call(sendTransactionForHardwareWallet, { toAddress, amount, gasPrice, gasLimit });
     } else {
-      const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
-      etherWallet.provider = network.provider;
-      transaction = yield call((...args) => etherWallet.send(...args), toAddress, amount, options);
+      const etherWallet = new Wallet(walletDetails.decrypted.privateKey, network.provider);
+      transaction = yield call((...args) => etherWallet.sendTransaction(...args), { to: toAddress, value: amount, ...options });
     }
     yield put(transferSuccess(transaction, 'ETH'));
     yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
@@ -182,17 +191,15 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
   try {
     const options = { gasPrice, gasLimit };
     if (isHardwareWallet(walletDetails.type)) {
-      const tx = yield call(generateERC20Transaction, {
+      const tx = yield call(generateContractTransaction, {
         contractAddress,
-        walletAddress: walletDetails.address,
-        toAddress,
-        amount,
+        abi: ERC20ABI,
+        execute: ['transfer', [toAddress, amount, options]],
         provider,
-      }, options);
+      });
       transaction = yield call(sendTransactionForHardwareWallet, { ...tx, amount: tx.value, toAddress: tx.to });
     } else {
-      const etherWallet = new Wallet(walletDetails.decrypted.privateKey);
-      etherWallet.provider = provider;
+      const etherWallet = new Wallet(walletDetails.decrypted.privateKey, provider);
       const contract = new Contract(contractAddress, contractAbiFragment, etherWallet);
       transaction = yield call((...args) => contract.transfer(...args), toAddress, amount, options);
     }
@@ -209,16 +216,24 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
 }
 
 // hook into etherjs's sign function get generated erc20 transaction object for further process
-export function generateERC20Transaction({ contractAddress, walletAddress, toAddress, amount, provider }, options) {
+export function generateContractTransaction({ contractAddress, abi, execute, provider }) {
   return new Promise((resolve) => {
-    const contract = new Contract(contractAddress, ERC20ABI, {
-      provider,
-      getAddress: () => walletAddress,
-      sign: (tx) => {
-        resolve(tx);
-      },
-    });
-    contract.transfer(toAddress, amount, options).catch(() => {});
+    const signer = new Signer();
+    signer.provider = provider;
+    signer.sendTransaction = async (tx) => {
+      tx.to.then((address) => {
+        resolve({
+          ...tx,
+          to: address.toLowerCase(),
+        });
+      });
+    };
+
+    const contract = new Contract(contractAddress, abi, signer);
+    const func = execute[0];
+    const args = execute[1];
+
+    contract[func](...args).catch(() => {});
   });
 }
 
@@ -246,7 +261,7 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
     nonceValue = yield call([provider, 'getTransactionCount'], walletDetails.address, 'pending');
   }
   const amountHex = amount ? amount.toHexString() : '0x00';
-  const chainId = provider.chainId;
+  const chainId = provider.network.chainId;
 
   // generate raw tx for ledger nano to sign
   const rawTx = generateRawTx({
@@ -281,25 +296,45 @@ export function* sendTransactionForHardwareWallet({ toAddress, amount, data, non
   // regenerate tx hex string
   const txHex = `0x${rawTx.serialize().toString('hex')}`;
   // broadcast transaction
-  const txHash = yield call([provider, 'sendTransaction'], txHex);
+  const { hash } = yield call([provider, 'sendTransaction'], txHex);
   // get transaction details
-  return yield call([provider, 'getTransaction'], txHash);
+  return yield call([provider, 'getTransaction'], hash);
 }
 
 export function* signPersonalMessage({ message, wallet }) {
-  let signedPersonalMessage;
-
   if (wallet.type === 'software') {
     const etherWallet = new Wallet(wallet.decrypted.privateKey);
-    signedPersonalMessage = etherWallet.signMessage(message);
+    const rpcSig = yield call([etherWallet, 'signMessage'], message);
+    const bufferParams = fromRpcSig(rpcSig);
+    return {
+      v: bufferParams.v,
+      r: `0x${bufferParams.r.toString('hex')}`,
+      s: `0x${bufferParams.s.toString('hex')}`,
+    };
   }
   if (wallet.type === 'lns') {
-    signedPersonalMessage = yield signPersonalMessageByLedger(wallet, message);
+    return yield signPersonalMessageByLedger(wallet, message);
   }
   if (wallet.type === 'trezor') {
-    signedPersonalMessage = yield signPersonalMessageByTrezor(message, wallet);
+    return yield signPersonalMessageByTrezor(message, wallet);
   }
-  return signedPersonalMessage;
+  throw new Error('invalid wallet');
+}
+
+export function* tryDecryptHook() {
+  yield put(notify('info', getIntl().formatMessage({ id: 'unlock_wallet_info' })));
+}
+
+export function* decryptSuccessHook() {
+  yield put(notify('success', getIntl().formatMessage({ id: 'unlock_wallet_success' })));
+}
+
+export function* decryptFailedHook({ error }) {
+  yield put(notify('error', getIntl().formatMessage({ id: 'unlock_wallet_failed_error' }, { message: error.message })));
+}
+
+export function* lockHook() {
+  yield put(notify('success', getIntl().formatMessage({ id: 'wallet_locked' })));
 }
 
 // Root watcher
@@ -312,4 +347,8 @@ export default function* walletHoc() {
   yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
   yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
   yield takeEvery(CREATE_WALLET_FROM_KEYSTORE, createWalletFromKeystore);
+  yield takeEvery(DECRYPT_WALLET_SUCCESS, decryptSuccessHook);
+  yield takeEvery(DECRYPT_WALLET_FAILURE, decryptFailedHook);
+  yield takeEvery(DECRYPT_WALLET, tryDecryptHook);
+  yield takeEvery(LOCK_WALLET, lockHook);
 }

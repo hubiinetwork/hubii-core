@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron';
 import { eventChannel } from 'redux-saga';
 import { takeEvery, put, call, select, take } from 'redux-saga/effects';
-import { toBuffer, bufferToHex, stripHexPrefix } from 'ethereumjs-util';
+import { fromRpcSig, toBuffer, bufferToHex, stripHexPrefix } from 'ethereumjs-util';
 import { notify } from 'containers/App/actions';
 import { deriveAddresses, prependHexToAddress, isAddressMatch } from 'utils/wallet';
 import { requestHardwareWalletAPI } from 'utils/request';
@@ -41,14 +41,15 @@ export const listenTrezorDevicesChannel = () => eventChannel((emit) => {
   return () => { };
 });
 
-export function* getAddresses({ pathBase, count }) {
+export function* getAddresses({ pathTemplate, firstIndex, lastIndex }) {
   const trezorInfo = yield select(makeSelectTrezorHoc());
   try {
+    const pathBase = pathTemplate.replace('/{index}', '');
     const key = yield call(requestHardwareWalletAPI, 'getpublickey', { id: trezorInfo.get('id'), path: pathBase });
-    const addresses = deriveAddresses({ publicKey: key.node.public_key, chainCode: key.node.chain_code, count });
+    const addresses = deriveAddresses({ publicKey: key.node.public_key, chainCode: key.node.chain_code, firstIndex, lastIndex });
     for (let i = 0; i < addresses.length; i += 1) {
       const address = prependHexToAddress(addresses[i]);
-      yield put(fetchedTrezorAddress(`${pathBase}/${i}`, address));
+      yield put(fetchedTrezorAddress(pathTemplate.replace('{index}', firstIndex + i), address));
     }
   } catch (error) {
     const refinedError = trezorError(error);
@@ -103,6 +104,7 @@ export function* signPersonalMessageByTrezor(txHash, walletDetails) {
     throw new Error('PASSPHRASE_MISMATCH');
   }
   try {
+    yield put(trezorConfirmTxOnDevice());
     const signedTx = yield call(
       requestHardwareWalletAPI,
       'signpersonalmessage',
@@ -112,11 +114,17 @@ export function* signPersonalMessageByTrezor(txHash, walletDetails) {
         message: Buffer.from(txHash).toString('hex'),
       }
     );
-
-    return signedTx;
+    const expandedSig = fromRpcSig(`0x${signedTx.message.signature}`);
+    return {
+      r: bufferToHex(expandedSig.r),
+      s: bufferToHex(expandedSig.s),
+      v: expandedSig.v,
+    };
   } catch (e) {
     const refinedError = trezorError(e);
     throw new Error(refinedError.error);
+  } finally {
+    yield put(trezorConfirmTxOnDeviceDone());
   }
 }
 

@@ -3,14 +3,15 @@
  */
 
 /* eslint-disable redux-saga/yield-effects */
-import { takeEvery, put } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga/effects';
+import * as matchers from 'redux-saga-test-plan/matchers';
 import { expectSaga } from 'redux-saga-test-plan';
 import { Wallet, utils } from 'ethers';
 import { fromJS } from 'immutable';
 import BigNumber from 'bignumber.js';
 
 import { requestHardwareWalletAPI } from 'utils/request';
-import { getTransaction, prependHexToAddress } from 'utils/wallet';
+import { getTransaction, prependHexToAddress, ERC20ABI } from 'utils/wallet';
 import { storeMock } from 'mocks/store';
 
 import { notify } from 'containers/App/actions';
@@ -19,6 +20,8 @@ import {
   appMock,
   currentNetworkMock,
 } from 'containers/App/tests/mocks/selectors';
+
+import { nahmiiHocMock } from 'containers/NahmiiHoc/tests/mocks/selectors';
 
 import {
   hubiiApiHocMock,
@@ -69,8 +72,12 @@ import walletHoc, {
   transferEther,
   hookNewWalletCreated,
   sendTransactionForHardwareWallet,
-  generateERC20Transaction,
+  generateContractTransaction,
   signPersonalMessage,
+  decryptSuccessHook,
+  decryptFailedHook,
+  lockHook,
+  tryDecryptHook,
 } from '../saga';
 
 import walletHocReducer, { initialState } from '../reducer';
@@ -84,6 +91,10 @@ import {
   TRANSFER_ERC20,
   LEDGER_ERROR,
   CREATE_WALLET_SUCCESS,
+  DECRYPT_WALLET_SUCCESS,
+  DECRYPT_WALLET_FAILURE,
+  LOCK_WALLET,
+  CREATE_WALLET_FROM_KEYSTORE,
 } from '../constants';
 
 import {
@@ -96,6 +107,7 @@ import {
   transferError,
   transfer as transferAction,
   addNewWallet as addNewWalletAction,
+  hideDecryptWalletModal,
 } from '../actions';
 
 const withReducer = (state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action));
@@ -279,47 +291,32 @@ describe('decryptWallet saga', () => {
   const address = '0x00';
   const decryptedWallet = { privateKey: '0x409300caf64bdf96a92d7f99547a5d67702fbdd759bbea4ca19b11a21d9c8528', defaultGasLimit: 1500000, address: '0xA0EcCD7605Bb117DD2A4Cd55979C720Cf00F7fa4', mnemonic: 'movie viable write punch mango arrest cotton page grass dad document practice', path: "m/44'/60'/0'/0/0" };
 
-  it('should dispatch notify action', () => {
-    const decryptWalletGenerator = decryptWallet({ address, encryptedWallet, password });
-    decryptWalletGenerator.next();
-    const putDescriptor = decryptWalletGenerator.next(decryptedWallet).value;
-    expect(putDescriptor).toEqual(put(notify('info', 'unlock_wallet_info')));
+  it('should dispatch the decryptWalletSuccess action, and activate the callback if successful', () => {
+    const callbackAction = { type: 'action123' };
+    const testState = storeMock.setIn(['walletHoc', 'currentDecryptionCallback'], fromJS(callbackAction));
+    return expectSaga(decryptWallet, { address, encryptedWallet, password })
+      .withState(testState)
+      .provide([
+        [matchers.call.fn(Wallet.fromEncryptedJson), decryptedWallet],
+      ])
+      .put(decryptWalletSuccess(address, decryptedWallet))
+      .put(hideDecryptWalletModal())
+      .put(callbackAction)
+      .run();
   });
 
-  it('should dispatch the decryptWalletSuccess, notify action, and run the callback function if there is one, if successful', () => {
-    const decryptWalletGenerator = decryptWallet({ address, encryptedWallet, password });
-    decryptWalletGenerator.next();
-    decryptWalletGenerator.next();
-    decryptWalletGenerator.next();
-    let putDescriptor = decryptWalletGenerator.next(decryptedWallet).value;
-    expect(JSON.stringify(putDescriptor)).toEqual(JSON.stringify(put(decryptWalletSuccess(address, decryptedWallet))));
-    putDescriptor = decryptWalletGenerator.next().value;
-    expect(putDescriptor).toEqual(put(notify('success', 'unlock_wallet_success')));
-    decryptWalletGenerator.next();
-  });
+  it('should dispatch decryptWalletFailed and notify action if address is undefined', () => expectSaga(decryptWallet, { address: undefined, encryptedWallet, password })
+      .withState(storeMock)
+      .put(decryptWalletFailed(new Error('address_undefined_error')))
+      .run());
 
-  it('should dispatch decryptWalletFailed and notify action if address is undefined', () => {
-    const decryptWalletGenerator = decryptWallet({ encryptedWallet, password });
-    decryptWalletGenerator.next();
-    decryptWalletGenerator.next();
-    let putDescriptor = decryptWalletGenerator.next().value;
-    const error = new Error('address_undefined_error');
-    expect(putDescriptor).toEqual(put(decryptWalletFailed(error)));
-    putDescriptor = decryptWalletGenerator.next().value;
-    expect(putDescriptor).toEqual(put(notify('error', 'unlock_wallet_failed_error')));
-  });
-
-  it('should dispatch the decryptWalletFailed and notify action if decryption fails', () => {
-    const decryptWalletGenerator = decryptWallet({ address, encryptedWallet, password });
-    decryptWalletGenerator.next();
-    decryptWalletGenerator.next();
-    decryptWalletGenerator.next();
-    const error = new Error('some error occured');
-    let putDescriptor = decryptWalletGenerator.next(error).value;
-    expect(putDescriptor).toEqual(put(decryptWalletFailed(error)));
-    putDescriptor = decryptWalletGenerator.next().value;
-    expect(putDescriptor).toEqual(put(notify('error', 'unlock_wallet_failed_error')));
-  });
+  it('should dispatch the decryptWalletFailed and notify action if decryption fails', () => expectSaga(decryptWallet, { address, encryptedWallet, password: 'cats' })
+      .withState(storeMock)
+      .provide([
+        [matchers.call.fn(Wallet.fromEncryptedJson), new Error('invalid_password')],
+      ])
+      .put(decryptWalletFailed(new Error('invalid_password')))
+      .run());
 });
 
 it('sign transaction for eth payment', () => {
@@ -356,6 +353,7 @@ it('sign transaction for erc20 payment', () => {
   const storeState = {
     ethOperationsHoc: ethOperationsHocMock,
     app: appMock,
+    nahmiiHoc: nahmiiHocMock,
     hubiiApiHoc: hubiiApiHocMock,
     walletHoc: {
       wallets: [{
@@ -425,6 +423,7 @@ describe('payment transfer', () => {
       let storeState = fromJS({
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
+        nahmiiHoc: nahmiiHocMock,
         app: appMock,
         walletHoc: {
           wallets: [{
@@ -470,6 +469,7 @@ describe('payment transfer', () => {
       const storeState = {
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
+        nahmiiHoc: nahmiiHocMock,
         app: appMock,
         walletHoc: {
           wallets: [{
@@ -548,7 +548,7 @@ describe('payment transfer', () => {
           .put(transferSuccess(signedTransaction, 'BOKKY'))// send signed transaction
           .run({ silenceTimeout: true });
     });
-    it('#generateERC20Transaction should generate transaction object using etherjs contract', async () => {
+    it('#generateContractTransaction should generate transaction object using etherjs contract', async () => {
       const nonce = 1;
       const gas = {
         gasPrice: 30000000,
@@ -565,19 +565,19 @@ describe('payment transfer', () => {
         ...gas,
         nonce, // override the nonce so etherjs wont call #getTransactionCount for testing
       };
-      const tx = await generateERC20Transaction({
+      const tx = await generateContractTransaction({
         contractAddress: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
-        walletAddress: '0xe1dddbd012f6a9f3f0a346a2b418aecd03b058e7',
-        toAddress: '0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88',
-        amount: utils.parseEther(amount.toString()),
+        abi: ERC20ABI,
+        execute: ['transfer', ['0xBFdc0C8e54aF5719872a2EdEf8e65c9f4A3eae88', utils.parseEther(amount.toString()), options]],
         provider: currentNetworkMock.provider,
-      }, options);
+      });
       expect(tx).toEqual(expectedTx);
     });
     it('transfer erc20 should pass params correctly to sendTransactionForHardwareWallet', () => {
       const storeState = {
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
+        nahmiiHoc: nahmiiHocMock,
         app: appMock,
         walletHoc: {
           wallets: [{
@@ -611,7 +611,7 @@ describe('payment transfer', () => {
       return expectSaga(transferERC20, params)
           .provide({
             call(effect, next) {
-              if (effect.fn === generateERC20Transaction) {
+              if (effect.fn === generateContractTransaction) {
                 return tx;
               }
               if (effect.fn === sendTransactionForHardwareWallet) {
@@ -633,6 +633,7 @@ describe('payment transfer', () => {
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
         app: appMock,
+        nahmiiHoc: nahmiiHocMock,
         walletHoc: {
           balances: balancesMock,
           prices: pricesLoadedMock,
@@ -672,7 +673,7 @@ describe('payment transfer', () => {
               }
               if (effect.args[0].startsWith('0xf8')) {
                 signedTxHex = effect.args[0];
-                return 'hash';
+                return { hash: 'hash' };
               }
               if (effect.fn === getTransaction) {
                 return { value: 1 };
@@ -694,6 +695,7 @@ describe('payment transfer', () => {
       const storeState = fromJS({
         ethOperationsHoc: ethOperationsHocMock,
         hubiiApiHoc: hubiiApiHocMock,
+        nahmiiHoc: nahmiiHocMock,
         app: appMock,
         walletHoc: {
           balances: balancesMock,
@@ -754,7 +756,7 @@ describe('payment transfer', () => {
               }
               if (effect.args[0].startsWith('0xf8')) {
                 signedTxHex = effect.args[0];
-                return 'hash';
+                return { hash: 'hash' };
               }
               if (effect.fn === getTransaction) {
                 return { value: 1 };
@@ -815,73 +817,63 @@ describe('transfer', () => {
 
 describe('#signPersonalMessage', () => {
   const message = '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c';
-  const signedMessage = '0xb9540a3867e40c2a9ad8ae684956d285ad147ce34dfdd6dee91928d7caf7008d051c4bf7557ddeaf243e2a34ef4bd9958dd87ee3d31d644272c066d6b9f423721c';
+  const expandedSig = {
+    r: '0xb9540a3867e40c2a9ad8ae684956d285ad147ce34dfdd6dee91928d7caf7008d',
+    s: '0x051c4bf7557ddeaf243e2a34ef4bd9958dd87ee3d31d644272c066d6b9f42372',
+    v: 28,
+  };
 
-  it('should run the function relevant to a software wallet', () => {
+  it('should run the function relevant to a software wallet', async () => {
     const wallet = decryptedSoftwareWallet1Mock.toJS();
-    const expectedResult = {
-      done: true,
-      value: signedMessage,
-    };
-    const putDescriptor = signPersonalMessage({ message, wallet }).next();
-    expect(putDescriptor).toEqual(expectedResult);
+
+    const { returnValue } = await expectSaga(signPersonalMessage, { wallet, message })
+        .run({ silenceTimeout: true });
+    expect(returnValue).toEqual(expandedSig);
   });
   it('should run the function relevant to a lns', async () => {
-    const storeState = fromJS({
-      walletHoc: {
-        balances: balancesMock,
-        prices: pricesLoadedMock,
-        supportedAssets: supportedAssetsLoadedMock,
-        transactions: transactionsMock,
-        wallets: [lnsWalletMock.toJS()],
-        currentWallet: {
-          name: lnsWalletMock.toJS().name,
-          address: lnsWalletMock.toJS().address,
-        },
-        blockHeight: blockHeightLoadedMock,
-      },
-      ledgerHoc: {
-        descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC@14/XHC@14000000/HS09@14900000/Nano S@14900000/Nano S@0/IOUSBHostHIDDevice@14900000,0',
-      },
-    });
+    const ledgerExpandedSig = {
+      r: 'b9540a3867e40c2a9ad8ae684956d285ad147ce34dfdd6dee91928d7caf7008d',
+      s: '051c4bf7557ddeaf243e2a34ef4bd9958dd87ee3d31d644272c066d6b9f42372',
+      v: 28,
+    };
+    const mockState = storeMock.set('ledgerHoc', fromJS({
+      descriptor: 'IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/XHC@14/XHC@14000000/HS09@14900000/Nano S@14900000/Nano S@0/IOUSBHostHIDDevice@14900000,0',
+    }));
     const { returnValue } = await expectSaga(signPersonalMessage, { wallet: lnsWalletMock.toJS(), message })
         .provide({
           call(effect) {
             if (effect.fn === tryCreateEthTransportActivity) {
-              return signedMessage;
+              return ledgerExpandedSig;
             }
             return {};
           },
         })
-        .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+        .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), mockState)
         .run({ silenceTimeout: true });
-    expect(returnValue).toEqual(signedMessage);
+    expect(returnValue).toEqual(expandedSig);
   });
 
   it('should run the function relevant to a trezor', async () => {
+    const trezorFlatFormSig = '944cd5778ce7376fcb8e24bb19b5fc86792b40a9b8b5836b887f7db8ac3859bd7f382f8fc108126725315ac4dc06a37b1345050913aa74bb09d9ab78e61d26b600';
+    const trezorExpandedSig = {
+      r: '0x944cd5778ce7376fcb8e24bb19b5fc86792b40a9b8b5836b887f7db8ac3859bd',
+      s: '0x7f382f8fc108126725315ac4dc06a37b1345050913aa74bb09d9ab78e61d26b6',
+      v: 27,
+    };
     const address = trezorWalletMock.get('address');
+    const trezorSignedMessage = {
+      message: { signature: trezorFlatFormSig },
+    };
     const expectedReturnAddress = address.slice(2);
+    const mockState = storeMock.set('trezorHoc', fromJS({
+      id: transactionsMock.toJS().deviceId,
+    }));
 
-    const storeState = fromJS({
-      hubiiApiHoc: hubiiApiHocMock,
-      walletHoc: fromJS({})
-        .set('balances', balancesMock)
-        .set('prices', pricesLoadedMock)
-        .set('wallets', [trezorWalletMock.toJS()])
-        .set('currentWallet', {
-          name: trezorWalletMock.toJS().name,
-          address,
-        })
-        .set('transactions', transactionsMock)
-        .set('pendingTransactions', [])
-        .set('confirmedTransactions', []),
-      trezorHoc: { id: transactionsMock.toJS().deviceId },
-    }).toJS();
     const { returnValue } = await expectSaga(signPersonalMessage, { wallet: trezorWalletMock.toJS(), message })
         .provide({
           call(effect) {
             if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'signpersonalmessage') {
-              return signedMessage;
+              return trezorSignedMessage;
             }
             if (effect.fn === requestHardwareWalletAPI && effect.args[0] === 'getaddress') {
               return { address: expectedReturnAddress };
@@ -889,10 +881,38 @@ describe('#signPersonalMessage', () => {
             return {};
           },
         })
-        .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), fromJS(storeState))
+        .withReducer((state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action)), mockState)
         .run({ silenceTimeout: true });
-    expect(returnValue).toEqual(signedMessage);
+    expect(returnValue).toEqual(trezorExpandedSig);
   });
+});
+
+describe('tryDecryptHook saga', () => {
+  it('should dispatch correct notify action', () => expectSaga(tryDecryptHook)
+      .put(notify('info', 'unlock_wallet_info'))
+      .run()
+  );
+});
+
+describe('decryptSuccessHook saga', () => {
+  it('should dispatch correct notify action', () => expectSaga(decryptSuccessHook)
+      .put(notify('success', 'unlock_wallet_success'))
+      .run()
+  );
+});
+
+describe('decryptFailedHook saga', () => {
+  it('should dispatch correct notify action', () => expectSaga(decryptFailedHook, { error: new Error('some msg') })
+      .put(notify('error', 'unlock_wallet_failed_error'))
+      .run()
+  );
+});
+
+describe('lockHook saga', () => {
+  it('should dispatch correct notify action', () => expectSaga(lockHook)
+      .put(notify('success', 'wallet_locked'))
+      .run()
+  );
 });
 
 
@@ -924,13 +944,38 @@ describe('root Saga', () => {
     expect(takeDescriptor).toEqual(takeEvery(TRANSFER_ERC20, transferERC20));
   });
 
-  it('should wait for the CREATE_WALLET_FROM_PRIVATE_KEY action', () => {
+  it('should start task to watch for CREATE_WALLET_FROM_PRIVATE_KEY action', () => {
     const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey));
   });
 
-  it('should wait for the CREATE_WALLET_SUCCESS action', () => {
+  it('should start task to watch for CREATE_WALLET_SUCCESS action', () => {
     const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated));
+  });
+
+  it('should start task to watch for CREATE_WALLET_FROM_KEYSTORE action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_FROM_KEYSTORE, createWalletFromKeystore));
+  });
+
+  it('should start task to watch for DECRYPT_WALLET_SUCCESS action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(DECRYPT_WALLET_SUCCESS, decryptSuccessHook));
+  });
+
+  it('should start task to watch for DECRYPT_WALLET_FAILURE action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(DECRYPT_WALLET_FAILURE, decryptFailedHook));
+  });
+
+  it('should start task to watch for DECRYPT_WALLET action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(DECRYPT_WALLET, tryDecryptHook));
+  });
+
+  it('should start task to watch for LOCK_WALLET action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(LOCK_WALLET, lockHook));
   });
 });

@@ -4,13 +4,13 @@ import styled from 'styled-components';
 const SideBarLayout = styled(Layout)`
   .ant-layout-sider {
     background-color: ${({ theme }) => theme.palette.dark};
-  }
-  .ant-layout-sider.ant-layout-sider-collapsed {
-    width: 5.14rem !important;
-    max-width: 5.14rem !important;
     min-width: 5.14rem !important;
+    max-width: 5.14rem !important;
+    width: 5.14rem !important;
+    flex: 0 !important;
   }
 `;
+
 const SideBarMenu = styled(Menu)`
   width: 5.14rem;
   border-right: none;
@@ -38,10 +38,13 @@ const SideBarMenu = styled(Menu)`
     line-height: 6.5rem;
     padding: 0rem 1.43rem !important;
     margin-bottom: 0rem !important;
-    position: absolute !important;
+    position: fixed !important;
     .setting-icon {
       font-size: 2.29rem !important;
     }
+  }
+  .ant-menu-item {
+    width: 5.14rem;
   }
   .ant-menu-item a {
     opacity: 0.6;
@@ -49,6 +52,9 @@ const SideBarMenu = styled(Menu)`
   }
   .ant-menu-item a:hover {
     opacity: 1;
+  }
+    .ant-menu-item::after {
+    border-right: 0.14rem solid ${({ theme }) => theme.palette.info} !important;
   }
   .ant-menu-item-selected a {
     opacity: 1;
@@ -62,15 +68,10 @@ const SideBarMenu = styled(Menu)`
     opacity: 1;
     color: ${({ theme }) => theme.palette.info};
     background: ${({ theme }) => theme.palette.dark1} !important;
-    border-right: 0.14rem solid ${({ theme }) => theme.palette.info};
   }
   .ant-menu-item-selected.menu-logo {
     border-right: none;
     background: ${({ theme }) => theme.palette.dark} !important;
-  }
-
-  .ant-tooltip {
-    display: none;
   }
 `;
 
@@ -86,4 +87,5 @@ const StriimImage = styled.img`
   height: 35px;
   width: 35px;
 `;
+
 export { SideBarLayout, SideBarMenu, MenuItemIcon, Styledimg, StriimImage };

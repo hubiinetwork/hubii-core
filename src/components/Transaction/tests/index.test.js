@@ -16,10 +16,11 @@ describe('<Transaction />', () => {
     viewOnBlockExplorerClick: () => {},
     onChange: () => {},
     defaultOpen: false,
+    layer: 'baseLayer',
     intl,
   };
 
-  it.only('should render correctly tx type sent', () => {
+  it('should render correctly tx type sent', () => {
     const wrapper = shallow(
       <Transaction {...props} />
     );
@@ -40,6 +41,15 @@ describe('<Transaction />', () => {
       <Transaction
         {...props}
         counterpartyAddress=""
+      />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render nahmii tx correctly', () => {
+    const wrapper = shallow(
+      <Transaction
+        {...props}
+        type={'nahmii'}
       />);
     expect(wrapper).toMatchSnapshot();
   });

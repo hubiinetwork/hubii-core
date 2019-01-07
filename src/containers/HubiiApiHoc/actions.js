@@ -20,11 +20,12 @@ import {
   LOAD_IDENTITY_SERVICE_TOKEN_SUCCESS,
 } from './constants';
 
-export function loadWalletBalances(address, noPoll) {
+export function loadWalletBalances(address, noPoll, onlyEth) {
   return {
     type: LOAD_WALLET_BALANCES,
     address,
     noPoll,
+    onlyEth,
   };
 }
 
@@ -73,7 +74,7 @@ export function loadPrices() {
 export function loadPricesSuccess(prices) {
   return {
     type: LOAD_PRICES_SUCCESS,
-    prices: [...prices, { currency: 'ETH', eth: 1, btc: 0.01, usd: 412 }],
+    prices,
   };
 }
 

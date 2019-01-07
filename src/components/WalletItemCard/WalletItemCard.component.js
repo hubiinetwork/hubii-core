@@ -3,14 +3,17 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 
-import { isHardwareWallet, isAddressMatch } from 'utils/wallet';
+import { trimDecimals, isHardwareWallet, isAddressMatch } from 'utils/wallet';
+import { formatFiat } from 'utils/numberFormats';
+import WalletStatusIndicator from 'components/WalletStatusIndicator';
 import DeletionModal from 'components/DeletionModal';
+import { Modal } from 'components/ui/Modal';
+import NahmiiText from 'components/ui/NahmiiText';
+import Text from 'components/ui/Text';
 import ExportPrivateInfo from 'components/ExportPrivateInfo';
+
 import WalletDetailPopoverContent from './WalletDetailPopoverContent';
 import AssetAmountBubble from './AssetAmountBubble';
-import USBFlag from '../USBFlag';
-import { Modal } from '../ui/Modal';
-import { formatFiat } from '../../utils/numberFormats';
 
 import {
   AssetsWrapper,
@@ -23,7 +26,7 @@ import {
   MenuItem,
   MenuDivider,
   CardIconSettings,
-  OverflowHidden,
+  Border,
   IconsWrapper,
   WalletName,
   Spinner,
@@ -42,16 +45,36 @@ export class WalletItemCard extends React.PureComponent {
     this.settingsMenu = this.settingsMenu.bind(this);
     this.handleDeleteWallet = this.handleDeleteWallet.bind(this);
     this.handleExportSeedWords = this.handleExportSeedWords.bind(this);
-    this.determineAmount = this.determineAmount.bind(this);
   }
 
-
-  settingsMenu(walletType) {
+  settingsMenu(walletType, isDecrypted) {
     const menuItems = [];
     const { formatMessage } = this.props.intl;
+    if (walletType === 'software') {
+      if (isDecrypted) {
+        menuItems.push(
+          <MenuItem key="1" onClick={this.props.lock}>
+            {formatMessage({ id: 'lock' })}
+          </MenuItem>
+        );
+      } else {
+        menuItems.push(
+          <MenuItem key="2" onClick={this.props.unlock}>
+            {formatMessage({ id: 'unlock' })}
+          </MenuItem>
+        );
+      }
+      menuItems.push(<MenuDivider key="3" />);
+      menuItems.push(
+        <MenuItem key="4" onClick={this.handleExportSeedWords}>
+          {formatMessage({ id: 'backup_wallet' })}
+        </MenuItem>
+      );
+      menuItems.push(<MenuDivider key="5" />);
+    }
     menuItems.push(
       <MenuItem
-        key="1"
+        key="6"
         onClick={() =>
           this.setState({ modalVisibility: true, modalType: 'deleteWallet' })
         }
@@ -59,43 +82,7 @@ export class WalletItemCard extends React.PureComponent {
         {formatMessage({ id: 'delete_wallet' })}
       </MenuItem>
     );
-    if (walletType === 'software') {
-      menuItems.push(<MenuDivider key="2" />);
-      menuItems.push(
-        <MenuItem key="3" onClick={this.handleExportSeedWords}>
-          {formatMessage({ id: 'backup_wallet' })}
-        </MenuItem>
-      );
-    }
     return <Menu visible singleitem={(menuItems.length === 1).toString()}>{menuItems.map((item) => item)}</Menu>;
-  }
-
-  /*
-   * This function will reduce the amount's decimal places according to 0.01 usd of the currency.
-   *
-   */
-  determineAmount(amount, currency) {
-    const extractedCurrency = this.props.priceInfo.find((currencyItem) => isAddressMatch(currencyItem.currency, currency));
-
-    // find what 0.01 usd is in the relevant currency
-    const ratio = 0.01 / extractedCurrency.usd;
-    const ratioSplitByDot = ratio.toString().split('.');
-    const amountSplitByDot = amount.toString().split('.');
-
-    // check to see if the amount was a whole value, in which case just return as there is no need for decimal alteration
-    if (amountSplitByDot.length === 1) {
-      return amount.toString();
-    }
-
-    // check to see if this currency is a test token, in which case just use a default number, 6, of decimal places
-    if (!extractedCurrency.usd) {
-      return `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, 6)}`;
-    }
-
-    // otherwise, find how many 0's there are after the decimal place on the ratio + 1, and minus that with the length of the
-    // number of digits after the decimal place on the ratio.
-    const decimalPlacement = (ratioSplitByDot[1].toString().length - parseFloat(ratioSplitByDot[1]).toString().length) + 1;
-    return `${amountSplitByDot[0]}.${amountSplitByDot[1].substr(0, decimalPlacement)}`;
   }
 
   async handleExportSeedWords() {
@@ -115,14 +102,17 @@ export class WalletItemCard extends React.PureComponent {
     const {
       address,
       name,
-      balancesLoading,
-      balancesError,
+      baseLayerBalancesLoading,
+      baseLayerBalancesError,
+      nahmiiBalancesLoading,
+      nahmiiBalancesError,
       connected,
       type,
       handleCardClick,
       totalBalance,
       isDecrypted,
-      assets,
+      baseLayerAssets,
+      nahmiiAssets,
       mnemonic,
       privateKey,
     } = this.props;
@@ -131,12 +121,35 @@ export class WalletItemCard extends React.PureComponent {
 
     const { modalVisibility, modalType } = this.state;
 
-    let assetBubbles = null;
-    if (assets) {
-      assetBubbles = assets.map((asset) => (
+    let baseLayerAssetBubbles = null;
+    let nahmiiAssetBubbles = null;
+    if (baseLayerAssets) {
+      baseLayerAssetBubbles = baseLayerAssets.map((asset) => (
         <AssetWrapper key={asset.currency}>
-          <AssetAmountBubble name={asset.symbol} amount={this.determineAmount(asset.balance, asset.currency)} />
+          <AssetAmountBubble
+            name={asset.symbol}
+            amount={trimDecimals(asset.balance, asset.currency, this.props.priceInfo.find((c) => isAddressMatch(c.currency, asset.currency)))}
+          />
         </AssetWrapper>
+      ));
+    }
+    if (nahmiiAssets) {
+      nahmiiAssetBubbles = nahmiiAssets.length === 0
+        ? (
+          <AssetWrapper>
+            <AssetAmountBubble
+              name={'ETH'}
+              amount={'0'}
+            />
+          </AssetWrapper>
+        )
+        : nahmiiAssets.map((asset) => (
+          <AssetWrapper key={asset.currency}>
+            <AssetAmountBubble
+              name={asset.symbol}
+              amount={trimDecimals(asset.balance, asset.currency, this.props.priceInfo.find((c) => isAddressMatch(c.currency, asset.currency)))}
+            />
+          </AssetWrapper>
       ));
     }
 
@@ -166,8 +179,11 @@ export class WalletItemCard extends React.PureComponent {
         );
     }
     return (
-      <OverflowHidden>
-        {isHardwareWallet(type) && <USBFlag connected={connected} />}
+      <Border>
+        <WalletStatusIndicator
+          active={connected || isDecrypted}
+          walletType={isHardwareWallet(type) ? 'hardware' : 'software'}
+        />
         <IconsWrapper>
           <CardIcon>
             <Popover
@@ -181,10 +197,10 @@ export class WalletItemCard extends React.PureComponent {
             </Popover>
           </CardIcon>
           <CardIconSettings>
-            <Dropdown placement="bottomLeft" overlay={this.settingsMenu(type)}>
+            <Dropdown placement="bottomLeft" overlay={this.settingsMenu(type, isDecrypted)}>
               <Icon
                 type="setting"
-                style={{ marginTop: 65, position: 'absolute', fontSize: '1.4rem' }}
+                style={{ marginTop: -35, position: 'absolute', fontSize: '1.4rem' }}
               />
             </Dropdown>
           </CardIconSettings>
@@ -195,21 +211,44 @@ export class WalletItemCard extends React.PureComponent {
           }}
         >
           <LeftSideWrapper>
-            <WalletName>{name}</WalletName>
-            {!balancesLoading && !balancesError &&
+            <WalletName large>{name}</WalletName>
+            {!baseLayerBalancesLoading && !baseLayerBalancesError &&
               <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
             }
           </LeftSideWrapper>
-          <AssetsWrapper>
-            {
-              balancesError && <WalletName>{formatMessage({ id: 'fetch_balance_error' })}</WalletName>
-            }
-            {
-              balancesLoading &&
-                <Spinner type="loading" />
-            }
-            {!balancesLoading && !balancesError && assetBubbles}
-          </AssetsWrapper>
+          <div>
+            <div>
+              <Text>{formatMessage({ id: 'base_layer_balances' })}</Text>
+              <AssetsWrapper>
+                {
+                  baseLayerBalancesError
+                  && <WalletName>{formatMessage({ id: 'fetch_balance_error' })}</WalletName>
+                }
+                {
+                  baseLayerBalancesLoading &&
+                  <Spinner type="loading" />
+                }
+                {!baseLayerBalancesLoading && !baseLayerBalancesError && baseLayerAssetBubbles}
+              </AssetsWrapper>
+            </div>
+            <div style={{ marginTop: '1.25rem' }}>
+              <NahmiiText />
+              <Text>
+                &nbsp;balance
+              </Text>
+              <AssetsWrapper>
+                {
+                  nahmiiBalancesError
+                  && <WalletName>{formatMessage({ id: 'fetch_balance_error' })}</WalletName>
+                }
+                {
+                  nahmiiBalancesLoading
+                  && <Spinner type="loading" />
+                }
+                {!nahmiiBalancesLoading && !nahmiiBalancesError && nahmiiAssetBubbles}
+              </AssetsWrapper>
+            </div>
+          </div>
         </OuterWrapper>
         <Modal
           footer={null}
@@ -225,7 +264,7 @@ export class WalletItemCard extends React.PureComponent {
         >
           {modal}
         </Modal>
-      </OverflowHidden>
+      </Border>
     );
   }
 }
@@ -242,60 +281,33 @@ WalletItemCard.propTypes = {
   /**
    * assets/coins in a wallet.
    */
-  assets: PropTypes.arrayOf(
+  baseLayerAssets: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
       amount: PropTypes.number,
     })
   ),
-  /**
-   * primary Address of the wallet.
-   */
+  nahmiiAssets: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      amount: PropTypes.number,
+    })
+  ),
   address: PropTypes.string.isRequired,
-  /**
-   * if balances are loading
-   */
-  balancesLoading: PropTypes.bool.isRequired,
-  /**
-   * if unable to display balances due to API error
-   */
-  balancesError: PropTypes.bool.isRequired,
-  /**
-   * props.type type of the wallet.
-   */
+  baseLayerBalancesLoading: PropTypes.bool.isRequired,
+  baseLayerBalancesError: PropTypes.bool.isRequired,
+  nahmiiBalancesLoading: PropTypes.bool.isRequired,
+  nahmiiBalancesError: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
-  /**
-   * props.bool shows connection status  of  wallet if  provided.
-   */
   connected: PropTypes.bool,
-  /**
-   * Function which handles the on card click event
-   */
   handleCardClick: PropTypes.func.isRequired,
-  /**
-   * Function whichDeletes a wallet
-   */
   deleteWallet: PropTypes.func.isRequired,
-  /**
-   * Function which decrypts wallet
-   */
+  lock: PropTypes.func.isRequired,
+  unlock: PropTypes.func.isRequired,
   showDecryptWalletModal: PropTypes.func.isRequired,
-  // setCurrentWallet: PropTypes.func.isRequired,
-  /**
-   * Indicates, as a boolean, whether wallet is decrypted or not
-   */
   isDecrypted: PropTypes.bool.isRequired,
-  /**
-   * Wallet's mnemonic
-   */
   mnemonic: PropTypes.string,
-  /**
-   * Wallet's private key
-   */
   privateKey: PropTypes.string,
-  /**
-   * Price list
-   */
   priceInfo: PropTypes.arrayOf(PropTypes.object),
   intl: PropTypes.object,
 };

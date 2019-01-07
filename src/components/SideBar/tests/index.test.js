@@ -12,12 +12,17 @@ describe('<SideBar />', () => {
     {
       to: '/wallets',
       icon: 'wallet',
-      name: 'Wallet Manager',
+      key: 'wallet',
+    },
+    {
+      to: '/nahmii/airdriip-registration',
+      icon: 'nahmii-token',
+      key: 'nahmii',
     },
     {
       to: '/dex',
       icon: 'dex',
-      name: 'dex detail',
+      key: 'dex',
     },
   ];
   const props = {

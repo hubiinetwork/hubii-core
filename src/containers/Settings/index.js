@@ -40,10 +40,9 @@ export class Settings extends React.PureComponent {
               {formatMessage({ id: 'setting_network' })}
             </StyledSectionHeading>
             <Select
-              value={currentNetwork.provider.name}
+              value={currentNetwork.provider.network.name}
               style={{ width: '15rem' }}
               onChange={onChangeNetwork}
-              disabled
             >
               {
                 Object.entries(supportedNetworks.toJS()).map(([key]) => {

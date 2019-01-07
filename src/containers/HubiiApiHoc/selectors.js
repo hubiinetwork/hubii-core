@@ -112,6 +112,15 @@ const makeSelectTransactionsWithInfo = () => createSelector(
           txWithInfo = txWithInfo
             .set('confirmations', ((blockHeight.get('height') - tx.getIn(['block', 'number'])) + 1).toString());
 
+          // set layer
+          txWithInfo = txWithInfo.set('layer', 'baseLayer');
+
+          // set timestamp
+          txWithInfo = txWithInfo.set(
+            'timestamp',
+            txWithInfo.getIn(['block', 'timestamp'])
+          );
+
           return result.push(txWithInfo);
         }, new List());
 

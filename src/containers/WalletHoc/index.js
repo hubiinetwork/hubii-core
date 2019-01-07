@@ -14,8 +14,6 @@ import { FormItem, FormItemLabel } from 'components/ui/Form';
 import Input from 'components/ui/Input';
 import Button from 'components/ui/Button';
 
-import { notify } from 'containers/App/actions';
-
 import reducer from './reducer';
 import saga from './saga';
 import {
@@ -63,11 +61,6 @@ export function getComponentHOC(Component) {
       this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
-    componentDidMount() {
-      const { formatMessage } = this.props.intl;
-      this.props.notify('info', formatMessage({ id: 'welcome_testnet' }), 18);
-    }
-
     componentWillReceiveProps(nextProps) {
       if (nextProps.currentWallet.toJS().showDecryptModal && !this.props.currentWallet.toJS().showDecryptModal) {
         this.setState({ password: null });
@@ -91,6 +84,7 @@ export function getComponentHOC(Component) {
     }
 
     render() {
+      const { formatMessage } = this.props.intl;
       const loading = this.props.loading.get('decryptingWallet');
 
       return (
@@ -106,7 +100,7 @@ export function getComponentHOC(Component) {
             destroyOnClose
           >
             <FormItem
-              label={<FormItemLabel>{"Please enter your wallet's password to proceed"}</FormItemLabel>}
+              label={<FormItemLabel>{formatMessage({ id: 'enter_password_proceed' })}</FormItemLabel>}
               colon={false}
             >
               <Input value={this.state.password} onChange={this.onPasswordChange} type="password" onKeyPress={(e) => this.handleKeyPress(e)} />
@@ -119,7 +113,7 @@ export function getComponentHOC(Component) {
               />
                 ) : (
                   <Button type="primary" onClick={this.decryptWallet} disabled={!this.state.password}>
-                    Confirm
+                    {formatMessage({ id: 'confirm' })}
                   </Button>
                 )}
           </Modal>
@@ -130,7 +124,6 @@ export function getComponentHOC(Component) {
   HOC.propTypes = {
     currentWallet: PropTypes.object.isRequired,
     currentWalletWithInfo: PropTypes.object.isRequired,
-    notify: PropTypes.func.isRequired,
     decryptWallet: PropTypes.func.isRequired,
     hideDecryptWalletModal: PropTypes.func.isRequired,
     loading: PropTypes.object,
@@ -141,7 +134,6 @@ export function getComponentHOC(Component) {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    notify: (...args) => dispatch(notify(...args)),
     hideDecryptWalletModal: () => dispatch(hideDecryptWalletModal()),
     decryptWallet: (...args) => dispatch(decryptWallet(...args)),
   };

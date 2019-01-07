@@ -15,12 +15,17 @@ ShallowWrapper {
         Array [
             Object {
               "icon": "wallet",
-              "name": "Wallet Manager",
+              "key": "wallet",
               "to": "/wallets",
             },
             Object {
+              "icon": "nahmii-token",
+              "key": "nahmii",
+              "to": "/nahmii/airdriip-registration",
+            },
+            Object {
               "icon": "dex",
-              "name": "dex detail",
+              "key": "dex",
               "to": "/dex",
             },
           ]
@@ -61,30 +66,25 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Sider
-          collapsed={true}
-          collapsedWidth="72"
+          collapsedWidth={80}
           collapsible={false}
           defaultCollapsed={false}
           prefixCls="ant-layout-sider"
           reverseArrow={false}
           style={Object {}}
           theme="dark"
-          trigger={null}
           width={200}
 >
           <SideBar.style__SideBarMenu
                     defaultSelectedKeys={
                               Array [
-                                        "/wallets",
+                                        "wallet",
                                       ]
                     }
+                    forceSubMenuRender={true}
                     mode="inline"
                     onSelect={undefined}
-                    selectedKeys={
-                              Array [
-                                        "/world",
-                                      ]
-                    }
+                    selectedKeys={undefined}
           >
                     <MenuItem
                               className="menu-logo"
@@ -99,9 +99,6 @@ ShallowWrapper {
                                                             className="anticon anticon-wallet logo-icon"
                                                             src="../../../public/images/hubii-core-logo.svg"
                                                   />
-                                                  <span>
-                                                            hubii core
-                                                  </span>
                                         </div>
                               </Link>
                     </MenuItem>
@@ -131,6 +128,37 @@ ShallowWrapper {
                                                                       fill="#404f56"
                                                             />
                                                   </SvgIcon>
+                                        </div>
+                              </Link>
+                    </MenuItem>
+                    <MenuItem
+                              className="menu-wallet"
+                    >
+                              <Link
+                                        replace={false}
+                                        to="/nahmii/airdriip-registration"
+                              >
+                                        <div
+                                                  style={
+                                                            Object {
+                                                                      "alignItems": "center",
+                                                                      "display": "flex",
+                                                                      "justifyContent": "center",
+                                                                    }
+                                                  }
+                                        >
+                                                  <div>
+                                                            <img
+                                                                      alt="nahmii token"
+                                                                      src="IMAGE_MOCK"
+                                                                      style={
+                                                                                Object {
+                                                                                          "height": "auto",
+                                                                                          "width": "32px",
+                                                                                        }
+                                                                      }
+                                                            />
+                                                  </div>
                                         </div>
                               </Link>
                     </MenuItem>
@@ -185,9 +213,6 @@ ShallowWrapper {
                                                             className="setting-icon"
                                                             type="setting"
                                                   />
-                                                  <span>
-                                                            Settings
-                                                  </span>
                                         </div>
                               </Link>
                     </MenuItem>
@@ -228,16 +253,13 @@ ShallowWrapper {
           "children": <SideBar.style__SideBarMenu
             defaultSelectedKeys={
                         Array [
-                                    "/wallets",
+                                    "wallet",
                                   ]
             }
+            forceSubMenuRender={true}
             mode="inline"
             onSelect={undefined}
-            selectedKeys={
-                        Array [
-                                    "/world",
-                                  ]
-            }
+            selectedKeys={undefined}
 >
             <MenuItem
                         className="menu-logo"
@@ -252,9 +274,6 @@ ShallowWrapper {
                                                             className="anticon anticon-wallet logo-icon"
                                                             src="../../../public/images/hubii-core-logo.svg"
                                                 />
-                                                <span>
-                                                            hubii core
-                                                </span>
                                     </div>
                         </Link>
             </MenuItem>
@@ -284,6 +303,37 @@ ShallowWrapper {
                                                                         fill="#404f56"
                                                             />
                                                 </SvgIcon>
+                                    </div>
+                        </Link>
+            </MenuItem>
+            <MenuItem
+                        className="menu-wallet"
+            >
+                        <Link
+                                    replace={false}
+                                    to="/nahmii/airdriip-registration"
+                        >
+                                    <div
+                                                style={
+                                                            Object {
+                                                                        "alignItems": "center",
+                                                                        "display": "flex",
+                                                                        "justifyContent": "center",
+                                                                      }
+                                                }
+                                    >
+                                                <div>
+                                                            <img
+                                                                        alt="nahmii token"
+                                                                        src="IMAGE_MOCK"
+                                                                        style={
+                                                                                    Object {
+                                                                                                "height": "auto",
+                                                                                                "width": "32px",
+                                                                                              }
+                                                                        }
+                                                            />
+                                                </div>
                                     </div>
                         </Link>
             </MenuItem>
@@ -338,22 +388,17 @@ ShallowWrapper {
                                                             className="setting-icon"
                                                             type="setting"
                                                 />
-                                                <span>
-                                                            Settings
-                                                </span>
                                     </div>
                         </Link>
             </MenuItem>
 </SideBar.style__SideBarMenu>,
-          "collapsed": true,
-          "collapsedWidth": "72",
+          "collapsedWidth": 80,
           "collapsible": false,
           "defaultCollapsed": false,
           "prefixCls": "ant-layout-sider",
           "reverseArrow": false,
           "style": Object {},
           "theme": "dark",
-          "trigger": null,
           "width": 200,
         },
         "ref": null,
@@ -376,9 +421,6 @@ ShallowWrapper {
                                                                 className="anticon anticon-wallet logo-icon"
                                                                 src="../../../public/images/hubii-core-logo.svg"
                                                 />
-                                                <span>
-                                                                hubii core
-                                                </span>
                                 </div>
                 </Link>
 </MenuItem>,
@@ -409,6 +451,37 @@ ShallowWrapper {
                                                                                           fill="#404f56"
                                                                         />
                                                       </SvgIcon>
+                                    </div>
+                  </Link>
+</MenuItem>,
+                <MenuItem
+                  className="menu-wallet"
+>
+                  <Link
+                                    replace={false}
+                                    to="/nahmii/airdriip-registration"
+                  >
+                                    <div
+                                                      style={
+                                                                        Object {
+                                                                                          "alignItems": "center",
+                                                                                          "display": "flex",
+                                                                                          "justifyContent": "center",
+                                                                                        }
+                                                      }
+                                    >
+                                                      <div>
+                                                                        <img
+                                                                                          alt="nahmii token"
+                                                                                          src="IMAGE_MOCK"
+                                                                                          style={
+                                                                                                            Object {
+                                                                                                                              "height": "auto",
+                                                                                                                              "width": "32px",
+                                                                                                                            }
+                                                                                          }
+                                                                        />
+                                                      </div>
                                     </div>
                   </Link>
 </MenuItem>,
@@ -464,21 +537,17 @@ ShallowWrapper {
                                                                 className="setting-icon"
                                                                 type="setting"
                                                 />
-                                                <span>
-                                                                Settings
-                                                </span>
                                 </div>
                 </Link>
 </MenuItem>,
             ],
             "defaultSelectedKeys": Array [
-              "/wallets",
+              "wallet",
             ],
+            "forceSubMenuRender": true,
             "mode": "inline",
             "onSelect": undefined,
-            "selectedKeys": Array [
-              "/world",
-            ],
+            "selectedKeys": undefined,
           },
           "ref": null,
           "rendered": Array [
@@ -497,9 +566,6 @@ ShallowWrapper {
                                                       className="anticon anticon-wallet logo-icon"
                                                       src="../../../public/images/hubii-core-logo.svg"
                                     />
-                                    <span>
-                                                      hubii core
-                                    </span>
                   </div>
 </Link>,
                 "className": "menu-logo",
@@ -516,9 +582,6 @@ ShallowWrapper {
                                         className="anticon anticon-wallet logo-icon"
                                         src="../../../public/images/hubii-core-logo.svg"
                     />
-                    <span>
-                                        hubii core
-                    </span>
 </div>,
                   "replace": false,
                   "to": "/",
@@ -529,44 +592,26 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": Array [
-                      <img
-                        alt="logo"
-                        className="anticon anticon-wallet logo-icon"
-                        src="../../../public/images/hubii-core-logo.svg"
+                    "children": <img
+                      alt="logo"
+                      className="anticon anticon-wallet logo-icon"
+                      src="../../../public/images/hubii-core-logo.svg"
 />,
-                      <span>
-                        hubii core
-</span>,
-                    ],
                   },
                   "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "alt": "logo",
-                        "className": "anticon anticon-wallet logo-icon",
-                        "src": "../../../public/images/hubii-core-logo.svg",
-                      },
-                      "ref": null,
-                      "rendered": null,
-                      "type": "img",
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "alt": "logo",
+                      "className": "anticon anticon-wallet logo-icon",
+                      "src": "../../../public/images/hubii-core-logo.svg",
                     },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": "hubii core",
-                      },
-                      "ref": null,
-                      "rendered": "hubii core",
-                      "type": "span",
-                    },
-                  ],
+                    "ref": null,
+                    "rendered": null,
+                    "type": "img",
+                  },
                   "type": "div",
                 },
                 "type": [Function],
@@ -575,7 +620,7 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "/wallets",
+              "key": "wallet",
               "nodeType": "class",
               "props": Object {
                 "children": <Link
@@ -652,6 +697,7 @@ ShallowWrapper {
                         />
 </SvgIcon>,
                       false,
+                      false,
                     ],
                     "style": Object {
                       "alignItems": "center",
@@ -690,6 +736,7 @@ ShallowWrapper {
                       "type": [Function],
                     },
                     false,
+                    false,
                   ],
                   "type": "div",
                 },
@@ -699,7 +746,146 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "/dex",
+              "key": "nahmii",
+              "nodeType": "class",
+              "props": Object {
+                "children": <Link
+                  replace={false}
+                  to="/nahmii/airdriip-registration"
+>
+                  <div
+                                    style={
+                                                      Object {
+                                                                        "alignItems": "center",
+                                                                        "display": "flex",
+                                                                        "justifyContent": "center",
+                                                                      }
+                                    }
+                  >
+                                    <div>
+                                                      <img
+                                                                        alt="nahmii token"
+                                                                        src="IMAGE_MOCK"
+                                                                        style={
+                                                                                          Object {
+                                                                                                            "height": "auto",
+                                                                                                            "width": "32px",
+                                                                                                          }
+                                                                        }
+                                                      />
+                                    </div>
+                  </div>
+</Link>,
+                "className": "menu-wallet",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <div
+                    style={
+                                        Object {
+                                                            "alignItems": "center",
+                                                            "display": "flex",
+                                                            "justifyContent": "center",
+                                                          }
+                    }
+>
+                    <div>
+                                        <img
+                                                            alt="nahmii token"
+                                                            src="IMAGE_MOCK"
+                                                            style={
+                                                                                Object {
+                                                                                                    "height": "auto",
+                                                                                                    "width": "32px",
+                                                                                                  }
+                                                            }
+                                        />
+                    </div>
+</div>,
+                  "replace": false,
+                  "to": "/nahmii/airdriip-registration",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      false,
+                      false,
+                      <div>
+                        <img
+                                                alt="nahmii token"
+                                                src="IMAGE_MOCK"
+                                                style={
+                                                                        Object {
+                                                                                                "height": "auto",
+                                                                                                "width": "32px",
+                                                                                              }
+                                                }
+                        />
+</div>,
+                    ],
+                    "style": Object {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "justifyContent": "center",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    false,
+                    false,
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <img
+                          alt="nahmii token"
+                          src="IMAGE_MOCK"
+                          style={
+                                                    Object {
+                                                                              "height": "auto",
+                                                                              "width": "32px",
+                                                                            }
+                          }
+/>,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "alt": "nahmii token",
+                          "src": "IMAGE_MOCK",
+                          "style": Object {
+                            "height": "auto",
+                            "width": "32px",
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "img",
+                      },
+                      "type": "div",
+                    },
+                  ],
+                  "type": "div",
+                },
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "dex",
               "nodeType": "class",
               "props": Object {
                 "children": <Link
@@ -806,6 +992,7 @@ ShallowWrapper {
                                                 />
                         </g>
 </SvgIcon>,
+                      false,
                     ],
                     "style": Object {
                       "alignItems": "center",
@@ -890,6 +1077,7 @@ ShallowWrapper {
                       },
                       "type": [Function],
                     },
+                    false,
                   ],
                   "type": "div",
                 },
@@ -899,7 +1087,7 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "/settings",
+              "key": "settings",
               "nodeType": "class",
               "props": Object {
                 "children": <Link
@@ -911,9 +1099,6 @@ ShallowWrapper {
                                                       className="setting-icon"
                                                       type="setting"
                                     />
-                                    <span>
-                                                      Settings
-                                    </span>
                   </div>
 </Link>,
                 "className": "menu-setting",
@@ -929,9 +1114,6 @@ ShallowWrapper {
                                         className="setting-icon"
                                         type="setting"
                     />
-                    <span>
-                                        Settings
-                    </span>
 </div>,
                   "replace": false,
                   "to": "/settings",
@@ -942,42 +1124,24 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": Array [
-                      <Icon
-                        className="setting-icon"
-                        type="setting"
+                    "children": <Icon
+                      className="setting-icon"
+                      type="setting"
 />,
-                      <span>
-                        Settings
-</span>,
-                    ],
                   },
                   "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "function",
-                      "props": Object {
-                        "className": "setting-icon",
-                        "type": "setting",
-                      },
-                      "ref": null,
-                      "rendered": null,
-                      "type": [Function],
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "className": "setting-icon",
+                      "type": "setting",
                     },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": "Settings",
-                      },
-                      "ref": null,
-                      "rendered": "Settings",
-                      "type": "span",
-                    },
-                  ],
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
                   "type": "div",
                 },
                 "type": [Function],
@@ -1081,30 +1245,25 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Sider
-            collapsed={true}
-            collapsedWidth="72"
+            collapsedWidth={80}
             collapsible={false}
             defaultCollapsed={false}
             prefixCls="ant-layout-sider"
             reverseArrow={false}
             style={Object {}}
             theme="dark"
-            trigger={null}
             width={200}
 >
             <SideBar.style__SideBarMenu
                         defaultSelectedKeys={
                                     Array [
-                                                "/wallets",
+                                                "wallet",
                                               ]
                         }
+                        forceSubMenuRender={true}
                         mode="inline"
                         onSelect={undefined}
-                        selectedKeys={
-                                    Array [
-                                                "/world",
-                                              ]
-                        }
+                        selectedKeys={undefined}
             >
                         <MenuItem
                                     className="menu-logo"
@@ -1119,9 +1278,6 @@ ShallowWrapper {
                                                                         className="anticon anticon-wallet logo-icon"
                                                                         src="../../../public/images/hubii-core-logo.svg"
                                                             />
-                                                            <span>
-                                                                        hubii core
-                                                            </span>
                                                 </div>
                                     </Link>
                         </MenuItem>
@@ -1151,6 +1307,37 @@ ShallowWrapper {
                                                                                     fill="#404f56"
                                                                         />
                                                             </SvgIcon>
+                                                </div>
+                                    </Link>
+                        </MenuItem>
+                        <MenuItem
+                                    className="menu-wallet"
+                        >
+                                    <Link
+                                                replace={false}
+                                                to="/nahmii/airdriip-registration"
+                                    >
+                                                <div
+                                                            style={
+                                                                        Object {
+                                                                                    "alignItems": "center",
+                                                                                    "display": "flex",
+                                                                                    "justifyContent": "center",
+                                                                                  }
+                                                            }
+                                                >
+                                                            <div>
+                                                                        <img
+                                                                                    alt="nahmii token"
+                                                                                    src="IMAGE_MOCK"
+                                                                                    style={
+                                                                                                Object {
+                                                                                                            "height": "auto",
+                                                                                                            "width": "32px",
+                                                                                                          }
+                                                                                    }
+                                                                        />
+                                                            </div>
                                                 </div>
                                     </Link>
                         </MenuItem>
@@ -1205,9 +1392,6 @@ ShallowWrapper {
                                                                         className="setting-icon"
                                                                         type="setting"
                                                             />
-                                                            <span>
-                                                                        Settings
-                                                            </span>
                                                 </div>
                                     </Link>
                         </MenuItem>
@@ -1248,16 +1432,13 @@ ShallowWrapper {
             "children": <SideBar.style__SideBarMenu
               defaultSelectedKeys={
                             Array [
-                                          "/wallets",
+                                          "wallet",
                                         ]
               }
+              forceSubMenuRender={true}
               mode="inline"
               onSelect={undefined}
-              selectedKeys={
-                            Array [
-                                          "/world",
-                                        ]
-              }
+              selectedKeys={undefined}
 >
               <MenuItem
                             className="menu-logo"
@@ -1272,9 +1453,6 @@ ShallowWrapper {
                                                                       className="anticon anticon-wallet logo-icon"
                                                                       src="../../../public/images/hubii-core-logo.svg"
                                                         />
-                                                        <span>
-                                                                      hubii core
-                                                        </span>
                                           </div>
                             </Link>
               </MenuItem>
@@ -1304,6 +1482,37 @@ ShallowWrapper {
                                                                                     fill="#404f56"
                                                                       />
                                                         </SvgIcon>
+                                          </div>
+                            </Link>
+              </MenuItem>
+              <MenuItem
+                            className="menu-wallet"
+              >
+                            <Link
+                                          replace={false}
+                                          to="/nahmii/airdriip-registration"
+                            >
+                                          <div
+                                                        style={
+                                                                      Object {
+                                                                                    "alignItems": "center",
+                                                                                    "display": "flex",
+                                                                                    "justifyContent": "center",
+                                                                                  }
+                                                        }
+                                          >
+                                                        <div>
+                                                                      <img
+                                                                                    alt="nahmii token"
+                                                                                    src="IMAGE_MOCK"
+                                                                                    style={
+                                                                                                  Object {
+                                                                                                                "height": "auto",
+                                                                                                                "width": "32px",
+                                                                                                              }
+                                                                                    }
+                                                                      />
+                                                        </div>
                                           </div>
                             </Link>
               </MenuItem>
@@ -1358,22 +1567,17 @@ ShallowWrapper {
                                                                       className="setting-icon"
                                                                       type="setting"
                                                         />
-                                                        <span>
-                                                                      Settings
-                                                        </span>
                                           </div>
                             </Link>
               </MenuItem>
 </SideBar.style__SideBarMenu>,
-            "collapsed": true,
-            "collapsedWidth": "72",
+            "collapsedWidth": 80,
             "collapsible": false,
             "defaultCollapsed": false,
             "prefixCls": "ant-layout-sider",
             "reverseArrow": false,
             "style": Object {},
             "theme": "dark",
-            "trigger": null,
             "width": 200,
           },
           "ref": null,
@@ -1396,9 +1600,6 @@ ShallowWrapper {
                                                                         className="anticon anticon-wallet logo-icon"
                                                                         src="../../../public/images/hubii-core-logo.svg"
                                                       />
-                                                      <span>
-                                                                        hubii core
-                                                      </span>
                                     </div>
                   </Link>
 </MenuItem>,
@@ -1429,6 +1630,37 @@ ShallowWrapper {
                                                                                                     fill="#404f56"
                                                                                 />
                                                             </SvgIcon>
+                                        </div>
+                    </Link>
+</MenuItem>,
+                  <MenuItem
+                    className="menu-wallet"
+>
+                    <Link
+                                        replace={false}
+                                        to="/nahmii/airdriip-registration"
+                    >
+                                        <div
+                                                            style={
+                                                                                Object {
+                                                                                                    "alignItems": "center",
+                                                                                                    "display": "flex",
+                                                                                                    "justifyContent": "center",
+                                                                                                  }
+                                                            }
+                                        >
+                                                            <div>
+                                                                                <img
+                                                                                                    alt="nahmii token"
+                                                                                                    src="IMAGE_MOCK"
+                                                                                                    style={
+                                                                                                                        Object {
+                                                                                                                                            "height": "auto",
+                                                                                                                                            "width": "32px",
+                                                                                                                                          }
+                                                                                                    }
+                                                                                />
+                                                            </div>
                                         </div>
                     </Link>
 </MenuItem>,
@@ -1484,21 +1716,17 @@ ShallowWrapper {
                                                                         className="setting-icon"
                                                                         type="setting"
                                                       />
-                                                      <span>
-                                                                        Settings
-                                                      </span>
                                     </div>
                   </Link>
 </MenuItem>,
               ],
               "defaultSelectedKeys": Array [
-                "/wallets",
+                "wallet",
               ],
+              "forceSubMenuRender": true,
               "mode": "inline",
               "onSelect": undefined,
-              "selectedKeys": Array [
-                "/world",
-              ],
+              "selectedKeys": undefined,
             },
             "ref": null,
             "rendered": Array [
@@ -1517,9 +1745,6 @@ ShallowWrapper {
                                                             className="anticon anticon-wallet logo-icon"
                                                             src="../../../public/images/hubii-core-logo.svg"
                                         />
-                                        <span>
-                                                            hubii core
-                                        </span>
                     </div>
 </Link>,
                   "className": "menu-logo",
@@ -1536,9 +1761,6 @@ ShallowWrapper {
                                             className="anticon anticon-wallet logo-icon"
                                             src="../../../public/images/hubii-core-logo.svg"
                       />
-                      <span>
-                                            hubii core
-                      </span>
 </div>,
                     "replace": false,
                     "to": "/",
@@ -1549,44 +1771,26 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": Array [
-                        <img
-                          alt="logo"
-                          className="anticon anticon-wallet logo-icon"
-                          src="../../../public/images/hubii-core-logo.svg"
+                      "children": <img
+                        alt="logo"
+                        className="anticon anticon-wallet logo-icon"
+                        src="../../../public/images/hubii-core-logo.svg"
 />,
-                        <span>
-                          hubii core
-</span>,
-                      ],
                     },
                     "ref": null,
-                    "rendered": Array [
-                      Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "host",
-                        "props": Object {
-                          "alt": "logo",
-                          "className": "anticon anticon-wallet logo-icon",
-                          "src": "../../../public/images/hubii-core-logo.svg",
-                        },
-                        "ref": null,
-                        "rendered": null,
-                        "type": "img",
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "alt": "logo",
+                        "className": "anticon anticon-wallet logo-icon",
+                        "src": "../../../public/images/hubii-core-logo.svg",
                       },
-                      Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "host",
-                        "props": Object {
-                          "children": "hubii core",
-                        },
-                        "ref": null,
-                        "rendered": "hubii core",
-                        "type": "span",
-                      },
-                    ],
+                      "ref": null,
+                      "rendered": null,
+                      "type": "img",
+                    },
                     "type": "div",
                   },
                   "type": [Function],
@@ -1595,7 +1799,7 @@ ShallowWrapper {
               },
               Object {
                 "instance": null,
-                "key": "/wallets",
+                "key": "wallet",
                 "nodeType": "class",
                 "props": Object {
                   "children": <Link
@@ -1672,6 +1876,7 @@ ShallowWrapper {
                           />
 </SvgIcon>,
                         false,
+                        false,
                       ],
                       "style": Object {
                         "alignItems": "center",
@@ -1710,6 +1915,7 @@ ShallowWrapper {
                         "type": [Function],
                       },
                       false,
+                      false,
                     ],
                     "type": "div",
                   },
@@ -1719,7 +1925,146 @@ ShallowWrapper {
               },
               Object {
                 "instance": null,
-                "key": "/dex",
+                "key": "nahmii",
+                "nodeType": "class",
+                "props": Object {
+                  "children": <Link
+                    replace={false}
+                    to="/nahmii/airdriip-registration"
+>
+                    <div
+                                        style={
+                                                            Object {
+                                                                                "alignItems": "center",
+                                                                                "display": "flex",
+                                                                                "justifyContent": "center",
+                                                                              }
+                                        }
+                    >
+                                        <div>
+                                                            <img
+                                                                                alt="nahmii token"
+                                                                                src="IMAGE_MOCK"
+                                                                                style={
+                                                                                                    Object {
+                                                                                                                        "height": "auto",
+                                                                                                                        "width": "32px",
+                                                                                                                      }
+                                                                                }
+                                                            />
+                                        </div>
+                    </div>
+</Link>,
+                  "className": "menu-wallet",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <div
+                      style={
+                                            Object {
+                                                                  "alignItems": "center",
+                                                                  "display": "flex",
+                                                                  "justifyContent": "center",
+                                                                }
+                      }
+>
+                      <div>
+                                            <img
+                                                                  alt="nahmii token"
+                                                                  src="IMAGE_MOCK"
+                                                                  style={
+                                                                                        Object {
+                                                                                                              "height": "auto",
+                                                                                                              "width": "32px",
+                                                                                                            }
+                                                                  }
+                                            />
+                      </div>
+</div>,
+                    "replace": false,
+                    "to": "/nahmii/airdriip-registration",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        false,
+                        false,
+                        <div>
+                          <img
+                                                    alt="nahmii token"
+                                                    src="IMAGE_MOCK"
+                                                    style={
+                                                                              Object {
+                                                                                                        "height": "auto",
+                                                                                                        "width": "32px",
+                                                                                                      }
+                                                    }
+                          />
+</div>,
+                      ],
+                      "style": Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "justifyContent": "center",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      false,
+                      false,
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <img
+                            alt="nahmii token"
+                            src="IMAGE_MOCK"
+                            style={
+                                                        Object {
+                                                                                    "height": "auto",
+                                                                                    "width": "32px",
+                                                                                  }
+                            }
+/>,
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "alt": "nahmii token",
+                            "src": "IMAGE_MOCK",
+                            "style": Object {
+                              "height": "auto",
+                              "width": "32px",
+                            },
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": "img",
+                        },
+                        "type": "div",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "dex",
                 "nodeType": "class",
                 "props": Object {
                   "children": <Link
@@ -1826,6 +2171,7 @@ ShallowWrapper {
                                                     />
                           </g>
 </SvgIcon>,
+                        false,
                       ],
                       "style": Object {
                         "alignItems": "center",
@@ -1910,6 +2256,7 @@ ShallowWrapper {
                         },
                         "type": [Function],
                       },
+                      false,
                     ],
                     "type": "div",
                   },
@@ -1919,7 +2266,7 @@ ShallowWrapper {
               },
               Object {
                 "instance": null,
-                "key": "/settings",
+                "key": "settings",
                 "nodeType": "class",
                 "props": Object {
                   "children": <Link
@@ -1931,9 +2278,6 @@ ShallowWrapper {
                                                             className="setting-icon"
                                                             type="setting"
                                         />
-                                        <span>
-                                                            Settings
-                                        </span>
                     </div>
 </Link>,
                   "className": "menu-setting",
@@ -1949,9 +2293,6 @@ ShallowWrapper {
                                             className="setting-icon"
                                             type="setting"
                       />
-                      <span>
-                                            Settings
-                      </span>
 </div>,
                     "replace": false,
                     "to": "/settings",
@@ -1962,42 +2303,24 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "host",
                     "props": Object {
-                      "children": Array [
-                        <Icon
-                          className="setting-icon"
-                          type="setting"
+                      "children": <Icon
+                        className="setting-icon"
+                        type="setting"
 />,
-                        <span>
-                          Settings
-</span>,
-                      ],
                     },
                     "ref": null,
-                    "rendered": Array [
-                      Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "function",
-                        "props": Object {
-                          "className": "setting-icon",
-                          "type": "setting",
-                        },
-                        "ref": null,
-                        "rendered": null,
-                        "type": [Function],
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "className": "setting-icon",
+                        "type": "setting",
                       },
-                      Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "host",
-                        "props": Object {
-                          "children": "Settings",
-                        },
-                        "ref": null,
-                        "rendered": "Settings",
-                        "type": "span",
-                      },
-                    ],
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
                     "type": "div",
                   },
                   "type": [Function],

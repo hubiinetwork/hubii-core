@@ -12,8 +12,11 @@ import {
 
 import { delay } from 'redux-saga';
 import nahmii from 'nahmii-sdk';
+import { utils as ethersUtils } from 'ethers';
+import BigNumber from 'bignumber.js';
 
-import { requestWalletAPI } from 'utils/request';
+import request, { requestWalletAPI } from 'utils/request';
+import rpcRequest from 'utils/rpcRequest';
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { ADD_NEW_WALLET } from 'containers/WalletHoc/constants';
@@ -22,8 +25,9 @@ import {
   makeSelectWallets,
 } from 'containers/WalletHoc/selectors';
 
+
 import {
-  LOAD_WALLET_BALANCES,
+  LOAD_WALLET_BALANCES, LOAD_SUPPORTED_TOKENS_SUCCESS,
 } from './constants';
 
 import {
@@ -37,21 +41,74 @@ import {
   loadTransactionsSuccess,
   loadTransactionsError,
 } from './actions';
+import { makeSelectSupportedAssets } from './selectors';
 
 
-export function* loadWalletBalances({ address, noPoll }, network) {
-  const requestPath = `ethereum/wallets/${address}/balances`;
+// https://stackoverflow.com/questions/48228662/get-token-balance-with-ethereum-rpc
+const BALANCE_OF_FUNCTION_ID = ('0x70a08231');
+export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
+  const network = _network || (yield select(makeSelectCurrentNetwork()));
+  let supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+  if (supportedAssets.loading) {
+    yield take(LOAD_SUPPORTED_TOKENS_SUCCESS);
+    supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+  }
+  // const requestPath = `ethereum/wallets/${address}/balances`;
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const returnData = yield call(requestWalletAPI, requestPath, network);
-      yield put(loadWalletBalancesSuccess(address, returnData));
-    } catch (err) {
-      if (!noPoll) {
-        yield put(loadWalletBalancesError(address, err));
+      // const returnData = yield call(requestWalletAPI, requestPath, network);
+
+      /**
+       * temporarily fetching balances from node until the backend is fixed
+       */
+      // get ETH balance
+      const ethBal = yield network.provider.getBalance(address);
+      if (onlyEth) {
+        yield put(loadWalletBalancesSuccess(address, [{ currency: 'ETH', address, decimals: 18, balance: ethBal }]));
+        return;
       }
+
+      // get token balances, batching all the requests in an array and sending them all at once
+      // https://stackoverflow.com/questions/48228662/get-token-balance-with-ethereum-rpc
+      const tokenContractAddresses = supportedAssets.assets.map((a) => a.currency).slice(0, -1);
+
+      // the first provider in network.provider.providers in an Infura node, which supports RPC calls
+      const jsonRpcProvider = network.provider.providers[0];
+
+      // pad the 20 byte address to 32 bytes
+      const paddedAddr = ethersUtils.hexlify(ethersUtils.padZeros(address, 32));
+
+      // concat the balanceOf('address') function identifier to the padded address. this shows our intention to call the
+      // balanceOf method with address as the parameter
+      const dataArr = ethersUtils.concat([BALANCE_OF_FUNCTION_ID, paddedAddr]);
+      const data = ethersUtils.hexlify(dataArr);
+
+      // send a batch of RPC requests asking for all token balances
+      // https://www.jsonrpc.org/specification#batch
+      const requestBatch = tokenContractAddresses.map((contractAddr) => {
+        const params = [{ from: address, to: contractAddr, data }, 'latest'];
+        return {
+          method: 'eth_call',
+          params,
+          id: 42,
+          jsonrpc: '2.0',
+        };
+      });
+      const response = yield rpcRequest(jsonRpcProvider.connection.url, JSON.stringify(requestBatch));
+
+      // process and return the response
+      const tokenBals = response.map((item) => new BigNumber(item.result));
+      const formattedBalances = tokenBals.reduce((acc, bal, i) => {
+        if (!bal.gt('0')) return acc;
+        const { currency } = supportedAssets.assets[i];
+        return [...acc, { address, currency, balance: bal.toString() }];
+      }, []);
+      yield put(loadWalletBalancesSuccess(address, [{ currency: 'ETH', address, balance: ethBal.toString() }, ...formattedBalances]));
+    } catch (err) {
+      yield put(loadWalletBalancesError(address, err));
     } finally {
-      const FIVE_SEC_IN_MS = 1000 * 5;
-      yield delay(FIVE_SEC_IN_MS);
+      const TWENTY_SEC_IN_MS = 1000 * 20;
+      yield delay(TWENTY_SEC_IN_MS);
     }
     if (noPoll) break;
   }
@@ -61,10 +118,70 @@ export function* loadSupportedTokens(network) {
   const requestPath = 'ethereum/supported-tokens';
   try {
     const returnData = yield call(requestWalletAPI, requestPath, network);
-    yield put(loadSupportedTokensSuccess(returnData));
+    // temporarily filter out the ETH asset details that comes back from backend.
+    // in the future we should remove our own ETH asset we add in actions, and
+    // start relying on the one from the backend.
+    // see https://github.com/hubiinetwork/hubii-core/issues/630
+    yield put(loadSupportedTokensSuccess(returnData.filter((asset) => asset.symbol !== 'ETH')));
   } catch (err) {
     yield put(loadSupportedTokensError(err));
   }
+}
+
+// temp function to add ETH price, and other broken prices to the load prices response
+function* patchPrices(returnData) {
+  let supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+
+  // wait for supported assets to load
+  if (supportedAssets.loading) {
+    yield take(LOAD_SUPPORTED_TOKENS_SUCCESS);
+    supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+  }
+
+  // get the symbols that need refetching
+  let pathSyms = 'ETH';
+  const symbols = ['ETH'];
+  returnData.forEach((price) => {
+    if (!price.eth) {
+      const symbol = supportedAssets.assets.find((asset) => asset.currency === price.currency).symbol;
+      symbols.push(symbol);
+      pathSyms = `${pathSyms},${symbol}`;
+    }
+  });
+
+  // get the pricing data
+  const endpoint = 'https://min-api.cryptocompare.com/';
+  const prices = { ETH: {}, USD: {}, BTC: {} };
+  const [ethPrices, usdPrices, btcPrices] = yield all(
+    Object.keys(prices).map((sym) => {
+      const path = `data/price?fsym=${sym}&tsyms=${pathSyms}`;
+      return request(path, {}, endpoint);
+    })
+  );
+  prices.ETH = ethPrices;
+  prices.USD = usdPrices;
+  prices.BTC = btcPrices;
+
+  // massage the data
+  Object.keys(prices).forEach((primarySym) => {
+    Object.keys(prices[primarySym]).forEach((secondarySym) => {
+      const price = new BigNumber(1).dividedBy(prices[primarySym][secondarySym]).toString();
+      prices[primarySym][secondarySym] = price;
+    });
+  });
+
+  // patch the new pricing data onto the hubii data
+  const patchedData = [...returnData, { currency: 'ETH', eth: prices.ETH.ETH, btc: prices.BTC.ETH, usd: prices.USD.ETH }];
+  symbols.forEach((symbol) => {
+    if (symbol === 'ETH') return;
+    const currency = supportedAssets.assets.find((a) => a.symbol === symbol).currency;
+    const entry = patchedData.find((item) => item.currency === currency);
+    entry.eth = prices.ETH[symbol] || '0';
+    entry.usd = prices.USD[symbol] || '0';
+    entry.btc = prices.BTC[symbol] || '0';
+  });
+
+  return patchedData;
 }
 
 export function* loadPrices(network) {
@@ -72,7 +189,8 @@ export function* loadPrices(network) {
   while (true) { // eslint-disable-line no-constant-condition
     try {
       const returnData = yield call(requestWalletAPI, requestPath, network);
-      yield put(loadPricesSuccess(returnData));
+      const patchedData = yield patchPrices(returnData);
+      yield put(loadPricesSuccess(patchedData));
     } catch (err) {
       yield put(loadPricesError(err));
     } finally {
@@ -111,9 +229,9 @@ export function* requestToken() {
       yield put(loadIdentityServiceTokenSuccess(token));
       return;
     } catch (e) {
-      // try again in 5sec
-      const FIVE_SEC_IN_MS = 5 * 5000;
-      yield delay(FIVE_SEC_IN_MS);
+      // try again in 2sec
+      const TWO_SEC_IN_MS = 2 * 1000;
+      yield delay(TWO_SEC_IN_MS);
     } finally {
       nahmiiProvider.stopUpdate();
     }
@@ -145,7 +263,9 @@ export function* networkApiOrcestrator() {
         timer: call(delay, ONE_MINUTE_IN_MS),
         override: take([CHANGE_NETWORK, ADD_NEW_WALLET]),
       });
-      yield cancel(...allTasks);
+      if (allTasks.length > 0) {
+        yield cancel(...allTasks);
+      }
     }
   } catch (e) {
     // errors in the forked processes themselves should be caught
@@ -154,6 +274,16 @@ export function* networkApiOrcestrator() {
     // never happen
     throw new Error(e);
   }
+}
+
+export function* getNahmiiProvider() {
+  const network = yield select(makeSelectCurrentNetwork());
+  const nahmiiProvider = new nahmii.NahmiiProvider(
+    network.walletApiEndpoint(true),
+    network.identityServiceAppId,
+    network.identityServiceSecret
+  );
+  return nahmiiProvider;
 }
 
 // Root watcher

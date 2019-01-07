@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { getAbsolutePath } from 'utils/electron';
+import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -13,9 +14,7 @@ import CandleStickChart from 'components/CandleStickChart';
 import {
   Wrapper,
   TopHeader,
-  Title,
   Container,
-  Logo,
 } from './index.style';
 
 import * as actions from './actions';
@@ -25,9 +24,6 @@ import {
   makeSelectPriceHistory,
   makeSelectLatestPrice,
 } from './selectors';
-
-const withReducer = injectReducer({ key: 'dex', reducer });
-const withSaga = injectSaga({ key: 'dex', saga });
 
 export class DexContainer extends React.PureComponent {
   constructor(props) {
@@ -48,10 +44,6 @@ export class DexContainer extends React.PureComponent {
           <Heading>Exchange</Heading>
         </TopHeader>
         <Container>
-          <Logo src={getAbsolutePath('public/images/hubii-core-logo-wtext.svg')} />
-          <Title>
-            DEX coming soon
-          </Title>
           <CandleStickChart priceHistory={this.props.priceHistory} latestPrice={this.props.latestPrice} currency={this.state.currency} />
         </Container>
       </Wrapper>
@@ -74,6 +66,8 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withReducer = injectReducer({ key: 'dex', reducer });
+const withSaga = injectSaga({ key: 'dex', saga });
 
 export const Dex = compose(
   withReducer,
@@ -81,4 +75,17 @@ export const Dex = compose(
   withConnect,
 )(DexContainer);
 
-export default Dex;
+DexContainer.propTypes = {
+  loadPriceHistory: PropTypes.func.isRequired,
+  listenLatestPrice: PropTypes.func.isRequired,
+  latestPrice: PropTypes.number.isRequired,
+  priceHistory: PropTypes.object.isRequired,
+  // intl: PropTypes.object.isRequired,
+};
+
+export default compose(
+  injectIntl,
+  withReducer,
+  withSaga,
+  withConnect,
+)(DexContainer);

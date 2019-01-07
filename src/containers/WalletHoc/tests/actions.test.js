@@ -7,6 +7,7 @@ import {
   decryptWalletSuccess,
   deleteWallet,
   showDecryptWalletModal,
+  lockWallet,
 } from '../actions';
 
 import {
@@ -19,6 +20,7 @@ import {
   DELETE_WALLET,
   SHOW_DECRYPT_WALLET_MODAL,
   TRANSFER,
+  LOCK_WALLET,
 } from '../constants';
 
 
@@ -31,6 +33,17 @@ describe('WalletHoc actions', () => {
         address,
       };
       expect(deleteWallet(address)).toEqual(expected);
+    });
+  });
+
+  describe('lockWallet Action', () => {
+    const address = '0x00';
+    it('returns expected output', () => {
+      const expected = {
+        type: LOCK_WALLET,
+        address,
+      };
+      expect(lockWallet(address)).toEqual(expected);
     });
   });
 
