@@ -7,7 +7,7 @@ import './CandleStick.css';
 export default class CandleStickChart extends React.Component {
   constructor(props) {
     super(props);
-
+    this.chartRef = React.createRef();
     const data = props.priceHistory.getIn([props.currency, 'history']);
     const ohlc = [];
     const volume = [];
@@ -119,6 +119,7 @@ export default class CandleStickChart extends React.Component {
         split: false,
         useHTML: true,
         formatter() {
+          /* eslint-disable consistent-return */
           const { high, low, close, open } = this.point;
           if (!high) {
             return;
@@ -155,7 +156,7 @@ export default class CandleStickChart extends React.Component {
       const latestPrice = nextProps.latestPrice.get(nextProps.currency).toJS();
       this.time = this.time || moment(latestPrice.date).toDate().getTime();
 
-      const chart = this.refs.chart.getChart();
+      const chart = this.chartRef.getChart();
       // set up the updating of the chart each second
       const series = chart.series[0];
       const columnSeries = chart.series[1];
@@ -182,7 +183,7 @@ export default class CandleStickChart extends React.Component {
       return null;
     }
     return (
-      <ReactHighstock config={this.state.config} ref="chart" />
+      <ReactHighstock config={this.state.config} ref={this.chartRef} />
     );
   }
 }
@@ -190,4 +191,5 @@ export default class CandleStickChart extends React.Component {
 CandleStickChart.propTypes = {
   priceHistory: PropTypes.object.isRequired,
   currency: PropTypes.string.isRequired,
+  latestPrice: PropTypes.object.isRequired,
 };
