@@ -99,6 +99,7 @@ export class OrderBook extends React.Component { // eslint-disable-line react/pr
 
   render() {
     const { grouping } = this.state;
+    const { primary, secondary } = this.props;
     return (
       <Wrapper className={this.props.className}>
         <Header>
@@ -116,9 +117,9 @@ export class OrderBook extends React.Component { // eslint-disable-line react/pr
           </Select>
         </Header>
         <Header style={{ justifyContent: 'space-between', marginTop: '1rem' }}>
-          <StyledText>Price (XXX)</StyledText>
-          <StyledText>Amount (XXX)</StyledText>
-          <StyledText>Total (XXX)</StyledText>
+          <StyledText>{`Price (${secondary})`}</StyledText>
+          <StyledText>{`Amount (${primary})`}</StyledText>
+          <StyledText>{`Total (${secondary})`}</StyledText>
         </Header>
         <OuterDataWrapper>
           <InnerDataWrapper>
@@ -126,7 +127,7 @@ export class OrderBook extends React.Component { // eslint-disable-line react/pr
               sellsR.map((s) => <DataRow {...s} />)
             }
           </InnerDataWrapper>
-          <LastPrice>{'0.000035 XXX'}</LastPrice>
+          <LastPrice>{`0.000035 ${primary}`}</LastPrice>
           <InnerDataWrapper style={{ justifyContent: 'flex-start' }}>
             {
               buys.map((b) => <DataRow {...b} />)
@@ -141,6 +142,8 @@ export class OrderBook extends React.Component { // eslint-disable-line react/pr
 OrderBook.propTypes = {
   // dispatch: PropTypes.func.isRequired,
   className: PropTypes.string,
+  primary: PropTypes.string.isRequired,
+  secondary: PropTypes.string.isRequired,
 };
 
 
