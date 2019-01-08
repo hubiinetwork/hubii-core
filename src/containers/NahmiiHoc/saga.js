@@ -696,7 +696,7 @@ export function* challengeStatusOrcestrator() {
       if (currentWalletAddress && currencyAddress) {
         yield all([
           fork(loadOngoingChallenges, { address: currentWalletAddress, currency: currencyAddress }, network, true),
-          fork(loadSettleableChallenges, { address: currentWalletAddress, currency: currencyAddress  }, network, true),
+          fork(loadSettleableChallenges, { address: currentWalletAddress, currency: currencyAddress }, network, true),
         ]);
       }
 
