@@ -724,11 +724,11 @@ ShallowWrapper {
                                                   }
                                         >
                                                   <Input.style
-                                                            defaultValue="8000000"
+                                                            defaultValue="1000000"
                                                             onBlur={[Function]}
                                                             onChange={[Function]}
                                                             onFocus={[Function]}
-                                                            value="8000000"
+                                                            value="1000000"
                                                   />
                                         </Form.style__FormItem>
                               </CollapsePanel>
@@ -779,8 +779,8 @@ ShallowWrapper {
                               gutter={0}
                     >
                               <TransferDescriptionItem
-                                        main="0.08 ETH"
-                                        subtitle="$32.96"
+                                        main="0.01 ETH"
+                                        subtitle="$4.12"
                               />
                     </Row>
                     <Row
@@ -817,8 +817,8 @@ ShallowWrapper {
                               gutter={0}
                     >
                               <TransferDescriptionItem
-                                        main="0.118937 ETH"
-                                        subtitle="$49.00"
+                                        main="0.188937 ETH"
+                                        subtitle="$77.84"
                               />
                     </Row>
                     <div>
@@ -995,11 +995,11 @@ ShallowWrapper {
                                                 }
                                     >
                                                 <Input.style
-                                                            defaultValue="8000000"
+                                                            defaultValue="1000000"
                                                             onBlur={[Function]}
                                                             onChange={[Function]}
                                                             onFocus={[Function]}
-                                                            value="8000000"
+                                                            value="1000000"
                                                 />
                                     </Form.style__FormItem>
                         </CollapsePanel>
@@ -1119,11 +1119,11 @@ ShallowWrapper {
                                                 }
                                 >
                                                 <Input.style
-                                                                defaultValue="8000000"
+                                                                defaultValue="1000000"
                                                                 onBlur={[Function]}
                                                                 onChange={[Function]}
                                                                 onFocus={[Function]}
-                                                                value="8000000"
+                                                                value="1000000"
                                                 />
                                 </Form.style__FormItem>
                 </CollapsePanel>
@@ -1321,11 +1321,11 @@ ShallowWrapper {
                                     }
                   >
                                     <Input.style
-                                                      defaultValue="8000000"
+                                                      defaultValue="1000000"
                                                       onBlur={[Function]}
                                                       onChange={[Function]}
                                                       onFocus={[Function]}
-                                                      value="8000000"
+                                                      value="1000000"
                                     />
                   </Form.style__FormItem>
 </CollapsePanel>,
@@ -1366,11 +1366,11 @@ ShallowWrapper {
                       }
 >
                       <Input.style
-                                            defaultValue="8000000"
+                                            defaultValue="1000000"
                                             onBlur={[Function]}
                                             onChange={[Function]}
                                             onFocus={[Function]}
-                                            value="8000000"
+                                            value="1000000"
                       />
 </Form.style__FormItem>,
                   ],
@@ -1423,11 +1423,11 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": <Input.style
-                        defaultValue="8000000"
+                        defaultValue="1000000"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
-                        value="8000000"
+                        value="1000000"
 />,
                       "colon": false,
                       "label": <Form.style__FormItemLabel>
@@ -1440,11 +1440,11 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "defaultValue": "8000000",
+                        "defaultValue": "1000000",
                         "onBlur": [Function],
                         "onChange": [Function],
                         "onFocus": [Function],
-                        "value": "8000000",
+                        "value": "1000000",
                       },
                       "ref": null,
                       "rendered": null,
@@ -1513,8 +1513,8 @@ ShallowWrapper {
                             gutter={0}
               >
                             <TransferDescriptionItem
-                                          main="0.08 ETH"
-                                          subtitle="$32.96"
+                                          main="0.01 ETH"
+                                          subtitle="$4.12"
                             />
               </Row>
               <Row
@@ -1551,8 +1551,8 @@ ShallowWrapper {
                             gutter={0}
               >
                             <TransferDescriptionItem
-                                          main="0.118937 ETH"
-                                          subtitle="$49.00"
+                                          main="0.188937 ETH"
+                                          subtitle="$77.84"
                             />
               </Row>
               <div>
@@ -1660,8 +1660,8 @@ ShallowWrapper {
                   gutter={0}
 >
                   <TransferDescriptionItem
-                                    main="0.08 ETH"
-                                    subtitle="$32.96"
+                                    main="0.01 ETH"
+                                    subtitle="$4.12"
                   />
 </Row>,
                 <Row
@@ -1698,8 +1698,8 @@ ShallowWrapper {
                   gutter={0}
 >
                   <TransferDescriptionItem
-                                    main="0.118937 ETH"
-                                    subtitle="$49.00"
+                                    main="0.188937 ETH"
+                                    subtitle="$77.84"
                   />
 </Row>,
                 <div>
@@ -1850,8 +1850,8 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": <TransferDescriptionItem
-                    main="0.08 ETH"
-                    subtitle="$32.96"
+                    main="0.01 ETH"
+                    subtitle="$4.12"
 />,
                   "gutter": 0,
                 },
@@ -1861,8 +1861,8 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "function",
                   "props": Object {
-                    "main": "0.08 ETH",
-                    "subtitle": "$32.96",
+                    "main": "0.01 ETH",
+                    "subtitle": "$4.12",
                   },
                   "ref": null,
                   "rendered": null,
@@ -1976,8 +1976,8 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": <TransferDescriptionItem
-                    main="0.118937 ETH"
-                    subtitle="$49.00"
+                    main="0.188937 ETH"
+                    subtitle="$77.84"
 />,
                   "gutter": 0,
                 },
@@ -1987,8 +1987,8 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "function",
                   "props": Object {
-                    "main": "0.118937 ETH",
-                    "subtitle": "$49.00",
+                    "main": "0.188937 ETH",
+                    "subtitle": "$77.84",
                   },
                   "ref": null,
                   "rendered": null,
@@ -2370,11 +2370,11 @@ ShallowWrapper {
                                                             }
                                                 >
                                                             <Input.style
-                                                                        defaultValue="8000000"
+                                                                        defaultValue="1000000"
                                                                         onBlur={[Function]}
                                                                         onChange={[Function]}
                                                                         onFocus={[Function]}
-                                                                        value="8000000"
+                                                                        value="1000000"
                                                             />
                                                 </Form.style__FormItem>
                                     </CollapsePanel>
@@ -2425,8 +2425,8 @@ ShallowWrapper {
                                     gutter={0}
                         >
                                     <TransferDescriptionItem
-                                                main="0.08 ETH"
-                                                subtitle="$32.96"
+                                                main="0.01 ETH"
+                                                subtitle="$4.12"
                                     />
                         </Row>
                         <Row
@@ -2463,8 +2463,8 @@ ShallowWrapper {
                                     gutter={0}
                         >
                                     <TransferDescriptionItem
-                                                main="0.118937 ETH"
-                                                subtitle="$49.00"
+                                                main="0.188937 ETH"
+                                                subtitle="$77.84"
                                     />
                         </Row>
                         <div>
@@ -2641,11 +2641,11 @@ ShallowWrapper {
                                                         }
                                           >
                                                         <Input.style
-                                                                      defaultValue="8000000"
+                                                                      defaultValue="1000000"
                                                                       onBlur={[Function]}
                                                                       onChange={[Function]}
                                                                       onFocus={[Function]}
-                                                                      value="8000000"
+                                                                      value="1000000"
                                                         />
                                           </Form.style__FormItem>
                             </CollapsePanel>
@@ -2765,11 +2765,11 @@ ShallowWrapper {
                                                       }
                                     >
                                                       <Input.style
-                                                                        defaultValue="8000000"
+                                                                        defaultValue="1000000"
                                                                         onBlur={[Function]}
                                                                         onChange={[Function]}
                                                                         onFocus={[Function]}
-                                                                        value="8000000"
+                                                                        value="1000000"
                                                       />
                                     </Form.style__FormItem>
                   </CollapsePanel>
@@ -2967,11 +2967,11 @@ ShallowWrapper {
                                         }
                     >
                                         <Input.style
-                                                            defaultValue="8000000"
+                                                            defaultValue="1000000"
                                                             onBlur={[Function]}
                                                             onChange={[Function]}
                                                             onFocus={[Function]}
-                                                            value="8000000"
+                                                            value="1000000"
                                         />
                     </Form.style__FormItem>
 </CollapsePanel>,
@@ -3012,11 +3012,11 @@ ShallowWrapper {
                         }
 >
                         <Input.style
-                                                defaultValue="8000000"
+                                                defaultValue="1000000"
                                                 onBlur={[Function]}
                                                 onChange={[Function]}
                                                 onFocus={[Function]}
-                                                value="8000000"
+                                                value="1000000"
                         />
 </Form.style__FormItem>,
                     ],
@@ -3069,11 +3069,11 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": <Input.style
-                          defaultValue="8000000"
+                          defaultValue="1000000"
                           onBlur={[Function]}
                           onChange={[Function]}
                           onFocus={[Function]}
-                          value="8000000"
+                          value="1000000"
 />,
                         "colon": false,
                         "label": <Form.style__FormItemLabel>
@@ -3086,11 +3086,11 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "defaultValue": "8000000",
+                          "defaultValue": "1000000",
                           "onBlur": [Function],
                           "onChange": [Function],
                           "onFocus": [Function],
-                          "value": "8000000",
+                          "value": "1000000",
                         },
                         "ref": null,
                         "rendered": null,
@@ -3159,8 +3159,8 @@ ShallowWrapper {
                                 gutter={0}
                 >
                                 <TransferDescriptionItem
-                                                main="0.08 ETH"
-                                                subtitle="$32.96"
+                                                main="0.01 ETH"
+                                                subtitle="$4.12"
                                 />
                 </Row>
                 <Row
@@ -3197,8 +3197,8 @@ ShallowWrapper {
                                 gutter={0}
                 >
                                 <TransferDescriptionItem
-                                                main="0.118937 ETH"
-                                                subtitle="$49.00"
+                                                main="0.188937 ETH"
+                                                subtitle="$77.84"
                                 />
                 </Row>
                 <div>
@@ -3306,8 +3306,8 @@ ShallowWrapper {
                     gutter={0}
 >
                     <TransferDescriptionItem
-                                        main="0.08 ETH"
-                                        subtitle="$32.96"
+                                        main="0.01 ETH"
+                                        subtitle="$4.12"
                     />
 </Row>,
                   <Row
@@ -3344,8 +3344,8 @@ ShallowWrapper {
                     gutter={0}
 >
                     <TransferDescriptionItem
-                                        main="0.118937 ETH"
-                                        subtitle="$49.00"
+                                        main="0.188937 ETH"
+                                        subtitle="$77.84"
                     />
 </Row>,
                   <div>
@@ -3496,8 +3496,8 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "children": <TransferDescriptionItem
-                      main="0.08 ETH"
-                      subtitle="$32.96"
+                      main="0.01 ETH"
+                      subtitle="$4.12"
 />,
                     "gutter": 0,
                   },
@@ -3507,8 +3507,8 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "function",
                     "props": Object {
-                      "main": "0.08 ETH",
-                      "subtitle": "$32.96",
+                      "main": "0.01 ETH",
+                      "subtitle": "$4.12",
                     },
                     "ref": null,
                     "rendered": null,
@@ -3622,8 +3622,8 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "children": <TransferDescriptionItem
-                      main="0.118937 ETH"
-                      subtitle="$49.00"
+                      main="0.188937 ETH"
+                      subtitle="$77.84"
 />,
                     "gutter": 0,
                   },
@@ -3633,8 +3633,8 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "function",
                     "props": Object {
-                      "main": "0.118937 ETH",
-                      "subtitle": "$49.00",
+                      "main": "0.188937 ETH",
+                      "subtitle": "$77.84",
                     },
                     "ref": null,
                     "rendered": null,

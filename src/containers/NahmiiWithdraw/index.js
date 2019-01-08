@@ -100,8 +100,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       amountToWithdrawInputRegex,
       gasPriceGweiInput: '10',
       gasPriceGwei: new BigNumber('10'),
-      gasLimit: 8000000,
-      gasLimitInput: '8000000',
+      gasLimit: 1000000,
+      gasLimitInput: '1000000',
       addContactModalVisibility: false,
     };
     this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
