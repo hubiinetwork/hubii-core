@@ -27,10 +27,13 @@ export const InnerDataWrapper = styled.div`
   flex: 1;
   flex-direction: column;
   justify-content: flex-end;
+  overflow-y: scroll;
+  padding-right: 0.5rem;
 `;
 
 export const DataRowWrapper = styled.div`
   display: flex;
+  flex-shrink: 0;
   justify-content: space-between;
 `;
 

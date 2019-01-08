@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import uuidv4 from 'uuid/v4';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -23,65 +24,102 @@ import {
 
 const buys = [
   {
-    price: '0.000003',
-    amount: '2',
-    total: '0.000006',
-    side: 'buy',
-    id: '1',
-  },
-  {
-    price: '0.000002',
-    amount: '5',
-    total: '0.000010',
-    side: 'buy',
-    id: '2',
-  },
-  {
-    price: '0.000001',
+    price: '0.00039',
     amount: '1',
-    total: '0.000001',
-    side: 'buy',
-    id: '3',
+  },
+  {
+    price: '0.00038',
+    amount: '1',
+  },
+  {
+    price: '0.00037',
+    amount: '1',
+  },
+  {
+    price: '0.00036',
+    amount: '1',
+  },
+  {
+    price: '0.00035',
+    amount: '1',
+  },
+  {
+    price: '0.00034',
+    amount: '1',
+  },
+  {
+    price: '0.00003',
+    amount: '2',
+  },
+  {
+    price: '0.00002',
+    amount: '5',
+  },
+  {
+    price: '0.00001',
+    amount: '1',
   },
 ];
 
 const sells = [
   {
-    price: '0.000004',
+    price: '0.00033',
     amount: '2',
-    total: '0.000008',
-    side: 'sell',
-    id: '1',
   },
   {
-    price: '0.000005',
+    price: '0.00034',
+    amount: '2',
+  },
+  {
+    price: '0.00035',
+    amount: '2',
+  },
+  {
+    price: '0.00036',
+    amount: '2',
+  },
+  {
+    price: '0.00037',
+    amount: '2',
+  },
+  {
+    price: '0.00038',
+    amount: '2',
+  },
+  {
+    price: '0.00039',
+    amount: '2',
+  },
+  {
+    price: '0.0004',
+    amount: '2',
+  },
+  {
+    price: '0.0005',
     amount: '5',
-    total: '0.000025',
-    side: 'sell',
-    id: '2',
   },
   {
-    price: '0.000006',
-    amount: '1',
-    total: '0.000006',
-    side: 'sell',
-    id: '3',
+    price: '10.0006',
+    amount: '10',
+  },
+  {
+    price: '10.0007',
+    amount: '10',
   },
 ];
 const sellsR = sells.reverse();
 
-const DataRow = ({ side, amount, total, price }) => (
+const DataRow = ({ side, amount, price }) => (
   <DataRowWrapper>
-    <StyledText side={side}>{price}</StyledText>
-    <StyledText>{amount}</StyledText>
-    <StyledText>{total}</StyledText>
+    <StyledText style={{ width: '33%' }} side={side}>{parseFloat(price).toFixed(6)}</StyledText>
+    <StyledText style={{ width: '33%', textAlign: 'center' }}>{amount}</StyledText>
+    <StyledText style={{ width: '33%', textAlign: 'right' }}>{(price * amount).toFixed(6)}</StyledText>
   </DataRowWrapper>
 );
 
 DataRow.propTypes = {
   price: PropTypes.string.isRequired,
   amount: PropTypes.string.isRequired,
-  total: PropTypes.string.isRequired,
   side: PropTypes.oneOf(['buy', 'sell']).isRequired,
 };
 
@@ -124,13 +162,13 @@ export class OrderBook extends React.Component { // eslint-disable-line react/pr
         <OuterDataWrapper>
           <InnerDataWrapper>
             {
-              sellsR.map((s) => <DataRow {...s} />)
+              sellsR.map((i) => <DataRow key={uuidv4()} {...i} side="sell" />)
             }
           </InnerDataWrapper>
           <LastPrice>{`0.000035 ${primary}`}</LastPrice>
           <InnerDataWrapper style={{ justifyContent: 'flex-start' }}>
             {
-              buys.map((b) => <DataRow {...b} />)
+              buys.map((i) => <DataRow {...i} key={uuidv4()} side="buy" />)
             }
           </InnerDataWrapper>
         </OuterDataWrapper>

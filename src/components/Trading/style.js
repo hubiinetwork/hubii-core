@@ -13,7 +13,7 @@ export const Container = styled.div`
 export const PriceChartWrapper = styled.div`
   flex: 1;
   flex-basis: 100%;
-  height: 40rem;
+  height: 35rem;
   background: red;
   @media (${breakpoint}) {
     flex-basis: 60%;
@@ -32,6 +32,7 @@ export const BookDepthChartWrapper = styled.div`
 
 export const DepthChart = styled.div`
   flex-grow: 1;
+  height: 35rem;
   background: green;
   flex-basis: 33%;
 `;
@@ -39,6 +40,7 @@ export const DepthChart = styled.div`
 export const WrappedOrderBook = styled(OrderBook)`
   display: flex;
   flex-grow: 1;
+  height: 35rem;
   flex-basis: 66%;
   background: palevioletred;
 `;
