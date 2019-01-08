@@ -33,7 +33,6 @@ export const BookDepthChartWrapper = styled.div`
 export const DepthChart = styled.div`
   flex-grow: 1;
   height: 35rem;
-  background: green;
   flex-basis: 33%;
 `;
 

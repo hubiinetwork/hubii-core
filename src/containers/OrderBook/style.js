@@ -9,6 +9,11 @@ export const Wrapper = styled.div`
   background: ${({ theme }) => theme.palette.primary3};
   padding: 0.75rem;
   justify-content: flex-start;
+  box-shadow: ${({ theme }) =>
+    `inset 0 -1px 0 0 ${theme.palette.secondary7}, 
+    inset 1px 0 0 0 ${theme.palette.secondary7}, 
+    inset 0 1px 0 0 ${theme.palette.dark1};`
+  }
 }`;
 
 export const Header = styled.div`
@@ -42,7 +47,7 @@ export const LastPrice = styled(Text).attrs({
 })`
   display: flex;
   padding: auto;
-  margin: 0 -0.75rem;
+  margin: 0 calc(-0.75rem + 1px);
   justify-content: center;
   background: ${({ theme }) => theme.palette.primary4};
   color: ${({ theme }) => theme.palette.info3};
