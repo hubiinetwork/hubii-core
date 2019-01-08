@@ -33,7 +33,6 @@ import Input from 'components/ui/Input';
 import Select, { Option } from 'components/ui/Select';
 import TransferDescriptionItem from 'components/TransferDescriptionItem';
 import HWPromptContainer from 'containers/HWPromptContainer';
-import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHoc/selectors';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import {
   makeSelectSupportedAssets,
@@ -46,6 +45,9 @@ import {
   makeSelectSettleableChallengesForCurrentWalletCurrency,
   makeSelectWithdrawalsForCurrentWalletCurrency,
 } from 'containers/NahmiiHoc/selectors';
+import {
+  makeSelectCurrentWalletWithInfo,
+} from 'containers/NahmiiHoc/combined-selectors';
 import {
   setSelectedWalletCurrency,
   startChallenge,

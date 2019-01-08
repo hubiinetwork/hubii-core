@@ -13,12 +13,12 @@ import { getIntl } from 'utils/localisation';
 import {
   makeSelectWallets,
   makeSelectCurrentWallet,
-  makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHoc/selectors';
 import { notify } from 'containers/App/actions';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { makeSelectSupportedAssets } from 'containers/HubiiApiHoc/selectors';
 import { makeSelectWalletCurrency } from 'containers/NahmiiHoc/selectors';
+import { makeSelectCurrentWalletWithInfo } from 'containers/NahmiiHoc/combined-selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
 import { makeSelectLedgerHoc } from 'containers/LedgerHoc/selectors';
 import { LOAD_SUPPORTED_TOKENS_SUCCESS } from 'containers/HubiiApiHoc/constants';

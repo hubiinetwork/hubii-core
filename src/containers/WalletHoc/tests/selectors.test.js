@@ -10,15 +10,18 @@ import {
 } from 'containers/HubiiApiHoc/tests/mocks/selectors';
 
 import {
+  makeSelectCurrentWalletWithInfo,
+  makeSelectWalletsWithInfo,
+  makeSelectTotalBalances,
+} from 'containers/NahmiiHoc/combined-selectors';
+
+import {
   selectWalletHocDomain,
   makeSelectSelectedWalletName,
   makeSelectWallets,
   makeSelectDerivationPathInput,
   makeSelectLoading,
   makeSelectErrors,
-  makeSelectCurrentWalletWithInfo,
-  makeSelectWalletsWithInfo,
-  makeSelectTotalBalances,
 } from '../selectors';
 
 import {

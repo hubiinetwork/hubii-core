@@ -17,7 +17,7 @@ import WalletTransactions from 'containers/WalletTransactions';
 import NahmiiDeposit from 'containers/NahmiiDeposit';
 import WalletTransfer from 'containers/WalletTransfer';
 import NahmiiWithdraw from 'containers/NahmiiWithdraw';
-import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHoc/selectors';
+import { makeSelectCurrentWalletWithInfo } from 'containers/NahmiiHoc/combined-selectors';
 import {
   makeSelectLedgerHoc,
 } from 'containers/LedgerHoc/selectors';

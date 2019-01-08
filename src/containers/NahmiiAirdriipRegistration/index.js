@@ -26,8 +26,10 @@ import {
 } from 'containers/App/selectors';
 import {
   makeSelectWallets,
-  makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHoc/selectors';
+import {
+  makeSelectCurrentWalletWithInfo,
+} from 'containers/NahmiiHoc/combined-selectors';
 import HWPromptContainer from 'containers/HWPromptContainer';
 
 import AirdriipRegistrationStatusUi from 'components/AirdriipRegistrationStatusUi';

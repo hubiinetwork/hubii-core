@@ -14,11 +14,11 @@ import { FormItem, FormItemLabel } from 'components/ui/Form';
 import Input from 'components/ui/Input';
 import Button from 'components/ui/Button';
 
+import { makeSelectCurrentWalletWithInfo } from 'containers/NahmiiHoc/combined-selectors';
 import reducer from './reducer';
 import saga from './saga';
 import {
   makeSelectCurrentWallet,
-  makeSelectCurrentWalletWithInfo,
   makeSelectLoading,
 } from './selectors';
 import {

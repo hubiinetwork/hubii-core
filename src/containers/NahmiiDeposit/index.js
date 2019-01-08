@@ -33,7 +33,6 @@ import Input from 'components/ui/Input';
 import Select, { Option } from 'components/ui/Select';
 import TransferDescriptionItem from 'components/TransferDescriptionItem';
 import HWPromptContainer from 'containers/HWPromptContainer';
-import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHoc/selectors';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import {
   makeSelectSupportedAssets,
@@ -42,6 +41,7 @@ import {
 import { makeSelectLedgerHoc } from 'containers/LedgerHoc/selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
 import { makeSelectDepositStatus } from 'containers/NahmiiHoc/selectors';
+import { makeSelectCurrentWalletWithInfo } from 'containers/NahmiiHoc/combined-selectors';
 import { nahmiiDeposit } from 'containers/NahmiiHoc/actions';
 import { injectIntl } from 'react-intl';
 

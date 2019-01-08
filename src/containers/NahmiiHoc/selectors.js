@@ -2,7 +2,9 @@ import { createSelector } from 'reselect';
 import { fromJS, List } from 'immutable';
 import BigNumber from 'bignumber.js';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
-import { makeSelectCurrentWallet } from 'containers/WalletHoc/selectors';
+import {
+  makeSelectCurrentWallet,
+} from 'containers/WalletHoc/selectors';
 
 import {
   makeSelectPrices,

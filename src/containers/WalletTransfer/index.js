@@ -11,8 +11,10 @@ import TransferForm from 'components/TransferForm';
 import PageLoadingIndicator from 'components/PageLoadingIndicator';
 import {
   makeSelectCurrentWallet,
-  makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHoc/selectors';
+import {
+  makeSelectCurrentWalletWithInfo,
+} from 'containers/NahmiiHoc/combined-selectors';
 import {
   makeSelectSupportedAssets,
   makeSelectPrices,

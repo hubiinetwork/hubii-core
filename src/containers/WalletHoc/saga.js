@@ -30,6 +30,9 @@ import {
 
 import {
   makeSelectCurrentWalletWithInfo,
+} from 'containers/NahmiiHoc/combined-selectors';
+
+import {
   makeSelectWallets,
   makeSelectCurrentDecryptionCallback,
 } from './selectors';

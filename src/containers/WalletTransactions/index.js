@@ -17,7 +17,7 @@ import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 
 import {
   makeSelectCurrentWalletWithInfo,
-} from 'containers/WalletHoc/selectors';
+} from 'containers/NahmiiHoc/combined-selectors';
 
 import {
   makeSelectBlockHeight,

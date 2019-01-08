@@ -18,7 +18,7 @@ import {
 import {
   makeSelectWalletsWithInfo,
   makeSelectTotalBalances,
-} from 'containers/WalletHoc/selectors';
+} from 'containers/NahmiiHoc/combined-selectors';
 
 import {
   makeSelectSupportedAssets,
