@@ -599,17 +599,16 @@ export function* processTx(type, provider, tx, address, currency) {
   }
 }
 
-export function* loadOngoingChallenges({ address }, network, noPoll) {
+export function* loadOngoingChallenges({ address, currency }, network, noPoll) {
   while (true) { // eslint-disable-line no-constant-condition
     const { nahmiiProvider } = network;
-    const currencyAddress = yield select(makeSelectWalletCurrency());
     try {
       const settlement = new nahmii.Settlement(nahmiiProvider);
-      const ongoingChallenges = yield call(() => settlement.getOngoingChallenges(address, currencyAddress, 0));
+      const ongoingChallenges = yield call(() => settlement.getOngoingChallenges(address, currency, 0));
 
-      yield put(actions.loadOngoingChallengesSuccess(address, currencyAddress, ongoingChallenges));
+      yield put(actions.loadOngoingChallengesSuccess(address, currency, ongoingChallenges));
     } catch (err) {
-      yield put(actions.loadOngoingChallengesError(address, currencyAddress));
+      yield put(actions.loadOngoingChallengesError(address, currency));
     } finally {
       const TWENTY_SEC_IN_MS = 1000 * 59;
       yield delay(TWENTY_SEC_IN_MS);
@@ -620,20 +619,19 @@ export function* loadOngoingChallenges({ address }, network, noPoll) {
   }
 }
 
-export function* loadSettleableChallenges({ address }, network, noPoll) {
+export function* loadSettleableChallenges({ address, currency }, network, noPoll) {
   while (true) { // eslint-disable-line no-constant-condition
     const { nahmiiProvider } = network;
-    const currencyAddress = yield select(makeSelectWalletCurrency());
     try {
       const settlement = new nahmii.Settlement(nahmiiProvider);
-      const { settleableChallenges } = yield call(() => settlement.getSettleableChallenges(address, currencyAddress, 0));
-      yield put(actions.loadSettleableChallengesSuccess(address, currencyAddress, settleableChallenges));
+      const { settleableChallenges } = yield call(() => settlement.getSettleableChallenges(address, currency, 0));
+      yield put(actions.loadSettleableChallengesSuccess(address, currency, settleableChallenges));
     } catch (err) {
       if (err.asStringified) {
         const nestedErrorMsg = err.asStringified();
         console.error(nestedErrorMsg);//eslint-disable-line
       }
-      yield put(actions.loadSettleableChallengesError(address, currencyAddress));
+      yield put(actions.loadSettleableChallengesError(address, currency));
     } finally {
       const TWENTY_SEC_IN_MS = 1000 * 59;
       yield delay(TWENTY_SEC_IN_MS);
@@ -694,10 +692,11 @@ export function* challengeStatusOrcestrator() {
       ]);
 
       const currentWalletAddress = (yield select(makeSelectCurrentWallet())).get('address');
-      if (currentWalletAddress) {
+      const currencyAddress = yield select(makeSelectWalletCurrency());
+      if (currentWalletAddress && currencyAddress) {
         yield all([
-          fork(loadOngoingChallenges, { address: currentWalletAddress }, network, true),
-          fork(loadSettleableChallenges, { address: currentWalletAddress }, network, true),
+          fork(loadOngoingChallenges, { address: currentWalletAddress, currency: currencyAddress }, network, true),
+          fork(loadSettleableChallenges, { address: currentWalletAddress, currency: currencyAddress  }, network, true),
         ]);
       }
 
@@ -722,10 +721,11 @@ export function* challengeStatusOrcestrator() {
 export function* hookTxSuccessOperations({ address }) {
   const network = yield select(makeSelectCurrentNetwork());
   const walletAddress = address || (yield select(makeSelectCurrentWallet())).get('address');
+  const currencyAddress = yield select(makeSelectWalletCurrency());
   yield all([
     fork(loadStagedBalances, { address: walletAddress }, network, true),
-    fork(loadOngoingChallenges, { address: walletAddress }, network, true),
-    fork(loadSettleableChallenges, { address: walletAddress }, network, true),
+    fork(loadOngoingChallenges, { address: walletAddress, currency: currencyAddress }, network, true),
+    fork(loadSettleableChallenges, { address: walletAddress, currency: currencyAddress }, network, true),
   ]);
 }
 
