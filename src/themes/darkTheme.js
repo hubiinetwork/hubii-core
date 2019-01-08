@@ -10,7 +10,7 @@ const tealBlue = '#1D6E96';
 const tealDark = '#263c46';
 const tealLight = '#26404d';
 const tealLighter = '#395664';
-const tealDarker = '#2f4d5c';
+const tealDarker = '#2d444f';
 const teal50 = 'rgba(47,77,92,.5)';
 
 // ****** seaGreen ****** //

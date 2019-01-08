@@ -5,14 +5,14 @@
 */
 
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 
 import {
   Container,
   PriceChartWrapper,
   DepthChart,
-  OrderBook,
+  WrappedOrderBook,
   BookDepthChartWrapper,
   Markets,
   History,
@@ -28,7 +28,7 @@ const TradingTab = () => (
       <Trading>Trading</Trading>
       <BookDepthChartWrapper>
         <DepthChart>Depth Chart</DepthChart>
-        <OrderBook>Order Book</OrderBook>
+        <WrappedOrderBook />
       </BookDepthChartWrapper>
       <History>History</History>
     </Container>
@@ -36,9 +36,9 @@ const TradingTab = () => (
   );
 
 Trading.propTypes = {
-  priceHistory: PropTypes.object.isRequired,
-  latestPrice: PropTypes.object.isRequired,
-  currency: PropTypes.string.isRequired,
+  // priceHistory: PropTypes.object.isRequired,
+  // latestPrice: PropTypes.object.isRequired,
+  // currency: PropTypes.string.isRequired,
 };
 
 export default TradingTab;

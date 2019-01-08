@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 // import CandleStickChart from 'components/CandleStickChart';
+import OrderBook from 'containers/OrderBook';
 
 const breakpoint = 'min-width: 1400px';
 
@@ -35,7 +36,7 @@ export const DepthChart = styled.div`
   flex-basis: 33%;
 `;
 
-export const OrderBook = styled.div`
+export const WrappedOrderBook = styled(OrderBook)`
   display: flex;
   flex-grow: 1;
   flex-basis: 66%;
