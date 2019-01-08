@@ -5,6 +5,7 @@
 */
 
 import React from 'react';
+import TradingViewWidget from 'react-tradingview-widget';
 // import PropTypes from 'prop-types';
 
 
@@ -23,12 +24,20 @@ import {
 const TradingTab = () => (
   <div>
     <Container>
-      <PriceChartWrapper>Price Chart</PriceChartWrapper>
+      <PriceChartWrapper>
+        <TradingViewWidget
+          symbol="BITTREX:ETHUSDT"
+          theme="Dark"
+          autosize
+          locale="en"
+          toolbar_bg="rgb(38,60,70)"
+        />
+      </PriceChartWrapper>
       <Markets>Markets</Markets>
       <Trading>Trading</Trading>
       <BookDepthChartWrapper>
         <DepthChart>Depth Chart</DepthChart>
-        <WrappedOrderBook />
+        <WrappedOrderBook primary="ETH" secondary="HBT" />
       </BookDepthChartWrapper>
       <History>History</History>
     </Container>
