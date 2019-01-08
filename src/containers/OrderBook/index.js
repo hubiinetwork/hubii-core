@@ -113,7 +113,7 @@ const DataRow = ({ side, amount, price }) => (
   <DataRowWrapper>
     <StyledText style={{ width: '33%' }} side={side}>{parseFloat(price).toFixed(6)}</StyledText>
     <StyledText style={{ width: '33%', textAlign: 'center' }}>{amount}</StyledText>
-    <StyledText style={{ width: '33%', textAlign: 'right' }}>{(price * amount).toFixed(6)}</StyledText>
+    <StyledText style={{ width: '33%', textAlign: 'right' }}>{(amount / price).toFixed(6)}</StyledText>
   </DataRowWrapper>
 );
 
