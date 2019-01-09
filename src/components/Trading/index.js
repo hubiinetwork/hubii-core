@@ -15,7 +15,7 @@ import {
   WrappedDepthChart,
   WrappedOrderBook,
   BookDepthChartWrapper,
-  Markets,
+  WrappedMarkets,
   History,
   Trading,
 } from './style';
@@ -33,7 +33,7 @@ const TradingTab = () => (
           toolbar_bg="rgb(26, 29, 39)"
         />
       </PriceChartWrapper>
-      <Markets>Markets</Markets>
+      <WrappedMarkets />
       <Trading>Trading</Trading>
       <BookDepthChartWrapper>
         <WrappedDepthChart />
