@@ -9,11 +9,6 @@ export const Wrapper = styled.div`
   background: ${({ theme }) => theme.palette.primary3};
   padding: 0.75rem;
   justify-content: flex-start;
-  box-shadow: ${({ theme }) =>
-    `inset 0 -1px 0 0 ${theme.palette.secondary7}, 
-    inset 1px 0 0 0 ${theme.palette.secondary7}, 
-    inset 0 1px 0 0 ${theme.palette.dark1};`
-  }
 }`;
 
 export const Header = styled.div`
@@ -33,12 +28,18 @@ export const InnerDataWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   overflow: hidden;
+  margin: 0 calc(-0.75rem + 1px);
 `;
 
 export const DataRowWrapper = styled.div`
   display: flex;
   flex-shrink: 0;
   justify-content: space-between;
+  padding: 0 0.75rem;
+  transition: all 0.2s;
+  &:hover {
+    background: ${({ theme }) => theme.palette.secondary7};
+  }
 `;
 
 export const LastPrice = styled(Text).attrs({

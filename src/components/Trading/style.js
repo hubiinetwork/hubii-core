@@ -2,6 +2,7 @@ import styled from 'styled-components';
 // import CandleStickChart from 'components/CandleStickChart';
 import DepthChart from 'components/DepthChart';
 import OrderBook from 'components/OrderBook';
+import Markets from 'components/Markets';
 
 const breakpoint = 'min-width: 1400px';
 
@@ -42,21 +43,32 @@ export const WrappedDepthChart = styled(DepthChart)`
   box-shadow: ${({ theme }) =>
     `inset 0 -1px 0 0 ${theme.palette.secondary7}, 
     inset 0 1px 0 0 ${theme.palette.dark1};`
-  }
+  };
 `;
 
 export const WrappedOrderBook = styled(OrderBook)`
   display: flex;
   flex-grow: 1;
   flex-basis: 66%;
-  background: palevioletred;
+  box-shadow: ${({ theme }) =>
+    `
+    inset 0 -1px 0 0 ${theme.palette.secondary7}, 
+    inset 1px 0 0 0 ${theme.palette.secondary7}, 
+    inset 0 1px 0 0 ${theme.palette.dark1};`
+  }
 `;
 
-export const Markets = styled.div`
+export const WrappedMarkets = styled(Markets)`
   flex-basis: 50%;
-  background: yellow;
   height: 30rem;
   z-index: 1;
+  box-shadow: ${({ theme }) =>
+    `
+    inset 0 1px 0 0 ${theme.palette.secondary7}, 
+    inset -1px 0 0 0 ${theme.palette.secondary7}, 
+    inset 0 1px 0 0 ${theme.palette.dark1};
+    `
+  };
   @media (${breakpoint}) {
     flex-basis: 30%;
   }
@@ -65,7 +77,6 @@ export const Markets = styled.div`
 export const History = styled.div`
   flex: 1;
   flex-basis: 50%;
-  background: burlywood;
   height: 30rem;
   z-index: 1;
   @media (${breakpoint}) {
