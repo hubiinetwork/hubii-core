@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 // import CandleStickChart from 'components/CandleStickChart';
 import DepthChart from 'components/DepthChart';
-import OrderBook from 'containers/OrderBook';
+import OrderBook from 'components/OrderBook';
 
 const breakpoint = 'min-width: 1400px';
 
