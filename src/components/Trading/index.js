@@ -12,7 +12,7 @@ import TradingViewWidget from 'react-tradingview-widget';
 import {
   Container,
   PriceChartWrapper,
-  DepthChart,
+  WrappedDepthChart,
   WrappedOrderBook,
   BookDepthChartWrapper,
   Markets,
@@ -36,7 +36,7 @@ const TradingTab = () => (
       <Markets>Markets</Markets>
       <Trading>Trading</Trading>
       <BookDepthChartWrapper>
-        <DepthChart>Depth Chart</DepthChart>
+        <WrappedDepthChart />
         <WrappedOrderBook primary="ETH" secondary="HBT" />
       </BookDepthChartWrapper>
       <History>History</History>

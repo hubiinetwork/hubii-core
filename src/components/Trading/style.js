@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 // import CandleStickChart from 'components/CandleStickChart';
+import DepthChart from 'components/DepthChart';
 import OrderBook from 'containers/OrderBook';
 
 const breakpoint = 'min-width: 1400px';
@@ -34,11 +35,11 @@ export const BookDepthChartWrapper = styled.div`
   }
 `;
 
-export const DepthChart = styled.div`
+export const WrappedDepthChart = styled(DepthChart)`
   flex-grow: 1;
-  background: grey;
   flex-basis: 33%;
   z-index: 1;
+  /* margin-right: -0.8rem; */
 `;
 
 export const WrappedOrderBook = styled(OrderBook)`
