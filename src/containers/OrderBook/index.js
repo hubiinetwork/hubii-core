@@ -141,7 +141,7 @@ const groupOrders = (decimals, orders, side) => {
   const rounded = orders.map((o) => (
     { ...o,
       price: (roundingFunc((o.price * roundingFactor) + Number.EPSILON) / roundingFactor).toString(),
-      total: (o.price / o.amount).toString(),
+      total: (o.amount / o.price).toString(),
     }
   ));
   // group by nth decimal
