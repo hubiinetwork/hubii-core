@@ -22,7 +22,7 @@ import {
   StyledText,
 } from './style';
 
-const buys = [
+const bids = [
   {
     price: '0.00039',
     amount: '1',
@@ -61,7 +61,7 @@ const buys = [
   },
 ];
 
-const sells = [
+const asks = [
   {
     price: '0.00033',
     amount: '2',
@@ -106,21 +106,57 @@ const sells = [
     price: '10.0007',
     amount: '10',
   },
+  {
+    price: '11.0007',
+    amount: '10',
+  },
+  {
+    price: '12.0007',
+    amount: '10',
+  },
 ];
-const sellsR = sells.reverse();
 
-const DataRow = ({ side, amount, price }) => (
+const DataRow = ({ side, amount, total, price }) => (
   <DataRowWrapper>
-    <StyledText style={{ width: '33%' }} side={side}>{parseFloat(price).toFixed(6)}</StyledText>
+    <StyledText style={{ width: '33%' }} side={side}>{parseFloat(price)}</StyledText>
     <StyledText style={{ width: '33%', textAlign: 'center' }}>{amount}</StyledText>
-    <StyledText style={{ width: '33%', textAlign: 'right' }}>{(amount / price).toFixed(6)}</StyledText>
+    <StyledText style={{ width: '33%', textAlign: 'right' }}>{parseFloat(total).toFixed(6)}</StyledText>
   </DataRowWrapper>
 );
 
 DataRow.propTypes = {
   price: PropTypes.string.isRequired,
   amount: PropTypes.string.isRequired,
+  total: PropTypes.string.isRequired,
   side: PropTypes.oneOf(['buy', 'sell']).isRequired,
+};
+
+// TODO: 1. tests 2. determine how to handle orders magnitudes higher than the cur price
+const groupOrders = (decimals, orders, side) => {
+  const roundingFactor = 10 ** decimals;
+  // round and add a total field
+  const roundingFunc = side === 'bids'
+    ? Math.floor
+    : Math.ceil;
+  const rounded = orders.map((o) => (
+    { ...o,
+      price: (roundingFunc((o.price * roundingFactor) + Number.EPSILON) / roundingFactor).toString(),
+      total: (o.price / o.amount).toString(),
+    }
+  ));
+  // group by nth decimal
+  return rounded.reduce((acc, cur) => {
+    if (acc.length === 0) return [cur];
+    const i = acc.length - 1;
+    if (acc[i].price === cur.price) {
+      const amtSum = (Number(acc[i].amount) + Number(cur.amount)).toString();
+      const totalSum = (Number(acc[i].total) + Number(cur.total)).toString();
+      acc[i].amount = amtSum;
+      acc[i].total = totalSum;
+      return acc;
+    }
+    return [...acc, cur];
+  }, []);
 };
 
 
@@ -138,6 +174,12 @@ export class OrderBook extends React.Component { // eslint-disable-line react/pr
   render() {
     const { grouping } = this.state;
     const { primary, secondary } = this.props;
+
+    // perform grouping
+    const groupedAsks = groupOrders(grouping, asks, 'asks');
+    const groupedBids = groupOrders(grouping, bids, 'bids');
+    const groupedAsksR = [...groupedAsks].reverse();
+
     return (
       <Wrapper className={this.props.className}>
         <Header>
@@ -148,6 +190,9 @@ export class OrderBook extends React.Component { // eslint-disable-line react/pr
             value={grouping}
             onChange={this.changeGrouping}
           >
+            <Option value="0">0 decimals</Option>
+            <Option value="1">1 decimals</Option>
+            <Option value="2">2 decimals</Option>
             <Option value="3">3 decimals</Option>
             <Option value="4">4 decimals</Option>
             <Option value="5">5 decimals</Option>
@@ -162,13 +207,13 @@ export class OrderBook extends React.Component { // eslint-disable-line react/pr
         <OuterDataWrapper>
           <InnerDataWrapper>
             {
-              sellsR.map((i) => <DataRow key={uuidv4()} {...i} side="sell" />)
+              groupedAsksR.map((i) => <DataRow key={uuidv4()} {...i} side="sell" />)
             }
           </InnerDataWrapper>
           <LastPrice>{`0.000035 ${primary}`}</LastPrice>
           <InnerDataWrapper style={{ justifyContent: 'flex-start' }}>
             {
-              buys.map((i) => <DataRow {...i} key={uuidv4()} side="buy" />)
+              groupedBids.map((i) => <DataRow {...i} key={uuidv4()} side="buy" />)
             }
           </InnerDataWrapper>
         </OuterDataWrapper>

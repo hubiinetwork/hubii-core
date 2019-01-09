@@ -32,8 +32,7 @@ export const InnerDataWrapper = styled.div`
   flex: 1;
   flex-direction: column;
   justify-content: flex-end;
-  overflow-y: scroll;
-  padding-right: 0.5rem;
+  overflow: hidden;
 `;
 
 export const DataRowWrapper = styled.div`
@@ -56,7 +55,8 @@ export const LastPrice = styled(Text).attrs({
 export const StyledText = styled(Text)`
   ${({ side, theme }) => {
     if (!side) return `color: ${theme.palette.secondary1};`;
-    else if (side === 'sell') return `color: ${theme.palette.alert}`;
-    return `color: ${theme.palette.success}`;
+    if (side === 'sell') return (`color: ${theme.palette.alert};`);
+    return `color: ${theme.palette.success};`;
   }}
+  line-height: 1.25rem;
 `;
