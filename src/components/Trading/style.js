@@ -38,6 +38,11 @@ export const BookDepthChartWrapper = styled.div`
 export const WrappedDepthChart = styled(DepthChart)`
   width: 200px;
   z-index: 1;
+  background: ${({ theme }) => theme.palette.primary4};
+  box-shadow: ${({ theme }) =>
+    `inset 0 -1px 0 0 ${theme.palette.secondary7}, 
+    inset 0 1px 0 0 ${theme.palette.dark1};`
+  }
 `;
 
 export const WrappedOrderBook = styled(OrderBook)`
