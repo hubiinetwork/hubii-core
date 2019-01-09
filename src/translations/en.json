@@ -233,8 +233,8 @@
     "unable_start_challenges": "Unable to start new settlements, please check if there are ongoing settlements that have not expired yet.",
     "required_stage_amount": "Required additional stage amount",
     "nahmii_balance_before": "nahmii balance before",
-    "waiting_for_start_challenge_to_be": "Waiting for transaction {ratio} to be",
-    "waiting_for_confirm_settle_to_be": "Waiting for transaction {ratio} to be",
-    "waiting_for_withdraw_to_be": "Waiting for transaction {ratio} to be",
+    "waiting_for_start_challenge_to_be": "Waiting for transaction to be",
+    "waiting_for_confirm_settle_to_be": "Waiting for transaction to be",
+    "waiting_for_withdraw_to_be": "Waiting for transaction to be",
     "nahmii_staged": "nahmii staged"
 }

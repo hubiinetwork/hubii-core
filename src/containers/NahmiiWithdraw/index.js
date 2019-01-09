@@ -302,7 +302,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
 
     if (!ratio) return null;
     const transferingText =
-      `${formatMessage({ id: `waiting_for_${type}_to_be` }, { ratio })} ${confOnDevice ? formatMessage({ id: 'signed' }) : `${formatMessage({ id: 'mined' })}...`}`;
+      `${formatMessage({ id: `waiting_for_${type}_to_be` })} ${confOnDevice ? formatMessage({ id: 'signed' }) : `${formatMessage({ id: 'mined' })}...`}`;
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <span>
