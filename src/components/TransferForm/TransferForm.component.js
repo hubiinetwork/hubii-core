@@ -16,6 +16,7 @@ import { formatFiat } from 'utils/numberFormats';
 import { getAbsolutePath } from 'utils/electron';
 import { injectIntl } from 'react-intl';
 
+import NahmiiInfoBtn from 'containers/NahmiiInfoBtn';
 import ComboBoxSelect from 'components/ComboBoxSelect';
 import Input from 'components/ui/Input';
 import Select, { Option } from 'components/ui/Select';
@@ -428,17 +429,23 @@ export class TransferForm extends React.PureComponent {
                   onChange={this.handleAmountToSendChange}
                 />
               </FormItem>
-              <div style={{ marignRight: 'auto' }}>
-                <Text large>{formatMessage({ id: 'send_on_the' })} </Text>
+              <div style={{ marignRight: 'auto', display: 'flex' }}>
+                <Text large>{formatMessage({ id: 'send_on_the' })}</Text>
                 <Tooltip
                   placement="right"
                   overlayStyle={!disableNahmiiPayments && { display: 'none' }}
                   title={<span>{formatMessage({ id: 'nahmii_mainnet' })}</span>}
                 >
-                  <NahmiiText large />
-                  <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
-                  <NahmiiSwitch disabled={disableNahmiiPayments} checked={layer === 'nahmii'} onChange={(() => this.handleLayerSwitch())} />
+                  &nbsp;<NahmiiText large />&nbsp;
+                  <Text large>{formatMessage({ id: 'second_layer' })}</Text>
+                  <NahmiiSwitch
+                    disabled={disableNahmiiPayments}
+                    checked={layer === 'nahmii'}
+                    onChange={(() => this.handleLayerSwitch())}
+                    style={{ marginLeft: '0.5rem' }}
+                  />
                 </Tooltip>
+                <NahmiiInfoBtn style={{ marginLeft: '0.5rem' }} />
               </div>
               <Spring
                 from={{ noAdvProg: 0 }}

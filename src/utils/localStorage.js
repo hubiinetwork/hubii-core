@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 
 import { initialState as walletHocInitialState } from 'containers/WalletHoc/reducer';
 import { initialState as contactsInitialState } from 'containers/ContactBook/reducer';
-import { initialState as nahmiiInitialState } from 'containers/NahmiiHoc/reducer';
+import { initialState as nahmiiHocInitialState } from 'containers/NahmiiHoc/reducer';
 
 
 export const loadState = () => {
@@ -19,6 +19,16 @@ export const loadState = () => {
       Object.keys(walletHocInitialStateJSON).forEach((prop) => {
         if (restoredState.walletHoc[prop] === undefined || restoredState.walletHoc[prop] === null) {
           restoredState.walletHoc[prop] = walletHocInitialStateJSON[prop];
+        }
+      });
+    }
+
+    if (restoredState.nahmiiHoc) {
+      // init the properties from initialState if does not exist in stored state
+      const nahmiiHocInitialStateJSON = nahmiiHocInitialState.toJSON();
+      Object.keys(nahmiiHocInitialStateJSON).forEach((prop) => {
+        if (restoredState.nahmiiHoc[prop] === undefined || restoredState.nahmiiHoc[prop] === null) {
+          restoredState.nahmiiHoc[prop] = nahmiiHocInitialStateJSON[prop];
         }
       });
     }
@@ -52,13 +62,13 @@ export const filterPersistedState = (state) => {
   // Start with clean initialState
   persistedState = persistedState.set('contacts', contactsInitialState);
   persistedState = persistedState.set('walletHoc', walletHocInitialState);
-  persistedState = persistedState.set('nahmiiHoc', nahmiiInitialState);
+  persistedState = persistedState.set('nahmiiHoc', nahmiiHocInitialState);
 
   /*
    * Sanitised software wallets from WalletHoc
    */
 
-  // Get software wallets ensuring the decrypted property is filtered out
+  // Get wallets ensuring the decrypted property is filtered out
   const sanitizedSoftwareWallets = state
     .getIn(['walletHoc', 'wallets'])
     .map(((w) => w.delete('decrypted', null)));
@@ -66,13 +76,11 @@ export const filterPersistedState = (state) => {
   persistedState = persistedState
     .setIn(['walletHoc', 'wallets'], sanitizedSoftwareWallets);
 
-
   /**
-   * Saved hardware wallets
+   * nahmii mainnet disclaimer modal
    */
   persistedState = persistedState
-    .setIn(['walletHoc', 'wallets', 'hardware'], state.getIn(['walletHoc', 'wallets', 'hardware']));
-
+    .setIn(['nahmiiHoc', 'disclaimerModal'], state.getIn(['nahmiiHoc', 'disclaimerModal']));
 
   /**
    * Contacts

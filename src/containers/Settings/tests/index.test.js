@@ -1,17 +1,21 @@
 import React from 'react';
 import { fromJS } from 'immutable';
 import { shallow } from 'enzyme';
+import { intl } from 'jest/__mocks__/react-intl';
 import { SUPPORTED_NETWORKS } from 'config/constants';
 import { currentNetworkMock } from 'containers/App/tests/mocks/selectors';
-import { intl } from 'jest/__mocks__/react-intl';
+import { disclaimerModalShowBtn } from 'containers/NahmiiHoc/tests/mocks/selectors';
 import { Settings } from '../index';
 
 describe('Settings', () => {
   const props = {
     onChangeNetwork: () => {},
     onChangeLocale: () => {},
+    showDisclaimerBtn: () => {},
+    hideDisclaimerBtn: () => {},
     currentNetwork: currentNetworkMock,
     supportedNetworks: fromJS(SUPPORTED_NETWORKS),
+    disclaimerModal: disclaimerModalShowBtn,
     locale: 'en',
     intl,
   };

@@ -472,6 +472,12 @@ ShallowWrapper {
             error: null,
         }
     }
+    disclaimerModal={
+        Immutable.Map {
+            showBtn: true,
+            enableMainnet: false,
+        }
+    }
     goWalletDetails={[Function]}
     intl={
         Object {
@@ -850,6 +856,31 @@ ShallowWrapper {
                     <style__HWPromptWrapper>
                               <Connect(HWPromptContainer) />
                     </style__HWPromptWrapper>
+                    <div
+                              style={
+                                        Object {
+                                                  "display": "flex",
+                                                  "height": "0",
+                                                  "marginTop": "0",
+                                                  "maxWidth": "25rem",
+                                                  "overflow": "hidden",
+                                                }
+                              }
+                    >
+                              <SectionHeading
+                                        style={
+                                                  Object {
+                                                            "marginBottom": "0",
+                                                          }
+                                        }
+                              >
+                                        nahmii_deposits_disabled_mainnet
+                                         
+                              </SectionHeading>
+                              <Connect(NahmiiInfoBtn)
+                                        forceIcon={true}
+                              />
+                    </div>
                     <div
                               style={
                                         Object {
@@ -1618,6 +1649,31 @@ ShallowWrapper {
                             style={
                                           Object {
                                                         "display": "flex",
+                                                        "height": "0",
+                                                        "marginTop": "0",
+                                                        "maxWidth": "25rem",
+                                                        "overflow": "hidden",
+                                                      }
+                            }
+              >
+                            <SectionHeading
+                                          style={
+                                                        Object {
+                                                                      "marginBottom": "0",
+                                                                    }
+                                          }
+                            >
+                                          nahmii_deposits_disabled_mainnet
+                                           
+                            </SectionHeading>
+                            <Connect(NahmiiInfoBtn)
+                                          forceIcon={true}
+                            />
+              </div>
+              <div
+                            style={
+                                          Object {
+                                                        "display": "flex",
                                                         "flexDirection": "column",
                                                         "marginTop": "2rem",
                                                       }
@@ -2098,6 +2154,31 @@ ShallowWrapper {
                   style={
                                     Object {
                                                       "display": "flex",
+                                                      "height": "0",
+                                                      "marginTop": "0",
+                                                      "maxWidth": "25rem",
+                                                      "overflow": "hidden",
+                                                    }
+                  }
+>
+                  <SectionHeading
+                                    style={
+                                                      Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                                    }
+                  >
+                                    nahmii_deposits_disabled_mainnet
+                                     
+                  </SectionHeading>
+                  <Connect(NahmiiInfoBtn)
+                                    forceIcon={true}
+                  />
+</div>,
+                <div
+                  style={
+                                    Object {
+                                                      "display": "flex",
                                                       "flexDirection": "column",
                                                       "marginTop": "2rem",
                                                     }
@@ -2160,6 +2241,70 @@ ShallowWrapper {
                   "type": [Function],
                 },
                 "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <SectionHeading
+                      style={
+                                            Object {
+                                                                  "marginBottom": "0",
+                                                                }
+                      }
+>
+                      nahmii_deposits_disabled_mainnet
+                       
+</SectionHeading>,
+                    <Connect(NahmiiInfoBtn)
+                      forceIcon={true}
+/>,
+                  ],
+                  "style": Object {
+                    "display": "flex",
+                    "height": "0",
+                    "marginTop": "0",
+                    "maxWidth": "25rem",
+                    "overflow": "hidden",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
+                      "style": Object {
+                        "marginBottom": "0",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "nahmii_deposits_disabled_mainnet",
+                      " ",
+                    ],
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "forceIcon": true,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": "div",
               },
               Object {
                 "instance": null,
@@ -2595,6 +2740,31 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
+                        <div
+                                    style={
+                                                Object {
+                                                            "display": "flex",
+                                                            "height": "0",
+                                                            "marginTop": "0",
+                                                            "maxWidth": "25rem",
+                                                            "overflow": "hidden",
+                                                          }
+                                    }
+                        >
+                                    <SectionHeading
+                                                style={
+                                                            Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                                                }
+                                    >
+                                                nahmii_deposits_disabled_mainnet
+                                                 
+                                    </SectionHeading>
+                                    <Connect(NahmiiInfoBtn)
+                                                forceIcon={true}
+                                    />
+                        </div>
                         <div
                                     style={
                                                 Object {
@@ -3363,6 +3533,31 @@ ShallowWrapper {
                                 style={
                                                 Object {
                                                                 "display": "flex",
+                                                                "height": "0",
+                                                                "marginTop": "0",
+                                                                "maxWidth": "25rem",
+                                                                "overflow": "hidden",
+                                                              }
+                                }
+                >
+                                <SectionHeading
+                                                style={
+                                                                Object {
+                                                                                "marginBottom": "0",
+                                                                              }
+                                                }
+                                >
+                                                nahmii_deposits_disabled_mainnet
+                                                 
+                                </SectionHeading>
+                                <Connect(NahmiiInfoBtn)
+                                                forceIcon={true}
+                                />
+                </div>
+                <div
+                                style={
+                                                Object {
+                                                                "display": "flex",
                                                                 "flexDirection": "column",
                                                                 "marginTop": "2rem",
                                                               }
@@ -3843,6 +4038,31 @@ ShallowWrapper {
                     style={
                                         Object {
                                                             "display": "flex",
+                                                            "height": "0",
+                                                            "marginTop": "0",
+                                                            "maxWidth": "25rem",
+                                                            "overflow": "hidden",
+                                                          }
+                    }
+>
+                    <SectionHeading
+                                        style={
+                                                            Object {
+                                                                                "marginBottom": "0",
+                                                                              }
+                                        }
+                    >
+                                        nahmii_deposits_disabled_mainnet
+                                         
+                    </SectionHeading>
+                    <Connect(NahmiiInfoBtn)
+                                        forceIcon={true}
+                    />
+</div>,
+                  <div
+                    style={
+                                        Object {
+                                                            "display": "flex",
                                                             "flexDirection": "column",
                                                             "marginTop": "2rem",
                                                           }
@@ -3905,6 +4125,70 @@ ShallowWrapper {
                     "type": [Function],
                   },
                   "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <SectionHeading
+                        style={
+                                                Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                        }
+>
+                        nahmii_deposits_disabled_mainnet
+                         
+</SectionHeading>,
+                      <Connect(NahmiiInfoBtn)
+                        forceIcon={true}
+/>,
+                    ],
+                    "style": Object {
+                      "display": "flex",
+                      "height": "0",
+                      "marginTop": "0",
+                      "maxWidth": "25rem",
+                      "overflow": "hidden",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": Array [
+                          "nahmii_deposits_disabled_mainnet",
+                          " ",
+                        ],
+                        "style": Object {
+                          "marginBottom": "0",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "forceIcon": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                  ],
+                  "type": "div",
                 },
                 Object {
                   "instance": null,
@@ -4571,6 +4855,12 @@ ShallowWrapper {
             error: null,
         }
     }
+    disclaimerModal={
+        Immutable.Map {
+            showBtn: true,
+            enableMainnet: false,
+        }
+    }
     goWalletDetails={[Function]}
     intl={
         Object {
@@ -4949,6 +5239,31 @@ ShallowWrapper {
                     <style__HWPromptWrapper>
                               <Connect(HWPromptContainer) />
                     </style__HWPromptWrapper>
+                    <div
+                              style={
+                                        Object {
+                                                  "display": "flex",
+                                                  "height": "0",
+                                                  "marginTop": "0",
+                                                  "maxWidth": "25rem",
+                                                  "overflow": "hidden",
+                                                }
+                              }
+                    >
+                              <SectionHeading
+                                        style={
+                                                  Object {
+                                                            "marginBottom": "0",
+                                                          }
+                                        }
+                              >
+                                        nahmii_deposits_disabled_mainnet
+                                         
+                              </SectionHeading>
+                              <Connect(NahmiiInfoBtn)
+                                        forceIcon={true}
+                              />
+                    </div>
                     <div
                               style={
                                         Object {
@@ -5717,6 +6032,31 @@ ShallowWrapper {
                             style={
                                           Object {
                                                         "display": "flex",
+                                                        "height": "0",
+                                                        "marginTop": "0",
+                                                        "maxWidth": "25rem",
+                                                        "overflow": "hidden",
+                                                      }
+                            }
+              >
+                            <SectionHeading
+                                          style={
+                                                        Object {
+                                                                      "marginBottom": "0",
+                                                                    }
+                                          }
+                            >
+                                          nahmii_deposits_disabled_mainnet
+                                           
+                            </SectionHeading>
+                            <Connect(NahmiiInfoBtn)
+                                          forceIcon={true}
+                            />
+              </div>
+              <div
+                            style={
+                                          Object {
+                                                        "display": "flex",
                                                         "flexDirection": "column",
                                                         "marginTop": "2rem",
                                                       }
@@ -6197,6 +6537,31 @@ ShallowWrapper {
                   style={
                                     Object {
                                                       "display": "flex",
+                                                      "height": "0",
+                                                      "marginTop": "0",
+                                                      "maxWidth": "25rem",
+                                                      "overflow": "hidden",
+                                                    }
+                  }
+>
+                  <SectionHeading
+                                    style={
+                                                      Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                                    }
+                  >
+                                    nahmii_deposits_disabled_mainnet
+                                     
+                  </SectionHeading>
+                  <Connect(NahmiiInfoBtn)
+                                    forceIcon={true}
+                  />
+</div>,
+                <div
+                  style={
+                                    Object {
+                                                      "display": "flex",
                                                       "flexDirection": "column",
                                                       "marginTop": "2rem",
                                                     }
@@ -6259,6 +6624,70 @@ ShallowWrapper {
                   "type": [Function],
                 },
                 "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <SectionHeading
+                      style={
+                                            Object {
+                                                                  "marginBottom": "0",
+                                                                }
+                      }
+>
+                      nahmii_deposits_disabled_mainnet
+                       
+</SectionHeading>,
+                    <Connect(NahmiiInfoBtn)
+                      forceIcon={true}
+/>,
+                  ],
+                  "style": Object {
+                    "display": "flex",
+                    "height": "0",
+                    "marginTop": "0",
+                    "maxWidth": "25rem",
+                    "overflow": "hidden",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
+                      "style": Object {
+                        "marginBottom": "0",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "nahmii_deposits_disabled_mainnet",
+                      " ",
+                    ],
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "forceIcon": true,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": "div",
               },
               Object {
                 "instance": null,
@@ -6694,6 +7123,31 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
+                        <div
+                                    style={
+                                                Object {
+                                                            "display": "flex",
+                                                            "height": "0",
+                                                            "marginTop": "0",
+                                                            "maxWidth": "25rem",
+                                                            "overflow": "hidden",
+                                                          }
+                                    }
+                        >
+                                    <SectionHeading
+                                                style={
+                                                            Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                                                }
+                                    >
+                                                nahmii_deposits_disabled_mainnet
+                                                 
+                                    </SectionHeading>
+                                    <Connect(NahmiiInfoBtn)
+                                                forceIcon={true}
+                                    />
+                        </div>
                         <div
                                     style={
                                                 Object {
@@ -7462,6 +7916,31 @@ ShallowWrapper {
                                 style={
                                                 Object {
                                                                 "display": "flex",
+                                                                "height": "0",
+                                                                "marginTop": "0",
+                                                                "maxWidth": "25rem",
+                                                                "overflow": "hidden",
+                                                              }
+                                }
+                >
+                                <SectionHeading
+                                                style={
+                                                                Object {
+                                                                                "marginBottom": "0",
+                                                                              }
+                                                }
+                                >
+                                                nahmii_deposits_disabled_mainnet
+                                                 
+                                </SectionHeading>
+                                <Connect(NahmiiInfoBtn)
+                                                forceIcon={true}
+                                />
+                </div>
+                <div
+                                style={
+                                                Object {
+                                                                "display": "flex",
                                                                 "flexDirection": "column",
                                                                 "marginTop": "2rem",
                                                               }
@@ -7942,6 +8421,31 @@ ShallowWrapper {
                     style={
                                         Object {
                                                             "display": "flex",
+                                                            "height": "0",
+                                                            "marginTop": "0",
+                                                            "maxWidth": "25rem",
+                                                            "overflow": "hidden",
+                                                          }
+                    }
+>
+                    <SectionHeading
+                                        style={
+                                                            Object {
+                                                                                "marginBottom": "0",
+                                                                              }
+                                        }
+                    >
+                                        nahmii_deposits_disabled_mainnet
+                                         
+                    </SectionHeading>
+                    <Connect(NahmiiInfoBtn)
+                                        forceIcon={true}
+                    />
+</div>,
+                  <div
+                    style={
+                                        Object {
+                                                            "display": "flex",
                                                             "flexDirection": "column",
                                                             "marginTop": "2rem",
                                                           }
@@ -8004,6 +8508,70 @@ ShallowWrapper {
                     "type": [Function],
                   },
                   "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <SectionHeading
+                        style={
+                                                Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                        }
+>
+                        nahmii_deposits_disabled_mainnet
+                         
+</SectionHeading>,
+                      <Connect(NahmiiInfoBtn)
+                        forceIcon={true}
+/>,
+                    ],
+                    "style": Object {
+                      "display": "flex",
+                      "height": "0",
+                      "marginTop": "0",
+                      "maxWidth": "25rem",
+                      "overflow": "hidden",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": Array [
+                          "nahmii_deposits_disabled_mainnet",
+                          " ",
+                        ],
+                        "style": Object {
+                          "marginBottom": "0",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "forceIcon": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                  ],
+                  "type": "div",
                 },
                 Object {
                   "instance": null,
@@ -8670,6 +9238,12 @@ ShallowWrapper {
             error: null,
         }
     }
+    disclaimerModal={
+        Immutable.Map {
+            showBtn: true,
+            enableMainnet: false,
+        }
+    }
     goWalletDetails={[Function]}
     intl={
         Object {
@@ -9048,6 +9622,31 @@ ShallowWrapper {
                     <style__HWPromptWrapper>
                               <Connect(HWPromptContainer) />
                     </style__HWPromptWrapper>
+                    <div
+                              style={
+                                        Object {
+                                                  "display": "flex",
+                                                  "height": "0",
+                                                  "marginTop": "0",
+                                                  "maxWidth": "25rem",
+                                                  "overflow": "hidden",
+                                                }
+                              }
+                    >
+                              <SectionHeading
+                                        style={
+                                                  Object {
+                                                            "marginBottom": "0",
+                                                          }
+                                        }
+                              >
+                                        nahmii_deposits_disabled_mainnet
+                                         
+                              </SectionHeading>
+                              <Connect(NahmiiInfoBtn)
+                                        forceIcon={true}
+                              />
+                    </div>
                     <div
                               style={
                                         Object {
@@ -9816,6 +10415,31 @@ ShallowWrapper {
                             style={
                                           Object {
                                                         "display": "flex",
+                                                        "height": "0",
+                                                        "marginTop": "0",
+                                                        "maxWidth": "25rem",
+                                                        "overflow": "hidden",
+                                                      }
+                            }
+              >
+                            <SectionHeading
+                                          style={
+                                                        Object {
+                                                                      "marginBottom": "0",
+                                                                    }
+                                          }
+                            >
+                                          nahmii_deposits_disabled_mainnet
+                                           
+                            </SectionHeading>
+                            <Connect(NahmiiInfoBtn)
+                                          forceIcon={true}
+                            />
+              </div>
+              <div
+                            style={
+                                          Object {
+                                                        "display": "flex",
                                                         "flexDirection": "column",
                                                         "marginTop": "2rem",
                                                       }
@@ -10296,6 +10920,31 @@ ShallowWrapper {
                   style={
                                     Object {
                                                       "display": "flex",
+                                                      "height": "0",
+                                                      "marginTop": "0",
+                                                      "maxWidth": "25rem",
+                                                      "overflow": "hidden",
+                                                    }
+                  }
+>
+                  <SectionHeading
+                                    style={
+                                                      Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                                    }
+                  >
+                                    nahmii_deposits_disabled_mainnet
+                                     
+                  </SectionHeading>
+                  <Connect(NahmiiInfoBtn)
+                                    forceIcon={true}
+                  />
+</div>,
+                <div
+                  style={
+                                    Object {
+                                                      "display": "flex",
                                                       "flexDirection": "column",
                                                       "marginTop": "2rem",
                                                     }
@@ -10358,6 +11007,70 @@ ShallowWrapper {
                   "type": [Function],
                 },
                 "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <SectionHeading
+                      style={
+                                            Object {
+                                                                  "marginBottom": "0",
+                                                                }
+                      }
+>
+                      nahmii_deposits_disabled_mainnet
+                       
+</SectionHeading>,
+                    <Connect(NahmiiInfoBtn)
+                      forceIcon={true}
+/>,
+                  ],
+                  "style": Object {
+                    "display": "flex",
+                    "height": "0",
+                    "marginTop": "0",
+                    "maxWidth": "25rem",
+                    "overflow": "hidden",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
+                      "style": Object {
+                        "marginBottom": "0",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "nahmii_deposits_disabled_mainnet",
+                      " ",
+                    ],
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "forceIcon": true,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": "div",
               },
               Object {
                 "instance": null,
@@ -10793,6 +11506,31 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
+                        <div
+                                    style={
+                                                Object {
+                                                            "display": "flex",
+                                                            "height": "0",
+                                                            "marginTop": "0",
+                                                            "maxWidth": "25rem",
+                                                            "overflow": "hidden",
+                                                          }
+                                    }
+                        >
+                                    <SectionHeading
+                                                style={
+                                                            Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                                                }
+                                    >
+                                                nahmii_deposits_disabled_mainnet
+                                                 
+                                    </SectionHeading>
+                                    <Connect(NahmiiInfoBtn)
+                                                forceIcon={true}
+                                    />
+                        </div>
                         <div
                                     style={
                                                 Object {
@@ -11561,6 +12299,31 @@ ShallowWrapper {
                                 style={
                                                 Object {
                                                                 "display": "flex",
+                                                                "height": "0",
+                                                                "marginTop": "0",
+                                                                "maxWidth": "25rem",
+                                                                "overflow": "hidden",
+                                                              }
+                                }
+                >
+                                <SectionHeading
+                                                style={
+                                                                Object {
+                                                                                "marginBottom": "0",
+                                                                              }
+                                                }
+                                >
+                                                nahmii_deposits_disabled_mainnet
+                                                 
+                                </SectionHeading>
+                                <Connect(NahmiiInfoBtn)
+                                                forceIcon={true}
+                                />
+                </div>
+                <div
+                                style={
+                                                Object {
+                                                                "display": "flex",
                                                                 "flexDirection": "column",
                                                                 "marginTop": "2rem",
                                                               }
@@ -12041,6 +12804,31 @@ ShallowWrapper {
                     style={
                                         Object {
                                                             "display": "flex",
+                                                            "height": "0",
+                                                            "marginTop": "0",
+                                                            "maxWidth": "25rem",
+                                                            "overflow": "hidden",
+                                                          }
+                    }
+>
+                    <SectionHeading
+                                        style={
+                                                            Object {
+                                                                                "marginBottom": "0",
+                                                                              }
+                                        }
+                    >
+                                        nahmii_deposits_disabled_mainnet
+                                         
+                    </SectionHeading>
+                    <Connect(NahmiiInfoBtn)
+                                        forceIcon={true}
+                    />
+</div>,
+                  <div
+                    style={
+                                        Object {
+                                                            "display": "flex",
                                                             "flexDirection": "column",
                                                             "marginTop": "2rem",
                                                           }
@@ -12103,6 +12891,70 @@ ShallowWrapper {
                     "type": [Function],
                   },
                   "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <SectionHeading
+                        style={
+                                                Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                        }
+>
+                        nahmii_deposits_disabled_mainnet
+                         
+</SectionHeading>,
+                      <Connect(NahmiiInfoBtn)
+                        forceIcon={true}
+/>,
+                    ],
+                    "style": Object {
+                      "display": "flex",
+                      "height": "0",
+                      "marginTop": "0",
+                      "maxWidth": "25rem",
+                      "overflow": "hidden",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": Array [
+                          "nahmii_deposits_disabled_mainnet",
+                          " ",
+                        ],
+                        "style": Object {
+                          "marginBottom": "0",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "forceIcon": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                  ],
+                  "type": "div",
                 },
                 Object {
                   "instance": null,
@@ -12769,6 +13621,12 @@ ShallowWrapper {
             error: "some error message",
         }
     }
+    disclaimerModal={
+        Immutable.Map {
+            showBtn: true,
+            enableMainnet: false,
+        }
+    }
     goWalletDetails={[Function]}
     intl={
         Object {
@@ -13147,6 +14005,31 @@ ShallowWrapper {
                     <style__HWPromptWrapper>
                               <Connect(HWPromptContainer) />
                     </style__HWPromptWrapper>
+                    <div
+                              style={
+                                        Object {
+                                                  "display": "flex",
+                                                  "height": "0",
+                                                  "marginTop": "0",
+                                                  "maxWidth": "25rem",
+                                                  "overflow": "hidden",
+                                                }
+                              }
+                    >
+                              <SectionHeading
+                                        style={
+                                                  Object {
+                                                            "marginBottom": "0",
+                                                          }
+                                        }
+                              >
+                                        nahmii_deposits_disabled_mainnet
+                                         
+                              </SectionHeading>
+                              <Connect(NahmiiInfoBtn)
+                                        forceIcon={true}
+                              />
+                    </div>
                     <Tooltip
                               arrowPointAtCenter={false}
                               autoAdjustOverflow={true}
@@ -13905,6 +14788,31 @@ ShallowWrapper {
               <style__HWPromptWrapper>
                             <Connect(HWPromptContainer) />
               </style__HWPromptWrapper>
+              <div
+                            style={
+                                          Object {
+                                                        "display": "flex",
+                                                        "height": "0",
+                                                        "marginTop": "0",
+                                                        "maxWidth": "25rem",
+                                                        "overflow": "hidden",
+                                                      }
+                            }
+              >
+                            <SectionHeading
+                                          style={
+                                                        Object {
+                                                                      "marginBottom": "0",
+                                                                    }
+                                          }
+                            >
+                                          nahmii_deposits_disabled_mainnet
+                                           
+                            </SectionHeading>
+                            <Connect(NahmiiInfoBtn)
+                                          forceIcon={true}
+                            />
+              </div>
               <Tooltip
                             arrowPointAtCenter={false}
                             autoAdjustOverflow={true}
@@ -14379,6 +15287,31 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                   <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
+                <div
+                  style={
+                                    Object {
+                                                      "display": "flex",
+                                                      "height": "0",
+                                                      "marginTop": "0",
+                                                      "maxWidth": "25rem",
+                                                      "overflow": "hidden",
+                                                    }
+                  }
+>
+                  <SectionHeading
+                                    style={
+                                                      Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                                    }
+                  >
+                                    nahmii_deposits_disabled_mainnet
+                                     
+                  </SectionHeading>
+                  <Connect(NahmiiInfoBtn)
+                                    forceIcon={true}
+                  />
+</div>,
                 <Tooltip
                   arrowPointAtCenter={false}
                   autoAdjustOverflow={true}
@@ -14439,6 +15372,70 @@ ShallowWrapper {
                   "type": [Function],
                 },
                 "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <SectionHeading
+                      style={
+                                            Object {
+                                                                  "marginBottom": "0",
+                                                                }
+                      }
+>
+                      nahmii_deposits_disabled_mainnet
+                       
+</SectionHeading>,
+                    <Connect(NahmiiInfoBtn)
+                      forceIcon={true}
+/>,
+                  ],
+                  "style": Object {
+                    "display": "flex",
+                    "height": "0",
+                    "marginTop": "0",
+                    "maxWidth": "25rem",
+                    "overflow": "hidden",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
+                      "style": Object {
+                        "marginBottom": "0",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "nahmii_deposits_disabled_mainnet",
+                      " ",
+                    ],
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "forceIcon": true,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": "div",
               },
               Object {
                 "instance": null,
@@ -14802,6 +15799,31 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
+                        <div
+                                    style={
+                                                Object {
+                                                            "display": "flex",
+                                                            "height": "0",
+                                                            "marginTop": "0",
+                                                            "maxWidth": "25rem",
+                                                            "overflow": "hidden",
+                                                          }
+                                    }
+                        >
+                                    <SectionHeading
+                                                style={
+                                                            Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                                                }
+                                    >
+                                                nahmii_deposits_disabled_mainnet
+                                                 
+                                    </SectionHeading>
+                                    <Connect(NahmiiInfoBtn)
+                                                forceIcon={true}
+                                    />
+                        </div>
                         <Tooltip
                                     arrowPointAtCenter={false}
                                     autoAdjustOverflow={true}
@@ -15560,6 +16582,31 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                                 <Connect(HWPromptContainer) />
                 </style__HWPromptWrapper>
+                <div
+                                style={
+                                                Object {
+                                                                "display": "flex",
+                                                                "height": "0",
+                                                                "marginTop": "0",
+                                                                "maxWidth": "25rem",
+                                                                "overflow": "hidden",
+                                                              }
+                                }
+                >
+                                <SectionHeading
+                                                style={
+                                                                Object {
+                                                                                "marginBottom": "0",
+                                                                              }
+                                                }
+                                >
+                                                nahmii_deposits_disabled_mainnet
+                                                 
+                                </SectionHeading>
+                                <Connect(NahmiiInfoBtn)
+                                                forceIcon={true}
+                                />
+                </div>
                 <Tooltip
                                 arrowPointAtCenter={false}
                                 autoAdjustOverflow={true}
@@ -16034,6 +17081,31 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                     <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
+                  <div
+                    style={
+                                        Object {
+                                                            "display": "flex",
+                                                            "height": "0",
+                                                            "marginTop": "0",
+                                                            "maxWidth": "25rem",
+                                                            "overflow": "hidden",
+                                                          }
+                    }
+>
+                    <SectionHeading
+                                        style={
+                                                            Object {
+                                                                                "marginBottom": "0",
+                                                                              }
+                                        }
+                    >
+                                        nahmii_deposits_disabled_mainnet
+                                         
+                    </SectionHeading>
+                    <Connect(NahmiiInfoBtn)
+                                        forceIcon={true}
+                    />
+</div>,
                   <Tooltip
                     arrowPointAtCenter={false}
                     autoAdjustOverflow={true}
@@ -16094,6 +17166,70 @@ ShallowWrapper {
                     "type": [Function],
                   },
                   "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <SectionHeading
+                        style={
+                                                Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                        }
+>
+                        nahmii_deposits_disabled_mainnet
+                         
+</SectionHeading>,
+                      <Connect(NahmiiInfoBtn)
+                        forceIcon={true}
+/>,
+                    ],
+                    "style": Object {
+                      "display": "flex",
+                      "height": "0",
+                      "marginTop": "0",
+                      "maxWidth": "25rem",
+                      "overflow": "hidden",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": Array [
+                          "nahmii_deposits_disabled_mainnet",
+                          " ",
+                        ],
+                        "style": Object {
+                          "marginBottom": "0",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "forceIcon": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                  ],
+                  "type": "div",
                 },
                 Object {
                   "instance": null,
@@ -16688,6 +17824,12 @@ ShallowWrapper {
             error: null,
         }
     }
+    disclaimerModal={
+        Immutable.Map {
+            showBtn: true,
+            enableMainnet: false,
+        }
+    }
     goWalletDetails={[Function]}
     intl={
         Object {
@@ -17066,6 +18208,31 @@ ShallowWrapper {
                     <style__HWPromptWrapper>
                               <Connect(HWPromptContainer) />
                     </style__HWPromptWrapper>
+                    <div
+                              style={
+                                        Object {
+                                                  "display": "flex",
+                                                  "height": "0",
+                                                  "marginTop": "0",
+                                                  "maxWidth": "25rem",
+                                                  "overflow": "hidden",
+                                                }
+                              }
+                    >
+                              <SectionHeading
+                                        style={
+                                                  Object {
+                                                            "marginBottom": "0",
+                                                          }
+                                        }
+                              >
+                                        nahmii_deposits_disabled_mainnet
+                                         
+                              </SectionHeading>
+                              <Connect(NahmiiInfoBtn)
+                                        forceIcon={true}
+                              />
+                    </div>
                     <Tooltip
                               arrowPointAtCenter={false}
                               autoAdjustOverflow={true}
@@ -17824,6 +18991,31 @@ ShallowWrapper {
               <style__HWPromptWrapper>
                             <Connect(HWPromptContainer) />
               </style__HWPromptWrapper>
+              <div
+                            style={
+                                          Object {
+                                                        "display": "flex",
+                                                        "height": "0",
+                                                        "marginTop": "0",
+                                                        "maxWidth": "25rem",
+                                                        "overflow": "hidden",
+                                                      }
+                            }
+              >
+                            <SectionHeading
+                                          style={
+                                                        Object {
+                                                                      "marginBottom": "0",
+                                                                    }
+                                          }
+                            >
+                                          nahmii_deposits_disabled_mainnet
+                                           
+                            </SectionHeading>
+                            <Connect(NahmiiInfoBtn)
+                                          forceIcon={true}
+                            />
+              </div>
               <Tooltip
                             arrowPointAtCenter={false}
                             autoAdjustOverflow={true}
@@ -18298,6 +19490,31 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                   <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
+                <div
+                  style={
+                                    Object {
+                                                      "display": "flex",
+                                                      "height": "0",
+                                                      "marginTop": "0",
+                                                      "maxWidth": "25rem",
+                                                      "overflow": "hidden",
+                                                    }
+                  }
+>
+                  <SectionHeading
+                                    style={
+                                                      Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                                    }
+                  >
+                                    nahmii_deposits_disabled_mainnet
+                                     
+                  </SectionHeading>
+                  <Connect(NahmiiInfoBtn)
+                                    forceIcon={true}
+                  />
+</div>,
                 <Tooltip
                   arrowPointAtCenter={false}
                   autoAdjustOverflow={true}
@@ -18358,6 +19575,70 @@ ShallowWrapper {
                   "type": [Function],
                 },
                 "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <SectionHeading
+                      style={
+                                            Object {
+                                                                  "marginBottom": "0",
+                                                                }
+                      }
+>
+                      nahmii_deposits_disabled_mainnet
+                       
+</SectionHeading>,
+                    <Connect(NahmiiInfoBtn)
+                      forceIcon={true}
+/>,
+                  ],
+                  "style": Object {
+                    "display": "flex",
+                    "height": "0",
+                    "marginTop": "0",
+                    "maxWidth": "25rem",
+                    "overflow": "hidden",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
+                      "style": Object {
+                        "marginBottom": "0",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "nahmii_deposits_disabled_mainnet",
+                      " ",
+                    ],
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "forceIcon": true,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": "div",
               },
               Object {
                 "instance": null,
@@ -18721,6 +20002,31 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
+                        <div
+                                    style={
+                                                Object {
+                                                            "display": "flex",
+                                                            "height": "0",
+                                                            "marginTop": "0",
+                                                            "maxWidth": "25rem",
+                                                            "overflow": "hidden",
+                                                          }
+                                    }
+                        >
+                                    <SectionHeading
+                                                style={
+                                                            Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                                                }
+                                    >
+                                                nahmii_deposits_disabled_mainnet
+                                                 
+                                    </SectionHeading>
+                                    <Connect(NahmiiInfoBtn)
+                                                forceIcon={true}
+                                    />
+                        </div>
                         <Tooltip
                                     arrowPointAtCenter={false}
                                     autoAdjustOverflow={true}
@@ -19479,6 +20785,31 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                                 <Connect(HWPromptContainer) />
                 </style__HWPromptWrapper>
+                <div
+                                style={
+                                                Object {
+                                                                "display": "flex",
+                                                                "height": "0",
+                                                                "marginTop": "0",
+                                                                "maxWidth": "25rem",
+                                                                "overflow": "hidden",
+                                                              }
+                                }
+                >
+                                <SectionHeading
+                                                style={
+                                                                Object {
+                                                                                "marginBottom": "0",
+                                                                              }
+                                                }
+                                >
+                                                nahmii_deposits_disabled_mainnet
+                                                 
+                                </SectionHeading>
+                                <Connect(NahmiiInfoBtn)
+                                                forceIcon={true}
+                                />
+                </div>
                 <Tooltip
                                 arrowPointAtCenter={false}
                                 autoAdjustOverflow={true}
@@ -19953,6 +21284,31 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                     <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
+                  <div
+                    style={
+                                        Object {
+                                                            "display": "flex",
+                                                            "height": "0",
+                                                            "marginTop": "0",
+                                                            "maxWidth": "25rem",
+                                                            "overflow": "hidden",
+                                                          }
+                    }
+>
+                    <SectionHeading
+                                        style={
+                                                            Object {
+                                                                                "marginBottom": "0",
+                                                                              }
+                                        }
+                    >
+                                        nahmii_deposits_disabled_mainnet
+                                         
+                    </SectionHeading>
+                    <Connect(NahmiiInfoBtn)
+                                        forceIcon={true}
+                    />
+</div>,
                   <Tooltip
                     arrowPointAtCenter={false}
                     autoAdjustOverflow={true}
@@ -20013,6 +21369,70 @@ ShallowWrapper {
                     "type": [Function],
                   },
                   "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <SectionHeading
+                        style={
+                                                Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                        }
+>
+                        nahmii_deposits_disabled_mainnet
+                         
+</SectionHeading>,
+                      <Connect(NahmiiInfoBtn)
+                        forceIcon={true}
+/>,
+                    ],
+                    "style": Object {
+                      "display": "flex",
+                      "height": "0",
+                      "marginTop": "0",
+                      "maxWidth": "25rem",
+                      "overflow": "hidden",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": Array [
+                          "nahmii_deposits_disabled_mainnet",
+                          " ",
+                        ],
+                        "style": Object {
+                          "marginBottom": "0",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "forceIcon": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                  ],
+                  "type": "div",
                 },
                 Object {
                   "instance": null,
@@ -20607,6 +22027,12 @@ ShallowWrapper {
             error: null,
         }
     }
+    disclaimerModal={
+        Immutable.Map {
+            showBtn: true,
+            enableMainnet: false,
+        }
+    }
     goWalletDetails={[Function]}
     intl={
         Object {
@@ -20986,6 +22412,31 @@ ShallowWrapper {
                     <style__HWPromptWrapper>
                               <Connect(HWPromptContainer) />
                     </style__HWPromptWrapper>
+                    <div
+                              style={
+                                        Object {
+                                                  "display": "flex",
+                                                  "height": "0",
+                                                  "marginTop": "0",
+                                                  "maxWidth": "25rem",
+                                                  "overflow": "hidden",
+                                                }
+                              }
+                    >
+                              <SectionHeading
+                                        style={
+                                                  Object {
+                                                            "marginBottom": "0",
+                                                          }
+                                        }
+                              >
+                                        nahmii_deposits_disabled_mainnet
+                                         
+                              </SectionHeading>
+                              <Connect(NahmiiInfoBtn)
+                                        forceIcon={true}
+                              />
+                    </div>
                     <Tooltip
                               arrowPointAtCenter={false}
                               autoAdjustOverflow={true}
@@ -21744,6 +23195,31 @@ ShallowWrapper {
               <style__HWPromptWrapper>
                             <Connect(HWPromptContainer) />
               </style__HWPromptWrapper>
+              <div
+                            style={
+                                          Object {
+                                                        "display": "flex",
+                                                        "height": "0",
+                                                        "marginTop": "0",
+                                                        "maxWidth": "25rem",
+                                                        "overflow": "hidden",
+                                                      }
+                            }
+              >
+                            <SectionHeading
+                                          style={
+                                                        Object {
+                                                                      "marginBottom": "0",
+                                                                    }
+                                          }
+                            >
+                                          nahmii_deposits_disabled_mainnet
+                                           
+                            </SectionHeading>
+                            <Connect(NahmiiInfoBtn)
+                                          forceIcon={true}
+                            />
+              </div>
               <Tooltip
                             arrowPointAtCenter={false}
                             autoAdjustOverflow={true}
@@ -22218,6 +23694,31 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                   <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
+                <div
+                  style={
+                                    Object {
+                                                      "display": "flex",
+                                                      "height": "0",
+                                                      "marginTop": "0",
+                                                      "maxWidth": "25rem",
+                                                      "overflow": "hidden",
+                                                    }
+                  }
+>
+                  <SectionHeading
+                                    style={
+                                                      Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                                    }
+                  >
+                                    nahmii_deposits_disabled_mainnet
+                                     
+                  </SectionHeading>
+                  <Connect(NahmiiInfoBtn)
+                                    forceIcon={true}
+                  />
+</div>,
                 <Tooltip
                   arrowPointAtCenter={false}
                   autoAdjustOverflow={true}
@@ -22278,6 +23779,70 @@ ShallowWrapper {
                   "type": [Function],
                 },
                 "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <SectionHeading
+                      style={
+                                            Object {
+                                                                  "marginBottom": "0",
+                                                                }
+                      }
+>
+                      nahmii_deposits_disabled_mainnet
+                       
+</SectionHeading>,
+                    <Connect(NahmiiInfoBtn)
+                      forceIcon={true}
+/>,
+                  ],
+                  "style": Object {
+                    "display": "flex",
+                    "height": "0",
+                    "marginTop": "0",
+                    "maxWidth": "25rem",
+                    "overflow": "hidden",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
+                      "style": Object {
+                        "marginBottom": "0",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "nahmii_deposits_disabled_mainnet",
+                      " ",
+                    ],
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "forceIcon": true,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": "div",
               },
               Object {
                 "instance": null,
@@ -22641,6 +24206,31 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
+                        <div
+                                    style={
+                                                Object {
+                                                            "display": "flex",
+                                                            "height": "0",
+                                                            "marginTop": "0",
+                                                            "maxWidth": "25rem",
+                                                            "overflow": "hidden",
+                                                          }
+                                    }
+                        >
+                                    <SectionHeading
+                                                style={
+                                                            Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                                                }
+                                    >
+                                                nahmii_deposits_disabled_mainnet
+                                                 
+                                    </SectionHeading>
+                                    <Connect(NahmiiInfoBtn)
+                                                forceIcon={true}
+                                    />
+                        </div>
                         <Tooltip
                                     arrowPointAtCenter={false}
                                     autoAdjustOverflow={true}
@@ -23399,6 +24989,31 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                                 <Connect(HWPromptContainer) />
                 </style__HWPromptWrapper>
+                <div
+                                style={
+                                                Object {
+                                                                "display": "flex",
+                                                                "height": "0",
+                                                                "marginTop": "0",
+                                                                "maxWidth": "25rem",
+                                                                "overflow": "hidden",
+                                                              }
+                                }
+                >
+                                <SectionHeading
+                                                style={
+                                                                Object {
+                                                                                "marginBottom": "0",
+                                                                              }
+                                                }
+                                >
+                                                nahmii_deposits_disabled_mainnet
+                                                 
+                                </SectionHeading>
+                                <Connect(NahmiiInfoBtn)
+                                                forceIcon={true}
+                                />
+                </div>
                 <Tooltip
                                 arrowPointAtCenter={false}
                                 autoAdjustOverflow={true}
@@ -23873,6 +25488,31 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                     <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
+                  <div
+                    style={
+                                        Object {
+                                                            "display": "flex",
+                                                            "height": "0",
+                                                            "marginTop": "0",
+                                                            "maxWidth": "25rem",
+                                                            "overflow": "hidden",
+                                                          }
+                    }
+>
+                    <SectionHeading
+                                        style={
+                                                            Object {
+                                                                                "marginBottom": "0",
+                                                                              }
+                                        }
+                    >
+                                        nahmii_deposits_disabled_mainnet
+                                         
+                    </SectionHeading>
+                    <Connect(NahmiiInfoBtn)
+                                        forceIcon={true}
+                    />
+</div>,
                   <Tooltip
                     arrowPointAtCenter={false}
                     autoAdjustOverflow={true}
@@ -23933,6 +25573,70 @@ ShallowWrapper {
                     "type": [Function],
                   },
                   "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <SectionHeading
+                        style={
+                                                Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                        }
+>
+                        nahmii_deposits_disabled_mainnet
+                         
+</SectionHeading>,
+                      <Connect(NahmiiInfoBtn)
+                        forceIcon={true}
+/>,
+                    ],
+                    "style": Object {
+                      "display": "flex",
+                      "height": "0",
+                      "marginTop": "0",
+                      "maxWidth": "25rem",
+                      "overflow": "hidden",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": Array [
+                          "nahmii_deposits_disabled_mainnet",
+                          " ",
+                        ],
+                        "style": Object {
+                          "marginBottom": "0",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "forceIcon": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                  ],
+                  "type": "div",
                 },
                 Object {
                   "instance": null,
@@ -24527,6 +26231,12 @@ ShallowWrapper {
             error: null,
         }
     }
+    disclaimerModal={
+        Immutable.Map {
+            showBtn: true,
+            enableMainnet: false,
+        }
+    }
     goWalletDetails={[Function]}
     intl={
         Object {
@@ -25117,6 +26827,12 @@ ShallowWrapper {
             approvingTokenDeposit: false,
             completingTokenDeposit: false,
             error: null,
+        }
+    }
+    disclaimerModal={
+        Immutable.Map {
+            showBtn: true,
+            enableMainnet: false,
         }
     }
     goWalletDetails={[Function]}
@@ -25739,6 +27455,12 @@ ShallowWrapper {
             error: null,
         }
     }
+    disclaimerModal={
+        Immutable.Map {
+            showBtn: true,
+            enableMainnet: false,
+        }
+    }
     goWalletDetails={[Function]}
     intl={
         Object {
@@ -26334,6 +28056,12 @@ ShallowWrapper {
             approvingTokenDeposit: false,
             completingTokenDeposit: false,
             error: null,
+        }
+    }
+    disclaimerModal={
+        Immutable.Map {
+            showBtn: true,
+            enableMainnet: false,
         }
     }
     goWalletDetails={[Function]}
@@ -26961,6 +28689,12 @@ ShallowWrapper {
             error: null,
         }
     }
+    disclaimerModal={
+        Immutable.Map {
+            showBtn: true,
+            enableMainnet: false,
+        }
+    }
     goWalletDetails={[Function]}
     intl={
         Object {
@@ -27339,6 +29073,31 @@ ShallowWrapper {
                     <style__HWPromptWrapper>
                               <Connect(HWPromptContainer) />
                     </style__HWPromptWrapper>
+                    <div
+                              style={
+                                        Object {
+                                                  "display": "flex",
+                                                  "height": "0",
+                                                  "marginTop": "0",
+                                                  "maxWidth": "25rem",
+                                                  "overflow": "hidden",
+                                                }
+                              }
+                    >
+                              <SectionHeading
+                                        style={
+                                                  Object {
+                                                            "marginBottom": "0",
+                                                          }
+                                        }
+                              >
+                                        nahmii_deposits_disabled_mainnet
+                                         
+                              </SectionHeading>
+                              <Connect(NahmiiInfoBtn)
+                                        forceIcon={true}
+                              />
+                    </div>
                     <Tooltip
                               arrowPointAtCenter={false}
                               autoAdjustOverflow={true}
@@ -28097,6 +29856,31 @@ ShallowWrapper {
               <style__HWPromptWrapper>
                             <Connect(HWPromptContainer) />
               </style__HWPromptWrapper>
+              <div
+                            style={
+                                          Object {
+                                                        "display": "flex",
+                                                        "height": "0",
+                                                        "marginTop": "0",
+                                                        "maxWidth": "25rem",
+                                                        "overflow": "hidden",
+                                                      }
+                            }
+              >
+                            <SectionHeading
+                                          style={
+                                                        Object {
+                                                                      "marginBottom": "0",
+                                                                    }
+                                          }
+                            >
+                                          nahmii_deposits_disabled_mainnet
+                                           
+                            </SectionHeading>
+                            <Connect(NahmiiInfoBtn)
+                                          forceIcon={true}
+                            />
+              </div>
               <Tooltip
                             arrowPointAtCenter={false}
                             autoAdjustOverflow={true}
@@ -28571,6 +30355,31 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                   <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
+                <div
+                  style={
+                                    Object {
+                                                      "display": "flex",
+                                                      "height": "0",
+                                                      "marginTop": "0",
+                                                      "maxWidth": "25rem",
+                                                      "overflow": "hidden",
+                                                    }
+                  }
+>
+                  <SectionHeading
+                                    style={
+                                                      Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                                    }
+                  >
+                                    nahmii_deposits_disabled_mainnet
+                                     
+                  </SectionHeading>
+                  <Connect(NahmiiInfoBtn)
+                                    forceIcon={true}
+                  />
+</div>,
                 <Tooltip
                   arrowPointAtCenter={false}
                   autoAdjustOverflow={true}
@@ -28631,6 +30440,70 @@ ShallowWrapper {
                   "type": [Function],
                 },
                 "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <SectionHeading
+                      style={
+                                            Object {
+                                                                  "marginBottom": "0",
+                                                                }
+                      }
+>
+                      nahmii_deposits_disabled_mainnet
+                       
+</SectionHeading>,
+                    <Connect(NahmiiInfoBtn)
+                      forceIcon={true}
+/>,
+                  ],
+                  "style": Object {
+                    "display": "flex",
+                    "height": "0",
+                    "marginTop": "0",
+                    "maxWidth": "25rem",
+                    "overflow": "hidden",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
+                      "style": Object {
+                        "marginBottom": "0",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "nahmii_deposits_disabled_mainnet",
+                      " ",
+                    ],
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "forceIcon": true,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": "div",
               },
               Object {
                 "instance": null,
@@ -28994,6 +30867,31 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
+                        <div
+                                    style={
+                                                Object {
+                                                            "display": "flex",
+                                                            "height": "0",
+                                                            "marginTop": "0",
+                                                            "maxWidth": "25rem",
+                                                            "overflow": "hidden",
+                                                          }
+                                    }
+                        >
+                                    <SectionHeading
+                                                style={
+                                                            Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                                                }
+                                    >
+                                                nahmii_deposits_disabled_mainnet
+                                                 
+                                    </SectionHeading>
+                                    <Connect(NahmiiInfoBtn)
+                                                forceIcon={true}
+                                    />
+                        </div>
                         <Tooltip
                                     arrowPointAtCenter={false}
                                     autoAdjustOverflow={true}
@@ -29752,6 +31650,31 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                                 <Connect(HWPromptContainer) />
                 </style__HWPromptWrapper>
+                <div
+                                style={
+                                                Object {
+                                                                "display": "flex",
+                                                                "height": "0",
+                                                                "marginTop": "0",
+                                                                "maxWidth": "25rem",
+                                                                "overflow": "hidden",
+                                                              }
+                                }
+                >
+                                <SectionHeading
+                                                style={
+                                                                Object {
+                                                                                "marginBottom": "0",
+                                                                              }
+                                                }
+                                >
+                                                nahmii_deposits_disabled_mainnet
+                                                 
+                                </SectionHeading>
+                                <Connect(NahmiiInfoBtn)
+                                                forceIcon={true}
+                                />
+                </div>
                 <Tooltip
                                 arrowPointAtCenter={false}
                                 autoAdjustOverflow={true}
@@ -30226,6 +32149,31 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                     <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
+                  <div
+                    style={
+                                        Object {
+                                                            "display": "flex",
+                                                            "height": "0",
+                                                            "marginTop": "0",
+                                                            "maxWidth": "25rem",
+                                                            "overflow": "hidden",
+                                                          }
+                    }
+>
+                    <SectionHeading
+                                        style={
+                                                            Object {
+                                                                                "marginBottom": "0",
+                                                                              }
+                                        }
+                    >
+                                        nahmii_deposits_disabled_mainnet
+                                         
+                    </SectionHeading>
+                    <Connect(NahmiiInfoBtn)
+                                        forceIcon={true}
+                    />
+</div>,
                   <Tooltip
                     arrowPointAtCenter={false}
                     autoAdjustOverflow={true}
@@ -30286,6 +32234,70 @@ ShallowWrapper {
                     "type": [Function],
                   },
                   "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <SectionHeading
+                        style={
+                                                Object {
+                                                                        "marginBottom": "0",
+                                                                      }
+                        }
+>
+                        nahmii_deposits_disabled_mainnet
+                         
+</SectionHeading>,
+                      <Connect(NahmiiInfoBtn)
+                        forceIcon={true}
+/>,
+                    ],
+                    "style": Object {
+                      "display": "flex",
+                      "height": "0",
+                      "marginTop": "0",
+                      "maxWidth": "25rem",
+                      "overflow": "hidden",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": Array [
+                          "nahmii_deposits_disabled_mainnet",
+                          " ",
+                        ],
+                        "style": Object {
+                          "marginBottom": "0",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        "nahmii_deposits_disabled_mainnet",
+                        " ",
+                      ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "forceIcon": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                  ],
+                  "type": "div",
                 },
                 Object {
                   "instance": null,

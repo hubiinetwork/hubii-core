@@ -21,6 +21,10 @@ import {
   NAHMII_COMPLETE_TOKEN_DEPOSIT,
   NAHMII_COMPLETE_TOKEN_DEPOSIT_SUCCESS,
   NAHMII_DEPOSIT_FAILED,
+  ENABLE_NAHMII_MAINNET,
+  DISABLE_NAHMII_MAINNET,
+  HIDE_DISCLAIMER_BTN,
+  SHOW_DISCLAIMER_BTN,
 } from './constants';
 
 export const initialState = fromJS({
@@ -33,6 +37,10 @@ export const initialState = fromJS({
     approvingTokenDeposit: false,
     completingTokenDeposit: false,
     error: null,
+  },
+  disclaimerModal: {
+    showBtn: true,
+    enableMainnet: false,
   },
 });
 
@@ -103,6 +111,18 @@ function nahmiiHocReducer(state = initialState, action) {
         .set('balances', initialState.get('balances'))
         .set('receipts', initialState.get('receipts'))
         .set('transactions', initialState.get('transactions'));
+    case ENABLE_NAHMII_MAINNET:
+      return state
+        .setIn(['disclaimerModal', 'enableMainnet'], true);
+    case DISABLE_NAHMII_MAINNET:
+      return state
+        .setIn(['disclaimerModal', 'enableMainnet'], false);
+    case SHOW_DISCLAIMER_BTN:
+      return state
+        .setIn(['disclaimerModal', 'showBtn'], true);
+    case HIDE_DISCLAIMER_BTN:
+      return state
+        .setIn(['disclaimerModal', 'showBtn'], false);
     default:
       return state;
   }

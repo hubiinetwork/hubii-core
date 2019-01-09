@@ -284,6 +284,17 @@ export const depositStatusNone = fromJS({
   error: null,
 });
 
+// makeSelectDisclaimerModal
+export const disclaimerModalShowBtn = fromJS({
+  showBtn: true,
+  enableMainnet: false,
+});
+
+export const disclaimerModalHideBtn = fromJS({
+  showBtn: false,
+  enableMainnet: false,
+});
+
 export const depositStatusEth = depositStatusNone.set('depositingEth', true);
 export const depositStatusApproving = depositStatusNone.set(
   'approvingTokenDeposit',
@@ -301,5 +312,6 @@ export const depositStatusError = depositStatusNone.set(
 // selectNahmiiHocDomain
 export const nahmiiHocMock = fromJS({
   balances: balanceState,
+  disclaimerModal: disclaimerModalShowBtn,
   receipts: receiptsLoaded,
 });

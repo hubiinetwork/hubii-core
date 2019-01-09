@@ -16,6 +16,10 @@ import {
   MAKE_NAHMII_PAYMENT,
   MAKE_NAHMII_PAYMENT_ERROR,
   MAKE_NAHMII_PAYMENT_SUCCESS,
+  ENABLE_NAHMII_MAINNET,
+  DISABLE_NAHMII_MAINNET,
+  HIDE_DISCLAIMER_BTN,
+  SHOW_DISCLAIMER_BTN,
   LOAD_NAHMII_RECEIPTS,
   LOAD_NAHMII_RECEIPTS_SUCCESS,
   LOAD_NAHMII_RECEIPTS_ERROR,
@@ -149,6 +153,30 @@ export function loadStagingBalancesSuccess(address, balances) {
     type: LOAD_NAHMII_STAGING_BALANCES_SUCCESS,
     address,
     balances,
+  };
+}
+
+export function enableNahmiiMainnet() {
+  return {
+    type: ENABLE_NAHMII_MAINNET,
+  };
+}
+
+export function disableNahmiiMainnet() {
+  return {
+    type: DISABLE_NAHMII_MAINNET,
+  };
+}
+
+export function hideDisclaimerBtn() {
+  return {
+    type: HIDE_DISCLAIMER_BTN,
+  };
+}
+
+export function showDisclaimerBtn() {
+  return {
+    type: SHOW_DISCLAIMER_BTN,
   };
 }
 

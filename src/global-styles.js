@@ -36,6 +36,53 @@ injectGlobal`
     border-radius: 8px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.27);
   }
+
+  /* Custom link styles */
+  a {
+    color: #1890ff;
+    background-color: transparent;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    -webkit-transition: color .3s;
+    transition: color .3s;
+    -webkit-text-decoration-skip: objects;
+  }
+  a:focus {
+    text-decoration: underline;
+    -webkit-text-decoration-skip: ink;
+            text-decoration-skip: ink;
+  }
+  a:hover {
+    color: #40a9ff;
+  }
+  a:active {
+    color: #096dd9;
+  }
+  a:active,
+  a:hover {
+    outline: 0;
+    text-decoration: none;
+  }
+  a[disabled] {
+    color: rgba(0, 0, 0, 0.25);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Custom antd Checkbox styles*/
+  .ant-checkbox-wrapper + .ant-checkbox-wrapper {
+    margin-left: 0;
+  }
+  
+  .ant-checkbox-disabled + span {
+    color: ${darkTheme.palette.secondary};
+  }
+
+  /* .ant-checkbox-disabled + span, */
+  .ant-checkbox-wrapper {
+    color: white;
+  }
   
   /* Hide number under antd steps */
   .ant-steps-icon {

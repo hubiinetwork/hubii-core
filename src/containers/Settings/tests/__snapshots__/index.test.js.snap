@@ -91,6 +91,13 @@ ShallowWrapper {
             "walletApiEndpoint": [Function],
           }
     }
+    disclaimerModal={
+        Immutable.Map {
+            showBtn: true,
+            enableMainnet: false,
+        }
+    }
+    hideDisclaimerBtn={[Function]}
     intl={
         Object {
             "formatMessage": [Function],
@@ -99,6 +106,7 @@ ShallowWrapper {
     locale="en"
     onChangeLocale={[Function]}
     onChangeNetwork={[Function]}
+    showDisclaimerBtn={[Function]}
     supportedNetworks={
         Immutable.Map {
             homestead: Immutable.Map {
@@ -299,7 +307,7 @@ ShallowWrapper {
                               onChange={[Function]}
                               style={
                                         Object {
-                                                  "width": "15rem",
+                                                  "width": "20rem",
                                                 }
                               }
                               value="ropsten"
@@ -324,7 +332,7 @@ ShallowWrapper {
                               onChange={[Function]}
                               style={
                                         Object {
-                                                  "width": "15rem",
+                                                  "width": "20rem",
                                                 }
                               }
                               value="en"
@@ -335,6 +343,38 @@ ShallowWrapper {
                                         English
                               </Option>
                     </Select.style>
+          </style__SettingWrapper>
+          <style__SettingWrapper>
+                    <style__StyledSectionHeading>
+                              nahmii_info_button
+                    </style__StyledSectionHeading>
+                    <div
+                              style={
+                                        Object {
+                                                  "display": "flex",
+                                                }
+                              }
+                    >
+                              <style__NahmiiInfoCheckbox
+                                        checked={true}
+                                        onChange={[Function]}
+                                        style={
+                                                  Object {
+                                                            "display": "flex",
+                                                            "width": "20rem",
+                                                          }
+                                        }
+                              >
+                                        show_a
+                                         
+                                        <Connect(NahmiiInfoBtn)
+                                                  forceIcon={true}
+                                                  iconOnly={true}
+                                        />
+                                         
+                                        button_beside_nahmii_ui
+                              </style__NahmiiInfoCheckbox>
+                    </div>
           </style__SettingWrapper>
 </style__Body>,
       ],
@@ -378,7 +418,7 @@ ShallowWrapper {
                             onChange={[Function]}
                             style={
                                           Object {
-                                                        "width": "15rem",
+                                                        "width": "20rem",
                                                       }
                             }
                             value="ropsten"
@@ -403,7 +443,7 @@ ShallowWrapper {
                             onChange={[Function]}
                             style={
                                           Object {
-                                                        "width": "15rem",
+                                                        "width": "20rem",
                                                       }
                             }
                             value="en"
@@ -414,6 +454,38 @@ ShallowWrapper {
                                           English
                             </Option>
               </Select.style>
+</style__SettingWrapper>,
+            <style__SettingWrapper>
+              <style__StyledSectionHeading>
+                            nahmii_info_button
+              </style__StyledSectionHeading>
+              <div
+                            style={
+                                          Object {
+                                                        "display": "flex",
+                                                      }
+                            }
+              >
+                            <style__NahmiiInfoCheckbox
+                                          checked={true}
+                                          onChange={[Function]}
+                                          style={
+                                                        Object {
+                                                                      "display": "flex",
+                                                                      "width": "20rem",
+                                                                    }
+                                          }
+                            >
+                                          show_a
+                                           
+                                          <Connect(NahmiiInfoBtn)
+                                                        forceIcon={true}
+                                                        iconOnly={true}
+                                          />
+                                           
+                                          button_beside_nahmii_ui
+                            </style__NahmiiInfoCheckbox>
+              </div>
 </style__SettingWrapper>,
           ],
         },
@@ -432,7 +504,7 @@ ShallowWrapper {
                   onChange={[Function]}
                   style={
                                     Object {
-                                                      "width": "15rem",
+                                                      "width": "20rem",
                                                     }
                   }
                   value="ropsten"
@@ -482,7 +554,7 @@ ShallowWrapper {
                   ],
                   "onChange": [Function],
                   "style": Object {
-                    "width": "15rem",
+                    "width": "20rem",
                   },
                   "value": "ropsten",
                 },
@@ -531,7 +603,7 @@ ShallowWrapper {
                   onChange={[Function]}
                   style={
                                     Object {
-                                                      "width": "15rem",
+                                                      "width": "20rem",
                                                     }
                   }
                   value="en"
@@ -571,7 +643,7 @@ ShallowWrapper {
                   ],
                   "onChange": [Function],
                   "style": Object {
-                    "width": "15rem",
+                    "width": "20rem",
                   },
                   "value": "en",
                 },
@@ -591,6 +663,134 @@ ShallowWrapper {
                   },
                 ],
                 "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <style__StyledSectionHeading>
+                  nahmii_info_button
+</style__StyledSectionHeading>,
+                <div
+                  style={
+                                    Object {
+                                                      "display": "flex",
+                                                    }
+                  }
+>
+                  <style__NahmiiInfoCheckbox
+                                    checked={true}
+                                    onChange={[Function]}
+                                    style={
+                                                      Object {
+                                                                        "display": "flex",
+                                                                        "width": "20rem",
+                                                                      }
+                                    }
+                  >
+                                    show_a
+                                     
+                                    <Connect(NahmiiInfoBtn)
+                                                      forceIcon={true}
+                                                      iconOnly={true}
+                                    />
+                                     
+                                    button_beside_nahmii_ui
+                  </style__NahmiiInfoCheckbox>
+</div>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "nahmii_info_button",
+                },
+                "ref": null,
+                "rendered": "nahmii_info_button",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <style__NahmiiInfoCheckbox
+                    checked={true}
+                    onChange={[Function]}
+                    style={
+                                        Object {
+                                                            "display": "flex",
+                                                            "width": "20rem",
+                                                          }
+                    }
+>
+                    show_a
+                     
+                    <Connect(NahmiiInfoBtn)
+                                        forceIcon={true}
+                                        iconOnly={true}
+                    />
+                     
+                    button_beside_nahmii_ui
+</style__NahmiiInfoCheckbox>,
+                  "style": Object {
+                    "display": "flex",
+                  },
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "checked": true,
+                    "children": Array [
+                      "show_a",
+                      " ",
+                      <Connect(NahmiiInfoBtn)
+                        forceIcon={true}
+                        iconOnly={true}
+/>,
+                      " ",
+                      "button_beside_nahmii_ui",
+                    ],
+                    "onChange": [Function],
+                    "style": Object {
+                      "display": "flex",
+                      "width": "20rem",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "show_a",
+                    " ",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "forceIcon": true,
+                        "iconOnly": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    " ",
+                    "button_beside_nahmii_ui",
+                  ],
+                  "type": [Function],
+                },
+                "type": "div",
               },
             ],
             "type": [Function],
@@ -622,7 +822,7 @@ ShallowWrapper {
                                     onChange={[Function]}
                                     style={
                                                 Object {
-                                                            "width": "15rem",
+                                                            "width": "20rem",
                                                           }
                                     }
                                     value="ropsten"
@@ -647,7 +847,7 @@ ShallowWrapper {
                                     onChange={[Function]}
                                     style={
                                                 Object {
-                                                            "width": "15rem",
+                                                            "width": "20rem",
                                                           }
                                     }
                                     value="en"
@@ -658,6 +858,38 @@ ShallowWrapper {
                                                 English
                                     </Option>
                         </Select.style>
+            </style__SettingWrapper>
+            <style__SettingWrapper>
+                        <style__StyledSectionHeading>
+                                    nahmii_info_button
+                        </style__StyledSectionHeading>
+                        <div
+                                    style={
+                                                Object {
+                                                            "display": "flex",
+                                                          }
+                                    }
+                        >
+                                    <style__NahmiiInfoCheckbox
+                                                checked={true}
+                                                onChange={[Function]}
+                                                style={
+                                                            Object {
+                                                                        "display": "flex",
+                                                                        "width": "20rem",
+                                                                      }
+                                                }
+                                    >
+                                                show_a
+                                                 
+                                                <Connect(NahmiiInfoBtn)
+                                                            forceIcon={true}
+                                                            iconOnly={true}
+                                                />
+                                                 
+                                                button_beside_nahmii_ui
+                                    </style__NahmiiInfoCheckbox>
+                        </div>
             </style__SettingWrapper>
 </style__Body>,
         ],
@@ -701,7 +933,7 @@ ShallowWrapper {
                                 onChange={[Function]}
                                 style={
                                                 Object {
-                                                                "width": "15rem",
+                                                                "width": "20rem",
                                                               }
                                 }
                                 value="ropsten"
@@ -726,7 +958,7 @@ ShallowWrapper {
                                 onChange={[Function]}
                                 style={
                                                 Object {
-                                                                "width": "15rem",
+                                                                "width": "20rem",
                                                               }
                                 }
                                 value="en"
@@ -737,6 +969,38 @@ ShallowWrapper {
                                                 English
                                 </Option>
                 </Select.style>
+</style__SettingWrapper>,
+              <style__SettingWrapper>
+                <style__StyledSectionHeading>
+                                nahmii_info_button
+                </style__StyledSectionHeading>
+                <div
+                                style={
+                                                Object {
+                                                                "display": "flex",
+                                                              }
+                                }
+                >
+                                <style__NahmiiInfoCheckbox
+                                                checked={true}
+                                                onChange={[Function]}
+                                                style={
+                                                                Object {
+                                                                                "display": "flex",
+                                                                                "width": "20rem",
+                                                                              }
+                                                }
+                                >
+                                                show_a
+                                                 
+                                                <Connect(NahmiiInfoBtn)
+                                                                forceIcon={true}
+                                                                iconOnly={true}
+                                                />
+                                                 
+                                                button_beside_nahmii_ui
+                                </style__NahmiiInfoCheckbox>
+                </div>
 </style__SettingWrapper>,
             ],
           },
@@ -755,7 +1019,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     style={
                                         Object {
-                                                            "width": "15rem",
+                                                            "width": "20rem",
                                                           }
                     }
                     value="ropsten"
@@ -805,7 +1069,7 @@ ShallowWrapper {
                     ],
                     "onChange": [Function],
                     "style": Object {
-                      "width": "15rem",
+                      "width": "20rem",
                     },
                     "value": "ropsten",
                   },
@@ -854,7 +1118,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     style={
                                         Object {
-                                                            "width": "15rem",
+                                                            "width": "20rem",
                                                           }
                     }
                     value="en"
@@ -894,7 +1158,7 @@ ShallowWrapper {
                     ],
                     "onChange": [Function],
                     "style": Object {
-                      "width": "15rem",
+                      "width": "20rem",
                     },
                     "value": "en",
                   },
@@ -914,6 +1178,134 @@ ShallowWrapper {
                     },
                   ],
                   "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <style__StyledSectionHeading>
+                    nahmii_info_button
+</style__StyledSectionHeading>,
+                  <div
+                    style={
+                                        Object {
+                                                            "display": "flex",
+                                                          }
+                    }
+>
+                    <style__NahmiiInfoCheckbox
+                                        checked={true}
+                                        onChange={[Function]}
+                                        style={
+                                                            Object {
+                                                                                "display": "flex",
+                                                                                "width": "20rem",
+                                                                              }
+                                        }
+                    >
+                                        show_a
+                                         
+                                        <Connect(NahmiiInfoBtn)
+                                                            forceIcon={true}
+                                                            iconOnly={true}
+                                        />
+                                         
+                                        button_beside_nahmii_ui
+                    </style__NahmiiInfoCheckbox>
+</div>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "nahmii_info_button",
+                  },
+                  "ref": null,
+                  "rendered": "nahmii_info_button",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <style__NahmiiInfoCheckbox
+                      checked={true}
+                      onChange={[Function]}
+                      style={
+                                            Object {
+                                                                  "display": "flex",
+                                                                  "width": "20rem",
+                                                                }
+                      }
+>
+                      show_a
+                       
+                      <Connect(NahmiiInfoBtn)
+                                            forceIcon={true}
+                                            iconOnly={true}
+                      />
+                       
+                      button_beside_nahmii_ui
+</style__NahmiiInfoCheckbox>,
+                    "style": Object {
+                      "display": "flex",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "checked": true,
+                      "children": Array [
+                        "show_a",
+                        " ",
+                        <Connect(NahmiiInfoBtn)
+                          forceIcon={true}
+                          iconOnly={true}
+/>,
+                        " ",
+                        "button_beside_nahmii_ui",
+                      ],
+                      "onChange": [Function],
+                      "style": Object {
+                        "display": "flex",
+                        "width": "20rem",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "show_a",
+                      " ",
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "forceIcon": true,
+                          "iconOnly": true,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      " ",
+                      "button_beside_nahmii_ui",
+                    ],
+                    "type": [Function],
+                  },
+                  "type": "div",
                 },
               ],
               "type": [Function],
