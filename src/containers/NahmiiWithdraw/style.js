@@ -29,6 +29,7 @@ export const StyledCol = styled(Col)`
 export const StyledButton = styled(Button)`
   margin-top: 2rem;
   width: 11.57rem;
+  margin-right: 2rem;
 `;
 
 export const StyledSpin = styled(Spin)`
