@@ -30,7 +30,7 @@ const TradingTab = () => (
           theme="Dark"
           autosize
           locale="en"
-          toolbar_bg="rgb(38,60,70)"
+          toolbar_bg="rgb(26, 29, 39)"
         />
       </PriceChartWrapper>
       <Markets>Markets</Markets>
