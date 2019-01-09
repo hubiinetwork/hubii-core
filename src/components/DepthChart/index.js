@@ -15,7 +15,7 @@ class DepthChart extends React.Component {
       config: {
         chart: {
           margin: [0, 0, 0, 0],
-          width: 250,
+          width: 200,
           backgroundColor: 'transparent',
           type: 'area',
           inverted: true,
@@ -82,12 +82,12 @@ class DepthChart extends React.Component {
 
         series: [
           {
-            name: 'BTC',
+            name: 'Asks',
             color: {
               linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1.1 },
               stops: [
-                [0, 'grey'],
-                [1, '#fc519a'],
+                [0, 'rgba(255,77,154, 0.1)'],
+                [1, 'rgba(255,77,154, 1)'],
               ],
             },
             step: 'right',
@@ -107,12 +107,12 @@ class DepthChart extends React.Component {
               [870.46, 55],
             ],
           }, {
-            name: 'Hubii',
+            name: 'Bids',
             color: {
               linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1.1 },
               stops: [
-                [0, 'grey'],
-                [1, '#44d169'],
+                [0, 'rgba(70,233,106, 0.1)'],
+                [1, 'rgba(70,233,106, 1)'],
               ],
             },
             step: 'left',
