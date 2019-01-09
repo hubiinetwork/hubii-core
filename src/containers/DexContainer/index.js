@@ -56,7 +56,7 @@ export class DexContainer extends React.PureComponent {
           <TabPane
             tab={
               <span>
-                <Icon type="solution" />
+                <Icon type="line-chart" />
                   Trading
               </span>
             }
