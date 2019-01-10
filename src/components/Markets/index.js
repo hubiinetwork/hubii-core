@@ -14,7 +14,7 @@ import Select, { Option } from 'components/ui/Select';
 import {
   Header,
   Wrapper,
-  InnerDataWrapper,
+  DataWrapper,
   DataRowWrapper,
   StyledText,
 } from './style';
@@ -24,50 +24,50 @@ const markets = {
     {
       ticker: 'DAI',
       price: '0.035088',
-      volume: '328399.90112',
-      change: 7.438,
+      volume: '328399.90',
+      change: 17.41,
     },
     {
       ticker: 'HBT',
       price: '0.035088',
-      volume: '328399.90112',
-      change: 7.438,
+      volume: '328399.90',
+      change: 17.41,
     },
     {
       ticker: 'OMG',
       price: '0.035088',
-      volume: '328399.90112',
-      change: -7.438,
+      volume: '328399.90',
+      change: -17.41,
     },
     {
       ticker: 'ZRX',
       price: '0.035088',
-      volume: '328399.90112',
-      change: -7.438,
+      volume: '328399.90',
+      change: -17.41,
     },
   ],
   DAI: [
     {
       ticker: 'ZRX',
       price: '0.035088',
-      volume: '328399.90112',
-      change: -7.438,
+      volume: '328399.90',
+      change: -17.41,
     },
     {
       ticker: 'OMG',
       price: '0.035088',
-      volume: '328399.90112',
-      change: -7.438,
+      volume: '328399.90',
+      change: -17.41,
     },
   ],
 };
 
 const DataRow = ({ ticker, price, volume, change, selected, onClick }) => (
   <DataRowWrapper selected={selected} onClick={selected ? () => {} : onClick}>
-    <StyledText>{ticker}</StyledText>
-    <StyledText>{price}</StyledText>
-    <StyledText>{volume}</StyledText>
-    <StyledText>{change}</StyledText>
+    <StyledText style={{ width: '25%' }}>{ticker}</StyledText>
+    <StyledText style={{ textAlign: 'center' }}>{price}</StyledText>
+    <StyledText style={{ textAlign: 'center' }}>{volume}</StyledText>
+    <StyledText style={{ textAlign: 'right' }}>{change}</StyledText>
   </DataRowWrapper>
 );
 
@@ -114,11 +114,11 @@ export class Markets extends React.Component { // eslint-disable-line react/pref
         </Header>
         <Header style={{ margin: '0.5rem 11px 0.5rem 0' }}>
           <StyledText>Ticker</StyledText>
-          <StyledText>Price</StyledText>
-          <StyledText>24hr Volume</StyledText>
-          <StyledText>24hr Change</StyledText>
+          <StyledText style={{ textAlign: 'center' }}>Price</StyledText>
+          <StyledText style={{ textAlign: 'center' }}>Volume</StyledText>
+          <StyledText style={{ textAlign: 'right' }}>Change</StyledText>
         </Header>
-        <InnerDataWrapper>
+        <DataWrapper>
           {
               markets[base].map((i) => (
                 <DataRow
@@ -132,7 +132,7 @@ export class Markets extends React.Component { // eslint-disable-line react/pref
                 />
               ))
           }
-        </InnerDataWrapper>
+        </DataWrapper>
       </Wrapper>
     );
   }

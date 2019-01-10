@@ -21,7 +21,7 @@ export const PriceChartWrapper = styled.div`
   margin: -0.1rem -0.4rem -0.25rem -0.5rem;
   z-index: 0;
   @media (${breakpoint}) {
-    flex-basis: 60%;
+    flex-basis: 66%;
     order: -2;
   }
 `;
@@ -32,13 +32,13 @@ export const BookDepthChartWrapper = styled.div`
   z-index: 1;
   height: 37.5rem;
   @media (${breakpoint}) {
-    flex-basis: 40%;
+    flex-basis: 33%;
     order: -1;
   }
 `;
 
 export const WrappedDepthChart = styled(DepthChart)`
-  width: 200px;
+  width: 150px;
   z-index: 1;
   background: ${({ theme }) => theme.palette.primary4};
   box-shadow: ${({ theme }) =>
@@ -66,7 +66,7 @@ export const WrappedMarkets = styled(Markets)`
   border-top: 1px solid ${({ theme }) => theme.palette.secondary7};
   border-right: 1px solid ${({ theme }) => theme.palette.secondary7};
   @media (${breakpoint}) {
-    flex-basis: 30%;
+    flex-basis: 27%;
   };
 `;
 
@@ -76,7 +76,7 @@ export const WrappedOrders = styled(OrderHistory)`
   height: 30rem;
   z-index: 1;
   @media (${breakpoint}) {
-    flex-basis: 30%;
+    flex-basis: 40%;
   };
   border-top: 1px solid ${({ theme }) => theme.palette.secondary7};
   border-right: 1px solid ${({ theme }) => theme.palette.secondary7};
@@ -89,6 +89,6 @@ export const Trading = styled.div`
   z-index: 1;
   @media (${breakpoint}) {
     order: 1;
-    flex-basis: 40%;
+    flex-basis: 33%;
   }
 `;

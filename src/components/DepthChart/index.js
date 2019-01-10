@@ -15,7 +15,7 @@ class DepthChart extends React.Component {
       config: {
         chart: {
           margin: [0, 0, 0, 0],
-          width: 200,
+          width: 150,
           backgroundColor: 'transparent',
           type: 'area',
           inverted: true,

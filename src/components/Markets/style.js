@@ -16,7 +16,7 @@ export const Header = styled.div`
   align-items: baseline;
 `;
 
-export const InnerDataWrapper = styled.div`
+export const DataWrapper = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
