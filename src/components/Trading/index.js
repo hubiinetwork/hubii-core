@@ -53,7 +53,7 @@ class TradingTab extends React.Component {
           <Trading>Trading</Trading>
           <BookDepthChartWrapper>
             <WrappedDepthChart />
-            <WrappedOrderBook primary="ETH" secondary="HBT" />
+            <WrappedOrderBook selectedMarket={selectedMarket} />
           </BookDepthChartWrapper>
           <History>History</History>
         </Container>

@@ -46,7 +46,20 @@ const markets = {
       change: -7.438,
     },
   ],
-  DAI: [],
+  DAI: [
+    {
+      ticker: 'ZRX',
+      price: '0.035088',
+      volume: '328399.90112',
+      change: -7.438,
+    },
+    {
+      ticker: 'OMG',
+      price: '0.035088',
+      volume: '328399.90112',
+      change: -7.438,
+    },
+  ],
 };
 
 const DataRow = ({ ticker, price, volume, change, selected, onClick }) => (
@@ -114,7 +127,7 @@ export class Markets extends React.Component { // eslint-disable-line react/pref
                   change={i.change}
                   price={i.price}
                   selected={i.ticker === selectedMarket.secondary}
-                  onClick={() => changeSelectedMarket({ ...selectedMarket, secondary: i.ticker })}
+                  onClick={() => changeSelectedMarket({ primary: base, secondary: i.ticker })}
                   key={i.ticker}
                 />
               ))

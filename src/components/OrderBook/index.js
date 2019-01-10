@@ -173,7 +173,7 @@ export class OrderBook extends React.Component { // eslint-disable-line react/pr
 
   render() {
     const { grouping } = this.state;
-    const { primary, secondary } = this.props;
+    const { primary, secondary } = this.props.selectedMarket;
 
     // perform grouping
     const groupedAsks = groupOrders(grouping, asks, 'asks');
@@ -225,8 +225,10 @@ export class OrderBook extends React.Component { // eslint-disable-line react/pr
 OrderBook.propTypes = {
   // dispatch: PropTypes.func.isRequired,
   className: PropTypes.string,
-  primary: PropTypes.string.isRequired,
-  secondary: PropTypes.string.isRequired,
+  selectedMarket: PropTypes.shape({
+    primary: PropTypes.string.isRequired,
+    secondary: PropTypes.string.isRequired,
+  }),
 };
 
 
