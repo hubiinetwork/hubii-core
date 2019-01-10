@@ -29,8 +29,8 @@ class TradingTab extends React.Component {
       intendedTrade: {
         side: 'buy',
         type: 'market',
-        volume: 0,
-        price: 0,
+        volume: '',
+        price: '',
       },
     };
     this.changeSelectedMarket = this.changeSelectedMarket.bind(this);
