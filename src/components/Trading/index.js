@@ -16,7 +16,7 @@ import {
   WrappedOrderBook,
   BookDepthChartWrapper,
   WrappedMarkets,
-  History,
+  WrappedOrders,
   Trading,
 } from './style';
 
@@ -55,7 +55,7 @@ class TradingTab extends React.Component {
             <WrappedDepthChart />
             <WrappedOrderBook selectedMarket={selectedMarket} />
           </BookDepthChartWrapper>
-          <History>History</History>
+          <WrappedOrders />
         </Container>
       </div>
     );

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import DepthChart from 'components/DepthChart';
 import OrderBook from 'components/OrderBook';
 import Markets from 'components/Markets';
+import OrderHistory from 'components/OrderHistory';
 
 const breakpoint = 'min-width: 1400px';
 
@@ -55,33 +56,30 @@ export const WrappedOrderBook = styled(OrderBook)`
     inset 0 -1px 0 0 ${theme.palette.secondary7}, 
     inset 1px 0 0 0 ${theme.palette.secondary7}, 
     inset 0 1px 0 0 ${theme.palette.dark1};`
-  }
+  };
 `;
 
 export const WrappedMarkets = styled(Markets)`
   flex-basis: 50%;
   height: 30rem;
   z-index: 1;
-  box-shadow: ${({ theme }) =>
-    `
-    inset 0 1px 0 0 ${theme.palette.secondary7}, 
-    inset -1px 0 0 0 ${theme.palette.secondary7}, 
-    inset 0 1px 0 0 ${theme.palette.dark1};
-    `
-  };
+  border-top: 1px solid ${({ theme }) => theme.palette.secondary7};
+  border-right: 1px solid ${({ theme }) => theme.palette.secondary7};
   @media (${breakpoint}) {
     flex-basis: 30%;
-  }
+  };
 `;
 
-export const History = styled.div`
+export const WrappedOrders = styled(OrderHistory)`
   flex: 1;
   flex-basis: 50%;
   height: 30rem;
   z-index: 1;
   @media (${breakpoint}) {
     flex-basis: 30%;
-  }
+  };
+  border-top: 1px solid ${({ theme }) => theme.palette.secondary7};
+  border-right: 1px solid ${({ theme }) => theme.palette.secondary7};
 `;
 
 export const Trading = styled.div`
