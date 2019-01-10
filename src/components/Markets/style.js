@@ -25,13 +25,23 @@ export const InnerDataWrapper = styled.div`
 
 export const DataRowWrapper = styled.div`
   display: flex;
+  flex-shrink: 0;
   transition: all 0.2s;
   padding: 0 0.75rem;
   &:hover {
     cursor: pointer;
     background: ${({ theme }) => theme.palette.secondary7};
-    padding: 0.33rem 0.5rem;
-  }
+  };
+  ${({ selected, theme }) =>
+    selected ? `
+    background: ${theme.palette.secondary7};
+    padding: 0.33rem 1.25rem;
+    &:hover {
+      cursor: auto;
+      background: ${theme.palette.secondary7};
+    }
+  ` : ''
+  };
 `;
 
 export const StyledText = styled(Text)`
