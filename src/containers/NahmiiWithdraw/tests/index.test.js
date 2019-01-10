@@ -159,34 +159,6 @@ describe('<NahmiiWithdraw />', () => {
             expect(wrapper.find('.withdraw-review .base-layer-token-balance-before').props().main).toEqual(`${baseLayerTokenBalanceBefore} ${t.asset.symbol}`);
           });
         }
-        describe('when withrawal amount is greater than staged amount', () => {
-          beforeEach(() => {
-            wrapper.setState({ amountToWithdraw: new BigNumber(4), assetToWithdraw: t.asset });
-          });
-          it('should disable withdraw button and enable settle button', () => {
-            expect(wrapper.find('.withdraw-review')).toHaveLength(1);
-            expect(wrapper.find('.withdraw-review .withdraw-btn').props().disabled).toEqual(true);
-            expect(wrapper.find('.withdraw-review .challenge-btn').props().disabled).toEqual(false);
-          });
-          it('should correctly calculate the staged balance before and after', () => {
-            expect(wrapper.find('.withdraw-review .staged-balance-before').props().main).toEqual(`3 ${t.asset.symbol}`);
-            expect(wrapper.find('.withdraw-review .staged-balance-after').props().main).toEqual(`0 ${t.asset.symbol}`);
-          });
-          it('should correctly calculate the base layer eth after', () => {
-            let baseLayerBalanceBefore = t.walletsWithInfo.toJS().balances.baseLayer.assets.find((a) => a.symbol === 'ETH').balance;
-            const { gasPriceGwei, gasLimit } = wrapper.state();
-
-            const txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit);
-            baseLayerBalanceBefore = baseLayerBalanceBefore.minus(txFeeAmt);
-            expect(wrapper.find('.withdraw-review .base-layer-eth-balance-after').props().main).toEqual(`${baseLayerBalanceBefore} ETH`);
-          });
-          if (t.type !== 'ETH') {
-            it('should correctly calculate the token balance after', () => {
-              const baseLayerBalanceBefore = t.walletsWithInfo.toJS().balances.baseLayer.assets.find((a) => a.symbol === t.asset.symbol).balance;
-              expect(wrapper.find('.withdraw-review .base-layer-token-balance-after').props().main).toEqual(`${baseLayerBalanceBefore} ${t.asset.symbol}`);
-            });
-          }
-        });
         describe('when withrawal amount is less than staged amount', () => {
           const amountToWithdraw = new BigNumber(2);
           beforeEach(() => {
@@ -194,7 +166,6 @@ describe('<NahmiiWithdraw />', () => {
           });
           it('should correctly calculate the staged balance before and after', () => {
             expect(wrapper.find('.withdraw-review .withdraw-btn').props().disabled).toEqual(false);
-            expect(wrapper.find('.withdraw-review .challenge-btn').props().disabled).toEqual(true);
             expect(wrapper.find('.withdraw-review .staged-balance-before').props().main).toEqual(`3 ${t.asset.symbol}`);
             expect(wrapper.find('.withdraw-review .staged-balance-after').props().main).toEqual(`1 ${t.asset.symbol}`);
           });
@@ -217,34 +188,6 @@ describe('<NahmiiWithdraw />', () => {
             });
           }
         });
-        describe('when withrawal amount is greater than summed amout from both staged amount and nahmii balance', () => {
-          beforeEach(() => {
-            wrapper.setState({
-              amountToWithdraw: new BigNumber(8),
-              assetToWithdraw: t.asset,
-            });
-          });
-          it('should correctly calculate the staged balance before and after', () => {
-            expect(wrapper.find('.withdraw-review .withdraw-btn').props().disabled).toEqual(true);
-            expect(wrapper.find('.withdraw-review .challenge-btn').props().disabled).toEqual(true);
-            expect(wrapper.find('.withdraw-review .staged-balance-before').props().main).toEqual(`3 ${t.asset.symbol}`);
-            expect(wrapper.find('.withdraw-review .staged-balance-after').props().main).toEqual(`0 ${t.asset.symbol}`);
-          });
-        });
-        describe('when withrawal amount is equal to summed amout from both staged amount and nahmii balance', () => {
-          beforeEach(() => {
-            wrapper.setState({
-              amountToWithdraw: new BigNumber(7),
-              assetToWithdraw: t.asset,
-            });
-          });
-          it('should correctly calculate the staged balance before and after', () => {
-            expect(wrapper.find('.withdraw-review .withdraw-btn').props().disabled).toEqual(true);
-            expect(wrapper.find('.withdraw-review .challenge-btn').props().disabled).toEqual(false);
-            expect(wrapper.find('.withdraw-review .staged-balance-before').props().main).toEqual(`3 ${t.asset.symbol}`);
-            expect(wrapper.find('.withdraw-review .staged-balance-after').props().main).toEqual(`0 ${t.asset.symbol}`);
-          });
-        });
         describe('when withrawal amount is equal to staged amount', () => {
           beforeEach(() => {
             wrapper.setState({
@@ -254,7 +197,6 @@ describe('<NahmiiWithdraw />', () => {
           });
           it('should correctly calculate the staged balance before and after', () => {
             expect(wrapper.find('.withdraw-review .withdraw-btn').props().disabled).toEqual(false);
-            expect(wrapper.find('.withdraw-review .challenge-btn').props().disabled).toEqual(true);
             expect(wrapper.find('.withdraw-review .staged-balance-before').props().main).toEqual(`3 ${t.asset.symbol}`);
             expect(wrapper.find('.withdraw-review .staged-balance-after').props().main).toEqual(`0 ${t.asset.symbol}`);
           });
@@ -272,7 +214,7 @@ describe('<NahmiiWithdraw />', () => {
               .get(0)
               .setIn(['balances', 'nahmiiStaged', 'assets'], fromJS([{ balance: new BigNumber(0), symbol: 'ETH', currency: 'ETH' }])),
       });
-      describe('should hide withdraw/settle button', () => {
+      describe('should hide the settle button', () => {
         [
           { status: 'requesting', text: /waiting_for_start_challenge_to_be/i },
           { status: 'mining', text: /waiting_for_start_challenge_to_be/i },
@@ -286,11 +228,11 @@ describe('<NahmiiWithdraw />', () => {
               />
             );
             wrapper.setState({ amountToWithdraw: new BigNumber(3) });
-            expect(wrapper.find('.withdraw-review')).toHaveLength(1);
+            expect(wrapper.find('.withdraw-review')).toHaveLength(0);
+            expect(wrapper.find('.start-settlement')).toHaveLength(1);
             expect(wrapper.find('.challenge-btn')).toHaveLength(0);
-            expect(wrapper.find('.withdraw-btn')).toHaveLength(0);
-            expect(wrapper.find('.withdraw-status')).toHaveLength(1);
-            expect(wrapper.find('.withdraw-status Text').html()).toMatch(t.text);
+            expect(wrapper.find('.challenge-tx-status')).toHaveLength(1);
+            expect(wrapper.find('.challenge-tx-status Text').html()).toMatch(t.text);
           });
           it('should correctly calculate the nahmii balance before/after staging', () => {
             const wrapper = shallow(
@@ -306,8 +248,8 @@ describe('<NahmiiWithdraw />', () => {
               />
             );
             wrapper.setState({ amountToWithdraw: new BigNumber(3) });
-            expect(wrapper.find('.withdraw-review .nahmii-balance-before-staging').props().main).toEqual('4 ETH');
-            expect(wrapper.find('.withdraw-review .nahmii-balance-after-staging').props().main).toEqual('1 ETH');
+            expect(wrapper.find('.start-settlement .nahmii-balance-before-staging').props().main).toEqual('4 ETH');
+            expect(wrapper.find('.start-settlement .nahmii-balance-after-staging').props().main).toEqual('1 ETH');
           });
         });
       });
@@ -322,10 +264,10 @@ describe('<NahmiiWithdraw />', () => {
               />
             );
             wrapper.setState({ amountToWithdraw: new BigNumber(1) });
-            expect(wrapper.find('.withdraw-review')).toHaveLength(1);
-            expect(wrapper.find('.withdraw-btn')).toHaveLength(1);
+            expect(wrapper.find('.withdraw-review')).toHaveLength(0);
+            expect(wrapper.find('.start-settlement')).toHaveLength(1);
             expect(wrapper.find('.challenge-btn')).toHaveLength(1);
-            expect(wrapper.find('.withdraw-status')).toHaveLength(0);
+            expect(wrapper.find('.challenge-tx-status')).toHaveLength(0);
           });
           it('should correctly calculate the nahmii balance before/after staging', () => {
             const wrapper = shallow(
@@ -341,10 +283,9 @@ describe('<NahmiiWithdraw />', () => {
               />
             );
             wrapper.setState({ amountToWithdraw: new BigNumber(3) });
-            expect(wrapper.find('.withdraw-review .nahmii-balance-before-staging').props().main).toEqual('4 ETH');
-            expect(wrapper.find('.withdraw-review .nahmii-balance-after-staging').props().main).toEqual('1 ETH');
-            expect(wrapper.find('.withdraw-review .challenge-btn').props().disabled).toEqual(false);
-            expect(wrapper.find('.withdraw-review .withdraw-btn').props().disabled).toEqual(true);
+            expect(wrapper.find('.start-settlement .nahmii-balance-before-staging').props().main).toEqual('4 ETH');
+            expect(wrapper.find('.start-settlement .nahmii-balance-after-staging').props().main).toEqual('1 ETH');
+            expect(wrapper.find('.start-settlement .challenge-btn').props().disabled).toEqual(false);
           });
           it('should disable settle button when required staged amount is greater than nahmii balance', () => {
             const wrapper = shallow(
@@ -360,10 +301,9 @@ describe('<NahmiiWithdraw />', () => {
               />
             );
             wrapper.setState({ amountToWithdraw: new BigNumber(2) });
-            expect(wrapper.find('.withdraw-review .nahmii-balance-before-staging').props().main).toEqual('1 ETH');
-            expect(wrapper.find('.withdraw-review .nahmii-balance-after-staging').props().main).toEqual('-1 ETH');
-            expect(wrapper.find('.withdraw-review .challenge-btn').props().disabled).toEqual(true);
-            expect(wrapper.find('.withdraw-review .withdraw-btn').props().disabled).toEqual(true);
+            expect(wrapper.find('.start-settlement .nahmii-balance-before-staging').props().main).toEqual('1 ETH');
+            expect(wrapper.find('.start-settlement .nahmii-balance-after-staging').props().main).toEqual('-1 ETH');
+            expect(wrapper.find('.start-settlement .challenge-btn').props().disabled).toEqual(true);
           });
         });
       });
@@ -467,7 +407,6 @@ describe('<NahmiiWithdraw />', () => {
             />
           );
           expect(wrapper.find('.withdraw-btn')).toHaveLength(0);
-          expect(wrapper.find('.challenge-btn')).toHaveLength(0);
           expect(wrapper.find('.withdraw-status')).toHaveLength(1);
           expect(wrapper.find('.withdraw-status Text').html()).toMatch(t.text);
         });
@@ -481,7 +420,6 @@ describe('<NahmiiWithdraw />', () => {
             />
           );
           expect(wrapper.find('.withdraw-btn')).toHaveLength(1);
-          expect(wrapper.find('.challenge-btn')).toHaveLength(1);
           expect(wrapper.find('.withdraw-status')).toHaveLength(0);
         });
       });

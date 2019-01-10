@@ -868,86 +868,16 @@ ShallowWrapper {
                     <Row
                               gutter={0}
                     >
-                              <style__StyledCol
-                                        span={12}
+                              <style__StyledButton
+                                        className="withdraw-btn"
+                                        disabled={true}
+                                        onClick={[Function]}
+                                        type="primary"
                               >
-                                        required_stage_amount
-                              </style__StyledCol>
-                    </Row>
-                    <Row
-                              gutter={0}
-                    >
-                              <TransferDescriptionItem
-                                        main="0 ETH"
-                                        subtitle="$0.00"
-                              />
-                    </Row>
-                    <Row
-                              gutter={0}
-                    >
-                              <style__StyledCol
-                                        span={12}
-                              >
-                                        nahmii
-                                         
-                                        ETH
-                                         
-                                        balance_before
-                              </style__StyledCol>
-                    </Row>
-                    <Row
-                              gutter={0}
-                    >
-                              <TransferDescriptionItem
-                                        className="nahmii-balance-before-staging"
-                                        main="0.2 ETH"
-                                        subtitle="$82.40"
-                              />
-                    </Row>
-                    <Row
-                              gutter={0}
-                    >
-                              <style__StyledCol
-                                        span={12}
-                              >
-                                        nahmii
-                                         
-                                        ETH
-                                         
-                                        balance_after
-                              </style__StyledCol>
-                    </Row>
-                    <Row
-                              gutter={0}
-                    >
-                              <TransferDescriptionItem
-                                        className="nahmii-balance-after-staging"
-                                        main="0.2 ETH"
-                                        subtitle="$82.40"
-                              />
-                    </Row>
-                    <Row
-                              gutter={0}
-                    >
-                              <div>
-                                        <style__StyledButton
-                                                  className="withdraw-btn"
-                                                  disabled={true}
-                                                  onClick={[Function]}
-                                                  type="primary"
-                                        >
-                                                  <span>
-                                                            withdraw
-                                                  </span>
-                                        </style__StyledButton>
-                                        <style__StyledButton
-                                                  className="challenge-btn"
-                                                  disabled={true}
-                                                  onClick={[Function]}
-                                        >
-                                                  settle_payment
-                                        </style__StyledButton>
-                              </div>
+                                        <span>
+                                                  withdraw
+                                        </span>
+                              </style__StyledButton>
                     </Row>
           </div>
           <style__HWPromptWrapper>
@@ -1674,86 +1604,16 @@ ShallowWrapper {
               <Row
                             gutter={0}
               >
-                            <style__StyledCol
-                                          span={12}
+                            <style__StyledButton
+                                          className="withdraw-btn"
+                                          disabled={true}
+                                          onClick={[Function]}
+                                          type="primary"
                             >
-                                          required_stage_amount
-                            </style__StyledCol>
-              </Row>
-              <Row
-                            gutter={0}
-              >
-                            <TransferDescriptionItem
-                                          main="0 ETH"
-                                          subtitle="$0.00"
-                            />
-              </Row>
-              <Row
-                            gutter={0}
-              >
-                            <style__StyledCol
-                                          span={12}
-                            >
-                                          nahmii
-                                           
-                                          ETH
-                                           
-                                          balance_before
-                            </style__StyledCol>
-              </Row>
-              <Row
-                            gutter={0}
-              >
-                            <TransferDescriptionItem
-                                          className="nahmii-balance-before-staging"
-                                          main="0.2 ETH"
-                                          subtitle="$82.40"
-                            />
-              </Row>
-              <Row
-                            gutter={0}
-              >
-                            <style__StyledCol
-                                          span={12}
-                            >
-                                          nahmii
-                                           
-                                          ETH
-                                           
-                                          balance_after
-                            </style__StyledCol>
-              </Row>
-              <Row
-                            gutter={0}
-              >
-                            <TransferDescriptionItem
-                                          className="nahmii-balance-after-staging"
-                                          main="0.2 ETH"
-                                          subtitle="$82.40"
-                            />
-              </Row>
-              <Row
-                            gutter={0}
-              >
-                            <div>
-                                          <style__StyledButton
-                                                        className="withdraw-btn"
-                                                        disabled={true}
-                                                        onClick={[Function]}
-                                                        type="primary"
-                                          >
-                                                        <span>
-                                                                      withdraw
-                                                        </span>
-                                          </style__StyledButton>
-                                          <style__StyledButton
-                                                        className="challenge-btn"
-                                                        disabled={true}
-                                                        onClick={[Function]}
-                                          >
-                                                        settle_payment
-                                          </style__StyledButton>
-                            </div>
+                                          <span>
+                                                        withdraw
+                                          </span>
+                            </style__StyledButton>
               </Row>
 </div>,
             <style__HWPromptWrapper>
@@ -1894,86 +1754,16 @@ ShallowWrapper {
                 <Row
                   gutter={0}
 >
-                  <style__StyledCol
-                                    span={12}
+                  <style__StyledButton
+                                    className="withdraw-btn"
+                                    disabled={true}
+                                    onClick={[Function]}
+                                    type="primary"
                   >
-                                    required_stage_amount
-                  </style__StyledCol>
-</Row>,
-                <Row
-                  gutter={0}
->
-                  <TransferDescriptionItem
-                                    main="0 ETH"
-                                    subtitle="$0.00"
-                  />
-</Row>,
-                <Row
-                  gutter={0}
->
-                  <style__StyledCol
-                                    span={12}
-                  >
-                                    nahmii
-                                     
-                                    ETH
-                                     
-                                    balance_before
-                  </style__StyledCol>
-</Row>,
-                <Row
-                  gutter={0}
->
-                  <TransferDescriptionItem
-                                    className="nahmii-balance-before-staging"
-                                    main="0.2 ETH"
-                                    subtitle="$82.40"
-                  />
-</Row>,
-                <Row
-                  gutter={0}
->
-                  <style__StyledCol
-                                    span={12}
-                  >
-                                    nahmii
-                                     
-                                    ETH
-                                     
-                                    balance_after
-                  </style__StyledCol>
-</Row>,
-                <Row
-                  gutter={0}
->
-                  <TransferDescriptionItem
-                                    className="nahmii-balance-after-staging"
-                                    main="0.2 ETH"
-                                    subtitle="$82.40"
-                  />
-</Row>,
-                <Row
-                  gutter={0}
->
-                  <div>
-                                    <style__StyledButton
-                                                      className="withdraw-btn"
-                                                      disabled={true}
-                                                      onClick={[Function]}
-                                                      type="primary"
-                                    >
-                                                      <span>
-                                                                        withdraw
-                                                      </span>
-                                    </style__StyledButton>
-                                    <style__StyledButton
-                                                      className="challenge-btn"
-                                                      disabled={true}
-                                                      onClick={[Function]}
-                                    >
-                                                      settle_payment
-                                    </style__StyledButton>
-                  </div>
+                                    <span>
+                                                      withdraw
+                                    </span>
+                  </style__StyledButton>
 </Row>,
               ],
               "className": "withdraw-review",
@@ -2405,293 +2195,45 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": <style__StyledCol
-                    span={12}
+                  "children": <style__StyledButton
+                    className="withdraw-btn"
+                    disabled={true}
+                    onClick={[Function]}
+                    type="primary"
 >
-                    required_stage_amount
-</style__StyledCol>,
-                  "gutter": 0,
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "required_stage_amount",
-                    "span": 12,
-                  },
-                  "ref": null,
-                  "rendered": "required_stage_amount",
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <TransferDescriptionItem
-                    main="0 ETH"
-                    subtitle="$0.00"
-/>,
-                  "gutter": 0,
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "main": "0 ETH",
-                    "subtitle": "$0.00",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <style__StyledCol
-                    span={12}
->
-                    nahmii
-                     
-                    ETH
-                     
-                    balance_before
-</style__StyledCol>,
-                  "gutter": 0,
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": Array [
-                      "nahmii",
-                      " ",
-                      "ETH",
-                      " ",
-                      "balance_before",
-                    ],
-                    "span": 12,
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    "nahmii",
-                    " ",
-                    "ETH",
-                    " ",
-                    "balance_before",
-                  ],
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <TransferDescriptionItem
-                    className="nahmii-balance-before-staging"
-                    main="0.2 ETH"
-                    subtitle="$82.40"
-/>,
-                  "gutter": 0,
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "className": "nahmii-balance-before-staging",
-                    "main": "0.2 ETH",
-                    "subtitle": "$82.40",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <style__StyledCol
-                    span={12}
->
-                    nahmii
-                     
-                    ETH
-                     
-                    balance_after
-</style__StyledCol>,
-                  "gutter": 0,
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": Array [
-                      "nahmii",
-                      " ",
-                      "ETH",
-                      " ",
-                      "balance_after",
-                    ],
-                    "span": 12,
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    "nahmii",
-                    " ",
-                    "ETH",
-                    " ",
-                    "balance_after",
-                  ],
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <TransferDescriptionItem
-                    className="nahmii-balance-after-staging"
-                    main="0.2 ETH"
-                    subtitle="$82.40"
-/>,
-                  "gutter": 0,
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "className": "nahmii-balance-after-staging",
-                    "main": "0.2 ETH",
-                    "subtitle": "$82.40",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <div>
-                    <style__StyledButton
-                                        className="withdraw-btn"
-                                        disabled={true}
-                                        onClick={[Function]}
-                                        type="primary"
-                    >
-                                        <span>
-                                                            withdraw
-                                        </span>
-                    </style__StyledButton>
-                    <style__StyledButton
-                                        className="challenge-btn"
-                                        disabled={true}
-                                        onClick={[Function]}
-                    >
-                                        settle_payment
-                    </style__StyledButton>
-</div>,
-                  "gutter": 0,
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": Array [
-                      <style__StyledButton
-                        className="withdraw-btn"
-                        disabled={true}
-                        onClick={[Function]}
-                        type="primary"
->
-                        <span>
-                                                withdraw
-                        </span>
+                    <span>
+                                        withdraw
+                    </span>
 </style__StyledButton>,
-                      <style__StyledButton
-                        className="challenge-btn"
-                        disabled={true}
-                        onClick={[Function]}
->
-                        settle_payment
-</style__StyledButton>,
-                    ],
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "children": <span>
-                          withdraw
+                  "gutter": 0,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <span>
+                      withdraw
 </span>,
-                        "className": "withdraw-btn",
-                        "disabled": true,
-                        "onClick": [Function],
-                        "type": "primary",
-                      },
-                      "ref": null,
-                      "rendered": Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "host",
-                        "props": Object {
-                          "children": "withdraw",
-                        },
-                        "ref": null,
-                        "rendered": "withdraw",
-                        "type": "span",
-                      },
-                      "type": [Function],
+                    "className": "withdraw-btn",
+                    "disabled": true,
+                    "onClick": [Function],
+                    "type": "primary",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "withdraw",
                     },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "children": "settle_payment",
-                        "className": "challenge-btn",
-                        "disabled": true,
-                        "onClick": [Function],
-                      },
-                      "ref": null,
-                      "rendered": "settle_payment",
-                      "type": [Function],
-                    },
-                  ],
-                  "type": "div",
+                    "ref": null,
+                    "rendered": "withdraw",
+                    "type": "span",
+                  },
+                  "type": [Function],
                 },
                 "type": [Function],
               },
@@ -2982,86 +2524,16 @@ ShallowWrapper {
                         <Row
                                     gutter={0}
                         >
-                                    <style__StyledCol
-                                                span={12}
+                                    <style__StyledButton
+                                                className="withdraw-btn"
+                                                disabled={true}
+                                                onClick={[Function]}
+                                                type="primary"
                                     >
-                                                required_stage_amount
-                                    </style__StyledCol>
-                        </Row>
-                        <Row
-                                    gutter={0}
-                        >
-                                    <TransferDescriptionItem
-                                                main="0 ETH"
-                                                subtitle="$0.00"
-                                    />
-                        </Row>
-                        <Row
-                                    gutter={0}
-                        >
-                                    <style__StyledCol
-                                                span={12}
-                                    >
-                                                nahmii
-                                                 
-                                                ETH
-                                                 
-                                                balance_before
-                                    </style__StyledCol>
-                        </Row>
-                        <Row
-                                    gutter={0}
-                        >
-                                    <TransferDescriptionItem
-                                                className="nahmii-balance-before-staging"
-                                                main="0.2 ETH"
-                                                subtitle="$82.40"
-                                    />
-                        </Row>
-                        <Row
-                                    gutter={0}
-                        >
-                                    <style__StyledCol
-                                                span={12}
-                                    >
-                                                nahmii
-                                                 
-                                                ETH
-                                                 
-                                                balance_after
-                                    </style__StyledCol>
-                        </Row>
-                        <Row
-                                    gutter={0}
-                        >
-                                    <TransferDescriptionItem
-                                                className="nahmii-balance-after-staging"
-                                                main="0.2 ETH"
-                                                subtitle="$82.40"
-                                    />
-                        </Row>
-                        <Row
-                                    gutter={0}
-                        >
-                                    <div>
-                                                <style__StyledButton
-                                                            className="withdraw-btn"
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                            type="primary"
-                                                >
-                                                            <span>
-                                                                        withdraw
-                                                            </span>
-                                                </style__StyledButton>
-                                                <style__StyledButton
-                                                            className="challenge-btn"
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                >
-                                                            settle_payment
-                                                </style__StyledButton>
-                                    </div>
+                                                <span>
+                                                            withdraw
+                                                </span>
+                                    </style__StyledButton>
                         </Row>
             </div>
             <style__HWPromptWrapper>
@@ -3788,86 +3260,16 @@ ShallowWrapper {
                 <Row
                                 gutter={0}
                 >
-                                <style__StyledCol
-                                                span={12}
+                                <style__StyledButton
+                                                className="withdraw-btn"
+                                                disabled={true}
+                                                onClick={[Function]}
+                                                type="primary"
                                 >
-                                                required_stage_amount
-                                </style__StyledCol>
-                </Row>
-                <Row
-                                gutter={0}
-                >
-                                <TransferDescriptionItem
-                                                main="0 ETH"
-                                                subtitle="$0.00"
-                                />
-                </Row>
-                <Row
-                                gutter={0}
-                >
-                                <style__StyledCol
-                                                span={12}
-                                >
-                                                nahmii
-                                                 
-                                                ETH
-                                                 
-                                                balance_before
-                                </style__StyledCol>
-                </Row>
-                <Row
-                                gutter={0}
-                >
-                                <TransferDescriptionItem
-                                                className="nahmii-balance-before-staging"
-                                                main="0.2 ETH"
-                                                subtitle="$82.40"
-                                />
-                </Row>
-                <Row
-                                gutter={0}
-                >
-                                <style__StyledCol
-                                                span={12}
-                                >
-                                                nahmii
-                                                 
-                                                ETH
-                                                 
-                                                balance_after
-                                </style__StyledCol>
-                </Row>
-                <Row
-                                gutter={0}
-                >
-                                <TransferDescriptionItem
-                                                className="nahmii-balance-after-staging"
-                                                main="0.2 ETH"
-                                                subtitle="$82.40"
-                                />
-                </Row>
-                <Row
-                                gutter={0}
-                >
-                                <div>
-                                                <style__StyledButton
-                                                                className="withdraw-btn"
-                                                                disabled={true}
-                                                                onClick={[Function]}
-                                                                type="primary"
-                                                >
-                                                                <span>
-                                                                                withdraw
-                                                                </span>
-                                                </style__StyledButton>
-                                                <style__StyledButton
-                                                                className="challenge-btn"
-                                                                disabled={true}
-                                                                onClick={[Function]}
-                                                >
-                                                                settle_payment
-                                                </style__StyledButton>
-                                </div>
+                                                <span>
+                                                                withdraw
+                                                </span>
+                                </style__StyledButton>
                 </Row>
 </div>,
               <style__HWPromptWrapper>
@@ -4008,86 +3410,16 @@ ShallowWrapper {
                   <Row
                     gutter={0}
 >
-                    <style__StyledCol
-                                        span={12}
+                    <style__StyledButton
+                                        className="withdraw-btn"
+                                        disabled={true}
+                                        onClick={[Function]}
+                                        type="primary"
                     >
-                                        required_stage_amount
-                    </style__StyledCol>
-</Row>,
-                  <Row
-                    gutter={0}
->
-                    <TransferDescriptionItem
-                                        main="0 ETH"
-                                        subtitle="$0.00"
-                    />
-</Row>,
-                  <Row
-                    gutter={0}
->
-                    <style__StyledCol
-                                        span={12}
-                    >
-                                        nahmii
-                                         
-                                        ETH
-                                         
-                                        balance_before
-                    </style__StyledCol>
-</Row>,
-                  <Row
-                    gutter={0}
->
-                    <TransferDescriptionItem
-                                        className="nahmii-balance-before-staging"
-                                        main="0.2 ETH"
-                                        subtitle="$82.40"
-                    />
-</Row>,
-                  <Row
-                    gutter={0}
->
-                    <style__StyledCol
-                                        span={12}
-                    >
-                                        nahmii
-                                         
-                                        ETH
-                                         
-                                        balance_after
-                    </style__StyledCol>
-</Row>,
-                  <Row
-                    gutter={0}
->
-                    <TransferDescriptionItem
-                                        className="nahmii-balance-after-staging"
-                                        main="0.2 ETH"
-                                        subtitle="$82.40"
-                    />
-</Row>,
-                  <Row
-                    gutter={0}
->
-                    <div>
-                                        <style__StyledButton
-                                                            className="withdraw-btn"
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                            type="primary"
-                                        >
-                                                            <span>
-                                                                                withdraw
-                                                            </span>
-                                        </style__StyledButton>
-                                        <style__StyledButton
-                                                            className="challenge-btn"
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                        >
-                                                            settle_payment
-                                        </style__StyledButton>
-                    </div>
+                                        <span>
+                                                            withdraw
+                                        </span>
+                    </style__StyledButton>
 </Row>,
                 ],
                 "className": "withdraw-review",
@@ -4519,293 +3851,45 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": <style__StyledCol
-                      span={12}
+                    "children": <style__StyledButton
+                      className="withdraw-btn"
+                      disabled={true}
+                      onClick={[Function]}
+                      type="primary"
 >
-                      required_stage_amount
-</style__StyledCol>,
-                    "gutter": 0,
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": "required_stage_amount",
-                      "span": 12,
-                    },
-                    "ref": null,
-                    "rendered": "required_stage_amount",
-                    "type": [Function],
-                  },
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": <TransferDescriptionItem
-                      main="0 ETH"
-                      subtitle="$0.00"
-/>,
-                    "gutter": 0,
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "function",
-                    "props": Object {
-                      "main": "0 ETH",
-                      "subtitle": "$0.00",
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": <style__StyledCol
-                      span={12}
->
-                      nahmii
-                       
-                      ETH
-                       
-                      balance_before
-</style__StyledCol>,
-                    "gutter": 0,
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": Array [
-                        "nahmii",
-                        " ",
-                        "ETH",
-                        " ",
-                        "balance_before",
-                      ],
-                      "span": 12,
-                    },
-                    "ref": null,
-                    "rendered": Array [
-                      "nahmii",
-                      " ",
-                      "ETH",
-                      " ",
-                      "balance_before",
-                    ],
-                    "type": [Function],
-                  },
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": <TransferDescriptionItem
-                      className="nahmii-balance-before-staging"
-                      main="0.2 ETH"
-                      subtitle="$82.40"
-/>,
-                    "gutter": 0,
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "function",
-                    "props": Object {
-                      "className": "nahmii-balance-before-staging",
-                      "main": "0.2 ETH",
-                      "subtitle": "$82.40",
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": <style__StyledCol
-                      span={12}
->
-                      nahmii
-                       
-                      ETH
-                       
-                      balance_after
-</style__StyledCol>,
-                    "gutter": 0,
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": Array [
-                        "nahmii",
-                        " ",
-                        "ETH",
-                        " ",
-                        "balance_after",
-                      ],
-                      "span": 12,
-                    },
-                    "ref": null,
-                    "rendered": Array [
-                      "nahmii",
-                      " ",
-                      "ETH",
-                      " ",
-                      "balance_after",
-                    ],
-                    "type": [Function],
-                  },
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": <TransferDescriptionItem
-                      className="nahmii-balance-after-staging"
-                      main="0.2 ETH"
-                      subtitle="$82.40"
-/>,
-                    "gutter": 0,
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "function",
-                    "props": Object {
-                      "className": "nahmii-balance-after-staging",
-                      "main": "0.2 ETH",
-                      "subtitle": "$82.40",
-                    },
-                    "ref": null,
-                    "rendered": null,
-                    "type": [Function],
-                  },
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": <div>
-                      <style__StyledButton
-                                            className="withdraw-btn"
-                                            disabled={true}
-                                            onClick={[Function]}
-                                            type="primary"
-                      >
-                                            <span>
-                                                                  withdraw
-                                            </span>
-                      </style__StyledButton>
-                      <style__StyledButton
-                                            className="challenge-btn"
-                                            disabled={true}
-                                            onClick={[Function]}
-                      >
-                                            settle_payment
-                      </style__StyledButton>
-</div>,
-                    "gutter": 0,
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": Array [
-                        <style__StyledButton
-                          className="withdraw-btn"
-                          disabled={true}
-                          onClick={[Function]}
-                          type="primary"
->
-                          <span>
-                                                    withdraw
-                          </span>
+                      <span>
+                                            withdraw
+                      </span>
 </style__StyledButton>,
-                        <style__StyledButton
-                          className="challenge-btn"
-                          disabled={true}
-                          onClick={[Function]}
->
-                          settle_payment
-</style__StyledButton>,
-                      ],
-                    },
-                    "ref": null,
-                    "rendered": Array [
-                      Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "class",
-                        "props": Object {
-                          "children": <span>
-                            withdraw
+                    "gutter": 0,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <span>
+                        withdraw
 </span>,
-                          "className": "withdraw-btn",
-                          "disabled": true,
-                          "onClick": [Function],
-                          "type": "primary",
-                        },
-                        "ref": null,
-                        "rendered": Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "host",
-                          "props": Object {
-                            "children": "withdraw",
-                          },
-                          "ref": null,
-                          "rendered": "withdraw",
-                          "type": "span",
-                        },
-                        "type": [Function],
+                      "className": "withdraw-btn",
+                      "disabled": true,
+                      "onClick": [Function],
+                      "type": "primary",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "withdraw",
                       },
-                      Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "class",
-                        "props": Object {
-                          "children": "settle_payment",
-                          "className": "challenge-btn",
-                          "disabled": true,
-                          "onClick": [Function],
-                        },
-                        "ref": null,
-                        "rendered": "settle_payment",
-                        "type": [Function],
-                      },
-                    ],
-                    "type": "div",
+                      "ref": null,
+                      "rendered": "withdraw",
+                      "type": "span",
+                    },
+                    "type": [Function],
                   },
                   "type": [Function],
                 },
