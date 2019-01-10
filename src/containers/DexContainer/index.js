@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
-import Trading from 'components/Trading';
+import TradingTab from 'components/TradingTab';
 import Heading from 'components/ui/Heading';
 import Tabs, { TabPane } from 'components/ui/Tabs';
 
@@ -65,7 +65,7 @@ export class DexContainer extends React.PureComponent {
             <Route
               path={`${match.url}/trading`}
               component={() => (
-                <Trading
+                <TradingTab
                   priceHistory={priceHistory}
                   latestPrice={latestPrice}
                   currency={this.state.currency}
