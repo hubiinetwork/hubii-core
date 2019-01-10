@@ -1,6 +1,6 @@
 /**
 *
-* Trading
+* TradingTab
 *
 */
 
@@ -17,23 +17,40 @@ import {
   BookDepthChartWrapper,
   WrappedMarkets,
   WrappedOrders,
-  Trading,
+  WrappedTrade,
 } from './style';
 
 
 class TradingTab extends React.Component {
   constructor() {
     super();
-    this.state = { selectedMarket: { primary: 'ETH', secondary: 'HBT' } };
+    this.state = {
+      selectedMarket: { primary: 'ETH', secondary: 'HBT' },
+      intendedTrade: {
+        side: 'buy',
+        type: 'market',
+        volume: 0,
+        price: 0,
+      },
+    };
     this.changeSelectedMarket = this.changeSelectedMarket.bind(this);
+    this.changeIntendedTrade = this.changeIntendedTrade.bind(this);
   }
 
   changeSelectedMarket(selectedMarket) {
     this.setState({ selectedMarket });
   }
 
+  changeIntendedTrade(intendedTrade) {
+    this.setState({ intendedTrade });
+  }
+
+  executeTrade() {
+    console.log('Execute trade');
+  }
+
   render() {
-    const { selectedMarket } = this.state;
+    const { selectedMarket, intendedTrade } = this.state;
     return (
       <div>
         <Container>
@@ -50,7 +67,11 @@ class TradingTab extends React.Component {
             selectedMarket={selectedMarket}
             changeSelectedMarket={this.changeSelectedMarket}
           />
-          <Trading>Trading</Trading>
+          <WrappedTrade
+            intendedTrade={intendedTrade}
+            changeIntendedTrade={this.changeIntendedTrade}
+            executeTrade={this.executeTrade}
+          />
           <BookDepthChartWrapper>
             <WrappedDepthChart />
             <WrappedOrderBook selectedMarket={selectedMarket} />
@@ -62,7 +83,7 @@ class TradingTab extends React.Component {
   }
 }
 
-Trading.propTypes = {
+TradingTab.propTypes = {
   // priceHistory: PropTypes.object.isRequired,
   // latestPrice: PropTypes.object.isRequired,
   // currency: PropTypes.string.isRequired,
