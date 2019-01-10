@@ -65,9 +65,9 @@ const markets = {
 const DataRow = ({ ticker, price, volume, change, selected, onClick }) => (
   <DataRowWrapper selected={selected} onClick={selected ? () => {} : onClick}>
     <StyledText style={{ width: '25%' }}>{ticker}</StyledText>
-    <StyledText style={{ textAlign: 'center' }}>{price}</StyledText>
-    <StyledText style={{ textAlign: 'center' }}>{volume}</StyledText>
-    <StyledText style={{ textAlign: 'right' }}>{change}</StyledText>
+    <StyledText>{price}</StyledText>
+    <StyledText>{volume}</StyledText>
+    <StyledText change={change}>{change < 0 ? `${change}%` : `+${change}%`}</StyledText>
   </DataRowWrapper>
 );
 
@@ -114,9 +114,9 @@ export class Markets extends React.Component { // eslint-disable-line react/pref
         </Header>
         <Header style={{ margin: '0.5rem 11px 0.5rem 0' }}>
           <StyledText>Ticker</StyledText>
-          <StyledText style={{ textAlign: 'center' }}>Price</StyledText>
-          <StyledText style={{ textAlign: 'center' }}>Volume</StyledText>
-          <StyledText style={{ textAlign: 'right' }}>Change</StyledText>
+          <StyledText>Price</StyledText>
+          <StyledText>Volume</StyledText>
+          <StyledText>Change</StyledText>
         </Header>
         <DataWrapper>
           {
@@ -126,7 +126,7 @@ export class Markets extends React.Component { // eslint-disable-line react/pref
                   volume={i.volume}
                   change={i.change}
                   price={i.price}
-                  selected={i.ticker === selectedMarket.secondary}
+                  selected={i.ticker === selectedMarket.secondary && base === selectedMarket.primary}
                   onClick={() => changeSelectedMarket({ primary: base, secondary: i.ticker })}
                   key={i.ticker}
                 />

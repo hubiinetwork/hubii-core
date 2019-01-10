@@ -45,9 +45,9 @@ export const DataRowWrapper = styled.div`
 `;
 
 export const StyledText = styled(Text)`
-  ${({ side, theme }) => {
-    if (!side) return `color: ${theme.palette.secondary1};`;
-    if (side === 'sell') return (`color: ${theme.palette.alert};`);
+  ${({ change, theme }) => {
+    if (!change) return `color: ${theme.palette.secondary1};`;
+    if (change < 0) return (`color: ${theme.palette.alert};`);
     return `color: ${theme.palette.success};`;
   }}
   line-height: 1.5rem;
