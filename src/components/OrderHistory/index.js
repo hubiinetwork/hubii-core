@@ -11,16 +11,20 @@ import { compose } from 'redux';
 
 import Tabs, { TabPane } from 'components/ui/Tabs';
 
+import {
+  Wrapper,
+} from './style';
+
 
 export class OrderHistory extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div className={this.props.className}>
+      <Wrapper className={this.props.className}>
         <Tabs noPadding>
           <TabPane tab="Open Orders" key="1">Open order content</TabPane>
           <TabPane tab="Order History" key="2">Order history content</TabPane>
         </Tabs>
-      </div>
+      </Wrapper>
     );
   }
 }
