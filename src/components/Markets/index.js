@@ -62,9 +62,9 @@ const markets = {
   ],
 };
 
-const DataRow = ({ ticker, price, volume, change, selected, onClick }) => (
+const DataRow = ({ pair, price, volume, change, selected, onClick }) => (
   <DataRowWrapper selected={selected} onClick={selected ? () => {} : onClick}>
-    <StyledText style={{ width: '25%' }}>{ticker}</StyledText>
+    <StyledText style={{ width: '25%' }}>{pair}</StyledText>
     <StyledText>{price}</StyledText>
     <StyledText>{volume}</StyledText>
     <StyledText change={change}>{change < 0 ? `${change}%` : `+${change}%`}</StyledText>
@@ -73,7 +73,7 @@ const DataRow = ({ ticker, price, volume, change, selected, onClick }) => (
 
 DataRow.propTypes = {
   price: PropTypes.string.isRequired,
-  ticker: PropTypes.string.isRequired,
+  pair: PropTypes.string.isRequired,
   volume: PropTypes.string.isRequired,
   change: PropTypes.number.isRequired,
   selected: PropTypes.bool.isRequired,
@@ -113,24 +113,24 @@ export class Markets extends React.Component { // eslint-disable-line react/pref
           </Select>
         </Header>
         <Header style={{ margin: '0.5rem 11px 0.5rem 0' }}>
-          <StyledText>Ticker</StyledText>
+          <StyledText>Market</StyledText>
           <StyledText>Price</StyledText>
           <StyledText>Volume</StyledText>
           <StyledText>Change</StyledText>
         </Header>
         <DataWrapper>
           {
-              markets[base].map((i) => (
-                <DataRow
-                  ticker={i.ticker}
-                  volume={i.volume}
-                  change={i.change}
-                  price={i.price}
-                  selected={i.ticker === selectedMarket.secondary && base === selectedMarket.primary}
-                  onClick={() => changeSelectedMarket({ primary: base, secondary: i.ticker })}
-                  key={i.ticker}
-                />
-              ))
+            markets[base].map((i) => (
+              <DataRow
+                pair={`${base}/${i.ticker}`}
+                volume={i.volume}
+                change={i.change}
+                price={i.price}
+                selected={i.ticker === selectedMarket.secondary && base === selectedMarket.primary}
+                onClick={() => changeSelectedMarket({ primary: base, secondary: i.ticker })}
+                key={i.ticker}
+              />
+            ))
           }
         </DataWrapper>
       </Wrapper>
