@@ -77,7 +77,7 @@ export class Trade extends React.Component { // eslint-disable-line react/prefer
               value={intendedTrade.type === 'limit' ? intendedTrade.price : 'Market price'}
               disabled={intendedTrade.type === 'market'}
               onChange={(e) => changeIntendedTrade({ ...intendedTrade, price: e.target.value })}
-              type={intendedTrade.type === 'limit' && 'number'}
+              type={intendedTrade.type === 'limit' ? 'number' : 'string'}
               min={0}
             />
           </InputWrapper>
@@ -101,8 +101,8 @@ Trade.propTypes = {
   intendedTrade: PropTypes.shape({
     side: PropTypes.oneOf(['buy', 'sell']).isRequired,
     type: PropTypes.oneOf(['market', 'limit']).isRequired,
-    volume: PropTypes.number.isRequired,
-    price: PropTypes.number,
+    volume: PropTypes.string.isRequired,
+    price: PropTypes.string,
   }).isRequired,
   changeIntendedTrade: PropTypes.func.isRequired,
   executeTrade: PropTypes.func.isRequired,
