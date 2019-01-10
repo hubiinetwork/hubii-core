@@ -42,6 +42,16 @@ injectGlobal`
     visibility: hidden;
   }
 
+  /* Input addonAfter */
+  .ant-input-group-addon {
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 0.07rem solid ${darkTheme.palette.secondary};
+    padding-top: 0.5rem;
+    color: ${darkTheme.palette.secondary};
+    font-weight: 600;
+  }
 
   /* Custom antd Pagination styles */
   .ant-pagination-item-link:hover,

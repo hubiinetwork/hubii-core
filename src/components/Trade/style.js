@@ -4,7 +4,7 @@ import Input from 'components/ui/Input';
 
 export const Wrapper = styled.div`
   background: ${({ theme }) => theme.palette.primary3};
-  padding: 1.5rem 2.5rem;
+  padding: 1.5rem 4.5rem;
 `;
 
 export const Header = styled.div`
@@ -27,7 +27,7 @@ export const BuySellSwitch = styled(Switch)`
 
 export const StyledInput = styled(Input)`
   margin-top: 0.5rem;
-  width: 20rem;
+  width: 12rem;
 `;
 
 export const InputWrapper = styled.div`

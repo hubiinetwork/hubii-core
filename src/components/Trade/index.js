@@ -25,6 +25,17 @@ import {
 
 
 export class Trade extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor() {
+    super();
+    this.changeVolume = this.changeVolume.bind(this);
+  }
+
+  changeVolume(volume) {
+    if (isNaN(volume) || volume < 0) return;
+    const { changeIntendedTrade, intendedTrade } = this.props;
+    changeIntendedTrade({ ...intendedTrade, volume });
+  }
+
   render() {
     const {
       changeIntendedTrade,
@@ -50,11 +61,11 @@ export class Trade extends React.Component { // eslint-disable-line react/prefer
           </SwitchWrapper>
         </Header>
         <div>
-          <Text>Avaliable: 0.01 HBT</Text>
+          <Text>Avaliable HBT: 0.01</Text>
           <InputWrapper>
-            <Text>Type</Text>&nbsp;&nbsp;
+            <Text>Type:</Text>&nbsp;&nbsp;
             <Select
-              style={{ marginTop: '1rem', width: '20rem' }}
+              style={{ marginTop: '1rem', width: '12rem' }}
               value={intendedTrade.type}
               onChange={(type) => changeIntendedTrade({ ...intendedTrade, type })}
             >
@@ -63,16 +74,16 @@ export class Trade extends React.Component { // eslint-disable-line react/prefer
             </Select>
           </InputWrapper>
           <InputWrapper>
-            <Text>Volume</Text>&nbsp;&nbsp;
+            <Text>Volume:</Text>&nbsp;&nbsp;
             <StyledInput
+              addonAfter={'ETH'}
+              style={{ width: '12rem' }}
               value={intendedTrade.volume}
-              onChange={(e) => changeIntendedTrade({ ...intendedTrade, volume: e.target.value })}
-              type={'number'}
-              min={0}
+              onChange={(e) => this.changeVolume(e.target.value)}
             />
           </InputWrapper>
           <InputWrapper style={{ marginBottom: '1rem' }}>
-            <Text>Price</Text>&nbsp;&nbsp;
+            <Text>Price:</Text>&nbsp;&nbsp;
             <StyledInput
               value={intendedTrade.type === 'limit' ? intendedTrade.price : 'Market price'}
               disabled={intendedTrade.type === 'market'}
