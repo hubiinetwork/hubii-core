@@ -639,7 +639,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                         </div>
                       ) : (
                         <StyledButton className="challenge-btn" onClick={() => this.startChallenge(requiredSettlementAmount, assetToWithdraw)} disabled={disableSettleButton}>
-                          {formatMessage({ id: 'settle_payment' })}
+                          {formatMessage({ id: 'settle_balance' })}
                         </StyledButton>
                       )
                   }
