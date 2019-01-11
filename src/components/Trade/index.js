@@ -78,7 +78,6 @@ export class Trade extends React.Component { // eslint-disable-line react/prefer
       intendedTrade,
       executeTrade,
       selectedMarket,
-      // orderBook,
     } = this.props;
     const { side, type, volume, price } = intendedTrade;
     const { primary, secondary } = selectedMarket;
