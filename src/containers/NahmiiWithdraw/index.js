@@ -188,7 +188,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
   }
 
   handleAssetChange(newSymbol) {
-    const { currentWalletWithInfo, supportedAssets, setSelectedWalletCurrency } = this.props;
+    const { currentWalletWithInfo, supportedAssets } = this.props;
     const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
     const assetToWithdraw = baseLayerAssets.find((a) => a.symbol === newSymbol);
 
@@ -205,7 +205,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     const amountToWithdrawInputRegex = new RegExp(`^\\d+(\\.\\d{0,${assetToWithdrawMaxDecimals}})?$`);
 
     const currency = this.getCurrencyAddress(assetToWithdraw.currency);
-    setSelectedWalletCurrency(currency);
+    this.props.setSelectedWalletCurrency(currency);
 
     this.setState({
       assetToWithdraw,
