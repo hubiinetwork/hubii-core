@@ -20,6 +20,143 @@ import {
   WrappedTrade,
 } from './style';
 
+const markets = {
+  ETH: [
+    {
+      ticker: 'DAI',
+      price: '0.035088',
+      volume: '328399.90',
+      change: 17.41,
+    },
+    {
+      ticker: 'HBT',
+      price: '0.035088',
+      volume: '328399.90',
+      change: 17.41,
+    },
+    {
+      ticker: 'OMG',
+      price: '0.035088',
+      volume: '328399.90',
+      change: -17.41,
+    },
+    {
+      ticker: 'ZRX',
+      price: '0.035088',
+      volume: '328399.90',
+      change: -17.41,
+    },
+  ],
+  DAI: [
+    {
+      ticker: 'ZRX',
+      price: '0.035088',
+      volume: '328399.90',
+      change: -17.41,
+    },
+    {
+      ticker: 'OMG',
+      price: '0.035088',
+      volume: '328399.90',
+      change: -17.41,
+    },
+  ],
+};
+
+const bids = [
+  {
+    price: '0.00029',
+    amount: '1',
+  },
+  {
+    price: '0.00028',
+    amount: '1',
+  },
+  {
+    price: '0.00027',
+    amount: '1',
+  },
+  {
+    price: '0.00026',
+    amount: '1',
+  },
+  {
+    price: '0.00025',
+    amount: '1',
+  },
+  {
+    price: '0.00024',
+    amount: '1',
+  },
+  {
+    price: '0.00003',
+    amount: '2',
+  },
+  { price: '0.00002',
+    amount: '5',
+  },
+  {
+    price: '0.00001',
+    amount: '1',
+  },
+];
+
+const asks = [
+  {
+    price: '0.00033',
+    amount: '2',
+  },
+  {
+    price: '0.00034',
+    amount: '2',
+  },
+  {
+    price: '0.00035',
+    amount: '2',
+  },
+  {
+    price: '0.00036',
+    amount: '2',
+  },
+  {
+    price: '0.00037',
+    amount: '2',
+  },
+  {
+    price: '0.00038',
+    amount: '2',
+  },
+  {
+    price: '0.00039',
+    amount: '2',
+  },
+  {
+    price: '0.0004',
+    amount: '2',
+  },
+  {
+    price: '0.0005',
+    amount: '5',
+  },
+  // {
+  //   price: '10.0006',
+  //   amount: '10',
+  // },
+  // {
+  //   price: '10.0007',
+  //   amount: '10',
+  // },
+  // {
+  //   price: '11.0007',
+  //   amount: '10',
+  // },
+  // {
+  //   price: '12.0007',
+  //   amount: '10',
+  // },
+];
+
+const orderBook = { bids, asks };
 
 class TradingTab extends React.Component {
   constructor() {
@@ -46,7 +183,7 @@ class TradingTab extends React.Component {
   }
 
   executeTrade() {
-    console.log('Execute trade');
+    console.log('Execute trade'); // eslint-disable-line
   }
 
   render() {
@@ -66,6 +203,7 @@ class TradingTab extends React.Component {
           <WrappedMarkets
             selectedMarket={selectedMarket}
             changeSelectedMarket={this.changeSelectedMarket}
+            markets={markets}
           />
           <WrappedTrade
             intendedTrade={intendedTrade}
@@ -73,8 +211,8 @@ class TradingTab extends React.Component {
             executeTrade={this.executeTrade}
           />
           <BookDepthChartWrapper>
-            <WrappedDepthChart />
-            <WrappedOrderBook selectedMarket={selectedMarket} />
+            <WrappedDepthChart orderBook={orderBook} />
+            <WrappedOrderBook orderBook={orderBook} selectedMarket={selectedMarket} />
           </BookDepthChartWrapper>
           <WrappedOrders />
         </Container>

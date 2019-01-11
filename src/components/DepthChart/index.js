@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import ReactHighcharts from 'react-highcharts';
 import PropTypes from 'prop-types';
@@ -8,9 +7,18 @@ import { Wrapper } from './style';
 
 // const EE = new EventEmitter();
 
+// transforms orderBook data into format reabable by Highcharts component
+const transformData = ((arr) => arr.reduce((acc, cur) => {
+  if (acc.length === 0) return [[parseFloat(cur.price), parseFloat(cur.amount)]];
+  const volumeSum = parseFloat(cur.amount) + acc[acc.length - 1][1];
+  return [...acc, [parseFloat(cur.price), volumeSum]];
+}, []));
+
 class DepthChart extends React.Component {
   constructor(props) {
     super(props);
+    const transformedAsks = transformData(props.orderBook.asks);
+    const transformedBids = transformData(props.orderBook.bids);
     this.state = {
       config: {
         chart: {
@@ -21,65 +29,28 @@ class DepthChart extends React.Component {
           inverted: true,
           events: {
             load() {
-              // // set up the updating of the chart each second
-              // const series = this.series[0];
-              // const columnSeries = this.series[1];
-              // let point = [870.46, 55];
-              // let columnPoint = [860.51, 58];
-              // let depth = 58
-              // setInterval(function() {
-              //   depth += 10
-              //   const point1 = [columnPoint[0], depth];
-              //   columnSeries.addPoint(point1, true, true);
-              //   // const columnPoint1 = [columnPoint[0] - (Math.random() * 2), columnPoint[1] + 1];
-              //   // columnSeries.addPoint(point1, true, true);
-              // }, 1000)
-              // EE.on('DepthChart-update', () => {
-              // });
+              // set up the updating of the chart each second
             },
           },
         },
         title: {
           text: '',
         },
-        subtitle: {
-          text: '',
-        },
-        credits: {
-          display: false,
-        },
         xAxis: {
           reversed: false,
           visible: false,
-          title: {
-            enabled: false,
-          },
-          labels: {
-            format: '{value} USD',
-          },
         },
         yAxis: {
-          title: {
-            text: 'BTC',
-          },
-          labels: {
-            format: '{value}°',
-          },
           reversed: true,
           visible: false,
-          lineWidth: 2,
         },
         legend: {
           enabled: false,
         },
         tooltip: {
-          headerFormat: '<b>{series.name}</b><br/>',
-          pointFormat: '{point.x} USD,  {point.y} Unit',
-          style: {
-            // color: '#ffffff',
-          },
+          headerFormat: '<span style="font-size=10px;">Price: {point.key}</span><br/>',
+          valueDecimals: 2,
         },
-
         series: [
           {
             name: 'Asks',
@@ -90,22 +61,8 @@ class DepthChart extends React.Component {
                 [1, 'rgba(255,77,154, 1)'],
               ],
             },
-            step: 'right',
-            data: [
-              [867.29, 0],
-              [867.30, 1],
-              [867.31, 16],
-              [867.32, 17],
-              [867.33, 32],
-              [867.34, 32],
-              [867.37, 33],
-              [867.38, 33],
-              [867.39, 34],
-              [867.40, 34],
-              [868.42, 35],
-              [869.45, 54],
-              [870.46, 55],
-            ],
+            step: 'left',
+            data: transformedAsks,
           }, {
             name: 'Bids',
             color: {
@@ -116,83 +73,33 @@ class DepthChart extends React.Component {
               ],
             },
             step: 'left',
-            data: [
-              [860.51, 58],
-              [861.52, 56],
-              [862.54, 55],
-              [863.55, 55],
-              [866.56, 49],
-              [866.57, 37],
-              [866.58, 36],
-              [866.69, 35],
-              [866.70, 31],
-              [866.71, 31],
-              [866.72, 30],
-              [866.73, 23],
-              [866.79, 1],
-            ],
+            data: transformedBids,
           },
-
         ],
       },
     };
   }
-  // componentDidMount() {
-  //   let depth = 58;
-  //   setInterval(() => {
-  //     EE.emit('DepthChart-update');
-  //     const chart = this.refs.chart.getChart();
-  //     // set up the updating of the chart each second
-  //     const series = chart.series[0];
-  //     const columnSeries = chart.series[1];
-  //     const point = [870.46, 55];
-  //     const columnPoint = [860.51, 58];
-  //     depth += 10;
-  //     const point1 = [columnPoint[0], depth];
-  //     columnSeries.addPoint(point1, true, true);
-  //     // this.setState({
-  //     //   series1: [
-  //     //     [860.51, 58],
-  //     //     [861.52, 56],
-  //     //     [862.54, 55],
-  //     //     [863.55, 55],
-  //     //     [866.56, 49],
-  //     //     [866.57, 37],
-  //     //     [866.58, 36],
-  //     //     [866.69, 35],
-  //     //     [866.70, 31],
-  //     //     [866.71, 31],
-  //     //     [866.72, 30],
-  //     //     [866.73, 23],
-  //     //     [866.79, 1],
-  //     //   ]
-  //     // })
-  //   }, 1000);
-  // }
-  // componentWillUnmount() {
-  //   EE.removeAllListeners('DepthChart-update');
-  // }
   render() {
     const { config } = this.state;
     // const { incrementedData, decrementedData, amountUSD } = this.props;
     return (
       <Wrapper className={this.props.className}>
-        <ReactHighcharts config={config} ref="chart" />
-        {/* <OrderBook incrementedData={incrementedData} decrementedData={decrementedData} amountUSD={amountUSD} /> */}
+        <ReactHighcharts config={config} />
       </Wrapper>
     );
   }
 }
 DepthChart.propTypes = {
-    /**
-   * Table data of incremented values
-   */
-  incrementedData: PropTypes.array,
-  /**
-   * Table data of decremented values
-   */
-  decrementedData: PropTypes.array,
-  amountUSD: PropTypes.number,
   className: PropTypes.string,
+  orderBook: PropTypes.shape({
+    bids: PropTypes.arrayOf(PropTypes.shape({
+      price: PropTypes.string.isRequired,
+      amount: PropTypes.string.isRequired,
+    })).isRequired,
+    asks: PropTypes.arrayOf(PropTypes.shape({
+      price: PropTypes.string.isRequired,
+      amount: PropTypes.string.isRequired,
+    })).isRequired,
+  }).isRequired,
 };
 export default DepthChart;
