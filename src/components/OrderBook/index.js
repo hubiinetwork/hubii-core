@@ -22,100 +22,6 @@ import {
   StyledText,
 } from './style';
 
-const bids = [
-  {
-    price: '0.00039',
-    amount: '1',
-  },
-  {
-    price: '0.00038',
-    amount: '1',
-  },
-  {
-    price: '0.00037',
-    amount: '1',
-  },
-  {
-    price: '0.00036',
-    amount: '1',
-  },
-  {
-    price: '0.00035',
-    amount: '1',
-  },
-  {
-    price: '0.00034',
-    amount: '1',
-  },
-  {
-    price: '0.00003',
-    amount: '2',
-  },
-  {
-    price: '0.00002',
-    amount: '5',
-  },
-  {
-    price: '0.00001',
-    amount: '1',
-  },
-];
-
-const asks = [
-  {
-    price: '0.00033',
-    amount: '2',
-  },
-  {
-    price: '0.00034',
-    amount: '2',
-  },
-  {
-    price: '0.00035',
-    amount: '2',
-  },
-  {
-    price: '0.00036',
-    amount: '2',
-  },
-  {
-    price: '0.00037',
-    amount: '2',
-  },
-  {
-    price: '0.00038',
-    amount: '2',
-  },
-  {
-    price: '0.00039',
-    amount: '2',
-  },
-  {
-    price: '0.0004',
-    amount: '2',
-  },
-  {
-    price: '0.0005',
-    amount: '5',
-  },
-  {
-    price: '10.0006',
-    amount: '10',
-  },
-  {
-    price: '10.0007',
-    amount: '10',
-  },
-  {
-    price: '11.0007',
-    amount: '10',
-  },
-  {
-    price: '12.0007',
-    amount: '10',
-  },
-];
-
 const DataRow = ({ side, amount, total, price }) => (
   <DataRowWrapper>
     <StyledText style={{ width: '33%' }} side={side}>{parseFloat(price)}</StyledText>
@@ -174,6 +80,7 @@ export class OrderBook extends React.Component { // eslint-disable-line react/pr
   render() {
     const { grouping } = this.state;
     const { primary, secondary } = this.props.selectedMarket;
+    const { bids, asks } = this.props.orderBook;
 
     // perform grouping
     const groupedAsks = groupOrders(grouping, asks, 'asks');
@@ -228,7 +135,17 @@ OrderBook.propTypes = {
   selectedMarket: PropTypes.shape({
     primary: PropTypes.string.isRequired,
     secondary: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
+  orderBook: PropTypes.shape({
+    bids: PropTypes.arrayOf(PropTypes.shape({
+      price: PropTypes.string.isRequired,
+      amount: PropTypes.string.isRequired,
+    })).isRequired,
+    asks: PropTypes.arrayOf(PropTypes.shape({
+      price: PropTypes.string.isRequired,
+      amount: PropTypes.string.isRequired,
+    })).isRequired,
+  }).isRequired,
 };
 
 

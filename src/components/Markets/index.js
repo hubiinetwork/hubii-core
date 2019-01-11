@@ -19,48 +19,6 @@ import {
   StyledText,
 } from './style';
 
-const markets = {
-  ETH: [
-    {
-      ticker: 'DAI',
-      price: '0.035088',
-      volume: '328399.90',
-      change: 17.41,
-    },
-    {
-      ticker: 'HBT',
-      price: '0.035088',
-      volume: '328399.90',
-      change: 17.41,
-    },
-    {
-      ticker: 'OMG',
-      price: '0.035088',
-      volume: '328399.90',
-      change: -17.41,
-    },
-    {
-      ticker: 'ZRX',
-      price: '0.035088',
-      volume: '328399.90',
-      change: -17.41,
-    },
-  ],
-  DAI: [
-    {
-      ticker: 'ZRX',
-      price: '0.035088',
-      volume: '328399.90',
-      change: -17.41,
-    },
-    {
-      ticker: 'OMG',
-      price: '0.035088',
-      volume: '328399.90',
-      change: -17.41,
-    },
-  ],
-};
 
 const DataRow = ({ pair, price, volume, change, selected, onClick }) => (
   <DataRowWrapper selected={selected} onClick={selected ? () => {} : onClick}>
@@ -96,6 +54,7 @@ export class Markets extends React.Component { // eslint-disable-line react/pref
     const {
       selectedMarket,
       changeSelectedMarket,
+      markets,
     } = this.props;
 
     return (
@@ -146,6 +105,24 @@ Markets.propTypes = {
     secondary: PropTypes.string.isRequired,
   }),
   changeSelectedMarket: PropTypes.func.isRequired,
+  markets: PropTypes.shape({
+    ETH: PropTypes.arrayOf(
+      PropTypes.shape({
+        ticker: PropTypes.string.isRequired,
+        price: PropTypes.string.isRequired,
+        volume: PropTypes.string.isRequired,
+        change: PropTypes.number.isRequired,
+      })
+    ).isRequired,
+    DAI: PropTypes.arrayOf(
+      PropTypes.shape({
+        ticker: PropTypes.string.isRequired,
+        price: PropTypes.string.isRequired,
+        volume: PropTypes.string.isRequired,
+        change: PropTypes.number.isRequired,
+      })
+    ).isRequired,
+  }).isRequired,
 };
 
 
