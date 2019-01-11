@@ -16,9 +16,11 @@ export const Title = styled.div`
 
 export const TopHeader = styled(Header)`
   align-items: center;
+  justify-content: space-between;
   display: flex;
   height: 5.29rem;
-  padding: 0 2rem;
+  padding-left: 2rem;
+  padding-right: 0.2rem;
   background: ${({ theme }) => theme.palette.primary4};
 `;
 

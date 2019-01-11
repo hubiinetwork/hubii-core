@@ -80,6 +80,11 @@ class DepthChart extends React.Component {
       },
     };
   }
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     const { config } = this.state;
     // const { incrementedData, decrementedData, amountUSD } = this.props;
