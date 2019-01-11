@@ -587,12 +587,12 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                     message={formatMessage({ id: 'withdraw_exceeded_staged_amount' })}
                     description={
                       formatMessage(
-                        { id: 'why_settlement_notes' }, 
-                        { 
-                          symbol: assetToWithdraw.symbol, 
+                        { id: 'why_settlement_notes' },
+                        {
+                          symbol: assetToWithdraw.symbol,
                           withdraw_amount: amountToWithdraw,
-                          required_stage_amout: requiredSettlementAmount, 
-                          staged_amount: nahmiiStagedBalanceBefore.amount 
+                          required_stage_amout: requiredSettlementAmount,
+                          staged_amount: nahmiiStagedBalanceBefore.amount,
                         }
                       )
                     }
