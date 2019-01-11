@@ -305,6 +305,32 @@ describe('<NahmiiWithdraw />', () => {
             expect(wrapper.find('.start-settlement .nahmii-balance-after-staging').props().main).toEqual('-1 ETH');
             expect(wrapper.find('.start-settlement .challenge-btn').props().disabled).toEqual(true);
           });
+          it('should disable settle button when base eth after balance is negative', () => {
+            const wrapper = shallow(
+              <NahmiiWithdraw
+                {...props}
+                {...getProps(t)}
+                currentWalletWithInfo={
+                  getProps(t).currentWalletWithInfo.setIn(
+                    ['balances', 'nahmiiCombined', 'assets'],
+                    fromJS([{ balance: new BigNumber(1), symbol: 'ETH', currency: 'ETH' }])
+                  ).set('type', 'software')
+                }
+              />
+            );
+            wrapper.setState({ amountToWithdraw: new BigNumber(1) });
+            expect(wrapper.find('.start-settlement .challenge-btn').props().disabled).toEqual(false);
+            const baseLayerBalanceBefore = getProps(t).currentWalletWithInfo.toJS().balances.baseLayer.assets.find((a) => a.symbol === 'ETH').balance;
+            const { gasPriceGwei, gasLimit } = wrapper.state();
+
+            const timesOfFees = 10000;
+            const txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit).times(timesOfFees);
+            const baseLayerBalanceAfter = baseLayerBalanceBefore.minus(txFeeAmt);
+            wrapper.setState({ gasLimit: gasLimit * timesOfFees });
+
+            expect(wrapper.find('.start-settlement .base-layer-eth-balance-after').props().main).toEqual(`${baseLayerBalanceAfter} ETH`);
+            expect(wrapper.find('.start-settlement .challenge-btn').props().disabled).toEqual(true);
+          });
         });
       });
 

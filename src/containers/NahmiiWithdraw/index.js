@@ -154,7 +154,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     if (amountToWithdraw.gt(stagedAmount)) {
       return amountToWithdraw.minus(stagedAmount);
     }
-    return 0;
+    return new BigNumber(0);
   }
 
   getCurrencyAddress(currency) {
@@ -433,13 +433,6 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       amount: baseLayerEthBalance.balance,
       usdValue: baseLayerEthBalance.balance.times(ethUsdValue),
     };
-    const baseLayerEthBalanceAfterAmount = assetToWithdraw.symbol === 'ETH'
-        ? baseLayerEthBalanceBefore.amount.plus(amountToWithdraw).minus(transactionFee.amount)
-        : baseLayerEthBalanceBefore.amount.minus(transactionFee.amount);
-    const baseLayerEthBalanceAfter = {
-      amount: baseLayerEthBalanceAfterAmount,
-      usdValue: baseLayerEthBalanceAfterAmount.times(ethUsdValue),
-    };
 
     const maxExpirationTime = ongoingChallenges.get('details').reduce((max, challenge) => {
       const { expirationTime } = challenge;
@@ -454,6 +447,16 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
 
     const stagedAsset = nahmiiStagedAssets.find((a) => a.symbol === assetToWithdraw.symbol) || { balance: new BigNumber(0) };
     const requiredSettlementAmount = this.getRequiredSettlementAmount(stagedAsset.balance, amountToWithdraw);
+
+    let baseLayerEthBalanceAfterAmount = baseLayerEthBalanceBefore.amount.minus(transactionFee.amount);
+    if (requiredSettlementAmount.eq(0) && assetToWithdraw.symbol === 'ETH') {
+      baseLayerEthBalanceAfterAmount = baseLayerEthBalanceAfterAmount.plus(amountToWithdraw);
+    }
+    const baseLayerEthBalanceAfter = {
+      amount: baseLayerEthBalanceAfterAmount,
+      usdValue: baseLayerEthBalanceAfterAmount.times(ethUsdValue),
+    };
+
     const nahmiiBalanceAfterStagingAmt = nahmiiBalanceBeforeAmt.minus(requiredSettlementAmount);
     const nahmiiBalanceAfterStaging = {
       amount: nahmiiBalanceAfterStagingAmt,
@@ -474,7 +477,10 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       baseLayerEthBalanceAfterAmount.isNegative() ||
       !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
 
-    const disableSettleButton = nahmiiBalanceAfterStagingAmt.isNegative() || !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
+    const disableSettleButton =
+      baseLayerEthBalanceAfterAmount.isNegative() ||
+      nahmiiBalanceAfterStagingAmt.isNegative() ||
+      !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
     const disableConfirmSettleButton = !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
     const TxStatus = this.generateTxStatus();
 
@@ -586,7 +592,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
               type="warning"
               showIcon
             />) : (
-              requiredSettlementAmount ?
+              requiredSettlementAmount.gt(0) ?
               (
                 <div className="start-settlement">
                   <SettlementWarning
@@ -606,6 +612,37 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                     type="warning"
                     showIcon
                   />
+                  <Row>
+                    <StyledCol span={12}>{formatMessage({ id: 'base_layer_fee' })}</StyledCol>
+                  </Row>
+                  <Row>
+                    <TransferDescriptionItem
+                      main={`${transactionFee.amount.toString()} ETH`}
+                      subtitle={formatFiat(transactionFee.usdValue.toNumber(), 'USD')}
+                    />
+                  </Row>
+                  <Row>
+                    <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+                  </Row>
+                  <Row>
+                    <TransferDescriptionItem
+                      className="base-layer-eth-balance-before"
+                      main={`${baseLayerEthBalanceBefore.amount.toString()} ETH`}
+                      subtitle={formatFiat(baseLayerEthBalanceBefore.usdValue.toNumber(), 'USD')}
+                    />
+                  </Row>
+                  <Row>
+                    <StyledCol span={12}>
+                      {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
+                    </StyledCol>
+                  </Row>
+                  <Row>
+                    <TransferDescriptionItem
+                      className="base-layer-eth-balance-after"
+                      main={`${baseLayerEthBalanceAfter.amount} ETH`}
+                      subtitle={formatFiat(baseLayerEthBalanceAfter.usdValue.toNumber(), 'USD')}
+                    />
+                  </Row>
                   <Row>
                     <StyledCol span={12}>{formatMessage({ id: 'required_stage_amount' })}</StyledCol>
                   </Row>
