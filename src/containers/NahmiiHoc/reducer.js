@@ -50,7 +50,7 @@ export const initialState = fromJS({
   balances: {},
   receipts: {},
   transactions: {},
-  selectedCurrency: 'ETH',
+  selectedCurrency: '0x0000000000000000000000000000000000000000',
   depositStatus: {
     depositingEth: false,
     approvingTokenDeposit: false,

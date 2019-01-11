@@ -110,13 +110,13 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     this.handleAssetChange = this.handleAssetChange.bind(this);
     this.handleGasLimitChange = this.handleGasLimitChange.bind(this);
     this.handleGasPriceChange = this.handleGasPriceChange.bind(this);
-    this.generateTransferingStatus = this.generateTransferingStatus.bind(this);
+    this.generateTxStatus = this.generateTxStatus.bind(this);
     this.getRequiredSettlementAmount = this.getRequiredSettlementAmount.bind(this);
     this.startChallenge = this.startChallenge.bind(this);
     this.settle = this.settle.bind(this);
     this.withdraw = this.withdraw.bind(this);
 
-    props.setSelectedWalletCurrency('0x0000000000000000000000000000000000000000');
+    props.setSelectedWalletCurrency(assetToWithdraw.currency);
   }
 
   componentDidUpdate(prevProps) {
@@ -157,10 +157,14 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     return 0;
   }
 
+  getCurrencyAddress(currency) {
+    return currency === 'ETH' ? '0x0000000000000000000000000000000000000000' : currency;
+  }
+
   settle(assetToWithdraw) {
     const { currentWalletWithInfo } = this.props;
     const { gasLimit, gasPriceGwei } = this.state;
-    const currency = assetToWithdraw.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetToWithdraw.currency;
+    const currency = this.getCurrencyAddress(assetToWithdraw.currency);
     const options = { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() || null };
     this.props.settle(currentWalletWithInfo.get('address'), currency, options);
   }
@@ -168,7 +172,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
   startChallenge(stageAmount, assetToWithdraw) {
     const { currentWalletWithInfo } = this.props;
     const { assetToWithdrawMaxDecimals, gasLimit, gasPriceGwei } = this.state;
-    const currency = assetToWithdraw.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetToWithdraw.currency;
+    const currency = this.getCurrencyAddress(assetToWithdraw.currency);
     const stageAmountBN = stageAmount.times(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
     const options = { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() || null };
     this.props.startChallenge(currentWalletWithInfo.get('address'), currency, stageAmountBN, options);
@@ -177,14 +181,14 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
   withdraw(amountToWithdraw, assetToWithdraw) {
     const { currentWalletWithInfo } = this.props;
     const { assetToWithdrawMaxDecimals, gasLimit, gasPriceGwei } = this.state;
-    const currency = assetToWithdraw.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : assetToWithdraw.currency;
+    const currency = this.getCurrencyAddress(assetToWithdraw.currency);
     const amountToWithdrawBN = amountToWithdraw.times(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
     const options = { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() || null };
     this.props.withdraw(amountToWithdrawBN, currentWalletWithInfo.get('address'), currency, options);
   }
 
   handleAssetChange(newSymbol) {
-    const { currentWalletWithInfo, supportedAssets } = this.props;
+    const { currentWalletWithInfo, supportedAssets, setSelectedWalletCurrency } = this.props;
     const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
     const assetToWithdraw = baseLayerAssets.find((a) => a.symbol === newSymbol);
 
@@ -199,6 +203,9 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     // current asset
     // https://stackoverflow.com/questions/30435918/regex-pattern-to-have-only-one-dot-and-match-integer-and-decimal-numbers
     const amountToWithdrawInputRegex = new RegExp(`^\\d+(\\.\\d{0,${assetToWithdrawMaxDecimals}})?$`);
+
+    const currency = this.getCurrencyAddress(assetToWithdraw.currency);
+    setSelectedWalletCurrency(currency);
 
     this.setState({
       assetToWithdraw,
@@ -272,7 +279,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     this.setState({ gasLimitInput: value, gasLimit: parseInt(value, 10) });
   }
 
-  generateTransferingStatus() {
+  generateTxStatus() {
     const {
       currentWalletWithInfo,
       withdrawals,
@@ -469,7 +476,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
 
     const disableSettleButton = nahmiiBalanceAfterStagingAmt.isNegative() || !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
     const disableConfirmSettleButton = !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
-    const TransferingStatus = this.generateTransferingStatus();
+    const TxStatus = this.generateTxStatus();
 
     return (
       <div style={{ display: 'flex', flex: '1', flexWrap: 'wrap' }}>
@@ -563,10 +570,10 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                     {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: assetToWithdraw.symbol, intended_stage_amount: totalSettleableStageAmount, tx_count: settleableChallenges.get('details').length })}
                   </div>
                   {
-                    TransferingStatus ?
+                    TxStatus ?
                       (
                         <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="confirm-tx-status">
-                          {TransferingStatus}
+                          {TxStatus}
                         </div>
                       ) : (
                         <StyledButton className="confirm-btn" onClick={() => this.settle(assetToWithdraw)} disabled={disableConfirmSettleButton}>
@@ -632,10 +639,10 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                   </Row>
                   <Row>
                     {
-                    TransferingStatus ?
+                    TxStatus ?
                       (
                         <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="challenge-tx-status">
-                          {TransferingStatus}
+                          {TxStatus}
                         </div>
                       ) : (
                         <StyledButton className="challenge-btn" onClick={() => this.startChallenge(requiredSettlementAmount, assetToWithdraw)} disabled={disableSettleButton}>
@@ -763,10 +770,10 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                   }
                   <Row>
                     {
-                    TransferingStatus ?
+                    TxStatus ?
                       (
                         <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="withdraw-status">
-                          {TransferingStatus}
+                          {TxStatus}
                         </div>
                       ) : (
                         <StyledButton
