@@ -207,7 +207,7 @@
     "only_base_layer": "Only base layer",
     "select_asset_to_withdraw": "Select an asset to withdraw",
     "withdraw": "Withdraw",
-    "settle_balance": "Settle nahmii balance",
+    "settle_balance": "Settle balance",
     "settlement_period_ended": "Settlement challenge period is ended",
     "settlement_period_ended_notice": "In order to update the staged balance with the qualified settlement amount ({intended_stage_amount} {symbol}), please confirm the settlement. (Need to sign for {tx_count} transaction(s)",
     "confirm_settlement": "Confirm settlement",
