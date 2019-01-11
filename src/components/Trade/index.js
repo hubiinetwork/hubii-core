@@ -21,6 +21,7 @@ import {
   StyledInput,
   InputWrapper,
   SummaryWrapper,
+  Label,
 } from './style';
 
 
@@ -41,7 +42,10 @@ export class Trade extends React.Component { // eslint-disable-line react/prefer
       changeIntendedTrade,
       intendedTrade,
       executeTrade,
+      selectedMarket,
     } = this.props;
+    const { side, type, volume, price } = intendedTrade;
+    const { primary, secondary } = selectedMarket;
     return (
       <Wrapper className={this.props.className}>
         <Header>
@@ -50,10 +54,10 @@ export class Trade extends React.Component { // eslint-disable-line react/prefer
             <Text>Buy</Text>
             &nbsp;&nbsp;
             <BuySellSwitch
-              checked={intendedTrade.side === 'sell'}
+              checked={side === 'sell'}
               onChange={() => changeIntendedTrade({
                 ...intendedTrade,
-                side: intendedTrade.side === 'buy' ? 'sell' : 'buy',
+                side: side === 'buy' ? 'sell' : 'buy',
               })}
             />
             &nbsp;&nbsp;
@@ -61,44 +65,47 @@ export class Trade extends React.Component { // eslint-disable-line react/prefer
           </SwitchWrapper>
         </Header>
         <div>
-          <Text>Avaliable HBT: 0.01</Text>
+          <Label>{`Avaliable ${secondary}:`}</Label>&nbsp;<Text>0.01</Text>
           <InputWrapper>
-            <Text>Type:</Text>&nbsp;&nbsp;
+            <Label>Type:</Label>&nbsp;&nbsp;
             <Select
               style={{ marginTop: '1rem', width: '12rem' }}
-              value={intendedTrade.type}
-              onChange={(type) => changeIntendedTrade({ ...intendedTrade, type })}
+              value={type}
+              onChange={(newType) => changeIntendedTrade({ ...intendedTrade, type: newType })}
             >
               <Option value="market">Market</Option>
               <Option value="limit">Limit</Option>
             </Select>
           </InputWrapper>
           <InputWrapper>
-            <Text>Volume:</Text>&nbsp;&nbsp;
+            <Label style={{ fontWeight: '600' }}>Volume:</Label>&nbsp;&nbsp;
             <StyledInput
-              addonAfter={'ETH'}
+              addonAfter={primary}
               style={{ width: '12rem' }}
-              value={intendedTrade.volume}
+              value={volume}
               onChange={(e) => this.changeVolume(e.target.value)}
             />
           </InputWrapper>
           <InputWrapper style={{ marginBottom: '1rem' }}>
-            <Text>Price:</Text>&nbsp;&nbsp;
+            <Label>Price:</Label>&nbsp;&nbsp;
             <StyledInput
-              value={intendedTrade.type === 'limit' ? intendedTrade.price : 'Market price'}
-              disabled={intendedTrade.type === 'market'}
+              value={type === 'limit' ? price : 'Market price'}
+              disabled={type === 'market'}
               onChange={(e) => changeIntendedTrade({ ...intendedTrade, price: e.target.value })}
-              type={intendedTrade.type === 'limit' ? 'number' : 'string'}
+              type={type === 'limit' ? 'number' : 'string'}
               min={0}
             />
           </InputWrapper>
           <SummaryWrapper>
-            <Text>Spend Total: 0.01 HBT</Text>
+            <Label>{`${type === 'market' ? 'Estimated ' : ''} Total ${side === 'buy' ? 'Spend' : 'Receive'}:`}</Label>
+            &nbsp;
+            <Text>{`0.01 ${secondary}`}</Text>
             <Button
+              style={{ marginLeft: 'auto' }}
               type="primary"
               onClick={executeTrade}
             >
-              Place Order
+              {`${side === 'buy' ? 'Buy' : 'Sell'} ${primary}`}
             </Button>
           </SummaryWrapper>
         </div>
@@ -109,14 +116,18 @@ export class Trade extends React.Component { // eslint-disable-line react/prefer
 
 Trade.propTypes = {
   className: PropTypes.string,
+  changeIntendedTrade: PropTypes.func.isRequired,
+  executeTrade: PropTypes.func.isRequired,
   intendedTrade: PropTypes.shape({
     side: PropTypes.oneOf(['buy', 'sell']).isRequired,
     type: PropTypes.oneOf(['market', 'limit']).isRequired,
     volume: PropTypes.string.isRequired,
     price: PropTypes.string,
   }).isRequired,
-  changeIntendedTrade: PropTypes.func.isRequired,
-  executeTrade: PropTypes.func.isRequired,
+  selectedMarket: PropTypes.shape({
+    primary: PropTypes.string.isRequired,
+    secondary: PropTypes.string.isRequired,
+  }),
 };
 
 

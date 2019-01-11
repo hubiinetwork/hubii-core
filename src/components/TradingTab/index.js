@@ -138,22 +138,6 @@ const asks = [
     price: '0.0005',
     amount: '5',
   },
-  // {
-  //   price: '10.0006',
-  //   amount: '10',
-  // },
-  // {
-  //   price: '10.0007',
-  //   amount: '10',
-  // },
-  // {
-  //   price: '11.0007',
-  //   amount: '10',
-  // },
-  // {
-  //   price: '12.0007',
-  //   amount: '10',
-  // },
 ];
 
 const orderBook = { bids, asks };
@@ -209,6 +193,7 @@ class TradingTab extends React.Component {
             intendedTrade={intendedTrade}
             changeIntendedTrade={this.changeIntendedTrade}
             executeTrade={this.executeTrade}
+            selectedMarket={selectedMarket}
           />
           <BookDepthChartWrapper>
             <WrappedDepthChart orderBook={orderBook} />

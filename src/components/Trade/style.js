@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Switch } from 'antd';
 import Input from 'components/ui/Input';
+import Text from 'components/ui/Text';
 
 export const Wrapper = styled.div`
   background: ${({ theme }) => theme.palette.primary3};
@@ -39,7 +40,10 @@ export const InputWrapper = styled.div`
 
 export const SummaryWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-top: 2rem;
+`;
+
+export const Label = styled(Text)`
+  font-weight: 600;
 `;
