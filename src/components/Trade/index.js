@@ -104,7 +104,7 @@ export class Trade extends React.Component { // eslint-disable-line react/prefer
           </SwitchWrapper>
         </Header>
         <div>
-          <Label>{`Avaliable ${secondary}:`}</Label>&nbsp;<Text>0.01</Text>
+          <Label>{`Avaliable ${side === 'buy' ? secondary : primary}:`}</Label>&nbsp;<Text>0.01</Text>
           <InputWrapper>
             <Label>Type:</Label>&nbsp;&nbsp;
             <Select
