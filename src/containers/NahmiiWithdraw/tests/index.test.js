@@ -111,7 +111,7 @@ describe('<NahmiiWithdraw />', () => {
         .get(0)
         .setIn(['balances', 'nahmiiStaged', 'assets'], fromJS([{ balance: new BigNumber(3), symbol: 'ETH', currency: 'ETH' }]))
         .setIn(
-          ['balances', 'nahmiiCombined', 'assets'],
+          ['balances', 'nahmiiAvailable', 'assets'],
           fromJS([{ balance: new BigNumber(4), symbol: 'ETH', currency: 'ETH' }])
         )
         .set('type', 'software'),
@@ -128,7 +128,7 @@ describe('<NahmiiWithdraw />', () => {
           },
         ]))
         .setIn(
-          ['balances', 'nahmiiCombined', 'assets'],
+          ['balances', 'nahmiiAvailable', 'assets'],
           fromJS([{
             balance: new BigNumber(4),
             symbol: erc20Asset.symbol,
@@ -241,7 +241,7 @@ describe('<NahmiiWithdraw />', () => {
                 {...getProps(t.status)}
                 currentWalletWithInfo={
                   getProps(t.status).currentWalletWithInfo.setIn(
-                    ['balances', 'nahmiiCombined', 'assets'],
+                    ['balances', 'nahmiiAvailable', 'assets'],
                     fromJS([{ balance: new BigNumber(4), symbol: 'ETH', currency: 'ETH' }])
                   )
                 }
@@ -276,7 +276,7 @@ describe('<NahmiiWithdraw />', () => {
                 {...getProps(t)}
                 currentWalletWithInfo={
                   getProps(t).currentWalletWithInfo.setIn(
-                    ['balances', 'nahmiiCombined', 'assets'],
+                    ['balances', 'nahmiiAvailable', 'assets'],
                     fromJS([{ balance: new BigNumber(4), symbol: 'ETH', currency: 'ETH' }])
                   ).set('type', 'software')
                 }
@@ -294,7 +294,7 @@ describe('<NahmiiWithdraw />', () => {
                 {...getProps(t)}
                 currentWalletWithInfo={
                   getProps(t).currentWalletWithInfo.setIn(
-                    ['balances', 'nahmiiCombined', 'assets'],
+                    ['balances', 'nahmiiAvailable', 'assets'],
                     fromJS([{ balance: new BigNumber(1), symbol: 'ETH', currency: 'ETH' }])
                   ).set('type', 'software')
                 }
@@ -312,7 +312,7 @@ describe('<NahmiiWithdraw />', () => {
                 {...getProps(t)}
                 currentWalletWithInfo={
                   getProps(t).currentWalletWithInfo.setIn(
-                    ['balances', 'nahmiiCombined', 'assets'],
+                    ['balances', 'nahmiiAvailable', 'assets'],
                     fromJS([{ balance: new BigNumber(1), symbol: 'ETH', currency: 'ETH' }])
                   ).set('type', 'software')
                 }

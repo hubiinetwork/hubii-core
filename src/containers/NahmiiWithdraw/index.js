@@ -380,7 +380,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
     const nahmiiStagedAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiStaged', 'assets']).toJS();
 
-    const nahmiiAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiCombined', 'assets']).toJS();
+    const nahmiiAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiAvailable', 'assets']).toJS();
     const assetToWithdrawUsdValue = prices.toJS().assets
       .find((a) => a.currency === assetToWithdraw.currency).usd;
     const usdValueToWithdraw = amountToWithdraw
