@@ -38,48 +38,48 @@ describe('<Trade />', () => {
   });
 
   it('should correctly call func to change intendedTrade type', () => {
-
+    expect(true).toEqual(false);
   });
 
   it('should correctly call func to change intendedTrade volume', () => {
-
+    expect(true).toEqual(false);
   });
 
   it('should correctly call func to change intendedTrade price', () => {
-
+    expect(true).toEqual(false);
   });
 
   it('should correctly switch between buy and sell', () => {
-
+    expect(true).toEqual(false);
   });
 
   it('should disable the send button where appropriate', () => {
-
+    expect(true).toEqual(false);
   });
 
   it('should correctly call func to execute trade', () => {
-
+    expect(true).toEqual(false);
   });
 
   it('should add "Estimated" before "Total" for market trades', () => {
-
+    expect(true).toEqual(false);
   });
 
   describe('calcTotal', () => {
     it('should correctly calc total', () => {
-
+      expect(true).toEqual(false);
     });
     it('should return 0 if the orderbook is too shallow', () => {
-
+      expect(true).toEqual(false);
     });
   });
 
   describe('changeVolume', () => {
     it('should correctly call changeIntendedTrade', () => {
-
+      expect(true).toEqual(false);
     });
     it('shouldn\'t allow non-number volumes', () => {
-
+      expect(true).toEqual(false);
     });
   });
 });
