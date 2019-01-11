@@ -263,7 +263,7 @@ describe('<NahmiiWithdraw />', () => {
                 {...getProps(t)}
               />
             );
-            wrapper.setState({ amountToWithdraw: new BigNumber(1) });
+            wrapper.setState({ amountToWithdraw: new BigNumber(3) });
             expect(wrapper.find('.withdraw-review')).toHaveLength(0);
             expect(wrapper.find('.start-settlement')).toHaveLength(1);
             expect(wrapper.find('.challenge-btn')).toHaveLength(1);

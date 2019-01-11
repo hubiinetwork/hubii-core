@@ -582,6 +582,23 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
               requiredSettlementAmount ?
               (
                 <div className="start-settlement">
+                  <SettlementWarning
+                    className="why-settlement-notes"
+                    message={formatMessage({ id: 'withdraw_exceeded_staged_amount' })}
+                    description={
+                      formatMessage(
+                        { id: 'why_settlement_notes' }, 
+                        { 
+                          symbol: assetToWithdraw.symbol, 
+                          withdraw_amount: amountToWithdraw,
+                          required_stage_amout: requiredSettlementAmount, 
+                          staged_amount: nahmiiStagedBalanceBefore.amount 
+                        }
+                      )
+                    }
+                    type="warning"
+                    showIcon
+                  />
                   <Row>
                     <StyledCol span={12}>{formatMessage({ id: 'required_stage_amount' })}</StyledCol>
                   </Row>
