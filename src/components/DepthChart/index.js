@@ -19,6 +19,7 @@ class DepthChart extends React.Component {
     super(props);
     const transformedAsks = transformData(props.orderBook.asks);
     const transformedBids = transformData(props.orderBook.bids);
+    transformedBids.reverse();
     this.state = {
       config: {
         chart: {
@@ -72,7 +73,7 @@ class DepthChart extends React.Component {
                 [1, 'rgba(70,233,106, 1)'],
               ],
             },
-            step: 'left',
+            step: 'right',
             data: transformedBids,
           },
         ],
