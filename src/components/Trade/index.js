@@ -29,6 +29,7 @@ export class Trade extends React.Component { // eslint-disable-line react/prefer
   constructor() {
     super();
     this.changeVolume = this.changeVolume.bind(this);
+    this.calcTotal = this.calcTotal.bind(this);
   }
 
   changeVolume(volume) {
@@ -37,15 +38,53 @@ export class Trade extends React.Component { // eslint-disable-line react/prefer
     changeIntendedTrade({ ...intendedTrade, volume });
   }
 
+  calcTotal() {
+    const { orderBook, intendedTrade } = this.props;
+    const { side, type, volume, price } = intendedTrade;
+    // check for any empty / invalid fields
+    if (volume === '' || isNaN(volume) || (type === 'limit' && (price === '' || isNaN(price)))) {
+      return 0;
+    }
+    if (type === 'limit') {
+      return parseFloat(volume) * parseFloat(price);
+    }
+    if (type === 'market') {
+      let estTotal = 0;
+      let remainingVol = parseFloat(volume);
+      let curBookIndex = 0;
+      const book = orderBook[side === 'buy' ? 'asks' : 'bids'];
+      while (parseFloat(remainingVol) > 0) {
+        // check we don't overrun orderbook array
+        if (curBookIndex > book.length - 1) return 0;
+
+        const curOrder = book[curBookIndex];
+        if (parseFloat(curOrder.amount) >= remainingVol) {
+          estTotal += parseFloat(curOrder.price) * remainingVol;
+          remainingVol = 0;
+        } else {
+          estTotal += parseFloat(curOrder.price) * parseFloat(curOrder.amount);
+          remainingVol -= parseFloat(curOrder.amount);
+        }
+        curBookIndex += 1;
+      }
+      return estTotal;
+    }
+    return 0;
+  }
+
   render() {
     const {
       changeIntendedTrade,
       intendedTrade,
       executeTrade,
       selectedMarket,
+      // orderBook,
     } = this.props;
     const { side, type, volume, price } = intendedTrade;
     const { primary, secondary } = selectedMarket;
+    const total = this.calcTotal();
+    const disableBtn = total <= 0;
+
     return (
       <Wrapper className={this.props.className}>
         <Header>
@@ -89,7 +128,7 @@ export class Trade extends React.Component { // eslint-disable-line react/prefer
           <InputWrapper style={{ marginBottom: '1rem' }}>
             <Label>Price:</Label>&nbsp;&nbsp;
             <StyledInput
-              value={type === 'limit' ? price : 'Market price'}
+              value={type === 'limit' ? price : 'Best market price'}
               disabled={type === 'market'}
               onChange={(e) => changeIntendedTrade({ ...intendedTrade, price: e.target.value })}
               type={type === 'limit' ? 'number' : 'string'}
@@ -99,11 +138,12 @@ export class Trade extends React.Component { // eslint-disable-line react/prefer
           <SummaryWrapper>
             <Label>{`${type === 'market' ? 'Estimated ' : ''} Total ${side === 'buy' ? 'Spend' : 'Receive'}:`}</Label>
             &nbsp;
-            <Text>{`0.01 ${secondary}`}</Text>
+            <Text>{`${total} ${secondary}`}</Text>
             <Button
-              style={{ marginLeft: 'auto' }}
+              style={{ marginLeft: 'auto', width: '7rem' }}
               type="primary"
               onClick={executeTrade}
+              disabled={disableBtn}
             >
               {`${side === 'buy' ? 'Buy' : 'Sell'} ${primary}`}
             </Button>
@@ -128,6 +168,16 @@ Trade.propTypes = {
     primary: PropTypes.string.isRequired,
     secondary: PropTypes.string.isRequired,
   }),
+  orderBook: PropTypes.shape({
+    bids: PropTypes.arrayOf(PropTypes.shape({
+      price: PropTypes.string.isRequired,
+      amount: PropTypes.string.isRequired,
+    })).isRequired,
+    asks: PropTypes.arrayOf(PropTypes.shape({
+      price: PropTypes.string.isRequired,
+      amount: PropTypes.string.isRequired,
+    })).isRequired,
+  }).isRequired,
 };
 
 

@@ -194,6 +194,7 @@ class TradingTab extends React.Component {
             changeIntendedTrade={this.changeIntendedTrade}
             executeTrade={this.executeTrade}
             selectedMarket={selectedMarket}
+            orderBook={orderBook}
           />
           <BookDepthChartWrapper>
             <WrappedDepthChart orderBook={orderBook} />

@@ -5,7 +5,7 @@ import Text from 'components/ui/Text';
 
 export const Wrapper = styled.div`
   background: ${({ theme }) => theme.palette.primary3};
-  padding: 1.5rem 4.5rem;
+  padding: 1.5rem 2.5rem;
 `;
 
 export const Header = styled.div`
