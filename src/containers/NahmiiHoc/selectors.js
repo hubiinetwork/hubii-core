@@ -135,17 +135,17 @@ const makeSelectWalletCurrency = () => createSelector(
 
 const makeSelectOngoingChallenges = () => createSelector(
   selectNahmiiHocDomain,
-  (nahmiiHocDomain) => nahmiiHocDomain.get('ongoingChallenges')
+  (nahmiiHocDomain) => nahmiiHocDomain.get('ongoingChallenges') || fromJS({})
 );
 
 const makeSelectSettleableChallenges = () => createSelector(
   selectNahmiiHocDomain,
-  (nahmiiHocDomain) => nahmiiHocDomain.get('settleableChallenges')
+  (nahmiiHocDomain) => nahmiiHocDomain.get('settleableChallenges') || fromJS({})
 );
 
 const makeSelectWithdrawals = () => createSelector(
   selectNahmiiHocDomain,
-  (nahmiiHocDomain) => nahmiiHocDomain.get('withdrawals')
+  (nahmiiHocDomain) => nahmiiHocDomain.get('withdrawals') || fromJS({})
 );
 
 const makeSelectNahmiiSettlementTransactions = () => createSelector(
