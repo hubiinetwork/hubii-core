@@ -19,6 +19,7 @@ export const initialState = fromJS({
     error: null,
     height: -1,
   },
+  gasStatistics: {},
 });
 
 function ethOperationsHocReducer(state = initialState, action) {

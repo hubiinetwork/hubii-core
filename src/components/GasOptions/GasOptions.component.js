@@ -6,16 +6,17 @@ import {
   gweiRegex,
   gasLimitRegex,
 } from 'utils/wallet';
-import { Panel } from 'components/ui/Collapse';
+import Collapse, { Panel } from 'components/ui/Collapse';
 import { FormItem, FormItemLabel } from 'components/ui/Form';
 import Input from 'components/ui/Input';
 import Select, { Option } from 'components/ui/Select';
+import { injectIntl } from 'react-intl';
 
 import {
   AdvancedSettingsHeader,
 } from './style';
 
-export default class GasOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class GasOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     const { defaultGasLimit, defaultGasPrice, defaultOption } = props;
@@ -33,6 +34,15 @@ export default class GasOptions extends React.PureComponent { // eslint-disable-
     this.handleGasPriceChange = this.handleGasPriceChange.bind(this);
     this.handleGasLimitChange = this.handleGasLimitChange.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
+  }
+
+  componentDidMount() {
+    const { option } = this.state;
+    if (!this.props.gasStatistics) {
+      this.handleOptionChange('manual');
+    } else {
+      this.handleOptionChange(option);
+    }
   }
 
   componentDidUpdate() {
@@ -128,10 +138,10 @@ export default class GasOptions extends React.PureComponent { // eslint-disable-
   }
 
   render() {
-    const { gasStatistics, defaultGasLimit, defaultGasPrice, defaultOption, intl } = this.props;
+    const { gasStatistics, defaultGasLimit, defaultGasPrice, intl } = this.props;
     const { formatMessage } = intl;
-    const { gasLimitInput, gasPriceGweiInput } = this.state;
-    const disableInputs = defaultOption !== 'manual';
+    const { gasLimitInput, gasPriceGweiInput, option } = this.state;
+    const disableInputs = option !== 'manual';
     let gasOptions = [{ type: 'manual', name: 'Manual' }];
     if (gasStatistics) {
       gasOptions = [
@@ -142,47 +152,51 @@ export default class GasOptions extends React.PureComponent { // eslint-disable-
       ];
     }
     return (
-      <Panel
-        header={<AdvancedSettingsHeader>{formatMessage({ id: 'advanced_settings' })}</AdvancedSettingsHeader>}
-        key="1"
-      >
-        <Select
-          className="gas-options"
-          defaultValue={defaultOption}
-          onSelect={this.handleOptionChange}
-          style={{ paddingLeft: '0.5rem' }}
+      <Collapse bordered={false} defaultActiveKey={['2']}>
+        <Panel
+          header={<AdvancedSettingsHeader>{formatMessage({ id: 'advanced_settings' })}</AdvancedSettingsHeader>}
+          key="1"
         >
-          {
-            gasOptions.map((option) => (
-              <Option value={option.type} key={option.type}>
-                {option.name}
-              </Option>
-            ))
-          }
-        </Select>
-        <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_price' })}</FormItemLabel>} colon={false}>
-          <Input
-            className="gas-price-input"
-            min={0}
-            defaultValue={defaultGasPrice.toString()}
-            value={gasPriceGweiInput}
-            onChange={this.handleGasPriceChange}
-            onFocus={() => this.onFocusNumberInput('gasPriceGweiInput')}
-            onBlur={() => this.onBlurNumberInput('gasPriceGweiInput')}
-            disabled={disableInputs}
-          />
-        </FormItem>
-        <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_limit' })}</FormItemLabel>} colon={false}>
-          <Input
-            className="gas-limit-input"
-            defaultValue={defaultGasLimit.toString()}
-            value={gasLimitInput}
-            onChange={this.handleGasLimitChange}
-            onFocus={() => this.onFocusNumberInput('gasLimitInput')}
-            onBlur={() => this.onBlurNumberInput('gasLimitInput')}
-          />
-        </FormItem>
-      </Panel>
+          <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_options' })}</FormItemLabel>} colon={false}>
+            <Select
+              className="gas-options"
+              defaultValue={option}
+              onSelect={this.handleOptionChange}
+              style={{ paddingLeft: '0.5rem' }}
+            >
+              {
+                gasOptions.map((opt) => (
+                  <Option value={opt.type} key={opt.type}>
+                    {opt.name}
+                  </Option>
+                ))
+              }
+            </Select>
+          </FormItem>
+          <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_price' })}</FormItemLabel>} colon={false}>
+            <Input
+              className="gas-price-input"
+              min={0}
+              defaultValue={defaultGasPrice.toString()}
+              value={gasPriceGweiInput}
+              onChange={this.handleGasPriceChange}
+              onFocus={() => this.onFocusNumberInput('gasPriceGweiInput')}
+              onBlur={() => this.onBlurNumberInput('gasPriceGweiInput')}
+              disabled={disableInputs}
+            />
+          </FormItem>
+          <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_limit' })}</FormItemLabel>} colon={false}>
+            <Input
+              className="gas-limit-input"
+              defaultValue={defaultGasLimit.toString()}
+              value={gasLimitInput}
+              onChange={this.handleGasLimitChange}
+              onFocus={() => this.onFocusNumberInput('gasLimitInput')}
+              onBlur={() => this.onBlurNumberInput('gasLimitInput')}
+            />
+          </FormItem>
+        </Panel>
+      </Collapse>
     );
   }
 }
@@ -195,3 +209,5 @@ GasOptions.propTypes = {
   defaultOption: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
+
+export default injectIntl(GasOptions);

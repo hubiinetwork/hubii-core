@@ -53,6 +53,7 @@
     "add_address_contacts_book": "Add address to your contacts book",
     "enter_amount": "Enter an amount",
     "advanced_settings": "Advanced settings",
+    "gas_options": "Gas Options",
     "gas_price": "Gas price",
     "gas_limit": "Gas limit",
     "balance_before": "balance before",

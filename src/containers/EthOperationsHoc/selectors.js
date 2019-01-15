@@ -14,6 +14,12 @@ const makeSelectBlockHeight = () => createSelector(
   (ethOperationsHocDomain) => ethOperationsHocDomain.get('blockHeight')
 );
 
+const makeSelectGasStatistics = () => createSelector(
+  selectEthOperationsHocDomain,
+  (ethOperationsHocDomain) => ethOperationsHocDomain.get('gasStatistics')
+);
+
 export {
   makeSelectBlockHeight,
+  makeSelectGasStatistics,
 };

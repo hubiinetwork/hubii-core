@@ -60,9 +60,9 @@ describe('<GasOptions />', () => {
           const suggestedGasPrice = props.gasStatistics[speed] / 10;
           const fee = new BigNumber(suggestedGasPrice).times(new BigNumber(10).pow(9)).times(props.defaultGasLimit);
 
-          expect(onChangeSpy.getCall(0).args[0]).toEqual(fee);
-          expect(onChangeSpy.getCall(0).args[1]).toEqual(new BigNumber(props.defaultGasLimit));
-          expect(onChangeSpy.getCall(0).args[2]).toEqual(new BigNumber(suggestedGasPrice));
+          expect(onChangeSpy.getCall(1).args[0]).toEqual(fee);
+          expect(onChangeSpy.getCall(1).args[1]).toEqual(new BigNumber(props.defaultGasLimit));
+          expect(onChangeSpy.getCall(1).args[2]).toEqual(new BigNumber(suggestedGasPrice));
         });
       });
     });
@@ -79,10 +79,9 @@ describe('<GasOptions />', () => {
           }
         />
         );
-        const instance = wrapper.instance();
-        instance.componentDidUpdate();
       });
-      it('should only allow manual option when the gasStatistics is not available', () => {
+      it('should default to manual after mount', () => {
+        expect(wrapper.find('.gas-options').props().defaultValue).toEqual('manual');
         expect(wrapper.find('Option')).toHaveLength(1);
         expect(wrapper.find('Option').props().value).toEqual('manual');
       });
@@ -140,9 +139,9 @@ describe('<GasOptions />', () => {
           value: gasLimit.toString(),
         },
       });
-      expect(onChangeSpy.getCall(0).args[0]).toEqual(fee);
-      expect(onChangeSpy.getCall(0).args[1]).toEqual(gasLimit);
-      expect(onChangeSpy.getCall(0).args[2]).toEqual(new BigNumber(props.defaultGasPrice));
+      expect(onChangeSpy.getCall(1).args[0]).toEqual(fee);
+      expect(onChangeSpy.getCall(1).args[1]).toEqual(gasLimit);
+      expect(onChangeSpy.getCall(1).args[2]).toEqual(new BigNumber(props.defaultGasPrice));
     });
     it('#onChange should correctly return fee/gasPrice when gasPriceInput is changed', () => {
       const gasPrice = new BigNumber('1');
@@ -153,9 +152,9 @@ describe('<GasOptions />', () => {
           value: gasPrice.toString(),
         },
       });
-      expect(onChangeSpy.getCall(0).args[0]).toEqual(fee);
-      expect(onChangeSpy.getCall(0).args[1]).toEqual(new BigNumber(props.defaultGasLimit));
-      expect(onChangeSpy.getCall(0).args[2]).toEqual(gasPrice);
+      expect(onChangeSpy.getCall(1).args[0]).toEqual(fee);
+      expect(onChangeSpy.getCall(1).args[1]).toEqual(new BigNumber(props.defaultGasLimit));
+      expect(onChangeSpy.getCall(1).args[2]).toEqual(gasPrice);
     });
     it('#onChange should correctly return fee/gasPrice when both gasLimitInput and gasPriceInput are changed', () => {
       const gasPrice = new BigNumber('1');
@@ -172,9 +171,9 @@ describe('<GasOptions />', () => {
           value: gasLimit.toString(),
         },
       });
-      expect(onChangeSpy.getCall(1).args[0]).toEqual(fee);
-      expect(onChangeSpy.getCall(1).args[1]).toEqual(new BigNumber(gasLimit));
-      expect(onChangeSpy.getCall(1).args[2]).toEqual(gasPrice);
+      expect(onChangeSpy.getCall(2).args[0]).toEqual(fee);
+      expect(onChangeSpy.getCall(2).args[1]).toEqual(new BigNumber(gasLimit));
+      expect(onChangeSpy.getCall(2).args[2]).toEqual(gasPrice);
     });
   });
 });
