@@ -99,9 +99,19 @@ export default class GasOptions extends React.PureComponent { // eslint-disable-
   }
 
   handleOptionChange(type) {
-    const { gasStatistics } = this.props;
-    const suggestedGasPrice = gasStatistics[type] / 10;
-    this.setState({ gasPriceGweiInput: suggestedGasPrice.toString(), gasPriceGwei: suggestedGasPrice });
+    if (type === 'manual') {
+      const { defaultGasLimit, defaultGasPrice } = this.props;
+      this.setState({
+        gasPriceGweiInput: defaultGasPrice.toString(),
+        gasPriceGwei: defaultGasPrice,
+        gasLimitInput: defaultGasLimit.toString(),
+        gasLimit: defaultGasLimit,
+      });
+    } else {
+      const { gasStatistics } = this.props;
+      const suggestedGasPrice = gasStatistics[type] / 10;
+      this.setState({ gasPriceGweiInput: suggestedGasPrice.toString(), gasPriceGwei: suggestedGasPrice });
+    }
     this.onFeeUpdated();
   }
 
@@ -114,6 +124,7 @@ export default class GasOptions extends React.PureComponent { // eslint-disable-
       { type: 'fast', name: `Fast <${Math.ceil(gasStatistics.fastWait)}min` },
       { type: 'average', name: `Average <${Math.ceil(gasStatistics.avgWait)}min` },
       { type: 'safeLow', name: `Slow <${Math.ceil(gasStatistics.safeLowWait)}min` },
+      { type: 'manual', name: 'Manual' },
     ];
     return (
       <Panel

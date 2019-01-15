@@ -64,6 +64,15 @@ describe('<GasOptions />', () => {
         expect(onChangeSpy.getCall(0).args[2]).toEqual(new BigNumber(suggestedGasPrice));
       });
     });
+    it('when defaultOption set to manual, should correctly return default fees/gasLimit/gasPrice', () => {
+      const instance = wrapper.instance();
+      instance.handleOptionChange('manual');
+      const fee = new BigNumber(props.defaultGasPrice).times(new BigNumber(10).pow(9)).times(props.defaultGasLimit);
+
+      expect(onChangeSpy.getCall(0).args[0]).toEqual(fee);
+      expect(onChangeSpy.getCall(0).args[1]).toEqual(new BigNumber(props.defaultGasLimit));
+      expect(onChangeSpy.getCall(0).args[2]).toEqual(new BigNumber(props.defaultGasPrice));
+    });
   });
   describe('defaultOption set to manual ', () => {
     let wrapper;
