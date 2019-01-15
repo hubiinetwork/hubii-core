@@ -18,13 +18,14 @@ import {
 export default class GasOptions extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
-    const { defaultGasLimit, defaultGasPrice } = props;
+    const { defaultGasLimit, defaultGasPrice, defaultOption } = props;
 
     this.state = {
       gasPriceGweiInput: defaultGasPrice.toString(),
       gasPriceGwei: defaultGasPrice,
       gasLimitInput: defaultGasLimit,
       gasLimit: defaultGasLimit.toString(),
+      option: defaultOption,
     };
 
     this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
@@ -32,6 +33,12 @@ export default class GasOptions extends React.PureComponent { // eslint-disable-
     this.handleGasPriceChange = this.handleGasPriceChange.bind(this);
     this.handleGasLimitChange = this.handleGasLimitChange.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
+  }
+
+  componentDidUpdate() {
+    if (this.state.option !== 'manual' && !this.props.gasStatistics) {
+      this.handleOptionChange('manual');
+    }
   }
 
   onFocusNumberInput(input) {
@@ -99,18 +106,23 @@ export default class GasOptions extends React.PureComponent { // eslint-disable-
   }
 
   handleOptionChange(type) {
-    if (type === 'manual') {
+    const { gasStatistics } = this.props;
+    if (type === 'manual' || !gasStatistics) {
       const { defaultGasLimit, defaultGasPrice } = this.props;
       this.setState({
         gasPriceGweiInput: defaultGasPrice.toString(),
         gasPriceGwei: defaultGasPrice,
         gasLimitInput: defaultGasLimit.toString(),
         gasLimit: defaultGasLimit,
+        option: 'manual',
       });
     } else {
-      const { gasStatistics } = this.props;
       const suggestedGasPrice = gasStatistics[type] / 10;
-      this.setState({ gasPriceGweiInput: suggestedGasPrice.toString(), gasPriceGwei: suggestedGasPrice });
+      this.setState({
+        gasPriceGweiInput: suggestedGasPrice.toString(),
+        gasPriceGwei: suggestedGasPrice,
+        option: type,
+      });
     }
     this.onFeeUpdated();
   }
@@ -120,12 +132,15 @@ export default class GasOptions extends React.PureComponent { // eslint-disable-
     const { formatMessage } = intl;
     const { gasLimitInput, gasPriceGweiInput } = this.state;
     const disableInputs = defaultOption !== 'manual';
-    const gasOptions = [
-      { type: 'fast', name: `Fast <${Math.ceil(gasStatistics.fastWait)}min` },
-      { type: 'average', name: `Average <${Math.ceil(gasStatistics.avgWait)}min` },
-      { type: 'safeLow', name: `Slow <${Math.ceil(gasStatistics.safeLowWait)}min` },
-      { type: 'manual', name: 'Manual' },
-    ];
+    let gasOptions = [{ type: 'manual', name: 'Manual' }];
+    if (gasStatistics) {
+      gasOptions = [
+        { type: 'fast', name: `Fast <${Math.ceil(gasStatistics.fastWait)}min` },
+        { type: 'average', name: `Average <${Math.ceil(gasStatistics.avgWait)}min` },
+        { type: 'safeLow', name: `Slow <${Math.ceil(gasStatistics.safeLowWait)}min` },
+        { type: 'manual', name: 'Manual' },
+      ];
+    }
     return (
       <Panel
         header={<AdvancedSettingsHeader>{formatMessage({ id: 'advanced_settings' })}</AdvancedSettingsHeader>}
@@ -174,7 +189,7 @@ export default class GasOptions extends React.PureComponent { // eslint-disable-
 
 GasOptions.propTypes = {
   intl: PropTypes.object.isRequired,
-  gasStatistics: PropTypes.object.isRequired,
+  gasStatistics: PropTypes.object,
   defaultGasLimit: PropTypes.number.isRequired,
   defaultGasPrice: PropTypes.number.isRequired,
   defaultOption: PropTypes.string.isRequired,

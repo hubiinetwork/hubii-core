@@ -36,32 +36,61 @@ describe('<GasOptions />', () => {
     let wrapper;
     let gasPriceInput;
     let onChangeSpy;
-    beforeEach(() => {
-      onChangeSpy = sinon.spy();
-      wrapper = shallow(<GasOptions
-        {...props
-        }
-        defaultOption="average"
-        onChange={
-          onChangeSpy
-        }
-      />
-      );
-      gasPriceInput = wrapper.find('.gas-price-input');
-    });
-    it('should disable the gasprice inputs', () => {
-      expect(gasPriceInput.props().disabled).toEqual(true);
-    });
-    ['safeLow', 'average', 'fast'].forEach((speed) => {
-      it(`when defaultOption set to ${speed}, should correctly return the fees/gasLimit/gasPrice`, () => {
-        const instance = wrapper.instance();
-        instance.handleOptionChange(speed);
-        const suggestedGasPrice = props.gasStatistics[speed] / 10;
-        const fee = new BigNumber(suggestedGasPrice).times(new BigNumber(10).pow(9)).times(props.defaultGasLimit);
+    describe('when gasStatistics available', () => {
+      beforeEach(() => {
+        onChangeSpy = sinon.spy();
+        wrapper = shallow(<GasOptions
+          {...props
+          }
+          defaultOption="average"
+          onChange={
+            onChangeSpy
+          }
+        />
+        );
+        gasPriceInput = wrapper.find('.gas-price-input');
+      });
+      it('should disable the gasprice inputs', () => {
+        expect(gasPriceInput.props().disabled).toEqual(true);
+      });
+      ['safeLow', 'average', 'fast'].forEach((speed) => {
+        it(`when defaultOption set to ${speed}, should correctly return the fees/gasLimit/gasPrice`, () => {
+          const instance = wrapper.instance();
+          instance.handleOptionChange(speed);
+          const suggestedGasPrice = props.gasStatistics[speed] / 10;
+          const fee = new BigNumber(suggestedGasPrice).times(new BigNumber(10).pow(9)).times(props.defaultGasLimit);
 
+          expect(onChangeSpy.getCall(0).args[0]).toEqual(fee);
+          expect(onChangeSpy.getCall(0).args[1]).toEqual(new BigNumber(props.defaultGasLimit));
+          expect(onChangeSpy.getCall(0).args[2]).toEqual(new BigNumber(suggestedGasPrice));
+        });
+      });
+    });
+    describe('when gasStatistics not available', () => {
+      beforeEach(() => {
+        onChangeSpy = sinon.spy();
+        wrapper = shallow(<GasOptions
+          {...props
+          }
+          gasStatistics={null}
+          defaultOption="average"
+          onChange={
+            onChangeSpy
+          }
+        />
+        );
+        const instance = wrapper.instance();
+        instance.componentDidUpdate();
+      });
+      it('should only allow manual option when the gasStatistics is not available', () => {
+        expect(wrapper.find('Option')).toHaveLength(1);
+        expect(wrapper.find('Option').props().value).toEqual('manual');
+      });
+      it('should default gas limit/price to manual', () => {
+        const fee = new BigNumber(props.defaultGasPrice).times(new BigNumber(10).pow(9)).times(props.defaultGasLimit);
         expect(onChangeSpy.getCall(0).args[0]).toEqual(fee);
         expect(onChangeSpy.getCall(0).args[1]).toEqual(new BigNumber(props.defaultGasLimit));
-        expect(onChangeSpy.getCall(0).args[2]).toEqual(new BigNumber(suggestedGasPrice));
+        expect(onChangeSpy.getCall(0).args[2]).toEqual(new BigNumber(props.defaultGasPrice));
       });
     });
   });
