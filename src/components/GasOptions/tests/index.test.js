@@ -1,5 +1,4 @@
 import React from 'react';
-import sinon from 'sinon';
 import BigNumber from 'bignumber.js';
 import {
   shallow,
@@ -38,7 +37,7 @@ describe('<GasOptions />', () => {
     let onChangeSpy;
     describe('when gasStatistics available', () => {
       beforeEach(() => {
-        onChangeSpy = sinon.spy();
+        onChangeSpy = jest.fn();
         wrapper = shallow(<GasOptions
           {...props
           }
@@ -59,16 +58,15 @@ describe('<GasOptions />', () => {
           instance.handleOptionChange(speed);
           const suggestedGasPrice = props.gasStatistics[speed] / 10;
           const fee = new BigNumber(suggestedGasPrice).times(new BigNumber(10).pow(9)).times(props.defaultGasLimit);
-
-          expect(onChangeSpy.getCall(1).args[0]).toEqual(fee);
-          expect(onChangeSpy.getCall(1).args[1]).toEqual(new BigNumber(props.defaultGasLimit));
-          expect(onChangeSpy.getCall(1).args[2]).toEqual(new BigNumber(suggestedGasPrice));
+          expect(onChangeSpy.mock.calls[1][0]).toEqual(fee);
+          expect(onChangeSpy.mock.calls[1][1]).toEqual(new BigNumber(props.defaultGasLimit));
+          expect(onChangeSpy.mock.calls[1][2]).toEqual(new BigNumber(suggestedGasPrice));
         });
       });
     });
     describe('when gasStatistics not available', () => {
       beforeEach(() => {
-        onChangeSpy = sinon.spy();
+        onChangeSpy = jest.fn();
         wrapper = shallow(<GasOptions
           {...props
           }
@@ -87,9 +85,9 @@ describe('<GasOptions />', () => {
       });
       it('should default gas limit/price to manual', () => {
         const fee = new BigNumber(props.defaultGasPrice).times(new BigNumber(10).pow(9)).times(props.defaultGasLimit);
-        expect(onChangeSpy.getCall(0).args[0]).toEqual(fee);
-        expect(onChangeSpy.getCall(0).args[1]).toEqual(new BigNumber(props.defaultGasLimit));
-        expect(onChangeSpy.getCall(0).args[2]).toEqual(new BigNumber(props.defaultGasPrice));
+        expect(onChangeSpy.mock.calls[0][0]).toEqual(fee);
+        expect(onChangeSpy.mock.calls[0][1]).toEqual(new BigNumber(props.defaultGasLimit));
+        expect(onChangeSpy.mock.calls[0][2]).toEqual(new BigNumber(props.defaultGasPrice));
       });
     });
   });
@@ -99,7 +97,7 @@ describe('<GasOptions />', () => {
     let gasPriceInput;
     let onChangeSpy;
     beforeEach(() => {
-      onChangeSpy = sinon.spy();
+      onChangeSpy = jest.fn();
       wrapper = shallow(<GasOptions
         {...props}
         defaultOption="manual"
@@ -116,9 +114,9 @@ describe('<GasOptions />', () => {
       instance.handleOptionChange('manual');
       const fee = new BigNumber(props.defaultGasPrice).times(new BigNumber(10).pow(9)).times(props.defaultGasLimit);
 
-      expect(onChangeSpy.getCall(0).args[0]).toEqual(fee);
-      expect(onChangeSpy.getCall(0).args[1]).toEqual(new BigNumber(props.defaultGasLimit));
-      expect(onChangeSpy.getCall(0).args[2]).toEqual(new BigNumber(props.defaultGasPrice));
+      expect(onChangeSpy.mock.calls[0][0]).toEqual(fee);
+      expect(onChangeSpy.mock.calls[0][1]).toEqual(new BigNumber(props.defaultGasLimit));
+      expect(onChangeSpy.mock.calls[0][2]).toEqual(new BigNumber(props.defaultGasPrice));
     });
     it('gas select option should set to manual', () => {
       expect(wrapper.find('.gas-options').props().defaultValue).toEqual('manual');
@@ -139,9 +137,9 @@ describe('<GasOptions />', () => {
           value: gasLimit.toString(),
         },
       });
-      expect(onChangeSpy.getCall(1).args[0]).toEqual(fee);
-      expect(onChangeSpy.getCall(1).args[1]).toEqual(gasLimit);
-      expect(onChangeSpy.getCall(1).args[2]).toEqual(new BigNumber(props.defaultGasPrice));
+      expect(onChangeSpy.mock.calls[1][0]).toEqual(fee);
+      expect(onChangeSpy.mock.calls[1][1]).toEqual(gasLimit);
+      expect(onChangeSpy.mock.calls[1][2]).toEqual(new BigNumber(props.defaultGasPrice));
     });
     it('#onChange should correctly return fee/gasPrice when gasPriceInput is changed', () => {
       const gasPrice = new BigNumber('1');
@@ -152,9 +150,9 @@ describe('<GasOptions />', () => {
           value: gasPrice.toString(),
         },
       });
-      expect(onChangeSpy.getCall(1).args[0]).toEqual(fee);
-      expect(onChangeSpy.getCall(1).args[1]).toEqual(new BigNumber(props.defaultGasLimit));
-      expect(onChangeSpy.getCall(1).args[2]).toEqual(gasPrice);
+      expect(onChangeSpy.mock.calls[1][0]).toEqual(fee);
+      expect(onChangeSpy.mock.calls[1][1]).toEqual(new BigNumber(props.defaultGasLimit));
+      expect(onChangeSpy.mock.calls[1][2]).toEqual(gasPrice);
     });
     it('#onChange should correctly return fee/gasPrice when both gasLimitInput and gasPriceInput are changed', () => {
       const gasPrice = new BigNumber('1');
@@ -171,9 +169,9 @@ describe('<GasOptions />', () => {
           value: gasLimit.toString(),
         },
       });
-      expect(onChangeSpy.getCall(2).args[0]).toEqual(fee);
-      expect(onChangeSpy.getCall(2).args[1]).toEqual(new BigNumber(gasLimit));
-      expect(onChangeSpy.getCall(2).args[2]).toEqual(gasPrice);
+      expect(onChangeSpy.mock.calls[2][0]).toEqual(fee);
+      expect(onChangeSpy.mock.calls[2][1]).toEqual(new BigNumber(gasLimit));
+      expect(onChangeSpy.mock.calls[2][2]).toEqual(gasPrice);
     });
   });
 });
