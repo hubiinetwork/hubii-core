@@ -679,6 +679,11 @@ ShallowWrapper {
                               defaultGasPrice={10}
                               defaultOption="average"
                               gasStatistics={undefined}
+                              intl={
+                                        Object {
+                                                  "formatMessage": [Function],
+                                                }
+                              }
                               onChange={[Function]}
                     />
                     <style__DollarPrice>
@@ -941,6 +946,11 @@ ShallowWrapper {
                         defaultGasPrice={10}
                         defaultOption="average"
                         gasStatistics={undefined}
+                        intl={
+                                    Object {
+                                                "formatMessage": [Function],
+                                              }
+                        }
                         onChange={[Function]}
             />
             <style__DollarPrice>
@@ -1020,6 +1030,11 @@ ShallowWrapper {
                 defaultGasPrice={10}
                 defaultOption="average"
                 gasStatistics={undefined}
+                intl={
+                                Object {
+                                                "formatMessage": [Function],
+                                              }
+                }
                 onChange={[Function]}
 />,
               <style__DollarPrice>
@@ -1182,6 +1197,9 @@ ShallowWrapper {
                 "defaultGasPrice": 10,
                 "defaultOption": "average",
                 "gasStatistics": undefined,
+                "intl": Object {
+                  "formatMessage": [Function],
+                },
                 "onChange": [Function],
               },
               "ref": null,
@@ -2135,6 +2153,11 @@ ShallowWrapper {
                                     defaultGasPrice={10}
                                     defaultOption="average"
                                     gasStatistics={undefined}
+                                    intl={
+                                                Object {
+                                                            "formatMessage": [Function],
+                                                          }
+                                    }
                                     onChange={[Function]}
                         />
                         <style__DollarPrice>
@@ -2397,6 +2420,11 @@ ShallowWrapper {
                             defaultGasPrice={10}
                             defaultOption="average"
                             gasStatistics={undefined}
+                            intl={
+                                          Object {
+                                                        "formatMessage": [Function],
+                                                      }
+                            }
                             onChange={[Function]}
               />
               <style__DollarPrice>
@@ -2476,6 +2504,11 @@ ShallowWrapper {
                   defaultGasPrice={10}
                   defaultOption="average"
                   gasStatistics={undefined}
+                  intl={
+                                    Object {
+                                                      "formatMessage": [Function],
+                                                    }
+                  }
                   onChange={[Function]}
 />,
                 <style__DollarPrice>
@@ -2638,6 +2671,9 @@ ShallowWrapper {
                   "defaultGasPrice": 10,
                   "defaultOption": "average",
                   "gasStatistics": undefined,
+                  "intl": Object {
+                    "formatMessage": [Function],
+                  },
                   "onChange": [Function],
                 },
                 "ref": null,
@@ -4204,6 +4240,11 @@ ShallowWrapper {
                               defaultGasPrice={10}
                               defaultOption="average"
                               gasStatistics={undefined}
+                              intl={
+                                        Object {
+                                                  "formatMessage": [Function],
+                                                }
+                              }
                               onChange={[Function]}
                     />
                     <style__DollarPrice>
@@ -4466,6 +4507,11 @@ ShallowWrapper {
                         defaultGasPrice={10}
                         defaultOption="average"
                         gasStatistics={undefined}
+                        intl={
+                                    Object {
+                                                "formatMessage": [Function],
+                                              }
+                        }
                         onChange={[Function]}
             />
             <style__DollarPrice>
@@ -4545,6 +4591,11 @@ ShallowWrapper {
                 defaultGasPrice={10}
                 defaultOption="average"
                 gasStatistics={undefined}
+                intl={
+                                Object {
+                                                "formatMessage": [Function],
+                                              }
+                }
                 onChange={[Function]}
 />,
               <style__DollarPrice>
@@ -4707,6 +4758,9 @@ ShallowWrapper {
                 "defaultGasPrice": 10,
                 "defaultOption": "average",
                 "gasStatistics": undefined,
+                "intl": Object {
+                  "formatMessage": [Function],
+                },
                 "onChange": [Function],
               },
               "ref": null,
@@ -5660,6 +5714,11 @@ ShallowWrapper {
                                     defaultGasPrice={10}
                                     defaultOption="average"
                                     gasStatistics={undefined}
+                                    intl={
+                                                Object {
+                                                            "formatMessage": [Function],
+                                                          }
+                                    }
                                     onChange={[Function]}
                         />
                         <style__DollarPrice>
@@ -5922,6 +5981,11 @@ ShallowWrapper {
                             defaultGasPrice={10}
                             defaultOption="average"
                             gasStatistics={undefined}
+                            intl={
+                                          Object {
+                                                        "formatMessage": [Function],
+                                                      }
+                            }
                             onChange={[Function]}
               />
               <style__DollarPrice>
@@ -6001,6 +6065,11 @@ ShallowWrapper {
                   defaultGasPrice={10}
                   defaultOption="average"
                   gasStatistics={undefined}
+                  intl={
+                                    Object {
+                                                      "formatMessage": [Function],
+                                                    }
+                  }
                   onChange={[Function]}
 />,
                 <style__DollarPrice>
@@ -6163,6 +6232,9 @@ ShallowWrapper {
                   "defaultGasPrice": 10,
                   "defaultOption": "average",
                   "gasStatistics": undefined,
+                  "intl": Object {
+                    "formatMessage": [Function],
+                  },
                   "onChange": [Function],
                 },
                 "ref": null,
@@ -7729,6 +7801,11 @@ ShallowWrapper {
                               defaultGasPrice={10}
                               defaultOption="average"
                               gasStatistics={undefined}
+                              intl={
+                                        Object {
+                                                  "formatMessage": [Function],
+                                                }
+                              }
                               onChange={[Function]}
                     />
                     <style__DollarPrice>
@@ -7991,6 +8068,11 @@ ShallowWrapper {
                         defaultGasPrice={10}
                         defaultOption="average"
                         gasStatistics={undefined}
+                        intl={
+                                    Object {
+                                                "formatMessage": [Function],
+                                              }
+                        }
                         onChange={[Function]}
             />
             <style__DollarPrice>
@@ -8070,6 +8152,11 @@ ShallowWrapper {
                 defaultGasPrice={10}
                 defaultOption="average"
                 gasStatistics={undefined}
+                intl={
+                                Object {
+                                                "formatMessage": [Function],
+                                              }
+                }
                 onChange={[Function]}
 />,
               <style__DollarPrice>
@@ -8232,6 +8319,9 @@ ShallowWrapper {
                 "defaultGasPrice": 10,
                 "defaultOption": "average",
                 "gasStatistics": undefined,
+                "intl": Object {
+                  "formatMessage": [Function],
+                },
                 "onChange": [Function],
               },
               "ref": null,
@@ -9185,6 +9275,11 @@ ShallowWrapper {
                                     defaultGasPrice={10}
                                     defaultOption="average"
                                     gasStatistics={undefined}
+                                    intl={
+                                                Object {
+                                                            "formatMessage": [Function],
+                                                          }
+                                    }
                                     onChange={[Function]}
                         />
                         <style__DollarPrice>
@@ -9447,6 +9542,11 @@ ShallowWrapper {
                             defaultGasPrice={10}
                             defaultOption="average"
                             gasStatistics={undefined}
+                            intl={
+                                          Object {
+                                                        "formatMessage": [Function],
+                                                      }
+                            }
                             onChange={[Function]}
               />
               <style__DollarPrice>
@@ -9526,6 +9626,11 @@ ShallowWrapper {
                   defaultGasPrice={10}
                   defaultOption="average"
                   gasStatistics={undefined}
+                  intl={
+                                    Object {
+                                                      "formatMessage": [Function],
+                                                    }
+                  }
                   onChange={[Function]}
 />,
                 <style__DollarPrice>
@@ -9688,6 +9793,9 @@ ShallowWrapper {
                   "defaultGasPrice": 10,
                   "defaultOption": "average",
                   "gasStatistics": undefined,
+                  "intl": Object {
+                    "formatMessage": [Function],
+                  },
                   "onChange": [Function],
                 },
                 "ref": null,
@@ -11254,6 +11362,11 @@ ShallowWrapper {
                               defaultGasPrice={10}
                               defaultOption="average"
                               gasStatistics={undefined}
+                              intl={
+                                        Object {
+                                                  "formatMessage": [Function],
+                                                }
+                              }
                               onChange={[Function]}
                     />
                     <style__DollarPrice>
@@ -11510,6 +11623,11 @@ ShallowWrapper {
                         defaultGasPrice={10}
                         defaultOption="average"
                         gasStatistics={undefined}
+                        intl={
+                                    Object {
+                                                "formatMessage": [Function],
+                                              }
+                        }
                         onChange={[Function]}
             />
             <style__DollarPrice>
@@ -11589,6 +11707,11 @@ ShallowWrapper {
                 defaultGasPrice={10}
                 defaultOption="average"
                 gasStatistics={undefined}
+                intl={
+                                Object {
+                                                "formatMessage": [Function],
+                                              }
+                }
                 onChange={[Function]}
 />,
               <style__DollarPrice>
@@ -11751,6 +11874,9 @@ ShallowWrapper {
                 "defaultGasPrice": 10,
                 "defaultOption": "average",
                 "gasStatistics": undefined,
+                "intl": Object {
+                  "formatMessage": [Function],
+                },
                 "onChange": [Function],
               },
               "ref": null,
@@ -12620,6 +12746,11 @@ ShallowWrapper {
                                     defaultGasPrice={10}
                                     defaultOption="average"
                                     gasStatistics={undefined}
+                                    intl={
+                                                Object {
+                                                            "formatMessage": [Function],
+                                                          }
+                                    }
                                     onChange={[Function]}
                         />
                         <style__DollarPrice>
@@ -12876,6 +13007,11 @@ ShallowWrapper {
                             defaultGasPrice={10}
                             defaultOption="average"
                             gasStatistics={undefined}
+                            intl={
+                                          Object {
+                                                        "formatMessage": [Function],
+                                                      }
+                            }
                             onChange={[Function]}
               />
               <style__DollarPrice>
@@ -12955,6 +13091,11 @@ ShallowWrapper {
                   defaultGasPrice={10}
                   defaultOption="average"
                   gasStatistics={undefined}
+                  intl={
+                                    Object {
+                                                      "formatMessage": [Function],
+                                                    }
+                  }
                   onChange={[Function]}
 />,
                 <style__DollarPrice>
@@ -13117,6 +13258,9 @@ ShallowWrapper {
                   "defaultGasPrice": 10,
                   "defaultOption": "average",
                   "gasStatistics": undefined,
+                  "intl": Object {
+                    "formatMessage": [Function],
+                  },
                   "onChange": [Function],
                 },
                 "ref": null,
@@ -14599,6 +14743,11 @@ ShallowWrapper {
                               defaultGasPrice={10}
                               defaultOption="average"
                               gasStatistics={undefined}
+                              intl={
+                                        Object {
+                                                  "formatMessage": [Function],
+                                                }
+                              }
                               onChange={[Function]}
                     />
                     <style__DollarPrice>
@@ -14855,6 +15004,11 @@ ShallowWrapper {
                         defaultGasPrice={10}
                         defaultOption="average"
                         gasStatistics={undefined}
+                        intl={
+                                    Object {
+                                                "formatMessage": [Function],
+                                              }
+                        }
                         onChange={[Function]}
             />
             <style__DollarPrice>
@@ -14934,6 +15088,11 @@ ShallowWrapper {
                 defaultGasPrice={10}
                 defaultOption="average"
                 gasStatistics={undefined}
+                intl={
+                                Object {
+                                                "formatMessage": [Function],
+                                              }
+                }
                 onChange={[Function]}
 />,
               <style__DollarPrice>
@@ -15096,6 +15255,9 @@ ShallowWrapper {
                 "defaultGasPrice": 10,
                 "defaultOption": "average",
                 "gasStatistics": undefined,
+                "intl": Object {
+                  "formatMessage": [Function],
+                },
                 "onChange": [Function],
               },
               "ref": null,
@@ -15965,6 +16127,11 @@ ShallowWrapper {
                                     defaultGasPrice={10}
                                     defaultOption="average"
                                     gasStatistics={undefined}
+                                    intl={
+                                                Object {
+                                                            "formatMessage": [Function],
+                                                          }
+                                    }
                                     onChange={[Function]}
                         />
                         <style__DollarPrice>
@@ -16221,6 +16388,11 @@ ShallowWrapper {
                             defaultGasPrice={10}
                             defaultOption="average"
                             gasStatistics={undefined}
+                            intl={
+                                          Object {
+                                                        "formatMessage": [Function],
+                                                      }
+                            }
                             onChange={[Function]}
               />
               <style__DollarPrice>
@@ -16300,6 +16472,11 @@ ShallowWrapper {
                   defaultGasPrice={10}
                   defaultOption="average"
                   gasStatistics={undefined}
+                  intl={
+                                    Object {
+                                                      "formatMessage": [Function],
+                                                    }
+                  }
                   onChange={[Function]}
 />,
                 <style__DollarPrice>
@@ -16462,6 +16639,9 @@ ShallowWrapper {
                   "defaultGasPrice": 10,
                   "defaultOption": "average",
                   "gasStatistics": undefined,
+                  "intl": Object {
+                    "formatMessage": [Function],
+                  },
                   "onChange": [Function],
                 },
                 "ref": null,
@@ -17945,6 +18125,11 @@ ShallowWrapper {
                               defaultGasPrice={10}
                               defaultOption="average"
                               gasStatistics={undefined}
+                              intl={
+                                        Object {
+                                                  "formatMessage": [Function],
+                                                }
+                              }
                               onChange={[Function]}
                     />
                     <style__DollarPrice>
@@ -18201,6 +18386,11 @@ ShallowWrapper {
                         defaultGasPrice={10}
                         defaultOption="average"
                         gasStatistics={undefined}
+                        intl={
+                                    Object {
+                                                "formatMessage": [Function],
+                                              }
+                        }
                         onChange={[Function]}
             />
             <style__DollarPrice>
@@ -18280,6 +18470,11 @@ ShallowWrapper {
                 defaultGasPrice={10}
                 defaultOption="average"
                 gasStatistics={undefined}
+                intl={
+                                Object {
+                                                "formatMessage": [Function],
+                                              }
+                }
                 onChange={[Function]}
 />,
               <style__DollarPrice>
@@ -18442,6 +18637,9 @@ ShallowWrapper {
                 "defaultGasPrice": 10,
                 "defaultOption": "average",
                 "gasStatistics": undefined,
+                "intl": Object {
+                  "formatMessage": [Function],
+                },
                 "onChange": [Function],
               },
               "ref": null,
@@ -19311,6 +19509,11 @@ ShallowWrapper {
                                     defaultGasPrice={10}
                                     defaultOption="average"
                                     gasStatistics={undefined}
+                                    intl={
+                                                Object {
+                                                            "formatMessage": [Function],
+                                                          }
+                                    }
                                     onChange={[Function]}
                         />
                         <style__DollarPrice>
@@ -19567,6 +19770,11 @@ ShallowWrapper {
                             defaultGasPrice={10}
                             defaultOption="average"
                             gasStatistics={undefined}
+                            intl={
+                                          Object {
+                                                        "formatMessage": [Function],
+                                                      }
+                            }
                             onChange={[Function]}
               />
               <style__DollarPrice>
@@ -19646,6 +19854,11 @@ ShallowWrapper {
                   defaultGasPrice={10}
                   defaultOption="average"
                   gasStatistics={undefined}
+                  intl={
+                                    Object {
+                                                      "formatMessage": [Function],
+                                                    }
+                  }
                   onChange={[Function]}
 />,
                 <style__DollarPrice>
@@ -19808,6 +20021,9 @@ ShallowWrapper {
                   "defaultGasPrice": 10,
                   "defaultOption": "average",
                   "gasStatistics": undefined,
+                  "intl": Object {
+                    "formatMessage": [Function],
+                  },
                   "onChange": [Function],
                 },
                 "ref": null,
@@ -23740,6 +23956,11 @@ ShallowWrapper {
                               defaultGasPrice={10}
                               defaultOption="average"
                               gasStatistics={undefined}
+                              intl={
+                                        Object {
+                                                  "formatMessage": [Function],
+                                                }
+                              }
                               onChange={[Function]}
                     />
                     <style__DollarPrice>
@@ -23996,6 +24217,11 @@ ShallowWrapper {
                         defaultGasPrice={10}
                         defaultOption="average"
                         gasStatistics={undefined}
+                        intl={
+                                    Object {
+                                                "formatMessage": [Function],
+                                              }
+                        }
                         onChange={[Function]}
             />
             <style__DollarPrice>
@@ -24075,6 +24301,11 @@ ShallowWrapper {
                 defaultGasPrice={10}
                 defaultOption="average"
                 gasStatistics={undefined}
+                intl={
+                                Object {
+                                                "formatMessage": [Function],
+                                              }
+                }
                 onChange={[Function]}
 />,
               <style__DollarPrice>
@@ -24237,6 +24468,9 @@ ShallowWrapper {
                 "defaultGasPrice": 10,
                 "defaultOption": "average",
                 "gasStatistics": undefined,
+                "intl": Object {
+                  "formatMessage": [Function],
+                },
                 "onChange": [Function],
               },
               "ref": null,
@@ -25106,6 +25340,11 @@ ShallowWrapper {
                                     defaultGasPrice={10}
                                     defaultOption="average"
                                     gasStatistics={undefined}
+                                    intl={
+                                                Object {
+                                                            "formatMessage": [Function],
+                                                          }
+                                    }
                                     onChange={[Function]}
                         />
                         <style__DollarPrice>
@@ -25362,6 +25601,11 @@ ShallowWrapper {
                             defaultGasPrice={10}
                             defaultOption="average"
                             gasStatistics={undefined}
+                            intl={
+                                          Object {
+                                                        "formatMessage": [Function],
+                                                      }
+                            }
                             onChange={[Function]}
               />
               <style__DollarPrice>
@@ -25441,6 +25685,11 @@ ShallowWrapper {
                   defaultGasPrice={10}
                   defaultOption="average"
                   gasStatistics={undefined}
+                  intl={
+                                    Object {
+                                                      "formatMessage": [Function],
+                                                    }
+                  }
                   onChange={[Function]}
 />,
                 <style__DollarPrice>
@@ -25603,6 +25852,9 @@ ShallowWrapper {
                   "defaultGasPrice": 10,
                   "defaultOption": "average",
                   "gasStatistics": undefined,
+                  "intl": Object {
+                    "formatMessage": [Function],
+                  },
                   "onChange": [Function],
                 },
                 "ref": null,

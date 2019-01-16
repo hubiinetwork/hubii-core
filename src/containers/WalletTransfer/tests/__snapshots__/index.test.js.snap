@@ -488,6 +488,10 @@ ShallowWrapper {
         }
     }
     errors={Object {}}
+    gasStatistics={
+        Immutable.Map {
+        }
+    }
     history={Object {}}
     ledgerNanoSInfo={
         Immutable.Map {
@@ -1072,6 +1076,8 @@ ShallowWrapper {
                 },
         },
 },
+      "gasStatistics": Immutable.Map {
+},
       "hwWalletReady": false,
       "onSend": [Function],
       "prices": Object {
@@ -1640,6 +1646,8 @@ ShallowWrapper {
                               },
                     },
           },
+},
+        "gasStatistics": Immutable.Map {
 },
         "hwWalletReady": false,
         "onSend": [Function],
@@ -2250,6 +2258,10 @@ ShallowWrapper {
         }
     }
     errors={Object {}}
+    gasStatistics={
+        Immutable.Map {
+        }
+    }
     history={Object {}}
     ledgerNanoSInfo={
         Immutable.Map {
@@ -2837,6 +2849,8 @@ ShallowWrapper {
                       },
         },
 },
+      "gasStatistics": Immutable.Map {
+},
       "hwWalletReady": false,
       "onSend": [Function],
       "prices": Object {
@@ -3408,6 +3422,8 @@ ShallowWrapper {
                               "message": "some error",
                             },
           },
+},
+        "gasStatistics": Immutable.Map {
 },
         "hwWalletReady": false,
         "onSend": [Function],
@@ -4016,6 +4032,10 @@ ShallowWrapper {
         }
     }
     errors={Object {}}
+    gasStatistics={
+        Immutable.Map {
+        }
+    }
     history={Object {}}
     ledgerNanoSInfo={
         Immutable.Map {
@@ -4601,6 +4621,8 @@ ShallowWrapper {
                 loading: true,
         },
 },
+      "gasStatistics": Immutable.Map {
+},
       "hwWalletReady": false,
       "onSend": [Function],
       "prices": Object {
@@ -5170,6 +5192,8 @@ ShallowWrapper {
                     },
                     loading: true,
           },
+},
+        "gasStatistics": Immutable.Map {
 },
         "hwWalletReady": false,
         "onSend": [Function],
@@ -5777,6 +5801,10 @@ ShallowWrapper {
         }
     }
     errors={Object {}}
+    gasStatistics={
+        Immutable.Map {
+        }
+    }
     history={Object {}}
     ledgerNanoSInfo={
         Immutable.Map {
@@ -6361,6 +6389,8 @@ ShallowWrapper {
                 },
         },
 },
+      "gasStatistics": Immutable.Map {
+},
       "hwWalletReady": false,
       "onSend": [Function],
       "prices": Object {
@@ -6929,6 +6959,8 @@ ShallowWrapper {
                               },
                     },
           },
+},
+        "gasStatistics": Immutable.Map {
 },
         "hwWalletReady": false,
         "onSend": [Function],
@@ -7536,6 +7568,10 @@ ShallowWrapper {
         }
     }
     errors={Object {}}
+    gasStatistics={
+        Immutable.Map {
+        }
+    }
     history={Object {}}
     ledgerNanoSInfo={
         Immutable.Map {
@@ -8079,6 +8115,8 @@ ShallowWrapper {
                 },
         },
 },
+      "gasStatistics": Immutable.Map {
+},
       "hwWalletReady": false,
       "onSend": [Function],
       "prices": Object {
@@ -8605,6 +8643,8 @@ ShallowWrapper {
                               },
                     },
           },
+},
+        "gasStatistics": Immutable.Map {
 },
         "hwWalletReady": false,
         "onSend": [Function],
@@ -9170,6 +9210,10 @@ ShallowWrapper {
         }
     }
     errors={Object {}}
+    gasStatistics={
+        Immutable.Map {
+        }
+    }
     history={Object {}}
     ledgerNanoSInfo={
         Immutable.Map {
@@ -9713,6 +9757,8 @@ ShallowWrapper {
                 },
         },
 },
+      "gasStatistics": Immutable.Map {
+},
       "hwWalletReady": false,
       "onSend": [Function],
       "prices": Object {
@@ -10239,6 +10285,8 @@ ShallowWrapper {
                               },
                     },
           },
+},
+        "gasStatistics": Immutable.Map {
 },
         "hwWalletReady": false,
         "onSend": [Function],
@@ -10804,6 +10852,10 @@ ShallowWrapper {
         }
     }
     errors={Object {}}
+    gasStatistics={
+        Immutable.Map {
+        }
+    }
     history={Object {}}
     ledgerNanoSInfo={
         Immutable.Map {
@@ -11352,6 +11404,8 @@ ShallowWrapper {
                 },
         },
 },
+      "gasStatistics": Immutable.Map {
+},
       "hwWalletReady": false,
       "onSend": [Function],
       "prices": Object {
@@ -11884,6 +11938,8 @@ ShallowWrapper {
                               },
                     },
           },
+},
+        "gasStatistics": Immutable.Map {
 },
         "hwWalletReady": false,
         "onSend": [Function],
@@ -12455,6 +12511,10 @@ ShallowWrapper {
         }
     }
     errors={Object {}}
+    gasStatistics={
+        Immutable.Map {
+        }
+    }
     history={Object {}}
     ledgerNanoSInfo={
         Immutable.Map {
@@ -13003,6 +13063,8 @@ ShallowWrapper {
                 },
         },
 },
+      "gasStatistics": Immutable.Map {
+},
       "hwWalletReady": false,
       "onSend": [Function],
       "prices": Object {
@@ -13535,6 +13597,8 @@ ShallowWrapper {
                               },
                     },
           },
+},
+        "gasStatistics": Immutable.Map {
 },
         "hwWalletReady": false,
         "onSend": [Function],
@@ -14106,6 +14170,10 @@ ShallowWrapper {
         }
     }
     errors={Object {}}
+    gasStatistics={
+        Immutable.Map {
+        }
+    }
     history={Object {}}
     ledgerNanoSInfo={
         Immutable.Map {
@@ -14690,6 +14758,8 @@ ShallowWrapper {
                 },
         },
 },
+      "gasStatistics": Immutable.Map {
+},
       "hwWalletReady": false,
       "onSend": [Function],
       "prices": Object {
@@ -15258,6 +15328,8 @@ ShallowWrapper {
                               },
                     },
           },
+},
+        "gasStatistics": Immutable.Map {
 },
         "hwWalletReady": false,
         "onSend": [Function],

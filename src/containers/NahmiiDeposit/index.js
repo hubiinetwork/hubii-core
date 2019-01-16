@@ -354,6 +354,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               />
             </FormItem>
             <GasOptions
+              intl={intl}
               defaultGasLimit={gasLimit}
               defaultGasPrice={gasPriceGwei.toNumber()}
               gasStatistics={gasStatistics.get('estimate')}
