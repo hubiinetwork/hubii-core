@@ -15,8 +15,6 @@ import { getAbsolutePath } from 'utils/electron';
 import {
   gweiToEther,
   gweiToWei,
-  gweiRegex,
-  gasLimitRegex,
   isHardwareWallet,
   walletReady,
 } from 'utils/wallet';
@@ -26,12 +24,12 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import { Form, FormItem, FormItemLabel } from 'components/ui/Form';
-import Collapse, { Panel } from 'components/ui/Collapse';
 import HelperText from 'components/ui/HelperText';
 import Text from 'components/ui/Text';
 import Input from 'components/ui/Input';
 import Select, { Option } from 'components/ui/Select';
 import TransferDescriptionItem from 'components/TransferDescriptionItem';
+import GasOptions from 'components/GasOptions';
 import HWPromptContainer from 'containers/HWPromptContainer';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import {
@@ -40,6 +38,7 @@ import {
 } from 'containers/HubiiApiHoc/selectors';
 import { makeSelectLedgerHoc } from 'containers/LedgerHoc/selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
+import { makeSelectGasStatistics } from 'containers/EthOperationsHoc/selectors';
 import {
   makeSelectOngoingChallengesForCurrentWalletCurrency,
   makeSelectSettleableChallengesForCurrentWalletCurrency,
@@ -57,7 +56,6 @@ import {
 import { injectIntl } from 'react-intl';
 
 import {
-  AdvancedSettingsHeader,
   Image,
   DollarPrice,
   StyledCol,
@@ -106,10 +104,9 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     };
     this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
     this.onBlurNumberInput = this.onBlurNumberInput.bind(this);
+    this.onGasChange = this.onGasChange.bind(this);
     this.handleAmountToWithdrawChange = this.handleAmountToWithdrawChange.bind(this);
     this.handleAssetChange = this.handleAssetChange.bind(this);
-    this.handleGasLimitChange = this.handleGasLimitChange.bind(this);
-    this.handleGasPriceChange = this.handleGasPriceChange.bind(this);
     this.generateTxStatus = this.generateTxStatus.bind(this);
     this.getRequiredSettlementAmount = this.getRequiredSettlementAmount.bind(this);
     this.startChallenge = this.startChallenge.bind(this);
@@ -148,6 +145,10 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     if (this.state[input] === '') {
       this.setState({ [input]: '0' });
     }
+  }
+
+  onGasChange(fee, gasLimit, gasPriceGwei) {
+    this.setState({ gasLimit: gasLimit.toNumber(), gasPriceGwei });
   }
 
   getRequiredSettlementAmount(stagedAmount, amountToWithdraw) {
@@ -237,48 +238,6 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     this.setState({ amountToWithdrawInput: value });
   }
 
-  handleGasPriceChange(e) {
-    const { value } = e.target;
-    // allow an empty input to represent 0
-    if (value === '') {
-      this.setState({ gasPriceGwei: new BigNumber('0'), gasPriceGweiInput: '' });
-    }
-
-    // don't update if invalid regex
-    // (numbers followed by at most 1 . followed by at most 9 decimals)
-    if (!gweiRegex.test(value)) return;
-
-    // don't update if a single gas is an infeasible amount of Ether
-    // (> 100x entire circulating supply as of Aug 2018)
-    if (!isNaN(value) && Number(value) > 10000000000000000000) return;
-
-    // update the input (this could be an invalid number, such as '12.')
-    this.setState({ gasPriceGweiInput: value });
-
-    // update actual gwei if it's a real number
-    if (!isNaN(value)) {
-      this.setState({ gasPriceGwei: new BigNumber(value) });
-    }
-  }
-
-  handleGasLimitChange(e) {
-    const { value } = e.target;
-    // allow an empty input to represent 0
-    if (value === '') {
-      this.setState({ gasLimitInput: '', gasLimit: 0 });
-    }
-
-    // only allow whole numbers
-    if (!gasLimitRegex.test(value)) return;
-
-    // don't allow infeasible amount of gas
-    // (gas limit per block almost never exeeds 10 million as of Aug 2018  )
-    const ONE_HUNDRED_MILLION = 100000000;
-    if (value > ONE_HUNDRED_MILLION) return;
-
-    this.setState({ gasLimitInput: value, gasLimit: parseInt(value, 10) });
-  }
-
   generateTxStatus() {
     const {
       currentWalletWithInfo,
@@ -336,8 +295,6 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
   render() {
     const {
       assetToWithdraw,
-      gasLimitInput,
-      gasPriceGweiInput,
       amountToWithdrawInput,
       amountToWithdraw,
       gasPriceGwei,
@@ -347,6 +304,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     const {
       currentWalletWithInfo,
       prices,
+      gasStatistics,
       intl,
       supportedAssets,
       ledgerNanoSInfo,
@@ -523,32 +481,14 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                 onChange={this.handleAmountToWithdrawChange}
               />
             </FormItem>
-            <Collapse bordered={false} defaultActiveKey={['2']}>
-              <Panel
-                header={<AdvancedSettingsHeader>{formatMessage({ id: 'advanced_settings' })}</AdvancedSettingsHeader>}
-                key="1"
-              >
-                <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_price' })}</FormItemLabel>} colon={false}>
-                  <Input
-                    min={0}
-                    defaultValue={gasPriceGweiInput}
-                    value={gasPriceGweiInput}
-                    onChange={this.handleGasPriceChange}
-                    onFocus={() => this.onFocusNumberInput('gasPriceGweiInput')}
-                    onBlur={() => this.onBlurNumberInput('gasPriceGweiInput')}
-                  />
-                </FormItem>
-                <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_limit' })}</FormItemLabel>} colon={false}>
-                  <Input
-                    value={gasLimitInput}
-                    defaultValue={gasLimitInput}
-                    onChange={this.handleGasLimitChange}
-                    onFocus={() => this.onFocusNumberInput('gasLimitInput')}
-                    onBlur={() => this.onBlurNumberInput('gasLimitInput')}
-                  />
-                </FormItem>
-              </Panel>
-            </Collapse>
+            <GasOptions
+              intl={intl}
+              defaultGasLimit={gasLimit}
+              defaultGasPrice={gasPriceGwei.toNumber()}
+              gasStatistics={gasStatistics.get('estimate')}
+              defaultOption="average"
+              onChange={this.onGasChange}
+            />
             <DollarPrice>
               {`1 ${assetToWithdraw.symbol} = ${formatFiat(assetToWithdrawUsdValue, 'USD')}`}
             </DollarPrice>
@@ -855,6 +795,7 @@ NahmiiWithdraw.propTypes = {
   startChallenge: PropTypes.func.isRequired,
   settle: PropTypes.func.isRequired,
   withdraw: PropTypes.func.isRequired,
+  gasStatistics: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -867,6 +808,7 @@ const mapStateToProps = createStructuredSelector({
   ongoingChallenges: makeSelectOngoingChallengesForCurrentWalletCurrency(),
   settleableChallenges: makeSelectSettleableChallengesForCurrentWalletCurrency(),
   withdrawals: makeSelectWithdrawalsForCurrentWalletCurrency(),
+  gasStatistics: makeSelectGasStatistics(),
 });
 
 function mapDispatchToProps(dispatch) {

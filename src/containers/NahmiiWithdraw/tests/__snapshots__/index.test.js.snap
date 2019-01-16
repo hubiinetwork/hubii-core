@@ -464,6 +464,10 @@ ShallowWrapper {
             },
         }
     }
+    gasStatistics={
+        Immutable.Map {
+        }
+    }
     goWalletDetails={[Function]}
     intl={
         Object {
@@ -683,56 +687,18 @@ ShallowWrapper {
                                         value="0"
                               />
                     </Form.style__FormItem>
-                    <Collapse
-                              bordered={false}
-                              defaultActiveKey={
-                                        Array [
-                                                  "2",
-                                                ]
+                    <GasOptions
+                              defaultGasLimit={1000000}
+                              defaultGasPrice={10}
+                              defaultOption="average"
+                              gasStatistics={undefined}
+                              intl={
+                                        Object {
+                                                  "formatMessage": [Function],
+                                                }
                               }
-                    >
-                              <CollapsePanel
-                                        header={
-                                                  <style__AdvancedSettingsHeader>
-                                                            advanced_settings
-                                                  </style__AdvancedSettingsHeader>
-                                        }
-                              >
-                                        <Form.style__FormItem
-                                                  colon={false}
-                                                  label={
-                                                            <Form.style__FormItemLabel>
-                                                                      gas_price
-                                                            </Form.style__FormItemLabel>
-                                                  }
-                                        >
-                                                  <Input.style
-                                                            defaultValue="10"
-                                                            min={0}
-                                                            onBlur={[Function]}
-                                                            onChange={[Function]}
-                                                            onFocus={[Function]}
-                                                            value="10"
-                                                  />
-                                        </Form.style__FormItem>
-                                        <Form.style__FormItem
-                                                  colon={false}
-                                                  label={
-                                                            <Form.style__FormItemLabel>
-                                                                      gas_limit
-                                                            </Form.style__FormItemLabel>
-                                                  }
-                                        >
-                                                  <Input.style
-                                                            defaultValue="1000000"
-                                                            onBlur={[Function]}
-                                                            onChange={[Function]}
-                                                            onFocus={[Function]}
-                                                            value="1000000"
-                                                  />
-                                        </Form.style__FormItem>
-                              </CollapsePanel>
-                    </Collapse>
+                              onChange={[Function]}
+                    />
                     <style__DollarPrice>
                               1 ETH = $412.00
                     </style__DollarPrice>
@@ -956,56 +922,18 @@ ShallowWrapper {
                                     value="0"
                         />
             </Form.style__FormItem>
-            <Collapse
-                        bordered={false}
-                        defaultActiveKey={
-                                    Array [
-                                                "2",
-                                              ]
+            <GasOptions
+                        defaultGasLimit={1000000}
+                        defaultGasPrice={10}
+                        defaultOption="average"
+                        gasStatistics={undefined}
+                        intl={
+                                    Object {
+                                                "formatMessage": [Function],
+                                              }
                         }
-            >
-                        <CollapsePanel
-                                    header={
-                                                <style__AdvancedSettingsHeader>
-                                                            advanced_settings
-                                                </style__AdvancedSettingsHeader>
-                                    }
-                        >
-                                    <Form.style__FormItem
-                                                colon={false}
-                                                label={
-                                                            <Form.style__FormItemLabel>
-                                                                        gas_price
-                                                            </Form.style__FormItemLabel>
-                                                }
-                                    >
-                                                <Input.style
-                                                            defaultValue="10"
-                                                            min={0}
-                                                            onBlur={[Function]}
-                                                            onChange={[Function]}
-                                                            onFocus={[Function]}
-                                                            value="10"
-                                                />
-                                    </Form.style__FormItem>
-                                    <Form.style__FormItem
-                                                colon={false}
-                                                label={
-                                                            <Form.style__FormItemLabel>
-                                                                        gas_limit
-                                                            </Form.style__FormItemLabel>
-                                                }
-                                    >
-                                                <Input.style
-                                                            defaultValue="1000000"
-                                                            onBlur={[Function]}
-                                                            onChange={[Function]}
-                                                            onFocus={[Function]}
-                                                            value="1000000"
-                                                />
-                                    </Form.style__FormItem>
-                        </CollapsePanel>
-            </Collapse>
+                        onChange={[Function]}
+            />
             <style__DollarPrice>
                         1 ETH = $412.00
             </style__DollarPrice>
@@ -1080,56 +1008,18 @@ ShallowWrapper {
                                 value="0"
                 />
 </Form.style__FormItem>,
-              <Collapse
-                bordered={false}
-                defaultActiveKey={
-                                Array [
-                                                "2",
-                                              ]
+              <GasOptions
+                defaultGasLimit={1000000}
+                defaultGasPrice={10}
+                defaultOption="average"
+                gasStatistics={undefined}
+                intl={
+                                Object {
+                                                "formatMessage": [Function],
+                                              }
                 }
->
-                <CollapsePanel
-                                header={
-                                                <style__AdvancedSettingsHeader>
-                                                                advanced_settings
-                                                </style__AdvancedSettingsHeader>
-                                }
-                >
-                                <Form.style__FormItem
-                                                colon={false}
-                                                label={
-                                                                <Form.style__FormItemLabel>
-                                                                                gas_price
-                                                                </Form.style__FormItemLabel>
-                                                }
-                                >
-                                                <Input.style
-                                                                defaultValue="10"
-                                                                min={0}
-                                                                onBlur={[Function]}
-                                                                onChange={[Function]}
-                                                                onFocus={[Function]}
-                                                                value="10"
-                                                />
-                                </Form.style__FormItem>
-                                <Form.style__FormItem
-                                                colon={false}
-                                                label={
-                                                                <Form.style__FormItemLabel>
-                                                                                gas_limit
-                                                                </Form.style__FormItemLabel>
-                                                }
-                                >
-                                                <Input.style
-                                                                defaultValue="1000000"
-                                                                onBlur={[Function]}
-                                                                onChange={[Function]}
-                                                                onFocus={[Function]}
-                                                                value="1000000"
-                                                />
-                                </Form.style__FormItem>
-                </CollapsePanel>
-</Collapse>,
+                onChange={[Function]}
+/>,
               <style__DollarPrice>
                 1 ETH = $412.00
 </style__DollarPrice>,
@@ -1289,174 +1179,17 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "bordered": false,
-                "children": <CollapsePanel
-                  header={
-                                    <style__AdvancedSettingsHeader>
-                                                      advanced_settings
-                                    </style__AdvancedSettingsHeader>
-                  }
->
-                  <Form.style__FormItem
-                                    colon={false}
-                                    label={
-                                                      <Form.style__FormItemLabel>
-                                                                        gas_price
-                                                      </Form.style__FormItemLabel>
-                                    }
-                  >
-                                    <Input.style
-                                                      defaultValue="10"
-                                                      min={0}
-                                                      onBlur={[Function]}
-                                                      onChange={[Function]}
-                                                      onFocus={[Function]}
-                                                      value="10"
-                                    />
-                  </Form.style__FormItem>
-                  <Form.style__FormItem
-                                    colon={false}
-                                    label={
-                                                      <Form.style__FormItemLabel>
-                                                                        gas_limit
-                                                      </Form.style__FormItemLabel>
-                                    }
-                  >
-                                    <Input.style
-                                                      defaultValue="1000000"
-                                                      onBlur={[Function]}
-                                                      onChange={[Function]}
-                                                      onFocus={[Function]}
-                                                      value="1000000"
-                                    />
-                  </Form.style__FormItem>
-</CollapsePanel>,
-                "defaultActiveKey": Array [
-                  "2",
-                ],
+                "defaultGasLimit": 1000000,
+                "defaultGasPrice": 10,
+                "defaultOption": "average",
+                "gasStatistics": undefined,
+                "intl": Object {
+                  "formatMessage": [Function],
+                },
+                "onChange": [Function],
               },
               "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": "1",
-                "nodeType": "class",
-                "props": Object {
-                  "children": Array [
-                    <Form.style__FormItem
-                      colon={false}
-                      label={
-                                            <Form.style__FormItemLabel>
-                                                                  gas_price
-                                            </Form.style__FormItemLabel>
-                      }
->
-                      <Input.style
-                                            defaultValue="10"
-                                            min={0}
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onFocus={[Function]}
-                                            value="10"
-                      />
-</Form.style__FormItem>,
-                    <Form.style__FormItem
-                      colon={false}
-                      label={
-                                            <Form.style__FormItemLabel>
-                                                                  gas_limit
-                                            </Form.style__FormItemLabel>
-                      }
->
-                      <Input.style
-                                            defaultValue="1000000"
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onFocus={[Function]}
-                                            value="1000000"
-                      />
-</Form.style__FormItem>,
-                  ],
-                  "header": <style__AdvancedSettingsHeader>
-                    advanced_settings
-</style__AdvancedSettingsHeader>,
-                },
-                "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": <Input.style
-                        defaultValue="10"
-                        min={0}
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onFocus={[Function]}
-                        value="10"
-/>,
-                      "colon": false,
-                      "label": <Form.style__FormItemLabel>
-                        gas_price
-</Form.style__FormItemLabel>,
-                    },
-                    "ref": null,
-                    "rendered": Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "defaultValue": "10",
-                        "min": 0,
-                        "onBlur": [Function],
-                        "onChange": [Function],
-                        "onFocus": [Function],
-                        "value": "10",
-                      },
-                      "ref": null,
-                      "rendered": null,
-                      "type": [Function],
-                    },
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": <Input.style
-                        defaultValue="1000000"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onFocus={[Function]}
-                        value="1000000"
-/>,
-                      "colon": false,
-                      "label": <Form.style__FormItemLabel>
-                        gas_limit
-</Form.style__FormItemLabel>,
-                    },
-                    "ref": null,
-                    "rendered": Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "defaultValue": "1000000",
-                        "onBlur": [Function],
-                        "onChange": [Function],
-                        "onFocus": [Function],
-                        "value": "1000000",
-                      },
-                      "ref": null,
-                      "rendered": null,
-                      "type": [Function],
-                    },
-                    "type": [Function],
-                  },
-                ],
-                "type": [Function],
-              },
+              "rendered": null,
               "type": [Function],
             },
             Object {
@@ -2339,56 +2072,18 @@ ShallowWrapper {
                                                 value="0"
                                     />
                         </Form.style__FormItem>
-                        <Collapse
-                                    bordered={false}
-                                    defaultActiveKey={
-                                                Array [
-                                                            "2",
-                                                          ]
+                        <GasOptions
+                                    defaultGasLimit={1000000}
+                                    defaultGasPrice={10}
+                                    defaultOption="average"
+                                    gasStatistics={undefined}
+                                    intl={
+                                                Object {
+                                                            "formatMessage": [Function],
+                                                          }
                                     }
-                        >
-                                    <CollapsePanel
-                                                header={
-                                                            <style__AdvancedSettingsHeader>
-                                                                        advanced_settings
-                                                            </style__AdvancedSettingsHeader>
-                                                }
-                                    >
-                                                <Form.style__FormItem
-                                                            colon={false}
-                                                            label={
-                                                                        <Form.style__FormItemLabel>
-                                                                                    gas_price
-                                                                        </Form.style__FormItemLabel>
-                                                            }
-                                                >
-                                                            <Input.style
-                                                                        defaultValue="10"
-                                                                        min={0}
-                                                                        onBlur={[Function]}
-                                                                        onChange={[Function]}
-                                                                        onFocus={[Function]}
-                                                                        value="10"
-                                                            />
-                                                </Form.style__FormItem>
-                                                <Form.style__FormItem
-                                                            colon={false}
-                                                            label={
-                                                                        <Form.style__FormItemLabel>
-                                                                                    gas_limit
-                                                                        </Form.style__FormItemLabel>
-                                                            }
-                                                >
-                                                            <Input.style
-                                                                        defaultValue="1000000"
-                                                                        onBlur={[Function]}
-                                                                        onChange={[Function]}
-                                                                        onFocus={[Function]}
-                                                                        value="1000000"
-                                                            />
-                                                </Form.style__FormItem>
-                                    </CollapsePanel>
-                        </Collapse>
+                                    onChange={[Function]}
+                        />
                         <style__DollarPrice>
                                     1 ETH = $412.00
                         </style__DollarPrice>
@@ -2612,56 +2307,18 @@ ShallowWrapper {
                                           value="0"
                             />
               </Form.style__FormItem>
-              <Collapse
-                            bordered={false}
-                            defaultActiveKey={
-                                          Array [
-                                                        "2",
-                                                      ]
+              <GasOptions
+                            defaultGasLimit={1000000}
+                            defaultGasPrice={10}
+                            defaultOption="average"
+                            gasStatistics={undefined}
+                            intl={
+                                          Object {
+                                                        "formatMessage": [Function],
+                                                      }
                             }
-              >
-                            <CollapsePanel
-                                          header={
-                                                        <style__AdvancedSettingsHeader>
-                                                                      advanced_settings
-                                                        </style__AdvancedSettingsHeader>
-                                          }
-                            >
-                                          <Form.style__FormItem
-                                                        colon={false}
-                                                        label={
-                                                                      <Form.style__FormItemLabel>
-                                                                                    gas_price
-                                                                      </Form.style__FormItemLabel>
-                                                        }
-                                          >
-                                                        <Input.style
-                                                                      defaultValue="10"
-                                                                      min={0}
-                                                                      onBlur={[Function]}
-                                                                      onChange={[Function]}
-                                                                      onFocus={[Function]}
-                                                                      value="10"
-                                                        />
-                                          </Form.style__FormItem>
-                                          <Form.style__FormItem
-                                                        colon={false}
-                                                        label={
-                                                                      <Form.style__FormItemLabel>
-                                                                                    gas_limit
-                                                                      </Form.style__FormItemLabel>
-                                                        }
-                                          >
-                                                        <Input.style
-                                                                      defaultValue="1000000"
-                                                                      onBlur={[Function]}
-                                                                      onChange={[Function]}
-                                                                      onFocus={[Function]}
-                                                                      value="1000000"
-                                                        />
-                                          </Form.style__FormItem>
-                            </CollapsePanel>
-              </Collapse>
+                            onChange={[Function]}
+              />
               <style__DollarPrice>
                             1 ETH = $412.00
               </style__DollarPrice>
@@ -2736,56 +2393,18 @@ ShallowWrapper {
                                     value="0"
                   />
 </Form.style__FormItem>,
-                <Collapse
-                  bordered={false}
-                  defaultActiveKey={
-                                    Array [
-                                                      "2",
-                                                    ]
+                <GasOptions
+                  defaultGasLimit={1000000}
+                  defaultGasPrice={10}
+                  defaultOption="average"
+                  gasStatistics={undefined}
+                  intl={
+                                    Object {
+                                                      "formatMessage": [Function],
+                                                    }
                   }
->
-                  <CollapsePanel
-                                    header={
-                                                      <style__AdvancedSettingsHeader>
-                                                                        advanced_settings
-                                                      </style__AdvancedSettingsHeader>
-                                    }
-                  >
-                                    <Form.style__FormItem
-                                                      colon={false}
-                                                      label={
-                                                                        <Form.style__FormItemLabel>
-                                                                                          gas_price
-                                                                        </Form.style__FormItemLabel>
-                                                      }
-                                    >
-                                                      <Input.style
-                                                                        defaultValue="10"
-                                                                        min={0}
-                                                                        onBlur={[Function]}
-                                                                        onChange={[Function]}
-                                                                        onFocus={[Function]}
-                                                                        value="10"
-                                                      />
-                                    </Form.style__FormItem>
-                                    <Form.style__FormItem
-                                                      colon={false}
-                                                      label={
-                                                                        <Form.style__FormItemLabel>
-                                                                                          gas_limit
-                                                                        </Form.style__FormItemLabel>
-                                                      }
-                                    >
-                                                      <Input.style
-                                                                        defaultValue="1000000"
-                                                                        onBlur={[Function]}
-                                                                        onChange={[Function]}
-                                                                        onFocus={[Function]}
-                                                                        value="1000000"
-                                                      />
-                                    </Form.style__FormItem>
-                  </CollapsePanel>
-</Collapse>,
+                  onChange={[Function]}
+/>,
                 <style__DollarPrice>
                   1 ETH = $412.00
 </style__DollarPrice>,
@@ -2945,174 +2564,17 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "bordered": false,
-                  "children": <CollapsePanel
-                    header={
-                                        <style__AdvancedSettingsHeader>
-                                                            advanced_settings
-                                        </style__AdvancedSettingsHeader>
-                    }
->
-                    <Form.style__FormItem
-                                        colon={false}
-                                        label={
-                                                            <Form.style__FormItemLabel>
-                                                                                gas_price
-                                                            </Form.style__FormItemLabel>
-                                        }
-                    >
-                                        <Input.style
-                                                            defaultValue="10"
-                                                            min={0}
-                                                            onBlur={[Function]}
-                                                            onChange={[Function]}
-                                                            onFocus={[Function]}
-                                                            value="10"
-                                        />
-                    </Form.style__FormItem>
-                    <Form.style__FormItem
-                                        colon={false}
-                                        label={
-                                                            <Form.style__FormItemLabel>
-                                                                                gas_limit
-                                                            </Form.style__FormItemLabel>
-                                        }
-                    >
-                                        <Input.style
-                                                            defaultValue="1000000"
-                                                            onBlur={[Function]}
-                                                            onChange={[Function]}
-                                                            onFocus={[Function]}
-                                                            value="1000000"
-                                        />
-                    </Form.style__FormItem>
-</CollapsePanel>,
-                  "defaultActiveKey": Array [
-                    "2",
-                  ],
+                  "defaultGasLimit": 1000000,
+                  "defaultGasPrice": 10,
+                  "defaultOption": "average",
+                  "gasStatistics": undefined,
+                  "intl": Object {
+                    "formatMessage": [Function],
+                  },
+                  "onChange": [Function],
                 },
                 "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": "1",
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": Array [
-                      <Form.style__FormItem
-                        colon={false}
-                        label={
-                                                <Form.style__FormItemLabel>
-                                                                        gas_price
-                                                </Form.style__FormItemLabel>
-                        }
->
-                        <Input.style
-                                                defaultValue="10"
-                                                min={0}
-                                                onBlur={[Function]}
-                                                onChange={[Function]}
-                                                onFocus={[Function]}
-                                                value="10"
-                        />
-</Form.style__FormItem>,
-                      <Form.style__FormItem
-                        colon={false}
-                        label={
-                                                <Form.style__FormItemLabel>
-                                                                        gas_limit
-                                                </Form.style__FormItemLabel>
-                        }
->
-                        <Input.style
-                                                defaultValue="1000000"
-                                                onBlur={[Function]}
-                                                onChange={[Function]}
-                                                onFocus={[Function]}
-                                                value="1000000"
-                        />
-</Form.style__FormItem>,
-                    ],
-                    "header": <style__AdvancedSettingsHeader>
-                      advanced_settings
-</style__AdvancedSettingsHeader>,
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "children": <Input.style
-                          defaultValue="10"
-                          min={0}
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          onFocus={[Function]}
-                          value="10"
-/>,
-                        "colon": false,
-                        "label": <Form.style__FormItemLabel>
-                          gas_price
-</Form.style__FormItemLabel>,
-                      },
-                      "ref": null,
-                      "rendered": Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "class",
-                        "props": Object {
-                          "defaultValue": "10",
-                          "min": 0,
-                          "onBlur": [Function],
-                          "onChange": [Function],
-                          "onFocus": [Function],
-                          "value": "10",
-                        },
-                        "ref": null,
-                        "rendered": null,
-                        "type": [Function],
-                      },
-                      "type": [Function],
-                    },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "children": <Input.style
-                          defaultValue="1000000"
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          onFocus={[Function]}
-                          value="1000000"
-/>,
-                        "colon": false,
-                        "label": <Form.style__FormItemLabel>
-                          gas_limit
-</Form.style__FormItemLabel>,
-                      },
-                      "ref": null,
-                      "rendered": Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "class",
-                        "props": Object {
-                          "defaultValue": "1000000",
-                          "onBlur": [Function],
-                          "onChange": [Function],
-                          "onFocus": [Function],
-                          "value": "1000000",
-                        },
-                        "ref": null,
-                        "rendered": null,
-                        "type": [Function],
-                      },
-                      "type": [Function],
-                    },
-                  ],
-                  "type": [Function],
-                },
+                "rendered": null,
                 "type": [Function],
               },
               Object {

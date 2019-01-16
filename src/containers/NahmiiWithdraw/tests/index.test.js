@@ -50,6 +50,7 @@ describe('<NahmiiWithdraw />', () => {
       startChallenge: () => {},
       settle: () => {},
       withdraw: () => {},
+      gasStatistics: fromJS({}),
     };
   });
   it('should render correctly when everything is loaded', () => {
