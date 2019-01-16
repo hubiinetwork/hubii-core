@@ -53,7 +53,7 @@
     "add_address_contacts_book": "添加钱包地址到您的联系人列表",
     "enter_amount": "输入金额",
     "advanced_settings": "进阶设置",
-    "gas_options": "Gas 选项",
+    "fee_options": "费率选项",
     "gas_price": "Gas 价格",
     "gas_limit": "Gas 上限",
     "balance_before": "支付前余额",

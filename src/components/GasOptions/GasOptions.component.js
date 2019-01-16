@@ -145,9 +145,9 @@ export class GasOptions extends React.PureComponent { // eslint-disable-line rea
     let gasOptions = [{ type: 'manual', name: 'Manual' }];
     if (gasStatistics) {
       gasOptions = [
-        { type: 'fast', name: `Fast <${Math.ceil(gasStatistics.fastWait)}min` },
-        { type: 'average', name: `Average <${Math.ceil(gasStatistics.avgWait)}min` },
-        { type: 'safeLow', name: `Slow <${Math.ceil(gasStatistics.safeLowWait)}min` },
+        { type: 'fast', name: `Fast ~ ${Math.ceil(gasStatistics.fastWait)}min` },
+        { type: 'average', name: `Average ~ ${Math.ceil(gasStatistics.avgWait)}min` },
+        { type: 'safeLow', name: `Slow ~ ${Math.ceil(gasStatistics.safeLowWait)}min` },
         { type: 'manual', name: 'Manual' },
       ];
     }
@@ -157,7 +157,7 @@ export class GasOptions extends React.PureComponent { // eslint-disable-line rea
           header={<AdvancedSettingsHeader>{formatMessage({ id: 'advanced_settings' })}</AdvancedSettingsHeader>}
           key="1"
         >
-          <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_options' })}</FormItemLabel>} colon={false}>
+          <FormItem label={<FormItemLabel>{formatMessage({ id: 'fee_options' })}</FormItemLabel>} colon={false}>
             <Select
               className="gas-options"
               defaultValue={option}
