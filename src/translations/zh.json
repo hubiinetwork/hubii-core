@@ -53,6 +53,7 @@
     "add_address_contacts_book": "添加钱包地址到您的联系人列表",
     "enter_amount": "输入金额",
     "advanced_settings": "进阶设置",
+    "fee_options": "费率选项",
     "gas_price": "Gas 价格",
     "gas_limit": "Gas 上限",
     "balance_before": "支付前余额",
@@ -204,5 +205,9 @@
     "confirmed": "已确定",
     "all": "全部",
     "only_nahmii": "只适用于 nahmii",
-    "only_base_layer": "只适用于基础链"
+    "only_base_layer": "只适用于基础链",
+    "slow": "稍慢",
+    "average": "平均速度",
+    "fast": "快速",
+    "manual": "手动"
 }

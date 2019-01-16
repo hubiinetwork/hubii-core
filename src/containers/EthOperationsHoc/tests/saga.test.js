@@ -1,7 +1,8 @@
-import { testSaga } from 'redux-saga-test-plan';
+import { testSaga, expectSaga } from 'redux-saga-test-plan';
 import { createMockTask } from 'redux-saga/utils';
 
 import { fork, takeEvery } from 'redux-saga/effects';
+import { fromJS } from 'immutable';
 
 import {
   CHANGE_NETWORK,
@@ -12,13 +13,17 @@ import {
   currentNetworkMock,
 } from 'containers/App/tests/mocks/selectors';
 
+import ethOperationsHocReducer, { initialState } from 'containers/EthOperationsHoc/reducer';
+
 import ethOperationsHoc, {
-  loadBlockHeight, ethOperationsOrcestrator,
+  loadBlockHeight, ethOperationsOrcestrator, loadGasStatistics,
 } from '../saga';
 
 import {
   loadBlockHeightSuccess,
   loadBlockHeightError,
+  loadGasStatisticsSuccess,
+  loadGasStatisticsError,
 } from '../actions';
 
 
@@ -62,6 +67,7 @@ describe('eth operations orcentrator', () => {
     const saga = testSaga(ethOperationsOrcestrator);
     const allSagas = [
       fork(loadBlockHeight, currentNetworkMock.provider),
+      fork(loadGasStatistics),
     ];
     saga
         .next() // network selector
@@ -70,6 +76,57 @@ describe('eth operations orcentrator', () => {
         .next().cancel(mockTask)
         .next() // network selector
         .next(currentNetworkMock).all(allSagas);
+  });
+});
+
+describe('gas estimation', () => {
+  const withReducer = (state, action) => state.set('ethOperationsHoc', ethOperationsHocReducer(state.get('ethOperationsHoc'), action));
+  it('should load estimation for gas price', () => {
+    const state = fromJS({}).set('ethOperationsHoc', initialState);
+    const gasEstimate = fromJS({
+      safeLow: 19.0,
+      safeLowWait: 22.1,
+      fast: 100.0,
+      fastWait: 0.7,
+      fastest: 250.0,
+      fastestWait: 0.5,
+      average: 41.0,
+      avgWait: 1.6,
+      block_time: 13.98421052631579,
+      speed: 0.8085666916661166,
+      blockNum: 7068199,
+    });
+    return expectSaga(loadGasStatistics)
+      .withReducer(withReducer, state)
+      .provide({
+        call() {
+          return gasEstimate;
+        },
+      })
+      .put(loadGasStatisticsSuccess(gasEstimate))
+      .run({ silenceTimeout: true })
+      .then((result) => {
+        const gasStatistics = result.storeState.getIn(['ethOperationsHoc', 'gasStatistics']);
+        expect(gasStatistics.get('estimate')).toEqual(gasEstimate);
+      });
+  });
+  it('should handle error', () => {
+    const state = fromJS({}).set('ethOperationsHoc', initialState);
+    const error = new Error();
+    return expectSaga(loadGasStatistics)
+      .withReducer(withReducer, state)
+      .provide({
+        call() {
+          throw error;
+        },
+      })
+      .put(loadGasStatisticsError(error))
+      .run({ silenceTimeout: true })
+      .then((result) => {
+        const gasStatistics = result.storeState.getIn(['ethOperationsHoc', 'gasStatistics']);
+        expect(gasStatistics.get('estimate')).toEqual(null);
+        expect(gasStatistics.get('error')).toEqual(error);
+      });
   });
 });
 
