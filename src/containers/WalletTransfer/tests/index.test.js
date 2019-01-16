@@ -49,7 +49,7 @@ describe('WalletTransfer', () => {
     ledgerNanoSInfo: ledgerHocConnectedMock,
     trezorInfo: trezorHocConnectedMock,
     createContact: jest.fn(),
-    gasStatistics: fromJS({})
+    gasStatistics: fromJS({}),
   };
 
   it('should render correctly', () => {

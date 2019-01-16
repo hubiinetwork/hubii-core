@@ -205,5 +205,9 @@
     "confirmed": "Confirmed",
     "all": "All",
     "only_nahmii": "Only nahmii",
-    "only_base_layer": "Only base layer"
+    "only_base_layer": "Only base layer",
+    "slow": "Slow",
+    "average": "Average",
+    "fast": "Fast",
+    "manual": "Manual"
 }

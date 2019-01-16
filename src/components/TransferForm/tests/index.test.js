@@ -36,7 +36,7 @@ describe('TransferForm', () => {
     hwWalletReady: false,
     createContact: () => {},
     intl,
-    gasStatistics: fromJS({})
+    gasStatistics: fromJS({}),
   };
 
   it('should render correctly in default state', () => {
