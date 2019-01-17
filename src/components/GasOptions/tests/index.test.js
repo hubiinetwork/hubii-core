@@ -29,23 +29,19 @@ describe('<GasOptions />', () => {
       },
       defaultGasLimit: 800000,
       defaultGasPrice: 10,
+      onChange: () => {},
     };
   });
   describe('defaultOption does not set to manual', () => {
     let wrapper;
     let gasPriceInput;
     let gasLimitInput;
-    let onChangeSpy;
     describe('when gasStatistics available', () => {
       beforeEach(() => {
-        onChangeSpy = jest.fn();
         wrapper = shallow(<GasOptions
           {...props
           }
           defaultOption="average"
-          onChange={
-            onChangeSpy
-          }
         />
         );
         gasPriceInput = wrapper.find('.gas-price-input');
@@ -67,30 +63,51 @@ describe('<GasOptions />', () => {
       });
     });
     describe('when gasStatistics not available', () => {
-      beforeEach(() => {
-        onChangeSpy = jest.fn();
-        wrapper = shallow(<GasOptions
-          {...props
-          }
-          gasStatistics={null}
-          defaultOption="average"
-          onChange={
-            onChangeSpy
-          }
-        />
-        );
+      describe('not available from the begining', () => {
+        beforeEach(() => {
+          wrapper = shallow(<GasOptions
+            {...props
+            }
+            gasStatistics={null}
+            defaultOption="average"
+          />
+          );
+        });
+        it('should default to manual after mount', () => {
+          expect(wrapper.find('.gas-options').props().defaultValue).toEqual('manual');
+          expect(wrapper.find('Option')).toHaveLength(1);
+          expect(wrapper.find('Option').props().value).toEqual('manual');
+        });
+        it('should default gas limit/price to manual', () => {
+          const state = wrapper.state();
+          expect(state.gasPriceGwei).toEqual(props.defaultGasPrice);
+          expect(state.gasPriceGweiInput).toEqual(props.defaultGasPrice.toString());
+          expect(state.gasLimit).toEqual(props.defaultGasLimit);
+          expect(state.gasLimitInput).toEqual(props.defaultGasLimit.toString());
+        });
       });
-      it('should default to manual after mount', () => {
-        expect(wrapper.find('.gas-options').props().defaultValue).toEqual('manual');
-        expect(wrapper.find('Option')).toHaveLength(1);
-        expect(wrapper.find('Option').props().value).toEqual('manual');
-      });
-      it('should default gas limit/price to manual', () => {
-        const state = wrapper.state();
-        expect(state.gasPriceGwei).toEqual(props.defaultGasPrice);
-        expect(state.gasPriceGweiInput).toEqual(props.defaultGasPrice.toString());
-        expect(state.gasLimit).toEqual(props.defaultGasLimit);
-        expect(state.gasLimitInput).toEqual(props.defaultGasLimit.toString());
+      describe('not available after init', () => {
+        beforeEach(() => {
+          wrapper = shallow(<GasOptions
+            {...props
+            }
+            defaultOption="average"
+          />
+          );
+          wrapper.setProps({ gasStatistics: null });
+        });
+        it('should default to manual after mount', () => {
+          expect(wrapper.find('.gas-options').props().defaultValue).toEqual('manual');
+          expect(wrapper.find('Option')).toHaveLength(1);
+          expect(wrapper.find('Option').props().value).toEqual('manual');
+        });
+        it('should default gas limit/price to manual', () => {
+          const state = wrapper.state();
+          expect(state.gasPriceGwei).toEqual(props.defaultGasPrice);
+          expect(state.gasPriceGweiInput).toEqual(props.defaultGasPrice.toString());
+          expect(state.gasLimit).toEqual(props.defaultGasLimit);
+          expect(state.gasLimitInput).toEqual(props.defaultGasLimit.toString());
+        });
       });
     });
   });
@@ -98,15 +115,10 @@ describe('<GasOptions />', () => {
     let wrapper;
     let gasLimitInput;
     let gasPriceInput;
-    let onChangeSpy;
     beforeEach(() => {
-      onChangeSpy = jest.fn();
       wrapper = shallow(<GasOptions
         {...props}
         defaultOption="manual"
-        onChange={
-          onChangeSpy
-        }
       />
       );
       gasLimitInput = wrapper.find('.gas-limit-input');
