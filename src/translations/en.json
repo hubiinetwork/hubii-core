@@ -53,6 +53,7 @@
     "add_address_contacts_book": "Add address to your contacts book",
     "enter_amount": "Enter an amount",
     "advanced_settings": "Advanced settings",
+    "fee_options": "Fee",
     "gas_price": "Gas price",
     "gas_limit": "Gas limit",
     "balance_before": "balance before",
@@ -204,5 +205,9 @@
     "confirmed": "Confirmed",
     "all": "All",
     "only_nahmii": "Only nahmii",
-    "only_base_layer": "Only base layer"
+    "only_base_layer": "Only base layer",
+    "slow": "Slow",
+    "average": "Average",
+    "fast": "Fast",
+    "manual": "Manual"
 }

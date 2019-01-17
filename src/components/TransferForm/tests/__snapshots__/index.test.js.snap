@@ -465,6 +465,10 @@ ShallowWrapper {
             },
         }
     }
+    gasStatistics={
+        Immutable.Map {
+        }
+    }
     hwWalletReady={false}
     intl={
         Object {
@@ -6973,6 +6977,10 @@ ShallowWrapper {
             },
         }
     }
+    gasStatistics={
+        Immutable.Map {
+        }
+    }
     hwWalletReady={false}
     intl={
         Object {
@@ -13166,6 +13174,10 @@ ShallowWrapper {
                     },
                 },
             },
+        }
+    }
+    gasStatistics={
+        Immutable.Map {
         }
     }
     hwWalletReady={true}
@@ -19674,6 +19686,10 @@ ShallowWrapper {
                     },
                 },
             },
+        }
+    }
+    gasStatistics={
+        Immutable.Map {
         }
     }
     hwWalletReady={false}

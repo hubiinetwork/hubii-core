@@ -14,6 +14,9 @@ import {
   makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHoc/selectors';
 import {
+  makeSelectGasStatistics,
+} from 'containers/EthOperationsHoc/selectors';
+import {
   makeSelectSupportedAssets,
   makeSelectPrices,
 } from 'containers/HubiiApiHoc/selectors';
@@ -88,6 +91,7 @@ export class WalletTransfer extends React.PureComponent {
 
   render() {
     const {
+      gasStatistics,
       contacts,
       currentWallet,
       prices,
@@ -117,6 +121,7 @@ export class WalletTransfer extends React.PureComponent {
         transfering={currentWallet.toJS().transfering}
         currentWalletWithInfo={this.props.currentWalletWithInfo}
         createContact={this.props.createContact}
+        gasStatistics={gasStatistics}
       />
     );
   }
@@ -135,6 +140,7 @@ WalletTransfer.propTypes = {
   contacts: PropTypes.object.isRequired,
   currentNetwork: PropTypes.object.isRequired,
   createContact: PropTypes.func.isRequired,
+  gasStatistics: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -146,6 +152,7 @@ const mapStateToProps = createStructuredSelector({
   supportedAssets: makeSelectSupportedAssets(),
   prices: makeSelectPrices(),
   contacts: makeSelectContacts(),
+  gasStatistics: makeSelectGasStatistics(),
 });
 
 export function mapDispatchToProps(dispatch) {
