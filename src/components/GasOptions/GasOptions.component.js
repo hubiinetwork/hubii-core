@@ -133,9 +133,9 @@ export class GasOptions extends React.PureComponent { // eslint-disable-line rea
     let gasOptions = [{ type: 'manual', name: 'Manual' }];
     if (gasStatistics) {
       gasOptions = [
-        { type: 'fast', name: `${formatMessage({ id: 'fast' })} ~ ${Math.ceil(gasStatistics.fastWait)}min` },
-        { type: 'average', name: `${formatMessage({ id: 'average' })} ~ ${Math.ceil(gasStatistics.avgWait)}min` },
-        { type: 'safeLow', name: `${formatMessage({ id: 'slow' })} ~ ${Math.ceil(gasStatistics.safeLowWait)}min` },
+        { type: 'fast', name: `${formatMessage({ id: 'fast' })} ~${Math.ceil(gasStatistics.fastWait)}min` },
+        { type: 'average', name: `${formatMessage({ id: 'average' })} ~${Math.ceil(gasStatistics.avgWait)}min` },
+        { type: 'safeLow', name: `${formatMessage({ id: 'slow' })} ~${Math.ceil(gasStatistics.safeLowWait)}min` },
         { type: 'manual', name: formatMessage({ id: 'manual' }) },
       ];
     }
