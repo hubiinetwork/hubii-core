@@ -19,6 +19,11 @@ ShallowWrapper {
             "someerr",
         ]
     }
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -43,13 +48,14 @@ ShallowWrapper {
                                       }
                     }
           >
-                    Network:
+                    network
+                    :
           </style__StyledText>
            
           <style__StyledText
                     warning={false}
           >
-                    Mainnet
+                    mainnet
           </style__StyledText>
 </span>,
         <span
@@ -68,13 +74,14 @@ ShallowWrapper {
                                       }
                     }
           >
-                    Status:
+                    status
+                    :
           </style__StyledText>
            
           <style__StyledText
                     warning={true}
           >
-                    Reconnecting...
+                    reconnecting
           </style__StyledText>
            
           <style__StatusIcon
@@ -99,13 +106,14 @@ ShallowWrapper {
                                         }
               }
 >
-              Network:
+              network
+              :
 </style__StyledText>,
             " ",
             <style__StyledText
               warning={false}
 >
-              Mainnet
+              mainnet
 </style__StyledText>,
           ],
           "warning": false,
@@ -117,13 +125,19 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Network:",
+              "children": Array [
+                "network",
+                ":",
+              ],
               "style": Object {
                 "fontWeight": "bold",
               },
             },
             "ref": null,
-            "rendered": "Network:",
+            "rendered": Array [
+              "network",
+              ":",
+            ],
             "type": [Function],
           },
           " ",
@@ -132,11 +146,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Mainnet",
+              "children": "mainnet",
               "warning": false,
             },
             "ref": null,
-            "rendered": "Mainnet",
+            "rendered": "mainnet",
             "type": [Function],
           },
         ],
@@ -155,13 +169,14 @@ ShallowWrapper {
                                         }
               }
 >
-              Status:
+              status
+              :
 </style__StyledText>,
             " ",
             <style__StyledText
               warning={true}
 >
-              Reconnecting...
+              reconnecting
 </style__StyledText>,
             " ",
             <style__StatusIcon
@@ -182,13 +197,19 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Status:",
+              "children": Array [
+                "status",
+                ":",
+              ],
               "style": Object {
                 "fontWeight": "bold",
               },
             },
             "ref": null,
-            "rendered": "Status:",
+            "rendered": Array [
+              "status",
+              ":",
+            ],
             "type": [Function],
           },
           " ",
@@ -197,11 +218,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Reconnecting...",
+              "children": "reconnecting",
               "warning": true,
             },
             "ref": null,
-            "rendered": "Reconnecting...",
+            "rendered": "reconnecting",
             "type": [Function],
           },
           " ",
@@ -240,13 +261,14 @@ ShallowWrapper {
                                               }
                         }
             >
-                        Network:
+                        network
+                        :
             </style__StyledText>
              
             <style__StyledText
                         warning={false}
             >
-                        Mainnet
+                        mainnet
             </style__StyledText>
 </span>,
           <span
@@ -265,13 +287,14 @@ ShallowWrapper {
                                               }
                         }
             >
-                        Status:
+                        status
+                        :
             </style__StyledText>
              
             <style__StyledText
                         warning={true}
             >
-                        Reconnecting...
+                        reconnecting
             </style__StyledText>
              
             <style__StatusIcon
@@ -296,13 +319,14 @@ ShallowWrapper {
                                               }
                 }
 >
-                Network:
+                network
+                :
 </style__StyledText>,
               " ",
               <style__StyledText
                 warning={false}
 >
-                Mainnet
+                mainnet
 </style__StyledText>,
             ],
             "warning": false,
@@ -314,13 +338,19 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Network:",
+                "children": Array [
+                  "network",
+                  ":",
+                ],
                 "style": Object {
                   "fontWeight": "bold",
                 },
               },
               "ref": null,
-              "rendered": "Network:",
+              "rendered": Array [
+                "network",
+                ":",
+              ],
               "type": [Function],
             },
             " ",
@@ -329,11 +359,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Mainnet",
+                "children": "mainnet",
                 "warning": false,
               },
               "ref": null,
-              "rendered": "Mainnet",
+              "rendered": "mainnet",
               "type": [Function],
             },
           ],
@@ -352,13 +382,14 @@ ShallowWrapper {
                                               }
                 }
 >
-                Status:
+                status
+                :
 </style__StyledText>,
               " ",
               <style__StyledText
                 warning={true}
 >
-                Reconnecting...
+                reconnecting
 </style__StyledText>,
               " ",
               <style__StatusIcon
@@ -379,13 +410,19 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Status:",
+                "children": Array [
+                  "status",
+                  ":",
+                ],
                 "style": Object {
                   "fontWeight": "bold",
                 },
               },
               "ref": null,
-              "rendered": "Status:",
+              "rendered": Array [
+                "status",
+                ":",
+              ],
               "type": [Function],
             },
             " ",
@@ -394,11 +431,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Reconnecting...",
+                "children": "reconnecting",
                 "warning": true,
               },
               "ref": null,
-              "rendered": "Reconnecting...",
+              "rendered": "reconnecting",
               "type": [Function],
             },
             " ",
@@ -449,6 +486,11 @@ ShallowWrapper {
         Immutable.Set [
         ]
     }
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -473,13 +515,14 @@ ShallowWrapper {
                                       }
                     }
           >
-                    Network:
+                    network
+                    :
           </style__StyledText>
            
           <style__StyledText
                     warning={false}
           >
-                    Mainnet
+                    mainnet
           </style__StyledText>
 </span>,
         <span
@@ -498,13 +541,14 @@ ShallowWrapper {
                                       }
                     }
           >
-                    Status:
+                    status
+                    :
           </style__StyledText>
            
           <style__StyledText
                     warning={false}
           >
-                    Connected
+                    connected
           </style__StyledText>
            
           <style__StatusIcon
@@ -529,13 +573,14 @@ ShallowWrapper {
                                         }
               }
 >
-              Network:
+              network
+              :
 </style__StyledText>,
             " ",
             <style__StyledText
               warning={false}
 >
-              Mainnet
+              mainnet
 </style__StyledText>,
           ],
           "warning": false,
@@ -547,13 +592,19 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Network:",
+              "children": Array [
+                "network",
+                ":",
+              ],
               "style": Object {
                 "fontWeight": "bold",
               },
             },
             "ref": null,
-            "rendered": "Network:",
+            "rendered": Array [
+              "network",
+              ":",
+            ],
             "type": [Function],
           },
           " ",
@@ -562,11 +613,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Mainnet",
+              "children": "mainnet",
               "warning": false,
             },
             "ref": null,
-            "rendered": "Mainnet",
+            "rendered": "mainnet",
             "type": [Function],
           },
         ],
@@ -585,13 +636,14 @@ ShallowWrapper {
                                         }
               }
 >
-              Status:
+              status
+              :
 </style__StyledText>,
             " ",
             <style__StyledText
               warning={false}
 >
-              Connected
+              connected
 </style__StyledText>,
             " ",
             <style__StatusIcon
@@ -612,13 +664,19 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Status:",
+              "children": Array [
+                "status",
+                ":",
+              ],
               "style": Object {
                 "fontWeight": "bold",
               },
             },
             "ref": null,
-            "rendered": "Status:",
+            "rendered": Array [
+              "status",
+              ":",
+            ],
             "type": [Function],
           },
           " ",
@@ -627,11 +685,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Connected",
+              "children": "connected",
               "warning": false,
             },
             "ref": null,
-            "rendered": "Connected",
+            "rendered": "connected",
             "type": [Function],
           },
           " ",
@@ -670,13 +728,14 @@ ShallowWrapper {
                                               }
                         }
             >
-                        Network:
+                        network
+                        :
             </style__StyledText>
              
             <style__StyledText
                         warning={false}
             >
-                        Mainnet
+                        mainnet
             </style__StyledText>
 </span>,
           <span
@@ -695,13 +754,14 @@ ShallowWrapper {
                                               }
                         }
             >
-                        Status:
+                        status
+                        :
             </style__StyledText>
              
             <style__StyledText
                         warning={false}
             >
-                        Connected
+                        connected
             </style__StyledText>
              
             <style__StatusIcon
@@ -726,13 +786,14 @@ ShallowWrapper {
                                               }
                 }
 >
-                Network:
+                network
+                :
 </style__StyledText>,
               " ",
               <style__StyledText
                 warning={false}
 >
-                Mainnet
+                mainnet
 </style__StyledText>,
             ],
             "warning": false,
@@ -744,13 +805,19 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Network:",
+                "children": Array [
+                  "network",
+                  ":",
+                ],
                 "style": Object {
                   "fontWeight": "bold",
                 },
               },
               "ref": null,
-              "rendered": "Network:",
+              "rendered": Array [
+                "network",
+                ":",
+              ],
               "type": [Function],
             },
             " ",
@@ -759,11 +826,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Mainnet",
+                "children": "mainnet",
                 "warning": false,
               },
               "ref": null,
-              "rendered": "Mainnet",
+              "rendered": "mainnet",
               "type": [Function],
             },
           ],
@@ -782,13 +849,14 @@ ShallowWrapper {
                                               }
                 }
 >
-                Status:
+                status
+                :
 </style__StyledText>,
               " ",
               <style__StyledText
                 warning={false}
 >
-                Connected
+                connected
 </style__StyledText>,
               " ",
               <style__StatusIcon
@@ -809,13 +877,19 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Status:",
+                "children": Array [
+                  "status",
+                  ":",
+                ],
                 "style": Object {
                   "fontWeight": "bold",
                 },
               },
               "ref": null,
-              "rendered": "Status:",
+              "rendered": Array [
+                "status",
+                ":",
+              ],
               "type": [Function],
             },
             " ",
@@ -824,11 +898,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Connected",
+                "children": "connected",
                 "warning": false,
               },
               "ref": null,
-              "rendered": "Connected",
+              "rendered": "connected",
               "type": [Function],
             },
             " ",
@@ -879,6 +953,11 @@ ShallowWrapper {
         Immutable.Set [
         ]
     }
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -894,7 +973,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <span
-          warning={true}
+          warning={false}
 >
           <style__StyledText
                     style={
@@ -903,13 +982,14 @@ ShallowWrapper {
                                       }
                     }
           >
-                    Network:
+                    network
+                    :
           </style__StyledText>
            
           <style__StyledText
-                    warning={true}
+                    warning={false}
           >
-                    Testnet
+                    testnet
           </style__StyledText>
 </span>,
         <span
@@ -928,13 +1008,14 @@ ShallowWrapper {
                                       }
                     }
           >
-                    Status:
+                    status
+                    :
           </style__StyledText>
            
           <style__StyledText
                     warning={false}
           >
-                    Connected
+                    connected
           </style__StyledText>
            
           <style__StatusIcon
@@ -959,16 +1040,17 @@ ShallowWrapper {
                                         }
               }
 >
-              Network:
+              network
+              :
 </style__StyledText>,
             " ",
             <style__StyledText
-              warning={true}
+              warning={false}
 >
-              Testnet
+              testnet
 </style__StyledText>,
           ],
-          "warning": true,
+          "warning": false,
         },
         "ref": null,
         "rendered": Array [
@@ -977,13 +1059,19 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Network:",
+              "children": Array [
+                "network",
+                ":",
+              ],
               "style": Object {
                 "fontWeight": "bold",
               },
             },
             "ref": null,
-            "rendered": "Network:",
+            "rendered": Array [
+              "network",
+              ":",
+            ],
             "type": [Function],
           },
           " ",
@@ -992,11 +1080,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Testnet",
-              "warning": true,
+              "children": "testnet",
+              "warning": false,
             },
             "ref": null,
-            "rendered": "Testnet",
+            "rendered": "testnet",
             "type": [Function],
           },
         ],
@@ -1015,13 +1103,14 @@ ShallowWrapper {
                                         }
               }
 >
-              Status:
+              status
+              :
 </style__StyledText>,
             " ",
             <style__StyledText
               warning={false}
 >
-              Connected
+              connected
 </style__StyledText>,
             " ",
             <style__StatusIcon
@@ -1042,13 +1131,19 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Status:",
+              "children": Array [
+                "status",
+                ":",
+              ],
               "style": Object {
                 "fontWeight": "bold",
               },
             },
             "ref": null,
-            "rendered": "Status:",
+            "rendered": Array [
+              "status",
+              ":",
+            ],
             "type": [Function],
           },
           " ",
@@ -1057,11 +1152,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Connected",
+              "children": "connected",
               "warning": false,
             },
             "ref": null,
-            "rendered": "Connected",
+            "rendered": "connected",
             "type": [Function],
           },
           " ",
@@ -1091,7 +1186,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <span
-            warning={true}
+            warning={false}
 >
             <style__StyledText
                         style={
@@ -1100,13 +1195,14 @@ ShallowWrapper {
                                               }
                         }
             >
-                        Network:
+                        network
+                        :
             </style__StyledText>
              
             <style__StyledText
-                        warning={true}
+                        warning={false}
             >
-                        Testnet
+                        testnet
             </style__StyledText>
 </span>,
           <span
@@ -1125,13 +1221,14 @@ ShallowWrapper {
                                               }
                         }
             >
-                        Status:
+                        status
+                        :
             </style__StyledText>
              
             <style__StyledText
                         warning={false}
             >
-                        Connected
+                        connected
             </style__StyledText>
              
             <style__StatusIcon
@@ -1156,16 +1253,17 @@ ShallowWrapper {
                                               }
                 }
 >
-                Network:
+                network
+                :
 </style__StyledText>,
               " ",
               <style__StyledText
-                warning={true}
+                warning={false}
 >
-                Testnet
+                testnet
 </style__StyledText>,
             ],
-            "warning": true,
+            "warning": false,
           },
           "ref": null,
           "rendered": Array [
@@ -1174,13 +1272,19 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Network:",
+                "children": Array [
+                  "network",
+                  ":",
+                ],
                 "style": Object {
                   "fontWeight": "bold",
                 },
               },
               "ref": null,
-              "rendered": "Network:",
+              "rendered": Array [
+                "network",
+                ":",
+              ],
               "type": [Function],
             },
             " ",
@@ -1189,11 +1293,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Testnet",
-                "warning": true,
+                "children": "testnet",
+                "warning": false,
               },
               "ref": null,
-              "rendered": "Testnet",
+              "rendered": "testnet",
               "type": [Function],
             },
           ],
@@ -1212,13 +1316,14 @@ ShallowWrapper {
                                               }
                 }
 >
-                Status:
+                status
+                :
 </style__StyledText>,
               " ",
               <style__StyledText
                 warning={false}
 >
-                Connected
+                connected
 </style__StyledText>,
               " ",
               <style__StatusIcon
@@ -1239,13 +1344,19 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Status:",
+                "children": Array [
+                  "status",
+                  ":",
+                ],
                 "style": Object {
                   "fontWeight": "bold",
                 },
               },
               "ref": null,
-              "rendered": "Status:",
+              "rendered": Array [
+                "status",
+                ":",
+              ],
               "type": [Function],
             },
             " ",
@@ -1254,11 +1365,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Connected",
+                "children": "connected",
                 "warning": false,
               },
               "ref": null,
-              "rendered": "Connected",
+              "rendered": "connected",
               "type": [Function],
             },
             " ",
