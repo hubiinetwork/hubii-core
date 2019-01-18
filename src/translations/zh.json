@@ -209,5 +209,11 @@
     "slow": "稍慢",
     "average": "平均速度",
     "fast": "快速",
-    "manual": "手动"
+    "manual": "手动",
+    "mainnet": "Mainnet",
+    "testnet": "Testnet",
+    "network": "网络",
+    "status": "状态",
+    "reconnecting": "连接中...",
+    "connected": "已连接"
 }
