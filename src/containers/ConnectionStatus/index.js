@@ -12,9 +12,11 @@ import { compose } from 'redux';
 import { injectIntl } from 'react-intl';
 
 import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { makeSelectErrors } from './selectors';
 import reducer from './reducer';
+import saga from './saga';
 import {
   Wrapper,
   StatusIcon,
@@ -73,9 +75,11 @@ function mapDispatchToProps(dispatch) {
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 const withReducer = injectReducer({ key: 'connectionStatus', reducer });
+const withSaga = injectSaga({ key: 'connectionStatus', saga });
 
 export default compose(
   withReducer,
   withConnect,
+  withSaga,
   injectIntl,
 )(ConnectionStatus);
