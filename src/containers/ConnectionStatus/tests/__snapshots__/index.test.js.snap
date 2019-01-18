@@ -38,9 +38,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <span
-          warning={false}
->
+        <span>
           <style__StyledText
                     style={
                               Object {
@@ -65,7 +63,6 @@ ShallowWrapper {
                               "display": "flex",
                             }
           }
-          warning={true}
 >
           <style__StyledText
                     style={
@@ -86,7 +83,7 @@ ShallowWrapper {
            
           <style__StatusIcon
                     type="loading"
-                    warning={true}
+                    warning={1}
           />
 </span>,
       ],
@@ -116,7 +113,6 @@ ShallowWrapper {
               mainnet
 </style__StyledText>,
           ],
-          "warning": false,
         },
         "ref": null,
         "rendered": Array [
@@ -181,14 +177,13 @@ ShallowWrapper {
             " ",
             <style__StatusIcon
               type="loading"
-              warning={true}
+              warning={1}
 />,
           ],
           "style": Object {
             "alignItems": "center",
             "display": "flex",
           },
-          "warning": true,
         },
         "ref": null,
         "rendered": Array [
@@ -232,7 +227,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "type": "loading",
-              "warning": true,
+              "warning": 1,
             },
             "ref": null,
             "rendered": null,
@@ -251,9 +246,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <span
-            warning={false}
->
+          <span>
             <style__StyledText
                         style={
                                     Object {
@@ -278,7 +271,6 @@ ShallowWrapper {
                                     "display": "flex",
                                   }
             }
-            warning={true}
 >
             <style__StyledText
                         style={
@@ -299,7 +291,7 @@ ShallowWrapper {
              
             <style__StatusIcon
                         type="loading"
-                        warning={true}
+                        warning={1}
             />
 </span>,
         ],
@@ -329,7 +321,6 @@ ShallowWrapper {
                 mainnet
 </style__StyledText>,
             ],
-            "warning": false,
           },
           "ref": null,
           "rendered": Array [
@@ -394,14 +385,13 @@ ShallowWrapper {
               " ",
               <style__StatusIcon
                 type="loading"
-                warning={true}
+                warning={1}
 />,
             ],
             "style": Object {
               "alignItems": "center",
               "display": "flex",
             },
-            "warning": true,
           },
           "ref": null,
           "rendered": Array [
@@ -445,7 +435,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "type": "loading",
-                "warning": true,
+                "warning": 1,
               },
               "ref": null,
               "rendered": null,
@@ -505,9 +495,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <span
-          warning={false}
->
+        <span>
           <style__StyledText
                     style={
                               Object {
@@ -532,7 +520,6 @@ ShallowWrapper {
                               "display": "flex",
                             }
           }
-          warning={false}
 >
           <style__StyledText
                     style={
@@ -553,7 +540,7 @@ ShallowWrapper {
            
           <style__StatusIcon
                     type="check"
-                    warning={false}
+                    warning={0}
           />
 </span>,
       ],
@@ -583,7 +570,6 @@ ShallowWrapper {
               mainnet
 </style__StyledText>,
           ],
-          "warning": false,
         },
         "ref": null,
         "rendered": Array [
@@ -648,14 +634,13 @@ ShallowWrapper {
             " ",
             <style__StatusIcon
               type="check"
-              warning={false}
+              warning={0}
 />,
           ],
           "style": Object {
             "alignItems": "center",
             "display": "flex",
           },
-          "warning": false,
         },
         "ref": null,
         "rendered": Array [
@@ -699,7 +684,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "type": "check",
-              "warning": false,
+              "warning": 0,
             },
             "ref": null,
             "rendered": null,
@@ -718,9 +703,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <span
-            warning={false}
->
+          <span>
             <style__StyledText
                         style={
                                     Object {
@@ -745,7 +728,6 @@ ShallowWrapper {
                                     "display": "flex",
                                   }
             }
-            warning={false}
 >
             <style__StyledText
                         style={
@@ -766,7 +748,7 @@ ShallowWrapper {
              
             <style__StatusIcon
                         type="check"
-                        warning={false}
+                        warning={0}
             />
 </span>,
         ],
@@ -796,7 +778,6 @@ ShallowWrapper {
                 mainnet
 </style__StyledText>,
             ],
-            "warning": false,
           },
           "ref": null,
           "rendered": Array [
@@ -861,14 +842,13 @@ ShallowWrapper {
               " ",
               <style__StatusIcon
                 type="check"
-                warning={false}
+                warning={0}
 />,
             ],
             "style": Object {
               "alignItems": "center",
               "display": "flex",
             },
-            "warning": false,
           },
           "ref": null,
           "rendered": Array [
@@ -912,7 +892,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "type": "check",
-                "warning": false,
+                "warning": 0,
               },
               "ref": null,
               "rendered": null,
@@ -972,9 +952,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <span
-          warning={true}
->
+        <span>
           <style__StyledText
                     style={
                               Object {
@@ -999,7 +977,6 @@ ShallowWrapper {
                               "display": "flex",
                             }
           }
-          warning={false}
 >
           <style__StyledText
                     style={
@@ -1020,7 +997,7 @@ ShallowWrapper {
            
           <style__StatusIcon
                     type="check"
-                    warning={false}
+                    warning={0}
           />
 </span>,
       ],
@@ -1050,7 +1027,6 @@ ShallowWrapper {
               testnet
 </style__StyledText>,
           ],
-          "warning": true,
         },
         "ref": null,
         "rendered": Array [
@@ -1115,14 +1091,13 @@ ShallowWrapper {
             " ",
             <style__StatusIcon
               type="check"
-              warning={false}
+              warning={0}
 />,
           ],
           "style": Object {
             "alignItems": "center",
             "display": "flex",
           },
-          "warning": false,
         },
         "ref": null,
         "rendered": Array [
@@ -1166,7 +1141,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "type": "check",
-              "warning": false,
+              "warning": 0,
             },
             "ref": null,
             "rendered": null,
@@ -1185,9 +1160,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <span
-            warning={true}
->
+          <span>
             <style__StyledText
                         style={
                                     Object {
@@ -1212,7 +1185,6 @@ ShallowWrapper {
                                     "display": "flex",
                                   }
             }
-            warning={false}
 >
             <style__StyledText
                         style={
@@ -1233,7 +1205,7 @@ ShallowWrapper {
              
             <style__StatusIcon
                         type="check"
-                        warning={false}
+                        warning={0}
             />
 </span>,
         ],
@@ -1263,7 +1235,6 @@ ShallowWrapper {
                 testnet
 </style__StyledText>,
             ],
-            "warning": true,
           },
           "ref": null,
           "rendered": Array [
@@ -1328,14 +1299,13 @@ ShallowWrapper {
               " ",
               <style__StatusIcon
                 type="check"
-                warning={false}
+                warning={0}
 />,
             ],
             "style": Object {
               "alignItems": "center",
               "display": "flex",
             },
-            "warning": false,
           },
           "ref": null,
           "rendered": Array [
@@ -1379,7 +1349,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "type": "check",
-                "warning": false,
+                "warning": 0,
               },
               "ref": null,
               "rendered": null,
