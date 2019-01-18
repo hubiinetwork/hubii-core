@@ -6009,10 +6009,7 @@ ShallowWrapper {
               "_fastQueryDate": 0,
               "_lastBlockNumber": -2,
               "_network": Object {
-                "_defaultProvider": [Function],
-                "chainId": 3,
-                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
-                "name": "ropsten",
+                "chainId": 1,
               },
               "_pollingInterval": 4000,
               "_providers": Array [
@@ -6057,9 +6054,6 @@ ShallowWrapper {
                   "ready": Promise {},
                 },
               ],
-              "network": Object {
-                "name": "homestead",
-              },
               "ready": Promise {},
             },
             "walletApiEndpoint": [Function],

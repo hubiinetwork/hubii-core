@@ -23,9 +23,9 @@ const stringFromEnv = (key, def) => process.env[key] || def;
 export const REPO = stringFromEnv('PUBLISH_REPO');
 export const OWNER = stringFromEnv('PUBLISH_OWNER');
 export const ROPSTEN_IDENTITY_SERVICE_SECRET = stringFromEnv('ROPSTEN_IDENTITY_SERVICE_SECRET');
-export const HOMESTEAD_IDENTITY_SERVICE_SECRET = stringFromEnv('HOMESTEAD_IDENTITY_SERVICE_SECRET');
+export const MAINNET_IDENTITY_SERVICE_SECRET = stringFromEnv('MAINNET_IDENTITY_SERVICE_SECRET');
 export const ROPSTEN_IDENTITY_SERVICE_APPID = stringFromEnv('ROPSTEN_IDENTITY_SERVICE_APPID');
-export const HOMESTEAD_IDENTITY_SERVICE_APPID = stringFromEnv('HOMESTEAD_IDENTITY_SERVICE_APPID');
+export const MAINNET_IDENTITY_SERVICE_APPID = stringFromEnv('MAINNET_IDENTITY_SERVICE_APPID');
 
 const trimmableWalletApiEndpoint = (endpoint) => (trimmed) => {
   if (trimmed) return endpoint.split('//')[1].split('/')[0]; // trim https:// prefix and / suffix
@@ -33,19 +33,19 @@ const trimmableWalletApiEndpoint = (endpoint) => (trimmed) => {
 };
 
 const ROPSTEN_URL = 'https://api2.dev.hubii.net/';
-const HOMESTEAD_URL = 'https://api.nahmii.io/';
+const MAINNET_URL = 'https://api.nahmii.io/';
 
 export const SUPPORTED_NETWORKS = {
-  homestead: {
-    provider: getDefaultProvider('homestead'),
+  mainnet: {
+    provider: getDefaultProvider('mainnet'),
     nahmiiProvider: new nahmii.NahmiiProvider(
-      trimmableWalletApiEndpoint(HOMESTEAD_URL)(true),
-      HOMESTEAD_IDENTITY_SERVICE_APPID,
-      HOMESTEAD_IDENTITY_SERVICE_SECRET
+      trimmableWalletApiEndpoint(MAINNET_URL)(true),
+      MAINNET_IDENTITY_SERVICE_APPID,
+      MAINNET_IDENTITY_SERVICE_SECRET
     ),
-    walletApiEndpoint: trimmableWalletApiEndpoint(HOMESTEAD_URL),
-    identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : HOMESTEAD_IDENTITY_SERVICE_SECRET,
-    identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : HOMESTEAD_IDENTITY_SERVICE_APPID,
+    walletApiEndpoint: trimmableWalletApiEndpoint(MAINNET_URL),
+    identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : MAINNET_IDENTITY_SERVICE_SECRET,
+    identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : MAINNET_IDENTITY_SERVICE_APPID,
   },
   ropsten: {
     provider: getDefaultProvider('ropsten'),

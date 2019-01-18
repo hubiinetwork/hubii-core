@@ -29,6 +29,9 @@ export class Settings extends React.PureComponent {
   render() {
     const { locale, onChangeNetwork, onChangeLocale, currentNetwork, supportedNetworks, intl } = this.props;
     const { formatMessage } = intl;
+    const currentNetworkText = currentNetwork.provider._network.chainId === 1
+      ? 'Mainnet'
+      : 'Ropsten [TESTNET]';
     return (
       <Wrapper>
         <TopHeader>
@@ -40,14 +43,14 @@ export class Settings extends React.PureComponent {
               {formatMessage({ id: 'setting_network' })}
             </StyledSectionHeading>
             <Select
-              value={currentNetwork.provider.network.name}
+              value={currentNetworkText}
               style={{ width: '15rem' }}
               onChange={onChangeNetwork}
             >
               {
                 Object.entries(supportedNetworks.toJS()).map(([key]) => {
-                  const label = key === 'homestead' ? '[MAINNET]' : '[TESTNET]';
-                  const name = `${key.charAt(0).toUpperCase()}${key.slice(1)} ${label}`;
+                  const label = key !== 'mainnet' ? ' [TESTNET]' : '';
+                  const name = `${key.charAt(0).toUpperCase()}${key.slice(1)}${label}`;
                   return (
                     <Option value={key} key={key}>
                       {name}
