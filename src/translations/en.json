@@ -209,5 +209,11 @@
     "slow": "Slow",
     "average": "Average",
     "fast": "Fast",
-    "manual": "Manual"
+    "manual": "Manual",
+    "mainnet": "Mainnet",
+    "testnet": "Testnet",
+    "network": "Network",
+    "status": "Status",
+    "reconnecting": "Reconnecting...",
+    "connected": "Connected"
 }

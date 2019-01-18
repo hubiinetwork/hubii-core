@@ -289,7 +289,7 @@ export function* loadBalances({ address }, network) {
       }));
       yield put(actions.loadBalancesSuccess(address, formattedBalances));
     } catch (err) {
-      console.log(err); // eslint-disable-line
+      yield put(actions.loadBalancesError(address));
     } finally {
       const TWENTY_SEC_IN_MS = 1000 * 20;
       yield delay(TWENTY_SEC_IN_MS);
@@ -350,7 +350,7 @@ export function* loadStagingBalances({ address }, network) {
       }, []);
       yield put(actions.loadStagingBalancesSuccess(address, formattedBalances));
     } catch (err) {
-      console.log(err); // eslint-disable-line
+      yield put(actions.loadStagingBalancesError(address));
     } finally {
       const TWENTY_SEC_IN_MS = 1000 * 20;
       yield delay(TWENTY_SEC_IN_MS);
@@ -414,7 +414,7 @@ export function* loadStagedBalances({ address }, network) {
       }, []);
       yield put(actions.loadStagedBalancesSuccess(address, formattedBalances));
     } catch (err) {
-      console.log(err); // eslint-disable-line
+      yield put(actions.loadStagedBalancesError(address));
     } finally {
       const TWENTY_SEC_IN_MS = 1000 * 20;
       yield delay(TWENTY_SEC_IN_MS);
