@@ -32,15 +32,16 @@ export class ConnectionStatus extends React.Component { // eslint-disable-line r
         : formatMessage({ id: 'connected' }),
       iconType: connectionIssue ? 'loading' : 'check',
     };
-    const networkText = currentNetwork.provider._network.chainId === 1
+    const { chainId } = currentNetwork.provider._network;
+    const networkText = chainId === 1
       ? formatMessage({ id: 'mainnet' })
       : formatMessage({ id: 'testnet' });
 
     return (
       <Wrapper>
-        <span warning={networkText === 'Testnet'}>
+        <span warning={chainId !== 1}>
           <StyledText style={{ fontWeight: 'bold' }}>{formatMessage({ id: 'network' })}:</StyledText>&nbsp;
-          <StyledText warning={networkText === 'Testnet'}>{networkText}</StyledText>
+          <StyledText warning={chainId !== 1}>{networkText}</StyledText>
         </span>
         <span warning={connectionIssue} style={{ display: 'flex', alignItems: 'center' }}>
           <StyledText style={{ fontWeight: 'bold' }}>{formatMessage({ id: 'status' })}:</StyledText>&nbsp;

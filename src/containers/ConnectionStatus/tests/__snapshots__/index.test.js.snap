@@ -973,7 +973,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <span
-          warning={false}
+          warning={true}
 >
           <style__StyledText
                     style={
@@ -987,7 +987,7 @@ ShallowWrapper {
           </style__StyledText>
            
           <style__StyledText
-                    warning={false}
+                    warning={true}
           >
                     testnet
           </style__StyledText>
@@ -1045,12 +1045,12 @@ ShallowWrapper {
 </style__StyledText>,
             " ",
             <style__StyledText
-              warning={false}
+              warning={true}
 >
               testnet
 </style__StyledText>,
           ],
-          "warning": false,
+          "warning": true,
         },
         "ref": null,
         "rendered": Array [
@@ -1081,7 +1081,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": "testnet",
-              "warning": false,
+              "warning": true,
             },
             "ref": null,
             "rendered": "testnet",
@@ -1186,7 +1186,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <span
-            warning={false}
+            warning={true}
 >
             <style__StyledText
                         style={
@@ -1200,7 +1200,7 @@ ShallowWrapper {
             </style__StyledText>
              
             <style__StyledText
-                        warning={false}
+                        warning={true}
             >
                         testnet
             </style__StyledText>
@@ -1258,12 +1258,12 @@ ShallowWrapper {
 </style__StyledText>,
               " ",
               <style__StyledText
-                warning={false}
+                warning={true}
 >
                 testnet
 </style__StyledText>,
             ],
-            "warning": false,
+            "warning": true,
           },
           "ref": null,
           "rendered": Array [
@@ -1294,7 +1294,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": "testnet",
-                "warning": false,
+                "warning": true,
               },
               "ref": null,
               "rendered": "testnet",
