@@ -31,7 +31,7 @@ export const totalBalancesLoadingMock = totalBallAllLoading;
 export const totalBalancesLoadedMock = fromJS({
   baseLayer: {
     assets: {
-      ETH: { amount: new BigNumber('0.198937'), value: { usd: new BigNumber('81.962044') } },
+      '0x0000000000000000000000000000000000000000': { amount: new BigNumber('0.198937'), value: { usd: new BigNumber('81.962044') } },
       '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { amount: new BigNumber('0.000000000001231288'), value: { usd: new BigNumber('0.000000000001231288') } },
     },
     loading: false,
@@ -40,18 +40,18 @@ export const totalBalancesLoadedMock = fromJS({
   },
   nahmiiAvailable: {
     assets: {
-      ETH: { amount: new BigNumber('0.1'), value: { usd: new BigNumber('41.2') } },
+      '0x0000000000000000000000000000000000000000': { amount: new BigNumber('0.1'), value: { usd: new BigNumber('41.2') } },
       '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { amount: new BigNumber('0.13'), value: { usd: new BigNumber('0.13') } },
     },
     loading: false,
     error: null,
     total: { usd: new BigNumber('41.33') },
   },
-  nahmiiStaging: { assets: { ETH: { amount: new BigNumber('0.1'), value: { usd: new BigNumber('41.2') } } }, loading: false, error: null, total: { usd: new BigNumber('41.2') } },
+  nahmiiStaging: { assets: { '0x0000000000000000000000000000000000000000': { amount: new BigNumber('0.1'), value: { usd: new BigNumber('41.2') } } }, loading: false, error: null, total: { usd: new BigNumber('41.2') } },
   nahmiiStaged: { assets: {}, loading: false, error: null, total: { usd: new BigNumber('0') } },
   nahmiiCombined: {
     assets: {
-      ETH: { value: { usd: new BigNumber('82.4') }, amount: new BigNumber('0.2') },
+      '0x0000000000000000000000000000000000000000': { value: { usd: new BigNumber('82.4') }, amount: new BigNumber('0.2') },
       '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { value: { usd: new BigNumber('0.13') }, amount: new BigNumber('0.13') },
     },
     loading: false,
@@ -60,7 +60,7 @@ export const totalBalancesLoadedMock = fromJS({
   },
   combined: {
     assets: {
-      ETH: { value: { usd: new BigNumber('164.362044') }, amount: new BigNumber('0.398937') },
+      '0x0000000000000000000000000000000000000000': { value: { usd: new BigNumber('164.362044') }, amount: new BigNumber('0.398937') },
       '0x583cbbb8a8443b38abcc0c956bece47340ea1367': { value: { usd: new BigNumber('0.130000000001231288') }, amount: new BigNumber('0.130000000001231288') },
     },
     loading: false,
@@ -86,7 +86,7 @@ export const walletsWithInfoMock = fromJS([
         error: null,
         assets: [{
           balance: new BigNumber('0.198937'),
-          currency: 'ETH',
+          currency: '0x0000000000000000000000000000000000000000',
           symbol: 'ETH',
           value: {
             eth: new BigNumber('0.198937'),
@@ -114,7 +114,7 @@ export const walletsWithInfoMock = fromJS([
         loading: false,
         error: null,
         assets: [{
-          currency: 'ETH',
+          currency: '0x0000000000000000000000000000000000000000',
           balance: new BigNumber('0.1'),
           symbol: 'ETH',
           value: {
@@ -143,7 +143,7 @@ export const walletsWithInfoMock = fromJS([
         loading: false,
         error: null,
         assets: [{
-          currency: 'ETH',
+          currency: '0x0000000000000000000000000000000000000000',
           balance: new BigNumber('0.1'),
           symbol: 'ETH',
           value: {
@@ -164,7 +164,7 @@ export const walletsWithInfoMock = fromJS([
         error: null,
         assets: [
           {
-            currency: 'ETH',
+            currency: '0x0000000000000000000000000000000000000000',
             balance: new BigNumber('0.2'),
             symbol: 'ETH',
             value: {
@@ -196,7 +196,7 @@ export const walletsWithInfoMock = fromJS([
         assets: [
           {
             balance: new BigNumber('0.398937'),
-            currency: 'ETH',
+            currency: '0x0000000000000000000000000000000000000000',
             symbol: 'ETH',
             value: {
               eth: new BigNumber('0.398937'),

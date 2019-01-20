@@ -22,7 +22,7 @@ ShallowWrapper {
         Immutable.Map {
             baseLayer: Immutable.Map {
                 assets: Immutable.Map {
-                    ETH: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
                         amount: "0.198937",
                         value: Immutable.Map {
                             usd: "81.962044",
@@ -43,7 +43,7 @@ ShallowWrapper {
             },
             nahmiiAvailable: Immutable.Map {
                 assets: Immutable.Map {
-                    ETH: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
                         amount: "0.1",
                         value: Immutable.Map {
                             usd: "41.2",
@@ -64,7 +64,7 @@ ShallowWrapper {
             },
             nahmiiStaging: Immutable.Map {
                 assets: Immutable.Map {
-                    ETH: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
                         amount: "0.1",
                         value: Immutable.Map {
                             usd: "41.2",
@@ -88,7 +88,7 @@ ShallowWrapper {
             },
             nahmiiCombined: Immutable.Map {
                 assets: Immutable.Map {
-                    ETH: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
                         value: Immutable.Map {
                             usd: "82.4",
                         },
@@ -109,7 +109,7 @@ ShallowWrapper {
             },
             combined: Immutable.Map {
                 assets: Immutable.Map {
-                    ETH: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
                         value: Immutable.Map {
                             usd: "164.362044",
                         },
@@ -266,7 +266,7 @@ ShallowWrapper {
         Immutable.Map {
             baseLayer: Immutable.Map {
                 assets: Immutable.Map {
-                    ETH: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
                         amount: "0.198937",
                         value: Immutable.Map {
                             usd: "81.962044",
@@ -287,7 +287,7 @@ ShallowWrapper {
             },
             nahmiiAvailable: Immutable.Map {
                 assets: Immutable.Map {
-                    ETH: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
                         amount: "0.1",
                         value: Immutable.Map {
                             usd: "41.2",
@@ -308,7 +308,7 @@ ShallowWrapper {
             },
             nahmiiStaging: Immutable.Map {
                 assets: Immutable.Map {
-                    ETH: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
                         amount: "0.1",
                         value: Immutable.Map {
                             usd: "41.2",
@@ -332,7 +332,7 @@ ShallowWrapper {
             },
             nahmiiCombined: Immutable.Map {
                 assets: Immutable.Map {
-                    ETH: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
                         value: Immutable.Map {
                             usd: "82.4",
                         },
@@ -353,7 +353,7 @@ ShallowWrapper {
             },
             combined: Immutable.Map {
                 assets: Immutable.Map {
-                    ETH: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
                         value: Immutable.Map {
                             usd: "164.362044",
                         },
@@ -534,7 +534,7 @@ ShallowWrapper {
                     color: "FFAA00",
                 },
                 Immutable.Map {
-                    currency: "ETH",
+                    currency: "0x0000000000000000000000000000000000000000",
                     symbol: "ETH",
                     decimals: 18,
                     color: "5C78E4",
@@ -760,7 +760,7 @@ ShallowWrapper {
                     color: "FFAA00",
                 },
                 Immutable.Map {
-                    currency: "ETH",
+                    currency: "0x0000000000000000000000000000000000000000",
                     symbol: "ETH",
                     decimals: 18,
                     color: "5C78E4",
@@ -986,7 +986,7 @@ ShallowWrapper {
                     color: "FFAA00",
                 },
                 Immutable.Map {
-                    currency: "ETH",
+                    currency: "0x0000000000000000000000000000000000000000",
                     symbol: "ETH",
                     decimals: 18,
                     color: "5C78E4",
@@ -998,7 +998,7 @@ ShallowWrapper {
         Immutable.Map {
             baseLayer: Immutable.Map {
                 assets: Immutable.Map {
-                    ETH: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
                         amount: "0.198937",
                         value: Immutable.Map {
                             usd: "81.962044",
@@ -1019,7 +1019,7 @@ ShallowWrapper {
             },
             nahmiiAvailable: Immutable.Map {
                 assets: Immutable.Map {
-                    ETH: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
                         amount: "0.1",
                         value: Immutable.Map {
                             usd: "41.2",
@@ -1040,7 +1040,7 @@ ShallowWrapper {
             },
             nahmiiStaging: Immutable.Map {
                 assets: Immutable.Map {
-                    ETH: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
                         amount: "0.1",
                         value: Immutable.Map {
                             usd: "41.2",
@@ -1064,7 +1064,7 @@ ShallowWrapper {
             },
             nahmiiCombined: Immutable.Map {
                 assets: Immutable.Map {
-                    ETH: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
                         value: Immutable.Map {
                             usd: "82.4",
                         },
@@ -1085,7 +1085,7 @@ ShallowWrapper {
             },
             combined: Immutable.Map {
                 assets: Immutable.Map {
-                    ETH: Immutable.Map {
+                    0x0000000000000000000000000000000000000000: Immutable.Map {
                         value: Immutable.Map {
                             usd: "164.362044",
                         },
