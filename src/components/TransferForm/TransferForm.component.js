@@ -230,7 +230,7 @@ export class TransferForm extends React.PureComponent {
     const usdValueToSend = amountToSend
       .times(assetToSendUsdValue);
     const ethUsdValue = prices.assets
-      .find((a) => a.currency === 'ETH').usd;
+      .find((a) => a.currency === '0x0000000000000000000000000000000000000000').usd;
 
 
     // construct tx fee info

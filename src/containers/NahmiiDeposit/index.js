@@ -61,7 +61,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     super(props);
 
     const baseLayerAssets = props.currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
-    const assetToDeposit = baseLayerAssets[0] || { symbol: 'ETH', currency: 'ETH', balance: new BigNumber('0') };
+    const assetToDeposit = baseLayerAssets[0] || { symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000', balance: new BigNumber('0') };
 
     // max decimals possible for current asset
     let assetToDepositMaxDecimals = 18;
@@ -256,13 +256,13 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     const usdValueToDeposit = amountToDeposit
       .times(assetToDepositUsdValue);
     const ethUsdValue = prices.toJS().assets
-      .find((a) => a.currency === 'ETH').usd;
+      .find((a) => a.currency === '0x0000000000000000000000000000000000000000').usd;
     const baseLayerEthBalance = baseLayerAssets
       .find((currency) => currency.symbol === 'ETH');
 
     // construct tx fee info
     let txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit);
-    if (assetToDeposit.currency !== 'ETH') txFeeAmt = txFeeAmt.times('2');
+    if (assetToDeposit.currency !== '0x0000000000000000000000000000000000000000') txFeeAmt = txFeeAmt.times('2');
     const txFeeUsdValue = txFeeAmt.times(ethUsdValue);
     const transactionFee = {
       amount: txFeeAmt,
