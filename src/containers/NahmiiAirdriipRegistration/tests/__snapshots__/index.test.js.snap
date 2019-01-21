@@ -1274,7 +1274,7 @@ ShallowWrapper {
                         decimalAmount: "0.000000002111",
                         counterpartyAddress: "0x4231676a35483638796e2af8ed2af0a41b097524",
                         nonce: 21,
-                        currency: "ETH",
+                        currency: "0x0000000000000000000000000000000000000000",
                         layer: "nahmii",
                         sender: Immutable.Map {
                             fees: Immutable.Map {
@@ -1354,7 +1354,7 @@ ShallowWrapper {
                             timestamp: "2018-08-06T02:32:00.000Z",
                         },
                         hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
-                        currency: "ETH",
+                        currency: "0x0000000000000000000000000000000000000000",
                         layer: "baseLayer",
                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                         timestamp: "2018-08-06T02:32:00.000Z",
@@ -1474,7 +1474,7 @@ ShallowWrapper {
                     assets: Immutable.List [
                         Immutable.Map {
                             balance: "0.198937",
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             symbol: "ETH",
                             value: Immutable.Map {
                                 eth: "0.198937",
@@ -1504,7 +1504,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.1",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -1535,7 +1535,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.1",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -1567,7 +1567,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.2",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -1599,7 +1599,7 @@ ShallowWrapper {
                     assets: Immutable.List [
                         Immutable.Map {
                             balance: "0.398937",
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             symbol: "ETH",
                             value: Immutable.Map {
                                 eth: "0.398937",
@@ -2231,7 +2231,7 @@ ShallowWrapper {
                         decimalAmount: "0.000000002111",
                         counterpartyAddress: "0x4231676a35483638796e2af8ed2af0a41b097524",
                         nonce: 21,
-                        currency: "ETH",
+                        currency: "0x0000000000000000000000000000000000000000",
                         layer: "nahmii",
                         sender: Immutable.Map {
                             fees: Immutable.Map {
@@ -2311,7 +2311,7 @@ ShallowWrapper {
                             timestamp: "2018-08-06T02:32:00.000Z",
                         },
                         hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
-                        currency: "ETH",
+                        currency: "0x0000000000000000000000000000000000000000",
                         layer: "baseLayer",
                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                         timestamp: "2018-08-06T02:32:00.000Z",
@@ -2431,7 +2431,7 @@ ShallowWrapper {
                     assets: Immutable.List [
                         Immutable.Map {
                             balance: "0.198937",
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             symbol: "ETH",
                             value: Immutable.Map {
                                 eth: "0.198937",
@@ -2461,7 +2461,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.1",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -2492,7 +2492,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.1",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -2524,7 +2524,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.2",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -2556,7 +2556,7 @@ ShallowWrapper {
                     assets: Immutable.List [
                         Immutable.Map {
                             balance: "0.398937",
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             symbol: "ETH",
                             value: Immutable.Map {
                                 eth: "0.398937",
@@ -2701,7 +2701,7 @@ ShallowWrapper {
                                                         decimalAmount: "0.000000002111",
                                                         counterpartyAddress: "0x4231676a35483638796e2af8ed2af0a41b097524",
                                                         nonce: 21,
-                                                        currency: "ETH",
+                                                        currency: "0x0000000000000000000000000000000000000000",
                                                         layer: "nahmii",
                                                         sender: Immutable.Map {
                                                                 fees: Immutable.Map {
@@ -2781,7 +2781,7 @@ ShallowWrapper {
                                                                 timestamp: "2018-08-06T02:32:00.000Z",
                                                         },
                                                         hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
-                                                        currency: "ETH",
+                                                        currency: "0x0000000000000000000000000000000000000000",
                                                         layer: "baseLayer",
                                                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         timestamp: "2018-08-06T02:32:00.000Z",
@@ -2901,7 +2901,7 @@ ShallowWrapper {
                                                 assets: Immutable.List [
                                                         Immutable.Map {
                                                                 balance: "0.198937",
-                                                                currency: "ETH",
+                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                 symbol: "ETH",
                                                                 value: Immutable.Map {
                                                                         eth: "0.198937",
@@ -2931,7 +2931,7 @@ ShallowWrapper {
                                                 error: null,
                                                 assets: Immutable.List [
                                                         Immutable.Map {
-                                                                currency: "ETH",
+                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                 balance: "0.1",
                                                                 symbol: "ETH",
                                                                 value: Immutable.Map {
@@ -2962,7 +2962,7 @@ ShallowWrapper {
                                                 error: null,
                                                 assets: Immutable.List [
                                                         Immutable.Map {
-                                                                currency: "ETH",
+                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                 balance: "0.1",
                                                                 symbol: "ETH",
                                                                 value: Immutable.Map {
@@ -2994,7 +2994,7 @@ ShallowWrapper {
                                                 error: null,
                                                 assets: Immutable.List [
                                                         Immutable.Map {
-                                                                currency: "ETH",
+                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                 balance: "0.2",
                                                                 symbol: "ETH",
                                                                 value: Immutable.Map {
@@ -3026,7 +3026,7 @@ ShallowWrapper {
                                                 assets: Immutable.List [
                                                         Immutable.Map {
                                                                 balance: "0.398937",
-                                                                currency: "ETH",
+                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                 symbol: "ETH",
                                                                 value: Immutable.Map {
                                                                         eth: "0.398937",
@@ -3164,7 +3164,7 @@ ShallowWrapper {
                                                                         decimalAmount: "0.000000002111",
                                                                         counterpartyAddress: "0x4231676a35483638796e2af8ed2af0a41b097524",
                                                                         nonce: 21,
-                                                                        currency: "ETH",
+                                                                        currency: "0x0000000000000000000000000000000000000000",
                                                                         layer: "nahmii",
                                                                         sender: Immutable.Map {
                                                                                     fees: Immutable.Map {
@@ -3244,7 +3244,7 @@ ShallowWrapper {
                                                                                     timestamp: "2018-08-06T02:32:00.000Z",
                                                                         },
                                                                         hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
-                                                                        currency: "ETH",
+                                                                        currency: "0x0000000000000000000000000000000000000000",
                                                                         layer: "baseLayer",
                                                                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                                         timestamp: "2018-08-06T02:32:00.000Z",
@@ -3364,7 +3364,7 @@ ShallowWrapper {
                                                             assets: Immutable.List [
                                                                         Immutable.Map {
                                                                                     balance: "0.198937",
-                                                                                    currency: "ETH",
+                                                                                    currency: "0x0000000000000000000000000000000000000000",
                                                                                     symbol: "ETH",
                                                                                     value: Immutable.Map {
                                                                                                 eth: "0.198937",
@@ -3394,7 +3394,7 @@ ShallowWrapper {
                                                             error: null,
                                                             assets: Immutable.List [
                                                                         Immutable.Map {
-                                                                                    currency: "ETH",
+                                                                                    currency: "0x0000000000000000000000000000000000000000",
                                                                                     balance: "0.1",
                                                                                     symbol: "ETH",
                                                                                     value: Immutable.Map {
@@ -3425,7 +3425,7 @@ ShallowWrapper {
                                                             error: null,
                                                             assets: Immutable.List [
                                                                         Immutable.Map {
-                                                                                    currency: "ETH",
+                                                                                    currency: "0x0000000000000000000000000000000000000000",
                                                                                     balance: "0.1",
                                                                                     symbol: "ETH",
                                                                                     value: Immutable.Map {
@@ -3457,7 +3457,7 @@ ShallowWrapper {
                                                             error: null,
                                                             assets: Immutable.List [
                                                                         Immutable.Map {
-                                                                                    currency: "ETH",
+                                                                                    currency: "0x0000000000000000000000000000000000000000",
                                                                                     balance: "0.2",
                                                                                     symbol: "ETH",
                                                                                     value: Immutable.Map {
@@ -3489,7 +3489,7 @@ ShallowWrapper {
                                                             assets: Immutable.List [
                                                                         Immutable.Map {
                                                                                     balance: "0.398937",
-                                                                                    currency: "ETH",
+                                                                                    currency: "0x0000000000000000000000000000000000000000",
                                                                                     symbol: "ETH",
                                                                                     value: Immutable.Map {
                                                                                                 eth: "0.398937",
@@ -3635,7 +3635,7 @@ ShallowWrapper {
                                                         decimalAmount: "0.000000002111",
                                                         counterpartyAddress: "0x4231676a35483638796e2af8ed2af0a41b097524",
                                                         nonce: 21,
-                                                        currency: "ETH",
+                                                        currency: "0x0000000000000000000000000000000000000000",
                                                         layer: "nahmii",
                                                         sender: Immutable.Map {
                                                                       fees: Immutable.Map {
@@ -3715,7 +3715,7 @@ ShallowWrapper {
                                                                       timestamp: "2018-08-06T02:32:00.000Z",
                                                         },
                                                         hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
-                                                        currency: "ETH",
+                                                        currency: "0x0000000000000000000000000000000000000000",
                                                         layer: "baseLayer",
                                                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         timestamp: "2018-08-06T02:32:00.000Z",
@@ -3835,7 +3835,7 @@ ShallowWrapper {
                                           assets: Immutable.List [
                                                         Immutable.Map {
                                                                       balance: "0.198937",
-                                                                      currency: "ETH",
+                                                                      currency: "0x0000000000000000000000000000000000000000",
                                                                       symbol: "ETH",
                                                                       value: Immutable.Map {
                                                                                     eth: "0.198937",
@@ -3865,7 +3865,7 @@ ShallowWrapper {
                                           error: null,
                                           assets: Immutable.List [
                                                         Immutable.Map {
-                                                                      currency: "ETH",
+                                                                      currency: "0x0000000000000000000000000000000000000000",
                                                                       balance: "0.1",
                                                                       symbol: "ETH",
                                                                       value: Immutable.Map {
@@ -3896,7 +3896,7 @@ ShallowWrapper {
                                           error: null,
                                           assets: Immutable.List [
                                                         Immutable.Map {
-                                                                      currency: "ETH",
+                                                                      currency: "0x0000000000000000000000000000000000000000",
                                                                       balance: "0.1",
                                                                       symbol: "ETH",
                                                                       value: Immutable.Map {
@@ -3928,7 +3928,7 @@ ShallowWrapper {
                                           error: null,
                                           assets: Immutable.List [
                                                         Immutable.Map {
-                                                                      currency: "ETH",
+                                                                      currency: "0x0000000000000000000000000000000000000000",
                                                                       balance: "0.2",
                                                                       symbol: "ETH",
                                                                       value: Immutable.Map {
@@ -3960,7 +3960,7 @@ ShallowWrapper {
                                           assets: Immutable.List [
                                                         Immutable.Map {
                                                                       balance: "0.398937",
-                                                                      currency: "ETH",
+                                                                      currency: "0x0000000000000000000000000000000000000000",
                                                                       symbol: "ETH",
                                                                       value: Immutable.Map {
                                                                                     eth: "0.398937",
@@ -4147,7 +4147,7 @@ ShallowWrapper {
                                                                       decimalAmount: "0.000000002111",
                                                                       counterpartyAddress: "0x4231676a35483638796e2af8ed2af0a41b097524",
                                                                       nonce: 21,
-                                                                      currency: "ETH",
+                                                                      currency: "0x0000000000000000000000000000000000000000",
                                                                       layer: "nahmii",
                                                                       sender: Immutable.Map {
                                                                                 fees: Immutable.Map {
@@ -4227,7 +4227,7 @@ ShallowWrapper {
                                                                                 timestamp: "2018-08-06T02:32:00.000Z",
                                                                       },
                                                                       hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
-                                                                      currency: "ETH",
+                                                                      currency: "0x0000000000000000000000000000000000000000",
                                                                       layer: "baseLayer",
                                                                       sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                                       timestamp: "2018-08-06T02:32:00.000Z",
@@ -4347,7 +4347,7 @@ ShallowWrapper {
                                                             assets: Immutable.List [
                                                                       Immutable.Map {
                                                                                 balance: "0.198937",
-                                                                                currency: "ETH",
+                                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                                 symbol: "ETH",
                                                                                 value: Immutable.Map {
                                                                                           eth: "0.198937",
@@ -4377,7 +4377,7 @@ ShallowWrapper {
                                                             error: null,
                                                             assets: Immutable.List [
                                                                       Immutable.Map {
-                                                                                currency: "ETH",
+                                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                                 balance: "0.1",
                                                                                 symbol: "ETH",
                                                                                 value: Immutable.Map {
@@ -4408,7 +4408,7 @@ ShallowWrapper {
                                                             error: null,
                                                             assets: Immutable.List [
                                                                       Immutable.Map {
-                                                                                currency: "ETH",
+                                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                                 balance: "0.1",
                                                                                 symbol: "ETH",
                                                                                 value: Immutable.Map {
@@ -4440,7 +4440,7 @@ ShallowWrapper {
                                                             error: null,
                                                             assets: Immutable.List [
                                                                       Immutable.Map {
-                                                                                currency: "ETH",
+                                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                                 balance: "0.2",
                                                                                 symbol: "ETH",
                                                                                 value: Immutable.Map {
@@ -4472,7 +4472,7 @@ ShallowWrapper {
                                                             assets: Immutable.List [
                                                                       Immutable.Map {
                                                                                 balance: "0.398937",
-                                                                                currency: "ETH",
+                                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                                 symbol: "ETH",
                                                                                 value: Immutable.Map {
                                                                                           eth: "0.398937",
@@ -4610,7 +4610,7 @@ ShallowWrapper {
                                                                                     decimalAmount: "0.000000002111",
                                                                                     counterpartyAddress: "0x4231676a35483638796e2af8ed2af0a41b097524",
                                                                                     nonce: 21,
-                                                                                    currency: "ETH",
+                                                                                    currency: "0x0000000000000000000000000000000000000000",
                                                                                     layer: "nahmii",
                                                                                     sender: Immutable.Map {
                                                                                                   fees: Immutable.Map {
@@ -4690,7 +4690,7 @@ ShallowWrapper {
                                                                                                   timestamp: "2018-08-06T02:32:00.000Z",
                                                                                     },
                                                                                     hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
-                                                                                    currency: "ETH",
+                                                                                    currency: "0x0000000000000000000000000000000000000000",
                                                                                     layer: "baseLayer",
                                                                                     sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                                                     timestamp: "2018-08-06T02:32:00.000Z",
@@ -4810,7 +4810,7 @@ ShallowWrapper {
                                                                       assets: Immutable.List [
                                                                                     Immutable.Map {
                                                                                                   balance: "0.198937",
-                                                                                                  currency: "ETH",
+                                                                                                  currency: "0x0000000000000000000000000000000000000000",
                                                                                                   symbol: "ETH",
                                                                                                   value: Immutable.Map {
                                                                                                                 eth: "0.198937",
@@ -4840,7 +4840,7 @@ ShallowWrapper {
                                                                       error: null,
                                                                       assets: Immutable.List [
                                                                                     Immutable.Map {
-                                                                                                  currency: "ETH",
+                                                                                                  currency: "0x0000000000000000000000000000000000000000",
                                                                                                   balance: "0.1",
                                                                                                   symbol: "ETH",
                                                                                                   value: Immutable.Map {
@@ -4871,7 +4871,7 @@ ShallowWrapper {
                                                                       error: null,
                                                                       assets: Immutable.List [
                                                                                     Immutable.Map {
-                                                                                                  currency: "ETH",
+                                                                                                  currency: "0x0000000000000000000000000000000000000000",
                                                                                                   balance: "0.1",
                                                                                                   symbol: "ETH",
                                                                                                   value: Immutable.Map {
@@ -4903,7 +4903,7 @@ ShallowWrapper {
                                                                       error: null,
                                                                       assets: Immutable.List [
                                                                                     Immutable.Map {
-                                                                                                  currency: "ETH",
+                                                                                                  currency: "0x0000000000000000000000000000000000000000",
                                                                                                   balance: "0.2",
                                                                                                   symbol: "ETH",
                                                                                                   value: Immutable.Map {
@@ -4935,7 +4935,7 @@ ShallowWrapper {
                                                                       assets: Immutable.List [
                                                                                     Immutable.Map {
                                                                                                   balance: "0.398937",
-                                                                                                  currency: "ETH",
+                                                                                                  currency: "0x0000000000000000000000000000000000000000",
                                                                                                   symbol: "ETH",
                                                                                                   value: Immutable.Map {
                                                                                                                 eth: "0.398937",
@@ -5081,7 +5081,7 @@ ShallowWrapper {
                                                                 decimalAmount: "0.000000002111",
                                                                 counterpartyAddress: "0x4231676a35483638796e2af8ed2af0a41b097524",
                                                                 nonce: 21,
-                                                                currency: "ETH",
+                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                 layer: "nahmii",
                                                                 sender: Immutable.Map {
                                                                                 fees: Immutable.Map {
@@ -5161,7 +5161,7 @@ ShallowWrapper {
                                                                                 timestamp: "2018-08-06T02:32:00.000Z",
                                                                 },
                                                                 hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
-                                                                currency: "ETH",
+                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                 layer: "baseLayer",
                                                                 sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                                 timestamp: "2018-08-06T02:32:00.000Z",
@@ -5281,7 +5281,7 @@ ShallowWrapper {
                                                 assets: Immutable.List [
                                                                 Immutable.Map {
                                                                                 balance: "0.198937",
-                                                                                currency: "ETH",
+                                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                                 symbol: "ETH",
                                                                                 value: Immutable.Map {
                                                                                                 eth: "0.198937",
@@ -5311,7 +5311,7 @@ ShallowWrapper {
                                                 error: null,
                                                 assets: Immutable.List [
                                                                 Immutable.Map {
-                                                                                currency: "ETH",
+                                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                                 balance: "0.1",
                                                                                 symbol: "ETH",
                                                                                 value: Immutable.Map {
@@ -5342,7 +5342,7 @@ ShallowWrapper {
                                                 error: null,
                                                 assets: Immutable.List [
                                                                 Immutable.Map {
-                                                                                currency: "ETH",
+                                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                                 balance: "0.1",
                                                                                 symbol: "ETH",
                                                                                 value: Immutable.Map {
@@ -5374,7 +5374,7 @@ ShallowWrapper {
                                                 error: null,
                                                 assets: Immutable.List [
                                                                 Immutable.Map {
-                                                                                currency: "ETH",
+                                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                                 balance: "0.2",
                                                                                 symbol: "ETH",
                                                                                 value: Immutable.Map {
@@ -5406,7 +5406,7 @@ ShallowWrapper {
                                                 assets: Immutable.List [
                                                                 Immutable.Map {
                                                                                 balance: "0.398937",
-                                                                                currency: "ETH",
+                                                                                currency: "0x0000000000000000000000000000000000000000",
                                                                                 symbol: "ETH",
                                                                                 value: Immutable.Map {
                                                                                                 eth: "0.398937",
@@ -5684,7 +5684,7 @@ ShallowWrapper {
                         decimalAmount: "0.000000002111",
                         counterpartyAddress: "0x4231676a35483638796e2af8ed2af0a41b097524",
                         nonce: 21,
-                        currency: "ETH",
+                        currency: "0x0000000000000000000000000000000000000000",
                         layer: "nahmii",
                         sender: Immutable.Map {
                             fees: Immutable.Map {
@@ -5764,7 +5764,7 @@ ShallowWrapper {
                             timestamp: "2018-08-06T02:32:00.000Z",
                         },
                         hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
-                        currency: "ETH",
+                        currency: "0x0000000000000000000000000000000000000000",
                         layer: "baseLayer",
                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                         timestamp: "2018-08-06T02:32:00.000Z",
@@ -5884,7 +5884,7 @@ ShallowWrapper {
                     assets: Immutable.List [
                         Immutable.Map {
                             balance: "0.198937",
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             symbol: "ETH",
                             value: Immutable.Map {
                                 eth: "0.198937",
@@ -5914,7 +5914,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.1",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -5945,7 +5945,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.1",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -5977,7 +5977,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.2",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -6009,7 +6009,7 @@ ShallowWrapper {
                     assets: Immutable.List [
                         Immutable.Map {
                             balance: "0.398937",
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             symbol: "ETH",
                             value: Immutable.Map {
                                 eth: "0.398937",
@@ -6427,7 +6427,7 @@ ShallowWrapper {
                         decimalAmount: "0.000000002111",
                         counterpartyAddress: "0x4231676a35483638796e2af8ed2af0a41b097524",
                         nonce: 21,
-                        currency: "ETH",
+                        currency: "0x0000000000000000000000000000000000000000",
                         layer: "nahmii",
                         sender: Immutable.Map {
                             fees: Immutable.Map {
@@ -6507,7 +6507,7 @@ ShallowWrapper {
                             timestamp: "2018-08-06T02:32:00.000Z",
                         },
                         hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
-                        currency: "ETH",
+                        currency: "0x0000000000000000000000000000000000000000",
                         layer: "baseLayer",
                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                         timestamp: "2018-08-06T02:32:00.000Z",
@@ -6627,7 +6627,7 @@ ShallowWrapper {
                     assets: Immutable.List [
                         Immutable.Map {
                             balance: "0.198937",
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             symbol: "ETH",
                             value: Immutable.Map {
                                 eth: "0.198937",
@@ -6657,7 +6657,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.1",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -6688,7 +6688,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.1",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -6720,7 +6720,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.2",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -6752,7 +6752,7 @@ ShallowWrapper {
                     assets: Immutable.List [
                         Immutable.Map {
                             balance: "0.398937",
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             symbol: "ETH",
                             value: Immutable.Map {
                                 eth: "0.398937",
@@ -7145,10 +7145,7 @@ ShallowWrapper {
               "_fastQueryDate": 0,
               "_lastBlockNumber": -2,
               "_network": Object {
-                "_defaultProvider": [Function],
-                "chainId": 3,
-                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
-                "name": "ropsten",
+                "chainId": 1,
               },
               "_pollingInterval": 4000,
               "_providers": Array [
@@ -7193,9 +7190,6 @@ ShallowWrapper {
                   "ready": Promise {},
                 },
               ],
-              "network": Object {
-                "name": "homestead",
-              },
               "ready": Promise {},
             },
             "walletApiEndpoint": [Function],
@@ -7221,7 +7215,7 @@ ShallowWrapper {
                         decimalAmount: "0.000000002111",
                         counterpartyAddress: "0x4231676a35483638796e2af8ed2af0a41b097524",
                         nonce: 21,
-                        currency: "ETH",
+                        currency: "0x0000000000000000000000000000000000000000",
                         layer: "nahmii",
                         sender: Immutable.Map {
                             fees: Immutable.Map {
@@ -7301,7 +7295,7 @@ ShallowWrapper {
                             timestamp: "2018-08-06T02:32:00.000Z",
                         },
                         hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
-                        currency: "ETH",
+                        currency: "0x0000000000000000000000000000000000000000",
                         layer: "baseLayer",
                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                         timestamp: "2018-08-06T02:32:00.000Z",
@@ -7421,7 +7415,7 @@ ShallowWrapper {
                     assets: Immutable.List [
                         Immutable.Map {
                             balance: "0.198937",
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             symbol: "ETH",
                             value: Immutable.Map {
                                 eth: "0.198937",
@@ -7451,7 +7445,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.1",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -7482,7 +7476,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.1",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -7514,7 +7508,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.2",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -7546,7 +7540,7 @@ ShallowWrapper {
                     assets: Immutable.List [
                         Immutable.Map {
                             balance: "0.398937",
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             symbol: "ETH",
                             value: Immutable.Map {
                                 eth: "0.398937",

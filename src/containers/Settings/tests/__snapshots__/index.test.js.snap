@@ -101,7 +101,7 @@ ShallowWrapper {
     onChangeNetwork={[Function]}
     supportedNetworks={
         Immutable.Map {
-            homestead: Immutable.Map {
+            mainnet: Immutable.Map {
                 provider: FallbackProvider {
                     "_balances": Object {},
                     "_emitted": Object {
@@ -302,12 +302,12 @@ ShallowWrapper {
                                                   "width": "15rem",
                                                 }
                               }
-                              value="ropsten"
+                              value="Ropsten [TESTNET]"
                     >
                               <Option
-                                        value="homestead"
+                                        value="mainnet"
                               >
-                                        Homestead [MAINNET]
+                                        Mainnet
                               </Option>
                               <Option
                                         value="ropsten"
@@ -381,12 +381,12 @@ ShallowWrapper {
                                                         "width": "15rem",
                                                       }
                             }
-                            value="ropsten"
+                            value="Ropsten [TESTNET]"
               >
                             <Option
-                                          value="homestead"
+                                          value="mainnet"
                             >
-                                          Homestead [MAINNET]
+                                          Mainnet
                             </Option>
                             <Option
                                           value="ropsten"
@@ -435,12 +435,12 @@ ShallowWrapper {
                                                       "width": "15rem",
                                                     }
                   }
-                  value="ropsten"
+                  value="Ropsten [TESTNET]"
 >
                   <Option
-                                    value="homestead"
+                                    value="mainnet"
                   >
-                                    Homestead [MAINNET]
+                                    Mainnet
                   </Option>
                   <Option
                                     value="ropsten"
@@ -470,9 +470,9 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <Option
-                      value="homestead"
+                      value="mainnet"
 >
-                      Homestead [MAINNET]
+                      Mainnet
 </Option>,
                     <Option
                       value="ropsten"
@@ -484,20 +484,20 @@ ShallowWrapper {
                   "style": Object {
                     "width": "15rem",
                   },
-                  "value": "ropsten",
+                  "value": "Ropsten [TESTNET]",
                 },
                 "ref": null,
                 "rendered": Array [
                   Object {
                     "instance": null,
-                    "key": "homestead",
+                    "key": "mainnet",
                     "nodeType": "class",
                     "props": Object {
-                      "children": "Homestead [MAINNET]",
-                      "value": "homestead",
+                      "children": "Mainnet",
+                      "value": "mainnet",
                     },
                     "ref": null,
-                    "rendered": "Homestead [MAINNET]",
+                    "rendered": "Mainnet",
                     "type": [Function],
                   },
                   Object {
@@ -625,12 +625,12 @@ ShallowWrapper {
                                                             "width": "15rem",
                                                           }
                                     }
-                                    value="ropsten"
+                                    value="Ropsten [TESTNET]"
                         >
                                     <Option
-                                                value="homestead"
+                                                value="mainnet"
                                     >
-                                                Homestead [MAINNET]
+                                                Mainnet
                                     </Option>
                                     <Option
                                                 value="ropsten"
@@ -704,12 +704,12 @@ ShallowWrapper {
                                                                 "width": "15rem",
                                                               }
                                 }
-                                value="ropsten"
+                                value="Ropsten [TESTNET]"
                 >
                                 <Option
-                                                value="homestead"
+                                                value="mainnet"
                                 >
-                                                Homestead [MAINNET]
+                                                Mainnet
                                 </Option>
                                 <Option
                                                 value="ropsten"
@@ -758,12 +758,12 @@ ShallowWrapper {
                                                             "width": "15rem",
                                                           }
                     }
-                    value="ropsten"
+                    value="Ropsten [TESTNET]"
 >
                     <Option
-                                        value="homestead"
+                                        value="mainnet"
                     >
-                                        Homestead [MAINNET]
+                                        Mainnet
                     </Option>
                     <Option
                                         value="ropsten"
@@ -793,9 +793,9 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <Option
-                        value="homestead"
+                        value="mainnet"
 >
-                        Homestead [MAINNET]
+                        Mainnet
 </Option>,
                       <Option
                         value="ropsten"
@@ -807,20 +807,20 @@ ShallowWrapper {
                     "style": Object {
                       "width": "15rem",
                     },
-                    "value": "ropsten",
+                    "value": "Ropsten [TESTNET]",
                   },
                   "ref": null,
                   "rendered": Array [
                     Object {
                       "instance": null,
-                      "key": "homestead",
+                      "key": "mainnet",
                       "nodeType": "class",
                       "props": Object {
-                        "children": "Homestead [MAINNET]",
-                        "value": "homestead",
+                        "children": "Mainnet",
+                        "value": "mainnet",
                       },
                       "ref": null,
-                      "rendered": "Homestead [MAINNET]",
+                      "rendered": "Mainnet",
                       "type": [Function],
                     },
                     Object {

@@ -232,7 +232,7 @@ describe('hubiiApi saga', () => {
 
     it('should select currentNetwork inside the saga network if noPoll is true', () => {
       saga = testSaga(loadWalletBalances, { address, noPoll: true });
-      const network = { name: 'homestead' };
+      const network = { chainId: 1 };
       saga
         .next() // network select
         .next(network).call(requestWalletAPI, requestPath, network);
@@ -250,7 +250,7 @@ describe('hubiiApi saga', () => {
     it('should correctly not poll when noPoll true', () => {
       saga = testSaga(loadWalletBalances, { address, noPoll: true });
       const response = balancesMock.get(0);
-      const network = { name: 'homestead' };
+      const network = { chainId: 1 };
       saga
         .next() // select network
         .next(network).call(requestWalletAPI, requestPath, network)
