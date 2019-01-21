@@ -273,7 +273,7 @@ export const ledgerSignerSignTransaction = async (unresolvedTx, path, descriptor
 };
 
 export function* loadBalances({ address }, network) {
-  if (network.provider._network.name === 'homestead') {
+  if (network.provider._network.chainId === 1) {
     yield put(actions.loadBalancesSuccess(address, []));
     return;
   }
@@ -298,7 +298,7 @@ export function* loadBalances({ address }, network) {
 }
 
 export function* loadStagingBalances({ address }, network) {
-  if (network.provider._network.name === 'homestead') {
+  if (network.provider._network.chainId === 1) {
     yield put(actions.loadStagingBalancesSuccess(address, []));
     return;
   }
@@ -359,7 +359,7 @@ export function* loadStagingBalances({ address }, network) {
 
 // https://stackoverflow.com/questions/48228662/get-token-balance-with-ethereum-rpc
 export function* loadStagedBalances({ address }, network) {
-  if (network.provider._network.name === 'homestead') {
+  if (network.provider._network.chainId === 1) {
     yield put(actions.loadStagedBalancesSuccess(address, []));
     return;
   }
@@ -421,7 +421,7 @@ export function* loadStagedBalances({ address }, network) {
 }
 
 export function* loadWalletReceipts({ address }, network) {
-  if (network.provider._network.name === 'homestead') {
+  if (network.provider._network.chainId === 1) {
     yield put(actions.loadReceiptsSuccess(address, []));
     return;
   }

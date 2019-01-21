@@ -159,9 +159,9 @@ module.exports = (options) => ({
         PUBLISH_REPO: JSON.stringify(process.env.npm_package_build_publish_0_repo),
         PUBLISH_OWNER: JSON.stringify(process.env.npm_package_build_publish_0_owner),
         ROPSTEN_IDENTITY_SERVICE_APPID: JSON.stringify(process.env.ROPSTEN_IDENTITY_SERVICE_APPID),
-        HOMESTEAD_IDENTITY_SERVICE_APPID: JSON.stringify(process.env.HOMESTEAD_IDENTITY_SERVICE_APPID),
+        MAINNET_IDENTITY_SERVICE_APPID: JSON.stringify(process.env.MAINNET_IDENTITY_SERVICE_APPID),
         ROPSTEN_IDENTITY_SERVICE_SECRET: JSON.stringify(process.env.ROPSTEN_IDENTITY_SERVICE_SECRET),
-        HOMESTEAD_IDENTITY_SERVICE_SECRET: JSON.stringify(process.env.HOMESTEAD_IDENTITY_SERVICE_SECRET),
+        MAINNET_IDENTITY_SERVICE_SECRET: JSON.stringify(process.env.MAINNET_IDENTITY_SERVICE_SECRET),
       },
     }),
     new CopyWebpackPlugin(

@@ -38,17 +38,16 @@ export class ConnectionStatus extends React.Component { // eslint-disable-line r
     const networkText = chainId === 1
       ? formatMessage({ id: 'mainnet' })
       : formatMessage({ id: 'testnet' });
-
     return (
       <Wrapper>
-        <span warning={chainId !== 1}>
+        <span>
           <StyledText style={{ fontWeight: 'bold' }}>{formatMessage({ id: 'network' })}:</StyledText>&nbsp;
           <StyledText warning={chainId !== 1}>{networkText}</StyledText>
         </span>
-        <span warning={connectionIssue} style={{ display: 'flex', alignItems: 'center' }}>
+        <span style={{ display: 'flex', alignItems: 'center' }}>
           <StyledText style={{ fontWeight: 'bold' }}>{formatMessage({ id: 'status' })}:</StyledText>&nbsp;
           <StyledText warning={connectionIssue}>{connectionStatus.text}</StyledText>&nbsp;
-          <StatusIcon warning={connectionIssue} type={connectionStatus.iconType} />
+          <StatusIcon warning={connectionIssue ? 1 : 0} type={connectionStatus.iconType} />
         </span>
       </Wrapper>
     );
