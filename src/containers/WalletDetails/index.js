@@ -134,7 +134,7 @@ export class WalletDetails extends React.PureComponent {
           <TabPane
             tab={
               <span>
-                <Icon type="login" /><NahmiiText /> deposit
+                <Icon type="login" /><NahmiiText /> {formatMessage({ id: 'deposit' }).toLowerCase()}
               </span>
             }
             key={`${match.url}/nahmii-deposit`}

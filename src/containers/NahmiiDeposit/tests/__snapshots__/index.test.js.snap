@@ -868,7 +868,7 @@ ShallowWrapper {
                                       }
                     }
           >
-                    Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                    deposits_note
           </SectionHeading>
 </div>,
       ],
@@ -1399,7 +1399,7 @@ ShallowWrapper {
                                         }
               }
 >
-              Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+              deposits_note
 </SectionHeading>,
           ],
           "style": Object {
@@ -2060,14 +2060,14 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+              "children": "deposits_note",
               "style": Object {
                 "marginTop": "2rem",
                 "maxWidth": "25rem",
               },
             },
             "ref": null,
-            "rendered": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+            "rendered": "deposits_note",
             "type": [Function],
           },
         ],
@@ -2342,7 +2342,7 @@ ShallowWrapper {
                                               }
                         }
             >
-                        Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                        deposits_note
             </SectionHeading>
 </div>,
         ],
@@ -2873,7 +2873,7 @@ ShallowWrapper {
                                               }
                 }
 >
-                Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                deposits_note
 </SectionHeading>,
             ],
             "style": Object {
@@ -3534,14 +3534,14 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+                "children": "deposits_note",
                 "style": Object {
                   "marginTop": "2rem",
                   "maxWidth": "25rem",
                 },
               },
               "ref": null,
-              "rendered": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+              "rendered": "deposits_note",
               "type": [Function],
             },
           ],
@@ -4429,7 +4429,7 @@ ShallowWrapper {
                                       }
                     }
           >
-                    Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                    deposits_note
           </SectionHeading>
 </div>,
       ],
@@ -4960,7 +4960,7 @@ ShallowWrapper {
                                         }
               }
 >
-              Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+              deposits_note
 </SectionHeading>,
           ],
           "style": Object {
@@ -5621,14 +5621,14 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+              "children": "deposits_note",
               "style": Object {
                 "marginTop": "2rem",
                 "maxWidth": "25rem",
               },
             },
             "ref": null,
-            "rendered": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+            "rendered": "deposits_note",
             "type": [Function],
           },
         ],
@@ -5903,7 +5903,7 @@ ShallowWrapper {
                                               }
                         }
             >
-                        Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                        deposits_note
             </SectionHeading>
 </div>,
         ],
@@ -6434,7 +6434,7 @@ ShallowWrapper {
                                               }
                 }
 >
-                Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                deposits_note
 </SectionHeading>,
             ],
             "style": Object {
@@ -7095,14 +7095,14 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+                "children": "deposits_note",
                 "style": Object {
                   "marginTop": "2rem",
                   "maxWidth": "25rem",
                 },
               },
               "ref": null,
-              "rendered": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+              "rendered": "deposits_note",
               "type": [Function],
             },
           ],
@@ -7990,7 +7990,7 @@ ShallowWrapper {
                                       }
                     }
           >
-                    Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                    deposits_note
           </SectionHeading>
 </div>,
       ],
@@ -8521,7 +8521,7 @@ ShallowWrapper {
                                         }
               }
 >
-              Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+              deposits_note
 </SectionHeading>,
           ],
           "style": Object {
@@ -9182,14 +9182,14 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+              "children": "deposits_note",
               "style": Object {
                 "marginTop": "2rem",
                 "maxWidth": "25rem",
               },
             },
             "ref": null,
-            "rendered": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+            "rendered": "deposits_note",
             "type": [Function],
           },
         ],
@@ -9464,7 +9464,7 @@ ShallowWrapper {
                                               }
                         }
             >
-                        Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                        deposits_note
             </SectionHeading>
 </div>,
         ],
@@ -9995,7 +9995,7 @@ ShallowWrapper {
                                               }
                 }
 >
-                Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                deposits_note
 </SectionHeading>,
             ],
             "style": Object {
@@ -10656,14 +10656,14 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+                "children": "deposits_note",
                 "style": Object {
                   "marginTop": "2rem",
                   "maxWidth": "25rem",
                 },
               },
               "ref": null,
-              "rendered": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+              "rendered": "deposits_note",
               "type": [Function],
             },
           ],
@@ -11545,7 +11545,7 @@ ShallowWrapper {
                                       }
                     }
           >
-                    Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                    deposits_note
           </SectionHeading>
 </div>,
       ],
@@ -12070,7 +12070,7 @@ ShallowWrapper {
                                         }
               }
 >
-              Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+              deposits_note
 </SectionHeading>,
           ],
           "style": Object {
@@ -12653,14 +12653,14 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+              "children": "deposits_note",
               "style": Object {
                 "marginTop": "2rem",
                 "maxWidth": "25rem",
               },
             },
             "ref": null,
-            "rendered": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+            "rendered": "deposits_note",
             "type": [Function],
           },
         ],
@@ -12929,7 +12929,7 @@ ShallowWrapper {
                                               }
                         }
             >
-                        Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                        deposits_note
             </SectionHeading>
 </div>,
         ],
@@ -13454,7 +13454,7 @@ ShallowWrapper {
                                               }
                 }
 >
-                Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                deposits_note
 </SectionHeading>,
             ],
             "style": Object {
@@ -14037,14 +14037,14 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+                "children": "deposits_note",
                 "style": Object {
                   "marginTop": "2rem",
                   "maxWidth": "25rem",
                 },
               },
               "ref": null,
-              "rendered": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+              "rendered": "deposits_note",
               "type": [Function],
             },
           ],
@@ -14926,7 +14926,7 @@ ShallowWrapper {
                                       }
                     }
           >
-                    Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                    deposits_note
           </SectionHeading>
 </div>,
       ],
@@ -15451,7 +15451,7 @@ ShallowWrapper {
                                         }
               }
 >
-              Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+              deposits_note
 </SectionHeading>,
           ],
           "style": Object {
@@ -16034,14 +16034,14 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+              "children": "deposits_note",
               "style": Object {
                 "marginTop": "2rem",
                 "maxWidth": "25rem",
               },
             },
             "ref": null,
-            "rendered": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+            "rendered": "deposits_note",
             "type": [Function],
           },
         ],
@@ -16310,7 +16310,7 @@ ShallowWrapper {
                                               }
                         }
             >
-                        Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                        deposits_note
             </SectionHeading>
 </div>,
         ],
@@ -16835,7 +16835,7 @@ ShallowWrapper {
                                               }
                 }
 >
-                Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                deposits_note
 </SectionHeading>,
             ],
             "style": Object {
@@ -17418,14 +17418,14 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+                "children": "deposits_note",
                 "style": Object {
                   "marginTop": "2rem",
                   "maxWidth": "25rem",
                 },
               },
               "ref": null,
-              "rendered": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+              "rendered": "deposits_note",
               "type": [Function],
             },
           ],
@@ -18308,7 +18308,7 @@ ShallowWrapper {
                                       }
                     }
           >
-                    Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                    deposits_note
           </SectionHeading>
 </div>,
       ],
@@ -18833,7 +18833,7 @@ ShallowWrapper {
                                         }
               }
 >
-              Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+              deposits_note
 </SectionHeading>,
           ],
           "style": Object {
@@ -19416,14 +19416,14 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+              "children": "deposits_note",
               "style": Object {
                 "marginTop": "2rem",
                 "maxWidth": "25rem",
               },
             },
             "ref": null,
-            "rendered": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+            "rendered": "deposits_note",
             "type": [Function],
           },
         ],
@@ -19692,7 +19692,7 @@ ShallowWrapper {
                                               }
                         }
             >
-                        Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                        deposits_note
             </SectionHeading>
 </div>,
         ],
@@ -20217,7 +20217,7 @@ ShallowWrapper {
                                               }
                 }
 >
-                Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                deposits_note
 </SectionHeading>,
             ],
             "style": Object {
@@ -20800,14 +20800,14 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+                "children": "deposits_note",
                 "style": Object {
                   "marginTop": "2rem",
                   "maxWidth": "25rem",
                 },
               },
               "ref": null,
-              "rendered": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+              "rendered": "deposits_note",
               "type": [Function],
             },
           ],
@@ -24139,7 +24139,7 @@ ShallowWrapper {
                                       }
                     }
           >
-                    Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                    deposits_note
           </SectionHeading>
 </div>,
       ],
@@ -24664,7 +24664,7 @@ ShallowWrapper {
                                         }
               }
 >
-              Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+              deposits_note
 </SectionHeading>,
           ],
           "style": Object {
@@ -25247,14 +25247,14 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+              "children": "deposits_note",
               "style": Object {
                 "marginTop": "2rem",
                 "maxWidth": "25rem",
               },
             },
             "ref": null,
-            "rendered": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+            "rendered": "deposits_note",
             "type": [Function],
           },
         ],
@@ -25523,7 +25523,7 @@ ShallowWrapper {
                                               }
                         }
             >
-                        Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                        deposits_note
             </SectionHeading>
 </div>,
         ],
@@ -26048,7 +26048,7 @@ ShallowWrapper {
                                               }
                 }
 >
-                Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+                deposits_note
 </SectionHeading>,
             ],
             "style": Object {
@@ -26631,14 +26631,14 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+                "children": "deposits_note",
                 "style": Object {
                   "marginTop": "2rem",
                   "maxWidth": "25rem",
                 },
               },
               "ref": null,
-              "rendered": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+              "rendered": "deposits_note",
               "type": [Function],
             },
           ],

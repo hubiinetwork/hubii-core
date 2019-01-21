@@ -511,7 +511,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               }
           </Row>
           <SectionHeading style={{ marginTop: '2rem', maxWidth: '25rem' }}>
-            Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
+            {formatMessage({ id: 'deposits_note' })}
           </SectionHeading>
         </div>
       </div>
