@@ -252,7 +252,7 @@ export const receiptsWithInfo = receiptsLoaded
   )
   .setIn(
     ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 0, 'currency'],
-    'ETH'
+    '0x0000000000000000000000000000000000000000'
   )
   .setIn(
     ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 0, 'confirmed'],

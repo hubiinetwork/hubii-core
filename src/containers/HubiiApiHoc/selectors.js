@@ -62,7 +62,7 @@ const makeSelectTransactionsWithInfo = () => createSelector(
       transactionsWithInfo = transactionsWithInfo.map((addressObj, address) => {
         const addressTxnsWithInfo = addressObj.get('transactions').reduce((result, tx) => {
           // ignore ETH tx with 0 amount since (to filter contact calls)
-          if (tx.get('amount') === '0' && tx.get('currency') === 'ETH') return result;
+          if (tx.get('amount') === '0' && tx.get('currency') === '0x0000000000000000000000000000000000000000') return result;
 
           // try to locate the asset from supportedAssets
           const assetDetails = supportedAssets
