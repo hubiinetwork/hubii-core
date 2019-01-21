@@ -167,7 +167,7 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
       const assetsState = balances.getIn([addresses[curDerivationPath], 'assets']);
       let balance = 'Loading...';
       if (assetsState) {
-        const asset = assetsState.toJSON().find((ast) => ast.currency === 'ETH');
+        const asset = assetsState.toJSON().find((ast) => ast.currency === '0x0000000000000000000000000000000000000000');
         balance = parseFloat(utils.formatEther(asset.balance));
       }
       processedAddresses.push({
