@@ -2,6 +2,7 @@ import { Icon, Dropdown, Popover } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 import { trimDecimals, isHardwareWallet, isAddressMatch } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
@@ -30,6 +31,9 @@ import {
   IconsWrapper,
   WalletName,
   Spinner,
+  QuickAddressWrapper,
+  QuickAddressText,
+  QuickAddressIcon,
 } from './WalletItemCard.style';
 
 /**
@@ -45,6 +49,7 @@ export class WalletItemCard extends React.PureComponent {
     this.settingsMenu = this.settingsMenu.bind(this);
     this.handleDeleteWallet = this.handleDeleteWallet.bind(this);
     this.handleExportSeedWords = this.handleExportSeedWords.bind(this);
+    this.handleClickCopy = this.handleClickCopy.bind(this);
   }
 
   settingsMenu(walletType, isDecrypted) {
@@ -96,6 +101,12 @@ export class WalletItemCard extends React.PureComponent {
   handleDeleteWallet() {
     this.props.deleteWallet();
     this.setState({ modalVisibility: false });
+  }
+
+  handleClickCopy(e) {
+    e.stopPropagation();
+    const { intl, notify } = this.props;
+    notify('success', intl.formatMessage({ id: 'address_clipboard' }));
   }
 
   render() {
@@ -211,7 +222,18 @@ export class WalletItemCard extends React.PureComponent {
           }}
         >
           <LeftSideWrapper>
-            <WalletName large>{name}</WalletName>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline' }}>
+              <WalletName large>{name}</WalletName>
+              <QuickAddressWrapper>
+                <QuickAddressText>
+                  {`${address.slice(0, 6)}..${address.slice(38, 42)}`}
+                </QuickAddressText>
+                &nbsp;
+                <CopyToClipboard text={address}>
+                  <QuickAddressIcon onClick={this.handleClickCopy} />
+                </CopyToClipboard>
+              </QuickAddressWrapper>
+            </div>
             {!baseLayerBalancesLoading && !baseLayerBalancesError &&
               <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
             }
@@ -270,17 +292,8 @@ export class WalletItemCard extends React.PureComponent {
 }
 
 WalletItemCard.propTypes = {
-  /**
-   * name of the wallet.
-   */
   name: PropTypes.string.isRequired,
-  /**
-   * total Balance of the wallet.
-   */
   totalBalance: PropTypes.number.isRequired,
-  /**
-   * assets/coins in a wallet.
-   */
   baseLayerAssets: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
@@ -301,6 +314,7 @@ WalletItemCard.propTypes = {
   type: PropTypes.string.isRequired,
   connected: PropTypes.bool,
   handleCardClick: PropTypes.func.isRequired,
+  notify: PropTypes.func.isRequired,
   deleteWallet: PropTypes.func.isRequired,
   lock: PropTypes.func.isRequired,
   unlock: PropTypes.func.isRequired,

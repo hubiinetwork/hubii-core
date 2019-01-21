@@ -29,6 +29,7 @@ describe('WalletsOverview', () => {
     ledgerNanoSInfo: fromJS({ connected: false }),
     trezorInfo: fromJS({ connected: false }),
     setCurrentWallet: () => {},
+    notify: () => {},
     totalBalances: totalBalancesLoadedMock,
     supportedAssets: supportedAssetsLoadedMock,
     history: { push: () => {} },
