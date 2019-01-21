@@ -7,5 +7,7 @@ export default styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => props.theme.palette.primary1}
+  background-color: ${(props) => props.theme.palette.primary1};
+  overflow-x: hidden;
+  overflow-y: scroll;
 `;

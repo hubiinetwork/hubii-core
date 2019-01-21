@@ -321,7 +321,6 @@ export class TransferForm extends React.PureComponent {
             confirmText={formatMessage({ id: 'create_contact' })}
           />
         </Modal>
-
         <OuterWrapper>
           <TransferFormWrapper>
             <Form>

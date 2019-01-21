@@ -42,9 +42,6 @@ export default styled(Tabs)`
   .ant-tabs-ink-bar {
     background-color: ${({ theme }) => theme.palette.info};
   }
-  .ant-tabs-content {
-    padding: 0 1.86rem;
-  }
   svg {
     margin-right: 0.64rem;
   }

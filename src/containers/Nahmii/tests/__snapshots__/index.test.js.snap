@@ -57,13 +57,12 @@ ShallowWrapper {
                                         airdriip_registration
                               </span>
                     }
-          >
-                    <Route
-                              component={[Function]}
-                              path="some-url/airdriip-registration"
-                    />
-          </TabPane>
+          />
 </Tabs>,
+        <Route
+          component={[Function]}
+          path="some-url/airdriip-registration"
+/>,
       ],
     },
     "ref": null,
@@ -108,12 +107,7 @@ ShallowWrapper {
                                     airdriip_registration
                         </span>
             }
->
-            <Route
-                        component={[Function]}
-                        path="some-url/airdriip-registration"
-            />
-</TabPane>,
+/>,
           "onChange": [Function],
         },
         "ref": null,
@@ -122,10 +116,6 @@ ShallowWrapper {
           "key": "some-url/airdriip-registration",
           "nodeType": "class",
           "props": Object {
-            "children": <Route
-              component={[Function]}
-              path="some-url/airdriip-registration"
-/>,
             "placeholder": null,
             "tab": <span>
               <Icon
@@ -135,20 +125,21 @@ ShallowWrapper {
 </span>,
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "some-url/airdriip-registration",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+          "rendered": null,
           "type": [Function],
         },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "path": "some-url/airdriip-registration",
+        },
+        "ref": null,
+        "rendered": null,
         "type": [Function],
       },
     ],
@@ -181,13 +172,12 @@ ShallowWrapper {
                                                 airdriip_registration
                                     </span>
                         }
-            >
-                        <Route
-                                    component={[Function]}
-                                    path="some-url/airdriip-registration"
-                        />
-            </TabPane>
+            />
 </Tabs>,
+          <Route
+            component={[Function]}
+            path="some-url/airdriip-registration"
+/>,
         ],
       },
       "ref": null,
@@ -232,12 +222,7 @@ ShallowWrapper {
                                           airdriip_registration
                             </span>
               }
->
-              <Route
-                            component={[Function]}
-                            path="some-url/airdriip-registration"
-              />
-</TabPane>,
+/>,
             "onChange": [Function],
           },
           "ref": null,
@@ -246,10 +231,6 @@ ShallowWrapper {
             "key": "some-url/airdriip-registration",
             "nodeType": "class",
             "props": Object {
-              "children": <Route
-                component={[Function]}
-                path="some-url/airdriip-registration"
-/>,
               "placeholder": null,
               "tab": <span>
                 <Icon
@@ -259,20 +240,21 @@ ShallowWrapper {
 </span>,
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "some-url/airdriip-registration",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+            "rendered": null,
             "type": [Function],
           },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "path": "some-url/airdriip-registration",
+          },
+          "ref": null,
+          "rendered": null,
           "type": [Function],
         },
       ],
