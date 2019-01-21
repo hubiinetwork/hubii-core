@@ -125,13 +125,29 @@ export function* loadSupportedTokens(network) {
   }
 }
 
+// if supported asset doesn't have a price, set it to 0
+function patchPrices(prices, supportedAssets) {
+  return supportedAssets.assets.map((a) => {
+    const price = prices.find((p) => p.currency === a.currency);
+    if (!price) {
+      return { currency: a.currency, btc: '0', eth: '0', usd: '0' };
+    }
+    return price;
+  });
+}
+
 export function* loadPrices(network) {
   const requestPath = 'ethereum/prices';
   while (true) { // eslint-disable-line no-constant-condition
     try {
+      let supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+      if (supportedAssets.loading) {
+        yield take(LOAD_SUPPORTED_TOKENS_SUCCESS);
+        supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+      }
       const returnData = yield call(requestWalletAPI, requestPath, network);
-      // const patchedData = yield patchPrices(returnData);
-      yield put(loadPricesSuccess(returnData));
+      const patchedData = patchPrices(returnData, supportedAssets);
+      yield put(loadPricesSuccess(patchedData));
     } catch (err) {
       yield put(loadPricesError(err));
     } finally {
