@@ -301,7 +301,7 @@ export class TransferForm extends React.PureComponent {
 
     const walletUsdValueAfter = currentWalletUsdBalance - (usdValueToSend.plus(transactionFee.usdValue)).toNumber();
 
-    const disableNahmiiPayments = this.props.currentNetwork.provider._network.name === 'homestead';
+    const disableNahmiiPayments = this.props.currentNetwork.provider._network.chainId === 1;
 
     return (
       <div>
