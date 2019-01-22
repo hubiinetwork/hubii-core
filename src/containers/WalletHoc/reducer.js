@@ -7,6 +7,7 @@
 import { fromJS } from 'immutable';
 import { ERC20ABI, findWalletIndex } from 'utils/wallet';
 import abiDecoder from 'abi-decoder';
+import { arrayMove } from 'react-sortable-hoc';
 
 import { CHANGE_NETWORK } from 'containers/App/constants';
 import {
@@ -32,6 +33,7 @@ import {
   TRANSFER_ERROR,
   DELETE_WALLET,
   LOCK_WALLET,
+  DRAG_WALLET,
 } from './constants';
 
 
@@ -60,6 +62,12 @@ abiDecoder.addABI(ERC20ABI);
 
 function walletHocReducer(state = initialState, action) {
   switch (action.type) {
+    case DRAG_WALLET:
+      return state
+        .set(
+          'wallets',
+          fromJS(arrayMove(state.get('wallets').toJS(), action.oldIndex, action.newIndex))
+        );
     case CREATE_WALLET_FROM_MNEMONIC:
     case CREATE_WALLET_FROM_PRIVATE_KEY:
       return state

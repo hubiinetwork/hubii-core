@@ -24,6 +24,7 @@ import {
   TRANSFER_ERROR,
   DELETE_WALLET,
   LOCK_WALLET,
+  DRAG_WALLET,
 } from './constants';
 
 export function lockWallet(address) {
@@ -222,5 +223,13 @@ export function transferError(error) {
   return {
     type: TRANSFER_ERROR,
     error,
+  };
+}
+
+export function dragWallet({ oldIndex, newIndex }) {
+  return {
+    type: DRAG_WALLET,
+    oldIndex,
+    newIndex,
   };
 }
