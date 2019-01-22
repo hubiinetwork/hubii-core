@@ -38,6 +38,7 @@ import {
 import { transfer as baseLayerTransfer } from 'containers/WalletHoc/actions';
 import { makeNahmiiPayment as nahmiiTransfer } from 'containers/NahmiiHoc/actions';
 import LoadingError from '../../components/LoadingError';
+import ScrollableContentWrapper from '../../components/ui/ScrollableContentWrapper';
 
 export class WalletTransfer extends React.PureComponent {
   constructor(props) {
@@ -111,18 +112,20 @@ export class WalletTransfer extends React.PureComponent {
     // get if the hw wallet is ready to make tx
     const hwWalletReady = walletReady(currentWalletWithInfo.get('type'), ledgerNanoSInfo, trezorInfo);
     return (
-      <TransferForm
-        supportedAssets={this.props.supportedAssets}
-        currentNetwork={this.props.currentNetwork}
-        hwWalletReady={hwWalletReady}
-        prices={prices.toJS()}
-        recipients={contacts.toJS()}
-        onSend={this.onSend}
-        transfering={currentWallet.toJS().transfering}
-        currentWalletWithInfo={this.props.currentWalletWithInfo}
-        createContact={this.props.createContact}
-        gasStatistics={gasStatistics}
-      />
+      <ScrollableContentWrapper>
+        <TransferForm
+          supportedAssets={this.props.supportedAssets}
+          currentNetwork={this.props.currentNetwork}
+          hwWalletReady={hwWalletReady}
+          prices={prices.toJS()}
+          recipients={contacts.toJS()}
+          onSend={this.onSend}
+          transfering={currentWallet.toJS().transfering}
+          currentWalletWithInfo={this.props.currentWalletWithInfo}
+          createContact={this.props.createContact}
+          gasStatistics={gasStatistics}
+        />
+      </ScrollableContentWrapper>
     );
   }
 }

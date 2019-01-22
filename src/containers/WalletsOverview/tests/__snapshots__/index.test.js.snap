@@ -836,6 +836,11 @@ ShallowWrapper {
     "props": Object {
       "children": <Row
         gutter={32}
+        style={
+                Object {
+                        "marginTop": "1rem",
+                      }
+        }
 >
         <Col
                 lg={16}
@@ -2102,6 +2107,9 @@ ShallowWrapper {
 />,
         ],
         "gutter": 32,
+        "style": Object {
+          "marginTop": "1rem",
+        },
       },
       "ref": null,
       "rendered": Array [
@@ -3394,6 +3402,11 @@ ShallowWrapper {
       "props": Object {
         "children": <Row
           gutter={32}
+          style={
+                    Object {
+                              "marginTop": "1rem",
+                            }
+          }
 >
           <Col
                     lg={16}
@@ -4660,6 +4673,9 @@ ShallowWrapper {
 />,
           ],
           "gutter": 32,
+          "style": Object {
+            "marginTop": "1rem",
+          },
         },
         "ref": null,
         "rendered": Array [
@@ -6791,6 +6807,11 @@ ShallowWrapper {
     "props": Object {
       "children": <Row
         gutter={32}
+        style={
+                Object {
+                        "marginTop": "1rem",
+                      }
+        }
 >
         <Col
                 lg={16}
@@ -8057,6 +8078,9 @@ ShallowWrapper {
 />,
         ],
         "gutter": 32,
+        "style": Object {
+          "marginTop": "1rem",
+        },
       },
       "ref": null,
       "rendered": Array [
@@ -9349,6 +9373,11 @@ ShallowWrapper {
       "props": Object {
         "children": <Row
           gutter={32}
+          style={
+                    Object {
+                              "marginTop": "1rem",
+                            }
+          }
 >
           <Col
                     lg={16}
@@ -10615,6 +10644,9 @@ ShallowWrapper {
 />,
           ],
           "gutter": 32,
+          "style": Object {
+            "marginTop": "1rem",
+          },
         },
         "ref": null,
         "rendered": Array [
@@ -12164,6 +12196,11 @@ ShallowWrapper {
     "props": Object {
       "children": <Row
         gutter={32}
+        style={
+                Object {
+                        "marginTop": "1rem",
+                      }
+        }
 >
         <Col
                 lg={16}
@@ -12538,6 +12575,9 @@ ShallowWrapper {
 </Col>,
         ],
         "gutter": 32,
+        "style": Object {
+          "marginTop": "1rem",
+        },
       },
       "ref": null,
       "rendered": Array [
@@ -13120,6 +13160,11 @@ ShallowWrapper {
       "props": Object {
         "children": <Row
           gutter={32}
+          style={
+                    Object {
+                              "marginTop": "1rem",
+                            }
+          }
 >
           <Col
                     lg={16}
@@ -13494,6 +13539,9 @@ ShallowWrapper {
 </Col>,
           ],
           "gutter": 32,
+          "style": Object {
+            "marginTop": "1rem",
+          },
         },
         "ref": null,
         "rendered": Array [
@@ -14333,6 +14381,11 @@ ShallowWrapper {
     "props": Object {
       "children": <Row
         gutter={32}
+        style={
+                Object {
+                        "marginTop": "1rem",
+                      }
+        }
 >
         <Col
                 lg={16}
@@ -14707,6 +14760,9 @@ ShallowWrapper {
 </Col>,
         ],
         "gutter": 32,
+        "style": Object {
+          "marginTop": "1rem",
+        },
       },
       "ref": null,
       "rendered": Array [
@@ -15289,6 +15345,11 @@ ShallowWrapper {
       "props": Object {
         "children": <Row
           gutter={32}
+          style={
+                    Object {
+                              "marginTop": "1rem",
+                            }
+          }
 >
           <Col
                     lg={16}
@@ -15663,6 +15724,9 @@ ShallowWrapper {
 </Col>,
           ],
           "gutter": 32,
+          "style": Object {
+            "marginTop": "1rem",
+          },
         },
         "ref": null,
         "rendered": Array [
@@ -17120,6 +17184,11 @@ ShallowWrapper {
     "props": Object {
       "children": <Row
         gutter={32}
+        style={
+                Object {
+                        "marginTop": "1rem",
+                      }
+        }
 >
         <Col
                 lg={16}
@@ -18714,6 +18783,9 @@ ShallowWrapper {
 </Col>,
         ],
         "gutter": 32,
+        "style": Object {
+          "marginTop": "1rem",
+        },
       },
       "ref": null,
       "rendered": Array [
@@ -20514,6 +20586,11 @@ ShallowWrapper {
       "props": Object {
         "children": <Row
           gutter={32}
+          style={
+                    Object {
+                              "marginTop": "1rem",
+                            }
+          }
 >
           <Col
                     lg={16}
@@ -22108,6 +22185,9 @@ ShallowWrapper {
 </Col>,
           ],
           "gutter": 32,
+          "style": Object {
+            "marginTop": "1rem",
+          },
         },
         "ref": null,
         "rendered": Array [
@@ -24729,6 +24809,11 @@ ShallowWrapper {
     "props": Object {
       "children": <Row
         gutter={32}
+        style={
+                Object {
+                        "marginTop": "1rem",
+                      }
+        }
 >
         <Col
                 lg={16}
@@ -26215,6 +26300,9 @@ ShallowWrapper {
 </Col>,
         ],
         "gutter": 32,
+        "style": Object {
+          "marginTop": "1rem",
+        },
       },
       "ref": null,
       "rendered": Array [
@@ -27853,6 +27941,11 @@ ShallowWrapper {
       "props": Object {
         "children": <Row
           gutter={32}
+          style={
+                    Object {
+                              "marginTop": "1rem",
+                            }
+          }
 >
           <Col
                     lg={16}
@@ -29339,6 +29432,9 @@ ShallowWrapper {
 </Col>,
           ],
           "gutter": 32,
+          "style": Object {
+            "marginTop": "1rem",
+          },
         },
         "ref": null,
         "rendered": Array [
@@ -31798,6 +31894,11 @@ ShallowWrapper {
     "props": Object {
       "children": <Row
         gutter={32}
+        style={
+                Object {
+                        "marginTop": "1rem",
+                      }
+        }
 >
         <Col
                 lg={16}
@@ -33284,6 +33385,9 @@ ShallowWrapper {
 </Col>,
         ],
         "gutter": 32,
+        "style": Object {
+          "marginTop": "1rem",
+        },
       },
       "ref": null,
       "rendered": Array [
@@ -34922,6 +35026,11 @@ ShallowWrapper {
       "props": Object {
         "children": <Row
           gutter={32}
+          style={
+                    Object {
+                              "marginTop": "1rem",
+                            }
+          }
 >
           <Col
                     lg={16}
@@ -36408,6 +36517,9 @@ ShallowWrapper {
 </Col>,
           ],
           "gutter": 32,
+          "style": Object {
+            "marginTop": "1rem",
+          },
         },
         "ref": null,
         "rendered": Array [

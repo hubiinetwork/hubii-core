@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { isValidAddress } from 'ethereumjs-util';
 import { Wrapper, StyledSpin } from './styles';
+import ScrollableContentWrapper from '../ui/ScrollableContentWrapper';
 
 
 class SimplexPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -53,17 +54,19 @@ class SimplexPage extends React.PureComponent { // eslint-disable-line react/pre
       );
     }
     return (
-      <Wrapper>
-        {
+      <ScrollableContentWrapper>
+        <Wrapper>
+          {
           loading &&
             <StyledSpin tip="Loading..." size="large" />
-        }
-        <webview
-          style={loading ? { visibility: 'hidden' } : { width: '100%', height: '80vh' }}
-          autosize="on"
-          src={'https://simplex.dev.hubii.net/?crypto=ETH'}
-        ></webview>
-      </Wrapper>
+          }
+          <webview
+            style={loading ? { visibility: 'hidden' } : { width: '100%', height: '80vh' }}
+            autosize="on"
+            src={'https://simplex.dev.hubii.net/?crypto=ETH'}
+          ></webview>
+        </Wrapper>
+      </ScrollableContentWrapper>
     );
   }
 }
