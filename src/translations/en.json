@@ -215,5 +215,6 @@
     "network": "Network",
     "status": "Status",
     "reconnecting": "Reconnecting...",
-    "connected": "Connected"
+    "connected": "Connected",
+    "deposits_note": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)"
 }
