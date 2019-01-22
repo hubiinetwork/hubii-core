@@ -17,8 +17,13 @@ import {
 } from 'containers/App/tests/mocks/selectors';
 
 import {
+  storeMock,
+} from 'mocks/store';
+
+import {
   supportedTokensMock,
 } from './mocks';
+
 
 import {
   balancesMock,
@@ -145,24 +150,50 @@ describe('hubiiApi saga', () => {
         .next().isDone();
     });
   });
-  xdescribe('prices', () => {
+  describe('prices', () => {
     it('should load prices when not exist in the store', () => {
       const response = [
         {
           currency: '0x8899544F1fc4E0D570f3c998cC7e5857140dC322',
-          eth: 1,
-          btc: 1,
-          usd: 1,
+          eth: '1',
+          btc: '1',
+          usd: '1',
         },
         {
           currency: '0x8899544F1fc4E0D570f3c998cC7e5857140dC323',
-          eth: 1,
-          btc: 1,
-          usd: 1,
+          eth: '1',
+          btc: '1',
+          usd: '1',
         },
       ];
+      const expected = [
+        { currency: '0x8899544F1fc4E0D570f3c998cC7e5857140dC322',
+          eth: '1',
+          btc: '1',
+          usd: '1' },
+        { currency: '0x8d1b4bc5664436d64cca2fd4c8b39ae71cb2662a',
+          btc: '0',
+          eth: '0',
+          usd: '0' },
+        { currency: '0xcda3f98783d8ee980ee21f548bfe42965d13d64d',
+          btc: '0',
+          eth: '0',
+          usd: '0' },
+        { currency: '0xc00fd9820cd2898cc4c054b7bf142de637ad129a',
+          btc: '0',
+          eth: '0',
+          usd: '0' },
+        { currency: '0x583cbbb8a8443b38abcc0c956bece47340ea1367',
+          btc: '0',
+          eth: '0',
+          usd: '0' },
+        { currency: '0x0000000000000000000000000000000000000000',
+          btc: '0',
+          eth: '0',
+          usd: '0' },
+      ];
       return expectSaga(loadPricesSaga)
-        .withReducer(withReducer, initialState)
+        .withState(storeMock)
         .provide({
           call(effect) {
             expect(effect.fn).toBe(requestWalletAPI);
@@ -170,13 +201,13 @@ describe('hubiiApi saga', () => {
             return response;
           },
         })
-        .put(loadPricesSuccess(response))
+        .put(loadPricesSuccess(expected))
         .run({ silenceTimeout: true });
     });
     it('should handle request error', () => {
       const error = new Error();
       return expectSaga(loadPricesSaga)
-        .withReducer(withReducer, initialState)
+        .withReducer(withReducer, storeMock)
         .provide({
           call(effect) {
             expect(effect.fn).toBe(requestWalletAPI);

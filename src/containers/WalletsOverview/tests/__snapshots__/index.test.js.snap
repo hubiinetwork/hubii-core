@@ -23,6 +23,7 @@ ShallowWrapper {
         }
     }
     lockWallet={[Function]}
+    notify={[Function]}
     priceInfo={
         Immutable.Map {
             loading: false,
@@ -5994,6 +5995,7 @@ ShallowWrapper {
         }
     }
     lockWallet={[Function]}
+    notify={[Function]}
     priceInfo={
         Immutable.Map {
             loading: false,
@@ -11965,6 +11967,7 @@ ShallowWrapper {
         }
     }
     lockWallet={[Function]}
+    notify={[Function]}
     priceInfo={
         Immutable.Map {
             loading: false,
@@ -14150,6 +14153,7 @@ ShallowWrapper {
         }
     }
     lockWallet={[Function]}
+    notify={[Function]}
     priceInfo={
         Immutable.Map {
             loading: false,
@@ -16335,6 +16339,7 @@ ShallowWrapper {
         }
     }
     lockWallet={[Function]}
+    notify={[Function]}
     priceInfo={
         Immutable.Map {
             loading: false,
@@ -24014,6 +24019,7 @@ ShallowWrapper {
         }
     }
     lockWallet={[Function]}
+    notify={[Function]}
     priceInfo={
         Immutable.Map {
             loading: false,
@@ -31099,6 +31105,7 @@ ShallowWrapper {
         }
     }
     lockWallet={[Function]}
+    notify={[Function]}
     priceInfo={
         Immutable.Map {
             loading: false,

@@ -20,6 +20,8 @@ import {
   dragWallet as dragWalletAction,
 } from 'containers/WalletHoc/actions';
 
+import { notify } from 'containers/App/actions';
+
 import {
   makeSelectWalletsWithInfo,
   makeSelectTotalBalances,
@@ -132,6 +134,7 @@ export class WalletsOverview extends React.Component { // eslint-disable-line re
             lock={() => this.props.lockWallet(wallet.address)}
             unlock={() => this.unlockWallet(wallet.address)}
             priceInfo={priceInfo.toJS().assets}
+            notify={this.props.notify}
           />
         </WalletCardsCol>
       );
@@ -194,6 +197,7 @@ WalletsOverview.propTypes = {
   showDecryptWalletModal: PropTypes.func.isRequired,
   setCurrentWallet: PropTypes.func.isRequired,
   deleteWallet: PropTypes.func.isRequired,
+  notify: PropTypes.func.isRequired,
   lockWallet: PropTypes.func.isRequired,
   dragWallet: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
@@ -224,6 +228,7 @@ export function mapDispatchToProps(dispatch) {
     dragWallet: (...args) => dispatch(dragWalletAction(...args)),
     showDecryptWalletModal: (...args) => dispatch(showDecryptWalletModal(...args)),
     setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
+    notify: (...args) => dispatch(notify(...args)),
   };
 }
 
