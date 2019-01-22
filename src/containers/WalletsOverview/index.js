@@ -38,9 +38,10 @@ import {
 import SectionHeading from 'components/ui/SectionHeading';
 import WalletItemCard from 'components/WalletItemCard';
 import BreakdownPie from 'components/BreakdownPie';
+import ScrollableContentWrapper from 'components/ui/ScrollableContentWrapper';
 
 import PlaceholderText from 'components/ui/PlaceholderText';
-import { WalletCardsCol, Wrapper } from './style';
+import { WalletCardsCol } from './style';
 
 export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -120,8 +121,8 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     const { formatMessage } = this.props.intl;
     const walletCards = this.renderWalletCards();
     return (
-      <Wrapper>
-        <Row gutter={32}>
+      <ScrollableContentWrapper>
+        <Row gutter={32} style={{ marginTop: '1rem' }}>
           <Col sm={24} md={12} lg={16}>
             <SectionHeading>
               {formatMessage({ id: 'all_wallets' })}
@@ -144,7 +145,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
             }
           </Col>
         </Row>
-      </Wrapper>
+      </ScrollableContentWrapper>
     );
   }
 }

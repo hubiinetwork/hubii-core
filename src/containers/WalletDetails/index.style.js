@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Layout } from 'antd';
-import Button from 'components/ui/Button';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -15,11 +14,4 @@ export const HeaderWrapper = styled(Layout)`
     padding-top: 0.5rem;
     display: inline-flex;
   }
-`;
-
-export const StyledButton = styled(Button)`
-  float: right;
-  margin-top: 1.21rem;
-  border-width: 0.14rem;
-  padding: 0.5rem 1rem;
 `;
