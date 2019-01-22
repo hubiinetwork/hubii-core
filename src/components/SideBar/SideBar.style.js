@@ -2,6 +2,7 @@ import { Layout, Menu, Icon } from 'antd';
 import styled from 'styled-components';
 
 const SideBarLayout = styled(Layout)`
+  height: 100vh;
   .ant-layout-sider {
     background-color: ${({ theme }) => theme.palette.dark};
     min-width: 5.14rem !important;

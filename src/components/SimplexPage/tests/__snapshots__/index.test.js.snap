@@ -139,56 +139,24 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": Array [
+      "children": <styles__Wrapper>
         <styles__StyledSpin
-          size="large"
-          tip="Loading..."
-/>,
+                size="large"
+                tip="Loading..."
+        />
         <webview
-          autosize="on"
-          src="https://simplex.dev.hubii.net/?crypto=ETH"
-          style={
-                    Object {
-                              "visibility": "hidden",
-                            }
-          }
-/>,
-      ],
+                autosize="on"
+                src="https://simplex.dev.hubii.net/?crypto=ETH"
+                style={
+                        Object {
+                                "visibility": "hidden",
+                              }
+                }
+        />
+</styles__Wrapper>,
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "size": "large",
-          "tip": "Loading...",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "autosize": "on",
-          "src": "https://simplex.dev.hubii.net/?crypto=ETH",
-          "style": Object {
-            "visibility": "hidden",
-          },
-        },
-        "ref": null,
-        "rendered": null,
-        "type": "webview",
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "rendered": Object {
       "instance": null,
       "key": undefined,
       "nodeType": "class",
@@ -241,6 +209,86 @@ ShallowWrapper {
       ],
       "type": [Function],
     },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <styles__Wrapper>
+          <styles__StyledSpin
+                    size="large"
+                    tip="Loading..."
+          />
+          <webview
+                    autosize="on"
+                    src="https://simplex.dev.hubii.net/?crypto=ETH"
+                    style={
+                              Object {
+                                        "visibility": "hidden",
+                                      }
+                    }
+          />
+</styles__Wrapper>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <styles__StyledSpin
+              size="large"
+              tip="Loading..."
+/>,
+            <webview
+              autosize="on"
+              src="https://simplex.dev.hubii.net/?crypto=ETH"
+              style={
+                            Object {
+                                          "visibility": "hidden",
+                                        }
+              }
+/>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "size": "large",
+              "tip": "Loading...",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "autosize": "on",
+              "src": "https://simplex.dev.hubii.net/?crypto=ETH",
+              "style": Object {
+                "visibility": "hidden",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "webview",
+          },
+        ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
   ],
   Symbol(enzyme.__options__): Object {
     "adapter": ReactSixteenAdapter {
@@ -275,44 +323,21 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": Array [
-        false,
+      "children": <styles__Wrapper>
         <webview
-          autosize="on"
-          src="https://simplex.dev.hubii.net/?crypto=ETH"
-          style={
-                    Object {
-                              "height": "80vh",
-                              "width": "100%",
-                            }
-          }
-/>,
-      ],
+                autosize="on"
+                src="https://simplex.dev.hubii.net/?crypto=ETH"
+                style={
+                        Object {
+                                "height": "80vh",
+                                "width": "100%",
+                              }
+                }
+        />
+</styles__Wrapper>,
     },
     "ref": null,
-    "rendered": Array [
-      false,
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "autosize": "on",
-          "src": "https://simplex.dev.hubii.net/?crypto=ETH",
-          "style": Object {
-            "height": "80vh",
-            "width": "100%",
-          },
-        },
-        "ref": null,
-        "rendered": null,
-        "type": "webview",
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "rendered": Object {
       "instance": null,
       "key": undefined,
       "nodeType": "class",
@@ -351,6 +376,71 @@ ShallowWrapper {
           "type": "webview",
         },
       ],
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <styles__Wrapper>
+          <webview
+                    autosize="on"
+                    src="https://simplex.dev.hubii.net/?crypto=ETH"
+                    style={
+                              Object {
+                                        "height": "80vh",
+                                        "width": "100%",
+                                      }
+                    }
+          />
+</styles__Wrapper>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            false,
+            <webview
+              autosize="on"
+              src="https://simplex.dev.hubii.net/?crypto=ETH"
+              style={
+                            Object {
+                                          "height": "80vh",
+                                          "width": "100%",
+                                        }
+              }
+/>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          false,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "autosize": "on",
+              "src": "https://simplex.dev.hubii.net/?crypto=ETH",
+              "style": Object {
+                "height": "80vh",
+                "width": "100%",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "webview",
+          },
+        ],
+        "type": [Function],
+      },
       "type": [Function],
     },
   ],

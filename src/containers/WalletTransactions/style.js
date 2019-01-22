@@ -31,7 +31,7 @@ export const NoTxPlaceholder = styled.div`
 `;
 
 export const StyledSpin = styled(Spin)`
-  color: ${({ theme }) => theme.palette.light}};
+  color: ${({ theme }) => theme.palette.light};
 `;
 
 export const TransactionsWrapper = styled.div`
@@ -46,7 +46,6 @@ export const TransactionsWrapper = styled.div`
 export const BreakdownWrapper = styled.div`
   display: flex;
   max-width: 50rem;
-  min-width: 30rem;
   margin-left: 5rem;
   ${media.tablet`
     margin: 2rem 0;
@@ -57,6 +56,7 @@ export const BreakdownWrapper = styled.div`
 export const OuterWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: 1rem;
   ${media.tablet`
     flex-direction: column;
   `}
