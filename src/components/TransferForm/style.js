@@ -20,6 +20,7 @@ export const OuterWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex: 1;
+  margin-top: 0.5rem;
 `;
 
 export const StyledButton = styled(Button)`
