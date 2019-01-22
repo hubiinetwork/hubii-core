@@ -151,9 +151,8 @@ export class WalletsOverview extends React.Component { // eslint-disable-line re
         updateBeforeSortStart={(...args) => this.updateBeforeSortStart(...args)}
         axis="xy"
         lockToContainerEdges
-        lockOffset="10%"
-        distance="5"
-        useWindowAsScrollContainer
+        lockOffset="20%"
+        distance={5}
       />
     );
   }

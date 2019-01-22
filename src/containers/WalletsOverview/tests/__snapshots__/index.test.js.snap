@@ -852,10 +852,10 @@ ShallowWrapper {
                 </SectionHeading>
                 <sortableList
                         axis="xy"
-                        distance="5"
+                        distance={5}
                         getHelperDimensions={[Function]}
                         hideSortableGhost={true}
-                        lockOffset="10%"
+                        lockOffset="20%"
                         lockToContainerEdges={true}
                         onSortEnd={[Function]}
                         pressDelay={0}
@@ -863,7 +863,7 @@ ShallowWrapper {
                         shouldCancelStart={[Function]}
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
-                        useWindowAsScrollContainer={true}
+                        useWindowAsScrollContainer={false}
                         wallets={
                                 Array [
                                         Object {
@@ -1488,10 +1488,10 @@ ShallowWrapper {
             </SectionHeading>
             <sortableList
                         axis="xy"
-                        distance="5"
+                        distance={5}
                         getHelperDimensions={[Function]}
                         hideSortableGhost={true}
-                        lockOffset="10%"
+                        lockOffset="20%"
                         lockToContainerEdges={true}
                         onSortEnd={[Function]}
                         pressDelay={0}
@@ -1499,7 +1499,7 @@ ShallowWrapper {
                         shouldCancelStart={[Function]}
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
-                        useWindowAsScrollContainer={true}
+                        useWindowAsScrollContainer={false}
                         wallets={
                                     Array [
                                                 Object {
@@ -2124,10 +2124,10 @@ ShallowWrapper {
 </SectionHeading>,
               <sortableList
                 axis="xy"
-                distance="5"
+                distance={5}
                 getHelperDimensions={[Function]}
                 hideSortableGhost={true}
-                lockOffset="10%"
+                lockOffset="20%"
                 lockToContainerEdges={true}
                 onSortEnd={[Function]}
                 pressDelay={0}
@@ -2135,7 +2135,7 @@ ShallowWrapper {
                 shouldCancelStart={[Function]}
                 transitionDuration={300}
                 updateBeforeSortStart={[Function]}
-                useWindowAsScrollContainer={true}
+                useWindowAsScrollContainer={false}
                 wallets={
                                 Array [
                                                 Object {
@@ -2759,10 +2759,10 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "axis": "xy",
-                "distance": "5",
+                "distance": 5,
                 "getHelperDimensions": [Function],
                 "hideSortableGhost": true,
-                "lockOffset": "10%",
+                "lockOffset": "20%",
                 "lockToContainerEdges": true,
                 "onSortEnd": [Function],
                 "pressDelay": 0,
@@ -2770,7 +2770,7 @@ ShallowWrapper {
                 "shouldCancelStart": [Function],
                 "transitionDuration": 300,
                 "updateBeforeSortStart": [Function],
-                "useWindowAsScrollContainer": true,
+                "useWindowAsScrollContainer": false,
                 "wallets": Array [
                   Object {
                     "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -3418,10 +3418,10 @@ ShallowWrapper {
                     </SectionHeading>
                     <sortableList
                               axis="xy"
-                              distance="5"
+                              distance={5}
                               getHelperDimensions={[Function]}
                               hideSortableGhost={true}
-                              lockOffset="10%"
+                              lockOffset="20%"
                               lockToContainerEdges={true}
                               onSortEnd={[Function]}
                               pressDelay={0}
@@ -3429,7 +3429,7 @@ ShallowWrapper {
                               shouldCancelStart={[Function]}
                               transitionDuration={300}
                               updateBeforeSortStart={[Function]}
-                              useWindowAsScrollContainer={true}
+                              useWindowAsScrollContainer={false}
                               wallets={
                                         Array [
                                                   Object {
@@ -4054,10 +4054,10 @@ ShallowWrapper {
               </SectionHeading>
               <sortableList
                             axis="xy"
-                            distance="5"
+                            distance={5}
                             getHelperDimensions={[Function]}
                             hideSortableGhost={true}
-                            lockOffset="10%"
+                            lockOffset="20%"
                             lockToContainerEdges={true}
                             onSortEnd={[Function]}
                             pressDelay={0}
@@ -4065,7 +4065,7 @@ ShallowWrapper {
                             shouldCancelStart={[Function]}
                             transitionDuration={300}
                             updateBeforeSortStart={[Function]}
-                            useWindowAsScrollContainer={true}
+                            useWindowAsScrollContainer={false}
                             wallets={
                                           Array [
                                                         Object {
@@ -4690,10 +4690,10 @@ ShallowWrapper {
 </SectionHeading>,
                 <sortableList
                   axis="xy"
-                  distance="5"
+                  distance={5}
                   getHelperDimensions={[Function]}
                   hideSortableGhost={true}
-                  lockOffset="10%"
+                  lockOffset="20%"
                   lockToContainerEdges={true}
                   onSortEnd={[Function]}
                   pressDelay={0}
@@ -4701,7 +4701,7 @@ ShallowWrapper {
                   shouldCancelStart={[Function]}
                   transitionDuration={300}
                   updateBeforeSortStart={[Function]}
-                  useWindowAsScrollContainer={true}
+                  useWindowAsScrollContainer={false}
                   wallets={
                                     Array [
                                                       Object {
@@ -5325,10 +5325,10 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "axis": "xy",
-                  "distance": "5",
+                  "distance": 5,
                   "getHelperDimensions": [Function],
                   "hideSortableGhost": true,
-                  "lockOffset": "10%",
+                  "lockOffset": "20%",
                   "lockToContainerEdges": true,
                   "onSortEnd": [Function],
                   "pressDelay": 0,
@@ -5336,7 +5336,7 @@ ShallowWrapper {
                   "shouldCancelStart": [Function],
                   "transitionDuration": 300,
                   "updateBeforeSortStart": [Function],
-                  "useWindowAsScrollContainer": true,
+                  "useWindowAsScrollContainer": false,
                   "wallets": Array [
                     Object {
                       "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -6823,10 +6823,10 @@ ShallowWrapper {
                 </SectionHeading>
                 <sortableList
                         axis="xy"
-                        distance="5"
+                        distance={5}
                         getHelperDimensions={[Function]}
                         hideSortableGhost={true}
-                        lockOffset="10%"
+                        lockOffset="20%"
                         lockToContainerEdges={true}
                         onSortEnd={[Function]}
                         pressDelay={0}
@@ -6834,7 +6834,7 @@ ShallowWrapper {
                         shouldCancelStart={[Function]}
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
-                        useWindowAsScrollContainer={true}
+                        useWindowAsScrollContainer={false}
                         wallets={
                                 Array [
                                         Object {
@@ -7459,10 +7459,10 @@ ShallowWrapper {
             </SectionHeading>
             <sortableList
                         axis="xy"
-                        distance="5"
+                        distance={5}
                         getHelperDimensions={[Function]}
                         hideSortableGhost={true}
-                        lockOffset="10%"
+                        lockOffset="20%"
                         lockToContainerEdges={true}
                         onSortEnd={[Function]}
                         pressDelay={0}
@@ -7470,7 +7470,7 @@ ShallowWrapper {
                         shouldCancelStart={[Function]}
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
-                        useWindowAsScrollContainer={true}
+                        useWindowAsScrollContainer={false}
                         wallets={
                                     Array [
                                                 Object {
@@ -8095,10 +8095,10 @@ ShallowWrapper {
 </SectionHeading>,
               <sortableList
                 axis="xy"
-                distance="5"
+                distance={5}
                 getHelperDimensions={[Function]}
                 hideSortableGhost={true}
-                lockOffset="10%"
+                lockOffset="20%"
                 lockToContainerEdges={true}
                 onSortEnd={[Function]}
                 pressDelay={0}
@@ -8106,7 +8106,7 @@ ShallowWrapper {
                 shouldCancelStart={[Function]}
                 transitionDuration={300}
                 updateBeforeSortStart={[Function]}
-                useWindowAsScrollContainer={true}
+                useWindowAsScrollContainer={false}
                 wallets={
                                 Array [
                                                 Object {
@@ -8730,10 +8730,10 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "axis": "xy",
-                "distance": "5",
+                "distance": 5,
                 "getHelperDimensions": [Function],
                 "hideSortableGhost": true,
-                "lockOffset": "10%",
+                "lockOffset": "20%",
                 "lockToContainerEdges": true,
                 "onSortEnd": [Function],
                 "pressDelay": 0,
@@ -8741,7 +8741,7 @@ ShallowWrapper {
                 "shouldCancelStart": [Function],
                 "transitionDuration": 300,
                 "updateBeforeSortStart": [Function],
-                "useWindowAsScrollContainer": true,
+                "useWindowAsScrollContainer": false,
                 "wallets": Array [
                   Object {
                     "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -9389,10 +9389,10 @@ ShallowWrapper {
                     </SectionHeading>
                     <sortableList
                               axis="xy"
-                              distance="5"
+                              distance={5}
                               getHelperDimensions={[Function]}
                               hideSortableGhost={true}
-                              lockOffset="10%"
+                              lockOffset="20%"
                               lockToContainerEdges={true}
                               onSortEnd={[Function]}
                               pressDelay={0}
@@ -9400,7 +9400,7 @@ ShallowWrapper {
                               shouldCancelStart={[Function]}
                               transitionDuration={300}
                               updateBeforeSortStart={[Function]}
-                              useWindowAsScrollContainer={true}
+                              useWindowAsScrollContainer={false}
                               wallets={
                                         Array [
                                                   Object {
@@ -10025,10 +10025,10 @@ ShallowWrapper {
               </SectionHeading>
               <sortableList
                             axis="xy"
-                            distance="5"
+                            distance={5}
                             getHelperDimensions={[Function]}
                             hideSortableGhost={true}
-                            lockOffset="10%"
+                            lockOffset="20%"
                             lockToContainerEdges={true}
                             onSortEnd={[Function]}
                             pressDelay={0}
@@ -10036,7 +10036,7 @@ ShallowWrapper {
                             shouldCancelStart={[Function]}
                             transitionDuration={300}
                             updateBeforeSortStart={[Function]}
-                            useWindowAsScrollContainer={true}
+                            useWindowAsScrollContainer={false}
                             wallets={
                                           Array [
                                                         Object {
@@ -10661,10 +10661,10 @@ ShallowWrapper {
 </SectionHeading>,
                 <sortableList
                   axis="xy"
-                  distance="5"
+                  distance={5}
                   getHelperDimensions={[Function]}
                   hideSortableGhost={true}
-                  lockOffset="10%"
+                  lockOffset="20%"
                   lockToContainerEdges={true}
                   onSortEnd={[Function]}
                   pressDelay={0}
@@ -10672,7 +10672,7 @@ ShallowWrapper {
                   shouldCancelStart={[Function]}
                   transitionDuration={300}
                   updateBeforeSortStart={[Function]}
-                  useWindowAsScrollContainer={true}
+                  useWindowAsScrollContainer={false}
                   wallets={
                                     Array [
                                                       Object {
@@ -11296,10 +11296,10 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "axis": "xy",
-                  "distance": "5",
+                  "distance": 5,
                   "getHelperDimensions": [Function],
                   "hideSortableGhost": true,
-                  "lockOffset": "10%",
+                  "lockOffset": "20%",
                   "lockToContainerEdges": true,
                   "onSortEnd": [Function],
                   "pressDelay": 0,
@@ -11307,7 +11307,7 @@ ShallowWrapper {
                   "shouldCancelStart": [Function],
                   "transitionDuration": 300,
                   "updateBeforeSortStart": [Function],
-                  "useWindowAsScrollContainer": true,
+                  "useWindowAsScrollContainer": false,
                   "wallets": Array [
                     Object {
                       "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -17200,10 +17200,10 @@ ShallowWrapper {
                 </SectionHeading>
                 <sortableList
                         axis="xy"
-                        distance="5"
+                        distance={5}
                         getHelperDimensions={[Function]}
                         hideSortableGhost={true}
-                        lockOffset="10%"
+                        lockOffset="20%"
                         lockToContainerEdges={true}
                         onSortEnd={[Function]}
                         pressDelay={0}
@@ -17211,7 +17211,7 @@ ShallowWrapper {
                         shouldCancelStart={[Function]}
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
-                        useWindowAsScrollContainer={true}
+                        useWindowAsScrollContainer={false}
                         wallets={
                                 Array [
                                         Object {
@@ -18000,10 +18000,10 @@ ShallowWrapper {
             </SectionHeading>
             <sortableList
                         axis="xy"
-                        distance="5"
+                        distance={5}
                         getHelperDimensions={[Function]}
                         hideSortableGhost={true}
-                        lockOffset="10%"
+                        lockOffset="20%"
                         lockToContainerEdges={true}
                         onSortEnd={[Function]}
                         pressDelay={0}
@@ -18011,7 +18011,7 @@ ShallowWrapper {
                         shouldCancelStart={[Function]}
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
-                        useWindowAsScrollContainer={true}
+                        useWindowAsScrollContainer={false}
                         wallets={
                                     Array [
                                                 Object {
@@ -18800,10 +18800,10 @@ ShallowWrapper {
 </SectionHeading>,
               <sortableList
                 axis="xy"
-                distance="5"
+                distance={5}
                 getHelperDimensions={[Function]}
                 hideSortableGhost={true}
-                lockOffset="10%"
+                lockOffset="20%"
                 lockToContainerEdges={true}
                 onSortEnd={[Function]}
                 pressDelay={0}
@@ -18811,7 +18811,7 @@ ShallowWrapper {
                 shouldCancelStart={[Function]}
                 transitionDuration={300}
                 updateBeforeSortStart={[Function]}
-                useWindowAsScrollContainer={true}
+                useWindowAsScrollContainer={false}
                 wallets={
                                 Array [
                                                 Object {
@@ -19435,10 +19435,10 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "axis": "xy",
-                "distance": "5",
+                "distance": 5,
                 "getHelperDimensions": [Function],
                 "hideSortableGhost": true,
-                "lockOffset": "10%",
+                "lockOffset": "20%",
                 "lockToContainerEdges": true,
                 "onSortEnd": [Function],
                 "pressDelay": 0,
@@ -19446,7 +19446,7 @@ ShallowWrapper {
                 "shouldCancelStart": [Function],
                 "transitionDuration": 300,
                 "updateBeforeSortStart": [Function],
-                "useWindowAsScrollContainer": true,
+                "useWindowAsScrollContainer": false,
                 "wallets": Array [
                   Object {
                     "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -20602,10 +20602,10 @@ ShallowWrapper {
                     </SectionHeading>
                     <sortableList
                               axis="xy"
-                              distance="5"
+                              distance={5}
                               getHelperDimensions={[Function]}
                               hideSortableGhost={true}
-                              lockOffset="10%"
+                              lockOffset="20%"
                               lockToContainerEdges={true}
                               onSortEnd={[Function]}
                               pressDelay={0}
@@ -20613,7 +20613,7 @@ ShallowWrapper {
                               shouldCancelStart={[Function]}
                               transitionDuration={300}
                               updateBeforeSortStart={[Function]}
-                              useWindowAsScrollContainer={true}
+                              useWindowAsScrollContainer={false}
                               wallets={
                                         Array [
                                                   Object {
@@ -21402,10 +21402,10 @@ ShallowWrapper {
               </SectionHeading>
               <sortableList
                             axis="xy"
-                            distance="5"
+                            distance={5}
                             getHelperDimensions={[Function]}
                             hideSortableGhost={true}
-                            lockOffset="10%"
+                            lockOffset="20%"
                             lockToContainerEdges={true}
                             onSortEnd={[Function]}
                             pressDelay={0}
@@ -21413,7 +21413,7 @@ ShallowWrapper {
                             shouldCancelStart={[Function]}
                             transitionDuration={300}
                             updateBeforeSortStart={[Function]}
-                            useWindowAsScrollContainer={true}
+                            useWindowAsScrollContainer={false}
                             wallets={
                                           Array [
                                                         Object {
@@ -22202,10 +22202,10 @@ ShallowWrapper {
 </SectionHeading>,
                 <sortableList
                   axis="xy"
-                  distance="5"
+                  distance={5}
                   getHelperDimensions={[Function]}
                   hideSortableGhost={true}
-                  lockOffset="10%"
+                  lockOffset="20%"
                   lockToContainerEdges={true}
                   onSortEnd={[Function]}
                   pressDelay={0}
@@ -22213,7 +22213,7 @@ ShallowWrapper {
                   shouldCancelStart={[Function]}
                   transitionDuration={300}
                   updateBeforeSortStart={[Function]}
-                  useWindowAsScrollContainer={true}
+                  useWindowAsScrollContainer={false}
                   wallets={
                                     Array [
                                                       Object {
@@ -22837,10 +22837,10 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "axis": "xy",
-                  "distance": "5",
+                  "distance": 5,
                   "getHelperDimensions": [Function],
                   "hideSortableGhost": true,
-                  "lockOffset": "10%",
+                  "lockOffset": "20%",
                   "lockToContainerEdges": true,
                   "onSortEnd": [Function],
                   "pressDelay": 0,
@@ -22848,7 +22848,7 @@ ShallowWrapper {
                   "shouldCancelStart": [Function],
                   "transitionDuration": 300,
                   "updateBeforeSortStart": [Function],
-                  "useWindowAsScrollContainer": true,
+                  "useWindowAsScrollContainer": false,
                   "wallets": Array [
                     Object {
                       "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -24825,10 +24825,10 @@ ShallowWrapper {
                 </SectionHeading>
                 <sortableList
                         axis="xy"
-                        distance="5"
+                        distance={5}
                         getHelperDimensions={[Function]}
                         hideSortableGhost={true}
-                        lockOffset="10%"
+                        lockOffset="20%"
                         lockToContainerEdges={true}
                         onSortEnd={[Function]}
                         pressDelay={0}
@@ -24836,7 +24836,7 @@ ShallowWrapper {
                         shouldCancelStart={[Function]}
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
-                        useWindowAsScrollContainer={true}
+                        useWindowAsScrollContainer={false}
                         wallets={
                                 Array [
                                         Object {
@@ -25571,10 +25571,10 @@ ShallowWrapper {
             </SectionHeading>
             <sortableList
                         axis="xy"
-                        distance="5"
+                        distance={5}
                         getHelperDimensions={[Function]}
                         hideSortableGhost={true}
-                        lockOffset="10%"
+                        lockOffset="20%"
                         lockToContainerEdges={true}
                         onSortEnd={[Function]}
                         pressDelay={0}
@@ -25582,7 +25582,7 @@ ShallowWrapper {
                         shouldCancelStart={[Function]}
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
-                        useWindowAsScrollContainer={true}
+                        useWindowAsScrollContainer={false}
                         wallets={
                                     Array [
                                                 Object {
@@ -26317,10 +26317,10 @@ ShallowWrapper {
 </SectionHeading>,
               <sortableList
                 axis="xy"
-                distance="5"
+                distance={5}
                 getHelperDimensions={[Function]}
                 hideSortableGhost={true}
-                lockOffset="10%"
+                lockOffset="20%"
                 lockToContainerEdges={true}
                 onSortEnd={[Function]}
                 pressDelay={0}
@@ -26328,7 +26328,7 @@ ShallowWrapper {
                 shouldCancelStart={[Function]}
                 transitionDuration={300}
                 updateBeforeSortStart={[Function]}
-                useWindowAsScrollContainer={true}
+                useWindowAsScrollContainer={false}
                 wallets={
                                 Array [
                                                 Object {
@@ -26952,10 +26952,10 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "axis": "xy",
-                "distance": "5",
+                "distance": 5,
                 "getHelperDimensions": [Function],
                 "hideSortableGhost": true,
-                "lockOffset": "10%",
+                "lockOffset": "20%",
                 "lockToContainerEdges": true,
                 "onSortEnd": [Function],
                 "pressDelay": 0,
@@ -26963,7 +26963,7 @@ ShallowWrapper {
                 "shouldCancelStart": [Function],
                 "transitionDuration": 300,
                 "updateBeforeSortStart": [Function],
-                "useWindowAsScrollContainer": true,
+                "useWindowAsScrollContainer": false,
                 "wallets": Array [
                   Object {
                     "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -27957,10 +27957,10 @@ ShallowWrapper {
                     </SectionHeading>
                     <sortableList
                               axis="xy"
-                              distance="5"
+                              distance={5}
                               getHelperDimensions={[Function]}
                               hideSortableGhost={true}
-                              lockOffset="10%"
+                              lockOffset="20%"
                               lockToContainerEdges={true}
                               onSortEnd={[Function]}
                               pressDelay={0}
@@ -27968,7 +27968,7 @@ ShallowWrapper {
                               shouldCancelStart={[Function]}
                               transitionDuration={300}
                               updateBeforeSortStart={[Function]}
-                              useWindowAsScrollContainer={true}
+                              useWindowAsScrollContainer={false}
                               wallets={
                                         Array [
                                                   Object {
@@ -28703,10 +28703,10 @@ ShallowWrapper {
               </SectionHeading>
               <sortableList
                             axis="xy"
-                            distance="5"
+                            distance={5}
                             getHelperDimensions={[Function]}
                             hideSortableGhost={true}
-                            lockOffset="10%"
+                            lockOffset="20%"
                             lockToContainerEdges={true}
                             onSortEnd={[Function]}
                             pressDelay={0}
@@ -28714,7 +28714,7 @@ ShallowWrapper {
                             shouldCancelStart={[Function]}
                             transitionDuration={300}
                             updateBeforeSortStart={[Function]}
-                            useWindowAsScrollContainer={true}
+                            useWindowAsScrollContainer={false}
                             wallets={
                                           Array [
                                                         Object {
@@ -29449,10 +29449,10 @@ ShallowWrapper {
 </SectionHeading>,
                 <sortableList
                   axis="xy"
-                  distance="5"
+                  distance={5}
                   getHelperDimensions={[Function]}
                   hideSortableGhost={true}
-                  lockOffset="10%"
+                  lockOffset="20%"
                   lockToContainerEdges={true}
                   onSortEnd={[Function]}
                   pressDelay={0}
@@ -29460,7 +29460,7 @@ ShallowWrapper {
                   shouldCancelStart={[Function]}
                   transitionDuration={300}
                   updateBeforeSortStart={[Function]}
-                  useWindowAsScrollContainer={true}
+                  useWindowAsScrollContainer={false}
                   wallets={
                                     Array [
                                                       Object {
@@ -30084,10 +30084,10 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "axis": "xy",
-                  "distance": "5",
+                  "distance": 5,
                   "getHelperDimensions": [Function],
                   "hideSortableGhost": true,
-                  "lockOffset": "10%",
+                  "lockOffset": "20%",
                   "lockToContainerEdges": true,
                   "onSortEnd": [Function],
                   "pressDelay": 0,
@@ -30095,7 +30095,7 @@ ShallowWrapper {
                   "shouldCancelStart": [Function],
                   "transitionDuration": 300,
                   "updateBeforeSortStart": [Function],
-                  "useWindowAsScrollContainer": true,
+                  "useWindowAsScrollContainer": false,
                   "wallets": Array [
                     Object {
                       "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -31910,10 +31910,10 @@ ShallowWrapper {
                 </SectionHeading>
                 <sortableList
                         axis="xy"
-                        distance="5"
+                        distance={5}
                         getHelperDimensions={[Function]}
                         hideSortableGhost={true}
-                        lockOffset="10%"
+                        lockOffset="20%"
                         lockToContainerEdges={true}
                         onSortEnd={[Function]}
                         pressDelay={0}
@@ -31921,7 +31921,7 @@ ShallowWrapper {
                         shouldCancelStart={[Function]}
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
-                        useWindowAsScrollContainer={true}
+                        useWindowAsScrollContainer={false}
                         wallets={
                                 Array [
                                         Object {
@@ -32656,10 +32656,10 @@ ShallowWrapper {
             </SectionHeading>
             <sortableList
                         axis="xy"
-                        distance="5"
+                        distance={5}
                         getHelperDimensions={[Function]}
                         hideSortableGhost={true}
-                        lockOffset="10%"
+                        lockOffset="20%"
                         lockToContainerEdges={true}
                         onSortEnd={[Function]}
                         pressDelay={0}
@@ -32667,7 +32667,7 @@ ShallowWrapper {
                         shouldCancelStart={[Function]}
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
-                        useWindowAsScrollContainer={true}
+                        useWindowAsScrollContainer={false}
                         wallets={
                                     Array [
                                                 Object {
@@ -33402,10 +33402,10 @@ ShallowWrapper {
 </SectionHeading>,
               <sortableList
                 axis="xy"
-                distance="5"
+                distance={5}
                 getHelperDimensions={[Function]}
                 hideSortableGhost={true}
-                lockOffset="10%"
+                lockOffset="20%"
                 lockToContainerEdges={true}
                 onSortEnd={[Function]}
                 pressDelay={0}
@@ -33413,7 +33413,7 @@ ShallowWrapper {
                 shouldCancelStart={[Function]}
                 transitionDuration={300}
                 updateBeforeSortStart={[Function]}
-                useWindowAsScrollContainer={true}
+                useWindowAsScrollContainer={false}
                 wallets={
                                 Array [
                                                 Object {
@@ -34037,10 +34037,10 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "axis": "xy",
-                "distance": "5",
+                "distance": 5,
                 "getHelperDimensions": [Function],
                 "hideSortableGhost": true,
-                "lockOffset": "10%",
+                "lockOffset": "20%",
                 "lockToContainerEdges": true,
                 "onSortEnd": [Function],
                 "pressDelay": 0,
@@ -34048,7 +34048,7 @@ ShallowWrapper {
                 "shouldCancelStart": [Function],
                 "transitionDuration": 300,
                 "updateBeforeSortStart": [Function],
-                "useWindowAsScrollContainer": true,
+                "useWindowAsScrollContainer": false,
                 "wallets": Array [
                   Object {
                     "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -35042,10 +35042,10 @@ ShallowWrapper {
                     </SectionHeading>
                     <sortableList
                               axis="xy"
-                              distance="5"
+                              distance={5}
                               getHelperDimensions={[Function]}
                               hideSortableGhost={true}
-                              lockOffset="10%"
+                              lockOffset="20%"
                               lockToContainerEdges={true}
                               onSortEnd={[Function]}
                               pressDelay={0}
@@ -35053,7 +35053,7 @@ ShallowWrapper {
                               shouldCancelStart={[Function]}
                               transitionDuration={300}
                               updateBeforeSortStart={[Function]}
-                              useWindowAsScrollContainer={true}
+                              useWindowAsScrollContainer={false}
                               wallets={
                                         Array [
                                                   Object {
@@ -35788,10 +35788,10 @@ ShallowWrapper {
               </SectionHeading>
               <sortableList
                             axis="xy"
-                            distance="5"
+                            distance={5}
                             getHelperDimensions={[Function]}
                             hideSortableGhost={true}
-                            lockOffset="10%"
+                            lockOffset="20%"
                             lockToContainerEdges={true}
                             onSortEnd={[Function]}
                             pressDelay={0}
@@ -35799,7 +35799,7 @@ ShallowWrapper {
                             shouldCancelStart={[Function]}
                             transitionDuration={300}
                             updateBeforeSortStart={[Function]}
-                            useWindowAsScrollContainer={true}
+                            useWindowAsScrollContainer={false}
                             wallets={
                                           Array [
                                                         Object {
@@ -36534,10 +36534,10 @@ ShallowWrapper {
 </SectionHeading>,
                 <sortableList
                   axis="xy"
-                  distance="5"
+                  distance={5}
                   getHelperDimensions={[Function]}
                   hideSortableGhost={true}
-                  lockOffset="10%"
+                  lockOffset="20%"
                   lockToContainerEdges={true}
                   onSortEnd={[Function]}
                   pressDelay={0}
@@ -36545,7 +36545,7 @@ ShallowWrapper {
                   shouldCancelStart={[Function]}
                   transitionDuration={300}
                   updateBeforeSortStart={[Function]}
-                  useWindowAsScrollContainer={true}
+                  useWindowAsScrollContainer={false}
                   wallets={
                                     Array [
                                                       Object {
@@ -37169,10 +37169,10 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "axis": "xy",
-                  "distance": "5",
+                  "distance": 5,
                   "getHelperDimensions": [Function],
                   "hideSortableGhost": true,
-                  "lockOffset": "10%",
+                  "lockOffset": "20%",
                   "lockToContainerEdges": true,
                   "onSortEnd": [Function],
                   "pressDelay": 0,
@@ -37180,7 +37180,7 @@ ShallowWrapper {
                   "shouldCancelStart": [Function],
                   "transitionDuration": 300,
                   "updateBeforeSortStart": [Function],
-                  "useWindowAsScrollContainer": true,
+                  "useWindowAsScrollContainer": false,
                   "wallets": Array [
                     Object {
                       "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
