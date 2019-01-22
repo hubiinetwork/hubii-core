@@ -95,7 +95,7 @@ export class WalletsOverview extends React.Component { // eslint-disable-line re
       );
     }
 
-    const SortableWallet = SortableElement(({ wallet, sortIndex }) => {
+    const SortableWallet = SortableElement(({ wallet }) => {
       const connected = isConnected(wallet, ledgerNanoSInfo.toJS(), trezorInfo.toJS());
       const baseLayerBalance = wallet.balances.baseLayer;
       const nahmiiBalance = wallet.balances.nahmiiCombined;
@@ -106,7 +106,6 @@ export class WalletsOverview extends React.Component { // eslint-disable-line re
           xs={23}
           sm={23}
           lg={11}
-          dragged={this.state.dragged === sortIndex}
         >
           <WalletItemCard
             name={wallet.name}
@@ -139,7 +138,7 @@ export class WalletsOverview extends React.Component { // eslint-disable-line re
     const SortableList = SortableContainer((props) => (
       <Row type="flex" align="top" gutter={16}>
         {props.wallets.map((wallet, index) => (
-          <SortableWallet key={wallet.name} index={index} sortIndex={index} wallet={wallet} />
+          <SortableWallet key={wallet.name} index={index} wallet={wallet} />
         ))}
       </Row>
     ));
