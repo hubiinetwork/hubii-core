@@ -15,7 +15,10 @@ export const Label = styled(Text)`
 `;
 
 export const Percentage = styled.div`
-  color: ${({ theme }) => theme.palette.info};
+  color: ${({ theme, unknownPrice }) => unknownPrice
+    ? theme.palette.secondary
+    : theme.palette.info
+  };
   white-space: nowrap;
 `;
 

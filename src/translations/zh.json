@@ -216,5 +216,6 @@
     "status": "状态",
     "reconnecting": "连接中...",
     "connected": "已连接",
+    "missing_price": "找不到价格",
     "deposits_note": "成功充值后，需要等待 12 个区块确认，才能添加到您的 nahmii 余额 (大约三分钟)"
 }
