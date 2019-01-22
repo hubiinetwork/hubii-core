@@ -17,12 +17,13 @@ import {
   showDecryptWalletModal,
   setCurrentWallet,
   lockWallet,
-  dragWallet,
+  dragWallet as dragWalletAction,
 } from 'containers/WalletHoc/actions';
 
 import {
   makeSelectWalletsWithInfo,
   makeSelectTotalBalances,
+  makeSelectWallets,
 } from 'containers/WalletHoc/selectors';
 
 import {
@@ -63,7 +64,8 @@ export class WalletsOverview extends React.Component { // eslint-disable-line re
   }
 
   onSortEnd({ oldIndex, newIndex }) {
-    this.props.dragWallet({ oldIndex, newIndex });
+    const { dragWallet, wallets } = this.props;
+    dragWallet({ wallets, oldIndex, newIndex });
     this.setState({ dragged: null });
   }
 
@@ -86,8 +88,8 @@ export class WalletsOverview extends React.Component { // eslint-disable-line re
     const { priceInfo, ledgerNanoSInfo, trezorInfo } = this.props;
     const { formatMessage } = this.props.intl;
 
-    const wallets = this.props.walletsWithInfo.toJS();
-    if (wallets.length === 0) {
+    const walletsWithInfo = this.props.walletsWithInfo.toJS();
+    if (walletsWithInfo.length === 0) {
       return (
         <PlaceholderText>
           {formatMessage({ id: 'add_wallet_tip' })}
@@ -125,7 +127,7 @@ export class WalletsOverview extends React.Component { // eslint-disable-line re
             showDecryptWalletModal={() => this.props.showDecryptWalletModal()}
             setCurrentWallet={() => this.props.setCurrentWallet(wallet.address)}
             handleCardClick={() => this.handleCardClick(wallet)}
-            walletList={wallets}
+            walletList={walletsWithInfo}
             deleteWallet={() => this.props.deleteWallet(wallet.address)}
             lock={() => this.props.lockWallet(wallet.address)}
             unlock={() => this.unlockWallet(wallet.address)}
@@ -137,7 +139,7 @@ export class WalletsOverview extends React.Component { // eslint-disable-line re
 
     const SortableList = SortableContainer((props) => (
       <Row type="flex" align="top" gutter={16}>
-        {props.wallets.map((wallet, index) => (
+        {props.walletsWithInfo.map((wallet, index) => (
           <SortableWallet key={wallet.name} index={index} wallet={wallet} />
         ))}
       </Row>
@@ -145,7 +147,7 @@ export class WalletsOverview extends React.Component { // eslint-disable-line re
 
     return (
       <SortableList
-        wallets={wallets}
+        walletsWithInfo={walletsWithInfo}
         onSortEnd={this.onSortEnd}
         updateBeforeSortStart={(...args) => this.updateBeforeSortStart(...args)}
         axis="xy"
@@ -200,6 +202,7 @@ WalletsOverview.propTypes = {
   totalBalances: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   walletsWithInfo: PropTypes.object.isRequired,
+  wallets: PropTypes.object.isRequired,
   priceInfo: PropTypes.object,
   intl: PropTypes.object.isRequired,
 };
@@ -211,13 +214,14 @@ const mapStateToProps = createStructuredSelector({
   ledgerNanoSInfo: makeSelectLedgerHoc(),
   trezorInfo: makeSelectTrezorHoc(),
   priceInfo: makeSelectPrices(),
+  wallets: makeSelectWallets(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
     deleteWallet: (...args) => dispatch(deleteWallet(...args)),
     lockWallet: (addr) => dispatch(lockWallet(addr)),
-    dragWallet: (...args) => dispatch(dragWallet(...args)),
+    dragWallet: (...args) => dispatch(dragWalletAction(...args)),
     showDecryptWalletModal: (...args) => dispatch(showDecryptWalletModal(...args)),
     setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
   };

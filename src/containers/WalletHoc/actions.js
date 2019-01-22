@@ -4,6 +4,8 @@
  *
  */
 
+import { arrayMove } from 'react-sortable-hoc';
+
 import {
   CREATE_WALLET_FROM_MNEMONIC,
   CREATE_WALLET_FROM_PRIVATE_KEY,
@@ -226,10 +228,9 @@ export function transferError(error) {
   };
 }
 
-export function dragWallet({ oldIndex, newIndex }) {
+export function dragWallet({ oldIndex, newIndex, wallets }) {
   return {
     type: DRAG_WALLET,
-    oldIndex,
-    newIndex,
+    newWallets: arrayMove(wallets.toJS(), oldIndex, newIndex),
   };
 }

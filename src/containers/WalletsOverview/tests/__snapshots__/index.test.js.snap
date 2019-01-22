@@ -864,7 +864,7 @@ ShallowWrapper {
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
                         useWindowAsScrollContainer={false}
-                        wallets={
+                        walletsWithInfo={
                                 Array [
                                         Object {
                                           "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -1500,7 +1500,7 @@ ShallowWrapper {
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
                         useWindowAsScrollContainer={false}
-                        wallets={
+                        walletsWithInfo={
                                     Array [
                                                 Object {
                                                   "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -2136,7 +2136,7 @@ ShallowWrapper {
                 transitionDuration={300}
                 updateBeforeSortStart={[Function]}
                 useWindowAsScrollContainer={false}
-                wallets={
+                walletsWithInfo={
                                 Array [
                                                 Object {
                                                   "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -2771,7 +2771,7 @@ ShallowWrapper {
                 "transitionDuration": 300,
                 "updateBeforeSortStart": [Function],
                 "useWindowAsScrollContainer": false,
-                "wallets": Array [
+                "walletsWithInfo": Array [
                   Object {
                     "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                     "balances": Object {
@@ -3430,7 +3430,7 @@ ShallowWrapper {
                               transitionDuration={300}
                               updateBeforeSortStart={[Function]}
                               useWindowAsScrollContainer={false}
-                              wallets={
+                              walletsWithInfo={
                                         Array [
                                                   Object {
                                                     "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -4066,7 +4066,7 @@ ShallowWrapper {
                             transitionDuration={300}
                             updateBeforeSortStart={[Function]}
                             useWindowAsScrollContainer={false}
-                            wallets={
+                            walletsWithInfo={
                                           Array [
                                                         Object {
                                                           "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -4702,7 +4702,7 @@ ShallowWrapper {
                   transitionDuration={300}
                   updateBeforeSortStart={[Function]}
                   useWindowAsScrollContainer={false}
-                  wallets={
+                  walletsWithInfo={
                                     Array [
                                                       Object {
                                                         "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -5337,7 +5337,7 @@ ShallowWrapper {
                   "transitionDuration": 300,
                   "updateBeforeSortStart": [Function],
                   "useWindowAsScrollContainer": false,
-                  "wallets": Array [
+                  "walletsWithInfo": Array [
                     Object {
                       "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                       "balances": Object {
@@ -6835,7 +6835,7 @@ ShallowWrapper {
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
                         useWindowAsScrollContainer={false}
-                        wallets={
+                        walletsWithInfo={
                                 Array [
                                         Object {
                                           "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -7471,7 +7471,7 @@ ShallowWrapper {
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
                         useWindowAsScrollContainer={false}
-                        wallets={
+                        walletsWithInfo={
                                     Array [
                                                 Object {
                                                   "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -8107,7 +8107,7 @@ ShallowWrapper {
                 transitionDuration={300}
                 updateBeforeSortStart={[Function]}
                 useWindowAsScrollContainer={false}
-                wallets={
+                walletsWithInfo={
                                 Array [
                                                 Object {
                                                   "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -8742,7 +8742,7 @@ ShallowWrapper {
                 "transitionDuration": 300,
                 "updateBeforeSortStart": [Function],
                 "useWindowAsScrollContainer": false,
-                "wallets": Array [
+                "walletsWithInfo": Array [
                   Object {
                     "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                     "balances": Object {
@@ -9401,7 +9401,7 @@ ShallowWrapper {
                               transitionDuration={300}
                               updateBeforeSortStart={[Function]}
                               useWindowAsScrollContainer={false}
-                              wallets={
+                              walletsWithInfo={
                                         Array [
                                                   Object {
                                                     "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -10037,7 +10037,7 @@ ShallowWrapper {
                             transitionDuration={300}
                             updateBeforeSortStart={[Function]}
                             useWindowAsScrollContainer={false}
-                            wallets={
+                            walletsWithInfo={
                                           Array [
                                                         Object {
                                                           "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -10673,7 +10673,7 @@ ShallowWrapper {
                   transitionDuration={300}
                   updateBeforeSortStart={[Function]}
                   useWindowAsScrollContainer={false}
-                  wallets={
+                  walletsWithInfo={
                                     Array [
                                                       Object {
                                                         "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -11308,7 +11308,7 @@ ShallowWrapper {
                   "transitionDuration": 300,
                   "updateBeforeSortStart": [Function],
                   "useWindowAsScrollContainer": false,
-                  "wallets": Array [
+                  "walletsWithInfo": Array [
                     Object {
                       "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                       "balances": Object {
@@ -17212,7 +17212,7 @@ ShallowWrapper {
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
                         useWindowAsScrollContainer={false}
-                        wallets={
+                        walletsWithInfo={
                                 Array [
                                         Object {
                                           "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -18012,7 +18012,7 @@ ShallowWrapper {
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
                         useWindowAsScrollContainer={false}
-                        wallets={
+                        walletsWithInfo={
                                     Array [
                                                 Object {
                                                   "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -18812,7 +18812,7 @@ ShallowWrapper {
                 transitionDuration={300}
                 updateBeforeSortStart={[Function]}
                 useWindowAsScrollContainer={false}
-                wallets={
+                walletsWithInfo={
                                 Array [
                                                 Object {
                                                   "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -19447,7 +19447,7 @@ ShallowWrapper {
                 "transitionDuration": 300,
                 "updateBeforeSortStart": [Function],
                 "useWindowAsScrollContainer": false,
-                "wallets": Array [
+                "walletsWithInfo": Array [
                   Object {
                     "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                     "balances": Object {
@@ -20614,7 +20614,7 @@ ShallowWrapper {
                               transitionDuration={300}
                               updateBeforeSortStart={[Function]}
                               useWindowAsScrollContainer={false}
-                              wallets={
+                              walletsWithInfo={
                                         Array [
                                                   Object {
                                                     "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -21414,7 +21414,7 @@ ShallowWrapper {
                             transitionDuration={300}
                             updateBeforeSortStart={[Function]}
                             useWindowAsScrollContainer={false}
-                            wallets={
+                            walletsWithInfo={
                                           Array [
                                                         Object {
                                                           "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -22214,7 +22214,7 @@ ShallowWrapper {
                   transitionDuration={300}
                   updateBeforeSortStart={[Function]}
                   useWindowAsScrollContainer={false}
-                  wallets={
+                  walletsWithInfo={
                                     Array [
                                                       Object {
                                                         "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -22849,7 +22849,7 @@ ShallowWrapper {
                   "transitionDuration": 300,
                   "updateBeforeSortStart": [Function],
                   "useWindowAsScrollContainer": false,
-                  "wallets": Array [
+                  "walletsWithInfo": Array [
                     Object {
                       "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                       "balances": Object {
@@ -24837,7 +24837,7 @@ ShallowWrapper {
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
                         useWindowAsScrollContainer={false}
-                        wallets={
+                        walletsWithInfo={
                                 Array [
                                         Object {
                                           "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -25583,7 +25583,7 @@ ShallowWrapper {
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
                         useWindowAsScrollContainer={false}
-                        wallets={
+                        walletsWithInfo={
                                     Array [
                                                 Object {
                                                   "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -26329,7 +26329,7 @@ ShallowWrapper {
                 transitionDuration={300}
                 updateBeforeSortStart={[Function]}
                 useWindowAsScrollContainer={false}
-                wallets={
+                walletsWithInfo={
                                 Array [
                                                 Object {
                                                   "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -26964,7 +26964,7 @@ ShallowWrapper {
                 "transitionDuration": 300,
                 "updateBeforeSortStart": [Function],
                 "useWindowAsScrollContainer": false,
-                "wallets": Array [
+                "walletsWithInfo": Array [
                   Object {
                     "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                     "balances": Object {
@@ -27969,7 +27969,7 @@ ShallowWrapper {
                               transitionDuration={300}
                               updateBeforeSortStart={[Function]}
                               useWindowAsScrollContainer={false}
-                              wallets={
+                              walletsWithInfo={
                                         Array [
                                                   Object {
                                                     "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -28715,7 +28715,7 @@ ShallowWrapper {
                             transitionDuration={300}
                             updateBeforeSortStart={[Function]}
                             useWindowAsScrollContainer={false}
-                            wallets={
+                            walletsWithInfo={
                                           Array [
                                                         Object {
                                                           "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -29461,7 +29461,7 @@ ShallowWrapper {
                   transitionDuration={300}
                   updateBeforeSortStart={[Function]}
                   useWindowAsScrollContainer={false}
-                  wallets={
+                  walletsWithInfo={
                                     Array [
                                                       Object {
                                                         "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -30096,7 +30096,7 @@ ShallowWrapper {
                   "transitionDuration": 300,
                   "updateBeforeSortStart": [Function],
                   "useWindowAsScrollContainer": false,
-                  "wallets": Array [
+                  "walletsWithInfo": Array [
                     Object {
                       "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                       "balances": Object {
@@ -31922,7 +31922,7 @@ ShallowWrapper {
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
                         useWindowAsScrollContainer={false}
-                        wallets={
+                        walletsWithInfo={
                                 Array [
                                         Object {
                                           "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -32668,7 +32668,7 @@ ShallowWrapper {
                         transitionDuration={300}
                         updateBeforeSortStart={[Function]}
                         useWindowAsScrollContainer={false}
-                        wallets={
+                        walletsWithInfo={
                                     Array [
                                                 Object {
                                                   "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -33414,7 +33414,7 @@ ShallowWrapper {
                 transitionDuration={300}
                 updateBeforeSortStart={[Function]}
                 useWindowAsScrollContainer={false}
-                wallets={
+                walletsWithInfo={
                                 Array [
                                                 Object {
                                                   "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -34049,7 +34049,7 @@ ShallowWrapper {
                 "transitionDuration": 300,
                 "updateBeforeSortStart": [Function],
                 "useWindowAsScrollContainer": false,
-                "wallets": Array [
+                "walletsWithInfo": Array [
                   Object {
                     "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                     "balances": Object {
@@ -35054,7 +35054,7 @@ ShallowWrapper {
                               transitionDuration={300}
                               updateBeforeSortStart={[Function]}
                               useWindowAsScrollContainer={false}
-                              wallets={
+                              walletsWithInfo={
                                         Array [
                                                   Object {
                                                     "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -35800,7 +35800,7 @@ ShallowWrapper {
                             transitionDuration={300}
                             updateBeforeSortStart={[Function]}
                             useWindowAsScrollContainer={false}
-                            wallets={
+                            walletsWithInfo={
                                           Array [
                                                         Object {
                                                           "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -36546,7 +36546,7 @@ ShallowWrapper {
                   transitionDuration={300}
                   updateBeforeSortStart={[Function]}
                   useWindowAsScrollContainer={false}
-                  wallets={
+                  walletsWithInfo={
                                     Array [
                                                       Object {
                                                         "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -37181,7 +37181,7 @@ ShallowWrapper {
                   "transitionDuration": 300,
                   "updateBeforeSortStart": [Function],
                   "useWindowAsScrollContainer": false,
-                  "wallets": Array [
+                  "walletsWithInfo": Array [
                     Object {
                       "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                       "balances": Object {
