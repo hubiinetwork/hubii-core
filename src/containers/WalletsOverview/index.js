@@ -5,6 +5,10 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
 import { injectIntl } from 'react-intl';
+import {
+  SortableContainer,
+  SortableElement,
+} from 'react-sortable-hoc';
 
 import { isConnected } from 'utils/wallet';
 
@@ -13,6 +17,7 @@ import {
   showDecryptWalletModal,
   setCurrentWallet,
   lockWallet,
+  dragWallet as dragWalletAction,
 } from 'containers/WalletHoc/actions';
 
 import { notify } from 'containers/App/actions';
@@ -20,6 +25,7 @@ import { notify } from 'containers/App/actions';
 import {
   makeSelectWalletsWithInfo,
   makeSelectTotalBalances,
+  makeSelectWallets,
 } from 'containers/WalletHoc/selectors';
 
 import {
@@ -43,12 +49,30 @@ import ScrollableContentWrapper from 'components/ui/ScrollableContentWrapper';
 import PlaceholderText from 'components/ui/PlaceholderText';
 import { WalletCardsCol } from './style';
 
-export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class WalletsOverview extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
+    this.state = { dragged: null };
     this.renderWalletCards = this.renderWalletCards.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
     this.unlockWallet = this.unlockWallet.bind(this);
+    this.onSortEnd = this.onSortEnd.bind(this);
+    this.updateBeforeSortStart = this.updateBeforeSortStart.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.dragged !== null) return false;
+    return true;
+  }
+
+  onSortEnd({ oldIndex, newIndex }) {
+    const { dragWallet, wallets } = this.props;
+    dragWallet({ wallets, oldIndex, newIndex });
+    this.setState({ dragged: null });
+  }
+
+  updateBeforeSortStart({ index }) {
+    this.setState({ dragged: index });
   }
 
   handleCardClick(card) {
@@ -61,29 +85,31 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     this.props.showDecryptWalletModal();
   }
 
+
   renderWalletCards() {
     const { priceInfo, ledgerNanoSInfo, trezorInfo } = this.props;
     const { formatMessage } = this.props.intl;
 
-    const wallets = this.props.walletsWithInfo.toJS();
-    if (wallets.length === 0) {
+    const walletsWithInfo = this.props.walletsWithInfo.toJS();
+    if (walletsWithInfo.length === 0) {
       return (
         <PlaceholderText>
           {formatMessage({ id: 'add_wallet_tip' })}
         </PlaceholderText>
       );
     }
-    return wallets.map((wallet) => {
+
+    const SortableWallet = SortableElement(({ wallet }) => {
       const connected = isConnected(wallet, ledgerNanoSInfo.toJS(), trezorInfo.toJS());
       const baseLayerBalance = wallet.balances.baseLayer;
       const nahmiiBalance = wallet.balances.nahmiiCombined;
       return (
         <WalletCardsCol
-          span={12}
+          span={10}
           key={wallet.name}
-          xs={24}
-          sm={24}
-          lg={12}
+          xs={23}
+          sm={23}
+          lg={11}
         >
           <WalletItemCard
             name={wallet.name}
@@ -103,7 +129,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
             showDecryptWalletModal={() => this.props.showDecryptWalletModal()}
             setCurrentWallet={() => this.props.setCurrentWallet(wallet.address)}
             handleCardClick={() => this.handleCardClick(wallet)}
-            walletList={wallets}
+            walletList={walletsWithInfo}
             deleteWallet={() => this.props.deleteWallet(wallet.address)}
             lock={() => this.props.lockWallet(wallet.address)}
             unlock={() => this.unlockWallet(wallet.address)}
@@ -112,7 +138,26 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
           />
         </WalletCardsCol>
       );
-    }
+    });
+
+    const SortableList = SortableContainer((props) => (
+      <Row type="flex" align="top" gutter={16}>
+        {props.walletsWithInfo.map((wallet, index) => (
+          <SortableWallet key={wallet.name} index={index} wallet={wallet} />
+        ))}
+      </Row>
+    ));
+
+    return (
+      <SortableList
+        walletsWithInfo={walletsWithInfo}
+        onSortEnd={this.onSortEnd}
+        updateBeforeSortStart={(...args) => this.updateBeforeSortStart(...args)}
+        axis="xy"
+        lockToContainerEdges
+        lockOffset="20%"
+        distance={5}
+      />
     );
   }
 
@@ -127,9 +172,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
             <SectionHeading>
               {formatMessage({ id: 'all_wallets' })}
             </SectionHeading>
-            <Row type="flex" align="top" gutter={16}>
-              {walletCards}
-            </Row>
+            {walletCards}
           </Col>
           <Col sm={24} md={12} lg={8}>
             {
@@ -156,12 +199,14 @@ WalletsOverview.propTypes = {
   deleteWallet: PropTypes.func.isRequired,
   notify: PropTypes.func.isRequired,
   lockWallet: PropTypes.func.isRequired,
+  dragWallet: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   ledgerNanoSInfo: PropTypes.object.isRequired,
   trezorInfo: PropTypes.object.isRequired,
   totalBalances: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   walletsWithInfo: PropTypes.object.isRequired,
+  wallets: PropTypes.object.isRequired,
   priceInfo: PropTypes.object,
   intl: PropTypes.object.isRequired,
 };
@@ -173,12 +218,14 @@ const mapStateToProps = createStructuredSelector({
   ledgerNanoSInfo: makeSelectLedgerHoc(),
   trezorInfo: makeSelectTrezorHoc(),
   priceInfo: makeSelectPrices(),
+  wallets: makeSelectWallets(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
     deleteWallet: (...args) => dispatch(deleteWallet(...args)),
     lockWallet: (addr) => dispatch(lockWallet(addr)),
+    dragWallet: (...args) => dispatch(dragWalletAction(...args)),
     showDecryptWalletModal: (...args) => dispatch(showDecryptWalletModal(...args)),
     setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
     notify: (...args) => dispatch(notify(...args)),

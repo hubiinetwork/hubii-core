@@ -32,3 +32,5 @@ export const TRANSFER_ETHER = 'src/WalletHoc/TRANSFER_ETHER';
 export const TRANSFER_ERC20 = 'src/WalletHoc/TRANSFER_ERC20';
 export const TRANSFER_SUCCESS = 'src/WalletHoc/TRANSFER_SUCCESS';
 export const TRANSFER_ERROR = 'src/WalletHoc/TRANSFER_ERROR';
+
+export const DRAG_WALLET = 'src/WalletHoc/DRAG_WALLET';

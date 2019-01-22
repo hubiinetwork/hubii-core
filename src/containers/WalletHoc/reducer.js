@@ -32,6 +32,7 @@ import {
   TRANSFER_ERROR,
   DELETE_WALLET,
   LOCK_WALLET,
+  DRAG_WALLET,
 } from './constants';
 
 
@@ -60,6 +61,14 @@ abiDecoder.addABI(ERC20ABI);
 
 function walletHocReducer(state = initialState, action) {
   switch (action.type) {
+    case DRAG_WALLET: {
+      state.get('wallets').toJS().forEach((w) => {
+        if (action.newWallets.findIndex((r) => r.name === w.name) === -1) {
+          throw new Error('Invalid DRAG_WALLET action payload');
+        }
+      });
+      return state.set('wallets', fromJS(action.newWallets));
+    }
     case CREATE_WALLET_FROM_MNEMONIC:
     case CREATE_WALLET_FROM_PRIVATE_KEY:
       return state
