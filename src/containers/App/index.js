@@ -28,6 +28,7 @@ import DexContainer from 'containers/DexContainer';
 import Settings from 'containers/Settings';
 import Nahmii from 'containers/Nahmii';
 
+import ConnectionStatus from 'containers/ConnectionStatus';
 import WalletHoc from 'containers/WalletHoc';
 import withLedger from 'containers/LedgerHoc';
 import withTrezor from 'containers/TrezorHoc';
@@ -64,6 +65,7 @@ function App() {
       <Helmet>
         <title>hubii core</title>
       </Helmet>
+      <ConnectionStatus />
       <Switch>
         <Route path="/wallets" component={WalletManager} />
         <Route path="/wallet/:address" component={WalletDetails} />

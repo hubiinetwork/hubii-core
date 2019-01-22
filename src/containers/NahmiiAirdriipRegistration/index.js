@@ -53,6 +53,7 @@ import {
   changeManualAddress,
   changeManualSignedMessage,
 } from './actions';
+import ScrollableContentWrapper from '../../components/ui/ScrollableContentWrapper';
 
 
 export const Start = (props) => (
@@ -164,22 +165,23 @@ export class NahmiiAirdriipRegistration extends React.Component {
     const registering = store.get('registering');
 
     return (
-      <OuterWrapper>
-        {
-          currentNetwork.provider.network.name !== 'homestead' &&
+      <ScrollableContentWrapper>
+        <OuterWrapper>
+          {
+          currentNetwork.provider._network.chainId !== 1 &&
           <NetworkWarning
             message={intl.formatMessage({ id: 'warning' })}
             description={intl.formatMessage({ id: 'airdriip_testnet_warning' })}
             type="warning"
             showIcon
           />
-        }
-        {
+          }
+          {
           store.get('stage') === 'start' && (
             <Start changeStage={this.props.changeStage} intl={intl} />
           )
-        }
-        {
+          }
+          {
           store.get('stage') === 'register-imported' && (
             <CoreAddressRegistrationForm
               currentWalletWithInfo={currentWalletWithInfo}
@@ -189,8 +191,8 @@ export class NahmiiAirdriipRegistration extends React.Component {
               intl={intl}
             />
           )
-        }
-        {
+          }
+          {
           store.get('stage') === 'register-arbitrary' && (
             <ManualRegistrationForm
               notify={this.props.notify}
@@ -201,11 +203,11 @@ export class NahmiiAirdriipRegistration extends React.Component {
               intl={intl}
             />
           )
-        }
-        {
+          }
+          {
           registering && <Spin size="large" />
-        }
-        {
+          }
+          {
           store.get('stage') === 'register-imported'
           && addressRegistrationStatus !== 'unregistered' &&
             <AirdriipRegistrationStatusUi
@@ -213,8 +215,8 @@ export class NahmiiAirdriipRegistration extends React.Component {
               status={addressRegistrationStatus}
               style={{ width: '33rem', marginBottom: '2rem' }}
             />
-        }
-        {
+          }
+          {
           !registering && !(store.get('stage') === 'start') && (
             <ButtonsWrapper>
               <StyledButton
@@ -233,7 +235,8 @@ export class NahmiiAirdriipRegistration extends React.Component {
             </ButtonsWrapper>
           )
         }
-      </OuterWrapper>
+        </OuterWrapper>
+      </ScrollableContentWrapper>
     );
   }
 }

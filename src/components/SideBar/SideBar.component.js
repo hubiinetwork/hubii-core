@@ -38,7 +38,7 @@ export class SideBar extends React.Component {
       selectedKeys = ['settings'];
     }
     return (
-      <SideBarLayout style={{ minHeight: '100vh' }}>
+      <SideBarLayout>
         <Sider>
           <SideBarMenu
             defaultSelectedKeys={[menuItems[0].key]}

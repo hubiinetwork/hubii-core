@@ -25,7 +25,7 @@ ShallowWrapper {
                         decimalAmount: "0.000000002111",
                         counterpartyAddress: "0x4231676a35483638796e2af8ed2af0a41b097524",
                         nonce: 21,
-                        currency: "ETH",
+                        currency: "0x0000000000000000000000000000000000000000",
                         layer: "nahmii",
                         sender: Immutable.Map {
                             fees: Immutable.Map {
@@ -105,7 +105,7 @@ ShallowWrapper {
                             timestamp: "2018-08-06T02:32:00.000Z",
                         },
                         hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
-                        currency: "ETH",
+                        currency: "0x0000000000000000000000000000000000000000",
                         layer: "baseLayer",
                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                         timestamp: "2018-08-06T02:32:00.000Z",
@@ -225,7 +225,7 @@ ShallowWrapper {
                     assets: Immutable.List [
                         Immutable.Map {
                             balance: "0.198937",
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             symbol: "ETH",
                             value: Immutable.Map {
                                 eth: "0.198937",
@@ -255,7 +255,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.1",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -286,7 +286,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.1",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -318,7 +318,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.2",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -350,7 +350,7 @@ ShallowWrapper {
                     assets: Immutable.List [
                         Immutable.Map {
                             balance: "0.398937",
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             symbol: "ETH",
                             value: Immutable.Map {
                                 eth: "0.398937",
@@ -460,12 +460,7 @@ ShallowWrapper {
                                         details
                               </span>
                     }
-          >
-                    <Route
-                              component={[Function]}
-                              path="undefined/overview"
-                    />
-          </TabPane>
+          />
           <TabPane
                     placeholder={null}
                     tab={
@@ -493,12 +488,7 @@ ShallowWrapper {
                                         transfer
                               </span>
                     }
-          >
-                    <Route
-                              component={[Function]}
-                              path="undefined/transfer"
-                    />
-          </TabPane>
+          />
           <TabPane
                     placeholder={null}
                     tab={
@@ -507,15 +497,11 @@ ShallowWrapper {
                                                   type="login"
                                         />
                                         <Unknown />
-                                         deposit
+                                         
+                                        deposit
                               </span>
                     }
-          >
-                    <Route
-                              component={[Function]}
-                              path="undefined/nahmii-deposit"
-                    />
-          </TabPane>
+          />
           <TabPane
                     placeholder={null}
                     tab={
@@ -526,13 +512,24 @@ ShallowWrapper {
                                         buy_eth
                               </span>
                     }
-          >
-                    <Route
-                              component={[Function]}
-                              path="undefined/buyeth"
-                    />
-          </TabPane>
+          />
 </Tabs>,
+        <Route
+          component={[Function]}
+          path="undefined/overview"
+/>,
+        <Route
+          component={[Function]}
+          path="undefined/transfer"
+/>,
+        <Route
+          component={[Function]}
+          path="undefined/buyeth"
+/>,
+        <Route
+          component={[Function]}
+          path="undefined/nahmii-deposit"
+/>,
         false,
       ],
     },
@@ -593,12 +590,7 @@ ShallowWrapper {
                                           details
                             </span>
               }
->
-              <Route
-                            component={[Function]}
-                            path="undefined/overview"
-              />
-</TabPane>,
+/>,
             <TabPane
               placeholder={null}
               tab={
@@ -626,12 +618,7 @@ ShallowWrapper {
                                           transfer
                             </span>
               }
->
-              <Route
-                            component={[Function]}
-                            path="undefined/transfer"
-              />
-</TabPane>,
+/>,
             <TabPane
               placeholder={null}
               tab={
@@ -640,15 +627,11 @@ ShallowWrapper {
                                                         type="login"
                                           />
                                           <Unknown />
-                                           deposit
+                                           
+                                          deposit
                             </span>
               }
->
-              <Route
-                            component={[Function]}
-                            path="undefined/nahmii-deposit"
-              />
-</TabPane>,
+/>,
             <TabPane
               placeholder={null}
               tab={
@@ -659,12 +642,7 @@ ShallowWrapper {
                                           buy_eth
                             </span>
               }
->
-              <Route
-                            component={[Function]}
-                            path="undefined/buyeth"
-              />
-</TabPane>,
+/>,
           ],
           "onChange": [Function],
         },
@@ -675,10 +653,6 @@ ShallowWrapper {
             "key": "undefined/overview",
             "nodeType": "class",
             "props": Object {
-              "children": <Route
-                component={[Function]}
-                path="undefined/overview"
-/>,
               "placeholder": null,
               "tab": <span>
                 <Icon
@@ -688,18 +662,7 @@ ShallowWrapper {
 </span>,
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "undefined/overview",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+            "rendered": null,
             "type": [Function],
           },
           Object {
@@ -707,10 +670,6 @@ ShallowWrapper {
             "key": "undefined/transfer",
             "nodeType": "class",
             "props": Object {
-              "children": <Route
-                component={[Function]}
-                path="undefined/transfer"
-/>,
               "placeholder": null,
               "tab": <span>
                 <svg
@@ -737,18 +696,7 @@ ShallowWrapper {
 </span>,
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "undefined/transfer",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+            "rendered": null,
             "type": [Function],
           },
           Object {
@@ -756,32 +704,18 @@ ShallowWrapper {
             "key": "undefined/nahmii-deposit",
             "nodeType": "class",
             "props": Object {
-              "children": <Route
-                component={[Function]}
-                path="undefined/nahmii-deposit"
-/>,
               "placeholder": null,
               "tab": <span>
                 <Icon
                                 type="login"
                 />
                 <Unknown />
-                 deposit
+                 
+                deposit
 </span>,
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "undefined/nahmii-deposit",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+            "rendered": null,
             "type": [Function],
           },
           Object {
@@ -789,10 +723,6 @@ ShallowWrapper {
             "key": "undefined/buyeth",
             "nodeType": "class",
             "props": Object {
-              "children": <Route
-                component={[Function]}
-                path="undefined/buyeth"
-/>,
               "placeholder": null,
               "tab": <span>
                 <Icon
@@ -802,21 +732,58 @@ ShallowWrapper {
 </span>,
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "undefined/buyeth",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+            "rendered": null,
             "type": [Function],
           },
         ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "path": "undefined/overview",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "path": "undefined/transfer",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "path": "undefined/buyeth",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "path": "undefined/nahmii-deposit",
+        },
+        "ref": null,
+        "rendered": null,
         "type": [Function],
       },
       false,
@@ -857,12 +824,7 @@ ShallowWrapper {
                                                 details
                                     </span>
                         }
-            >
-                        <Route
-                                    component={[Function]}
-                                    path="undefined/overview"
-                        />
-            </TabPane>
+            />
             <TabPane
                         placeholder={null}
                         tab={
@@ -890,12 +852,7 @@ ShallowWrapper {
                                                 transfer
                                     </span>
                         }
-            >
-                        <Route
-                                    component={[Function]}
-                                    path="undefined/transfer"
-                        />
-            </TabPane>
+            />
             <TabPane
                         placeholder={null}
                         tab={
@@ -904,15 +861,11 @@ ShallowWrapper {
                                                             type="login"
                                                 />
                                                 <Unknown />
-                                                 deposit
+                                                 
+                                                deposit
                                     </span>
                         }
-            >
-                        <Route
-                                    component={[Function]}
-                                    path="undefined/nahmii-deposit"
-                        />
-            </TabPane>
+            />
             <TabPane
                         placeholder={null}
                         tab={
@@ -923,13 +876,24 @@ ShallowWrapper {
                                                 buy_eth
                                     </span>
                         }
-            >
-                        <Route
-                                    component={[Function]}
-                                    path="undefined/buyeth"
-                        />
-            </TabPane>
+            />
 </Tabs>,
+          <Route
+            component={[Function]}
+            path="undefined/overview"
+/>,
+          <Route
+            component={[Function]}
+            path="undefined/transfer"
+/>,
+          <Route
+            component={[Function]}
+            path="undefined/buyeth"
+/>,
+          <Route
+            component={[Function]}
+            path="undefined/nahmii-deposit"
+/>,
           false,
         ],
       },
@@ -990,12 +954,7 @@ ShallowWrapper {
                                                 details
                                 </span>
                 }
->
-                <Route
-                                component={[Function]}
-                                path="undefined/overview"
-                />
-</TabPane>,
+/>,
               <TabPane
                 placeholder={null}
                 tab={
@@ -1023,12 +982,7 @@ ShallowWrapper {
                                                 transfer
                                 </span>
                 }
->
-                <Route
-                                component={[Function]}
-                                path="undefined/transfer"
-                />
-</TabPane>,
+/>,
               <TabPane
                 placeholder={null}
                 tab={
@@ -1037,15 +991,11 @@ ShallowWrapper {
                                                                 type="login"
                                                 />
                                                 <Unknown />
-                                                 deposit
+                                                 
+                                                deposit
                                 </span>
                 }
->
-                <Route
-                                component={[Function]}
-                                path="undefined/nahmii-deposit"
-                />
-</TabPane>,
+/>,
               <TabPane
                 placeholder={null}
                 tab={
@@ -1056,12 +1006,7 @@ ShallowWrapper {
                                                 buy_eth
                                 </span>
                 }
->
-                <Route
-                                component={[Function]}
-                                path="undefined/buyeth"
-                />
-</TabPane>,
+/>,
             ],
             "onChange": [Function],
           },
@@ -1072,10 +1017,6 @@ ShallowWrapper {
               "key": "undefined/overview",
               "nodeType": "class",
               "props": Object {
-                "children": <Route
-                  component={[Function]}
-                  path="undefined/overview"
-/>,
                 "placeholder": null,
                 "tab": <span>
                   <Icon
@@ -1085,18 +1026,7 @@ ShallowWrapper {
 </span>,
               },
               "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "component": [Function],
-                  "path": "undefined/overview",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
+              "rendered": null,
               "type": [Function],
             },
             Object {
@@ -1104,10 +1034,6 @@ ShallowWrapper {
               "key": "undefined/transfer",
               "nodeType": "class",
               "props": Object {
-                "children": <Route
-                  component={[Function]}
-                  path="undefined/transfer"
-/>,
                 "placeholder": null,
                 "tab": <span>
                   <svg
@@ -1134,18 +1060,7 @@ ShallowWrapper {
 </span>,
               },
               "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "component": [Function],
-                  "path": "undefined/transfer",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
+              "rendered": null,
               "type": [Function],
             },
             Object {
@@ -1153,32 +1068,18 @@ ShallowWrapper {
               "key": "undefined/nahmii-deposit",
               "nodeType": "class",
               "props": Object {
-                "children": <Route
-                  component={[Function]}
-                  path="undefined/nahmii-deposit"
-/>,
                 "placeholder": null,
                 "tab": <span>
                   <Icon
                                     type="login"
                   />
                   <Unknown />
-                   deposit
+                   
+                  deposit
 </span>,
               },
               "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "component": [Function],
-                  "path": "undefined/nahmii-deposit",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
+              "rendered": null,
               "type": [Function],
             },
             Object {
@@ -1186,10 +1087,6 @@ ShallowWrapper {
               "key": "undefined/buyeth",
               "nodeType": "class",
               "props": Object {
-                "children": <Route
-                  component={[Function]}
-                  path="undefined/buyeth"
-/>,
                 "placeholder": null,
                 "tab": <span>
                   <Icon
@@ -1199,21 +1096,58 @@ ShallowWrapper {
 </span>,
               },
               "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "component": [Function],
-                  "path": "undefined/buyeth",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
+              "rendered": null,
               "type": [Function],
             },
           ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "path": "undefined/overview",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "path": "undefined/transfer",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "path": "undefined/buyeth",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "path": "undefined/nahmii-deposit",
+          },
+          "ref": null,
+          "rendered": null,
           "type": [Function],
         },
         false,

@@ -50,7 +50,7 @@ Download the latest version of hubii core for your system on the [official relea
 
 ## Architecture
 
-hubii core is a multiplatform desktop application built with Electron, React, Redux and styled-components. The architecture is heavily influenced the [react-boilerplate](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/introduction.md) project. To understand our design decisions in greater detail, we recommend you checkout the documentaion and reasoning outlined in that repository.
+hubii core is a multiplatform desktop application built with Electron, React, Redux and styled-components. The architecture is heavily influenced by the [react-boilerplate](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/introduction.md) project. To understand our design decisions in greater detail, we recommend you checkout the documentaion and reasoning outlined in that repository.
 
 ## Develop
 
@@ -149,8 +149,6 @@ During blockchain development, you'll often find yourself working with very smal
 
 Here is a [video](https://www.infoq.com/presentations/testing-communication) about TDD, introducing the motivations behind writing good unit tests.
 
-For examples on how to write tests for different parts of a container, please refer to the tests in `containers/StriimAccounts/tests`:
-
 *index.test.js*: Test the logics at the `container` level. `component` tests can be constructed similarly to this.
 
 *actions.test.js*: Test any `actions`
@@ -165,33 +163,29 @@ Some containers contain up to 3 levels of complex components. Combining all the 
 
 To isolate the complexities between the sub components, the parent container can use sub routes to wire up the sub components. This enable isolating the logics in the parent page container from their sub pages, as well as isolating the logics between the sub pages.
 
-Take the striim tab page for example, the sub pages structured like: `containers/Striim` > `containers/StrrimAccounts` > `containers/SwapCurrencies`
-
-`containers/Striim` container is the parent page of the sub pages `accounts` and `contacts`. It  handles its own container logics and only know about the sub route path for its child containers. When the route matches `/accounts`, it renders `StriimAccountsContainer`.
-
-Sample codes from `containers/Striim`:
+For example
 
 ```js
-<StriimTabs defaultActiveKey={history.location.pathname}>
+<Tabs defaultActiveKey={history.location.pathname}>
     <TabPane tab="Accounts" key={`${match.url}/accounts`}>
-        <Route path={`${match.url}/accounts`} component={StriimAccountsContainer} />
+        <Route path={`${match.url}/accounts`} component={AccountsContainer} />
     </TabPane>
     <TabPane tab="Contacts" key={`${match.url}/contacts`}>
         Content of Tab Pane 2
     </TabPane>
-</StriimTabs>
+</Tabs>
 ```
 
-`containers/StriimAccounts` container is the parent page of a number of sub pages such as `payment`, `savings`, `swap currencies` etc. Although it has quite a number of sub pages, it handles its own container logics and have the sub pages to handle by them own.
+The `containers/Accounts` container is the parent page of a number of sub pages such as `payment`, `savings`, `swap currencies` etc. Although it has quite a number of sub pages, it handles its own container logics and have the sub pages to handle by them own.
 
 In order to let the sub pages know which account and currency is currently chosen, it dispatch the actions `CHANGE_CURRENT_CURRENCY` or `CHANGE_CURRENT_ACCOUNT`, so the sub pages can react respectively.
 
-Take Swap Currency sub page for example, it connects the `currentCurrency` with the state in the  `store` using [reselect](https://github.com/reduxjs/reselect). Whenever there is an update to this `currentCurrency` state, the swap currency container re-render the view to reflect the newly chosen currency from its parent container `containers/StriimAccounts`.
+Take Swap Currency sub page for example, it connects the `currentCurrency` with the state in the  `store` using [reselect](https://github.com/reduxjs/reselect). Whenever there is an update to this `currentCurrency` state, the swap currency container re-render the view to reflect the newly chosen currency from its parent container `containers/Accounts`.
 
 Sample codes from `containers/SwapCurrencies` on connecting the props to the defined states from the `store`.
 
 ```js
-import { makeSelectCurrentCurrency } from 'containers/StriimAccounts/selectors';
+import { makeSelectCurrentCurrency } from 'containers/Accounts/selectors';
 const mapStateToProps = createStructuredSelector({
   currentCurrency: makeSelectCurrentCurrency(),
 });

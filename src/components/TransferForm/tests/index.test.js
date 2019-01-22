@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { intl } from 'jest/__mocks__/react-intl';
+import { fromJS } from 'immutable';
 
 import {
   pricesLoadedMock,
@@ -35,6 +36,7 @@ describe('TransferForm', () => {
     hwWalletReady: false,
     createContact: () => {},
     intl,
+    gasStatistics: fromJS({}),
   };
 
   it('should render correctly in default state', () => {

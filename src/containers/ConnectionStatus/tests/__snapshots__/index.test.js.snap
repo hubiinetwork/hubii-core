@@ -1,0 +1,1373 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ConnectionStatus /> should render correctly when errors 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ConnectionStatus
+    currentNetwork={
+        Object {
+            "provider": Object {
+              "_network": Object {
+                "chainId": 1,
+              },
+            },
+          }
+    }
+    errors={
+        Immutable.Set [
+            "someerr",
+        ]
+    }
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <span>
+          <style__StyledText
+                    style={
+                              Object {
+                                        "fontWeight": "bold",
+                                      }
+                    }
+          >
+                    network
+                    :
+          </style__StyledText>
+           
+          <style__StyledText
+                    warning={false}
+          >
+                    mainnet
+          </style__StyledText>
+</span>,
+        <span
+          style={
+                    Object {
+                              "alignItems": "center",
+                              "display": "flex",
+                            }
+          }
+>
+          <style__StyledText
+                    style={
+                              Object {
+                                        "fontWeight": "bold",
+                                      }
+                    }
+          >
+                    status
+                    :
+          </style__StyledText>
+           
+          <style__StyledText
+                    warning={true}
+          >
+                    reconnecting
+          </style__StyledText>
+           
+          <style__StatusIcon
+                    type="loading"
+                    warning={1}
+          />
+</span>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <style__StyledText
+              style={
+                            Object {
+                                          "fontWeight": "bold",
+                                        }
+              }
+>
+              network
+              :
+</style__StyledText>,
+            " ",
+            <style__StyledText
+              warning={false}
+>
+              mainnet
+</style__StyledText>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                "network",
+                ":",
+              ],
+              "style": Object {
+                "fontWeight": "bold",
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              "network",
+              ":",
+            ],
+            "type": [Function],
+          },
+          " ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "mainnet",
+              "warning": false,
+            },
+            "ref": null,
+            "rendered": "mainnet",
+            "type": [Function],
+          },
+        ],
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <style__StyledText
+              style={
+                            Object {
+                                          "fontWeight": "bold",
+                                        }
+              }
+>
+              status
+              :
+</style__StyledText>,
+            " ",
+            <style__StyledText
+              warning={true}
+>
+              reconnecting
+</style__StyledText>,
+            " ",
+            <style__StatusIcon
+              type="loading"
+              warning={1}
+/>,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "display": "flex",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                "status",
+                ":",
+              ],
+              "style": Object {
+                "fontWeight": "bold",
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              "status",
+              ":",
+            ],
+            "type": [Function],
+          },
+          " ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "reconnecting",
+              "warning": true,
+            },
+            "ref": null,
+            "rendered": "reconnecting",
+            "type": [Function],
+          },
+          " ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "type": "loading",
+              "warning": 1,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": "span",
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <span>
+            <style__StyledText
+                        style={
+                                    Object {
+                                                "fontWeight": "bold",
+                                              }
+                        }
+            >
+                        network
+                        :
+            </style__StyledText>
+             
+            <style__StyledText
+                        warning={false}
+            >
+                        mainnet
+            </style__StyledText>
+</span>,
+          <span
+            style={
+                        Object {
+                                    "alignItems": "center",
+                                    "display": "flex",
+                                  }
+            }
+>
+            <style__StyledText
+                        style={
+                                    Object {
+                                                "fontWeight": "bold",
+                                              }
+                        }
+            >
+                        status
+                        :
+            </style__StyledText>
+             
+            <style__StyledText
+                        warning={true}
+            >
+                        reconnecting
+            </style__StyledText>
+             
+            <style__StatusIcon
+                        type="loading"
+                        warning={1}
+            />
+</span>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <style__StyledText
+                style={
+                                Object {
+                                                "fontWeight": "bold",
+                                              }
+                }
+>
+                network
+                :
+</style__StyledText>,
+              " ",
+              <style__StyledText
+                warning={false}
+>
+                mainnet
+</style__StyledText>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  "network",
+                  ":",
+                ],
+                "style": Object {
+                  "fontWeight": "bold",
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                "network",
+                ":",
+              ],
+              "type": [Function],
+            },
+            " ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "mainnet",
+                "warning": false,
+              },
+              "ref": null,
+              "rendered": "mainnet",
+              "type": [Function],
+            },
+          ],
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <style__StyledText
+                style={
+                                Object {
+                                                "fontWeight": "bold",
+                                              }
+                }
+>
+                status
+                :
+</style__StyledText>,
+              " ",
+              <style__StyledText
+                warning={true}
+>
+                reconnecting
+</style__StyledText>,
+              " ",
+              <style__StatusIcon
+                type="loading"
+                warning={1}
+/>,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "display": "flex",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  "status",
+                  ":",
+                ],
+                "style": Object {
+                  "fontWeight": "bold",
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                "status",
+                ":",
+              ],
+              "type": [Function],
+            },
+            " ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "reconnecting",
+                "warning": true,
+              },
+              "ref": null,
+              "rendered": "reconnecting",
+              "type": [Function],
+            },
+            " ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "type": "loading",
+                "warning": 1,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": "span",
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<ConnectionStatus /> should render correctly when network is mainnet & no errors 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ConnectionStatus
+    currentNetwork={
+        Object {
+            "provider": Object {
+              "_network": Object {
+                "chainId": 1,
+              },
+            },
+          }
+    }
+    errors={
+        Immutable.Set [
+        ]
+    }
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <span>
+          <style__StyledText
+                    style={
+                              Object {
+                                        "fontWeight": "bold",
+                                      }
+                    }
+          >
+                    network
+                    :
+          </style__StyledText>
+           
+          <style__StyledText
+                    warning={false}
+          >
+                    mainnet
+          </style__StyledText>
+</span>,
+        <span
+          style={
+                    Object {
+                              "alignItems": "center",
+                              "display": "flex",
+                            }
+          }
+>
+          <style__StyledText
+                    style={
+                              Object {
+                                        "fontWeight": "bold",
+                                      }
+                    }
+          >
+                    status
+                    :
+          </style__StyledText>
+           
+          <style__StyledText
+                    warning={false}
+          >
+                    connected
+          </style__StyledText>
+           
+          <style__StatusIcon
+                    type="check"
+                    warning={0}
+          />
+</span>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <style__StyledText
+              style={
+                            Object {
+                                          "fontWeight": "bold",
+                                        }
+              }
+>
+              network
+              :
+</style__StyledText>,
+            " ",
+            <style__StyledText
+              warning={false}
+>
+              mainnet
+</style__StyledText>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                "network",
+                ":",
+              ],
+              "style": Object {
+                "fontWeight": "bold",
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              "network",
+              ":",
+            ],
+            "type": [Function],
+          },
+          " ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "mainnet",
+              "warning": false,
+            },
+            "ref": null,
+            "rendered": "mainnet",
+            "type": [Function],
+          },
+        ],
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <style__StyledText
+              style={
+                            Object {
+                                          "fontWeight": "bold",
+                                        }
+              }
+>
+              status
+              :
+</style__StyledText>,
+            " ",
+            <style__StyledText
+              warning={false}
+>
+              connected
+</style__StyledText>,
+            " ",
+            <style__StatusIcon
+              type="check"
+              warning={0}
+/>,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "display": "flex",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                "status",
+                ":",
+              ],
+              "style": Object {
+                "fontWeight": "bold",
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              "status",
+              ":",
+            ],
+            "type": [Function],
+          },
+          " ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "connected",
+              "warning": false,
+            },
+            "ref": null,
+            "rendered": "connected",
+            "type": [Function],
+          },
+          " ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "type": "check",
+              "warning": 0,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": "span",
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <span>
+            <style__StyledText
+                        style={
+                                    Object {
+                                                "fontWeight": "bold",
+                                              }
+                        }
+            >
+                        network
+                        :
+            </style__StyledText>
+             
+            <style__StyledText
+                        warning={false}
+            >
+                        mainnet
+            </style__StyledText>
+</span>,
+          <span
+            style={
+                        Object {
+                                    "alignItems": "center",
+                                    "display": "flex",
+                                  }
+            }
+>
+            <style__StyledText
+                        style={
+                                    Object {
+                                                "fontWeight": "bold",
+                                              }
+                        }
+            >
+                        status
+                        :
+            </style__StyledText>
+             
+            <style__StyledText
+                        warning={false}
+            >
+                        connected
+            </style__StyledText>
+             
+            <style__StatusIcon
+                        type="check"
+                        warning={0}
+            />
+</span>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <style__StyledText
+                style={
+                                Object {
+                                                "fontWeight": "bold",
+                                              }
+                }
+>
+                network
+                :
+</style__StyledText>,
+              " ",
+              <style__StyledText
+                warning={false}
+>
+                mainnet
+</style__StyledText>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  "network",
+                  ":",
+                ],
+                "style": Object {
+                  "fontWeight": "bold",
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                "network",
+                ":",
+              ],
+              "type": [Function],
+            },
+            " ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "mainnet",
+                "warning": false,
+              },
+              "ref": null,
+              "rendered": "mainnet",
+              "type": [Function],
+            },
+          ],
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <style__StyledText
+                style={
+                                Object {
+                                                "fontWeight": "bold",
+                                              }
+                }
+>
+                status
+                :
+</style__StyledText>,
+              " ",
+              <style__StyledText
+                warning={false}
+>
+                connected
+</style__StyledText>,
+              " ",
+              <style__StatusIcon
+                type="check"
+                warning={0}
+/>,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "display": "flex",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  "status",
+                  ":",
+                ],
+                "style": Object {
+                  "fontWeight": "bold",
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                "status",
+                ":",
+              ],
+              "type": [Function],
+            },
+            " ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "connected",
+                "warning": false,
+              },
+              "ref": null,
+              "rendered": "connected",
+              "type": [Function],
+            },
+            " ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "type": "check",
+                "warning": 0,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": "span",
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`<ConnectionStatus /> should render correctly when network is testnet 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ConnectionStatus
+    currentNetwork={
+        Object {
+            "provider": Object {
+              "_network": Object {
+                "chainId": 3,
+              },
+            },
+          }
+    }
+    errors={
+        Immutable.Set [
+        ]
+    }
+    intl={
+        Object {
+            "formatMessage": [Function],
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <span>
+          <style__StyledText
+                    style={
+                              Object {
+                                        "fontWeight": "bold",
+                                      }
+                    }
+          >
+                    network
+                    :
+          </style__StyledText>
+           
+          <style__StyledText
+                    warning={true}
+          >
+                    testnet
+          </style__StyledText>
+</span>,
+        <span
+          style={
+                    Object {
+                              "alignItems": "center",
+                              "display": "flex",
+                            }
+          }
+>
+          <style__StyledText
+                    style={
+                              Object {
+                                        "fontWeight": "bold",
+                                      }
+                    }
+          >
+                    status
+                    :
+          </style__StyledText>
+           
+          <style__StyledText
+                    warning={false}
+          >
+                    connected
+          </style__StyledText>
+           
+          <style__StatusIcon
+                    type="check"
+                    warning={0}
+          />
+</span>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <style__StyledText
+              style={
+                            Object {
+                                          "fontWeight": "bold",
+                                        }
+              }
+>
+              network
+              :
+</style__StyledText>,
+            " ",
+            <style__StyledText
+              warning={true}
+>
+              testnet
+</style__StyledText>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                "network",
+                ":",
+              ],
+              "style": Object {
+                "fontWeight": "bold",
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              "network",
+              ":",
+            ],
+            "type": [Function],
+          },
+          " ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "testnet",
+              "warning": true,
+            },
+            "ref": null,
+            "rendered": "testnet",
+            "type": [Function],
+          },
+        ],
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <style__StyledText
+              style={
+                            Object {
+                                          "fontWeight": "bold",
+                                        }
+              }
+>
+              status
+              :
+</style__StyledText>,
+            " ",
+            <style__StyledText
+              warning={false}
+>
+              connected
+</style__StyledText>,
+            " ",
+            <style__StatusIcon
+              type="check"
+              warning={0}
+/>,
+          ],
+          "style": Object {
+            "alignItems": "center",
+            "display": "flex",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                "status",
+                ":",
+              ],
+              "style": Object {
+                "fontWeight": "bold",
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              "status",
+              ":",
+            ],
+            "type": [Function],
+          },
+          " ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "connected",
+              "warning": false,
+            },
+            "ref": null,
+            "rendered": "connected",
+            "type": [Function],
+          },
+          " ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "type": "check",
+              "warning": 0,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": "span",
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <span>
+            <style__StyledText
+                        style={
+                                    Object {
+                                                "fontWeight": "bold",
+                                              }
+                        }
+            >
+                        network
+                        :
+            </style__StyledText>
+             
+            <style__StyledText
+                        warning={true}
+            >
+                        testnet
+            </style__StyledText>
+</span>,
+          <span
+            style={
+                        Object {
+                                    "alignItems": "center",
+                                    "display": "flex",
+                                  }
+            }
+>
+            <style__StyledText
+                        style={
+                                    Object {
+                                                "fontWeight": "bold",
+                                              }
+                        }
+            >
+                        status
+                        :
+            </style__StyledText>
+             
+            <style__StyledText
+                        warning={false}
+            >
+                        connected
+            </style__StyledText>
+             
+            <style__StatusIcon
+                        type="check"
+                        warning={0}
+            />
+</span>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <style__StyledText
+                style={
+                                Object {
+                                                "fontWeight": "bold",
+                                              }
+                }
+>
+                network
+                :
+</style__StyledText>,
+              " ",
+              <style__StyledText
+                warning={true}
+>
+                testnet
+</style__StyledText>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  "network",
+                  ":",
+                ],
+                "style": Object {
+                  "fontWeight": "bold",
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                "network",
+                ":",
+              ],
+              "type": [Function],
+            },
+            " ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "testnet",
+                "warning": true,
+              },
+              "ref": null,
+              "rendered": "testnet",
+              "type": [Function],
+            },
+          ],
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <style__StyledText
+                style={
+                                Object {
+                                                "fontWeight": "bold",
+                                              }
+                }
+>
+                status
+                :
+</style__StyledText>,
+              " ",
+              <style__StyledText
+                warning={false}
+>
+                connected
+</style__StyledText>,
+              " ",
+              <style__StatusIcon
+                type="check"
+                warning={0}
+/>,
+            ],
+            "style": Object {
+              "alignItems": "center",
+              "display": "flex",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  "status",
+                  ":",
+                ],
+                "style": Object {
+                  "fontWeight": "bold",
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                "status",
+                ":",
+              ],
+              "type": [Function],
+            },
+            " ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "connected",
+                "warning": false,
+              },
+              "ref": null,
+              "rendered": "connected",
+              "type": [Function],
+            },
+            " ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "type": "check",
+                "warning": 0,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": "span",
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

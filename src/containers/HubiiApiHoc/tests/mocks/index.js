@@ -8,7 +8,7 @@ export const loadedWalletTransactions = fromJS({
     transactions: [{
       amount: '100000000',
       block: { number: 3780091, timestamp: '2018-08-06T02:32:00.000Z' },
-      currency: 'ETH',
+      currency: '0x0000000000000000000000000000000000000000',
       hash: '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c',
       recipient: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
       sender: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
@@ -17,7 +17,7 @@ export const loadedWalletTransactions = fromJS({
       // 0 ETH tx, should be ignored
       amount: '0',
       block: { number: 3780091, timestamp: '2018-08-06T02:32:00.000Z' },
-      currency: 'ETH',
+      currency: '0x0000000000000000000000000000000000000000',
       hash: '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c',
       recipient: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
       sender: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
@@ -97,5 +97,11 @@ export const supportedTokensMock = [
     symbol: 'BOKKY',
     decimals: 18,
     color: 'FFAA00',
+  },
+  {
+    currency: '0x0000000000000000000000000000000000000000',
+    symbol: 'ETH',
+    decimals: 18,
+    color: '5C78E4',
   },
 ];
