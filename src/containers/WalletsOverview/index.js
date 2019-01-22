@@ -15,6 +15,8 @@ import {
   lockWallet,
 } from 'containers/WalletHoc/actions';
 
+import { notify } from 'containers/App/actions';
+
 import {
   makeSelectWalletsWithInfo,
   makeSelectTotalBalances,
@@ -106,6 +108,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
             lock={() => this.props.lockWallet(wallet.address)}
             unlock={() => this.unlockWallet(wallet.address)}
             priceInfo={priceInfo.toJS().assets}
+            notify={this.props.notify}
           />
         </WalletCardsCol>
       );
@@ -151,6 +154,7 @@ WalletsOverview.propTypes = {
   showDecryptWalletModal: PropTypes.func.isRequired,
   setCurrentWallet: PropTypes.func.isRequired,
   deleteWallet: PropTypes.func.isRequired,
+  notify: PropTypes.func.isRequired,
   lockWallet: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   ledgerNanoSInfo: PropTypes.object.isRequired,
@@ -177,6 +181,7 @@ export function mapDispatchToProps(dispatch) {
     lockWallet: (addr) => dispatch(lockWallet(addr)),
     showDecryptWalletModal: (...args) => dispatch(showDecryptWalletModal(...args)),
     setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
+    notify: (...args) => dispatch(notify(...args)),
   };
 }
 
