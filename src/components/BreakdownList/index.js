@@ -21,7 +21,7 @@ const generateList = (data, formatMessage, extraInfo = false) => {
   // empty base layer balances have ETH with amount 0
   // empty nahmii balances have len 0
   // https://github.com/hubiinetwork/hubii-core/issues/650
-  if (data.length === 0 || (data.length === 1 && data[0].amount === '0')) {
+  if (data.length === 0) {
     return (
       <FlexItem>
         <div>
