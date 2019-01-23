@@ -749,11 +749,6 @@ ShallowWrapper {
                                                   autoAdjustOverflow={true}
                                                   mouseEnterDelay={0.1}
                                                   mouseLeaveDelay={0.1}
-                                                  overlayStyle={
-                                                            Object {
-                                                                      "display": "none",
-                                                                    }
-                                                  }
                                                   placement="right"
                                                   prefixCls="ant-tooltip"
                                                   title={
@@ -779,7 +774,7 @@ ShallowWrapper {
                                                   </Text>
                                                   <style__NahmiiSwitch
                                                             checked={false}
-                                                            disabled={false}
+                                                            disabled={true}
                                                             onChange={[Function]}
                                                   />
                                         </Tooltip>
@@ -1426,11 +1421,6 @@ ShallowWrapper {
                                                         autoAdjustOverflow={true}
                                                         mouseEnterDelay={0.1}
                                                         mouseLeaveDelay={0.1}
-                                                        overlayStyle={
-                                                                      Object {
-                                                                                    "display": "none",
-                                                                                  }
-                                                        }
                                                         placement="right"
                                                         prefixCls="ant-tooltip"
                                                         title={
@@ -1456,7 +1446,7 @@ ShallowWrapper {
                                                         </Text>
                                                         <style__NahmiiSwitch
                                                                       checked={false}
-                                                                      disabled={false}
+                                                                      disabled={true}
                                                                       onChange={[Function]}
                                                         />
                                           </Tooltip>
@@ -2034,11 +2024,6 @@ ShallowWrapper {
                                                 autoAdjustOverflow={true}
                                                 mouseEnterDelay={0.1}
                                                 mouseLeaveDelay={0.1}
-                                                overlayStyle={
-                                                                Object {
-                                                                                "display": "none",
-                                                                              }
-                                                }
                                                 placement="right"
                                                 prefixCls="ant-tooltip"
                                                 title={
@@ -2064,7 +2049,7 @@ ShallowWrapper {
                                                 </Text>
                                                 <style__NahmiiSwitch
                                                                 checked={false}
-                                                                disabled={false}
+                                                                disabled={true}
                                                                 onChange={[Function]}
                                                 />
                                 </Tooltip>
@@ -2214,11 +2199,6 @@ ShallowWrapper {
                                         autoAdjustOverflow={true}
                                         mouseEnterDelay={0.1}
                                         mouseLeaveDelay={0.1}
-                                        overlayStyle={
-                                                            Object {
-                                                                                "display": "none",
-                                                                              }
-                                        }
                                         placement="right"
                                         prefixCls="ant-tooltip"
                                         title={
@@ -2244,7 +2224,7 @@ ShallowWrapper {
                                         </Text>
                                         <style__NahmiiSwitch
                                                             checked={false}
-                                                            disabled={false}
+                                                            disabled={true}
                                                             onChange={[Function]}
                                         />
                     </Tooltip>
@@ -2509,11 +2489,6 @@ ShallowWrapper {
                         autoAdjustOverflow={true}
                         mouseEnterDelay={0.1}
                         mouseLeaveDelay={0.1}
-                        overlayStyle={
-                                                Object {
-                                                                        "display": "none",
-                                                                      }
-                        }
                         placement="right"
                         prefixCls="ant-tooltip"
                         title={
@@ -2539,7 +2514,7 @@ ShallowWrapper {
                         </Text>
                         <style__NahmiiSwitch
                                                 checked={false}
-                                                disabled={false}
+                                                disabled={true}
                                                 onChange={[Function]}
                         />
 </Tooltip>,
@@ -2592,15 +2567,12 @@ ShallowWrapper {
 </Text>,
                           <style__NahmiiSwitch
                             checked={false}
-                            disabled={false}
+                            disabled={true}
                             onChange={[Function]}
 />,
                         ],
                         "mouseEnterDelay": 0.1,
                         "mouseLeaveDelay": 0.1,
-                        "overlayStyle": Object {
-                          "display": "none",
-                        },
                         "placement": "right",
                         "prefixCls": "ant-tooltip",
                         "title": <span>
@@ -2648,7 +2620,7 @@ ShallowWrapper {
                           "nodeType": "class",
                           "props": Object {
                             "checked": false,
-                            "disabled": false,
+                            "disabled": true,
                             "onChange": [Function],
                           },
                           "ref": null,
@@ -3703,11 +3675,6 @@ ShallowWrapper {
                                                             autoAdjustOverflow={true}
                                                             mouseEnterDelay={0.1}
                                                             mouseLeaveDelay={0.1}
-                                                            overlayStyle={
-                                                                        Object {
-                                                                                    "display": "none",
-                                                                                  }
-                                                            }
                                                             placement="right"
                                                             prefixCls="ant-tooltip"
                                                             title={
@@ -3733,7 +3700,7 @@ ShallowWrapper {
                                                             </Text>
                                                             <style__NahmiiSwitch
                                                                         checked={false}
-                                                                        disabled={false}
+                                                                        disabled={true}
                                                                         onChange={[Function]}
                                                             />
                                                 </Tooltip>
@@ -4380,11 +4347,6 @@ ShallowWrapper {
                                                                 autoAdjustOverflow={true}
                                                                 mouseEnterDelay={0.1}
                                                                 mouseLeaveDelay={0.1}
-                                                                overlayStyle={
-                                                                                Object {
-                                                                                                "display": "none",
-                                                                                              }
-                                                                }
                                                                 placement="right"
                                                                 prefixCls="ant-tooltip"
                                                                 title={
@@ -4410,7 +4372,7 @@ ShallowWrapper {
                                                                 </Text>
                                                                 <style__NahmiiSwitch
                                                                                 checked={false}
-                                                                                disabled={false}
+                                                                                disabled={true}
                                                                                 onChange={[Function]}
                                                                 />
                                                 </Tooltip>
@@ -4988,11 +4950,6 @@ ShallowWrapper {
                                                       autoAdjustOverflow={true}
                                                       mouseEnterDelay={0.1}
                                                       mouseLeaveDelay={0.1}
-                                                      overlayStyle={
-                                                                        Object {
-                                                                                          "display": "none",
-                                                                                        }
-                                                      }
                                                       placement="right"
                                                       prefixCls="ant-tooltip"
                                                       title={
@@ -5018,7 +4975,7 @@ ShallowWrapper {
                                                       </Text>
                                                       <style__NahmiiSwitch
                                                                         checked={false}
-                                                                        disabled={false}
+                                                                        disabled={true}
                                                                         onChange={[Function]}
                                                       />
                                     </Tooltip>
@@ -5168,11 +5125,6 @@ ShallowWrapper {
                                             autoAdjustOverflow={true}
                                             mouseEnterDelay={0.1}
                                             mouseLeaveDelay={0.1}
-                                            overlayStyle={
-                                                                  Object {
-                                                                                        "display": "none",
-                                                                                      }
-                                            }
                                             placement="right"
                                             prefixCls="ant-tooltip"
                                             title={
@@ -5198,7 +5150,7 @@ ShallowWrapper {
                                             </Text>
                                             <style__NahmiiSwitch
                                                                   checked={false}
-                                                                  disabled={false}
+                                                                  disabled={true}
                                                                   onChange={[Function]}
                                             />
                       </Tooltip>
@@ -5463,11 +5415,6 @@ ShallowWrapper {
                           autoAdjustOverflow={true}
                           mouseEnterDelay={0.1}
                           mouseLeaveDelay={0.1}
-                          overlayStyle={
-                                                    Object {
-                                                                              "display": "none",
-                                                                            }
-                          }
                           placement="right"
                           prefixCls="ant-tooltip"
                           title={
@@ -5493,7 +5440,7 @@ ShallowWrapper {
                           </Text>
                           <style__NahmiiSwitch
                                                     checked={false}
-                                                    disabled={false}
+                                                    disabled={true}
                                                     onChange={[Function]}
                           />
 </Tooltip>,
@@ -5546,15 +5493,12 @@ ShallowWrapper {
 </Text>,
                             <style__NahmiiSwitch
                               checked={false}
-                              disabled={false}
+                              disabled={true}
                               onChange={[Function]}
 />,
                           ],
                           "mouseEnterDelay": 0.1,
                           "mouseLeaveDelay": 0.1,
-                          "overlayStyle": Object {
-                            "display": "none",
-                          },
                           "placement": "right",
                           "prefixCls": "ant-tooltip",
                           "title": <span>
@@ -5602,7 +5546,7 @@ ShallowWrapper {
                             "nodeType": "class",
                             "props": Object {
                               "checked": false,
-                              "disabled": false,
+                              "disabled": true,
                               "onChange": [Function],
                             },
                             "ref": null,
@@ -7212,11 +7156,6 @@ ShallowWrapper {
                                                   autoAdjustOverflow={true}
                                                   mouseEnterDelay={0.1}
                                                   mouseLeaveDelay={0.1}
-                                                  overlayStyle={
-                                                            Object {
-                                                                      "display": "none",
-                                                                    }
-                                                  }
                                                   placement="right"
                                                   prefixCls="ant-tooltip"
                                                   title={
@@ -7242,7 +7181,7 @@ ShallowWrapper {
                                                   </Text>
                                                   <style__NahmiiSwitch
                                                             checked={false}
-                                                            disabled={false}
+                                                            disabled={true}
                                                             onChange={[Function]}
                                                   />
                                         </Tooltip>
@@ -7842,11 +7781,6 @@ ShallowWrapper {
                                                         autoAdjustOverflow={true}
                                                         mouseEnterDelay={0.1}
                                                         mouseLeaveDelay={0.1}
-                                                        overlayStyle={
-                                                                      Object {
-                                                                                    "display": "none",
-                                                                                  }
-                                                        }
                                                         placement="right"
                                                         prefixCls="ant-tooltip"
                                                         title={
@@ -7872,7 +7806,7 @@ ShallowWrapper {
                                                         </Text>
                                                         <style__NahmiiSwitch
                                                                       checked={false}
-                                                                      disabled={false}
+                                                                      disabled={true}
                                                                       onChange={[Function]}
                                                         />
                                           </Tooltip>
@@ -8431,11 +8365,6 @@ ShallowWrapper {
                                                 autoAdjustOverflow={true}
                                                 mouseEnterDelay={0.1}
                                                 mouseLeaveDelay={0.1}
-                                                overlayStyle={
-                                                                Object {
-                                                                                "display": "none",
-                                                                              }
-                                                }
                                                 placement="right"
                                                 prefixCls="ant-tooltip"
                                                 title={
@@ -8461,7 +8390,7 @@ ShallowWrapper {
                                                 </Text>
                                                 <style__NahmiiSwitch
                                                                 checked={false}
-                                                                disabled={false}
+                                                                disabled={true}
                                                                 onChange={[Function]}
                                                 />
                                 </Tooltip>
@@ -8592,11 +8521,6 @@ ShallowWrapper {
                                         autoAdjustOverflow={true}
                                         mouseEnterDelay={0.1}
                                         mouseLeaveDelay={0.1}
-                                        overlayStyle={
-                                                            Object {
-                                                                                "display": "none",
-                                                                              }
-                                        }
                                         placement="right"
                                         prefixCls="ant-tooltip"
                                         title={
@@ -8622,7 +8546,7 @@ ShallowWrapper {
                                         </Text>
                                         <style__NahmiiSwitch
                                                             checked={false}
-                                                            disabled={false}
+                                                            disabled={true}
                                                             onChange={[Function]}
                                         />
                     </Tooltip>
@@ -8857,11 +8781,6 @@ ShallowWrapper {
                         autoAdjustOverflow={true}
                         mouseEnterDelay={0.1}
                         mouseLeaveDelay={0.1}
-                        overlayStyle={
-                                                Object {
-                                                                        "display": "none",
-                                                                      }
-                        }
                         placement="right"
                         prefixCls="ant-tooltip"
                         title={
@@ -8887,7 +8806,7 @@ ShallowWrapper {
                         </Text>
                         <style__NahmiiSwitch
                                                 checked={false}
-                                                disabled={false}
+                                                disabled={true}
                                                 onChange={[Function]}
                         />
 </Tooltip>,
@@ -8940,15 +8859,12 @@ ShallowWrapper {
 </Text>,
                           <style__NahmiiSwitch
                             checked={false}
-                            disabled={false}
+                            disabled={true}
                             onChange={[Function]}
 />,
                         ],
                         "mouseEnterDelay": 0.1,
                         "mouseLeaveDelay": 0.1,
-                        "overlayStyle": Object {
-                          "display": "none",
-                        },
                         "placement": "right",
                         "prefixCls": "ant-tooltip",
                         "title": <span>
@@ -8996,7 +8912,7 @@ ShallowWrapper {
                           "nodeType": "class",
                           "props": Object {
                             "checked": false,
-                            "disabled": false,
+                            "disabled": true,
                             "onChange": [Function],
                           },
                           "ref": null,
@@ -10017,11 +9933,6 @@ ShallowWrapper {
                                                             autoAdjustOverflow={true}
                                                             mouseEnterDelay={0.1}
                                                             mouseLeaveDelay={0.1}
-                                                            overlayStyle={
-                                                                        Object {
-                                                                                    "display": "none",
-                                                                                  }
-                                                            }
                                                             placement="right"
                                                             prefixCls="ant-tooltip"
                                                             title={
@@ -10047,7 +9958,7 @@ ShallowWrapper {
                                                             </Text>
                                                             <style__NahmiiSwitch
                                                                         checked={false}
-                                                                        disabled={false}
+                                                                        disabled={true}
                                                                         onChange={[Function]}
                                                             />
                                                 </Tooltip>
@@ -10647,11 +10558,6 @@ ShallowWrapper {
                                                                 autoAdjustOverflow={true}
                                                                 mouseEnterDelay={0.1}
                                                                 mouseLeaveDelay={0.1}
-                                                                overlayStyle={
-                                                                                Object {
-                                                                                                "display": "none",
-                                                                                              }
-                                                                }
                                                                 placement="right"
                                                                 prefixCls="ant-tooltip"
                                                                 title={
@@ -10677,7 +10583,7 @@ ShallowWrapper {
                                                                 </Text>
                                                                 <style__NahmiiSwitch
                                                                                 checked={false}
-                                                                                disabled={false}
+                                                                                disabled={true}
                                                                                 onChange={[Function]}
                                                                 />
                                                 </Tooltip>
@@ -11236,11 +11142,6 @@ ShallowWrapper {
                                                       autoAdjustOverflow={true}
                                                       mouseEnterDelay={0.1}
                                                       mouseLeaveDelay={0.1}
-                                                      overlayStyle={
-                                                                        Object {
-                                                                                          "display": "none",
-                                                                                        }
-                                                      }
                                                       placement="right"
                                                       prefixCls="ant-tooltip"
                                                       title={
@@ -11266,7 +11167,7 @@ ShallowWrapper {
                                                       </Text>
                                                       <style__NahmiiSwitch
                                                                         checked={false}
-                                                                        disabled={false}
+                                                                        disabled={true}
                                                                         onChange={[Function]}
                                                       />
                                     </Tooltip>
@@ -11397,11 +11298,6 @@ ShallowWrapper {
                                             autoAdjustOverflow={true}
                                             mouseEnterDelay={0.1}
                                             mouseLeaveDelay={0.1}
-                                            overlayStyle={
-                                                                  Object {
-                                                                                        "display": "none",
-                                                                                      }
-                                            }
                                             placement="right"
                                             prefixCls="ant-tooltip"
                                             title={
@@ -11427,7 +11323,7 @@ ShallowWrapper {
                                             </Text>
                                             <style__NahmiiSwitch
                                                                   checked={false}
-                                                                  disabled={false}
+                                                                  disabled={true}
                                                                   onChange={[Function]}
                                             />
                       </Tooltip>
@@ -11662,11 +11558,6 @@ ShallowWrapper {
                           autoAdjustOverflow={true}
                           mouseEnterDelay={0.1}
                           mouseLeaveDelay={0.1}
-                          overlayStyle={
-                                                    Object {
-                                                                              "display": "none",
-                                                                            }
-                          }
                           placement="right"
                           prefixCls="ant-tooltip"
                           title={
@@ -11692,7 +11583,7 @@ ShallowWrapper {
                           </Text>
                           <style__NahmiiSwitch
                                                     checked={false}
-                                                    disabled={false}
+                                                    disabled={true}
                                                     onChange={[Function]}
                           />
 </Tooltip>,
@@ -11745,15 +11636,12 @@ ShallowWrapper {
 </Text>,
                             <style__NahmiiSwitch
                               checked={false}
-                              disabled={false}
+                              disabled={true}
                               onChange={[Function]}
 />,
                           ],
                           "mouseEnterDelay": 0.1,
                           "mouseLeaveDelay": 0.1,
-                          "overlayStyle": Object {
-                            "display": "none",
-                          },
                           "placement": "right",
                           "prefixCls": "ant-tooltip",
                           "title": <span>
@@ -11801,7 +11689,7 @@ ShallowWrapper {
                             "nodeType": "class",
                             "props": Object {
                               "checked": false,
-                              "disabled": false,
+                              "disabled": true,
                               "onChange": [Function],
                             },
                             "ref": null,
@@ -13460,11 +13348,6 @@ ShallowWrapper {
                                                   autoAdjustOverflow={true}
                                                   mouseEnterDelay={0.1}
                                                   mouseLeaveDelay={0.1}
-                                                  overlayStyle={
-                                                            Object {
-                                                                      "display": "none",
-                                                                    }
-                                                  }
                                                   placement="right"
                                                   prefixCls="ant-tooltip"
                                                   title={
@@ -13490,7 +13373,7 @@ ShallowWrapper {
                                                   </Text>
                                                   <style__NahmiiSwitch
                                                             checked={false}
-                                                            disabled={false}
+                                                            disabled={true}
                                                             onChange={[Function]}
                                                   />
                                         </Tooltip>
@@ -14137,11 +14020,6 @@ ShallowWrapper {
                                                         autoAdjustOverflow={true}
                                                         mouseEnterDelay={0.1}
                                                         mouseLeaveDelay={0.1}
-                                                        overlayStyle={
-                                                                      Object {
-                                                                                    "display": "none",
-                                                                                  }
-                                                        }
                                                         placement="right"
                                                         prefixCls="ant-tooltip"
                                                         title={
@@ -14167,7 +14045,7 @@ ShallowWrapper {
                                                         </Text>
                                                         <style__NahmiiSwitch
                                                                       checked={false}
-                                                                      disabled={false}
+                                                                      disabled={true}
                                                                       onChange={[Function]}
                                                         />
                                           </Tooltip>
@@ -14745,11 +14623,6 @@ ShallowWrapper {
                                                 autoAdjustOverflow={true}
                                                 mouseEnterDelay={0.1}
                                                 mouseLeaveDelay={0.1}
-                                                overlayStyle={
-                                                                Object {
-                                                                                "display": "none",
-                                                                              }
-                                                }
                                                 placement="right"
                                                 prefixCls="ant-tooltip"
                                                 title={
@@ -14775,7 +14648,7 @@ ShallowWrapper {
                                                 </Text>
                                                 <style__NahmiiSwitch
                                                                 checked={false}
-                                                                disabled={false}
+                                                                disabled={true}
                                                                 onChange={[Function]}
                                                 />
                                 </Tooltip>
@@ -14925,11 +14798,6 @@ ShallowWrapper {
                                         autoAdjustOverflow={true}
                                         mouseEnterDelay={0.1}
                                         mouseLeaveDelay={0.1}
-                                        overlayStyle={
-                                                            Object {
-                                                                                "display": "none",
-                                                                              }
-                                        }
                                         placement="right"
                                         prefixCls="ant-tooltip"
                                         title={
@@ -14955,7 +14823,7 @@ ShallowWrapper {
                                         </Text>
                                         <style__NahmiiSwitch
                                                             checked={false}
-                                                            disabled={false}
+                                                            disabled={true}
                                                             onChange={[Function]}
                                         />
                     </Tooltip>
@@ -15220,11 +15088,6 @@ ShallowWrapper {
                         autoAdjustOverflow={true}
                         mouseEnterDelay={0.1}
                         mouseLeaveDelay={0.1}
-                        overlayStyle={
-                                                Object {
-                                                                        "display": "none",
-                                                                      }
-                        }
                         placement="right"
                         prefixCls="ant-tooltip"
                         title={
@@ -15250,7 +15113,7 @@ ShallowWrapper {
                         </Text>
                         <style__NahmiiSwitch
                                                 checked={false}
-                                                disabled={false}
+                                                disabled={true}
                                                 onChange={[Function]}
                         />
 </Tooltip>,
@@ -15303,15 +15166,12 @@ ShallowWrapper {
 </Text>,
                           <style__NahmiiSwitch
                             checked={false}
-                            disabled={false}
+                            disabled={true}
                             onChange={[Function]}
 />,
                         ],
                         "mouseEnterDelay": 0.1,
                         "mouseLeaveDelay": 0.1,
-                        "overlayStyle": Object {
-                          "display": "none",
-                        },
                         "placement": "right",
                         "prefixCls": "ant-tooltip",
                         "title": <span>
@@ -15359,7 +15219,7 @@ ShallowWrapper {
                           "nodeType": "class",
                           "props": Object {
                             "checked": false,
-                            "disabled": false,
+                            "disabled": true,
                             "onChange": [Function],
                           },
                           "ref": null,
@@ -16414,11 +16274,6 @@ ShallowWrapper {
                                                             autoAdjustOverflow={true}
                                                             mouseEnterDelay={0.1}
                                                             mouseLeaveDelay={0.1}
-                                                            overlayStyle={
-                                                                        Object {
-                                                                                    "display": "none",
-                                                                                  }
-                                                            }
                                                             placement="right"
                                                             prefixCls="ant-tooltip"
                                                             title={
@@ -16444,7 +16299,7 @@ ShallowWrapper {
                                                             </Text>
                                                             <style__NahmiiSwitch
                                                                         checked={false}
-                                                                        disabled={false}
+                                                                        disabled={true}
                                                                         onChange={[Function]}
                                                             />
                                                 </Tooltip>
@@ -17091,11 +16946,6 @@ ShallowWrapper {
                                                                 autoAdjustOverflow={true}
                                                                 mouseEnterDelay={0.1}
                                                                 mouseLeaveDelay={0.1}
-                                                                overlayStyle={
-                                                                                Object {
-                                                                                                "display": "none",
-                                                                                              }
-                                                                }
                                                                 placement="right"
                                                                 prefixCls="ant-tooltip"
                                                                 title={
@@ -17121,7 +16971,7 @@ ShallowWrapper {
                                                                 </Text>
                                                                 <style__NahmiiSwitch
                                                                                 checked={false}
-                                                                                disabled={false}
+                                                                                disabled={true}
                                                                                 onChange={[Function]}
                                                                 />
                                                 </Tooltip>
@@ -17699,11 +17549,6 @@ ShallowWrapper {
                                                       autoAdjustOverflow={true}
                                                       mouseEnterDelay={0.1}
                                                       mouseLeaveDelay={0.1}
-                                                      overlayStyle={
-                                                                        Object {
-                                                                                          "display": "none",
-                                                                                        }
-                                                      }
                                                       placement="right"
                                                       prefixCls="ant-tooltip"
                                                       title={
@@ -17729,7 +17574,7 @@ ShallowWrapper {
                                                       </Text>
                                                       <style__NahmiiSwitch
                                                                         checked={false}
-                                                                        disabled={false}
+                                                                        disabled={true}
                                                                         onChange={[Function]}
                                                       />
                                     </Tooltip>
@@ -17879,11 +17724,6 @@ ShallowWrapper {
                                             autoAdjustOverflow={true}
                                             mouseEnterDelay={0.1}
                                             mouseLeaveDelay={0.1}
-                                            overlayStyle={
-                                                                  Object {
-                                                                                        "display": "none",
-                                                                                      }
-                                            }
                                             placement="right"
                                             prefixCls="ant-tooltip"
                                             title={
@@ -17909,7 +17749,7 @@ ShallowWrapper {
                                             </Text>
                                             <style__NahmiiSwitch
                                                                   checked={false}
-                                                                  disabled={false}
+                                                                  disabled={true}
                                                                   onChange={[Function]}
                                             />
                       </Tooltip>
@@ -18174,11 +18014,6 @@ ShallowWrapper {
                           autoAdjustOverflow={true}
                           mouseEnterDelay={0.1}
                           mouseLeaveDelay={0.1}
-                          overlayStyle={
-                                                    Object {
-                                                                              "display": "none",
-                                                                            }
-                          }
                           placement="right"
                           prefixCls="ant-tooltip"
                           title={
@@ -18204,7 +18039,7 @@ ShallowWrapper {
                           </Text>
                           <style__NahmiiSwitch
                                                     checked={false}
-                                                    disabled={false}
+                                                    disabled={true}
                                                     onChange={[Function]}
                           />
 </Tooltip>,
@@ -18257,15 +18092,12 @@ ShallowWrapper {
 </Text>,
                             <style__NahmiiSwitch
                               checked={false}
-                              disabled={false}
+                              disabled={true}
                               onChange={[Function]}
 />,
                           ],
                           "mouseEnterDelay": 0.1,
                           "mouseLeaveDelay": 0.1,
-                          "overlayStyle": Object {
-                            "display": "none",
-                          },
                           "placement": "right",
                           "prefixCls": "ant-tooltip",
                           "title": <span>
@@ -18313,7 +18145,7 @@ ShallowWrapper {
                             "nodeType": "class",
                             "props": Object {
                               "checked": false,
-                              "disabled": false,
+                              "disabled": true,
                               "onChange": [Function],
                             },
                             "ref": null,
@@ -19972,11 +19804,6 @@ ShallowWrapper {
                                                   autoAdjustOverflow={true}
                                                   mouseEnterDelay={0.1}
                                                   mouseLeaveDelay={0.1}
-                                                  overlayStyle={
-                                                            Object {
-                                                                      "display": "none",
-                                                                    }
-                                                  }
                                                   placement="right"
                                                   prefixCls="ant-tooltip"
                                                   title={
@@ -20002,7 +19829,7 @@ ShallowWrapper {
                                                   </Text>
                                                   <style__NahmiiSwitch
                                                             checked={false}
-                                                            disabled={false}
+                                                            disabled={true}
                                                             onChange={[Function]}
                                                   />
                                         </Tooltip>
@@ -20649,11 +20476,6 @@ ShallowWrapper {
                                                         autoAdjustOverflow={true}
                                                         mouseEnterDelay={0.1}
                                                         mouseLeaveDelay={0.1}
-                                                        overlayStyle={
-                                                                      Object {
-                                                                                    "display": "none",
-                                                                                  }
-                                                        }
                                                         placement="right"
                                                         prefixCls="ant-tooltip"
                                                         title={
@@ -20679,7 +20501,7 @@ ShallowWrapper {
                                                         </Text>
                                                         <style__NahmiiSwitch
                                                                       checked={false}
-                                                                      disabled={false}
+                                                                      disabled={true}
                                                                       onChange={[Function]}
                                                         />
                                           </Tooltip>
@@ -21257,11 +21079,6 @@ ShallowWrapper {
                                                 autoAdjustOverflow={true}
                                                 mouseEnterDelay={0.1}
                                                 mouseLeaveDelay={0.1}
-                                                overlayStyle={
-                                                                Object {
-                                                                                "display": "none",
-                                                                              }
-                                                }
                                                 placement="right"
                                                 prefixCls="ant-tooltip"
                                                 title={
@@ -21287,7 +21104,7 @@ ShallowWrapper {
                                                 </Text>
                                                 <style__NahmiiSwitch
                                                                 checked={false}
-                                                                disabled={false}
+                                                                disabled={true}
                                                                 onChange={[Function]}
                                                 />
                                 </Tooltip>
@@ -21437,11 +21254,6 @@ ShallowWrapper {
                                         autoAdjustOverflow={true}
                                         mouseEnterDelay={0.1}
                                         mouseLeaveDelay={0.1}
-                                        overlayStyle={
-                                                            Object {
-                                                                                "display": "none",
-                                                                              }
-                                        }
                                         placement="right"
                                         prefixCls="ant-tooltip"
                                         title={
@@ -21467,7 +21279,7 @@ ShallowWrapper {
                                         </Text>
                                         <style__NahmiiSwitch
                                                             checked={false}
-                                                            disabled={false}
+                                                            disabled={true}
                                                             onChange={[Function]}
                                         />
                     </Tooltip>
@@ -21732,11 +21544,6 @@ ShallowWrapper {
                         autoAdjustOverflow={true}
                         mouseEnterDelay={0.1}
                         mouseLeaveDelay={0.1}
-                        overlayStyle={
-                                                Object {
-                                                                        "display": "none",
-                                                                      }
-                        }
                         placement="right"
                         prefixCls="ant-tooltip"
                         title={
@@ -21762,7 +21569,7 @@ ShallowWrapper {
                         </Text>
                         <style__NahmiiSwitch
                                                 checked={false}
-                                                disabled={false}
+                                                disabled={true}
                                                 onChange={[Function]}
                         />
 </Tooltip>,
@@ -21815,15 +21622,12 @@ ShallowWrapper {
 </Text>,
                           <style__NahmiiSwitch
                             checked={false}
-                            disabled={false}
+                            disabled={true}
                             onChange={[Function]}
 />,
                         ],
                         "mouseEnterDelay": 0.1,
                         "mouseLeaveDelay": 0.1,
-                        "overlayStyle": Object {
-                          "display": "none",
-                        },
                         "placement": "right",
                         "prefixCls": "ant-tooltip",
                         "title": <span>
@@ -21871,7 +21675,7 @@ ShallowWrapper {
                           "nodeType": "class",
                           "props": Object {
                             "checked": false,
-                            "disabled": false,
+                            "disabled": true,
                             "onChange": [Function],
                           },
                           "ref": null,
@@ -22926,11 +22730,6 @@ ShallowWrapper {
                                                             autoAdjustOverflow={true}
                                                             mouseEnterDelay={0.1}
                                                             mouseLeaveDelay={0.1}
-                                                            overlayStyle={
-                                                                        Object {
-                                                                                    "display": "none",
-                                                                                  }
-                                                            }
                                                             placement="right"
                                                             prefixCls="ant-tooltip"
                                                             title={
@@ -22956,7 +22755,7 @@ ShallowWrapper {
                                                             </Text>
                                                             <style__NahmiiSwitch
                                                                         checked={false}
-                                                                        disabled={false}
+                                                                        disabled={true}
                                                                         onChange={[Function]}
                                                             />
                                                 </Tooltip>
@@ -23603,11 +23402,6 @@ ShallowWrapper {
                                                                 autoAdjustOverflow={true}
                                                                 mouseEnterDelay={0.1}
                                                                 mouseLeaveDelay={0.1}
-                                                                overlayStyle={
-                                                                                Object {
-                                                                                                "display": "none",
-                                                                                              }
-                                                                }
                                                                 placement="right"
                                                                 prefixCls="ant-tooltip"
                                                                 title={
@@ -23633,7 +23427,7 @@ ShallowWrapper {
                                                                 </Text>
                                                                 <style__NahmiiSwitch
                                                                                 checked={false}
-                                                                                disabled={false}
+                                                                                disabled={true}
                                                                                 onChange={[Function]}
                                                                 />
                                                 </Tooltip>
@@ -24211,11 +24005,6 @@ ShallowWrapper {
                                                       autoAdjustOverflow={true}
                                                       mouseEnterDelay={0.1}
                                                       mouseLeaveDelay={0.1}
-                                                      overlayStyle={
-                                                                        Object {
-                                                                                          "display": "none",
-                                                                                        }
-                                                      }
                                                       placement="right"
                                                       prefixCls="ant-tooltip"
                                                       title={
@@ -24241,7 +24030,7 @@ ShallowWrapper {
                                                       </Text>
                                                       <style__NahmiiSwitch
                                                                         checked={false}
-                                                                        disabled={false}
+                                                                        disabled={true}
                                                                         onChange={[Function]}
                                                       />
                                     </Tooltip>
@@ -24391,11 +24180,6 @@ ShallowWrapper {
                                             autoAdjustOverflow={true}
                                             mouseEnterDelay={0.1}
                                             mouseLeaveDelay={0.1}
-                                            overlayStyle={
-                                                                  Object {
-                                                                                        "display": "none",
-                                                                                      }
-                                            }
                                             placement="right"
                                             prefixCls="ant-tooltip"
                                             title={
@@ -24421,7 +24205,7 @@ ShallowWrapper {
                                             </Text>
                                             <style__NahmiiSwitch
                                                                   checked={false}
-                                                                  disabled={false}
+                                                                  disabled={true}
                                                                   onChange={[Function]}
                                             />
                       </Tooltip>
@@ -24686,11 +24470,6 @@ ShallowWrapper {
                           autoAdjustOverflow={true}
                           mouseEnterDelay={0.1}
                           mouseLeaveDelay={0.1}
-                          overlayStyle={
-                                                    Object {
-                                                                              "display": "none",
-                                                                            }
-                          }
                           placement="right"
                           prefixCls="ant-tooltip"
                           title={
@@ -24716,7 +24495,7 @@ ShallowWrapper {
                           </Text>
                           <style__NahmiiSwitch
                                                     checked={false}
-                                                    disabled={false}
+                                                    disabled={true}
                                                     onChange={[Function]}
                           />
 </Tooltip>,
@@ -24769,15 +24548,12 @@ ShallowWrapper {
 </Text>,
                             <style__NahmiiSwitch
                               checked={false}
-                              disabled={false}
+                              disabled={true}
                               onChange={[Function]}
 />,
                           ],
                           "mouseEnterDelay": 0.1,
                           "mouseLeaveDelay": 0.1,
-                          "overlayStyle": Object {
-                            "display": "none",
-                          },
                           "placement": "right",
                           "prefixCls": "ant-tooltip",
                           "title": <span>
@@ -24825,7 +24601,7 @@ ShallowWrapper {
                             "nodeType": "class",
                             "props": Object {
                               "checked": false,
-                              "disabled": false,
+                              "disabled": true,
                               "onChange": [Function],
                             },
                             "ref": null,
