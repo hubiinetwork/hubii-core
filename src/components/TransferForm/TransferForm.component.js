@@ -301,7 +301,7 @@ export class TransferForm extends React.PureComponent {
 
     const walletUsdValueAfter = currentWalletUsdBalance - (usdValueToSend.plus(transactionFee.usdValue)).toNumber();
 
-    const disableNahmiiPayments = this.props.currentNetwork.provider._network.chainId === 1;
+    // const disableNahmiiPayments = this.props.currentNetwork.provider._network.chainId === 1;
 
     return (
       <div>
@@ -388,12 +388,17 @@ export class TransferForm extends React.PureComponent {
                 <Text large>{formatMessage({ id: 'send_on_the' })} </Text>
                 <Tooltip
                   placement="right"
-                  overlayStyle={!disableNahmiiPayments && { display: 'none' }}
+                  // overlayStyle={!disableNahmiiPayments && { display: 'none' }}
                   title={<span>{formatMessage({ id: 'nahmii_mainnet' })}</span>}
                 >
                   <NahmiiText large />
                   <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
-                  <NahmiiSwitch disabled={disableNahmiiPayments} checked={layer === 'nahmii'} onChange={(() => this.handleLayerSwitch())} />
+                  <NahmiiSwitch
+                    // disabled={disableNahmiiPayments}
+                    disabled
+                    checked={layer === 'nahmii'}
+                    onChange={(() => this.handleLayerSwitch())}
+                  />
                 </Tooltip>
               </div>
               <Spring
@@ -459,7 +464,7 @@ export class TransferForm extends React.PureComponent {
 TransferForm.propTypes = {
   prices: PropTypes.object.isRequired,
   gasStatistics: PropTypes.object.isRequired,
-  currentNetwork: PropTypes.object.isRequired,
+  // currentNetwork: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,
   recipients: PropTypes.arrayOf(PropTypes.shape({
