@@ -40,7 +40,7 @@ export class ConnectionStatus extends React.Component { // eslint-disable-line r
       : formatMessage({ id: 'testnet' });
     return (
       <Wrapper>
-        <span>
+        <span style={{ display: 'flex' }}>
           <StyledText style={{ fontWeight: 'bold' }}>{formatMessage({ id: 'network' })}:</StyledText>&nbsp;
           <StyledText warning={chainId !== 1}>{networkText}</StyledText>
         </span>
