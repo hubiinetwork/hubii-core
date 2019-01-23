@@ -31,6 +31,7 @@ import {
   supportedAssetsLoadingMock,
   supportedAssetsErrorMock,
 } from 'containers/HubiiApiHoc/tests/mocks/selectors';
+import { fromJS } from 'immutable';
 
 import { NahmiiDeposit } from '../index';
 
@@ -48,6 +49,7 @@ describe('<NahmiiDeposit />', () => {
       depositStatus: depositStatusNone,
       ledgerNanoSInfo: ledgerHocDisconnectedMock,
       trezorInfo: trezorHocDisconnectedMock,
+      gasStatistics: fromJS({}),
     };
   });
   it('should render correctly when everything is loaded', () => {

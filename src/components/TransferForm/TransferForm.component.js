@@ -9,8 +9,6 @@ import {
   gweiToWei,
   gweiToEther,
   isAddressMatch,
-  gweiRegex,
-  gasLimitRegex,
 } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
 import { getAbsolutePath } from 'utils/electron';
@@ -24,15 +22,14 @@ import HelperText from 'components/ui/HelperText';
 import NahmiiText from 'components/ui/NahmiiText';
 import Text from 'components/ui/Text';
 import { Modal } from 'components/ui/Modal';
-import Collapse, { Panel } from 'components/ui/Collapse';
 import EditContactModal from 'components/EditContactModal';
 import TransferDescription from 'components/TransferDescription';
+import GasOptions from 'components/GasOptions';
 
 import {
   OuterWrapper,
   ETHtoDollar,
   Image,
-  AdvanceSettingsHeader,
   StyledButton,
   TransferDescriptionWrapper,
   TransferFormWrapper,
@@ -73,12 +70,11 @@ export class TransferForm extends React.PureComponent {
     this.handleAssetChange = this.handleAssetChange.bind(this);
     this.onSend = this.onSend.bind(this);
     this.handleRecipient = this.handleRecipient.bind(this);
-    this.handleGasPriceChange = this.handleGasPriceChange.bind(this);
-    this.handleGasLimitChange = this.handleGasLimitChange.bind(this);
     this.showContactModal = this.showContactModal.bind(this);
     this.hideContactModal = this.hideContactModal.bind(this);
     this.onCreateContact = this.onCreateContact.bind(this);
     this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
+    this.onGasChange = this.onGasChange.bind(this);
     this.onBlurNumberInput = this.onBlurNumberInput.bind(this);
     this.handleLayerSwitch = this.handleLayerSwitch.bind(this);
   }
@@ -117,6 +113,10 @@ export class TransferForm extends React.PureComponent {
     }
   }
 
+  onGasChange(fee, gasLimit, gasPriceGwei) {
+    this.setState({ gasLimit: gasLimit.toNumber(), gasPriceGwei });
+  }
+
   handleLayerSwitch() {
     const newLayer = this.state.layer === 'nahmii' ? 'baseLayer' : 'nahmii';
     if (newLayer === 'nahmii') {
@@ -124,48 +124,6 @@ export class TransferForm extends React.PureComponent {
     } else {
       this.setState({ layer: newLayer });
     }
-  }
-
-  handleGasPriceChange(e) {
-    const { value } = e.target;
-    // allow an empty input to represent 0
-    if (value === '') {
-      this.setState({ gasPriceGwei: new BigNumber('0'), gasPriceGweiInput: '' });
-    }
-
-    // don't update if invalid regex
-    // (numbers followed by at most 1 . followed by at most 9 decimals)
-    if (!gweiRegex.test(value)) return;
-
-    // don't update if a single gas is an infeasible amount of Ether
-    // (> 100x entire circulating supply as of Aug 2018)
-    if (!isNaN(value) && Number(value) > 10000000000000000000) return;
-
-    // update the input (this could be an invalid number, such as '12.')
-    this.setState({ gasPriceGweiInput: value });
-
-    // update actual gwei if it's a real number
-    if (!isNaN(value)) {
-      this.setState({ gasPriceGwei: new BigNumber(value) });
-    }
-  }
-
-  handleGasLimitChange(e) {
-    const { value } = e.target;
-    // allow an empty input to represent 0
-    if (value === '') {
-      this.setState({ gasLimitInput: '', gasLimit: 0 });
-    }
-
-    // only allow whole numbers
-    if (!gasLimitRegex.test(value)) return;
-
-    // don't allow infeasible amount of gas
-    // (gas limit per block almost never exeeds 10 million as of Aug 2018  )
-    const ONE_HUNDRED_MILLION = 100000000;
-    if (value > ONE_HUNDRED_MILLION) return;
-
-    this.setState({ gasLimitInput: value, gasLimit: parseInt(value, 10) });
   }
 
   handleAssetChange(newSymbol) {
@@ -248,8 +206,6 @@ export class TransferForm extends React.PureComponent {
       amountToSend,
       amountToSendInput,
       gasPriceGwei,
-      gasPriceGweiInput,
-      gasLimitInput,
       addContactModalVisibility,
       layer,
     } = this.state;
@@ -259,6 +215,7 @@ export class TransferForm extends React.PureComponent {
       prices,
       recipients,
       transfering,
+      gasStatistics,
       intl,
     } = this.props;
     const { formatMessage } = intl;
@@ -273,7 +230,7 @@ export class TransferForm extends React.PureComponent {
     const usdValueToSend = amountToSend
       .times(assetToSendUsdValue);
     const ethUsdValue = prices.assets
-      .find((a) => a.currency === 'ETH').usd;
+      .find((a) => a.currency === '0x0000000000000000000000000000000000000000').usd;
 
 
     // construct tx fee info
@@ -344,7 +301,7 @@ export class TransferForm extends React.PureComponent {
 
     const walletUsdValueAfter = currentWalletUsdBalance - (usdValueToSend.plus(transactionFee.usdValue)).toNumber();
 
-    const disableNahmiiPayments = this.props.currentNetwork.provider._network.name === 'homestead';
+    // const disableNahmiiPayments = this.props.currentNetwork.provider._network.chainId === 1;
 
     return (
       <div>
@@ -364,7 +321,6 @@ export class TransferForm extends React.PureComponent {
             confirmText={formatMessage({ id: 'create_contact' })}
           />
         </Modal>
-
         <OuterWrapper>
           <TransferFormWrapper>
             <Form>
@@ -432,12 +388,17 @@ export class TransferForm extends React.PureComponent {
                 <Text large>{formatMessage({ id: 'send_on_the' })} </Text>
                 <Tooltip
                   placement="right"
-                  overlayStyle={!disableNahmiiPayments && { display: 'none' }}
+                  // overlayStyle={!disableNahmiiPayments && { display: 'none' }}
                   title={<span>{formatMessage({ id: 'nahmii_mainnet' })}</span>}
                 >
                   <NahmiiText large />
                   <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
-                  <NahmiiSwitch disabled={disableNahmiiPayments} checked={layer === 'nahmii'} onChange={(() => this.handleLayerSwitch())} />
+                  <NahmiiSwitch
+                    // disabled={disableNahmiiPayments}
+                    disabled
+                    checked={layer === 'nahmii'}
+                    onChange={(() => this.handleLayerSwitch())}
+                  />
                 </Tooltip>
               </div>
               <Spring
@@ -448,50 +409,24 @@ export class TransferForm extends React.PureComponent {
                   (props) => (
                     <div
                       style={{
-                        transform: `translate3d(0,${-20 * props.noAdvProg}px,0)`,
+                        transform: `translate3d(0,${-80 * props.noAdvProg}px,0)`,
                         width: '12rem',
                       }}
                     >
-                      <Collapse
+                      <div
                         style={{
                           opacity: ((props.noAdvProg - 1) * -1),
                           visibility: props.noAdvProg === 1 ? 'hidden' : 'visible',
                         }}
-                        bordered={false}
-                        activeKey={this.state.showAdv ? '1' : '0'}
                       >
-                        <Panel
-                          header={
-                            <AdvanceSettingsHeader
-                              onClick={() => this.setState({ showAdv: !this.state.showAdv })}
-                            >
-                              {formatMessage({ id: 'advanced_settings' })}
-                            </AdvanceSettingsHeader>}
-                          key="1"
-                        >
-                          <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_price' })}</FormItemLabel>} colon={false}>
-                            <Input
-                              disabled={transfering}
-                              min={0}
-                              defaultValue={gasPriceGweiInput}
-                              value={gasPriceGweiInput}
-                              onChange={this.handleGasPriceChange}
-                              onFocus={() => this.onFocusNumberInput('gasPriceGweiInput')}
-                              onBlur={() => this.onBlurNumberInput('gasPriceGweiInput')}
-                            />
-                          </FormItem>
-                          <FormItem label={<FormItemLabel>{formatMessage({ id: 'gas_limit' })}</FormItemLabel>} colon={false}>
-                            <Input
-                              disabled={transfering}
-                              value={gasLimitInput}
-                              defaultValue={gasLimitInput}
-                              onChange={this.handleGasLimitChange}
-                              onFocus={() => this.onFocusNumberInput('gasLimitInput')}
-                              onBlur={() => this.onBlurNumberInput('gasLimitInput')}
-                            />
-                          </FormItem>
-                        </Panel>
-                      </Collapse>
+                        <GasOptions
+                          defaultGasLimit={gasLimit}
+                          defaultGasPrice={gasPriceGwei.toNumber()}
+                          gasStatistics={gasStatistics.get('estimate')}
+                          defaultOption="average"
+                          onChange={this.onGasChange}
+                        />
+                      </div>
                       <ETHtoDollar>
                         {`1 ${assetToSend.symbol} = ${formatFiat(assetToSendUsdValue, 'USD')}`}
                       </ETHtoDollar>
@@ -528,7 +463,8 @@ export class TransferForm extends React.PureComponent {
 }
 TransferForm.propTypes = {
   prices: PropTypes.object.isRequired,
-  currentNetwork: PropTypes.object.isRequired,
+  gasStatistics: PropTypes.object.isRequired,
+  // currentNetwork: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,
   recipients: PropTypes.arrayOf(PropTypes.shape({

@@ -8,6 +8,7 @@ import {
   totalBalancesLoadedMock,
   totalBalancesLoadingMock,
   totalBalancesErrorMock,
+  walletsMock,
 } from 'containers/WalletHoc/tests/mocks/selectors';
 
 import {
@@ -23,12 +24,15 @@ import { WalletsOverview, mapDispatchToProps } from '../index';
 describe('WalletsOverview', () => {
   const props = {
     walletsWithInfo: walletsWithInfoMock,
+    wallets: walletsMock,
     showDecryptWalletModal: () => {},
     deleteWallet: () => {},
     lockWallet: () => {},
+    dragWallet: () => {},
     ledgerNanoSInfo: fromJS({ connected: false }),
     trezorInfo: fromJS({ connected: false }),
     setCurrentWallet: () => {},
+    notify: () => {},
     totalBalances: totalBalancesLoadedMock,
     supportedAssets: supportedAssetsLoadedMock,
     history: { push: () => {} },

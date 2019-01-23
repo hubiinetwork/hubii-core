@@ -83,6 +83,9 @@ export const getBreakdown = (balances, supportedAssets) => {
   return formattedBalances.get('assets').keySeq().map((asset) => {
     const amount = formattedBalances.getIn(['assets', asset, 'amount']);
     const usdValue = formattedBalances.getIn(['assets', asset, 'value', 'usd']);
+    const percentage = totalFiat.toString() !== '0'
+      ? usdValue.div(totalFiat).times(100).toNumber()
+      : new BigNumber('0');
 
     return ({
       label: getCurrencySymbol(supportedAssets, asset),
@@ -92,7 +95,7 @@ export const getBreakdown = (balances, supportedAssets) => {
         asset,
         { usd: usdValue.div(amount).toString() }
       ),
-      percentage: usdValue.div(totalFiat).times(100).toNumber(),
+      percentage,
       color: supportedAssets.get('assets').find((a) => a.get('currency') === asset).get('color'),
     });
   }).toJS();

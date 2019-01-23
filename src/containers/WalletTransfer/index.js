@@ -14,6 +14,9 @@ import {
   makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHoc/selectors';
 import {
+  makeSelectGasStatistics,
+} from 'containers/EthOperationsHoc/selectors';
+import {
   makeSelectSupportedAssets,
   makeSelectPrices,
 } from 'containers/HubiiApiHoc/selectors';
@@ -35,6 +38,7 @@ import {
 import { transfer as baseLayerTransfer } from 'containers/WalletHoc/actions';
 import { makeNahmiiPayment as nahmiiTransfer } from 'containers/NahmiiHoc/actions';
 import LoadingError from '../../components/LoadingError';
+import ScrollableContentWrapper from '../../components/ui/ScrollableContentWrapper';
 
 export class WalletTransfer extends React.PureComponent {
   constructor(props) {
@@ -88,6 +92,7 @@ export class WalletTransfer extends React.PureComponent {
 
   render() {
     const {
+      gasStatistics,
       contacts,
       currentWallet,
       prices,
@@ -107,17 +112,20 @@ export class WalletTransfer extends React.PureComponent {
     // get if the hw wallet is ready to make tx
     const hwWalletReady = walletReady(currentWalletWithInfo.get('type'), ledgerNanoSInfo, trezorInfo);
     return (
-      <TransferForm
-        supportedAssets={this.props.supportedAssets}
-        currentNetwork={this.props.currentNetwork}
-        hwWalletReady={hwWalletReady}
-        prices={prices.toJS()}
-        recipients={contacts.toJS()}
-        onSend={this.onSend}
-        transfering={currentWallet.toJS().transfering}
-        currentWalletWithInfo={this.props.currentWalletWithInfo}
-        createContact={this.props.createContact}
-      />
+      <ScrollableContentWrapper>
+        <TransferForm
+          supportedAssets={this.props.supportedAssets}
+          currentNetwork={this.props.currentNetwork}
+          hwWalletReady={hwWalletReady}
+          prices={prices.toJS()}
+          recipients={contacts.toJS()}
+          onSend={this.onSend}
+          transfering={currentWallet.toJS().transfering}
+          currentWalletWithInfo={this.props.currentWalletWithInfo}
+          createContact={this.props.createContact}
+          gasStatistics={gasStatistics}
+        />
+      </ScrollableContentWrapper>
     );
   }
 }
@@ -135,6 +143,7 @@ WalletTransfer.propTypes = {
   contacts: PropTypes.object.isRequired,
   currentNetwork: PropTypes.object.isRequired,
   createContact: PropTypes.func.isRequired,
+  gasStatistics: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -146,6 +155,7 @@ const mapStateToProps = createStructuredSelector({
   supportedAssets: makeSelectSupportedAssets(),
   prices: makeSelectPrices(),
   contacts: makeSelectContacts(),
+  gasStatistics: makeSelectGasStatistics(),
 });
 
 export function mapDispatchToProps(dispatch) {

@@ -239,9 +239,6 @@ ShallowWrapper {
           />
 </Switch>,
       ],
-      "style": Object {
-        "minHeight": "100vh",
-      },
     },
     "ref": null,
     "rendered": Array [
@@ -1418,9 +1415,6 @@ ShallowWrapper {
             />
 </Switch>,
         ],
-        "style": Object {
-          "minHeight": "100vh",
-        },
       },
       "ref": null,
       "rendered": Array [

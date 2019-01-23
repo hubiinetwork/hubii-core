@@ -32,7 +32,7 @@ export const transactionsWithInfoMock = transactionsMock.setIn(
       block: { number: 3780091, timestamp: '2018-08-06T02:32:00.000Z' },
       hash:
         '0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c',
-      currency: 'ETH',
+      currency: '0x0000000000000000000000000000000000000000',
       layer: 'baseLayer',
       sender: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
       timestamp: '2018-08-06T02:32:00.000Z',
@@ -76,7 +76,7 @@ export const balancesMock = fromJS({
     assets: [
       {
         address: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
-        currency: 'ETH',
+        currency: '0x0000000000000000000000000000000000000000',
         balance: '198937000000000000',
       },
       {
@@ -144,7 +144,7 @@ export const pricesLoadedMock = fromJS({
       timestamp: '2018-07-25T01:33:34.908Z',
     },
     {
-      currency: 'ETH',
+      currency: '0x0000000000000000000000000000000000000000',
       eth: 1,
       btc: 0.01,
       usd: 412,
@@ -200,7 +200,7 @@ export const supportedAssetsLoadedMock = fromJS({
       color: 'FFAA00',
     },
     {
-      currency: 'ETH',
+      currency: '0x0000000000000000000000000000000000000000',
       symbol: 'ETH',
       decimals: 18,
       color: '5C78E4',

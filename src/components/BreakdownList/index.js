@@ -17,11 +17,11 @@ import {
   NahmiiBalancesWrapper,
 } from './style';
 
-const generateList = (data, extraInfo = false) => {
+const generateList = (data, formatMessage, extraInfo = false) => {
   // empty base layer balances have ETH with amount 0
   // empty nahmii balances have len 0
   // https://github.com/hubiinetwork/hubii-core/issues/650
-  if (data.length === 0 || (data.length === 1 && data[0].amount === '0')) {
+  if (data.length === 0) {
     return (
       <FlexItem>
         <div>
@@ -42,25 +42,30 @@ const generateList = (data, extraInfo = false) => {
     );
   }
   const sortedData = data.filter((item) => item.percentage >= 0).sort((a, b) => b.percentage - a.percentage);
-  return sortedData.map((item) => (
-    <FlexItem key={`token-${item.label}`}>
-      <div>
-        <Logo
-          src={getAbsolutePath(`public/images/assets/${item.label}.svg`)}
-        />
-        <Text>{item.amount}</Text>
+  return sortedData.map((item) => {
+    const unknownPrice = item.value === '0';
+    return (
+      <FlexItem key={`token-${item.label}`}>
+        <div>
+          <Logo
+            src={getAbsolutePath(`public/images/assets/${item.label}.svg`)}
+          />
+          <Text>{item.amount}</Text>
         &nbsp;
-        <Label>{item.label}</Label>
-      </div>
-      {
+          <Label>{item.label}</Label>
+        </div>
+        {
         extraInfo &&
-        <Percentage>
-          {`${formatFiat(item.value, 'USD')} (${item.percentage > 1 ? item.percentage.toFixed(0) : '<1'}%)`}
+        <Percentage unknownPrice={unknownPrice}>
+          { unknownPrice
+            ? formatMessage({ id: 'missing_price' })
+            : `${formatFiat(item.value, 'USD')} (${item.percentage > 1 ? item.percentage.toFixed(0) : '<1'}%)`
+          }
         </Percentage>
       }
-    </FlexItem>
-    )
-  );
+      </FlexItem>
+    );
+  });
 };
 
 class BreakdownList extends React.PureComponent {
@@ -75,12 +80,12 @@ class BreakdownList extends React.PureComponent {
       expandedAmount,
     } = this.props;
     const { formatMessage } = this.props.intl;
-    const combinedBalanceList = generateList(combinedBreakdown, true);
-    const baseLayerBalanceList = generateList(baseLayerBreakdown);
-    const nahmiiBalanceList = generateList(nahmiiCombinedBreakdown);
-    const nahmiiAvailableBalanceList = generateList(nahmiiAvailableBreakdown);
-    const nahmiiStagingBalanceList = generateList(nahmiiStagingBreakdown);
-    const nahmiiStagedBalanceList = generateList(nahmiiStagedBreakdown);
+    const combinedBalanceList = generateList(combinedBreakdown, formatMessage, true);
+    const baseLayerBalanceList = generateList(baseLayerBreakdown, formatMessage);
+    const nahmiiBalanceList = generateList(nahmiiCombinedBreakdown, formatMessage);
+    const nahmiiAvailableBalanceList = generateList(nahmiiAvailableBreakdown, formatMessage);
+    const nahmiiStagingBalanceList = generateList(nahmiiStagingBreakdown, formatMessage);
+    const nahmiiStagedBalanceList = generateList(nahmiiStagedBreakdown, formatMessage);
 
     return (
       <div>

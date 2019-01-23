@@ -3,6 +3,7 @@ import { Menu, Icon } from 'antd';
 
 import Text from 'components/ui/Text';
 import Heading from 'components/ui/Heading';
+import Button from 'components/ui/Button';
 
 export const AssetsWrapper = styled.div`
   display: flex;
@@ -59,7 +60,9 @@ export const Spinner = styled(Icon)`
 
 export const LeftSideWrapper = styled.div`
   display: flex;
+  align-items: baseline;
   flex-direction: row;
+  margin-bottom: 0.5rem;
 `;
 
 export const TotalBalance = styled(Heading)`
@@ -72,7 +75,6 @@ export const TotalBalance = styled(Heading)`
 export const WalletName = styled(Text)`
   margin-right: 1rem;
   word-break: break-word;
-  margin-bottom: 0.5rem;
 `;
 
 export const OuterWrapper = styled.div`
@@ -127,4 +129,21 @@ export const MenuItem = styled(Menu.Item)`
 export const MenuDivider = styled(Menu.Divider)`
   background-color: ${({ theme }) => theme.palette.secondary1};
   margin: 0;
+`;
+
+export const QuickAddressWrapper = styled.div`
+`;
+
+export const QuickAddressText = styled(Text)`
+  color: ${({ theme }) => theme.palette.secondary};
+  font-size: 0.9rem;
+`;
+
+export const QuickAddressIcon = styled(Button).attrs({
+  type: 'icon',
+  icon: 'copy',
+  size: 'small',
+})`
+  transform: scale(0.85);
+  word-break: break-word;
 `;

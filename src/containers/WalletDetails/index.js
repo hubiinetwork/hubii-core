@@ -98,10 +98,6 @@ export class WalletDetails extends React.PureComponent {
             }
             key={`${match.url}/overview`}
           >
-            <Route
-              path={`${match.url}/overview`}
-              component={WalletTransactions}
-            />
           </TabPane>
           <TabPane
             tab={
@@ -129,17 +125,15 @@ export class WalletDetails extends React.PureComponent {
             }
             key={`${match.url}/transfer`}
           >
-            <Route path={`${match.url}/transfer`} component={WalletTransfer} />
           </TabPane>
           <TabPane
             tab={
               <span>
-                <Icon type="login" /><NahmiiText /> deposit
+                <Icon type="login" /><NahmiiText /> {formatMessage({ id: 'deposit' }).toLowerCase()}
               </span>
             }
             key={`${match.url}/nahmii-deposit`}
           >
-            <Route path={`${match.url}/nahmii-deposit`} component={NahmiiDeposit} />
           </TabPane>
           <TabPane
             tab={
@@ -149,9 +143,15 @@ export class WalletDetails extends React.PureComponent {
             }
             key={`${match.url}/buyeth`}
           >
-            <Route path={`${match.url}/buyeth`} component={SimplexPage} />
           </TabPane>
         </Tabs>
+        <Route
+          path={`${match.url}/overview`}
+          component={WalletTransactions}
+        />
+        <Route path={`${match.url}/transfer`} component={WalletTransfer} />
+        <Route path={`${match.url}/buyeth`} component={SimplexPage} />
+        <Route path={`${match.url}/nahmii-deposit`} component={NahmiiDeposit} />
         {history.location.pathname === match.url && (
           <Redirect from={match.url} to={`${match.url}/transfer`} push />
         )}
