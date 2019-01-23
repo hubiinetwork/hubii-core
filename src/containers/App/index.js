@@ -12,9 +12,11 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import Helmet from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
+import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
 
 import { getAbsolutePath } from 'utils/electron';
 import injectSaga from 'utils/injectSaga';
@@ -42,7 +44,7 @@ import { injectIntl } from 'react-intl';
 import reducer from './reducer';
 import saga from './saga';
 
-function App() {
+function App(props) {
   const menuItems = [
     {
       to: '/wallets',
@@ -60,27 +62,36 @@ function App() {
       key: 'dex',
     },
   ];
+  const direction = props.intl.locale === 'ar'
+    ? DIRECTIONS.RTL
+    : DIRECTIONS.LTR;
   return (
-    <SideBar menuItems={menuItems} logoSrc={getAbsolutePath('public/images/hubii-core-logo.svg')}>
-      <Helmet>
-        <title>hubii core</title>
-      </Helmet>
-      <ConnectionStatus />
-      <Switch>
-        <Route path="/wallets" component={WalletManager} />
-        <Route path="/wallet/:address" component={WalletDetails} />
-        <Route path="/dex" component={Dex} />
-        <Route path="/nahmii" component={Nahmii} />
-        <Route path="/settings" component={Settings} />
-        <Route component={HomeScreen} />
-      </Switch>
-      <ReleaseNotesModal />
-    </SideBar>
+    <DirectionProvider direction={direction}>
+      <SideBar menuItems={menuItems} logoSrc={getAbsolutePath('public/images/hubii-core-logo.svg')}>
+        <Helmet>
+          <title>hubii core</title>
+        </Helmet>
+        <ConnectionStatus />
+        <Switch>
+          <Route path="/wallets" component={WalletManager} />
+          <Route path="/wallet/:address" component={WalletDetails} />
+          <Route path="/dex" component={Dex} />
+          <Route path="/nahmii" component={Nahmii} />
+          <Route path="/settings" component={Settings} />
+          <Route component={HomeScreen} />
+        </Switch>
+        <ReleaseNotesModal />
+      </SideBar>
+    </DirectionProvider>
   );
 }
 
 const withReducer = injectReducer({ key: 'app', reducer });
 const withSaga = injectSaga({ key: 'app', saga });
+
+App.propTypes = {
+  intl: PropTypes.object.isRequired,
+};
 
 export default compose(
   withReducer,
@@ -91,4 +102,5 @@ export default compose(
   withEthOperations,
   withNahmii,
   withHubiiApi,
-)(injectIntl(App));
+  injectIntl,
+)(App);
