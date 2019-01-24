@@ -29,6 +29,7 @@ describe('<SideBar />', () => {
     menuItems,
     location: { pathname: 'hello/world' },
     logoSrc: '../../../public/images/hubii-core-logo.svg',
+    direction: 'ltr',
   };
 
   it('should render correctly', () => {

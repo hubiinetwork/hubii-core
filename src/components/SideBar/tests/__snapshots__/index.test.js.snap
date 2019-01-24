@@ -5,6 +5,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <SideBar
+    direction="ltr"
     location={
         Object {
             "pathname": "hello/world",
@@ -81,6 +82,7 @@ ShallowWrapper {
                                         "wallet",
                                       ]
                     }
+                    direction="ltr"
                     forceSubMenuRender={true}
                     mode="inline"
                     onSelect={undefined}
@@ -96,7 +98,7 @@ ShallowWrapper {
                                         <div>
                                                   <img
                                                             alt="logo"
-                                                            className="anticon anticon-wallet logo-icon"
+                                                            className="logo-icon"
                                                             src="../../../public/images/hubii-core-logo.svg"
                                                   />
                                         </div>
@@ -211,6 +213,11 @@ ShallowWrapper {
                                         <div>
                                                   <Icon
                                                             className="setting-icon"
+                                                            style={
+                                                                      Object {
+                                                                                "marginRight": "0",
+                                                                              }
+                                                            }
                                                             type="setting"
                                                   />
                                         </div>
@@ -253,6 +260,7 @@ ShallowWrapper {
                                     "wallet",
                                   ]
             }
+            direction="ltr"
             forceSubMenuRender={true}
             mode="inline"
             onSelect={undefined}
@@ -268,7 +276,7 @@ ShallowWrapper {
                                     <div>
                                                 <img
                                                             alt="logo"
-                                                            className="anticon anticon-wallet logo-icon"
+                                                            className="logo-icon"
                                                             src="../../../public/images/hubii-core-logo.svg"
                                                 />
                                     </div>
@@ -383,6 +391,11 @@ ShallowWrapper {
                                     <div>
                                                 <Icon
                                                             className="setting-icon"
+                                                            style={
+                                                                        Object {
+                                                                                    "marginRight": "0",
+                                                                                  }
+                                                            }
                                                             type="setting"
                                                 />
                                     </div>
@@ -415,7 +428,7 @@ ShallowWrapper {
                                 <div>
                                                 <img
                                                                 alt="logo"
-                                                                className="anticon anticon-wallet logo-icon"
+                                                                className="logo-icon"
                                                                 src="../../../public/images/hubii-core-logo.svg"
                                                 />
                                 </div>
@@ -532,6 +545,11 @@ ShallowWrapper {
                                 <div>
                                                 <Icon
                                                                 className="setting-icon"
+                                                                style={
+                                                                                Object {
+                                                                                                "marginRight": "0",
+                                                                                              }
+                                                                }
                                                                 type="setting"
                                                 />
                                 </div>
@@ -541,6 +559,7 @@ ShallowWrapper {
             "defaultSelectedKeys": Array [
               "wallet",
             ],
+            "direction": "ltr",
             "forceSubMenuRender": true,
             "mode": "inline",
             "onSelect": undefined,
@@ -560,7 +579,7 @@ ShallowWrapper {
                   <div>
                                     <img
                                                       alt="logo"
-                                                      className="anticon anticon-wallet logo-icon"
+                                                      className="logo-icon"
                                                       src="../../../public/images/hubii-core-logo.svg"
                                     />
                   </div>
@@ -576,7 +595,7 @@ ShallowWrapper {
                   "children": <div>
                     <img
                                         alt="logo"
-                                        className="anticon anticon-wallet logo-icon"
+                                        className="logo-icon"
                                         src="../../../public/images/hubii-core-logo.svg"
                     />
 </div>,
@@ -591,7 +610,7 @@ ShallowWrapper {
                   "props": Object {
                     "children": <img
                       alt="logo"
-                      className="anticon anticon-wallet logo-icon"
+                      className="logo-icon"
                       src="../../../public/images/hubii-core-logo.svg"
 />,
                   },
@@ -602,7 +621,7 @@ ShallowWrapper {
                     "nodeType": "host",
                     "props": Object {
                       "alt": "logo",
-                      "className": "anticon anticon-wallet logo-icon",
+                      "className": "logo-icon",
                       "src": "../../../public/images/hubii-core-logo.svg",
                     },
                     "ref": null,
@@ -1094,6 +1113,11 @@ ShallowWrapper {
                   <div>
                                     <Icon
                                                       className="setting-icon"
+                                                      style={
+                                                                        Object {
+                                                                                          "marginRight": "0",
+                                                                                        }
+                                                      }
                                                       type="setting"
                                     />
                   </div>
@@ -1109,6 +1133,11 @@ ShallowWrapper {
                   "children": <div>
                     <Icon
                                         className="setting-icon"
+                                        style={
+                                                            Object {
+                                                                                "marginRight": "0",
+                                                                              }
+                                        }
                                         type="setting"
                     />
 </div>,
@@ -1123,6 +1152,11 @@ ShallowWrapper {
                   "props": Object {
                     "children": <Icon
                       className="setting-icon"
+                      style={
+                                            Object {
+                                                                  "marginRight": "0",
+                                                                }
+                      }
                       type="setting"
 />,
                   },
@@ -1133,6 +1167,9 @@ ShallowWrapper {
                     "nodeType": "function",
                     "props": Object {
                       "className": "setting-icon",
+                      "style": Object {
+                        "marginRight": "0",
+                      },
                       "type": "setting",
                     },
                     "ref": null,
@@ -1257,6 +1294,7 @@ ShallowWrapper {
                                                 "wallet",
                                               ]
                         }
+                        direction="ltr"
                         forceSubMenuRender={true}
                         mode="inline"
                         onSelect={undefined}
@@ -1272,7 +1310,7 @@ ShallowWrapper {
                                                 <div>
                                                             <img
                                                                         alt="logo"
-                                                                        className="anticon anticon-wallet logo-icon"
+                                                                        className="logo-icon"
                                                                         src="../../../public/images/hubii-core-logo.svg"
                                                             />
                                                 </div>
@@ -1387,6 +1425,11 @@ ShallowWrapper {
                                                 <div>
                                                             <Icon
                                                                         className="setting-icon"
+                                                                        style={
+                                                                                    Object {
+                                                                                                "marginRight": "0",
+                                                                                              }
+                                                                        }
                                                                         type="setting"
                                                             />
                                                 </div>
@@ -1429,6 +1472,7 @@ ShallowWrapper {
                                           "wallet",
                                         ]
               }
+              direction="ltr"
               forceSubMenuRender={true}
               mode="inline"
               onSelect={undefined}
@@ -1444,7 +1488,7 @@ ShallowWrapper {
                                           <div>
                                                         <img
                                                                       alt="logo"
-                                                                      className="anticon anticon-wallet logo-icon"
+                                                                      className="logo-icon"
                                                                       src="../../../public/images/hubii-core-logo.svg"
                                                         />
                                           </div>
@@ -1559,6 +1603,11 @@ ShallowWrapper {
                                           <div>
                                                         <Icon
                                                                       className="setting-icon"
+                                                                      style={
+                                                                                    Object {
+                                                                                                  "marginRight": "0",
+                                                                                                }
+                                                                      }
                                                                       type="setting"
                                                         />
                                           </div>
@@ -1591,7 +1640,7 @@ ShallowWrapper {
                                     <div>
                                                       <img
                                                                         alt="logo"
-                                                                        className="anticon anticon-wallet logo-icon"
+                                                                        className="logo-icon"
                                                                         src="../../../public/images/hubii-core-logo.svg"
                                                       />
                                     </div>
@@ -1708,6 +1757,11 @@ ShallowWrapper {
                                     <div>
                                                       <Icon
                                                                         className="setting-icon"
+                                                                        style={
+                                                                                          Object {
+                                                                                                            "marginRight": "0",
+                                                                                                          }
+                                                                        }
                                                                         type="setting"
                                                       />
                                     </div>
@@ -1717,6 +1771,7 @@ ShallowWrapper {
               "defaultSelectedKeys": Array [
                 "wallet",
               ],
+              "direction": "ltr",
               "forceSubMenuRender": true,
               "mode": "inline",
               "onSelect": undefined,
@@ -1736,7 +1791,7 @@ ShallowWrapper {
                     <div>
                                         <img
                                                             alt="logo"
-                                                            className="anticon anticon-wallet logo-icon"
+                                                            className="logo-icon"
                                                             src="../../../public/images/hubii-core-logo.svg"
                                         />
                     </div>
@@ -1752,7 +1807,7 @@ ShallowWrapper {
                     "children": <div>
                       <img
                                             alt="logo"
-                                            className="anticon anticon-wallet logo-icon"
+                                            className="logo-icon"
                                             src="../../../public/images/hubii-core-logo.svg"
                       />
 </div>,
@@ -1767,7 +1822,7 @@ ShallowWrapper {
                     "props": Object {
                       "children": <img
                         alt="logo"
-                        className="anticon anticon-wallet logo-icon"
+                        className="logo-icon"
                         src="../../../public/images/hubii-core-logo.svg"
 />,
                     },
@@ -1778,7 +1833,7 @@ ShallowWrapper {
                       "nodeType": "host",
                       "props": Object {
                         "alt": "logo",
-                        "className": "anticon anticon-wallet logo-icon",
+                        "className": "logo-icon",
                         "src": "../../../public/images/hubii-core-logo.svg",
                       },
                       "ref": null,
@@ -2270,6 +2325,11 @@ ShallowWrapper {
                     <div>
                                         <Icon
                                                             className="setting-icon"
+                                                            style={
+                                                                                Object {
+                                                                                                    "marginRight": "0",
+                                                                                                  }
+                                                            }
                                                             type="setting"
                                         />
                     </div>
@@ -2285,6 +2345,11 @@ ShallowWrapper {
                     "children": <div>
                       <Icon
                                             className="setting-icon"
+                                            style={
+                                                                  Object {
+                                                                                        "marginRight": "0",
+                                                                                      }
+                                            }
                                             type="setting"
                       />
 </div>,
@@ -2299,6 +2364,11 @@ ShallowWrapper {
                     "props": Object {
                       "children": <Icon
                         className="setting-icon"
+                        style={
+                                                Object {
+                                                                        "marginRight": "0",
+                                                                      }
+                        }
                         type="setting"
 />,
                     },
@@ -2309,6 +2379,9 @@ ShallowWrapper {
                       "nodeType": "function",
                       "props": Object {
                         "className": "setting-icon",
+                        "style": Object {
+                          "marginRight": "0",
+                        },
                         "type": "setting",
                       },
                       "ref": null,

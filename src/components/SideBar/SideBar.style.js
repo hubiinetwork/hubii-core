@@ -54,8 +54,9 @@ const SideBarMenu = styled(Menu)`
   .ant-menu-item a:hover {
     opacity: 1;
   }
-    .ant-menu-item::after {
-    border-right: 0.14rem solid ${({ theme }) => theme.palette.info} !important;
+  .ant-menu-item::after {
+    border-right: 0.14rem solid ${({ theme }) => theme.palette.info};
+    ${({ direction }) => direction === 'ltr' ? '' : 'transform: translateX(-5rem);'}
   }
   .ant-menu-item-selected a {
     opacity: 1;

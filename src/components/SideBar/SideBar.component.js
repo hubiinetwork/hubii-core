@@ -2,6 +2,7 @@ import { Icon, Layout, Menu } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
+import withDirection, { withDirectionProps } from 'react-with-direction';
 import SvgIcon from '../ui/SvgIcon';
 import darkTheme from '../../themes/darkTheme';
 
@@ -46,12 +47,13 @@ export class SideBar extends React.Component {
             onSelect={this.handleChange}
             selectedKeys={selectedKeys}
             forceSubMenuRender
+            direction={this.props.direction}
           >
             <Menu.Item key="/" className="menu-logo">
               <Link to="/">
                 <div>
                   <img
-                    className="anticon anticon-wallet logo-icon"
+                    className="logo-icon"
                     src={logoSrc}
                     alt="logo"
                   />
@@ -116,7 +118,7 @@ export class SideBar extends React.Component {
             <Menu.Item key="settings" className="menu-setting">
               <Link to="/settings">
                 <div>
-                  <Icon className="setting-icon" type="setting" />
+                  <Icon className="setting-icon" type="setting" style={{ marginRight: '0' }} />
                 </div>
               </Link>
             </Menu.Item>
@@ -146,6 +148,7 @@ SideBar.propTypes = {
     PropTypes.node,
   ]).isRequired,
   location: PropTypes.object,
+  ...withDirectionProps,
 };
 
-export default withRouter(SideBar);
+export default withDirection(withRouter(SideBar));

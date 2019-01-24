@@ -38,7 +38,13 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <span>
+        <span
+          style={
+                    Object {
+                              "display": "flex",
+                            }
+          }
+>
           <style__StyledText
                     style={
                               Object {
@@ -113,6 +119,9 @@ ShallowWrapper {
               mainnet
 </style__StyledText>,
           ],
+          "style": Object {
+            "display": "flex",
+          },
         },
         "ref": null,
         "rendered": Array [
@@ -246,7 +255,13 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <span>
+          <span
+            style={
+                        Object {
+                                    "display": "flex",
+                                  }
+            }
+>
             <style__StyledText
                         style={
                                     Object {
@@ -321,6 +336,9 @@ ShallowWrapper {
                 mainnet
 </style__StyledText>,
             ],
+            "style": Object {
+              "display": "flex",
+            },
           },
           "ref": null,
           "rendered": Array [
@@ -495,7 +513,13 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <span>
+        <span
+          style={
+                    Object {
+                              "display": "flex",
+                            }
+          }
+>
           <style__StyledText
                     style={
                               Object {
@@ -570,6 +594,9 @@ ShallowWrapper {
               mainnet
 </style__StyledText>,
           ],
+          "style": Object {
+            "display": "flex",
+          },
         },
         "ref": null,
         "rendered": Array [
@@ -703,7 +730,13 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <span>
+          <span
+            style={
+                        Object {
+                                    "display": "flex",
+                                  }
+            }
+>
             <style__StyledText
                         style={
                                     Object {
@@ -778,6 +811,9 @@ ShallowWrapper {
                 mainnet
 </style__StyledText>,
             ],
+            "style": Object {
+              "display": "flex",
+            },
           },
           "ref": null,
           "rendered": Array [
@@ -952,7 +988,13 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <span>
+        <span
+          style={
+                    Object {
+                              "display": "flex",
+                            }
+          }
+>
           <style__StyledText
                     style={
                               Object {
@@ -1027,6 +1069,9 @@ ShallowWrapper {
               testnet
 </style__StyledText>,
           ],
+          "style": Object {
+            "display": "flex",
+          },
         },
         "ref": null,
         "rendered": Array [
@@ -1160,7 +1205,13 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <span>
+          <span
+            style={
+                        Object {
+                                    "display": "flex",
+                                  }
+            }
+>
             <style__StyledText
                         style={
                                     Object {
@@ -1235,6 +1286,9 @@ ShallowWrapper {
                 testnet
 </style__StyledText>,
             ],
+            "style": Object {
+              "display": "flex",
+            },
           },
           "ref": null,
           "rendered": Array [
