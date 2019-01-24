@@ -13,14 +13,14 @@ import {
 import { isConnected } from 'utils/wallet';
 
 import {
-  deleteWallet,
+  deleteWallet as deleteWalletAction,
   showDecryptWalletModal,
   setCurrentWallet,
-  lockWallet,
+  lockWallet as lockWalletAction,
   dragWallet as dragWalletAction,
 } from 'containers/WalletHoc/actions';
 
-import { notify } from 'containers/App/actions';
+import { notify as notifyAction } from 'containers/App/actions';
 
 import {
   makeSelectWalletsWithInfo,
@@ -49,30 +49,80 @@ import ScrollableContentWrapper from 'components/ui/ScrollableContentWrapper';
 import PlaceholderText from 'components/ui/PlaceholderText';
 import { WalletCardsCol } from './style';
 
-export class WalletsOverview extends React.Component { // eslint-disable-line react/prefer-stateless-function
+const SortableWallet = SortableElement((props) => {
+  const connected = isConnected(props.wallet, props.ledgerNanoSInfo.toJS(), props.trezorInfo.toJS());
+  const baseLayerBalance = props.wallet.balances.baseLayer;
+  const nahmiiBalance = props.wallet.balances.nahmiiCombined;
+  return (
+    <WalletCardsCol
+      span={10}
+      key={props.wallet.name}
+      xs={23}
+      sm={23}
+      lg={11}
+    >
+      <WalletItemCard
+        name={props.wallet.name}
+        totalBalance={(baseLayerBalance.loading || baseLayerBalance.error) ? 0 : baseLayerBalance.total.usd.toNumber()}
+        baseLayerBalancesLoading={baseLayerBalance.loading}
+        baseLayerBalancesError={!!baseLayerBalance.error}
+        nahmiiBalancesLoading={nahmiiBalance.loading}
+        nahmiiBalancesError={!!nahmiiBalance.error}
+        address={props.wallet.address}
+        type={props.wallet.type}
+        connected={connected}
+        baseLayerAssets={baseLayerBalance.assets}
+        nahmiiAssets={nahmiiBalance.assets}
+        mnemonic={props.wallet.decrypted ? props.wallet.decrypted.mnemonic : null}
+        privateKey={props.wallet.decrypted ? props.wallet.decrypted.privateKey : null}
+        isDecrypted={!!props.wallet.decrypted}
+        showDecryptWalletModal={() => props.showDecryptWalletModal()}
+        setCurrentWallet={() => props.setCurrentWallet(props.wallet.address)}
+        handleCardClick={() => props.handleCardClick(props.wallet)}
+        deleteWallet={() => props.deleteWallet(props.wallet.address)}
+        lock={() => props.lockWallet(props.wallet.address)}
+        unlock={() => props.unlockWallet(props.wallet.address)}
+        priceInfo={props.priceInfo.toJS().assets}
+        notify={props.notify}
+      />
+    </WalletCardsCol>
+  );
+});
+
+const SortableList = SortableContainer((props) => (
+  <Row type="flex" align="top" gutter={16}>
+    {props.walletsWithInfo.map((wallet, index) => (
+      <SortableWallet
+        showDecryptWalletModal={props.showDecryptWalletModal}
+        deleteWallet={props.deleteWallet}
+        lockWallet={props.lockWallet}
+        unlockWallet={props.unlockWallet}
+        handleCardClick={props.handleCardClick}
+        notify={props.notify}
+        ledgerNanoSInfo={props.ledgerNanoSInfo}
+        trezorInfo={props.trezorInfo}
+        priceInfo={props.priceInfo}
+        key={wallet.name}
+        index={index}
+        wallet={wallet}
+        setCurrentWallet={props.setCurrentWallet}
+      />
+    ))}
+  </Row>
+));
+
+export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
-    this.state = { dragged: null };
     this.renderWalletCards = this.renderWalletCards.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
     this.unlockWallet = this.unlockWallet.bind(this);
     this.onSortEnd = this.onSortEnd.bind(this);
-    this.updateBeforeSortStart = this.updateBeforeSortStart.bind(this);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.dragged !== null) return false;
-    return true;
   }
 
   onSortEnd({ oldIndex, newIndex }) {
     const { dragWallet, wallets } = this.props;
     dragWallet({ wallets, oldIndex, newIndex });
-    this.setState({ dragged: null });
-  }
-
-  updateBeforeSortStart({ index }) {
-    this.setState({ dragged: index });
   }
 
   handleCardClick(card) {
@@ -85,9 +135,15 @@ export class WalletsOverview extends React.Component { // eslint-disable-line re
     this.props.showDecryptWalletModal();
   }
 
-
   renderWalletCards() {
-    const { priceInfo, ledgerNanoSInfo, trezorInfo } = this.props;
+    const {
+      priceInfo,
+      ledgerNanoSInfo,
+      trezorInfo,
+      deleteWallet,
+      lockWallet,
+      notify,
+    } = this.props;
     const { formatMessage } = this.props.intl;
 
     const walletsWithInfo = this.props.walletsWithInfo.toJS();
@@ -98,65 +154,24 @@ export class WalletsOverview extends React.Component { // eslint-disable-line re
         </PlaceholderText>
       );
     }
-
-    const SortableWallet = SortableElement(({ wallet }) => {
-      const connected = isConnected(wallet, ledgerNanoSInfo.toJS(), trezorInfo.toJS());
-      const baseLayerBalance = wallet.balances.baseLayer;
-      const nahmiiBalance = wallet.balances.nahmiiCombined;
-      return (
-        <WalletCardsCol
-          span={10}
-          key={wallet.name}
-          xs={23}
-          sm={23}
-          lg={11}
-        >
-          <WalletItemCard
-            name={wallet.name}
-            totalBalance={(baseLayerBalance.loading || baseLayerBalance.error) ? 0 : baseLayerBalance.total.usd.toNumber()}
-            baseLayerBalancesLoading={baseLayerBalance.loading}
-            baseLayerBalancesError={!!baseLayerBalance.error}
-            nahmiiBalancesLoading={nahmiiBalance.loading}
-            nahmiiBalancesError={!!nahmiiBalance.error}
-            address={wallet.address}
-            type={wallet.type}
-            connected={connected}
-            baseLayerAssets={baseLayerBalance.assets}
-            nahmiiAssets={nahmiiBalance.assets}
-            mnemonic={wallet.decrypted ? wallet.decrypted.mnemonic : null}
-            privateKey={wallet.decrypted ? wallet.decrypted.privateKey : null}
-            isDecrypted={!!wallet.decrypted}
-            showDecryptWalletModal={() => this.props.showDecryptWalletModal()}
-            setCurrentWallet={() => this.props.setCurrentWallet(wallet.address)}
-            handleCardClick={() => this.handleCardClick(wallet)}
-            walletList={walletsWithInfo}
-            deleteWallet={() => this.props.deleteWallet(wallet.address)}
-            lock={() => this.props.lockWallet(wallet.address)}
-            unlock={() => this.unlockWallet(wallet.address)}
-            priceInfo={priceInfo.toJS().assets}
-            notify={this.props.notify}
-          />
-        </WalletCardsCol>
-      );
-    });
-
-    const SortableList = SortableContainer((props) => (
-      <Row type="flex" align="top" gutter={16}>
-        {props.walletsWithInfo.map((wallet, index) => (
-          <SortableWallet key={wallet.name} index={index} wallet={wallet} />
-        ))}
-      </Row>
-    ));
-
     return (
       <SortableList
         walletsWithInfo={walletsWithInfo}
         onSortEnd={this.onSortEnd}
-        updateBeforeSortStart={(...args) => this.updateBeforeSortStart(...args)}
         axis="xy"
         lockToContainerEdges
         lockOffset="20%"
         distance={5}
+        showDecryptWalletModal={this.props.showDecryptWalletModal}
+        priceInfo={priceInfo}
+        ledgerNanoSInfo={ledgerNanoSInfo}
+        trezorInfo={trezorInfo}
+        deleteWallet={deleteWallet}
+        lockWallet={lockWallet}
+        unlockWallet={this.unlockWallet}
+        handleCardClick={this.handleCardClick}
+        notify={notify}
+        setCurrentWallet={this.props.setCurrentWallet}
       />
     );
   }
@@ -223,12 +238,12 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    deleteWallet: (...args) => dispatch(deleteWallet(...args)),
-    lockWallet: (addr) => dispatch(lockWallet(addr)),
+    deleteWallet: (...args) => dispatch(deleteWalletAction(...args)),
+    lockWallet: (addr) => dispatch(lockWalletAction(addr)),
     dragWallet: (...args) => dispatch(dragWalletAction(...args)),
     showDecryptWalletModal: (...args) => dispatch(showDecryptWalletModal(...args)),
     setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
-    notify: (...args) => dispatch(notify(...args)),
+    notify: (...args) => dispatch(notifyAction(...args)),
   };
 }
 
