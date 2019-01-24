@@ -200,7 +200,6 @@
     "deposit": "Deposit",
     "deposit_success": "Deposit success",
     "connection_problem": "There's a problem with hubii core's connection. Please try again later.",
-    "nahmii_mainnet": "nahmii integration coming soon",
     "view_nahmii_explorer": "View on nahmii explorer (coming soon)",
     "confirmed": "Confirmed",
     "all": "All",
@@ -217,5 +216,7 @@
     "reconnecting": "Reconnecting...",
     "connected": "Connected",
     "missing_price": "Missing price",
-    "deposits_note": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)"
+    "deposits_note": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
+    "nahmii_deposits": "nahmii deposit integration coming soon",
+    "nahmii_payments": "nahmii payment integration coming soon"
 }

@@ -389,7 +389,7 @@ export class TransferForm extends React.PureComponent {
                 <Tooltip
                   placement="right"
                   // overlayStyle={!disableNahmiiPayments && { display: 'none' }}
-                  title={<span>{formatMessage({ id: 'nahmii_mainnet' })}</span>}
+                  title={<span>{formatMessage({ id: 'nahmii_payments' })}</span>}
                 >
                   <NahmiiText large />
                   <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
