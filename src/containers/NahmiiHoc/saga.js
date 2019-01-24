@@ -273,10 +273,6 @@ export const ledgerSignerSignTransaction = async (unresolvedTx, path, descriptor
 };
 
 export function* loadBalances({ address }, network) {
-  if (network.provider._network.chainId === 1) {
-    yield put(actions.loadBalancesSuccess(address, []));
-    return;
-  }
   while (true) { // eslint-disable-line no-constant-condition
     try {
       const path = `trading/wallets/${address}/balances`;
