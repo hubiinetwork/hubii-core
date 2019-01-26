@@ -21,7 +21,7 @@ import {
   Wrapper,
   AllContactsWrapper,
   RecentContactsWrapper,
-} from './index.style';
+} from './style';
 
 export class ContactBook extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {

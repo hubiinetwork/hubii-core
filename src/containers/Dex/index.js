@@ -11,7 +11,7 @@ import {
   Title,
   Container,
   Logo,
-} from './index.style';
+} from './style';
 
 export const Dex = (props) => {
   const { formatMessage } = props.intl;

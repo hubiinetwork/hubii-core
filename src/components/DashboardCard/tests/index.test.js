@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { getAbsolutePath } from 'utils/electron';
 
-import DashboardCard from '../DashboardCard.component';
+import DashboardCard from '../index';
 
 describe('<DashboardCard />', () => {
   it('should render correctly when passed an antd icon type', () => {
