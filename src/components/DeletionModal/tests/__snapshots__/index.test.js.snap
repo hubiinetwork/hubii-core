@@ -29,11 +29,11 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <DeletionModal.style__TopHeading>
+        <style__TopHeading>
            
           delete_confirm
-</DeletionModal.style__TopHeading>,
-        <DeletionModal.style__TextPrimary>
+</style__TopHeading>,
+        <style__TextPrimary>
           <div
                     style={
                               Object {
@@ -41,44 +41,44 @@ ShallowWrapper {
                                       }
                     }
           >
-                    <DeletionModal.style__SecondaryHeader
+                    <style__SecondaryHeader
                               large={true}
                     >
                               name
-                    </DeletionModal.style__SecondaryHeader>
+                    </style__SecondaryHeader>
                     <br />
                     <Text>
                               mike
                     </Text>
           </div>
           <div>
-                    <DeletionModal.style__SecondaryHeader
+                    <style__SecondaryHeader
                               large={true}
                     >
                               address
-                    </DeletionModal.style__SecondaryHeader>
+                    </style__SecondaryHeader>
                     <br />
                     <Text>
                               0x3123123
                     </Text>
           </div>
-</DeletionModal.style__TextPrimary>,
-        <DeletionModal.style__ParentDiv>
-          <DeletionModal.style__StyledButton
+</style__TextPrimary>,
+        <style__ParentDiv>
+          <style__StyledButton
                     id="delete"
                     onClick={[Function]}
                     type="danger"
           >
                     delete
-          </DeletionModal.style__StyledButton>
-          <DeletionModal.style__StyledButton
+          </style__StyledButton>
+          <style__StyledButton
                     id="cancel"
                     onClick={[Function]}
                     type="default"
           >
                     cancel
-          </DeletionModal.style__StyledButton>
-</DeletionModal.style__ParentDiv>,
+          </style__StyledButton>
+</style__ParentDiv>,
       ],
     },
     "ref": null,
@@ -113,22 +113,22 @@ ShallowWrapper {
                                         }
               }
 >
-              <DeletionModal.style__SecondaryHeader
+              <style__SecondaryHeader
                             large={true}
               >
                             name
-              </DeletionModal.style__SecondaryHeader>
+              </style__SecondaryHeader>
               <br />
               <Text>
                             mike
               </Text>
 </div>,
             <div>
-              <DeletionModal.style__SecondaryHeader
+              <style__SecondaryHeader
                             large={true}
               >
                             address
-              </DeletionModal.style__SecondaryHeader>
+              </style__SecondaryHeader>
               <br />
               <Text>
                             0x3123123
@@ -144,11 +144,11 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <DeletionModal.style__SecondaryHeader
+                <style__SecondaryHeader
                   large={true}
 >
                   name
-</DeletionModal.style__SecondaryHeader>,
+</style__SecondaryHeader>,
                 <br />,
                 <Text>
                   mike
@@ -201,11 +201,11 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <DeletionModal.style__SecondaryHeader
+                <style__SecondaryHeader
                   large={true}
 >
                   address
-</DeletionModal.style__SecondaryHeader>,
+</style__SecondaryHeader>,
                 <br />,
                 <Text>
                   0x3123123
@@ -258,20 +258,20 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <DeletionModal.style__StyledButton
+            <style__StyledButton
               id="delete"
               onClick={[Function]}
               type="danger"
 >
               delete
-</DeletionModal.style__StyledButton>,
-            <DeletionModal.style__StyledButton
+</style__StyledButton>,
+            <style__StyledButton
               id="cancel"
               onClick={[Function]}
               type="default"
 >
               cancel
-</DeletionModal.style__StyledButton>,
+</style__StyledButton>,
           ],
         },
         "ref": null,
@@ -317,11 +317,11 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <DeletionModal.style__TopHeading>
+          <style__TopHeading>
              
             delete_confirm
-</DeletionModal.style__TopHeading>,
-          <DeletionModal.style__TextPrimary>
+</style__TopHeading>,
+          <style__TextPrimary>
             <div
                         style={
                                     Object {
@@ -329,44 +329,44 @@ ShallowWrapper {
                                               }
                         }
             >
-                        <DeletionModal.style__SecondaryHeader
+                        <style__SecondaryHeader
                                     large={true}
                         >
                                     name
-                        </DeletionModal.style__SecondaryHeader>
+                        </style__SecondaryHeader>
                         <br />
                         <Text>
                                     mike
                         </Text>
             </div>
             <div>
-                        <DeletionModal.style__SecondaryHeader
+                        <style__SecondaryHeader
                                     large={true}
                         >
                                     address
-                        </DeletionModal.style__SecondaryHeader>
+                        </style__SecondaryHeader>
                         <br />
                         <Text>
                                     0x3123123
                         </Text>
             </div>
-</DeletionModal.style__TextPrimary>,
-          <DeletionModal.style__ParentDiv>
-            <DeletionModal.style__StyledButton
+</style__TextPrimary>,
+          <style__ParentDiv>
+            <style__StyledButton
                         id="delete"
                         onClick={[Function]}
                         type="danger"
             >
                         delete
-            </DeletionModal.style__StyledButton>
-            <DeletionModal.style__StyledButton
+            </style__StyledButton>
+            <style__StyledButton
                         id="cancel"
                         onClick={[Function]}
                         type="default"
             >
                         cancel
-            </DeletionModal.style__StyledButton>
-</DeletionModal.style__ParentDiv>,
+            </style__StyledButton>
+</style__ParentDiv>,
         ],
       },
       "ref": null,
@@ -401,22 +401,22 @@ ShallowWrapper {
                                               }
                 }
 >
-                <DeletionModal.style__SecondaryHeader
+                <style__SecondaryHeader
                                 large={true}
                 >
                                 name
-                </DeletionModal.style__SecondaryHeader>
+                </style__SecondaryHeader>
                 <br />
                 <Text>
                                 mike
                 </Text>
 </div>,
               <div>
-                <DeletionModal.style__SecondaryHeader
+                <style__SecondaryHeader
                                 large={true}
                 >
                                 address
-                </DeletionModal.style__SecondaryHeader>
+                </style__SecondaryHeader>
                 <br />
                 <Text>
                                 0x3123123
@@ -432,11 +432,11 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <DeletionModal.style__SecondaryHeader
+                  <style__SecondaryHeader
                     large={true}
 >
                     name
-</DeletionModal.style__SecondaryHeader>,
+</style__SecondaryHeader>,
                   <br />,
                   <Text>
                     mike
@@ -489,11 +489,11 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <DeletionModal.style__SecondaryHeader
+                  <style__SecondaryHeader
                     large={true}
 >
                     address
-</DeletionModal.style__SecondaryHeader>,
+</style__SecondaryHeader>,
                   <br />,
                   <Text>
                     0x3123123
@@ -546,20 +546,20 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <DeletionModal.style__StyledButton
+              <style__StyledButton
                 id="delete"
                 onClick={[Function]}
                 type="danger"
 >
                 delete
-</DeletionModal.style__StyledButton>,
-              <DeletionModal.style__StyledButton
+</style__StyledButton>,
+              <style__StyledButton
                 id="cancel"
                 onClick={[Function]}
                 type="default"
 >
                 cancel
-</DeletionModal.style__StyledButton>,
+</style__StyledButton>,
             ],
           },
           "ref": null,

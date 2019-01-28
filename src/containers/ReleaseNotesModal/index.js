@@ -21,7 +21,7 @@ import {
   TitleDiv,
   TextWhite,
   Container,
-} from './index.style';
+} from './style';
 
 import reducer from './reducer';
 import saga from './saga';
