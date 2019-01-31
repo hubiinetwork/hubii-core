@@ -10,10 +10,13 @@ import DashboardCard from 'components/DashboardCard';
 import { injectIntl } from 'react-intl';
 
 import { getAbsolutePath } from 'utils/electron';
-import StyledLink from './StyledLink';
-import Wrapper from './Wrapper';
-import Logo from './Logo';
-import Cards from './Cards';
+
+import {
+  StyledLink,
+  Wrapper,
+  Logo,
+  Cards,
+} from './style';
 
 
 class HomeScreen extends React.PureComponent {

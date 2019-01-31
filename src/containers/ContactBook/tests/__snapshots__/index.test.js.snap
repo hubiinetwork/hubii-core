@@ -54,7 +54,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <index.style__AllContactsWrapper
+        <style__AllContactsWrapper
           contactsPresent={3}
 >
           <ContactHeader
@@ -86,8 +86,8 @@ ShallowWrapper {
                     onEdit={[Function]}
                     size="small"
           />
-</index.style__AllContactsWrapper>,
-        <index.style__RecentContactsWrapper
+</style__AllContactsWrapper>,
+        <style__RecentContactsWrapper
           contactsPresent={3}
 >
           <ContactHeader
@@ -116,7 +116,7 @@ ShallowWrapper {
                     onEdit={[Function]}
                     size="small"
           />
-</index.style__RecentContactsWrapper>,
+</style__RecentContactsWrapper>,
       ],
     },
     "ref": null,
@@ -297,7 +297,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <index.style__AllContactsWrapper
+          <style__AllContactsWrapper
             contactsPresent={3}
 >
             <ContactHeader
@@ -329,8 +329,8 @@ ShallowWrapper {
                         onEdit={[Function]}
                         size="small"
             />
-</index.style__AllContactsWrapper>,
-          <index.style__RecentContactsWrapper
+</style__AllContactsWrapper>,
+          <style__RecentContactsWrapper
             contactsPresent={3}
 >
             <ContactHeader
@@ -359,7 +359,7 @@ ShallowWrapper {
                         onEdit={[Function]}
                         size="small"
             />
-</index.style__RecentContactsWrapper>,
+</style__RecentContactsWrapper>,
         ],
       },
       "ref": null,

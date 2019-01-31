@@ -493,7 +493,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                 <Tooltip
                   placement="bottom"
                   // overlayStyle={!unsupportedNetwork ? { display: 'none' } : null}
-                  title={<span>{formatMessage({ id: 'nahmii_mainnet' })}</span>}
+                  title={<span>{formatMessage({ id: 'nahmii_deposits' })}</span>}
                 >
                   <div style={{ width: 'fit-content' }}>
                     <StyledButton

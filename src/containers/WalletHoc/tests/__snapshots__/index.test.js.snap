@@ -805,7 +805,7 @@ ShallowWrapper {
           }
           notify={[Function]}
 />,
-        <Modal.style
+        <Modal__Modal
           destroyOnClose={true}
           footer={null}
           maskClosable={true}
@@ -818,29 +818,29 @@ ShallowWrapper {
           visible={undefined}
           width="41.79rem"
 >
-          <Form.style__FormItem
+          <Form__FormItem
                     colon={false}
                     label={
-                              <Form.style__FormItemLabel>
+                              <Form__FormItemLabel>
                                         enter_password_proceed
-                              </Form.style__FormItemLabel>
+                              </Form__FormItemLabel>
                     }
           >
-                    <Input.style
+                    <Input
                               onChange={[Function]}
                               onKeyPress={[Function]}
                               type="password"
                               value={null}
                     />
-          </Form.style__FormItem>
-          <Button.style
+          </Form__FormItem>
+          <Button
                     disabled={true}
                     onClick={[Function]}
                     type="primary"
           >
                     confirm
-          </Button.style>
-</Modal.style>,
+          </Button>
+</Modal__Modal>,
       ],
     },
     "ref": null,
@@ -1245,28 +1245,28 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Form.style__FormItem
+            <Form__FormItem
               colon={false}
               label={
-                            <Form.style__FormItemLabel>
+                            <Form__FormItemLabel>
                                           enter_password_proceed
-                            </Form.style__FormItemLabel>
+                            </Form__FormItemLabel>
               }
 >
-              <Input.style
+              <Input
                             onChange={[Function]}
                             onKeyPress={[Function]}
                             type="password"
                             value={null}
               />
-</Form.style__FormItem>,
-            <Button.style
+</Form__FormItem>,
+            <Button
               disabled={true}
               onClick={[Function]}
               type="primary"
 >
               confirm
-</Button.style>,
+</Button>,
           ],
           "destroyOnClose": true,
           "footer": null,
@@ -1285,16 +1285,16 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <Input.style
+              "children": <Input
                 onChange={[Function]}
                 onKeyPress={[Function]}
                 type="password"
                 value={null}
 />,
               "colon": false,
-              "label": <Form.style__FormItemLabel>
+              "label": <Form__FormItemLabel>
                 enter_password_proceed
-</Form.style__FormItemLabel>,
+</Form__FormItemLabel>,
             },
             "ref": null,
             "rendered": Object {
@@ -1734,7 +1734,7 @@ ShallowWrapper {
             }
             notify={[Function]}
 />,
-          <Modal.style
+          <Modal__Modal
             destroyOnClose={true}
             footer={null}
             maskClosable={true}
@@ -1747,29 +1747,29 @@ ShallowWrapper {
             visible={undefined}
             width="41.79rem"
 >
-            <Form.style__FormItem
+            <Form__FormItem
                         colon={false}
                         label={
-                                    <Form.style__FormItemLabel>
+                                    <Form__FormItemLabel>
                                                 enter_password_proceed
-                                    </Form.style__FormItemLabel>
+                                    </Form__FormItemLabel>
                         }
             >
-                        <Input.style
+                        <Input
                                     onChange={[Function]}
                                     onKeyPress={[Function]}
                                     type="password"
                                     value={null}
                         />
-            </Form.style__FormItem>
-            <Button.style
+            </Form__FormItem>
+            <Button
                         disabled={true}
                         onClick={[Function]}
                         type="primary"
             >
                         confirm
-            </Button.style>
-</Modal.style>,
+            </Button>
+</Modal__Modal>,
         ],
       },
       "ref": null,
@@ -2174,28 +2174,28 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Form.style__FormItem
+              <Form__FormItem
                 colon={false}
                 label={
-                                <Form.style__FormItemLabel>
+                                <Form__FormItemLabel>
                                                 enter_password_proceed
-                                </Form.style__FormItemLabel>
+                                </Form__FormItemLabel>
                 }
 >
-                <Input.style
+                <Input
                                 onChange={[Function]}
                                 onKeyPress={[Function]}
                                 type="password"
                                 value={null}
                 />
-</Form.style__FormItem>,
-              <Button.style
+</Form__FormItem>,
+              <Button
                 disabled={true}
                 onClick={[Function]}
                 type="primary"
 >
                 confirm
-</Button.style>,
+</Button>,
             ],
             "destroyOnClose": true,
             "footer": null,
@@ -2214,16 +2214,16 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <Input.style
+                "children": <Input
                   onChange={[Function]}
                   onKeyPress={[Function]}
                   type="password"
                   value={null}
 />,
                 "colon": false,
-                "label": <Form.style__FormItemLabel>
+                "label": <Form__FormItemLabel>
                   enter_password_proceed
-</Form.style__FormItemLabel>,
+</Form__FormItemLabel>,
               },
               "ref": null,
               "rendered": Object {
@@ -3078,7 +3078,7 @@ ShallowWrapper {
           }
           notify={[Function]}
 />,
-        <Modal.style
+        <Modal__Modal
           destroyOnClose={true}
           footer={null}
           maskClosable={true}
@@ -3091,26 +3091,26 @@ ShallowWrapper {
           visible={undefined}
           width="41.79rem"
 >
-          <Form.style__FormItem
+          <Form__FormItem
                     colon={false}
                     label={
-                              <Form.style__FormItemLabel>
+                              <Form__FormItemLabel>
                                         enter_password_proceed
-                              </Form.style__FormItemLabel>
+                              </Form__FormItemLabel>
                     }
           >
-                    <Input.style
+                    <Input
                               onChange={[Function]}
                               onKeyPress={[Function]}
                               type="password"
                               value={null}
                     />
-          </Form.style__FormItem>
-          <WalletHoc.style__StyledSpin
+          </Form__FormItem>
+          <style__StyledSpin
                     delay={0}
                     size="large"
           />
-</Modal.style>,
+</Modal__Modal>,
       ],
     },
     "ref": null,
@@ -3515,22 +3515,22 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Form.style__FormItem
+            <Form__FormItem
               colon={false}
               label={
-                            <Form.style__FormItemLabel>
+                            <Form__FormItemLabel>
                                           enter_password_proceed
-                            </Form.style__FormItemLabel>
+                            </Form__FormItemLabel>
               }
 >
-              <Input.style
+              <Input
                             onChange={[Function]}
                             onKeyPress={[Function]}
                             type="password"
                             value={null}
               />
-</Form.style__FormItem>,
-            <WalletHoc.style__StyledSpin
+</Form__FormItem>,
+            <style__StyledSpin
               delay={0}
               size="large"
 />,
@@ -3552,16 +3552,16 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <Input.style
+              "children": <Input
                 onChange={[Function]}
                 onKeyPress={[Function]}
                 type="password"
                 value={null}
 />,
               "colon": false,
-              "label": <Form.style__FormItemLabel>
+              "label": <Form__FormItemLabel>
                 enter_password_proceed
-</Form.style__FormItemLabel>,
+</Form__FormItemLabel>,
             },
             "ref": null,
             "rendered": Object {
@@ -3999,7 +3999,7 @@ ShallowWrapper {
             }
             notify={[Function]}
 />,
-          <Modal.style
+          <Modal__Modal
             destroyOnClose={true}
             footer={null}
             maskClosable={true}
@@ -4012,26 +4012,26 @@ ShallowWrapper {
             visible={undefined}
             width="41.79rem"
 >
-            <Form.style__FormItem
+            <Form__FormItem
                         colon={false}
                         label={
-                                    <Form.style__FormItemLabel>
+                                    <Form__FormItemLabel>
                                                 enter_password_proceed
-                                    </Form.style__FormItemLabel>
+                                    </Form__FormItemLabel>
                         }
             >
-                        <Input.style
+                        <Input
                                     onChange={[Function]}
                                     onKeyPress={[Function]}
                                     type="password"
                                     value={null}
                         />
-            </Form.style__FormItem>
-            <WalletHoc.style__StyledSpin
+            </Form__FormItem>
+            <style__StyledSpin
                         delay={0}
                         size="large"
             />
-</Modal.style>,
+</Modal__Modal>,
         ],
       },
       "ref": null,
@@ -4436,22 +4436,22 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Form.style__FormItem
+              <Form__FormItem
                 colon={false}
                 label={
-                                <Form.style__FormItemLabel>
+                                <Form__FormItemLabel>
                                                 enter_password_proceed
-                                </Form.style__FormItemLabel>
+                                </Form__FormItemLabel>
                 }
 >
-                <Input.style
+                <Input
                                 onChange={[Function]}
                                 onKeyPress={[Function]}
                                 type="password"
                                 value={null}
                 />
-</Form.style__FormItem>,
-              <WalletHoc.style__StyledSpin
+</Form__FormItem>,
+              <style__StyledSpin
                 delay={0}
                 size="large"
 />,
@@ -4473,16 +4473,16 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <Input.style
+                "children": <Input
                   onChange={[Function]}
                   onKeyPress={[Function]}
                   type="password"
                   value={null}
 />,
                 "colon": false,
-                "label": <Form.style__FormItemLabel>
+                "label": <Form__FormItemLabel>
                   enter_password_proceed
-</Form.style__FormItemLabel>,
+</Form__FormItemLabel>,
               },
               "ref": null,
               "rendered": Object {

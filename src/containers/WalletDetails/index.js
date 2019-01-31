@@ -28,7 +28,7 @@ import { setCurrentWallet } from 'containers/WalletHoc/actions';
 import SimplexPage from 'components/SimplexPage';
 import Tabs, { TabPane } from 'components/ui/Tabs';
 
-import { Wrapper, HeaderWrapper } from './index.style';
+import { Wrapper, HeaderWrapper } from './style';
 
 
 export class WalletDetails extends React.PureComponent {

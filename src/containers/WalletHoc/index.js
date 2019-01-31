@@ -28,7 +28,7 @@ import {
 
 import {
   StyledSpin,
-} from './WalletHoc.style';
+} from './style';
 
 export default function WalletHoc(Component) {
   const HOC = getComponentHOC(Component);

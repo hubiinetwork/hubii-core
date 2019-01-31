@@ -35,32 +35,32 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <ImportWallet.style__Header>
+        <style__Header>
           store_wallet_question
-</ImportWallet.style__Header>,
-        <ImportWallet.style__OptionsWrapper
+</style__Header>,
+        <style__OptionsWrapper
           onChange={[Function]}
 >
-          <ImportWallet.style__Option
+          <style__Option
                     value="ledger"
           >
-                    <ImportWallet.style__Center>
-                              <ImportWallet.style__Image
+                    <style__Center>
+                              <style__Image
                                         src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
                               />
-                    </ImportWallet.style__Center>
-          </ImportWallet.style__Option>
-          <ImportWallet.style__Option
+                    </style__Center>
+          </style__Option>
+          <style__Option
                     value="Private key"
           >
-                    <ImportWallet.style__Center>
-                              <ImportWallet.style__OptionText>
+                    <style__Center>
+                              <style__OptionText>
                                         Private key
-                              </ImportWallet.style__OptionText>
-                    </ImportWallet.style__Center>
-          </ImportWallet.style__Option>
-</ImportWallet.style__OptionsWrapper>,
-        <ImportWallet.style__StyledButton
+                              </style__OptionText>
+                    </style__Center>
+          </style__Option>
+</style__OptionsWrapper>,
+        <style__StyledButton
           disabled={true}
           onClick={[Function]}
           type="primary"
@@ -68,7 +68,7 @@ ShallowWrapper {
           <Text>
                     next
           </Text>
-</ImportWallet.style__StyledButton>,
+</style__StyledButton>,
       ],
     },
     "ref": null,
@@ -90,24 +90,24 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <ImportWallet.style__Option
+            <style__Option
               value="ledger"
 >
-              <ImportWallet.style__Center>
-                            <ImportWallet.style__Image
+              <style__Center>
+                            <style__Image
                                           src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
                             />
-              </ImportWallet.style__Center>
-</ImportWallet.style__Option>,
-            <ImportWallet.style__Option
+              </style__Center>
+</style__Option>,
+            <style__Option
               value="Private key"
 >
-              <ImportWallet.style__Center>
-                            <ImportWallet.style__OptionText>
+              <style__Center>
+                            <style__OptionText>
                                           Private key
-                            </ImportWallet.style__OptionText>
-              </ImportWallet.style__Center>
-</ImportWallet.style__Option>,
+                            </style__OptionText>
+              </style__Center>
+</style__Option>,
           ],
           "onChange": [Function],
         },
@@ -118,11 +118,11 @@ ShallowWrapper {
             "key": "ledger",
             "nodeType": "class",
             "props": Object {
-              "children": <ImportWallet.style__Center>
-                <ImportWallet.style__Image
+              "children": <style__Center>
+                <style__Image
                                 src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
                 />
-</ImportWallet.style__Center>,
+</style__Center>,
               "value": "ledger",
             },
             "ref": null,
@@ -131,7 +131,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <ImportWallet.style__Image
+                "children": <style__Image
                   src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
 />,
               },
@@ -156,11 +156,11 @@ ShallowWrapper {
             "key": "Private key",
             "nodeType": "class",
             "props": Object {
-              "children": <ImportWallet.style__Center>
-                <ImportWallet.style__OptionText>
+              "children": <style__Center>
+                <style__OptionText>
                                 Private key
-                </ImportWallet.style__OptionText>
-</ImportWallet.style__Center>,
+                </style__OptionText>
+</style__Center>,
               "value": "Private key",
             },
             "ref": null,
@@ -169,9 +169,9 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <ImportWallet.style__OptionText>
+                "children": <style__OptionText>
                   Private key
-</ImportWallet.style__OptionText>,
+</style__OptionText>,
               },
               "ref": null,
               "rendered": Object {
@@ -228,32 +228,32 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <ImportWallet.style__Header>
+          <style__Header>
             store_wallet_question
-</ImportWallet.style__Header>,
-          <ImportWallet.style__OptionsWrapper
+</style__Header>,
+          <style__OptionsWrapper
             onChange={[Function]}
 >
-            <ImportWallet.style__Option
+            <style__Option
                         value="ledger"
             >
-                        <ImportWallet.style__Center>
-                                    <ImportWallet.style__Image
+                        <style__Center>
+                                    <style__Image
                                                 src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
                                     />
-                        </ImportWallet.style__Center>
-            </ImportWallet.style__Option>
-            <ImportWallet.style__Option
+                        </style__Center>
+            </style__Option>
+            <style__Option
                         value="Private key"
             >
-                        <ImportWallet.style__Center>
-                                    <ImportWallet.style__OptionText>
+                        <style__Center>
+                                    <style__OptionText>
                                                 Private key
-                                    </ImportWallet.style__OptionText>
-                        </ImportWallet.style__Center>
-            </ImportWallet.style__Option>
-</ImportWallet.style__OptionsWrapper>,
-          <ImportWallet.style__StyledButton
+                                    </style__OptionText>
+                        </style__Center>
+            </style__Option>
+</style__OptionsWrapper>,
+          <style__StyledButton
             disabled={true}
             onClick={[Function]}
             type="primary"
@@ -261,7 +261,7 @@ ShallowWrapper {
             <Text>
                         next
             </Text>
-</ImportWallet.style__StyledButton>,
+</style__StyledButton>,
         ],
       },
       "ref": null,
@@ -283,24 +283,24 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <ImportWallet.style__Option
+              <style__Option
                 value="ledger"
 >
-                <ImportWallet.style__Center>
-                                <ImportWallet.style__Image
+                <style__Center>
+                                <style__Image
                                                 src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
                                 />
-                </ImportWallet.style__Center>
-</ImportWallet.style__Option>,
-              <ImportWallet.style__Option
+                </style__Center>
+</style__Option>,
+              <style__Option
                 value="Private key"
 >
-                <ImportWallet.style__Center>
-                                <ImportWallet.style__OptionText>
+                <style__Center>
+                                <style__OptionText>
                                                 Private key
-                                </ImportWallet.style__OptionText>
-                </ImportWallet.style__Center>
-</ImportWallet.style__Option>,
+                                </style__OptionText>
+                </style__Center>
+</style__Option>,
             ],
             "onChange": [Function],
           },
@@ -311,11 +311,11 @@ ShallowWrapper {
               "key": "ledger",
               "nodeType": "class",
               "props": Object {
-                "children": <ImportWallet.style__Center>
-                  <ImportWallet.style__Image
+                "children": <style__Center>
+                  <style__Image
                                     src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
                   />
-</ImportWallet.style__Center>,
+</style__Center>,
                 "value": "ledger",
               },
               "ref": null,
@@ -324,7 +324,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": <ImportWallet.style__Image
+                  "children": <style__Image
                     src="https://www.ledger.fr/wp-content/uploads/2017/09/Ledger_logo_footer@2x.png"
 />,
                 },
@@ -349,11 +349,11 @@ ShallowWrapper {
               "key": "Private key",
               "nodeType": "class",
               "props": Object {
-                "children": <ImportWallet.style__Center>
-                  <ImportWallet.style__OptionText>
+                "children": <style__Center>
+                  <style__OptionText>
                                     Private key
-                  </ImportWallet.style__OptionText>
-</ImportWallet.style__Center>,
+                  </style__OptionText>
+</style__Center>,
                 "value": "Private key",
               },
               "ref": null,
@@ -362,9 +362,9 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": <ImportWallet.style__OptionText>
+                  "children": <style__OptionText>
                     Private key
-</ImportWallet.style__OptionText>,
+</style__OptionText>,
                 },
                 "ref": null,
                 "rendered": Object {
