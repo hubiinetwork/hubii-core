@@ -5,7 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import HomeScreen from 'components/HomeScreen';
 import WalletManager from 'containers/WalletManager';
 import WalletDetails from 'containers/WalletDetails';
-import { SideBar } from '../SideBar.component';
+import { SideBar } from '../index';
 
 describe('<SideBar />', () => {
   const menuItems = [

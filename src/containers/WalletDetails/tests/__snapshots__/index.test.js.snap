@@ -433,7 +433,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <index.style__HeaderWrapper>
+        <style__HeaderWrapper>
           <WalletHeader
                     address="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
                     balance={81.96204400000123}
@@ -444,7 +444,7 @@ ShallowWrapper {
                     onIconClick={[Function]}
                     type="hardware"
           />
-</index.style__HeaderWrapper>,
+</style__HeaderWrapper>,
         <Tabs
           activeKey="/wallet/abcd"
           animated={false}
@@ -797,7 +797,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <index.style__HeaderWrapper>
+          <style__HeaderWrapper>
             <WalletHeader
                         address="0x1c7429f62595097315289ceBaC1fDbdA587Ad512"
                         balance={81.96204400000123}
@@ -808,7 +808,7 @@ ShallowWrapper {
                         onIconClick={[Function]}
                         type="hardware"
             />
-</index.style__HeaderWrapper>,
+</style__HeaderWrapper>,
           <Tabs
             activeKey="/wallet/abcd"
             animated={false}

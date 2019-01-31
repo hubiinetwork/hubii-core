@@ -22,7 +22,7 @@ import {
   walletsWithInfoMock,
 } from 'containers/WalletHoc/tests/mocks/selectors';
 
-import { TransferForm } from '../TransferForm.component';
+import { TransferForm } from '../index';
 
 describe('TransferForm', () => {
   const props = {

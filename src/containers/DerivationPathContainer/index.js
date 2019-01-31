@@ -42,8 +42,7 @@ import {
 import DerivationPath from 'components/ImportWalletSteps/DerivationPath';
 import Text from 'components/ui/Text';
 
-import { StyledButton, ButtonDiv } from './BackBtn';
-import HWPromptWrapper from './HWPromptWrapper';
+import { StyledButton, ButtonDiv, HWPromptWrapper } from './style';
 
 export class DerivationPathContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {

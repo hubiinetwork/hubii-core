@@ -113,12 +113,12 @@ ShallowWrapper {
         <SectionHeading>
           some title
 </SectionHeading>,
-        <ContactHeader.style__Wrapper>
-          <ContactHeader.style__StyledSearch
+        <style__Wrapper>
+          <style__StyledSearch
                     onChange={[Function]}
                     placeholder="Filter"
           />
-</ContactHeader.style__Wrapper>,
+</style__Wrapper>,
       ],
     },
     "ref": null,
@@ -139,7 +139,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <ContactHeader.style__StyledSearch
+          "children": <style__StyledSearch
             onChange={[Function]}
             placeholder="Filter"
 />,
@@ -172,12 +172,12 @@ ShallowWrapper {
           <SectionHeading>
             some title
 </SectionHeading>,
-          <ContactHeader.style__Wrapper>
-            <ContactHeader.style__StyledSearch
+          <style__Wrapper>
+            <style__StyledSearch
                         onChange={[Function]}
                         placeholder="Filter"
             />
-</ContactHeader.style__Wrapper>,
+</style__Wrapper>,
         ],
       },
       "ref": null,
@@ -198,7 +198,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <ContactHeader.style__StyledSearch
+            "children": <style__StyledSearch
               onChange={[Function]}
               placeholder="Filter"
 />,

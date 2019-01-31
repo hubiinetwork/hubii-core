@@ -75,7 +75,7 @@ ShallowWrapper {
           theme="dark"
           width={200}
 >
-          <SideBar.style__SideBarMenu
+          <style__SideBarMenu
                     defaultSelectedKeys={
                               Array [
                                         "wallet",
@@ -216,7 +216,7 @@ ShallowWrapper {
                                         </div>
                               </Link>
                     </MenuItem>
-          </SideBar.style__SideBarMenu>
+          </style__SideBarMenu>
 </Sider>,
         <Switch>
           <Route
@@ -247,7 +247,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <SideBar.style__SideBarMenu
+          "children": <style__SideBarMenu
             defaultSelectedKeys={
                         Array [
                                     "wallet",
@@ -388,7 +388,7 @@ ShallowWrapper {
                                     </div>
                         </Link>
             </MenuItem>
-</SideBar.style__SideBarMenu>,
+</style__SideBarMenu>,
           "collapsedWidth": 80,
           "collapsible": false,
           "defaultCollapsed": false,
@@ -1251,7 +1251,7 @@ ShallowWrapper {
             theme="dark"
             width={200}
 >
-            <SideBar.style__SideBarMenu
+            <style__SideBarMenu
                         defaultSelectedKeys={
                                     Array [
                                                 "wallet",
@@ -1392,7 +1392,7 @@ ShallowWrapper {
                                                 </div>
                                     </Link>
                         </MenuItem>
-            </SideBar.style__SideBarMenu>
+            </style__SideBarMenu>
 </Sider>,
           <Switch>
             <Route
@@ -1423,7 +1423,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <SideBar.style__SideBarMenu
+            "children": <style__SideBarMenu
               defaultSelectedKeys={
                             Array [
                                           "wallet",
@@ -1564,7 +1564,7 @@ ShallowWrapper {
                                           </div>
                             </Link>
               </MenuItem>
-</SideBar.style__SideBarMenu>,
+</style__SideBarMenu>,
             "collapsedWidth": 80,
             "collapsible": false,
             "defaultCollapsed": false,

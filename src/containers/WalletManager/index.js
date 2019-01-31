@@ -27,17 +27,16 @@ import {
 } from 'containers/LedgerHoc/actions';
 
 import { makeSelectLoading, makeSelectWallets } from 'containers/WalletHoc/selectors';
+import { createContact } from 'containers/ContactBook/actions';
 
 import TopHeader from 'components/ui/TopHeader';
 import Heading from 'components/ui/Heading';
-
-import { createContact } from '../ContactBook/actions';
 
 
 import {
   Wrapper,
   StyledButton,
-} from './index.style';
+} from './style';
 
 
 export class WalletManager extends React.PureComponent {
