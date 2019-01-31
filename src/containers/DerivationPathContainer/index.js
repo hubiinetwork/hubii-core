@@ -42,8 +42,7 @@ import {
 import DerivationPath from 'components/ImportWalletSteps/DerivationPath';
 import Text from 'components/ui/Text';
 
-import { StyledButton, ButtonDiv } from './BackBtn';
-import HWPromptWrapper from './HWPromptWrapper';
+import { StyledButton, ButtonDiv, HWPromptWrapper } from './style';
 
 export class DerivationPathContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -167,7 +166,7 @@ export class DerivationPathContainer extends React.Component { // eslint-disable
       const assetsState = balances.getIn([addresses[curDerivationPath], 'assets']);
       let balance = 'Loading...';
       if (assetsState) {
-        const asset = assetsState.toJSON().find((ast) => ast.currency === 'ETH');
+        const asset = assetsState.toJSON().find((ast) => ast.currency === '0x0000000000000000000000000000000000000000');
         balance = parseFloat(utils.formatEther(asset.balance));
       }
       processedAddresses.push({

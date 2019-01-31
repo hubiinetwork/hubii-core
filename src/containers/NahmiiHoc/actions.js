@@ -2,8 +2,10 @@ import {
   SET_SELECTED_WALLET_CURRENCY,
   LOAD_NAHMII_BALANCES,
   LOAD_NAHMII_BALANCES_SUCCESS,
+  LOAD_NAHMII_BALANCES_ERROR,
   LOAD_NAHMII_STAGED_BALANCES,
   LOAD_NAHMII_STAGED_BALANCES_SUCCESS,
+  LOAD_NAHMII_STAGED_BALANCES_ERROR,
   LOAD_NAHMII_STAGING_BALANCES,
   LOAD_NAHMII_STAGING_BALANCES_SUCCESS,
   START_CHALLENGE,
@@ -26,6 +28,7 @@ import {
   LOAD_ONGOING_CHALLENGES_ERROR,
   LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
   LOAD_SETTLEABLE_CHALLENGES_ERROR,
+  LOAD_NAHMII_STAGING_BALANCES_ERROR,
   NAHMII_DEPOSIT,
   NAHMII_DEPOSIT_ETH_SUCCESS,
   NAHMII_APPROVE_TOKEN_DEPOSIT_SUCCESS,
@@ -151,6 +154,13 @@ export function loadBalancesSuccess(address, balances) {
   };
 }
 
+export function loadBalancesError(address) {
+  return {
+    type: LOAD_NAHMII_BALANCES_ERROR,
+    address,
+  };
+}
+
 export function loadStagedBalances(address) {
   return {
     type: LOAD_NAHMII_STAGED_BALANCES,
@@ -166,6 +176,13 @@ export function loadStagedBalancesSuccess(address, balances) {
   };
 }
 
+export function loadStagedBalancesError(address) {
+  return {
+    type: LOAD_NAHMII_STAGED_BALANCES_ERROR,
+    address,
+  };
+}
+
 export function loadStagingBalances(address) {
   return {
     type: LOAD_NAHMII_STAGING_BALANCES,
@@ -178,6 +195,14 @@ export function loadStagingBalancesSuccess(address, balances) {
     type: LOAD_NAHMII_STAGING_BALANCES_SUCCESS,
     address,
     balances,
+  };
+}
+
+
+export function loadStagingBalancesError(address) {
+  return {
+    type: LOAD_NAHMII_STAGING_BALANCES_ERROR,
+    address,
   };
 }
 

@@ -21,12 +21,12 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <DashboardCard.style__AntdIcon
+        <style__AntdIcon
           type="setting"
 />,
-        <DashboardCard.style__Title>
+        <style__Title>
           Settings
-</DashboardCard.style__Title>,
+</style__Title>,
       ],
       "className": undefined,
     },
@@ -64,12 +64,12 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <DashboardCard.style__AntdIcon
+          <style__AntdIcon
             type="setting"
 />,
-          <DashboardCard.style__Title>
+          <style__Title>
             Settings
-</DashboardCard.style__Title>,
+</style__Title>,
         ],
         "className": undefined,
       },
@@ -132,12 +132,12 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <DashboardCard.style__CustomIcon
+        <style__CustomIcon
           src="/public/images/dex-icon-green.png"
 />,
-        <DashboardCard.style__Title>
+        <style__Title>
           DEX
-</DashboardCard.style__Title>,
+</style__Title>,
       ],
       "className": undefined,
     },
@@ -175,12 +175,12 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <DashboardCard.style__CustomIcon
+          <style__CustomIcon
             src="/public/images/dex-icon-green.png"
 />,
-          <DashboardCard.style__Title>
+          <style__Title>
             DEX
-</DashboardCard.style__Title>,
+</style__Title>,
         ],
         "className": undefined,
       },

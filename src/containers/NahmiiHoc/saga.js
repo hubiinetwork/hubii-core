@@ -286,10 +286,6 @@ export const ledgerSignerSignTransaction = async (unresolvedTx, path, descriptor
 };
 
 export function* loadBalances({ address }, network) {
-  if (network.provider._network.name === 'homestead') {
-    yield put(actions.loadBalancesSuccess(address, []));
-    return;
-  }
   while (true) { // eslint-disable-line no-constant-condition
     try {
       const path = `trading/wallets/${address}/balances`;
@@ -298,11 +294,11 @@ export function* loadBalances({ address }, network) {
       // should do an app-wide change once the backend becomes consistent
       const formattedBalances = balances.map((bal) => ({
         balance: bal.amount,
-        currency: bal.currency.ct === '0x0000000000000000000000000000000000000000' ? 'ETH' : bal.currency.ct,
+        currency: bal.currency.ct,
       }));
       yield put(actions.loadBalancesSuccess(address, formattedBalances));
     } catch (err) {
-      console.log(err); // eslint-disable-line
+      yield put(actions.loadBalancesError(address));
     } finally {
       const TWENTY_SEC_IN_MS = 1000 * 20;
       yield delay(TWENTY_SEC_IN_MS);
@@ -311,7 +307,7 @@ export function* loadBalances({ address }, network) {
 }
 
 export function* loadStagingBalances({ address }, network) {
-  if (network.provider._network.name === 'homestead') {
+  if (network.provider._network.chainId === 1) {
     yield put(actions.loadStagingBalancesSuccess(address, []));
     return;
   }
@@ -339,9 +335,8 @@ export function* loadStagingBalances({ address }, network) {
       // https://www.jsonrpc.org/specification#batch
       const currencyCtList = supportedAssets.assets.map((a) => a.currency);
       const requestBatch = currencyCtList.map((ct) => {
-        const currencyId = ct === 'ETH' ? '0x0000000000000000000000000000000000000000' : ct;
         // encode arguments, prepare them for being sent
-        const encodedArgs = utils.defaultAbiCoder.encode(['address', 'address', 'int256'], [address, currencyId, 0]);
+        const encodedArgs = utils.defaultAbiCoder.encode(['address', 'address', 'int256'], [address, ct, 0]);
         const dataArr = utils.concat([funcSelector, encodedArgs]);
         const data = utils.hexlify(dataArr);
         const params = [{ from: address, to: driipSettlementChallengeContractAddress, data }, 'latest'];
@@ -364,7 +359,7 @@ export function* loadStagingBalances({ address }, network) {
       }, []);
       yield put(actions.loadStagingBalancesSuccess(address, formattedBalances));
     } catch (err) {
-      console.log(err); // eslint-disable-line
+      yield put(actions.loadStagingBalancesError(address));
     } finally {
       const TWENTY_SEC_IN_MS = 1000 * 20;
       yield delay(TWENTY_SEC_IN_MS);
@@ -374,7 +369,7 @@ export function* loadStagingBalances({ address }, network) {
 
 // https://stackoverflow.com/questions/48228662/get-token-balance-with-ethereum-rpc
 export function* loadStagedBalances({ address }, network, noPoll) {
-  if (network.provider._network.name === 'homestead') {
+  if (network.provider._network.chainId === 1) {
     yield put(actions.loadStagedBalancesSuccess(address, []));
     return;
   }
@@ -402,9 +397,9 @@ export function* loadStagedBalances({ address }, network, noPoll) {
       // https://www.jsonrpc.org/specification#batch
       const currencyCtList = supportedAssets.assets.map((a) => a.currency);
       const requestBatch = currencyCtList.map((ct) => {
-        const currencyAddress = ct === 'ETH' ? '0x0000000000000000000000000000000000000000' : ct;
         // encode arguments, prepare them for being sent
-        const encodedArgs = utils.defaultAbiCoder.encode(['address', 'bytes32', 'address', 'int256'], [address, balanceType, currencyAddress, 0]);
+        const encodedArgs = utils.defaultAbiCoder.encode(['address', 'bytes32', 'address', 'int256'], [address, balanceType, ct, 0]);
+        // const encodedArgs = utils.defaultAbiCoder.encode(['address', 'int256', 'int256'], [address, currencyId, 0]);
         const dataArr = utils.concat([funcSelector, encodedArgs]);
         const data = utils.hexlify(dataArr);
         const params = [{ from: address, to: balanceTrackerContractAddress, data }, 'latest'];
@@ -426,7 +421,7 @@ export function* loadStagedBalances({ address }, network, noPoll) {
       }, []);
       yield put(actions.loadStagedBalancesSuccess(address, formattedBalances));
     } catch (err) {
-      console.log(err); // eslint-disable-line
+      yield put(actions.loadStagedBalancesError(address));
     } finally {
       const TWENTY_SEC_IN_MS = 1000 * 20;
       yield delay(TWENTY_SEC_IN_MS);
@@ -659,10 +654,6 @@ export function* loadReceipts({ address }, network) {
 }
 
 export function* loadWalletReceipts({ address }, network) {
-  if (network.provider._network.name === 'homestead') {
-    yield put(actions.loadReceiptsSuccess(address, []));
-    return;
-  }
   while (true) { // eslint-disable-line no-constant-condition
     try {
       const receipts = yield call(network.nahmiiProvider.getWalletReceipts.bind(network.nahmiiProvider), address);

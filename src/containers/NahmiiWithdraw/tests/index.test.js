@@ -104,16 +104,16 @@ describe('<NahmiiWithdraw />', () => {
 
   describe('withdrawal actions', () => {
     const erc20Asset = walletsWithInfoMock.get(0).getIn(['balances', 'baseLayer', 'assets']).get(1).toJS();
-    const ethAsset = { symbol: 'ETH', currency: 'ETH', balance: new BigNumber('1') };
+    const ethAsset = { symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000', balance: new BigNumber('1') };
     [{
       type: 'ETH',
       asset: ethAsset,
       walletsWithInfo: walletsWithInfoMock
         .get(0)
-        .setIn(['balances', 'nahmiiStaged', 'assets'], fromJS([{ balance: new BigNumber(3), symbol: 'ETH', currency: 'ETH' }]))
+        .setIn(['balances', 'nahmiiStaged', 'assets'], fromJS([{ balance: new BigNumber(3), symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000' }]))
         .setIn(
           ['balances', 'nahmiiAvailable', 'assets'],
-          fromJS([{ balance: new BigNumber(4), symbol: 'ETH', currency: 'ETH' }])
+          fromJS([{ balance: new BigNumber(4), symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000' }])
         )
         .set('type', 'software'),
     }, {
@@ -165,7 +165,7 @@ describe('<NahmiiWithdraw />', () => {
           beforeEach(() => {
             wrapper.setState({ amountToWithdraw, assetToWithdraw: t.asset });
           });
-          it('should correctly calculate the staged balance before and after', () => {
+          it.only('should correctly calculate the staged balance before and after', () => {
             expect(wrapper.find('.withdraw-review .withdraw-btn').props().disabled).toEqual(false);
             expect(wrapper.find('.withdraw-review .staged-balance-before').props().main).toEqual(`3 ${t.asset.symbol}`);
             expect(wrapper.find('.withdraw-review .staged-balance-after').props().main).toEqual(`1 ${t.asset.symbol}`);
@@ -213,7 +213,7 @@ describe('<NahmiiWithdraw />', () => {
         currentWalletWithInfo:
             walletsWithInfoMock
               .get(0)
-              .setIn(['balances', 'nahmiiStaged', 'assets'], fromJS([{ balance: new BigNumber(0), symbol: 'ETH', currency: 'ETH' }])),
+              .setIn(['balances', 'nahmiiStaged', 'assets'], fromJS([{ balance: new BigNumber(0), symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000' }])),
       });
       describe('should hide the settle button', () => {
         [
@@ -243,7 +243,7 @@ describe('<NahmiiWithdraw />', () => {
                 currentWalletWithInfo={
                   getProps(t.status).currentWalletWithInfo.setIn(
                     ['balances', 'nahmiiAvailable', 'assets'],
-                    fromJS([{ balance: new BigNumber(4), symbol: 'ETH', currency: 'ETH' }])
+                    fromJS([{ balance: new BigNumber(4), symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000' }])
                   )
                 }
               />
@@ -278,7 +278,7 @@ describe('<NahmiiWithdraw />', () => {
                 currentWalletWithInfo={
                   getProps(t).currentWalletWithInfo.setIn(
                     ['balances', 'nahmiiAvailable', 'assets'],
-                    fromJS([{ balance: new BigNumber(4), symbol: 'ETH', currency: 'ETH' }])
+                    fromJS([{ balance: new BigNumber(4), symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000' }])
                   ).set('type', 'software')
                 }
               />
@@ -296,7 +296,7 @@ describe('<NahmiiWithdraw />', () => {
                 currentWalletWithInfo={
                   getProps(t).currentWalletWithInfo.setIn(
                     ['balances', 'nahmiiAvailable', 'assets'],
-                    fromJS([{ balance: new BigNumber(1), symbol: 'ETH', currency: 'ETH' }])
+                    fromJS([{ balance: new BigNumber(1), symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000' }])
                   ).set('type', 'software')
                 }
               />
@@ -314,7 +314,7 @@ describe('<NahmiiWithdraw />', () => {
                 currentWalletWithInfo={
                   getProps(t).currentWalletWithInfo.setIn(
                     ['balances', 'nahmiiAvailable', 'assets'],
-                    fromJS([{ balance: new BigNumber(1), symbol: 'ETH', currency: 'ETH' }])
+                    fromJS([{ balance: new BigNumber(1), symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000' }])
                   ).set('type', 'software')
                 }
               />

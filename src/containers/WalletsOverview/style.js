@@ -2,9 +2,6 @@ import styled from 'styled-components';
 import { Col } from 'antd';
 
 export const WalletCardsCol = styled(Col)`
-  margin-bottom: 1rem;
-`;
-
-export const Wrapper = styled.div`
-  margin: 0 2rem 2rem 2rem;
+  margin: 0.5rem;
+  box-shadow: 0 0.14rem 0.36rem 0 rgba(0, 0, 0, 0.1);
 `;

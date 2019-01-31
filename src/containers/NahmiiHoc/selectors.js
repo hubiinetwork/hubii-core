@@ -45,12 +45,7 @@ const makeSelectReceiptsWithInfo = () => createSelector(
     receiptsWithInfo = receipts.map((addressObj, address) => {
       const addressReceiptsWithInfo = addressObj.get('receipts').reduce((result, receipt) => {
         let receiptWithInfo = receipt;
-        // set currency to be consistent with other types of transaction
-        if (receipt.getIn(['currency', 'ct']) === '0x0000000000000000000000000000000000000000') {
-          receiptWithInfo = receiptWithInfo.set('currency', 'ETH');
-        } else {
-          receiptWithInfo = receiptWithInfo.set('currency', receiptWithInfo.getIn(['currency', 'ct']));
-        }
+        receiptWithInfo = receiptWithInfo.set('currency', receiptWithInfo.getIn(['currency', 'ct']));
 
         // try to locate the asset from supportedAssets
         const assetDetails = supportedAssets

@@ -46,12 +46,12 @@ export class Nahmii extends React.Component { // eslint-disable-line react/prefe
             }
             key={`${match.url}/airdriip-registration`}
           >
-            <Route
-              path={`${match.url}/airdriip-registration`}
-              component={NahmiiAirdriipRegistration}
-            />
           </TabPane>
         </Tabs>
+        <Route
+          path={`${match.url}/airdriip-registration`}
+          component={NahmiiAirdriipRegistration}
+        />
       </OuterWrapper>
     );
   }

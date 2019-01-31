@@ -101,7 +101,7 @@ ShallowWrapper {
     onChangeNetwork={[Function]}
     supportedNetworks={
         Immutable.Map {
-            homestead: Immutable.Map {
+            mainnet: Immutable.Map {
                 provider: FallbackProvider {
                     "_balances": Object {},
                     "_emitted": Object {
@@ -295,32 +295,32 @@ ShallowWrapper {
                     <style__StyledSectionHeading>
                               setting_network
                     </style__StyledSectionHeading>
-                    <Select.style
+                    <Select
                               onChange={[Function]}
                               style={
                                         Object {
                                                   "width": "15rem",
                                                 }
                               }
-                              value="ropsten"
+                              value="Ropsten [TESTNET]"
                     >
                               <Option
-                                        value="homestead"
+                                        value="mainnet"
                               >
-                                        Homestead [MAINNET]
+                                        Mainnet
                               </Option>
                               <Option
                                         value="ropsten"
                               >
                                         Ropsten [TESTNET]
                               </Option>
-                    </Select.style>
+                    </Select>
           </style__SettingWrapper>
           <style__SettingWrapper>
                     <style__StyledSectionHeading>
                               setting_language
                     </style__StyledSectionHeading>
-                    <Select.style
+                    <Select
                               onChange={[Function]}
                               style={
                                         Object {
@@ -334,7 +334,7 @@ ShallowWrapper {
                               >
                                         English
                               </Option>
-                    </Select.style>
+                    </Select>
           </style__SettingWrapper>
 </style__Body>,
       ],
@@ -374,32 +374,32 @@ ShallowWrapper {
               <style__StyledSectionHeading>
                             setting_network
               </style__StyledSectionHeading>
-              <Select.style
+              <Select
                             onChange={[Function]}
                             style={
                                           Object {
                                                         "width": "15rem",
                                                       }
                             }
-                            value="ropsten"
+                            value="Ropsten [TESTNET]"
               >
                             <Option
-                                          value="homestead"
+                                          value="mainnet"
                             >
-                                          Homestead [MAINNET]
+                                          Mainnet
                             </Option>
                             <Option
                                           value="ropsten"
                             >
                                           Ropsten [TESTNET]
                             </Option>
-              </Select.style>
+              </Select>
 </style__SettingWrapper>,
             <style__SettingWrapper>
               <style__StyledSectionHeading>
                             setting_language
               </style__StyledSectionHeading>
-              <Select.style
+              <Select
                             onChange={[Function]}
                             style={
                                           Object {
@@ -413,7 +413,7 @@ ShallowWrapper {
                             >
                                           English
                             </Option>
-              </Select.style>
+              </Select>
 </style__SettingWrapper>,
           ],
         },
@@ -428,26 +428,26 @@ ShallowWrapper {
                 <style__StyledSectionHeading>
                   setting_network
 </style__StyledSectionHeading>,
-                <Select.style
+                <Select
                   onChange={[Function]}
                   style={
                                     Object {
                                                       "width": "15rem",
                                                     }
                   }
-                  value="ropsten"
+                  value="Ropsten [TESTNET]"
 >
                   <Option
-                                    value="homestead"
+                                    value="mainnet"
                   >
-                                    Homestead [MAINNET]
+                                    Mainnet
                   </Option>
                   <Option
                                     value="ropsten"
                   >
                                     Ropsten [TESTNET]
                   </Option>
-</Select.style>,
+</Select>,
               ],
             },
             "ref": null,
@@ -470,9 +470,9 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <Option
-                      value="homestead"
+                      value="mainnet"
 >
-                      Homestead [MAINNET]
+                      Mainnet
 </Option>,
                     <Option
                       value="ropsten"
@@ -484,20 +484,20 @@ ShallowWrapper {
                   "style": Object {
                     "width": "15rem",
                   },
-                  "value": "ropsten",
+                  "value": "Ropsten [TESTNET]",
                 },
                 "ref": null,
                 "rendered": Array [
                   Object {
                     "instance": null,
-                    "key": "homestead",
+                    "key": "mainnet",
                     "nodeType": "class",
                     "props": Object {
-                      "children": "Homestead [MAINNET]",
-                      "value": "homestead",
+                      "children": "Mainnet",
+                      "value": "mainnet",
                     },
                     "ref": null,
-                    "rendered": "Homestead [MAINNET]",
+                    "rendered": "Mainnet",
                     "type": [Function],
                   },
                   Object {
@@ -527,7 +527,7 @@ ShallowWrapper {
                 <style__StyledSectionHeading>
                   setting_language
 </style__StyledSectionHeading>,
-                <Select.style
+                <Select
                   onChange={[Function]}
                   style={
                                     Object {
@@ -541,7 +541,7 @@ ShallowWrapper {
                   >
                                     English
                   </Option>
-</Select.style>,
+</Select>,
               ],
             },
             "ref": null,
@@ -618,32 +618,32 @@ ShallowWrapper {
                         <style__StyledSectionHeading>
                                     setting_network
                         </style__StyledSectionHeading>
-                        <Select.style
+                        <Select
                                     onChange={[Function]}
                                     style={
                                                 Object {
                                                             "width": "15rem",
                                                           }
                                     }
-                                    value="ropsten"
+                                    value="Ropsten [TESTNET]"
                         >
                                     <Option
-                                                value="homestead"
+                                                value="mainnet"
                                     >
-                                                Homestead [MAINNET]
+                                                Mainnet
                                     </Option>
                                     <Option
                                                 value="ropsten"
                                     >
                                                 Ropsten [TESTNET]
                                     </Option>
-                        </Select.style>
+                        </Select>
             </style__SettingWrapper>
             <style__SettingWrapper>
                         <style__StyledSectionHeading>
                                     setting_language
                         </style__StyledSectionHeading>
-                        <Select.style
+                        <Select
                                     onChange={[Function]}
                                     style={
                                                 Object {
@@ -657,7 +657,7 @@ ShallowWrapper {
                                     >
                                                 English
                                     </Option>
-                        </Select.style>
+                        </Select>
             </style__SettingWrapper>
 </style__Body>,
         ],
@@ -697,32 +697,32 @@ ShallowWrapper {
                 <style__StyledSectionHeading>
                                 setting_network
                 </style__StyledSectionHeading>
-                <Select.style
+                <Select
                                 onChange={[Function]}
                                 style={
                                                 Object {
                                                                 "width": "15rem",
                                                               }
                                 }
-                                value="ropsten"
+                                value="Ropsten [TESTNET]"
                 >
                                 <Option
-                                                value="homestead"
+                                                value="mainnet"
                                 >
-                                                Homestead [MAINNET]
+                                                Mainnet
                                 </Option>
                                 <Option
                                                 value="ropsten"
                                 >
                                                 Ropsten [TESTNET]
                                 </Option>
-                </Select.style>
+                </Select>
 </style__SettingWrapper>,
               <style__SettingWrapper>
                 <style__StyledSectionHeading>
                                 setting_language
                 </style__StyledSectionHeading>
-                <Select.style
+                <Select
                                 onChange={[Function]}
                                 style={
                                                 Object {
@@ -736,7 +736,7 @@ ShallowWrapper {
                                 >
                                                 English
                                 </Option>
-                </Select.style>
+                </Select>
 </style__SettingWrapper>,
             ],
           },
@@ -751,26 +751,26 @@ ShallowWrapper {
                   <style__StyledSectionHeading>
                     setting_network
 </style__StyledSectionHeading>,
-                  <Select.style
+                  <Select
                     onChange={[Function]}
                     style={
                                         Object {
                                                             "width": "15rem",
                                                           }
                     }
-                    value="ropsten"
+                    value="Ropsten [TESTNET]"
 >
                     <Option
-                                        value="homestead"
+                                        value="mainnet"
                     >
-                                        Homestead [MAINNET]
+                                        Mainnet
                     </Option>
                     <Option
                                         value="ropsten"
                     >
                                         Ropsten [TESTNET]
                     </Option>
-</Select.style>,
+</Select>,
                 ],
               },
               "ref": null,
@@ -793,9 +793,9 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <Option
-                        value="homestead"
+                        value="mainnet"
 >
-                        Homestead [MAINNET]
+                        Mainnet
 </Option>,
                       <Option
                         value="ropsten"
@@ -807,20 +807,20 @@ ShallowWrapper {
                     "style": Object {
                       "width": "15rem",
                     },
-                    "value": "ropsten",
+                    "value": "Ropsten [TESTNET]",
                   },
                   "ref": null,
                   "rendered": Array [
                     Object {
                       "instance": null,
-                      "key": "homestead",
+                      "key": "mainnet",
                       "nodeType": "class",
                       "props": Object {
-                        "children": "Homestead [MAINNET]",
-                        "value": "homestead",
+                        "children": "Mainnet",
+                        "value": "mainnet",
                       },
                       "ref": null,
-                      "rendered": "Homestead [MAINNET]",
+                      "rendered": "Mainnet",
                       "type": [Function],
                     },
                     Object {
@@ -850,7 +850,7 @@ ShallowWrapper {
                   <style__StyledSectionHeading>
                     setting_language
 </style__StyledSectionHeading>,
-                  <Select.style
+                  <Select
                     onChange={[Function]}
                     style={
                                         Object {
@@ -864,7 +864,7 @@ ShallowWrapper {
                     >
                                         English
                     </Option>
-</Select.style>,
+</Select>,
                 ],
               },
               "ref": null,

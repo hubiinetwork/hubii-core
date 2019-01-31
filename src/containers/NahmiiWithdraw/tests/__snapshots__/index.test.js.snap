@@ -111,7 +111,7 @@ ShallowWrapper {
                         decimalAmount: "0.000000002111",
                         counterpartyAddress: "0x4231676a35483638796e2af8ed2af0a41b097524",
                         nonce: 21,
-                        currency: "ETH",
+                        currency: "0x0000000000000000000000000000000000000000",
                         layer: "nahmii",
                         sender: Immutable.Map {
                             fees: Immutable.Map {
@@ -191,7 +191,7 @@ ShallowWrapper {
                             timestamp: "2018-08-06T02:32:00.000Z",
                         },
                         hash: "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
-                        currency: "ETH",
+                        currency: "0x0000000000000000000000000000000000000000",
                         layer: "baseLayer",
                         sender: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                         timestamp: "2018-08-06T02:32:00.000Z",
@@ -311,7 +311,7 @@ ShallowWrapper {
                     assets: Immutable.List [
                         Immutable.Map {
                             balance: "0.198937",
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             symbol: "ETH",
                             value: Immutable.Map {
                                 eth: "0.198937",
@@ -341,7 +341,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.1",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -372,7 +372,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.1",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -404,7 +404,7 @@ ShallowWrapper {
                     error: null,
                     assets: Immutable.List [
                         Immutable.Map {
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             balance: "0.2",
                             symbol: "ETH",
                             value: Immutable.Map {
@@ -436,7 +436,7 @@ ShallowWrapper {
                     assets: Immutable.List [
                         Immutable.Map {
                             balance: "0.398937",
-                            currency: "ETH",
+                            currency: "0x0000000000000000000000000000000000000000",
                             symbol: "ETH",
                             value: Immutable.Map {
                                 eth: "0.398937",
@@ -530,7 +530,7 @@ ShallowWrapper {
                     timestamp: "2018-07-25T01:33:34.908Z",
                 },
                 Immutable.Map {
-                    currency: "ETH",
+                    currency: "0x0000000000000000000000000000000000000000",
                     eth: 1,
                     btc: 0.01,
                     usd: 412,
@@ -582,7 +582,7 @@ ShallowWrapper {
                     color: "FFAA00",
                 },
                 Immutable.Map {
-                    currency: "ETH",
+                    currency: "0x0000000000000000000000000000000000000000",
                     symbol: "ETH",
                     decimals: 18,
                     color: "5C78E4",
@@ -629,20 +629,20 @@ ShallowWrapper {
                             }
           }
 >
-          <Form.style__FlexForm>
-                    <Form.style__FormItem
+          <Form__FlexForm>
+                    <Form__FormItem
                               colon={false}
                               label={
-                                        <Form.style__FormItemLabel>
+                                        <Form__FormItemLabel>
                                                   select_asset_to_withdraw
-                                        </Form.style__FormItemLabel>
+                                        </Form__FormItemLabel>
                               }
                     >
                               <style__Image
                                         alt="logo"
                                         src="/public/images/assets/ETH.svg"
                               />
-                              <Select.style
+                              <Select
                                         defaultValue="ETH"
                                         onSelect={[Function]}
                                         style={
@@ -661,9 +661,9 @@ ShallowWrapper {
                                         >
                                                   BOKKY
                                         </Option>
-                              </Select.style>
-                    </Form.style__FormItem>
-                    <Form.style__FormItem
+                              </Select>
+                    </Form__FormItem>
+                    <Form__FormItem
                               colon={false}
                               help={
                                         <HelperTextComponent
@@ -672,13 +672,13 @@ ShallowWrapper {
                                         />
                               }
                               label={
-                                        <Form.style__FormItemLabel>
+                                        <Form__FormItemLabel>
                                                   enter_amount_withdraw
                                                    
-                                        </Form.style__FormItemLabel>
+                                        </Form__FormItemLabel>
                               }
                     >
-                              <Input.style
+                              <Input
                                         className="withdraw-input"
                                         defaultValue="0"
                                         onBlur={[Function]}
@@ -686,7 +686,7 @@ ShallowWrapper {
                                         onFocus={[Function]}
                                         value="0"
                               />
-                    </Form.style__FormItem>
+                    </Form__FormItem>
                     <GasOptions
                               defaultGasLimit={1000000}
                               defaultGasPrice={10}
@@ -702,7 +702,7 @@ ShallowWrapper {
                     <style__DollarPrice>
                               1 ETH = $412.00
                     </style__DollarPrice>
-          </Form.style__FlexForm>
+          </Form__FlexForm>
 </div>,
         <div
           style={
@@ -864,20 +864,20 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": <Form.style__FlexForm>
-            <Form.style__FormItem
+          "children": <Form__FlexForm>
+            <Form__FormItem
                         colon={false}
                         label={
-                                    <Form.style__FormItemLabel>
+                                    <Form__FormItemLabel>
                                                 select_asset_to_withdraw
-                                    </Form.style__FormItemLabel>
+                                    </Form__FormItemLabel>
                         }
             >
                         <style__Image
                                     alt="logo"
                                     src="/public/images/assets/ETH.svg"
                         />
-                        <Select.style
+                        <Select
                                     defaultValue="ETH"
                                     onSelect={[Function]}
                                     style={
@@ -896,9 +896,9 @@ ShallowWrapper {
                                     >
                                                 BOKKY
                                     </Option>
-                        </Select.style>
-            </Form.style__FormItem>
-            <Form.style__FormItem
+                        </Select>
+            </Form__FormItem>
+            <Form__FormItem
                         colon={false}
                         help={
                                     <HelperTextComponent
@@ -907,13 +907,13 @@ ShallowWrapper {
                                     />
                         }
                         label={
-                                    <Form.style__FormItemLabel>
+                                    <Form__FormItemLabel>
                                                 enter_amount_withdraw
                                                  
-                                    </Form.style__FormItemLabel>
+                                    </Form__FormItemLabel>
                         }
             >
-                        <Input.style
+                        <Input
                                     className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
@@ -921,7 +921,7 @@ ShallowWrapper {
                                     onFocus={[Function]}
                                     value="0"
                         />
-            </Form.style__FormItem>
+            </Form__FormItem>
             <GasOptions
                         defaultGasLimit={1000000}
                         defaultGasPrice={10}
@@ -937,7 +937,7 @@ ShallowWrapper {
             <style__DollarPrice>
                         1 ETH = $412.00
             </style__DollarPrice>
-</Form.style__FlexForm>,
+</Form__FlexForm>,
           "style": Object {
             "flex": "1",
             "marginBottom": "3rem",
@@ -951,19 +951,19 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Form.style__FormItem
+              <Form__FormItem
                 colon={false}
                 label={
-                                <Form.style__FormItemLabel>
+                                <Form__FormItemLabel>
                                                 select_asset_to_withdraw
-                                </Form.style__FormItemLabel>
+                                </Form__FormItemLabel>
                 }
 >
                 <style__Image
                                 alt="logo"
                                 src="/public/images/assets/ETH.svg"
                 />
-                <Select.style
+                <Select
                                 defaultValue="ETH"
                                 onSelect={[Function]}
                                 style={
@@ -982,9 +982,9 @@ ShallowWrapper {
                                 >
                                                 BOKKY
                                 </Option>
-                </Select.style>
-</Form.style__FormItem>,
-              <Form.style__FormItem
+                </Select>
+</Form__FormItem>,
+              <Form__FormItem
                 colon={false}
                 help={
                                 <HelperTextComponent
@@ -993,13 +993,13 @@ ShallowWrapper {
                                 />
                 }
                 label={
-                                <Form.style__FormItemLabel>
+                                <Form__FormItemLabel>
                                                 enter_amount_withdraw
                                                  
-                                </Form.style__FormItemLabel>
+                                </Form__FormItemLabel>
                 }
 >
-                <Input.style
+                <Input
                                 className="withdraw-input"
                                 defaultValue="0"
                                 onBlur={[Function]}
@@ -1007,7 +1007,7 @@ ShallowWrapper {
                                 onFocus={[Function]}
                                 value="0"
                 />
-</Form.style__FormItem>,
+</Form__FormItem>,
               <GasOptions
                 defaultGasLimit={1000000}
                 defaultGasPrice={10}
@@ -1037,7 +1037,7 @@ ShallowWrapper {
                     alt="logo"
                     src="/public/images/assets/ETH.svg"
 />,
-                  <Select.style
+                  <Select
                     defaultValue="ETH"
                     onSelect={[Function]}
                     style={
@@ -1056,12 +1056,12 @@ ShallowWrapper {
                     >
                                         BOKKY
                     </Option>
-</Select.style>,
+</Select>,
                 ],
                 "colon": false,
-                "label": <Form.style__FormItemLabel>
+                "label": <Form__FormItemLabel>
                   select_asset_to_withdraw
-</Form.style__FormItemLabel>,
+</Form__FormItemLabel>,
               },
               "ref": null,
               "rendered": Array [
@@ -1137,7 +1137,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <Input.style
+                "children": <Input
                   className="withdraw-input"
                   defaultValue="0"
                   onBlur={[Function]}
@@ -1150,10 +1150,10 @@ ShallowWrapper {
                   left="$0.00"
                   right="usd"
 />,
-                "label": <Form.style__FormItemLabel>
+                "label": <Form__FormItemLabel>
                   enter_amount_withdraw
                    
-</Form.style__FormItemLabel>,
+</Form__FormItemLabel>,
               },
               "ref": null,
               "rendered": Object {
@@ -2014,20 +2014,20 @@ ShallowWrapper {
                                   }
             }
 >
-            <Form.style__FlexForm>
-                        <Form.style__FormItem
+            <Form__FlexForm>
+                        <Form__FormItem
                                     colon={false}
                                     label={
-                                                <Form.style__FormItemLabel>
+                                                <Form__FormItemLabel>
                                                             select_asset_to_withdraw
-                                                </Form.style__FormItemLabel>
+                                                </Form__FormItemLabel>
                                     }
                         >
                                     <style__Image
                                                 alt="logo"
                                                 src="/public/images/assets/ETH.svg"
                                     />
-                                    <Select.style
+                                    <Select
                                                 defaultValue="ETH"
                                                 onSelect={[Function]}
                                                 style={
@@ -2046,9 +2046,9 @@ ShallowWrapper {
                                                 >
                                                             BOKKY
                                                 </Option>
-                                    </Select.style>
-                        </Form.style__FormItem>
-                        <Form.style__FormItem
+                                    </Select>
+                        </Form__FormItem>
+                        <Form__FormItem
                                     colon={false}
                                     help={
                                                 <HelperTextComponent
@@ -2057,13 +2057,13 @@ ShallowWrapper {
                                                 />
                                     }
                                     label={
-                                                <Form.style__FormItemLabel>
+                                                <Form__FormItemLabel>
                                                             enter_amount_withdraw
                                                              
-                                                </Form.style__FormItemLabel>
+                                                </Form__FormItemLabel>
                                     }
                         >
-                                    <Input.style
+                                    <Input
                                                 className="withdraw-input"
                                                 defaultValue="0"
                                                 onBlur={[Function]}
@@ -2071,7 +2071,7 @@ ShallowWrapper {
                                                 onFocus={[Function]}
                                                 value="0"
                                     />
-                        </Form.style__FormItem>
+                        </Form__FormItem>
                         <GasOptions
                                     defaultGasLimit={1000000}
                                     defaultGasPrice={10}
@@ -2087,7 +2087,7 @@ ShallowWrapper {
                         <style__DollarPrice>
                                     1 ETH = $412.00
                         </style__DollarPrice>
-            </Form.style__FlexForm>
+            </Form__FlexForm>
 </div>,
           <div
             style={
@@ -2249,20 +2249,20 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": <Form.style__FlexForm>
-              <Form.style__FormItem
+            "children": <Form__FlexForm>
+              <Form__FormItem
                             colon={false}
                             label={
-                                          <Form.style__FormItemLabel>
+                                          <Form__FormItemLabel>
                                                         select_asset_to_withdraw
-                                          </Form.style__FormItemLabel>
+                                          </Form__FormItemLabel>
                             }
               >
                             <style__Image
                                           alt="logo"
                                           src="/public/images/assets/ETH.svg"
                             />
-                            <Select.style
+                            <Select
                                           defaultValue="ETH"
                                           onSelect={[Function]}
                                           style={
@@ -2281,9 +2281,9 @@ ShallowWrapper {
                                           >
                                                         BOKKY
                                           </Option>
-                            </Select.style>
-              </Form.style__FormItem>
-              <Form.style__FormItem
+                            </Select>
+              </Form__FormItem>
+              <Form__FormItem
                             colon={false}
                             help={
                                           <HelperTextComponent
@@ -2292,13 +2292,13 @@ ShallowWrapper {
                                           />
                             }
                             label={
-                                          <Form.style__FormItemLabel>
+                                          <Form__FormItemLabel>
                                                         enter_amount_withdraw
                                                          
-                                          </Form.style__FormItemLabel>
+                                          </Form__FormItemLabel>
                             }
               >
-                            <Input.style
+                            <Input
                                           className="withdraw-input"
                                           defaultValue="0"
                                           onBlur={[Function]}
@@ -2306,7 +2306,7 @@ ShallowWrapper {
                                           onFocus={[Function]}
                                           value="0"
                             />
-              </Form.style__FormItem>
+              </Form__FormItem>
               <GasOptions
                             defaultGasLimit={1000000}
                             defaultGasPrice={10}
@@ -2322,7 +2322,7 @@ ShallowWrapper {
               <style__DollarPrice>
                             1 ETH = $412.00
               </style__DollarPrice>
-</Form.style__FlexForm>,
+</Form__FlexForm>,
             "style": Object {
               "flex": "1",
               "marginBottom": "3rem",
@@ -2336,19 +2336,19 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": Array [
-                <Form.style__FormItem
+                <Form__FormItem
                   colon={false}
                   label={
-                                    <Form.style__FormItemLabel>
+                                    <Form__FormItemLabel>
                                                       select_asset_to_withdraw
-                                    </Form.style__FormItemLabel>
+                                    </Form__FormItemLabel>
                   }
 >
                   <style__Image
                                     alt="logo"
                                     src="/public/images/assets/ETH.svg"
                   />
-                  <Select.style
+                  <Select
                                     defaultValue="ETH"
                                     onSelect={[Function]}
                                     style={
@@ -2367,9 +2367,9 @@ ShallowWrapper {
                                     >
                                                       BOKKY
                                     </Option>
-                  </Select.style>
-</Form.style__FormItem>,
-                <Form.style__FormItem
+                  </Select>
+</Form__FormItem>,
+                <Form__FormItem
                   colon={false}
                   help={
                                     <HelperTextComponent
@@ -2378,13 +2378,13 @@ ShallowWrapper {
                                     />
                   }
                   label={
-                                    <Form.style__FormItemLabel>
+                                    <Form__FormItemLabel>
                                                       enter_amount_withdraw
                                                        
-                                    </Form.style__FormItemLabel>
+                                    </Form__FormItemLabel>
                   }
 >
-                  <Input.style
+                  <Input
                                     className="withdraw-input"
                                     defaultValue="0"
                                     onBlur={[Function]}
@@ -2392,7 +2392,7 @@ ShallowWrapper {
                                     onFocus={[Function]}
                                     value="0"
                   />
-</Form.style__FormItem>,
+</Form__FormItem>,
                 <GasOptions
                   defaultGasLimit={1000000}
                   defaultGasPrice={10}
@@ -2422,7 +2422,7 @@ ShallowWrapper {
                       alt="logo"
                       src="/public/images/assets/ETH.svg"
 />,
-                    <Select.style
+                    <Select
                       defaultValue="ETH"
                       onSelect={[Function]}
                       style={
@@ -2441,12 +2441,12 @@ ShallowWrapper {
                       >
                                             BOKKY
                       </Option>
-</Select.style>,
+</Select>,
                   ],
                   "colon": false,
-                  "label": <Form.style__FormItemLabel>
+                  "label": <Form__FormItemLabel>
                     select_asset_to_withdraw
-</Form.style__FormItemLabel>,
+</Form__FormItemLabel>,
                 },
                 "ref": null,
                 "rendered": Array [
@@ -2522,7 +2522,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": <Input.style
+                  "children": <Input
                     className="withdraw-input"
                     defaultValue="0"
                     onBlur={[Function]}
@@ -2535,10 +2535,10 @@ ShallowWrapper {
                     left="$0.00"
                     right="usd"
 />,
-                  "label": <Form.style__FormItemLabel>
+                  "label": <Form__FormItemLabel>
                     enter_amount_withdraw
                      
-</Form.style__FormItemLabel>,
+</Form__FormItemLabel>,
                 },
                 "ref": null,
                 "rendered": Object {

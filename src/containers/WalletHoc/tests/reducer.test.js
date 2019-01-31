@@ -22,7 +22,9 @@ import {
   addNewWallet,
   lockWallet,
   transferSuccess,
+  dragWallet,
 } from '../actions';
+import { DRAG_WALLET } from '../constants';
 
 const wallet = {
   name: 'testwallet',
@@ -58,6 +60,28 @@ describe('walletHocReducer', () => {
 
   it('returns the initial state', () => {
     expect(walletHocReducer(undefined, {})).toEqual(state);
+  });
+
+  describe('dragWallet handling', () => {
+    it('should drag a wallet correctly', () => {
+      const oldIndex = 0;
+      const newIndex = 1;
+      const wallets = fromJS([{ name: '1' }, { name: '2' }]);
+      const mockState = state.set('wallets', wallets);
+      const expected = state.set('wallets', fromJS([{ name: '2' }, { name: '1' }]));
+      expect(walletHocReducer(
+        mockState,
+        dragWallet({ wallets, oldIndex, newIndex })
+      )).toEqual(expected);
+    });
+
+    it('should throw an error if any wallets are lost', () => {
+      const mockState = state.set('wallets', fromJS([{ name: '1' }, { name: '2' }]));
+      expect(() => walletHocReducer(
+        mockState,
+        { type: DRAG_WALLET, newWallets: [] }
+      )).toThrowError('Invalid DRAG_WALLET action payload');
+    });
   });
 
   describe('software wallet lifecycle reducers', () => {

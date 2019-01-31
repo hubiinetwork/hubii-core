@@ -52,8 +52,8 @@ describe('<NahmiiAirdriipRegistration />', () => {
             ...currentNetworkMock,
             provider: {
               ...currentNetworkMock.provider,
-              network: {
-                name: 'homestead',
+              _network: {
+                chainId: 1,
               },
             },
           }}

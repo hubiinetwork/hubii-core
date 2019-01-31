@@ -15,7 +15,7 @@ import nahmii from 'nahmii-sdk';
 import { utils as ethersUtils } from 'ethers';
 import BigNumber from 'bignumber.js';
 
-import request, { requestWalletAPI } from 'utils/request';
+import { requestWalletAPI } from 'utils/request';
 import rpcRequest from 'utils/rpcRequest';
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
@@ -64,13 +64,14 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
       // get ETH balance
       const ethBal = yield network.provider.getBalance(address);
       if (onlyEth) {
-        yield put(loadWalletBalancesSuccess(address, [{ currency: 'ETH', address, decimals: 18, balance: ethBal }]));
+        yield put(loadWalletBalancesSuccess(address, [{ currency: '0x0000000000000000000000000000000000000000', address, decimals: 18, balance: ethBal }]));
         return;
       }
 
       // get token balances, batching all the requests in an array and sending them all at once
       // https://stackoverflow.com/questions/48228662/get-token-balance-with-ethereum-rpc
-      const tokenContractAddresses = supportedAssets.assets.map((a) => a.currency).slice(0, -1);
+      const supportedTokens = supportedAssets.assets.filter((a) => a.currency !== '0x0000000000000000000000000000000000000000');
+      const tokenContractAddresses = supportedTokens.map((a) => a.currency);
 
       // the first provider in network.provider.providers in an Infura node, which supports RPC calls
       const jsonRpcProvider = network.provider.providers ? network.provider.providers[0] : network.provider;
@@ -100,10 +101,10 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
       const tokenBals = response.map((item) => new BigNumber(item.result));
       const formattedBalances = tokenBals.reduce((acc, bal, i) => {
         if (!bal.gt('0')) return acc;
-        const { currency } = supportedAssets.assets[i];
+        const { currency } = supportedTokens[i];
         return [...acc, { address, currency, balance: bal.toString() }];
       }, []);
-      yield put(loadWalletBalancesSuccess(address, [{ currency: 'ETH', address, balance: ethBal.toString() }, ...formattedBalances]));
+      yield put(loadWalletBalancesSuccess(address, [{ currency: '0x0000000000000000000000000000000000000000', address, balance: ethBal.toString() }, ...formattedBalances]));
     } catch (err) {
       yield put(loadWalletBalancesError(address, err));
     } finally {
@@ -118,78 +119,34 @@ export function* loadSupportedTokens(network) {
   const requestPath = 'ethereum/supported-tokens';
   try {
     const returnData = yield call(requestWalletAPI, requestPath, network);
-    // temporarily filter out the ETH asset details that comes back from backend.
-    // in the future we should remove our own ETH asset we add in actions, and
-    // start relying on the one from the backend.
-    // see https://github.com/hubiinetwork/hubii-core/issues/630
-    yield put(loadSupportedTokensSuccess(returnData.filter((asset) => asset.symbol !== 'ETH')));
+    yield put(loadSupportedTokensSuccess(returnData));
   } catch (err) {
     yield put(loadSupportedTokensError(err));
   }
 }
 
-// temp function to add ETH price, and other broken prices to the load prices response
-function* patchPrices(returnData) {
-  let supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
-
-  // wait for supported assets to load
-  if (supportedAssets.loading) {
-    yield take(LOAD_SUPPORTED_TOKENS_SUCCESS);
-    supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
-  }
-
-  // get the symbols that need refetching
-  let pathSyms = 'ETH';
-  const symbols = ['ETH'];
-  returnData.forEach((price) => {
-    if (!price.eth) {
-      const symbol = supportedAssets.assets.find((asset) => asset.currency === price.currency).symbol;
-      symbols.push(symbol);
-      pathSyms = `${pathSyms},${symbol}`;
+// if supported asset doesn't have a price, set it to 0
+function patchPrices(prices, supportedAssets) {
+  return supportedAssets.assets.map((a) => {
+    const price = prices.find((p) => p.currency === a.currency);
+    if (!price) {
+      return { currency: a.currency, btc: '0', eth: '0', usd: '0' };
     }
+    return price;
   });
-
-  // get the pricing data
-  const endpoint = 'https://min-api.cryptocompare.com/';
-  const prices = { ETH: {}, USD: {}, BTC: {} };
-  const [ethPrices, usdPrices, btcPrices] = yield all(
-    Object.keys(prices).map((sym) => {
-      const path = `data/price?fsym=${sym}&tsyms=${pathSyms}`;
-      return request(path, {}, endpoint);
-    })
-  );
-  prices.ETH = ethPrices;
-  prices.USD = usdPrices;
-  prices.BTC = btcPrices;
-
-  // massage the data
-  Object.keys(prices).forEach((primarySym) => {
-    Object.keys(prices[primarySym]).forEach((secondarySym) => {
-      const price = new BigNumber(1).dividedBy(prices[primarySym][secondarySym]).toString();
-      prices[primarySym][secondarySym] = price;
-    });
-  });
-
-  // patch the new pricing data onto the hubii data
-  const patchedData = [...returnData, { currency: 'ETH', eth: prices.ETH.ETH, btc: prices.BTC.ETH, usd: prices.USD.ETH }];
-  symbols.forEach((symbol) => {
-    if (symbol === 'ETH') return;
-    const currency = supportedAssets.assets.find((a) => a.symbol === symbol).currency;
-    const entry = patchedData.find((item) => item.currency === currency);
-    entry.eth = prices.ETH[symbol] || '0';
-    entry.usd = prices.USD[symbol] || '0';
-    entry.btc = prices.BTC[symbol] || '0';
-  });
-
-  return patchedData;
 }
 
 export function* loadPrices(network) {
   const requestPath = 'ethereum/prices';
   while (true) { // eslint-disable-line no-constant-condition
     try {
+      let supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+      if (supportedAssets.loading) {
+        yield take(LOAD_SUPPORTED_TOKENS_SUCCESS);
+        supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
+      }
       const returnData = yield call(requestWalletAPI, requestPath, network);
-      const patchedData = yield patchPrices(returnData);
+      const patchedData = patchPrices(returnData, supportedAssets);
       yield put(loadPricesSuccess(patchedData));
     } catch (err) {
       yield put(loadPricesError(err));
@@ -205,7 +162,16 @@ export function* loadTransactions({ address }, network) {
   while (true) { // eslint-disable-line no-constant-condition
     try {
       const returnData = yield call(requestWalletAPI, requestPath, network);
-      yield put(loadTransactionsSuccess(address, returnData));
+      // when backend becomes consistent and uses '0x00...' for currency in this endpoint,
+      // we can remove the processing below
+      const processedReturnData = returnData.map((t) => {
+        if (t.currency !== 'ETH') return t;
+        return {
+          ...t,
+          currency: '0x0000000000000000000000000000000000000000',
+        };
+      });
+      yield put(loadTransactionsSuccess(address, processedReturnData));
     } catch (err) {
       yield put(loadTransactionsError(address, err));
     } finally {

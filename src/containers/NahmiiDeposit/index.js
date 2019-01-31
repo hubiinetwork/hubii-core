@@ -15,7 +15,7 @@ import {
   gweiToEther,
   gweiToWei,
   isHardwareWallet,
-  walletReady,
+  // walletReady,
 } from 'utils/wallet';
 import BigNumber from 'bignumber.js';
 import { formatFiat } from 'utils/numberFormats';
@@ -54,6 +54,7 @@ import {
   LoadingWrapper,
   NoTxPlaceholder,
 } from './style';
+import ScrollableContentWrapper from '../../components/ui/ScrollableContentWrapper';
 
 
 export class NahmiiDeposit extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -61,7 +62,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     super(props);
 
     const baseLayerAssets = props.currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
-    const assetToDeposit = baseLayerAssets[0] || { symbol: 'ETH', currency: 'ETH', balance: new BigNumber('0') };
+    const assetToDeposit = baseLayerAssets[0] || { symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000', balance: new BigNumber('0') };
 
     // max decimals possible for current asset
     let assetToDepositMaxDecimals = 18;
@@ -256,13 +257,13 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
     const usdValueToDeposit = amountToDeposit
       .times(assetToDepositUsdValue);
     const ethUsdValue = prices.toJS().assets
-      .find((a) => a.currency === 'ETH').usd;
+      .find((a) => a.currency === '0x0000000000000000000000000000000000000000').usd;
     const baseLayerEthBalance = baseLayerAssets
       .find((currency) => currency.symbol === 'ETH');
 
     // construct tx fee info
     let txFeeAmt = gweiToEther(gasPriceGwei).times(gasLimit);
-    if (assetToDeposit.currency !== 'ETH') txFeeAmt = txFeeAmt.times('2');
+    if (assetToDeposit.currency !== '0x0000000000000000000000000000000000000000') txFeeAmt = txFeeAmt.times('2');
     const txFeeUsdValue = txFeeAmt.times(ethUsdValue);
     const transactionFee = {
       amount: txFeeAmt,
@@ -305,182 +306,184 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       usdValue: baseLayerEthBalanceAfterAmount.times(ethUsdValue),
     };
 
-    const walletType = currentWalletWithInfo.get('type');
+    // const walletType = currentWalletWithInfo.get('type');
 
-    const unsupportedNetwork = this.props.currentNetwork.provider._network.name === 'homestead';
-    const disableDepositButton =
-      unsupportedNetwork ||
-      amountToDeposit.toNumber() <= 0 ||
-      baseLayerBalAfterAmt.isNegative() ||
-      baseLayerEthBalanceAfterAmount.isNegative() ||
-      !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
+    // const unsupportedNetwork = this.props.currentNetwork.provider._network.chainId === 1;
+    const disableDepositButton = true;
+    // const disableDepositButton =
+    //   unsupportedNetwork ||
+    //   amountToDeposit.toNumber() <= 0 ||
+    //   baseLayerBalAfterAmt.isNegative() ||
+    //   baseLayerEthBalanceAfterAmount.isNegative() ||
+    //   !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
     const TransferingStatus = this.generateTransferingStatus(depositStatus, ledgerNanoSInfo, trezorInfo);
     return (
-      <div style={{ display: 'flex', flex: '1', flexWrap: 'wrap' }}>
-        <div style={{ flex: '1', marginRight: '2rem', marginBottom: '3rem' }}>
-          <Form>
-            <FormItem
-              label={<FormItemLabel>{formatMessage({ id: 'select_asset_to_deposit' })}</FormItemLabel>}
-              colon={false}
-            >
-              <Image
-                src={getAbsolutePath(`public/images/assets/${assetToDeposit.symbol}.svg`)}
-                alt="logo"
-              />
-              <Select
-                // disabled={transfering}
-                defaultValue={assetToDeposit.symbol}
-                onSelect={this.handleAssetChange}
-                style={{ paddingLeft: '0.5rem' }}
+      <ScrollableContentWrapper>
+        <div style={{ display: 'flex', flex: '1', flexWrap: 'wrap', marginTop: '0.5rem' }}>
+          <div style={{ flex: '1', marginRight: '2rem', marginBottom: '3rem' }}>
+            <Form>
+              <FormItem
+                label={<FormItemLabel>{formatMessage({ id: 'select_asset_to_deposit' })}</FormItemLabel>}
+                colon={false}
               >
-                {baseLayerAssets.map((currency) => (
-                  <Option value={currency.symbol} key={currency.symbol}>
-                    {currency.symbol}
-                  </Option>
+                <Image
+                  src={getAbsolutePath(`public/images/assets/${assetToDeposit.symbol}.svg`)}
+                  alt="logo"
+                />
+                <Select
+                // disabled={transfering}
+                  defaultValue={assetToDeposit.symbol}
+                  onSelect={this.handleAssetChange}
+                  style={{ paddingLeft: '0.5rem' }}
+                >
+                  {baseLayerAssets.map((currency) => (
+                    <Option value={currency.symbol} key={currency.symbol}>
+                      {currency.symbol}
+                    </Option>
                 ))}
-              </Select>
-            </FormItem>
-            <FormItem
-              label={<FormItemLabel>{formatMessage({ id: 'enter_amount' })}</FormItemLabel>}
-              colon={false}
-              help={<HelperText left={formatFiat(usdValueToDeposit, 'USD')} right={formatMessage({ id: 'usd' })} />}
-            >
-              <Input
-                defaultValue={amountToDepositInput}
-                value={amountToDepositInput}
-                onFocus={() => this.onFocusNumberInput('amountToDepositInput')}
-                onBlur={() => this.onBlurNumberInput('amountToDepositInput')}
-                onChange={this.handleAmountToDepositChange}
+                </Select>
+              </FormItem>
+              <FormItem
+                label={<FormItemLabel>{formatMessage({ id: 'enter_amount' })}</FormItemLabel>}
+                colon={false}
+                help={<HelperText left={formatFiat(usdValueToDeposit, 'USD')} right={formatMessage({ id: 'usd' })} />}
+              >
+                <Input
+                  defaultValue={amountToDepositInput}
+                  value={amountToDepositInput}
+                  onFocus={() => this.onFocusNumberInput('amountToDepositInput')}
+                  onBlur={() => this.onBlurNumberInput('amountToDepositInput')}
+                  onChange={this.handleAmountToDepositChange}
+                />
+              </FormItem>
+              <GasOptions
+                intl={intl}
+                defaultGasLimit={gasLimit}
+                defaultGasPrice={gasPriceGwei.toNumber()}
+                gasStatistics={gasStatistics.get('estimate')}
+                defaultOption="average"
+                onChange={this.onGasChange}
               />
-            </FormItem>
-            <GasOptions
-              intl={intl}
-              defaultGasLimit={gasLimit}
-              defaultGasPrice={gasPriceGwei.toNumber()}
-              gasStatistics={gasStatistics.get('estimate')}
-              defaultOption="average"
-              onChange={this.onGasChange}
-            />
-            <DollarPrice>
-              {`1 ${assetToDeposit.symbol} = ${formatFiat(assetToDepositUsdValue, 'USD')}`}
-            </DollarPrice>
-          </Form>
-        </div>
-        <div style={{ minWidth: '34rem' }}>
-          <Row>
-            <StyledCol span={12}>Deposit</StyledCol>
-          </Row>
-          <Row>
-            <TransferDescriptionItem
-              main={`${amountToDeposit.toString()} ${assetToDeposit.symbol}`}
-              subtitle={formatFiat(usdValueToDeposit.toNumber(), 'USD')}
-            />
-          </Row>
-          <Row>
-            <StyledCol span={12}>{formatMessage({ id: 'base_layer_fee' })}</StyledCol>
-          </Row>
-          <Row>
-            <TransferDescriptionItem
-              main={`${transactionFee.amount.toString()} ETH`}
-              subtitle={formatFiat(transactionFee.usdValue.toNumber(), 'USD')}
-            />
-          </Row>
-          <Row>
-            <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
-          </Row>
-          <Row>
-            <TransferDescriptionItem
-              main={`${baseLayerEthBalanceBefore.amount.toString()} ETH`}
-              subtitle={formatFiat(baseLayerEthBalanceBefore.usdValue.toNumber(), 'USD')}
-            />
-          </Row>
-          <Row>
-            <StyledCol span={12}>
-              {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
-            </StyledCol>
-          </Row>
-          <Row>
-            <TransferDescriptionItem
-              main={`${baseLayerEthBalanceAfter.amount} ETH`}
-              subtitle={formatFiat(baseLayerEthBalanceAfter.usdValue.toNumber(), 'USD')}
-            />
-          </Row>
-          {assetToDeposit.symbol === 'ETH' &&
-          <div>
-            <Row>
-              <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
-            </Row>
-            <Row>
-              <TransferDescriptionItem
-                main={`${nahmiiBalanceBefore.amount.toString()} ETH`}
-                subtitle={formatFiat(nahmiiBalanceBefore.usdValue.toNumber(), 'USD')}
-              />
-            </Row>
-            <Row>
-              <StyledCol span={12}>
-                {formatMessage({ id: 'nahmii' })} ETH {formatMessage({ id: 'balance_after' })}
-              </StyledCol>
-            </Row>
-            <Row>
-              <TransferDescriptionItem
-                main={`${nahmiiBalanceAfter.amount} ETH`}
-                subtitle={formatFiat(nahmiiBalanceAfter.usdValue.toNumber(), 'USD')}
-              />
-            </Row>
+              <DollarPrice>
+                {`1 ${assetToDeposit.symbol} = ${formatFiat(assetToDepositUsdValue, 'USD')}`}
+              </DollarPrice>
+            </Form>
           </div>
-          }
-          {assetToDeposit.symbol !== 'ETH' &&
-          <div>
+          <div style={{ minWidth: '34rem' }}>
             <Row>
-              <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} {assetToDeposit.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+              <StyledCol span={12}>Deposit</StyledCol>
             </Row>
             <Row>
               <TransferDescriptionItem
-                main={`${baseLayerBalanceBefore.amount} ${assetToDeposit.symbol}`}
-                subtitle={formatFiat(baseLayerBalanceBefore.usdValue.toNumber(), 'USD')}
+                main={`${amountToDeposit.toString()} ${assetToDeposit.symbol}`}
+                subtitle={formatFiat(usdValueToDeposit.toNumber(), 'USD')}
+              />
+            </Row>
+            <Row>
+              <StyledCol span={12}>{formatMessage({ id: 'base_layer_fee' })}</StyledCol>
+            </Row>
+            <Row>
+              <TransferDescriptionItem
+                main={`${transactionFee.amount.toString()} ETH`}
+                subtitle={formatFiat(transactionFee.usdValue.toNumber(), 'USD')}
+              />
+            </Row>
+            <Row>
+              <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+            </Row>
+            <Row>
+              <TransferDescriptionItem
+                main={`${baseLayerEthBalanceBefore.amount.toString()} ETH`}
+                subtitle={formatFiat(baseLayerEthBalanceBefore.usdValue.toNumber(), 'USD')}
               />
             </Row>
             <Row>
               <StyledCol span={12}>
-                {formatMessage({ id: 'base_layer' })} { assetToDeposit.symbol } {formatMessage({ id: 'balance_after' })}
+                {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
               </StyledCol>
             </Row>
             <Row>
               <TransferDescriptionItem
-                main={`${baseLayerBalanceAfter.amount} ${assetToDeposit.symbol}`}
-                subtitle={formatFiat(baseLayerBalanceAfter.usdValue.toNumber(), 'USD')}
+                main={`${baseLayerEthBalanceAfter.amount} ETH`}
+                subtitle={formatFiat(baseLayerEthBalanceAfter.usdValue.toNumber(), 'USD')}
               />
             </Row>
-            <Row>
-              <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} {assetToDeposit.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
-            </Row>
-            <Row>
-              <TransferDescriptionItem
-                main={`${nahmiiBalanceBefore.amount} ${assetToDeposit.symbol}`}
-                subtitle={formatFiat(nahmiiBalanceBefore.usdValue.toNumber(), 'USD')}
-              />
-            </Row>
-            <Row>
-              <StyledCol span={12}>
-                {formatMessage({ id: 'nahmii' })} { assetToDeposit.symbol } {formatMessage({ id: 'balance_after' })}
-              </StyledCol>
-            </Row>
-            <Row>
-              <TransferDescriptionItem
-                main={`${nahmiiBalanceAfter.amount} ${assetToDeposit.symbol}`}
-                subtitle={formatFiat(nahmiiBalanceAfter.usdValue.toNumber(), 'USD')}
-              />
-            </Row>
-          </div>
+            {assetToDeposit.symbol === 'ETH' &&
+            <div>
+              <Row>
+                <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+              </Row>
+              <Row>
+                <TransferDescriptionItem
+                  main={`${nahmiiBalanceBefore.amount.toString()} ETH`}
+                  subtitle={formatFiat(nahmiiBalanceBefore.usdValue.toNumber(), 'USD')}
+                />
+              </Row>
+              <Row>
+                <StyledCol span={12}>
+                  {formatMessage({ id: 'nahmii' })} ETH {formatMessage({ id: 'balance_after' })}
+                </StyledCol>
+              </Row>
+              <Row>
+                <TransferDescriptionItem
+                  main={`${nahmiiBalanceAfter.amount} ETH`}
+                  subtitle={formatFiat(nahmiiBalanceAfter.usdValue.toNumber(), 'USD')}
+                />
+              </Row>
+            </div>
           }
-          <Row>
-            {
+            {assetToDeposit.symbol !== 'ETH' &&
+            <div>
+              <Row>
+                <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} {assetToDeposit.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+              </Row>
+              <Row>
+                <TransferDescriptionItem
+                  main={`${baseLayerBalanceBefore.amount} ${assetToDeposit.symbol}`}
+                  subtitle={formatFiat(baseLayerBalanceBefore.usdValue.toNumber(), 'USD')}
+                />
+              </Row>
+              <Row>
+                <StyledCol span={12}>
+                  {formatMessage({ id: 'base_layer' })} { assetToDeposit.symbol } {formatMessage({ id: 'balance_after' })}
+                </StyledCol>
+              </Row>
+              <Row>
+                <TransferDescriptionItem
+                  main={`${baseLayerBalanceAfter.amount} ${assetToDeposit.symbol}`}
+                  subtitle={formatFiat(baseLayerBalanceAfter.usdValue.toNumber(), 'USD')}
+                />
+              </Row>
+              <Row>
+                <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} {assetToDeposit.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+              </Row>
+              <Row>
+                <TransferDescriptionItem
+                  main={`${nahmiiBalanceBefore.amount} ${assetToDeposit.symbol}`}
+                  subtitle={formatFiat(nahmiiBalanceBefore.usdValue.toNumber(), 'USD')}
+                />
+              </Row>
+              <Row>
+                <StyledCol span={12}>
+                  {formatMessage({ id: 'nahmii' })} { assetToDeposit.symbol } {formatMessage({ id: 'balance_after' })}
+                </StyledCol>
+              </Row>
+              <Row>
+                <TransferDescriptionItem
+                  main={`${nahmiiBalanceAfter.amount} ${assetToDeposit.symbol}`}
+                  subtitle={formatFiat(nahmiiBalanceAfter.usdValue.toNumber(), 'USD')}
+                />
+              </Row>
+            </div>
+          }
+            <Row>
+              {
             isHardwareWallet(currentWalletWithInfo.get('type')) &&
             <HWPromptWrapper>
               <HWPromptContainer />
             </HWPromptWrapper>
             }
-            {
+              {
             TransferingStatus ?
               (
                 <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }}>
@@ -489,8 +492,8 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               ) : (
                 <Tooltip
                   placement="bottom"
-                  overlayStyle={!unsupportedNetwork ? { display: 'none' } : null}
-                  title={<span>{formatMessage({ id: 'nahmii_mainnet' })}</span>}
+                  // overlayStyle={!unsupportedNetwork ? { display: 'none' } : null}
+                  title={<span>{formatMessage({ id: 'nahmii_deposits' })}</span>}
                 >
                   <div style={{ width: 'fit-content' }}>
                     <StyledButton
@@ -509,12 +512,13 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                 </Tooltip>
                 )
               }
-          </Row>
-          <SectionHeading style={{ marginTop: '2rem', maxWidth: '25rem' }}>
-            Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)
-          </SectionHeading>
+            </Row>
+            <SectionHeading style={{ marginTop: '2rem', maxWidth: '25rem' }}>
+              {formatMessage({ id: 'deposits_note' })}
+            </SectionHeading>
+          </div>
         </div>
-      </div>
+      </ScrollableContentWrapper>
     );
   }
 }

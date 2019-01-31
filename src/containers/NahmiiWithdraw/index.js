@@ -73,7 +73,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     super(props);
 
     const baseLayerAssets = props.currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
-    const assetToWithdraw = baseLayerAssets[0] || { symbol: 'ETH', currency: 'ETH', balance: new BigNumber('0') };
+    const assetToWithdraw = baseLayerAssets[0] || { symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000', balance: new BigNumber('0') };
 
     // max decimals possible for current asset
     let assetToWithdrawMaxDecimals = 18;
@@ -344,7 +344,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     const usdValueToWithdraw = amountToWithdraw
       .times(assetToWithdrawUsdValue);
     const ethUsdValue = prices.toJS().assets
-      .find((a) => a.currency === 'ETH').usd;
+      .find((a) => a.currency === '0x0000000000000000000000000000000000000000').usd;
     const baseLayerEthBalance = baseLayerAssets
       .find((currency) => currency.symbol === 'ETH');
 

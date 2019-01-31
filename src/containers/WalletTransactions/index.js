@@ -1,7 +1,6 @@
 import React from 'react';
 import { Alert } from 'antd';
 import { shell } from 'electron';
-import uuid from 'uuid/v4';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -12,6 +11,7 @@ import { formatFiat } from 'utils/numberFormats';
 import Breakdown from 'components/BreakdownPie';
 import SectionHeading from 'components/ui/SectionHeading';
 import Select, { Option } from 'components/ui/Select';
+import ScrollableContentWrapper from 'components/ui/ScrollableContentWrapper';
 
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 
@@ -71,9 +71,8 @@ export class WalletsTransactions extends React.Component {
     this.setState({ filter });
   }
 
-  // Every time this component rerenders it resets if a transaction is expanded or
-  // collapsed. Keep track of which Transactions are expanded so we can pass in a
-  // correct default state every render
+  // persist which tx are expanded so we can keep UI consisent as the user flips
+  // through pagination
   updateExpandedTx(id) {
     const { expandedTxs } = this.state;
     if (!expandedTxs.has(id)) {
@@ -125,42 +124,43 @@ export class WalletsTransactions extends React.Component {
       return <NoTxPlaceholder>{ formatMessage({ id: 'no_transaction_history' }) }</NoTxPlaceholder>;
     }
     return (
-      <OuterWrapper>
-        <TransactionsWrapper>
-          <div style={{ display: 'flex' }}>
-            <SectionHeading>{formatMessage({ id: 'transaction_history' })}</SectionHeading>
-            <Select
-              style={{ width: '10rem', marginLeft: 'auto', marginBottom: '0.5rem' }}
-              onChange={this.handleFilterChange}
-              value={this.state.filter}
-            >
-              <Option key={'all'}>{formatMessage({ id: 'all' })}</Option>
-              <Option key={'nahmii'}>{formatMessage({ id: 'only_nahmii' })}</Option>
-              <Option key={'baseLayer'}>{formatMessage({ id: 'only_base_layer' })}</Option>
-            </Select>
-          </div>
-          {txToShow.map((tx) => (
-            <StyledTransaction
-              key={uuid()}
-              time={new Date(tx.timestamp)}
-              counterpartyAddress={tx.counterpartyAddress}
-              amount={tx.decimalAmount}
-              fiatEquivilent={formatFiat(tx.fiatValue, 'USD')}
-              symbol={tx.symbol}
-              confirmations={tx.confirmations}
-              type={tx.type}
-              layer={tx.layer}
-              viewOnBlockExplorerClick={
+      <ScrollableContentWrapper>
+        <OuterWrapper>
+          <TransactionsWrapper>
+            <div style={{ display: 'flex' }}>
+              <SectionHeading>{formatMessage({ id: 'transaction_history' })}</SectionHeading>
+              <Select
+                style={{ width: '10rem', marginLeft: 'auto', marginBottom: '0.5rem' }}
+                onChange={this.handleFilterChange}
+                value={this.state.filter}
+              >
+                <Option key={'all'}>{formatMessage({ id: 'all' })}</Option>
+                <Option key={'nahmii'}>{formatMessage({ id: 'only_nahmii' })}</Option>
+                <Option key={'baseLayer'}>{formatMessage({ id: 'only_base_layer' })}</Option>
+              </Select>
+            </div>
+            {txToShow.map((tx) => (
+              <StyledTransaction
+                key={`${tx.hash}${tx.type}${tx.symbol}${tx.id}`}
+                time={new Date(tx.timestamp)}
+                counterpartyAddress={tx.counterpartyAddress}
+                amount={tx.decimalAmount}
+                fiatEquivilent={formatFiat(tx.fiatValue, 'USD')}
+                symbol={tx.symbol}
+                confirmations={tx.confirmations}
+                type={tx.type}
+                layer={tx.layer}
+                viewOnBlockExplorerClick={
                 currentNetwork.provider._network.name === 'ropsten' ?
                   () => shell.openExternal(`https://ropsten.etherscan.io/tx/${tx.hash}`) :
                   () => shell.openExternal(`https://etherscan.io/tx/${tx.hash}`)
               }
-              onChange={() => this.updateExpandedTx(`${tx.hash}${tx.type}${tx.symbol}${tx.id}`)}
-              defaultOpen={expandedTxs.has(`${tx.hash}${tx.type}${tx.symbol}${tx.id}`)}
-            />
+                onChange={() => this.updateExpandedTx(`${tx.hash}${tx.type}${tx.symbol}${tx.id}`)}
+                defaultOpen={expandedTxs.has(`${tx.hash}${tx.type}${tx.symbol}${tx.id}`)}
+              />
             ))
           }
-          {
+            {
             filtered.size > 0 &&
             <StyledPagination
               total={filtered.size}
@@ -170,39 +170,40 @@ export class WalletsTransactions extends React.Component {
               onChange={this.onPaginationChange}
             />
           }
-          <Alert
-            message={formatMessage({ id: 'where_my_transaction' })}
-            description={
-              <div>
-                <span>
-                  {formatMessage({ id: 'my_transaction_notes_1' })}
-                </span>
-                <br />
-                {formatMessage({ id: 'my_transaction_notes_2' })}
-                <a
-                  role="link"
-                  tabIndex={0}
-                  onClick={
+            <Alert
+              message={formatMessage({ id: 'where_my_transaction' })}
+              description={
+                <div>
+                  <span>
+                    {formatMessage({ id: 'my_transaction_notes_1' })}
+                  </span>
+                  <br />
+                  {formatMessage({ id: 'my_transaction_notes_2' })}
+                  <a
+                    role="link"
+                    tabIndex={0}
+                    onClick={
                     currentNetwork.provider._network.name === 'ropsten' ?
                       () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
                       () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
                   }
-                >{formatMessage({ id: 'view_them_etherscan' })}</a>
-                <span>.</span>
-              </div>
+                  >{formatMessage({ id: 'view_them_etherscan' })}</a>
+                  <span>.</span>
+                </div>
               }
-            type="info"
-            showIcon
-            style={{ margin: '2rem 0' }}
-          />
-        </TransactionsWrapper>
-        <BreakdownWrapper>
-          <Breakdown
-            totalBalances={currentWalletWithInfo.get('balances')}
-            supportedAssets={supportedAssets}
-          />
-        </BreakdownWrapper>
-      </OuterWrapper>
+              type="info"
+              showIcon
+              style={{ margin: '2rem 0' }}
+            />
+          </TransactionsWrapper>
+          <BreakdownWrapper>
+            <Breakdown
+              totalBalances={currentWalletWithInfo.get('balances')}
+              supportedAssets={supportedAssets}
+            />
+          </BreakdownWrapper>
+        </OuterWrapper>
+      </ScrollableContentWrapper>
     );
   }
 }
