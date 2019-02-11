@@ -317,14 +317,11 @@ export function* loadStagingBalances({ address }, network) {
     supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
   }
 
-  const provider = network.provider;
-  const driipSettlementChallengeContract = new DriipSettlementChallengeContract(provider);
+  const { nahmiiProvider } = network;
+  const driipSettlementChallengeContract = new DriipSettlementChallengeContract(nahmiiProvider);
 
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      // the first provider in network.provider.providers in an Infura node, which supports RPC calls
-      const jsonRpcProvider = provider.providers ? provider.providers[0] : provider;
-
       const driipSettlementChallengeContractAddress = driipSettlementChallengeContract.address;
 
       // derive function selector
@@ -348,7 +345,7 @@ export function* loadStagingBalances({ address }, network) {
         };
       });
       // send all requests at once
-      const response = yield rpcRequest(jsonRpcProvider.connection.url, JSON.stringify(requestBatch));
+      const response = yield rpcRequest(nahmiiProvider.connection.url, JSON.stringify(requestBatch));
 
       // process the response
       const formattedBalances = response.reduce((acc, { result }, i) => {
@@ -379,14 +376,11 @@ export function* loadStagedBalances({ address }, network, noPoll) {
     supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
   }
 
-  const provider = network.provider;
-  const balanceTrackerContract = new BalanceTrackerContract(provider);
+  const { nahmiiProvider } = network;
+  const balanceTrackerContract = new BalanceTrackerContract(nahmiiProvider);
 
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      // the first provider in network.provider.providers in an Infura node, which supports RPC calls
-      const jsonRpcProvider = provider.providers ? provider.providers[0] : provider;
-
       const balanceTrackerContractAddress = balanceTrackerContract.address;
       // derive function selector
       const balanceType = yield balanceTrackerContract.stagedBalanceType();
@@ -411,7 +405,7 @@ export function* loadStagedBalances({ address }, network, noPoll) {
         };
       });
       // send all requests at once
-      const response = yield rpcRequest(jsonRpcProvider.connection.url, JSON.stringify(requestBatch));
+      const response = yield rpcRequest(nahmiiProvider.connection.url, JSON.stringify(requestBatch));
       // process the response
       const tokenBals = response.map((item) => new BigNumber(item.result));
       const formattedBalances = tokenBals.reduce((acc, bal, i) => {

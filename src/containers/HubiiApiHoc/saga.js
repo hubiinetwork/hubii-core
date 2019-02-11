@@ -53,6 +53,7 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
     yield take(LOAD_SUPPORTED_TOKENS_SUCCESS);
     supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
   }
+  const { nahmiiProvider } = network;
   // const requestPath = `ethereum/wallets/${address}/balances`;
   while (true) { // eslint-disable-line no-constant-condition
     try {
@@ -62,7 +63,7 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
        * temporarily fetching balances from node until the backend is fixed
        */
       // get ETH balance
-      const ethBal = yield network.provider.getBalance(address);
+      const ethBal = yield nahmiiProvider.getBalance(address);
       if (onlyEth) {
         yield put(loadWalletBalancesSuccess(address, [{ currency: '0x0000000000000000000000000000000000000000', address, decimals: 18, balance: ethBal }]));
         return;
@@ -72,9 +73,6 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
       // https://stackoverflow.com/questions/48228662/get-token-balance-with-ethereum-rpc
       const supportedTokens = supportedAssets.assets.filter((a) => a.currency !== '0x0000000000000000000000000000000000000000');
       const tokenContractAddresses = supportedTokens.map((a) => a.currency);
-
-      // the first provider in network.provider.providers in an Infura node, which supports RPC calls
-      const jsonRpcProvider = network.provider.providers ? network.provider.providers[0] : network.provider;
 
       // pad the 20 byte address to 32 bytes
       const paddedAddr = ethersUtils.hexlify(ethersUtils.padZeros(address, 32));
@@ -95,7 +93,7 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
           jsonrpc: '2.0',
         };
       });
-      const response = yield rpcRequest(jsonRpcProvider.connection.url, JSON.stringify(requestBatch));
+      const response = yield rpcRequest(nahmiiProvider.connection.url, JSON.stringify(requestBatch));
 
       // process and return the response
       const tokenBals = response.map((item) => new BigNumber(item.result));
