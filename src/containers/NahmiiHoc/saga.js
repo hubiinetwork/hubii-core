@@ -1,6 +1,6 @@
-import BalanceTrackerContract from 'nahmii-sdk/lib/balance-tracker-contract';
-import DriipSettlementChallengeContract from 'nahmii-sdk/lib/driip-settlement-challenge-contract';
 import nahmii from 'nahmii-sdk';
+import BalanceTrackerContract from 'nahmii-sdk/lib/wallet/balance-tracker-contract';
+import DriipSettlementChallengeContract from 'nahmii-sdk/lib/settlement/driip-settlement-challenge-contract';
 import { utils } from 'ethers';
 import { all, fork, takeEvery, takeLatest, select, put, call, take, cancel, race } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
@@ -304,14 +304,11 @@ export function* loadStagingBalances({ address }, network) {
     supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
   }
 
-  const provider = network.provider;
-  const driipSettlementChallengeContract = new DriipSettlementChallengeContract(provider);
+  const { nahmiiProvider } = network;
+  const driipSettlementChallengeContract = new DriipSettlementChallengeContract(nahmiiProvider);
 
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      // the first provider in network.provider.providers in an Infura node, which supports RPC calls
-      const jsonRpcProvider = provider.providers ? provider.providers[0] : provider;
-
       const driipSettlementChallengeContractAddress = driipSettlementChallengeContract.address;
 
       // derive function selector
@@ -335,7 +332,8 @@ export function* loadStagingBalances({ address }, network) {
         };
       });
       // send all requests at once
-      const response = yield rpcRequest(jsonRpcProvider.connection.url, JSON.stringify(requestBatch));
+      const response = yield rpcRequest(nahmiiProvider.connection.url, JSON.stringify(requestBatch));
+
       // process the response
       const formattedBalances = response.reduce((acc, { result }, i) => {
         // result is the hex balance. if the response comes back as '0x', it actually means 0.
@@ -365,14 +363,11 @@ export function* loadStagedBalances({ address }, network) {
     supportedAssets = (yield select(makeSelectSupportedAssets())).toJS();
   }
 
-  const provider = network.provider;
-  const balanceTrackerContract = new BalanceTrackerContract(network.nahmiiProvider);
+  const { nahmiiProvider } = network;
+  const balanceTrackerContract = new BalanceTrackerContract(nahmiiProvider);
 
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      // the first provider in network.provider.providers in an Infura node, which supports RPC calls
-      const jsonRpcProvider = provider.providers ? provider.providers[0] : provider;
-
       const balanceTrackerContractAddress = balanceTrackerContract.address;
 
       // derive function selector
@@ -398,7 +393,7 @@ export function* loadStagedBalances({ address }, network) {
         };
       });
       // send all requests at once
-      const response = yield rpcRequest(jsonRpcProvider.connection.url, JSON.stringify(requestBatch));
+      const response = yield rpcRequest(nahmiiProvider.connection.url, JSON.stringify(requestBatch));
       // process the response
       const tokenBals = response.map((item) => new BigNumber(item.result));
       const formattedBalances = tokenBals.reduce((acc, bal, i) => {

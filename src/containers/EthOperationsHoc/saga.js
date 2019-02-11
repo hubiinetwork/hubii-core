@@ -57,7 +57,7 @@ export function* ethOperationsOrcestrator() {
       // fork new processes, some of which will poll
       const network = yield select(makeSelectCurrentNetwork());
       const allTasks = yield all([
-        fork(loadBlockHeight, network.provider),
+        fork(loadBlockHeight, network.nahmiiProvider),
         fork(loadGasStatistics),
       ]);
 
