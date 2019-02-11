@@ -514,12 +514,7 @@ ShallowWrapper {
                                         withdraw
                               </span>
                     }
-          >
-                    <Route
-                              component={[Function]}
-                              path="undefined/withdraw"
-                    />
-          </TabPane>
+          />
           <TabPane
                     placeholder={null}
                     tab={
@@ -547,6 +542,10 @@ ShallowWrapper {
         <Route
           component={[Function]}
           path="undefined/nahmii-deposit"
+/>,
+        <Route
+          component={[Function]}
+          path="undefined/withdraw"
 />,
         false,
       ],
@@ -662,12 +661,7 @@ ShallowWrapper {
                                           withdraw
                             </span>
               }
->
-              <Route
-                            component={[Function]}
-                            path="undefined/withdraw"
-              />
-</TabPane>,
+/>,
             <TabPane
               placeholder={null}
               tab={
@@ -759,10 +753,6 @@ ShallowWrapper {
             "key": "undefined/withdraw",
             "nodeType": "class",
             "props": Object {
-              "children": <Route
-                component={[Function]}
-                path="undefined/withdraw"
-/>,
               "placeholder": null,
               "tab": <span>
                 <Icon
@@ -774,18 +764,7 @@ ShallowWrapper {
 </span>,
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "undefined/withdraw",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+            "rendered": null,
             "type": [Function],
           },
           Object {
@@ -851,6 +830,18 @@ ShallowWrapper {
         "props": Object {
           "component": [Function],
           "path": "undefined/nahmii-deposit",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "path": "undefined/withdraw",
         },
         "ref": null,
         "rendered": null,
@@ -948,12 +939,7 @@ ShallowWrapper {
                                                 withdraw
                                     </span>
                         }
-            >
-                        <Route
-                                    component={[Function]}
-                                    path="undefined/withdraw"
-                        />
-            </TabPane>
+            />
             <TabPane
                         placeholder={null}
                         tab={
@@ -981,6 +967,10 @@ ShallowWrapper {
           <Route
             component={[Function]}
             path="undefined/nahmii-deposit"
+/>,
+          <Route
+            component={[Function]}
+            path="undefined/withdraw"
 />,
           false,
         ],
@@ -1096,12 +1086,7 @@ ShallowWrapper {
                                                 withdraw
                                 </span>
                 }
->
-                <Route
-                                component={[Function]}
-                                path="undefined/withdraw"
-                />
-</TabPane>,
+/>,
               <TabPane
                 placeholder={null}
                 tab={
@@ -1193,10 +1178,6 @@ ShallowWrapper {
               "key": "undefined/withdraw",
               "nodeType": "class",
               "props": Object {
-                "children": <Route
-                  component={[Function]}
-                  path="undefined/withdraw"
-/>,
                 "placeholder": null,
                 "tab": <span>
                   <Icon
@@ -1208,18 +1189,7 @@ ShallowWrapper {
 </span>,
               },
               "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "component": [Function],
-                  "path": "undefined/withdraw",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
+              "rendered": null,
               "type": [Function],
             },
             Object {
@@ -1285,6 +1255,18 @@ ShallowWrapper {
           "props": Object {
             "component": [Function],
             "path": "undefined/nahmii-deposit",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "path": "undefined/withdraw",
           },
           "ref": null,
           "rendered": null,

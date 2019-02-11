@@ -144,7 +144,6 @@ export class WalletDetails extends React.PureComponent {
             }
             key={`${match.url}/withdraw`}
           >
-            <Route path={`${match.url}/withdraw`} component={NahmiiWithdraw} />
           </TabPane>
           <TabPane
             tab={
@@ -163,6 +162,7 @@ export class WalletDetails extends React.PureComponent {
         <Route path={`${match.url}/transfer`} component={WalletTransfer} />
         <Route path={`${match.url}/buyeth`} component={SimplexPage} />
         <Route path={`${match.url}/nahmii-deposit`} component={NahmiiDeposit} />
+        <Route path={`${match.url}/withdraw`} component={NahmiiWithdraw} />
         {history.location.pathname === match.url && (
           <Redirect from={match.url} to={`${match.url}/transfer`} push />
         )}
