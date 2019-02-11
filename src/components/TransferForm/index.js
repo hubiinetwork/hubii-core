@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Tooltip } from 'antd';
+import { Icon } from 'antd';
 import BigNumber from 'bignumber.js';
 import { fromJS } from 'immutable';
 import { Spring } from 'react-spring';

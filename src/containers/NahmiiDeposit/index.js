@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { shell } from 'electron';
-import { Row, Icon, Tooltip } from 'antd';
+import { Row, Icon } from 'antd';
 import { getAbsolutePath } from 'utils/electron';
 import {
   gweiToEther,
