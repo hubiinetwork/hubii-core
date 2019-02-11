@@ -15,7 +15,7 @@ import {
   gweiToEther,
   gweiToWei,
   isHardwareWallet,
-  // walletReady,
+  walletReady,
 } from 'utils/wallet';
 import BigNumber from 'bignumber.js';
 import { formatFiat } from 'utils/numberFormats';
@@ -306,16 +306,15 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
       usdValue: baseLayerEthBalanceAfterAmount.times(ethUsdValue),
     };
 
-    // const walletType = currentWalletWithInfo.get('type');
+    const walletType = currentWalletWithInfo.get('type');
 
-    // const unsupportedNetwork = this.props.currentNetwork.provider._network.chainId === 1;
-    const disableDepositButton = true;
-    // const disableDepositButton =
-    //   unsupportedNetwork ||
-    //   amountToDeposit.toNumber() <= 0 ||
-    //   baseLayerBalAfterAmt.isNegative() ||
-    //   baseLayerEthBalanceAfterAmount.isNegative() ||
-    //   !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
+    const unsupportedNetwork = this.props.currentNetwork.provider._network.chainId === 1;
+    const disableDepositButton =
+      unsupportedNetwork ||
+      amountToDeposit.toNumber() <= 0 ||
+      baseLayerBalAfterAmt.isNegative() ||
+      baseLayerEthBalanceAfterAmount.isNegative() ||
+      !walletReady(walletType, ledgerNanoSInfo, trezorInfo);
     const TransferingStatus = this.generateTransferingStatus(depositStatus, ledgerNanoSInfo, trezorInfo);
     return (
       <ScrollableContentWrapper>
@@ -490,26 +489,26 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                   {TransferingStatus}
                 </div>
               ) : (
-                <Tooltip
-                  placement="bottom"
-                  // overlayStyle={!unsupportedNetwork ? { display: 'none' } : null}
-                  title={<span>{formatMessage({ id: 'nahmii_deposits' })}</span>}
-                >
-                  <div style={{ width: 'fit-content' }}>
-                    <StyledButton
-                      type="primary"
-                      onClick={() => this.props.nahmiiDeposit(
-                    currentWalletWithInfo.get('address'),
-                    assetToDeposit.symbol,
-                    amountToDeposit,
-                    { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() }
-                    )}
-                      disabled={disableDepositButton}
-                    >
-                      <span>{formatMessage({ id: 'deposit' })}</span>
-                    </StyledButton>
-                  </div>
-                </Tooltip>
+                // <Tooltip
+                //   placement="bottom"
+                //   // overlayStyle={!unsupportedNetwork ? { display: 'none' } : null}
+                //   title={<span>{formatMessage({ id: 'nahmii_deposits' })}</span>}
+                // >
+                // </Tooltip>
+                <div style={{ width: 'fit-content' }}>
+                  <StyledButton
+                    type="primary"
+                    onClick={() => this.props.nahmiiDeposit(
+                  currentWalletWithInfo.get('address'),
+                  assetToDeposit.symbol,
+                  amountToDeposit,
+                  { gasLimit, gasPrice: gweiToWei(gasPriceGwei).toNumber() }
+                  )}
+                    disabled={disableDepositButton}
+                  >
+                    <span>{formatMessage({ id: 'deposit' })}</span>
+                  </StyledButton>
+                </div>
                 )
               }
             </Row>

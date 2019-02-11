@@ -99,8 +99,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       amountToWithdrawInputRegex,
       gasPriceGweiInput: '10',
       gasPriceGwei: new BigNumber('10'),
-      gasLimit: 1000000,
-      gasLimitInput: '1000000',
+      gasLimit: 6000000,
+      gasLimitInput: '6000000',
       addContactModalVisibility: false,
     };
     this.onFocusNumberInput = this.onFocusNumberInput.bind(this);
@@ -496,7 +496,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
               </DollarPrice>
             </Form>
           </div>
-          <div style={{ flex: '1', minWidth: '34rem' }}>
+          <div style={{ flex: '1', minWidth: '34rem', marginBottom: '3rem' }}>
             {
               ongoingChallenges.get('details').length > 0 &&
               <SettlementWarning
