@@ -11032,10 +11032,10 @@ mute-stream@0.0.7:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
   integrity sha1-MHXOk7whuPq0PhvE2n6BFe0ee6s=
 
-nahmii-sdk@1.0.0-beta.36:
-  version "1.0.0-beta.36"
-  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-1.0.0-beta.36.tgz#98d0014a35eab2984c8ce53c74e52573676d64c8"
-  integrity sha512-PiVk2/XYdCu9TPDHIMusPR8/Jk6yeFAoOZSM+Ql+gVt0NiO74/jYIg0mwjNDGQyo5py75baxWOb2y+8mdM8QkQ==
+nahmii-sdk@1.0.0-beta.37:
+  version "1.0.0-beta.37"
+  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-1.0.0-beta.37.tgz#877a1d43fe201e60c136d2e06503c74300fc538d"
+  integrity sha512-DBbdNqPSYZHS7UGTefP/heX3q0uNlWAwt8Borhi5HRXKg+gWswXBlO/pBw1ZM0+kZbk+d+ao6DqWVgrltG87sA==
   dependencies:
     ethereumjs-util "^5.2.0"
     ethers "4.0.18"
