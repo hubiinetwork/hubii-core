@@ -496,7 +496,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
               </DollarPrice>
             </Form>
           </div>
-          <div style={{ minWidth: '34rem' }}>
+          <div style={{ flex: '1', minWidth: '34rem' }}>
             {
               ongoingChallenges.get('details').length > 0 &&
               <SettlementWarning
