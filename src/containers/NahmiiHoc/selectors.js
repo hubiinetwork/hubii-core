@@ -11,6 +11,8 @@ import {
   makeSelectSupportedAssets,
 } from 'containers/HubiiApiHoc/selectors';
 
+import { createDeepEqualSelector } from 'utils/selector';
+
 /**
  * Direct selector to the nahmiiHoc state domain
  */
@@ -21,7 +23,7 @@ const makeSelectReceipts = () => createSelector(
   (nahmiiHocDomain) => nahmiiHocDomain.get('receipts')
 );
 
-const makeSelectReceiptsWithInfo = () => createSelector(
+const makeSelectReceiptsWithInfo = () => createDeepEqualSelector(
   makeSelectReceipts(),
   makeSelectSupportedAssets(),
   makeSelectPrices(),
@@ -266,7 +268,7 @@ const makeSelectDepositStatus = () => createSelector(
   (nahmiiHocDomain) => nahmiiHocDomain.get('depositStatus')
 );
 
-const makeSelectNahmiiBalances = () => createSelector(
+const makeSelectNahmiiBalances = () => createDeepEqualSelector(
   selectNahmiiHocDomain,
   (nahmiiHocDomain) => {
     const balances = nahmiiHocDomain.get('balances') || fromJS({});

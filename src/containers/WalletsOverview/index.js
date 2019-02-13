@@ -114,19 +114,13 @@ const SortableList = SortableContainer((props) => (
   </Row>
 ));
 
-export class WalletsOverview extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class WalletsOverview extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     this.renderWalletCards = this.renderWalletCards.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
     this.unlockWallet = this.unlockWallet.bind(this);
     this.onSortEnd = this.onSortEnd.bind(this);
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const updated = !(JSON.stringify(nextProps.walletsWithInfo.toJS()) === JSON.stringify(this.props.walletsWithInfo.toJS()));
-    console.log('wallets with info', updated);
-    return updated;
   }
 
   onSortEnd({ oldIndex, newIndex }) {

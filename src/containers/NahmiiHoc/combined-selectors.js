@@ -1,8 +1,7 @@
-import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect';
+import { createSelector } from 'reselect';
 import { fromJS, List } from 'immutable';
 import BigNumber from 'bignumber.js';
 import { referenceCurrencies } from 'utils/wallet';
-import _ from 'lodash';
 
 /**
  * Selectors adding nahmii state to other sources
@@ -49,11 +48,6 @@ const balanceTypes = (baseLayerBalances, nahmiiBalances) => [
     balances: nahmiiBalances,
   },
 ];
-
-const createDeepEqualSelector = createSelectorCreator(
-  defaultMemoize,
-  _.isEqual
-);
 
 // Check if any critical selectors for getting balance info are in error state
 const requiredDataHasError = (supportedAssets, prices, walletBalances) => (
@@ -139,7 +133,7 @@ const makeSelectCombinedTransactions = () => createSelector(
   }
 );
 
-const makeSelectWalletsWithInfo = () => createDeepEqualSelector(
+const makeSelectWalletsWithInfo = () => createSelector(
   makeSelectWallets(),
   makeSelectBaseLayerBalances(),
   makeSelectNahmiiBalances(),
@@ -273,7 +267,7 @@ const makeSelectCurrentWalletWithInfo = () => createSelector(
   }
 );
 
-const makeSelectTotalBalances = () => createDeepEqualSelector(
+const makeSelectTotalBalances = () => createSelector(
   makeSelectWallets(),
   makeSelectBaseLayerBalances(),
   makeSelectNahmiiBalances(),
