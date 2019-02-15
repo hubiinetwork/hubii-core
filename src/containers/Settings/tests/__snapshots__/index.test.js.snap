@@ -171,13 +171,13 @@ ShallowWrapper {
                     "_lastBlockNumber": -2,
                     "_network": Object {
                       "_defaultProvider": [Function],
-                      "chainId": 3,
-                      "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
-                      "name": "ropsten",
+                      "chainId": 1,
+                      "ensAddress": "0x314159265dd8dbb310642f98f50c066173c1259b",
+                      "name": "homestead",
                     },
                     "_pollingInterval": 4000,
                     "connection": Object {
-                      "url": "http://geth-ropsten.dev.hubii.net",
+                      "url": "http://ethereum.hubii.com:8545",
                     },
                     "ready": Promise {},
                   },
@@ -295,7 +295,7 @@ ShallowWrapper {
                     <style__StyledSectionHeading>
                               setting_network
                     </style__StyledSectionHeading>
-                    <Select.style
+                    <Select
                               onChange={[Function]}
                               style={
                                         Object {
@@ -314,13 +314,13 @@ ShallowWrapper {
                               >
                                         Ropsten [TESTNET]
                               </Option>
-                    </Select.style>
+                    </Select>
           </style__SettingWrapper>
           <style__SettingWrapper>
                     <style__StyledSectionHeading>
                               setting_language
                     </style__StyledSectionHeading>
-                    <Select.style
+                    <Select
                               onChange={[Function]}
                               style={
                                         Object {
@@ -334,7 +334,7 @@ ShallowWrapper {
                               >
                                         English
                               </Option>
-                    </Select.style>
+                    </Select>
           </style__SettingWrapper>
 </style__Body>,
       ],
@@ -374,7 +374,7 @@ ShallowWrapper {
               <style__StyledSectionHeading>
                             setting_network
               </style__StyledSectionHeading>
-              <Select.style
+              <Select
                             onChange={[Function]}
                             style={
                                           Object {
@@ -393,13 +393,13 @@ ShallowWrapper {
                             >
                                           Ropsten [TESTNET]
                             </Option>
-              </Select.style>
+              </Select>
 </style__SettingWrapper>,
             <style__SettingWrapper>
               <style__StyledSectionHeading>
                             setting_language
               </style__StyledSectionHeading>
-              <Select.style
+              <Select
                             onChange={[Function]}
                             style={
                                           Object {
@@ -413,7 +413,7 @@ ShallowWrapper {
                             >
                                           English
                             </Option>
-              </Select.style>
+              </Select>
 </style__SettingWrapper>,
           ],
         },
@@ -428,7 +428,7 @@ ShallowWrapper {
                 <style__StyledSectionHeading>
                   setting_network
 </style__StyledSectionHeading>,
-                <Select.style
+                <Select
                   onChange={[Function]}
                   style={
                                     Object {
@@ -447,7 +447,7 @@ ShallowWrapper {
                   >
                                     Ropsten [TESTNET]
                   </Option>
-</Select.style>,
+</Select>,
               ],
             },
             "ref": null,
@@ -527,7 +527,7 @@ ShallowWrapper {
                 <style__StyledSectionHeading>
                   setting_language
 </style__StyledSectionHeading>,
-                <Select.style
+                <Select
                   onChange={[Function]}
                   style={
                                     Object {
@@ -541,7 +541,7 @@ ShallowWrapper {
                   >
                                     English
                   </Option>
-</Select.style>,
+</Select>,
               ],
             },
             "ref": null,
@@ -618,7 +618,7 @@ ShallowWrapper {
                         <style__StyledSectionHeading>
                                     setting_network
                         </style__StyledSectionHeading>
-                        <Select.style
+                        <Select
                                     onChange={[Function]}
                                     style={
                                                 Object {
@@ -637,13 +637,13 @@ ShallowWrapper {
                                     >
                                                 Ropsten [TESTNET]
                                     </Option>
-                        </Select.style>
+                        </Select>
             </style__SettingWrapper>
             <style__SettingWrapper>
                         <style__StyledSectionHeading>
                                     setting_language
                         </style__StyledSectionHeading>
-                        <Select.style
+                        <Select
                                     onChange={[Function]}
                                     style={
                                                 Object {
@@ -657,7 +657,7 @@ ShallowWrapper {
                                     >
                                                 English
                                     </Option>
-                        </Select.style>
+                        </Select>
             </style__SettingWrapper>
 </style__Body>,
         ],
@@ -697,7 +697,7 @@ ShallowWrapper {
                 <style__StyledSectionHeading>
                                 setting_network
                 </style__StyledSectionHeading>
-                <Select.style
+                <Select
                                 onChange={[Function]}
                                 style={
                                                 Object {
@@ -716,13 +716,13 @@ ShallowWrapper {
                                 >
                                                 Ropsten [TESTNET]
                                 </Option>
-                </Select.style>
+                </Select>
 </style__SettingWrapper>,
               <style__SettingWrapper>
                 <style__StyledSectionHeading>
                                 setting_language
                 </style__StyledSectionHeading>
-                <Select.style
+                <Select
                                 onChange={[Function]}
                                 style={
                                                 Object {
@@ -736,7 +736,7 @@ ShallowWrapper {
                                 >
                                                 English
                                 </Option>
-                </Select.style>
+                </Select>
 </style__SettingWrapper>,
             ],
           },
@@ -751,7 +751,7 @@ ShallowWrapper {
                   <style__StyledSectionHeading>
                     setting_network
 </style__StyledSectionHeading>,
-                  <Select.style
+                  <Select
                     onChange={[Function]}
                     style={
                                         Object {
@@ -770,7 +770,7 @@ ShallowWrapper {
                     >
                                         Ropsten [TESTNET]
                     </Option>
-</Select.style>,
+</Select>,
                 ],
               },
               "ref": null,
@@ -850,7 +850,7 @@ ShallowWrapper {
                   <style__StyledSectionHeading>
                     setting_language
 </style__StyledSectionHeading>,
-                  <Select.style
+                  <Select
                     onChange={[Function]}
                     style={
                                         Object {
@@ -864,7 +864,7 @@ ShallowWrapper {
                     >
                                         English
                     </Option>
-</Select.style>,
+</Select>,
                 ],
               },
               "ref": null,

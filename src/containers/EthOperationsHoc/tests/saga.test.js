@@ -66,7 +66,7 @@ describe('eth operations orcentrator', () => {
   it('should fork all required sagas, cancelling and restarting on CHANGE_NETWORK', () => {
     const saga = testSaga(ethOperationsOrcestrator);
     const allSagas = [
-      fork(loadBlockHeight, currentNetworkMock.provider),
+      fork(loadBlockHeight, currentNetworkMock.nahmiiProvider),
       fork(loadGasStatistics),
     ];
     saga

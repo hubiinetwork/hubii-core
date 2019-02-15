@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Layout } from 'antd';
-import Button from '../../components/ui/Button';
+import Button from 'components/ui/Button';
 const { Header } = Layout;
 
 export const Wrapper = styled.div`

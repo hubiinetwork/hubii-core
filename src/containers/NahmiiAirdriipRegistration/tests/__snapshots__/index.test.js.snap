@@ -970,7 +970,7 @@ ShallowWrapper {
         <style__PrimaryHeading>
           airdriip_manual_registration_instructions
 </style__PrimaryHeading>,
-        <Input.style
+        <Input
           onChange={[Function]}
           placeholder="ethereum_address"
           style={
@@ -980,7 +980,7 @@ ShallowWrapper {
           }
           value="0x000"
 />,
-        <Input.style
+        <Input
           onChange={[Function]}
           placeholder="signature_hex_string"
           style={
@@ -1067,7 +1067,7 @@ ShallowWrapper {
           <style__PrimaryHeading>
             airdriip_manual_registration_instructions
 </style__PrimaryHeading>,
-          <Input.style
+          <Input
             onChange={[Function]}
             placeholder="ethereum_address"
             style={
@@ -1077,7 +1077,7 @@ ShallowWrapper {
             }
             value="0x000"
 />,
-          <Input.style
+          <Input
             onChange={[Function]}
             placeholder="signature_hex_string"
             style={

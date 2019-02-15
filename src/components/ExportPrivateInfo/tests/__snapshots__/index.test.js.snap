@@ -22,13 +22,13 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <ExportPrivateInfo.style__TopHeading>
+        <style__TopHeading>
           Never share this information with anyone
-</ExportPrivateInfo.style__TopHeading>,
-        <ExportPrivateInfo.style__TopHeading>
+</style__TopHeading>,
+        <style__TopHeading>
           Always keep a physical backup in a safe location
-</ExportPrivateInfo.style__TopHeading>,
-        <ExportPrivateInfo.style__TextPrimary>
+</style__TopHeading>,
+        <style__TextPrimary>
           <div
                     style={
                               Object {
@@ -36,7 +36,7 @@ ShallowWrapper {
                                       }
                     }
           >
-                    <ExportPrivateInfo.style__SecondaryHeader
+                    <style__SecondaryHeader
                               large={true}
                     >
                               Mnemonic
@@ -45,7 +45,7 @@ ShallowWrapper {
                                         options={undefined}
                                         text="over sentence spend best business museum ripple shop vault present travel fire"
                               >
-                                        <ExportPrivateInfo.style__StyledIcon
+                                        <style__StyledIcon
                                                   icon="copy"
                                                   id="mnemonic"
                                                   onClick={[Function]}
@@ -53,14 +53,14 @@ ShallowWrapper {
                                                   type="icon"
                                         />
                               </CopyToClipboard>
-                    </ExportPrivateInfo.style__SecondaryHeader>
+                    </style__SecondaryHeader>
                     <br />
                     <Text>
                               over sentence spend best business museum ripple shop vault present travel fire
                     </Text>
           </div>
           <div>
-                    <ExportPrivateInfo.style__SecondaryHeader
+                    <style__SecondaryHeader
                               large={true}
                     >
                               Private key
@@ -69,7 +69,7 @@ ShallowWrapper {
                                         options={undefined}
                                         text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
                               >
-                                        <ExportPrivateInfo.style__StyledIcon
+                                        <style__StyledIcon
                                                   icon="copy"
                                                   id="privateKey"
                                                   onClick={[Function]}
@@ -77,22 +77,22 @@ ShallowWrapper {
                                                   type="icon"
                                         />
                               </CopyToClipboard>
-                    </ExportPrivateInfo.style__SecondaryHeader>
+                    </style__SecondaryHeader>
                     <br />
                     <Text>
                               0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
                     </Text>
           </div>
-</ExportPrivateInfo.style__TextPrimary>,
-        <ExportPrivateInfo.style__ParentDiv>
-          <ExportPrivateInfo.style__StyledButton
+</style__TextPrimary>,
+        <style__ParentDiv>
+          <style__StyledButton
                     id="exit"
                     onClick={[Function]}
                     type="primary"
           >
                     Close
-          </ExportPrivateInfo.style__StyledButton>
-</ExportPrivateInfo.style__ParentDiv>,
+          </style__StyledButton>
+</style__ParentDiv>,
       ],
     },
     "ref": null,
@@ -132,7 +132,7 @@ ShallowWrapper {
                                         }
               }
 >
-              <ExportPrivateInfo.style__SecondaryHeader
+              <style__SecondaryHeader
                             large={true}
               >
                             Mnemonic
@@ -141,7 +141,7 @@ ShallowWrapper {
                                           options={undefined}
                                           text="over sentence spend best business museum ripple shop vault present travel fire"
                             >
-                                          <ExportPrivateInfo.style__StyledIcon
+                                          <style__StyledIcon
                                                         icon="copy"
                                                         id="mnemonic"
                                                         onClick={[Function]}
@@ -149,14 +149,14 @@ ShallowWrapper {
                                                         type="icon"
                                           />
                             </CopyToClipboard>
-              </ExportPrivateInfo.style__SecondaryHeader>
+              </style__SecondaryHeader>
               <br />
               <Text>
                             over sentence spend best business museum ripple shop vault present travel fire
               </Text>
 </div>,
             <div>
-              <ExportPrivateInfo.style__SecondaryHeader
+              <style__SecondaryHeader
                             large={true}
               >
                             Private key
@@ -165,7 +165,7 @@ ShallowWrapper {
                                           options={undefined}
                                           text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
                             >
-                                          <ExportPrivateInfo.style__StyledIcon
+                                          <style__StyledIcon
                                                         icon="copy"
                                                         id="privateKey"
                                                         onClick={[Function]}
@@ -173,7 +173,7 @@ ShallowWrapper {
                                                         type="icon"
                                           />
                             </CopyToClipboard>
-              </ExportPrivateInfo.style__SecondaryHeader>
+              </style__SecondaryHeader>
               <br />
               <Text>
                             0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
@@ -189,7 +189,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ExportPrivateInfo.style__SecondaryHeader
+                <style__SecondaryHeader
                   large={true}
 >
                   Mnemonic
@@ -198,7 +198,7 @@ ShallowWrapper {
                                     options={undefined}
                                     text="over sentence spend best business museum ripple shop vault present travel fire"
                   >
-                                    <ExportPrivateInfo.style__StyledIcon
+                                    <style__StyledIcon
                                                       icon="copy"
                                                       id="mnemonic"
                                                       onClick={[Function]}
@@ -206,7 +206,7 @@ ShallowWrapper {
                                                       type="icon"
                                     />
                   </CopyToClipboard>
-</ExportPrivateInfo.style__SecondaryHeader>,
+</style__SecondaryHeader>,
                 <br />,
                 <Text>
                   over sentence spend best business museum ripple shop vault present travel fire
@@ -230,7 +230,7 @@ ShallowWrapper {
                       options={undefined}
                       text="over sentence spend best business museum ripple shop vault present travel fire"
 >
-                      <ExportPrivateInfo.style__StyledIcon
+                      <style__StyledIcon
                                             icon="copy"
                                             id="mnemonic"
                                             onClick={[Function]}
@@ -249,7 +249,7 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "children": <ExportPrivateInfo.style__StyledIcon
+                      "children": <style__StyledIcon
                         icon="copy"
                         id="mnemonic"
                         onClick={[Function]}
@@ -310,7 +310,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ExportPrivateInfo.style__SecondaryHeader
+                <style__SecondaryHeader
                   large={true}
 >
                   Private key
@@ -319,7 +319,7 @@ ShallowWrapper {
                                     options={undefined}
                                     text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
                   >
-                                    <ExportPrivateInfo.style__StyledIcon
+                                    <style__StyledIcon
                                                       icon="copy"
                                                       id="privateKey"
                                                       onClick={[Function]}
@@ -327,7 +327,7 @@ ShallowWrapper {
                                                       type="icon"
                                     />
                   </CopyToClipboard>
-</ExportPrivateInfo.style__SecondaryHeader>,
+</style__SecondaryHeader>,
                 <br />,
                 <Text>
                   0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
@@ -348,7 +348,7 @@ ShallowWrapper {
                       options={undefined}
                       text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
 >
-                      <ExportPrivateInfo.style__StyledIcon
+                      <style__StyledIcon
                                             icon="copy"
                                             id="privateKey"
                                             onClick={[Function]}
@@ -367,7 +367,7 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "children": <ExportPrivateInfo.style__StyledIcon
+                      "children": <style__StyledIcon
                         icon="copy"
                         id="privateKey"
                         onClick={[Function]}
@@ -430,13 +430,13 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <ExportPrivateInfo.style__StyledButton
+          "children": <style__StyledButton
             id="exit"
             onClick={[Function]}
             type="primary"
 >
             Close
-</ExportPrivateInfo.style__StyledButton>,
+</style__StyledButton>,
         },
         "ref": null,
         "rendered": Object {
@@ -465,13 +465,13 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <ExportPrivateInfo.style__TopHeading>
+          <style__TopHeading>
             Never share this information with anyone
-</ExportPrivateInfo.style__TopHeading>,
-          <ExportPrivateInfo.style__TopHeading>
+</style__TopHeading>,
+          <style__TopHeading>
             Always keep a physical backup in a safe location
-</ExportPrivateInfo.style__TopHeading>,
-          <ExportPrivateInfo.style__TextPrimary>
+</style__TopHeading>,
+          <style__TextPrimary>
             <div
                         style={
                                     Object {
@@ -479,7 +479,7 @@ ShallowWrapper {
                                               }
                         }
             >
-                        <ExportPrivateInfo.style__SecondaryHeader
+                        <style__SecondaryHeader
                                     large={true}
                         >
                                     Mnemonic
@@ -488,7 +488,7 @@ ShallowWrapper {
                                                 options={undefined}
                                                 text="over sentence spend best business museum ripple shop vault present travel fire"
                                     >
-                                                <ExportPrivateInfo.style__StyledIcon
+                                                <style__StyledIcon
                                                             icon="copy"
                                                             id="mnemonic"
                                                             onClick={[Function]}
@@ -496,14 +496,14 @@ ShallowWrapper {
                                                             type="icon"
                                                 />
                                     </CopyToClipboard>
-                        </ExportPrivateInfo.style__SecondaryHeader>
+                        </style__SecondaryHeader>
                         <br />
                         <Text>
                                     over sentence spend best business museum ripple shop vault present travel fire
                         </Text>
             </div>
             <div>
-                        <ExportPrivateInfo.style__SecondaryHeader
+                        <style__SecondaryHeader
                                     large={true}
                         >
                                     Private key
@@ -512,7 +512,7 @@ ShallowWrapper {
                                                 options={undefined}
                                                 text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
                                     >
-                                                <ExportPrivateInfo.style__StyledIcon
+                                                <style__StyledIcon
                                                             icon="copy"
                                                             id="privateKey"
                                                             onClick={[Function]}
@@ -520,22 +520,22 @@ ShallowWrapper {
                                                             type="icon"
                                                 />
                                     </CopyToClipboard>
-                        </ExportPrivateInfo.style__SecondaryHeader>
+                        </style__SecondaryHeader>
                         <br />
                         <Text>
                                     0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
                         </Text>
             </div>
-</ExportPrivateInfo.style__TextPrimary>,
-          <ExportPrivateInfo.style__ParentDiv>
-            <ExportPrivateInfo.style__StyledButton
+</style__TextPrimary>,
+          <style__ParentDiv>
+            <style__StyledButton
                         id="exit"
                         onClick={[Function]}
                         type="primary"
             >
                         Close
-            </ExportPrivateInfo.style__StyledButton>
-</ExportPrivateInfo.style__ParentDiv>,
+            </style__StyledButton>
+</style__ParentDiv>,
         ],
       },
       "ref": null,
@@ -575,7 +575,7 @@ ShallowWrapper {
                                               }
                 }
 >
-                <ExportPrivateInfo.style__SecondaryHeader
+                <style__SecondaryHeader
                                 large={true}
                 >
                                 Mnemonic
@@ -584,7 +584,7 @@ ShallowWrapper {
                                                 options={undefined}
                                                 text="over sentence spend best business museum ripple shop vault present travel fire"
                                 >
-                                                <ExportPrivateInfo.style__StyledIcon
+                                                <style__StyledIcon
                                                                 icon="copy"
                                                                 id="mnemonic"
                                                                 onClick={[Function]}
@@ -592,14 +592,14 @@ ShallowWrapper {
                                                                 type="icon"
                                                 />
                                 </CopyToClipboard>
-                </ExportPrivateInfo.style__SecondaryHeader>
+                </style__SecondaryHeader>
                 <br />
                 <Text>
                                 over sentence spend best business museum ripple shop vault present travel fire
                 </Text>
 </div>,
               <div>
-                <ExportPrivateInfo.style__SecondaryHeader
+                <style__SecondaryHeader
                                 large={true}
                 >
                                 Private key
@@ -608,7 +608,7 @@ ShallowWrapper {
                                                 options={undefined}
                                                 text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
                                 >
-                                                <ExportPrivateInfo.style__StyledIcon
+                                                <style__StyledIcon
                                                                 icon="copy"
                                                                 id="privateKey"
                                                                 onClick={[Function]}
@@ -616,7 +616,7 @@ ShallowWrapper {
                                                                 type="icon"
                                                 />
                                 </CopyToClipboard>
-                </ExportPrivateInfo.style__SecondaryHeader>
+                </style__SecondaryHeader>
                 <br />
                 <Text>
                                 0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
@@ -632,7 +632,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <ExportPrivateInfo.style__SecondaryHeader
+                  <style__SecondaryHeader
                     large={true}
 >
                     Mnemonic
@@ -641,7 +641,7 @@ ShallowWrapper {
                                         options={undefined}
                                         text="over sentence spend best business museum ripple shop vault present travel fire"
                     >
-                                        <ExportPrivateInfo.style__StyledIcon
+                                        <style__StyledIcon
                                                             icon="copy"
                                                             id="mnemonic"
                                                             onClick={[Function]}
@@ -649,7 +649,7 @@ ShallowWrapper {
                                                             type="icon"
                                         />
                     </CopyToClipboard>
-</ExportPrivateInfo.style__SecondaryHeader>,
+</style__SecondaryHeader>,
                   <br />,
                   <Text>
                     over sentence spend best business museum ripple shop vault present travel fire
@@ -673,7 +673,7 @@ ShallowWrapper {
                         options={undefined}
                         text="over sentence spend best business museum ripple shop vault present travel fire"
 >
-                        <ExportPrivateInfo.style__StyledIcon
+                        <style__StyledIcon
                                                 icon="copy"
                                                 id="mnemonic"
                                                 onClick={[Function]}
@@ -692,7 +692,7 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": <ExportPrivateInfo.style__StyledIcon
+                        "children": <style__StyledIcon
                           icon="copy"
                           id="mnemonic"
                           onClick={[Function]}
@@ -753,7 +753,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <ExportPrivateInfo.style__SecondaryHeader
+                  <style__SecondaryHeader
                     large={true}
 >
                     Private key
@@ -762,7 +762,7 @@ ShallowWrapper {
                                         options={undefined}
                                         text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
                     >
-                                        <ExportPrivateInfo.style__StyledIcon
+                                        <style__StyledIcon
                                                             icon="copy"
                                                             id="privateKey"
                                                             onClick={[Function]}
@@ -770,7 +770,7 @@ ShallowWrapper {
                                                             type="icon"
                                         />
                     </CopyToClipboard>
-</ExportPrivateInfo.style__SecondaryHeader>,
+</style__SecondaryHeader>,
                   <br />,
                   <Text>
                     0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a
@@ -791,7 +791,7 @@ ShallowWrapper {
                         options={undefined}
                         text="0x566157c389ca0afe0237387cc352b6910594548bd77631a19e9ccc588c969a2a"
 >
-                        <ExportPrivateInfo.style__StyledIcon
+                        <style__StyledIcon
                                                 icon="copy"
                                                 id="privateKey"
                                                 onClick={[Function]}
@@ -810,7 +810,7 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": <ExportPrivateInfo.style__StyledIcon
+                        "children": <style__StyledIcon
                           icon="copy"
                           id="privateKey"
                           onClick={[Function]}
@@ -873,13 +873,13 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <ExportPrivateInfo.style__StyledButton
+            "children": <style__StyledButton
               id="exit"
               onClick={[Function]}
               type="primary"
 >
               Close
-</ExportPrivateInfo.style__StyledButton>,
+</style__StyledButton>,
           },
           "ref": null,
           "rendered": Object {
@@ -934,13 +934,13 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <ExportPrivateInfo.style__TopHeading>
+        <style__TopHeading>
           Never share this information with anyone
-</ExportPrivateInfo.style__TopHeading>,
-        <ExportPrivateInfo.style__TopHeading>
+</style__TopHeading>,
+        <style__TopHeading>
           Always keep a physical backup in a safe location
-</ExportPrivateInfo.style__TopHeading>,
-        <ExportPrivateInfo.style__TextPrimary>
+</style__TopHeading>,
+        <style__TextPrimary>
           <div
                     style={
                               Object {
@@ -948,18 +948,18 @@ ShallowWrapper {
                                       }
                     }
           >
-                    <ExportPrivateInfo.style__SecondaryHeader
+                    <style__SecondaryHeader
                               large={true}
                     >
                               Mnemonic
-                    </ExportPrivateInfo.style__SecondaryHeader>
+                    </style__SecondaryHeader>
                     <br />
                     <Text>
                               This wallet was imported using a private key therefore does not have a mnemonic to export
                     </Text>
           </div>
           <div>
-                    <ExportPrivateInfo.style__SecondaryHeader
+                    <style__SecondaryHeader
                               large={true}
                     >
                               Private key
@@ -968,7 +968,7 @@ ShallowWrapper {
                                         options={undefined}
                                         text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
                               >
-                                        <ExportPrivateInfo.style__StyledIcon
+                                        <style__StyledIcon
                                                   icon="copy"
                                                   id="privateKey"
                                                   onClick={[Function]}
@@ -976,22 +976,22 @@ ShallowWrapper {
                                                   type="icon"
                                         />
                               </CopyToClipboard>
-                    </ExportPrivateInfo.style__SecondaryHeader>
+                    </style__SecondaryHeader>
                     <br />
                     <Text>
                               0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
                     </Text>
           </div>
-</ExportPrivateInfo.style__TextPrimary>,
-        <ExportPrivateInfo.style__ParentDiv>
-          <ExportPrivateInfo.style__StyledButton
+</style__TextPrimary>,
+        <style__ParentDiv>
+          <style__StyledButton
                     id="exit"
                     onClick={[Function]}
                     type="primary"
           >
                     Close
-          </ExportPrivateInfo.style__StyledButton>
-</ExportPrivateInfo.style__ParentDiv>,
+          </style__StyledButton>
+</style__ParentDiv>,
       ],
     },
     "ref": null,
@@ -1031,18 +1031,18 @@ ShallowWrapper {
                                         }
               }
 >
-              <ExportPrivateInfo.style__SecondaryHeader
+              <style__SecondaryHeader
                             large={true}
               >
                             Mnemonic
-              </ExportPrivateInfo.style__SecondaryHeader>
+              </style__SecondaryHeader>
               <br />
               <Text>
                             This wallet was imported using a private key therefore does not have a mnemonic to export
               </Text>
 </div>,
             <div>
-              <ExportPrivateInfo.style__SecondaryHeader
+              <style__SecondaryHeader
                             large={true}
               >
                             Private key
@@ -1051,7 +1051,7 @@ ShallowWrapper {
                                           options={undefined}
                                           text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
                             >
-                                          <ExportPrivateInfo.style__StyledIcon
+                                          <style__StyledIcon
                                                         icon="copy"
                                                         id="privateKey"
                                                         onClick={[Function]}
@@ -1059,7 +1059,7 @@ ShallowWrapper {
                                                         type="icon"
                                           />
                             </CopyToClipboard>
-              </ExportPrivateInfo.style__SecondaryHeader>
+              </style__SecondaryHeader>
               <br />
               <Text>
                             0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
@@ -1075,11 +1075,11 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ExportPrivateInfo.style__SecondaryHeader
+                <style__SecondaryHeader
                   large={true}
 >
                   Mnemonic
-</ExportPrivateInfo.style__SecondaryHeader>,
+</style__SecondaryHeader>,
                 <br />,
                 <Text>
                   This wallet was imported using a private key therefore does not have a mnemonic to export
@@ -1132,7 +1132,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ExportPrivateInfo.style__SecondaryHeader
+                <style__SecondaryHeader
                   large={true}
 >
                   Private key
@@ -1141,7 +1141,7 @@ ShallowWrapper {
                                     options={undefined}
                                     text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
                   >
-                                    <ExportPrivateInfo.style__StyledIcon
+                                    <style__StyledIcon
                                                       icon="copy"
                                                       id="privateKey"
                                                       onClick={[Function]}
@@ -1149,7 +1149,7 @@ ShallowWrapper {
                                                       type="icon"
                                     />
                   </CopyToClipboard>
-</ExportPrivateInfo.style__SecondaryHeader>,
+</style__SecondaryHeader>,
                 <br />,
                 <Text>
                   0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
@@ -1170,7 +1170,7 @@ ShallowWrapper {
                       options={undefined}
                       text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
 >
-                      <ExportPrivateInfo.style__StyledIcon
+                      <style__StyledIcon
                                             icon="copy"
                                             id="privateKey"
                                             onClick={[Function]}
@@ -1189,7 +1189,7 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "class",
                     "props": Object {
-                      "children": <ExportPrivateInfo.style__StyledIcon
+                      "children": <style__StyledIcon
                         icon="copy"
                         id="privateKey"
                         onClick={[Function]}
@@ -1252,13 +1252,13 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <ExportPrivateInfo.style__StyledButton
+          "children": <style__StyledButton
             id="exit"
             onClick={[Function]}
             type="primary"
 >
             Close
-</ExportPrivateInfo.style__StyledButton>,
+</style__StyledButton>,
         },
         "ref": null,
         "rendered": Object {
@@ -1287,13 +1287,13 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <ExportPrivateInfo.style__TopHeading>
+          <style__TopHeading>
             Never share this information with anyone
-</ExportPrivateInfo.style__TopHeading>,
-          <ExportPrivateInfo.style__TopHeading>
+</style__TopHeading>,
+          <style__TopHeading>
             Always keep a physical backup in a safe location
-</ExportPrivateInfo.style__TopHeading>,
-          <ExportPrivateInfo.style__TextPrimary>
+</style__TopHeading>,
+          <style__TextPrimary>
             <div
                         style={
                                     Object {
@@ -1301,18 +1301,18 @@ ShallowWrapper {
                                               }
                         }
             >
-                        <ExportPrivateInfo.style__SecondaryHeader
+                        <style__SecondaryHeader
                                     large={true}
                         >
                                     Mnemonic
-                        </ExportPrivateInfo.style__SecondaryHeader>
+                        </style__SecondaryHeader>
                         <br />
                         <Text>
                                     This wallet was imported using a private key therefore does not have a mnemonic to export
                         </Text>
             </div>
             <div>
-                        <ExportPrivateInfo.style__SecondaryHeader
+                        <style__SecondaryHeader
                                     large={true}
                         >
                                     Private key
@@ -1321,7 +1321,7 @@ ShallowWrapper {
                                                 options={undefined}
                                                 text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
                                     >
-                                                <ExportPrivateInfo.style__StyledIcon
+                                                <style__StyledIcon
                                                             icon="copy"
                                                             id="privateKey"
                                                             onClick={[Function]}
@@ -1329,22 +1329,22 @@ ShallowWrapper {
                                                             type="icon"
                                                 />
                                     </CopyToClipboard>
-                        </ExportPrivateInfo.style__SecondaryHeader>
+                        </style__SecondaryHeader>
                         <br />
                         <Text>
                                     0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
                         </Text>
             </div>
-</ExportPrivateInfo.style__TextPrimary>,
-          <ExportPrivateInfo.style__ParentDiv>
-            <ExportPrivateInfo.style__StyledButton
+</style__TextPrimary>,
+          <style__ParentDiv>
+            <style__StyledButton
                         id="exit"
                         onClick={[Function]}
                         type="primary"
             >
                         Close
-            </ExportPrivateInfo.style__StyledButton>
-</ExportPrivateInfo.style__ParentDiv>,
+            </style__StyledButton>
+</style__ParentDiv>,
         ],
       },
       "ref": null,
@@ -1384,18 +1384,18 @@ ShallowWrapper {
                                               }
                 }
 >
-                <ExportPrivateInfo.style__SecondaryHeader
+                <style__SecondaryHeader
                                 large={true}
                 >
                                 Mnemonic
-                </ExportPrivateInfo.style__SecondaryHeader>
+                </style__SecondaryHeader>
                 <br />
                 <Text>
                                 This wallet was imported using a private key therefore does not have a mnemonic to export
                 </Text>
 </div>,
               <div>
-                <ExportPrivateInfo.style__SecondaryHeader
+                <style__SecondaryHeader
                                 large={true}
                 >
                                 Private key
@@ -1404,7 +1404,7 @@ ShallowWrapper {
                                                 options={undefined}
                                                 text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
                                 >
-                                                <ExportPrivateInfo.style__StyledIcon
+                                                <style__StyledIcon
                                                                 icon="copy"
                                                                 id="privateKey"
                                                                 onClick={[Function]}
@@ -1412,7 +1412,7 @@ ShallowWrapper {
                                                                 type="icon"
                                                 />
                                 </CopyToClipboard>
-                </ExportPrivateInfo.style__SecondaryHeader>
+                </style__SecondaryHeader>
                 <br />
                 <Text>
                                 0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
@@ -1428,11 +1428,11 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <ExportPrivateInfo.style__SecondaryHeader
+                  <style__SecondaryHeader
                     large={true}
 >
                     Mnemonic
-</ExportPrivateInfo.style__SecondaryHeader>,
+</style__SecondaryHeader>,
                   <br />,
                   <Text>
                     This wallet was imported using a private key therefore does not have a mnemonic to export
@@ -1485,7 +1485,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <ExportPrivateInfo.style__SecondaryHeader
+                  <style__SecondaryHeader
                     large={true}
 >
                     Private key
@@ -1494,7 +1494,7 @@ ShallowWrapper {
                                         options={undefined}
                                         text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
                     >
-                                        <ExportPrivateInfo.style__StyledIcon
+                                        <style__StyledIcon
                                                             icon="copy"
                                                             id="privateKey"
                                                             onClick={[Function]}
@@ -1502,7 +1502,7 @@ ShallowWrapper {
                                                             type="icon"
                                         />
                     </CopyToClipboard>
-</ExportPrivateInfo.style__SecondaryHeader>,
+</style__SecondaryHeader>,
                   <br />,
                   <Text>
                     0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828
@@ -1523,7 +1523,7 @@ ShallowWrapper {
                         options={undefined}
                         text="0xc6ea866d2f5468e0caf0e96e1491c257f501a30ce695e2d8b876946995699828"
 >
-                        <ExportPrivateInfo.style__StyledIcon
+                        <style__StyledIcon
                                                 icon="copy"
                                                 id="privateKey"
                                                 onClick={[Function]}
@@ -1542,7 +1542,7 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": <ExportPrivateInfo.style__StyledIcon
+                        "children": <style__StyledIcon
                           icon="copy"
                           id="privateKey"
                           onClick={[Function]}
@@ -1605,13 +1605,13 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <ExportPrivateInfo.style__StyledButton
+            "children": <style__StyledButton
               id="exit"
               onClick={[Function]}
               type="primary"
 >
               Close
-</ExportPrivateInfo.style__StyledButton>,
+</style__StyledButton>,
           },
           "ref": null,
           "rendered": Object {

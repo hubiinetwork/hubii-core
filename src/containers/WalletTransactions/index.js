@@ -1,7 +1,6 @@
 import React from 'react';
 import { Alert } from 'antd';
 import { shell } from 'electron';
-import uuid from 'uuid/v4';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -72,9 +71,8 @@ export class WalletsTransactions extends React.Component {
     this.setState({ filter });
   }
 
-  // Every time this component rerenders it resets if a transaction is expanded or
-  // collapsed. Keep track of which Transactions are expanded so we can pass in a
-  // correct default state every render
+  // persist which tx are expanded so we can keep UI consisent as the user flips
+  // through pagination
   updateExpandedTx(id) {
     const { expandedTxs } = this.state;
     if (!expandedTxs.has(id)) {
@@ -143,7 +141,7 @@ export class WalletsTransactions extends React.Component {
             </div>
             {txToShow.map((tx) => (
               <StyledTransaction
-                key={uuid()}
+                key={`${tx.hash}${tx.type}${tx.symbol}${tx.id}`}
                 time={new Date(tx.timestamp)}
                 counterpartyAddress={tx.counterpartyAddress}
                 amount={tx.decimalAmount}
