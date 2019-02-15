@@ -744,40 +744,24 @@ ShallowWrapper {
                                                   send_on_the
                                                    
                                         </Text>
-                                        <Tooltip
-                                                  arrowPointAtCenter={false}
-                                                  autoAdjustOverflow={true}
-                                                  mouseEnterDelay={0.1}
-                                                  mouseLeaveDelay={0.1}
-                                                  placement="right"
-                                                  prefixCls="ant-tooltip"
-                                                  title={
-                                                            <span>
-                                                                      nahmii_payments
-                                                            </span>
+                                        <Unknown
+                                                  large={true}
+                                        />
+                                        <Text
+                                                  large={true}
+                                                  style={
+                                                            Object {
+                                                                      "marginRight": "0.5rem",
+                                                                    }
                                                   }
-                                                  transitionName="zoom-big-fast"
                                         >
-                                                  <Unknown
-                                                            large={true}
-                                                  />
-                                                  <Text
-                                                            large={true}
-                                                            style={
-                                                                      Object {
-                                                                                "marginRight": "0.5rem",
-                                                                              }
-                                                            }
-                                                  >
-                                                             
-                                                            second_layer
-                                                  </Text>
-                                                  <style__NahmiiSwitch
-                                                            checked={false}
-                                                            disabled={true}
-                                                            onChange={[Function]}
-                                                  />
-                                        </Tooltip>
+                                                   
+                                                  second_layer
+                                        </Text>
+                                        <style__NahmiiSwitch
+                                                  checked={false}
+                                                  onChange={[Function]}
+                                        />
                               </div>
                               <Spring
                                         config={
@@ -1416,40 +1400,24 @@ ShallowWrapper {
                                                         send_on_the
                                                          
                                           </Text>
-                                          <Tooltip
-                                                        arrowPointAtCenter={false}
-                                                        autoAdjustOverflow={true}
-                                                        mouseEnterDelay={0.1}
-                                                        mouseLeaveDelay={0.1}
-                                                        placement="right"
-                                                        prefixCls="ant-tooltip"
-                                                        title={
-                                                                      <span>
-                                                                                    nahmii_payments
-                                                                      </span>
+                                          <Unknown
+                                                        large={true}
+                                          />
+                                          <Text
+                                                        large={true}
+                                                        style={
+                                                                      Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                  }
                                                         }
-                                                        transitionName="zoom-big-fast"
                                           >
-                                                        <Unknown
-                                                                      large={true}
-                                                        />
-                                                        <Text
-                                                                      large={true}
-                                                                      style={
-                                                                                    Object {
-                                                                                                  "marginRight": "0.5rem",
-                                                                                                }
-                                                                      }
-                                                        >
-                                                                       
-                                                                      second_layer
-                                                        </Text>
-                                                        <style__NahmiiSwitch
-                                                                      checked={false}
-                                                                      disabled={true}
-                                                                      onChange={[Function]}
-                                                        />
-                                          </Tooltip>
+                                                         
+                                                        second_layer
+                                          </Text>
+                                          <style__NahmiiSwitch
+                                                        checked={false}
+                                                        onChange={[Function]}
+                                          />
                             </div>
                             <Spring
                                           config={
@@ -2019,40 +1987,24 @@ ShallowWrapper {
                                                 send_on_the
                                                  
                                 </Text>
-                                <Tooltip
-                                                arrowPointAtCenter={false}
-                                                autoAdjustOverflow={true}
-                                                mouseEnterDelay={0.1}
-                                                mouseLeaveDelay={0.1}
-                                                placement="right"
-                                                prefixCls="ant-tooltip"
-                                                title={
-                                                                <span>
-                                                                                nahmii_payments
-                                                                </span>
+                                <Unknown
+                                                large={true}
+                                />
+                                <Text
+                                                large={true}
+                                                style={
+                                                                Object {
+                                                                                "marginRight": "0.5rem",
+                                                                              }
                                                 }
-                                                transitionName="zoom-big-fast"
                                 >
-                                                <Unknown
-                                                                large={true}
-                                                />
-                                                <Text
-                                                                large={true}
-                                                                style={
-                                                                                Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                }
-                                                >
-                                                                 
-                                                                second_layer
-                                                </Text>
-                                                <style__NahmiiSwitch
-                                                                checked={false}
-                                                                disabled={true}
-                                                                onChange={[Function]}
-                                                />
-                                </Tooltip>
+                                                 
+                                                second_layer
+                                </Text>
+                                <style__NahmiiSwitch
+                                                checked={false}
+                                                onChange={[Function]}
+                                />
                 </div>
                 <Spring
                                 config={
@@ -2194,40 +2146,24 @@ ShallowWrapper {
                                         send_on_the
                                          
                     </Text>
-                    <Tooltip
-                                        arrowPointAtCenter={false}
-                                        autoAdjustOverflow={true}
-                                        mouseEnterDelay={0.1}
-                                        mouseLeaveDelay={0.1}
-                                        placement="right"
-                                        prefixCls="ant-tooltip"
-                                        title={
-                                                            <span>
-                                                                                nahmii_payments
-                                                            </span>
+                    <Unknown
+                                        large={true}
+                    />
+                    <Text
+                                        large={true}
+                                        style={
+                                                            Object {
+                                                                                "marginRight": "0.5rem",
+                                                                              }
                                         }
-                                        transitionName="zoom-big-fast"
                     >
-                                        <Unknown
-                                                            large={true}
-                                        />
-                                        <Text
-                                                            large={true}
-                                                            style={
-                                                                                Object {
-                                                                                                    "marginRight": "0.5rem",
-                                                                                                  }
-                                                            }
-                                        >
-                                                             
-                                                            second_layer
-                                        </Text>
-                                        <style__NahmiiSwitch
-                                                            checked={false}
-                                                            disabled={true}
-                                                            onChange={[Function]}
-                                        />
-                    </Tooltip>
+                                         
+                                        second_layer
+                    </Text>
+                    <style__NahmiiSwitch
+                                        checked={false}
+                                        onChange={[Function]}
+                    />
 </div>,
                   <Spring
                     config={
@@ -2484,40 +2420,24 @@ ShallowWrapper {
                         send_on_the
                          
 </Text>,
-                      <Tooltip
-                        arrowPointAtCenter={false}
-                        autoAdjustOverflow={true}
-                        mouseEnterDelay={0.1}
-                        mouseLeaveDelay={0.1}
-                        placement="right"
-                        prefixCls="ant-tooltip"
-                        title={
-                                                <span>
-                                                                        nahmii_payments
-                                                </span>
+                      <Unknown
+                        large={true}
+/>,
+                      <Text
+                        large={true}
+                        style={
+                                                Object {
+                                                                        "marginRight": "0.5rem",
+                                                                      }
                         }
-                        transitionName="zoom-big-fast"
 >
-                        <Unknown
-                                                large={true}
-                        />
-                        <Text
-                                                large={true}
-                                                style={
-                                                                        Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                }
-                        >
-                                                 
-                                                second_layer
-                        </Text>
-                        <style__NahmiiSwitch
-                                                checked={false}
-                                                disabled={true}
-                                                onChange={[Function]}
-                        />
-</Tooltip>,
+                         
+                        second_layer
+</Text>,
+                      <style__NahmiiSwitch
+                        checked={false}
+                        onChange={[Function]}
+/>,
                     ],
                     "style": Object {
                       "marignRight": "auto",
@@ -2546,88 +2466,45 @@ ShallowWrapper {
                     Object {
                       "instance": null,
                       "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "large": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "arrowPointAtCenter": false,
-                        "autoAdjustOverflow": true,
                         "children": Array [
-                          <Unknown
-                            large={true}
-/>,
-                          <Text
-                            large={true}
-                            style={
-                                                        Object {
-                                                                                    "marginRight": "0.5rem",
-                                                                                  }
-                            }
->
-                             
-                            second_layer
-</Text>,
-                          <style__NahmiiSwitch
-                            checked={false}
-                            disabled={true}
-                            onChange={[Function]}
-/>,
+                          " ",
+                          "second_layer",
                         ],
-                        "mouseEnterDelay": 0.1,
-                        "mouseLeaveDelay": 0.1,
-                        "placement": "right",
-                        "prefixCls": "ant-tooltip",
-                        "title": <span>
-                          nahmii_payments
-</span>,
-                        "transitionName": "zoom-big-fast",
+                        "large": true,
+                        "style": Object {
+                          "marginRight": "0.5rem",
+                        },
                       },
                       "ref": null,
                       "rendered": Array [
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "function",
-                          "props": Object {
-                            "large": true,
-                          },
-                          "ref": null,
-                          "rendered": null,
-                          "type": [Function],
-                        },
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "class",
-                          "props": Object {
-                            "children": Array [
-                              " ",
-                              "second_layer",
-                            ],
-                            "large": true,
-                            "style": Object {
-                              "marginRight": "0.5rem",
-                            },
-                          },
-                          "ref": null,
-                          "rendered": Array [
-                            " ",
-                            "second_layer",
-                          ],
-                          "type": [Function],
-                        },
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "class",
-                          "props": Object {
-                            "checked": false,
-                            "disabled": true,
-                            "onChange": [Function],
-                          },
-                          "ref": null,
-                          "rendered": null,
-                          "type": [Function],
-                        },
+                        " ",
+                        "second_layer",
                       ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "checked": false,
+                        "onChange": [Function],
+                      },
+                      "ref": null,
+                      "rendered": null,
                       "type": [Function],
                     },
                   ],
@@ -3670,40 +3547,24 @@ ShallowWrapper {
                                                             send_on_the
                                                              
                                                 </Text>
-                                                <Tooltip
-                                                            arrowPointAtCenter={false}
-                                                            autoAdjustOverflow={true}
-                                                            mouseEnterDelay={0.1}
-                                                            mouseLeaveDelay={0.1}
-                                                            placement="right"
-                                                            prefixCls="ant-tooltip"
-                                                            title={
-                                                                        <span>
-                                                                                    nahmii_payments
-                                                                        </span>
+                                                <Unknown
+                                                            large={true}
+                                                />
+                                                <Text
+                                                            large={true}
+                                                            style={
+                                                                        Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                  }
                                                             }
-                                                            transitionName="zoom-big-fast"
                                                 >
-                                                            <Unknown
-                                                                        large={true}
-                                                            />
-                                                            <Text
-                                                                        large={true}
-                                                                        style={
-                                                                                    Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                        }
-                                                            >
-                                                                         
-                                                                        second_layer
-                                                            </Text>
-                                                            <style__NahmiiSwitch
-                                                                        checked={false}
-                                                                        disabled={true}
-                                                                        onChange={[Function]}
-                                                            />
-                                                </Tooltip>
+                                                             
+                                                            second_layer
+                                                </Text>
+                                                <style__NahmiiSwitch
+                                                            checked={false}
+                                                            onChange={[Function]}
+                                                />
                                     </div>
                                     <Spring
                                                 config={
@@ -4342,40 +4203,24 @@ ShallowWrapper {
                                                                 send_on_the
                                                                  
                                                 </Text>
-                                                <Tooltip
-                                                                arrowPointAtCenter={false}
-                                                                autoAdjustOverflow={true}
-                                                                mouseEnterDelay={0.1}
-                                                                mouseLeaveDelay={0.1}
-                                                                placement="right"
-                                                                prefixCls="ant-tooltip"
-                                                                title={
-                                                                                <span>
-                                                                                                nahmii_payments
-                                                                                </span>
+                                                <Unknown
+                                                                large={true}
+                                                />
+                                                <Text
+                                                                large={true}
+                                                                style={
+                                                                                Object {
+                                                                                                "marginRight": "0.5rem",
+                                                                                              }
                                                                 }
-                                                                transitionName="zoom-big-fast"
                                                 >
-                                                                <Unknown
-                                                                                large={true}
-                                                                />
-                                                                <Text
-                                                                                large={true}
-                                                                                style={
-                                                                                                Object {
-                                                                                                                "marginRight": "0.5rem",
-                                                                                                              }
-                                                                                }
-                                                                >
-                                                                                 
-                                                                                second_layer
-                                                                </Text>
-                                                                <style__NahmiiSwitch
-                                                                                checked={false}
-                                                                                disabled={true}
-                                                                                onChange={[Function]}
-                                                                />
-                                                </Tooltip>
+                                                                 
+                                                                second_layer
+                                                </Text>
+                                                <style__NahmiiSwitch
+                                                                checked={false}
+                                                                onChange={[Function]}
+                                                />
                                 </div>
                                 <Spring
                                                 config={
@@ -4945,40 +4790,24 @@ ShallowWrapper {
                                                       send_on_the
                                                        
                                     </Text>
-                                    <Tooltip
-                                                      arrowPointAtCenter={false}
-                                                      autoAdjustOverflow={true}
-                                                      mouseEnterDelay={0.1}
-                                                      mouseLeaveDelay={0.1}
-                                                      placement="right"
-                                                      prefixCls="ant-tooltip"
-                                                      title={
-                                                                        <span>
-                                                                                          nahmii_payments
-                                                                        </span>
+                                    <Unknown
+                                                      large={true}
+                                    />
+                                    <Text
+                                                      large={true}
+                                                      style={
+                                                                        Object {
+                                                                                          "marginRight": "0.5rem",
+                                                                                        }
                                                       }
-                                                      transitionName="zoom-big-fast"
                                     >
-                                                      <Unknown
-                                                                        large={true}
-                                                      />
-                                                      <Text
-                                                                        large={true}
-                                                                        style={
-                                                                                          Object {
-                                                                                                            "marginRight": "0.5rem",
-                                                                                                          }
-                                                                        }
-                                                      >
-                                                                         
-                                                                        second_layer
-                                                      </Text>
-                                                      <style__NahmiiSwitch
-                                                                        checked={false}
-                                                                        disabled={true}
-                                                                        onChange={[Function]}
-                                                      />
-                                    </Tooltip>
+                                                       
+                                                      second_layer
+                                    </Text>
+                                    <style__NahmiiSwitch
+                                                      checked={false}
+                                                      onChange={[Function]}
+                                    />
                   </div>
                   <Spring
                                     config={
@@ -5120,40 +4949,24 @@ ShallowWrapper {
                                             send_on_the
                                              
                       </Text>
-                      <Tooltip
-                                            arrowPointAtCenter={false}
-                                            autoAdjustOverflow={true}
-                                            mouseEnterDelay={0.1}
-                                            mouseLeaveDelay={0.1}
-                                            placement="right"
-                                            prefixCls="ant-tooltip"
-                                            title={
-                                                                  <span>
-                                                                                        nahmii_payments
-                                                                  </span>
+                      <Unknown
+                                            large={true}
+                      />
+                      <Text
+                                            large={true}
+                                            style={
+                                                                  Object {
+                                                                                        "marginRight": "0.5rem",
+                                                                                      }
                                             }
-                                            transitionName="zoom-big-fast"
                       >
-                                            <Unknown
-                                                                  large={true}
-                                            />
-                                            <Text
-                                                                  large={true}
-                                                                  style={
-                                                                                        Object {
-                                                                                                              "marginRight": "0.5rem",
-                                                                                                            }
-                                                                  }
-                                            >
-                                                                   
-                                                                  second_layer
-                                            </Text>
-                                            <style__NahmiiSwitch
-                                                                  checked={false}
-                                                                  disabled={true}
-                                                                  onChange={[Function]}
-                                            />
-                      </Tooltip>
+                                             
+                                            second_layer
+                      </Text>
+                      <style__NahmiiSwitch
+                                            checked={false}
+                                            onChange={[Function]}
+                      />
 </div>,
                     <Spring
                       config={
@@ -5410,40 +5223,24 @@ ShallowWrapper {
                           send_on_the
                            
 </Text>,
-                        <Tooltip
-                          arrowPointAtCenter={false}
-                          autoAdjustOverflow={true}
-                          mouseEnterDelay={0.1}
-                          mouseLeaveDelay={0.1}
-                          placement="right"
-                          prefixCls="ant-tooltip"
-                          title={
-                                                    <span>
-                                                                              nahmii_payments
-                                                    </span>
+                        <Unknown
+                          large={true}
+/>,
+                        <Text
+                          large={true}
+                          style={
+                                                    Object {
+                                                                              "marginRight": "0.5rem",
+                                                                            }
                           }
-                          transitionName="zoom-big-fast"
 >
-                          <Unknown
-                                                    large={true}
-                          />
-                          <Text
-                                                    large={true}
-                                                    style={
-                                                                              Object {
-                                                                                                        "marginRight": "0.5rem",
-                                                                                                      }
-                                                    }
-                          >
-                                                     
-                                                    second_layer
-                          </Text>
-                          <style__NahmiiSwitch
-                                                    checked={false}
-                                                    disabled={true}
-                                                    onChange={[Function]}
-                          />
-</Tooltip>,
+                           
+                          second_layer
+</Text>,
+                        <style__NahmiiSwitch
+                          checked={false}
+                          onChange={[Function]}
+/>,
                       ],
                       "style": Object {
                         "marignRight": "auto",
@@ -5472,88 +5269,45 @@ ShallowWrapper {
                       Object {
                         "instance": null,
                         "key": undefined,
+                        "nodeType": "function",
+                        "props": Object {
+                          "large": true,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "arrowPointAtCenter": false,
-                          "autoAdjustOverflow": true,
                           "children": Array [
-                            <Unknown
-                              large={true}
-/>,
-                            <Text
-                              large={true}
-                              style={
-                                                            Object {
-                                                                                          "marginRight": "0.5rem",
-                                                                                        }
-                              }
->
-                               
-                              second_layer
-</Text>,
-                            <style__NahmiiSwitch
-                              checked={false}
-                              disabled={true}
-                              onChange={[Function]}
-/>,
+                            " ",
+                            "second_layer",
                           ],
-                          "mouseEnterDelay": 0.1,
-                          "mouseLeaveDelay": 0.1,
-                          "placement": "right",
-                          "prefixCls": "ant-tooltip",
-                          "title": <span>
-                            nahmii_payments
-</span>,
-                          "transitionName": "zoom-big-fast",
+                          "large": true,
+                          "style": Object {
+                            "marginRight": "0.5rem",
+                          },
                         },
                         "ref": null,
                         "rendered": Array [
-                          Object {
-                            "instance": null,
-                            "key": undefined,
-                            "nodeType": "function",
-                            "props": Object {
-                              "large": true,
-                            },
-                            "ref": null,
-                            "rendered": null,
-                            "type": [Function],
-                          },
-                          Object {
-                            "instance": null,
-                            "key": undefined,
-                            "nodeType": "class",
-                            "props": Object {
-                              "children": Array [
-                                " ",
-                                "second_layer",
-                              ],
-                              "large": true,
-                              "style": Object {
-                                "marginRight": "0.5rem",
-                              },
-                            },
-                            "ref": null,
-                            "rendered": Array [
-                              " ",
-                              "second_layer",
-                            ],
-                            "type": [Function],
-                          },
-                          Object {
-                            "instance": null,
-                            "key": undefined,
-                            "nodeType": "class",
-                            "props": Object {
-                              "checked": false,
-                              "disabled": true,
-                              "onChange": [Function],
-                            },
-                            "ref": null,
-                            "rendered": null,
-                            "type": [Function],
-                          },
+                          " ",
+                          "second_layer",
                         ],
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "checked": false,
+                          "onChange": [Function],
+                        },
+                        "ref": null,
+                        "rendered": null,
                         "type": [Function],
                       },
                     ],
@@ -7151,40 +6905,24 @@ ShallowWrapper {
                                                   send_on_the
                                                    
                                         </Text>
-                                        <Tooltip
-                                                  arrowPointAtCenter={false}
-                                                  autoAdjustOverflow={true}
-                                                  mouseEnterDelay={0.1}
-                                                  mouseLeaveDelay={0.1}
-                                                  placement="right"
-                                                  prefixCls="ant-tooltip"
-                                                  title={
-                                                            <span>
-                                                                      nahmii_payments
-                                                            </span>
+                                        <Unknown
+                                                  large={true}
+                                        />
+                                        <Text
+                                                  large={true}
+                                                  style={
+                                                            Object {
+                                                                      "marginRight": "0.5rem",
+                                                                    }
                                                   }
-                                                  transitionName="zoom-big-fast"
                                         >
-                                                  <Unknown
-                                                            large={true}
-                                                  />
-                                                  <Text
-                                                            large={true}
-                                                            style={
-                                                                      Object {
-                                                                                "marginRight": "0.5rem",
-                                                                              }
-                                                            }
-                                                  >
-                                                             
-                                                            second_layer
-                                                  </Text>
-                                                  <style__NahmiiSwitch
-                                                            checked={false}
-                                                            disabled={true}
-                                                            onChange={[Function]}
-                                                  />
-                                        </Tooltip>
+                                                   
+                                                  second_layer
+                                        </Text>
+                                        <style__NahmiiSwitch
+                                                  checked={false}
+                                                  onChange={[Function]}
+                                        />
                               </div>
                               <Spring
                                         config={
@@ -7776,40 +7514,24 @@ ShallowWrapper {
                                                         send_on_the
                                                          
                                           </Text>
-                                          <Tooltip
-                                                        arrowPointAtCenter={false}
-                                                        autoAdjustOverflow={true}
-                                                        mouseEnterDelay={0.1}
-                                                        mouseLeaveDelay={0.1}
-                                                        placement="right"
-                                                        prefixCls="ant-tooltip"
-                                                        title={
-                                                                      <span>
-                                                                                    nahmii_payments
-                                                                      </span>
+                                          <Unknown
+                                                        large={true}
+                                          />
+                                          <Text
+                                                        large={true}
+                                                        style={
+                                                                      Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                  }
                                                         }
-                                                        transitionName="zoom-big-fast"
                                           >
-                                                        <Unknown
-                                                                      large={true}
-                                                        />
-                                                        <Text
-                                                                      large={true}
-                                                                      style={
-                                                                                    Object {
-                                                                                                  "marginRight": "0.5rem",
-                                                                                                }
-                                                                      }
-                                                        >
-                                                                       
-                                                                      second_layer
-                                                        </Text>
-                                                        <style__NahmiiSwitch
-                                                                      checked={false}
-                                                                      disabled={true}
-                                                                      onChange={[Function]}
-                                                        />
-                                          </Tooltip>
+                                                         
+                                                        second_layer
+                                          </Text>
+                                          <style__NahmiiSwitch
+                                                        checked={false}
+                                                        onChange={[Function]}
+                                          />
                             </div>
                             <Spring
                                           config={
@@ -8360,40 +8082,24 @@ ShallowWrapper {
                                                 send_on_the
                                                  
                                 </Text>
-                                <Tooltip
-                                                arrowPointAtCenter={false}
-                                                autoAdjustOverflow={true}
-                                                mouseEnterDelay={0.1}
-                                                mouseLeaveDelay={0.1}
-                                                placement="right"
-                                                prefixCls="ant-tooltip"
-                                                title={
-                                                                <span>
-                                                                                nahmii_payments
-                                                                </span>
+                                <Unknown
+                                                large={true}
+                                />
+                                <Text
+                                                large={true}
+                                                style={
+                                                                Object {
+                                                                                "marginRight": "0.5rem",
+                                                                              }
                                                 }
-                                                transitionName="zoom-big-fast"
                                 >
-                                                <Unknown
-                                                                large={true}
-                                                />
-                                                <Text
-                                                                large={true}
-                                                                style={
-                                                                                Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                }
-                                                >
-                                                                 
-                                                                second_layer
-                                                </Text>
-                                                <style__NahmiiSwitch
-                                                                checked={false}
-                                                                disabled={true}
-                                                                onChange={[Function]}
-                                                />
-                                </Tooltip>
+                                                 
+                                                second_layer
+                                </Text>
+                                <style__NahmiiSwitch
+                                                checked={false}
+                                                onChange={[Function]}
+                                />
                 </div>
                 <Spring
                                 config={
@@ -8516,40 +8222,24 @@ ShallowWrapper {
                                         send_on_the
                                          
                     </Text>
-                    <Tooltip
-                                        arrowPointAtCenter={false}
-                                        autoAdjustOverflow={true}
-                                        mouseEnterDelay={0.1}
-                                        mouseLeaveDelay={0.1}
-                                        placement="right"
-                                        prefixCls="ant-tooltip"
-                                        title={
-                                                            <span>
-                                                                                nahmii_payments
-                                                            </span>
+                    <Unknown
+                                        large={true}
+                    />
+                    <Text
+                                        large={true}
+                                        style={
+                                                            Object {
+                                                                                "marginRight": "0.5rem",
+                                                                              }
                                         }
-                                        transitionName="zoom-big-fast"
                     >
-                                        <Unknown
-                                                            large={true}
-                                        />
-                                        <Text
-                                                            large={true}
-                                                            style={
-                                                                                Object {
-                                                                                                    "marginRight": "0.5rem",
-                                                                                                  }
-                                                            }
-                                        >
-                                                             
-                                                            second_layer
-                                        </Text>
-                                        <style__NahmiiSwitch
-                                                            checked={false}
-                                                            disabled={true}
-                                                            onChange={[Function]}
-                                        />
-                    </Tooltip>
+                                         
+                                        second_layer
+                    </Text>
+                    <style__NahmiiSwitch
+                                        checked={false}
+                                        onChange={[Function]}
+                    />
 </div>,
                   <Spring
                     config={
@@ -8776,40 +8466,24 @@ ShallowWrapper {
                         send_on_the
                          
 </Text>,
-                      <Tooltip
-                        arrowPointAtCenter={false}
-                        autoAdjustOverflow={true}
-                        mouseEnterDelay={0.1}
-                        mouseLeaveDelay={0.1}
-                        placement="right"
-                        prefixCls="ant-tooltip"
-                        title={
-                                                <span>
-                                                                        nahmii_payments
-                                                </span>
+                      <Unknown
+                        large={true}
+/>,
+                      <Text
+                        large={true}
+                        style={
+                                                Object {
+                                                                        "marginRight": "0.5rem",
+                                                                      }
                         }
-                        transitionName="zoom-big-fast"
 >
-                        <Unknown
-                                                large={true}
-                        />
-                        <Text
-                                                large={true}
-                                                style={
-                                                                        Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                }
-                        >
-                                                 
-                                                second_layer
-                        </Text>
-                        <style__NahmiiSwitch
-                                                checked={false}
-                                                disabled={true}
-                                                onChange={[Function]}
-                        />
-</Tooltip>,
+                         
+                        second_layer
+</Text>,
+                      <style__NahmiiSwitch
+                        checked={false}
+                        onChange={[Function]}
+/>,
                     ],
                     "style": Object {
                       "marignRight": "auto",
@@ -8838,88 +8512,45 @@ ShallowWrapper {
                     Object {
                       "instance": null,
                       "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "large": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "arrowPointAtCenter": false,
-                        "autoAdjustOverflow": true,
                         "children": Array [
-                          <Unknown
-                            large={true}
-/>,
-                          <Text
-                            large={true}
-                            style={
-                                                        Object {
-                                                                                    "marginRight": "0.5rem",
-                                                                                  }
-                            }
->
-                             
-                            second_layer
-</Text>,
-                          <style__NahmiiSwitch
-                            checked={false}
-                            disabled={true}
-                            onChange={[Function]}
-/>,
+                          " ",
+                          "second_layer",
                         ],
-                        "mouseEnterDelay": 0.1,
-                        "mouseLeaveDelay": 0.1,
-                        "placement": "right",
-                        "prefixCls": "ant-tooltip",
-                        "title": <span>
-                          nahmii_payments
-</span>,
-                        "transitionName": "zoom-big-fast",
+                        "large": true,
+                        "style": Object {
+                          "marginRight": "0.5rem",
+                        },
                       },
                       "ref": null,
                       "rendered": Array [
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "function",
-                          "props": Object {
-                            "large": true,
-                          },
-                          "ref": null,
-                          "rendered": null,
-                          "type": [Function],
-                        },
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "class",
-                          "props": Object {
-                            "children": Array [
-                              " ",
-                              "second_layer",
-                            ],
-                            "large": true,
-                            "style": Object {
-                              "marginRight": "0.5rem",
-                            },
-                          },
-                          "ref": null,
-                          "rendered": Array [
-                            " ",
-                            "second_layer",
-                          ],
-                          "type": [Function],
-                        },
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "class",
-                          "props": Object {
-                            "checked": false,
-                            "disabled": true,
-                            "onChange": [Function],
-                          },
-                          "ref": null,
-                          "rendered": null,
-                          "type": [Function],
-                        },
+                        " ",
+                        "second_layer",
                       ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "checked": false,
+                        "onChange": [Function],
+                      },
+                      "ref": null,
+                      "rendered": null,
                       "type": [Function],
                     },
                   ],
@@ -9928,40 +9559,24 @@ ShallowWrapper {
                                                             send_on_the
                                                              
                                                 </Text>
-                                                <Tooltip
-                                                            arrowPointAtCenter={false}
-                                                            autoAdjustOverflow={true}
-                                                            mouseEnterDelay={0.1}
-                                                            mouseLeaveDelay={0.1}
-                                                            placement="right"
-                                                            prefixCls="ant-tooltip"
-                                                            title={
-                                                                        <span>
-                                                                                    nahmii_payments
-                                                                        </span>
+                                                <Unknown
+                                                            large={true}
+                                                />
+                                                <Text
+                                                            large={true}
+                                                            style={
+                                                                        Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                  }
                                                             }
-                                                            transitionName="zoom-big-fast"
                                                 >
-                                                            <Unknown
-                                                                        large={true}
-                                                            />
-                                                            <Text
-                                                                        large={true}
-                                                                        style={
-                                                                                    Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                        }
-                                                            >
-                                                                         
-                                                                        second_layer
-                                                            </Text>
-                                                            <style__NahmiiSwitch
-                                                                        checked={false}
-                                                                        disabled={true}
-                                                                        onChange={[Function]}
-                                                            />
-                                                </Tooltip>
+                                                             
+                                                            second_layer
+                                                </Text>
+                                                <style__NahmiiSwitch
+                                                            checked={false}
+                                                            onChange={[Function]}
+                                                />
                                     </div>
                                     <Spring
                                                 config={
@@ -10553,40 +10168,24 @@ ShallowWrapper {
                                                                 send_on_the
                                                                  
                                                 </Text>
-                                                <Tooltip
-                                                                arrowPointAtCenter={false}
-                                                                autoAdjustOverflow={true}
-                                                                mouseEnterDelay={0.1}
-                                                                mouseLeaveDelay={0.1}
-                                                                placement="right"
-                                                                prefixCls="ant-tooltip"
-                                                                title={
-                                                                                <span>
-                                                                                                nahmii_payments
-                                                                                </span>
+                                                <Unknown
+                                                                large={true}
+                                                />
+                                                <Text
+                                                                large={true}
+                                                                style={
+                                                                                Object {
+                                                                                                "marginRight": "0.5rem",
+                                                                                              }
                                                                 }
-                                                                transitionName="zoom-big-fast"
                                                 >
-                                                                <Unknown
-                                                                                large={true}
-                                                                />
-                                                                <Text
-                                                                                large={true}
-                                                                                style={
-                                                                                                Object {
-                                                                                                                "marginRight": "0.5rem",
-                                                                                                              }
-                                                                                }
-                                                                >
-                                                                                 
-                                                                                second_layer
-                                                                </Text>
-                                                                <style__NahmiiSwitch
-                                                                                checked={false}
-                                                                                disabled={true}
-                                                                                onChange={[Function]}
-                                                                />
-                                                </Tooltip>
+                                                                 
+                                                                second_layer
+                                                </Text>
+                                                <style__NahmiiSwitch
+                                                                checked={false}
+                                                                onChange={[Function]}
+                                                />
                                 </div>
                                 <Spring
                                                 config={
@@ -11137,40 +10736,24 @@ ShallowWrapper {
                                                       send_on_the
                                                        
                                     </Text>
-                                    <Tooltip
-                                                      arrowPointAtCenter={false}
-                                                      autoAdjustOverflow={true}
-                                                      mouseEnterDelay={0.1}
-                                                      mouseLeaveDelay={0.1}
-                                                      placement="right"
-                                                      prefixCls="ant-tooltip"
-                                                      title={
-                                                                        <span>
-                                                                                          nahmii_payments
-                                                                        </span>
+                                    <Unknown
+                                                      large={true}
+                                    />
+                                    <Text
+                                                      large={true}
+                                                      style={
+                                                                        Object {
+                                                                                          "marginRight": "0.5rem",
+                                                                                        }
                                                       }
-                                                      transitionName="zoom-big-fast"
                                     >
-                                                      <Unknown
-                                                                        large={true}
-                                                      />
-                                                      <Text
-                                                                        large={true}
-                                                                        style={
-                                                                                          Object {
-                                                                                                            "marginRight": "0.5rem",
-                                                                                                          }
-                                                                        }
-                                                      >
-                                                                         
-                                                                        second_layer
-                                                      </Text>
-                                                      <style__NahmiiSwitch
-                                                                        checked={false}
-                                                                        disabled={true}
-                                                                        onChange={[Function]}
-                                                      />
-                                    </Tooltip>
+                                                       
+                                                      second_layer
+                                    </Text>
+                                    <style__NahmiiSwitch
+                                                      checked={false}
+                                                      onChange={[Function]}
+                                    />
                   </div>
                   <Spring
                                     config={
@@ -11293,40 +10876,24 @@ ShallowWrapper {
                                             send_on_the
                                              
                       </Text>
-                      <Tooltip
-                                            arrowPointAtCenter={false}
-                                            autoAdjustOverflow={true}
-                                            mouseEnterDelay={0.1}
-                                            mouseLeaveDelay={0.1}
-                                            placement="right"
-                                            prefixCls="ant-tooltip"
-                                            title={
-                                                                  <span>
-                                                                                        nahmii_payments
-                                                                  </span>
+                      <Unknown
+                                            large={true}
+                      />
+                      <Text
+                                            large={true}
+                                            style={
+                                                                  Object {
+                                                                                        "marginRight": "0.5rem",
+                                                                                      }
                                             }
-                                            transitionName="zoom-big-fast"
                       >
-                                            <Unknown
-                                                                  large={true}
-                                            />
-                                            <Text
-                                                                  large={true}
-                                                                  style={
-                                                                                        Object {
-                                                                                                              "marginRight": "0.5rem",
-                                                                                                            }
-                                                                  }
-                                            >
-                                                                   
-                                                                  second_layer
-                                            </Text>
-                                            <style__NahmiiSwitch
-                                                                  checked={false}
-                                                                  disabled={true}
-                                                                  onChange={[Function]}
-                                            />
-                      </Tooltip>
+                                             
+                                            second_layer
+                      </Text>
+                      <style__NahmiiSwitch
+                                            checked={false}
+                                            onChange={[Function]}
+                      />
 </div>,
                     <Spring
                       config={
@@ -11553,40 +11120,24 @@ ShallowWrapper {
                           send_on_the
                            
 </Text>,
-                        <Tooltip
-                          arrowPointAtCenter={false}
-                          autoAdjustOverflow={true}
-                          mouseEnterDelay={0.1}
-                          mouseLeaveDelay={0.1}
-                          placement="right"
-                          prefixCls="ant-tooltip"
-                          title={
-                                                    <span>
-                                                                              nahmii_payments
-                                                    </span>
+                        <Unknown
+                          large={true}
+/>,
+                        <Text
+                          large={true}
+                          style={
+                                                    Object {
+                                                                              "marginRight": "0.5rem",
+                                                                            }
                           }
-                          transitionName="zoom-big-fast"
 >
-                          <Unknown
-                                                    large={true}
-                          />
-                          <Text
-                                                    large={true}
-                                                    style={
-                                                                              Object {
-                                                                                                        "marginRight": "0.5rem",
-                                                                                                      }
-                                                    }
-                          >
-                                                     
-                                                    second_layer
-                          </Text>
-                          <style__NahmiiSwitch
-                                                    checked={false}
-                                                    disabled={true}
-                                                    onChange={[Function]}
-                          />
-</Tooltip>,
+                           
+                          second_layer
+</Text>,
+                        <style__NahmiiSwitch
+                          checked={false}
+                          onChange={[Function]}
+/>,
                       ],
                       "style": Object {
                         "marignRight": "auto",
@@ -11615,88 +11166,45 @@ ShallowWrapper {
                       Object {
                         "instance": null,
                         "key": undefined,
+                        "nodeType": "function",
+                        "props": Object {
+                          "large": true,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "arrowPointAtCenter": false,
-                          "autoAdjustOverflow": true,
                           "children": Array [
-                            <Unknown
-                              large={true}
-/>,
-                            <Text
-                              large={true}
-                              style={
-                                                            Object {
-                                                                                          "marginRight": "0.5rem",
-                                                                                        }
-                              }
->
-                               
-                              second_layer
-</Text>,
-                            <style__NahmiiSwitch
-                              checked={false}
-                              disabled={true}
-                              onChange={[Function]}
-/>,
+                            " ",
+                            "second_layer",
                           ],
-                          "mouseEnterDelay": 0.1,
-                          "mouseLeaveDelay": 0.1,
-                          "placement": "right",
-                          "prefixCls": "ant-tooltip",
-                          "title": <span>
-                            nahmii_payments
-</span>,
-                          "transitionName": "zoom-big-fast",
+                          "large": true,
+                          "style": Object {
+                            "marginRight": "0.5rem",
+                          },
                         },
                         "ref": null,
                         "rendered": Array [
-                          Object {
-                            "instance": null,
-                            "key": undefined,
-                            "nodeType": "function",
-                            "props": Object {
-                              "large": true,
-                            },
-                            "ref": null,
-                            "rendered": null,
-                            "type": [Function],
-                          },
-                          Object {
-                            "instance": null,
-                            "key": undefined,
-                            "nodeType": "class",
-                            "props": Object {
-                              "children": Array [
-                                " ",
-                                "second_layer",
-                              ],
-                              "large": true,
-                              "style": Object {
-                                "marginRight": "0.5rem",
-                              },
-                            },
-                            "ref": null,
-                            "rendered": Array [
-                              " ",
-                              "second_layer",
-                            ],
-                            "type": [Function],
-                          },
-                          Object {
-                            "instance": null,
-                            "key": undefined,
-                            "nodeType": "class",
-                            "props": Object {
-                              "checked": false,
-                              "disabled": true,
-                              "onChange": [Function],
-                            },
-                            "ref": null,
-                            "rendered": null,
-                            "type": [Function],
-                          },
+                          " ",
+                          "second_layer",
                         ],
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "checked": false,
+                          "onChange": [Function],
+                        },
+                        "ref": null,
+                        "rendered": null,
                         "type": [Function],
                       },
                     ],
@@ -13343,40 +12851,24 @@ ShallowWrapper {
                                                   send_on_the
                                                    
                                         </Text>
-                                        <Tooltip
-                                                  arrowPointAtCenter={false}
-                                                  autoAdjustOverflow={true}
-                                                  mouseEnterDelay={0.1}
-                                                  mouseLeaveDelay={0.1}
-                                                  placement="right"
-                                                  prefixCls="ant-tooltip"
-                                                  title={
-                                                            <span>
-                                                                      nahmii_payments
-                                                            </span>
+                                        <Unknown
+                                                  large={true}
+                                        />
+                                        <Text
+                                                  large={true}
+                                                  style={
+                                                            Object {
+                                                                      "marginRight": "0.5rem",
+                                                                    }
                                                   }
-                                                  transitionName="zoom-big-fast"
                                         >
-                                                  <Unknown
-                                                            large={true}
-                                                  />
-                                                  <Text
-                                                            large={true}
-                                                            style={
-                                                                      Object {
-                                                                                "marginRight": "0.5rem",
-                                                                              }
-                                                            }
-                                                  >
-                                                             
-                                                            second_layer
-                                                  </Text>
-                                                  <style__NahmiiSwitch
-                                                            checked={false}
-                                                            disabled={true}
-                                                            onChange={[Function]}
-                                                  />
-                                        </Tooltip>
+                                                   
+                                                  second_layer
+                                        </Text>
+                                        <style__NahmiiSwitch
+                                                  checked={false}
+                                                  onChange={[Function]}
+                                        />
                               </div>
                               <Spring
                                         config={
@@ -14015,40 +13507,24 @@ ShallowWrapper {
                                                         send_on_the
                                                          
                                           </Text>
-                                          <Tooltip
-                                                        arrowPointAtCenter={false}
-                                                        autoAdjustOverflow={true}
-                                                        mouseEnterDelay={0.1}
-                                                        mouseLeaveDelay={0.1}
-                                                        placement="right"
-                                                        prefixCls="ant-tooltip"
-                                                        title={
-                                                                      <span>
-                                                                                    nahmii_payments
-                                                                      </span>
+                                          <Unknown
+                                                        large={true}
+                                          />
+                                          <Text
+                                                        large={true}
+                                                        style={
+                                                                      Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                  }
                                                         }
-                                                        transitionName="zoom-big-fast"
                                           >
-                                                        <Unknown
-                                                                      large={true}
-                                                        />
-                                                        <Text
-                                                                      large={true}
-                                                                      style={
-                                                                                    Object {
-                                                                                                  "marginRight": "0.5rem",
-                                                                                                }
-                                                                      }
-                                                        >
-                                                                       
-                                                                      second_layer
-                                                        </Text>
-                                                        <style__NahmiiSwitch
-                                                                      checked={false}
-                                                                      disabled={true}
-                                                                      onChange={[Function]}
-                                                        />
-                                          </Tooltip>
+                                                         
+                                                        second_layer
+                                          </Text>
+                                          <style__NahmiiSwitch
+                                                        checked={false}
+                                                        onChange={[Function]}
+                                          />
                             </div>
                             <Spring
                                           config={
@@ -14618,40 +14094,24 @@ ShallowWrapper {
                                                 send_on_the
                                                  
                                 </Text>
-                                <Tooltip
-                                                arrowPointAtCenter={false}
-                                                autoAdjustOverflow={true}
-                                                mouseEnterDelay={0.1}
-                                                mouseLeaveDelay={0.1}
-                                                placement="right"
-                                                prefixCls="ant-tooltip"
-                                                title={
-                                                                <span>
-                                                                                nahmii_payments
-                                                                </span>
+                                <Unknown
+                                                large={true}
+                                />
+                                <Text
+                                                large={true}
+                                                style={
+                                                                Object {
+                                                                                "marginRight": "0.5rem",
+                                                                              }
                                                 }
-                                                transitionName="zoom-big-fast"
                                 >
-                                                <Unknown
-                                                                large={true}
-                                                />
-                                                <Text
-                                                                large={true}
-                                                                style={
-                                                                                Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                }
-                                                >
-                                                                 
-                                                                second_layer
-                                                </Text>
-                                                <style__NahmiiSwitch
-                                                                checked={false}
-                                                                disabled={true}
-                                                                onChange={[Function]}
-                                                />
-                                </Tooltip>
+                                                 
+                                                second_layer
+                                </Text>
+                                <style__NahmiiSwitch
+                                                checked={false}
+                                                onChange={[Function]}
+                                />
                 </div>
                 <Spring
                                 config={
@@ -14793,40 +14253,24 @@ ShallowWrapper {
                                         send_on_the
                                          
                     </Text>
-                    <Tooltip
-                                        arrowPointAtCenter={false}
-                                        autoAdjustOverflow={true}
-                                        mouseEnterDelay={0.1}
-                                        mouseLeaveDelay={0.1}
-                                        placement="right"
-                                        prefixCls="ant-tooltip"
-                                        title={
-                                                            <span>
-                                                                                nahmii_payments
-                                                            </span>
+                    <Unknown
+                                        large={true}
+                    />
+                    <Text
+                                        large={true}
+                                        style={
+                                                            Object {
+                                                                                "marginRight": "0.5rem",
+                                                                              }
                                         }
-                                        transitionName="zoom-big-fast"
                     >
-                                        <Unknown
-                                                            large={true}
-                                        />
-                                        <Text
-                                                            large={true}
-                                                            style={
-                                                                                Object {
-                                                                                                    "marginRight": "0.5rem",
-                                                                                                  }
-                                                            }
-                                        >
-                                                             
-                                                            second_layer
-                                        </Text>
-                                        <style__NahmiiSwitch
-                                                            checked={false}
-                                                            disabled={true}
-                                                            onChange={[Function]}
-                                        />
-                    </Tooltip>
+                                         
+                                        second_layer
+                    </Text>
+                    <style__NahmiiSwitch
+                                        checked={false}
+                                        onChange={[Function]}
+                    />
 </div>,
                   <Spring
                     config={
@@ -15083,40 +14527,24 @@ ShallowWrapper {
                         send_on_the
                          
 </Text>,
-                      <Tooltip
-                        arrowPointAtCenter={false}
-                        autoAdjustOverflow={true}
-                        mouseEnterDelay={0.1}
-                        mouseLeaveDelay={0.1}
-                        placement="right"
-                        prefixCls="ant-tooltip"
-                        title={
-                                                <span>
-                                                                        nahmii_payments
-                                                </span>
+                      <Unknown
+                        large={true}
+/>,
+                      <Text
+                        large={true}
+                        style={
+                                                Object {
+                                                                        "marginRight": "0.5rem",
+                                                                      }
                         }
-                        transitionName="zoom-big-fast"
 >
-                        <Unknown
-                                                large={true}
-                        />
-                        <Text
-                                                large={true}
-                                                style={
-                                                                        Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                }
-                        >
-                                                 
-                                                second_layer
-                        </Text>
-                        <style__NahmiiSwitch
-                                                checked={false}
-                                                disabled={true}
-                                                onChange={[Function]}
-                        />
-</Tooltip>,
+                         
+                        second_layer
+</Text>,
+                      <style__NahmiiSwitch
+                        checked={false}
+                        onChange={[Function]}
+/>,
                     ],
                     "style": Object {
                       "marignRight": "auto",
@@ -15145,88 +14573,45 @@ ShallowWrapper {
                     Object {
                       "instance": null,
                       "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "large": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "arrowPointAtCenter": false,
-                        "autoAdjustOverflow": true,
                         "children": Array [
-                          <Unknown
-                            large={true}
-/>,
-                          <Text
-                            large={true}
-                            style={
-                                                        Object {
-                                                                                    "marginRight": "0.5rem",
-                                                                                  }
-                            }
->
-                             
-                            second_layer
-</Text>,
-                          <style__NahmiiSwitch
-                            checked={false}
-                            disabled={true}
-                            onChange={[Function]}
-/>,
+                          " ",
+                          "second_layer",
                         ],
-                        "mouseEnterDelay": 0.1,
-                        "mouseLeaveDelay": 0.1,
-                        "placement": "right",
-                        "prefixCls": "ant-tooltip",
-                        "title": <span>
-                          nahmii_payments
-</span>,
-                        "transitionName": "zoom-big-fast",
+                        "large": true,
+                        "style": Object {
+                          "marginRight": "0.5rem",
+                        },
                       },
                       "ref": null,
                       "rendered": Array [
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "function",
-                          "props": Object {
-                            "large": true,
-                          },
-                          "ref": null,
-                          "rendered": null,
-                          "type": [Function],
-                        },
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "class",
-                          "props": Object {
-                            "children": Array [
-                              " ",
-                              "second_layer",
-                            ],
-                            "large": true,
-                            "style": Object {
-                              "marginRight": "0.5rem",
-                            },
-                          },
-                          "ref": null,
-                          "rendered": Array [
-                            " ",
-                            "second_layer",
-                          ],
-                          "type": [Function],
-                        },
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "class",
-                          "props": Object {
-                            "checked": false,
-                            "disabled": true,
-                            "onChange": [Function],
-                          },
-                          "ref": null,
-                          "rendered": null,
-                          "type": [Function],
-                        },
+                        " ",
+                        "second_layer",
                       ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "checked": false,
+                        "onChange": [Function],
+                      },
+                      "ref": null,
+                      "rendered": null,
                       "type": [Function],
                     },
                   ],
@@ -16269,40 +15654,24 @@ ShallowWrapper {
                                                             send_on_the
                                                              
                                                 </Text>
-                                                <Tooltip
-                                                            arrowPointAtCenter={false}
-                                                            autoAdjustOverflow={true}
-                                                            mouseEnterDelay={0.1}
-                                                            mouseLeaveDelay={0.1}
-                                                            placement="right"
-                                                            prefixCls="ant-tooltip"
-                                                            title={
-                                                                        <span>
-                                                                                    nahmii_payments
-                                                                        </span>
+                                                <Unknown
+                                                            large={true}
+                                                />
+                                                <Text
+                                                            large={true}
+                                                            style={
+                                                                        Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                  }
                                                             }
-                                                            transitionName="zoom-big-fast"
                                                 >
-                                                            <Unknown
-                                                                        large={true}
-                                                            />
-                                                            <Text
-                                                                        large={true}
-                                                                        style={
-                                                                                    Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                        }
-                                                            >
-                                                                         
-                                                                        second_layer
-                                                            </Text>
-                                                            <style__NahmiiSwitch
-                                                                        checked={false}
-                                                                        disabled={true}
-                                                                        onChange={[Function]}
-                                                            />
-                                                </Tooltip>
+                                                             
+                                                            second_layer
+                                                </Text>
+                                                <style__NahmiiSwitch
+                                                            checked={false}
+                                                            onChange={[Function]}
+                                                />
                                     </div>
                                     <Spring
                                                 config={
@@ -16941,40 +16310,24 @@ ShallowWrapper {
                                                                 send_on_the
                                                                  
                                                 </Text>
-                                                <Tooltip
-                                                                arrowPointAtCenter={false}
-                                                                autoAdjustOverflow={true}
-                                                                mouseEnterDelay={0.1}
-                                                                mouseLeaveDelay={0.1}
-                                                                placement="right"
-                                                                prefixCls="ant-tooltip"
-                                                                title={
-                                                                                <span>
-                                                                                                nahmii_payments
-                                                                                </span>
+                                                <Unknown
+                                                                large={true}
+                                                />
+                                                <Text
+                                                                large={true}
+                                                                style={
+                                                                                Object {
+                                                                                                "marginRight": "0.5rem",
+                                                                                              }
                                                                 }
-                                                                transitionName="zoom-big-fast"
                                                 >
-                                                                <Unknown
-                                                                                large={true}
-                                                                />
-                                                                <Text
-                                                                                large={true}
-                                                                                style={
-                                                                                                Object {
-                                                                                                                "marginRight": "0.5rem",
-                                                                                                              }
-                                                                                }
-                                                                >
-                                                                                 
-                                                                                second_layer
-                                                                </Text>
-                                                                <style__NahmiiSwitch
-                                                                                checked={false}
-                                                                                disabled={true}
-                                                                                onChange={[Function]}
-                                                                />
-                                                </Tooltip>
+                                                                 
+                                                                second_layer
+                                                </Text>
+                                                <style__NahmiiSwitch
+                                                                checked={false}
+                                                                onChange={[Function]}
+                                                />
                                 </div>
                                 <Spring
                                                 config={
@@ -17544,40 +16897,24 @@ ShallowWrapper {
                                                       send_on_the
                                                        
                                     </Text>
-                                    <Tooltip
-                                                      arrowPointAtCenter={false}
-                                                      autoAdjustOverflow={true}
-                                                      mouseEnterDelay={0.1}
-                                                      mouseLeaveDelay={0.1}
-                                                      placement="right"
-                                                      prefixCls="ant-tooltip"
-                                                      title={
-                                                                        <span>
-                                                                                          nahmii_payments
-                                                                        </span>
+                                    <Unknown
+                                                      large={true}
+                                    />
+                                    <Text
+                                                      large={true}
+                                                      style={
+                                                                        Object {
+                                                                                          "marginRight": "0.5rem",
+                                                                                        }
                                                       }
-                                                      transitionName="zoom-big-fast"
                                     >
-                                                      <Unknown
-                                                                        large={true}
-                                                      />
-                                                      <Text
-                                                                        large={true}
-                                                                        style={
-                                                                                          Object {
-                                                                                                            "marginRight": "0.5rem",
-                                                                                                          }
-                                                                        }
-                                                      >
-                                                                         
-                                                                        second_layer
-                                                      </Text>
-                                                      <style__NahmiiSwitch
-                                                                        checked={false}
-                                                                        disabled={true}
-                                                                        onChange={[Function]}
-                                                      />
-                                    </Tooltip>
+                                                       
+                                                      second_layer
+                                    </Text>
+                                    <style__NahmiiSwitch
+                                                      checked={false}
+                                                      onChange={[Function]}
+                                    />
                   </div>
                   <Spring
                                     config={
@@ -17719,40 +17056,24 @@ ShallowWrapper {
                                             send_on_the
                                              
                       </Text>
-                      <Tooltip
-                                            arrowPointAtCenter={false}
-                                            autoAdjustOverflow={true}
-                                            mouseEnterDelay={0.1}
-                                            mouseLeaveDelay={0.1}
-                                            placement="right"
-                                            prefixCls="ant-tooltip"
-                                            title={
-                                                                  <span>
-                                                                                        nahmii_payments
-                                                                  </span>
+                      <Unknown
+                                            large={true}
+                      />
+                      <Text
+                                            large={true}
+                                            style={
+                                                                  Object {
+                                                                                        "marginRight": "0.5rem",
+                                                                                      }
                                             }
-                                            transitionName="zoom-big-fast"
                       >
-                                            <Unknown
-                                                                  large={true}
-                                            />
-                                            <Text
-                                                                  large={true}
-                                                                  style={
-                                                                                        Object {
-                                                                                                              "marginRight": "0.5rem",
-                                                                                                            }
-                                                                  }
-                                            >
-                                                                   
-                                                                  second_layer
-                                            </Text>
-                                            <style__NahmiiSwitch
-                                                                  checked={false}
-                                                                  disabled={true}
-                                                                  onChange={[Function]}
-                                            />
-                      </Tooltip>
+                                             
+                                            second_layer
+                      </Text>
+                      <style__NahmiiSwitch
+                                            checked={false}
+                                            onChange={[Function]}
+                      />
 </div>,
                     <Spring
                       config={
@@ -18009,40 +17330,24 @@ ShallowWrapper {
                           send_on_the
                            
 </Text>,
-                        <Tooltip
-                          arrowPointAtCenter={false}
-                          autoAdjustOverflow={true}
-                          mouseEnterDelay={0.1}
-                          mouseLeaveDelay={0.1}
-                          placement="right"
-                          prefixCls="ant-tooltip"
-                          title={
-                                                    <span>
-                                                                              nahmii_payments
-                                                    </span>
+                        <Unknown
+                          large={true}
+/>,
+                        <Text
+                          large={true}
+                          style={
+                                                    Object {
+                                                                              "marginRight": "0.5rem",
+                                                                            }
                           }
-                          transitionName="zoom-big-fast"
 >
-                          <Unknown
-                                                    large={true}
-                          />
-                          <Text
-                                                    large={true}
-                                                    style={
-                                                                              Object {
-                                                                                                        "marginRight": "0.5rem",
-                                                                                                      }
-                                                    }
-                          >
-                                                     
-                                                    second_layer
-                          </Text>
-                          <style__NahmiiSwitch
-                                                    checked={false}
-                                                    disabled={true}
-                                                    onChange={[Function]}
-                          />
-</Tooltip>,
+                           
+                          second_layer
+</Text>,
+                        <style__NahmiiSwitch
+                          checked={false}
+                          onChange={[Function]}
+/>,
                       ],
                       "style": Object {
                         "marignRight": "auto",
@@ -18071,88 +17376,45 @@ ShallowWrapper {
                       Object {
                         "instance": null,
                         "key": undefined,
+                        "nodeType": "function",
+                        "props": Object {
+                          "large": true,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "arrowPointAtCenter": false,
-                          "autoAdjustOverflow": true,
                           "children": Array [
-                            <Unknown
-                              large={true}
-/>,
-                            <Text
-                              large={true}
-                              style={
-                                                            Object {
-                                                                                          "marginRight": "0.5rem",
-                                                                                        }
-                              }
->
-                               
-                              second_layer
-</Text>,
-                            <style__NahmiiSwitch
-                              checked={false}
-                              disabled={true}
-                              onChange={[Function]}
-/>,
+                            " ",
+                            "second_layer",
                           ],
-                          "mouseEnterDelay": 0.1,
-                          "mouseLeaveDelay": 0.1,
-                          "placement": "right",
-                          "prefixCls": "ant-tooltip",
-                          "title": <span>
-                            nahmii_payments
-</span>,
-                          "transitionName": "zoom-big-fast",
+                          "large": true,
+                          "style": Object {
+                            "marginRight": "0.5rem",
+                          },
                         },
                         "ref": null,
                         "rendered": Array [
-                          Object {
-                            "instance": null,
-                            "key": undefined,
-                            "nodeType": "function",
-                            "props": Object {
-                              "large": true,
-                            },
-                            "ref": null,
-                            "rendered": null,
-                            "type": [Function],
-                          },
-                          Object {
-                            "instance": null,
-                            "key": undefined,
-                            "nodeType": "class",
-                            "props": Object {
-                              "children": Array [
-                                " ",
-                                "second_layer",
-                              ],
-                              "large": true,
-                              "style": Object {
-                                "marginRight": "0.5rem",
-                              },
-                            },
-                            "ref": null,
-                            "rendered": Array [
-                              " ",
-                              "second_layer",
-                            ],
-                            "type": [Function],
-                          },
-                          Object {
-                            "instance": null,
-                            "key": undefined,
-                            "nodeType": "class",
-                            "props": Object {
-                              "checked": false,
-                              "disabled": true,
-                              "onChange": [Function],
-                            },
-                            "ref": null,
-                            "rendered": null,
-                            "type": [Function],
-                          },
+                          " ",
+                          "second_layer",
                         ],
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "checked": false,
+                          "onChange": [Function],
+                        },
+                        "ref": null,
+                        "rendered": null,
                         "type": [Function],
                       },
                     ],
@@ -19799,40 +19061,24 @@ ShallowWrapper {
                                                   send_on_the
                                                    
                                         </Text>
-                                        <Tooltip
-                                                  arrowPointAtCenter={false}
-                                                  autoAdjustOverflow={true}
-                                                  mouseEnterDelay={0.1}
-                                                  mouseLeaveDelay={0.1}
-                                                  placement="right"
-                                                  prefixCls="ant-tooltip"
-                                                  title={
-                                                            <span>
-                                                                      nahmii_payments
-                                                            </span>
+                                        <Unknown
+                                                  large={true}
+                                        />
+                                        <Text
+                                                  large={true}
+                                                  style={
+                                                            Object {
+                                                                      "marginRight": "0.5rem",
+                                                                    }
                                                   }
-                                                  transitionName="zoom-big-fast"
                                         >
-                                                  <Unknown
-                                                            large={true}
-                                                  />
-                                                  <Text
-                                                            large={true}
-                                                            style={
-                                                                      Object {
-                                                                                "marginRight": "0.5rem",
-                                                                              }
-                                                            }
-                                                  >
-                                                             
-                                                            second_layer
-                                                  </Text>
-                                                  <style__NahmiiSwitch
-                                                            checked={false}
-                                                            disabled={true}
-                                                            onChange={[Function]}
-                                                  />
-                                        </Tooltip>
+                                                   
+                                                  second_layer
+                                        </Text>
+                                        <style__NahmiiSwitch
+                                                  checked={false}
+                                                  onChange={[Function]}
+                                        />
                               </div>
                               <Spring
                                         config={
@@ -20471,40 +19717,24 @@ ShallowWrapper {
                                                         send_on_the
                                                          
                                           </Text>
-                                          <Tooltip
-                                                        arrowPointAtCenter={false}
-                                                        autoAdjustOverflow={true}
-                                                        mouseEnterDelay={0.1}
-                                                        mouseLeaveDelay={0.1}
-                                                        placement="right"
-                                                        prefixCls="ant-tooltip"
-                                                        title={
-                                                                      <span>
-                                                                                    nahmii_payments
-                                                                      </span>
+                                          <Unknown
+                                                        large={true}
+                                          />
+                                          <Text
+                                                        large={true}
+                                                        style={
+                                                                      Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                  }
                                                         }
-                                                        transitionName="zoom-big-fast"
                                           >
-                                                        <Unknown
-                                                                      large={true}
-                                                        />
-                                                        <Text
-                                                                      large={true}
-                                                                      style={
-                                                                                    Object {
-                                                                                                  "marginRight": "0.5rem",
-                                                                                                }
-                                                                      }
-                                                        >
-                                                                       
-                                                                      second_layer
-                                                        </Text>
-                                                        <style__NahmiiSwitch
-                                                                      checked={false}
-                                                                      disabled={true}
-                                                                      onChange={[Function]}
-                                                        />
-                                          </Tooltip>
+                                                         
+                                                        second_layer
+                                          </Text>
+                                          <style__NahmiiSwitch
+                                                        checked={false}
+                                                        onChange={[Function]}
+                                          />
                             </div>
                             <Spring
                                           config={
@@ -21074,40 +20304,24 @@ ShallowWrapper {
                                                 send_on_the
                                                  
                                 </Text>
-                                <Tooltip
-                                                arrowPointAtCenter={false}
-                                                autoAdjustOverflow={true}
-                                                mouseEnterDelay={0.1}
-                                                mouseLeaveDelay={0.1}
-                                                placement="right"
-                                                prefixCls="ant-tooltip"
-                                                title={
-                                                                <span>
-                                                                                nahmii_payments
-                                                                </span>
+                                <Unknown
+                                                large={true}
+                                />
+                                <Text
+                                                large={true}
+                                                style={
+                                                                Object {
+                                                                                "marginRight": "0.5rem",
+                                                                              }
                                                 }
-                                                transitionName="zoom-big-fast"
                                 >
-                                                <Unknown
-                                                                large={true}
-                                                />
-                                                <Text
-                                                                large={true}
-                                                                style={
-                                                                                Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                }
-                                                >
-                                                                 
-                                                                second_layer
-                                                </Text>
-                                                <style__NahmiiSwitch
-                                                                checked={false}
-                                                                disabled={true}
-                                                                onChange={[Function]}
-                                                />
-                                </Tooltip>
+                                                 
+                                                second_layer
+                                </Text>
+                                <style__NahmiiSwitch
+                                                checked={false}
+                                                onChange={[Function]}
+                                />
                 </div>
                 <Spring
                                 config={
@@ -21249,40 +20463,24 @@ ShallowWrapper {
                                         send_on_the
                                          
                     </Text>
-                    <Tooltip
-                                        arrowPointAtCenter={false}
-                                        autoAdjustOverflow={true}
-                                        mouseEnterDelay={0.1}
-                                        mouseLeaveDelay={0.1}
-                                        placement="right"
-                                        prefixCls="ant-tooltip"
-                                        title={
-                                                            <span>
-                                                                                nahmii_payments
-                                                            </span>
+                    <Unknown
+                                        large={true}
+                    />
+                    <Text
+                                        large={true}
+                                        style={
+                                                            Object {
+                                                                                "marginRight": "0.5rem",
+                                                                              }
                                         }
-                                        transitionName="zoom-big-fast"
                     >
-                                        <Unknown
-                                                            large={true}
-                                        />
-                                        <Text
-                                                            large={true}
-                                                            style={
-                                                                                Object {
-                                                                                                    "marginRight": "0.5rem",
-                                                                                                  }
-                                                            }
-                                        >
-                                                             
-                                                            second_layer
-                                        </Text>
-                                        <style__NahmiiSwitch
-                                                            checked={false}
-                                                            disabled={true}
-                                                            onChange={[Function]}
-                                        />
-                    </Tooltip>
+                                         
+                                        second_layer
+                    </Text>
+                    <style__NahmiiSwitch
+                                        checked={false}
+                                        onChange={[Function]}
+                    />
 </div>,
                   <Spring
                     config={
@@ -21539,40 +20737,24 @@ ShallowWrapper {
                         send_on_the
                          
 </Text>,
-                      <Tooltip
-                        arrowPointAtCenter={false}
-                        autoAdjustOverflow={true}
-                        mouseEnterDelay={0.1}
-                        mouseLeaveDelay={0.1}
-                        placement="right"
-                        prefixCls="ant-tooltip"
-                        title={
-                                                <span>
-                                                                        nahmii_payments
-                                                </span>
+                      <Unknown
+                        large={true}
+/>,
+                      <Text
+                        large={true}
+                        style={
+                                                Object {
+                                                                        "marginRight": "0.5rem",
+                                                                      }
                         }
-                        transitionName="zoom-big-fast"
 >
-                        <Unknown
-                                                large={true}
-                        />
-                        <Text
-                                                large={true}
-                                                style={
-                                                                        Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                }
-                        >
-                                                 
-                                                second_layer
-                        </Text>
-                        <style__NahmiiSwitch
-                                                checked={false}
-                                                disabled={true}
-                                                onChange={[Function]}
-                        />
-</Tooltip>,
+                         
+                        second_layer
+</Text>,
+                      <style__NahmiiSwitch
+                        checked={false}
+                        onChange={[Function]}
+/>,
                     ],
                     "style": Object {
                       "marignRight": "auto",
@@ -21601,88 +20783,45 @@ ShallowWrapper {
                     Object {
                       "instance": null,
                       "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "large": true,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "arrowPointAtCenter": false,
-                        "autoAdjustOverflow": true,
                         "children": Array [
-                          <Unknown
-                            large={true}
-/>,
-                          <Text
-                            large={true}
-                            style={
-                                                        Object {
-                                                                                    "marginRight": "0.5rem",
-                                                                                  }
-                            }
->
-                             
-                            second_layer
-</Text>,
-                          <style__NahmiiSwitch
-                            checked={false}
-                            disabled={true}
-                            onChange={[Function]}
-/>,
+                          " ",
+                          "second_layer",
                         ],
-                        "mouseEnterDelay": 0.1,
-                        "mouseLeaveDelay": 0.1,
-                        "placement": "right",
-                        "prefixCls": "ant-tooltip",
-                        "title": <span>
-                          nahmii_payments
-</span>,
-                        "transitionName": "zoom-big-fast",
+                        "large": true,
+                        "style": Object {
+                          "marginRight": "0.5rem",
+                        },
                       },
                       "ref": null,
                       "rendered": Array [
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "function",
-                          "props": Object {
-                            "large": true,
-                          },
-                          "ref": null,
-                          "rendered": null,
-                          "type": [Function],
-                        },
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "class",
-                          "props": Object {
-                            "children": Array [
-                              " ",
-                              "second_layer",
-                            ],
-                            "large": true,
-                            "style": Object {
-                              "marginRight": "0.5rem",
-                            },
-                          },
-                          "ref": null,
-                          "rendered": Array [
-                            " ",
-                            "second_layer",
-                          ],
-                          "type": [Function],
-                        },
-                        Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "class",
-                          "props": Object {
-                            "checked": false,
-                            "disabled": true,
-                            "onChange": [Function],
-                          },
-                          "ref": null,
-                          "rendered": null,
-                          "type": [Function],
-                        },
+                        " ",
+                        "second_layer",
                       ],
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "checked": false,
+                        "onChange": [Function],
+                      },
+                      "ref": null,
+                      "rendered": null,
                       "type": [Function],
                     },
                   ],
@@ -22725,40 +21864,24 @@ ShallowWrapper {
                                                             send_on_the
                                                              
                                                 </Text>
-                                                <Tooltip
-                                                            arrowPointAtCenter={false}
-                                                            autoAdjustOverflow={true}
-                                                            mouseEnterDelay={0.1}
-                                                            mouseLeaveDelay={0.1}
-                                                            placement="right"
-                                                            prefixCls="ant-tooltip"
-                                                            title={
-                                                                        <span>
-                                                                                    nahmii_payments
-                                                                        </span>
+                                                <Unknown
+                                                            large={true}
+                                                />
+                                                <Text
+                                                            large={true}
+                                                            style={
+                                                                        Object {
+                                                                                    "marginRight": "0.5rem",
+                                                                                  }
                                                             }
-                                                            transitionName="zoom-big-fast"
                                                 >
-                                                            <Unknown
-                                                                        large={true}
-                                                            />
-                                                            <Text
-                                                                        large={true}
-                                                                        style={
-                                                                                    Object {
-                                                                                                "marginRight": "0.5rem",
-                                                                                              }
-                                                                        }
-                                                            >
-                                                                         
-                                                                        second_layer
-                                                            </Text>
-                                                            <style__NahmiiSwitch
-                                                                        checked={false}
-                                                                        disabled={true}
-                                                                        onChange={[Function]}
-                                                            />
-                                                </Tooltip>
+                                                             
+                                                            second_layer
+                                                </Text>
+                                                <style__NahmiiSwitch
+                                                            checked={false}
+                                                            onChange={[Function]}
+                                                />
                                     </div>
                                     <Spring
                                                 config={
@@ -23397,40 +22520,24 @@ ShallowWrapper {
                                                                 send_on_the
                                                                  
                                                 </Text>
-                                                <Tooltip
-                                                                arrowPointAtCenter={false}
-                                                                autoAdjustOverflow={true}
-                                                                mouseEnterDelay={0.1}
-                                                                mouseLeaveDelay={0.1}
-                                                                placement="right"
-                                                                prefixCls="ant-tooltip"
-                                                                title={
-                                                                                <span>
-                                                                                                nahmii_payments
-                                                                                </span>
+                                                <Unknown
+                                                                large={true}
+                                                />
+                                                <Text
+                                                                large={true}
+                                                                style={
+                                                                                Object {
+                                                                                                "marginRight": "0.5rem",
+                                                                                              }
                                                                 }
-                                                                transitionName="zoom-big-fast"
                                                 >
-                                                                <Unknown
-                                                                                large={true}
-                                                                />
-                                                                <Text
-                                                                                large={true}
-                                                                                style={
-                                                                                                Object {
-                                                                                                                "marginRight": "0.5rem",
-                                                                                                              }
-                                                                                }
-                                                                >
-                                                                                 
-                                                                                second_layer
-                                                                </Text>
-                                                                <style__NahmiiSwitch
-                                                                                checked={false}
-                                                                                disabled={true}
-                                                                                onChange={[Function]}
-                                                                />
-                                                </Tooltip>
+                                                                 
+                                                                second_layer
+                                                </Text>
+                                                <style__NahmiiSwitch
+                                                                checked={false}
+                                                                onChange={[Function]}
+                                                />
                                 </div>
                                 <Spring
                                                 config={
@@ -24000,40 +23107,24 @@ ShallowWrapper {
                                                       send_on_the
                                                        
                                     </Text>
-                                    <Tooltip
-                                                      arrowPointAtCenter={false}
-                                                      autoAdjustOverflow={true}
-                                                      mouseEnterDelay={0.1}
-                                                      mouseLeaveDelay={0.1}
-                                                      placement="right"
-                                                      prefixCls="ant-tooltip"
-                                                      title={
-                                                                        <span>
-                                                                                          nahmii_payments
-                                                                        </span>
+                                    <Unknown
+                                                      large={true}
+                                    />
+                                    <Text
+                                                      large={true}
+                                                      style={
+                                                                        Object {
+                                                                                          "marginRight": "0.5rem",
+                                                                                        }
                                                       }
-                                                      transitionName="zoom-big-fast"
                                     >
-                                                      <Unknown
-                                                                        large={true}
-                                                      />
-                                                      <Text
-                                                                        large={true}
-                                                                        style={
-                                                                                          Object {
-                                                                                                            "marginRight": "0.5rem",
-                                                                                                          }
-                                                                        }
-                                                      >
-                                                                         
-                                                                        second_layer
-                                                      </Text>
-                                                      <style__NahmiiSwitch
-                                                                        checked={false}
-                                                                        disabled={true}
-                                                                        onChange={[Function]}
-                                                      />
-                                    </Tooltip>
+                                                       
+                                                      second_layer
+                                    </Text>
+                                    <style__NahmiiSwitch
+                                                      checked={false}
+                                                      onChange={[Function]}
+                                    />
                   </div>
                   <Spring
                                     config={
@@ -24175,40 +23266,24 @@ ShallowWrapper {
                                             send_on_the
                                              
                       </Text>
-                      <Tooltip
-                                            arrowPointAtCenter={false}
-                                            autoAdjustOverflow={true}
-                                            mouseEnterDelay={0.1}
-                                            mouseLeaveDelay={0.1}
-                                            placement="right"
-                                            prefixCls="ant-tooltip"
-                                            title={
-                                                                  <span>
-                                                                                        nahmii_payments
-                                                                  </span>
+                      <Unknown
+                                            large={true}
+                      />
+                      <Text
+                                            large={true}
+                                            style={
+                                                                  Object {
+                                                                                        "marginRight": "0.5rem",
+                                                                                      }
                                             }
-                                            transitionName="zoom-big-fast"
                       >
-                                            <Unknown
-                                                                  large={true}
-                                            />
-                                            <Text
-                                                                  large={true}
-                                                                  style={
-                                                                                        Object {
-                                                                                                              "marginRight": "0.5rem",
-                                                                                                            }
-                                                                  }
-                                            >
-                                                                   
-                                                                  second_layer
-                                            </Text>
-                                            <style__NahmiiSwitch
-                                                                  checked={false}
-                                                                  disabled={true}
-                                                                  onChange={[Function]}
-                                            />
-                      </Tooltip>
+                                             
+                                            second_layer
+                      </Text>
+                      <style__NahmiiSwitch
+                                            checked={false}
+                                            onChange={[Function]}
+                      />
 </div>,
                     <Spring
                       config={
@@ -24465,40 +23540,24 @@ ShallowWrapper {
                           send_on_the
                            
 </Text>,
-                        <Tooltip
-                          arrowPointAtCenter={false}
-                          autoAdjustOverflow={true}
-                          mouseEnterDelay={0.1}
-                          mouseLeaveDelay={0.1}
-                          placement="right"
-                          prefixCls="ant-tooltip"
-                          title={
-                                                    <span>
-                                                                              nahmii_payments
-                                                    </span>
+                        <Unknown
+                          large={true}
+/>,
+                        <Text
+                          large={true}
+                          style={
+                                                    Object {
+                                                                              "marginRight": "0.5rem",
+                                                                            }
                           }
-                          transitionName="zoom-big-fast"
 >
-                          <Unknown
-                                                    large={true}
-                          />
-                          <Text
-                                                    large={true}
-                                                    style={
-                                                                              Object {
-                                                                                                        "marginRight": "0.5rem",
-                                                                                                      }
-                                                    }
-                          >
-                                                     
-                                                    second_layer
-                          </Text>
-                          <style__NahmiiSwitch
-                                                    checked={false}
-                                                    disabled={true}
-                                                    onChange={[Function]}
-                          />
-</Tooltip>,
+                           
+                          second_layer
+</Text>,
+                        <style__NahmiiSwitch
+                          checked={false}
+                          onChange={[Function]}
+/>,
                       ],
                       "style": Object {
                         "marignRight": "auto",
@@ -24527,88 +23586,45 @@ ShallowWrapper {
                       Object {
                         "instance": null,
                         "key": undefined,
+                        "nodeType": "function",
+                        "props": Object {
+                          "large": true,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "arrowPointAtCenter": false,
-                          "autoAdjustOverflow": true,
                           "children": Array [
-                            <Unknown
-                              large={true}
-/>,
-                            <Text
-                              large={true}
-                              style={
-                                                            Object {
-                                                                                          "marginRight": "0.5rem",
-                                                                                        }
-                              }
->
-                               
-                              second_layer
-</Text>,
-                            <style__NahmiiSwitch
-                              checked={false}
-                              disabled={true}
-                              onChange={[Function]}
-/>,
+                            " ",
+                            "second_layer",
                           ],
-                          "mouseEnterDelay": 0.1,
-                          "mouseLeaveDelay": 0.1,
-                          "placement": "right",
-                          "prefixCls": "ant-tooltip",
-                          "title": <span>
-                            nahmii_payments
-</span>,
-                          "transitionName": "zoom-big-fast",
+                          "large": true,
+                          "style": Object {
+                            "marginRight": "0.5rem",
+                          },
                         },
                         "ref": null,
                         "rendered": Array [
-                          Object {
-                            "instance": null,
-                            "key": undefined,
-                            "nodeType": "function",
-                            "props": Object {
-                              "large": true,
-                            },
-                            "ref": null,
-                            "rendered": null,
-                            "type": [Function],
-                          },
-                          Object {
-                            "instance": null,
-                            "key": undefined,
-                            "nodeType": "class",
-                            "props": Object {
-                              "children": Array [
-                                " ",
-                                "second_layer",
-                              ],
-                              "large": true,
-                              "style": Object {
-                                "marginRight": "0.5rem",
-                              },
-                            },
-                            "ref": null,
-                            "rendered": Array [
-                              " ",
-                              "second_layer",
-                            ],
-                            "type": [Function],
-                          },
-                          Object {
-                            "instance": null,
-                            "key": undefined,
-                            "nodeType": "class",
-                            "props": Object {
-                              "checked": false,
-                              "disabled": true,
-                              "onChange": [Function],
-                            },
-                            "ref": null,
-                            "rendered": null,
-                            "type": [Function],
-                          },
+                          " ",
+                          "second_layer",
                         ],
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "checked": false,
+                          "onChange": [Function],
+                        },
+                        "ref": null,
+                        "rendered": null,
                         "type": [Function],
                       },
                     ],

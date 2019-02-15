@@ -218,5 +218,6 @@
     "missing_price": "Missing price",
     "deposits_note": "Successful deposits will be credited to your nahmii balance after 12 confirmations (~3 minutes)",
     "nahmii_deposits": "nahmii deposit integration coming soon",
-    "nahmii_payments": "nahmii payment integration coming soon"
+    "nahmii_payments": "nahmii payment integration coming soon",
+    "nahmii_transfer_insufficient_funds_error": "Failed to transfer: Please make sure the nahmii balance of this token is not less than {minimumBalance} after the transfer."
 }

@@ -35,13 +35,18 @@ const trimmableWalletApiEndpoint = (endpoint) => (trimmed) => {
 const ROPSTEN_URL = 'https://api2.dev.hubii.net/';
 const MAINNET_URL = 'https://api.nahmii.io/';
 
+const ROPSTEN_NODE = 'http://geth-ropsten.dev.hubii.net';
+const MAINNET_NODE = 'http://ethereum.hubii.com:8545';
+
 export const SUPPORTED_NETWORKS = {
   mainnet: {
     provider: getDefaultProvider('mainnet'),
     nahmiiProvider: new nahmii.NahmiiProvider(
       trimmableWalletApiEndpoint(MAINNET_URL)(true),
       MAINNET_IDENTITY_SERVICE_APPID,
-      MAINNET_IDENTITY_SERVICE_SECRET
+      MAINNET_IDENTITY_SERVICE_SECRET,
+      MAINNET_NODE,
+      1
     ),
     walletApiEndpoint: trimmableWalletApiEndpoint(MAINNET_URL),
     identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : MAINNET_IDENTITY_SERVICE_SECRET,
@@ -52,8 +57,10 @@ export const SUPPORTED_NETWORKS = {
     nahmiiProvider: new nahmii.NahmiiProvider(
       trimmableWalletApiEndpoint(ROPSTEN_URL)(true),
       ROPSTEN_IDENTITY_SERVICE_APPID,
-      ROPSTEN_IDENTITY_SERVICE_SECRET
-      ),
+      ROPSTEN_IDENTITY_SERVICE_SECRET,
+      ROPSTEN_NODE,
+      3
+    ),
     walletApiEndpoint: trimmableWalletApiEndpoint(ROPSTEN_URL),
     identityServiceSecret: process.env.NODE_ENV === 'test' ? 'secret' : ROPSTEN_IDENTITY_SERVICE_SECRET,
     identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : ROPSTEN_IDENTITY_SERVICE_APPID,

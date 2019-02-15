@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Tooltip } from 'antd';
+import { Icon } from 'antd';
 import BigNumber from 'bignumber.js';
 import { fromJS } from 'immutable';
 import { Spring } from 'react-spring';
@@ -386,20 +386,20 @@ export class TransferForm extends React.PureComponent {
               </FormItem>
               <div style={{ marignRight: 'auto' }}>
                 <Text large>{formatMessage({ id: 'send_on_the' })} </Text>
-                <Tooltip
+                {/* <Tooltip
                   placement="right"
                   // overlayStyle={!disableNahmiiPayments && { display: 'none' }}
                   title={<span>{formatMessage({ id: 'nahmii_payments' })}</span>}
                 >
-                  <NahmiiText large />
-                  <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
-                  <NahmiiSwitch
-                    // disabled={disableNahmiiPayments}
-                    disabled
-                    checked={layer === 'nahmii'}
-                    onChange={(() => this.handleLayerSwitch())}
-                  />
-                </Tooltip>
+                </Tooltip> */}
+                <NahmiiText large />
+                <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
+                <NahmiiSwitch
+                  // disabled={disableNahmiiPayments}
+                  // disabled
+                  checked={layer === 'nahmii'}
+                  onChange={(() => this.handleLayerSwitch())}
+                />
               </div>
               <Spring
                 from={{ noAdvProg: 0 }}

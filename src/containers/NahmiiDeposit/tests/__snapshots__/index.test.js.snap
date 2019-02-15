@@ -13206,38 +13206,23 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                 <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
-                        <Tooltip
-                                arrowPointAtCenter={false}
-                                autoAdjustOverflow={true}
-                                mouseEnterDelay={0.1}
-                                mouseLeaveDelay={0.1}
-                                placement="bottom"
-                                prefixCls="ant-tooltip"
-                                title={
-                                        <span>
-                                                nahmii_deposits
-                                        </span>
+                        <div
+                                style={
+                                        Object {
+                                                "width": "fit-content",
+                                              }
                                 }
-                                transitionName="zoom-big-fast"
                         >
-                                <div
-                                        style={
-                                                Object {
-                                                        "width": "fit-content",
-                                                      }
-                                        }
+                                <style__StyledButton
+                                        disabled={true}
+                                        onClick={[Function]}
+                                        type="primary"
                                 >
-                                        <style__StyledButton
-                                                disabled={true}
-                                                onClick={[Function]}
-                                                type="primary"
-                                        >
-                                                <span>
-                                                        deposit
-                                                </span>
-                                        </style__StyledButton>
-                                </div>
-                        </Tooltip>
+                                        <span>
+                                                deposit
+                                        </span>
+                                </style__StyledButton>
+                        </div>
                 </Row>
                 <SectionHeading
                         style={
@@ -13466,38 +13451,23 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
-                        <Tooltip
-                                    arrowPointAtCenter={false}
-                                    autoAdjustOverflow={true}
-                                    mouseEnterDelay={0.1}
-                                    mouseLeaveDelay={0.1}
-                                    placement="bottom"
-                                    prefixCls="ant-tooltip"
-                                    title={
-                                                <span>
-                                                            nahmii_deposits
-                                                </span>
+                        <div
+                                    style={
+                                                Object {
+                                                            "width": "fit-content",
+                                                          }
                                     }
-                                    transitionName="zoom-big-fast"
                         >
-                                    <div
-                                                style={
-                                                            Object {
-                                                                        "width": "fit-content",
-                                                                      }
-                                                }
+                                    <style__StyledButton
+                                                disabled={true}
+                                                onClick={[Function]}
+                                                type="primary"
                                     >
-                                                <style__StyledButton
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                            type="primary"
-                                                >
-                                                            <span>
-                                                                        deposit
-                                                            </span>
-                                                </style__StyledButton>
-                                    </div>
-                        </Tooltip>
+                                                <span>
+                                                            deposit
+                                                </span>
+                                    </style__StyledButton>
+                        </div>
             </Row>
             <SectionHeading
                         style={
@@ -13987,38 +13957,23 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                                 <Connect(HWPromptContainer) />
                 </style__HWPromptWrapper>
-                <Tooltip
-                                arrowPointAtCenter={false}
-                                autoAdjustOverflow={true}
-                                mouseEnterDelay={0.1}
-                                mouseLeaveDelay={0.1}
-                                placement="bottom"
-                                prefixCls="ant-tooltip"
-                                title={
-                                                <span>
-                                                                nahmii_deposits
-                                                </span>
+                <div
+                                style={
+                                                Object {
+                                                                "width": "fit-content",
+                                                              }
                                 }
-                                transitionName="zoom-big-fast"
                 >
-                                <div
-                                                style={
-                                                                Object {
-                                                                                "width": "fit-content",
-                                                                              }
-                                                }
+                                <style__StyledButton
+                                                disabled={true}
+                                                onClick={[Function]}
+                                                type="primary"
                                 >
-                                                <style__StyledButton
-                                                                disabled={true}
-                                                                onClick={[Function]}
-                                                                type="primary"
-                                                >
-                                                                <span>
-                                                                                deposit
-                                                                </span>
-                                                </style__StyledButton>
-                                </div>
-                </Tooltip>
+                                                <span>
+                                                                deposit
+                                                </span>
+                                </style__StyledButton>
+                </div>
 </Row>,
               <SectionHeading
                 style={
@@ -14456,38 +14411,23 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                     <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                  <Tooltip
-                    arrowPointAtCenter={false}
-                    autoAdjustOverflow={true}
-                    mouseEnterDelay={0.1}
-                    mouseLeaveDelay={0.1}
-                    placement="bottom"
-                    prefixCls="ant-tooltip"
-                    title={
-                                        <span>
-                                                            nahmii_deposits
-                                        </span>
+                  <div
+                    style={
+                                        Object {
+                                                            "width": "fit-content",
+                                                          }
                     }
-                    transitionName="zoom-big-fast"
 >
-                    <div
-                                        style={
-                                                            Object {
-                                                                                "width": "fit-content",
-                                                                              }
-                                        }
+                    <style__StyledButton
+                                        disabled={true}
+                                        onClick={[Function]}
+                                        type="primary"
                     >
-                                        <style__StyledButton
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                            type="primary"
-                                        >
-                                                            <span>
-                                                                                deposit
-                                                            </span>
-                                        </style__StyledButton>
-                    </div>
-</Tooltip>,
+                                        <span>
+                                                            deposit
+                                        </span>
+                    </style__StyledButton>
+</div>,
                 ],
                 "gutter": 0,
               },
@@ -14515,85 +14455,49 @@ ShallowWrapper {
                 Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "class",
+                  "nodeType": "host",
                   "props": Object {
-                    "arrowPointAtCenter": false,
-                    "autoAdjustOverflow": true,
-                    "children": <div
-                      style={
-                                            Object {
-                                                                  "width": "fit-content",
-                                                                }
-                      }
+                    "children": <style__StyledButton
+                      disabled={true}
+                      onClick={[Function]}
+                      type="primary"
 >
-                      <style__StyledButton
-                                            disabled={true}
-                                            onClick={[Function]}
-                                            type="primary"
-                      >
-                                            <span>
-                                                                  deposit
-                                            </span>
-                      </style__StyledButton>
-</div>,
-                    "mouseEnterDelay": 0.1,
-                    "mouseLeaveDelay": 0.1,
-                    "placement": "bottom",
-                    "prefixCls": "ant-tooltip",
-                    "title": <span>
-                      nahmii_deposits
-</span>,
-                    "transitionName": "zoom-big-fast",
+                      <span>
+                                            deposit
+                      </span>
+</style__StyledButton>,
+                    "style": Object {
+                      "width": "fit-content",
+                    },
                   },
                   "ref": null,
                   "rendered": Object {
                     "instance": null,
                     "key": undefined,
-                    "nodeType": "host",
+                    "nodeType": "class",
                     "props": Object {
-                      "children": <style__StyledButton
-                        disabled={true}
-                        onClick={[Function]}
-                        type="primary"
->
-                        <span>
-                                                deposit
-                        </span>
-</style__StyledButton>,
-                      "style": Object {
-                        "width": "fit-content",
-                      },
+                      "children": <span>
+                        deposit
+</span>,
+                      "disabled": true,
+                      "onClick": [Function],
+                      "type": "primary",
                     },
                     "ref": null,
                     "rendered": Object {
                       "instance": null,
                       "key": undefined,
-                      "nodeType": "class",
+                      "nodeType": "host",
                       "props": Object {
-                        "children": <span>
-                          deposit
-</span>,
-                        "disabled": true,
-                        "onClick": [Function],
-                        "type": "primary",
+                        "children": "deposit",
                       },
                       "ref": null,
-                      "rendered": Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "host",
-                        "props": Object {
-                          "children": "deposit",
-                        },
-                        "ref": null,
-                        "rendered": "deposit",
-                        "type": "span",
-                      },
-                      "type": [Function],
+                      "rendered": "deposit",
+                      "type": "span",
                     },
-                    "type": "div",
+                    "type": [Function],
                   },
-                  "type": [Function],
+                  "type": "div",
                 },
               ],
               "type": [Function],
@@ -14844,38 +14748,23 @@ ShallowWrapper {
                               <style__HWPromptWrapper>
                                         <Connect(HWPromptContainer) />
                               </style__HWPromptWrapper>
-                              <Tooltip
-                                        arrowPointAtCenter={false}
-                                        autoAdjustOverflow={true}
-                                        mouseEnterDelay={0.1}
-                                        mouseLeaveDelay={0.1}
-                                        placement="bottom"
-                                        prefixCls="ant-tooltip"
-                                        title={
-                                                  <span>
-                                                            nahmii_deposits
-                                                  </span>
+                              <div
+                                        style={
+                                                  Object {
+                                                            "width": "fit-content",
+                                                          }
                                         }
-                                        transitionName="zoom-big-fast"
                               >
-                                        <div
-                                                  style={
-                                                            Object {
-                                                                      "width": "fit-content",
-                                                                    }
-                                                  }
+                                        <style__StyledButton
+                                                  disabled={true}
+                                                  onClick={[Function]}
+                                                  type="primary"
                                         >
-                                                  <style__StyledButton
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                            type="primary"
-                                                  >
-                                                            <span>
-                                                                      deposit
-                                                            </span>
-                                                  </style__StyledButton>
-                                        </div>
-                              </Tooltip>
+                                                  <span>
+                                                            deposit
+                                                  </span>
+                                        </style__StyledButton>
+                              </div>
                     </Row>
                     <SectionHeading
                               style={
@@ -15104,38 +14993,23 @@ ShallowWrapper {
                             <style__HWPromptWrapper>
                                           <Connect(HWPromptContainer) />
                             </style__HWPromptWrapper>
-                            <Tooltip
-                                          arrowPointAtCenter={false}
-                                          autoAdjustOverflow={true}
-                                          mouseEnterDelay={0.1}
-                                          mouseLeaveDelay={0.1}
-                                          placement="bottom"
-                                          prefixCls="ant-tooltip"
-                                          title={
-                                                        <span>
-                                                                      nahmii_deposits
-                                                        </span>
+                            <div
+                                          style={
+                                                        Object {
+                                                                      "width": "fit-content",
+                                                                    }
                                           }
-                                          transitionName="zoom-big-fast"
                             >
-                                          <div
-                                                        style={
-                                                                      Object {
-                                                                                    "width": "fit-content",
-                                                                                  }
-                                                        }
+                                          <style__StyledButton
+                                                        disabled={true}
+                                                        onClick={[Function]}
+                                                        type="primary"
                                           >
-                                                        <style__StyledButton
-                                                                      disabled={true}
-                                                                      onClick={[Function]}
-                                                                      type="primary"
-                                                        >
-                                                                      <span>
-                                                                                    deposit
-                                                                      </span>
-                                                        </style__StyledButton>
-                                          </div>
-                            </Tooltip>
+                                                        <span>
+                                                                      deposit
+                                                        </span>
+                                          </style__StyledButton>
+                            </div>
               </Row>
               <SectionHeading
                             style={
@@ -15625,38 +15499,23 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                   </style__HWPromptWrapper>
-                  <Tooltip
-                                    arrowPointAtCenter={false}
-                                    autoAdjustOverflow={true}
-                                    mouseEnterDelay={0.1}
-                                    mouseLeaveDelay={0.1}
-                                    placement="bottom"
-                                    prefixCls="ant-tooltip"
-                                    title={
-                                                      <span>
-                                                                        nahmii_deposits
-                                                      </span>
+                  <div
+                                    style={
+                                                      Object {
+                                                                        "width": "fit-content",
+                                                                      }
                                     }
-                                    transitionName="zoom-big-fast"
                   >
-                                    <div
-                                                      style={
-                                                                        Object {
-                                                                                          "width": "fit-content",
-                                                                                        }
-                                                      }
+                                    <style__StyledButton
+                                                      disabled={true}
+                                                      onClick={[Function]}
+                                                      type="primary"
                                     >
-                                                      <style__StyledButton
-                                                                        disabled={true}
-                                                                        onClick={[Function]}
-                                                                        type="primary"
-                                                      >
-                                                                        <span>
-                                                                                          deposit
-                                                                        </span>
-                                                      </style__StyledButton>
-                                    </div>
-                  </Tooltip>
+                                                      <span>
+                                                                        deposit
+                                                      </span>
+                                    </style__StyledButton>
+                  </div>
 </Row>,
                 <SectionHeading
                   style={
@@ -16094,38 +15953,23 @@ ShallowWrapper {
                     <style__HWPromptWrapper>
                       <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                    <Tooltip
-                      arrowPointAtCenter={false}
-                      autoAdjustOverflow={true}
-                      mouseEnterDelay={0.1}
-                      mouseLeaveDelay={0.1}
-                      placement="bottom"
-                      prefixCls="ant-tooltip"
-                      title={
-                                            <span>
-                                                                  nahmii_deposits
-                                            </span>
+                    <div
+                      style={
+                                            Object {
+                                                                  "width": "fit-content",
+                                                                }
                       }
-                      transitionName="zoom-big-fast"
 >
-                      <div
-                                            style={
-                                                                  Object {
-                                                                                        "width": "fit-content",
-                                                                                      }
-                                            }
+                      <style__StyledButton
+                                            disabled={true}
+                                            onClick={[Function]}
+                                            type="primary"
                       >
-                                            <style__StyledButton
-                                                                  disabled={true}
-                                                                  onClick={[Function]}
-                                                                  type="primary"
-                                            >
-                                                                  <span>
-                                                                                        deposit
-                                                                  </span>
-                                            </style__StyledButton>
-                      </div>
-</Tooltip>,
+                                            <span>
+                                                                  deposit
+                                            </span>
+                      </style__StyledButton>
+</div>,
                   ],
                   "gutter": 0,
                 },
@@ -16153,85 +15997,49 @@ ShallowWrapper {
                   Object {
                     "instance": null,
                     "key": undefined,
-                    "nodeType": "class",
+                    "nodeType": "host",
                     "props": Object {
-                      "arrowPointAtCenter": false,
-                      "autoAdjustOverflow": true,
-                      "children": <div
-                        style={
-                                                Object {
-                                                                        "width": "fit-content",
-                                                                      }
-                        }
+                      "children": <style__StyledButton
+                        disabled={true}
+                        onClick={[Function]}
+                        type="primary"
 >
-                        <style__StyledButton
-                                                disabled={true}
-                                                onClick={[Function]}
-                                                type="primary"
-                        >
-                                                <span>
-                                                                        deposit
-                                                </span>
-                        </style__StyledButton>
-</div>,
-                      "mouseEnterDelay": 0.1,
-                      "mouseLeaveDelay": 0.1,
-                      "placement": "bottom",
-                      "prefixCls": "ant-tooltip",
-                      "title": <span>
-                        nahmii_deposits
-</span>,
-                      "transitionName": "zoom-big-fast",
+                        <span>
+                                                deposit
+                        </span>
+</style__StyledButton>,
+                      "style": Object {
+                        "width": "fit-content",
+                      },
                     },
                     "ref": null,
                     "rendered": Object {
                       "instance": null,
                       "key": undefined,
-                      "nodeType": "host",
+                      "nodeType": "class",
                       "props": Object {
-                        "children": <style__StyledButton
-                          disabled={true}
-                          onClick={[Function]}
-                          type="primary"
->
-                          <span>
-                                                    deposit
-                          </span>
-</style__StyledButton>,
-                        "style": Object {
-                          "width": "fit-content",
-                        },
+                        "children": <span>
+                          deposit
+</span>,
+                        "disabled": true,
+                        "onClick": [Function],
+                        "type": "primary",
                       },
                       "ref": null,
                       "rendered": Object {
                         "instance": null,
                         "key": undefined,
-                        "nodeType": "class",
+                        "nodeType": "host",
                         "props": Object {
-                          "children": <span>
-                            deposit
-</span>,
-                          "disabled": true,
-                          "onClick": [Function],
-                          "type": "primary",
+                          "children": "deposit",
                         },
                         "ref": null,
-                        "rendered": Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "host",
-                          "props": Object {
-                            "children": "deposit",
-                          },
-                          "ref": null,
-                          "rendered": "deposit",
-                          "type": "span",
-                        },
-                        "type": [Function],
+                        "rendered": "deposit",
+                        "type": "span",
                       },
-                      "type": "div",
+                      "type": [Function],
                     },
-                    "type": [Function],
+                    "type": "div",
                   },
                 ],
                 "type": [Function],
@@ -17095,38 +16903,23 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                 <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
-                        <Tooltip
-                                arrowPointAtCenter={false}
-                                autoAdjustOverflow={true}
-                                mouseEnterDelay={0.1}
-                                mouseLeaveDelay={0.1}
-                                placement="bottom"
-                                prefixCls="ant-tooltip"
-                                title={
-                                        <span>
-                                                nahmii_deposits
-                                        </span>
+                        <div
+                                style={
+                                        Object {
+                                                "width": "fit-content",
+                                              }
                                 }
-                                transitionName="zoom-big-fast"
                         >
-                                <div
-                                        style={
-                                                Object {
-                                                        "width": "fit-content",
-                                                      }
-                                        }
+                                <style__StyledButton
+                                        disabled={true}
+                                        onClick={[Function]}
+                                        type="primary"
                                 >
-                                        <style__StyledButton
-                                                disabled={true}
-                                                onClick={[Function]}
-                                                type="primary"
-                                        >
-                                                <span>
-                                                        deposit
-                                                </span>
-                                        </style__StyledButton>
-                                </div>
-                        </Tooltip>
+                                        <span>
+                                                deposit
+                                        </span>
+                                </style__StyledButton>
+                        </div>
                 </Row>
                 <SectionHeading
                         style={
@@ -17355,38 +17148,23 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
-                        <Tooltip
-                                    arrowPointAtCenter={false}
-                                    autoAdjustOverflow={true}
-                                    mouseEnterDelay={0.1}
-                                    mouseLeaveDelay={0.1}
-                                    placement="bottom"
-                                    prefixCls="ant-tooltip"
-                                    title={
-                                                <span>
-                                                            nahmii_deposits
-                                                </span>
+                        <div
+                                    style={
+                                                Object {
+                                                            "width": "fit-content",
+                                                          }
                                     }
-                                    transitionName="zoom-big-fast"
                         >
-                                    <div
-                                                style={
-                                                            Object {
-                                                                        "width": "fit-content",
-                                                                      }
-                                                }
+                                    <style__StyledButton
+                                                disabled={true}
+                                                onClick={[Function]}
+                                                type="primary"
                                     >
-                                                <style__StyledButton
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                            type="primary"
-                                                >
-                                                            <span>
-                                                                        deposit
-                                                            </span>
-                                                </style__StyledButton>
-                                    </div>
-                        </Tooltip>
+                                                <span>
+                                                            deposit
+                                                </span>
+                                    </style__StyledButton>
+                        </div>
             </Row>
             <SectionHeading
                         style={
@@ -17876,38 +17654,23 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                                 <Connect(HWPromptContainer) />
                 </style__HWPromptWrapper>
-                <Tooltip
-                                arrowPointAtCenter={false}
-                                autoAdjustOverflow={true}
-                                mouseEnterDelay={0.1}
-                                mouseLeaveDelay={0.1}
-                                placement="bottom"
-                                prefixCls="ant-tooltip"
-                                title={
-                                                <span>
-                                                                nahmii_deposits
-                                                </span>
+                <div
+                                style={
+                                                Object {
+                                                                "width": "fit-content",
+                                                              }
                                 }
-                                transitionName="zoom-big-fast"
                 >
-                                <div
-                                                style={
-                                                                Object {
-                                                                                "width": "fit-content",
-                                                                              }
-                                                }
+                                <style__StyledButton
+                                                disabled={true}
+                                                onClick={[Function]}
+                                                type="primary"
                                 >
-                                                <style__StyledButton
-                                                                disabled={true}
-                                                                onClick={[Function]}
-                                                                type="primary"
-                                                >
-                                                                <span>
-                                                                                deposit
-                                                                </span>
-                                                </style__StyledButton>
-                                </div>
-                </Tooltip>
+                                                <span>
+                                                                deposit
+                                                </span>
+                                </style__StyledButton>
+                </div>
 </Row>,
               <SectionHeading
                 style={
@@ -18345,38 +18108,23 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                     <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                  <Tooltip
-                    arrowPointAtCenter={false}
-                    autoAdjustOverflow={true}
-                    mouseEnterDelay={0.1}
-                    mouseLeaveDelay={0.1}
-                    placement="bottom"
-                    prefixCls="ant-tooltip"
-                    title={
-                                        <span>
-                                                            nahmii_deposits
-                                        </span>
+                  <div
+                    style={
+                                        Object {
+                                                            "width": "fit-content",
+                                                          }
                     }
-                    transitionName="zoom-big-fast"
 >
-                    <div
-                                        style={
-                                                            Object {
-                                                                                "width": "fit-content",
-                                                                              }
-                                        }
+                    <style__StyledButton
+                                        disabled={true}
+                                        onClick={[Function]}
+                                        type="primary"
                     >
-                                        <style__StyledButton
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                            type="primary"
-                                        >
-                                                            <span>
-                                                                                deposit
-                                                            </span>
-                                        </style__StyledButton>
-                    </div>
-</Tooltip>,
+                                        <span>
+                                                            deposit
+                                        </span>
+                    </style__StyledButton>
+</div>,
                 ],
                 "gutter": 0,
               },
@@ -18404,85 +18152,49 @@ ShallowWrapper {
                 Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "class",
+                  "nodeType": "host",
                   "props": Object {
-                    "arrowPointAtCenter": false,
-                    "autoAdjustOverflow": true,
-                    "children": <div
-                      style={
-                                            Object {
-                                                                  "width": "fit-content",
-                                                                }
-                      }
+                    "children": <style__StyledButton
+                      disabled={true}
+                      onClick={[Function]}
+                      type="primary"
 >
-                      <style__StyledButton
-                                            disabled={true}
-                                            onClick={[Function]}
-                                            type="primary"
-                      >
-                                            <span>
-                                                                  deposit
-                                            </span>
-                      </style__StyledButton>
-</div>,
-                    "mouseEnterDelay": 0.1,
-                    "mouseLeaveDelay": 0.1,
-                    "placement": "bottom",
-                    "prefixCls": "ant-tooltip",
-                    "title": <span>
-                      nahmii_deposits
-</span>,
-                    "transitionName": "zoom-big-fast",
+                      <span>
+                                            deposit
+                      </span>
+</style__StyledButton>,
+                    "style": Object {
+                      "width": "fit-content",
+                    },
                   },
                   "ref": null,
                   "rendered": Object {
                     "instance": null,
                     "key": undefined,
-                    "nodeType": "host",
+                    "nodeType": "class",
                     "props": Object {
-                      "children": <style__StyledButton
-                        disabled={true}
-                        onClick={[Function]}
-                        type="primary"
->
-                        <span>
-                                                deposit
-                        </span>
-</style__StyledButton>,
-                      "style": Object {
-                        "width": "fit-content",
-                      },
+                      "children": <span>
+                        deposit
+</span>,
+                      "disabled": true,
+                      "onClick": [Function],
+                      "type": "primary",
                     },
                     "ref": null,
                     "rendered": Object {
                       "instance": null,
                       "key": undefined,
-                      "nodeType": "class",
+                      "nodeType": "host",
                       "props": Object {
-                        "children": <span>
-                          deposit
-</span>,
-                        "disabled": true,
-                        "onClick": [Function],
-                        "type": "primary",
+                        "children": "deposit",
                       },
                       "ref": null,
-                      "rendered": Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "host",
-                        "props": Object {
-                          "children": "deposit",
-                        },
-                        "ref": null,
-                        "rendered": "deposit",
-                        "type": "span",
-                      },
-                      "type": [Function],
+                      "rendered": "deposit",
+                      "type": "span",
                     },
-                    "type": "div",
+                    "type": [Function],
                   },
-                  "type": [Function],
+                  "type": "div",
                 },
               ],
               "type": [Function],
@@ -18733,38 +18445,23 @@ ShallowWrapper {
                               <style__HWPromptWrapper>
                                         <Connect(HWPromptContainer) />
                               </style__HWPromptWrapper>
-                              <Tooltip
-                                        arrowPointAtCenter={false}
-                                        autoAdjustOverflow={true}
-                                        mouseEnterDelay={0.1}
-                                        mouseLeaveDelay={0.1}
-                                        placement="bottom"
-                                        prefixCls="ant-tooltip"
-                                        title={
-                                                  <span>
-                                                            nahmii_deposits
-                                                  </span>
+                              <div
+                                        style={
+                                                  Object {
+                                                            "width": "fit-content",
+                                                          }
                                         }
-                                        transitionName="zoom-big-fast"
                               >
-                                        <div
-                                                  style={
-                                                            Object {
-                                                                      "width": "fit-content",
-                                                                    }
-                                                  }
+                                        <style__StyledButton
+                                                  disabled={true}
+                                                  onClick={[Function]}
+                                                  type="primary"
                                         >
-                                                  <style__StyledButton
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                            type="primary"
-                                                  >
-                                                            <span>
-                                                                      deposit
-                                                            </span>
-                                                  </style__StyledButton>
-                                        </div>
-                              </Tooltip>
+                                                  <span>
+                                                            deposit
+                                                  </span>
+                                        </style__StyledButton>
+                              </div>
                     </Row>
                     <SectionHeading
                               style={
@@ -18993,38 +18690,23 @@ ShallowWrapper {
                             <style__HWPromptWrapper>
                                           <Connect(HWPromptContainer) />
                             </style__HWPromptWrapper>
-                            <Tooltip
-                                          arrowPointAtCenter={false}
-                                          autoAdjustOverflow={true}
-                                          mouseEnterDelay={0.1}
-                                          mouseLeaveDelay={0.1}
-                                          placement="bottom"
-                                          prefixCls="ant-tooltip"
-                                          title={
-                                                        <span>
-                                                                      nahmii_deposits
-                                                        </span>
+                            <div
+                                          style={
+                                                        Object {
+                                                                      "width": "fit-content",
+                                                                    }
                                           }
-                                          transitionName="zoom-big-fast"
                             >
-                                          <div
-                                                        style={
-                                                                      Object {
-                                                                                    "width": "fit-content",
-                                                                                  }
-                                                        }
+                                          <style__StyledButton
+                                                        disabled={true}
+                                                        onClick={[Function]}
+                                                        type="primary"
                                           >
-                                                        <style__StyledButton
-                                                                      disabled={true}
-                                                                      onClick={[Function]}
-                                                                      type="primary"
-                                                        >
-                                                                      <span>
-                                                                                    deposit
-                                                                      </span>
-                                                        </style__StyledButton>
-                                          </div>
-                            </Tooltip>
+                                                        <span>
+                                                                      deposit
+                                                        </span>
+                                          </style__StyledButton>
+                            </div>
               </Row>
               <SectionHeading
                             style={
@@ -19514,38 +19196,23 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                   </style__HWPromptWrapper>
-                  <Tooltip
-                                    arrowPointAtCenter={false}
-                                    autoAdjustOverflow={true}
-                                    mouseEnterDelay={0.1}
-                                    mouseLeaveDelay={0.1}
-                                    placement="bottom"
-                                    prefixCls="ant-tooltip"
-                                    title={
-                                                      <span>
-                                                                        nahmii_deposits
-                                                      </span>
+                  <div
+                                    style={
+                                                      Object {
+                                                                        "width": "fit-content",
+                                                                      }
                                     }
-                                    transitionName="zoom-big-fast"
                   >
-                                    <div
-                                                      style={
-                                                                        Object {
-                                                                                          "width": "fit-content",
-                                                                                        }
-                                                      }
+                                    <style__StyledButton
+                                                      disabled={true}
+                                                      onClick={[Function]}
+                                                      type="primary"
                                     >
-                                                      <style__StyledButton
-                                                                        disabled={true}
-                                                                        onClick={[Function]}
-                                                                        type="primary"
-                                                      >
-                                                                        <span>
-                                                                                          deposit
-                                                                        </span>
-                                                      </style__StyledButton>
-                                    </div>
-                  </Tooltip>
+                                                      <span>
+                                                                        deposit
+                                                      </span>
+                                    </style__StyledButton>
+                  </div>
 </Row>,
                 <SectionHeading
                   style={
@@ -19983,38 +19650,23 @@ ShallowWrapper {
                     <style__HWPromptWrapper>
                       <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                    <Tooltip
-                      arrowPointAtCenter={false}
-                      autoAdjustOverflow={true}
-                      mouseEnterDelay={0.1}
-                      mouseLeaveDelay={0.1}
-                      placement="bottom"
-                      prefixCls="ant-tooltip"
-                      title={
-                                            <span>
-                                                                  nahmii_deposits
-                                            </span>
+                    <div
+                      style={
+                                            Object {
+                                                                  "width": "fit-content",
+                                                                }
                       }
-                      transitionName="zoom-big-fast"
 >
-                      <div
-                                            style={
-                                                                  Object {
-                                                                                        "width": "fit-content",
-                                                                                      }
-                                            }
+                      <style__StyledButton
+                                            disabled={true}
+                                            onClick={[Function]}
+                                            type="primary"
                       >
-                                            <style__StyledButton
-                                                                  disabled={true}
-                                                                  onClick={[Function]}
-                                                                  type="primary"
-                                            >
-                                                                  <span>
-                                                                                        deposit
-                                                                  </span>
-                                            </style__StyledButton>
-                      </div>
-</Tooltip>,
+                                            <span>
+                                                                  deposit
+                                            </span>
+                      </style__StyledButton>
+</div>,
                   ],
                   "gutter": 0,
                 },
@@ -20042,85 +19694,49 @@ ShallowWrapper {
                   Object {
                     "instance": null,
                     "key": undefined,
-                    "nodeType": "class",
+                    "nodeType": "host",
                     "props": Object {
-                      "arrowPointAtCenter": false,
-                      "autoAdjustOverflow": true,
-                      "children": <div
-                        style={
-                                                Object {
-                                                                        "width": "fit-content",
-                                                                      }
-                        }
+                      "children": <style__StyledButton
+                        disabled={true}
+                        onClick={[Function]}
+                        type="primary"
 >
-                        <style__StyledButton
-                                                disabled={true}
-                                                onClick={[Function]}
-                                                type="primary"
-                        >
-                                                <span>
-                                                                        deposit
-                                                </span>
-                        </style__StyledButton>
-</div>,
-                      "mouseEnterDelay": 0.1,
-                      "mouseLeaveDelay": 0.1,
-                      "placement": "bottom",
-                      "prefixCls": "ant-tooltip",
-                      "title": <span>
-                        nahmii_deposits
-</span>,
-                      "transitionName": "zoom-big-fast",
+                        <span>
+                                                deposit
+                        </span>
+</style__StyledButton>,
+                      "style": Object {
+                        "width": "fit-content",
+                      },
                     },
                     "ref": null,
                     "rendered": Object {
                       "instance": null,
                       "key": undefined,
-                      "nodeType": "host",
+                      "nodeType": "class",
                       "props": Object {
-                        "children": <style__StyledButton
-                          disabled={true}
-                          onClick={[Function]}
-                          type="primary"
->
-                          <span>
-                                                    deposit
-                          </span>
-</style__StyledButton>,
-                        "style": Object {
-                          "width": "fit-content",
-                        },
+                        "children": <span>
+                          deposit
+</span>,
+                        "disabled": true,
+                        "onClick": [Function],
+                        "type": "primary",
                       },
                       "ref": null,
                       "rendered": Object {
                         "instance": null,
                         "key": undefined,
-                        "nodeType": "class",
+                        "nodeType": "host",
                         "props": Object {
-                          "children": <span>
-                            deposit
-</span>,
-                          "disabled": true,
-                          "onClick": [Function],
-                          "type": "primary",
+                          "children": "deposit",
                         },
                         "ref": null,
-                        "rendered": Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "host",
-                          "props": Object {
-                            "children": "deposit",
-                          },
-                          "ref": null,
-                          "rendered": "deposit",
-                          "type": "span",
-                        },
-                        "type": [Function],
+                        "rendered": "deposit",
+                        "type": "span",
                       },
-                      "type": "div",
+                      "type": [Function],
                     },
-                    "type": [Function],
+                    "type": "div",
                   },
                 ],
                 "type": [Function],
@@ -20985,38 +20601,23 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                 <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
-                        <Tooltip
-                                arrowPointAtCenter={false}
-                                autoAdjustOverflow={true}
-                                mouseEnterDelay={0.1}
-                                mouseLeaveDelay={0.1}
-                                placement="bottom"
-                                prefixCls="ant-tooltip"
-                                title={
-                                        <span>
-                                                nahmii_deposits
-                                        </span>
+                        <div
+                                style={
+                                        Object {
+                                                "width": "fit-content",
+                                              }
                                 }
-                                transitionName="zoom-big-fast"
                         >
-                                <div
-                                        style={
-                                                Object {
-                                                        "width": "fit-content",
-                                                      }
-                                        }
+                                <style__StyledButton
+                                        disabled={true}
+                                        onClick={[Function]}
+                                        type="primary"
                                 >
-                                        <style__StyledButton
-                                                disabled={true}
-                                                onClick={[Function]}
-                                                type="primary"
-                                        >
-                                                <span>
-                                                        deposit
-                                                </span>
-                                        </style__StyledButton>
-                                </div>
-                        </Tooltip>
+                                        <span>
+                                                deposit
+                                        </span>
+                                </style__StyledButton>
+                        </div>
                 </Row>
                 <SectionHeading
                         style={
@@ -21245,38 +20846,23 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
-                        <Tooltip
-                                    arrowPointAtCenter={false}
-                                    autoAdjustOverflow={true}
-                                    mouseEnterDelay={0.1}
-                                    mouseLeaveDelay={0.1}
-                                    placement="bottom"
-                                    prefixCls="ant-tooltip"
-                                    title={
-                                                <span>
-                                                            nahmii_deposits
-                                                </span>
+                        <div
+                                    style={
+                                                Object {
+                                                            "width": "fit-content",
+                                                          }
                                     }
-                                    transitionName="zoom-big-fast"
                         >
-                                    <div
-                                                style={
-                                                            Object {
-                                                                        "width": "fit-content",
-                                                                      }
-                                                }
+                                    <style__StyledButton
+                                                disabled={true}
+                                                onClick={[Function]}
+                                                type="primary"
                                     >
-                                                <style__StyledButton
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                            type="primary"
-                                                >
-                                                            <span>
-                                                                        deposit
-                                                            </span>
-                                                </style__StyledButton>
-                                    </div>
-                        </Tooltip>
+                                                <span>
+                                                            deposit
+                                                </span>
+                                    </style__StyledButton>
+                        </div>
             </Row>
             <SectionHeading
                         style={
@@ -21766,38 +21352,23 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                                 <Connect(HWPromptContainer) />
                 </style__HWPromptWrapper>
-                <Tooltip
-                                arrowPointAtCenter={false}
-                                autoAdjustOverflow={true}
-                                mouseEnterDelay={0.1}
-                                mouseLeaveDelay={0.1}
-                                placement="bottom"
-                                prefixCls="ant-tooltip"
-                                title={
-                                                <span>
-                                                                nahmii_deposits
-                                                </span>
+                <div
+                                style={
+                                                Object {
+                                                                "width": "fit-content",
+                                                              }
                                 }
-                                transitionName="zoom-big-fast"
                 >
-                                <div
-                                                style={
-                                                                Object {
-                                                                                "width": "fit-content",
-                                                                              }
-                                                }
+                                <style__StyledButton
+                                                disabled={true}
+                                                onClick={[Function]}
+                                                type="primary"
                                 >
-                                                <style__StyledButton
-                                                                disabled={true}
-                                                                onClick={[Function]}
-                                                                type="primary"
-                                                >
-                                                                <span>
-                                                                                deposit
-                                                                </span>
-                                                </style__StyledButton>
-                                </div>
-                </Tooltip>
+                                                <span>
+                                                                deposit
+                                                </span>
+                                </style__StyledButton>
+                </div>
 </Row>,
               <SectionHeading
                 style={
@@ -22235,38 +21806,23 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                     <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                  <Tooltip
-                    arrowPointAtCenter={false}
-                    autoAdjustOverflow={true}
-                    mouseEnterDelay={0.1}
-                    mouseLeaveDelay={0.1}
-                    placement="bottom"
-                    prefixCls="ant-tooltip"
-                    title={
-                                        <span>
-                                                            nahmii_deposits
-                                        </span>
+                  <div
+                    style={
+                                        Object {
+                                                            "width": "fit-content",
+                                                          }
                     }
-                    transitionName="zoom-big-fast"
 >
-                    <div
-                                        style={
-                                                            Object {
-                                                                                "width": "fit-content",
-                                                                              }
-                                        }
+                    <style__StyledButton
+                                        disabled={true}
+                                        onClick={[Function]}
+                                        type="primary"
                     >
-                                        <style__StyledButton
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                            type="primary"
-                                        >
-                                                            <span>
-                                                                                deposit
-                                                            </span>
-                                        </style__StyledButton>
-                    </div>
-</Tooltip>,
+                                        <span>
+                                                            deposit
+                                        </span>
+                    </style__StyledButton>
+</div>,
                 ],
                 "gutter": 0,
               },
@@ -22294,85 +21850,49 @@ ShallowWrapper {
                 Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "class",
+                  "nodeType": "host",
                   "props": Object {
-                    "arrowPointAtCenter": false,
-                    "autoAdjustOverflow": true,
-                    "children": <div
-                      style={
-                                            Object {
-                                                                  "width": "fit-content",
-                                                                }
-                      }
+                    "children": <style__StyledButton
+                      disabled={true}
+                      onClick={[Function]}
+                      type="primary"
 >
-                      <style__StyledButton
-                                            disabled={true}
-                                            onClick={[Function]}
-                                            type="primary"
-                      >
-                                            <span>
-                                                                  deposit
-                                            </span>
-                      </style__StyledButton>
-</div>,
-                    "mouseEnterDelay": 0.1,
-                    "mouseLeaveDelay": 0.1,
-                    "placement": "bottom",
-                    "prefixCls": "ant-tooltip",
-                    "title": <span>
-                      nahmii_deposits
-</span>,
-                    "transitionName": "zoom-big-fast",
+                      <span>
+                                            deposit
+                      </span>
+</style__StyledButton>,
+                    "style": Object {
+                      "width": "fit-content",
+                    },
                   },
                   "ref": null,
                   "rendered": Object {
                     "instance": null,
                     "key": undefined,
-                    "nodeType": "host",
+                    "nodeType": "class",
                     "props": Object {
-                      "children": <style__StyledButton
-                        disabled={true}
-                        onClick={[Function]}
-                        type="primary"
->
-                        <span>
-                                                deposit
-                        </span>
-</style__StyledButton>,
-                      "style": Object {
-                        "width": "fit-content",
-                      },
+                      "children": <span>
+                        deposit
+</span>,
+                      "disabled": true,
+                      "onClick": [Function],
+                      "type": "primary",
                     },
                     "ref": null,
                     "rendered": Object {
                       "instance": null,
                       "key": undefined,
-                      "nodeType": "class",
+                      "nodeType": "host",
                       "props": Object {
-                        "children": <span>
-                          deposit
-</span>,
-                        "disabled": true,
-                        "onClick": [Function],
-                        "type": "primary",
+                        "children": "deposit",
                       },
                       "ref": null,
-                      "rendered": Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "host",
-                        "props": Object {
-                          "children": "deposit",
-                        },
-                        "ref": null,
-                        "rendered": "deposit",
-                        "type": "span",
-                      },
-                      "type": [Function],
+                      "rendered": "deposit",
+                      "type": "span",
                     },
-                    "type": "div",
+                    "type": [Function],
                   },
-                  "type": [Function],
+                  "type": "div",
                 },
               ],
               "type": [Function],
@@ -22623,38 +22143,23 @@ ShallowWrapper {
                               <style__HWPromptWrapper>
                                         <Connect(HWPromptContainer) />
                               </style__HWPromptWrapper>
-                              <Tooltip
-                                        arrowPointAtCenter={false}
-                                        autoAdjustOverflow={true}
-                                        mouseEnterDelay={0.1}
-                                        mouseLeaveDelay={0.1}
-                                        placement="bottom"
-                                        prefixCls="ant-tooltip"
-                                        title={
-                                                  <span>
-                                                            nahmii_deposits
-                                                  </span>
+                              <div
+                                        style={
+                                                  Object {
+                                                            "width": "fit-content",
+                                                          }
                                         }
-                                        transitionName="zoom-big-fast"
                               >
-                                        <div
-                                                  style={
-                                                            Object {
-                                                                      "width": "fit-content",
-                                                                    }
-                                                  }
+                                        <style__StyledButton
+                                                  disabled={true}
+                                                  onClick={[Function]}
+                                                  type="primary"
                                         >
-                                                  <style__StyledButton
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                            type="primary"
-                                                  >
-                                                            <span>
-                                                                      deposit
-                                                            </span>
-                                                  </style__StyledButton>
-                                        </div>
-                              </Tooltip>
+                                                  <span>
+                                                            deposit
+                                                  </span>
+                                        </style__StyledButton>
+                              </div>
                     </Row>
                     <SectionHeading
                               style={
@@ -22883,38 +22388,23 @@ ShallowWrapper {
                             <style__HWPromptWrapper>
                                           <Connect(HWPromptContainer) />
                             </style__HWPromptWrapper>
-                            <Tooltip
-                                          arrowPointAtCenter={false}
-                                          autoAdjustOverflow={true}
-                                          mouseEnterDelay={0.1}
-                                          mouseLeaveDelay={0.1}
-                                          placement="bottom"
-                                          prefixCls="ant-tooltip"
-                                          title={
-                                                        <span>
-                                                                      nahmii_deposits
-                                                        </span>
+                            <div
+                                          style={
+                                                        Object {
+                                                                      "width": "fit-content",
+                                                                    }
                                           }
-                                          transitionName="zoom-big-fast"
                             >
-                                          <div
-                                                        style={
-                                                                      Object {
-                                                                                    "width": "fit-content",
-                                                                                  }
-                                                        }
+                                          <style__StyledButton
+                                                        disabled={true}
+                                                        onClick={[Function]}
+                                                        type="primary"
                                           >
-                                                        <style__StyledButton
-                                                                      disabled={true}
-                                                                      onClick={[Function]}
-                                                                      type="primary"
-                                                        >
-                                                                      <span>
-                                                                                    deposit
-                                                                      </span>
-                                                        </style__StyledButton>
-                                          </div>
-                            </Tooltip>
+                                                        <span>
+                                                                      deposit
+                                                        </span>
+                                          </style__StyledButton>
+                            </div>
               </Row>
               <SectionHeading
                             style={
@@ -23404,38 +22894,23 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                   </style__HWPromptWrapper>
-                  <Tooltip
-                                    arrowPointAtCenter={false}
-                                    autoAdjustOverflow={true}
-                                    mouseEnterDelay={0.1}
-                                    mouseLeaveDelay={0.1}
-                                    placement="bottom"
-                                    prefixCls="ant-tooltip"
-                                    title={
-                                                      <span>
-                                                                        nahmii_deposits
-                                                      </span>
+                  <div
+                                    style={
+                                                      Object {
+                                                                        "width": "fit-content",
+                                                                      }
                                     }
-                                    transitionName="zoom-big-fast"
                   >
-                                    <div
-                                                      style={
-                                                                        Object {
-                                                                                          "width": "fit-content",
-                                                                                        }
-                                                      }
+                                    <style__StyledButton
+                                                      disabled={true}
+                                                      onClick={[Function]}
+                                                      type="primary"
                                     >
-                                                      <style__StyledButton
-                                                                        disabled={true}
-                                                                        onClick={[Function]}
-                                                                        type="primary"
-                                                      >
-                                                                        <span>
-                                                                                          deposit
-                                                                        </span>
-                                                      </style__StyledButton>
-                                    </div>
-                  </Tooltip>
+                                                      <span>
+                                                                        deposit
+                                                      </span>
+                                    </style__StyledButton>
+                  </div>
 </Row>,
                 <SectionHeading
                   style={
@@ -23873,38 +23348,23 @@ ShallowWrapper {
                     <style__HWPromptWrapper>
                       <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                    <Tooltip
-                      arrowPointAtCenter={false}
-                      autoAdjustOverflow={true}
-                      mouseEnterDelay={0.1}
-                      mouseLeaveDelay={0.1}
-                      placement="bottom"
-                      prefixCls="ant-tooltip"
-                      title={
-                                            <span>
-                                                                  nahmii_deposits
-                                            </span>
+                    <div
+                      style={
+                                            Object {
+                                                                  "width": "fit-content",
+                                                                }
                       }
-                      transitionName="zoom-big-fast"
 >
-                      <div
-                                            style={
-                                                                  Object {
-                                                                                        "width": "fit-content",
-                                                                                      }
-                                            }
+                      <style__StyledButton
+                                            disabled={true}
+                                            onClick={[Function]}
+                                            type="primary"
                       >
-                                            <style__StyledButton
-                                                                  disabled={true}
-                                                                  onClick={[Function]}
-                                                                  type="primary"
-                                            >
-                                                                  <span>
-                                                                                        deposit
-                                                                  </span>
-                                            </style__StyledButton>
-                      </div>
-</Tooltip>,
+                                            <span>
+                                                                  deposit
+                                            </span>
+                      </style__StyledButton>
+</div>,
                   ],
                   "gutter": 0,
                 },
@@ -23932,85 +23392,49 @@ ShallowWrapper {
                   Object {
                     "instance": null,
                     "key": undefined,
-                    "nodeType": "class",
+                    "nodeType": "host",
                     "props": Object {
-                      "arrowPointAtCenter": false,
-                      "autoAdjustOverflow": true,
-                      "children": <div
-                        style={
-                                                Object {
-                                                                        "width": "fit-content",
-                                                                      }
-                        }
+                      "children": <style__StyledButton
+                        disabled={true}
+                        onClick={[Function]}
+                        type="primary"
 >
-                        <style__StyledButton
-                                                disabled={true}
-                                                onClick={[Function]}
-                                                type="primary"
-                        >
-                                                <span>
-                                                                        deposit
-                                                </span>
-                        </style__StyledButton>
-</div>,
-                      "mouseEnterDelay": 0.1,
-                      "mouseLeaveDelay": 0.1,
-                      "placement": "bottom",
-                      "prefixCls": "ant-tooltip",
-                      "title": <span>
-                        nahmii_deposits
-</span>,
-                      "transitionName": "zoom-big-fast",
+                        <span>
+                                                deposit
+                        </span>
+</style__StyledButton>,
+                      "style": Object {
+                        "width": "fit-content",
+                      },
                     },
                     "ref": null,
                     "rendered": Object {
                       "instance": null,
                       "key": undefined,
-                      "nodeType": "host",
+                      "nodeType": "class",
                       "props": Object {
-                        "children": <style__StyledButton
-                          disabled={true}
-                          onClick={[Function]}
-                          type="primary"
->
-                          <span>
-                                                    deposit
-                          </span>
-</style__StyledButton>,
-                        "style": Object {
-                          "width": "fit-content",
-                        },
+                        "children": <span>
+                          deposit
+</span>,
+                        "disabled": true,
+                        "onClick": [Function],
+                        "type": "primary",
                       },
                       "ref": null,
                       "rendered": Object {
                         "instance": null,
                         "key": undefined,
-                        "nodeType": "class",
+                        "nodeType": "host",
                         "props": Object {
-                          "children": <span>
-                            deposit
-</span>,
-                          "disabled": true,
-                          "onClick": [Function],
-                          "type": "primary",
+                          "children": "deposit",
                         },
                         "ref": null,
-                        "rendered": Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "host",
-                          "props": Object {
-                            "children": "deposit",
-                          },
-                          "ref": null,
-                          "rendered": "deposit",
-                          "type": "span",
-                        },
-                        "type": [Function],
+                        "rendered": "deposit",
+                        "type": "span",
                       },
-                      "type": "div",
+                      "type": [Function],
                     },
-                    "type": [Function],
+                    "type": "div",
                   },
                 ],
                 "type": [Function],
@@ -27324,38 +26748,23 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                 <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
-                        <Tooltip
-                                arrowPointAtCenter={false}
-                                autoAdjustOverflow={true}
-                                mouseEnterDelay={0.1}
-                                mouseLeaveDelay={0.1}
-                                placement="bottom"
-                                prefixCls="ant-tooltip"
-                                title={
-                                        <span>
-                                                nahmii_deposits
-                                        </span>
+                        <div
+                                style={
+                                        Object {
+                                                "width": "fit-content",
+                                              }
                                 }
-                                transitionName="zoom-big-fast"
                         >
-                                <div
-                                        style={
-                                                Object {
-                                                        "width": "fit-content",
-                                                      }
-                                        }
+                                <style__StyledButton
+                                        disabled={true}
+                                        onClick={[Function]}
+                                        type="primary"
                                 >
-                                        <style__StyledButton
-                                                disabled={true}
-                                                onClick={[Function]}
-                                                type="primary"
-                                        >
-                                                <span>
-                                                        deposit
-                                                </span>
-                                        </style__StyledButton>
-                                </div>
-                        </Tooltip>
+                                        <span>
+                                                deposit
+                                        </span>
+                                </style__StyledButton>
+                        </div>
                 </Row>
                 <SectionHeading
                         style={
@@ -27584,38 +26993,23 @@ ShallowWrapper {
                         <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                         </style__HWPromptWrapper>
-                        <Tooltip
-                                    arrowPointAtCenter={false}
-                                    autoAdjustOverflow={true}
-                                    mouseEnterDelay={0.1}
-                                    mouseLeaveDelay={0.1}
-                                    placement="bottom"
-                                    prefixCls="ant-tooltip"
-                                    title={
-                                                <span>
-                                                            nahmii_deposits
-                                                </span>
+                        <div
+                                    style={
+                                                Object {
+                                                            "width": "fit-content",
+                                                          }
                                     }
-                                    transitionName="zoom-big-fast"
                         >
-                                    <div
-                                                style={
-                                                            Object {
-                                                                        "width": "fit-content",
-                                                                      }
-                                                }
+                                    <style__StyledButton
+                                                disabled={true}
+                                                onClick={[Function]}
+                                                type="primary"
                                     >
-                                                <style__StyledButton
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                            type="primary"
-                                                >
-                                                            <span>
-                                                                        deposit
-                                                            </span>
-                                                </style__StyledButton>
-                                    </div>
-                        </Tooltip>
+                                                <span>
+                                                            deposit
+                                                </span>
+                                    </style__StyledButton>
+                        </div>
             </Row>
             <SectionHeading
                         style={
@@ -28105,38 +27499,23 @@ ShallowWrapper {
                 <style__HWPromptWrapper>
                                 <Connect(HWPromptContainer) />
                 </style__HWPromptWrapper>
-                <Tooltip
-                                arrowPointAtCenter={false}
-                                autoAdjustOverflow={true}
-                                mouseEnterDelay={0.1}
-                                mouseLeaveDelay={0.1}
-                                placement="bottom"
-                                prefixCls="ant-tooltip"
-                                title={
-                                                <span>
-                                                                nahmii_deposits
-                                                </span>
+                <div
+                                style={
+                                                Object {
+                                                                "width": "fit-content",
+                                                              }
                                 }
-                                transitionName="zoom-big-fast"
                 >
-                                <div
-                                                style={
-                                                                Object {
-                                                                                "width": "fit-content",
-                                                                              }
-                                                }
+                                <style__StyledButton
+                                                disabled={true}
+                                                onClick={[Function]}
+                                                type="primary"
                                 >
-                                                <style__StyledButton
-                                                                disabled={true}
-                                                                onClick={[Function]}
-                                                                type="primary"
-                                                >
-                                                                <span>
-                                                                                deposit
-                                                                </span>
-                                                </style__StyledButton>
-                                </div>
-                </Tooltip>
+                                                <span>
+                                                                deposit
+                                                </span>
+                                </style__StyledButton>
+                </div>
 </Row>,
               <SectionHeading
                 style={
@@ -28574,38 +27953,23 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                     <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                  <Tooltip
-                    arrowPointAtCenter={false}
-                    autoAdjustOverflow={true}
-                    mouseEnterDelay={0.1}
-                    mouseLeaveDelay={0.1}
-                    placement="bottom"
-                    prefixCls="ant-tooltip"
-                    title={
-                                        <span>
-                                                            nahmii_deposits
-                                        </span>
+                  <div
+                    style={
+                                        Object {
+                                                            "width": "fit-content",
+                                                          }
                     }
-                    transitionName="zoom-big-fast"
 >
-                    <div
-                                        style={
-                                                            Object {
-                                                                                "width": "fit-content",
-                                                                              }
-                                        }
+                    <style__StyledButton
+                                        disabled={true}
+                                        onClick={[Function]}
+                                        type="primary"
                     >
-                                        <style__StyledButton
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                            type="primary"
-                                        >
-                                                            <span>
-                                                                                deposit
-                                                            </span>
-                                        </style__StyledButton>
-                    </div>
-</Tooltip>,
+                                        <span>
+                                                            deposit
+                                        </span>
+                    </style__StyledButton>
+</div>,
                 ],
                 "gutter": 0,
               },
@@ -28633,85 +27997,49 @@ ShallowWrapper {
                 Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "class",
+                  "nodeType": "host",
                   "props": Object {
-                    "arrowPointAtCenter": false,
-                    "autoAdjustOverflow": true,
-                    "children": <div
-                      style={
-                                            Object {
-                                                                  "width": "fit-content",
-                                                                }
-                      }
+                    "children": <style__StyledButton
+                      disabled={true}
+                      onClick={[Function]}
+                      type="primary"
 >
-                      <style__StyledButton
-                                            disabled={true}
-                                            onClick={[Function]}
-                                            type="primary"
-                      >
-                                            <span>
-                                                                  deposit
-                                            </span>
-                      </style__StyledButton>
-</div>,
-                    "mouseEnterDelay": 0.1,
-                    "mouseLeaveDelay": 0.1,
-                    "placement": "bottom",
-                    "prefixCls": "ant-tooltip",
-                    "title": <span>
-                      nahmii_deposits
-</span>,
-                    "transitionName": "zoom-big-fast",
+                      <span>
+                                            deposit
+                      </span>
+</style__StyledButton>,
+                    "style": Object {
+                      "width": "fit-content",
+                    },
                   },
                   "ref": null,
                   "rendered": Object {
                     "instance": null,
                     "key": undefined,
-                    "nodeType": "host",
+                    "nodeType": "class",
                     "props": Object {
-                      "children": <style__StyledButton
-                        disabled={true}
-                        onClick={[Function]}
-                        type="primary"
->
-                        <span>
-                                                deposit
-                        </span>
-</style__StyledButton>,
-                      "style": Object {
-                        "width": "fit-content",
-                      },
+                      "children": <span>
+                        deposit
+</span>,
+                      "disabled": true,
+                      "onClick": [Function],
+                      "type": "primary",
                     },
                     "ref": null,
                     "rendered": Object {
                       "instance": null,
                       "key": undefined,
-                      "nodeType": "class",
+                      "nodeType": "host",
                       "props": Object {
-                        "children": <span>
-                          deposit
-</span>,
-                        "disabled": true,
-                        "onClick": [Function],
-                        "type": "primary",
+                        "children": "deposit",
                       },
                       "ref": null,
-                      "rendered": Object {
-                        "instance": null,
-                        "key": undefined,
-                        "nodeType": "host",
-                        "props": Object {
-                          "children": "deposit",
-                        },
-                        "ref": null,
-                        "rendered": "deposit",
-                        "type": "span",
-                      },
-                      "type": [Function],
+                      "rendered": "deposit",
+                      "type": "span",
                     },
-                    "type": "div",
+                    "type": [Function],
                   },
-                  "type": [Function],
+                  "type": "div",
                 },
               ],
               "type": [Function],
@@ -28962,38 +28290,23 @@ ShallowWrapper {
                               <style__HWPromptWrapper>
                                         <Connect(HWPromptContainer) />
                               </style__HWPromptWrapper>
-                              <Tooltip
-                                        arrowPointAtCenter={false}
-                                        autoAdjustOverflow={true}
-                                        mouseEnterDelay={0.1}
-                                        mouseLeaveDelay={0.1}
-                                        placement="bottom"
-                                        prefixCls="ant-tooltip"
-                                        title={
-                                                  <span>
-                                                            nahmii_deposits
-                                                  </span>
+                              <div
+                                        style={
+                                                  Object {
+                                                            "width": "fit-content",
+                                                          }
                                         }
-                                        transitionName="zoom-big-fast"
                               >
-                                        <div
-                                                  style={
-                                                            Object {
-                                                                      "width": "fit-content",
-                                                                    }
-                                                  }
+                                        <style__StyledButton
+                                                  disabled={true}
+                                                  onClick={[Function]}
+                                                  type="primary"
                                         >
-                                                  <style__StyledButton
-                                                            disabled={true}
-                                                            onClick={[Function]}
-                                                            type="primary"
-                                                  >
-                                                            <span>
-                                                                      deposit
-                                                            </span>
-                                                  </style__StyledButton>
-                                        </div>
-                              </Tooltip>
+                                                  <span>
+                                                            deposit
+                                                  </span>
+                                        </style__StyledButton>
+                              </div>
                     </Row>
                     <SectionHeading
                               style={
@@ -29222,38 +28535,23 @@ ShallowWrapper {
                             <style__HWPromptWrapper>
                                           <Connect(HWPromptContainer) />
                             </style__HWPromptWrapper>
-                            <Tooltip
-                                          arrowPointAtCenter={false}
-                                          autoAdjustOverflow={true}
-                                          mouseEnterDelay={0.1}
-                                          mouseLeaveDelay={0.1}
-                                          placement="bottom"
-                                          prefixCls="ant-tooltip"
-                                          title={
-                                                        <span>
-                                                                      nahmii_deposits
-                                                        </span>
+                            <div
+                                          style={
+                                                        Object {
+                                                                      "width": "fit-content",
+                                                                    }
                                           }
-                                          transitionName="zoom-big-fast"
                             >
-                                          <div
-                                                        style={
-                                                                      Object {
-                                                                                    "width": "fit-content",
-                                                                                  }
-                                                        }
+                                          <style__StyledButton
+                                                        disabled={true}
+                                                        onClick={[Function]}
+                                                        type="primary"
                                           >
-                                                        <style__StyledButton
-                                                                      disabled={true}
-                                                                      onClick={[Function]}
-                                                                      type="primary"
-                                                        >
-                                                                      <span>
-                                                                                    deposit
-                                                                      </span>
-                                                        </style__StyledButton>
-                                          </div>
-                            </Tooltip>
+                                                        <span>
+                                                                      deposit
+                                                        </span>
+                                          </style__StyledButton>
+                            </div>
               </Row>
               <SectionHeading
                             style={
@@ -29743,38 +29041,23 @@ ShallowWrapper {
                   <style__HWPromptWrapper>
                                     <Connect(HWPromptContainer) />
                   </style__HWPromptWrapper>
-                  <Tooltip
-                                    arrowPointAtCenter={false}
-                                    autoAdjustOverflow={true}
-                                    mouseEnterDelay={0.1}
-                                    mouseLeaveDelay={0.1}
-                                    placement="bottom"
-                                    prefixCls="ant-tooltip"
-                                    title={
-                                                      <span>
-                                                                        nahmii_deposits
-                                                      </span>
+                  <div
+                                    style={
+                                                      Object {
+                                                                        "width": "fit-content",
+                                                                      }
                                     }
-                                    transitionName="zoom-big-fast"
                   >
-                                    <div
-                                                      style={
-                                                                        Object {
-                                                                                          "width": "fit-content",
-                                                                                        }
-                                                      }
+                                    <style__StyledButton
+                                                      disabled={true}
+                                                      onClick={[Function]}
+                                                      type="primary"
                                     >
-                                                      <style__StyledButton
-                                                                        disabled={true}
-                                                                        onClick={[Function]}
-                                                                        type="primary"
-                                                      >
-                                                                        <span>
-                                                                                          deposit
-                                                                        </span>
-                                                      </style__StyledButton>
-                                    </div>
-                  </Tooltip>
+                                                      <span>
+                                                                        deposit
+                                                      </span>
+                                    </style__StyledButton>
+                  </div>
 </Row>,
                 <SectionHeading
                   style={
@@ -30212,38 +29495,23 @@ ShallowWrapper {
                     <style__HWPromptWrapper>
                       <Connect(HWPromptContainer) />
 </style__HWPromptWrapper>,
-                    <Tooltip
-                      arrowPointAtCenter={false}
-                      autoAdjustOverflow={true}
-                      mouseEnterDelay={0.1}
-                      mouseLeaveDelay={0.1}
-                      placement="bottom"
-                      prefixCls="ant-tooltip"
-                      title={
-                                            <span>
-                                                                  nahmii_deposits
-                                            </span>
+                    <div
+                      style={
+                                            Object {
+                                                                  "width": "fit-content",
+                                                                }
                       }
-                      transitionName="zoom-big-fast"
 >
-                      <div
-                                            style={
-                                                                  Object {
-                                                                                        "width": "fit-content",
-                                                                                      }
-                                            }
+                      <style__StyledButton
+                                            disabled={true}
+                                            onClick={[Function]}
+                                            type="primary"
                       >
-                                            <style__StyledButton
-                                                                  disabled={true}
-                                                                  onClick={[Function]}
-                                                                  type="primary"
-                                            >
-                                                                  <span>
-                                                                                        deposit
-                                                                  </span>
-                                            </style__StyledButton>
-                      </div>
-</Tooltip>,
+                                            <span>
+                                                                  deposit
+                                            </span>
+                      </style__StyledButton>
+</div>,
                   ],
                   "gutter": 0,
                 },
@@ -30271,85 +29539,49 @@ ShallowWrapper {
                   Object {
                     "instance": null,
                     "key": undefined,
-                    "nodeType": "class",
+                    "nodeType": "host",
                     "props": Object {
-                      "arrowPointAtCenter": false,
-                      "autoAdjustOverflow": true,
-                      "children": <div
-                        style={
-                                                Object {
-                                                                        "width": "fit-content",
-                                                                      }
-                        }
+                      "children": <style__StyledButton
+                        disabled={true}
+                        onClick={[Function]}
+                        type="primary"
 >
-                        <style__StyledButton
-                                                disabled={true}
-                                                onClick={[Function]}
-                                                type="primary"
-                        >
-                                                <span>
-                                                                        deposit
-                                                </span>
-                        </style__StyledButton>
-</div>,
-                      "mouseEnterDelay": 0.1,
-                      "mouseLeaveDelay": 0.1,
-                      "placement": "bottom",
-                      "prefixCls": "ant-tooltip",
-                      "title": <span>
-                        nahmii_deposits
-</span>,
-                      "transitionName": "zoom-big-fast",
+                        <span>
+                                                deposit
+                        </span>
+</style__StyledButton>,
+                      "style": Object {
+                        "width": "fit-content",
+                      },
                     },
                     "ref": null,
                     "rendered": Object {
                       "instance": null,
                       "key": undefined,
-                      "nodeType": "host",
+                      "nodeType": "class",
                       "props": Object {
-                        "children": <style__StyledButton
-                          disabled={true}
-                          onClick={[Function]}
-                          type="primary"
->
-                          <span>
-                                                    deposit
-                          </span>
-</style__StyledButton>,
-                        "style": Object {
-                          "width": "fit-content",
-                        },
+                        "children": <span>
+                          deposit
+</span>,
+                        "disabled": true,
+                        "onClick": [Function],
+                        "type": "primary",
                       },
                       "ref": null,
                       "rendered": Object {
                         "instance": null,
                         "key": undefined,
-                        "nodeType": "class",
+                        "nodeType": "host",
                         "props": Object {
-                          "children": <span>
-                            deposit
-</span>,
-                          "disabled": true,
-                          "onClick": [Function],
-                          "type": "primary",
+                          "children": "deposit",
                         },
                         "ref": null,
-                        "rendered": Object {
-                          "instance": null,
-                          "key": undefined,
-                          "nodeType": "host",
-                          "props": Object {
-                            "children": "deposit",
-                          },
-                          "ref": null,
-                          "rendered": "deposit",
-                          "type": "span",
-                        },
-                        "type": [Function],
+                        "rendered": "deposit",
+                        "type": "span",
                       },
-                      "type": "div",
+                      "type": [Function],
                     },
-                    "type": [Function],
+                    "type": "div",
                   },
                 ],
                 "type": [Function],
