@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import nahmii from 'nahmii-sdk';
 import { fromJS } from 'immutable';
+import BigNumber from 'bignumber.js';
 import {
   walletsWithInfoMock,
   walletsMock,
@@ -190,6 +191,30 @@ describe('WalletTransfer', () => {
       const monetaryAmount = new nahmii.MonetaryAmount(amount, '0x583cbbb8a8443b38abcc0c956bece47340ea1367');
       instance.onSend(symbol, toAddress, amount, 'nahmii', gasPrice, gasLimit);
       expect(nahmiiTransferSpy).toBeCalledWith(monetaryAmount, toAddress);
+    });
+
+    it('should prevent exponential notation when trigger nahmiiTransfer action', () => {
+      const nahmiiTransferSpy = jest.fn();
+      const historySpy = jest.fn();
+      const wrapper = shallow(
+        <WalletTransfer
+          {...props}
+          nahmiiTransfer={nahmiiTransferSpy}
+          history={{ push: historySpy }}
+        />
+        );
+      const instance = wrapper.instance();
+      const symbol = 'BOKKY';
+      const toAddress = 'abcd';
+      const gasPrice = 1;
+      const gasLimit = 1;
+      const amount = new BigNumber('99999999999.9999999999999999').times(new BigNumber('10').pow(20));
+      const fixedAmount = amount.toFixed();
+      expect(amount.toString()).toEqual('9.99999999999999999999999999e+30');
+      expect(fixedAmount).toEqual('9999999999999999999999999990000');
+      const monetaryAmount = new nahmii.MonetaryAmount(fixedAmount, '0x583cbbb8a8443b38abcc0c956bece47340ea1367');
+      instance.onSend(symbol, toAddress, amount, 'nahmii', gasPrice, gasLimit);
+      expect(nahmiiTransferSpy.mock.calls[0][0].toJSON()).toEqual(monetaryAmount.toJSON());
     });
   });
   describe('#componentDidUpdate', () => {

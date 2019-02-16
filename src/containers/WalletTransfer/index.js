@@ -86,7 +86,7 @@ export class WalletTransfer extends React.PureComponent {
     } else {
       ct = supportedAssets.get('assets').find((a) => a.get('symbol') === symbol).get('currency');
     }
-    const monetaryAmount = new nahmii.MonetaryAmount(amount, ct);
+    const monetaryAmount = new nahmii.MonetaryAmount(amount.toFixed(), ct);
     this.props.nahmiiTransfer(monetaryAmount, toAddress);
   }
 
