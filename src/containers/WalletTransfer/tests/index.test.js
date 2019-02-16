@@ -195,12 +195,10 @@ describe('WalletTransfer', () => {
 
     it('should prevent exponential notation when trigger nahmiiTransfer action', () => {
       const nahmiiTransferSpy = jest.fn();
-      const historySpy = jest.fn();
       const wrapper = shallow(
         <WalletTransfer
           {...props}
           nahmiiTransfer={nahmiiTransferSpy}
-          history={{ push: historySpy }}
         />
         );
       const instance = wrapper.instance();
