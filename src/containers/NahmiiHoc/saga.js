@@ -171,7 +171,11 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
   } catch (e) {
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield put(actions.nahmiiPaymentError(e));
-    yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
+    if (e instanceof nahmii.InsufficientFundsError) {
+      yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_transfer_insufficient_funds_error' }, { minimumBalance: e.minimumBalance })));
+    } else {
+      yield put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: e.message })));
+    }
   }
 }
 

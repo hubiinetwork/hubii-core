@@ -124,6 +124,35 @@ describe('nahmiiHocSaga', () => {
       .put(notify('error', getIntl().formatMessage({ id: 'send_transaction_failed_message_error' }, { message: errorMock.message })))
       .run({ silenceTimeout: true });
     });
+    it('should dispatch correct actions on insufficient funds error', () => {
+      const errorMock = new nahmii.InsufficientFundsError({ message: 'Insufficient funds: The minimum balance of this token is 0.01.' });
+
+      return expectSaga(makePayment, { monetaryAmount, recipient, walletOverride })
+      .withState(storeMock)
+      .provide({
+        call(effect, next) {
+          if (effect.fn === getSdkWalletSigner) {
+            return [
+              signerMock,
+              { type: 'ACTION1' },
+              { type: 'ACTION2' },
+            ];
+          }
+          if (effect.fn === nahmii.Payment.prototype.sign) {
+            return true;
+          }
+          if (effect.fn === nahmii.Payment.prototype.register) {
+            throw errorMock;
+          }
+          return next();
+        },
+      })
+      .put({ type: 'ACTION1' })
+      .put({ type: 'ACTION2' })
+      .put(actions.nahmiiPaymentError(errorMock))
+      .put(notify('error', getIntl().formatMessage({ id: 'nahmii_transfer_insufficient_funds_error' }, { minimumBalance: errorMock.minimumBalance })))
+      .run({ silenceTimeout: true });
+    });
   });
   describe('settlement operations', () => {
     const options = { gasLimit: 1, gasPrice: 1 };

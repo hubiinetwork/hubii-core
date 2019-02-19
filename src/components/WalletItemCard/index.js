@@ -256,7 +256,7 @@ export class WalletItemCard extends React.PureComponent {
             <div style={{ marginTop: '1.25rem' }}>
               <NahmiiText />
               <Text>
-                &nbsp;balance
+                &nbsp;{formatMessage({ id: 'balances' })}
               </Text>
               <AssetsWrapper>
                 {
