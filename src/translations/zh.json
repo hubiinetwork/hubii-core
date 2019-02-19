@@ -220,5 +220,6 @@
     "deposits_note": "成功充值后，需要等待 12 个区块确认，才能添加到您的 nahmii 余额 (大约三分钟)",
     "nahmii_deposits": "nahmii 充值即将正式推出",
     "nahmii_payments": "nahmii 支付即将正式推出",
-    "nahmii_transfer_insufficient_funds_error": "无法汇款: 请确定此货币汇款后的 nahmii 余额不少于 {minimumBalance}."
+    "nahmii_transfer_insufficient_funds_error": "无法汇款: 请确定此货币汇款后的 nahmii 余额不少于 {minimumBalance}.",
+    "nahmii_settlement_lock_transfer": "当前货币的支付被限制，请在 1 分钟后重试。"
 }

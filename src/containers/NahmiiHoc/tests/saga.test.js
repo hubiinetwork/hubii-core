@@ -153,6 +153,20 @@ describe('nahmiiHocSaga', () => {
       .put(notify('error', getIntl().formatMessage({ id: 'nahmii_transfer_insufficient_funds_error' }, { minimumBalance: errorMock.minimumBalance })))
       .run({ silenceTimeout: true });
     });
+    it('should dispatch correct actions on payment lock errors', () => {
+      const error = new Error('Payment is locked for 5 block height');
+      const walletAddress = storeMock.getIn(['walletHoc', 'currentWallet', 'address']);
+      const { currency } = monetaryAmount.toJSON();
+      return expectSaga(makePayment, { monetaryAmount, recipient, walletOverride })
+      .withState(
+        storeMock
+          .setIn(['ethOperationsHoc', 'blockHeight', 'height'], 5)
+          .setIn(['nahmiiHoc', 'ongoingChallenges', walletAddress, currency.ct, 'attemptedAtBlockHeight'], 1)
+      )
+      .put(actions.nahmiiPaymentError(error))
+      .put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })))
+      .run({ silenceTimeout: true });
+    });
   });
   describe('settlement operations', () => {
     const options = { gasLimit: 1, gasPrice: 1 };
@@ -216,6 +230,30 @@ describe('nahmiiHocSaga', () => {
             const tx = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'transactions', fakeTxReceipts[0].transactionHash]);
             expect(status).toEqual('success');
             expect(tx).toEqual(fakeTxReceipts[0]);
+          });
+      }
+      );
+
+      it('should correctly update block height after initialized the saga function', () => {
+        const mockedBlockHeight = 1;
+        return expectSaga(startChallenge, { address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
+          .withReducer(withReducer, storeMock.setIn(['ethOperationsHoc', 'blockHeight', 'height'], mockedBlockHeight))
+          .provide({
+            call(effect, next) {
+              if (effect.fn === getSdkWalletSigner) {
+                return [
+                  signerMock,
+                  { type: 'ACTION1' },
+                  { type: 'ACTION2' },
+                ];
+              }
+              return next();
+            },
+          })
+          .run({ silenceTimeout: true })
+          .then((result) => {
+            const lastattemptedAtBlockHeight = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'attemptedAtBlockHeight']);
+            expect(lastattemptedAtBlockHeight).toEqual(mockedBlockHeight);
           });
       }
       );

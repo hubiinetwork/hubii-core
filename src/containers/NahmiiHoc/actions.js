@@ -12,6 +12,7 @@ import {
   START_CHALLENGE_SUCCESS,
   START_CHALLENGE_ERROR,
   START_REQUIRED_CHALLENGES_SUCCESS,
+  UPDATE_START_CHALLENGE_BLOCK_HEIGHT,
   LOAD_START_CHALLENGE_TX_REQUEST,
   LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS,
   SETTLE,
@@ -238,6 +239,15 @@ export function startRequiredChallengesSuccess(address, currency) {
     type: START_REQUIRED_CHALLENGES_SUCCESS,
     address,
     currency,
+  };
+}
+
+export function updateChallengeBlockHeight(address, currency, blockHeight) {
+  return {
+    type: UPDATE_START_CHALLENGE_BLOCK_HEIGHT,
+    address,
+    currency,
+    blockHeight,
   };
 }
 

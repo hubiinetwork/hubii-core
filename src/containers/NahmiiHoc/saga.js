@@ -11,13 +11,16 @@ import { isAddressMatch } from 'utils/wallet';
 import { logErrorMsg } from 'utils/friendlyErrors';
 import { getIntl } from 'utils/localisation';
 import {
+  makeSelectBlockHeight,
+} from 'containers/EthOperationsHoc/selectors';
+import {
   makeSelectWallets,
   makeSelectCurrentWallet,
 } from 'containers/WalletHoc/selectors';
 import { notify } from 'containers/App/actions';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 import { makeSelectSupportedAssets } from 'containers/HubiiApiHoc/selectors';
-import { makeSelectWalletCurrency } from 'containers/NahmiiHoc/selectors';
+import { makeSelectWalletCurrency, makeSelectOngoingChallenges } from 'containers/NahmiiHoc/selectors';
 import { makeSelectCurrentWalletWithInfo } from 'containers/NahmiiHoc/combined-selectors';
 import { makeSelectTrezorHoc } from 'containers/TrezorHoc/selectors';
 import { makeSelectLedgerHoc } from 'containers/LedgerHoc/selectors';
@@ -157,6 +160,18 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
       yield put(actions.nahmiiPaymentError(new Error(getIntl().formatMessage({ id: 'wallet_encrypted_error' }))));
       return;
     }
+
+    const { currency } = monetaryAmount.toJSON();
+    const currentBlockHeight = yield select(makeSelectBlockHeight());
+    const ongoingChallenges = yield select(makeSelectOngoingChallenges());
+    const lastattemptedAtBlockHeight = ongoingChallenges.getIn([wallet.address, currency.ct, 'attemptedAtBlockHeight']) || -1;
+    const blockTimer = 5;
+    if ((currentBlockHeight.get('height') - blockTimer) < lastattemptedAtBlockHeight) {
+      yield put(actions.nahmiiPaymentError(new Error('Payment is locked for 5 block height')));
+      yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })));
+      return;
+    }
+
     const network = yield select(makeSelectCurrentNetwork());
     const nahmiiProvider = network.nahmiiProvider;
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
@@ -451,11 +466,16 @@ export function* startChallenge({ stageAmount, currency, options }) {
     if (confOnDevice) yield put(confOnDevice);
     yield put(notify('info', getIntl().formatMessage({ id: 'checks_before_settling' })));
 
+    const currentBlockHeight = yield select(makeSelectBlockHeight());
+    yield put(actions.updateChallengeBlockHeight(walletDetails.address, currency, currentBlockHeight.get('height')));
+
     const { requiredChallenges } = yield call(settlement.getRequiredChallengesForIntendedStageAmount.bind(settlement), _stageAmount, nahmiiWallet.address);
-    yield put(notify('info', getIntl().formatMessage({ id: 'requesting_settle' })));
     if (!requiredChallenges.length) {
       yield put(notify('error', getIntl().formatMessage({ id: 'unable_start_challenges' })));
+      return;
     }
+
+    yield put(notify('info', getIntl().formatMessage({ id: 'requesting_settle' })));
     for (let i = 0; i < requiredChallenges.length; i += 1) {
       const requiredChallenge = requiredChallenges[i];
       const tx = yield call(settlement.startByRequiredChallenge.bind(settlement), requiredChallenge, nahmiiWallet, { gasLimit, gasPrice });

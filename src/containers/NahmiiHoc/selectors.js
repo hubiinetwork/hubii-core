@@ -329,6 +329,7 @@ export {
   makeSelectNahmiiSettlementTransactionsByCurrentWallet,
   makeSelectReceiptsWithInfo,
   makeSelectDepositStatus,
+  makeSelectOngoingChallenges,
   makeSelectOngoingChallengesForCurrentWalletCurrency,
   makeSelectSettleableChallengesForCurrentWalletCurrency,
   makeSelectWithdrawalsForCurrentWalletCurrency,

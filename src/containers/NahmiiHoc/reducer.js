@@ -43,6 +43,7 @@ import {
   LOAD_ONGOING_CHALLENGES_ERROR,
   LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
   LOAD_SETTLEABLE_CHALLENGES_ERROR,
+  UPDATE_START_CHALLENGE_BLOCK_HEIGHT,
 } from './constants';
 
 export const initialState = fromJS({
@@ -123,6 +124,9 @@ function nahmiiHocReducer(state = initialState, action) {
     case LOAD_SETTLEABLE_CHALLENGES_ERROR:
       return state
         .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], null);
+    case UPDATE_START_CHALLENGE_BLOCK_HEIGHT:
+      return state
+          .setIn(['ongoingChallenges', action.address, action.currency, 'attemptedAtBlockHeight'], action.blockHeight);
     case START_CHALLENGE:
       return state
           .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'requesting');
