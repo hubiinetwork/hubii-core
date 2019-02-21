@@ -11,7 +11,6 @@ import {
 } from 'redux-saga/effects';
 
 import { delay } from 'redux-saga';
-import nahmii from 'nahmii-sdk';
 import { utils as ethersUtils } from 'ethers';
 import BigNumber from 'bignumber.js';
 
@@ -192,8 +191,6 @@ export function* requestToken() {
       // try again in 2sec
       const TWO_SEC_IN_MS = 2 * 1000;
       yield delay(TWO_SEC_IN_MS);
-    } finally {
-      nahmiiProvider.stopUpdate();
     }
   }
 }
@@ -234,16 +231,6 @@ export function* networkApiOrcestrator() {
     // never happen
     throw new Error(e);
   }
-}
-
-export function* getNahmiiProvider() {
-  const network = yield select(makeSelectCurrentNetwork());
-  const nahmiiProvider = new nahmii.NahmiiProvider(
-    network.walletApiEndpoint(true),
-    network.identityServiceAppId,
-    network.identityServiceSecret
-  );
-  return nahmiiProvider;
 }
 
 // Root watcher
