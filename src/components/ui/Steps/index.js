@@ -19,6 +19,10 @@ export const StepsCentered = styled(Steps)`
   display: flex;
   justify-content: center;
 
+  .ant-steps-icon {
+    visibility: hidden;
+  }
+
   .ant-steps-item-process .ant-steps-item-icon {
     background: ${({ theme }) => theme.palette.info} !important;
   }

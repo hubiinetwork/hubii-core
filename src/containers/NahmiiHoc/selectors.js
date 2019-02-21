@@ -174,6 +174,9 @@ const makeSelectSettleableChallengesForCurrentWalletCurrency = () => createSelec
     if (!challenges.get('details')) {
       challenges = challenges.set('details', []);
     }
+    if (!challenges.get('invalidReasons')) {
+      challenges = challenges.set('invalidReasons', []);
+    }
     return challenges;
   }
 );

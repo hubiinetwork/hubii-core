@@ -386,12 +386,13 @@ export function loadOngoingChallengesError(address, currencyAddress) {
   };
 }
 
-export function loadSettleableChallengesSuccess(address, currencyAddress, challenges) {
+export function loadSettleableChallengesSuccess(address, currencyAddress, challenges, invalidReasons) {
   return {
     type: LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
     address,
     currencyAddress,
     challenges,
+    invalidReasons,
   };
 }
 

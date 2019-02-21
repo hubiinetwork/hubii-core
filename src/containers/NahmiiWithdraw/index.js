@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { shell } from 'electron';
 import moment from 'moment';
-import { Row, Icon } from 'antd';
+import { Row, Steps, Icon } from 'antd';
 import { getAbsolutePath } from 'utils/electron';
 import {
   gweiToEther,
@@ -68,6 +68,7 @@ import {
 } from './style';
 
 import ScrollableContentWrapper from '../../components/ui/ScrollableContentWrapper';
+const Step = Steps.Step;
 
 export class NahmiiWithdraw extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -293,6 +294,40 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     );
   }
 
+  renderSteppers() {
+    const { ongoingChallenges, settleableChallenges } = this.props;
+
+    const paymentDriipOngoingChallenge = ongoingChallenges.get('details').find((challenge) => challenge.type === 'payment-driip');
+    const paymentDriipSettleableChallenge = settleableChallenges.get('details').find((challenge) => challenge.type === 'payment-driip');
+    const invalidPaymentDriipSettlement = settleableChallenges.get('invalidReasons').find((challenge) => challenge.type === 'payment-driip');
+
+    let currentStage = 0;
+    if (paymentDriipOngoingChallenge) {
+      currentStage = 1;
+    }
+
+    if (paymentDriipSettleableChallenge) {
+      currentStage = 2;
+    }
+
+    if (invalidPaymentDriipSettlement) {
+      invalidPaymentDriipSettlement.reasons.forEach((reason) => {
+        if (reason.message.match(/.*can.*not.*replay/)) {
+          currentStage = 3;
+        }
+      });
+    }
+
+    return (
+      <Steps current={currentStage}>
+        <Step title="Start settlement" icon={<Icon type="user" />} />
+        <Step title="Challenge period/Settlement qualified" icon={<Icon type="solution" />} />
+        <Step title="Stage settlement/Funds staged" icon={<Icon type="loading" />} />
+        <Step title="Available for withdrawal" icon={<Icon type="smile-o" />} />
+      </Steps>
+    );
+  }
+
   render() {
     const {
       assetToWithdraw,
@@ -444,341 +479,346 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     const TxStatus = this.generateTxStatus();
 
     return (
-      <ScrollableContentWrapper>
-        <div style={{ display: 'flex', flex: '1', flexWrap: 'wrap', marginTop: '0.5rem' }}>
-          <div style={{ flex: '1', marginRight: '2rem', marginBottom: '3rem' }}>
-            <Form>
-              <FormItem
-                label={<FormItemLabel>{formatMessage({ id: 'select_asset_to_withdraw' })}</FormItemLabel>}
-                colon={false}
-              >
-                <Image
-                  src={getAbsolutePath(`public/images/assets/${assetToWithdraw.symbol}.svg`)}
-                  alt="logo"
-                />
-                <Select
-                  // disabled={transfering}
-                  defaultValue={assetToWithdraw.symbol}
-                  onSelect={this.handleAssetChange}
-                  style={{ paddingLeft: '0.5rem' }}
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <ScrollableContentWrapper style={{ flex: 1 }}>
+          <div style={{ display: 'flex', flex: '1', flexWrap: 'wrap', marginTop: '0.5rem' }}>
+            <div style={{ flex: '1', marginRight: '2rem', marginBottom: '3rem' }}>
+              <Form>
+                <FormItem
+                  label={<FormItemLabel>{formatMessage({ id: 'select_asset_to_withdraw' })}</FormItemLabel>}
+                  colon={false}
                 >
-                  {baseLayerAssets.map((currency) => (
-                    <Option value={currency.symbol} key={currency.symbol}>
-                      {currency.symbol}
-                    </Option>
-                  ))}
-                </Select>
-              </FormItem>
-              <FormItem
-                label={<FormItemLabel>{formatMessage({ id: 'enter_amount_withdraw' })} </FormItemLabel>}
-                colon={false}
-                help={<HelperText left={formatFiat(usdValueToWithdraw, 'USD')} right={formatMessage({ id: 'usd' })} />}
-              >
-                <Input
-                  className="withdraw-input"
-                  defaultValue={amountToWithdrawInput}
-                  value={amountToWithdrawInput}
-                  onFocus={() => this.onFocusNumberInput('amountToWithdrawInput')}
-                  onBlur={() => this.onBlurNumberInput('amountToWithdrawInput')}
-                  onChange={this.handleAmountToWithdrawChange}
+                  <Image
+                    src={getAbsolutePath(`public/images/assets/${assetToWithdraw.symbol}.svg`)}
+                    alt="logo"
+                  />
+                  <Select
+                    // disabled={transfering}
+                    defaultValue={assetToWithdraw.symbol}
+                    onSelect={this.handleAssetChange}
+                    style={{ paddingLeft: '0.5rem' }}
+                  >
+                    {baseLayerAssets.map((currency) => (
+                      <Option value={currency.symbol} key={currency.symbol}>
+                        {currency.symbol}
+                      </Option>
+                    ))}
+                  </Select>
+                </FormItem>
+                <FormItem
+                  label={<FormItemLabel>{formatMessage({ id: 'enter_amount_withdraw' })} </FormItemLabel>}
+                  colon={false}
+                  help={<HelperText left={formatFiat(usdValueToWithdraw, 'USD')} right={formatMessage({ id: 'usd' })} />}
+                >
+                  <Input
+                    className="withdraw-input"
+                    defaultValue={amountToWithdrawInput}
+                    value={amountToWithdrawInput}
+                    onFocus={() => this.onFocusNumberInput('amountToWithdrawInput')}
+                    onBlur={() => this.onBlurNumberInput('amountToWithdrawInput')}
+                    onChange={this.handleAmountToWithdrawChange}
+                  />
+                </FormItem>
+                <GasOptions
+                  intl={intl}
+                  defaultGasLimit={gasLimit}
+                  defaultGasPrice={gasPriceGwei.toNumber()}
+                  gasStatistics={gasStatistics.get('estimate')}
+                  defaultOption="average"
+                  onChange={this.onGasChange}
                 />
-              </FormItem>
-              <GasOptions
-                intl={intl}
-                defaultGasLimit={gasLimit}
-                defaultGasPrice={gasPriceGwei.toNumber()}
-                gasStatistics={gasStatistics.get('estimate')}
-                defaultOption="average"
-                onChange={this.onGasChange}
-              />
-              <DollarPrice>
-                {`1 ${assetToWithdraw.symbol} = ${formatFiat(assetToWithdrawUsdValue, 'USD')}`}
-              </DollarPrice>
-            </Form>
-          </div>
-          <div style={{ flex: '1', minWidth: '34rem', marginBottom: '3rem' }}>
-            {
-              ongoingChallenges.get('details').length > 0 &&
-              <SettlementWarning
-                className="ongoing-challenges"
-                message={formatMessage({ id: 'challenge_period_progress' }, { staging_amount: totalStagingAmount.toString(), symbol: assetToWithdraw.symbol })}
-                description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(maxExpirationTime).format('LLLL'), symbol: assetToWithdraw.symbol })}
-                type="warning"
-                showIcon
-              />
-            }
-            {
-              settleableChallenges.get('details').length > 0 ?
-              (<SettlementWarning
-                className="confirm-settlement"
-                message={formatMessage({ id: 'settlement_period_ended' })}
-                description={
-                  <div>
+                <DollarPrice>
+                  {`1 ${assetToWithdraw.symbol} = ${formatFiat(assetToWithdrawUsdValue, 'USD')}`}
+                </DollarPrice>
+              </Form>
+            </div>
+            <div style={{ flex: '1', minWidth: '34rem', marginBottom: '3rem' }}>
+              {
+                ongoingChallenges.get('details').length > 0 &&
+                <SettlementWarning
+                  className="ongoing-challenges"
+                  message={formatMessage({ id: 'challenge_period_progress' }, { staging_amount: totalStagingAmount.toString(), symbol: assetToWithdraw.symbol })}
+                  description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(maxExpirationTime).format('LLLL'), symbol: assetToWithdraw.symbol })}
+                  type="warning"
+                  showIcon
+                />
+              }
+              {
+                settleableChallenges.get('details').length > 0 ?
+                (<SettlementWarning
+                  className="confirm-settlement"
+                  message={formatMessage({ id: 'settlement_period_ended' })}
+                  description={
                     <div>
-                      {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: assetToWithdraw.symbol, intended_stage_amount: totalSettleableStageAmount, tx_count: settleableChallenges.get('details').length })}
-                    </div>
-                    {
-                      TxStatus ?
-                        (
-                          <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="confirm-tx-status">
-                            {TxStatus}
-                          </div>
-                        ) : (
-                          <StyledButton className="confirm-btn" onClick={() => this.settle(assetToWithdraw)} disabled={disableConfirmSettleButton}>
-                            {formatMessage({ id: 'confirm_settlement' })}
-                          </StyledButton>
-                        )
-                    }
-                  </div>
-                }
-                type="warning"
-                showIcon
-              />) : (
-                requiredSettlementAmount.gt(0) ?
-                (
-                  <div className="start-settlement">
-                    <SettlementWarning
-                      className="why-settlement-notes"
-                      message={formatMessage({ id: 'withdraw_exceeded_staged_amount' })}
-                      description={
-                        formatMessage(
-                          { id: 'why_settlement_notes' },
-                          {
-                            symbol: assetToWithdraw.symbol,
-                            withdraw_amount: amountToWithdraw,
-                            required_stage_amout: requiredSettlementAmount,
-                            staged_amount: nahmiiStagedBalanceBefore.amount,
-                          }
-                        )
+                      <div>
+                        {formatMessage({ id: 'settlement_period_ended_notice' }, { symbol: assetToWithdraw.symbol, intended_stage_amount: totalSettleableStageAmount, tx_count: settleableChallenges.get('details').length })}
+                      </div>
+                      {
+                        TxStatus ?
+                          (
+                            <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="confirm-tx-status">
+                              {TxStatus}
+                            </div>
+                          ) : (
+                            <StyledButton className="confirm-btn" onClick={() => this.settle(assetToWithdraw)} disabled={disableConfirmSettleButton}>
+                              {formatMessage({ id: 'confirm_settlement' })}
+                            </StyledButton>
+                          )
                       }
-                      type="warning"
-                      showIcon
-                    />
-                    <Row>
-                      <StyledCol span={12}>{formatMessage({ id: 'base_layer_fee' })}</StyledCol>
-                    </Row>
-                    <Row>
-                      <TransferDescriptionItem
-                        main={`${transactionFee.amount.toString()} ETH`}
-                        subtitle={formatFiat(transactionFee.usdValue.toNumber(), 'USD')}
-                      />
-                    </Row>
-                    <Row>
-                      <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
-                    </Row>
-                    <Row>
-                      <TransferDescriptionItem
-                        className="base-layer-eth-balance-before"
-                        main={`${baseLayerEthBalanceBefore.amount.toString()} ETH`}
-                        subtitle={formatFiat(baseLayerEthBalanceBefore.usdValue.toNumber(), 'USD')}
-                      />
-                    </Row>
-                    <Row>
-                      <StyledCol span={12}>
-                        {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
-                      </StyledCol>
-                    </Row>
-                    <Row>
-                      <TransferDescriptionItem
-                        className="base-layer-eth-balance-after"
-                        main={`${baseLayerEthBalanceAfter.amount} ETH`}
-                        subtitle={formatFiat(baseLayerEthBalanceAfter.usdValue.toNumber(), 'USD')}
-                      />
-                    </Row>
-                    <Row>
-                      <StyledCol span={12}>{formatMessage({ id: 'required_stage_amount' })}</StyledCol>
-                    </Row>
-                    <Row>
-                      <TransferDescriptionItem
-                        main={`${requiredSettlementAmount} ${assetToWithdraw.symbol}`}
-                        subtitle={formatFiat(requiredSettlementAmount.times(assetToWithdrawUsdValue), 'USD')}
-                      />
-                    </Row>
-                    <Row>
-                      <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
-                    </Row>
-                    <Row>
-                      <TransferDescriptionItem
-                        className="nahmii-balance-before-staging"
-                        main={`${nahmiiBalanceBefore.amount.toString()} ${assetToWithdraw.symbol}`}
-                        subtitle={formatFiat(nahmiiBalanceBefore.usdValue.toNumber(), 'USD')}
-                      />
-                    </Row>
-                    <Row>
-                      <StyledCol span={12}>
-                        {formatMessage({ id: 'nahmii' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_after' })}
-                      </StyledCol>
-                    </Row>
-                    <Row>
-                      <TransferDescriptionItem
-                        className="nahmii-balance-after-staging"
-                        main={`${nahmiiBalanceAfterStaging.amount} ${assetToWithdraw.symbol}`}
-                        subtitle={formatFiat(nahmiiBalanceAfterStaging.usdValue.toNumber(), 'USD')}
-                      />
-                    </Row>
-                    <Row>
-                      {
-                      TxStatus ?
-                        (
-                          <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="challenge-tx-status">
-                            {TxStatus}
-                          </div>
-                        ) : (
-                          <StyledButton className="challenge-btn" onClick={() => this.startChallenge(requiredSettlementAmount, assetToWithdraw)} disabled={disableSettleButton}>
-                            {formatMessage({ id: 'settle_balance' })}
-                          </StyledButton>
-                        )
-                    }
-                    </Row>
-                  </div>
-                ) : (
-                  <div className="withdraw-review">
-                    <Row>
-                      <StyledCol span={12}>{formatMessage({ id: 'withdraw' })}</StyledCol>
-                    </Row>
-                    <Row>
-                      <TransferDescriptionItem
-                        main={`${amountToWithdraw.toString()} ${assetToWithdraw.symbol}`}
-                        subtitle={formatFiat(usdValueToWithdraw.toNumber(), 'USD')}
-                      />
-                    </Row>
-                    <Row>
-                      <StyledCol span={12}>{formatMessage({ id: 'base_layer_fee' })}</StyledCol>
-                    </Row>
-                    <Row>
-                      <TransferDescriptionItem
-                        main={`${transactionFee.amount.toString()} ETH`}
-                        subtitle={formatFiat(transactionFee.usdValue.toNumber(), 'USD')}
-                      />
-                    </Row>
-                    <Row>
-                      <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
-                    </Row>
-                    <Row>
-                      <TransferDescriptionItem
-                        className="base-layer-eth-balance-before"
-                        main={`${baseLayerEthBalanceBefore.amount.toString()} ETH`}
-                        subtitle={formatFiat(baseLayerEthBalanceBefore.usdValue.toNumber(), 'USD')}
-                      />
-                    </Row>
-                    <Row>
-                      <StyledCol span={12}>
-                        {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
-                      </StyledCol>
-                    </Row>
-                    <Row>
-                      <TransferDescriptionItem
-                        className="base-layer-eth-balance-after"
-                        main={`${baseLayerEthBalanceAfter.amount} ETH`}
-                        subtitle={formatFiat(baseLayerEthBalanceAfter.usdValue.toNumber(), 'USD')}
-                      />
-                    </Row>
-                    {assetToWithdraw.symbol === 'ETH' &&
-                    <div>
-                      <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'nahmii_staged' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          className="staged-balance-before"
-                          main={`${nahmiiStagedBalanceBefore.amount.toString()} ETH`}
-                          subtitle={formatFiat(nahmiiStagedBalanceBefore.usdValue.toNumber(), 'USD')}
-                        />
-                      </Row>
-                      <Row>
-                        <StyledCol span={12}>
-                          {formatMessage({ id: 'nahmii_staged' })} ETH {formatMessage({ id: 'balance_after' })}
-                        </StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          className="staged-balance-after"
-                          main={`${nahmiiStagedBalanceAfter.amount} ETH`}
-                          subtitle={formatFiat(nahmiiStagedBalanceAfter.usdValue.toNumber(), 'USD')}
-                        />
-                      </Row>
                     </div>
-                    }
-                    {assetToWithdraw.symbol !== 'ETH' &&
-                    <div>
-                      <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          className="base-layer-token-balance-before"
-                          main={`${baseLayerBalanceBefore.amount} ${assetToWithdraw.symbol}`}
-                          subtitle={formatFiat(baseLayerBalanceBefore.usdValue.toNumber(), 'USD')}
-                        />
-                      </Row>
-                      <Row>
-                        <StyledCol span={12}>
-                          {formatMessage({ id: 'base_layer' })} { assetToWithdraw.symbol } {formatMessage({ id: 'balance_after' })}
-                        </StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          className="base-layer-token-balance-after"
-                          main={`${baseLayerBalanceAfter.amount} ${assetToWithdraw.symbol}`}
-                          subtitle={formatFiat(baseLayerBalanceAfter.usdValue.toNumber(), 'USD')}
-                        />
-                      </Row>
-                      <Row>
-                        <StyledCol span={12}>{formatMessage({ id: 'nahmii_staged' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          className="staged-balance-before"
-                          main={`${nahmiiStagedBalanceBefore.amount.toString()} ${assetToWithdraw.symbol}`}
-                          subtitle={formatFiat(nahmiiStagedBalanceBefore.usdValue.toNumber(), 'USD')}
-                        />
-                      </Row>
-                      <Row>
-                        <StyledCol span={12}>
-                          {formatMessage({ id: 'nahmii_staged' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_after' })}
-                        </StyledCol>
-                      </Row>
-                      <Row>
-                        <TransferDescriptionItem
-                          className="staged-balance-after"
-                          main={`${nahmiiStagedBalanceAfter.amount} ${assetToWithdraw.symbol}`}
-                          subtitle={formatFiat(nahmiiStagedBalanceAfter.usdValue.toNumber(), 'USD')}
-                        />
-                      </Row>
-                    </div>
-                    }
-                    <Row>
-                      {
-                      TxStatus ?
-                        (
-                          <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="withdraw-status">
-                            {TxStatus}
-                          </div>
-                        ) : (
-                          <StyledButton
-                            type="primary"
-                            className="withdraw-btn"
-                            onClick={() => this.withdraw(amountToWithdraw, assetToWithdraw)}
-                            disabled={disableWithdrawButton}
-                          >
-                            <span>{formatMessage({ id: 'withdraw' })}</span>
-                          </StyledButton>
+                  }
+                  type="warning"
+                  showIcon
+                />) : (
+                  requiredSettlementAmount.gt(0) ?
+                  (
+                    <div className="start-settlement">
+                      <SettlementWarning
+                        className="why-settlement-notes"
+                        message={formatMessage({ id: 'withdraw_exceeded_staged_amount' })}
+                        description={
+                          formatMessage(
+                            { id: 'why_settlement_notes' },
+                            {
+                              symbol: assetToWithdraw.symbol,
+                              withdraw_amount: amountToWithdraw,
+                              required_stage_amout: requiredSettlementAmount,
+                              staged_amount: nahmiiStagedBalanceBefore.amount,
+                            }
                           )
                         }
-                    </Row>
-                  </div>
+                        type="warning"
+                        showIcon
+                      />
+                      <Row>
+                        <StyledCol span={12}>{formatMessage({ id: 'base_layer_fee' })}</StyledCol>
+                      </Row>
+                      <Row>
+                        <TransferDescriptionItem
+                          main={`${transactionFee.amount.toString()} ETH`}
+                          subtitle={formatFiat(transactionFee.usdValue.toNumber(), 'USD')}
+                        />
+                      </Row>
+                      <Row>
+                        <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+                      </Row>
+                      <Row>
+                        <TransferDescriptionItem
+                          className="base-layer-eth-balance-before"
+                          main={`${baseLayerEthBalanceBefore.amount.toString()} ETH`}
+                          subtitle={formatFiat(baseLayerEthBalanceBefore.usdValue.toNumber(), 'USD')}
+                        />
+                      </Row>
+                      <Row>
+                        <StyledCol span={12}>
+                          {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
+                        </StyledCol>
+                      </Row>
+                      <Row>
+                        <TransferDescriptionItem
+                          className="base-layer-eth-balance-after"
+                          main={`${baseLayerEthBalanceAfter.amount} ETH`}
+                          subtitle={formatFiat(baseLayerEthBalanceAfter.usdValue.toNumber(), 'USD')}
+                        />
+                      </Row>
+                      <Row>
+                        <StyledCol span={12}>{formatMessage({ id: 'required_stage_amount' })}</StyledCol>
+                      </Row>
+                      <Row>
+                        <TransferDescriptionItem
+                          main={`${requiredSettlementAmount} ${assetToWithdraw.symbol}`}
+                          subtitle={formatFiat(requiredSettlementAmount.times(assetToWithdrawUsdValue), 'USD')}
+                        />
+                      </Row>
+                      <Row>
+                        <StyledCol span={12}>{formatMessage({ id: 'nahmii' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+                      </Row>
+                      <Row>
+                        <TransferDescriptionItem
+                          className="nahmii-balance-before-staging"
+                          main={`${nahmiiBalanceBefore.amount.toString()} ${assetToWithdraw.symbol}`}
+                          subtitle={formatFiat(nahmiiBalanceBefore.usdValue.toNumber(), 'USD')}
+                        />
+                      </Row>
+                      <Row>
+                        <StyledCol span={12}>
+                          {formatMessage({ id: 'nahmii' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_after' })}
+                        </StyledCol>
+                      </Row>
+                      <Row>
+                        <TransferDescriptionItem
+                          className="nahmii-balance-after-staging"
+                          main={`${nahmiiBalanceAfterStaging.amount} ${assetToWithdraw.symbol}`}
+                          subtitle={formatFiat(nahmiiBalanceAfterStaging.usdValue.toNumber(), 'USD')}
+                        />
+                      </Row>
+                      <Row>
+                        {
+                        TxStatus ?
+                          (
+                            <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="challenge-tx-status">
+                              {TxStatus}
+                            </div>
+                          ) : (
+                            <StyledButton className="challenge-btn" onClick={() => this.startChallenge(requiredSettlementAmount, assetToWithdraw)} disabled={disableSettleButton}>
+                              {formatMessage({ id: 'settle_balance' })}
+                            </StyledButton>
+                          )
+                      }
+                      </Row>
+                    </div>
+                  ) : (
+                    <div className="withdraw-review">
+                      <Row>
+                        <StyledCol span={12}>{formatMessage({ id: 'withdraw' })}</StyledCol>
+                      </Row>
+                      <Row>
+                        <TransferDescriptionItem
+                          main={`${amountToWithdraw.toString()} ${assetToWithdraw.symbol}`}
+                          subtitle={formatFiat(usdValueToWithdraw.toNumber(), 'USD')}
+                        />
+                      </Row>
+                      <Row>
+                        <StyledCol span={12}>{formatMessage({ id: 'base_layer_fee' })}</StyledCol>
+                      </Row>
+                      <Row>
+                        <TransferDescriptionItem
+                          main={`${transactionFee.amount.toString()} ETH`}
+                          subtitle={formatFiat(transactionFee.usdValue.toNumber(), 'USD')}
+                        />
+                      </Row>
+                      <Row>
+                        <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+                      </Row>
+                      <Row>
+                        <TransferDescriptionItem
+                          className="base-layer-eth-balance-before"
+                          main={`${baseLayerEthBalanceBefore.amount.toString()} ETH`}
+                          subtitle={formatFiat(baseLayerEthBalanceBefore.usdValue.toNumber(), 'USD')}
+                        />
+                      </Row>
+                      <Row>
+                        <StyledCol span={12}>
+                          {formatMessage({ id: 'base_layer' })} ETH {formatMessage({ id: 'balance_after' })}
+                        </StyledCol>
+                      </Row>
+                      <Row>
+                        <TransferDescriptionItem
+                          className="base-layer-eth-balance-after"
+                          main={`${baseLayerEthBalanceAfter.amount} ETH`}
+                          subtitle={formatFiat(baseLayerEthBalanceAfter.usdValue.toNumber(), 'USD')}
+                        />
+                      </Row>
+                      {assetToWithdraw.symbol === 'ETH' &&
+                      <div>
+                        <Row>
+                          <StyledCol span={12}>{formatMessage({ id: 'nahmii_staged' })} ETH {formatMessage({ id: 'balance_before' })}</StyledCol>
+                        </Row>
+                        <Row>
+                          <TransferDescriptionItem
+                            className="staged-balance-before"
+                            main={`${nahmiiStagedBalanceBefore.amount.toString()} ETH`}
+                            subtitle={formatFiat(nahmiiStagedBalanceBefore.usdValue.toNumber(), 'USD')}
+                          />
+                        </Row>
+                        <Row>
+                          <StyledCol span={12}>
+                            {formatMessage({ id: 'nahmii_staged' })} ETH {formatMessage({ id: 'balance_after' })}
+                          </StyledCol>
+                        </Row>
+                        <Row>
+                          <TransferDescriptionItem
+                            className="staged-balance-after"
+                            main={`${nahmiiStagedBalanceAfter.amount} ETH`}
+                            subtitle={formatFiat(nahmiiStagedBalanceAfter.usdValue.toNumber(), 'USD')}
+                          />
+                        </Row>
+                      </div>
+                      }
+                      {assetToWithdraw.symbol !== 'ETH' &&
+                      <div>
+                        <Row>
+                          <StyledCol span={12}>{formatMessage({ id: 'base_layer' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+                        </Row>
+                        <Row>
+                          <TransferDescriptionItem
+                            className="base-layer-token-balance-before"
+                            main={`${baseLayerBalanceBefore.amount} ${assetToWithdraw.symbol}`}
+                            subtitle={formatFiat(baseLayerBalanceBefore.usdValue.toNumber(), 'USD')}
+                          />
+                        </Row>
+                        <Row>
+                          <StyledCol span={12}>
+                            {formatMessage({ id: 'base_layer' })} { assetToWithdraw.symbol } {formatMessage({ id: 'balance_after' })}
+                          </StyledCol>
+                        </Row>
+                        <Row>
+                          <TransferDescriptionItem
+                            className="base-layer-token-balance-after"
+                            main={`${baseLayerBalanceAfter.amount} ${assetToWithdraw.symbol}`}
+                            subtitle={formatFiat(baseLayerBalanceAfter.usdValue.toNumber(), 'USD')}
+                          />
+                        </Row>
+                        <Row>
+                          <StyledCol span={12}>{formatMessage({ id: 'nahmii_staged' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_before' })}</StyledCol>
+                        </Row>
+                        <Row>
+                          <TransferDescriptionItem
+                            className="staged-balance-before"
+                            main={`${nahmiiStagedBalanceBefore.amount.toString()} ${assetToWithdraw.symbol}`}
+                            subtitle={formatFiat(nahmiiStagedBalanceBefore.usdValue.toNumber(), 'USD')}
+                          />
+                        </Row>
+                        <Row>
+                          <StyledCol span={12}>
+                            {formatMessage({ id: 'nahmii_staged' })} {assetToWithdraw.symbol} {formatMessage({ id: 'balance_after' })}
+                          </StyledCol>
+                        </Row>
+                        <Row>
+                          <TransferDescriptionItem
+                            className="staged-balance-after"
+                            main={`${nahmiiStagedBalanceAfter.amount} ${assetToWithdraw.symbol}`}
+                            subtitle={formatFiat(nahmiiStagedBalanceAfter.usdValue.toNumber(), 'USD')}
+                          />
+                        </Row>
+                      </div>
+                      }
+                      <Row>
+                        {
+                        TxStatus ?
+                          (
+                            <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }} className="withdraw-status">
+                              {TxStatus}
+                            </div>
+                          ) : (
+                            <StyledButton
+                              type="primary"
+                              className="withdraw-btn"
+                              onClick={() => this.withdraw(amountToWithdraw, assetToWithdraw)}
+                              disabled={disableWithdrawButton}
+                            >
+                              <span>{formatMessage({ id: 'withdraw' })}</span>
+                            </StyledButton>
+                            )
+                          }
+                      </Row>
+                    </div>
+                  )
                 )
-              )
-            }
-            {
-              isHardwareWallet(currentWalletWithInfo.get('type')) &&
-              <HWPromptWrapper>
-                <HWPromptContainer />
-              </HWPromptWrapper>
-            }
+              }
+              {
+                isHardwareWallet(currentWalletWithInfo.get('type')) &&
+                <HWPromptWrapper>
+                  <HWPromptContainer />
+                </HWPromptWrapper>
+              }
+            </div>
           </div>
-        </div>
-      </ScrollableContentWrapper>
+        </ScrollableContentWrapper>
+        <ScrollableContentWrapper style={{ height: '100px' }}>
+          {this.renderSteppers()}
+        </ScrollableContentWrapper>
+      </div>
     );
   }
 }

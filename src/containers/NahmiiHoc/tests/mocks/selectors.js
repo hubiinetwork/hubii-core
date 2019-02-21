@@ -299,7 +299,7 @@ export const depositStatusError = depositStatusNone.set(
 );
 
 export const ongoingChallengesNone = fromJS({}).set('details', []);
-export const settleableChallengesNone = fromJS({}).set('details', []);
+export const settleableChallengesNone = fromJS({}).set('details', []).set('invalidReasons', []);
 export const withdrawalsNone = fromJS({}).set('details', []);
 
 // selectNahmiiHocDomain

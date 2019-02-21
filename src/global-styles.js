@@ -37,12 +37,6 @@ injectGlobal`
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.27);
   }
   
-  /* Hide number under antd steps */
-  .ant-steps-icon {
-    visibility: hidden;
-  }
-
-
   /* Custom antd Pagination styles */
   .ant-pagination-item-link:hover,
   .ant-pagination-next:focus,

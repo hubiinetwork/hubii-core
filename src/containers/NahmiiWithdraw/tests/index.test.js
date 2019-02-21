@@ -80,6 +80,51 @@ describe('<NahmiiWithdraw />', () => {
         expect(noticeNode.props().description).toEqual('challenge_period_endtime {"endtime":"Thursday, January 1, 1970 1:00 AM","symbol":"ETH"}');
         expect(noticeNode).toHaveLength(1);
       });
+      it('should update the stepper graph to stage 0 when there are no ongoing/settleable challenges or invalid settlements', () => {
+        const wrapper = shallow(
+          <NahmiiWithdraw
+            {...props}
+          />
+        );
+        const stepsNode = wrapper.find('Steps');
+        expect(stepsNode.props().current).toEqual(0);
+      });
+      it('should update the stepper graph to stage 1 when there is a ongoing driip challenge', () => {
+        const wrapper = shallow(
+          <NahmiiWithdraw
+            {...props}
+            ongoingChallenges={ongoingChallengesNone.set('details', [
+              { type: 'payment-driip', expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+            ])}
+          />
+        );
+        const stepsNode = wrapper.find('Steps');
+        expect(stepsNode.props().current).toEqual(1);
+      });
+      it('should update the stepper graph to stage 2 when there is a settleable driip challenge', () => {
+        const wrapper = shallow(
+          <NahmiiWithdraw
+            {...props}
+            settleableChallenges={settleableChallengesNone.set('details', [
+              { type: 'payment-driip', intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+            ])}
+          />
+        );
+        const stepsNode = wrapper.find('Steps');
+        expect(stepsNode.props().current).toEqual(2);
+      });
+      it('should update the stepper graph to stage 3 when the invalid settlement reason is "can not replay"', () => {
+        const wrapper = shallow(
+          <NahmiiWithdraw
+            {...props}
+            settleableChallenges={settleableChallengesNone.set('invalidReasons', [
+              { type: 'payment-driip', reasons: [new Error('The settlement can not be replayed')] },
+            ])}
+          />
+        );
+        const stepsNode = wrapper.find('Steps');
+        expect(stepsNode.props().current).toEqual(3);
+      });
     });
     describe('when there are settleable challenges', () => {
       it('should render notice for settleable challenges and hide the withdrawal actions', () => {
@@ -165,7 +210,7 @@ describe('<NahmiiWithdraw />', () => {
           beforeEach(() => {
             wrapper.setState({ amountToWithdraw, assetToWithdraw: t.asset });
           });
-          it.only('should correctly calculate the staged balance before and after', () => {
+          it('should correctly calculate the staged balance before and after', () => {
             expect(wrapper.find('.withdraw-review .withdraw-btn').props().disabled).toEqual(false);
             expect(wrapper.find('.withdraw-review .staged-balance-before').props().main).toEqual(`3 ${t.asset.symbol}`);
             expect(wrapper.find('.withdraw-review .staged-balance-after').props().main).toEqual(`1 ${t.asset.symbol}`);

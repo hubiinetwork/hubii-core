@@ -637,8 +637,8 @@ export function* loadSettleableChallenges({ address, currency }, network, noPoll
     const { nahmiiProvider } = network;
     try {
       const settlement = new nahmii.Settlement(nahmiiProvider);
-      const { settleableChallenges } = yield call(() => settlement.getSettleableChallenges(address, currency, 0));
-      yield put(actions.loadSettleableChallengesSuccess(address, currency, settleableChallenges));
+      const { settleableChallenges, invalidReasons } = yield call(() => settlement.getSettleableChallenges(address, currency, 0));
+      yield put(actions.loadSettleableChallengesSuccess(address, currency, settleableChallenges, invalidReasons));
     } catch (err) {
       if (err.asStringified) {
         const nestedErrorMsg = err.asStringified();
