@@ -297,35 +297,44 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
   renderSteppers() {
     const { ongoingChallenges, settleableChallenges } = this.props;
 
-    const paymentDriipOngoingChallenge = ongoingChallenges.get('details').find((challenge) => challenge.type === 'payment-driip');
-    const paymentDriipSettleableChallenge = settleableChallenges.get('details').find((challenge) => challenge.type === 'payment-driip');
-    const invalidPaymentDriipSettlement = settleableChallenges.get('invalidReasons').find((challenge) => challenge.type === 'payment-driip');
+    const steppers = ['payment-driip', 'null'].map((type) => {
+      const paymentDriipOngoingChallenge = ongoingChallenges.get('details').find((challenge) => challenge.type === type);
+      const paymentDriipSettleableChallenge = settleableChallenges.get('details').find((challenge) => challenge.type === type);
+      const invalidPaymentDriipSettlement = settleableChallenges.get('invalidReasons').find((challenge) => challenge.type === type);
 
-    let currentStage = 0;
-    if (paymentDriipOngoingChallenge) {
-      currentStage = 1;
+      let currentStage = 0;
+      if (paymentDriipOngoingChallenge) {
+        currentStage = 1;
+      }
+
+      if (paymentDriipSettleableChallenge) {
+        currentStage = 2;
+      }
+
+      if (invalidPaymentDriipSettlement) {
+        invalidPaymentDriipSettlement.reasons.forEach((reason) => {
+          if (reason.message.match(/.*can.*not.*replay/)) {
+            currentStage = 3;
+          }
+        });
+      }
+
+      return { type, currentStage };
+    });
+
+    let steppersToRender = steppers.filter((stepper) => stepper.currentStage !== 0);
+    if (steppersToRender.length === 0) {
+      steppersToRender = [steppers[0]];
     }
 
-    if (paymentDriipSettleableChallenge) {
-      currentStage = 2;
-    }
-
-    if (invalidPaymentDriipSettlement) {
-      invalidPaymentDriipSettlement.reasons.forEach((reason) => {
-        if (reason.message.match(/.*can.*not.*replay/)) {
-          currentStage = 3;
-        }
-      });
-    }
-
-    return (
-      <Steps current={currentStage}>
+    return steppersToRender.map((stepper) => (
+      <Steps current={stepper.currentStage} key={stepper.type} className={stepper.type}>
         <Step title="Start settlement" icon={<Icon type="user" />} />
         <Step title="Challenge period/Settlement qualified" icon={<Icon type="solution" />} />
         <Step title="Stage settlement/Funds staged" icon={<Icon type="loading" />} />
         <Step title="Available for withdrawal" icon={<Icon type="smile-o" />} />
       </Steps>
-    );
+    ));
   }
 
   render() {
