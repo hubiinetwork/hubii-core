@@ -154,6 +154,7 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'requesting');
     case SETTLE_ALL_CHALLENGES_SUCCESS:
       return state
+        .setIn(['settleableChallenges', action.address, action.currency, 'details'], null)
         .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'success');
     case SETTLE_SUCCESS:
       return state
