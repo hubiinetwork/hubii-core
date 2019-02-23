@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { shell } from 'electron';
 import moment from 'moment';
-import { Alert, Row, Steps, Icon, Tooltip, Popover } from 'antd';
+import { Alert, Row, Steps, Icon, Tooltip } from 'antd';
 import { getAbsolutePath } from 'utils/electron';
 import {
   gweiToEther,
@@ -410,7 +410,6 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       supportedAssets,
       ledgerNanoSInfo,
       trezorInfo,
-      ongoingChallenges,
       settleableChallenges,
     } = this.props;
     const { formatMessage } = intl;

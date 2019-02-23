@@ -4,8 +4,6 @@ import { Col, Spin, Alert, Steps } from 'antd';
 
 import Text from 'components/ui/Text';
 
-const Step = Steps.Step;
-
 export const AdvancedSettingsHeader = styled(Text)`
   color: ${({ theme }) => theme.palette.info};
 `;
