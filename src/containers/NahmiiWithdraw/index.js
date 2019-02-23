@@ -164,6 +164,16 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     return currency === 'ETH' ? '0x0000000000000000000000000000000000000000' : currency;
   }
 
+  getMaxExpirationTime() {
+    const { ongoingChallenges } = this.props;
+    const maxExpirationTime = ongoingChallenges.get('details').reduce((max, challenge) => {
+      const { expirationTime } = challenge;
+      return max > expirationTime ? max : expirationTime;
+    }, 0);
+
+    return maxExpirationTime;
+  }
+
   settle(assetToWithdraw) {
     const { currentWalletWithInfo } = this.props;
     const { gasLimit, gasPriceGwei } = this.state;
@@ -296,7 +306,6 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
 
   renderSteppers() {
     const { ongoingChallenges, settleableChallenges } = this.props;
-
     const steppers = ['payment-driip', 'null'].map((type) => {
       const paymentDriipOngoingChallenge = ongoingChallenges.get('details').find((challenge) => challenge.type === type);
       const paymentDriipSettleableChallenge = settleableChallenges.get('details').find((challenge) => challenge.type === type);
@@ -322,19 +331,20 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       return { type, currentStage };
     });
 
-    let steppersToRender = steppers.filter((stepper) => stepper.currentStage !== 0);
-    if (steppersToRender.length === 0) {
-      steppersToRender = [steppers[0]];
+    const stepper = steppers.filter((s) => s.currentStage !== 0).sort((a, b) => a.currentStage - b.currentStage)[0];
+
+    if (!stepper) {
+      return null;
     }
 
-    return steppersToRender.map((stepper) => (
+    return (
       <Steps current={stepper.currentStage} key={stepper.type} className={stepper.type}>
         <Step title="Start settlement" icon={<Icon type="user" />} />
         <Step title="Challenge period/Settlement qualified" icon={<Icon type="solution" />} />
         <Step title="Stage settlement/Funds staged" icon={<Icon type="loading" />} />
         <Step title="Available for withdrawal" icon={<Icon type="smile-o" />} />
       </Steps>
-    ));
+    );
   }
 
   render() {
@@ -437,10 +447,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       usdValue: baseLayerEthBalance.balance.times(ethUsdValue),
     };
 
-    const maxExpirationTime = ongoingChallenges.get('details').reduce((max, challenge) => {
-      const { expirationTime } = challenge;
-      return max > expirationTime ? max : expirationTime;
-    }, 0);
+    const maxExpirationTime = this.getMaxExpirationTime();
     const totalStagingAmountBN = ongoingChallenges.get('details').reduce((sum, challenge) => {
       const { intendedStageAmount } = challenge;
       const { amount } = intendedStageAmount.toJSON();

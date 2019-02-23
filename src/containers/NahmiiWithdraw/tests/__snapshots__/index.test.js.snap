@@ -877,47 +877,7 @@ ShallowWrapper {
                               "height": "100px",
                             }
           }
->
-          <Steps
-                    className="payment-driip"
-                    current={0}
-                    iconPrefix="ant"
-                    prefixCls="ant-steps"
-          >
-                    <Step
-                              icon={
-                                        <Icon
-                                                  type="user"
-                                        />
-                              }
-                              title="Start settlement"
-                    />
-                    <Step
-                              icon={
-                                        <Icon
-                                                  type="solution"
-                                        />
-                              }
-                              title="Challenge period/Settlement qualified"
-                    />
-                    <Step
-                              icon={
-                                        <Icon
-                                                  type="loading"
-                                        />
-                              }
-                              title="Stage settlement/Funds staged"
-                    />
-                    <Step
-                              icon={
-                                        <Icon
-                                                  type="smile-o"
-                                        />
-                              }
-                              title="Available for withdrawal"
-                    />
-          </Steps>
-</ScrollableContentWrapper>,
+/>,
       ],
       "style": Object {
         "display": "flex",
@@ -2572,159 +2532,13 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": Array [
-            <Steps
-              className="payment-driip"
-              current={0}
-              iconPrefix="ant"
-              prefixCls="ant-steps"
->
-              <Step
-                            icon={
-                                          <Icon
-                                                        type="user"
-                                          />
-                            }
-                            title="Start settlement"
-              />
-              <Step
-                            icon={
-                                          <Icon
-                                                        type="solution"
-                                          />
-                            }
-                            title="Challenge period/Settlement qualified"
-              />
-              <Step
-                            icon={
-                                          <Icon
-                                                        type="loading"
-                                          />
-                            }
-                            title="Stage settlement/Funds staged"
-              />
-              <Step
-                            icon={
-                                          <Icon
-                                                        type="smile-o"
-                                          />
-                            }
-                            title="Available for withdrawal"
-              />
-</Steps>,
-          ],
+          "children": null,
           "style": Object {
             "height": "100px",
           },
         },
         "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": "payment-driip",
-            "nodeType": "class",
-            "props": Object {
-              "children": Array [
-                <Step
-                  icon={
-                                    <Icon
-                                                      type="user"
-                                    />
-                  }
-                  title="Start settlement"
-/>,
-                <Step
-                  icon={
-                                    <Icon
-                                                      type="solution"
-                                    />
-                  }
-                  title="Challenge period/Settlement qualified"
-/>,
-                <Step
-                  icon={
-                                    <Icon
-                                                      type="loading"
-                                    />
-                  }
-                  title="Stage settlement/Funds staged"
-/>,
-                <Step
-                  icon={
-                                    <Icon
-                                                      type="smile-o"
-                                    />
-                  }
-                  title="Available for withdrawal"
-/>,
-              ],
-              "className": "payment-driip",
-              "current": 0,
-              "iconPrefix": "ant",
-              "prefixCls": "ant-steps",
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "icon": <Icon
-                    type="user"
-/>,
-                  "title": "Start settlement",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "icon": <Icon
-                    type="solution"
-/>,
-                  "title": "Challenge period/Settlement qualified",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "icon": <Icon
-                    type="loading"
-/>,
-                  "title": "Stage settlement/Funds staged",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "icon": <Icon
-                    type="smile-o"
-/>,
-                  "title": "Available for withdrawal",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-            ],
-            "type": [Function],
-          },
-        ],
+        "rendered": null,
         "type": [Function],
       },
     ],
@@ -2993,47 +2807,7 @@ ShallowWrapper {
                                     "height": "100px",
                                   }
             }
->
-            <Steps
-                        className="payment-driip"
-                        current={0}
-                        iconPrefix="ant"
-                        prefixCls="ant-steps"
-            >
-                        <Step
-                                    icon={
-                                                <Icon
-                                                            type="user"
-                                                />
-                                    }
-                                    title="Start settlement"
-                        />
-                        <Step
-                                    icon={
-                                                <Icon
-                                                            type="solution"
-                                                />
-                                    }
-                                    title="Challenge period/Settlement qualified"
-                        />
-                        <Step
-                                    icon={
-                                                <Icon
-                                                            type="loading"
-                                                />
-                                    }
-                                    title="Stage settlement/Funds staged"
-                        />
-                        <Step
-                                    icon={
-                                                <Icon
-                                                            type="smile-o"
-                                                />
-                                    }
-                                    title="Available for withdrawal"
-                        />
-            </Steps>
-</ScrollableContentWrapper>,
+/>,
         ],
         "style": Object {
           "display": "flex",
@@ -4688,159 +4462,13 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": Array [
-              <Steps
-                className="payment-driip"
-                current={0}
-                iconPrefix="ant"
-                prefixCls="ant-steps"
->
-                <Step
-                                icon={
-                                                <Icon
-                                                                type="user"
-                                                />
-                                }
-                                title="Start settlement"
-                />
-                <Step
-                                icon={
-                                                <Icon
-                                                                type="solution"
-                                                />
-                                }
-                                title="Challenge period/Settlement qualified"
-                />
-                <Step
-                                icon={
-                                                <Icon
-                                                                type="loading"
-                                                />
-                                }
-                                title="Stage settlement/Funds staged"
-                />
-                <Step
-                                icon={
-                                                <Icon
-                                                                type="smile-o"
-                                                />
-                                }
-                                title="Available for withdrawal"
-                />
-</Steps>,
-            ],
+            "children": null,
             "style": Object {
               "height": "100px",
             },
           },
           "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": "payment-driip",
-              "nodeType": "class",
-              "props": Object {
-                "children": Array [
-                  <Step
-                    icon={
-                                        <Icon
-                                                            type="user"
-                                        />
-                    }
-                    title="Start settlement"
-/>,
-                  <Step
-                    icon={
-                                        <Icon
-                                                            type="solution"
-                                        />
-                    }
-                    title="Challenge period/Settlement qualified"
-/>,
-                  <Step
-                    icon={
-                                        <Icon
-                                                            type="loading"
-                                        />
-                    }
-                    title="Stage settlement/Funds staged"
-/>,
-                  <Step
-                    icon={
-                                        <Icon
-                                                            type="smile-o"
-                                        />
-                    }
-                    title="Available for withdrawal"
-/>,
-                ],
-                "className": "payment-driip",
-                "current": 0,
-                "iconPrefix": "ant",
-                "prefixCls": "ant-steps",
-              },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "icon": <Icon
-                      type="user"
-/>,
-                    "title": "Start settlement",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "icon": <Icon
-                      type="solution"
-/>,
-                    "title": "Challenge period/Settlement qualified",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "icon": <Icon
-                      type="loading"
-/>,
-                    "title": "Stage settlement/Funds staged",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "icon": <Icon
-                      type="smile-o"
-/>,
-                    "title": "Available for withdrawal",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-              ],
-              "type": [Function],
-            },
-          ],
+          "rendered": null,
           "type": [Function],
         },
       ],

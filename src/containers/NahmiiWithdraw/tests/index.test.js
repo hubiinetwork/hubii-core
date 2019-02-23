@@ -105,14 +105,14 @@ describe('<NahmiiWithdraw />', () => {
   describe('stepper for settlement process', () => {
     ['payment-driip', 'null'].forEach((t) => {
       describe(t, () => {
-        it('should update the stepper graph to stage 0 when there are no ongoing/settleable challenges or invalid settlements', () => {
+        it('should hide the stepper graph when there are no ongoing/settleable challenges or invalid settlements', () => {
           const wrapper = shallow(
             <NahmiiWithdraw
               {...props}
             />
           );
           const stepsNode = wrapper.find('Steps');
-          expect(stepsNode.props().current).toEqual(0);
+          expect(stepsNode.length).toEqual(0);
         });
         it('should update the stepper graph to stage 1 when there is a ongoing driip challenge', () => {
           const wrapper = shallow(
@@ -152,38 +152,51 @@ describe('<NahmiiWithdraw />', () => {
         });
       });
     });
-    it('should update the both stepper graphs to stage 1 when there are ongoing challenges for both settlement type', () => {
-      const wrapper = shallow(
-        <NahmiiWithdraw
-          {...props}
-          ongoingChallenges={ongoingChallengesNone.set('details', [
-            { type: 'payment-driip', expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+    [
+      {
+        describe: 'should always render the later stage',
+        props: {
+          ongoingChallenges: ongoingChallengesNone.set('details', [
             { type: 'null', expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
-          ])}
-        />
-      );
-      ['payment-driip', 'null'].forEach((type) => {
-        const stepsNode = wrapper.find(`Steps.${type}`);
-        expect(stepsNode.props().current).toEqual(1);
+          ]),
+          settleableChallenges: settleableChallengesNone.set('invalidReasons', [
+            { type: 'payment-driip', reasons: [new Error('The settlement can not be replayed')] },
+          ]),
+        },
+        expect: { step: 1 },
+      },
+      {
+        describe: 'should render the step for the later settlement',
+        props: {
+          settleableChallenges: settleableChallengesNone.set('details', [
+            { type: 'null', intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+          ]).set('invalidReasons', [
+            { type: 'payment-driip', reasons: [new Error('The settlement can not be replayed')] },
+          ]),
+        },
+        expect: { step: 2 },
+      },
+      {
+        describe: 'should render the same step if all settlements at the same step',
+        props: {
+          settleableChallenges: settleableChallengesNone.set('details', [
+            { type: 'null', intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+            { type: 'payment-driip', intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+          ]),
+        },
+        expect: { step: 2 },
+      },
+    ].forEach((t) => {
+      it(t.describe, () => {
+        const wrapper = shallow(
+          <NahmiiWithdraw
+            {...props}
+            {...t.props}
+          />
+        );
+        const stepsNode = wrapper.find('Steps');
+        expect(stepsNode.props().current).toEqual(t.expect.step);
       });
-    });
-    it('should update the both stepper graphs accordingly when the settlement processes are in different stages between payment-driip and null settlements', () => {
-      const wrapper = shallow(
-        <NahmiiWithdraw
-          {...props}
-          ongoingChallenges={ongoingChallengesNone.set('details', [
-            { type: 'payment-driip', expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
-          ])}
-          settleableChallenges={settleableChallengesNone.set('invalidReasons', [
-            { type: 'null', reasons: [new Error('The settlement can not be replayed')] },
-          ])}
-        />
-      );
-
-      const driipSettlementStepsNode = wrapper.find('Steps.payment-driip');
-      expect(driipSettlementStepsNode.props().current).toEqual(1);
-      const nullSettlementStepsNode = wrapper.find('Steps.null');
-      expect(nullSettlementStepsNode.props().current).toEqual(3);
     });
   });
 
