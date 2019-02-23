@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { shell } from 'electron';
 import moment from 'moment';
-import { Row, Steps, Icon } from 'antd';
+import { Alert, Row, Steps, Icon, Tooltip, Popover } from 'antd';
 import { getAbsolutePath } from 'utils/electron';
 import {
   gweiToEther,
@@ -56,6 +56,8 @@ import {
 import { injectIntl } from 'react-intl';
 
 import {
+  ContentWrapper,
+  BottomWrapper,
   Image,
   DollarPrice,
   StyledCol,
@@ -65,9 +67,11 @@ import {
   LoadingWrapper,
   NoTxPlaceholder,
   SettlementWarning,
+  ScrollableContentWrapper,
+  StyledSteps,
 } from './style';
 
-import ScrollableContentWrapper from '../../components/ui/ScrollableContentWrapper';
+// import ScrollableContentWrapper from '../../components/ui/ScrollableContentWrapper';
 const Step = Steps.Step;
 
 export class NahmiiWithdraw extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -305,7 +309,17 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
   }
 
   renderSteppers() {
-    const { ongoingChallenges, settleableChallenges } = this.props;
+    const {
+      assetToWithdraw,
+      assetToWithdrawMaxDecimals,
+    } = this.state;
+    const {
+      ongoingChallenges,
+      settleableChallenges,
+      currentWalletWithInfo,
+      intl,
+    } = this.props;
+    const { formatMessage } = intl;
     const steppers = ['payment-driip', 'null'].map((type) => {
       const paymentDriipOngoingChallenge = ongoingChallenges.get('details').find((challenge) => challenge.type === type);
       const paymentDriipSettleableChallenge = settleableChallenges.get('details').find((challenge) => challenge.type === type);
@@ -336,14 +350,46 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     if (!stepper) {
       return null;
     }
+    const maxExpirationTime = this.getMaxExpirationTime();
+    const totalStagingAmountBN = ongoingChallenges.get('details').concat(settleableChallenges.get('details')).reduce((sum, challenge) => {
+      const { intendedStageAmount } = challenge;
+      const { amount } = intendedStageAmount.toJSON();
+      return sum.plus(new BigNumber(amount));
+    }, new BigNumber(0));
+    const totalStagingAmount = totalStagingAmountBN.div(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
+
+    const nahmiiStagedAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiStaged', 'assets']).toJS();
+    const nahmiiStagedAmount = (nahmiiStagedAssets
+      .find((asset) => asset.currency === assetToWithdraw.currency) || { balance: new BigNumber('0') })
+      .balance;
+
+    const startSettlementStepDesc = totalStagingAmount.gt(0) ? formatMessage({ id: 'intended_stage_amount' }, { amount: totalStagingAmount, symbol: assetToWithdraw.symbol }) : null;
+    const challengeStepDesc = maxExpirationTime ? formatMessage({ id: 'expiration_time' }, { endtime: moment(maxExpirationTime).format('llll') }) : null;
+    const challengeStepTitle = maxExpirationTime ? (<Tooltip title={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(maxExpirationTime).format('LLLL'), symbol: assetToWithdraw.symbol })} defaultVisible>Challenge period</Tooltip>) : 'Challenge period';
 
     return (
-      <Steps current={stepper.currentStage} key={stepper.type} className={stepper.type}>
-        <Step title="Start settlement" icon={<Icon type="user" />} />
-        <Step title="Challenge period/Settlement qualified" icon={<Icon type="solution" />} />
-        <Step title="Stage settlement/Funds staged" icon={<Icon type="loading" />} />
-        <Step title="Available for withdrawal" icon={<Icon type="smile-o" />} />
-      </Steps>
+      <StyledSteps
+        current={stepper.currentStage}
+        key={stepper.type}
+        className={stepper.type}
+      >
+        <Step
+          title="Start settlement"
+          description={startSettlementStepDesc}
+          icon={<Icon type="profile" />}
+        />
+        <Step
+          title={challengeStepTitle}
+          description={challengeStepDesc}
+          icon={<Icon type="eye-o" />}
+        />
+        <Step title="Settlement qualified" icon={<Icon type="check-square-o" />} />
+        <Step
+          title="Withdrawable"
+          description={formatMessage({ id: 'withdrawable_amount' }, { amount: nahmiiStagedAmount, symbol: assetToWithdraw.symbol })}
+          icon={<Icon type="logout" />}
+        />
+      </StyledSteps>
     );
   }
 
@@ -447,14 +493,6 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
       usdValue: baseLayerEthBalance.balance.times(ethUsdValue),
     };
 
-    const maxExpirationTime = this.getMaxExpirationTime();
-    const totalStagingAmountBN = ongoingChallenges.get('details').reduce((sum, challenge) => {
-      const { intendedStageAmount } = challenge;
-      const { amount } = intendedStageAmount.toJSON();
-      return sum.plus(new BigNumber(amount));
-    }, new BigNumber(0));
-    const totalStagingAmount = totalStagingAmountBN.div(new BigNumber(10).pow(assetToWithdrawMaxDecimals));
-
     const stagedAsset = nahmiiStagedAssets.find((a) => a.symbol === assetToWithdraw.symbol) || { balance: new BigNumber(0) };
     const requiredSettlementAmount = this.getRequiredSettlementAmount(stagedAsset.balance, amountToWithdraw);
 
@@ -495,7 +533,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     const TxStatus = this.generateTxStatus();
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <ContentWrapper>
         <ScrollableContentWrapper style={{ flex: 1 }}>
           <div style={{ display: 'flex', flex: '1', flexWrap: 'wrap', marginTop: '0.5rem' }}>
             <div style={{ flex: '1', marginRight: '2rem', marginBottom: '3rem' }}>
@@ -535,6 +573,28 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                     onChange={this.handleAmountToWithdrawChange}
                   />
                 </FormItem>
+                {
+                  requiredSettlementAmount.gt(0) &&
+                    (
+                      <Alert
+                        className="why-settlement-notes"
+                        message={formatMessage({ id: 'withdraw_exceeded_staged_amount' })}
+                        description={
+                          formatMessage(
+                            { id: 'why_settlement_notes' },
+                            {
+                              symbol: assetToWithdraw.symbol,
+                              withdraw_amount: amountToWithdraw,
+                              required_stage_amout: requiredSettlementAmount,
+                              staged_amount: nahmiiStagedBalanceBefore.amount,
+                            }
+                          )
+                        }
+                        type="info"
+                        showIcon
+                      />
+                    )
+                }
                 <GasOptions
                   intl={intl}
                   defaultGasLimit={gasLimit}
@@ -549,16 +609,6 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
               </Form>
             </div>
             <div style={{ flex: '1', minWidth: '34rem', marginBottom: '3rem' }}>
-              {
-                ongoingChallenges.get('details').length > 0 &&
-                <SettlementWarning
-                  className="ongoing-challenges"
-                  message={formatMessage({ id: 'challenge_period_progress' }, { staging_amount: totalStagingAmount.toString(), symbol: assetToWithdraw.symbol })}
-                  description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(maxExpirationTime).format('LLLL'), symbol: assetToWithdraw.symbol })}
-                  type="warning"
-                  showIcon
-                />
-              }
               {
                 settleableChallenges.get('details').length > 0 ?
                 (<SettlementWarning
@@ -589,23 +639,6 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                   requiredSettlementAmount.gt(0) ?
                   (
                     <div className="start-settlement">
-                      <SettlementWarning
-                        className="why-settlement-notes"
-                        message={formatMessage({ id: 'withdraw_exceeded_staged_amount' })}
-                        description={
-                          formatMessage(
-                            { id: 'why_settlement_notes' },
-                            {
-                              symbol: assetToWithdraw.symbol,
-                              withdraw_amount: amountToWithdraw,
-                              required_stage_amout: requiredSettlementAmount,
-                              staged_amount: nahmiiStagedBalanceBefore.amount,
-                            }
-                          )
-                        }
-                        type="warning"
-                        showIcon
-                      />
                       <Row>
                         <StyledCol span={12}>{formatMessage({ id: 'base_layer_fee' })}</StyledCol>
                       </Row>
@@ -831,10 +864,23 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
             </div>
           </div>
         </ScrollableContentWrapper>
-        <ScrollableContentWrapper style={{ height: '100px' }}>
-          {this.renderSteppers()}
-        </ScrollableContentWrapper>
-      </div>
+        <BottomWrapper>
+          <div style={{ flex: 1 }}>
+            {this.renderSteppers()}
+          </div>
+          {/* {
+            // ongoingChallenges.get('details').length > 0 &&
+            <SettlementWarning
+              style={{ flex: 1 }}
+              className="ongoing-challenges"
+              message={formatMessage({ id: 'challenge_period_progress' }, { staging_amount: totalStagingAmount.toString(), symbol: assetToWithdraw.symbol })}
+              description={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(maxExpirationTime).format('LLLL'), symbol: assetToWithdraw.symbol })}
+              type="warning"
+              showIcon
+            />
+          } */}
+        </BottomWrapper>
+      </ContentWrapper>
     );
   }
 }

@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import Button from 'components/ui/Button';
-import { Col, Spin, Alert } from 'antd';
+import { Col, Spin, Alert, Steps } from 'antd';
 
 import Text from 'components/ui/Text';
+
+const Step = Steps.Step;
 
 export const AdvancedSettingsHeader = styled(Text)`
   color: ${({ theme }) => theme.palette.info};
@@ -64,5 +66,60 @@ export const SettlementWarning = styled(Alert)`
   color: #C0CDD3;
   .ant-alert-message {
     color: #C0CDD3;
+  }
+`;
+
+export const ContentWrapper = styled.div`
+  margin: -16px 0.5rem 0rem 2rem;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 10rem);
+`;
+
+export const BottomWrapper = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  height: 50px;
+  margin-right: 50px;
+`;
+
+export const ScrollableContentWrapper = styled.div`
+  padding-right: 1.5rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+`;
+
+export const StyledSteps = styled(Steps)`
+  .anticon {
+    font-size: 30px;
+    color: ${({ theme }) => theme.palette.info};
+  }
+  .ant-steps-item-title {
+    font-size: 1rem;
+  }
+  .ant-steps-item-finish > .ant-steps-item-content > .ant-steps-item-title {
+    color: ${({ theme }) => theme.palette.secondary};
+  }
+  .ant-steps-item-process > .ant-steps-item-content > .ant-steps-item-title {
+    color: ${({ theme }) => theme.palette.secondary1};
+  }
+  .ant-steps-item-wait > .ant-steps-item-content > .ant-steps-item-title {
+    color: ${({ theme }) => theme.palette.secondary5};
+  }
+  .ant-steps-item-content > .ant-steps-item-description {
+    font-size: 1rem;
+    color: ${({ theme }) => theme.palette.secondary};
+  }
+  .ant-steps-item-finish .ant-steps-item-title:after {
+    background-color: ${({ theme }) => theme.palette.info2};
+  }
+  .ant-steps-item-process .ant-steps-item-title:after {
+    background-color: ${({ theme }) => theme.palette.info1};
+  }
+  .ant-steps-item-wait .ant-steps-item-title:after {
+    background-color: ${({ theme }) => theme.palette.info1};
+  }
+  .ant-steps-item-wait .anticon {
+    color: ${({ theme }) => theme.palette.info1};
   }
 `;

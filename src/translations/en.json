@@ -228,7 +228,7 @@
     "settlement_period_ended_notice": "In order to update the staged balance with the qualified settlement amount ({intended_stage_amount} {symbol}), please confirm the settlement. (Need to sign for {tx_count} transaction(s)",
     "confirm_settlement": "Confirm settlement",
     "challenge_period_progress": "There is a challenge period in progress with staging amount {staging_amount} {symbol}",
-    "challenge_period_endtime": "The end time of this challenge is {endtime}. Once the challenge period is ended successfully, a dialog will be prompted for you to confirm the settlement in order to update the staged balance that is the available amount for withdrawing currency {symbol}",
+    "challenge_period_endtime": "The end time of this settlement is {endtime}. Once the challenge period is ended successfully, a dialog will be prompted for you to confirm the settlement in order to update the staged balance that is the available amount for withdrawing currency {symbol}",
     "settling_payment": "Settling payment, waiting the transaction to be confirmed...",
     "starting_payment_challenge": "Starting payment challenge, waiting the transaction to be confirmed...",
     "withdrawing": "Withdrawing, waiting the transaction to be confirmed...",
@@ -254,5 +254,8 @@
     "waiting_for_withdraw_to_be": "Waiting for transaction to be",
     "nahmii_staged": "nahmii staged",
     "withdraw_exceeded_staged_amount": "Settlement needed",
-    "why_settlement_notes": "Currently the maximum immediate withdrawable amount(staged amount) is {staged_amount} {symbol}. In order to withdraw {withdraw_amount} {symbol}, it requires additional {required_stage_amout} {symbol} from nahmii balance to go through a settlement process. Once the settlement is started, the intended stage amount will be subtracted from the nahmii available balance, and will be added to the staged balance after the settlement is qualified."
+    "why_settlement_notes": "Currently the maximum immediate withdrawable amount(staged amount) is {staged_amount} {symbol}. In order to withdraw {withdraw_amount} {symbol}, it requires additional {required_stage_amout} {symbol} from nahmii balance to go through a settlement process. Once the settlement is started, the intended stage amount will be subtracted from the nahmii available balance, and will be added to the staged balance after the settlement is qualified.",
+    "intended_stage_amount": "{amount} {symbol}",
+    "expiration_time": "Until {endtime}",
+    "withdrawable_amount": "{amount} {symbol}"
 }

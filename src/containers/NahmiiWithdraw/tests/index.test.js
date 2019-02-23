@@ -63,24 +63,6 @@ describe('<NahmiiWithdraw />', () => {
   });
 
   describe('display notice for settlement actions', () => {
-    describe('when there are ongoing challenges', () => {
-      it('should render notice for ongoing challenges', () => {
-        const wrapper = shallow(
-          <NahmiiWithdraw
-            {...props}
-            ongoingChallenges={ongoingChallengesNone.set('details', [
-              { expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
-              { expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
-            ])}
-          />
-        );
-        const noticeNode = wrapper.find('style__SettlementWarning');
-        expect(noticeNode).toHaveLength(1);
-        expect(noticeNode.props().message).toEqual('challenge_period_progress {"staging_amount":"2e-16","symbol":"ETH"}');
-        expect(noticeNode.props().description).toEqual('challenge_period_endtime {"endtime":"Thursday, January 1, 1970 1:00 AM","symbol":"ETH"}');
-        expect(noticeNode).toHaveLength(1);
-      });
-    });
     describe('when there are settleable challenges', () => {
       it('should render notice for settleable challenges and hide the withdrawal actions', () => {
         const wrapper = shallow(
@@ -111,7 +93,7 @@ describe('<NahmiiWithdraw />', () => {
               {...props}
             />
           );
-          const stepsNode = wrapper.find('Steps');
+          const stepsNode = wrapper.find('style__StyledSteps');
           expect(stepsNode.length).toEqual(0);
         });
         it('should update the stepper graph to stage 1 when there is a ongoing driip challenge', () => {
@@ -119,11 +101,11 @@ describe('<NahmiiWithdraw />', () => {
             <NahmiiWithdraw
               {...props}
               ongoingChallenges={ongoingChallengesNone.set('details', [
-                { type: t, expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+              { type: t, expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
               ])}
             />
           );
-          const stepsNode = wrapper.find('Steps');
+          const stepsNode = wrapper.find('style__StyledSteps');
           expect(stepsNode.props().current).toEqual(1);
         });
         it('should update the stepper graph to stage 2 when there is a settleable driip challenge', () => {
@@ -135,7 +117,7 @@ describe('<NahmiiWithdraw />', () => {
               ])}
             />
           );
-          const stepsNode = wrapper.find('Steps');
+          const stepsNode = wrapper.find('style__StyledSteps');
           expect(stepsNode.props().current).toEqual(2);
         });
         it('should update the stepper graph to stage 3 when the invalid settlement reason is "can not replay"', () => {
@@ -147,10 +129,58 @@ describe('<NahmiiWithdraw />', () => {
               ])}
             />
           );
-          const stepsNode = wrapper.find('Steps');
+          const stepsNode = wrapper.find('style__StyledSteps');
           expect(stepsNode.props().current).toEqual(3);
+          expect(stepsNode.find('Step').get(0).props.description).toEqual(null);
+          expect(stepsNode.find('Step').get(1).props.description).toEqual(null);
         });
       });
+    });
+    it('should aggregate and display the staging amount in the stepper', () => {
+      const wrapper = shallow(
+        <NahmiiWithdraw
+          {...props}
+          ongoingChallenges={ongoingChallengesNone.set('details', [
+          { type: 'payment-driip', expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+          { type: 'null', expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+          ])}
+          settleableChallenges={settleableChallengesNone.set('details', [
+            { type: 'payment-driip', intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+            { type: 'null', intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+          ])}
+        />
+      );
+      const stepsNode = wrapper.find('style__StyledSteps');
+      expect(stepsNode.find('Step').get(0).props.description).toEqual('intended_stage_amount {"amount":"4e-16","symbol":"ETH"}');
+    });
+    it('should aggregate and display the max expiration time in the stepper', () => {
+      const wrapper = shallow(
+        <NahmiiWithdraw
+          {...props}
+          ongoingChallenges={ongoingChallengesNone.set('details', [
+          { type: 'payment-driip', expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+          { type: 'null', expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+          ])}
+        />
+      );
+      const stepsNode = wrapper.find('style__StyledSteps');
+      expect(stepsNode.find('Step').get(1).props.description).toEqual('expiration_time {"endtime":"Thursday, January 1, 1970 1:00 AM"}');
+    });
+    it('should aggregate and display the max expiration time in the stepper', () => {
+      const wrapper = shallow(
+        <NahmiiWithdraw
+          {...props}
+          ongoingChallenges={ongoingChallengesNone.set('details', [
+          { type: 'null', expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+          ])}
+          currentWalletWithInfo={walletsWithInfoMock
+          .get(0)
+          .setIn(['balances', 'nahmiiStaged', 'assets'], fromJS([{ balance: new BigNumber(3), symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000' }]))
+          }
+        />
+      );
+      const stepsNode = wrapper.find('style__StyledSteps');
+      expect(stepsNode.find('Step').get(3).props.description).toEqual('withdrawable_amount {"amount":"3","symbol":"ETH"}');
     });
     [
       {
@@ -194,7 +224,7 @@ describe('<NahmiiWithdraw />', () => {
             {...t.props}
           />
         );
-        const stepsNode = wrapper.find('Steps');
+        const stepsNode = wrapper.find('style__StyledSteps');
         expect(stepsNode.props().current).toEqual(t.expect.step);
       });
     });

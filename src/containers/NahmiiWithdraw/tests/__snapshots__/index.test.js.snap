@@ -618,10 +618,10 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "class",
     "props": Object {
       "children": Array [
-        <ScrollableContentWrapper
+        <style__ScrollableContentWrapper
           style={
                     Object {
                               "flex": 1,
@@ -870,19 +870,17 @@ ShallowWrapper {
                               </style__HWPromptWrapper>
                     </div>
           </div>
-</ScrollableContentWrapper>,
-        <ScrollableContentWrapper
-          style={
-                    Object {
-                              "height": "100px",
-                            }
-          }
-/>,
+</style__ScrollableContentWrapper>,
+        <style__BottomWrapper>
+          <div
+                    style={
+                              Object {
+                                        "flex": 1,
+                                      }
+                    }
+          />
+</style__BottomWrapper>,
       ],
-      "style": Object {
-        "display": "flex",
-        "flexDirection": "column",
-      },
     },
     "ref": null,
     "rendered": Array [
@@ -1534,6 +1532,7 @@ ShallowWrapper {
                                             value="0"
                       />
 </Form__FormItem>,
+                    false,
                     <GasOptions
                       defaultGasLimit={6000000}
                       defaultGasPrice={10}
@@ -1700,6 +1699,7 @@ ShallowWrapper {
                     },
                     "type": [Function],
                   },
+                  false,
                   Object {
                     "instance": null,
                     "key": undefined,
@@ -1740,7 +1740,6 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  false,
                   <div
                     className="withdraw-review"
 >
@@ -1887,7 +1886,6 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": Array [
-                false,
                 Object {
                   "instance": null,
                   "key": undefined,
@@ -2532,26 +2530,42 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": null,
-          "style": Object {
-            "height": "100px",
-          },
+          "children": <div
+            style={
+                        Object {
+                                    "flex": 1,
+                                  }
+            }
+/>,
         },
         "ref": null,
-        "rendered": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": null,
+            "style": Object {
+              "flex": 1,
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "div",
+        },
         "type": [Function],
       },
     ],
-    "type": "div",
+    "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "class",
       "props": Object {
         "children": Array [
-          <ScrollableContentWrapper
+          <style__ScrollableContentWrapper
             style={
                         Object {
                                     "flex": 1,
@@ -2800,19 +2814,17 @@ ShallowWrapper {
                                     </style__HWPromptWrapper>
                         </div>
             </div>
-</ScrollableContentWrapper>,
-          <ScrollableContentWrapper
-            style={
-                        Object {
-                                    "height": "100px",
-                                  }
-            }
-/>,
+</style__ScrollableContentWrapper>,
+          <style__BottomWrapper>
+            <div
+                        style={
+                                    Object {
+                                                "flex": 1,
+                                              }
+                        }
+            />
+</style__BottomWrapper>,
         ],
-        "style": Object {
-          "display": "flex",
-          "flexDirection": "column",
-        },
       },
       "ref": null,
       "rendered": Array [
@@ -3464,6 +3476,7 @@ ShallowWrapper {
                                                 value="0"
                         />
 </Form__FormItem>,
+                      false,
                       <GasOptions
                         defaultGasLimit={6000000}
                         defaultGasPrice={10}
@@ -3630,6 +3643,7 @@ ShallowWrapper {
                       },
                       "type": [Function],
                     },
+                    false,
                     Object {
                       "instance": null,
                       "key": undefined,
@@ -3670,7 +3684,6 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": Array [
-                    false,
                     <div
                       className="withdraw-review"
 >
@@ -3817,7 +3830,6 @@ ShallowWrapper {
                 },
                 "ref": null,
                 "rendered": Array [
-                  false,
                   Object {
                     "instance": null,
                     "key": undefined,
@@ -4462,17 +4474,33 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": null,
-            "style": Object {
-              "height": "100px",
-            },
+            "children": <div
+              style={
+                            Object {
+                                          "flex": 1,
+                                        }
+              }
+/>,
           },
           "ref": null,
-          "rendered": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": null,
+              "style": Object {
+                "flex": 1,
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "div",
+          },
           "type": [Function],
         },
       ],
-      "type": "div",
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {
