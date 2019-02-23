@@ -164,7 +164,7 @@ describe('<NahmiiWithdraw />', () => {
         />
       );
       const stepsNode = wrapper.find('style__StyledSteps');
-      expect(stepsNode.find('Step').get(1).props.description).toEqual('expiration_time {"endtime":"Thursday, January 1, 1970 1:00 AM"}');
+      expect(stepsNode.find('Step').get(1).props.description).toEqual('expiration_time {"endtime":"Thu, Jan 1, 1970 1:00 AM"}');
     });
     it('should aggregate and display the max expiration time in the stepper', () => {
       const wrapper = shallow(
