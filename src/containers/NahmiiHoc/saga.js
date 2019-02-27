@@ -460,7 +460,7 @@ export function* startChallenge({ stageAmount, currency, options }) {
     const network = yield select(makeSelectCurrentNetwork());
     const { nahmiiProvider } = network;
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, walletDetails);
-    const _stageAmount = new nahmii.MonetaryAmount(stageAmount, currency, 0);
+    const _stageAmount = new nahmii.MonetaryAmount(stageAmount.toFixed(), currency, 0);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     const settlement = new nahmii.Settlement(nahmiiProvider);
     if (confOnDevice) yield put(confOnDevice);
@@ -551,7 +551,7 @@ export function* withdraw({ amount, address, currency, options }) {
     const network = yield select(makeSelectCurrentNetwork());
     const { nahmiiProvider } = network;
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, walletDetails);
-    const _amount = new nahmii.MonetaryAmount(amount, currency, 0);
+    const _amount = new nahmii.MonetaryAmount(amount.toFixed(), currency, 0);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     if (confOnDevice) yield put(confOnDevice);
     const tx = yield call(nahmiiWallet.withdraw.bind(nahmiiWallet), _amount, { gasLimit, gasPrice });

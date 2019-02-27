@@ -171,7 +171,7 @@ describe('nahmiiHocSaga', () => {
   describe('settlement operations', () => {
     const options = { gasLimit: 1, gasPrice: 1 };
     const currency = '0x1';
-    const stageAmount = new BigNumber(1000);
+    const stageAmount = new BigNumber(10000000000000000000000);
     const fakeTxs = [{ hash: 'hash1' }, { hash: 'hash2' }];
     const fakeTxReceipts = [{ transactionHash: 'hash1', status: 1 }, { transactionHash: 'hash2', status: 1 }];
     const signerMock = {
@@ -195,11 +195,13 @@ describe('nahmiiHocSaga', () => {
 
       it('should correctly update store after successfully started a new challenge', () => {
         const requiredChallenges = [{ type: 'payment-driip' }];
-        return expectSaga(startChallenge, { address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
+        return expectSaga(startChallenge, { stageAmount, address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
               if (effect.fn.name.includes('getRequiredChallengesForIntendedStageAmount')) {
+                const { amount } = effect.args[0].toJSON();
+                expect(amount).toEqual(stageAmount.toFixed());
                 return { requiredChallenges };
               }
               if (effect.fn.name.includes('startByRequiredChallenge')) {
@@ -236,10 +238,13 @@ describe('nahmiiHocSaga', () => {
 
       it('should correctly update block height after initialized the saga function', () => {
         const mockedBlockHeight = 1;
-        return expectSaga(startChallenge, { address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
+        return expectSaga(startChallenge, { stageAmount, address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
           .withReducer(withReducer, storeMock.setIn(['ethOperationsHoc', 'blockHeight', 'height'], mockedBlockHeight))
           .provide({
             call(effect, next) {
+              if (effect.fn.name.includes('getRequiredChallengesForIntendedStageAmount')) {
+                return [];
+              }
               if (effect.fn === getSdkWalletSigner) {
                 return [
                   signerMock,
@@ -250,6 +255,7 @@ describe('nahmiiHocSaga', () => {
               return next();
             },
           })
+          .put(actions.updateChallengeBlockHeight(signerMock.address, currency, mockedBlockHeight))
           .run({ silenceTimeout: true })
           .then((result) => {
             const lastattemptedAtBlockHeight = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'attemptedAtBlockHeight']);
@@ -261,7 +267,7 @@ describe('nahmiiHocSaga', () => {
       it('should correctly update store after successfully started more than one challenge', () => {
         const requiredChallenges = [{ type: 'payment-driip' }, { type: 'null' }];
         let startedChallenges = 0;
-        return expectSaga(startChallenge, { address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
+        return expectSaga(startChallenge, { stageAmount, address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
@@ -310,7 +316,7 @@ describe('nahmiiHocSaga', () => {
         const requiredChallenges = [{ type: 'payment-driip' }, { type: 'null' }];
         const failedTxReceipt = { transactionHash: 'hash2', status: 0 };
         let startedChallenges = 0;
-        return expectSaga(startChallenge, { address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
+        return expectSaga(startChallenge, { stageAmount, address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
@@ -361,11 +367,11 @@ describe('nahmiiHocSaga', () => {
       it('should correctly update store when failed to get required challenges', () => {
         const fakeError = new Error('error');
 
-        return expectSaga(startChallenge, { address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
+        return expectSaga(startChallenge, { stageAmount, address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
-              if (effect.fn.name === 'getRequiredChallengesForIntendedStageAmount') {
+              if (effect.fn.name.includes('getRequiredChallengesForIntendedStageAmount')) {
                 throw fakeError;
               }
               if (effect.fn === getSdkWalletSigner) {
@@ -392,7 +398,7 @@ describe('nahmiiHocSaga', () => {
         const requiredChallenges = [{ type: 'payment-driip' }];
         const failedTx = { status: 0, transactionHash: fakeTxReceipts[0].transactionHash };
 
-        return expectSaga(startChallenge, { address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
+        return expectSaga(startChallenge, { stageAmount, address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
           .withReducer(withReducer, storeMock)
           .provide({
             call(effect, next) {
@@ -675,6 +681,8 @@ describe('nahmiiHocSaga', () => {
           .provide({
             call(effect, next) {
               if (effect.fn.name.includes('withdraw')) {
+                const _amount = effect.args[0].toJSON().amount;
+                expect(_amount).toEqual(amount.toFixed());
                 return fakeTxs[0];
               }
               if (effect.fn.name === 'waitForTransaction') {
