@@ -143,13 +143,13 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
     return;
   }
 
-  // convert BigNumbers to the etherjs version of BigNumber here so the toHexString() method
-  // can be used later
-  const amountConverted = utils.bigNumberify(amount.toFixed());
-  const gasPriceConverted = utils.bigNumberify(gasPrice.toString());
-
-  yield put(notify('info', getIntl().formatMessage({ id: 'send_transaction_info' })));
   try {
+    // convert BigNumbers to the etherjs version of BigNumber here so the toHexString() method
+    // can be used later
+    const amountConverted = utils.bigNumberify(amount.toFixed());
+    const gasPriceConverted = utils.bigNumberify(gasPrice.toString());
+
+    yield put(notify('info', getIntl().formatMessage({ id: 'send_transaction_info' })));
     if (token === 'ETH') {
       yield put(transferEtherAction({ toAddress, amount: amountConverted, gasPrice: gasPriceConverted, gasLimit }));
     } else if (contractAddress) {
