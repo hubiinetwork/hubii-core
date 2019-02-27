@@ -211,6 +211,7 @@ export class TransferForm extends React.PureComponent {
     } = this.state;
 
     const {
+      currentNetwork,
       currentWalletWithInfo,
       prices,
       recipients,
@@ -300,8 +301,6 @@ export class TransferForm extends React.PureComponent {
     };
 
     const walletUsdValueAfter = currentWalletUsdBalance - (usdValueToSend.plus(transactionFee.usdValue)).toNumber();
-
-    // const disableNahmiiPayments = this.props.currentNetwork.provider._network.chainId === 1;
 
     return (
       <div>
@@ -438,6 +437,7 @@ export class TransferForm extends React.PureComponent {
           </TransferFormWrapper>
           <TransferDescriptionWrapper>
             <TransferDescription
+              currentNetwork={currentNetwork}
               layer={layer}
               transactionFee={transactionFee}
               amountToSend={amountToSend}
@@ -464,7 +464,7 @@ export class TransferForm extends React.PureComponent {
 TransferForm.propTypes = {
   prices: PropTypes.object.isRequired,
   gasStatistics: PropTypes.object.isRequired,
-  // currentNetwork: PropTypes.object.isRequired,
+  currentNetwork: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,
   recipients: PropTypes.arrayOf(PropTypes.shape({

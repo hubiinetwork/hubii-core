@@ -1,3 +1,4 @@
+import { shell } from 'electron';
 import { Row } from 'antd';
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -8,6 +9,7 @@ import { isValidAddress } from 'ethereumjs-util';
 import { isHardwareWallet } from 'utils/wallet';
 
 import HWPromptContainer from 'containers/HWPromptContainer';
+import Text from 'components/ui/Text';
 
 import {
   StyledCol,
@@ -23,6 +25,31 @@ import TransferDescriptionItem from '../TransferDescriptionItem';
  * The TransferDescription Component
  */
 class TransferDescription extends React.PureComponent {
+  generateTransferingStatus() {
+    const { currentWalletWithInfo, layer, currentNetwork, intl, transfering } = this.props;
+    const { formatMessage } = intl;
+    if (!transfering || layer === 'nahmii') return null;
+    const transferingText = `${formatMessage({ id: 'waiting_for_transfer_to_be_mined' })}`;
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <span>
+          <Text large>{transferingText}</Text>
+        </span>
+        <a
+          role="link"
+          tabIndex={0}
+          onClick={
+                    currentNetwork.provider._network.name === 'ropsten' ?
+                      () => shell.openExternal(`https://ropsten.etherscan.io/address/${currentWalletWithInfo.get('address')}`) :
+                      () => shell.openExternal(`https://etherscan.io/address/${currentWalletWithInfo.get('address')}`)
+                  }
+        >
+          {'Track progress on Etherscan'}
+        </a>
+      </div>
+    );
+  }
+
   render() {
     const {
       currentWalletWithInfo,
@@ -52,6 +79,9 @@ class TransferDescription extends React.PureComponent {
       !isValidAddress(recipient) ||
       !hwWalletReady ||
       (amountToSend.toNumber() === 0 && layer === 'nahmii');
+
+    const transferingStatus = this.generateTransferingStatus();
+
     return (
       <div>
         <Row>
@@ -152,17 +182,25 @@ class TransferDescription extends React.PureComponent {
             </HWPromptWrapper>
           }
           {
-            this.props.transfering &&
-            <StyledSpin
-              delay={0}
-              size="large"
-            />
-          }
-          {
             !this.props.transfering &&
               <StyledButton type="primary" onClick={onSend} disabled={disableSendButton}>
                 {formatMessage({ id: 'send' })}
               </StyledButton>
+          }
+          {
+            this.props.transfering &&
+            <div>
+              {
+                transferingStatus &&
+                <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column' }}>
+                  {transferingStatus}
+                </div>
+              }
+              <StyledSpin
+                delay={0}
+                size="large"
+              />
+            </div>
           }
         </Row>
       </div>
@@ -188,6 +226,7 @@ TransferDescription.propTypes = {
   hwWalletReady: PropTypes.bool.isRequired,
   currentWalletWithInfo: PropTypes.object.isRequired,
   intl: PropTypes.object,
+  currentNetwork: PropTypes.object,
 };
 
 export default injectIntl(TransferDescription);
