@@ -145,7 +145,7 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
 
   // convert BigNumbers to the etherjs version of BigNumber here so the toHexString() method
   // can be used later
-  const amountConverted = utils.bigNumberify(amount.toString());
+  const amountConverted = utils.bigNumberify(amount.toFixed());
   const gasPriceConverted = utils.bigNumberify(gasPrice.toString());
 
   yield put(notify('info', getIntl().formatMessage({ id: 'send_transaction_info' })));
