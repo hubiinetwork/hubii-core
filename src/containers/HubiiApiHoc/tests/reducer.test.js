@@ -108,12 +108,19 @@ describe('hubiiApiHocReducer', () => {
     it('should correctly handle error', () => {
       const address = '0x00';
       const error = new Error();
+      const existingTxs = [{}, {}];
       const expected = state
         .setIn(['transactions', address, 'loading'], false)
         .setIn(['transactions', address, 'error'], error)
-        .setIn(['transactions', address, 'transactions'], fromJS([]));
+        .setIn(['transactions', address, 'transactions'], fromJS(existingTxs));
 
-      expect(hubiiApiHocReducer(state, loadTransactionsError(address, error))).toEqual(expected);
+      expect(hubiiApiHocReducer(
+        state
+          .setIn(['transactions', address, 'loading'], true)
+          .setIn(['transactions', address, 'error'], null)
+          .setIn(['transactions', address, 'transactions'], fromJS(existingTxs)),
+        loadTransactionsError(address, error))
+      ).toEqual(expected);
     });
   });
 

@@ -30,7 +30,7 @@
     "buy_eth": "Buy ETH",
     "transaction_history": "Transaction History",
     "synchronising": "Synchronising...",
-    "fetch_transactions_error": "There was an problem fetching this wallet's transaction history. Please try again later.",
+    "fetch_transactions_error": "There was a problem fetching this wallet's transaction history. Please try again later.",
     "no_transaction_history": "There is no transaction history for this wallet",
     "where_my_transaction": "Where's my transaction?",
     "my_transaction_notes_1": "In this alpha build of hubii core, only confirmed transactions are displayed. This means recently sent transactions may take some time to appear, while they are pending.",

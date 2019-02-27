@@ -114,9 +114,8 @@ export class WalletsTransactions extends React.Component {
     }
     if
     (
-      currentWalletWithInfo.getIn(['transactions', 'error']) ||
-      currentWalletWithInfo.getIn(['balances', 'baseLayer', 'error']) ||
-      supportedAssets.get('error')
+      currentWalletWithInfo.getIn(['transactions', 'error']) &&
+      (currentWalletWithInfo.getIn(['transactions', 'transactions']).size === 0)
     ) {
       return <NoTxPlaceholder>{ formatMessage({ id: 'fetch_transactions_error' }) }</NoTxPlaceholder>;
     }
@@ -196,12 +195,15 @@ export class WalletsTransactions extends React.Component {
               style={{ margin: '2rem 0' }}
             />
           </TransactionsWrapper>
-          <BreakdownWrapper>
-            <Breakdown
-              totalBalances={currentWalletWithInfo.get('balances')}
-              supportedAssets={supportedAssets}
-            />
-          </BreakdownWrapper>
+          {
+            (!currentWalletWithInfo.getIn(['balances', 'baseLayer', 'error']) && !supportedAssets.get('error')) &&
+            <BreakdownWrapper>
+              <Breakdown
+                totalBalances={currentWalletWithInfo.get('balances')}
+                supportedAssets={supportedAssets}
+              />
+            </BreakdownWrapper>
+          }
         </OuterWrapper>
       </ScrollableContentWrapper>
     );
