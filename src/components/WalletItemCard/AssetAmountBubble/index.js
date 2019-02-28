@@ -1,11 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { getAbsolutePath } from 'utils/electron';
+import { getAbsolutePath, assetImageFallback } from 'utils/electron';
 import { Wrapper, Span, Image } from './style';
 
 const AssetAmountBubble = (props) => (
   <Wrapper>
-    <Image src={getAbsolutePath(`public/images/assets/${props.name}.svg`)} />
+    <Image
+      src={getAbsolutePath(`public/images/assets/${props.name}.svg`)}
+      onError={assetImageFallback}
+    />
     <Span>{props.amount}</Span>
   </Wrapper>
   );

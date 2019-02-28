@@ -11,7 +11,7 @@ import {
   isAddressMatch,
 } from 'utils/wallet';
 import { formatFiat } from 'utils/numberFormats';
-import { getAbsolutePath } from 'utils/electron';
+import { getAbsolutePath, assetImageFallback } from 'utils/electron';
 import { injectIntl } from 'react-intl';
 
 import ComboBoxSelect from 'components/ComboBoxSelect';
@@ -329,6 +329,7 @@ export class TransferForm extends React.PureComponent {
               >
                 <Image
                   src={getAbsolutePath(`public/images/assets/${assetToSend.symbol}.svg`)}
+                  onError={assetImageFallback}
                   alt="logo"
                 />
                 <Select

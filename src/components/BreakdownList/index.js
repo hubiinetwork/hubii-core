@@ -2,7 +2,7 @@ import React from 'react';
 import { compose } from 'redux';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
-import { getAbsolutePath } from 'utils/electron';
+import { getAbsolutePath, assetImageFallback } from 'utils/electron';
 import { formatFiat } from 'utils/numberFormats';
 
 import Text from 'components/ui/Text';
@@ -49,6 +49,7 @@ const generateList = (data, formatMessage, extraInfo = false) => {
         <div>
           <Logo
             src={getAbsolutePath(`public/images/assets/${item.label}.svg`)}
+            onError={assetImageFallback}
           />
           <Text>{item.amount}</Text>
         &nbsp;

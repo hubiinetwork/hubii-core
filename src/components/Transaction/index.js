@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { injectIntl } from 'react-intl';
-import { getAbsolutePath } from 'utils/electron';
+import { getAbsolutePath, assetImageFallback } from 'utils/electron';
 import NahmiiText from 'components/ui/NahmiiText';
 import {
   Wrapper,
@@ -52,6 +52,7 @@ const Transaction = (props) => {
             <HeaderWrapper>
               <Image
                 src={getAbsolutePath(`public/images/assets/${symbol}.svg`)}
+                onError={assetImageFallback}
               />
               <TypeIcon
                 type={type === 'received' ? 'download' : 'upload'}

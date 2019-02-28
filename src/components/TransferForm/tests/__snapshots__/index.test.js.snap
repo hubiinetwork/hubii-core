@@ -648,6 +648,7 @@ ShallowWrapper {
                               >
                                         <style__Image
                                                   alt="logo"
+                                                  onError={[Function]}
                                                   src="/public/images/assets/ETH.svg"
                                         />
                                         <Select
@@ -1390,6 +1391,7 @@ ShallowWrapper {
                             >
                                           <style__Image
                                                         alt="logo"
+                                                        onError={[Function]}
                                                         src="/public/images/assets/ETH.svg"
                                           />
                                           <Select
@@ -2063,6 +2065,7 @@ ShallowWrapper {
                 >
                                 <style__Image
                                                 alt="logo"
+                                                onError={[Function]}
                                                 src="/public/images/assets/ETH.svg"
                                 />
                                 <Select
@@ -2222,6 +2225,7 @@ ShallowWrapper {
 >
                     <style__Image
                                         alt="logo"
+                                        onError={[Function]}
                                         src="/public/images/assets/ETH.svg"
                     />
                     <Select
@@ -2374,6 +2378,7 @@ ShallowWrapper {
                     "children": Array [
                       <style__Image
                         alt="logo"
+                        onError={[Function]}
                         src="/public/images/assets/ETH.svg"
 />,
                       <Select
@@ -2411,6 +2416,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "alt": "logo",
+                        "onError": [Function],
                         "src": "/public/images/assets/ETH.svg",
                       },
                       "ref": null,
@@ -3793,6 +3799,7 @@ ShallowWrapper {
                                     >
                                                 <style__Image
                                                             alt="logo"
+                                                            onError={[Function]}
                                                             src="/public/images/assets/ETH.svg"
                                                 />
                                                 <Select
@@ -4535,6 +4542,7 @@ ShallowWrapper {
                                 >
                                                 <style__Image
                                                                 alt="logo"
+                                                                onError={[Function]}
                                                                 src="/public/images/assets/ETH.svg"
                                                 />
                                                 <Select
@@ -5208,6 +5216,7 @@ ShallowWrapper {
                   >
                                     <style__Image
                                                       alt="logo"
+                                                      onError={[Function]}
                                                       src="/public/images/assets/ETH.svg"
                                     />
                                     <Select
@@ -5367,6 +5376,7 @@ ShallowWrapper {
 >
                       <style__Image
                                             alt="logo"
+                                            onError={[Function]}
                                             src="/public/images/assets/ETH.svg"
                       />
                       <Select
@@ -5519,6 +5529,7 @@ ShallowWrapper {
                       "children": Array [
                         <style__Image
                           alt="logo"
+                          onError={[Function]}
                           src="/public/images/assets/ETH.svg"
 />,
                         <Select
@@ -5556,6 +5567,7 @@ ShallowWrapper {
                         "nodeType": "class",
                         "props": Object {
                           "alt": "logo",
+                          "onError": [Function],
                           "src": "/public/images/assets/ETH.svg",
                         },
                         "ref": null,
@@ -7512,6 +7524,7 @@ ShallowWrapper {
                               >
                                         <style__Image
                                                   alt="logo"
+                                                  onError={[Function]}
                                                   src="/public/images/assets/ETH.svg"
                                         />
                                         <Select
@@ -8207,6 +8220,7 @@ ShallowWrapper {
                             >
                                           <style__Image
                                                         alt="logo"
+                                                        onError={[Function]}
                                                         src="/public/images/assets/ETH.svg"
                                           />
                                           <Select
@@ -8861,6 +8875,7 @@ ShallowWrapper {
                 >
                                 <style__Image
                                                 alt="logo"
+                                                onError={[Function]}
                                                 src="/public/images/assets/ETH.svg"
                                 />
                                 <Select
@@ -9001,6 +9016,7 @@ ShallowWrapper {
 >
                     <style__Image
                                         alt="logo"
+                                        onError={[Function]}
                                         src="/public/images/assets/ETH.svg"
                     />
                     <Select
@@ -9134,6 +9150,7 @@ ShallowWrapper {
                     "children": Array [
                       <style__Image
                         alt="logo"
+                        onError={[Function]}
                         src="/public/images/assets/ETH.svg"
 />,
                       <Select
@@ -9171,6 +9188,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "alt": "logo",
+                        "onError": [Function],
                         "src": "/public/images/assets/ETH.svg",
                       },
                       "ref": null,
@@ -10508,6 +10526,7 @@ ShallowWrapper {
                                     >
                                                 <style__Image
                                                             alt="logo"
+                                                            onError={[Function]}
                                                             src="/public/images/assets/ETH.svg"
                                                 />
                                                 <Select
@@ -11203,6 +11222,7 @@ ShallowWrapper {
                                 >
                                                 <style__Image
                                                                 alt="logo"
+                                                                onError={[Function]}
                                                                 src="/public/images/assets/ETH.svg"
                                                 />
                                                 <Select
@@ -11857,6 +11877,7 @@ ShallowWrapper {
                   >
                                     <style__Image
                                                       alt="logo"
+                                                      onError={[Function]}
                                                       src="/public/images/assets/ETH.svg"
                                     />
                                     <Select
@@ -11997,6 +12018,7 @@ ShallowWrapper {
 >
                       <style__Image
                                             alt="logo"
+                                            onError={[Function]}
                                             src="/public/images/assets/ETH.svg"
                       />
                       <Select
@@ -12130,6 +12152,7 @@ ShallowWrapper {
                       "children": Array [
                         <style__Image
                           alt="logo"
+                          onError={[Function]}
                           src="/public/images/assets/ETH.svg"
 />,
                         <Select
@@ -12167,6 +12190,7 @@ ShallowWrapper {
                         "nodeType": "class",
                         "props": Object {
                           "alt": "logo",
+                          "onError": [Function],
                           "src": "/public/images/assets/ETH.svg",
                         },
                         "ref": null,
@@ -14123,6 +14147,7 @@ ShallowWrapper {
                               >
                                         <style__Image
                                                   alt="logo"
+                                                  onError={[Function]}
                                                   src="/public/images/assets/ETH.svg"
                                         />
                                         <Select
@@ -14865,6 +14890,7 @@ ShallowWrapper {
                             >
                                           <style__Image
                                                         alt="logo"
+                                                        onError={[Function]}
                                                         src="/public/images/assets/ETH.svg"
                                           />
                                           <Select
@@ -15538,6 +15564,7 @@ ShallowWrapper {
                 >
                                 <style__Image
                                                 alt="logo"
+                                                onError={[Function]}
                                                 src="/public/images/assets/ETH.svg"
                                 />
                                 <Select
@@ -15697,6 +15724,7 @@ ShallowWrapper {
 >
                     <style__Image
                                         alt="logo"
+                                        onError={[Function]}
                                         src="/public/images/assets/ETH.svg"
                     />
                     <Select
@@ -15849,6 +15877,7 @@ ShallowWrapper {
                     "children": Array [
                       <style__Image
                         alt="logo"
+                        onError={[Function]}
                         src="/public/images/assets/ETH.svg"
 />,
                       <Select
@@ -15886,6 +15915,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "alt": "logo",
+                        "onError": [Function],
                         "src": "/public/images/assets/ETH.svg",
                       },
                       "ref": null,
@@ -17268,6 +17298,7 @@ ShallowWrapper {
                                     >
                                                 <style__Image
                                                             alt="logo"
+                                                            onError={[Function]}
                                                             src="/public/images/assets/ETH.svg"
                                                 />
                                                 <Select
@@ -18010,6 +18041,7 @@ ShallowWrapper {
                                 >
                                                 <style__Image
                                                                 alt="logo"
+                                                                onError={[Function]}
                                                                 src="/public/images/assets/ETH.svg"
                                                 />
                                                 <Select
@@ -18683,6 +18715,7 @@ ShallowWrapper {
                   >
                                     <style__Image
                                                       alt="logo"
+                                                      onError={[Function]}
                                                       src="/public/images/assets/ETH.svg"
                                     />
                                     <Select
@@ -18842,6 +18875,7 @@ ShallowWrapper {
 >
                       <style__Image
                                             alt="logo"
+                                            onError={[Function]}
                                             src="/public/images/assets/ETH.svg"
                       />
                       <Select
@@ -18994,6 +19028,7 @@ ShallowWrapper {
                       "children": Array [
                         <style__Image
                           alt="logo"
+                          onError={[Function]}
                           src="/public/images/assets/ETH.svg"
 />,
                         <Select
@@ -19031,6 +19066,7 @@ ShallowWrapper {
                         "nodeType": "class",
                         "props": Object {
                           "alt": "logo",
+                          "onError": [Function],
                           "src": "/public/images/assets/ETH.svg",
                         },
                         "ref": null,
@@ -21017,6 +21053,7 @@ ShallowWrapper {
                               >
                                         <style__Image
                                                   alt="logo"
+                                                  onError={[Function]}
                                                   src="/public/images/assets/ETH.svg"
                                         />
                                         <Select
@@ -21759,6 +21796,7 @@ ShallowWrapper {
                             >
                                           <style__Image
                                                         alt="logo"
+                                                        onError={[Function]}
                                                         src="/public/images/assets/ETH.svg"
                                           />
                                           <Select
@@ -22432,6 +22470,7 @@ ShallowWrapper {
                 >
                                 <style__Image
                                                 alt="logo"
+                                                onError={[Function]}
                                                 src="/public/images/assets/ETH.svg"
                                 />
                                 <Select
@@ -22591,6 +22630,7 @@ ShallowWrapper {
 >
                     <style__Image
                                         alt="logo"
+                                        onError={[Function]}
                                         src="/public/images/assets/ETH.svg"
                     />
                     <Select
@@ -22743,6 +22783,7 @@ ShallowWrapper {
                     "children": Array [
                       <style__Image
                         alt="logo"
+                        onError={[Function]}
                         src="/public/images/assets/ETH.svg"
 />,
                       <Select
@@ -22780,6 +22821,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "alt": "logo",
+                        "onError": [Function],
                         "src": "/public/images/assets/ETH.svg",
                       },
                       "ref": null,
@@ -24162,6 +24204,7 @@ ShallowWrapper {
                                     >
                                                 <style__Image
                                                             alt="logo"
+                                                            onError={[Function]}
                                                             src="/public/images/assets/ETH.svg"
                                                 />
                                                 <Select
@@ -24904,6 +24947,7 @@ ShallowWrapper {
                                 >
                                                 <style__Image
                                                                 alt="logo"
+                                                                onError={[Function]}
                                                                 src="/public/images/assets/ETH.svg"
                                                 />
                                                 <Select
@@ -25577,6 +25621,7 @@ ShallowWrapper {
                   >
                                     <style__Image
                                                       alt="logo"
+                                                      onError={[Function]}
                                                       src="/public/images/assets/ETH.svg"
                                     />
                                     <Select
@@ -25736,6 +25781,7 @@ ShallowWrapper {
 >
                       <style__Image
                                             alt="logo"
+                                            onError={[Function]}
                                             src="/public/images/assets/ETH.svg"
                       />
                       <Select
@@ -25888,6 +25934,7 @@ ShallowWrapper {
                       "children": Array [
                         <style__Image
                           alt="logo"
+                          onError={[Function]}
                           src="/public/images/assets/ETH.svg"
 />,
                         <Select
@@ -25925,6 +25972,7 @@ ShallowWrapper {
                         "nodeType": "class",
                         "props": Object {
                           "alt": "logo",
+                          "onError": [Function],
                           "src": "/public/images/assets/ETH.svg",
                         },
                         "ref": null,
