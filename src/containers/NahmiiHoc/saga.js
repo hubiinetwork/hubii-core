@@ -326,7 +326,7 @@ export function* loadBalances({ address }, network) {
 }
 
 export function* loadStagingBalances({ address }, network) {
-  if (network.provider._network.chainId === 1) {
+  if (network.provider._network.chainId === 1 || network.provider._network.chainId === 3) {
     yield put(actions.loadStagingBalancesSuccess(address, []));
     return;
   }
