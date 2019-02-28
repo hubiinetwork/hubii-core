@@ -619,6 +619,9 @@ describe('payment transfer', () => {
                 expect(effect.args[0].amount).toEqual(tx.value);
                 return sentTx;
               }
+              if (effect.fn.name === 'getTransactionConfirmation') {
+                return null;
+              }
               return next();
             },
           })
@@ -660,7 +663,7 @@ describe('payment transfer', () => {
       const params = {
         ...transferErc20ActionParamsMock,
         gasPrice: utils.parseEther(transferErc20ActionParamsMock.gasPrice.toString()),
-        amount: utils.parseEther(transferErc20ActionParamsMock.amount.toString()),
+        amount: utils.parseEther(transferErc20ActionParamsMock.amount.toFixed()),
       };
       return expectSaga(sendTransactionForHardwareWallet, params)
           .provide({
@@ -735,12 +738,12 @@ describe('payment transfer', () => {
         s: '7fb01cb8c9e2f7fdd385e213d653a24436bea63c572c6f8993e4880a66457bbf',
         v: 42,
       };
-      const expectedSignedTxHex = '0xf8630882753082520894bfdc0c8e54af5719872a2edef8e65c9f4a3eae88822742802aa00f7bfadeca8f4a9c022db1ce73b255ca0d3e293367b47231f161f20b91966095a07fb01cb8c9e2f7fdd385e213d653a24436bea63c572c6f8993e4880a66457bbf';
+      const expectedSignedTxHex = '0xf86b0882753082520894bfdc0c8e54af5719872a2edef8e65c9f4a3eae888ad4d128bf31cafa200000802aa00f7bfadeca8f4a9c022db1ce73b255ca0d3e293367b47231f161f20b91966095a07fb01cb8c9e2f7fdd385e213d653a24436bea63c572c6f8993e4880a66457bbf';
       let signedTxHex;
       const params = {
         ...transferErc20ActionParamsMock,
         gasPrice: utils.bigNumberify(transferErc20ActionParamsMock.gasPrice.toString()),
-        amount: utils.bigNumberify(transferErc20ActionParamsMock.amount.toString()),
+        amount: utils.bigNumberify(transferErc20ActionParamsMock.amount.toFixed()),
       };
       return expectSaga(sendTransactionForHardwareWallet, params)
           .provide({

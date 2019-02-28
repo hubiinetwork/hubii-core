@@ -8,3 +8,5 @@ export function getAbsolutePath(relativePath) {
   }
   return path.join(rootPath, relativePath);
 }
+
+export function assetImageFallback(e) { e.target.onerror = null; e.target.src = getAbsolutePath('public/images/question.svg'); }

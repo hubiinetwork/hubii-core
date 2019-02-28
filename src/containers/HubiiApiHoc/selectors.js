@@ -3,6 +3,7 @@ import { fromJS, List } from 'immutable';
 import BigNumber from 'bignumber.js';
 
 import { makeSelectBlockHeight } from 'containers/EthOperationsHoc/selectors';
+import { createDeepEqualSelector } from 'utils/selector';
 
 /**
  * Direct selector to the hubiiApiHoc state domain
@@ -18,25 +19,25 @@ const makeSelectTransactions = () => createSelector(
 );
 
 // returns balances state OR a placeholder if the app state is from an old version and needs to reinitialise
-const makeSelectBalances = () => createSelector(
+const makeSelectBalances = () => createDeepEqualSelector(
   selectHubiiApiHocDomain,
   (hubiiApiHocDomain) => hubiiApiHocDomain.get('balances') || fromJS({})
 );
 
 // returns prices state OR a placeholder if the app state is from an old version and needs to reinitialise
-const makeSelectPrices = () => createSelector(
+const makeSelectPrices = () => createDeepEqualSelector(
   selectHubiiApiHocDomain,
   (hubiiApiHocDomain) => hubiiApiHocDomain.get('prices') || fromJS({ loading: true })
 );
 
 // returns supportedAssets state OR a placeholder if the app state is from an old version and needs to reinitialise
-const makeSelectSupportedAssets = () => createSelector(
+const makeSelectSupportedAssets = () => createDeepEqualSelector(
   selectHubiiApiHocDomain,
   (hubiiApiHocDomain) => hubiiApiHocDomain.get('supportedAssets') || fromJS({ loading: true })
 );
 
 
-const makeSelectTransactionsWithInfo = () => createSelector(
+const makeSelectTransactionsWithInfo = () => createDeepEqualSelector(
   makeSelectTransactions(),
   makeSelectSupportedAssets(),
   makeSelectPrices(),

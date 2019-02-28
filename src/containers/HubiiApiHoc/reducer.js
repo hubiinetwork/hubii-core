@@ -79,7 +79,7 @@ function hubiiApiHocReducer(state = initialState, action) {
       return state
         .setIn(['transactions', action.address, 'loading'], false)
         .setIn(['transactions', action.address, 'error'], action.error)
-        .setIn(['transactions', action.address, 'transactions'], fromJS([]));
+        .setIn(['transactions', action.address, 'transactions'], state.getIn(['transactions', action.address, 'transactions']) || fromJS([]));
     case CHANGE_NETWORK:
       return state
         .setIn(['supportedAssets', 'loading'], true)
