@@ -223,7 +223,7 @@
     "nahmii_transfer_insufficient_funds_error": "Failed to transfer: Please make sure the nahmii balance of this token is not less than {minimumBalance} after the transfer.",
     "nahmii_settlement_lock_transfer": "The payment for this currency is locked for 5 blocks, please try again one minute later.",
     "select_asset_to_withdraw": "Select an asset to withdraw",
-    "withdraw": "Withdraw",
+    "withdraw": "withdraw",
     "settle_balance": "Settle balance",
     "settlement_period_ended": "Settlement challenge period is ended",
     "settlement_period_ended_notice": "In order to update the staged balance with the qualified settlement amount ({intended_stage_amount} {symbol}), please confirm the settlement. (Need to sign for {tx_count} transaction(s)",
