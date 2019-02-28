@@ -11,7 +11,7 @@ import { push } from 'react-router-redux';
 import { shell } from 'electron';
 import moment from 'moment';
 import { Alert, Row, Steps, Icon, Tooltip } from 'antd';
-import { getAbsolutePath } from 'utils/electron';
+import { getAbsolutePath, assetImageFallback } from 'utils/electron';
 import {
   gweiToEther,
   gweiToWei,
@@ -543,6 +543,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                 >
                   <Image
                     src={getAbsolutePath(`public/images/assets/${assetToWithdraw.symbol}.svg`)}
+                    onError={assetImageFallback}
                     alt="logo"
                   />
                   <Select
