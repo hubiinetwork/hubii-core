@@ -45,7 +45,7 @@
     "send": "Send",
     "fee": "Fee",
     "DEX": "DEX",
-    "dex_coming_soon": "DEX coming soon",
+    "dex_coming_soon": "Exchange coming soon",
     "exchange": "Exchange",
     "confirmations": "Confirmations",
     "select_asset": "Select an asset to send",
