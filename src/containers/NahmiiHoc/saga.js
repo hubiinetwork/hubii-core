@@ -93,7 +93,7 @@ export function* depositEth({ address, amount, options }) {
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     if (confOnDevice) yield put(confOnDevice);
-    const { hash } = yield call(() => nahmiiWallet.depositEth(amount, options));
+    const { hash } = yield call(() => nahmiiWallet.depositEth(amount.toFixed(), options));
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
     yield put(actions.nahmiiDepositEthSuccess());
@@ -115,7 +115,7 @@ export function* approveTokenDeposit({ address, symbol, amount, options }) {
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     if (confOnDevice) yield put(confOnDevice);
-    const { hash } = yield call(() => nahmiiWallet.approveTokenDeposit(amount, symbol, options));
+    const { hash } = yield call(() => nahmiiWallet.approveTokenDeposit(amount.toFixed(), symbol, options));
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
     yield put(actions.nahmiiApproveTokenDepositSuccess());
@@ -136,7 +136,7 @@ export function* completeTokenDeposit({ address, symbol, amount, options }) {
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, wallet);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     if (confOnDevice) yield put(confOnDevice);
-    const { hash } = yield call(() => nahmiiWallet.completeTokenDeposit(amount, symbol, options));
+    const { hash } = yield call(() => nahmiiWallet.completeTokenDeposit(amount.toFixed(), symbol, options));
     if (confOnDeviceDone) yield put(confOnDeviceDone);
     yield call(() => nahmiiProvider.getTransactionConfirmation(hash));
     yield put(actions.nahmiiCompleteTokenDepositSuccess());

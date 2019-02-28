@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { shell } from 'electron';
 import { Row, Icon } from 'antd';
-import { getAbsolutePath } from 'utils/electron';
+import { getAbsolutePath, assetImageFallback } from 'utils/electron';
 import {
   gweiToEther,
   gweiToWei,
@@ -327,6 +327,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               >
                 <Image
                   src={getAbsolutePath(`public/images/assets/${assetToDeposit.symbol}.svg`)}
+                  onError={assetImageFallback}
                   alt="logo"
                 />
                 <Select
@@ -489,12 +490,6 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                   {TransferingStatus}
                 </div>
               ) : (
-                // <Tooltip
-                //   placement="bottom"
-                //   // overlayStyle={!unsupportedNetwork ? { display: 'none' } : null}
-                //   title={<span>{formatMessage({ id: 'nahmii_deposits' })}</span>}
-                // >
-                // </Tooltip>
                 <div style={{ width: 'fit-content' }}>
                   <StyledButton
                     type="primary"

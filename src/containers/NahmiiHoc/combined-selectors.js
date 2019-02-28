@@ -151,7 +151,7 @@ const makeSelectWalletsWithInfo = () => createSelector(
       if (!transactions.get(walletAddress) || transactions.getIn([walletAddress, 'loading'])) {
         walletTransactions = fromJS({ loading: true, error: null, transactions: [] });
       } else if (transactions.getIn([walletAddress, 'error'])) {
-        walletTransactions = fromJS({ loading: false, error: true, transactions: [] });
+        walletTransactions = fromJS({ loading: false, error: true, transactions: transactions.getIn([walletAddress, 'transactions']) || [] });
       } else {
         walletTransactions = fromJS({ loading: false, error: null, transactions: transactions.getIn([walletAddress, 'transactions']) });
       }

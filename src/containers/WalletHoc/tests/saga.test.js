@@ -619,6 +619,9 @@ describe('payment transfer', () => {
                 expect(effect.args[0].amount).toEqual(tx.value);
                 return sentTx;
               }
+              if (effect.fn.name === 'getTransactionConfirmation') {
+                return null;
+              }
               return next();
             },
           })

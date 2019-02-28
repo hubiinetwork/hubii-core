@@ -43,6 +43,7 @@ ShallowWrapper {
                 header={
                         <style__HeaderWrapper>
                                 <style__Image
+                                        onError={[Function]}
                                         src="/public/images/assets/UKG.svg"
                                 />
                                 <style__TypeIcon
@@ -125,6 +126,7 @@ ShallowWrapper {
           header={
                     <style__HeaderWrapper>
                               <style__Image
+                                        onError={[Function]}
                                         src="/public/images/assets/UKG.svg"
                               />
                               <style__TypeIcon
@@ -240,6 +242,7 @@ ShallowWrapper {
 </style__CollapsableContent>,
           "header": <style__HeaderWrapper>
             <style__Image
+                        onError={[Function]}
                         src="/public/images/assets/UKG.svg"
             />
             <style__TypeIcon
@@ -476,6 +479,7 @@ ShallowWrapper {
                     header={
                               <style__HeaderWrapper>
                                         <style__Image
+                                                  onError={[Function]}
                                                   src="/public/images/assets/UKG.svg"
                                         />
                                         <style__TypeIcon
@@ -558,6 +562,7 @@ ShallowWrapper {
             header={
                         <style__HeaderWrapper>
                                     <style__Image
+                                                onError={[Function]}
                                                 src="/public/images/assets/UKG.svg"
                                     />
                                     <style__TypeIcon
@@ -673,6 +678,7 @@ ShallowWrapper {
 </style__CollapsableContent>,
             "header": <style__HeaderWrapper>
               <style__Image
+                            onError={[Function]}
                             src="/public/images/assets/UKG.svg"
               />
               <style__TypeIcon
@@ -948,6 +954,7 @@ ShallowWrapper {
                 header={
                         <style__HeaderWrapper>
                                 <style__Image
+                                        onError={[Function]}
                                         src="/public/images/assets/UKG.svg"
                                 />
                                 <style__TypeIcon
@@ -1032,6 +1039,7 @@ ShallowWrapper {
           header={
                     <style__HeaderWrapper>
                               <style__Image
+                                        onError={[Function]}
                                         src="/public/images/assets/UKG.svg"
                               />
                               <style__TypeIcon
@@ -1151,6 +1159,7 @@ ShallowWrapper {
 </style__CollapsableContent>,
           "header": <style__HeaderWrapper>
             <style__Image
+                        onError={[Function]}
                         src="/public/images/assets/UKG.svg"
             />
             <style__TypeIcon
@@ -1391,6 +1400,7 @@ ShallowWrapper {
                     header={
                               <style__HeaderWrapper>
                                         <style__Image
+                                                  onError={[Function]}
                                                   src="/public/images/assets/UKG.svg"
                                         />
                                         <style__TypeIcon
@@ -1475,6 +1485,7 @@ ShallowWrapper {
             header={
                         <style__HeaderWrapper>
                                     <style__Image
+                                                onError={[Function]}
                                                 src="/public/images/assets/UKG.svg"
                                     />
                                     <style__TypeIcon
@@ -1594,6 +1605,7 @@ ShallowWrapper {
 </style__CollapsableContent>,
             "header": <style__HeaderWrapper>
               <style__Image
+                            onError={[Function]}
                             src="/public/images/assets/UKG.svg"
               />
               <style__TypeIcon
@@ -1873,6 +1885,7 @@ ShallowWrapper {
                 header={
                         <style__HeaderWrapper>
                                 <style__Image
+                                        onError={[Function]}
                                         src="/public/images/assets/UKG.svg"
                                 />
                                 <style__TypeIcon
@@ -1957,6 +1970,7 @@ ShallowWrapper {
           header={
                     <style__HeaderWrapper>
                               <style__Image
+                                        onError={[Function]}
                                         src="/public/images/assets/UKG.svg"
                               />
                               <style__TypeIcon
@@ -2076,6 +2090,7 @@ ShallowWrapper {
 </style__CollapsableContent>,
           "header": <style__HeaderWrapper>
             <style__Image
+                        onError={[Function]}
                         src="/public/images/assets/UKG.svg"
             />
             <style__TypeIcon
@@ -2316,6 +2331,7 @@ ShallowWrapper {
                     header={
                               <style__HeaderWrapper>
                                         <style__Image
+                                                  onError={[Function]}
                                                   src="/public/images/assets/UKG.svg"
                                         />
                                         <style__TypeIcon
@@ -2400,6 +2416,7 @@ ShallowWrapper {
             header={
                         <style__HeaderWrapper>
                                     <style__Image
+                                                onError={[Function]}
                                                 src="/public/images/assets/UKG.svg"
                                     />
                                     <style__TypeIcon
@@ -2519,6 +2536,7 @@ ShallowWrapper {
 </style__CollapsableContent>,
             "header": <style__HeaderWrapper>
               <style__Image
+                            onError={[Function]}
                             src="/public/images/assets/UKG.svg"
               />
               <style__TypeIcon
@@ -2798,6 +2816,7 @@ ShallowWrapper {
                 header={
                         <style__HeaderWrapper>
                                 <style__Image
+                                        onError={[Function]}
                                         src="/public/images/assets/UKG.svg"
                                 />
                                 <style__TypeIcon
@@ -2882,6 +2901,7 @@ ShallowWrapper {
           header={
                     <style__HeaderWrapper>
                               <style__Image
+                                        onError={[Function]}
                                         src="/public/images/assets/UKG.svg"
                               />
                               <style__TypeIcon
@@ -3001,6 +3021,7 @@ ShallowWrapper {
 </style__CollapsableContent>,
           "header": <style__HeaderWrapper>
             <style__Image
+                        onError={[Function]}
                         src="/public/images/assets/UKG.svg"
             />
             <style__TypeIcon
@@ -3241,6 +3262,7 @@ ShallowWrapper {
                     header={
                               <style__HeaderWrapper>
                                         <style__Image
+                                                  onError={[Function]}
                                                   src="/public/images/assets/UKG.svg"
                                         />
                                         <style__TypeIcon
@@ -3325,6 +3347,7 @@ ShallowWrapper {
             header={
                         <style__HeaderWrapper>
                                     <style__Image
+                                                onError={[Function]}
                                                 src="/public/images/assets/UKG.svg"
                                     />
                                     <style__TypeIcon
@@ -3444,6 +3467,7 @@ ShallowWrapper {
 </style__CollapsableContent>,
             "header": <style__HeaderWrapper>
               <style__Image
+                            onError={[Function]}
                             src="/public/images/assets/UKG.svg"
               />
               <style__TypeIcon

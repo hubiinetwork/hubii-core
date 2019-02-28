@@ -146,13 +146,13 @@ export function* transfer({ token, wallet, toAddress, amount, gasPrice, gasLimit
     return;
   }
 
-  // convert BigNumbers to the etherjs version of BigNumber here so the toHexString() method
-  // can be used later
-  const amountConverted = utils.bigNumberify(amount.toFixed());
-  const gasPriceConverted = utils.bigNumberify(gasPrice.toString());
-
-  yield put(notify('info', getIntl().formatMessage({ id: 'send_transaction_info' })));
   try {
+    // convert BigNumbers to the etherjs version of BigNumber here so the toHexString() method
+    // can be used later
+    const amountConverted = utils.bigNumberify(amount.toFixed());
+    const gasPriceConverted = utils.bigNumberify(gasPrice.toString());
+
+    yield put(notify('info', getIntl().formatMessage({ id: 'send_transaction_info' })));
     if (token === 'ETH') {
       yield put(transferEtherAction({ toAddress, amount: amountConverted, gasPrice: gasPriceConverted, gasLimit }));
     } else if (contractAddress) {
@@ -169,14 +169,15 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
     let transaction;
     const options = { gasPrice, gasLimit };
     const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
-    const network = yield select(makeSelectCurrentNetwork());
+    const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
 
     if (isHardwareWallet(walletDetails.type)) {
       transaction = yield call(sendTransactionForHardwareWallet, { toAddress, amount, gasPrice, gasLimit });
     } else {
-      const etherWallet = new Wallet(walletDetails.decrypted.privateKey, network.provider);
+      const etherWallet = new Wallet(walletDetails.decrypted.privateKey, nahmiiProvider);
       transaction = yield call((...args) => etherWallet.sendTransaction(...args), { to: toAddress, value: amount, ...options });
     }
+    yield call(() => nahmiiProvider.getTransactionConfirmation(transaction.hash));
     yield put(transferSuccess(transaction, 'ETH'));
     yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
   } catch (error) {
@@ -188,8 +189,7 @@ export function* transferEther({ toAddress, amount, gasPrice, gasLimit }) {
 export function* transferERC20({ token, contractAddress, toAddress, amount, gasPrice, gasLimit }) {
   const contractAbiFragment = ERC20ABI;
   const walletDetails = (yield select(makeSelectCurrentWalletWithInfo())).toJS();
-  const network = yield select(makeSelectCurrentNetwork());
-  const provider = network.provider;
+  const { nahmiiProvider } = yield select(makeSelectCurrentNetwork());
   let transaction;
   try {
     const options = { gasPrice, gasLimit };
@@ -198,11 +198,11 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
         contractAddress,
         abi: ERC20ABI,
         execute: ['transfer', [toAddress, amount, options]],
-        provider,
+        provider: nahmiiProvider,
       });
       transaction = yield call(sendTransactionForHardwareWallet, { ...tx, amount: tx.value, toAddress: tx.to });
     } else {
-      const etherWallet = new Wallet(walletDetails.decrypted.privateKey, provider);
+      const etherWallet = new Wallet(walletDetails.decrypted.privateKey, nahmiiProvider);
       const contract = new Contract(contractAddress, contractAbiFragment, etherWallet);
       transaction = yield call((...args) => contract.transfer(...args), toAddress, amount, options);
     }
@@ -210,6 +210,7 @@ export function* transferERC20({ token, contractAddress, toAddress, amount, gasP
     if (!transaction) {
       throw new Error(getIntl().formatMessage({ id: 'send_transaction_failed_error' }));
     }
+    yield call(function getTransactionConfirmation() { return nahmiiProvider.getTransactionConfirmation(transaction.hash); });// eslint-disable-line prefer-arrow-callback
     yield put(transferSuccess(transaction, token));
     yield put(notify('success', getIntl().formatMessage({ id: 'sent_transaction_success' })));
   } catch (error) {
@@ -257,7 +258,7 @@ export function* hookNewWalletCreated({ newWallet }) {
 export function* sendTransactionForHardwareWallet({ toAddress, amount, data, nonce, gasPrice, gasLimit }) {
   const currentWalletWithInfo = yield select(makeSelectCurrentWalletWithInfo());
   const network = yield select(makeSelectCurrentNetwork());
-  const provider = network.provider;
+  const provider = network.nahmiiProvider;
   const walletDetails = currentWalletWithInfo.toJS();
   let nonceValue = nonce;
   if (!nonceValue) {
