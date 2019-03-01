@@ -308,9 +308,9 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
 
     const walletType = currentWalletWithInfo.get('type');
 
-    const unsupportedNetwork = this.props.currentNetwork.provider._network.chainId === 1;
+    // const unsupportedNetwork = this.props.currentNetwork.provider._network.chainId === 1;
     const disableDepositButton =
-      unsupportedNetwork ||
+      // unsupportedNetwork ||
       amountToDeposit.toNumber() <= 0 ||
       baseLayerBalAfterAmt.isNegative() ||
       baseLayerEthBalanceAfterAmount.isNegative() ||
