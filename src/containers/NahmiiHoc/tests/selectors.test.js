@@ -87,7 +87,7 @@ describe('makeSelectReceiptsWithInfo', () => {
     expect(receiptsWithInfoSelector(mockedState)).toEqual(expected);
   });
 
-  it('should set all addresses to loading when prices are loading', () => {
+  xit('should set all addresses to loading when prices are loading', () => {
     const mockedState = storeMock.setIn(['hubiiApiHoc', 'prices', 'loading'], true);
     const expected = receiptsWithInfo
       .map((address) => address
@@ -96,7 +96,7 @@ describe('makeSelectReceiptsWithInfo', () => {
     expect(receiptsWithInfoSelector(mockedState)).toEqual(expected);
   });
 
-  it('should set all addresses to loading when prices are errored', () => {
+  xit('should set all addresses to loading when prices are errored', () => {
     const mockedState = storeMock.setIn(['hubiiApiHoc', 'prices', 'error'], true);
     const expected = receiptsWithInfo
       .map((address) => address

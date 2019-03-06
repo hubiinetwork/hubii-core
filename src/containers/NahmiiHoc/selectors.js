@@ -3,7 +3,6 @@ import { fromJS, List } from 'immutable';
 import BigNumber from 'bignumber.js';
 
 import {
-  makeSelectPrices,
   makeSelectSupportedAssets,
 } from 'containers/HubiiApiHoc/selectors';
 
@@ -14,24 +13,24 @@ import { createDeepEqualSelector } from 'utils/selector';
  */
 const selectNahmiiHocDomain = (state) => state.get('nahmiiHoc');
 
-const makeSelectReceipts = () => createSelector(
-  selectNahmiiHocDomain,
-  (nahmiiHocDomain) => nahmiiHocDomain.get('receipts')
+const makeSelectReceipts = () => createDeepEqualSelector(
+  createSelector(
+    selectNahmiiHocDomain,
+    (nahmiiHocDomain) => nahmiiHocDomain.get('receipts')
+  ),
+  (data) => data
 );
 
-const makeSelectReceiptsWithInfo = () => createDeepEqualSelector(
+const makeSelectReceiptsWithInfo = () => createSelector(
   makeSelectReceipts(),
   makeSelectSupportedAssets(),
-  makeSelectPrices(),
-  (receipts, supportedAssets, prices) => {
+  (receipts, supportedAssets) => {
     // set all address's receipts to loading if don't have all required information
     let receiptsWithInfo = receipts;
     if
     (
       supportedAssets.get('loading') ||
-      supportedAssets.get('error') ||
-      prices.get('loading') ||
-      prices.get('error')
+      supportedAssets.get('error')
     ) {
       receiptsWithInfo = receipts
         .map((address) => address
@@ -77,13 +76,6 @@ const makeSelectReceiptsWithInfo = () => createDeepEqualSelector(
         BigNumber.config({ EXPONENTIAL_AT: 20 });
         receiptWithInfo = receiptWithInfo.set('decimalAmount', decimalAmount.toString());
 
-        // get fiat value of this receipt
-        const assetPrices = prices
-            .get('assets')
-            .find((a) => a.get('currency') === receiptWithInfo.get('currency'));
-        const receiptFiatValue = new BigNumber(receiptWithInfo.get('decimalAmount')).times(assetPrices.get('usd'));
-        receiptWithInfo = receiptWithInfo.set('fiatValue', receiptFiatValue.toString());
-
         // set 'confirmed' to true. when we add data from the payments endpoint, set the
         // conf status of those receipt to false.
         receiptWithInfo = receiptWithInfo.set('confirmed', true);
@@ -116,11 +108,17 @@ const makeSelectDepositStatus = () => createSelector(
   (nahmiiHocDomain) => nahmiiHocDomain.get('depositStatus')
 );
 
-const makeSelectNahmiiBalances = () => createDeepEqualSelector(
-  selectNahmiiHocDomain,
-  (nahmiiHocDomain) => {
-    const balances = nahmiiHocDomain.get('balances') || fromJS({});
+const makeSelectRawNahmiiBalances = () => createDeepEqualSelector(
+  createSelector(
+    selectNahmiiHocDomain,
+    (nahmiiHocDomain) => nahmiiHocDomain.get('balances') || fromJS({})
+  ),
+  (data) => data
+);
 
+const makeSelectNahmiiBalances = () => createDeepEqualSelector(
+  makeSelectRawNahmiiBalances(),
+  (balances) => {
     // create a 'total' balance entry for each address
     let balancesWithTotal = balances;
     balances.forEach((address, i) => {
