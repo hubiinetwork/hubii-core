@@ -4,6 +4,7 @@ import { initSplashScreen } from '@trodi/electron-splashscreen';
 import { app, Menu, ipcMain } from 'electron';
 import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
+import windowStateKeeper from 'electron-window-state';
 import path from 'path';
 import isDev from 'electron-is-dev';
 import { registerWalletListeners } from './wallets';
@@ -54,8 +55,15 @@ function createWindow() {
       webSecurity: false,
     },
   };
+  // Load the previous state with fallback to defaults
+  const mainWindowState = windowStateKeeper({
+    defaultWidth: windowOptions.width,
+    defaultHeight: windowOptions.height,
+    fullScreen: true,
+  });
+
   global.mainWindow = initSplashScreen({
-    windowOpts: windowOptions,
+    windowOpts: { ...windowOptions, ...mainWindowState },
     templateUrl: path.join(__dirname, '../public/images/splashscreen.svg'),
     delay: 0,
     splashScreenOpts: {
@@ -64,6 +72,12 @@ function createWindow() {
       transparent: true,
     },
   });
+
+  // Let us register listeners on the window, so we can update the state
+  // automatically (the listeners will be removed when the window is closed)
+  // and restore the maximized or full screen state
+  mainWindowState.manage(mainWindow);
+
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../index.html')}`);
   if (isDev) {
     mainWindow.webContents.openDevTools();
