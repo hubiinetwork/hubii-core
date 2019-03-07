@@ -7,6 +7,27 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <NahmiiDeposit
     currentNetwork={
         Object {
+            "apiDomain": "api2.dev.hubii.net",
+            "defaultNahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
             "nahmiiProvider": NahmiiProvider {
@@ -29,6 +50,7 @@ ShallowWrapper {
               },
               "ready": Promise {},
             },
+            "name": "ropsten",
             "provider": FallbackProvider {
               "_balances": Object {},
               "_emitted": Object {
@@ -4140,6 +4162,27 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <NahmiiDeposit
     currentNetwork={
         Object {
+            "apiDomain": "api2.dev.hubii.net",
+            "defaultNahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
             "nahmiiProvider": NahmiiProvider {
@@ -4162,6 +4205,7 @@ ShallowWrapper {
               },
               "ready": Promise {},
             },
+            "name": "ropsten",
             "provider": FallbackProvider {
               "_balances": Object {},
               "_emitted": Object {
@@ -8273,6 +8317,27 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <NahmiiDeposit
     currentNetwork={
         Object {
+            "apiDomain": "api2.dev.hubii.net",
+            "defaultNahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
             "nahmiiProvider": NahmiiProvider {
@@ -8295,6 +8360,7 @@ ShallowWrapper {
               },
               "ready": Promise {},
             },
+            "name": "ropsten",
             "provider": FallbackProvider {
               "_balances": Object {},
               "_emitted": Object {
@@ -12406,6 +12472,27 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <NahmiiDeposit
     currentNetwork={
         Object {
+            "apiDomain": "api2.dev.hubii.net",
+            "defaultNahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
             "nahmiiProvider": NahmiiProvider {
@@ -12428,6 +12515,7 @@ ShallowWrapper {
               },
               "ready": Promise {},
             },
+            "name": "ropsten",
             "provider": FallbackProvider {
               "_balances": Object {},
               "_emitted": Object {
@@ -16109,6 +16197,27 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <NahmiiDeposit
     currentNetwork={
         Object {
+            "apiDomain": "api2.dev.hubii.net",
+            "defaultNahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
             "nahmiiProvider": NahmiiProvider {
@@ -16131,6 +16240,7 @@ ShallowWrapper {
               },
               "ready": Promise {},
             },
+            "name": "ropsten",
             "provider": FallbackProvider {
               "_balances": Object {},
               "_emitted": Object {
@@ -19812,6 +19922,27 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <NahmiiDeposit
     currentNetwork={
         Object {
+            "apiDomain": "api2.dev.hubii.net",
+            "defaultNahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
             "nahmiiProvider": NahmiiProvider {
@@ -19834,6 +19965,7 @@ ShallowWrapper {
               },
               "ready": Promise {},
             },
+            "name": "ropsten",
             "provider": FallbackProvider {
               "_balances": Object {},
               "_emitted": Object {
@@ -23516,6 +23648,27 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <NahmiiDeposit
     currentNetwork={
         Object {
+            "apiDomain": "api2.dev.hubii.net",
+            "defaultNahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
             "nahmiiProvider": NahmiiProvider {
@@ -23538,6 +23691,7 @@ ShallowWrapper {
               },
               "ready": Promise {},
             },
+            "name": "ropsten",
             "provider": FallbackProvider {
               "_balances": Object {},
               "_emitted": Object {
@@ -24106,6 +24260,27 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <NahmiiDeposit
     currentNetwork={
         Object {
+            "apiDomain": "api2.dev.hubii.net",
+            "defaultNahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
             "nahmiiProvider": NahmiiProvider {
@@ -24128,6 +24303,7 @@ ShallowWrapper {
               },
               "ready": Promise {},
             },
+            "name": "ropsten",
             "provider": FallbackProvider {
               "_balances": Object {},
               "_emitted": Object {
@@ -24724,6 +24900,27 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <NahmiiDeposit
     currentNetwork={
         Object {
+            "apiDomain": "api2.dev.hubii.net",
+            "defaultNahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
             "nahmiiProvider": NahmiiProvider {
@@ -24746,6 +24943,7 @@ ShallowWrapper {
               },
               "ready": Promise {},
             },
+            "name": "ropsten",
             "provider": FallbackProvider {
               "_balances": Object {},
               "_emitted": Object {
@@ -25319,6 +25517,27 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <NahmiiDeposit
     currentNetwork={
         Object {
+            "apiDomain": "api2.dev.hubii.net",
+            "defaultNahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
             "nahmiiProvider": NahmiiProvider {
@@ -25341,6 +25560,7 @@ ShallowWrapper {
               },
               "ready": Promise {},
             },
+            "name": "ropsten",
             "provider": FallbackProvider {
               "_balances": Object {},
               "_emitted": Object {
@@ -25942,6 +26162,27 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <NahmiiDeposit
     currentNetwork={
         Object {
+            "apiDomain": "api2.dev.hubii.net",
+            "defaultNahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
             "nahmiiProvider": NahmiiProvider {
@@ -25964,6 +26205,7 @@ ShallowWrapper {
               },
               "ready": Promise {},
             },
+            "name": "ropsten",
             "provider": FallbackProvider {
               "_balances": Object {},
               "_emitted": Object {

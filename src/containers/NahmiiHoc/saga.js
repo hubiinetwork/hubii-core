@@ -463,7 +463,7 @@ export function* challengeStatusOrcestrator() {
 }
 
 export default function* listen() {
-  yield takeEvery(INIT_NETWORK_ACTIVITY, challengeStatusOrcestrator);
+  yield takeLatest(INIT_NETWORK_ACTIVITY, challengeStatusOrcestrator);
   yield takeLatest(NAHMII_DEPOSIT, deposit);
   yield takeLatest(NAHMII_DEPOSIT_ETH, depositEth);
   yield takeLatest(NAHMII_APPROVE_TOKEN_DEPOSIT, approveTokenDeposit);
