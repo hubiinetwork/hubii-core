@@ -98,7 +98,7 @@ export const OuterWrapper = styled.div`
 
 export const DynamicOuterWrapper = OuterWrapper.extend.attrs({
   style: (props) => ({
-    paddingBottom: props.folded ? '0.8rem' : '1.29rem',
+    height: props.folded ? '4.5rem' : 'fit-content',
   }),
 })``;
 
