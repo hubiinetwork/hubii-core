@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable';
+import { findWalletIndex } from 'utils/wallet';
 
 import {
   makeNahmiiPayment,
@@ -23,6 +24,7 @@ import {
   lockWallet,
   transferSuccess,
   dragWallet,
+  toggleFoldWallet,
 } from '../actions';
 import { DRAG_WALLET } from '../constants';
 
@@ -81,6 +83,30 @@ describe('walletHocReducer', () => {
         mockState,
         { type: DRAG_WALLET, newWallets: [] }
       )).toThrowError('Invalid DRAG_WALLET action payload');
+    });
+  });
+
+  describe('toggle collapsing for wallet cards', () => {
+    const wallets = fromJS([{ name: '1', address: '0x1' }, { name: '2', address: '0x2' }]);
+    it('should fold the wallet card', () => {
+      const address = '0x2';
+      const mockState = state.set('wallets', wallets);
+      const expected = mockState.setIn(['wallets', findWalletIndex(mockState, address), 'folded'], true);
+      expect(walletHocReducer(
+        mockState,
+        toggleFoldWallet(address)
+      )).toEqual(expected);
+    });
+
+    it('should unfold the wallet card', () => {
+      const address = '0x1';
+      let mockState = state.set('wallets', wallets);
+      mockState = mockState.setIn(['wallets', findWalletIndex(mockState, address), 'folded'], true);
+      const expected = mockState.setIn(['wallets', findWalletIndex(mockState, address), 'folded'], false);
+      expect(walletHocReducer(
+        mockState,
+        toggleFoldWallet(address)
+      )).toEqual(expected);
     });
   });
 

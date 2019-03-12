@@ -34,3 +34,4 @@ export const TRANSFER_SUCCESS = 'src/WalletHoc/TRANSFER_SUCCESS';
 export const TRANSFER_ERROR = 'src/WalletHoc/TRANSFER_ERROR';
 
 export const DRAG_WALLET = 'src/WalletHoc/DRAG_WALLET';
+export const TOGGLE_FOLD_WALLET = 'src/WalletHoc/TOGGLE_FOLD_WALLET';

@@ -83,6 +83,7 @@ ShallowWrapper {
             ],
         }
     }
+    toggleFoldWallet={[Function]}
     totalBalances={
         Immutable.Map {
             baseLayer: Immutable.Map {
@@ -887,6 +888,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                 Immutable.Map {
@@ -1582,6 +1584,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                     Immutable.Map {
@@ -2277,6 +2280,7 @@ ShallowWrapper {
                 distance={5}
                 getHelperDimensions={[Function]}
                 handleCardClick={[Function]}
+                handleToggleFold={[Function]}
                 hideSortableGhost={true}
                 ledgerNanoSInfo={
                                 Immutable.Map {
@@ -2971,6 +2975,7 @@ ShallowWrapper {
                 "distance": 5,
                 "getHelperDimensions": [Function],
                 "handleCardClick": [Function],
+                "handleToggleFold": [Function],
                 "hideSortableGhost": true,
                 "ledgerNanoSInfo": Immutable.Map {
                   connected: false,
@@ -3683,6 +3688,7 @@ ShallowWrapper {
                               distance={5}
                               getHelperDimensions={[Function]}
                               handleCardClick={[Function]}
+                              handleToggleFold={[Function]}
                               hideSortableGhost={true}
                               ledgerNanoSInfo={
                                         Immutable.Map {
@@ -4378,6 +4384,7 @@ ShallowWrapper {
                             distance={5}
                             getHelperDimensions={[Function]}
                             handleCardClick={[Function]}
+                            handleToggleFold={[Function]}
                             hideSortableGhost={true}
                             ledgerNanoSInfo={
                                           Immutable.Map {
@@ -5073,6 +5080,7 @@ ShallowWrapper {
                   distance={5}
                   getHelperDimensions={[Function]}
                   handleCardClick={[Function]}
+                  handleToggleFold={[Function]}
                   hideSortableGhost={true}
                   ledgerNanoSInfo={
                                     Immutable.Map {
@@ -5767,6 +5775,7 @@ ShallowWrapper {
                   "distance": 5,
                   "getHelperDimensions": [Function],
                   "handleCardClick": [Function],
+                  "handleToggleFold": [Function],
                   "hideSortableGhost": true,
                   "ledgerNanoSInfo": Immutable.Map {
                     connected: false,
@@ -6545,6 +6554,7 @@ ShallowWrapper {
             ],
         }
     }
+    toggleFoldWallet={[Function]}
     totalBalances={
         Immutable.Map {
             baseLayer: Immutable.Map {
@@ -7349,6 +7359,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                 Immutable.Map {
@@ -8044,6 +8055,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                     Immutable.Map {
@@ -8739,6 +8751,7 @@ ShallowWrapper {
                 distance={5}
                 getHelperDimensions={[Function]}
                 handleCardClick={[Function]}
+                handleToggleFold={[Function]}
                 hideSortableGhost={true}
                 ledgerNanoSInfo={
                                 Immutable.Map {
@@ -9433,6 +9446,7 @@ ShallowWrapper {
                 "distance": 5,
                 "getHelperDimensions": [Function],
                 "handleCardClick": [Function],
+                "handleToggleFold": [Function],
                 "hideSortableGhost": true,
                 "ledgerNanoSInfo": Immutable.Map {
                   connected: false,
@@ -10145,6 +10159,7 @@ ShallowWrapper {
                               distance={5}
                               getHelperDimensions={[Function]}
                               handleCardClick={[Function]}
+                              handleToggleFold={[Function]}
                               hideSortableGhost={true}
                               ledgerNanoSInfo={
                                         Immutable.Map {
@@ -10840,6 +10855,7 @@ ShallowWrapper {
                             distance={5}
                             getHelperDimensions={[Function]}
                             handleCardClick={[Function]}
+                            handleToggleFold={[Function]}
                             hideSortableGhost={true}
                             ledgerNanoSInfo={
                                           Immutable.Map {
@@ -11535,6 +11551,7 @@ ShallowWrapper {
                   distance={5}
                   getHelperDimensions={[Function]}
                   handleCardClick={[Function]}
+                  handleToggleFold={[Function]}
                   hideSortableGhost={true}
                   ledgerNanoSInfo={
                                     Immutable.Map {
@@ -12229,6 +12246,7 @@ ShallowWrapper {
                   "distance": 5,
                   "getHelperDimensions": [Function],
                   "handleCardClick": [Function],
+                  "handleToggleFold": [Function],
                   "hideSortableGhost": true,
                   "ledgerNanoSInfo": Immutable.Map {
                     connected: false,
@@ -13043,6 +13061,7 @@ ShallowWrapper {
             ],
         }
     }
+    toggleFoldWallet={[Function]}
     totalBalances={
         Immutable.Map {
             baseLayer: Immutable.Map {
@@ -15265,6 +15284,7 @@ ShallowWrapper {
             ],
         }
     }
+    toggleFoldWallet={[Function]}
     totalBalances={
         Immutable.Map {
             baseLayer: Immutable.Map {
@@ -17487,6 +17507,7 @@ ShallowWrapper {
             ],
         }
     }
+    toggleFoldWallet={[Function]}
     totalBalances={
         Immutable.Map {
             baseLayer: Immutable.Map {
@@ -18291,6 +18312,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                 Immutable.Map {
@@ -19150,6 +19172,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                     Immutable.Map {
@@ -20009,6 +20032,7 @@ ShallowWrapper {
                 distance={5}
                 getHelperDimensions={[Function]}
                 handleCardClick={[Function]}
+                handleToggleFold={[Function]}
                 hideSortableGhost={true}
                 ledgerNanoSInfo={
                                 Immutable.Map {
@@ -20703,6 +20727,7 @@ ShallowWrapper {
                 "distance": 5,
                 "getHelperDimensions": [Function],
                 "handleCardClick": [Function],
+                "handleToggleFold": [Function],
                 "hideSortableGhost": true,
                 "ledgerNanoSInfo": Immutable.Map {
                   connected: false,
@@ -21923,6 +21948,7 @@ ShallowWrapper {
                               distance={5}
                               getHelperDimensions={[Function]}
                               handleCardClick={[Function]}
+                              handleToggleFold={[Function]}
                               hideSortableGhost={true}
                               ledgerNanoSInfo={
                                         Immutable.Map {
@@ -22782,6 +22808,7 @@ ShallowWrapper {
                             distance={5}
                             getHelperDimensions={[Function]}
                             handleCardClick={[Function]}
+                            handleToggleFold={[Function]}
                             hideSortableGhost={true}
                             ledgerNanoSInfo={
                                           Immutable.Map {
@@ -23641,6 +23668,7 @@ ShallowWrapper {
                   distance={5}
                   getHelperDimensions={[Function]}
                   handleCardClick={[Function]}
+                  handleToggleFold={[Function]}
                   hideSortableGhost={true}
                   ledgerNanoSInfo={
                                     Immutable.Map {
@@ -24335,6 +24363,7 @@ ShallowWrapper {
                   "distance": 5,
                   "getHelperDimensions": [Function],
                   "handleCardClick": [Function],
+                  "handleToggleFold": [Function],
                   "hideSortableGhost": true,
                   "ledgerNanoSInfo": Immutable.Map {
                     connected: false,
@@ -25657,6 +25686,7 @@ ShallowWrapper {
             ],
         }
     }
+    toggleFoldWallet={[Function]}
     totalBalances={
         Immutable.Map {
             baseLayer: Immutable.Map {
@@ -26407,6 +26437,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                 Immutable.Map {
@@ -27212,6 +27243,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                     Immutable.Map {
@@ -28017,6 +28049,7 @@ ShallowWrapper {
                 distance={5}
                 getHelperDimensions={[Function]}
                 handleCardClick={[Function]}
+                handleToggleFold={[Function]}
                 hideSortableGhost={true}
                 ledgerNanoSInfo={
                                 Immutable.Map {
@@ -28711,6 +28744,7 @@ ShallowWrapper {
                 "distance": 5,
                 "getHelperDimensions": [Function],
                 "handleCardClick": [Function],
+                "handleToggleFold": [Function],
                 "hideSortableGhost": true,
                 "ledgerNanoSInfo": Immutable.Map {
                   connected: false,
@@ -29769,6 +29803,7 @@ ShallowWrapper {
                               distance={5}
                               getHelperDimensions={[Function]}
                               handleCardClick={[Function]}
+                              handleToggleFold={[Function]}
                               hideSortableGhost={true}
                               ledgerNanoSInfo={
                                         Immutable.Map {
@@ -30574,6 +30609,7 @@ ShallowWrapper {
                             distance={5}
                             getHelperDimensions={[Function]}
                             handleCardClick={[Function]}
+                            handleToggleFold={[Function]}
                             hideSortableGhost={true}
                             ledgerNanoSInfo={
                                           Immutable.Map {
@@ -31379,6 +31415,7 @@ ShallowWrapper {
                   distance={5}
                   getHelperDimensions={[Function]}
                   handleCardClick={[Function]}
+                  handleToggleFold={[Function]}
                   hideSortableGhost={true}
                   ledgerNanoSInfo={
                                     Immutable.Map {
@@ -32073,6 +32110,7 @@ ShallowWrapper {
                   "distance": 5,
                   "getHelperDimensions": [Function],
                   "handleCardClick": [Function],
+                  "handleToggleFold": [Function],
                   "hideSortableGhost": true,
                   "ledgerNanoSInfo": Immutable.Map {
                     connected: false,
@@ -33233,6 +33271,7 @@ ShallowWrapper {
             ],
         }
     }
+    toggleFoldWallet={[Function]}
     totalBalances={
         Immutable.Map {
             baseLayer: Immutable.Map {
@@ -33983,6 +34022,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                 Immutable.Map {
@@ -34788,6 +34828,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                     Immutable.Map {
@@ -35593,6 +35634,7 @@ ShallowWrapper {
                 distance={5}
                 getHelperDimensions={[Function]}
                 handleCardClick={[Function]}
+                handleToggleFold={[Function]}
                 hideSortableGhost={true}
                 ledgerNanoSInfo={
                                 Immutable.Map {
@@ -36287,6 +36329,7 @@ ShallowWrapper {
                 "distance": 5,
                 "getHelperDimensions": [Function],
                 "handleCardClick": [Function],
+                "handleToggleFold": [Function],
                 "hideSortableGhost": true,
                 "ledgerNanoSInfo": Immutable.Map {
                   connected: false,
@@ -37345,6 +37388,7 @@ ShallowWrapper {
                               distance={5}
                               getHelperDimensions={[Function]}
                               handleCardClick={[Function]}
+                              handleToggleFold={[Function]}
                               hideSortableGhost={true}
                               ledgerNanoSInfo={
                                         Immutable.Map {
@@ -38150,6 +38194,7 @@ ShallowWrapper {
                             distance={5}
                             getHelperDimensions={[Function]}
                             handleCardClick={[Function]}
+                            handleToggleFold={[Function]}
                             hideSortableGhost={true}
                             ledgerNanoSInfo={
                                           Immutable.Map {
@@ -38955,6 +39000,7 @@ ShallowWrapper {
                   distance={5}
                   getHelperDimensions={[Function]}
                   handleCardClick={[Function]}
+                  handleToggleFold={[Function]}
                   hideSortableGhost={true}
                   ledgerNanoSInfo={
                                     Immutable.Map {
@@ -39649,6 +39695,7 @@ ShallowWrapper {
                   "distance": 5,
                   "getHelperDimensions": [Function],
                   "handleCardClick": [Function],
+                  "handleToggleFold": [Function],
                   "hideSortableGhost": true,
                   "ledgerNanoSInfo": Immutable.Map {
                     connected: false,
