@@ -81,10 +81,6 @@ export const OuterWrapper = styled.div`
   flex-direction: column;
   flex: 1;
   padding: 1.29rem 1.71rem;
-  padding-top: 1.29rem;
-  padding-bottom: 1.29rem;
-  padding-right: 1.71rem;
-  padding-left: 1.71rem;
   background-color: ${({ theme }) => theme.palette.primary4};
   color: white;
   cursor: pointer;
