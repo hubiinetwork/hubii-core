@@ -6,6 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Tooltip } from 'antd';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -14,6 +15,7 @@ import { injectIntl } from 'react-intl';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
+import { makeSelectBlockHeight } from 'containers/EthOperationsHoc/selectors';
 import { makeSelectErrors } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -25,7 +27,7 @@ import {
 
 export class ConnectionStatus extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { errors, currentNetwork, intl } = this.props;
+    const { errors, currentNetwork, blockHeight, intl } = this.props;
     const { formatMessage } = intl;
     const connectionIssue = errors.size > 0;
     const connectionStatus = {
@@ -41,8 +43,10 @@ export class ConnectionStatus extends React.Component { // eslint-disable-line r
     return (
       <Wrapper>
         <span>
-          <StyledText style={{ fontWeight: 'bold' }}>{formatMessage({ id: 'network' })}:</StyledText>&nbsp;
-          <StyledText warning={chainId !== 1}>{networkText}</StyledText>
+          <Tooltip title={`${formatMessage({ id: 'block_height' })}: ${blockHeight.get('height')}`}>
+            <StyledText style={{ fontWeight: 'bold' }}>{formatMessage({ id: 'network' })}:</StyledText>&nbsp;
+            <StyledText warning={chainId !== 1}>{networkText}</StyledText>
+          </Tooltip>
         </span>
         <span style={{ display: 'flex', alignItems: 'center' }}>
           <StyledText style={{ fontWeight: 'bold' }}>{formatMessage({ id: 'status' })}:</StyledText>&nbsp;
@@ -57,12 +61,14 @@ export class ConnectionStatus extends React.Component { // eslint-disable-line r
 ConnectionStatus.propTypes = {
   errors: PropTypes.object.isRequired,
   currentNetwork: PropTypes.object.isRequired,
+  blockHeight: PropTypes.object.isRequired,
   intl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   errors: makeSelectErrors(),
   currentNetwork: makeSelectCurrentNetwork(),
+  blockHeight: makeSelectBlockHeight(),
 });
 
 function mapDispatchToProps(dispatch) {

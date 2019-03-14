@@ -214,6 +214,7 @@
     "testnet": "Testnet",
     "network": "Network",
     "status": "Status",
+    "block_height": "Block height",
     "reconnecting": "Reconnecting...",
     "connected": "Connected",
     "missing_price": "Missing price",

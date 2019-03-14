@@ -215,6 +215,7 @@
     "testnet": "Testnet",
     "network": "网络",
     "status": "状态",
+    "block_height": "区块数",
     "reconnecting": "连接中...",
     "connected": "已连接",
     "missing_price": "找不到价格",

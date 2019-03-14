@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Set } from 'immutable';
+import { Set, fromJS } from 'immutable';
 import { intl } from 'jest/__mocks__/react-intl';
 
 import { ConnectionStatus } from '../index';
@@ -10,6 +10,7 @@ describe('<ConnectionStatus />', () => {
   beforeEach(() => {
     props = {
       currentNetwork: { provider: { _network: { chainId: 1 } } },
+      blockHeight: fromJS({ height: 1 }),
       errors: new Set(),
       intl,
     };
