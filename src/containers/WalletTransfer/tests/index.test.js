@@ -43,6 +43,7 @@ describe('WalletTransfer', () => {
     supportedAssets: supportedAssetsLoadedMock,
     currentWalletWithInfo: walletsWithInfoMock.get(0),
     contacts: contactsMock,
+    wallets: walletsMock,
     nahmiiTransfer: () => {},
     baseLayerTransfer: () => {},
     history: {},
