@@ -1,6 +1,7 @@
 import {
   all,
   takeEvery,
+  takeLatest,
   fork,
   put,
   call,
@@ -235,6 +236,6 @@ export function* networkApiOrcestrator() {
 
 // Root watcher
 export default function* watch() {
-  yield takeEvery(INIT_NETWORK_ACTIVITY, networkApiOrcestrator);
+  yield takeLatest(INIT_NETWORK_ACTIVITY, networkApiOrcestrator);
   yield takeEvery(LOAD_WALLET_BALANCES, loadWalletBalances);
 }

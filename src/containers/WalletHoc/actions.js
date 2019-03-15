@@ -27,6 +27,7 @@ import {
   DELETE_WALLET,
   LOCK_WALLET,
   DRAG_WALLET,
+  TOGGLE_FOLD_WALLET,
 } from './constants';
 
 export function lockWallet(address) {
@@ -232,5 +233,12 @@ export function dragWallet({ oldIndex, newIndex, wallets }) {
   return {
     type: DRAG_WALLET,
     newWallets: arrayMove(wallets.toJS(), oldIndex, newIndex),
+  };
+}
+
+export function toggleFoldWallet(address) {
+  return {
+    type: TOGGLE_FOLD_WALLET,
+    address,
   };
 }

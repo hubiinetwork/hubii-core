@@ -17,7 +17,6 @@ export const IconsWrapper = styled.div`
   justify-content: space-between;
   position: absolute;
   right: 0;
-  margin-right: 1.65rem;
   margin-top: 1.29rem;
   margin-bottom: 1.29rem;
 `;
@@ -81,7 +80,6 @@ export const OuterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-height: 8.57rem;
   padding: 1.29rem 1.71rem;
   background-color: ${({ theme }) => theme.palette.primary4};
   color: white;
@@ -93,6 +91,12 @@ export const OuterWrapper = styled.div`
     background-color: ${({ theme }) => theme.palette.primary2};
   }
 `;
+
+export const DynamicOuterWrapper = OuterWrapper.extend.attrs({
+  style: (props) => ({
+    height: props.folded ? '4.5rem' : 'fit-content',
+  }),
+})``;
 
 export const RightSideTopWrapper = styled.div`
   display: flex;
@@ -146,4 +150,19 @@ export const QuickAddressIcon = styled(Button).attrs({
 })`
   transform: scale(0.85);
   word-break: break-word;
+`;
+
+export const ToggleExpandedArrow = styled(Icon).attrs({
+  type: 'down',
+  style: ({ expanded }) => ({
+    transform: `rotate(${expanded * 180}deg)`,
+  }),
+})`
+  margin-right: 0.5rem;
+  margin-left: 0.3rem;
+  padding-top: 0.3rem;
+  color: ${({ theme }) => theme.palette.info};
+  &:hover {
+    cursor: pointer;
+  }
 `;

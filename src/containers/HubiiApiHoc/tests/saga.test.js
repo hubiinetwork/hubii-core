@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import { delay } from 'redux-saga';
 import { requestWalletAPI } from 'utils/request';
-import { call, fork, takeEvery, take } from 'redux-saga/effects';
+import { call, fork, takeLatest, take } from 'redux-saga/effects';
 import { createMockTask } from 'redux-saga/utils';
 
 import { CHANGE_NETWORK, INIT_NETWORK_ACTIVITY } from 'containers/App/constants';
@@ -311,7 +311,7 @@ describe('hubiiApi saga', () => {
     const hubiiApiHocSaga = hubiiApiHoc();
     it('should start task to watch for INIT_API_CALLS action', () => {
       const takeDescriptor = hubiiApiHocSaga.next().value;
-      expect(takeDescriptor).toEqual(takeEvery(INIT_NETWORK_ACTIVITY, networkApiOrcestrator));
+      expect(takeDescriptor).toEqual(takeLatest(INIT_NETWORK_ACTIVITY, networkApiOrcestrator));
     });
   });
 });

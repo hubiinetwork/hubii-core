@@ -12,7 +12,7 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import { initNetworkActivity } from 'containers/App/actions';
+import { initNahmiiProviders } from 'containers/App/actions';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -20,7 +20,7 @@ function withHubiiApi(WrappedComponent) {
   class HubiiApiHoc extends React.Component { // eslint-disable-line react/prefer-stateless-function
     constructor(props) {
       super(props);
-      this.props.initNetworkActivity();
+      this.props.initNahmiiProviders();
     }
     render() {
       return (
@@ -32,7 +32,7 @@ function withHubiiApi(WrappedComponent) {
   }
 
   HubiiApiHoc.propTypes = {
-    initNetworkActivity: PropTypes.func.isRequired,
+    initNahmiiProviders: PropTypes.func.isRequired,
   };
 
   const mapStateToProps = createStructuredSelector({});
@@ -40,7 +40,7 @@ function withHubiiApi(WrappedComponent) {
   function mapDispatchToProps(dispatch) {
     return {
       dispatch,
-      initNetworkActivity: () => dispatch(initNetworkActivity()),
+      initNahmiiProviders: () => dispatch(initNahmiiProviders()),
     };
   }
 

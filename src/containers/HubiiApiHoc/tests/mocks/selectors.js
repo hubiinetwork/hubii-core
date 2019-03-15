@@ -40,8 +40,6 @@ export const transactionsWithInfoMock = transactionsMock.setIn(
       symbol: 'ETH',
       recipient: '0x1c7429f62595097315289ceBaC1fDbdA587Ad512',
       type: 'received',
-      fiatValue: '0.0000000412',
-      confirmations: '3',
     },
     {
       decimalAmount: '0.000000000000000005',
@@ -60,8 +58,6 @@ export const transactionsWithInfoMock = transactionsMock.setIn(
       symbol: 'BOKKY',
       recipient: '0x910c4ba923b2243dc13e00a066eefb8ffd905eb0',
       type: 'sent',
-      fiatValue: '0.000000000000000005',
-      confirmations: '5',
     },
   ])
 );

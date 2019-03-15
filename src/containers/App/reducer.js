@@ -13,6 +13,8 @@ import {
 
 import {
   CHANGE_NETWORK,
+  UPDATE_NAHMII_PROVIDER,
+  UPDATE_CURRENT_NETWORK_NAHMII_PROVIDER,
 } from './constants';
 
 export const initialState = fromJS({
@@ -30,10 +32,16 @@ function appReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_NETWORK:
       return state
-        .set('currentNetwork', fromJS(action.network));
+        .set('currentNetwork', state.get('supportedNetworks').get(action.name));
     case LOAD_IDENTITY_SERVICE_TOKEN_SUCCESS:
       return state
         .setIn(['currentNetwork', 'identityServiceToken'], fromJS(action.token));
+    case UPDATE_NAHMII_PROVIDER:
+      return state
+        .setIn(['supportedNetworks', action.networkName, 'nahmiiProvider'], fromJS(action.nahmiiProvider));
+    case UPDATE_CURRENT_NETWORK_NAHMII_PROVIDER:
+      return state
+        .setIn(['currentNetwork', 'nahmiiProvider'], action.nahmiiProvider);
     default:
       return state;
   }

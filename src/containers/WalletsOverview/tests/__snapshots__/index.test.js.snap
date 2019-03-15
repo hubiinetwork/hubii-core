@@ -83,6 +83,7 @@ ShallowWrapper {
             ],
         }
     }
+    toggleFoldWallet={[Function]}
     totalBalances={
         Immutable.Map {
             baseLayer: Immutable.Map {
@@ -325,7 +326,6 @@ ShallowWrapper {
                             type: "received",
                             updated: "2018-12-17T01:59:03.776Z",
                             id: "5c1702e78d9ea3000ea459d9",
-                            fiatValue: "0.000000869732",
                             operatorId: "0",
                             confirmed: true,
                         },
@@ -345,8 +345,6 @@ ShallowWrapper {
                             symbol: "ETH",
                             recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                             type: "received",
-                            fiatValue: "0.0000000412",
-                            confirmations: "3",
                         },
                         Immutable.Map {
                             transfers: Immutable.Map {
@@ -425,7 +423,6 @@ ShallowWrapper {
                             type: "sent",
                             updated: "2018-11-16T22:40:55.049Z",
                             id: "5c16d4768d9ea3000ea45690",
-                            fiatValue: "0.01",
                             operatorId: "0",
                             confirmed: true,
                         },
@@ -445,8 +442,6 @@ ShallowWrapper {
                             symbol: "BOKKY",
                             recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                             type: "sent",
-                            fiatValue: "0.000000000000000005",
-                            confirmations: "5",
                         },
                     ],
                 },
@@ -893,6 +888,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                 Immutable.Map {
@@ -1142,7 +1138,6 @@ ShallowWrapper {
                                                 "created": "2018-12-17T01:59:03.718Z",
                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                 "decimalAmount": "0.000000002111",
-                                                "fiatValue": "0.000000869732",
                                                 "id": "5c1702e78d9ea3000ea459d9",
                                                 "layer": "nahmii",
                                                 "nonce": 21,
@@ -1220,11 +1215,9 @@ ShallowWrapper {
                                                   "number": 3780091,
                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                 },
-                                                "confirmations": "3",
                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                 "decimalAmount": "0.0000000001",
-                                                "fiatValue": "0.0000000412",
                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                 "layer": "baseLayer",
                                                 "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -1241,7 +1234,6 @@ ShallowWrapper {
                                                 "created": "2018-11-16T22:40:54.951Z",
                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                 "decimalAmount": "0.01",
-                                                "fiatValue": "0.01",
                                                 "id": "5c16d4768d9ea3000ea45690",
                                                 "layer": "nahmii",
                                                 "nonce": 18,
@@ -1319,11 +1311,9 @@ ShallowWrapper {
                                                   "number": 3780089,
                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                 },
-                                                "confirmations": "5",
                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                 "decimalAmount": "0.000000000000000005",
-                                                "fiatValue": "0.000000000000000005",
                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                 "layer": "baseLayer",
                                                 "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -1594,6 +1584,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                     Immutable.Map {
@@ -1843,7 +1834,6 @@ ShallowWrapper {
                                                         "created": "2018-12-17T01:59:03.718Z",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.000000002111",
-                                                        "fiatValue": "0.000000869732",
                                                         "id": "5c1702e78d9ea3000ea459d9",
                                                         "layer": "nahmii",
                                                         "nonce": 21,
@@ -1921,11 +1911,9 @@ ShallowWrapper {
                                                           "number": 3780091,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "3",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.0000000001",
-                                                        "fiatValue": "0.0000000412",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -1942,7 +1930,6 @@ ShallowWrapper {
                                                         "created": "2018-11-16T22:40:54.951Z",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.01",
-                                                        "fiatValue": "0.01",
                                                         "id": "5c16d4768d9ea3000ea45690",
                                                         "layer": "nahmii",
                                                         "nonce": 18,
@@ -2020,11 +2007,9 @@ ShallowWrapper {
                                                           "number": 3780089,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "5",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.000000000000000005",
-                                                        "fiatValue": "0.000000000000000005",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -2295,6 +2280,7 @@ ShallowWrapper {
                 distance={5}
                 getHelperDimensions={[Function]}
                 handleCardClick={[Function]}
+                handleToggleFold={[Function]}
                 hideSortableGhost={true}
                 ledgerNanoSInfo={
                                 Immutable.Map {
@@ -2544,7 +2530,6 @@ ShallowWrapper {
                                                         "created": "2018-12-17T01:59:03.718Z",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.000000002111",
-                                                        "fiatValue": "0.000000869732",
                                                         "id": "5c1702e78d9ea3000ea459d9",
                                                         "layer": "nahmii",
                                                         "nonce": 21,
@@ -2622,11 +2607,9 @@ ShallowWrapper {
                                                           "number": 3780091,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "3",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.0000000001",
-                                                        "fiatValue": "0.0000000412",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -2643,7 +2626,6 @@ ShallowWrapper {
                                                         "created": "2018-11-16T22:40:54.951Z",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.01",
-                                                        "fiatValue": "0.01",
                                                         "id": "5c16d4768d9ea3000ea45690",
                                                         "layer": "nahmii",
                                                         "nonce": 18,
@@ -2721,11 +2703,9 @@ ShallowWrapper {
                                                           "number": 3780089,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "5",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.000000000000000005",
-                                                        "fiatValue": "0.000000000000000005",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -2995,6 +2975,7 @@ ShallowWrapper {
                 "distance": 5,
                 "getHelperDimensions": [Function],
                 "handleCardClick": [Function],
+                "handleToggleFold": [Function],
                 "hideSortableGhost": true,
                 "ledgerNanoSInfo": Immutable.Map {
                   connected: false,
@@ -3237,7 +3218,6 @@ ShallowWrapper {
                           "created": "2018-12-17T01:59:03.718Z",
                           "currency": "0x0000000000000000000000000000000000000000",
                           "decimalAmount": "0.000000002111",
-                          "fiatValue": "0.000000869732",
                           "id": "5c1702e78d9ea3000ea459d9",
                           "layer": "nahmii",
                           "nonce": 21,
@@ -3315,11 +3295,9 @@ ShallowWrapper {
                             "number": 3780091,
                             "timestamp": "2018-08-06T02:32:00.000Z",
                           },
-                          "confirmations": "3",
                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                           "currency": "0x0000000000000000000000000000000000000000",
                           "decimalAmount": "0.0000000001",
-                          "fiatValue": "0.0000000412",
                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                           "layer": "baseLayer",
                           "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -3336,7 +3314,6 @@ ShallowWrapper {
                           "created": "2018-11-16T22:40:54.951Z",
                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                           "decimalAmount": "0.01",
-                          "fiatValue": "0.01",
                           "id": "5c16d4768d9ea3000ea45690",
                           "layer": "nahmii",
                           "nonce": 18,
@@ -3414,11 +3391,9 @@ ShallowWrapper {
                             "number": 3780089,
                             "timestamp": "2018-08-06T02:32:00.000Z",
                           },
-                          "confirmations": "5",
                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                           "decimalAmount": "0.000000000000000005",
-                          "fiatValue": "0.000000000000000005",
                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                           "layer": "baseLayer",
                           "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -3713,6 +3688,7 @@ ShallowWrapper {
                               distance={5}
                               getHelperDimensions={[Function]}
                               handleCardClick={[Function]}
+                              handleToggleFold={[Function]}
                               hideSortableGhost={true}
                               ledgerNanoSInfo={
                                         Immutable.Map {
@@ -3962,7 +3938,6 @@ ShallowWrapper {
                                                           "created": "2018-12-17T01:59:03.718Z",
                                                           "currency": "0x0000000000000000000000000000000000000000",
                                                           "decimalAmount": "0.000000002111",
-                                                          "fiatValue": "0.000000869732",
                                                           "id": "5c1702e78d9ea3000ea459d9",
                                                           "layer": "nahmii",
                                                           "nonce": 21,
@@ -4040,11 +4015,9 @@ ShallowWrapper {
                                                             "number": 3780091,
                                                             "timestamp": "2018-08-06T02:32:00.000Z",
                                                           },
-                                                          "confirmations": "3",
                                                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                           "currency": "0x0000000000000000000000000000000000000000",
                                                           "decimalAmount": "0.0000000001",
-                                                          "fiatValue": "0.0000000412",
                                                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                           "layer": "baseLayer",
                                                           "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -4061,7 +4034,6 @@ ShallowWrapper {
                                                           "created": "2018-11-16T22:40:54.951Z",
                                                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                           "decimalAmount": "0.01",
-                                                          "fiatValue": "0.01",
                                                           "id": "5c16d4768d9ea3000ea45690",
                                                           "layer": "nahmii",
                                                           "nonce": 18,
@@ -4139,11 +4111,9 @@ ShallowWrapper {
                                                             "number": 3780089,
                                                             "timestamp": "2018-08-06T02:32:00.000Z",
                                                           },
-                                                          "confirmations": "5",
                                                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                           "decimalAmount": "0.000000000000000005",
-                                                          "fiatValue": "0.000000000000000005",
                                                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                           "layer": "baseLayer",
                                                           "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -4414,6 +4384,7 @@ ShallowWrapper {
                             distance={5}
                             getHelperDimensions={[Function]}
                             handleCardClick={[Function]}
+                            handleToggleFold={[Function]}
                             hideSortableGhost={true}
                             ledgerNanoSInfo={
                                           Immutable.Map {
@@ -4663,7 +4634,6 @@ ShallowWrapper {
                                                                 "created": "2018-12-17T01:59:03.718Z",
                                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                                 "decimalAmount": "0.000000002111",
-                                                                "fiatValue": "0.000000869732",
                                                                 "id": "5c1702e78d9ea3000ea459d9",
                                                                 "layer": "nahmii",
                                                                 "nonce": 21,
@@ -4741,11 +4711,9 @@ ShallowWrapper {
                                                                   "number": 3780091,
                                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                                 },
-                                                                "confirmations": "3",
                                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                                 "decimalAmount": "0.0000000001",
-                                                                "fiatValue": "0.0000000412",
                                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                                 "layer": "baseLayer",
                                                                 "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -4762,7 +4730,6 @@ ShallowWrapper {
                                                                 "created": "2018-11-16T22:40:54.951Z",
                                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                 "decimalAmount": "0.01",
-                                                                "fiatValue": "0.01",
                                                                 "id": "5c16d4768d9ea3000ea45690",
                                                                 "layer": "nahmii",
                                                                 "nonce": 18,
@@ -4840,11 +4807,9 @@ ShallowWrapper {
                                                                   "number": 3780089,
                                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                                 },
-                                                                "confirmations": "5",
                                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                 "decimalAmount": "0.000000000000000005",
-                                                                "fiatValue": "0.000000000000000005",
                                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                                 "layer": "baseLayer",
                                                                 "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -5115,6 +5080,7 @@ ShallowWrapper {
                   distance={5}
                   getHelperDimensions={[Function]}
                   handleCardClick={[Function]}
+                  handleToggleFold={[Function]}
                   hideSortableGhost={true}
                   ledgerNanoSInfo={
                                     Immutable.Map {
@@ -5364,7 +5330,6 @@ ShallowWrapper {
                                                               "created": "2018-12-17T01:59:03.718Z",
                                                               "currency": "0x0000000000000000000000000000000000000000",
                                                               "decimalAmount": "0.000000002111",
-                                                              "fiatValue": "0.000000869732",
                                                               "id": "5c1702e78d9ea3000ea459d9",
                                                               "layer": "nahmii",
                                                               "nonce": 21,
@@ -5442,11 +5407,9 @@ ShallowWrapper {
                                                                 "number": 3780091,
                                                                 "timestamp": "2018-08-06T02:32:00.000Z",
                                                               },
-                                                              "confirmations": "3",
                                                               "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                               "currency": "0x0000000000000000000000000000000000000000",
                                                               "decimalAmount": "0.0000000001",
-                                                              "fiatValue": "0.0000000412",
                                                               "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                               "layer": "baseLayer",
                                                               "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -5463,7 +5426,6 @@ ShallowWrapper {
                                                               "created": "2018-11-16T22:40:54.951Z",
                                                               "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                               "decimalAmount": "0.01",
-                                                              "fiatValue": "0.01",
                                                               "id": "5c16d4768d9ea3000ea45690",
                                                               "layer": "nahmii",
                                                               "nonce": 18,
@@ -5541,11 +5503,9 @@ ShallowWrapper {
                                                                 "number": 3780089,
                                                                 "timestamp": "2018-08-06T02:32:00.000Z",
                                                               },
-                                                              "confirmations": "5",
                                                               "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                               "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                               "decimalAmount": "0.000000000000000005",
-                                                              "fiatValue": "0.000000000000000005",
                                                               "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                               "layer": "baseLayer",
                                                               "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -5815,6 +5775,7 @@ ShallowWrapper {
                   "distance": 5,
                   "getHelperDimensions": [Function],
                   "handleCardClick": [Function],
+                  "handleToggleFold": [Function],
                   "hideSortableGhost": true,
                   "ledgerNanoSInfo": Immutable.Map {
                     connected: false,
@@ -6057,7 +6018,6 @@ ShallowWrapper {
                             "created": "2018-12-17T01:59:03.718Z",
                             "currency": "0x0000000000000000000000000000000000000000",
                             "decimalAmount": "0.000000002111",
-                            "fiatValue": "0.000000869732",
                             "id": "5c1702e78d9ea3000ea459d9",
                             "layer": "nahmii",
                             "nonce": 21,
@@ -6135,11 +6095,9 @@ ShallowWrapper {
                               "number": 3780091,
                               "timestamp": "2018-08-06T02:32:00.000Z",
                             },
-                            "confirmations": "3",
                             "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                             "currency": "0x0000000000000000000000000000000000000000",
                             "decimalAmount": "0.0000000001",
-                            "fiatValue": "0.0000000412",
                             "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                             "layer": "baseLayer",
                             "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -6156,7 +6114,6 @@ ShallowWrapper {
                             "created": "2018-11-16T22:40:54.951Z",
                             "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                             "decimalAmount": "0.01",
-                            "fiatValue": "0.01",
                             "id": "5c16d4768d9ea3000ea45690",
                             "layer": "nahmii",
                             "nonce": 18,
@@ -6234,11 +6191,9 @@ ShallowWrapper {
                               "number": 3780089,
                               "timestamp": "2018-08-06T02:32:00.000Z",
                             },
-                            "confirmations": "5",
                             "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                             "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                             "decimalAmount": "0.000000000000000005",
-                            "fiatValue": "0.000000000000000005",
                             "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                             "layer": "baseLayer",
                             "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -6599,6 +6554,7 @@ ShallowWrapper {
             ],
         }
     }
+    toggleFoldWallet={[Function]}
     totalBalances={
         Immutable.Map {
             baseLayer: Immutable.Map {
@@ -6841,7 +6797,6 @@ ShallowWrapper {
                             type: "received",
                             updated: "2018-12-17T01:59:03.776Z",
                             id: "5c1702e78d9ea3000ea459d9",
-                            fiatValue: "0.000000869732",
                             operatorId: "0",
                             confirmed: true,
                         },
@@ -6861,8 +6816,6 @@ ShallowWrapper {
                             symbol: "ETH",
                             recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                             type: "received",
-                            fiatValue: "0.0000000412",
-                            confirmations: "3",
                         },
                         Immutable.Map {
                             transfers: Immutable.Map {
@@ -6941,7 +6894,6 @@ ShallowWrapper {
                             type: "sent",
                             updated: "2018-11-16T22:40:55.049Z",
                             id: "5c16d4768d9ea3000ea45690",
-                            fiatValue: "0.01",
                             operatorId: "0",
                             confirmed: true,
                         },
@@ -6961,8 +6913,6 @@ ShallowWrapper {
                             symbol: "BOKKY",
                             recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                             type: "sent",
-                            fiatValue: "0.000000000000000005",
-                            confirmations: "5",
                         },
                     ],
                 },
@@ -7409,6 +7359,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                 Immutable.Map {
@@ -7658,7 +7609,6 @@ ShallowWrapper {
                                                 "created": "2018-12-17T01:59:03.718Z",
                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                 "decimalAmount": "0.000000002111",
-                                                "fiatValue": "0.000000869732",
                                                 "id": "5c1702e78d9ea3000ea459d9",
                                                 "layer": "nahmii",
                                                 "nonce": 21,
@@ -7736,11 +7686,9 @@ ShallowWrapper {
                                                   "number": 3780091,
                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                 },
-                                                "confirmations": "3",
                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                 "decimalAmount": "0.0000000001",
-                                                "fiatValue": "0.0000000412",
                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                 "layer": "baseLayer",
                                                 "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -7757,7 +7705,6 @@ ShallowWrapper {
                                                 "created": "2018-11-16T22:40:54.951Z",
                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                 "decimalAmount": "0.01",
-                                                "fiatValue": "0.01",
                                                 "id": "5c16d4768d9ea3000ea45690",
                                                 "layer": "nahmii",
                                                 "nonce": 18,
@@ -7835,11 +7782,9 @@ ShallowWrapper {
                                                   "number": 3780089,
                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                 },
-                                                "confirmations": "5",
                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                 "decimalAmount": "0.000000000000000005",
-                                                "fiatValue": "0.000000000000000005",
                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                 "layer": "baseLayer",
                                                 "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -8110,6 +8055,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                     Immutable.Map {
@@ -8359,7 +8305,6 @@ ShallowWrapper {
                                                         "created": "2018-12-17T01:59:03.718Z",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.000000002111",
-                                                        "fiatValue": "0.000000869732",
                                                         "id": "5c1702e78d9ea3000ea459d9",
                                                         "layer": "nahmii",
                                                         "nonce": 21,
@@ -8437,11 +8382,9 @@ ShallowWrapper {
                                                           "number": 3780091,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "3",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.0000000001",
-                                                        "fiatValue": "0.0000000412",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -8458,7 +8401,6 @@ ShallowWrapper {
                                                         "created": "2018-11-16T22:40:54.951Z",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.01",
-                                                        "fiatValue": "0.01",
                                                         "id": "5c16d4768d9ea3000ea45690",
                                                         "layer": "nahmii",
                                                         "nonce": 18,
@@ -8536,11 +8478,9 @@ ShallowWrapper {
                                                           "number": 3780089,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "5",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.000000000000000005",
-                                                        "fiatValue": "0.000000000000000005",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -8811,6 +8751,7 @@ ShallowWrapper {
                 distance={5}
                 getHelperDimensions={[Function]}
                 handleCardClick={[Function]}
+                handleToggleFold={[Function]}
                 hideSortableGhost={true}
                 ledgerNanoSInfo={
                                 Immutable.Map {
@@ -9060,7 +9001,6 @@ ShallowWrapper {
                                                         "created": "2018-12-17T01:59:03.718Z",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.000000002111",
-                                                        "fiatValue": "0.000000869732",
                                                         "id": "5c1702e78d9ea3000ea459d9",
                                                         "layer": "nahmii",
                                                         "nonce": 21,
@@ -9138,11 +9078,9 @@ ShallowWrapper {
                                                           "number": 3780091,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "3",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.0000000001",
-                                                        "fiatValue": "0.0000000412",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -9159,7 +9097,6 @@ ShallowWrapper {
                                                         "created": "2018-11-16T22:40:54.951Z",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.01",
-                                                        "fiatValue": "0.01",
                                                         "id": "5c16d4768d9ea3000ea45690",
                                                         "layer": "nahmii",
                                                         "nonce": 18,
@@ -9237,11 +9174,9 @@ ShallowWrapper {
                                                           "number": 3780089,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "5",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.000000000000000005",
-                                                        "fiatValue": "0.000000000000000005",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -9511,6 +9446,7 @@ ShallowWrapper {
                 "distance": 5,
                 "getHelperDimensions": [Function],
                 "handleCardClick": [Function],
+                "handleToggleFold": [Function],
                 "hideSortableGhost": true,
                 "ledgerNanoSInfo": Immutable.Map {
                   connected: false,
@@ -9753,7 +9689,6 @@ ShallowWrapper {
                           "created": "2018-12-17T01:59:03.718Z",
                           "currency": "0x0000000000000000000000000000000000000000",
                           "decimalAmount": "0.000000002111",
-                          "fiatValue": "0.000000869732",
                           "id": "5c1702e78d9ea3000ea459d9",
                           "layer": "nahmii",
                           "nonce": 21,
@@ -9831,11 +9766,9 @@ ShallowWrapper {
                             "number": 3780091,
                             "timestamp": "2018-08-06T02:32:00.000Z",
                           },
-                          "confirmations": "3",
                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                           "currency": "0x0000000000000000000000000000000000000000",
                           "decimalAmount": "0.0000000001",
-                          "fiatValue": "0.0000000412",
                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                           "layer": "baseLayer",
                           "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -9852,7 +9785,6 @@ ShallowWrapper {
                           "created": "2018-11-16T22:40:54.951Z",
                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                           "decimalAmount": "0.01",
-                          "fiatValue": "0.01",
                           "id": "5c16d4768d9ea3000ea45690",
                           "layer": "nahmii",
                           "nonce": 18,
@@ -9930,11 +9862,9 @@ ShallowWrapper {
                             "number": 3780089,
                             "timestamp": "2018-08-06T02:32:00.000Z",
                           },
-                          "confirmations": "5",
                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                           "decimalAmount": "0.000000000000000005",
-                          "fiatValue": "0.000000000000000005",
                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                           "layer": "baseLayer",
                           "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -10229,6 +10159,7 @@ ShallowWrapper {
                               distance={5}
                               getHelperDimensions={[Function]}
                               handleCardClick={[Function]}
+                              handleToggleFold={[Function]}
                               hideSortableGhost={true}
                               ledgerNanoSInfo={
                                         Immutable.Map {
@@ -10478,7 +10409,6 @@ ShallowWrapper {
                                                           "created": "2018-12-17T01:59:03.718Z",
                                                           "currency": "0x0000000000000000000000000000000000000000",
                                                           "decimalAmount": "0.000000002111",
-                                                          "fiatValue": "0.000000869732",
                                                           "id": "5c1702e78d9ea3000ea459d9",
                                                           "layer": "nahmii",
                                                           "nonce": 21,
@@ -10556,11 +10486,9 @@ ShallowWrapper {
                                                             "number": 3780091,
                                                             "timestamp": "2018-08-06T02:32:00.000Z",
                                                           },
-                                                          "confirmations": "3",
                                                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                           "currency": "0x0000000000000000000000000000000000000000",
                                                           "decimalAmount": "0.0000000001",
-                                                          "fiatValue": "0.0000000412",
                                                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                           "layer": "baseLayer",
                                                           "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -10577,7 +10505,6 @@ ShallowWrapper {
                                                           "created": "2018-11-16T22:40:54.951Z",
                                                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                           "decimalAmount": "0.01",
-                                                          "fiatValue": "0.01",
                                                           "id": "5c16d4768d9ea3000ea45690",
                                                           "layer": "nahmii",
                                                           "nonce": 18,
@@ -10655,11 +10582,9 @@ ShallowWrapper {
                                                             "number": 3780089,
                                                             "timestamp": "2018-08-06T02:32:00.000Z",
                                                           },
-                                                          "confirmations": "5",
                                                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                           "decimalAmount": "0.000000000000000005",
-                                                          "fiatValue": "0.000000000000000005",
                                                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                           "layer": "baseLayer",
                                                           "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -10930,6 +10855,7 @@ ShallowWrapper {
                             distance={5}
                             getHelperDimensions={[Function]}
                             handleCardClick={[Function]}
+                            handleToggleFold={[Function]}
                             hideSortableGhost={true}
                             ledgerNanoSInfo={
                                           Immutable.Map {
@@ -11179,7 +11105,6 @@ ShallowWrapper {
                                                                 "created": "2018-12-17T01:59:03.718Z",
                                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                                 "decimalAmount": "0.000000002111",
-                                                                "fiatValue": "0.000000869732",
                                                                 "id": "5c1702e78d9ea3000ea459d9",
                                                                 "layer": "nahmii",
                                                                 "nonce": 21,
@@ -11257,11 +11182,9 @@ ShallowWrapper {
                                                                   "number": 3780091,
                                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                                 },
-                                                                "confirmations": "3",
                                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                                 "decimalAmount": "0.0000000001",
-                                                                "fiatValue": "0.0000000412",
                                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                                 "layer": "baseLayer",
                                                                 "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -11278,7 +11201,6 @@ ShallowWrapper {
                                                                 "created": "2018-11-16T22:40:54.951Z",
                                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                 "decimalAmount": "0.01",
-                                                                "fiatValue": "0.01",
                                                                 "id": "5c16d4768d9ea3000ea45690",
                                                                 "layer": "nahmii",
                                                                 "nonce": 18,
@@ -11356,11 +11278,9 @@ ShallowWrapper {
                                                                   "number": 3780089,
                                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                                 },
-                                                                "confirmations": "5",
                                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                 "decimalAmount": "0.000000000000000005",
-                                                                "fiatValue": "0.000000000000000005",
                                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                                 "layer": "baseLayer",
                                                                 "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -11631,6 +11551,7 @@ ShallowWrapper {
                   distance={5}
                   getHelperDimensions={[Function]}
                   handleCardClick={[Function]}
+                  handleToggleFold={[Function]}
                   hideSortableGhost={true}
                   ledgerNanoSInfo={
                                     Immutable.Map {
@@ -11880,7 +11801,6 @@ ShallowWrapper {
                                                               "created": "2018-12-17T01:59:03.718Z",
                                                               "currency": "0x0000000000000000000000000000000000000000",
                                                               "decimalAmount": "0.000000002111",
-                                                              "fiatValue": "0.000000869732",
                                                               "id": "5c1702e78d9ea3000ea459d9",
                                                               "layer": "nahmii",
                                                               "nonce": 21,
@@ -11958,11 +11878,9 @@ ShallowWrapper {
                                                                 "number": 3780091,
                                                                 "timestamp": "2018-08-06T02:32:00.000Z",
                                                               },
-                                                              "confirmations": "3",
                                                               "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                               "currency": "0x0000000000000000000000000000000000000000",
                                                               "decimalAmount": "0.0000000001",
-                                                              "fiatValue": "0.0000000412",
                                                               "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                               "layer": "baseLayer",
                                                               "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -11979,7 +11897,6 @@ ShallowWrapper {
                                                               "created": "2018-11-16T22:40:54.951Z",
                                                               "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                               "decimalAmount": "0.01",
-                                                              "fiatValue": "0.01",
                                                               "id": "5c16d4768d9ea3000ea45690",
                                                               "layer": "nahmii",
                                                               "nonce": 18,
@@ -12057,11 +11974,9 @@ ShallowWrapper {
                                                                 "number": 3780089,
                                                                 "timestamp": "2018-08-06T02:32:00.000Z",
                                                               },
-                                                              "confirmations": "5",
                                                               "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                               "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                               "decimalAmount": "0.000000000000000005",
-                                                              "fiatValue": "0.000000000000000005",
                                                               "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                               "layer": "baseLayer",
                                                               "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -12331,6 +12246,7 @@ ShallowWrapper {
                   "distance": 5,
                   "getHelperDimensions": [Function],
                   "handleCardClick": [Function],
+                  "handleToggleFold": [Function],
                   "hideSortableGhost": true,
                   "ledgerNanoSInfo": Immutable.Map {
                     connected: false,
@@ -12573,7 +12489,6 @@ ShallowWrapper {
                             "created": "2018-12-17T01:59:03.718Z",
                             "currency": "0x0000000000000000000000000000000000000000",
                             "decimalAmount": "0.000000002111",
-                            "fiatValue": "0.000000869732",
                             "id": "5c1702e78d9ea3000ea459d9",
                             "layer": "nahmii",
                             "nonce": 21,
@@ -12651,11 +12566,9 @@ ShallowWrapper {
                               "number": 3780091,
                               "timestamp": "2018-08-06T02:32:00.000Z",
                             },
-                            "confirmations": "3",
                             "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                             "currency": "0x0000000000000000000000000000000000000000",
                             "decimalAmount": "0.0000000001",
-                            "fiatValue": "0.0000000412",
                             "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                             "layer": "baseLayer",
                             "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -12672,7 +12585,6 @@ ShallowWrapper {
                             "created": "2018-11-16T22:40:54.951Z",
                             "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                             "decimalAmount": "0.01",
-                            "fiatValue": "0.01",
                             "id": "5c16d4768d9ea3000ea45690",
                             "layer": "nahmii",
                             "nonce": 18,
@@ -12750,11 +12662,9 @@ ShallowWrapper {
                               "number": 3780089,
                               "timestamp": "2018-08-06T02:32:00.000Z",
                             },
-                            "confirmations": "5",
                             "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                             "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                             "decimalAmount": "0.000000000000000005",
-                            "fiatValue": "0.000000000000000005",
                             "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                             "layer": "baseLayer",
                             "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -13151,6 +13061,7 @@ ShallowWrapper {
             ],
         }
     }
+    toggleFoldWallet={[Function]}
     totalBalances={
         Immutable.Map {
             baseLayer: Immutable.Map {
@@ -15373,6 +15284,7 @@ ShallowWrapper {
             ],
         }
     }
+    toggleFoldWallet={[Function]}
     totalBalances={
         Immutable.Map {
             baseLayer: Immutable.Map {
@@ -17595,6 +17507,7 @@ ShallowWrapper {
             ],
         }
     }
+    toggleFoldWallet={[Function]}
     totalBalances={
         Immutable.Map {
             baseLayer: Immutable.Map {
@@ -17837,7 +17750,6 @@ ShallowWrapper {
                             type: "received",
                             updated: "2018-12-17T01:59:03.776Z",
                             id: "5c1702e78d9ea3000ea459d9",
-                            fiatValue: "0.000000869732",
                             operatorId: "0",
                             confirmed: true,
                         },
@@ -17857,8 +17769,6 @@ ShallowWrapper {
                             symbol: "ETH",
                             recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                             type: "received",
-                            fiatValue: "0.0000000412",
-                            confirmations: "3",
                         },
                         Immutable.Map {
                             transfers: Immutable.Map {
@@ -17937,7 +17847,6 @@ ShallowWrapper {
                             type: "sent",
                             updated: "2018-11-16T22:40:55.049Z",
                             id: "5c16d4768d9ea3000ea45690",
-                            fiatValue: "0.01",
                             operatorId: "0",
                             confirmed: true,
                         },
@@ -17957,8 +17866,6 @@ ShallowWrapper {
                             symbol: "BOKKY",
                             recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                             type: "sent",
-                            fiatValue: "0.000000000000000005",
-                            confirmations: "5",
                         },
                     ],
                 },
@@ -18405,6 +18312,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                 Immutable.Map {
@@ -18654,7 +18562,6 @@ ShallowWrapper {
                                                 "created": "2018-12-17T01:59:03.718Z",
                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                 "decimalAmount": "0.000000002111",
-                                                "fiatValue": "0.000000869732",
                                                 "id": "5c1702e78d9ea3000ea459d9",
                                                 "layer": "nahmii",
                                                 "nonce": 21,
@@ -18732,11 +18639,9 @@ ShallowWrapper {
                                                   "number": 3780091,
                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                 },
-                                                "confirmations": "3",
                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                 "decimalAmount": "0.0000000001",
-                                                "fiatValue": "0.0000000412",
                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                 "layer": "baseLayer",
                                                 "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -18753,7 +18658,6 @@ ShallowWrapper {
                                                 "created": "2018-11-16T22:40:54.951Z",
                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                 "decimalAmount": "0.01",
-                                                "fiatValue": "0.01",
                                                 "id": "5c16d4768d9ea3000ea45690",
                                                 "layer": "nahmii",
                                                 "nonce": 18,
@@ -18831,11 +18735,9 @@ ShallowWrapper {
                                                   "number": 3780089,
                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                 },
-                                                "confirmations": "5",
                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                 "decimalAmount": "0.000000000000000005",
-                                                "fiatValue": "0.000000000000000005",
                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                 "layer": "baseLayer",
                                                 "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -19270,6 +19172,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                     Immutable.Map {
@@ -19519,7 +19422,6 @@ ShallowWrapper {
                                                         "created": "2018-12-17T01:59:03.718Z",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.000000002111",
-                                                        "fiatValue": "0.000000869732",
                                                         "id": "5c1702e78d9ea3000ea459d9",
                                                         "layer": "nahmii",
                                                         "nonce": 21,
@@ -19597,11 +19499,9 @@ ShallowWrapper {
                                                           "number": 3780091,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "3",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.0000000001",
-                                                        "fiatValue": "0.0000000412",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -19618,7 +19518,6 @@ ShallowWrapper {
                                                         "created": "2018-11-16T22:40:54.951Z",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.01",
-                                                        "fiatValue": "0.01",
                                                         "id": "5c16d4768d9ea3000ea45690",
                                                         "layer": "nahmii",
                                                         "nonce": 18,
@@ -19696,11 +19595,9 @@ ShallowWrapper {
                                                           "number": 3780089,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "5",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.000000000000000005",
-                                                        "fiatValue": "0.000000000000000005",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -20135,6 +20032,7 @@ ShallowWrapper {
                 distance={5}
                 getHelperDimensions={[Function]}
                 handleCardClick={[Function]}
+                handleToggleFold={[Function]}
                 hideSortableGhost={true}
                 ledgerNanoSInfo={
                                 Immutable.Map {
@@ -20384,7 +20282,6 @@ ShallowWrapper {
                                                         "created": "2018-12-17T01:59:03.718Z",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.000000002111",
-                                                        "fiatValue": "0.000000869732",
                                                         "id": "5c1702e78d9ea3000ea459d9",
                                                         "layer": "nahmii",
                                                         "nonce": 21,
@@ -20462,11 +20359,9 @@ ShallowWrapper {
                                                           "number": 3780091,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "3",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.0000000001",
-                                                        "fiatValue": "0.0000000412",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -20483,7 +20378,6 @@ ShallowWrapper {
                                                         "created": "2018-11-16T22:40:54.951Z",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.01",
-                                                        "fiatValue": "0.01",
                                                         "id": "5c16d4768d9ea3000ea45690",
                                                         "layer": "nahmii",
                                                         "nonce": 18,
@@ -20561,11 +20455,9 @@ ShallowWrapper {
                                                           "number": 3780089,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "5",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.000000000000000005",
-                                                        "fiatValue": "0.000000000000000005",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -20835,6 +20727,7 @@ ShallowWrapper {
                 "distance": 5,
                 "getHelperDimensions": [Function],
                 "handleCardClick": [Function],
+                "handleToggleFold": [Function],
                 "hideSortableGhost": true,
                 "ledgerNanoSInfo": Immutable.Map {
                   connected: false,
@@ -21077,7 +20970,6 @@ ShallowWrapper {
                           "created": "2018-12-17T01:59:03.718Z",
                           "currency": "0x0000000000000000000000000000000000000000",
                           "decimalAmount": "0.000000002111",
-                          "fiatValue": "0.000000869732",
                           "id": "5c1702e78d9ea3000ea459d9",
                           "layer": "nahmii",
                           "nonce": 21,
@@ -21155,11 +21047,9 @@ ShallowWrapper {
                             "number": 3780091,
                             "timestamp": "2018-08-06T02:32:00.000Z",
                           },
-                          "confirmations": "3",
                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                           "currency": "0x0000000000000000000000000000000000000000",
                           "decimalAmount": "0.0000000001",
-                          "fiatValue": "0.0000000412",
                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                           "layer": "baseLayer",
                           "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -21176,7 +21066,6 @@ ShallowWrapper {
                           "created": "2018-11-16T22:40:54.951Z",
                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                           "decimalAmount": "0.01",
-                          "fiatValue": "0.01",
                           "id": "5c16d4768d9ea3000ea45690",
                           "layer": "nahmii",
                           "nonce": 18,
@@ -21254,11 +21143,9 @@ ShallowWrapper {
                             "number": 3780089,
                             "timestamp": "2018-08-06T02:32:00.000Z",
                           },
-                          "confirmations": "5",
                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                           "decimalAmount": "0.000000000000000005",
-                          "fiatValue": "0.000000000000000005",
                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                           "layer": "baseLayer",
                           "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -22061,6 +21948,7 @@ ShallowWrapper {
                               distance={5}
                               getHelperDimensions={[Function]}
                               handleCardClick={[Function]}
+                              handleToggleFold={[Function]}
                               hideSortableGhost={true}
                               ledgerNanoSInfo={
                                         Immutable.Map {
@@ -22310,7 +22198,6 @@ ShallowWrapper {
                                                           "created": "2018-12-17T01:59:03.718Z",
                                                           "currency": "0x0000000000000000000000000000000000000000",
                                                           "decimalAmount": "0.000000002111",
-                                                          "fiatValue": "0.000000869732",
                                                           "id": "5c1702e78d9ea3000ea459d9",
                                                           "layer": "nahmii",
                                                           "nonce": 21,
@@ -22388,11 +22275,9 @@ ShallowWrapper {
                                                             "number": 3780091,
                                                             "timestamp": "2018-08-06T02:32:00.000Z",
                                                           },
-                                                          "confirmations": "3",
                                                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                           "currency": "0x0000000000000000000000000000000000000000",
                                                           "decimalAmount": "0.0000000001",
-                                                          "fiatValue": "0.0000000412",
                                                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                           "layer": "baseLayer",
                                                           "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -22409,7 +22294,6 @@ ShallowWrapper {
                                                           "created": "2018-11-16T22:40:54.951Z",
                                                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                           "decimalAmount": "0.01",
-                                                          "fiatValue": "0.01",
                                                           "id": "5c16d4768d9ea3000ea45690",
                                                           "layer": "nahmii",
                                                           "nonce": 18,
@@ -22487,11 +22371,9 @@ ShallowWrapper {
                                                             "number": 3780089,
                                                             "timestamp": "2018-08-06T02:32:00.000Z",
                                                           },
-                                                          "confirmations": "5",
                                                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                           "decimalAmount": "0.000000000000000005",
-                                                          "fiatValue": "0.000000000000000005",
                                                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                           "layer": "baseLayer",
                                                           "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -22926,6 +22808,7 @@ ShallowWrapper {
                             distance={5}
                             getHelperDimensions={[Function]}
                             handleCardClick={[Function]}
+                            handleToggleFold={[Function]}
                             hideSortableGhost={true}
                             ledgerNanoSInfo={
                                           Immutable.Map {
@@ -23175,7 +23058,6 @@ ShallowWrapper {
                                                                 "created": "2018-12-17T01:59:03.718Z",
                                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                                 "decimalAmount": "0.000000002111",
-                                                                "fiatValue": "0.000000869732",
                                                                 "id": "5c1702e78d9ea3000ea459d9",
                                                                 "layer": "nahmii",
                                                                 "nonce": 21,
@@ -23253,11 +23135,9 @@ ShallowWrapper {
                                                                   "number": 3780091,
                                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                                 },
-                                                                "confirmations": "3",
                                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                                 "decimalAmount": "0.0000000001",
-                                                                "fiatValue": "0.0000000412",
                                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                                 "layer": "baseLayer",
                                                                 "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -23274,7 +23154,6 @@ ShallowWrapper {
                                                                 "created": "2018-11-16T22:40:54.951Z",
                                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                 "decimalAmount": "0.01",
-                                                                "fiatValue": "0.01",
                                                                 "id": "5c16d4768d9ea3000ea45690",
                                                                 "layer": "nahmii",
                                                                 "nonce": 18,
@@ -23352,11 +23231,9 @@ ShallowWrapper {
                                                                   "number": 3780089,
                                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                                 },
-                                                                "confirmations": "5",
                                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                 "decimalAmount": "0.000000000000000005",
-                                                                "fiatValue": "0.000000000000000005",
                                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                                 "layer": "baseLayer",
                                                                 "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -23791,6 +23668,7 @@ ShallowWrapper {
                   distance={5}
                   getHelperDimensions={[Function]}
                   handleCardClick={[Function]}
+                  handleToggleFold={[Function]}
                   hideSortableGhost={true}
                   ledgerNanoSInfo={
                                     Immutable.Map {
@@ -24040,7 +23918,6 @@ ShallowWrapper {
                                                               "created": "2018-12-17T01:59:03.718Z",
                                                               "currency": "0x0000000000000000000000000000000000000000",
                                                               "decimalAmount": "0.000000002111",
-                                                              "fiatValue": "0.000000869732",
                                                               "id": "5c1702e78d9ea3000ea459d9",
                                                               "layer": "nahmii",
                                                               "nonce": 21,
@@ -24118,11 +23995,9 @@ ShallowWrapper {
                                                                 "number": 3780091,
                                                                 "timestamp": "2018-08-06T02:32:00.000Z",
                                                               },
-                                                              "confirmations": "3",
                                                               "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                               "currency": "0x0000000000000000000000000000000000000000",
                                                               "decimalAmount": "0.0000000001",
-                                                              "fiatValue": "0.0000000412",
                                                               "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                               "layer": "baseLayer",
                                                               "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -24139,7 +24014,6 @@ ShallowWrapper {
                                                               "created": "2018-11-16T22:40:54.951Z",
                                                               "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                               "decimalAmount": "0.01",
-                                                              "fiatValue": "0.01",
                                                               "id": "5c16d4768d9ea3000ea45690",
                                                               "layer": "nahmii",
                                                               "nonce": 18,
@@ -24217,11 +24091,9 @@ ShallowWrapper {
                                                                 "number": 3780089,
                                                                 "timestamp": "2018-08-06T02:32:00.000Z",
                                                               },
-                                                              "confirmations": "5",
                                                               "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                               "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                               "decimalAmount": "0.000000000000000005",
-                                                              "fiatValue": "0.000000000000000005",
                                                               "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                               "layer": "baseLayer",
                                                               "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -24491,6 +24363,7 @@ ShallowWrapper {
                   "distance": 5,
                   "getHelperDimensions": [Function],
                   "handleCardClick": [Function],
+                  "handleToggleFold": [Function],
                   "hideSortableGhost": true,
                   "ledgerNanoSInfo": Immutable.Map {
                     connected: false,
@@ -24733,7 +24606,6 @@ ShallowWrapper {
                             "created": "2018-12-17T01:59:03.718Z",
                             "currency": "0x0000000000000000000000000000000000000000",
                             "decimalAmount": "0.000000002111",
-                            "fiatValue": "0.000000869732",
                             "id": "5c1702e78d9ea3000ea459d9",
                             "layer": "nahmii",
                             "nonce": 21,
@@ -24811,11 +24683,9 @@ ShallowWrapper {
                               "number": 3780091,
                               "timestamp": "2018-08-06T02:32:00.000Z",
                             },
-                            "confirmations": "3",
                             "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                             "currency": "0x0000000000000000000000000000000000000000",
                             "decimalAmount": "0.0000000001",
-                            "fiatValue": "0.0000000412",
                             "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                             "layer": "baseLayer",
                             "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -24832,7 +24702,6 @@ ShallowWrapper {
                             "created": "2018-11-16T22:40:54.951Z",
                             "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                             "decimalAmount": "0.01",
-                            "fiatValue": "0.01",
                             "id": "5c16d4768d9ea3000ea45690",
                             "layer": "nahmii",
                             "nonce": 18,
@@ -24910,11 +24779,9 @@ ShallowWrapper {
                               "number": 3780089,
                               "timestamp": "2018-08-06T02:32:00.000Z",
                             },
-                            "confirmations": "5",
                             "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                             "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                             "decimalAmount": "0.000000000000000005",
-                            "fiatValue": "0.000000000000000005",
                             "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                             "layer": "baseLayer",
                             "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -25819,6 +25686,7 @@ ShallowWrapper {
             ],
         }
     }
+    toggleFoldWallet={[Function]}
     totalBalances={
         Immutable.Map {
             baseLayer: Immutable.Map {
@@ -26007,7 +25875,6 @@ ShallowWrapper {
                             type: "received",
                             updated: "2018-12-17T01:59:03.776Z",
                             id: "5c1702e78d9ea3000ea459d9",
-                            fiatValue: "0.000000869732",
                             operatorId: "0",
                             confirmed: true,
                         },
@@ -26027,8 +25894,6 @@ ShallowWrapper {
                             symbol: "ETH",
                             recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                             type: "received",
-                            fiatValue: "0.0000000412",
-                            confirmations: "3",
                         },
                         Immutable.Map {
                             transfers: Immutable.Map {
@@ -26107,7 +25972,6 @@ ShallowWrapper {
                             type: "sent",
                             updated: "2018-11-16T22:40:55.049Z",
                             id: "5c16d4768d9ea3000ea45690",
-                            fiatValue: "0.01",
                             operatorId: "0",
                             confirmed: true,
                         },
@@ -26127,8 +25991,6 @@ ShallowWrapper {
                             symbol: "BOKKY",
                             recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                             type: "sent",
-                            fiatValue: "0.000000000000000005",
-                            confirmations: "5",
                         },
                     ],
                 },
@@ -26575,6 +26437,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                 Immutable.Map {
@@ -26824,7 +26687,6 @@ ShallowWrapper {
                                                 "created": "2018-12-17T01:59:03.718Z",
                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                 "decimalAmount": "0.000000002111",
-                                                "fiatValue": "0.000000869732",
                                                 "id": "5c1702e78d9ea3000ea459d9",
                                                 "layer": "nahmii",
                                                 "nonce": 21,
@@ -26902,11 +26764,9 @@ ShallowWrapper {
                                                   "number": 3780091,
                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                 },
-                                                "confirmations": "3",
                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                 "decimalAmount": "0.0000000001",
-                                                "fiatValue": "0.0000000412",
                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                 "layer": "baseLayer",
                                                 "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -26923,7 +26783,6 @@ ShallowWrapper {
                                                 "created": "2018-11-16T22:40:54.951Z",
                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                 "decimalAmount": "0.01",
-                                                "fiatValue": "0.01",
                                                 "id": "5c16d4768d9ea3000ea45690",
                                                 "layer": "nahmii",
                                                 "nonce": 18,
@@ -27001,11 +26860,9 @@ ShallowWrapper {
                                                   "number": 3780089,
                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                 },
-                                                "confirmations": "5",
                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                 "decimalAmount": "0.000000000000000005",
-                                                "fiatValue": "0.000000000000000005",
                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                 "layer": "baseLayer",
                                                 "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -27386,6 +27243,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                     Immutable.Map {
@@ -27635,7 +27493,6 @@ ShallowWrapper {
                                                         "created": "2018-12-17T01:59:03.718Z",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.000000002111",
-                                                        "fiatValue": "0.000000869732",
                                                         "id": "5c1702e78d9ea3000ea459d9",
                                                         "layer": "nahmii",
                                                         "nonce": 21,
@@ -27713,11 +27570,9 @@ ShallowWrapper {
                                                           "number": 3780091,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "3",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.0000000001",
-                                                        "fiatValue": "0.0000000412",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -27734,7 +27589,6 @@ ShallowWrapper {
                                                         "created": "2018-11-16T22:40:54.951Z",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.01",
-                                                        "fiatValue": "0.01",
                                                         "id": "5c16d4768d9ea3000ea45690",
                                                         "layer": "nahmii",
                                                         "nonce": 18,
@@ -27812,11 +27666,9 @@ ShallowWrapper {
                                                           "number": 3780089,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "5",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.000000000000000005",
-                                                        "fiatValue": "0.000000000000000005",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -28197,6 +28049,7 @@ ShallowWrapper {
                 distance={5}
                 getHelperDimensions={[Function]}
                 handleCardClick={[Function]}
+                handleToggleFold={[Function]}
                 hideSortableGhost={true}
                 ledgerNanoSInfo={
                                 Immutable.Map {
@@ -28446,7 +28299,6 @@ ShallowWrapper {
                                                         "created": "2018-12-17T01:59:03.718Z",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.000000002111",
-                                                        "fiatValue": "0.000000869732",
                                                         "id": "5c1702e78d9ea3000ea459d9",
                                                         "layer": "nahmii",
                                                         "nonce": 21,
@@ -28524,11 +28376,9 @@ ShallowWrapper {
                                                           "number": 3780091,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "3",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.0000000001",
-                                                        "fiatValue": "0.0000000412",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -28545,7 +28395,6 @@ ShallowWrapper {
                                                         "created": "2018-11-16T22:40:54.951Z",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.01",
-                                                        "fiatValue": "0.01",
                                                         "id": "5c16d4768d9ea3000ea45690",
                                                         "layer": "nahmii",
                                                         "nonce": 18,
@@ -28623,11 +28472,9 @@ ShallowWrapper {
                                                           "number": 3780089,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "5",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.000000000000000005",
-                                                        "fiatValue": "0.000000000000000005",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -28897,6 +28744,7 @@ ShallowWrapper {
                 "distance": 5,
                 "getHelperDimensions": [Function],
                 "handleCardClick": [Function],
+                "handleToggleFold": [Function],
                 "hideSortableGhost": true,
                 "ledgerNanoSInfo": Immutable.Map {
                   connected: false,
@@ -29139,7 +28987,6 @@ ShallowWrapper {
                           "created": "2018-12-17T01:59:03.718Z",
                           "currency": "0x0000000000000000000000000000000000000000",
                           "decimalAmount": "0.000000002111",
-                          "fiatValue": "0.000000869732",
                           "id": "5c1702e78d9ea3000ea459d9",
                           "layer": "nahmii",
                           "nonce": 21,
@@ -29217,11 +29064,9 @@ ShallowWrapper {
                             "number": 3780091,
                             "timestamp": "2018-08-06T02:32:00.000Z",
                           },
-                          "confirmations": "3",
                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                           "currency": "0x0000000000000000000000000000000000000000",
                           "decimalAmount": "0.0000000001",
-                          "fiatValue": "0.0000000412",
                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                           "layer": "baseLayer",
                           "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -29238,7 +29083,6 @@ ShallowWrapper {
                           "created": "2018-11-16T22:40:54.951Z",
                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                           "decimalAmount": "0.01",
-                          "fiatValue": "0.01",
                           "id": "5c16d4768d9ea3000ea45690",
                           "layer": "nahmii",
                           "nonce": 18,
@@ -29316,11 +29160,9 @@ ShallowWrapper {
                             "number": 3780089,
                             "timestamp": "2018-08-06T02:32:00.000Z",
                           },
-                          "confirmations": "5",
                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                           "decimalAmount": "0.000000000000000005",
-                          "fiatValue": "0.000000000000000005",
                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                           "layer": "baseLayer",
                           "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -29961,6 +29803,7 @@ ShallowWrapper {
                               distance={5}
                               getHelperDimensions={[Function]}
                               handleCardClick={[Function]}
+                              handleToggleFold={[Function]}
                               hideSortableGhost={true}
                               ledgerNanoSInfo={
                                         Immutable.Map {
@@ -30210,7 +30053,6 @@ ShallowWrapper {
                                                           "created": "2018-12-17T01:59:03.718Z",
                                                           "currency": "0x0000000000000000000000000000000000000000",
                                                           "decimalAmount": "0.000000002111",
-                                                          "fiatValue": "0.000000869732",
                                                           "id": "5c1702e78d9ea3000ea459d9",
                                                           "layer": "nahmii",
                                                           "nonce": 21,
@@ -30288,11 +30130,9 @@ ShallowWrapper {
                                                             "number": 3780091,
                                                             "timestamp": "2018-08-06T02:32:00.000Z",
                                                           },
-                                                          "confirmations": "3",
                                                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                           "currency": "0x0000000000000000000000000000000000000000",
                                                           "decimalAmount": "0.0000000001",
-                                                          "fiatValue": "0.0000000412",
                                                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                           "layer": "baseLayer",
                                                           "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -30309,7 +30149,6 @@ ShallowWrapper {
                                                           "created": "2018-11-16T22:40:54.951Z",
                                                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                           "decimalAmount": "0.01",
-                                                          "fiatValue": "0.01",
                                                           "id": "5c16d4768d9ea3000ea45690",
                                                           "layer": "nahmii",
                                                           "nonce": 18,
@@ -30387,11 +30226,9 @@ ShallowWrapper {
                                                             "number": 3780089,
                                                             "timestamp": "2018-08-06T02:32:00.000Z",
                                                           },
-                                                          "confirmations": "5",
                                                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                           "decimalAmount": "0.000000000000000005",
-                                                          "fiatValue": "0.000000000000000005",
                                                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                           "layer": "baseLayer",
                                                           "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -30772,6 +30609,7 @@ ShallowWrapper {
                             distance={5}
                             getHelperDimensions={[Function]}
                             handleCardClick={[Function]}
+                            handleToggleFold={[Function]}
                             hideSortableGhost={true}
                             ledgerNanoSInfo={
                                           Immutable.Map {
@@ -31021,7 +30859,6 @@ ShallowWrapper {
                                                                 "created": "2018-12-17T01:59:03.718Z",
                                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                                 "decimalAmount": "0.000000002111",
-                                                                "fiatValue": "0.000000869732",
                                                                 "id": "5c1702e78d9ea3000ea459d9",
                                                                 "layer": "nahmii",
                                                                 "nonce": 21,
@@ -31099,11 +30936,9 @@ ShallowWrapper {
                                                                   "number": 3780091,
                                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                                 },
-                                                                "confirmations": "3",
                                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                                 "decimalAmount": "0.0000000001",
-                                                                "fiatValue": "0.0000000412",
                                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                                 "layer": "baseLayer",
                                                                 "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -31120,7 +30955,6 @@ ShallowWrapper {
                                                                 "created": "2018-11-16T22:40:54.951Z",
                                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                 "decimalAmount": "0.01",
-                                                                "fiatValue": "0.01",
                                                                 "id": "5c16d4768d9ea3000ea45690",
                                                                 "layer": "nahmii",
                                                                 "nonce": 18,
@@ -31198,11 +31032,9 @@ ShallowWrapper {
                                                                   "number": 3780089,
                                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                                 },
-                                                                "confirmations": "5",
                                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                 "decimalAmount": "0.000000000000000005",
-                                                                "fiatValue": "0.000000000000000005",
                                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                                 "layer": "baseLayer",
                                                                 "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -31583,6 +31415,7 @@ ShallowWrapper {
                   distance={5}
                   getHelperDimensions={[Function]}
                   handleCardClick={[Function]}
+                  handleToggleFold={[Function]}
                   hideSortableGhost={true}
                   ledgerNanoSInfo={
                                     Immutable.Map {
@@ -31832,7 +31665,6 @@ ShallowWrapper {
                                                               "created": "2018-12-17T01:59:03.718Z",
                                                               "currency": "0x0000000000000000000000000000000000000000",
                                                               "decimalAmount": "0.000000002111",
-                                                              "fiatValue": "0.000000869732",
                                                               "id": "5c1702e78d9ea3000ea459d9",
                                                               "layer": "nahmii",
                                                               "nonce": 21,
@@ -31910,11 +31742,9 @@ ShallowWrapper {
                                                                 "number": 3780091,
                                                                 "timestamp": "2018-08-06T02:32:00.000Z",
                                                               },
-                                                              "confirmations": "3",
                                                               "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                               "currency": "0x0000000000000000000000000000000000000000",
                                                               "decimalAmount": "0.0000000001",
-                                                              "fiatValue": "0.0000000412",
                                                               "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                               "layer": "baseLayer",
                                                               "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -31931,7 +31761,6 @@ ShallowWrapper {
                                                               "created": "2018-11-16T22:40:54.951Z",
                                                               "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                               "decimalAmount": "0.01",
-                                                              "fiatValue": "0.01",
                                                               "id": "5c16d4768d9ea3000ea45690",
                                                               "layer": "nahmii",
                                                               "nonce": 18,
@@ -32009,11 +31838,9 @@ ShallowWrapper {
                                                                 "number": 3780089,
                                                                 "timestamp": "2018-08-06T02:32:00.000Z",
                                                               },
-                                                              "confirmations": "5",
                                                               "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                               "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                               "decimalAmount": "0.000000000000000005",
-                                                              "fiatValue": "0.000000000000000005",
                                                               "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                               "layer": "baseLayer",
                                                               "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -32283,6 +32110,7 @@ ShallowWrapper {
                   "distance": 5,
                   "getHelperDimensions": [Function],
                   "handleCardClick": [Function],
+                  "handleToggleFold": [Function],
                   "hideSortableGhost": true,
                   "ledgerNanoSInfo": Immutable.Map {
                     connected: false,
@@ -32525,7 +32353,6 @@ ShallowWrapper {
                             "created": "2018-12-17T01:59:03.718Z",
                             "currency": "0x0000000000000000000000000000000000000000",
                             "decimalAmount": "0.000000002111",
-                            "fiatValue": "0.000000869732",
                             "id": "5c1702e78d9ea3000ea459d9",
                             "layer": "nahmii",
                             "nonce": 21,
@@ -32603,11 +32430,9 @@ ShallowWrapper {
                               "number": 3780091,
                               "timestamp": "2018-08-06T02:32:00.000Z",
                             },
-                            "confirmations": "3",
                             "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                             "currency": "0x0000000000000000000000000000000000000000",
                             "decimalAmount": "0.0000000001",
-                            "fiatValue": "0.0000000412",
                             "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                             "layer": "baseLayer",
                             "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -32624,7 +32449,6 @@ ShallowWrapper {
                             "created": "2018-11-16T22:40:54.951Z",
                             "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                             "decimalAmount": "0.01",
-                            "fiatValue": "0.01",
                             "id": "5c16d4768d9ea3000ea45690",
                             "layer": "nahmii",
                             "nonce": 18,
@@ -32702,11 +32526,9 @@ ShallowWrapper {
                               "number": 3780089,
                               "timestamp": "2018-08-06T02:32:00.000Z",
                             },
-                            "confirmations": "5",
                             "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                             "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                             "decimalAmount": "0.000000000000000005",
-                            "fiatValue": "0.000000000000000005",
                             "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                             "layer": "baseLayer",
                             "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -33449,6 +33271,7 @@ ShallowWrapper {
             ],
         }
     }
+    toggleFoldWallet={[Function]}
     totalBalances={
         Immutable.Map {
             baseLayer: Immutable.Map {
@@ -33637,7 +33460,6 @@ ShallowWrapper {
                             type: "received",
                             updated: "2018-12-17T01:59:03.776Z",
                             id: "5c1702e78d9ea3000ea459d9",
-                            fiatValue: "0.000000869732",
                             operatorId: "0",
                             confirmed: true,
                         },
@@ -33657,8 +33479,6 @@ ShallowWrapper {
                             symbol: "ETH",
                             recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                             type: "received",
-                            fiatValue: "0.0000000412",
-                            confirmations: "3",
                         },
                         Immutable.Map {
                             transfers: Immutable.Map {
@@ -33737,7 +33557,6 @@ ShallowWrapper {
                             type: "sent",
                             updated: "2018-11-16T22:40:55.049Z",
                             id: "5c16d4768d9ea3000ea45690",
-                            fiatValue: "0.01",
                             operatorId: "0",
                             confirmed: true,
                         },
@@ -33757,8 +33576,6 @@ ShallowWrapper {
                             symbol: "BOKKY",
                             recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                             type: "sent",
-                            fiatValue: "0.000000000000000005",
-                            confirmations: "5",
                         },
                     ],
                 },
@@ -34205,6 +34022,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                 Immutable.Map {
@@ -34454,7 +34272,6 @@ ShallowWrapper {
                                                 "created": "2018-12-17T01:59:03.718Z",
                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                 "decimalAmount": "0.000000002111",
-                                                "fiatValue": "0.000000869732",
                                                 "id": "5c1702e78d9ea3000ea459d9",
                                                 "layer": "nahmii",
                                                 "nonce": 21,
@@ -34532,11 +34349,9 @@ ShallowWrapper {
                                                   "number": 3780091,
                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                 },
-                                                "confirmations": "3",
                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                 "decimalAmount": "0.0000000001",
-                                                "fiatValue": "0.0000000412",
                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                 "layer": "baseLayer",
                                                 "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -34553,7 +34368,6 @@ ShallowWrapper {
                                                 "created": "2018-11-16T22:40:54.951Z",
                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                 "decimalAmount": "0.01",
-                                                "fiatValue": "0.01",
                                                 "id": "5c16d4768d9ea3000ea45690",
                                                 "layer": "nahmii",
                                                 "nonce": 18,
@@ -34631,11 +34445,9 @@ ShallowWrapper {
                                                   "number": 3780089,
                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                 },
-                                                "confirmations": "5",
                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                 "decimalAmount": "0.000000000000000005",
-                                                "fiatValue": "0.000000000000000005",
                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                 "layer": "baseLayer",
                                                 "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -35016,6 +34828,7 @@ ShallowWrapper {
                         distance={5}
                         getHelperDimensions={[Function]}
                         handleCardClick={[Function]}
+                        handleToggleFold={[Function]}
                         hideSortableGhost={true}
                         ledgerNanoSInfo={
                                     Immutable.Map {
@@ -35265,7 +35078,6 @@ ShallowWrapper {
                                                         "created": "2018-12-17T01:59:03.718Z",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.000000002111",
-                                                        "fiatValue": "0.000000869732",
                                                         "id": "5c1702e78d9ea3000ea459d9",
                                                         "layer": "nahmii",
                                                         "nonce": 21,
@@ -35343,11 +35155,9 @@ ShallowWrapper {
                                                           "number": 3780091,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "3",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.0000000001",
-                                                        "fiatValue": "0.0000000412",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -35364,7 +35174,6 @@ ShallowWrapper {
                                                         "created": "2018-11-16T22:40:54.951Z",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.01",
-                                                        "fiatValue": "0.01",
                                                         "id": "5c16d4768d9ea3000ea45690",
                                                         "layer": "nahmii",
                                                         "nonce": 18,
@@ -35442,11 +35251,9 @@ ShallowWrapper {
                                                           "number": 3780089,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "5",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.000000000000000005",
-                                                        "fiatValue": "0.000000000000000005",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -35827,6 +35634,7 @@ ShallowWrapper {
                 distance={5}
                 getHelperDimensions={[Function]}
                 handleCardClick={[Function]}
+                handleToggleFold={[Function]}
                 hideSortableGhost={true}
                 ledgerNanoSInfo={
                                 Immutable.Map {
@@ -36076,7 +35884,6 @@ ShallowWrapper {
                                                         "created": "2018-12-17T01:59:03.718Z",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.000000002111",
-                                                        "fiatValue": "0.000000869732",
                                                         "id": "5c1702e78d9ea3000ea459d9",
                                                         "layer": "nahmii",
                                                         "nonce": 21,
@@ -36154,11 +35961,9 @@ ShallowWrapper {
                                                           "number": 3780091,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "3",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x0000000000000000000000000000000000000000",
                                                         "decimalAmount": "0.0000000001",
-                                                        "fiatValue": "0.0000000412",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -36175,7 +35980,6 @@ ShallowWrapper {
                                                         "created": "2018-11-16T22:40:54.951Z",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.01",
-                                                        "fiatValue": "0.01",
                                                         "id": "5c16d4768d9ea3000ea45690",
                                                         "layer": "nahmii",
                                                         "nonce": 18,
@@ -36253,11 +36057,9 @@ ShallowWrapper {
                                                           "number": 3780089,
                                                           "timestamp": "2018-08-06T02:32:00.000Z",
                                                         },
-                                                        "confirmations": "5",
                                                         "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                         "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                         "decimalAmount": "0.000000000000000005",
-                                                        "fiatValue": "0.000000000000000005",
                                                         "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                         "layer": "baseLayer",
                                                         "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -36527,6 +36329,7 @@ ShallowWrapper {
                 "distance": 5,
                 "getHelperDimensions": [Function],
                 "handleCardClick": [Function],
+                "handleToggleFold": [Function],
                 "hideSortableGhost": true,
                 "ledgerNanoSInfo": Immutable.Map {
                   connected: false,
@@ -36769,7 +36572,6 @@ ShallowWrapper {
                           "created": "2018-12-17T01:59:03.718Z",
                           "currency": "0x0000000000000000000000000000000000000000",
                           "decimalAmount": "0.000000002111",
-                          "fiatValue": "0.000000869732",
                           "id": "5c1702e78d9ea3000ea459d9",
                           "layer": "nahmii",
                           "nonce": 21,
@@ -36847,11 +36649,9 @@ ShallowWrapper {
                             "number": 3780091,
                             "timestamp": "2018-08-06T02:32:00.000Z",
                           },
-                          "confirmations": "3",
                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                           "currency": "0x0000000000000000000000000000000000000000",
                           "decimalAmount": "0.0000000001",
-                          "fiatValue": "0.0000000412",
                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                           "layer": "baseLayer",
                           "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -36868,7 +36668,6 @@ ShallowWrapper {
                           "created": "2018-11-16T22:40:54.951Z",
                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                           "decimalAmount": "0.01",
-                          "fiatValue": "0.01",
                           "id": "5c16d4768d9ea3000ea45690",
                           "layer": "nahmii",
                           "nonce": 18,
@@ -36946,11 +36745,9 @@ ShallowWrapper {
                             "number": 3780089,
                             "timestamp": "2018-08-06T02:32:00.000Z",
                           },
-                          "confirmations": "5",
                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                           "decimalAmount": "0.000000000000000005",
-                          "fiatValue": "0.000000000000000005",
                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                           "layer": "baseLayer",
                           "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -37591,6 +37388,7 @@ ShallowWrapper {
                               distance={5}
                               getHelperDimensions={[Function]}
                               handleCardClick={[Function]}
+                              handleToggleFold={[Function]}
                               hideSortableGhost={true}
                               ledgerNanoSInfo={
                                         Immutable.Map {
@@ -37840,7 +37638,6 @@ ShallowWrapper {
                                                           "created": "2018-12-17T01:59:03.718Z",
                                                           "currency": "0x0000000000000000000000000000000000000000",
                                                           "decimalAmount": "0.000000002111",
-                                                          "fiatValue": "0.000000869732",
                                                           "id": "5c1702e78d9ea3000ea459d9",
                                                           "layer": "nahmii",
                                                           "nonce": 21,
@@ -37918,11 +37715,9 @@ ShallowWrapper {
                                                             "number": 3780091,
                                                             "timestamp": "2018-08-06T02:32:00.000Z",
                                                           },
-                                                          "confirmations": "3",
                                                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                           "currency": "0x0000000000000000000000000000000000000000",
                                                           "decimalAmount": "0.0000000001",
-                                                          "fiatValue": "0.0000000412",
                                                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                           "layer": "baseLayer",
                                                           "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -37939,7 +37734,6 @@ ShallowWrapper {
                                                           "created": "2018-11-16T22:40:54.951Z",
                                                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                           "decimalAmount": "0.01",
-                                                          "fiatValue": "0.01",
                                                           "id": "5c16d4768d9ea3000ea45690",
                                                           "layer": "nahmii",
                                                           "nonce": 18,
@@ -38017,11 +37811,9 @@ ShallowWrapper {
                                                             "number": 3780089,
                                                             "timestamp": "2018-08-06T02:32:00.000Z",
                                                           },
-                                                          "confirmations": "5",
                                                           "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                           "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                           "decimalAmount": "0.000000000000000005",
-                                                          "fiatValue": "0.000000000000000005",
                                                           "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                           "layer": "baseLayer",
                                                           "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -38402,6 +38194,7 @@ ShallowWrapper {
                             distance={5}
                             getHelperDimensions={[Function]}
                             handleCardClick={[Function]}
+                            handleToggleFold={[Function]}
                             hideSortableGhost={true}
                             ledgerNanoSInfo={
                                           Immutable.Map {
@@ -38651,7 +38444,6 @@ ShallowWrapper {
                                                                 "created": "2018-12-17T01:59:03.718Z",
                                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                                 "decimalAmount": "0.000000002111",
-                                                                "fiatValue": "0.000000869732",
                                                                 "id": "5c1702e78d9ea3000ea459d9",
                                                                 "layer": "nahmii",
                                                                 "nonce": 21,
@@ -38729,11 +38521,9 @@ ShallowWrapper {
                                                                   "number": 3780091,
                                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                                 },
-                                                                "confirmations": "3",
                                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                                 "currency": "0x0000000000000000000000000000000000000000",
                                                                 "decimalAmount": "0.0000000001",
-                                                                "fiatValue": "0.0000000412",
                                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                                 "layer": "baseLayer",
                                                                 "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -38750,7 +38540,6 @@ ShallowWrapper {
                                                                 "created": "2018-11-16T22:40:54.951Z",
                                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                 "decimalAmount": "0.01",
-                                                                "fiatValue": "0.01",
                                                                 "id": "5c16d4768d9ea3000ea45690",
                                                                 "layer": "nahmii",
                                                                 "nonce": 18,
@@ -38828,11 +38617,9 @@ ShallowWrapper {
                                                                   "number": 3780089,
                                                                   "timestamp": "2018-08-06T02:32:00.000Z",
                                                                 },
-                                                                "confirmations": "5",
                                                                 "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                                 "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                                 "decimalAmount": "0.000000000000000005",
-                                                                "fiatValue": "0.000000000000000005",
                                                                 "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                                 "layer": "baseLayer",
                                                                 "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -39213,6 +39000,7 @@ ShallowWrapper {
                   distance={5}
                   getHelperDimensions={[Function]}
                   handleCardClick={[Function]}
+                  handleToggleFold={[Function]}
                   hideSortableGhost={true}
                   ledgerNanoSInfo={
                                     Immutable.Map {
@@ -39462,7 +39250,6 @@ ShallowWrapper {
                                                               "created": "2018-12-17T01:59:03.718Z",
                                                               "currency": "0x0000000000000000000000000000000000000000",
                                                               "decimalAmount": "0.000000002111",
-                                                              "fiatValue": "0.000000869732",
                                                               "id": "5c1702e78d9ea3000ea459d9",
                                                               "layer": "nahmii",
                                                               "nonce": 21,
@@ -39540,11 +39327,9 @@ ShallowWrapper {
                                                                 "number": 3780091,
                                                                 "timestamp": "2018-08-06T02:32:00.000Z",
                                                               },
-                                                              "confirmations": "3",
                                                               "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                               "currency": "0x0000000000000000000000000000000000000000",
                                                               "decimalAmount": "0.0000000001",
-                                                              "fiatValue": "0.0000000412",
                                                               "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                               "layer": "baseLayer",
                                                               "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -39561,7 +39346,6 @@ ShallowWrapper {
                                                               "created": "2018-11-16T22:40:54.951Z",
                                                               "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                               "decimalAmount": "0.01",
-                                                              "fiatValue": "0.01",
                                                               "id": "5c16d4768d9ea3000ea45690",
                                                               "layer": "nahmii",
                                                               "nonce": 18,
@@ -39639,11 +39423,9 @@ ShallowWrapper {
                                                                 "number": 3780089,
                                                                 "timestamp": "2018-08-06T02:32:00.000Z",
                                                               },
-                                                              "confirmations": "5",
                                                               "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                                                               "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                                                               "decimalAmount": "0.000000000000000005",
-                                                              "fiatValue": "0.000000000000000005",
                                                               "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                                                               "layer": "baseLayer",
                                                               "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
@@ -39913,6 +39695,7 @@ ShallowWrapper {
                   "distance": 5,
                   "getHelperDimensions": [Function],
                   "handleCardClick": [Function],
+                  "handleToggleFold": [Function],
                   "hideSortableGhost": true,
                   "ledgerNanoSInfo": Immutable.Map {
                     connected: false,
@@ -40155,7 +39938,6 @@ ShallowWrapper {
                             "created": "2018-12-17T01:59:03.718Z",
                             "currency": "0x0000000000000000000000000000000000000000",
                             "decimalAmount": "0.000000002111",
-                            "fiatValue": "0.000000869732",
                             "id": "5c1702e78d9ea3000ea459d9",
                             "layer": "nahmii",
                             "nonce": 21,
@@ -40233,11 +40015,9 @@ ShallowWrapper {
                               "number": 3780091,
                               "timestamp": "2018-08-06T02:32:00.000Z",
                             },
-                            "confirmations": "3",
                             "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                             "currency": "0x0000000000000000000000000000000000000000",
                             "decimalAmount": "0.0000000001",
-                            "fiatValue": "0.0000000412",
                             "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                             "layer": "baseLayer",
                             "recipient": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
@@ -40254,7 +40034,6 @@ ShallowWrapper {
                             "created": "2018-11-16T22:40:54.951Z",
                             "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                             "decimalAmount": "0.01",
-                            "fiatValue": "0.01",
                             "id": "5c16d4768d9ea3000ea45690",
                             "layer": "nahmii",
                             "nonce": 18,
@@ -40332,11 +40111,9 @@ ShallowWrapper {
                               "number": 3780089,
                               "timestamp": "2018-08-06T02:32:00.000Z",
                             },
-                            "confirmations": "5",
                             "counterpartyAddress": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                             "currency": "0x583cbbb8a8443b38abcc0c956bece47340ea1367",
                             "decimalAmount": "0.000000000000000005",
-                            "fiatValue": "0.000000000000000005",
                             "hash": "0x84db5d53f1b5e82bdae027408989cf5451191d76b8b021710cfa0d95bbd5d34c",
                             "layer": "baseLayer",
                             "recipient": "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
