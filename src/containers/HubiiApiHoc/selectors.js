@@ -11,13 +11,20 @@ const selectHubiiApiHocDomain = (state) => state.get('hubiiApiHoc');
 
 export const createTransactionsSelector = createSelectorCreator(
   defaultMemoize,
-  (currentArray, previousArray) => {
+  (previousArray, currentArray) => {
     let changed = false;
     currentArray.keySeq().forEach((address) => {
-      if (!currentArray.getIn([address, 'transactions']) || !previousArray.getIn([address, 'transactions'])) {
+      const previousTxs = previousArray.getIn([address, 'transactions']);
+      const currentTxs = currentArray.getIn([address, 'transactions']);
+
+      if (!currentTxs && !previousTxs) {
         return;
       }
-      if (currentArray.getIn([address, 'transactions']).size !== previousArray.getIn([address, 'transactions']).size) {
+
+      if (
+        (!previousTxs && currentTxs) ||
+        (previousTxs.size !== currentTxs.size)
+      ) {
         changed = true;
       }
     });
