@@ -8,6 +8,7 @@ injectGlobal`
     font-size: 14px;
     font-family: "Open Sans";
     font-weight: 400;
+    user-select: none;
   }
 
   html,
@@ -16,7 +17,6 @@ injectGlobal`
     width: 100%;
     margin: 0;
     padding: 0;
-    user-select: none;
   }
 
   #app {

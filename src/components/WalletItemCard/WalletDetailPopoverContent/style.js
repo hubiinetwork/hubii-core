@@ -15,4 +15,5 @@ export const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.palette.primary1};
   color: ${({ theme }) => theme.palette.light};
   font-size: 1.29rem;
+  cursor: default;
 `;
