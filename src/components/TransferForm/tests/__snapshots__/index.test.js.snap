@@ -548,7 +548,7 @@ ShallowWrapper {
               "name": "mike",
             },
             Object {
-              "addss": "04234",
+              "address": "04234",
               "name": "john",
             },
             Object {
@@ -638,7 +638,7 @@ ShallowWrapper {
                                           "name": "mike",
                                         },
                                         Object {
-                                          "addss": "04234",
+                                          "address": "04234",
                                           "name": "john",
                                         },
                                         Object {
@@ -648,7 +648,7 @@ ShallowWrapper {
                                       ]
                     }
                     onEdit={[Function]}
-                    quickAddAddress="0x324234"
+                    quickAddAddress=""
           />
 </Modal__Modal>,
         <style__OuterWrapper>
@@ -691,11 +691,7 @@ ShallowWrapper {
                               </Form__FormItem>
                               <Form__FormItem
                                         colon={false}
-                                        help={
-                                                  <HelperTextComponent
-                                                            left="0x324234"
-                                                  />
-                                        }
+                                        help={null}
                                         label={
                                                   <Form__FormItemLabel>
                                                             select_recipient
@@ -715,7 +711,7 @@ ShallowWrapper {
                                                                       },
                                                                       Object {
                                                                         "name": "john",
-                                                                        "value": undefined,
+                                                                        "value": "04234",
                                                                       },
                                                                       Object {
                                                                         "name": "ester",
@@ -1320,7 +1316,7 @@ ShallowWrapper {
                               hwWalletReady={false}
                               layer="baseLayer"
                               onSend={[Function]}
-                              recipient="0x324234"
+                              recipient=""
                               transactionFee={
                                         Object {
                                                   "amount": "0.00021",
@@ -1353,7 +1349,7 @@ ShallowWrapper {
                                       "name": "mike",
                                     },
                                     Object {
-                                      "addss": "04234",
+                                      "address": "04234",
                                       "name": "john",
                                     },
                                     Object {
@@ -1363,7 +1359,7 @@ ShallowWrapper {
                                   ]
             }
             onEdit={[Function]}
-            quickAddAddress="0x324234"
+            quickAddAddress=""
 />,
           "destroyOnClose": true,
           "footer": null,
@@ -1388,7 +1384,7 @@ ShallowWrapper {
                 "name": "mike",
               },
               Object {
-                "addss": "04234",
+                "address": "04234",
                 "name": "john",
               },
               Object {
@@ -1397,7 +1393,7 @@ ShallowWrapper {
               },
             ],
             "onEdit": [Function],
-            "quickAddAddress": "0x324234",
+            "quickAddAddress": "",
           },
           "ref": null,
           "rendered": null,
@@ -1450,11 +1446,7 @@ ShallowWrapper {
                             </Form__FormItem>
                             <Form__FormItem
                                           colon={false}
-                                          help={
-                                                        <HelperTextComponent
-                                                                      left="0x324234"
-                                                        />
-                                          }
+                                          help={null}
                                           label={
                                                         <Form__FormItemLabel>
                                                                       select_recipient
@@ -1474,7 +1466,7 @@ ShallowWrapper {
                                                                                     },
                                                                                     Object {
                                                                                       "name": "john",
-                                                                                      "value": undefined,
+                                                                                      "value": "04234",
                                                                                     },
                                                                                     Object {
                                                                                       "name": "ester",
@@ -2079,7 +2071,7 @@ ShallowWrapper {
                             hwWalletReady={false}
                             layer="baseLayer"
                             onSend={[Function]}
-                            recipient="0x324234"
+                            recipient=""
                             transactionFee={
                                           Object {
                                                         "amount": "0.00021",
@@ -2140,11 +2132,7 @@ ShallowWrapper {
                 </Form__FormItem>
                 <Form__FormItem
                                 colon={false}
-                                help={
-                                                <HelperTextComponent
-                                                                left="0x324234"
-                                                />
-                                }
+                                help={null}
                                 label={
                                                 <Form__FormItemLabel>
                                                                 select_recipient
@@ -2164,7 +2152,7 @@ ShallowWrapper {
                                                                                 },
                                                                                 Object {
                                                                                   "name": "john",
-                                                                                  "value": undefined,
+                                                                                  "value": "04234",
                                                                                 },
                                                                                 Object {
                                                                                   "name": "ester",
@@ -2300,11 +2288,7 @@ ShallowWrapper {
 </Form__FormItem>,
                   <Form__FormItem
                     colon={false}
-                    help={
-                                        <HelperTextComponent
-                                                            left="0x324234"
-                                        />
-                    }
+                    help={null}
                     label={
                                         <Form__FormItemLabel>
                                                             select_recipient
@@ -2324,7 +2308,7 @@ ShallowWrapper {
                                                                                 },
                                                                                 Object {
                                                                                   "name": "john",
-                                                                                  "value": undefined,
+                                                                                  "value": "04234",
                                                                                 },
                                                                                 Object {
                                                                                   "name": "ester",
@@ -2545,7 +2529,7 @@ ShallowWrapper {
                                                                   },
                                                                   Object {
                                                                     "name": "john",
-                                                                    "value": undefined,
+                                                                    "value": "04234",
                                                                   },
                                                                   Object {
                                                                     "name": "ester",
@@ -2555,9 +2539,7 @@ ShallowWrapper {
                       }
 />,
                     "colon": false,
-                    "help": <HelperTextComponent
-                      left="0x324234"
-/>,
+                    "help": null,
                     "label": <Form__FormItemLabel>
                       select_recipient
 </Form__FormItemLabel>,
@@ -2579,7 +2561,7 @@ ShallowWrapper {
                         },
                         Object {
                           "name": "john",
-                          "value": undefined,
+                          "value": "04234",
                         },
                         Object {
                           "name": "ester",
@@ -3284,7 +3266,7 @@ ShallowWrapper {
                 hwWalletReady={false}
                 layer="baseLayer"
                 onSend={[Function]}
-                recipient="0x324234"
+                recipient=""
                 transactionFee={
                                 Object {
                                                 "amount": "0.00021",
@@ -3801,7 +3783,7 @@ ShallowWrapper {
                 "hwWalletReady": false,
                 "layer": "baseLayer",
                 "onSend": [Function],
-                "recipient": "0x324234",
+                "recipient": "",
                 "transactionFee": Object {
                   "amount": "0.00021",
                   "symbol": "ETH",
@@ -3853,7 +3835,7 @@ ShallowWrapper {
                                                   "name": "mike",
                                                 },
                                                 Object {
-                                                  "addss": "04234",
+                                                  "address": "04234",
                                                   "name": "john",
                                                 },
                                                 Object {
@@ -3863,7 +3845,7 @@ ShallowWrapper {
                                               ]
                         }
                         onEdit={[Function]}
-                        quickAddAddress="0x324234"
+                        quickAddAddress=""
             />
 </Modal__Modal>,
           <style__OuterWrapper>
@@ -3906,11 +3888,7 @@ ShallowWrapper {
                                     </Form__FormItem>
                                     <Form__FormItem
                                                 colon={false}
-                                                help={
-                                                            <HelperTextComponent
-                                                                        left="0x324234"
-                                                            />
-                                                }
+                                                help={null}
                                                 label={
                                                             <Form__FormItemLabel>
                                                                         select_recipient
@@ -3930,7 +3908,7 @@ ShallowWrapper {
                                                                                     },
                                                                                     Object {
                                                                                       "name": "john",
-                                                                                      "value": undefined,
+                                                                                      "value": "04234",
                                                                                     },
                                                                                     Object {
                                                                                       "name": "ester",
@@ -4535,7 +4513,7 @@ ShallowWrapper {
                                     hwWalletReady={false}
                                     layer="baseLayer"
                                     onSend={[Function]}
-                                    recipient="0x324234"
+                                    recipient=""
                                     transactionFee={
                                                 Object {
                                                             "amount": "0.00021",
@@ -4568,7 +4546,7 @@ ShallowWrapper {
                                             "name": "mike",
                                           },
                                           Object {
-                                            "addss": "04234",
+                                            "address": "04234",
                                             "name": "john",
                                           },
                                           Object {
@@ -4578,7 +4556,7 @@ ShallowWrapper {
                                         ]
               }
               onEdit={[Function]}
-              quickAddAddress="0x324234"
+              quickAddAddress=""
 />,
             "destroyOnClose": true,
             "footer": null,
@@ -4603,7 +4581,7 @@ ShallowWrapper {
                   "name": "mike",
                 },
                 Object {
-                  "addss": "04234",
+                  "address": "04234",
                   "name": "john",
                 },
                 Object {
@@ -4612,7 +4590,7 @@ ShallowWrapper {
                 },
               ],
               "onEdit": [Function],
-              "quickAddAddress": "0x324234",
+              "quickAddAddress": "",
             },
             "ref": null,
             "rendered": null,
@@ -4665,11 +4643,7 @@ ShallowWrapper {
                                 </Form__FormItem>
                                 <Form__FormItem
                                                 colon={false}
-                                                help={
-                                                                <HelperTextComponent
-                                                                                left="0x324234"
-                                                                />
-                                                }
+                                                help={null}
                                                 label={
                                                                 <Form__FormItemLabel>
                                                                                 select_recipient
@@ -4689,7 +4663,7 @@ ShallowWrapper {
                                                                                                 },
                                                                                                 Object {
                                                                                                   "name": "john",
-                                                                                                  "value": undefined,
+                                                                                                  "value": "04234",
                                                                                                 },
                                                                                                 Object {
                                                                                                   "name": "ester",
@@ -5294,7 +5268,7 @@ ShallowWrapper {
                                 hwWalletReady={false}
                                 layer="baseLayer"
                                 onSend={[Function]}
-                                recipient="0x324234"
+                                recipient=""
                                 transactionFee={
                                                 Object {
                                                                 "amount": "0.00021",
@@ -5355,11 +5329,7 @@ ShallowWrapper {
                   </Form__FormItem>
                   <Form__FormItem
                                     colon={false}
-                                    help={
-                                                      <HelperTextComponent
-                                                                        left="0x324234"
-                                                      />
-                                    }
+                                    help={null}
                                     label={
                                                       <Form__FormItemLabel>
                                                                         select_recipient
@@ -5379,7 +5349,7 @@ ShallowWrapper {
                                                                                           },
                                                                                           Object {
                                                                                             "name": "john",
-                                                                                            "value": undefined,
+                                                                                            "value": "04234",
                                                                                           },
                                                                                           Object {
                                                                                             "name": "ester",
@@ -5515,11 +5485,7 @@ ShallowWrapper {
 </Form__FormItem>,
                     <Form__FormItem
                       colon={false}
-                      help={
-                                            <HelperTextComponent
-                                                                  left="0x324234"
-                                            />
-                      }
+                      help={null}
                       label={
                                             <Form__FormItemLabel>
                                                                   select_recipient
@@ -5539,7 +5505,7 @@ ShallowWrapper {
                                                                                         },
                                                                                         Object {
                                                                                           "name": "john",
-                                                                                          "value": undefined,
+                                                                                          "value": "04234",
                                                                                         },
                                                                                         Object {
                                                                                           "name": "ester",
@@ -5760,7 +5726,7 @@ ShallowWrapper {
                                                                         },
                                                                         Object {
                                                                           "name": "john",
-                                                                          "value": undefined,
+                                                                          "value": "04234",
                                                                         },
                                                                         Object {
                                                                           "name": "ester",
@@ -5770,9 +5736,7 @@ ShallowWrapper {
                         }
 />,
                       "colon": false,
-                      "help": <HelperTextComponent
-                        left="0x324234"
-/>,
+                      "help": null,
                       "label": <Form__FormItemLabel>
                         select_recipient
 </Form__FormItemLabel>,
@@ -5794,7 +5758,7 @@ ShallowWrapper {
                           },
                           Object {
                             "name": "john",
-                            "value": undefined,
+                            "value": "04234",
                           },
                           Object {
                             "name": "ester",
@@ -6499,7 +6463,7 @@ ShallowWrapper {
                   hwWalletReady={false}
                   layer="baseLayer"
                   onSend={[Function]}
-                  recipient="0x324234"
+                  recipient=""
                   transactionFee={
                                     Object {
                                                       "amount": "0.00021",
@@ -7016,7 +6980,7 @@ ShallowWrapper {
                   "hwWalletReady": false,
                   "layer": "baseLayer",
                   "onSend": [Function],
-                  "recipient": "0x324234",
+                  "recipient": "",
                   "transactionFee": Object {
                     "amount": "0.00021",
                     "symbol": "ETH",
@@ -14335,7 +14299,7 @@ ShallowWrapper {
               "name": "mike",
             },
             Object {
-              "addss": "04234",
+              "address": "04234",
               "name": "john",
             },
             Object {
@@ -14425,7 +14389,7 @@ ShallowWrapper {
                                           "name": "mike",
                                         },
                                         Object {
-                                          "addss": "04234",
+                                          "address": "04234",
                                           "name": "john",
                                         },
                                         Object {
@@ -14435,7 +14399,7 @@ ShallowWrapper {
                                       ]
                     }
                     onEdit={[Function]}
-                    quickAddAddress="0x324234"
+                    quickAddAddress=""
           />
 </Modal__Modal>,
         <style__OuterWrapper>
@@ -14478,11 +14442,7 @@ ShallowWrapper {
                               </Form__FormItem>
                               <Form__FormItem
                                         colon={false}
-                                        help={
-                                                  <HelperTextComponent
-                                                            left="0x324234"
-                                                  />
-                                        }
+                                        help={null}
                                         label={
                                                   <Form__FormItemLabel>
                                                             select_recipient
@@ -14502,7 +14462,7 @@ ShallowWrapper {
                                                                       },
                                                                       Object {
                                                                         "name": "john",
-                                                                        "value": undefined,
+                                                                        "value": "04234",
                                                                       },
                                                                       Object {
                                                                         "name": "ester",
@@ -15107,7 +15067,7 @@ ShallowWrapper {
                               hwWalletReady={true}
                               layer="baseLayer"
                               onSend={[Function]}
-                              recipient="0x324234"
+                              recipient=""
                               transactionFee={
                                         Object {
                                                   "amount": "0.00021",
@@ -15140,7 +15100,7 @@ ShallowWrapper {
                                       "name": "mike",
                                     },
                                     Object {
-                                      "addss": "04234",
+                                      "address": "04234",
                                       "name": "john",
                                     },
                                     Object {
@@ -15150,7 +15110,7 @@ ShallowWrapper {
                                   ]
             }
             onEdit={[Function]}
-            quickAddAddress="0x324234"
+            quickAddAddress=""
 />,
           "destroyOnClose": true,
           "footer": null,
@@ -15175,7 +15135,7 @@ ShallowWrapper {
                 "name": "mike",
               },
               Object {
-                "addss": "04234",
+                "address": "04234",
                 "name": "john",
               },
               Object {
@@ -15184,7 +15144,7 @@ ShallowWrapper {
               },
             ],
             "onEdit": [Function],
-            "quickAddAddress": "0x324234",
+            "quickAddAddress": "",
           },
           "ref": null,
           "rendered": null,
@@ -15237,11 +15197,7 @@ ShallowWrapper {
                             </Form__FormItem>
                             <Form__FormItem
                                           colon={false}
-                                          help={
-                                                        <HelperTextComponent
-                                                                      left="0x324234"
-                                                        />
-                                          }
+                                          help={null}
                                           label={
                                                         <Form__FormItemLabel>
                                                                       select_recipient
@@ -15261,7 +15217,7 @@ ShallowWrapper {
                                                                                     },
                                                                                     Object {
                                                                                       "name": "john",
-                                                                                      "value": undefined,
+                                                                                      "value": "04234",
                                                                                     },
                                                                                     Object {
                                                                                       "name": "ester",
@@ -15866,7 +15822,7 @@ ShallowWrapper {
                             hwWalletReady={true}
                             layer="baseLayer"
                             onSend={[Function]}
-                            recipient="0x324234"
+                            recipient=""
                             transactionFee={
                                           Object {
                                                         "amount": "0.00021",
@@ -15927,11 +15883,7 @@ ShallowWrapper {
                 </Form__FormItem>
                 <Form__FormItem
                                 colon={false}
-                                help={
-                                                <HelperTextComponent
-                                                                left="0x324234"
-                                                />
-                                }
+                                help={null}
                                 label={
                                                 <Form__FormItemLabel>
                                                                 select_recipient
@@ -15951,7 +15903,7 @@ ShallowWrapper {
                                                                                 },
                                                                                 Object {
                                                                                   "name": "john",
-                                                                                  "value": undefined,
+                                                                                  "value": "04234",
                                                                                 },
                                                                                 Object {
                                                                                   "name": "ester",
@@ -16087,11 +16039,7 @@ ShallowWrapper {
 </Form__FormItem>,
                   <Form__FormItem
                     colon={false}
-                    help={
-                                        <HelperTextComponent
-                                                            left="0x324234"
-                                        />
-                    }
+                    help={null}
                     label={
                                         <Form__FormItemLabel>
                                                             select_recipient
@@ -16111,7 +16059,7 @@ ShallowWrapper {
                                                                                 },
                                                                                 Object {
                                                                                   "name": "john",
-                                                                                  "value": undefined,
+                                                                                  "value": "04234",
                                                                                 },
                                                                                 Object {
                                                                                   "name": "ester",
@@ -16332,7 +16280,7 @@ ShallowWrapper {
                                                                   },
                                                                   Object {
                                                                     "name": "john",
-                                                                    "value": undefined,
+                                                                    "value": "04234",
                                                                   },
                                                                   Object {
                                                                     "name": "ester",
@@ -16342,9 +16290,7 @@ ShallowWrapper {
                       }
 />,
                     "colon": false,
-                    "help": <HelperTextComponent
-                      left="0x324234"
-/>,
+                    "help": null,
                     "label": <Form__FormItemLabel>
                       select_recipient
 </Form__FormItemLabel>,
@@ -16366,7 +16312,7 @@ ShallowWrapper {
                         },
                         Object {
                           "name": "john",
-                          "value": undefined,
+                          "value": "04234",
                         },
                         Object {
                           "name": "ester",
@@ -17071,7 +17017,7 @@ ShallowWrapper {
                 hwWalletReady={true}
                 layer="baseLayer"
                 onSend={[Function]}
-                recipient="0x324234"
+                recipient=""
                 transactionFee={
                                 Object {
                                                 "amount": "0.00021",
@@ -17588,7 +17534,7 @@ ShallowWrapper {
                 "hwWalletReady": true,
                 "layer": "baseLayer",
                 "onSend": [Function],
-                "recipient": "0x324234",
+                "recipient": "",
                 "transactionFee": Object {
                   "amount": "0.00021",
                   "symbol": "ETH",
@@ -17640,7 +17586,7 @@ ShallowWrapper {
                                                   "name": "mike",
                                                 },
                                                 Object {
-                                                  "addss": "04234",
+                                                  "address": "04234",
                                                   "name": "john",
                                                 },
                                                 Object {
@@ -17650,7 +17596,7 @@ ShallowWrapper {
                                               ]
                         }
                         onEdit={[Function]}
-                        quickAddAddress="0x324234"
+                        quickAddAddress=""
             />
 </Modal__Modal>,
           <style__OuterWrapper>
@@ -17693,11 +17639,7 @@ ShallowWrapper {
                                     </Form__FormItem>
                                     <Form__FormItem
                                                 colon={false}
-                                                help={
-                                                            <HelperTextComponent
-                                                                        left="0x324234"
-                                                            />
-                                                }
+                                                help={null}
                                                 label={
                                                             <Form__FormItemLabel>
                                                                         select_recipient
@@ -17717,7 +17659,7 @@ ShallowWrapper {
                                                                                     },
                                                                                     Object {
                                                                                       "name": "john",
-                                                                                      "value": undefined,
+                                                                                      "value": "04234",
                                                                                     },
                                                                                     Object {
                                                                                       "name": "ester",
@@ -18322,7 +18264,7 @@ ShallowWrapper {
                                     hwWalletReady={true}
                                     layer="baseLayer"
                                     onSend={[Function]}
-                                    recipient="0x324234"
+                                    recipient=""
                                     transactionFee={
                                                 Object {
                                                             "amount": "0.00021",
@@ -18355,7 +18297,7 @@ ShallowWrapper {
                                             "name": "mike",
                                           },
                                           Object {
-                                            "addss": "04234",
+                                            "address": "04234",
                                             "name": "john",
                                           },
                                           Object {
@@ -18365,7 +18307,7 @@ ShallowWrapper {
                                         ]
               }
               onEdit={[Function]}
-              quickAddAddress="0x324234"
+              quickAddAddress=""
 />,
             "destroyOnClose": true,
             "footer": null,
@@ -18390,7 +18332,7 @@ ShallowWrapper {
                   "name": "mike",
                 },
                 Object {
-                  "addss": "04234",
+                  "address": "04234",
                   "name": "john",
                 },
                 Object {
@@ -18399,7 +18341,7 @@ ShallowWrapper {
                 },
               ],
               "onEdit": [Function],
-              "quickAddAddress": "0x324234",
+              "quickAddAddress": "",
             },
             "ref": null,
             "rendered": null,
@@ -18452,11 +18394,7 @@ ShallowWrapper {
                                 </Form__FormItem>
                                 <Form__FormItem
                                                 colon={false}
-                                                help={
-                                                                <HelperTextComponent
-                                                                                left="0x324234"
-                                                                />
-                                                }
+                                                help={null}
                                                 label={
                                                                 <Form__FormItemLabel>
                                                                                 select_recipient
@@ -18476,7 +18414,7 @@ ShallowWrapper {
                                                                                                 },
                                                                                                 Object {
                                                                                                   "name": "john",
-                                                                                                  "value": undefined,
+                                                                                                  "value": "04234",
                                                                                                 },
                                                                                                 Object {
                                                                                                   "name": "ester",
@@ -19081,7 +19019,7 @@ ShallowWrapper {
                                 hwWalletReady={true}
                                 layer="baseLayer"
                                 onSend={[Function]}
-                                recipient="0x324234"
+                                recipient=""
                                 transactionFee={
                                                 Object {
                                                                 "amount": "0.00021",
@@ -19142,11 +19080,7 @@ ShallowWrapper {
                   </Form__FormItem>
                   <Form__FormItem
                                     colon={false}
-                                    help={
-                                                      <HelperTextComponent
-                                                                        left="0x324234"
-                                                      />
-                                    }
+                                    help={null}
                                     label={
                                                       <Form__FormItemLabel>
                                                                         select_recipient
@@ -19166,7 +19100,7 @@ ShallowWrapper {
                                                                                           },
                                                                                           Object {
                                                                                             "name": "john",
-                                                                                            "value": undefined,
+                                                                                            "value": "04234",
                                                                                           },
                                                                                           Object {
                                                                                             "name": "ester",
@@ -19302,11 +19236,7 @@ ShallowWrapper {
 </Form__FormItem>,
                     <Form__FormItem
                       colon={false}
-                      help={
-                                            <HelperTextComponent
-                                                                  left="0x324234"
-                                            />
-                      }
+                      help={null}
                       label={
                                             <Form__FormItemLabel>
                                                                   select_recipient
@@ -19326,7 +19256,7 @@ ShallowWrapper {
                                                                                         },
                                                                                         Object {
                                                                                           "name": "john",
-                                                                                          "value": undefined,
+                                                                                          "value": "04234",
                                                                                         },
                                                                                         Object {
                                                                                           "name": "ester",
@@ -19547,7 +19477,7 @@ ShallowWrapper {
                                                                         },
                                                                         Object {
                                                                           "name": "john",
-                                                                          "value": undefined,
+                                                                          "value": "04234",
                                                                         },
                                                                         Object {
                                                                           "name": "ester",
@@ -19557,9 +19487,7 @@ ShallowWrapper {
                         }
 />,
                       "colon": false,
-                      "help": <HelperTextComponent
-                        left="0x324234"
-/>,
+                      "help": null,
                       "label": <Form__FormItemLabel>
                         select_recipient
 </Form__FormItemLabel>,
@@ -19581,7 +19509,7 @@ ShallowWrapper {
                           },
                           Object {
                             "name": "john",
-                            "value": undefined,
+                            "value": "04234",
                           },
                           Object {
                             "name": "ester",
@@ -20286,7 +20214,7 @@ ShallowWrapper {
                   hwWalletReady={true}
                   layer="baseLayer"
                   onSend={[Function]}
-                  recipient="0x324234"
+                  recipient=""
                   transactionFee={
                                     Object {
                                                       "amount": "0.00021",
@@ -20803,7 +20731,7 @@ ShallowWrapper {
                   "hwWalletReady": true,
                   "layer": "baseLayer",
                   "onSend": [Function],
-                  "recipient": "0x324234",
+                  "recipient": "",
                   "transactionFee": Object {
                     "amount": "0.00021",
                     "symbol": "ETH",
@@ -21385,7 +21313,7 @@ ShallowWrapper {
               "name": "mike",
             },
             Object {
-              "addss": "04234",
+              "address": "04234",
               "name": "john",
             },
             Object {
@@ -21475,7 +21403,7 @@ ShallowWrapper {
                                           "name": "mike",
                                         },
                                         Object {
-                                          "addss": "04234",
+                                          "address": "04234",
                                           "name": "john",
                                         },
                                         Object {
@@ -21485,7 +21413,7 @@ ShallowWrapper {
                                       ]
                     }
                     onEdit={[Function]}
-                    quickAddAddress="0x324234"
+                    quickAddAddress=""
           />
 </Modal__Modal>,
         <style__OuterWrapper>
@@ -21528,11 +21456,7 @@ ShallowWrapper {
                               </Form__FormItem>
                               <Form__FormItem
                                         colon={false}
-                                        help={
-                                                  <HelperTextComponent
-                                                            left="0x324234"
-                                                  />
-                                        }
+                                        help={null}
                                         label={
                                                   <Form__FormItemLabel>
                                                             select_recipient
@@ -21552,7 +21476,7 @@ ShallowWrapper {
                                                                       },
                                                                       Object {
                                                                         "name": "john",
-                                                                        "value": undefined,
+                                                                        "value": "04234",
                                                                       },
                                                                       Object {
                                                                         "name": "ester",
@@ -22157,7 +22081,7 @@ ShallowWrapper {
                               hwWalletReady={false}
                               layer="baseLayer"
                               onSend={[Function]}
-                              recipient="0x324234"
+                              recipient=""
                               transactionFee={
                                         Object {
                                                   "amount": "0.00021",
@@ -22190,7 +22114,7 @@ ShallowWrapper {
                                       "name": "mike",
                                     },
                                     Object {
-                                      "addss": "04234",
+                                      "address": "04234",
                                       "name": "john",
                                     },
                                     Object {
@@ -22200,7 +22124,7 @@ ShallowWrapper {
                                   ]
             }
             onEdit={[Function]}
-            quickAddAddress="0x324234"
+            quickAddAddress=""
 />,
           "destroyOnClose": true,
           "footer": null,
@@ -22225,7 +22149,7 @@ ShallowWrapper {
                 "name": "mike",
               },
               Object {
-                "addss": "04234",
+                "address": "04234",
                 "name": "john",
               },
               Object {
@@ -22234,7 +22158,7 @@ ShallowWrapper {
               },
             ],
             "onEdit": [Function],
-            "quickAddAddress": "0x324234",
+            "quickAddAddress": "",
           },
           "ref": null,
           "rendered": null,
@@ -22287,11 +22211,7 @@ ShallowWrapper {
                             </Form__FormItem>
                             <Form__FormItem
                                           colon={false}
-                                          help={
-                                                        <HelperTextComponent
-                                                                      left="0x324234"
-                                                        />
-                                          }
+                                          help={null}
                                           label={
                                                         <Form__FormItemLabel>
                                                                       select_recipient
@@ -22311,7 +22231,7 @@ ShallowWrapper {
                                                                                     },
                                                                                     Object {
                                                                                       "name": "john",
-                                                                                      "value": undefined,
+                                                                                      "value": "04234",
                                                                                     },
                                                                                     Object {
                                                                                       "name": "ester",
@@ -22916,7 +22836,7 @@ ShallowWrapper {
                             hwWalletReady={false}
                             layer="baseLayer"
                             onSend={[Function]}
-                            recipient="0x324234"
+                            recipient=""
                             transactionFee={
                                           Object {
                                                         "amount": "0.00021",
@@ -22977,11 +22897,7 @@ ShallowWrapper {
                 </Form__FormItem>
                 <Form__FormItem
                                 colon={false}
-                                help={
-                                                <HelperTextComponent
-                                                                left="0x324234"
-                                                />
-                                }
+                                help={null}
                                 label={
                                                 <Form__FormItemLabel>
                                                                 select_recipient
@@ -23001,7 +22917,7 @@ ShallowWrapper {
                                                                                 },
                                                                                 Object {
                                                                                   "name": "john",
-                                                                                  "value": undefined,
+                                                                                  "value": "04234",
                                                                                 },
                                                                                 Object {
                                                                                   "name": "ester",
@@ -23137,11 +23053,7 @@ ShallowWrapper {
 </Form__FormItem>,
                   <Form__FormItem
                     colon={false}
-                    help={
-                                        <HelperTextComponent
-                                                            left="0x324234"
-                                        />
-                    }
+                    help={null}
                     label={
                                         <Form__FormItemLabel>
                                                             select_recipient
@@ -23161,7 +23073,7 @@ ShallowWrapper {
                                                                                 },
                                                                                 Object {
                                                                                   "name": "john",
-                                                                                  "value": undefined,
+                                                                                  "value": "04234",
                                                                                 },
                                                                                 Object {
                                                                                   "name": "ester",
@@ -23382,7 +23294,7 @@ ShallowWrapper {
                                                                   },
                                                                   Object {
                                                                     "name": "john",
-                                                                    "value": undefined,
+                                                                    "value": "04234",
                                                                   },
                                                                   Object {
                                                                     "name": "ester",
@@ -23392,9 +23304,7 @@ ShallowWrapper {
                       }
 />,
                     "colon": false,
-                    "help": <HelperTextComponent
-                      left="0x324234"
-/>,
+                    "help": null,
                     "label": <Form__FormItemLabel>
                       select_recipient
 </Form__FormItemLabel>,
@@ -23416,7 +23326,7 @@ ShallowWrapper {
                         },
                         Object {
                           "name": "john",
-                          "value": undefined,
+                          "value": "04234",
                         },
                         Object {
                           "name": "ester",
@@ -24121,7 +24031,7 @@ ShallowWrapper {
                 hwWalletReady={false}
                 layer="baseLayer"
                 onSend={[Function]}
-                recipient="0x324234"
+                recipient=""
                 transactionFee={
                                 Object {
                                                 "amount": "0.00021",
@@ -24638,7 +24548,7 @@ ShallowWrapper {
                 "hwWalletReady": false,
                 "layer": "baseLayer",
                 "onSend": [Function],
-                "recipient": "0x324234",
+                "recipient": "",
                 "transactionFee": Object {
                   "amount": "0.00021",
                   "symbol": "ETH",
@@ -24690,7 +24600,7 @@ ShallowWrapper {
                                                   "name": "mike",
                                                 },
                                                 Object {
-                                                  "addss": "04234",
+                                                  "address": "04234",
                                                   "name": "john",
                                                 },
                                                 Object {
@@ -24700,7 +24610,7 @@ ShallowWrapper {
                                               ]
                         }
                         onEdit={[Function]}
-                        quickAddAddress="0x324234"
+                        quickAddAddress=""
             />
 </Modal__Modal>,
           <style__OuterWrapper>
@@ -24743,11 +24653,7 @@ ShallowWrapper {
                                     </Form__FormItem>
                                     <Form__FormItem
                                                 colon={false}
-                                                help={
-                                                            <HelperTextComponent
-                                                                        left="0x324234"
-                                                            />
-                                                }
+                                                help={null}
                                                 label={
                                                             <Form__FormItemLabel>
                                                                         select_recipient
@@ -24767,7 +24673,7 @@ ShallowWrapper {
                                                                                     },
                                                                                     Object {
                                                                                       "name": "john",
-                                                                                      "value": undefined,
+                                                                                      "value": "04234",
                                                                                     },
                                                                                     Object {
                                                                                       "name": "ester",
@@ -25372,7 +25278,7 @@ ShallowWrapper {
                                     hwWalletReady={false}
                                     layer="baseLayer"
                                     onSend={[Function]}
-                                    recipient="0x324234"
+                                    recipient=""
                                     transactionFee={
                                                 Object {
                                                             "amount": "0.00021",
@@ -25405,7 +25311,7 @@ ShallowWrapper {
                                             "name": "mike",
                                           },
                                           Object {
-                                            "addss": "04234",
+                                            "address": "04234",
                                             "name": "john",
                                           },
                                           Object {
@@ -25415,7 +25321,7 @@ ShallowWrapper {
                                         ]
               }
               onEdit={[Function]}
-              quickAddAddress="0x324234"
+              quickAddAddress=""
 />,
             "destroyOnClose": true,
             "footer": null,
@@ -25440,7 +25346,7 @@ ShallowWrapper {
                   "name": "mike",
                 },
                 Object {
-                  "addss": "04234",
+                  "address": "04234",
                   "name": "john",
                 },
                 Object {
@@ -25449,7 +25355,7 @@ ShallowWrapper {
                 },
               ],
               "onEdit": [Function],
-              "quickAddAddress": "0x324234",
+              "quickAddAddress": "",
             },
             "ref": null,
             "rendered": null,
@@ -25502,11 +25408,7 @@ ShallowWrapper {
                                 </Form__FormItem>
                                 <Form__FormItem
                                                 colon={false}
-                                                help={
-                                                                <HelperTextComponent
-                                                                                left="0x324234"
-                                                                />
-                                                }
+                                                help={null}
                                                 label={
                                                                 <Form__FormItemLabel>
                                                                                 select_recipient
@@ -25526,7 +25428,7 @@ ShallowWrapper {
                                                                                                 },
                                                                                                 Object {
                                                                                                   "name": "john",
-                                                                                                  "value": undefined,
+                                                                                                  "value": "04234",
                                                                                                 },
                                                                                                 Object {
                                                                                                   "name": "ester",
@@ -26131,7 +26033,7 @@ ShallowWrapper {
                                 hwWalletReady={false}
                                 layer="baseLayer"
                                 onSend={[Function]}
-                                recipient="0x324234"
+                                recipient=""
                                 transactionFee={
                                                 Object {
                                                                 "amount": "0.00021",
@@ -26192,11 +26094,7 @@ ShallowWrapper {
                   </Form__FormItem>
                   <Form__FormItem
                                     colon={false}
-                                    help={
-                                                      <HelperTextComponent
-                                                                        left="0x324234"
-                                                      />
-                                    }
+                                    help={null}
                                     label={
                                                       <Form__FormItemLabel>
                                                                         select_recipient
@@ -26216,7 +26114,7 @@ ShallowWrapper {
                                                                                           },
                                                                                           Object {
                                                                                             "name": "john",
-                                                                                            "value": undefined,
+                                                                                            "value": "04234",
                                                                                           },
                                                                                           Object {
                                                                                             "name": "ester",
@@ -26352,11 +26250,7 @@ ShallowWrapper {
 </Form__FormItem>,
                     <Form__FormItem
                       colon={false}
-                      help={
-                                            <HelperTextComponent
-                                                                  left="0x324234"
-                                            />
-                      }
+                      help={null}
                       label={
                                             <Form__FormItemLabel>
                                                                   select_recipient
@@ -26376,7 +26270,7 @@ ShallowWrapper {
                                                                                         },
                                                                                         Object {
                                                                                           "name": "john",
-                                                                                          "value": undefined,
+                                                                                          "value": "04234",
                                                                                         },
                                                                                         Object {
                                                                                           "name": "ester",
@@ -26597,7 +26491,7 @@ ShallowWrapper {
                                                                         },
                                                                         Object {
                                                                           "name": "john",
-                                                                          "value": undefined,
+                                                                          "value": "04234",
                                                                         },
                                                                         Object {
                                                                           "name": "ester",
@@ -26607,9 +26501,7 @@ ShallowWrapper {
                         }
 />,
                       "colon": false,
-                      "help": <HelperTextComponent
-                        left="0x324234"
-/>,
+                      "help": null,
                       "label": <Form__FormItemLabel>
                         select_recipient
 </Form__FormItemLabel>,
@@ -26631,7 +26523,7 @@ ShallowWrapper {
                           },
                           Object {
                             "name": "john",
-                            "value": undefined,
+                            "value": "04234",
                           },
                           Object {
                             "name": "ester",
@@ -27336,7 +27228,7 @@ ShallowWrapper {
                   hwWalletReady={false}
                   layer="baseLayer"
                   onSend={[Function]}
-                  recipient="0x324234"
+                  recipient=""
                   transactionFee={
                                     Object {
                                                       "amount": "0.00021",
@@ -27853,7 +27745,7 @@ ShallowWrapper {
                   "hwWalletReady": false,
                   "layer": "baseLayer",
                   "onSend": [Function],
-                  "recipient": "0x324234",
+                  "recipient": "",
                   "transactionFee": Object {
                     "amount": "0.00021",
                     "symbol": "ETH",

@@ -15,7 +15,7 @@ class ComboBoxSelect extends React.PureComponent { // eslint-disable-line react/
     super(props);
     this.state = {
       options: [],
-      selectValue: this.props.options[0] ? this.props.options[0].name : '',
+      selectValue: '',
       notFoundMessage: null,
     };
     this.onInputKeyDown = this.onInputKeyDown.bind(this);
