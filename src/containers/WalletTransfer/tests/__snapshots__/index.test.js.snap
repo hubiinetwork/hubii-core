@@ -1215,10 +1215,6 @@ ShallowWrapper {
                           "name": "john",
                         },
                         Object {
-                          "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                          "name": "lns",
-                        },
-                        Object {
                           "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                           "name": "software-wallet-mock1",
                         },
@@ -1816,10 +1812,6 @@ ShallowWrapper {
           Object {
             "address": "0x1231323",
             "name": "john",
-          },
-          Object {
-            "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-            "name": "lns",
           },
           Object {
             "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -2433,10 +2425,6 @@ ShallowWrapper {
                                 "name": "john",
                               },
                               Object {
-                                "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                                "name": "lns",
-                              },
-                              Object {
                                 "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                                 "name": "software-wallet-mock1",
                               },
@@ -3034,10 +3022,6 @@ ShallowWrapper {
             Object {
               "address": "0x1231323",
               "name": "john",
-            },
-            Object {
-              "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-              "name": "lns",
             },
             Object {
               "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -4334,10 +4318,6 @@ ShallowWrapper {
                           "name": "john",
                         },
                         Object {
-                          "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                          "name": "lns",
-                        },
-                        Object {
                           "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                           "name": "software-wallet-mock1",
                         },
@@ -4938,10 +4918,6 @@ ShallowWrapper {
           Object {
             "address": "0x1231323",
             "name": "john",
-          },
-          Object {
-            "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-            "name": "lns",
           },
           Object {
             "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -5558,10 +5534,6 @@ ShallowWrapper {
                                 "name": "john",
                               },
                               Object {
-                                "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                                "name": "lns",
-                              },
-                              Object {
                                 "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                                 "name": "software-wallet-mock1",
                               },
@@ -6162,10 +6134,6 @@ ShallowWrapper {
             Object {
               "address": "0x1231323",
               "name": "john",
-            },
-            Object {
-              "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-              "name": "lns",
             },
             Object {
               "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -7458,10 +7426,6 @@ ShallowWrapper {
                           "name": "john",
                         },
                         Object {
-                          "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                          "name": "lns",
-                        },
-                        Object {
                           "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                           "name": "software-wallet-mock1",
                         },
@@ -8060,10 +8024,6 @@ ShallowWrapper {
           Object {
             "address": "0x1231323",
             "name": "john",
-          },
-          Object {
-            "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-            "name": "lns",
           },
           Object {
             "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -8678,10 +8638,6 @@ ShallowWrapper {
                                 "name": "john",
                               },
                               Object {
-                                "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                                "name": "lns",
-                              },
-                              Object {
                                 "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                                 "name": "software-wallet-mock1",
                               },
@@ -9280,10 +9236,6 @@ ShallowWrapper {
             Object {
               "address": "0x1231323",
               "name": "john",
-            },
-            Object {
-              "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-              "name": "lns",
             },
             Object {
               "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -10574,10 +10526,6 @@ ShallowWrapper {
                           "name": "john",
                         },
                         Object {
-                          "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                          "name": "lns",
-                        },
-                        Object {
                           "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                           "name": "software-wallet-mock1",
                         },
@@ -11175,10 +11123,6 @@ ShallowWrapper {
           Object {
             "address": "0x1231323",
             "name": "john",
-          },
-          Object {
-            "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-            "name": "lns",
           },
           Object {
             "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -11792,10 +11736,6 @@ ShallowWrapper {
                                 "name": "john",
                               },
                               Object {
-                                "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                                "name": "lns",
-                              },
-                              Object {
                                 "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                                 "name": "software-wallet-mock1",
                               },
@@ -12393,10 +12333,6 @@ ShallowWrapper {
             Object {
               "address": "0x1231323",
               "name": "john",
-            },
-            Object {
-              "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-              "name": "lns",
             },
             Object {
               "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -13604,10 +13540,6 @@ ShallowWrapper {
                           "name": "john",
                         },
                         Object {
-                          "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                          "name": "lns",
-                        },
-                        Object {
                           "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                           "name": "software-wallet-mock1",
                         },
@@ -14163,10 +14095,6 @@ ShallowWrapper {
           Object {
             "address": "0x1231323",
             "name": "john",
-          },
-          Object {
-            "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-            "name": "lns",
           },
           Object {
             "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -14738,10 +14666,6 @@ ShallowWrapper {
                                 "name": "john",
                               },
                               Object {
-                                "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                                "name": "lns",
-                              },
-                              Object {
                                 "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                                 "name": "software-wallet-mock1",
                               },
@@ -15297,10 +15221,6 @@ ShallowWrapper {
             Object {
               "address": "0x1231323",
               "name": "john",
-            },
-            Object {
-              "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-              "name": "lns",
             },
             Object {
               "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -16508,10 +16428,6 @@ ShallowWrapper {
                           "name": "john",
                         },
                         Object {
-                          "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                          "name": "lns",
-                        },
-                        Object {
                           "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                           "name": "software-wallet-mock1",
                         },
@@ -17067,10 +16983,6 @@ ShallowWrapper {
           Object {
             "address": "0x1231323",
             "name": "john",
-          },
-          Object {
-            "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-            "name": "lns",
           },
           Object {
             "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -17642,10 +17554,6 @@ ShallowWrapper {
                                 "name": "john",
                               },
                               Object {
-                                "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                                "name": "lns",
-                              },
-                              Object {
                                 "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                                 "name": "software-wallet-mock1",
                               },
@@ -18201,10 +18109,6 @@ ShallowWrapper {
             Object {
               "address": "0x1231323",
               "name": "john",
-            },
-            Object {
-              "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-              "name": "lns",
             },
             Object {
               "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -19459,10 +19363,6 @@ ShallowWrapper {
                           "name": "john",
                         },
                         Object {
-                          "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                          "name": "lns",
-                        },
-                        Object {
                           "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                           "name": "software-wallet-mock1",
                         },
@@ -20024,10 +19924,6 @@ ShallowWrapper {
           Object {
             "address": "0x1231323",
             "name": "john",
-          },
-          Object {
-            "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-            "name": "lns",
           },
           Object {
             "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -20605,10 +20501,6 @@ ShallowWrapper {
                                 "name": "john",
                               },
                               Object {
-                                "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                                "name": "lns",
-                              },
-                              Object {
                                 "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                                 "name": "software-wallet-mock1",
                               },
@@ -21170,10 +21062,6 @@ ShallowWrapper {
             Object {
               "address": "0x1231323",
               "name": "john",
-            },
-            Object {
-              "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-              "name": "lns",
             },
             Object {
               "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -22392,10 +22280,6 @@ ShallowWrapper {
                           "name": "john",
                         },
                         Object {
-                          "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                          "name": "lns",
-                        },
-                        Object {
                           "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                           "name": "software-wallet-mock1",
                         },
@@ -22957,10 +22841,6 @@ ShallowWrapper {
           Object {
             "address": "0x1231323",
             "name": "john",
-          },
-          Object {
-            "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-            "name": "lns",
           },
           Object {
             "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -23538,10 +23418,6 @@ ShallowWrapper {
                                 "name": "john",
                               },
                               Object {
-                                "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                                "name": "lns",
-                              },
-                              Object {
                                 "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                                 "name": "software-wallet-mock1",
                               },
@@ -24103,10 +23979,6 @@ ShallowWrapper {
             Object {
               "address": "0x1231323",
               "name": "john",
-            },
-            Object {
-              "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-              "name": "lns",
             },
             Object {
               "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -25361,10 +25233,6 @@ ShallowWrapper {
                           "name": "john",
                         },
                         Object {
-                          "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                          "name": "lns",
-                        },
-                        Object {
                           "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                           "name": "software-wallet-mock1",
                         },
@@ -25962,10 +25830,6 @@ ShallowWrapper {
           Object {
             "address": "0x1231323",
             "name": "john",
-          },
-          Object {
-            "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-            "name": "lns",
           },
           Object {
             "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
@@ -26579,10 +26443,6 @@ ShallowWrapper {
                                 "name": "john",
                               },
                               Object {
-                                "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-                                "name": "lns",
-                              },
-                              Object {
                                 "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",
                                 "name": "software-wallet-mock1",
                               },
@@ -27180,10 +27040,6 @@ ShallowWrapper {
             Object {
               "address": "0x1231323",
               "name": "john",
-            },
-            Object {
-              "address": "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
-              "name": "lns",
             },
             Object {
               "address": "0x82191e2863E0b6AFC0A7D538cdabfd509aA648b5",

@@ -117,7 +117,7 @@ export class WalletTransfer extends React.PureComponent {
         wallets.toJS().map((wallet) => ({ name: wallet.name, address: wallet.address }))
       ),
       'address'
-    );
+    ).filter((contact) => contact.address !== currentWalletWithInfo.get('address'));
 
     // get if the hw wallet is ready to make tx
     const hwWalletReady = walletReady(currentWalletWithInfo.get('type'), ledgerNanoSInfo, trezorInfo);
