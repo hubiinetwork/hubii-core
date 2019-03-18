@@ -59,7 +59,7 @@ function createWindow() {
   const mainWindowState = windowStateKeeper({
     defaultWidth: windowOptions.width,
     defaultHeight: windowOptions.height,
-    fullScreen: true,
+    fullScreen: false,
   });
 
   global.mainWindow = initSplashScreen({
