@@ -59,9 +59,6 @@ export const ToggleExpandedArrow = styled(Icon).attrs({
   margin-left: 0.3rem;
   padding-top: 0.3rem;
   color: ${({ theme }) => theme.palette.secondary1};
-  // &:hover {
-  //   cursor: pointer;
-  // }
 `;
 
 export const LeftSideWrapper = styled.div`
