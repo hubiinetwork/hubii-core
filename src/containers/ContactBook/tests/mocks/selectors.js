@@ -8,7 +8,7 @@ export const contacts = fromJS([
   },
   {
     name: 'john',
-    addreqss: '04234',
+    address: '04234',
   },
   {
     name: 'ester',
