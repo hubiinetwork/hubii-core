@@ -279,7 +279,7 @@ export class WalletItemCard extends React.PureComponent {
               </div>
             </BalanceDetails>
           }
-          <CardIconSettings>
+          <CardIconSettings onClick={(e) => e.stopPropagation()}>
             <Dropdown placement="bottomLeft" overlay={this.settingsMenu(type, isDecrypted)}>
               <Icon
                 type="setting"
