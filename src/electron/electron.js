@@ -60,6 +60,7 @@ function createWindow() {
     defaultWidth: windowOptions.width,
     defaultHeight: windowOptions.height,
     fullScreen: false,
+    maximize: false,
   });
 
   global.mainWindow = initSplashScreen({
