@@ -28,13 +28,13 @@ import {
   MenuDivider,
   CardIconSettings,
   Border,
-  IconsWrapper,
   WalletName,
   Spinner,
   QuickAddressWrapper,
   QuickAddressText,
   QuickAddressIcon,
   ToggleExpandedArrow,
+  BalanceDetails,
 } from './style';
 
 /**
@@ -198,45 +198,17 @@ export class WalletItemCard extends React.PureComponent {
           active={connected || isDecrypted}
           walletType={isHardwareWallet(type) ? 'hardware' : 'software'}
         />
-        <IconsWrapper>
-          <div style={{ display: 'flex' }}>
-            <CardIcon>
-              <Popover
-                placement="right"
-                trigger="hover"
-                content={
-                  <WalletDetailPopoverContent address={address} type={type} />
-                }
-              >
-                <Icon type="info-circle-o" style={{ fontSize: '1.4rem' }} />
-              </Popover>
-            </CardIcon>
-            <ToggleExpandedArrow
-              expanded={folded ? 0 : 1}
-              onClick={() => {
-                handleToggleFold(address);
-              }}
-            />
-          </div>
-          {
-            !folded &&
-            <CardIconSettings>
-              <Dropdown placement="bottomLeft" overlay={this.settingsMenu(type, isDecrypted)}>
-                <Icon
-                  type="setting"
-                  style={{ marginTop: -35, position: 'absolute', fontSize: '1.4rem' }}
-                />
-              </Dropdown>
-            </CardIconSettings>
-          }
-        </IconsWrapper>
         <DynamicOuterWrapper
           folded={folded}
           onClick={() => {
             handleCardClick(address);
           }}
         >
-          <LeftSideWrapper>
+          <LeftSideWrapper
+            onClick={(e) => {
+              handleToggleFold(e, address);
+            }}
+          >
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline' }}>
               <WalletName large>{name}</WalletName>
               <QuickAddressWrapper>
@@ -252,10 +224,28 @@ export class WalletItemCard extends React.PureComponent {
             {!baseLayerBalancesLoading && !baseLayerBalancesError &&
               <TotalBalance>{`${formatFiat(totalBalance, 'USD')}`}</TotalBalance>
             }
+            <div style={{ display: 'flex', position: 'absolute', right: 0 }}>
+              <CardIcon>
+                <Popover
+                  placement="right"
+                  trigger="hover"
+                  content={
+                    <WalletDetailPopoverContent address={address} type={type} />
+                  }
+                >
+                  <Icon type="info-circle-o" style={{ fontSize: '1.4rem' }} />
+                </Popover>
+              </CardIcon>
+              <ToggleExpandedArrow
+                expanded={folded ? 0 : 1}
+                onClick={(e) => {
+                  handleToggleFold(e, address);
+                }}
+              />
+            </div>
           </LeftSideWrapper>
           {
-            !folded &&
-            <div>
+            <BalanceDetails>
               <div>
                 <Text>{formatMessage({ id: 'base_layer_balances' })}</Text>
                 <AssetsWrapper>
@@ -287,8 +277,16 @@ export class WalletItemCard extends React.PureComponent {
                   {!nahmiiBalancesLoading && !nahmiiBalancesError && nahmiiAssetBubbles}
                 </AssetsWrapper>
               </div>
-            </div>
+            </BalanceDetails>
           }
+          <CardIconSettings onClick={(e) => e.stopPropagation()}>
+            <Dropdown placement="bottomLeft" overlay={this.settingsMenu(type, isDecrypted)}>
+              <Icon
+                type="setting"
+                style={{ marginTop: -35, position: 'absolute', fontSize: '1.4rem' }}
+              />
+            </Dropdown>
+          </CardIconSettings>
         </DynamicOuterWrapper>
         <Modal
           footer={null}

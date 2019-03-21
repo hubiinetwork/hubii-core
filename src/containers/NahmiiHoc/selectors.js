@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect';
+import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect';
 import { fromJS, List } from 'immutable';
 import BigNumber from 'bignumber.js';
 
@@ -13,7 +13,30 @@ import { createDeepEqualSelector } from 'utils/selector';
  */
 const selectNahmiiHocDomain = (state) => state.get('nahmiiHoc');
 
-const makeSelectReceipts = () => createDeepEqualSelector(
+export const createReceiptsSelector = createSelectorCreator(
+  defaultMemoize,
+  (previousArray, currentArray) => {
+    let changed = false;
+    currentArray.keySeq().forEach((address) => {
+      const previousReceipts = previousArray.getIn([address, 'receipts']);
+      const currentReceipts = currentArray.getIn([address, 'receipts']);
+
+      if (!currentReceipts && !previousReceipts) {
+        return;
+      }
+
+      if (
+        (!previousReceipts && currentReceipts) ||
+        (previousReceipts.size !== currentReceipts.size)
+      ) {
+        changed = true;
+      }
+    });
+    return !changed;
+  }
+);
+
+const makeSelectReceipts = () => createReceiptsSelector(
   createSelector(
     selectNahmiiHocDomain,
     (nahmiiHocDomain) => nahmiiHocDomain.get('receipts')

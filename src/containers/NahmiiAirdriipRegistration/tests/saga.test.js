@@ -36,7 +36,7 @@ describe('register saga', () => {
         return next();
       },
     })
-    .put(notify('success', getIntl().formatMessage({ id: 'address_registered_sucesfully' })))
+    .put(notify('success', getIntl().formatMessage({ id: 'address_registered_successfully' })))
     .put(registerationSuccess('0x910c4BA923B2243dc13e00A066eEfb8ffd905EB0'))
     .run()
   );
@@ -57,7 +57,7 @@ describe('register saga', () => {
           return next();
         },
       })
-    .put(notify('success', getIntl().formatMessage({ id: 'address_registered_sucesfully' })))
+    .put(notify('success', getIntl().formatMessage({ id: 'address_registered_successfully' })))
     .put(registerationSuccess(address))
     .run();
   });

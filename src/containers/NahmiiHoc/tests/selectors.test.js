@@ -64,10 +64,58 @@ describe('makeSelectNahmiiBalances', () => {
 });
 
 describe('makeSelectReceipts', () => {
-  const receiptsSelector = makeSelectReceipts();
+  let receiptsSelector;
+  const address = '0xF4db7c6030c9c5754A6A712212d6342DCA52e25d';
+  beforeEach(() => {
+    receiptsSelector = makeSelectReceipts();
+  });
   it('should select receipts from the store state', () => {
     const expected = receiptsLoaded;
     expect(receiptsSelector(storeMock)).toEqual(expected);
+  });
+
+  describe('when previous receipts state is null', () => {
+    beforeEach(() => {
+      expect(
+        receiptsSelector(storeMock.setIn(['nahmiiHoc', 'receipts', address, 'receipts'], null))
+      ).toEqual(receiptsLoaded.setIn([address, 'receipts'], null));
+    });
+    it('should update the cache when the current receipts state has initialised array value', () => {
+      expect(
+        receiptsSelector(storeMock.setIn(['nahmiiHoc', 'receipts', address, 'receipts'], []))
+      ).toEqual(receiptsLoaded.setIn([address, 'receipts'], []));
+    });
+  });
+
+  describe('when previous receipts state has initialised', () => {
+    const store = storeMock.setIn(['nahmiiHoc', 'receipts', address, 'receipts'], fromJS([{}]));
+    const txs = receiptsLoaded.setIn([address, 'receipts'], fromJS([{}]));
+    beforeEach(() => {
+      expect(
+        receiptsSelector(store)
+      ).toEqual(txs);
+    });
+    describe('should update the cache', () => {
+      it('when the size of receipts array is different from previous state', () => {
+        expect(receiptsSelector(
+          store.updateIn(['nahmiiHoc', 'receipts', address, 'receipts'], (arr) => arr.push({}))
+        )).toEqual(txs.updateIn([address, 'receipts'], (arr) => arr.push({})));
+      });
+    });
+    describe('should not update the cache', () => {
+      it('even when the loading state is changed', () => {
+        expect(txs.getIn([address, 'loading'])).toEqual(false);
+        expect(receiptsSelector(
+          store.setIn(['nahmiiHoc', 'receipts', address, 'loading'], true)
+        )).toEqual(txs);
+      });
+      it('even when the size of the transaction array is different from the previous state', () => {
+        expect(txs.getIn([address, 'newField'])).toEqual(undefined);
+        expect(receiptsSelector(
+          store.setIn(['nahmiiHoc', 'receipts', address, 'receipts', 0, 'newField'], 'test')
+        )).toEqual(txs);
+      });
+    });
   });
 });
 

@@ -81,7 +81,7 @@ const SortableWallet = SortableElement((props) => {
         showDecryptWalletModal={() => props.showDecryptWalletModal()}
         setCurrentWallet={() => props.setCurrentWallet(props.wallet.address)}
         handleCardClick={() => props.handleCardClick(props.wallet)}
-        handleToggleFold={() => props.handleToggleFold(props.wallet.address)}
+        handleToggleFold={(e) => props.handleToggleFold(e, props.wallet.address)}
         deleteWallet={() => props.deleteWallet(props.wallet.address)}
         lock={() => props.lockWallet(props.wallet.address)}
         unlock={() => props.unlockWallet(props.wallet.address)}
@@ -132,10 +132,18 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
   handleCardClick(card) {
     const { history } = this.props;
+    if (card.folded) {
+      this.handleToggleFold(undefined, card.address);
+      return;
+    }
+
     history.push(`/wallet/${card.address}/overview`);
   }
 
-  handleToggleFold(address) {
+  handleToggleFold(e, address) {
+    if (e && e.stopPropagation) {
+      e.stopPropagation();
+    }
     const { toggleFoldWallet } = this.props;
     toggleFoldWallet(address);
   }

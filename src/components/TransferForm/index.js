@@ -55,7 +55,7 @@ export class TransferForm extends React.PureComponent {
     this.state = {
       amountToSendInput: '0',
       amountToSend: new BigNumber('0'),
-      address: this.props.recipients[0] ? this.props.recipients[0].address : '',
+      address: '',
       assetToSend,
       amountToSendInputRegex,
       gasPriceGweiInput: '10',
