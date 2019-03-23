@@ -8,6 +8,7 @@ injectGlobal`
     font-size: 14px;
     font-family: "Open Sans";
     font-weight: 400;
+    user-select: none;
   }
 
   html,

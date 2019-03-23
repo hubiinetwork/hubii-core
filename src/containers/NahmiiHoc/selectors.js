@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect';
+import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect';
 import { fromJS, List } from 'immutable';
 import BigNumber from 'bignumber.js';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
@@ -7,7 +7,6 @@ import {
 } from 'containers/WalletHoc/selectors';
 
 import {
-  makeSelectPrices,
   makeSelectSupportedAssets,
 } from 'containers/HubiiApiHoc/selectors';
 
@@ -18,24 +17,47 @@ import { createDeepEqualSelector } from 'utils/selector';
  */
 const selectNahmiiHocDomain = (state) => state.get('nahmiiHoc');
 
-const makeSelectReceipts = () => createSelector(
-  selectNahmiiHocDomain,
-  (nahmiiHocDomain) => nahmiiHocDomain.get('receipts')
+export const createReceiptsSelector = createSelectorCreator(
+  defaultMemoize,
+  (previousArray, currentArray) => {
+    let changed = false;
+    currentArray.keySeq().forEach((address) => {
+      const previousReceipts = previousArray.getIn([address, 'receipts']);
+      const currentReceipts = currentArray.getIn([address, 'receipts']);
+
+      if (!currentReceipts && !previousReceipts) {
+        return;
+      }
+
+      if (
+        (!previousReceipts && currentReceipts) ||
+        (previousReceipts.size !== currentReceipts.size)
+      ) {
+        changed = true;
+      }
+    });
+    return !changed;
+  }
 );
 
-const makeSelectReceiptsWithInfo = () => createDeepEqualSelector(
+const makeSelectReceipts = () => createReceiptsSelector(
+  createSelector(
+    selectNahmiiHocDomain,
+    (nahmiiHocDomain) => nahmiiHocDomain.get('receipts')
+  ),
+  (data) => data
+);
+
+const makeSelectReceiptsWithInfo = () => createSelector(
   makeSelectReceipts(),
   makeSelectSupportedAssets(),
-  makeSelectPrices(),
-  (receipts, supportedAssets, prices) => {
+  (receipts, supportedAssets) => {
     // set all address's receipts to loading if don't have all required information
     let receiptsWithInfo = receipts;
     if
     (
       supportedAssets.get('loading') ||
-      supportedAssets.get('error') ||
-      prices.get('loading') ||
-      prices.get('error')
+      supportedAssets.get('error')
     ) {
       receiptsWithInfo = receipts
         .map((address) => address
@@ -80,13 +102,6 @@ const makeSelectReceiptsWithInfo = () => createDeepEqualSelector(
         const decimalAmount = weiOrEquivilent.div(divisionFactor);
         BigNumber.config({ EXPONENTIAL_AT: 20 });
         receiptWithInfo = receiptWithInfo.set('decimalAmount', decimalAmount.toString());
-
-        // get fiat value of this receipt
-        const assetPrices = prices
-            .get('assets')
-            .find((a) => a.get('currency') === receiptWithInfo.get('currency'));
-        const receiptFiatValue = new BigNumber(receiptWithInfo.get('decimalAmount')).times(assetPrices.get('usd'));
-        receiptWithInfo = receiptWithInfo.set('fiatValue', receiptFiatValue.toString());
 
         // set 'confirmed' to true. when we add data from the payments endpoint, set the
         // conf status of those receipt to false.
@@ -271,11 +286,17 @@ const makeSelectDepositStatus = () => createSelector(
   (nahmiiHocDomain) => nahmiiHocDomain.get('depositStatus')
 );
 
-const makeSelectNahmiiBalances = () => createDeepEqualSelector(
-  selectNahmiiHocDomain,
-  (nahmiiHocDomain) => {
-    const balances = nahmiiHocDomain.get('balances') || fromJS({});
+const makeSelectRawNahmiiBalances = () => createDeepEqualSelector(
+  createSelector(
+    selectNahmiiHocDomain,
+    (nahmiiHocDomain) => nahmiiHocDomain.get('balances') || fromJS({})
+  ),
+  (data) => data
+);
 
+const makeSelectNahmiiBalances = () => createDeepEqualSelector(
+  makeSelectRawNahmiiBalances(),
+  (balances) => {
     // create a 'total' balance entry for each address
     let balancesWithTotal = balances;
     balances.forEach((address, i) => {

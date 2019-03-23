@@ -187,10 +187,6 @@ export const receiptsWithInfo = receiptsLoaded
     receiptsLoaded.getIn(['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 1, 'updated']),
   )
   .setIn(
-    ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 1, 'fiatValue'],
-    '0.01'
-  )
-  .setIn(
     ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 1, 'symbol'],
     'BOKKY'
   )
@@ -225,10 +221,6 @@ export const receiptsWithInfo = receiptsLoaded
   .setIn(
     ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 0, 'timestamp'],
     receiptsLoaded.getIn(['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 0, 'updated']),
-  )
-  .setIn(
-    ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 0, 'fiatValue'],
-    '0.000000869732'
   )
   .setIn(
     ['0x1c7429f62595097315289ceBaC1fDbdA587Ad512', 'receipts', 0, 'symbol'],

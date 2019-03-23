@@ -1,8 +1,7 @@
-import { createSelector } from 'reselect';
+import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect';
 import { fromJS, List } from 'immutable';
 import BigNumber from 'bignumber.js';
 
-import { makeSelectBlockHeight } from 'containers/EthOperationsHoc/selectors';
 import { createDeepEqualSelector } from 'utils/selector';
 
 /**
@@ -10,49 +9,74 @@ import { createDeepEqualSelector } from 'utils/selector';
  */
 const selectHubiiApiHocDomain = (state) => state.get('hubiiApiHoc');
 
-/**
- * Other selectors
- */
-const makeSelectTransactions = () => createSelector(
-  selectHubiiApiHocDomain,
-  (hubiiApiHocDomain) => hubiiApiHocDomain.get('transactions') || fromJS([])
+export const createTransactionsSelector = createSelectorCreator(
+  defaultMemoize,
+  (previousArray, currentArray) => {
+    let changed = false;
+    currentArray.keySeq().forEach((address) => {
+      const previousTxs = previousArray.getIn([address, 'transactions']);
+      const currentTxs = currentArray.getIn([address, 'transactions']);
+
+      if (!currentTxs && !previousTxs) {
+        return;
+      }
+
+      if (
+        (!previousTxs && currentTxs) ||
+        (previousTxs.size !== currentTxs.size)
+      ) {
+        changed = true;
+      }
+    });
+    return !changed;
+  }
+);
+
+const makeSelectTransactions = () => createTransactionsSelector(
+  createSelector(
+    selectHubiiApiHocDomain,
+    (hubiiApiHocDomain) => hubiiApiHocDomain.get('transactions') || fromJS([])
+  ),
+  (data) => data
 );
 
 // returns balances state OR a placeholder if the app state is from an old version and needs to reinitialise
 const makeSelectBalances = () => createDeepEqualSelector(
-  selectHubiiApiHocDomain,
-  (hubiiApiHocDomain) => hubiiApiHocDomain.get('balances') || fromJS({})
+  createSelector(
+    selectHubiiApiHocDomain,
+    (hubiiApiHocDomain) => hubiiApiHocDomain.get('balances') || fromJS({})
+  ),
+  (data) => data
 );
 
 // returns prices state OR a placeholder if the app state is from an old version and needs to reinitialise
 const makeSelectPrices = () => createDeepEqualSelector(
-  selectHubiiApiHocDomain,
-  (hubiiApiHocDomain) => hubiiApiHocDomain.get('prices') || fromJS({ loading: true })
+  createSelector(
+    selectHubiiApiHocDomain,
+    (hubiiApiHocDomain) => hubiiApiHocDomain.get('prices') || fromJS({ loading: true })
+  ),
+  (data) => data
 );
 
 // returns supportedAssets state OR a placeholder if the app state is from an old version and needs to reinitialise
 const makeSelectSupportedAssets = () => createDeepEqualSelector(
-  selectHubiiApiHocDomain,
-  (hubiiApiHocDomain) => hubiiApiHocDomain.get('supportedAssets') || fromJS({ loading: true })
+  createSelector(
+    selectHubiiApiHocDomain,
+    (hubiiApiHocDomain) => hubiiApiHocDomain.get('supportedAssets') || fromJS({ loading: true })
+  ),
+  (data) => data
 );
 
-
-const makeSelectTransactionsWithInfo = () => createDeepEqualSelector(
+const makeSelectTransactionsWithInfo = () => createSelector(
   makeSelectTransactions(),
   makeSelectSupportedAssets(),
-  makeSelectPrices(),
-  makeSelectBlockHeight(),
-  (transactions, supportedAssets, prices, blockHeight) => {
+  (transactions, supportedAssets) => {
     // set all address's transactions to loading if don't have all required information
     let transactionsWithInfo = transactions;
     if
     (
       supportedAssets.get('loading') ||
-      supportedAssets.get('error') ||
-      prices.get('loading') ||
-      prices.get('error') ||
-      blockHeight.get('loading') ||
-      blockHeight.get('error')
+      supportedAssets.get('error')
     ) {
       transactionsWithInfo = transactionsWithInfo.map((address) => address.set('loading', true));
       return transactionsWithInfo;
@@ -101,17 +125,6 @@ const makeSelectTransactionsWithInfo = () => createDeepEqualSelector(
           const decimalAmount = weiOrEquivilent.div(divisionFactor);
           BigNumber.config({ EXPONENTIAL_AT: 20 });
           txWithInfo = txWithInfo.set('decimalAmount', decimalAmount.toString());
-
-          // get fiat value of this tx
-          const assetPrices = prices
-            .get('assets')
-            .find((a) => a.get('currency') === tx.get('currency'));
-          const txFiatValue = new BigNumber(txWithInfo.get('decimalAmount')).times(assetPrices.get('usd'));
-          txWithInfo = txWithInfo.set('fiatValue', txFiatValue.toString());
-
-          // calculate confirmations
-          txWithInfo = txWithInfo
-            .set('confirmations', ((blockHeight.get('height') - tx.getIn(['block', 'number'])) + 1).toString());
 
           // set layer
           txWithInfo = txWithInfo.set('layer', 'baseLayer');

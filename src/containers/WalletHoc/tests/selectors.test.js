@@ -108,7 +108,10 @@ describe('makeSelectCurrentWalletWithInfo', () => {
 });
 
 describe('makeSelectWalletsWithInfo', () => {
-  const walletsWithInfoSelector = makeSelectWalletsWithInfo();
+  let walletsWithInfoSelector;
+  beforeEach(() => {
+    walletsWithInfoSelector = makeSelectWalletsWithInfo();
+  });
   it('should piece together balances and txns for the wallet', () => {
     const expected = walletsWithInfoMock;
     expect(walletsWithInfoSelector(storeMock)).toEqual(expected);

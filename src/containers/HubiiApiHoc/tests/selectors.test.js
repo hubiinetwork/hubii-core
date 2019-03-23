@@ -1,7 +1,5 @@
-
+import { fromJS } from 'immutable';
 import { storeMock } from 'mocks/store';
-
-import { blockHeightLoadingMock, blockHeightErrorMock } from 'containers/EthOperationsHoc/tests/mocks/selectors';
 
 import {
   transactionsMock,
@@ -11,8 +9,6 @@ import {
   supportedAssetsLoadingMock,
   supportedAssetsErrorMock,
   pricesLoadedMock,
-  pricesLoadingMock,
-  pricesErrorMock,
 } from './mocks/selectors';
 
 import {
@@ -47,9 +43,59 @@ describe('makeSelectBalances', () => {
 });
 
 describe('makeSelectTransactions', () => {
-  const transactionsSelector = makeSelectTransactions();
+  let transactionsSelector;
+  const address = '0x1c7429f62595097315289ceBaC1fDbdA587Ad512';
+
+  beforeEach(() => {
+    transactionsSelector = makeSelectTransactions();
+  });
+
   it('should correctly select transactions state', () => {
     expect(transactionsSelector(storeMock)).toEqual(transactionsMock);
+  });
+
+  describe('when previous transactions state is null', () => {
+    beforeEach(() => {
+      expect(
+        transactionsSelector(storeMock.setIn(['hubiiApiHoc', 'transactions', address, 'transactions'], null))
+      ).toEqual(transactionsMock.setIn([address, 'transactions'], null));
+    });
+    it('should update the cache when the current transactions state has initialised array value', () => {
+      expect(
+        transactionsSelector(storeMock.setIn(['hubiiApiHoc', 'transactions', address, 'transactions'], []))
+      ).toEqual(transactionsMock.setIn([address, 'transactions'], []));
+    });
+  });
+
+  describe('when previous transactions state has initialised', () => {
+    const store = storeMock.setIn(['hubiiApiHoc', 'transactions', address, 'transactions'], fromJS([{}]));
+    const txs = transactionsMock.setIn([address, 'transactions'], fromJS([{}]));
+    beforeEach(() => {
+      expect(
+        transactionsSelector(store)
+      ).toEqual(txs);
+    });
+    describe('should update the cache', () => {
+      it('when the size of transactions array is different from previous state', () => {
+        expect(transactionsSelector(
+          store.updateIn(['hubiiApiHoc', 'transactions', address, 'transactions'], (arr) => arr.push({}))
+        )).toEqual(txs.updateIn([address, 'transactions'], (arr) => arr.push({})));
+      });
+    });
+    describe('should not update the cache', () => {
+      it('even when the loading state is changed', () => {
+        expect(txs.getIn([address, 'loading'])).toEqual(false);
+        expect(transactionsSelector(
+          store.setIn(['hubiiApiHoc', 'transactions', address, 'loading'], true)
+        )).toEqual(txs);
+      });
+      it('even when the size of the transaction array is different from the previous state', () => {
+        expect(txs.getIn([address, 'newField'])).toEqual(undefined);
+        expect(transactionsSelector(
+          store.setIn(['hubiiApiHoc', 'transactions', address, 'transactions', 0, 'newField'], 'test')
+        )).toEqual(txs);
+      });
+    });
   });
 });
 
@@ -70,34 +116,6 @@ describe('makeSelectTransactionsWithInfo', () => {
   it('should mark add tx as loading when supportedAssets errored', () => {
     const mockedState = storeMock
       .setIn(['hubiiApiHoc', 'supportedAssets'], supportedAssetsErrorMock);
-    const expected = transactionsMock.map((a) => a.set('loading', true));
-    expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
-  });
-
-  it('should mark add tx as loading when prices loading', () => {
-    const mockedState = storeMock
-      .setIn(['hubiiApiHoc', 'prices'], pricesLoadingMock);
-    const expected = transactionsMock.map((a) => a.set('loading', true));
-    expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
-  });
-
-  it('should mark add tx as loading when prices errored', () => {
-    const mockedState = storeMock
-      .setIn(['hubiiApiHoc', 'prices'], pricesErrorMock);
-    const expected = transactionsMock.map((a) => a.set('loading', true));
-    expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
-  });
-
-  it('should mark add tx as loading when blockHeight loading', () => {
-    const mockedState = storeMock
-      .setIn(['ethOperationsHoc', 'blockHeight'], blockHeightLoadingMock);
-    const expected = transactionsMock.map((a) => a.set('loading', true));
-    expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
-  });
-
-  it('should mark add tx as loading when blockHeight errored', () => {
-    const mockedState = storeMock
-      .setIn(['ethOperationsHoc', 'blockHeight'], blockHeightErrorMock);
     const expected = transactionsMock.map((a) => a.set('loading', true));
     expect(transactionsWithInfoSelector(mockedState)).toEqual(expected);
   });

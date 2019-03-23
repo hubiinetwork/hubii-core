@@ -18,6 +18,7 @@ import {
   setCurrentWallet,
   lockWallet as lockWalletAction,
   dragWallet as dragWalletAction,
+  toggleFoldWallet as toggleFoldWalletAction,
 } from 'containers/WalletHoc/actions';
 
 import { notify as notifyAction } from 'containers/App/actions';
@@ -66,6 +67,7 @@ const SortableWallet = SortableElement((props) => {
     >
       <WalletItemCard
         name={props.wallet.name}
+        folded={!!props.wallet.folded}
         totalBalance={(baseLayerBalance.loading || baseLayerBalance.error) ? 0 : baseLayerBalance.total.usd.toNumber()}
         baseLayerBalancesLoading={baseLayerBalance.loading}
         baseLayerBalancesError={!!baseLayerBalance.error}
@@ -82,6 +84,7 @@ const SortableWallet = SortableElement((props) => {
         showDecryptWalletModal={() => props.showDecryptWalletModal()}
         setCurrentWallet={() => props.setCurrentWallet(props.wallet.address)}
         handleCardClick={() => props.handleCardClick(props.wallet)}
+        handleToggleFold={(e) => props.handleToggleFold(e, props.wallet.address)}
         deleteWallet={() => props.deleteWallet(props.wallet.address)}
         lock={() => props.lockWallet(props.wallet.address)}
         unlock={() => props.unlockWallet(props.wallet.address)}
@@ -101,6 +104,7 @@ const SortableList = SortableContainer((props) => (
         lockWallet={props.lockWallet}
         unlockWallet={props.unlockWallet}
         handleCardClick={props.handleCardClick}
+        handleToggleFold={props.handleToggleFold}
         notify={props.notify}
         ledgerNanoSInfo={props.ledgerNanoSInfo}
         trezorInfo={props.trezorInfo}
@@ -119,6 +123,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
     super(props);
     this.renderWalletCards = this.renderWalletCards.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
+    this.handleToggleFold = this.handleToggleFold.bind(this);
     this.unlockWallet = this.unlockWallet.bind(this);
     this.onSortEnd = this.onSortEnd.bind(this);
   }
@@ -130,7 +135,20 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
 
   handleCardClick(card) {
     const { history } = this.props;
+    if (card.folded) {
+      this.handleToggleFold(undefined, card.address);
+      return;
+    }
+
     history.push(`/wallet/${card.address}/overview`);
+  }
+
+  handleToggleFold(e, address) {
+    if (e && e.stopPropagation) {
+      e.stopPropagation();
+    }
+    const { toggleFoldWallet } = this.props;
+    toggleFoldWallet(address);
   }
 
   unlockWallet(address) {
@@ -173,6 +191,7 @@ export class WalletsOverview extends React.PureComponent { // eslint-disable-lin
         lockWallet={lockWallet}
         unlockWallet={this.unlockWallet}
         handleCardClick={this.handleCardClick}
+        handleToggleFold={this.handleToggleFold}
         notify={notify}
         setCurrentWallet={this.props.setCurrentWallet}
       />
@@ -218,6 +237,7 @@ WalletsOverview.propTypes = {
   notify: PropTypes.func.isRequired,
   lockWallet: PropTypes.func.isRequired,
   dragWallet: PropTypes.func.isRequired,
+  toggleFoldWallet: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   ledgerNanoSInfo: PropTypes.object.isRequired,
   trezorInfo: PropTypes.object.isRequired,
@@ -244,6 +264,7 @@ export function mapDispatchToProps(dispatch) {
     deleteWallet: (...args) => dispatch(deleteWalletAction(...args)),
     lockWallet: (addr) => dispatch(lockWalletAction(addr)),
     dragWallet: (...args) => dispatch(dragWalletAction(...args)),
+    toggleFoldWallet: (...args) => dispatch(toggleFoldWalletAction(...args)),
     showDecryptWalletModal: (...args) => dispatch(showDecryptWalletModal(...args)),
     setCurrentWallet: (...args) => dispatch(setCurrentWallet(...args)),
     notify: (...args) => dispatch(notifyAction(...args)),

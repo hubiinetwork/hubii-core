@@ -1,7 +1,7 @@
 import { testSaga, expectSaga } from 'redux-saga-test-plan';
 import { createMockTask } from 'redux-saga/utils';
 
-import { fork, takeEvery } from 'redux-saga/effects';
+import { fork, takeLatest } from 'redux-saga/effects';
 import { fromJS } from 'immutable';
 
 import {
@@ -134,6 +134,6 @@ describe('root Saga', () => {
   const ethOperationsHocSaga = ethOperationsHoc();
   it('should start task to watch for INIT_NETWORK_ACTIVITY action', () => {
     const takeDescriptor = ethOperationsHocSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(INIT_NETWORK_ACTIVITY, ethOperationsOrcestrator));
+    expect(takeDescriptor).toEqual(takeLatest(INIT_NETWORK_ACTIVITY, ethOperationsOrcestrator));
   });
 });

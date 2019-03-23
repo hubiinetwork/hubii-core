@@ -1,4 +1,3 @@
-import { SUPPORTED_NETWORKS } from 'config/constants';
 import {
   notify, changeNetwork,
 } from '../actions';
@@ -24,7 +23,7 @@ describe('App actions', () => {
     it('returns expected output', () => {
       const expected = {
         type: CHANGE_NETWORK,
-        network: SUPPORTED_NETWORKS[name],
+        name,
       };
       expect(changeNetwork(name)).toEqual(expected);
     });

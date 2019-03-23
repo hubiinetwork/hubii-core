@@ -10,18 +10,6 @@ export const AssetsWrapper = styled.div`
   flex-flow: row wrap;
 `;
 
-export const IconsWrapper = styled.div`
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  position: absolute;
-  right: 0;
-  margin-right: 1.65rem;
-  margin-top: 1.29rem;
-  margin-bottom: 1.29rem;
-`;
-
 export const AssetWrapper = styled.div`
   margin-right: 0.86rem;
   margin-top: 0.43rem;
@@ -50,6 +38,9 @@ export const CardIconSettings = styled.div`
   &:hover {
     color: ${({ theme }) => theme.palette.info};
   }
+  position: absolute;
+  right: 1.8rem;
+  bottom: -1rem;
 `;
 
 export const Spinner = styled(Icon)`
@@ -58,11 +49,27 @@ export const Spinner = styled(Icon)`
   font-size: 2rem;
 `;
 
+export const ToggleExpandedArrow = styled(Icon).attrs({
+  type: 'down',
+  style: ({ expanded }) => ({
+    transform: `rotate(${expanded * 180}deg)`,
+  }),
+})`
+  margin-right: 0.5rem;
+  margin-left: 0.3rem;
+  padding-top: 0.3rem;
+  color: ${({ theme }) => theme.palette.secondary1};
+`;
+
 export const LeftSideWrapper = styled.div`
   display: flex;
   align-items: baseline;
   flex-direction: row;
   margin-bottom: 0.5rem;
+  padding-top: 1.29rem;
+  &:hover ${ToggleExpandedArrow} {
+    color: ${(props) => props.theme.palette.info};
+  }
 `;
 
 export const TotalBalance = styled(Heading)`
@@ -77,12 +84,14 @@ export const WalletName = styled(Text)`
   word-break: break-word;
 `;
 
+export const BalanceDetails = styled.div`
+`;
+
 export const OuterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-height: 8.57rem;
-  padding: 1.29rem 1.71rem;
+  padding: 0 0 1.29rem 1.71rem;
   background-color: ${({ theme }) => theme.palette.primary4};
   color: white;
   cursor: pointer;
@@ -91,6 +100,26 @@ export const OuterWrapper = styled.div`
 
   &:hover {
     background-color: ${({ theme }) => theme.palette.primary2};
+  }
+
+  > * {
+    padding-right: 1.29rem;
+  }
+`;
+
+export const DynamicOuterWrapper = styled(OuterWrapper)`
+  max-height: ${(props) => props.folded ? '4.5rem' : '20rem'};
+
+  &:hover ${ToggleExpandedArrow} {
+    color: ${(props) => props.folded ? props.theme.palette.info : 'none'};
+  }
+
+  ${BalanceDetails} {
+    visibility: ${(props) => props.folded ? 'hidden' : 'visible'};
+  }
+
+  ${CardIconSettings} {
+    visibility: ${(props) => props.folded ? 'hidden' : 'visible'};
   }
 `;
 
@@ -147,3 +176,4 @@ export const QuickAddressIcon = styled(Button).attrs({
   transform: scale(0.85);
   word-break: break-word;
 `;
+

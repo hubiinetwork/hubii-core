@@ -33,6 +33,7 @@ import {
   DELETE_WALLET,
   LOCK_WALLET,
   DRAG_WALLET,
+  TOGGLE_FOLD_WALLET,
 } from './constants';
 
 
@@ -68,6 +69,12 @@ function walletHocReducer(state = initialState, action) {
         }
       });
       return state.set('wallets', fromJS(action.newWallets));
+    }
+    case TOGGLE_FOLD_WALLET: {
+      return state.setIn(
+        ['wallets', findWalletIndex(state, action.address), 'folded'],
+        !state.getIn(['wallets', findWalletIndex(state, action.address), 'folded'])
+      );
     }
     case CREATE_WALLET_FROM_MNEMONIC:
     case CREATE_WALLET_FROM_PRIVATE_KEY:

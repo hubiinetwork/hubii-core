@@ -100,7 +100,7 @@ export function* register() {
 
     yield call(requestWalletAPI, API_PATH, network, options);
 
-    yield put(notify('success', getIntl().formatMessage({ id: 'address_registered_sucesfully' })));
+    yield put(notify('success', getIntl().formatMessage({ id: 'address_registered_successfully' })));
     yield put(registerationSuccess(address));
   } catch (e) {
     yield put(registerationFailed());

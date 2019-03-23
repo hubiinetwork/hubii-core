@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import nahmii from 'nahmii-sdk';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
@@ -11,6 +12,7 @@ import TransferForm from 'components/TransferForm';
 import PageLoadingIndicator from 'components/PageLoadingIndicator';
 import {
   makeSelectCurrentWallet,
+  makeSelectWallets,
 } from 'containers/WalletHoc/selectors';
 import {
   makeSelectCurrentWalletWithInfo,
@@ -96,6 +98,7 @@ export class WalletTransfer extends React.PureComponent {
     const {
       gasStatistics,
       contacts,
+      wallets,
       currentWallet,
       prices,
       currentWalletWithInfo,
@@ -111,6 +114,13 @@ export class WalletTransfer extends React.PureComponent {
       return <LoadingError pageType="wallet" error={{ message: 'Failed to fetch wallet data' }} id={currentWalletWithInfo.get('address')} />;
     }
 
+    const recipients = _.uniqBy(
+      contacts.toJS().concat(
+        wallets.toJS().map((wallet) => ({ name: wallet.name, address: wallet.address }))
+      ),
+      'address'
+    ).filter((contact) => contact.address !== currentWalletWithInfo.get('address'));
+
     // get if the hw wallet is ready to make tx
     const hwWalletReady = walletReady(currentWalletWithInfo.get('type'), ledgerNanoSInfo, trezorInfo);
     return (
@@ -120,7 +130,7 @@ export class WalletTransfer extends React.PureComponent {
           currentNetwork={this.props.currentNetwork}
           hwWalletReady={hwWalletReady}
           prices={prices.toJS()}
-          recipients={contacts.toJS()}
+          recipients={recipients}
           onSend={this.onSend}
           transfering={currentWallet.toJS().transfering}
           currentWalletWithInfo={this.props.currentWalletWithInfo}
@@ -143,6 +153,7 @@ WalletTransfer.propTypes = {
   history: PropTypes.object.isRequired,
   prices: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
+  wallets: PropTypes.object.isRequired,
   currentNetwork: PropTypes.object.isRequired,
   createContact: PropTypes.func.isRequired,
   gasStatistics: PropTypes.object.isRequired,
@@ -157,6 +168,7 @@ const mapStateToProps = createStructuredSelector({
   supportedAssets: makeSelectSupportedAssets(),
   prices: makeSelectPrices(),
   contacts: makeSelectContacts(),
+  wallets: makeSelectWallets(),
   gasStatistics: makeSelectGasStatistics(),
 });
 

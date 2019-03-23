@@ -1,6 +1,6 @@
 import {
   all,
-  takeEvery,
+  takeLatest,
   fork,
   call,
   put,
@@ -76,5 +76,5 @@ export function* ethOperationsOrcestrator() {
 
 // Root watcher
 export default function* root() {
-  yield takeEvery(INIT_NETWORK_ACTIVITY, ethOperationsOrcestrator);
+  yield takeLatest(INIT_NETWORK_ACTIVITY, ethOperationsOrcestrator);
 }

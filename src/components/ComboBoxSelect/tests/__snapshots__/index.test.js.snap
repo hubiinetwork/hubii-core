@@ -55,7 +55,7 @@ ShallowWrapper {
       "onSelect": [Function],
       "recipient": true,
       "showSearch": true,
-      "value": "mike",
+      "value": "",
     },
     "ref": null,
     "rendered": Array [
@@ -113,7 +113,7 @@ ShallowWrapper {
         "onSelect": [Function],
         "recipient": true,
         "showSearch": true,
-        "value": "mike",
+        "value": "",
       },
       "ref": null,
       "rendered": Array [

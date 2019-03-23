@@ -7,6 +7,27 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <NahmiiWithdraw
     currentNetwork={
         Object {
+            "apiDomain": "api2.dev.hubii.net",
+            "defaultNahmiiProvider": NahmiiProvider {
+              "_balances": Object {},
+              "_emitted": Object {
+                "block": -2,
+              },
+              "_events": Array [],
+              "_fastQueryDate": 0,
+              "_lastBlockNumber": -2,
+              "_network": Object {
+                "_defaultProvider": [Function],
+                "chainId": 3,
+                "ensAddress": "0x112234455c3a32fd11230c42e7bccd4a84e02010",
+                "name": "ropsten",
+              },
+              "_pollingInterval": 4000,
+              "connection": Object {
+                "url": "http://geth-ropsten.dev.hubii.net",
+              },
+              "ready": Promise {},
+            },
             "identityServiceAppId": "appid",
             "identityServiceSecret": "secret",
             "nahmiiProvider": NahmiiProvider {
@@ -29,6 +50,7 @@ ShallowWrapper {
               },
               "ready": Promise {},
             },
+            "name": "ropsten",
             "provider": FallbackProvider {
               "_balances": Object {},
               "_emitted": Object {
@@ -179,7 +201,6 @@ ShallowWrapper {
                         type: "received",
                         updated: "2018-12-17T01:59:03.776Z",
                         id: "5c1702e78d9ea3000ea459d9",
-                        fiatValue: "0.000000869732",
                         operatorId: "0",
                         confirmed: true,
                     },
@@ -199,8 +220,6 @@ ShallowWrapper {
                         symbol: "ETH",
                         recipient: "0x1c7429f62595097315289ceBaC1fDbdA587Ad512",
                         type: "received",
-                        fiatValue: "0.0000000412",
-                        confirmations: "3",
                     },
                     Immutable.Map {
                         transfers: Immutable.Map {
@@ -279,7 +298,6 @@ ShallowWrapper {
                         type: "sent",
                         updated: "2018-11-16T22:40:55.049Z",
                         id: "5c16d4768d9ea3000ea45690",
-                        fiatValue: "0.01",
                         operatorId: "0",
                         confirmed: true,
                     },
@@ -299,8 +317,6 @@ ShallowWrapper {
                         symbol: "BOKKY",
                         recipient: "0x910c4ba923b2243dc13e00a066eefb8ffd905eb0",
                         type: "sent",
-                        fiatValue: "0.000000000000000005",
-                        confirmations: "5",
                     },
                 ],
             },

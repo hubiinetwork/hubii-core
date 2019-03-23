@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { injectIntl } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
+import BigNumber from 'bignumber.js';
 import { formatFiat } from 'utils/numberFormats';
 
 import Breakdown from 'components/BreakdownPie';
@@ -25,6 +26,7 @@ import {
 
 import {
   makeSelectSupportedAssets,
+  makeSelectPrices,
 } from 'containers/HubiiApiHoc/selectors';
 
 import {
@@ -85,7 +87,7 @@ export class WalletsTransactions extends React.Component {
 
 
   render() {
-    const { currentWalletWithInfo, supportedAssets, currentNetwork, intl } = this.props;
+    const { currentWalletWithInfo, supportedAssets, prices, currentNetwork, blockHeight, intl } = this.props;
     const { expandedTxs, currentPage, filter } = this.state;
     const { formatMessage } = intl;
     const start = (currentPage - 1) * 10;
@@ -97,8 +99,18 @@ export class WalletsTransactions extends React.Component {
         .filter((t) => t.get('layer') === filter);
     }
     const txToShow = filtered
-      .toJS()
-      .slice(start, end);
+      .slice(start, end)
+      .map((tx) => {
+        const assetPrices = prices
+          .get('assets')
+          .find((a) => a.get('currency') === tx.get('currency'));
+        const txFiatValue = assetPrices ? new BigNumber(tx.get('decimalAmount')).times(assetPrices.get('usd')).toString() : 0;
+        const confirmations = ((blockHeight.get('height') - tx.getIn(['block', 'number'])) + 1).toString();
+        return tx
+          .set('fiatValue', txFiatValue)
+          .set('confirmations', confirmations);
+      })
+      .toJS();
 
     if
     (
@@ -213,6 +225,7 @@ export class WalletsTransactions extends React.Component {
 WalletsTransactions.propTypes = {
   currentWalletWithInfo: PropTypes.object.isRequired,
   supportedAssets: PropTypes.object.isRequired,
+  prices: PropTypes.object.isRequired,
   blockHeight: PropTypes.object.isRequired,
   currentNetwork: PropTypes.object.isRequired,
   intl: PropTypes.object.isRequired,
@@ -221,6 +234,7 @@ WalletsTransactions.propTypes = {
 const mapStateToProps = createStructuredSelector({
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
   supportedAssets: makeSelectSupportedAssets(),
+  prices: makeSelectPrices(),
   blockHeight: makeSelectBlockHeight(),
   currentNetwork: makeSelectCurrentNetwork(),
 });
