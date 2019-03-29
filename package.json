@@ -30,7 +30,7 @@
   },
   "scripts": {
     "release": "electron-builder -lwm -p always",
-    "electron-dev": "concurrently --kill-others \"cross-env NODE_ENV=development yarn electron-compile --watch\" \"cross-env BROWSER=none TARGET=electron yarn start-web\" \"wait-on http://localhost:3000 && yarn electron\"",
+    "electron-dev": "concurrently --kill-others \"cross-env NODE_ENV=development yarn electron-compile --watch\" \"cross-env BROWSER=none TARGET=electron yarn start-web\" \"wait-on http://localhost:3000 && yarn electron --ignore-certificate-errors\"",
     "preelectron-dev": "electron-rebuild --force --module_dir . -w node-hid",
     "electron": "electron .",
     "electron-build": "cross-env TARGET=electron npm run build && cross-env DEBUG=electron-builder electron-builder --publish never",

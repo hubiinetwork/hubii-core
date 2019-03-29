@@ -96,12 +96,19 @@ export function* loadWalletBalances({ address, noPoll, onlyEth }, _network) {
       const response = yield rpcRequest(nahmiiProvider.connection.url, JSON.stringify(requestBatch));
 
       // process and return the response
-      const tokenBals = response.map((item) => new BigNumber(item.result));
+      const tokenBals = response.map((item) => {
+        try {
+          return new BigNumber(item.result);
+        } catch (error) {
+          return new BigNumber(0);
+        }
+      });
       const formattedBalances = tokenBals.reduce((acc, bal, i) => {
         if (!bal.gt('0')) return acc;
         const { currency } = supportedTokens[i];
         return [...acc, { address, currency, balance: bal.toString() }];
       }, []);
+
       yield put(loadWalletBalancesSuccess(address, [{ currency: '0x0000000000000000000000000000000000000000', address, balance: ethBal.toString() }, ...formattedBalances]));
     } catch (err) {
       yield put(loadWalletBalancesError(address, err));

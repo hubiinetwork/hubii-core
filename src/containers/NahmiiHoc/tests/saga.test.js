@@ -29,7 +29,7 @@ describe('nahmiiHocSaga', () => {
       address: '0x0000000000000000000000000000000000000001',
     };
     beforeEach(() => {
-      monetaryAmount = new nahmii.MonetaryAmount('1000', '0x0000000000000000000000000000000000000000');
+      monetaryAmount = nahmii.MonetaryAmount.from('1000', '0x0000000000000000000000000000000000000000');
       recipient = '0x0000000000000000000000000000000000000001';
       walletOverride = null;
     });
@@ -170,7 +170,7 @@ describe('nahmiiHocSaga', () => {
   });
   describe('settlement operations', () => {
     const options = { gasLimit: 1, gasPrice: 1 };
-    const currency = '0x1';
+    const currency = '0x0000000000000000000000000000000000000001';
     const stageAmount = new BigNumber(10000000000000000000000);
     const fakeTxs = [{ hash: 'hash1' }, { hash: 'hash2' }];
     const fakeTxReceipts = [{ transactionHash: 'hash1', status: 1 }, { transactionHash: 'hash2', status: 1 }];

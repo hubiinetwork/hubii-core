@@ -460,7 +460,7 @@ export function* startChallenge({ stageAmount, currency, options }) {
     const network = yield select(makeSelectCurrentNetwork());
     const { nahmiiProvider } = network;
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, walletDetails);
-    const _stageAmount = new nahmii.MonetaryAmount(stageAmount.toFixed(), currency, 0);
+    const _stageAmount = nahmii.MonetaryAmount.from(stageAmount.toFixed(), currency, 0);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     const settlement = new nahmii.Settlement(nahmiiProvider);
     if (confOnDevice) yield put(confOnDevice);
@@ -472,6 +472,7 @@ export function* startChallenge({ stageAmount, currency, options }) {
     const { requiredChallenges } = yield call(settlement.getRequiredChallengesForIntendedStageAmount.bind(settlement), _stageAmount, nahmiiWallet.address);
     if (!requiredChallenges.length) {
       yield put(notify('error', getIntl().formatMessage({ id: 'unable_start_challenges' })));
+      yield put(actions.startChallengeError(walletDetails.address, currency));
       return;
     }
 
@@ -551,7 +552,7 @@ export function* withdraw({ amount, address, currency, options }) {
     const network = yield select(makeSelectCurrentNetwork());
     const { nahmiiProvider } = network;
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, walletDetails);
-    const _amount = new nahmii.MonetaryAmount(amount.toFixed(), currency, 0);
+    const _amount = nahmii.MonetaryAmount.from(amount.toFixed(), currency, 0);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
     if (confOnDevice) yield put(confOnDevice);
     const tx = yield call(nahmiiWallet.withdraw.bind(nahmiiWallet), _amount, { gasLimit, gasPrice });
@@ -618,7 +619,6 @@ export function* loadOngoingChallenges({ address, currency }, network, noPoll) {
     try {
       const settlement = new nahmii.Settlement(nahmiiProvider);
       const ongoingChallenges = yield call(() => settlement.getOngoingChallenges(address, currency, 0));
-
       yield put(actions.loadOngoingChallengesSuccess(address, currency, ongoingChallenges));
     } catch (err) {
       yield put(actions.loadOngoingChallengesError(address, currency));

@@ -149,7 +149,7 @@ class ImportWalletPrivateKeyForm extends React.Component {
                     validator: (rule, value, callback) => compareToFirstPassword(form, rule, value, callback),
                   },
                 ],
-              })(<ModalFormInput disabled={loading} type="password" onBlur={this.handleConfirmBlur} />)}
+              })(<ModalFormInput disabled={loading} type="password" />)}
             </ModalFormItem>
             {loading ?
               (

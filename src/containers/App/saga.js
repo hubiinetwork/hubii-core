@@ -25,16 +25,20 @@ export function* initNahmiiProviders() {
   const networks = supportedNetworks.valueSeq().toJS();
 
   for (let i = 0; i < networks.length; i += 1) {
-    const { name, apiDomain, identityServiceSecret, identityServiceAppId } = networks[i];
-    let nahmiiProvider;
-    try {
-      nahmiiProvider = yield call(NahmiiProvider.from, apiDomain, identityServiceAppId, identityServiceSecret);
-    } catch (error) {
-      nahmiiProvider = supportedNetworks.getIn([name, 'defaultNahmiiProvider']);
+    const { name, apiDomain, nahmiiProvider, identityServiceSecret, identityServiceAppId } = networks[i];
+    if (nahmiiProvider) {
+      // eslint-disable-next-line no-continue
+      continue;
     }
-    yield put(updateNahmiiProvider(nahmiiProvider, name));
+    let _nahmiiProvider;
+    try {
+      _nahmiiProvider = yield call(NahmiiProvider.from, apiDomain, identityServiceAppId, identityServiceSecret);
+    } catch (error) {
+      _nahmiiProvider = supportedNetworks.getIn([name, 'defaultNahmiiProvider']);
+    }
+    yield put(updateNahmiiProvider(_nahmiiProvider, name));
     if (currentNetwork.name === name) {
-      yield put(updateCurrentNetworkNahmiiProvider(nahmiiProvider));
+      yield put(updateCurrentNetworkNahmiiProvider(_nahmiiProvider));
     }
   }
 

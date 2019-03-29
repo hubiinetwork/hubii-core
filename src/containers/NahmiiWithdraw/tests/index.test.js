@@ -69,8 +69,8 @@ describe('<NahmiiWithdraw />', () => {
           <NahmiiWithdraw
             {...props}
             settleableChallenges={settleableChallengesNone.set('details', [
-              { intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
-              { intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+              { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+              { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
             ])}
           />
         );
@@ -101,7 +101,7 @@ describe('<NahmiiWithdraw />', () => {
             <NahmiiWithdraw
               {...props}
               ongoingChallenges={ongoingChallengesNone.set('details', [
-              { type: t, expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+              { type: t, expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
               ])}
             />
           );
@@ -113,7 +113,7 @@ describe('<NahmiiWithdraw />', () => {
             <NahmiiWithdraw
               {...props}
               settleableChallenges={settleableChallengesNone.set('details', [
-                { type: t, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+                { type: t, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
               ])}
             />
           );
@@ -141,12 +141,12 @@ describe('<NahmiiWithdraw />', () => {
         <NahmiiWithdraw
           {...props}
           ongoingChallenges={ongoingChallengesNone.set('details', [
-          { type: 'payment-driip', expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
-          { type: 'null', expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+          { type: 'payment-driip', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+          { type: 'null', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
           ])}
           settleableChallenges={settleableChallengesNone.set('details', [
-            { type: 'payment-driip', intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
-            { type: 'null', intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+            { type: 'payment-driip', intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+            { type: 'null', intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
           ])}
         />
       );
@@ -158,8 +158,8 @@ describe('<NahmiiWithdraw />', () => {
         <NahmiiWithdraw
           {...props}
           ongoingChallenges={ongoingChallengesNone.set('details', [
-          { type: 'payment-driip', expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
-          { type: 'null', expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+          { type: 'payment-driip', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+          { type: 'null', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
           ])}
         />
       );
@@ -171,7 +171,7 @@ describe('<NahmiiWithdraw />', () => {
         <NahmiiWithdraw
           {...props}
           ongoingChallenges={ongoingChallengesNone.set('details', [
-          { type: 'null', expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+          { type: 'null', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
           ])}
           currentWalletWithInfo={walletsWithInfoMock
           .get(0)
@@ -187,7 +187,7 @@ describe('<NahmiiWithdraw />', () => {
         describe: 'should always render the later stage',
         props: {
           ongoingChallenges: ongoingChallengesNone.set('details', [
-            { type: 'null', expirationTime: 1, intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+            { type: 'null', expirationTime: 1, intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
           ]),
           settleableChallenges: settleableChallengesNone.set('invalidReasons', [
             { type: 'payment-driip', reasons: [new Error('The settlement can not be replayed')] },
@@ -199,7 +199,7 @@ describe('<NahmiiWithdraw />', () => {
         describe: 'should render the step for the later settlement',
         props: {
           settleableChallenges: settleableChallengesNone.set('details', [
-            { type: 'null', intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+            { type: 'null', intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
           ]).set('invalidReasons', [
             { type: 'payment-driip', reasons: [new Error('The settlement can not be replayed')] },
           ]),
@@ -210,8 +210,8 @@ describe('<NahmiiWithdraw />', () => {
         describe: 'should render the same step if all settlements at the same step',
         props: {
           settleableChallenges: settleableChallengesNone.set('details', [
-            { type: 'null', intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
-            { type: 'payment-driip', intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+            { type: 'null', intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+            { type: 'payment-driip', intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
           ]),
         },
         expect: { step: 2 },
@@ -492,8 +492,8 @@ describe('<NahmiiWithdraw />', () => {
             <NahmiiWithdraw
               {...props}
               settleableChallenges={settleableChallengesNone.set('details', [
-                { intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
-                { intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+                { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+                { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
               ]).set('status', t.status)}
             />
           );
@@ -513,8 +513,8 @@ describe('<NahmiiWithdraw />', () => {
             <NahmiiWithdraw
               {...props}
               settleableChallenges={settleableChallengesNone.set('details', [
-                { intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
-                { intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+                { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+                { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
               ]).set('status', t)}
             />
           );
@@ -541,8 +541,8 @@ describe('<NahmiiWithdraw />', () => {
         expect(wrapper.find('.withdraw-input').props().value).toEqual('1');
         wrapper.setProps({
           settleableChallenges: settleableChallengesNone.set('details', [
-            { intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
-            { intendedStageAmount: new nahmii.MonetaryAmount('100', '0x1', 0) },
+            { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
+            { intendedStageAmount: nahmii.MonetaryAmount.from('100', '0x0000000000000000000000000000000000000001', 0) },
           ]).set('status', 'success'),
         });
         expect(wrapper.find('.withdraw-input').props().value).toEqual('0');
