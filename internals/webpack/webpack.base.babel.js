@@ -156,7 +156,6 @@ module.exports = (options) => ({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         MINI_CLUSTER_HOST: JSON.stringify(process.env.MINI_CLUSTER_HOST),
-        CONTRACT_PATH: JSON.stringify(process.env.CONTRACT_PATH),
         PUBLISH_REPO: JSON.stringify(process.env.npm_package_build_publish_0_repo),
         PUBLISH_OWNER: JSON.stringify(process.env.npm_package_build_publish_0_owner),
         ROPSTEN_IDENTITY_SERVICE_APPID: JSON.stringify(process.env.ROPSTEN_IDENTITY_SERVICE_APPID),

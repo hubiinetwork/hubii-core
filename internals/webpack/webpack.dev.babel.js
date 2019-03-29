@@ -42,20 +42,6 @@ if (dllPlugin) {
 }
 
 const additionalEntry = [];
-let additionalAlias = {};
-
-if (process.env.CONTRACT_PATH) {
-  additionalEntry.push(path.join(process.cwd(), 'src/mocks/containers/NahmiiHoc/_fetch.js'));
-  additionalAlias = {
-    'config/constants': path.join(process.cwd(), 'src/mocks/config/constants'),
-    './abis/ClientFund': path.join(process.cwd(), 'src/mocks/sdk/abis/ClientFund.js'),
-    './abis/BalanceTracker': path.join(process.cwd(), 'src/mocks/sdk/abis/BalanceTracker.js'),
-    './abis/DriipSettlement': path.join(process.cwd(), 'src/mocks/sdk/abis/DriipSettlement.js'),
-    './abis/DriipSettlementChallenge': path.join(process.cwd(), 'src/mocks/sdk/abis/DriipSettlementChallenge.js'),
-    './abis/NullSettlement': path.join(process.cwd(), 'src/mocks/sdk/abis/NullSettlement.js'),
-    './abis/NullSettlementChallenge': path.join(process.cwd(), 'src/mocks/sdk/abis/NullSettlementChallenge.js'),
-  };
-}
 
 module.exports = require('./webpack.base.babel')({
   mode: 'development',
@@ -90,9 +76,6 @@ module.exports = require('./webpack.base.babel')({
 
   performance: {
     hints: false,
-  },
-  resolve: {
-    alias: additionalAlias,
   },
 });
 
