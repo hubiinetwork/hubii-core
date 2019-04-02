@@ -323,6 +323,15 @@ export class TransferForm extends React.PureComponent {
         <OuterWrapper>
           <TransferFormWrapper>
             <Form>
+              <div style={{ marignRight: 'auto', marginTop: '1.43rem', marginBottom: '1.43rem' }}>
+                <Text large>{formatMessage({ id: 'send_on_the' })} </Text>
+                <NahmiiText large />
+                <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
+                <NahmiiSwitch
+                  checked={layer === 'nahmii'}
+                  onChange={(() => this.handleLayerSwitch())}
+                />
+              </div>
               <FormItem
                 label={<FormItemLabel>{formatMessage({ id: 'select_asset' })}</FormItemLabel>}
                 colon={false}
@@ -384,23 +393,6 @@ export class TransferForm extends React.PureComponent {
                   onChange={this.handleAmountToSendChange}
                 />
               </FormItem>
-              <div style={{ marignRight: 'auto' }}>
-                <Text large>{formatMessage({ id: 'send_on_the' })} </Text>
-                {/* <Tooltip
-                  placement="right"
-                  // overlayStyle={!disableNahmiiPayments && { display: 'none' }}
-                  title={<span>{formatMessage({ id: 'nahmii_payments' })}</span>}
-                >
-                </Tooltip> */}
-                <NahmiiText large />
-                <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
-                <NahmiiSwitch
-                  // disabled={disableNahmiiPayments}
-                  // disabled
-                  checked={layer === 'nahmii'}
-                  onChange={(() => this.handleLayerSwitch())}
-                />
-              </div>
               <Spring
                 from={{ noAdvProg: 0 }}
                 to={{ noAdvProg: layer === 'baseLayer' ? 0 : 1 }}
