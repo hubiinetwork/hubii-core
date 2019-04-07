@@ -26,11 +26,11 @@ TransferDescriptionItem.propTypes = {
   /**
    * main value displayed in the TransferDescriptionItem
    */
-  main: PropTypes.string.isRequired,
+  main: PropTypes.any.isRequired,
   /**
    * subtitle displayed in the TransferDescriptionItem
    */
-  subtitle: PropTypes.string.isRequired,
+  subtitle: PropTypes.any.isRequired,
 };
 
 export default TransferDescriptionItem;

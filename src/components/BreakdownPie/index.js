@@ -6,10 +6,9 @@ import { VictoryPie, VictoryContainer, VictoryTooltip } from 'victory';
 import { getBreakdown } from 'utils/wallet';
 
 import BreakdownList from 'components/BreakdownList';
-import Heading from 'components/ui/Heading';
 import Text from 'components/ui/Text';
 import { formatFiat } from 'utils/numberFormats';
-import { Wrapper } from './style';
+import { Wrapper, StyledHeading, StyledNumericText } from './style';
 
 /**
  * This component shows user's total coins' convertion in dollar and a relative chart.
@@ -38,7 +37,7 @@ class Breakdown extends React.Component {
       return (
         <div>
           <Text large>{formatMessage({ id: 'total_fiat_value' })}</Text>
-          <Heading large>{formatFiat(value, 'USD')}</Heading>
+          <StyledHeading large>{formatFiat(value, 'USD')}</StyledHeading>
         </div>
       );
     }
@@ -53,7 +52,10 @@ class Breakdown extends React.Component {
       <Wrapper>
         <div>
           <Text large>{formatMessage({ id: 'total_fiat_value' })}</Text>
-          <Heading large>{formatFiat(value, 'USD')}</Heading>
+          <StyledHeading large>
+            <StyledNumericText large value={value.toString()} type="currency" />
+            {/* {formatFiat(value, 'USD')} */}
+          </StyledHeading>
         </div>
         <Spring
           from={{ height: 'auto', opacity: 1, listExpanded: 0 }}

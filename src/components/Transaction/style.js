@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { Collapse, Icon } from 'antd';
 
 import Text from 'components/ui/Text';
+import NumericText from 'components/ui/NumericText';
+import SelectableText from 'components/ui/SelectableText';
 
 const Panel = Collapse.Panel;
 
@@ -19,17 +21,23 @@ export const HeaderWrapper = styled.div`
   align-items: center;
 `;
 
-export const Amount = styled(Text)`
-  white-space: nowrap;
-  overflow: hidden;
-  color: white;
+export const Amount = styled(NumericText)`
+  // white-space: nowrap;
+  // overflow: hidden;
+  // color: white;
 `;
 
-export const FiatValue = styled(Text)`
+export const FiatValue = styled(NumericText)`
   color: ${({ theme }) => theme.palette.secondary1};
   margin-left: 0.5rem;
   white-space: nowrap;
   overflow: hidden;
+  ::before {
+    content: '('
+  }
+  ::after {
+    content: ')'
+  }
 `;
 
 export const TransactionHistoryTime = styled(Text)`
@@ -91,6 +99,11 @@ export const TypeIcon = styled(Icon)`
 `;
 
 export const GreenTextWrapper = styled(Text)`
+  word-break: break-all;
+  color: ${({ theme }) => theme.palette.info};
+`;
+
+export const SelectableGreenText = styled(SelectableText)`
   word-break: break-all;
   color: ${({ theme }) => theme.palette.info};
 `;

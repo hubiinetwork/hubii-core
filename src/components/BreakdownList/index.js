@@ -3,13 +3,15 @@ import { compose } from 'redux';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { getAbsolutePath, assetImageFallback } from 'utils/electron';
-import { formatFiat } from 'utils/numberFormats';
 
 import Text from 'components/ui/Text';
 import NahmiiText from 'components/ui/NahmiiText';
+import SelectableText from 'components/ui/SelectableText';
 import {
   Logo,
   Percentage,
+  StyledNumericText,
+  StyledText,
   Label,
   FlexContainer,
   ToggleExpandedArrow,
@@ -35,7 +37,7 @@ const generateList = (data, formatMessage, extraInfo = false) => {
         {
         extraInfo &&
         <Percentage>
-          {`${formatFiat(0, 'USD')}`}
+          <StyledNumericText value={0} type="currency" />
         </Percentage>
       }
       </FlexItem>
@@ -51,16 +53,16 @@ const generateList = (data, formatMessage, extraInfo = false) => {
             src={getAbsolutePath(`public/images/assets/${item.label}.svg`)}
             onError={assetImageFallback}
           />
-          <Text>{item.amount}</Text>
-        &nbsp;
-          <Label>{item.label}</Label>
+          <SelectableText>
+            <StyledNumericText value={item.amount} /> {item.label}
+          </SelectableText>
         </div>
         {
         extraInfo &&
         <Percentage unknownPrice={unknownPrice}>
           { unknownPrice
             ? formatMessage({ id: 'missing_price' })
-            : `${formatFiat(item.value, 'USD')} (${item.percentage > 1 ? item.percentage.toFixed(0) : '<1'}%)`
+            : <StyledText><StyledNumericText value={item.value} type="currency" /> {`(${item.percentage > 1 ? item.percentage.toFixed(0) : '<1'}%)`}</StyledText>
           }
         </Percentage>
       }

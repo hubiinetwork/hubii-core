@@ -29,6 +29,7 @@ import GasOptions from 'components/GasOptions';
 import {
   OuterWrapper,
   ETHtoDollar,
+  StyledNumericText,
   Image,
   StyledButton,
   TransferDescriptionWrapper,
@@ -420,7 +421,7 @@ export class TransferForm extends React.PureComponent {
                         />
                       </div>
                       <ETHtoDollar>
-                        {`1 ${assetToSend.symbol} = ${formatFiat(assetToSendUsdValue, 'USD')}`}
+                        {`1 ${assetToSend.symbol} = `}<StyledNumericText value={assetToSendUsdValue.toString()} type="currency" />
                       </ETHtoDollar>
                     </div>
                   )
