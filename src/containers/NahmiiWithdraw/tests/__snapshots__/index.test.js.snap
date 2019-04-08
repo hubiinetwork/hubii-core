@@ -742,7 +742,6 @@ ShallowWrapper {
                     <div
                               style={
                                         Object {
-                                                  "flex": "1",
                                                   "marginBottom": "3rem",
                                                   "minWidth": "34rem",
                                                 }
@@ -1004,7 +1003,6 @@ ShallowWrapper {
             <div
                         style={
                                     Object {
-                                                "flex": "1",
                                                 "marginBottom": "3rem",
                                                 "minWidth": "34rem",
                                               }
@@ -1248,7 +1246,6 @@ ShallowWrapper {
               <div
                 style={
                                 Object {
-                                                "flex": "1",
                                                 "marginBottom": "3rem",
                                                 "minWidth": "34rem",
                                               }
@@ -1902,7 +1899,6 @@ ShallowWrapper {
 </style__HWPromptWrapper>,
                 ],
                 "style": Object {
-                  "flex": "1",
                   "marginBottom": "3rem",
                   "minWidth": "34rem",
                 },
@@ -2693,7 +2689,6 @@ ShallowWrapper {
                         <div
                                     style={
                                                 Object {
-                                                            "flex": "1",
                                                             "marginBottom": "3rem",
                                                             "minWidth": "34rem",
                                                           }
@@ -2955,7 +2950,6 @@ ShallowWrapper {
               <div
                             style={
                                           Object {
-                                                        "flex": "1",
                                                         "marginBottom": "3rem",
                                                         "minWidth": "34rem",
                                                       }
@@ -3199,7 +3193,6 @@ ShallowWrapper {
                 <div
                   style={
                                     Object {
-                                                      "flex": "1",
                                                       "marginBottom": "3rem",
                                                       "minWidth": "34rem",
                                                     }
@@ -3853,7 +3846,6 @@ ShallowWrapper {
 </style__HWPromptWrapper>,
                   ],
                   "style": Object {
-                    "flex": "1",
                     "marginBottom": "3rem",
                     "minWidth": "34rem",
                   },

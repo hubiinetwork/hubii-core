@@ -92,8 +92,6 @@ class TransferDescription extends React.PureComponent {
           <TransferDescriptionItem
             main={<SelectableText><NumericText value={amountToSend.toString()} /> {amountToSend.symbol}</SelectableText>}
             subtitle={<NumericText value={usdValueToSend.toString()} type="currency" />}
-            // main={`${amountToSend.toString()} ${assetToSend.symbol}`}
-            // subtitle={formatFiat(usdValueToSend.toNumber(), 'USD')}
           />
         </Row>
         <Row>
@@ -109,8 +107,6 @@ class TransferDescription extends React.PureComponent {
           <TransferDescriptionItem
             main={<SelectableText><NumericText value={transactionFee.amount.toString()} /> {transactionFee.symbol}</SelectableText>}
             subtitle={<NumericText value={transactionFee.usdValue.toString()} type="currency" />}
-            // main={`${transactionFee.amount.toString()} ${transactionFee.symbol}`}
-            // subtitle={formatFiat(transactionFee.usdValue.toNumber(), 'USD')}
           />
         </Row>
         {layer === 'baseLayer' &&
@@ -122,7 +118,6 @@ class TransferDescription extends React.PureComponent {
             <TransferDescriptionItem
               main={<SelectableText><NumericText value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
               subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="currency" />}
-              // subtitle={formatFiat(baseLayerEthBalanceBefore.usdValue.toNumber(), 'USD')}
             />
           </Row>
           <Row>
@@ -134,8 +129,6 @@ class TransferDescription extends React.PureComponent {
             <TransferDescriptionItem
               main={<SelectableText><NumericText value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
               subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="currency" />}
-              // main={`${formatNumber(baseLayerEthBalanceAfter.amount, { maximumFractionDigits: 6 })} ETH`}
-              // subtitle={formatFiat(baseLayerEthBalanceAfter.usdValue.toNumber(), 'USD')}
             />
           </Row>
         </div>
@@ -151,8 +144,6 @@ class TransferDescription extends React.PureComponent {
             <TransferDescriptionItem
               main={<SelectableText><NumericText value={assetBalanceBefore.amount.toString()} /> {assetToSend.symbol}</SelectableText>}
               subtitle={<NumericText value={assetBalanceBefore.usdValue.toString()} type="currency" />}
-              // main={`${assetBalanceBefore.amount} ${assetToSend.symbol}`}
-              // subtitle={formatFiat(assetBalanceBefore.usdValue.toNumber(), 'USD')}
             />
           </Row>
           <Row>
@@ -164,8 +155,6 @@ class TransferDescription extends React.PureComponent {
             <TransferDescriptionItem
               main={<SelectableText><NumericText value={assetBalanceAfter.amount.toString()} /> {assetToSend.symbol}</SelectableText>}
               subtitle={<NumericText value={assetBalanceAfter.usdValue.toString()} type="currency" />}
-              // main={`${assetBalanceAfter.amount} ${assetToSend.symbol}`}
-              // subtitle={formatFiat(assetBalanceAfter.usdValue.toNumber(), 'USD')}
             />
           </Row>
         </div>
@@ -176,7 +165,6 @@ class TransferDescription extends React.PureComponent {
         <Row>
           <Balance>
             {<NumericText large value={walletUsdValueBefore.toString()} type="currency" />}
-            {/* {formatNumber(walletUsdValueBefore, { style: 'currency', currency: 'USD' })} */}
           </Balance>
         </Row>
         <Row>
@@ -185,7 +173,6 @@ class TransferDescription extends React.PureComponent {
         <Row>
           <Balance>
             {<NumericText large value={walletUsdValueAfter.toString()} type="currency" />}
-            {/* {formatFiat(walletUsdValueAfter, 'USD')} */}
           </Balance>
         </Row>
         <Row>
