@@ -404,12 +404,13 @@ export class TransferForm extends React.PureComponent {
                       style={{
                         transform: `translate3d(0,${-80 * props.noAdvProg}px,0)`,
                         width: '12rem',
+                        marginTop: props.noAdvProg === 1 ? '9.5rem' : '0',
                       }}
                     >
                       <div
                         style={{
                           opacity: ((props.noAdvProg - 1) * -1),
-                          visibility: props.noAdvProg === 1 ? 'hidden' : 'visible',
+                          display: props.noAdvProg === 1 ? 'none' : 'block',
                         }}
                       >
                         <GasOptions
