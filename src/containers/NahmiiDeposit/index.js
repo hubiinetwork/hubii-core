@@ -394,10 +394,8 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             </Row>
             <Row>
               <TransferDescriptionItem
-                main={<SelectableText><NumericText value={baseLayerEthBalanceBefore.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
+                main={<SelectableText><NumericText value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
                 subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="currency" />}
-                // main={`${baseLayerEthBalanceBefore.amount.toString()} ETH`}
-                // subtitle={formatFiat(baseLayerEthBalanceBefore.usdValue.toNumber(), 'USD')}
               />
             </Row>
             <Row>
@@ -407,10 +405,8 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
             </Row>
             <Row>
               <TransferDescriptionItem
-                main={<SelectableText><NumericText value={baseLayerEthBalanceAfter.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
+                main={<SelectableText><NumericText value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
                 subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="currency" />}
-                // main={`${baseLayerEthBalanceAfter.amount} ETH`}
-                // subtitle={formatFiat(baseLayerEthBalanceAfter.usdValue.toNumber(), 'USD')}
               />
             </Row>
             {assetToDeposit.symbol === 'ETH' &&
@@ -422,8 +418,6 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                 <TransferDescriptionItem
                   main={<SelectableText><NumericText value={nahmiiBalanceBefore.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
                   subtitle={<NumericText value={nahmiiBalanceBefore.usdValue.toString()} type="currency" />}
-                  // main={`${nahmiiBalanceBefore.amount.toString()} ETH`}
-                  // subtitle={formatFiat(nahmiiBalanceBefore.usdValue.toNumber(), 'USD')}
                 />
               </Row>
               <Row>
@@ -435,8 +429,6 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                 <TransferDescriptionItem
                   main={<SelectableText><NumericText value={nahmiiBalanceAfter.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
                   subtitle={<NumericText value={nahmiiBalanceAfter.usdValue.toString()} type="currency" />}
-                  // main={`${nahmiiBalanceAfter.amount} ETH`}
-                  // subtitle={formatFiat(nahmiiBalanceAfter.usdValue.toNumber(), 'USD')}
                 />
               </Row>
             </div>
@@ -449,9 +441,7 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
               <Row>
                 <TransferDescriptionItem
                   main={<SelectableText><NumericText value={baseLayerBalanceBefore.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
-                  subtitle={<NumericText value={nahmiiBalanceAfter.usdValue.toString()} type="currency" />}
-                  // main={`${baseLayerBalanceBefore.amount} ${assetToDeposit.symbol}`}
-                  // subtitle={formatFiat(nahmiiBalanceAfter.usdValue.toNumber(), 'USD')}
+                  subtitle={<NumericText value={baseLayerBalanceBefore.usdValue.toString()} type="currency" />}
                 />
               </Row>
               <Row>
@@ -463,8 +453,6 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                 <TransferDescriptionItem
                   main={<SelectableText><NumericText value={baseLayerBalanceAfter.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
                   subtitle={<NumericText value={baseLayerBalanceAfter.usdValue.toString()} type="currency" />}
-                  // main={`${baseLayerBalanceAfter.amount} ${assetToDeposit.symbol}`}
-                  // subtitle={formatFiat(baseLayerBalanceAfter.usdValue.toNumber(), 'USD')}
                 />
               </Row>
               <Row>
@@ -474,8 +462,6 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                 <TransferDescriptionItem
                   main={<SelectableText><NumericText value={nahmiiBalanceBefore.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
                   subtitle={<NumericText value={nahmiiBalanceBefore.usdValue.toString()} type="currency" />}
-                  // main={`${nahmiiBalanceBefore.amount} ${assetToDeposit.symbol}`}
-                  // subtitle={formatFiat(nahmiiBalanceBefore.usdValue.toNumber(), 'USD')}
                 />
               </Row>
               <Row>
@@ -487,8 +473,6 @@ export class NahmiiDeposit extends React.Component { // eslint-disable-line reac
                 <TransferDescriptionItem
                   main={<SelectableText><NumericText value={nahmiiBalanceAfter.amount.toString()} /> {assetToDeposit.symbol}</SelectableText>}
                   subtitle={<NumericText value={nahmiiBalanceAfter.usdValue.toString()} type="currency" />}
-                  // main={`${nahmiiBalanceAfter.amount} ${assetToDeposit.symbol}`}
-                  // subtitle={formatFiat(nahmiiBalanceAfter.usdValue.toNumber(), 'USD')}
                 />
               </Row>
             </div>
