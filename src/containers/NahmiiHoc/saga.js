@@ -165,9 +165,9 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     const currentBlockHeight = yield select(makeSelectBlockHeight());
     const ongoingChallenges = yield select(makeSelectOngoingChallenges());
     const lastattemptedAtBlockHeight = ongoingChallenges.getIn([wallet.address, currency.ct, 'attemptedAtBlockHeight']) || -1;
-    const blockTimer = 5;
+    const blockTimer = 15;
     if ((currentBlockHeight.get('height') - blockTimer) < lastattemptedAtBlockHeight) {
-      yield put(actions.nahmiiPaymentError(new Error('Payment is locked for 5 block height')));
+      yield put(actions.nahmiiPaymentError(new Error('Payment is locked for 15 block height')));
       yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })));
       return;
     }

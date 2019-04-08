@@ -154,7 +154,7 @@ describe('nahmiiHocSaga', () => {
       .run({ silenceTimeout: true });
     });
     it('should dispatch correct actions on payment lock errors', () => {
-      const error = new Error('Payment is locked for 5 block height');
+      const error = new Error('Payment is locked for 15 block height');
       const walletAddress = storeMock.getIn(['walletHoc', 'currentWallet', 'address']);
       const { currency } = monetaryAmount.toJSON();
       return expectSaga(makePayment, { monetaryAmount, recipient, walletOverride })
