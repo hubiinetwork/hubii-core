@@ -11155,9 +11155,10 @@ nahmii-ethereum-address@^2.0.0:
   dependencies:
     bson "^3.0.2"
 
-"nahmii-sdk@github:hubiinetwork/nahmii-sdk#feature/contract-pre-10":
-  version "1.0.0-beta.43"
-  resolved "https://codeload.github.com/hubiinetwork/nahmii-sdk/tar.gz/6a9d0ffafe97e592aadb83baac5d717aee14ca68"
+nahmii-sdk@1.0.0-beta.45:
+  version "1.0.0-beta.45"
+  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-1.0.0-beta.45.tgz#166820847d2824153a0a4411be7eece38b4ccace"
+  integrity sha512-ikPkkIRmvHdfISMIlFcYb+vXmXOF3tcNtUT80h3DLp9mrCzAbpw9G87kqfaEg8bUZM5cemZQoEy9/f8ErLRlMg==
   dependencies:
     ethereumjs-util "^5.2.0"
     keythereum "^1.0.4"

@@ -52,14 +52,17 @@ ShallowWrapper {
                                 <style__TypeText>
                                         sent
                                 </style__TypeText>
-                                <style__Amount>
-                                        0.000000000000000001
+                                <SelectableText>
+                                        <style__Amount
+                                                value="0.000000000000000001"
+                                        />
                                          
                                         UKG
-                                </style__Amount>
-                                <style__FiatValue>
-                                        ($123.34 USD)
-                                </style__FiatValue>
+                                </SelectableText>
+                                <style__FiatValue
+                                        type="currency"
+                                        value="$123.34 USD"
+                                />
                                 <div
                                         style={
                                                 Object {
@@ -86,7 +89,7 @@ ShallowWrapper {
                                 <style__SubtitleText>
                                         contract_creation
                                 </style__SubtitleText>
-                                <style__GreenTextWrapper />
+                                <style__SelectableGreenText />
                         </div>
                         <div
                                 style={
@@ -135,14 +138,17 @@ ShallowWrapper {
                               <style__TypeText>
                                         sent
                               </style__TypeText>
-                              <style__Amount>
-                                        0.000000000000000001
+                              <SelectableText>
+                                        <style__Amount
+                                                  value="0.000000000000000001"
+                                        />
                                          
                                         UKG
-                              </style__Amount>
-                              <style__FiatValue>
-                                        ($123.34 USD)
-                              </style__FiatValue>
+                              </SelectableText>
+                              <style__FiatValue
+                                        type="currency"
+                                        value="$123.34 USD"
+                              />
                               <div
                                         style={
                                                   Object {
@@ -169,7 +175,7 @@ ShallowWrapper {
                               <style__SubtitleText>
                                         contract_creation
                               </style__SubtitleText>
-                              <style__GreenTextWrapper />
+                              <style__SelectableGreenText />
                     </div>
                     <div
                               style={
@@ -215,7 +221,7 @@ ShallowWrapper {
                         <style__SubtitleText>
                                     contract_creation
                         </style__SubtitleText>
-                        <style__GreenTextWrapper />
+                        <style__SelectableGreenText />
             </div>
             <div
                         style={
@@ -251,14 +257,17 @@ ShallowWrapper {
             <style__TypeText>
                         sent
             </style__TypeText>
-            <style__Amount>
-                        0.000000000000000001
+            <SelectableText>
+                        <style__Amount
+                                    value="0.000000000000000001"
+                        />
                          
                         UKG
-            </style__Amount>
-            <style__FiatValue>
-                        ($123.34 USD)
-            </style__FiatValue>
+            </SelectableText>
+            <style__FiatValue
+                        type="currency"
+                        value="$123.34 USD"
+            />
             <div
                         style={
                                     Object {
@@ -290,7 +299,7 @@ ShallowWrapper {
                 <style__SubtitleText>
                                 contract_creation
                 </style__SubtitleText>
-                <style__GreenTextWrapper />
+                <style__SelectableGreenText />
 </div>,
               <div
                 style={
@@ -328,7 +337,7 @@ ShallowWrapper {
                   <style__SubtitleText>
                     contract_creation
 </style__SubtitleText>,
-                  <style__GreenTextWrapper />,
+                  <style__SelectableGreenText />,
                 ],
                 "style": Object {
                   "display": "flex",
@@ -488,14 +497,17 @@ ShallowWrapper {
                                         <style__TypeText>
                                                   sent
                                         </style__TypeText>
-                                        <style__Amount>
-                                                  0.000000000000000001
+                                        <SelectableText>
+                                                  <style__Amount
+                                                            value="0.000000000000000001"
+                                                  />
                                                    
                                                   UKG
-                                        </style__Amount>
-                                        <style__FiatValue>
-                                                  ($123.34 USD)
-                                        </style__FiatValue>
+                                        </SelectableText>
+                                        <style__FiatValue
+                                                  type="currency"
+                                                  value="$123.34 USD"
+                                        />
                                         <div
                                                   style={
                                                             Object {
@@ -522,7 +534,7 @@ ShallowWrapper {
                                         <style__SubtitleText>
                                                   contract_creation
                                         </style__SubtitleText>
-                                        <style__GreenTextWrapper />
+                                        <style__SelectableGreenText />
                               </div>
                               <div
                                         style={
@@ -571,14 +583,17 @@ ShallowWrapper {
                                     <style__TypeText>
                                                 sent
                                     </style__TypeText>
-                                    <style__Amount>
-                                                0.000000000000000001
+                                    <SelectableText>
+                                                <style__Amount
+                                                            value="0.000000000000000001"
+                                                />
                                                  
                                                 UKG
-                                    </style__Amount>
-                                    <style__FiatValue>
-                                                ($123.34 USD)
-                                    </style__FiatValue>
+                                    </SelectableText>
+                                    <style__FiatValue
+                                                type="currency"
+                                                value="$123.34 USD"
+                                    />
                                     <div
                                                 style={
                                                             Object {
@@ -605,7 +620,7 @@ ShallowWrapper {
                                     <style__SubtitleText>
                                                 contract_creation
                                     </style__SubtitleText>
-                                    <style__GreenTextWrapper />
+                                    <style__SelectableGreenText />
                         </div>
                         <div
                                     style={
@@ -651,7 +666,7 @@ ShallowWrapper {
                             <style__SubtitleText>
                                           contract_creation
                             </style__SubtitleText>
-                            <style__GreenTextWrapper />
+                            <style__SelectableGreenText />
               </div>
               <div
                             style={
@@ -687,14 +702,17 @@ ShallowWrapper {
               <style__TypeText>
                             sent
               </style__TypeText>
-              <style__Amount>
-                            0.000000000000000001
+              <SelectableText>
+                            <style__Amount
+                                          value="0.000000000000000001"
+                            />
                              
                             UKG
-              </style__Amount>
-              <style__FiatValue>
-                            ($123.34 USD)
-              </style__FiatValue>
+              </SelectableText>
+              <style__FiatValue
+                            type="currency"
+                            value="$123.34 USD"
+              />
               <div
                             style={
                                           Object {
@@ -726,7 +744,7 @@ ShallowWrapper {
                   <style__SubtitleText>
                                     contract_creation
                   </style__SubtitleText>
-                  <style__GreenTextWrapper />
+                  <style__SelectableGreenText />
 </div>,
                 <div
                   style={
@@ -764,7 +782,7 @@ ShallowWrapper {
                     <style__SubtitleText>
                       contract_creation
 </style__SubtitleText>,
-                    <style__GreenTextWrapper />,
+                    <style__SelectableGreenText />,
                   ],
                   "style": Object {
                     "display": "flex",
@@ -963,14 +981,17 @@ ShallowWrapper {
                                 <style__TypeText>
                                         sent
                                 </style__TypeText>
-                                <style__Amount>
-                                        0.000000000000000001
+                                <SelectableText>
+                                        <style__Amount
+                                                value="0.000000000000000001"
+                                        />
                                          
                                         UKG
-                                </style__Amount>
-                                <style__FiatValue>
-                                        ($123.34 USD)
-                                </style__FiatValue>
+                                </SelectableText>
+                                <style__FiatValue
+                                        type="currency"
+                                        value="$123.34 USD"
+                                />
                                 <div
                                         style={
                                                 Object {
@@ -997,9 +1018,9 @@ ShallowWrapper {
                                 <style__SubtitleText>
                                         to:
                                 </style__SubtitleText>
-                                <style__GreenTextWrapper>
+                                <style__SelectableGreenText>
                                         0x00
-                                </style__GreenTextWrapper>
+                                </style__SelectableGreenText>
                         </div>
                         <div
                                 style={
@@ -1048,14 +1069,17 @@ ShallowWrapper {
                               <style__TypeText>
                                         sent
                               </style__TypeText>
-                              <style__Amount>
-                                        0.000000000000000001
+                              <SelectableText>
+                                        <style__Amount
+                                                  value="0.000000000000000001"
+                                        />
                                          
                                         UKG
-                              </style__Amount>
-                              <style__FiatValue>
-                                        ($123.34 USD)
-                              </style__FiatValue>
+                              </SelectableText>
+                              <style__FiatValue
+                                        type="currency"
+                                        value="$123.34 USD"
+                              />
                               <div
                                         style={
                                                   Object {
@@ -1082,9 +1106,9 @@ ShallowWrapper {
                               <style__SubtitleText>
                                         to:
                               </style__SubtitleText>
-                              <style__GreenTextWrapper>
+                              <style__SelectableGreenText>
                                         0x00
-                              </style__GreenTextWrapper>
+                              </style__SelectableGreenText>
                     </div>
                     <div
                               style={
@@ -1130,9 +1154,9 @@ ShallowWrapper {
                         <style__SubtitleText>
                                     to:
                         </style__SubtitleText>
-                        <style__GreenTextWrapper>
+                        <style__SelectableGreenText>
                                     0x00
-                        </style__GreenTextWrapper>
+                        </style__SelectableGreenText>
             </div>
             <div
                         style={
@@ -1168,14 +1192,17 @@ ShallowWrapper {
             <style__TypeText>
                         sent
             </style__TypeText>
-            <style__Amount>
-                        0.000000000000000001
+            <SelectableText>
+                        <style__Amount
+                                    value="0.000000000000000001"
+                        />
                          
                         UKG
-            </style__Amount>
-            <style__FiatValue>
-                        ($123.34 USD)
-            </style__FiatValue>
+            </SelectableText>
+            <style__FiatValue
+                        type="currency"
+                        value="$123.34 USD"
+            />
             <div
                         style={
                                     Object {
@@ -1207,9 +1234,9 @@ ShallowWrapper {
                 <style__SubtitleText>
                                 to:
                 </style__SubtitleText>
-                <style__GreenTextWrapper>
+                <style__SelectableGreenText>
                                 0x00
-                </style__GreenTextWrapper>
+                </style__SelectableGreenText>
 </div>,
               <div
                 style={
@@ -1247,9 +1274,9 @@ ShallowWrapper {
                   <style__SubtitleText>
                     to:
 </style__SubtitleText>,
-                  <style__GreenTextWrapper>
+                  <style__SelectableGreenText>
                     0x00
-</style__GreenTextWrapper>,
+</style__SelectableGreenText>,
                 ],
                 "style": Object {
                   "display": "flex",
@@ -1409,14 +1436,17 @@ ShallowWrapper {
                                         <style__TypeText>
                                                   sent
                                         </style__TypeText>
-                                        <style__Amount>
-                                                  0.000000000000000001
+                                        <SelectableText>
+                                                  <style__Amount
+                                                            value="0.000000000000000001"
+                                                  />
                                                    
                                                   UKG
-                                        </style__Amount>
-                                        <style__FiatValue>
-                                                  ($123.34 USD)
-                                        </style__FiatValue>
+                                        </SelectableText>
+                                        <style__FiatValue
+                                                  type="currency"
+                                                  value="$123.34 USD"
+                                        />
                                         <div
                                                   style={
                                                             Object {
@@ -1443,9 +1473,9 @@ ShallowWrapper {
                                         <style__SubtitleText>
                                                   to:
                                         </style__SubtitleText>
-                                        <style__GreenTextWrapper>
+                                        <style__SelectableGreenText>
                                                   0x00
-                                        </style__GreenTextWrapper>
+                                        </style__SelectableGreenText>
                               </div>
                               <div
                                         style={
@@ -1494,14 +1524,17 @@ ShallowWrapper {
                                     <style__TypeText>
                                                 sent
                                     </style__TypeText>
-                                    <style__Amount>
-                                                0.000000000000000001
+                                    <SelectableText>
+                                                <style__Amount
+                                                            value="0.000000000000000001"
+                                                />
                                                  
                                                 UKG
-                                    </style__Amount>
-                                    <style__FiatValue>
-                                                ($123.34 USD)
-                                    </style__FiatValue>
+                                    </SelectableText>
+                                    <style__FiatValue
+                                                type="currency"
+                                                value="$123.34 USD"
+                                    />
                                     <div
                                                 style={
                                                             Object {
@@ -1528,9 +1561,9 @@ ShallowWrapper {
                                     <style__SubtitleText>
                                                 to:
                                     </style__SubtitleText>
-                                    <style__GreenTextWrapper>
+                                    <style__SelectableGreenText>
                                                 0x00
-                                    </style__GreenTextWrapper>
+                                    </style__SelectableGreenText>
                         </div>
                         <div
                                     style={
@@ -1576,9 +1609,9 @@ ShallowWrapper {
                             <style__SubtitleText>
                                           to:
                             </style__SubtitleText>
-                            <style__GreenTextWrapper>
+                            <style__SelectableGreenText>
                                           0x00
-                            </style__GreenTextWrapper>
+                            </style__SelectableGreenText>
               </div>
               <div
                             style={
@@ -1614,14 +1647,17 @@ ShallowWrapper {
               <style__TypeText>
                             sent
               </style__TypeText>
-              <style__Amount>
-                            0.000000000000000001
+              <SelectableText>
+                            <style__Amount
+                                          value="0.000000000000000001"
+                            />
                              
                             UKG
-              </style__Amount>
-              <style__FiatValue>
-                            ($123.34 USD)
-              </style__FiatValue>
+              </SelectableText>
+              <style__FiatValue
+                            type="currency"
+                            value="$123.34 USD"
+              />
               <div
                             style={
                                           Object {
@@ -1653,9 +1689,9 @@ ShallowWrapper {
                   <style__SubtitleText>
                                     to:
                   </style__SubtitleText>
-                  <style__GreenTextWrapper>
+                  <style__SelectableGreenText>
                                     0x00
-                  </style__GreenTextWrapper>
+                  </style__SelectableGreenText>
 </div>,
                 <div
                   style={
@@ -1693,9 +1729,9 @@ ShallowWrapper {
                     <style__SubtitleText>
                       to:
 </style__SubtitleText>,
-                    <style__GreenTextWrapper>
+                    <style__SelectableGreenText>
                       0x00
-</style__GreenTextWrapper>,
+</style__SelectableGreenText>,
                   ],
                   "style": Object {
                     "display": "flex",
@@ -1894,14 +1930,17 @@ ShallowWrapper {
                                 <style__TypeText>
                                         sent
                                 </style__TypeText>
-                                <style__Amount>
-                                        0.000000000000000001
+                                <SelectableText>
+                                        <style__Amount
+                                                value="0.000000000000000001"
+                                        />
                                          
                                         UKG
-                                </style__Amount>
-                                <style__FiatValue>
-                                        ($123.34 USD)
-                                </style__FiatValue>
+                                </SelectableText>
+                                <style__FiatValue
+                                        type="currency"
+                                        value="$123.34 USD"
+                                />
                                 <div
                                         style={
                                                 Object {
@@ -1928,9 +1967,9 @@ ShallowWrapper {
                                 <style__SubtitleText>
                                         to:
                                 </style__SubtitleText>
-                                <style__GreenTextWrapper>
+                                <style__SelectableGreenText>
                                         0x00
-                                </style__GreenTextWrapper>
+                                </style__SelectableGreenText>
                         </div>
                         <div
                                 style={
@@ -1979,14 +2018,17 @@ ShallowWrapper {
                               <style__TypeText>
                                         sent
                               </style__TypeText>
-                              <style__Amount>
-                                        0.000000000000000001
+                              <SelectableText>
+                                        <style__Amount
+                                                  value="0.000000000000000001"
+                                        />
                                          
                                         UKG
-                              </style__Amount>
-                              <style__FiatValue>
-                                        ($123.34 USD)
-                              </style__FiatValue>
+                              </SelectableText>
+                              <style__FiatValue
+                                        type="currency"
+                                        value="$123.34 USD"
+                              />
                               <div
                                         style={
                                                   Object {
@@ -2013,9 +2055,9 @@ ShallowWrapper {
                               <style__SubtitleText>
                                         to:
                               </style__SubtitleText>
-                              <style__GreenTextWrapper>
+                              <style__SelectableGreenText>
                                         0x00
-                              </style__GreenTextWrapper>
+                              </style__SelectableGreenText>
                     </div>
                     <div
                               style={
@@ -2061,9 +2103,9 @@ ShallowWrapper {
                         <style__SubtitleText>
                                     to:
                         </style__SubtitleText>
-                        <style__GreenTextWrapper>
+                        <style__SelectableGreenText>
                                     0x00
-                        </style__GreenTextWrapper>
+                        </style__SelectableGreenText>
             </div>
             <div
                         style={
@@ -2099,14 +2141,17 @@ ShallowWrapper {
             <style__TypeText>
                         sent
             </style__TypeText>
-            <style__Amount>
-                        0.000000000000000001
+            <SelectableText>
+                        <style__Amount
+                                    value="0.000000000000000001"
+                        />
                          
                         UKG
-            </style__Amount>
-            <style__FiatValue>
-                        ($123.34 USD)
-            </style__FiatValue>
+            </SelectableText>
+            <style__FiatValue
+                        type="currency"
+                        value="$123.34 USD"
+            />
             <div
                         style={
                                     Object {
@@ -2138,9 +2183,9 @@ ShallowWrapper {
                 <style__SubtitleText>
                                 to:
                 </style__SubtitleText>
-                <style__GreenTextWrapper>
+                <style__SelectableGreenText>
                                 0x00
-                </style__GreenTextWrapper>
+                </style__SelectableGreenText>
 </div>,
               <div
                 style={
@@ -2178,9 +2223,9 @@ ShallowWrapper {
                   <style__SubtitleText>
                     to:
 </style__SubtitleText>,
-                  <style__GreenTextWrapper>
+                  <style__SelectableGreenText>
                     0x00
-</style__GreenTextWrapper>,
+</style__SelectableGreenText>,
                 ],
                 "style": Object {
                   "display": "flex",
@@ -2340,14 +2385,17 @@ ShallowWrapper {
                                         <style__TypeText>
                                                   sent
                                         </style__TypeText>
-                                        <style__Amount>
-                                                  0.000000000000000001
+                                        <SelectableText>
+                                                  <style__Amount
+                                                            value="0.000000000000000001"
+                                                  />
                                                    
                                                   UKG
-                                        </style__Amount>
-                                        <style__FiatValue>
-                                                  ($123.34 USD)
-                                        </style__FiatValue>
+                                        </SelectableText>
+                                        <style__FiatValue
+                                                  type="currency"
+                                                  value="$123.34 USD"
+                                        />
                                         <div
                                                   style={
                                                             Object {
@@ -2374,9 +2422,9 @@ ShallowWrapper {
                                         <style__SubtitleText>
                                                   to:
                                         </style__SubtitleText>
-                                        <style__GreenTextWrapper>
+                                        <style__SelectableGreenText>
                                                   0x00
-                                        </style__GreenTextWrapper>
+                                        </style__SelectableGreenText>
                               </div>
                               <div
                                         style={
@@ -2425,14 +2473,17 @@ ShallowWrapper {
                                     <style__TypeText>
                                                 sent
                                     </style__TypeText>
-                                    <style__Amount>
-                                                0.000000000000000001
+                                    <SelectableText>
+                                                <style__Amount
+                                                            value="0.000000000000000001"
+                                                />
                                                  
                                                 UKG
-                                    </style__Amount>
-                                    <style__FiatValue>
-                                                ($123.34 USD)
-                                    </style__FiatValue>
+                                    </SelectableText>
+                                    <style__FiatValue
+                                                type="currency"
+                                                value="$123.34 USD"
+                                    />
                                     <div
                                                 style={
                                                             Object {
@@ -2459,9 +2510,9 @@ ShallowWrapper {
                                     <style__SubtitleText>
                                                 to:
                                     </style__SubtitleText>
-                                    <style__GreenTextWrapper>
+                                    <style__SelectableGreenText>
                                                 0x00
-                                    </style__GreenTextWrapper>
+                                    </style__SelectableGreenText>
                         </div>
                         <div
                                     style={
@@ -2507,9 +2558,9 @@ ShallowWrapper {
                             <style__SubtitleText>
                                           to:
                             </style__SubtitleText>
-                            <style__GreenTextWrapper>
+                            <style__SelectableGreenText>
                                           0x00
-                            </style__GreenTextWrapper>
+                            </style__SelectableGreenText>
               </div>
               <div
                             style={
@@ -2545,14 +2596,17 @@ ShallowWrapper {
               <style__TypeText>
                             sent
               </style__TypeText>
-              <style__Amount>
-                            0.000000000000000001
+              <SelectableText>
+                            <style__Amount
+                                          value="0.000000000000000001"
+                            />
                              
                             UKG
-              </style__Amount>
-              <style__FiatValue>
-                            ($123.34 USD)
-              </style__FiatValue>
+              </SelectableText>
+              <style__FiatValue
+                            type="currency"
+                            value="$123.34 USD"
+              />
               <div
                             style={
                                           Object {
@@ -2584,9 +2638,9 @@ ShallowWrapper {
                   <style__SubtitleText>
                                     to:
                   </style__SubtitleText>
-                  <style__GreenTextWrapper>
+                  <style__SelectableGreenText>
                                     0x00
-                  </style__GreenTextWrapper>
+                  </style__SelectableGreenText>
 </div>,
                 <div
                   style={
@@ -2624,9 +2678,9 @@ ShallowWrapper {
                     <style__SubtitleText>
                       to:
 </style__SubtitleText>,
-                    <style__GreenTextWrapper>
+                    <style__SelectableGreenText>
                       0x00
-</style__GreenTextWrapper>,
+</style__SelectableGreenText>,
                   ],
                   "style": Object {
                     "display": "flex",
@@ -2825,14 +2879,17 @@ ShallowWrapper {
                                 <style__TypeText>
                                         sent
                                 </style__TypeText>
-                                <style__Amount>
-                                        0.000000000000000001
+                                <SelectableText>
+                                        <style__Amount
+                                                value="0.000000000000000001"
+                                        />
                                          
                                         UKG
-                                </style__Amount>
-                                <style__FiatValue>
-                                        ($123.34 USD)
-                                </style__FiatValue>
+                                </SelectableText>
+                                <style__FiatValue
+                                        type="currency"
+                                        value="$123.34 USD"
+                                />
                                 <div
                                         style={
                                                 Object {
@@ -2859,9 +2916,9 @@ ShallowWrapper {
                                 <style__SubtitleText>
                                         to:
                                 </style__SubtitleText>
-                                <style__GreenTextWrapper>
+                                <style__SelectableGreenText>
                                         0x00
-                                </style__GreenTextWrapper>
+                                </style__SelectableGreenText>
                         </div>
                         <div
                                 style={
@@ -2910,14 +2967,17 @@ ShallowWrapper {
                               <style__TypeText>
                                         sent
                               </style__TypeText>
-                              <style__Amount>
-                                        0.000000000000000001
+                              <SelectableText>
+                                        <style__Amount
+                                                  value="0.000000000000000001"
+                                        />
                                          
                                         UKG
-                              </style__Amount>
-                              <style__FiatValue>
-                                        ($123.34 USD)
-                              </style__FiatValue>
+                              </SelectableText>
+                              <style__FiatValue
+                                        type="currency"
+                                        value="$123.34 USD"
+                              />
                               <div
                                         style={
                                                   Object {
@@ -2944,9 +3004,9 @@ ShallowWrapper {
                               <style__SubtitleText>
                                         to:
                               </style__SubtitleText>
-                              <style__GreenTextWrapper>
+                              <style__SelectableGreenText>
                                         0x00
-                              </style__GreenTextWrapper>
+                              </style__SelectableGreenText>
                     </div>
                     <div
                               style={
@@ -2992,9 +3052,9 @@ ShallowWrapper {
                         <style__SubtitleText>
                                     to:
                         </style__SubtitleText>
-                        <style__GreenTextWrapper>
+                        <style__SelectableGreenText>
                                     0x00
-                        </style__GreenTextWrapper>
+                        </style__SelectableGreenText>
             </div>
             <div
                         style={
@@ -3030,14 +3090,17 @@ ShallowWrapper {
             <style__TypeText>
                         sent
             </style__TypeText>
-            <style__Amount>
-                        0.000000000000000001
+            <SelectableText>
+                        <style__Amount
+                                    value="0.000000000000000001"
+                        />
                          
                         UKG
-            </style__Amount>
-            <style__FiatValue>
-                        ($123.34 USD)
-            </style__FiatValue>
+            </SelectableText>
+            <style__FiatValue
+                        type="currency"
+                        value="$123.34 USD"
+            />
             <div
                         style={
                                     Object {
@@ -3069,9 +3132,9 @@ ShallowWrapper {
                 <style__SubtitleText>
                                 to:
                 </style__SubtitleText>
-                <style__GreenTextWrapper>
+                <style__SelectableGreenText>
                                 0x00
-                </style__GreenTextWrapper>
+                </style__SelectableGreenText>
 </div>,
               <div
                 style={
@@ -3109,9 +3172,9 @@ ShallowWrapper {
                   <style__SubtitleText>
                     to:
 </style__SubtitleText>,
-                  <style__GreenTextWrapper>
+                  <style__SelectableGreenText>
                     0x00
-</style__GreenTextWrapper>,
+</style__SelectableGreenText>,
                 ],
                 "style": Object {
                   "display": "flex",
@@ -3271,14 +3334,17 @@ ShallowWrapper {
                                         <style__TypeText>
                                                   sent
                                         </style__TypeText>
-                                        <style__Amount>
-                                                  0.000000000000000001
+                                        <SelectableText>
+                                                  <style__Amount
+                                                            value="0.000000000000000001"
+                                                  />
                                                    
                                                   UKG
-                                        </style__Amount>
-                                        <style__FiatValue>
-                                                  ($123.34 USD)
-                                        </style__FiatValue>
+                                        </SelectableText>
+                                        <style__FiatValue
+                                                  type="currency"
+                                                  value="$123.34 USD"
+                                        />
                                         <div
                                                   style={
                                                             Object {
@@ -3305,9 +3371,9 @@ ShallowWrapper {
                                         <style__SubtitleText>
                                                   to:
                                         </style__SubtitleText>
-                                        <style__GreenTextWrapper>
+                                        <style__SelectableGreenText>
                                                   0x00
-                                        </style__GreenTextWrapper>
+                                        </style__SelectableGreenText>
                               </div>
                               <div
                                         style={
@@ -3356,14 +3422,17 @@ ShallowWrapper {
                                     <style__TypeText>
                                                 sent
                                     </style__TypeText>
-                                    <style__Amount>
-                                                0.000000000000000001
+                                    <SelectableText>
+                                                <style__Amount
+                                                            value="0.000000000000000001"
+                                                />
                                                  
                                                 UKG
-                                    </style__Amount>
-                                    <style__FiatValue>
-                                                ($123.34 USD)
-                                    </style__FiatValue>
+                                    </SelectableText>
+                                    <style__FiatValue
+                                                type="currency"
+                                                value="$123.34 USD"
+                                    />
                                     <div
                                                 style={
                                                             Object {
@@ -3390,9 +3459,9 @@ ShallowWrapper {
                                     <style__SubtitleText>
                                                 to:
                                     </style__SubtitleText>
-                                    <style__GreenTextWrapper>
+                                    <style__SelectableGreenText>
                                                 0x00
-                                    </style__GreenTextWrapper>
+                                    </style__SelectableGreenText>
                         </div>
                         <div
                                     style={
@@ -3438,9 +3507,9 @@ ShallowWrapper {
                             <style__SubtitleText>
                                           to:
                             </style__SubtitleText>
-                            <style__GreenTextWrapper>
+                            <style__SelectableGreenText>
                                           0x00
-                            </style__GreenTextWrapper>
+                            </style__SelectableGreenText>
               </div>
               <div
                             style={
@@ -3476,14 +3545,17 @@ ShallowWrapper {
               <style__TypeText>
                             sent
               </style__TypeText>
-              <style__Amount>
-                            0.000000000000000001
+              <SelectableText>
+                            <style__Amount
+                                          value="0.000000000000000001"
+                            />
                              
                             UKG
-              </style__Amount>
-              <style__FiatValue>
-                            ($123.34 USD)
-              </style__FiatValue>
+              </SelectableText>
+              <style__FiatValue
+                            type="currency"
+                            value="$123.34 USD"
+              />
               <div
                             style={
                                           Object {
@@ -3515,9 +3587,9 @@ ShallowWrapper {
                   <style__SubtitleText>
                                     to:
                   </style__SubtitleText>
-                  <style__GreenTextWrapper>
+                  <style__SelectableGreenText>
                                     0x00
-                  </style__GreenTextWrapper>
+                  </style__SelectableGreenText>
 </div>,
                 <div
                   style={
@@ -3555,9 +3627,9 @@ ShallowWrapper {
                     <style__SubtitleText>
                       to:
 </style__SubtitleText>,
-                    <style__GreenTextWrapper>
+                    <style__SelectableGreenText>
                       0x00
-</style__GreenTextWrapper>,
+</style__SelectableGreenText>,
                   ],
                   "style": Object {
                     "display": "flex",

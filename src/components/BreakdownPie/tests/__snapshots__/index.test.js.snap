@@ -149,11 +149,11 @@ ShallowWrapper {
 >
           total_fiat_value
 </Text>,
-        <Heading
+        <style__StyledHeading
           large={true}
 >
           $164.49
-</Heading>,
+</style__StyledHeading>,
       ],
     },
     "ref": null,
@@ -197,11 +197,11 @@ ShallowWrapper {
 >
             total_fiat_value
 </Text>,
-          <Heading
+          <style__StyledHeading
             large={true}
 >
             $164.49
-</Heading>,
+</style__StyledHeading>,
         ],
       },
       "ref": null,
@@ -393,11 +393,11 @@ ShallowWrapper {
 >
           total_fiat_value
 </Text>,
-        <Heading
+        <style__StyledHeading
           large={true}
 >
           $164.49
-</Heading>,
+</style__StyledHeading>,
       ],
     },
     "ref": null,
@@ -441,11 +441,11 @@ ShallowWrapper {
 >
             total_fiat_value
 </Text>,
-          <Heading
+          <style__StyledHeading
             large={true}
 >
             $164.49
-</Heading>,
+</style__StyledHeading>,
         ],
       },
       "ref": null,
@@ -619,11 +619,11 @@ ShallowWrapper {
 >
           total_fiat_value
 </Text>,
-        <Heading
+        <style__StyledHeading
           large={true}
 >
           $0.00
-</Heading>,
+</style__StyledHeading>,
       ],
     },
     "ref": null,
@@ -667,11 +667,11 @@ ShallowWrapper {
 >
             total_fiat_value
 </Text>,
-          <Heading
+          <style__StyledHeading
             large={true}
 >
             $0.00
-</Heading>,
+</style__StyledHeading>,
         ],
       },
       "ref": null,
@@ -845,11 +845,11 @@ ShallowWrapper {
 >
           total_fiat_value
 </Text>,
-        <Heading
+        <style__StyledHeading
           large={true}
 >
           $0.00
-</Heading>,
+</style__StyledHeading>,
       ],
     },
     "ref": null,
@@ -893,11 +893,11 @@ ShallowWrapper {
 >
             total_fiat_value
 </Text>,
-          <Heading
+          <style__StyledHeading
             large={true}
 >
             $0.00
-</Heading>,
+</style__StyledHeading>,
         ],
       },
       "ref": null,
@@ -1126,11 +1126,15 @@ ShallowWrapper {
           >
                     total_fiat_value
           </Text>
-          <Heading
+          <style__StyledHeading
                     large={true}
           >
-                    $164.49
-          </Heading>
+                    <style__StyledNumericText
+                              large={true}
+                              type="currency"
+                              value="164.492044"
+                    />
+          </style__StyledHeading>
 </div>,
         <Spring
           config={
@@ -1176,11 +1180,15 @@ ShallowWrapper {
 >
               total_fiat_value
 </Text>,
-            <Heading
+            <style__StyledHeading
               large={true}
 >
-              $164.49
-</Heading>,
+              <style__StyledNumericText
+                            large={true}
+                            type="currency"
+                            value="164.492044"
+              />
+</style__StyledHeading>,
           ],
         },
         "ref": null,
@@ -1202,11 +1210,27 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "$164.49",
+              "children": <style__StyledNumericText
+                large={true}
+                type="currency"
+                value="164.492044"
+/>,
               "large": true,
             },
             "ref": null,
-            "rendered": "$164.49",
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "large": true,
+                "type": "currency",
+                "value": "164.492044",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
             "type": [Function],
           },
         ],
@@ -1258,11 +1282,15 @@ ShallowWrapper {
             >
                         total_fiat_value
             </Text>
-            <Heading
+            <style__StyledHeading
                         large={true}
             >
-                        $164.49
-            </Heading>
+                        <style__StyledNumericText
+                                    large={true}
+                                    type="currency"
+                                    value="164.492044"
+                        />
+            </style__StyledHeading>
 </div>,
           <Spring
             config={
@@ -1308,11 +1336,15 @@ ShallowWrapper {
 >
                 total_fiat_value
 </Text>,
-              <Heading
+              <style__StyledHeading
                 large={true}
 >
-                $164.49
-</Heading>,
+                <style__StyledNumericText
+                                large={true}
+                                type="currency"
+                                value="164.492044"
+                />
+</style__StyledHeading>,
             ],
           },
           "ref": null,
@@ -1334,11 +1366,27 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "$164.49",
+                "children": <style__StyledNumericText
+                  large={true}
+                  type="currency"
+                  value="164.492044"
+/>,
                 "large": true,
               },
               "ref": null,
-              "rendered": "$164.49",
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "large": true,
+                  "type": "currency",
+                  "value": "164.492044",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
               "type": [Function],
             },
           ],
