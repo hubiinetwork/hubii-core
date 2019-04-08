@@ -742,6 +742,7 @@ ShallowWrapper {
                     <div
                               style={
                                         Object {
+                                                  "flex": "0.5",
                                                   "marginBottom": "3rem",
                                                   "minWidth": "34rem",
                                                 }
@@ -763,8 +764,21 @@ ShallowWrapper {
                                                   gutter={0}
                                         >
                                                   <TransferDescriptionItem
-                                                            main="0 ETH"
-                                                            subtitle="$0.00"
+                                                            main={
+                                                                      <SelectableText>
+                                                                                <NumericText
+                                                                                          value="0"
+                                                                                />
+                                                                                 
+                                                                                ETH
+                                                                      </SelectableText>
+                                                            }
+                                                            subtitle={
+                                                                      <NumericText
+                                                                                type="currency"
+                                                                                value="0"
+                                                                      />
+                                                            }
                                                   />
                                         </Row>
                                         <Row
@@ -780,8 +794,21 @@ ShallowWrapper {
                                                   gutter={0}
                                         >
                                                   <TransferDescriptionItem
-                                                            main="0.06 ETH"
-                                                            subtitle="$24.72"
+                                                            main={
+                                                                      <SelectableText>
+                                                                                <NumericText
+                                                                                          value="0.06"
+                                                                                />
+                                                                                 
+                                                                                ETH
+                                                                      </SelectableText>
+                                                            }
+                                                            subtitle={
+                                                                      <NumericText
+                                                                                type="currency"
+                                                                                value="24.72"
+                                                                      />
+                                                            }
                                                   />
                                         </Row>
                                         <Row
@@ -800,8 +827,21 @@ ShallowWrapper {
                                         >
                                                   <TransferDescriptionItem
                                                             className="base-layer-eth-balance-before"
-                                                            main="0.198937 ETH"
-                                                            subtitle="$81.96"
+                                                            main={
+                                                                      <SelectableText>
+                                                                                <NumericText
+                                                                                          value="0.198937"
+                                                                                />
+                                                                                 
+                                                                                ETH
+                                                                      </SelectableText>
+                                                            }
+                                                            subtitle={
+                                                                      <NumericText
+                                                                                type="currency"
+                                                                                value="24.72"
+                                                                      />
+                                                            }
                                                   />
                                         </Row>
                                         <Row
@@ -820,8 +860,21 @@ ShallowWrapper {
                                         >
                                                   <TransferDescriptionItem
                                                             className="base-layer-eth-balance-after"
-                                                            main="0.138937 ETH"
-                                                            subtitle="$57.24"
+                                                            main={
+                                                                      <SelectableText>
+                                                                                <NumericText
+                                                                                          value="0.138937"
+                                                                                />
+                                                                                 
+                                                                                ETH
+                                                                      </SelectableText>
+                                                            }
+                                                            subtitle={
+                                                                      <NumericText
+                                                                                type="currency"
+                                                                                value="57.242044"
+                                                                      />
+                                                            }
                                                   />
                                         </Row>
                                         <div>
@@ -841,8 +894,21 @@ ShallowWrapper {
                                                   >
                                                             <TransferDescriptionItem
                                                                       className="staged-balance-before"
-                                                                      main="0 ETH"
-                                                                      subtitle="$0.00"
+                                                                      main={
+                                                                                <SelectableText>
+                                                                                          <NumericText
+                                                                                                    value="0"
+                                                                                          />
+                                                                                           
+                                                                                          ETH
+                                                                                </SelectableText>
+                                                                      }
+                                                                      subtitle={
+                                                                                <NumericText
+                                                                                          type="currency"
+                                                                                          value="0"
+                                                                                />
+                                                                      }
                                                             />
                                                   </Row>
                                                   <Row
@@ -861,8 +927,21 @@ ShallowWrapper {
                                                   >
                                                             <TransferDescriptionItem
                                                                       className="staged-balance-after"
-                                                                      main="0 ETH"
-                                                                      subtitle="$0.00"
+                                                                      main={
+                                                                                <SelectableText>
+                                                                                          <NumericText
+                                                                                                    value="0"
+                                                                                          />
+                                                                                           
+                                                                                          ETH
+                                                                                </SelectableText>
+                                                                      }
+                                                                      subtitle={
+                                                                                <NumericText
+                                                                                          type="currency"
+                                                                                          value="0"
+                                                                                />
+                                                                      }
                                                             />
                                                   </Row>
                                         </div>
@@ -1003,6 +1082,7 @@ ShallowWrapper {
             <div
                         style={
                                     Object {
+                                                "flex": "0.5",
                                                 "marginBottom": "3rem",
                                                 "minWidth": "34rem",
                                               }
@@ -1024,8 +1104,21 @@ ShallowWrapper {
                                                 gutter={0}
                                     >
                                                 <TransferDescriptionItem
-                                                            main="0 ETH"
-                                                            subtitle="$0.00"
+                                                            main={
+                                                                        <SelectableText>
+                                                                                    <NumericText
+                                                                                                value="0"
+                                                                                    />
+                                                                                     
+                                                                                    ETH
+                                                                        </SelectableText>
+                                                            }
+                                                            subtitle={
+                                                                        <NumericText
+                                                                                    type="currency"
+                                                                                    value="0"
+                                                                        />
+                                                            }
                                                 />
                                     </Row>
                                     <Row
@@ -1041,8 +1134,21 @@ ShallowWrapper {
                                                 gutter={0}
                                     >
                                                 <TransferDescriptionItem
-                                                            main="0.06 ETH"
-                                                            subtitle="$24.72"
+                                                            main={
+                                                                        <SelectableText>
+                                                                                    <NumericText
+                                                                                                value="0.06"
+                                                                                    />
+                                                                                     
+                                                                                    ETH
+                                                                        </SelectableText>
+                                                            }
+                                                            subtitle={
+                                                                        <NumericText
+                                                                                    type="currency"
+                                                                                    value="24.72"
+                                                                        />
+                                                            }
                                                 />
                                     </Row>
                                     <Row
@@ -1061,8 +1167,21 @@ ShallowWrapper {
                                     >
                                                 <TransferDescriptionItem
                                                             className="base-layer-eth-balance-before"
-                                                            main="0.198937 ETH"
-                                                            subtitle="$81.96"
+                                                            main={
+                                                                        <SelectableText>
+                                                                                    <NumericText
+                                                                                                value="0.198937"
+                                                                                    />
+                                                                                     
+                                                                                    ETH
+                                                                        </SelectableText>
+                                                            }
+                                                            subtitle={
+                                                                        <NumericText
+                                                                                    type="currency"
+                                                                                    value="24.72"
+                                                                        />
+                                                            }
                                                 />
                                     </Row>
                                     <Row
@@ -1081,8 +1200,21 @@ ShallowWrapper {
                                     >
                                                 <TransferDescriptionItem
                                                             className="base-layer-eth-balance-after"
-                                                            main="0.138937 ETH"
-                                                            subtitle="$57.24"
+                                                            main={
+                                                                        <SelectableText>
+                                                                                    <NumericText
+                                                                                                value="0.138937"
+                                                                                    />
+                                                                                     
+                                                                                    ETH
+                                                                        </SelectableText>
+                                                            }
+                                                            subtitle={
+                                                                        <NumericText
+                                                                                    type="currency"
+                                                                                    value="57.242044"
+                                                                        />
+                                                            }
                                                 />
                                     </Row>
                                     <div>
@@ -1102,8 +1234,21 @@ ShallowWrapper {
                                                 >
                                                             <TransferDescriptionItem
                                                                         className="staged-balance-before"
-                                                                        main="0 ETH"
-                                                                        subtitle="$0.00"
+                                                                        main={
+                                                                                    <SelectableText>
+                                                                                                <NumericText
+                                                                                                            value="0"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                                    </SelectableText>
+                                                                        }
+                                                                        subtitle={
+                                                                                    <NumericText
+                                                                                                type="currency"
+                                                                                                value="0"
+                                                                                    />
+                                                                        }
                                                             />
                                                 </Row>
                                                 <Row
@@ -1122,8 +1267,21 @@ ShallowWrapper {
                                                 >
                                                             <TransferDescriptionItem
                                                                         className="staged-balance-after"
-                                                                        main="0 ETH"
-                                                                        subtitle="$0.00"
+                                                                        main={
+                                                                                    <SelectableText>
+                                                                                                <NumericText
+                                                                                                            value="0"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                                    </SelectableText>
+                                                                        }
+                                                                        subtitle={
+                                                                                    <NumericText
+                                                                                                type="currency"
+                                                                                                value="0"
+                                                                                    />
+                                                                        }
                                                             />
                                                 </Row>
                                     </div>
@@ -1246,6 +1404,7 @@ ShallowWrapper {
               <div
                 style={
                                 Object {
+                                                "flex": "0.5",
                                                 "marginBottom": "3rem",
                                                 "minWidth": "34rem",
                                               }
@@ -1267,8 +1426,21 @@ ShallowWrapper {
                                                 gutter={0}
                                 >
                                                 <TransferDescriptionItem
-                                                                main="0 ETH"
-                                                                subtitle="$0.00"
+                                                                main={
+                                                                                <SelectableText>
+                                                                                                <NumericText
+                                                                                                                value="0"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                                </SelectableText>
+                                                                }
+                                                                subtitle={
+                                                                                <NumericText
+                                                                                                type="currency"
+                                                                                                value="0"
+                                                                                />
+                                                                }
                                                 />
                                 </Row>
                                 <Row
@@ -1284,8 +1456,21 @@ ShallowWrapper {
                                                 gutter={0}
                                 >
                                                 <TransferDescriptionItem
-                                                                main="0.06 ETH"
-                                                                subtitle="$24.72"
+                                                                main={
+                                                                                <SelectableText>
+                                                                                                <NumericText
+                                                                                                                value="0.06"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                                </SelectableText>
+                                                                }
+                                                                subtitle={
+                                                                                <NumericText
+                                                                                                type="currency"
+                                                                                                value="24.72"
+                                                                                />
+                                                                }
                                                 />
                                 </Row>
                                 <Row
@@ -1304,8 +1489,21 @@ ShallowWrapper {
                                 >
                                                 <TransferDescriptionItem
                                                                 className="base-layer-eth-balance-before"
-                                                                main="0.198937 ETH"
-                                                                subtitle="$81.96"
+                                                                main={
+                                                                                <SelectableText>
+                                                                                                <NumericText
+                                                                                                                value="0.198937"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                                </SelectableText>
+                                                                }
+                                                                subtitle={
+                                                                                <NumericText
+                                                                                                type="currency"
+                                                                                                value="24.72"
+                                                                                />
+                                                                }
                                                 />
                                 </Row>
                                 <Row
@@ -1324,8 +1522,21 @@ ShallowWrapper {
                                 >
                                                 <TransferDescriptionItem
                                                                 className="base-layer-eth-balance-after"
-                                                                main="0.138937 ETH"
-                                                                subtitle="$57.24"
+                                                                main={
+                                                                                <SelectableText>
+                                                                                                <NumericText
+                                                                                                                value="0.138937"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                                </SelectableText>
+                                                                }
+                                                                subtitle={
+                                                                                <NumericText
+                                                                                                type="currency"
+                                                                                                value="57.242044"
+                                                                                />
+                                                                }
                                                 />
                                 </Row>
                                 <div>
@@ -1345,8 +1556,21 @@ ShallowWrapper {
                                                 >
                                                                 <TransferDescriptionItem
                                                                                 className="staged-balance-before"
-                                                                                main="0 ETH"
-                                                                                subtitle="$0.00"
+                                                                                main={
+                                                                                                <SelectableText>
+                                                                                                                <NumericText
+                                                                                                                                value="0"
+                                                                                                                />
+                                                                                                                 
+                                                                                                                ETH
+                                                                                                </SelectableText>
+                                                                                }
+                                                                                subtitle={
+                                                                                                <NumericText
+                                                                                                                type="currency"
+                                                                                                                value="0"
+                                                                                                />
+                                                                                }
                                                                 />
                                                 </Row>
                                                 <Row
@@ -1365,8 +1589,21 @@ ShallowWrapper {
                                                 >
                                                                 <TransferDescriptionItem
                                                                                 className="staged-balance-after"
-                                                                                main="0 ETH"
-                                                                                subtitle="$0.00"
+                                                                                main={
+                                                                                                <SelectableText>
+                                                                                                                <NumericText
+                                                                                                                                value="0"
+                                                                                                                />
+                                                                                                                 
+                                                                                                                ETH
+                                                                                                </SelectableText>
+                                                                                }
+                                                                                subtitle={
+                                                                                                <NumericText
+                                                                                                                type="currency"
+                                                                                                                value="0"
+                                                                                                />
+                                                                                }
                                                                 />
                                                 </Row>
                                 </div>
@@ -1776,8 +2013,21 @@ ShallowWrapper {
                                         gutter={0}
                     >
                                         <TransferDescriptionItem
-                                                            main="0 ETH"
-                                                            subtitle="$0.00"
+                                                            main={
+                                                                                <SelectableText>
+                                                                                                    <NumericText
+                                                                                                                        value="0"
+                                                                                                    />
+                                                                                                     
+                                                                                                    ETH
+                                                                                </SelectableText>
+                                                            }
+                                                            subtitle={
+                                                                                <NumericText
+                                                                                                    type="currency"
+                                                                                                    value="0"
+                                                                                />
+                                                            }
                                         />
                     </Row>
                     <Row
@@ -1793,8 +2043,21 @@ ShallowWrapper {
                                         gutter={0}
                     >
                                         <TransferDescriptionItem
-                                                            main="0.06 ETH"
-                                                            subtitle="$24.72"
+                                                            main={
+                                                                                <SelectableText>
+                                                                                                    <NumericText
+                                                                                                                        value="0.06"
+                                                                                                    />
+                                                                                                     
+                                                                                                    ETH
+                                                                                </SelectableText>
+                                                            }
+                                                            subtitle={
+                                                                                <NumericText
+                                                                                                    type="currency"
+                                                                                                    value="24.72"
+                                                                                />
+                                                            }
                                         />
                     </Row>
                     <Row
@@ -1813,8 +2076,21 @@ ShallowWrapper {
                     >
                                         <TransferDescriptionItem
                                                             className="base-layer-eth-balance-before"
-                                                            main="0.198937 ETH"
-                                                            subtitle="$81.96"
+                                                            main={
+                                                                                <SelectableText>
+                                                                                                    <NumericText
+                                                                                                                        value="0.198937"
+                                                                                                    />
+                                                                                                     
+                                                                                                    ETH
+                                                                                </SelectableText>
+                                                            }
+                                                            subtitle={
+                                                                                <NumericText
+                                                                                                    type="currency"
+                                                                                                    value="24.72"
+                                                                                />
+                                                            }
                                         />
                     </Row>
                     <Row
@@ -1833,8 +2109,21 @@ ShallowWrapper {
                     >
                                         <TransferDescriptionItem
                                                             className="base-layer-eth-balance-after"
-                                                            main="0.138937 ETH"
-                                                            subtitle="$57.24"
+                                                            main={
+                                                                                <SelectableText>
+                                                                                                    <NumericText
+                                                                                                                        value="0.138937"
+                                                                                                    />
+                                                                                                     
+                                                                                                    ETH
+                                                                                </SelectableText>
+                                                            }
+                                                            subtitle={
+                                                                                <NumericText
+                                                                                                    type="currency"
+                                                                                                    value="57.242044"
+                                                                                />
+                                                            }
                                         />
                     </Row>
                     <div>
@@ -1854,8 +2143,21 @@ ShallowWrapper {
                                         >
                                                             <TransferDescriptionItem
                                                                                 className="staged-balance-before"
-                                                                                main="0 ETH"
-                                                                                subtitle="$0.00"
+                                                                                main={
+                                                                                                    <SelectableText>
+                                                                                                                        <NumericText
+                                                                                                                                            value="0"
+                                                                                                                        />
+                                                                                                                         
+                                                                                                                        ETH
+                                                                                                    </SelectableText>
+                                                                                }
+                                                                                subtitle={
+                                                                                                    <NumericText
+                                                                                                                        type="currency"
+                                                                                                                        value="0"
+                                                                                                    />
+                                                                                }
                                                             />
                                         </Row>
                                         <Row
@@ -1874,8 +2176,21 @@ ShallowWrapper {
                                         >
                                                             <TransferDescriptionItem
                                                                                 className="staged-balance-after"
-                                                                                main="0 ETH"
-                                                                                subtitle="$0.00"
+                                                                                main={
+                                                                                                    <SelectableText>
+                                                                                                                        <NumericText
+                                                                                                                                            value="0"
+                                                                                                                        />
+                                                                                                                         
+                                                                                                                        ETH
+                                                                                                    </SelectableText>
+                                                                                }
+                                                                                subtitle={
+                                                                                                    <NumericText
+                                                                                                                        type="currency"
+                                                                                                                        value="0"
+                                                                                                    />
+                                                                                }
                                                             />
                                         </Row>
                     </div>
@@ -1899,6 +2214,7 @@ ShallowWrapper {
 </style__HWPromptWrapper>,
                 ],
                 "style": Object {
+                  "flex": "0.5",
                   "marginBottom": "3rem",
                   "minWidth": "34rem",
                 },
@@ -1924,8 +2240,21 @@ ShallowWrapper {
                         gutter={0}
 >
                         <TransferDescriptionItem
-                                                main="0 ETH"
-                                                subtitle="$0.00"
+                                                main={
+                                                                        <SelectableText>
+                                                                                                <NumericText
+                                                                                                                        value="0"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                        </SelectableText>
+                                                }
+                                                subtitle={
+                                                                        <NumericText
+                                                                                                type="currency"
+                                                                                                value="0"
+                                                                        />
+                                                }
                         />
 </Row>,
                       <Row
@@ -1941,8 +2270,21 @@ ShallowWrapper {
                         gutter={0}
 >
                         <TransferDescriptionItem
-                                                main="0.06 ETH"
-                                                subtitle="$24.72"
+                                                main={
+                                                                        <SelectableText>
+                                                                                                <NumericText
+                                                                                                                        value="0.06"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                        </SelectableText>
+                                                }
+                                                subtitle={
+                                                                        <NumericText
+                                                                                                type="currency"
+                                                                                                value="24.72"
+                                                                        />
+                                                }
                         />
 </Row>,
                       <Row
@@ -1961,8 +2303,21 @@ ShallowWrapper {
 >
                         <TransferDescriptionItem
                                                 className="base-layer-eth-balance-before"
-                                                main="0.198937 ETH"
-                                                subtitle="$81.96"
+                                                main={
+                                                                        <SelectableText>
+                                                                                                <NumericText
+                                                                                                                        value="0.198937"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                        </SelectableText>
+                                                }
+                                                subtitle={
+                                                                        <NumericText
+                                                                                                type="currency"
+                                                                                                value="24.72"
+                                                                        />
+                                                }
                         />
 </Row>,
                       <Row
@@ -1981,8 +2336,21 @@ ShallowWrapper {
 >
                         <TransferDescriptionItem
                                                 className="base-layer-eth-balance-after"
-                                                main="0.138937 ETH"
-                                                subtitle="$57.24"
+                                                main={
+                                                                        <SelectableText>
+                                                                                                <NumericText
+                                                                                                                        value="0.138937"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                        </SelectableText>
+                                                }
+                                                subtitle={
+                                                                        <NumericText
+                                                                                                type="currency"
+                                                                                                value="57.242044"
+                                                                        />
+                                                }
                         />
 </Row>,
                       <div>
@@ -2002,8 +2370,21 @@ ShallowWrapper {
                         >
                                                 <TransferDescriptionItem
                                                                         className="staged-balance-before"
-                                                                        main="0 ETH"
-                                                                        subtitle="$0.00"
+                                                                        main={
+                                                                                                <SelectableText>
+                                                                                                                        <NumericText
+                                                                                                                                                value="0"
+                                                                                                                        />
+                                                                                                                         
+                                                                                                                        ETH
+                                                                                                </SelectableText>
+                                                                        }
+                                                                        subtitle={
+                                                                                                <NumericText
+                                                                                                                        type="currency"
+                                                                                                                        value="0"
+                                                                                                />
+                                                                        }
                                                 />
                         </Row>
                         <Row
@@ -2022,8 +2403,21 @@ ShallowWrapper {
                         >
                                                 <TransferDescriptionItem
                                                                         className="staged-balance-after"
-                                                                        main="0 ETH"
-                                                                        subtitle="$0.00"
+                                                                        main={
+                                                                                                <SelectableText>
+                                                                                                                        <NumericText
+                                                                                                                                                value="0"
+                                                                                                                        />
+                                                                                                                         
+                                                                                                                        ETH
+                                                                                                </SelectableText>
+                                                                        }
+                                                                        subtitle={
+                                                                                                <NumericText
+                                                                                                                        type="currency"
+                                                                                                                        value="0"
+                                                                                                />
+                                                                        }
                                                 />
                         </Row>
 </div>,
@@ -2080,8 +2474,21 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": <TransferDescriptionItem
-                          main="0 ETH"
-                          subtitle="$0.00"
+                          main={
+                                                    <SelectableText>
+                                                                              <NumericText
+                                                                                                        value="0"
+                                                                              />
+                                                                               
+                                                                              ETH
+                                                    </SelectableText>
+                          }
+                          subtitle={
+                                                    <NumericText
+                                                                              type="currency"
+                                                                              value="0"
+                                                    />
+                          }
 />,
                         "gutter": 0,
                       },
@@ -2091,8 +2498,17 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "function",
                         "props": Object {
-                          "main": "0 ETH",
-                          "subtitle": "$0.00",
+                          "main": <SelectableText>
+                            <NumericText
+                                                        value="0"
+                            />
+                             
+                            ETH
+</SelectableText>,
+                          "subtitle": <NumericText
+                            type="currency"
+                            value="0"
+/>,
                         },
                         "ref": null,
                         "rendered": null,
@@ -2133,8 +2549,21 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": <TransferDescriptionItem
-                          main="0.06 ETH"
-                          subtitle="$24.72"
+                          main={
+                                                    <SelectableText>
+                                                                              <NumericText
+                                                                                                        value="0.06"
+                                                                              />
+                                                                               
+                                                                              ETH
+                                                    </SelectableText>
+                          }
+                          subtitle={
+                                                    <NumericText
+                                                                              type="currency"
+                                                                              value="24.72"
+                                                    />
+                          }
 />,
                         "gutter": 0,
                       },
@@ -2144,8 +2573,17 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "function",
                         "props": Object {
-                          "main": "0.06 ETH",
-                          "subtitle": "$24.72",
+                          "main": <SelectableText>
+                            <NumericText
+                                                        value="0.06"
+                            />
+                             
+                            ETH
+</SelectableText>,
+                          "subtitle": <NumericText
+                            type="currency"
+                            value="24.72"
+/>,
                         },
                         "ref": null,
                         "rendered": null,
@@ -2197,8 +2635,21 @@ ShallowWrapper {
                       "props": Object {
                         "children": <TransferDescriptionItem
                           className="base-layer-eth-balance-before"
-                          main="0.198937 ETH"
-                          subtitle="$81.96"
+                          main={
+                                                    <SelectableText>
+                                                                              <NumericText
+                                                                                                        value="0.198937"
+                                                                              />
+                                                                               
+                                                                              ETH
+                                                    </SelectableText>
+                          }
+                          subtitle={
+                                                    <NumericText
+                                                                              type="currency"
+                                                                              value="24.72"
+                                                    />
+                          }
 />,
                         "gutter": 0,
                       },
@@ -2209,8 +2660,17 @@ ShallowWrapper {
                         "nodeType": "function",
                         "props": Object {
                           "className": "base-layer-eth-balance-before",
-                          "main": "0.198937 ETH",
-                          "subtitle": "$81.96",
+                          "main": <SelectableText>
+                            <NumericText
+                                                        value="0.198937"
+                            />
+                             
+                            ETH
+</SelectableText>,
+                          "subtitle": <NumericText
+                            type="currency"
+                            value="24.72"
+/>,
                         },
                         "ref": null,
                         "rendered": null,
@@ -2262,8 +2722,21 @@ ShallowWrapper {
                       "props": Object {
                         "children": <TransferDescriptionItem
                           className="base-layer-eth-balance-after"
-                          main="0.138937 ETH"
-                          subtitle="$57.24"
+                          main={
+                                                    <SelectableText>
+                                                                              <NumericText
+                                                                                                        value="0.138937"
+                                                                              />
+                                                                               
+                                                                              ETH
+                                                    </SelectableText>
+                          }
+                          subtitle={
+                                                    <NumericText
+                                                                              type="currency"
+                                                                              value="57.242044"
+                                                    />
+                          }
 />,
                         "gutter": 0,
                       },
@@ -2274,8 +2747,17 @@ ShallowWrapper {
                         "nodeType": "function",
                         "props": Object {
                           "className": "base-layer-eth-balance-after",
-                          "main": "0.138937 ETH",
-                          "subtitle": "$57.24",
+                          "main": <SelectableText>
+                            <NumericText
+                                                        value="0.138937"
+                            />
+                             
+                            ETH
+</SelectableText>,
+                          "subtitle": <NumericText
+                            type="currency"
+                            value="57.242044"
+/>,
                         },
                         "ref": null,
                         "rendered": null,
@@ -2305,8 +2787,21 @@ ShallowWrapper {
 >
                             <TransferDescriptionItem
                                                         className="staged-balance-before"
-                                                        main="0 ETH"
-                                                        subtitle="$0.00"
+                                                        main={
+                                                                                    <SelectableText>
+                                                                                                                <NumericText
+                                                                                                                                            value="0"
+                                                                                                                />
+                                                                                                                 
+                                                                                                                ETH
+                                                                                    </SelectableText>
+                                                        }
+                                                        subtitle={
+                                                                                    <NumericText
+                                                                                                                type="currency"
+                                                                                                                value="0"
+                                                                                    />
+                                                        }
                             />
 </Row>,
                           <Row
@@ -2325,8 +2820,21 @@ ShallowWrapper {
 >
                             <TransferDescriptionItem
                                                         className="staged-balance-after"
-                                                        main="0 ETH"
-                                                        subtitle="$0.00"
+                                                        main={
+                                                                                    <SelectableText>
+                                                                                                                <NumericText
+                                                                                                                                            value="0"
+                                                                                                                />
+                                                                                                                 
+                                                                                                                ETH
+                                                                                    </SelectableText>
+                                                        }
+                                                        subtitle={
+                                                                                    <NumericText
+                                                                                                                type="currency"
+                                                                                                                value="0"
+                                                                                    />
+                                                        }
                             />
 </Row>,
                         ],
@@ -2377,8 +2885,21 @@ ShallowWrapper {
                           "props": Object {
                             "children": <TransferDescriptionItem
                               className="staged-balance-before"
-                              main="0 ETH"
-                              subtitle="$0.00"
+                              main={
+                                                            <SelectableText>
+                                                                                          <NumericText
+                                                                                                                        value="0"
+                                                                                          />
+                                                                                           
+                                                                                          ETH
+                                                            </SelectableText>
+                              }
+                              subtitle={
+                                                            <NumericText
+                                                                                          type="currency"
+                                                                                          value="0"
+                                                            />
+                              }
 />,
                             "gutter": 0,
                           },
@@ -2389,8 +2910,17 @@ ShallowWrapper {
                             "nodeType": "function",
                             "props": Object {
                               "className": "staged-balance-before",
-                              "main": "0 ETH",
-                              "subtitle": "$0.00",
+                              "main": <SelectableText>
+                                <NumericText
+                                                                value="0"
+                                />
+                                 
+                                ETH
+</SelectableText>,
+                              "subtitle": <NumericText
+                                type="currency"
+                                value="0"
+/>,
                             },
                             "ref": null,
                             "rendered": null,
@@ -2442,8 +2972,21 @@ ShallowWrapper {
                           "props": Object {
                             "children": <TransferDescriptionItem
                               className="staged-balance-after"
-                              main="0 ETH"
-                              subtitle="$0.00"
+                              main={
+                                                            <SelectableText>
+                                                                                          <NumericText
+                                                                                                                        value="0"
+                                                                                          />
+                                                                                           
+                                                                                          ETH
+                                                            </SelectableText>
+                              }
+                              subtitle={
+                                                            <NumericText
+                                                                                          type="currency"
+                                                                                          value="0"
+                                                            />
+                              }
 />,
                             "gutter": 0,
                           },
@@ -2454,8 +2997,17 @@ ShallowWrapper {
                             "nodeType": "function",
                             "props": Object {
                               "className": "staged-balance-after",
-                              "main": "0 ETH",
-                              "subtitle": "$0.00",
+                              "main": <SelectableText>
+                                <NumericText
+                                                                value="0"
+                                />
+                                 
+                                ETH
+</SelectableText>,
+                              "subtitle": <NumericText
+                                type="currency"
+                                value="0"
+/>,
                             },
                             "ref": null,
                             "rendered": null,
@@ -2689,6 +3241,7 @@ ShallowWrapper {
                         <div
                                     style={
                                                 Object {
+                                                            "flex": "0.5",
                                                             "marginBottom": "3rem",
                                                             "minWidth": "34rem",
                                                           }
@@ -2710,8 +3263,21 @@ ShallowWrapper {
                                                             gutter={0}
                                                 >
                                                             <TransferDescriptionItem
-                                                                        main="0 ETH"
-                                                                        subtitle="$0.00"
+                                                                        main={
+                                                                                    <SelectableText>
+                                                                                                <NumericText
+                                                                                                            value="0"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                                    </SelectableText>
+                                                                        }
+                                                                        subtitle={
+                                                                                    <NumericText
+                                                                                                type="currency"
+                                                                                                value="0"
+                                                                                    />
+                                                                        }
                                                             />
                                                 </Row>
                                                 <Row
@@ -2727,8 +3293,21 @@ ShallowWrapper {
                                                             gutter={0}
                                                 >
                                                             <TransferDescriptionItem
-                                                                        main="0.06 ETH"
-                                                                        subtitle="$24.72"
+                                                                        main={
+                                                                                    <SelectableText>
+                                                                                                <NumericText
+                                                                                                            value="0.06"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                                    </SelectableText>
+                                                                        }
+                                                                        subtitle={
+                                                                                    <NumericText
+                                                                                                type="currency"
+                                                                                                value="24.72"
+                                                                                    />
+                                                                        }
                                                             />
                                                 </Row>
                                                 <Row
@@ -2747,8 +3326,21 @@ ShallowWrapper {
                                                 >
                                                             <TransferDescriptionItem
                                                                         className="base-layer-eth-balance-before"
-                                                                        main="0.198937 ETH"
-                                                                        subtitle="$81.96"
+                                                                        main={
+                                                                                    <SelectableText>
+                                                                                                <NumericText
+                                                                                                            value="0.198937"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                                    </SelectableText>
+                                                                        }
+                                                                        subtitle={
+                                                                                    <NumericText
+                                                                                                type="currency"
+                                                                                                value="24.72"
+                                                                                    />
+                                                                        }
                                                             />
                                                 </Row>
                                                 <Row
@@ -2767,8 +3359,21 @@ ShallowWrapper {
                                                 >
                                                             <TransferDescriptionItem
                                                                         className="base-layer-eth-balance-after"
-                                                                        main="0.138937 ETH"
-                                                                        subtitle="$57.24"
+                                                                        main={
+                                                                                    <SelectableText>
+                                                                                                <NumericText
+                                                                                                            value="0.138937"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                                    </SelectableText>
+                                                                        }
+                                                                        subtitle={
+                                                                                    <NumericText
+                                                                                                type="currency"
+                                                                                                value="57.242044"
+                                                                                    />
+                                                                        }
                                                             />
                                                 </Row>
                                                 <div>
@@ -2788,8 +3393,21 @@ ShallowWrapper {
                                                             >
                                                                         <TransferDescriptionItem
                                                                                     className="staged-balance-before"
-                                                                                    main="0 ETH"
-                                                                                    subtitle="$0.00"
+                                                                                    main={
+                                                                                                <SelectableText>
+                                                                                                            <NumericText
+                                                                                                                        value="0"
+                                                                                                            />
+                                                                                                             
+                                                                                                            ETH
+                                                                                                </SelectableText>
+                                                                                    }
+                                                                                    subtitle={
+                                                                                                <NumericText
+                                                                                                            type="currency"
+                                                                                                            value="0"
+                                                                                                />
+                                                                                    }
                                                                         />
                                                             </Row>
                                                             <Row
@@ -2808,8 +3426,21 @@ ShallowWrapper {
                                                             >
                                                                         <TransferDescriptionItem
                                                                                     className="staged-balance-after"
-                                                                                    main="0 ETH"
-                                                                                    subtitle="$0.00"
+                                                                                    main={
+                                                                                                <SelectableText>
+                                                                                                            <NumericText
+                                                                                                                        value="0"
+                                                                                                            />
+                                                                                                             
+                                                                                                            ETH
+                                                                                                </SelectableText>
+                                                                                    }
+                                                                                    subtitle={
+                                                                                                <NumericText
+                                                                                                            type="currency"
+                                                                                                            value="0"
+                                                                                                />
+                                                                                    }
                                                                         />
                                                             </Row>
                                                 </div>
@@ -2950,6 +3581,7 @@ ShallowWrapper {
               <div
                             style={
                                           Object {
+                                                        "flex": "0.5",
                                                         "marginBottom": "3rem",
                                                         "minWidth": "34rem",
                                                       }
@@ -2971,8 +3603,21 @@ ShallowWrapper {
                                                         gutter={0}
                                           >
                                                         <TransferDescriptionItem
-                                                                      main="0 ETH"
-                                                                      subtitle="$0.00"
+                                                                      main={
+                                                                                    <SelectableText>
+                                                                                                  <NumericText
+                                                                                                                value="0"
+                                                                                                  />
+                                                                                                   
+                                                                                                  ETH
+                                                                                    </SelectableText>
+                                                                      }
+                                                                      subtitle={
+                                                                                    <NumericText
+                                                                                                  type="currency"
+                                                                                                  value="0"
+                                                                                    />
+                                                                      }
                                                         />
                                           </Row>
                                           <Row
@@ -2988,8 +3633,21 @@ ShallowWrapper {
                                                         gutter={0}
                                           >
                                                         <TransferDescriptionItem
-                                                                      main="0.06 ETH"
-                                                                      subtitle="$24.72"
+                                                                      main={
+                                                                                    <SelectableText>
+                                                                                                  <NumericText
+                                                                                                                value="0.06"
+                                                                                                  />
+                                                                                                   
+                                                                                                  ETH
+                                                                                    </SelectableText>
+                                                                      }
+                                                                      subtitle={
+                                                                                    <NumericText
+                                                                                                  type="currency"
+                                                                                                  value="24.72"
+                                                                                    />
+                                                                      }
                                                         />
                                           </Row>
                                           <Row
@@ -3008,8 +3666,21 @@ ShallowWrapper {
                                           >
                                                         <TransferDescriptionItem
                                                                       className="base-layer-eth-balance-before"
-                                                                      main="0.198937 ETH"
-                                                                      subtitle="$81.96"
+                                                                      main={
+                                                                                    <SelectableText>
+                                                                                                  <NumericText
+                                                                                                                value="0.198937"
+                                                                                                  />
+                                                                                                   
+                                                                                                  ETH
+                                                                                    </SelectableText>
+                                                                      }
+                                                                      subtitle={
+                                                                                    <NumericText
+                                                                                                  type="currency"
+                                                                                                  value="24.72"
+                                                                                    />
+                                                                      }
                                                         />
                                           </Row>
                                           <Row
@@ -3028,8 +3699,21 @@ ShallowWrapper {
                                           >
                                                         <TransferDescriptionItem
                                                                       className="base-layer-eth-balance-after"
-                                                                      main="0.138937 ETH"
-                                                                      subtitle="$57.24"
+                                                                      main={
+                                                                                    <SelectableText>
+                                                                                                  <NumericText
+                                                                                                                value="0.138937"
+                                                                                                  />
+                                                                                                   
+                                                                                                  ETH
+                                                                                    </SelectableText>
+                                                                      }
+                                                                      subtitle={
+                                                                                    <NumericText
+                                                                                                  type="currency"
+                                                                                                  value="57.242044"
+                                                                                    />
+                                                                      }
                                                         />
                                           </Row>
                                           <div>
@@ -3049,8 +3733,21 @@ ShallowWrapper {
                                                         >
                                                                       <TransferDescriptionItem
                                                                                     className="staged-balance-before"
-                                                                                    main="0 ETH"
-                                                                                    subtitle="$0.00"
+                                                                                    main={
+                                                                                                  <SelectableText>
+                                                                                                                <NumericText
+                                                                                                                              value="0"
+                                                                                                                />
+                                                                                                                 
+                                                                                                                ETH
+                                                                                                  </SelectableText>
+                                                                                    }
+                                                                                    subtitle={
+                                                                                                  <NumericText
+                                                                                                                type="currency"
+                                                                                                                value="0"
+                                                                                                  />
+                                                                                    }
                                                                       />
                                                         </Row>
                                                         <Row
@@ -3069,8 +3766,21 @@ ShallowWrapper {
                                                         >
                                                                       <TransferDescriptionItem
                                                                                     className="staged-balance-after"
-                                                                                    main="0 ETH"
-                                                                                    subtitle="$0.00"
+                                                                                    main={
+                                                                                                  <SelectableText>
+                                                                                                                <NumericText
+                                                                                                                              value="0"
+                                                                                                                />
+                                                                                                                 
+                                                                                                                ETH
+                                                                                                  </SelectableText>
+                                                                                    }
+                                                                                    subtitle={
+                                                                                                  <NumericText
+                                                                                                                type="currency"
+                                                                                                                value="0"
+                                                                                                  />
+                                                                                    }
                                                                       />
                                                         </Row>
                                           </div>
@@ -3193,6 +3903,7 @@ ShallowWrapper {
                 <div
                   style={
                                     Object {
+                                                      "flex": "0.5",
                                                       "marginBottom": "3rem",
                                                       "minWidth": "34rem",
                                                     }
@@ -3214,8 +3925,21 @@ ShallowWrapper {
                                                       gutter={0}
                                     >
                                                       <TransferDescriptionItem
-                                                                        main="0 ETH"
-                                                                        subtitle="$0.00"
+                                                                        main={
+                                                                                          <SelectableText>
+                                                                                                            <NumericText
+                                                                                                                              value="0"
+                                                                                                            />
+                                                                                                             
+                                                                                                            ETH
+                                                                                          </SelectableText>
+                                                                        }
+                                                                        subtitle={
+                                                                                          <NumericText
+                                                                                                            type="currency"
+                                                                                                            value="0"
+                                                                                          />
+                                                                        }
                                                       />
                                     </Row>
                                     <Row
@@ -3231,8 +3955,21 @@ ShallowWrapper {
                                                       gutter={0}
                                     >
                                                       <TransferDescriptionItem
-                                                                        main="0.06 ETH"
-                                                                        subtitle="$24.72"
+                                                                        main={
+                                                                                          <SelectableText>
+                                                                                                            <NumericText
+                                                                                                                              value="0.06"
+                                                                                                            />
+                                                                                                             
+                                                                                                            ETH
+                                                                                          </SelectableText>
+                                                                        }
+                                                                        subtitle={
+                                                                                          <NumericText
+                                                                                                            type="currency"
+                                                                                                            value="24.72"
+                                                                                          />
+                                                                        }
                                                       />
                                     </Row>
                                     <Row
@@ -3251,8 +3988,21 @@ ShallowWrapper {
                                     >
                                                       <TransferDescriptionItem
                                                                         className="base-layer-eth-balance-before"
-                                                                        main="0.198937 ETH"
-                                                                        subtitle="$81.96"
+                                                                        main={
+                                                                                          <SelectableText>
+                                                                                                            <NumericText
+                                                                                                                              value="0.198937"
+                                                                                                            />
+                                                                                                             
+                                                                                                            ETH
+                                                                                          </SelectableText>
+                                                                        }
+                                                                        subtitle={
+                                                                                          <NumericText
+                                                                                                            type="currency"
+                                                                                                            value="24.72"
+                                                                                          />
+                                                                        }
                                                       />
                                     </Row>
                                     <Row
@@ -3271,8 +4021,21 @@ ShallowWrapper {
                                     >
                                                       <TransferDescriptionItem
                                                                         className="base-layer-eth-balance-after"
-                                                                        main="0.138937 ETH"
-                                                                        subtitle="$57.24"
+                                                                        main={
+                                                                                          <SelectableText>
+                                                                                                            <NumericText
+                                                                                                                              value="0.138937"
+                                                                                                            />
+                                                                                                             
+                                                                                                            ETH
+                                                                                          </SelectableText>
+                                                                        }
+                                                                        subtitle={
+                                                                                          <NumericText
+                                                                                                            type="currency"
+                                                                                                            value="57.242044"
+                                                                                          />
+                                                                        }
                                                       />
                                     </Row>
                                     <div>
@@ -3292,8 +4055,21 @@ ShallowWrapper {
                                                       >
                                                                         <TransferDescriptionItem
                                                                                           className="staged-balance-before"
-                                                                                          main="0 ETH"
-                                                                                          subtitle="$0.00"
+                                                                                          main={
+                                                                                                            <SelectableText>
+                                                                                                                              <NumericText
+                                                                                                                                                value="0"
+                                                                                                                              />
+                                                                                                                               
+                                                                                                                              ETH
+                                                                                                            </SelectableText>
+                                                                                          }
+                                                                                          subtitle={
+                                                                                                            <NumericText
+                                                                                                                              type="currency"
+                                                                                                                              value="0"
+                                                                                                            />
+                                                                                          }
                                                                         />
                                                       </Row>
                                                       <Row
@@ -3312,8 +4088,21 @@ ShallowWrapper {
                                                       >
                                                                         <TransferDescriptionItem
                                                                                           className="staged-balance-after"
-                                                                                          main="0 ETH"
-                                                                                          subtitle="$0.00"
+                                                                                          main={
+                                                                                                            <SelectableText>
+                                                                                                                              <NumericText
+                                                                                                                                                value="0"
+                                                                                                                              />
+                                                                                                                               
+                                                                                                                              ETH
+                                                                                                            </SelectableText>
+                                                                                          }
+                                                                                          subtitle={
+                                                                                                            <NumericText
+                                                                                                                              type="currency"
+                                                                                                                              value="0"
+                                                                                                            />
+                                                                                          }
                                                                         />
                                                       </Row>
                                     </div>
@@ -3723,8 +4512,21 @@ ShallowWrapper {
                                             gutter={0}
                       >
                                             <TransferDescriptionItem
-                                                                  main="0 ETH"
-                                                                  subtitle="$0.00"
+                                                                  main={
+                                                                                        <SelectableText>
+                                                                                                              <NumericText
+                                                                                                                                    value="0"
+                                                                                                              />
+                                                                                                               
+                                                                                                              ETH
+                                                                                        </SelectableText>
+                                                                  }
+                                                                  subtitle={
+                                                                                        <NumericText
+                                                                                                              type="currency"
+                                                                                                              value="0"
+                                                                                        />
+                                                                  }
                                             />
                       </Row>
                       <Row
@@ -3740,8 +4542,21 @@ ShallowWrapper {
                                             gutter={0}
                       >
                                             <TransferDescriptionItem
-                                                                  main="0.06 ETH"
-                                                                  subtitle="$24.72"
+                                                                  main={
+                                                                                        <SelectableText>
+                                                                                                              <NumericText
+                                                                                                                                    value="0.06"
+                                                                                                              />
+                                                                                                               
+                                                                                                              ETH
+                                                                                        </SelectableText>
+                                                                  }
+                                                                  subtitle={
+                                                                                        <NumericText
+                                                                                                              type="currency"
+                                                                                                              value="24.72"
+                                                                                        />
+                                                                  }
                                             />
                       </Row>
                       <Row
@@ -3760,8 +4575,21 @@ ShallowWrapper {
                       >
                                             <TransferDescriptionItem
                                                                   className="base-layer-eth-balance-before"
-                                                                  main="0.198937 ETH"
-                                                                  subtitle="$81.96"
+                                                                  main={
+                                                                                        <SelectableText>
+                                                                                                              <NumericText
+                                                                                                                                    value="0.198937"
+                                                                                                              />
+                                                                                                               
+                                                                                                              ETH
+                                                                                        </SelectableText>
+                                                                  }
+                                                                  subtitle={
+                                                                                        <NumericText
+                                                                                                              type="currency"
+                                                                                                              value="24.72"
+                                                                                        />
+                                                                  }
                                             />
                       </Row>
                       <Row
@@ -3780,8 +4608,21 @@ ShallowWrapper {
                       >
                                             <TransferDescriptionItem
                                                                   className="base-layer-eth-balance-after"
-                                                                  main="0.138937 ETH"
-                                                                  subtitle="$57.24"
+                                                                  main={
+                                                                                        <SelectableText>
+                                                                                                              <NumericText
+                                                                                                                                    value="0.138937"
+                                                                                                              />
+                                                                                                               
+                                                                                                              ETH
+                                                                                        </SelectableText>
+                                                                  }
+                                                                  subtitle={
+                                                                                        <NumericText
+                                                                                                              type="currency"
+                                                                                                              value="57.242044"
+                                                                                        />
+                                                                  }
                                             />
                       </Row>
                       <div>
@@ -3801,8 +4642,21 @@ ShallowWrapper {
                                             >
                                                                   <TransferDescriptionItem
                                                                                         className="staged-balance-before"
-                                                                                        main="0 ETH"
-                                                                                        subtitle="$0.00"
+                                                                                        main={
+                                                                                                              <SelectableText>
+                                                                                                                                    <NumericText
+                                                                                                                                                          value="0"
+                                                                                                                                    />
+                                                                                                                                     
+                                                                                                                                    ETH
+                                                                                                              </SelectableText>
+                                                                                        }
+                                                                                        subtitle={
+                                                                                                              <NumericText
+                                                                                                                                    type="currency"
+                                                                                                                                    value="0"
+                                                                                                              />
+                                                                                        }
                                                                   />
                                             </Row>
                                             <Row
@@ -3821,8 +4675,21 @@ ShallowWrapper {
                                             >
                                                                   <TransferDescriptionItem
                                                                                         className="staged-balance-after"
-                                                                                        main="0 ETH"
-                                                                                        subtitle="$0.00"
+                                                                                        main={
+                                                                                                              <SelectableText>
+                                                                                                                                    <NumericText
+                                                                                                                                                          value="0"
+                                                                                                                                    />
+                                                                                                                                     
+                                                                                                                                    ETH
+                                                                                                              </SelectableText>
+                                                                                        }
+                                                                                        subtitle={
+                                                                                                              <NumericText
+                                                                                                                                    type="currency"
+                                                                                                                                    value="0"
+                                                                                                              />
+                                                                                        }
                                                                   />
                                             </Row>
                       </div>
@@ -3846,6 +4713,7 @@ ShallowWrapper {
 </style__HWPromptWrapper>,
                   ],
                   "style": Object {
+                    "flex": "0.5",
                     "marginBottom": "3rem",
                     "minWidth": "34rem",
                   },
@@ -3871,8 +4739,21 @@ ShallowWrapper {
                           gutter={0}
 >
                           <TransferDescriptionItem
-                                                    main="0 ETH"
-                                                    subtitle="$0.00"
+                                                    main={
+                                                                              <SelectableText>
+                                                                                                        <NumericText
+                                                                                                                                  value="0"
+                                                                                                        />
+                                                                                                         
+                                                                                                        ETH
+                                                                              </SelectableText>
+                                                    }
+                                                    subtitle={
+                                                                              <NumericText
+                                                                                                        type="currency"
+                                                                                                        value="0"
+                                                                              />
+                                                    }
                           />
 </Row>,
                         <Row
@@ -3888,8 +4769,21 @@ ShallowWrapper {
                           gutter={0}
 >
                           <TransferDescriptionItem
-                                                    main="0.06 ETH"
-                                                    subtitle="$24.72"
+                                                    main={
+                                                                              <SelectableText>
+                                                                                                        <NumericText
+                                                                                                                                  value="0.06"
+                                                                                                        />
+                                                                                                         
+                                                                                                        ETH
+                                                                              </SelectableText>
+                                                    }
+                                                    subtitle={
+                                                                              <NumericText
+                                                                                                        type="currency"
+                                                                                                        value="24.72"
+                                                                              />
+                                                    }
                           />
 </Row>,
                         <Row
@@ -3908,8 +4802,21 @@ ShallowWrapper {
 >
                           <TransferDescriptionItem
                                                     className="base-layer-eth-balance-before"
-                                                    main="0.198937 ETH"
-                                                    subtitle="$81.96"
+                                                    main={
+                                                                              <SelectableText>
+                                                                                                        <NumericText
+                                                                                                                                  value="0.198937"
+                                                                                                        />
+                                                                                                         
+                                                                                                        ETH
+                                                                              </SelectableText>
+                                                    }
+                                                    subtitle={
+                                                                              <NumericText
+                                                                                                        type="currency"
+                                                                                                        value="24.72"
+                                                                              />
+                                                    }
                           />
 </Row>,
                         <Row
@@ -3928,8 +4835,21 @@ ShallowWrapper {
 >
                           <TransferDescriptionItem
                                                     className="base-layer-eth-balance-after"
-                                                    main="0.138937 ETH"
-                                                    subtitle="$57.24"
+                                                    main={
+                                                                              <SelectableText>
+                                                                                                        <NumericText
+                                                                                                                                  value="0.138937"
+                                                                                                        />
+                                                                                                         
+                                                                                                        ETH
+                                                                              </SelectableText>
+                                                    }
+                                                    subtitle={
+                                                                              <NumericText
+                                                                                                        type="currency"
+                                                                                                        value="57.242044"
+                                                                              />
+                                                    }
                           />
 </Row>,
                         <div>
@@ -3949,8 +4869,21 @@ ShallowWrapper {
                           >
                                                     <TransferDescriptionItem
                                                                               className="staged-balance-before"
-                                                                              main="0 ETH"
-                                                                              subtitle="$0.00"
+                                                                              main={
+                                                                                                        <SelectableText>
+                                                                                                                                  <NumericText
+                                                                                                                                                            value="0"
+                                                                                                                                  />
+                                                                                                                                   
+                                                                                                                                  ETH
+                                                                                                        </SelectableText>
+                                                                              }
+                                                                              subtitle={
+                                                                                                        <NumericText
+                                                                                                                                  type="currency"
+                                                                                                                                  value="0"
+                                                                                                        />
+                                                                              }
                                                     />
                           </Row>
                           <Row
@@ -3969,8 +4902,21 @@ ShallowWrapper {
                           >
                                                     <TransferDescriptionItem
                                                                               className="staged-balance-after"
-                                                                              main="0 ETH"
-                                                                              subtitle="$0.00"
+                                                                              main={
+                                                                                                        <SelectableText>
+                                                                                                                                  <NumericText
+                                                                                                                                                            value="0"
+                                                                                                                                  />
+                                                                                                                                   
+                                                                                                                                  ETH
+                                                                                                        </SelectableText>
+                                                                              }
+                                                                              subtitle={
+                                                                                                        <NumericText
+                                                                                                                                  type="currency"
+                                                                                                                                  value="0"
+                                                                                                        />
+                                                                              }
                                                     />
                           </Row>
 </div>,
@@ -4027,8 +4973,21 @@ ShallowWrapper {
                         "nodeType": "class",
                         "props": Object {
                           "children": <TransferDescriptionItem
-                            main="0 ETH"
-                            subtitle="$0.00"
+                            main={
+                                                        <SelectableText>
+                                                                                    <NumericText
+                                                                                                                value="0"
+                                                                                    />
+                                                                                     
+                                                                                    ETH
+                                                        </SelectableText>
+                            }
+                            subtitle={
+                                                        <NumericText
+                                                                                    type="currency"
+                                                                                    value="0"
+                                                        />
+                            }
 />,
                           "gutter": 0,
                         },
@@ -4038,8 +4997,17 @@ ShallowWrapper {
                           "key": undefined,
                           "nodeType": "function",
                           "props": Object {
-                            "main": "0 ETH",
-                            "subtitle": "$0.00",
+                            "main": <SelectableText>
+                              <NumericText
+                                                            value="0"
+                              />
+                               
+                              ETH
+</SelectableText>,
+                            "subtitle": <NumericText
+                              type="currency"
+                              value="0"
+/>,
                           },
                           "ref": null,
                           "rendered": null,
@@ -4080,8 +5048,21 @@ ShallowWrapper {
                         "nodeType": "class",
                         "props": Object {
                           "children": <TransferDescriptionItem
-                            main="0.06 ETH"
-                            subtitle="$24.72"
+                            main={
+                                                        <SelectableText>
+                                                                                    <NumericText
+                                                                                                                value="0.06"
+                                                                                    />
+                                                                                     
+                                                                                    ETH
+                                                        </SelectableText>
+                            }
+                            subtitle={
+                                                        <NumericText
+                                                                                    type="currency"
+                                                                                    value="24.72"
+                                                        />
+                            }
 />,
                           "gutter": 0,
                         },
@@ -4091,8 +5072,17 @@ ShallowWrapper {
                           "key": undefined,
                           "nodeType": "function",
                           "props": Object {
-                            "main": "0.06 ETH",
-                            "subtitle": "$24.72",
+                            "main": <SelectableText>
+                              <NumericText
+                                                            value="0.06"
+                              />
+                               
+                              ETH
+</SelectableText>,
+                            "subtitle": <NumericText
+                              type="currency"
+                              value="24.72"
+/>,
                           },
                           "ref": null,
                           "rendered": null,
@@ -4144,8 +5134,21 @@ ShallowWrapper {
                         "props": Object {
                           "children": <TransferDescriptionItem
                             className="base-layer-eth-balance-before"
-                            main="0.198937 ETH"
-                            subtitle="$81.96"
+                            main={
+                                                        <SelectableText>
+                                                                                    <NumericText
+                                                                                                                value="0.198937"
+                                                                                    />
+                                                                                     
+                                                                                    ETH
+                                                        </SelectableText>
+                            }
+                            subtitle={
+                                                        <NumericText
+                                                                                    type="currency"
+                                                                                    value="24.72"
+                                                        />
+                            }
 />,
                           "gutter": 0,
                         },
@@ -4156,8 +5159,17 @@ ShallowWrapper {
                           "nodeType": "function",
                           "props": Object {
                             "className": "base-layer-eth-balance-before",
-                            "main": "0.198937 ETH",
-                            "subtitle": "$81.96",
+                            "main": <SelectableText>
+                              <NumericText
+                                                            value="0.198937"
+                              />
+                               
+                              ETH
+</SelectableText>,
+                            "subtitle": <NumericText
+                              type="currency"
+                              value="24.72"
+/>,
                           },
                           "ref": null,
                           "rendered": null,
@@ -4209,8 +5221,21 @@ ShallowWrapper {
                         "props": Object {
                           "children": <TransferDescriptionItem
                             className="base-layer-eth-balance-after"
-                            main="0.138937 ETH"
-                            subtitle="$57.24"
+                            main={
+                                                        <SelectableText>
+                                                                                    <NumericText
+                                                                                                                value="0.138937"
+                                                                                    />
+                                                                                     
+                                                                                    ETH
+                                                        </SelectableText>
+                            }
+                            subtitle={
+                                                        <NumericText
+                                                                                    type="currency"
+                                                                                    value="57.242044"
+                                                        />
+                            }
 />,
                           "gutter": 0,
                         },
@@ -4221,8 +5246,17 @@ ShallowWrapper {
                           "nodeType": "function",
                           "props": Object {
                             "className": "base-layer-eth-balance-after",
-                            "main": "0.138937 ETH",
-                            "subtitle": "$57.24",
+                            "main": <SelectableText>
+                              <NumericText
+                                                            value="0.138937"
+                              />
+                               
+                              ETH
+</SelectableText>,
+                            "subtitle": <NumericText
+                              type="currency"
+                              value="57.242044"
+/>,
                           },
                           "ref": null,
                           "rendered": null,
@@ -4252,8 +5286,21 @@ ShallowWrapper {
 >
                               <TransferDescriptionItem
                                                             className="staged-balance-before"
-                                                            main="0 ETH"
-                                                            subtitle="$0.00"
+                                                            main={
+                                                                                          <SelectableText>
+                                                                                                                        <NumericText
+                                                                                                                                                      value="0"
+                                                                                                                        />
+                                                                                                                         
+                                                                                                                        ETH
+                                                                                          </SelectableText>
+                                                            }
+                                                            subtitle={
+                                                                                          <NumericText
+                                                                                                                        type="currency"
+                                                                                                                        value="0"
+                                                                                          />
+                                                            }
                               />
 </Row>,
                             <Row
@@ -4272,8 +5319,21 @@ ShallowWrapper {
 >
                               <TransferDescriptionItem
                                                             className="staged-balance-after"
-                                                            main="0 ETH"
-                                                            subtitle="$0.00"
+                                                            main={
+                                                                                          <SelectableText>
+                                                                                                                        <NumericText
+                                                                                                                                                      value="0"
+                                                                                                                        />
+                                                                                                                         
+                                                                                                                        ETH
+                                                                                          </SelectableText>
+                                                            }
+                                                            subtitle={
+                                                                                          <NumericText
+                                                                                                                        type="currency"
+                                                                                                                        value="0"
+                                                                                          />
+                                                            }
                               />
 </Row>,
                           ],
@@ -4324,8 +5384,21 @@ ShallowWrapper {
                             "props": Object {
                               "children": <TransferDescriptionItem
                                 className="staged-balance-before"
-                                main="0 ETH"
-                                subtitle="$0.00"
+                                main={
+                                                                <SelectableText>
+                                                                                                <NumericText
+                                                                                                                                value="0"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                </SelectableText>
+                                }
+                                subtitle={
+                                                                <NumericText
+                                                                                                type="currency"
+                                                                                                value="0"
+                                                                />
+                                }
 />,
                               "gutter": 0,
                             },
@@ -4336,8 +5409,17 @@ ShallowWrapper {
                               "nodeType": "function",
                               "props": Object {
                                 "className": "staged-balance-before",
-                                "main": "0 ETH",
-                                "subtitle": "$0.00",
+                                "main": <SelectableText>
+                                  <NumericText
+                                                                    value="0"
+                                  />
+                                   
+                                  ETH
+</SelectableText>,
+                                "subtitle": <NumericText
+                                  type="currency"
+                                  value="0"
+/>,
                               },
                               "ref": null,
                               "rendered": null,
@@ -4389,8 +5471,21 @@ ShallowWrapper {
                             "props": Object {
                               "children": <TransferDescriptionItem
                                 className="staged-balance-after"
-                                main="0 ETH"
-                                subtitle="$0.00"
+                                main={
+                                                                <SelectableText>
+                                                                                                <NumericText
+                                                                                                                                value="0"
+                                                                                                />
+                                                                                                 
+                                                                                                ETH
+                                                                </SelectableText>
+                                }
+                                subtitle={
+                                                                <NumericText
+                                                                                                type="currency"
+                                                                                                value="0"
+                                                                />
+                                }
 />,
                               "gutter": 0,
                             },
@@ -4401,8 +5496,17 @@ ShallowWrapper {
                               "nodeType": "function",
                               "props": Object {
                                 "className": "staged-balance-after",
-                                "main": "0 ETH",
-                                "subtitle": "$0.00",
+                                "main": <SelectableText>
+                                  <NumericText
+                                                                    value="0"
+                                  />
+                                   
+                                  ETH
+</SelectableText>,
+                                "subtitle": <NumericText
+                                  type="currency"
+                                  value="0"
+/>,
                               },
                               "ref": null,
                               "rendered": null,

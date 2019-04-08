@@ -22,7 +22,7 @@ const NumericText = (props) => {
 NumericText.propTypes = {
   value: PropTypes.string.isRequired,
   type: PropTypes.string,
-  intl: PropTypes.object.isRequired,
+  intl: PropTypes.object,
 };
 
 export default injectIntl(NumericText);

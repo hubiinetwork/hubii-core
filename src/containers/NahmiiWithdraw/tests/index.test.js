@@ -30,6 +30,11 @@ import { gweiToEther } from 'utils/wallet';
 
 import { NahmiiWithdraw } from '../index';
 
+function expectTransferDescriptionMainProp(main, value, symbol) {
+  expect(shallow(main).children().last().text()).toEqual(symbol);
+  expect(shallow(main).find('NumericText').props().value.toString()).toEqual(value.toString());
+}
+
 describe('<NahmiiWithdraw />', () => {
   let props;
   beforeEach(() => {
@@ -279,13 +284,13 @@ describe('<NahmiiWithdraw />', () => {
         });
         it('should correctly calculate the base layer eth before', () => {
           const baseLayerBalanceBefore = t.walletsWithInfo.toJS().balances.baseLayer.assets.find((a) => a.symbol === 'ETH').balance.toNumber();
-          expect(wrapper.find('.withdraw-review .base-layer-eth-balance-before').props().main).toEqual(`${baseLayerBalanceBefore} ETH`);
+          expectTransferDescriptionMainProp(wrapper.find('.withdraw-review .base-layer-eth-balance-before').props().main, baseLayerBalanceBefore, 'ETH');
         });
         if (t.type !== 'ETH') {
           it('should correctly calculate the base layer token balance before', () => {
             wrapper.setState({ amountToWithdraw: new BigNumber(1), assetToWithdraw: t.asset });
             const baseLayerTokenBalanceBefore = t.walletsWithInfo.toJS().balances.baseLayer.assets.find((a) => a.symbol === t.asset.symbol).balance;
-            expect(wrapper.find('.withdraw-review .base-layer-token-balance-before').props().main).toEqual(`${baseLayerTokenBalanceBefore} ${t.asset.symbol}`);
+            expectTransferDescriptionMainProp(wrapper.find('.withdraw-review .base-layer-token-balance-before').props().main, baseLayerTokenBalanceBefore, t.asset.symbol);
           });
         }
         describe('when withrawal amount is less than staged amount', () => {
@@ -295,8 +300,8 @@ describe('<NahmiiWithdraw />', () => {
           });
           it('should correctly calculate the staged balance before and after', () => {
             expect(wrapper.find('.withdraw-review .withdraw-btn').props().disabled).toEqual(false);
-            expect(wrapper.find('.withdraw-review .staged-balance-before').props().main).toEqual(`3 ${t.asset.symbol}`);
-            expect(wrapper.find('.withdraw-review .staged-balance-after').props().main).toEqual(`1 ${t.asset.symbol}`);
+            expectTransferDescriptionMainProp(wrapper.find('.withdraw-review .staged-balance-before').props().main, '3', t.asset.symbol);
+            expectTransferDescriptionMainProp(wrapper.find('.withdraw-review .staged-balance-after').props().main, '1', t.asset.symbol);
           });
           it('should correctly calculate the base layer eth after', () => {
             let baseLayerBalanceBefore = t.walletsWithInfo.toJS().balances.baseLayer.assets.find((a) => a.symbol === 'ETH').balance;
@@ -307,13 +312,13 @@ describe('<NahmiiWithdraw />', () => {
             if (t.type === 'ETH') {
               baseLayerBalanceBefore = baseLayerBalanceBefore.plus(amountToWithdraw);
             }
-            expect(wrapper.find('.withdraw-review .base-layer-eth-balance-after').props().main).toEqual(`${baseLayerBalanceBefore} ETH`);
+            expectTransferDescriptionMainProp(wrapper.find('.withdraw-review .base-layer-eth-balance-after').props().main, baseLayerBalanceBefore, 'ETH');
           });
           if (t.type !== 'ETH') {
             it('should correctly calculate the token balance after', () => {
               let baseLayerBalanceBefore = t.walletsWithInfo.toJS().balances.baseLayer.assets.find((a) => a.symbol === t.asset.symbol).balance;
               baseLayerBalanceBefore = baseLayerBalanceBefore.plus(amountToWithdraw);
-              expect(wrapper.find('.withdraw-review .base-layer-token-balance-after').props().main).toEqual(`${baseLayerBalanceBefore} ${t.asset.symbol}`);
+              expectTransferDescriptionMainProp(wrapper.find('.withdraw-review .base-layer-token-balance-after').props().main, baseLayerBalanceBefore, t.asset.symbol);
             });
           }
         });
@@ -326,8 +331,8 @@ describe('<NahmiiWithdraw />', () => {
           });
           it('should correctly calculate the staged balance before and after', () => {
             expect(wrapper.find('.withdraw-review .withdraw-btn').props().disabled).toEqual(false);
-            expect(wrapper.find('.withdraw-review .staged-balance-before').props().main).toEqual(`3 ${t.asset.symbol}`);
-            expect(wrapper.find('.withdraw-review .staged-balance-after').props().main).toEqual(`0 ${t.asset.symbol}`);
+            expectTransferDescriptionMainProp(wrapper.find('.withdraw-review .staged-balance-before').props().main, '3', t.asset.symbol);
+            expectTransferDescriptionMainProp(wrapper.find('.withdraw-review .staged-balance-after').props().main, '0', t.asset.symbol);
           });
         });
       });
@@ -377,8 +382,8 @@ describe('<NahmiiWithdraw />', () => {
               />
             );
             wrapper.setState({ amountToWithdraw: new BigNumber(3) });
-            expect(wrapper.find('.start-settlement .nahmii-balance-before-staging').props().main).toEqual('4 ETH');
-            expect(wrapper.find('.start-settlement .nahmii-balance-after-staging').props().main).toEqual('1 ETH');
+            expectTransferDescriptionMainProp(wrapper.find('.start-settlement .nahmii-balance-before-staging').props().main, '4', 'ETH');
+            expectTransferDescriptionMainProp(wrapper.find('.start-settlement .nahmii-balance-after-staging').props().main, '1', 'ETH');
           });
         });
       });
@@ -412,8 +417,8 @@ describe('<NahmiiWithdraw />', () => {
               />
             );
             wrapper.setState({ amountToWithdraw: new BigNumber(3) });
-            expect(wrapper.find('.start-settlement .nahmii-balance-before-staging').props().main).toEqual('4 ETH');
-            expect(wrapper.find('.start-settlement .nahmii-balance-after-staging').props().main).toEqual('1 ETH');
+            expectTransferDescriptionMainProp(wrapper.find('.start-settlement .nahmii-balance-before-staging').props().main, 4, 'ETH');
+            expectTransferDescriptionMainProp(wrapper.find('.start-settlement .nahmii-balance-after-staging').props().main, 1, 'ETH');
             expect(wrapper.find('.start-settlement .challenge-btn').props().disabled).toEqual(false);
           });
           it('should disable settle button when required staged amount is greater than nahmii balance', () => {
@@ -430,8 +435,8 @@ describe('<NahmiiWithdraw />', () => {
               />
             );
             wrapper.setState({ amountToWithdraw: new BigNumber(2) });
-            expect(wrapper.find('.start-settlement .nahmii-balance-before-staging').props().main).toEqual('1 ETH');
-            expect(wrapper.find('.start-settlement .nahmii-balance-after-staging').props().main).toEqual('-1 ETH');
+            expectTransferDescriptionMainProp(wrapper.find('.start-settlement .nahmii-balance-before-staging').props().main, 1, 'ETH');
+            expectTransferDescriptionMainProp(wrapper.find('.start-settlement .nahmii-balance-after-staging').props().main, -1, 'ETH');
             expect(wrapper.find('.start-settlement .challenge-btn').props().disabled).toEqual(true);
           });
           it('should disable settle button when base eth after balance is negative', () => {
@@ -457,7 +462,7 @@ describe('<NahmiiWithdraw />', () => {
             const baseLayerBalanceAfter = baseLayerBalanceBefore.minus(txFeeAmt);
             wrapper.setState({ gasLimit: gasLimit * timesOfFees });
 
-            expect(wrapper.find('.start-settlement .base-layer-eth-balance-after').props().main).toEqual(`${baseLayerBalanceAfter} ETH`);
+            expectTransferDescriptionMainProp(wrapper.find('.start-settlement .base-layer-eth-balance-after').props().main, baseLayerBalanceAfter, 'ETH');
             expect(wrapper.find('.start-settlement .challenge-btn').props().disabled).toEqual(true);
           });
         });
