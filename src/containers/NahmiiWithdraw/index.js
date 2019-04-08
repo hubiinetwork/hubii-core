@@ -608,7 +608,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                 </DollarPrice>
               </Form>
             </div>
-            <div style={{ flex: '1', minWidth: '34rem', marginBottom: '3rem' }}>
+            <div style={{ minWidth: '34rem', marginBottom: '3rem' }}>
               {
                 settleableChallenges.get('details').length > 0 ?
                 (<SettlementWarning
