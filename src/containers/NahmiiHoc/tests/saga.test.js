@@ -21,7 +21,7 @@ describe('nahmiiHocSaga', () => {
       address: '0x0000000000000000000000000000000000000001',
     };
     beforeEach(() => {
-      monetaryAmount = new nahmii.MonetaryAmount('1000', '0x0000000000000000000000000000000000000000');
+      monetaryAmount = nahmii.MonetaryAmount.from('1000', '0x0000000000000000000000000000000000000000');
       recipient = '0x0000000000000000000000000000000000000001';
       walletOverride = null;
     });
