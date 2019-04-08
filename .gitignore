@@ -20,3 +20,5 @@ yarn-error.log*
 # electron
 dist
 .idea
+
+.vscode
