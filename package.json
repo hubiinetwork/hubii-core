@@ -1,6 +1,6 @@
 {
   "name": "hubii-core",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "author": {
     "name": "hubii",
     "email": "info@hubii.com",
@@ -313,7 +313,7 @@
     "lodash.debounce": "^4.0.8",
     "minimist": "1.2.0",
     "moment": "2.22.2",
-    "nahmii-sdk": "1.0.0-beta.39",
+    "nahmii-sdk": "1.0.0-beta.45",
     "prop-types": "15.6.1",
     "qrcode.react": "0.8.0",
     "react": "16.6.3",
@@ -338,7 +338,7 @@
     "semantic-ui-react": "0.79.1",
     "shortid": "2.2.8",
     "styled-components": "2.3.0",
-    "trezor.js": "^6.17.6",
+    "trezor.js": "^8.1.0",
     "uuid": "^3.3.2",
     "victory": "0.27.0",
     "warning": "3.0.0",

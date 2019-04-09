@@ -189,7 +189,7 @@ describe('WalletTransfer', () => {
       const amount = 1;
       const gasPrice = 1;
       const gasLimit = 1;
-      const monetaryAmount = new nahmii.MonetaryAmount(amount, '0x583cbbb8a8443b38abcc0c956bece47340ea1367');
+      const monetaryAmount = nahmii.MonetaryAmount.from(amount, '0x583cbbb8a8443b38abcc0c956bece47340ea1367');
       instance.onSend(symbol, toAddress, amount, 'nahmii', gasPrice, gasLimit);
       expect(nahmiiTransferSpy).toBeCalledWith(monetaryAmount, toAddress);
     });
@@ -211,7 +211,7 @@ describe('WalletTransfer', () => {
       const fixedAmount = amount.toFixed();
       expect(amount.toString()).toEqual('9.99999999999999999999999999e+30');
       expect(fixedAmount).toEqual('9999999999999999999999999990000');
-      const monetaryAmount = new nahmii.MonetaryAmount(fixedAmount, '0x583cbbb8a8443b38abcc0c956bece47340ea1367');
+      const monetaryAmount = nahmii.MonetaryAmount.from(fixedAmount, '0x583cbbb8a8443b38abcc0c956bece47340ea1367');
       instance.onSend(symbol, toAddress, amount, 'nahmii', gasPrice, gasLimit);
       expect(nahmiiTransferSpy.mock.calls[0][0].toJSON()).toEqual(monetaryAmount.toJSON());
     });

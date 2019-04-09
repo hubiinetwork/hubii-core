@@ -5,7 +5,7 @@ import * as constants from '../constants';
 describe('nahmiiHoc actions', () => {
   describe('makeNahmiiPayment', () => {
     it('should return the correct payload', () => {
-      const monetaryAmount = new nahmii.MonetaryAmount('1000', '0x0000000000000000000000000000000000000000');
+      const monetaryAmount = nahmii.MonetaryAmount.from('1000', '0x0000000000000000000000000000000000000000');
       const recipient = '0x0000000000000000000000000000000000000001';
       const walletOverride = { address: '0x001' };
       const expected = {

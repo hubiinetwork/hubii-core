@@ -7,7 +7,7 @@ import { delay } from 'redux-saga';
 import BigNumber from 'bignumber.js';
 import { requestWalletAPI, requestHardwareWalletAPI } from 'utils/request';
 import rpcRequest from 'utils/rpcRequest';
-import { isAddressMatch } from 'utils/wallet';
+import { isAddressMatch, prependHexToAddress } from 'utils/wallet';
 import { getIntl } from 'utils/localisation';
 import {
   makeSelectWallets,
@@ -188,7 +188,7 @@ export function* getSdkWalletSigner(wallet) {
     const deviceId = trezorInfo.get('id');
     const path = wallet.derivationPath;
     const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
-    if (!isAddressMatch(`0x${publicAddressKeyPair.address}`, wallet.address)) {
+    if (!isAddressMatch(prependHexToAddress(publicAddressKeyPair.address), wallet.address)) {
       throw new Error('PASSPHRASE_MISMATCH');
     }
     signer = {
