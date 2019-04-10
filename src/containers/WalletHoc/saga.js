@@ -6,6 +6,7 @@ import {
 } from 'redux-saga/effects';
 import { Wallet, Signer, utils, Contract } from 'ethers';
 import { fromRpcSig } from 'ethereumjs-util';
+import nahmii from 'nahmii-sdk';
 
 import { notify } from 'containers/App/actions';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
@@ -14,7 +15,6 @@ import {
   ERC20ABI,
   isHardwareWallet,
   isAddressMatch,
-  prependHexToAddress,
 } from 'utils/wallet';
 import generateRawTx from 'utils/generateRawTx';
 
@@ -103,7 +103,7 @@ export function* createWalletFromKeystore({ name, keystore }) {
       throw new Error(getIntl().formatMessage({ id: 'invalid_keystore_error' }));
     }
     const address = json.address;
-    yield put(createWalletSuccess(name, keystore, null, prependHexToAddress(address)));
+    yield put(createWalletSuccess(name, keystore, null, nahmii.utils.prefix0x(address)));
   } catch (e) {
     yield put(notify('error', getIntl().formatMessage({ id: 'import_keystore_failed_error' })));
     yield put(createWalletFailed(e));

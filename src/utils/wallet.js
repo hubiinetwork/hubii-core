@@ -175,8 +175,6 @@ export const parseBigNumber = (bignumber, decimals) => parseInt(bignumber, 10) /
 
 export const isHardwareWallet = (type) => type === 'lns' || type === 'trezor';
 
-export const prependHexToAddress = (address) => address.startsWith('0x') ? address : `0x${address}`;
-
 // valid gwei number is numbers, optionally followed by a . at most 9 more numbers
 export const gweiRegex = new RegExp('^\\d+(\\.\\d{0,9})?$');
 

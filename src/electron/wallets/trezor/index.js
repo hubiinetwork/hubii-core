@@ -1,12 +1,13 @@
 /* global mainWindow */
 import { DeviceList } from 'trezor.js';
 import showPrompt from './showPrompt';
+import config from './msg-config';
 export const PROTOCOL_NAME = 'trezor';
 
 const devices = {};
 
 export function deviceEventListener() {
-  const deviceList = new DeviceList({ debug: false });
+  const deviceList = new DeviceList({ config });
   deviceList.on('connect', (device) => {
     const deviceId = device.features.device_id;
     devices[deviceId] = device;

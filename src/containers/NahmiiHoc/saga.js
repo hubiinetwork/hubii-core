@@ -216,7 +216,7 @@ export function* getSdkWalletSigner(wallet) {
     const deviceId = trezorInfo.get('id');
     const path = wallet.derivationPath;
     const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
-    if (!isAddressMatch(`0x${publicAddressKeyPair.address}`, wallet.address)) {
+    if (!isAddressMatch(nahmii.utils.prefix0x(publicAddressKeyPair.address), wallet.address)) {
       throw new Error('PASSPHRASE_MISMATCH');
     }
     signer = {

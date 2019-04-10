@@ -1,6 +1,6 @@
 {
   "name": "hubii-core",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "author": {
     "name": "hubii",
     "email": "info@hubii.com",
@@ -338,7 +338,7 @@
     "semantic-ui-react": "0.79.1",
     "shortid": "2.2.8",
     "styled-components": "2.3.0",
-    "trezor.js": "^6.17.6",
+    "trezor.js": "^8.1.0",
     "uuid": "^3.3.2",
     "victory": "0.27.0",
     "warning": "3.0.0",
