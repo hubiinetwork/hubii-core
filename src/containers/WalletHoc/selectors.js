@@ -69,6 +69,11 @@ const makeSelectWallets = () => createSelector(
   (walletHocDomain) => walletHocDomain.get('wallets')
 );
 
+const makeSelectExecutableWallets = () => createSelector(
+  selectWalletHocDomain,
+  (walletHocDomain) => walletHocDomain.get('wallets').filter((wallet) => wallet.get('type') !== 'watch')
+);
+
 const makeSelectLoading = () => createSelector(
   selectWalletHocDomain,
   (walletHocDomain) => walletHocDomain.get('loading')
@@ -346,6 +351,7 @@ export {
   makeSelectTotalBalances,
   makeSelectSelectedWalletName,
   makeSelectWallets,
+  makeSelectExecutableWallets,
   makeSelectDerivationPathInput,
   makeSelectLoading,
   makeSelectErrors,

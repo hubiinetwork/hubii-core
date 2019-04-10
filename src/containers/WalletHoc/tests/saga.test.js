@@ -67,6 +67,7 @@ import walletHoc, {
   createWalletFromMnemonic,
   createWalletFromPrivateKey,
   createWalletFromKeystore,
+  createWalletFromAddress,
   decryptWallet,
   transfer,
   transferERC20,
@@ -85,17 +86,18 @@ import walletHocReducer, { initialState } from '../reducer';
 
 import {
   CREATE_WALLET_FROM_MNEMONIC,
-  DECRYPT_WALLET,
   CREATE_WALLET_FROM_PRIVATE_KEY,
+  CREATE_WALLET_FROM_KEYSTORE,
+  CREATE_WALLET_FROM_ADDRESS,
+  CREATE_WALLET_SUCCESS,
   TRANSFER,
   TRANSFER_ETHER,
   TRANSFER_ERC20,
   LEDGER_ERROR,
-  CREATE_WALLET_SUCCESS,
+  DECRYPT_WALLET,
   DECRYPT_WALLET_SUCCESS,
   DECRYPT_WALLET_FAILURE,
   LOCK_WALLET,
-  CREATE_WALLET_FROM_KEYSTORE,
 } from '../constants';
 
 import {
@@ -109,6 +111,7 @@ import {
   transfer as transferAction,
   addNewWallet as addNewWalletAction,
   hideDecryptWalletModal,
+  saveWatchAddress,
 } from '../actions';
 
 const withReducer = (state, action) => state.set('walletHoc', walletHocReducer(state.get('walletHoc'), action));
@@ -223,6 +226,34 @@ describe('createWalletFromMnemonic saga', () => {
         return expectSaga(createWalletFromKeystore, { name, keystore: invalidEncrypted })
           .put(notify('error', 'import_keystore_failed_error'))
           .put(createWalletFailed(new SyntaxError('Unexpected token a in JSON at position 0')))
+            .run({ silenceTimeout: true });
+      });
+    });
+  });
+
+  describe('create watch wallet by address', () => {
+    const address = addressMock;
+
+    it('should dispatch saveWatchAddress when a watch address is valid', () => expectSaga(createWalletFromAddress, { name, address })
+        .put(saveWatchAddress(name, address))
+        .run({ silenceTimeout: true }));
+
+    describe('exceptions', () => {
+      it('when name param is not provided', () => expectSaga(createWalletFromAddress, { address })
+          .put(notify('error', 'add_watch_address_error'))
+          .put(createWalletFailed(new Error('invalid_param_error')))
+            .run({ silenceTimeout: true }));
+
+      it('when address param is not provided', () => expectSaga(createWalletFromAddress, { name })
+          .put(notify('error', 'add_watch_address_error'))
+          .put(createWalletFailed(new Error('invalid_param_error')))
+            .run({ silenceTimeout: true }));
+
+      it('when address is in valid', () => {
+        const invalidAddress = '0x1dkdkdkd';
+        return expectSaga(createWalletFromAddress, { name, address: invalidAddress })
+          .put(notify('error', 'add_watch_address_error'))
+          .put(createWalletFailed(new Error('invalid_address')))
             .run({ silenceTimeout: true });
       });
     });
@@ -953,14 +984,19 @@ describe('root Saga', () => {
     expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey));
   });
 
-  it('should start task to watch for CREATE_WALLET_SUCCESS action', () => {
-    const takeDescriptor = walletHocSaga.next().value;
-    expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated));
-  });
-
   it('should start task to watch for CREATE_WALLET_FROM_KEYSTORE action', () => {
     const takeDescriptor = walletHocSaga.next().value;
     expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_FROM_KEYSTORE, createWalletFromKeystore));
+  });
+
+  it('should start task to watch for CREATE_WALLET_FROM_ADDRESS action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_FROM_ADDRESS, createWalletFromAddress));
+  });
+
+  it('should start task to watch for CREATE_WALLET_SUCCESS action', () => {
+    const takeDescriptor = walletHocSaga.next().value;
+    expect(takeDescriptor).toEqual(takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated));
   });
 
   it('should start task to watch for DECRYPT_WALLET_SUCCESS action', () => {

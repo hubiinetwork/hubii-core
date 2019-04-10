@@ -52,16 +52,94 @@ export class WalletDetails extends React.PureComponent {
     history.push(key);
   }
 
+  getMenus(walletType) {
+    const { match, intl } = this.props;
+    const { formatMessage } = intl;
+    const menus = walletType === 'watch' ? ['details', 'buy_eth'] : ['details', 'transfer', 'deposit', 'buy_eth'];
+
+    return menus.map((feature) => {
+      if (feature === 'details') {
+        return (
+          <TabPane
+            tab={
+              <span>
+                <Icon type="wallet" />{formatMessage({ id: 'details' })}
+              </span>
+            }
+            key={`${match.url}/overview`}
+          >
+          </TabPane>
+        );
+      }
+      if (feature === 'buy_eth') {
+        return (
+          <TabPane
+            tab={
+              <span>
+                <Icon type="shopping-cart" />{formatMessage({ id: 'buy_eth' })}
+              </span>
+            }
+            key={`${match.url}/buyeth`}
+          >
+          </TabPane>
+        );
+      }
+      if (feature === 'transfer') {
+        return (
+          <TabPane
+            tab={
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="26"
+                  viewBox="0 0 18 16"
+                >
+                  <g
+                    fill="none"
+                    fillRule="evenodd"
+                    transform="translate(-5 -4)"
+                  >
+                    <polygon points="0 0 24 0 24 24 0 24" />
+                    <polygon
+                      fill={location.pathname.includes('/transfer') ? theme.palette.info3 : theme.palette.secondary}
+                      points="5.009 19.714 23 12 5.009 4.286 5 10.286 17.857 12 5 13.714"
+                    />
+                  </g>
+                </svg>
+                {formatMessage({ id: 'transfer' })}
+              </span>
+            }
+            key={`${match.url}/transfer`}
+          >
+          </TabPane>
+        );
+      }
+      if (feature === 'deposit') {
+        return (
+          <TabPane
+            tab={
+              <span>
+                <Icon type="login" /><NahmiiText /> {formatMessage({ id: 'deposit' }).toLowerCase()}
+              </span>
+            }
+            key={`${match.url}/nahmii-deposit`}
+          >
+          </TabPane>
+        );
+      }
+      return null;
+    });
+  }
+
   render() {
     const {
       history,
       match,
       currentWalletDetails,
-      intl,
       ledgerInfo,
       trezorInfo,
     } = this.props;
-    const { formatMessage } = intl;
     const currentWallet = currentWalletDetails;
     const connected = isConnected(currentWallet.toJS(), ledgerInfo.toJS(), trezorInfo.toJS());
     if (!currentWallet || currentWallet === fromJS({})) {
@@ -90,60 +168,7 @@ export class WalletDetails extends React.PureComponent {
           onChange={this.onTabsChange}
           animated={false}
         >
-          <TabPane
-            tab={
-              <span>
-                <Icon type="wallet" />{formatMessage({ id: 'details' })}
-              </span>
-            }
-            key={`${match.url}/overview`}
-          >
-          </TabPane>
-          <TabPane
-            tab={
-              <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="26"
-                  viewBox="0 0 18 16"
-                >
-                  <g
-                    fill="none"
-                    fillRule="evenodd"
-                    transform="translate(-5 -4)"
-                  >
-                    <polygon points="0 0 24 0 24 24 0 24" />
-                    <polygon
-                      fill={location.pathname.includes('/transfer') ? theme.palette.info3 : theme.palette.secondary}
-                      points="5.009 19.714 23 12 5.009 4.286 5 10.286 17.857 12 5 13.714"
-                    />
-                  </g>
-                </svg>
-                {formatMessage({ id: 'transfer' })}
-              </span>
-            }
-            key={`${match.url}/transfer`}
-          >
-          </TabPane>
-          <TabPane
-            tab={
-              <span>
-                <Icon type="login" /><NahmiiText /> {formatMessage({ id: 'deposit' }).toLowerCase()}
-              </span>
-            }
-            key={`${match.url}/nahmii-deposit`}
-          >
-          </TabPane>
-          <TabPane
-            tab={
-              <span>
-                <Icon type="shopping-cart" />{formatMessage({ id: 'buy_eth' })}
-              </span>
-            }
-            key={`${match.url}/buyeth`}
-          >
-          </TabPane>
+          {this.getMenus(currentWallet.get('type'))}
         </Tabs>
         <Route
           path={`${match.url}/overview`}

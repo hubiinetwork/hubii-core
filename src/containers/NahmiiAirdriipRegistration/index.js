@@ -25,7 +25,7 @@ import {
   makeSelectCurrentNetwork,
 } from 'containers/App/selectors';
 import {
-  makeSelectWallets,
+  makeSelectExecutableWallets,
   makeSelectCurrentWalletWithInfo,
 } from 'containers/WalletHoc/selectors';
 import HWPromptContainer from 'containers/HWPromptContainer';
@@ -280,7 +280,7 @@ Start.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   store: makeSelectNahmiiAirdriipRegistration(),
-  wallets: makeSelectWallets(),
+  wallets: makeSelectExecutableWallets(),
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
   ledgerInfo: makeSelectLedgerHoc(),
   trezorInfo: makeSelectTrezorHoc(),
