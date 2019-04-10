@@ -160,7 +160,7 @@ export class WalletDetails extends React.PureComponent {
             onIconClick={this.onHomeClick}
             connected={connected}
             isDecrypted={!!currentWallet.get('decrypted')}
-            type={isHardwareWallet(currentWallet.get('type')) ? 'hardware' : 'software'}
+            type={isHardwareWallet(currentWallet.get('type')) ? 'hardware' : currentWallet.get('type')}
           />
         </HeaderWrapper>
         <Tabs

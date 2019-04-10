@@ -22,8 +22,8 @@ export const Icon = styled.img`
   position: absolute;
   max-width: 1.14rem;
   max-height: 1.14rem;
-  top: 0.43rem;
-  left: ${({ walletType }) => walletType === 'hardware' ? '0.43' : '0.17'}rem;
+  top: ${({ walletType }) => walletType === 'hardware' ? '0.43' : '0.3'}rem;;
+  left: ${({ walletType }) => walletType === 'hardware' ? '0.43' : '0.2'}rem;
 `;
 
 export const TextWhite = styled.span`

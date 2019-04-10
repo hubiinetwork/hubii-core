@@ -6,7 +6,7 @@ import { isValidAddress } from 'ethereumjs-util';
 import { ModalFormInput, ModalFormItem, ModalFormLabel } from 'components/ui/Modal';
 import Heading from 'components/ui/Heading';
 import { handleFinish } from 'utils/forms';
-import { getAbsolutePath } from 'utils/electron';
+
 import {
   WidthEighty,
   ButtonDiv,
@@ -50,8 +50,7 @@ class ImportWalletAddressForm extends React.Component {
         >
           <WidthEighty>
             <FinalHeader>
-              <Heading>{formatMessage({ id: 'import_from' })}</Heading>
-              <img src={getAbsolutePath('public/images/private-key.png')} alt="import method icon" />
+              <Heading>{formatMessage({ id: 'import_from_address' })}</Heading>
             </FinalHeader>
             <ModalFormItem
               label={

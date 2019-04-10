@@ -97,7 +97,7 @@ class AddRestoreWalletModal extends React.Component {
                   name: 'Keystore',
                 },
                 {
-                  // src: getAbsolutePath('public/images/keystore.png'),
+                  src: getAbsolutePath('public/images/watch-only.png'),
                   name: 'Watch',
                 },
               ]}

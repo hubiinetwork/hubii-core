@@ -6,6 +6,7 @@ import USBConnected from '../../../public/images/usb-icon.svg';
 import USBDisconnected from '../../../public/images/usb-icon-white.svg';
 import Locked from '../../../public/images/lock.png';
 import Unlocked from '../../../public/images/lock_open.svg';
+import Watch from '../../../public/images/eye.png';
 
 import { Slanted, Icon } from './style';
 
@@ -25,6 +26,9 @@ const WalletStatusIndicator = ({ active, walletType }) => {
       title = 'Locked';
       icon = Locked;
     }
+  } else if (walletType === 'watch') {
+    title = 'Watch Only';
+    icon = Watch;
   } else if (active) {
     title = 'Connected';
     icon = USBConnected;
@@ -45,7 +49,7 @@ const WalletStatusIndicator = ({ active, walletType }) => {
 };
 WalletStatusIndicator.propTypes = {
   active: PropTypes.bool.isRequired,
-  walletType: PropTypes.oneOf(['software', 'hardware']),
+  walletType: PropTypes.oneOf(['software', 'hardware', 'watch']),
 };
 
 export default WalletStatusIndicator;
