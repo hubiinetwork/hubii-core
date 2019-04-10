@@ -2,8 +2,9 @@ import { ipcRenderer } from 'electron';
 import { eventChannel } from 'redux-saga';
 import { takeEvery, put, call, select, take } from 'redux-saga/effects';
 import { fromRpcSig, toBuffer, bufferToHex, stripHexPrefix } from 'ethereumjs-util';
+import nahmii from 'nahmii-sdk';
+import { deriveAddresses, isAddressMatch } from 'utils/wallet';
 import { notify } from 'containers/App/actions';
-import { deriveAddresses, prependHexToAddress, isAddressMatch } from 'utils/wallet';
 import { requestHardwareWalletAPI } from 'utils/request';
 import { makeSelectTrezorHoc } from './selectors';
 import {
@@ -48,7 +49,7 @@ export function* getAddresses({ pathTemplate, firstIndex, lastIndex }) {
     const key = yield call(requestHardwareWalletAPI, 'getpublickey', { id: trezorInfo.get('id'), path: pathBase });
     const addresses = deriveAddresses({ publicKey: key.node.public_key, chainCode: key.node.chain_code, firstIndex, lastIndex });
     for (let i = 0; i < addresses.length; i += 1) {
-      const address = prependHexToAddress(addresses[i]);
+      const address = nahmii.utils.prefix0x(addresses[i]);
       yield put(fetchedTrezorAddress(pathTemplate.replace('{index}', firstIndex + i), address));
     }
   } catch (error) {
@@ -73,7 +74,7 @@ export function* signTxByTrezor({ walletDetails, raw, data, chainId }) {
     const path = walletDetails.derivationPath;
     const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
     yield put(trezorConfirmTxOnDevice());
-    if (!isAddressMatch(prependHexToAddress(publicAddressKeyPair.address), walletDetails.address)) {
+    if (!isAddressMatch(nahmii.utils.prefix0x(publicAddressKeyPair.address), walletDetails.address)) {
       throw new Error('PASSPHRASE_MISMATCH');
     }
     const signedTx = yield call(
@@ -100,7 +101,7 @@ export function* signPersonalMessageByTrezor(txHash, walletDetails) {
   const deviceId = trezorInfo.get('id');
   const path = walletDetails.derivationPath;
   const publicAddressKeyPair = yield call(requestHardwareWalletAPI, 'getaddress', { id: deviceId, path });
-  if (!isAddressMatch(prependHexToAddress(publicAddressKeyPair.address), walletDetails.address)) {
+  if (!isAddressMatch(nahmii.utils.prefix0x(publicAddressKeyPair.address), walletDetails.address)) {
     throw new Error('PASSPHRASE_MISMATCH');
   }
   try {

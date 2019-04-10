@@ -9,9 +9,10 @@ import { expectSaga } from 'redux-saga-test-plan';
 import { Wallet, utils } from 'ethers';
 import { fromJS } from 'immutable';
 import BigNumber from 'bignumber.js';
+import nahmii from 'nahmii-sdk';
 
 import { requestHardwareWalletAPI } from 'utils/request';
-import { getTransaction, prependHexToAddress, ERC20ABI } from 'utils/wallet';
+import { getTransaction, ERC20ABI } from 'utils/wallet';
 import { storeMock } from 'mocks/store';
 
 import { notify } from 'containers/App/actions';
@@ -195,7 +196,7 @@ describe('createWalletFromMnemonic saga', () => {
   });
 
   describe('create wallet by keystore', () => {
-    const address = prependHexToAddress(JSON.parse(encryptedMock).address);
+    const address = nahmii.utils.prefix0x(JSON.parse(encryptedMock).address);
     it('should dispatch createWalletSuccess when wallet creation successful', () => expectSaga(createWalletFromKeystore, { name, keystore: encryptedMock })
       .put({
         type: CREATE_WALLET_SUCCESS,
