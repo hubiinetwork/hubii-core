@@ -165,10 +165,10 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     const currentBlockHeight = yield select(makeSelectBlockHeight());
     const ongoingChallenges = yield select(makeSelectOngoingChallenges());
     const lastattemptedAtBlockHeight = ongoingChallenges.getIn([wallet.address, currency.ct, 'attemptedAtBlockHeight']) || -1;
-    const blockTimer = 15;
+    const blockTimer = 30;
     if ((currentBlockHeight.get('height') - blockTimer) < lastattemptedAtBlockHeight) {
-      yield put(actions.nahmiiPaymentError(new Error('Payment is locked for 15 block height')));
-      yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' })));
+      yield put(actions.nahmiiPaymentError(new Error(`Payment is locked for ${blockTimer} block height`)));
+      yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' }, { block_timer: blockTimer })));
       return;
     }
 
@@ -307,15 +307,25 @@ export const ledgerSignerSignTransaction = async (unresolvedTx, path, descriptor
 export function* loadBalances({ address }, network) {
   while (true) { // eslint-disable-line no-constant-condition
     try {
-      const path = `trading/wallets/${address}/balances`;
-      const balances = yield call((...args) => requestWalletAPI(...args), path, network);
-      // remove currency id to be consistent with the rest of the data in the app.
-      // should do an app-wide change once the backend becomes consistent
-      const formattedBalances = balances.map((bal) => ({
-        balance: bal.amount,
+      const { nahmiiProvider } = network;
+      const balances = yield call((...args) => nahmiiProvider.getNahmiiBalances(...args), address);
+
+      const availableBalances = balances.map((bal) => ({
+        balance: bal.amountAvailable,
         currency: bal.currency.ct,
       }));
-      yield put(actions.loadBalancesSuccess(address, formattedBalances));
+      const stagingBalances = balances.map((bal) => {
+        const officialBalanceBN = new BigNumber(bal.amount);
+        const availableBalanceBN = new BigNumber(bal.amountAvailable);
+        const stagingBalanceBN = officialBalanceBN.minus(availableBalanceBN);
+        return {
+          balance: stagingBalanceBN.toString(),
+          currency: bal.currency.ct,
+        };
+      });
+
+      yield put(actions.loadBalancesSuccess(address, availableBalances));
+      yield put(actions.loadStagingBalancesSuccess(address, stagingBalances));
     } catch (err) {
       yield put(actions.loadBalancesError(address));
     } finally {
@@ -696,7 +706,6 @@ export function* challengeStatusOrcestrator() {
       const allTasks = yield all([
         ...wallets.map((wallet) => fork(loadBalances, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadStagedBalances, { address: wallet.get('address') }, network)),
-        ...wallets.map((wallet) => fork(loadStagingBalances, { address: wallet.get('address') }, network)),
         ...wallets.map((wallet) => fork(loadWalletReceipts, { address: wallet.get('address') }, network)),
       ]);
 

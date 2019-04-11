@@ -8,6 +8,7 @@ import { showDecryptWalletModal } from 'containers/WalletHoc/actions';
 import { notify } from 'containers/App/actions';
 import * as actions from '../actions';
 import {
+  loadBalances,
   makePayment,
   getSdkWalletSigner,
   startChallenge,
@@ -19,6 +20,32 @@ import nahmiiHocReducer from '../reducer';
 describe('nahmiiHocSaga', () => {
   const withReducer = (state, action) => state.set('nahmiiHoc', nahmiiHocReducer(state.get('nahmiiHoc'), action));
 
+  describe('loadBalances', () => {
+    const ct = '0x1';
+    const address = '0x2';
+    const balances = [{
+      amount: '100',
+      amountAvailable: '90',
+      currency: { ct },
+    }];
+    it('should trigger loadBalancesSuccess and loadStagingBalancesSuccess actions and correctly calculate the staging balance', () => expectSaga(loadBalances, { address }, { nahmiiProvider: {} })
+          .provide({
+            call() {
+              return balances;
+            },
+          })
+          .put(actions.loadBalancesSuccess(address, [{ balance: '90', currency: ct }]))
+          .put(actions.loadStagingBalancesSuccess(address, [{ balance: '10', currency: ct }]))
+          .run({ silenceTimeout: true }));
+    it('should trigger loadBalancesError when error thrown', () => expectSaga(loadBalances, { address }, { nahmiiProvider: {} })
+          .provide({
+            call() {
+              throw new Error();
+            },
+          })
+          .put(actions.loadBalancesError(address))
+          .run({ silenceTimeout: true }));
+  });
   describe('makePayment', () => {
     let monetaryAmount;
     let recipient;
@@ -154,7 +181,7 @@ describe('nahmiiHocSaga', () => {
       .run({ silenceTimeout: true });
     });
     it('should dispatch correct actions on payment lock errors', () => {
-      const error = new Error('Payment is locked for 15 block height');
+      const error = new Error('Payment is locked for 30 block height');
       const walletAddress = storeMock.getIn(['walletHoc', 'currentWallet', 'address']);
       const { currency } = monetaryAmount.toJSON();
       return expectSaga(makePayment, { monetaryAmount, recipient, walletOverride })
