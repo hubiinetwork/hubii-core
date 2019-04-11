@@ -10,6 +10,7 @@ import {
   CREATE_WALLET_FROM_MNEMONIC,
   CREATE_WALLET_FROM_PRIVATE_KEY,
   CREATE_WALLET_FROM_KEYSTORE,
+  CREATE_WALLET_FROM_ADDRESS,
   CREATE_WALLET_FAILURE,
   CREATE_WALLET_SUCCESS,
   ADD_NEW_WALLET,
@@ -75,6 +76,14 @@ export function createWalletFromKeystore(name, keystore) {
     type: CREATE_WALLET_FROM_KEYSTORE,
     name,
     keystore,
+  };
+}
+
+export function createWalletFromAddress(name, address) {
+  return {
+    type: CREATE_WALLET_FROM_ADDRESS,
+    name,
+    address,
   };
 }
 
@@ -219,6 +228,17 @@ export function saveTrezorAddress(name, derivationPath, deviceId, address) {
   return {
     type: CREATE_WALLET_SUCCESS,
     newWallet,
+  };
+}
+
+export function saveWatchAddress(name, address) {
+  return {
+    type: CREATE_WALLET_SUCCESS,
+    newWallet: {
+      name,
+      address,
+      type: 'watch',
+    },
   };
 }
 

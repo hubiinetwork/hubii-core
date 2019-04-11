@@ -196,7 +196,7 @@ export class WalletItemCard extends React.PureComponent {
       <Border>
         <WalletStatusIndicator
           active={connected || isDecrypted}
-          walletType={isHardwareWallet(type) ? 'hardware' : 'software'}
+          walletType={isHardwareWallet(type) ? 'hardware' : type}
         />
         <DynamicOuterWrapper
           folded={folded}

@@ -53,44 +53,14 @@ export class WalletDetails extends React.PureComponent {
     history.push(key);
   }
 
-  render() {
-    const {
-      history,
-      match,
-      currentWalletDetails,
-      intl,
-      ledgerInfo,
-      trezorInfo,
-    } = this.props;
+  getMenus(walletType) {
+    const { match, intl } = this.props;
     const { formatMessage } = intl;
-    const currentWallet = currentWalletDetails;
-    const connected = isConnected(currentWallet.toJS(), ledgerInfo.toJS(), trezorInfo.toJS());
-    if (!currentWallet || currentWallet === fromJS({})) {
-      return null;
-    }
-    return (
-      <Wrapper>
-        <HeaderWrapper>
-          <WalletHeader
-            iconType="home"
-            name={currentWallet.get('name')}
-            address={currentWallet.get('address')}
-            balance={
-              currentWallet
-                .getIn(['balances', 'baseLayer', 'total', 'usd'])
-                .toNumber()
-            }
-            onIconClick={this.onHomeClick}
-            connected={connected}
-            isDecrypted={!!currentWallet.get('decrypted')}
-            type={isHardwareWallet(currentWallet.get('type')) ? 'hardware' : 'software'}
-          />
-        </HeaderWrapper>
-        <Tabs
-          activeKey={history.location.pathname}
-          onChange={this.onTabsChange}
-          animated={false}
-        >
+    const menus = walletType === 'watch' ? ['details', 'buy_eth'] : ['details', 'transfer', 'deposit', 'withdraw', 'buy_eth'];
+
+    return menus.map((feature) => {
+      if (feature === 'details') {
+        return (
           <TabPane
             tab={
               <span>
@@ -100,6 +70,23 @@ export class WalletDetails extends React.PureComponent {
             key={`${match.url}/overview`}
           >
           </TabPane>
+        );
+      }
+      if (feature === 'buy_eth') {
+        return (
+          <TabPane
+            tab={
+              <span>
+                <Icon type="shopping-cart" />{formatMessage({ id: 'buy_eth' })}
+              </span>
+            }
+            key={`${match.url}/buyeth`}
+          >
+          </TabPane>
+        );
+      }
+      if (feature === 'transfer') {
+        return (
           <TabPane
             tab={
               <span>
@@ -127,6 +114,10 @@ export class WalletDetails extends React.PureComponent {
             key={`${match.url}/transfer`}
           >
           </TabPane>
+        );
+      }
+      if (feature === 'deposit') {
+        return (
           <TabPane
             tab={
               <span>
@@ -136,24 +127,62 @@ export class WalletDetails extends React.PureComponent {
             key={`${match.url}/nahmii-deposit`}
           >
           </TabPane>
+        );
+      }
+      if (feature === 'withdraw') {
+        return (
           <TabPane
             tab={
               <span>
-                <Icon type="logout" /><NahmiiText /> {formatMessage({ id: 'withdraw' })}
+                <Icon type="logout" /><NahmiiText /> {formatMessage({ id: 'withdraw' }).toLowerCase()}
               </span>
             }
             key={`${match.url}/withdraw`}
           >
           </TabPane>
-          <TabPane
-            tab={
-              <span>
-                <Icon type="shopping-cart" />{formatMessage({ id: 'buy_eth' })}
-              </span>
+        );
+      }
+      return null;
+    });
+  }
+
+  render() {
+    const {
+      history,
+      match,
+      currentWalletDetails,
+      ledgerInfo,
+      trezorInfo,
+    } = this.props;
+    const currentWallet = currentWalletDetails;
+    const connected = isConnected(currentWallet.toJS(), ledgerInfo.toJS(), trezorInfo.toJS());
+    if (!currentWallet || currentWallet === fromJS({})) {
+      return null;
+    }
+    return (
+      <Wrapper>
+        <HeaderWrapper>
+          <WalletHeader
+            iconType="home"
+            name={currentWallet.get('name')}
+            address={currentWallet.get('address')}
+            balance={
+              currentWallet
+                .getIn(['balances', 'baseLayer', 'total', 'usd'])
+                .toNumber()
             }
-            key={`${match.url}/buyeth`}
-          >
-          </TabPane>
+            onIconClick={this.onHomeClick}
+            connected={connected}
+            isDecrypted={!!currentWallet.get('decrypted')}
+            type={isHardwareWallet(currentWallet.get('type')) ? 'hardware' : currentWallet.get('type')}
+          />
+        </HeaderWrapper>
+        <Tabs
+          activeKey={history.location.pathname}
+          onChange={this.onTabsChange}
+          animated={false}
+        >
+          {this.getMenus(currentWallet.get('type'))}
         </Tabs>
         <Route
           path={`${match.url}/overview`}

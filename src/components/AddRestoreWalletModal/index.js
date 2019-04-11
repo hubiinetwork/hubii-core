@@ -96,6 +96,10 @@ class AddRestoreWalletModal extends React.Component {
                   src: getAbsolutePath('public/images/keystore.png'),
                   name: 'Keystore',
                 },
+                {
+                  src: getAbsolutePath('public/images/watch-only.png'),
+                  name: 'Watch',
+                },
               ]}
               onBackIcon={() => this.switchModals('main')}
               handleSubmit={this.props.handleImportWalletSubmit}

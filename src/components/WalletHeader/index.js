@@ -69,7 +69,7 @@ WalletHeader.propTypes = {
   balance: PropTypes.number.isRequired,
   connected: PropTypes.bool.isRequired,
   isDecrypted: PropTypes.bool.isRequired,
-  type: PropTypes.oneOf(['software', 'hardware']).isRequired,
+  type: PropTypes.oneOf(['software', 'hardware', 'watch']).isRequired,
   onIconClick: PropTypes.func.isRequired,
 };
 

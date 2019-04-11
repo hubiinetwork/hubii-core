@@ -112,6 +112,7 @@ export const humanFriendlyWalletType = (type) => {
   if (type === 'lns') return 'wallet_type_lns';
   if (type === 'trezor') return 'wallet_type_trezor';
   if (type === 'software') return 'wallet_type_software';
+  if (type === 'watch') return 'wallet_type_watch';
   return type;
 };
 

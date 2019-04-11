@@ -16,6 +16,7 @@ import ImportWalletNameForm from './ImportWalletNameForm';
 import ImportWalletPrivateKeyForm from './ImportWalletPrivateKeyForm';
 import ImportWalletMnemonicForm from './ImportWalletMnemonicForm';
 import ImportWalletKeystoreForm from './ImportWalletKeystoreForm';
+import ImportWalletAddressForm from './ImportWalletAddressForm';
 import FormSteps from '../FormSteps';
 
 class ImportWalletSteps extends React.Component {
@@ -126,6 +127,18 @@ class ImportWalletSteps extends React.Component {
           title: 'Last',
           content: (
             <ImportWalletKeystoreForm
+              handleBack={this.handleBack}
+              handleNext={this.handleNext}
+              loading={loading}
+            />
+          ),
+        },
+      ],
+      Watch: [
+        {
+          title: 'Last',
+          content: (
+            <ImportWalletAddressForm
               handleBack={this.handleBack}
               handleNext={this.handleNext}
               loading={loading}

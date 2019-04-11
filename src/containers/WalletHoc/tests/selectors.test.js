@@ -19,6 +19,7 @@ import {
   selectWalletHocDomain,
   makeSelectSelectedWalletName,
   makeSelectWallets,
+  makeSelectExecutableWallets,
   makeSelectDerivationPathInput,
   makeSelectLoading,
   makeSelectErrors,
@@ -64,9 +65,28 @@ describe('makeSelectSelectedWalletName', () => {
 describe('makeSelectWallets', () => {
   const walletsSelector = makeSelectWallets();
   it('should correctly select wallets', () => {
-    const wallets = fromJS({ software: { pineapple: { key: '123' } } });
+    const wallets = fromJS([
+      { type: 'software', name: 'w1', address: '0x1', encrypted: {}, decrypted: {} },
+      { type: 'lns', name: 'w2', address: '0x2' },
+      { type: 'trezor', name: 'w3', address: '0x3' },
+      { type: 'watch', name: 'w4', address: '0x4' },
+    ]);
     const mockedState = storeMock
       .setIn(['walletHoc', 'wallets'], wallets);
+    expect(walletsSelector(mockedState)).toEqual(wallets);
+  });
+});
+
+describe('makeSelectExecutableWallets', () => {
+  const walletsSelector = makeSelectExecutableWallets();
+  it('should correctly select wallets', () => {
+    const wallets = fromJS([
+      { type: 'software', name: 'w1', address: '0x1', encrypted: {}, decrypted: {} },
+      { type: 'lns', name: 'w2', address: '0x2' },
+      { type: 'trezor', name: 'w3', address: '0x3' },
+    ]);
+    const mockedState = storeMock
+      .setIn(['walletHoc', 'wallets'], wallets.push(fromJS({ type: 'watch', name: 'w4', address: '0x4' })));
     expect(walletsSelector(mockedState)).toEqual(wallets);
   });
 });
