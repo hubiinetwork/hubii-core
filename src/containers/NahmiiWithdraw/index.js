@@ -367,7 +367,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
 
     const startSettlementStepDesc = totalStagingAmount.gt(0) ? formatMessage({ id: 'intended_stage_amount' }, { amount: totalStagingAmount, symbol: assetToWithdraw.symbol }) : null;
     const challengeStepDesc = maxExpirationTime ? formatMessage({ id: 'expiration_time' }, { endtime: moment(maxExpirationTime).format('llll') }) : null;
-    const challengeStepTitle = maxExpirationTime ? (<Tooltip title={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(maxExpirationTime).format('LLLL'), symbol: assetToWithdraw.symbol })} defaultVisible>Challenge period</Tooltip>) : 'Challenge period';
+    const challengeStepTitle = maxExpirationTime ? (<Tooltip title={formatMessage({ id: 'challenge_period_endtime' }, { endtime: moment(maxExpirationTime).format('LLLL'), symbol: assetToWithdraw.symbol })} defaultVisible>{formatMessage({ id: 'challenge_period' })}</Tooltip>) : formatMessage({ id: 'challenge_period' });
 
     return (
       <StyledSteps
@@ -376,7 +376,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
         className={stepper.type}
       >
         <Step
-          title="Start settlement"
+          title={formatMessage({ id: 'start_challenge' })}
           description={startSettlementStepDesc}
           icon={<Icon type="profile" />}
         />
@@ -385,9 +385,9 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
           description={challengeStepDesc}
           icon={<Icon type="eye-o" />}
         />
-        <Step title="Settlement qualified" icon={<Icon type="check-square-o" />} />
+        <Step title={formatMessage({ id: 'settlement_qualified' })} icon={<Icon type="check-square-o" />} />
         <Step
-          title="Withdrawable"
+          title={formatMessage({ id: 'withdrawable' })}
           description={formatMessage({ id: 'withdrawable_amount' }, { amount: nahmiiStagedAmount, symbol: assetToWithdraw.symbol })}
           icon={<Icon type="logout" />}
         />

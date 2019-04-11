@@ -264,5 +264,9 @@
     "why_settlement_notes": "当前最高可取款金额(已结算金额)为 {staged_amount} {symbol}。为了取款 {withdraw_amount} {symbol}，其需要从 nahmii 余额中结算额外 {required_stage_amout} {symbol}。当结算开始后，指定的结算金额将会中 nahmii 余额中扣除。当结算成功，将会更新可取款余额。",
     "intended_stage_amount": "{amount} {symbol}",
     "expiration_time": "至 {endtime}",
-    "withdrawable_amount": "{amount} {symbol}"
+    "withdrawable_amount": "{amount} {symbol}",
+    "start_challenge": "开始结算",
+    "challenge_period": "结算验证中",
+    "settlement_qualified": "结算验证成功",
+    "withdrawable": "可取款"
 }
