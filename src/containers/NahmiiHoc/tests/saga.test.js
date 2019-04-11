@@ -264,7 +264,7 @@ describe('nahmiiHocSaga', () => {
       );
 
       it('should correctly update block height after initialized the saga function', () => {
-        const mockedBlockHeight = 1;
+        const mockedBlockHeight = 31;
         return expectSaga(startChallenge, { stageAmount, address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
           .withReducer(withReducer, storeMock.setIn(['ethOperationsHoc', 'blockHeight', 'height'], mockedBlockHeight))
           .provide({
@@ -288,6 +288,22 @@ describe('nahmiiHocSaga', () => {
             const lastattemptedAtBlockHeight = result.storeState.getIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'attemptedAtBlockHeight']);
             expect(lastattemptedAtBlockHeight).toEqual(mockedBlockHeight);
           });
+      }
+      );
+
+      it('should prevent start new challenge when it is within block timer', () => {
+        const mockedBlockHeight = 30;
+        return expectSaga(startChallenge, { stageAmount, address: signerMock.address, currency, txReceipt: fakeTxReceipts[0], options })
+          .withReducer(
+            withReducer,
+            storeMock
+              .setIn(['ethOperationsHoc', 'blockHeight', 'height'], mockedBlockHeight)
+              .setIn(['nahmiiHoc', 'ongoingChallenges', signerMock.address, currency, 'attemptedAtBlockHeight'], 1)
+          )
+          // .put(actions.updateChallengeBlockHeight(signerMock.address, currency, mockedBlockHeight))
+          .put(actions.startChallengeError(signerMock.address, currency))
+          .put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_start_challenge' })))
+          .run({ silenceTimeout: true });
       }
       );
 

@@ -59,6 +59,16 @@ import {
 function waitForTransaction(provider, ...args) { return provider.waitForTransaction(...args); }
 function getTransactionReceipt(provider, ...args) { return provider.getTransactionReceipt(...args); }
 
+const blockTimer = 30;
+function* hasBlockTimerExpired(address, currency) {
+  const currentBlockHeight = yield select(makeSelectBlockHeight());
+  const ongoingChallenges = yield select(makeSelectOngoingChallenges());
+  const lastAttemptedAtBlockHeight = ongoingChallenges.getIn([address, currency, 'attemptedAtBlockHeight']) || -1;
+
+  const expired = (currentBlockHeight.get('height') - blockTimer) >= lastAttemptedAtBlockHeight;
+  return expired;
+}
+
 export function* deposit({ address, symbol, amount, options }) {
   try {
     const wallet = (yield select(makeSelectWallets())).toJS().find((w) => w.address === address);
@@ -162,11 +172,9 @@ export function* makePayment({ monetaryAmount, recipient, walletOverride }) {
     }
 
     const { currency } = monetaryAmount.toJSON();
-    const currentBlockHeight = yield select(makeSelectBlockHeight());
-    const ongoingChallenges = yield select(makeSelectOngoingChallenges());
-    const lastattemptedAtBlockHeight = ongoingChallenges.getIn([wallet.address, currency.ct, 'attemptedAtBlockHeight']) || -1;
-    const blockTimer = 30;
-    if ((currentBlockHeight.get('height') - blockTimer) < lastattemptedAtBlockHeight) {
+
+    const blockTimerExpired = yield hasBlockTimerExpired(wallet.address, currency);
+    if (!blockTimerExpired) {
       yield put(actions.nahmiiPaymentError(new Error(`Payment is locked for ${blockTimer} block height`)));
       yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_transfer' }, { block_timer: blockTimer })));
       return;
@@ -469,6 +477,15 @@ export function* startChallenge({ stageAmount, currency, options }) {
     }
     const network = yield select(makeSelectCurrentNetwork());
     const { nahmiiProvider } = network;
+
+    const currentBlockHeight = yield select(makeSelectBlockHeight());
+    const blockTimerExpired = yield hasBlockTimerExpired(walletDetails.address, currency);
+    if (!blockTimerExpired) {
+      yield put(actions.startChallengeError(walletDetails.address, currency));
+      yield put(notify('error', getIntl().formatMessage({ id: 'nahmii_settlement_lock_start_challenge' }, { block_timer: blockTimer })));
+      return;
+    }
+
     [signer, confOnDevice, confOnDeviceDone] = yield call(getSdkWalletSigner, walletDetails);
     const _stageAmount = nahmii.MonetaryAmount.from(stageAmount.toFixed(), currency, 0);
     const nahmiiWallet = new nahmii.Wallet(signer, nahmiiProvider);
@@ -476,7 +493,6 @@ export function* startChallenge({ stageAmount, currency, options }) {
     if (confOnDevice) yield put(confOnDevice);
     yield put(notify('info', getIntl().formatMessage({ id: 'checks_before_settling' })));
 
-    const currentBlockHeight = yield select(makeSelectBlockHeight());
     yield put(actions.updateChallengeBlockHeight(walletDetails.address, currency, currentBlockHeight.get('height')));
 
     const { requiredChallenges } = yield call(settlement.getRequiredChallengesForIntendedStageAmount.bind(settlement), _stageAmount, nahmiiWallet.address);
