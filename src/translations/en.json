@@ -226,7 +226,7 @@
     "nahmii_deposits": "nahmii deposit integration coming soon",
     "nahmii_payments": "nahmii payment integration coming soon",
     "nahmii_transfer_insufficient_funds_error": "Failed to transfer: Please make sure the nahmii balance of this token is not less than {minimumBalance} after the transfer.",
-    "nahmii_settlement_lock_transfer": "The payment for this currency is locked for {block_timer} blocks, please try again one minute later.",
+    "nahmii_settlement_lock_transfer": "The payment for this currency is locked for {block_timer} confirmations (~5 minutes)",
     "select_asset_to_withdraw": "Select an asset to withdraw",
     "withdraw": "withdraw",
     "settle_balance": "Settle balance",
