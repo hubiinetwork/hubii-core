@@ -22,9 +22,6 @@ export const HeaderWrapper = styled.div`
 `;
 
 export const Amount = styled(NumericText)`
-  // white-space: nowrap;
-  // overflow: hidden;
-  // color: white;
 `;
 
 export const FiatValue = styled(NumericText)`
