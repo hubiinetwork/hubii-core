@@ -3,6 +3,8 @@ import Button from 'components/ui/Button';
 import { Col, Spin } from 'antd';
 
 import Text from 'components/ui/Text';
+import NumericText from 'components/ui/NumericText';
+import SelectableText from 'components/ui/SelectableText';
 
 export const AdvancedSettingsHeader = styled(Text)`
   color: ${({ theme }) => theme.palette.info};
@@ -15,7 +17,11 @@ export const Image = styled.img`
   padding-bottom: 0.29rem;
 `;
 
-export const DollarPrice = styled(Text)`
+export const DollarPrice = styled(SelectableText)`
+  color: ${({ theme }) => theme.palette.secondary};
+`;
+
+export const StyledNumericText = styled(NumericText)`
   color: ${({ theme }) => theme.palette.secondary};
 `;
 

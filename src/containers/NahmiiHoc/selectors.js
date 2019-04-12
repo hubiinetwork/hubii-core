@@ -1,6 +1,10 @@
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect';
 import { fromJS, List } from 'immutable';
 import BigNumber from 'bignumber.js';
+import { makeSelectCurrentNetwork } from 'containers/App/selectors';
+import {
+  makeSelectCurrentWallet,
+} from 'containers/WalletHoc/selectors';
 
 import {
   makeSelectSupportedAssets,
@@ -126,6 +130,157 @@ const makeSelectReceiptsWithInfo = () => createSelector(
   }
 );
 
+const makeSelectReceiptsByAddress = (address) => createSelector(
+  makeSelectReceipts(),
+  (receipts) => receipts.get(address) || fromJS([])
+);
+
+const makeSelectNahmiiWallets = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('wallets') || fromJS({})
+);
+
+const makeSelectWalletCurrency = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('selectedCurrency')
+);
+
+const makeSelectOngoingChallenges = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('ongoingChallenges') || fromJS({})
+);
+
+const makeSelectSettleableChallenges = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('settleableChallenges') || fromJS({})
+);
+
+const makeSelectWithdrawals = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('withdrawals') || fromJS({})
+);
+
+const makeSelectNahmiiSettlementTransactions = () => createSelector(
+  selectNahmiiHocDomain,
+  (nahmiiHocDomain) => nahmiiHocDomain.get('transactions') || fromJS({})
+);
+
+const makeSelectOngoingChallengesForCurrentWalletCurrency = () => createSelector(
+  makeSelectOngoingChallenges(),
+  makeSelectCurrentWallet(),
+  makeSelectWalletCurrency(),
+  (ongoingChallenges, currentWallet, selectedCurrency) => {
+    const address = currentWallet.get('address');
+    let challenges = ongoingChallenges.getIn([address, selectedCurrency]) || fromJS({});
+    if (!challenges.get('details')) {
+      challenges = challenges.set('details', []);
+    }
+    return challenges;
+  }
+);
+
+const makeSelectSettleableChallengesForCurrentWalletCurrency = () => createSelector(
+  makeSelectSettleableChallenges(),
+  makeSelectCurrentWallet(),
+  makeSelectWalletCurrency(),
+  (settleableChallenges, currentWallet, selectedCurrency) => {
+    const address = currentWallet.get('address');
+    let challenges = settleableChallenges.getIn([address, selectedCurrency]) || fromJS({});
+    if (!challenges.get('details')) {
+      challenges = challenges.set('details', []);
+    }
+    if (!challenges.get('invalidReasons')) {
+      challenges = challenges.set('invalidReasons', []);
+    }
+    return challenges;
+  }
+);
+
+const makeSelectWithdrawalsForCurrentWalletCurrency = () => createSelector(
+  makeSelectWithdrawals(),
+  makeSelectCurrentWallet(),
+  makeSelectWalletCurrency(),
+  (withdrawals, currentWallet, selectedCurrency) => {
+    const address = currentWallet.get('address');
+    let withdrawlsObj = withdrawals.getIn([address, selectedCurrency]) || fromJS({});
+    if (!withdrawlsObj.get('details')) {
+      withdrawlsObj = withdrawlsObj.set('details', []);
+    }
+    return withdrawlsObj;
+  }
+);
+
+const makeSelectLastPaymentChallenge = () => createSelector(
+  makeSelectNahmiiWallets(),
+  makeSelectCurrentWallet(),
+  (nahmiiWallets, currentWallet) => {
+    const address = currentWallet.get('address');
+    const nahmiiWallet = nahmiiWallets.get(address);
+    if (!nahmiiWallet) {
+      return fromJS({});
+    }
+    return nahmiiWallet.get('lastPaymentChallenge') || fromJS({});
+  }
+);
+
+const makeSelectLastPaymentChallengeByAddress = (address) => createSelector(
+  makeSelectNahmiiWallets(),
+  (nahmiiWallets) => {
+    const nahmiiWallet = nahmiiWallets.get(address);
+    if (!nahmiiWallet) {
+      return fromJS({});
+    }
+    return nahmiiWallet.get('lastPaymentChallenge') || fromJS({});
+  }
+);
+
+const makeSelectLastSettlePaymentDriip = () => createSelector(
+  makeSelectNahmiiWallets(),
+  makeSelectCurrentWallet(),
+  (nahmiiWallets, currentWallet) => {
+    const address = currentWallet.get('address');
+    const nahmiiWallet = nahmiiWallets.get(address);
+    if (!nahmiiWallet) {
+      return fromJS({});
+    }
+    return nahmiiWallet.get('lastSettlePaymentDriip') || fromJS({});
+  }
+);
+
+const makeSelectNahmiiBalancesByCurrentWallet = () => createSelector(
+  makeSelectNahmiiBalances(),
+  makeSelectCurrentWallet(),
+  (nahmiiBalances, currentWallet) => {
+    const address = currentWallet.get('address');
+    const nahmiiBalance = nahmiiBalances.get(address);
+    return nahmiiBalance || fromJS({});
+  }
+);
+
+const makeSelectNahmiiSettlementTransactionsByCurrentWallet = () => createSelector(
+  makeSelectNahmiiSettlementTransactions(),
+  makeSelectCurrentWallet(),
+  makeSelectCurrentNetwork(),
+  (nahmiiSettlementTransactions, currentWallet, network) => {
+    const address = currentWallet.get('address');
+    const txs = nahmiiSettlementTransactions.get(address);
+    const txsByCurrency = {};
+    if (txs) {
+      const _txs = txs.toJS();
+      Object.keys(_txs).forEach((currency) => {
+        txsByCurrency[currency] = [];
+        Object.keys(_txs[currency]).forEach((hash) => {
+          txsByCurrency[currency].push(_txs[currency][hash]);
+        });
+        txsByCurrency[currency]
+          .filter((a) => a.network === network.provider.network.name)
+          .sort((a, b) => b.createdAt - a.createdAt);
+      });
+    }
+    return txsByCurrency;
+  }
+);
+
 const makeSelectDepositStatus = () => createSelector(
   selectNahmiiHocDomain,
   (nahmiiHocDomain) => nahmiiHocDomain.get('depositStatus')
@@ -187,8 +342,19 @@ const makeSelectNahmiiBalances = () => createDeepEqualSelector(
 
 
 export {
-  makeSelectNahmiiBalances,
+  makeSelectWalletCurrency,
   makeSelectReceipts,
+  makeSelectReceiptsByAddress,
+  makeSelectLastPaymentChallenge,
+  makeSelectLastPaymentChallengeByAddress,
+  makeSelectLastSettlePaymentDriip,
+  makeSelectNahmiiBalances,
+  makeSelectNahmiiBalancesByCurrentWallet,
+  makeSelectNahmiiSettlementTransactionsByCurrentWallet,
   makeSelectReceiptsWithInfo,
   makeSelectDepositStatus,
+  makeSelectOngoingChallenges,
+  makeSelectOngoingChallengesForCurrentWalletCurrency,
+  makeSelectSettleableChallengesForCurrentWalletCurrency,
+  makeSelectWithdrawalsForCurrentWalletCurrency,
 };

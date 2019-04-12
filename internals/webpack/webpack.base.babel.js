@@ -155,13 +155,15 @@ module.exports = (options) => ({
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        CONTRACT_PATH: JSON.stringify(process.env.CONTRACT_PATH),
+        MINI_CLUSTER_HOST: JSON.stringify(process.env.MINI_CLUSTER_HOST),
         PUBLISH_REPO: JSON.stringify(process.env.npm_package_build_publish_0_repo),
         PUBLISH_OWNER: JSON.stringify(process.env.npm_package_build_publish_0_owner),
         ROPSTEN_IDENTITY_SERVICE_APPID: JSON.stringify(process.env.ROPSTEN_IDENTITY_SERVICE_APPID),
-        MAINNET_IDENTITY_SERVICE_APPID: JSON.stringify(process.env.MAINNET_IDENTITY_SERVICE_APPID),
         ROPSTEN_IDENTITY_SERVICE_SECRET: JSON.stringify(process.env.ROPSTEN_IDENTITY_SERVICE_SECRET),
+        MAINNET_IDENTITY_SERVICE_APPID: JSON.stringify(process.env.MAINNET_IDENTITY_SERVICE_APPID),
         MAINNET_IDENTITY_SERVICE_SECRET: JSON.stringify(process.env.MAINNET_IDENTITY_SERVICE_SECRET),
+        MINI_CLUSTER_IDENTITY_SERVICE_APPID: JSON.stringify(process.env.MINI_CLUSTER_IDENTITY_SERVICE_APPID),
+        MINI_CLUSTER_IDENTITY_SERVICE_SECRET: JSON.stringify(process.env.MINI_CLUSTER_IDENTITY_SERVICE_SECRET),
       },
     }),
     new CopyWebpackPlugin(

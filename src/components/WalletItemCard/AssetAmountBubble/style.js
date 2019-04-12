@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import NumericText from 'components/ui/NumericText';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -13,9 +14,10 @@ export const Wrapper = styled.div`
   border-radius: 1.07rem;
 `;
 
-export const Span = styled.span`
+export const StyledNumericText = styled(NumericText)`
   display: flex;
   margin-left: 0.43rem;
+  cursor: pointer;
 `;
 
 export const Image = styled.img`

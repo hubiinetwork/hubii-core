@@ -3,6 +3,8 @@ import { Switch } from 'antd';
 
 import Button from 'components/ui/Button';
 import Text from 'components/ui/Text';
+import NumericText from 'components/ui/NumericText';
+import SelectableText from 'components/ui/SelectableText';
 
 export const TransferDescriptionWrapper = styled.div`
   min-width: 34rem;
@@ -34,7 +36,11 @@ export const Image = styled.img`
   padding-bottom: 0.29rem;
 `;
 
-export const ETHtoDollar = styled(Text)`
+export const StyledNumericText = styled(NumericText)`
+  color: ${({ theme }) => theme.palette.secondary};
+`;
+
+export const ETHtoDollar = styled(SelectableText)`
   color: ${({ theme }) => theme.palette.secondary};
 `;
 

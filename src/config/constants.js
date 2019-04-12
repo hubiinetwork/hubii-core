@@ -38,7 +38,7 @@ const MAINNET_API_URL = 'https://api.nahmii.io/';
 const ROPSTEN_NODE = 'http://geth-ropsten.dev.hubii.net';
 const MAINNET_NODE = 'http://ethereum.hubii.com:8545';
 
-export const SUPPORTED_NETWORKS = {
+const networks = {
   mainnet: {
     name: 'mainnet',
     provider: getDefaultProvider('mainnet'),
@@ -70,3 +70,22 @@ export const SUPPORTED_NETWORKS = {
     identityServiceAppId: process.env.NODE_ENV === 'test' ? 'appid' : ROPSTEN_IDENTITY_SERVICE_APPID,
   },
 };
+
+if (process.env.MINI_CLUSTER_HOST) {
+  Object.assign(networks.ropsten, {
+    apiDomain: process.env.MINI_CLUSTER_HOST,
+    walletApiEndpoint: trimmableWalletApiEndpoint(`https://${process.env.MINI_CLUSTER_HOST}/`),
+    identityServiceAppId: stringFromEnv('MINI_CLUSTER_IDENTITY_SERVICE_APPID'),
+    identityServiceSecret: stringFromEnv('MINI_CLUSTER_IDENTITY_SERVICE_SECRET'),
+  });
+
+  networks.ropsten.nahmiiProvider = new nahmii.NahmiiProvider(
+    process.env.MINI_CLUSTER_HOST,
+    networks.ropsten.identityServiceAppId,
+    networks.ropsten.identityServiceSecret,
+    `https://${process.env.MINI_CLUSTER_HOST}/ganache`,
+    3
+  );
+}
+
+export const SUPPORTED_NETWORKS = networks;

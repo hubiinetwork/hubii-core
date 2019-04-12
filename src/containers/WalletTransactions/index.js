@@ -7,7 +7,6 @@ import { compose } from 'redux';
 import { injectIntl } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import BigNumber from 'bignumber.js';
-import { formatFiat } from 'utils/numberFormats';
 
 import Breakdown from 'components/BreakdownPie';
 import SectionHeading from 'components/ui/SectionHeading';
@@ -18,7 +17,7 @@ import { makeSelectCurrentNetwork } from 'containers/App/selectors';
 
 import {
   makeSelectCurrentWalletWithInfo,
-} from 'containers/WalletHoc/selectors';
+} from 'containers/NahmiiHoc/combined-selectors';
 
 import {
   makeSelectBlockHeight,
@@ -156,7 +155,7 @@ export class WalletsTransactions extends React.Component {
                 time={new Date(tx.timestamp)}
                 counterpartyAddress={tx.counterpartyAddress}
                 amount={tx.decimalAmount}
-                fiatEquivilent={formatFiat(tx.fiatValue, 'USD')}
+                fiatEquivilent={tx.fiatValue}
                 symbol={tx.symbol}
                 confirmations={tx.confirmations}
                 type={tx.type}

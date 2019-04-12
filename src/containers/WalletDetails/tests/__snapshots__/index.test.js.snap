@@ -501,6 +501,19 @@ ShallowWrapper {
                     tab={
                               <span>
                                         <Icon
+                                                  type="logout"
+                                        />
+                                        <Unknown />
+                                         
+                                        withdraw
+                              </span>
+                    }
+          />
+          <TabPane
+                    placeholder={null}
+                    tab={
+                              <span>
+                                        <Icon
                                                   type="shopping-cart"
                                         />
                                         buy_eth
@@ -523,6 +536,10 @@ ShallowWrapper {
         <Route
           component={[Function]}
           path="undefined/nahmii-deposit"
+/>,
+        <Route
+          component={[Function]}
+          path="undefined/withdraw"
 />,
         false,
       ],
@@ -631,6 +648,19 @@ ShallowWrapper {
               tab={
                             <span>
                                           <Icon
+                                                        type="logout"
+                                          />
+                                          <Unknown />
+                                           
+                                          withdraw
+                            </span>
+              }
+/>,
+            <TabPane
+              placeholder={null}
+              tab={
+                            <span>
+                                          <Icon
                                                         type="shopping-cart"
                                           />
                                           buy_eth
@@ -714,6 +744,25 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
+            "key": "undefined/withdraw",
+            "nodeType": "class",
+            "props": Object {
+              "placeholder": null,
+              "tab": <span>
+                <Icon
+                                type="logout"
+                />
+                <Unknown />
+                 
+                withdraw
+</span>,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
             "key": "undefined/buyeth",
             "nodeType": "class",
             "props": Object {
@@ -775,6 +824,18 @@ ShallowWrapper {
         "props": Object {
           "component": [Function],
           "path": "undefined/nahmii-deposit",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "path": "undefined/withdraw",
         },
         "ref": null,
         "rendered": null,
@@ -865,6 +926,19 @@ ShallowWrapper {
                         tab={
                                     <span>
                                                 <Icon
+                                                            type="logout"
+                                                />
+                                                <Unknown />
+                                                 
+                                                withdraw
+                                    </span>
+                        }
+            />
+            <TabPane
+                        placeholder={null}
+                        tab={
+                                    <span>
+                                                <Icon
                                                             type="shopping-cart"
                                                 />
                                                 buy_eth
@@ -887,6 +961,10 @@ ShallowWrapper {
           <Route
             component={[Function]}
             path="undefined/nahmii-deposit"
+/>,
+          <Route
+            component={[Function]}
+            path="undefined/withdraw"
 />,
           false,
         ],
@@ -995,6 +1073,19 @@ ShallowWrapper {
                 tab={
                                 <span>
                                                 <Icon
+                                                                type="logout"
+                                                />
+                                                <Unknown />
+                                                 
+                                                withdraw
+                                </span>
+                }
+/>,
+              <TabPane
+                placeholder={null}
+                tab={
+                                <span>
+                                                <Icon
                                                                 type="shopping-cart"
                                                 />
                                                 buy_eth
@@ -1078,6 +1169,25 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
+              "key": "undefined/withdraw",
+              "nodeType": "class",
+              "props": Object {
+                "placeholder": null,
+                "tab": <span>
+                  <Icon
+                                    type="logout"
+                  />
+                  <Unknown />
+                   
+                  withdraw
+</span>,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
               "key": "undefined/buyeth",
               "nodeType": "class",
               "props": Object {
@@ -1139,6 +1249,18 @@ ShallowWrapper {
           "props": Object {
             "component": [Function],
             "path": "undefined/nahmii-deposit",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "path": "undefined/withdraw",
           },
           "ref": null,
           "rendered": null,

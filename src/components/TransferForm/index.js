@@ -29,6 +29,7 @@ import GasOptions from 'components/GasOptions';
 import {
   OuterWrapper,
   ETHtoDollar,
+  StyledNumericText,
   Image,
   StyledButton,
   TransferDescriptionWrapper,
@@ -323,6 +324,15 @@ export class TransferForm extends React.PureComponent {
         <OuterWrapper>
           <TransferFormWrapper>
             <Form>
+              <div style={{ marignRight: 'auto', marginTop: '1.43rem', marginBottom: '1.43rem' }}>
+                <Text large>{formatMessage({ id: 'send_on_the' })} </Text>
+                <NahmiiText large />
+                <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
+                <NahmiiSwitch
+                  checked={layer === 'nahmii'}
+                  onChange={(() => this.handleLayerSwitch())}
+                />
+              </div>
               <FormItem
                 label={<FormItemLabel>{formatMessage({ id: 'select_asset' })}</FormItemLabel>}
                 colon={false}
@@ -384,23 +394,6 @@ export class TransferForm extends React.PureComponent {
                   onChange={this.handleAmountToSendChange}
                 />
               </FormItem>
-              <div style={{ marignRight: 'auto' }}>
-                <Text large>{formatMessage({ id: 'send_on_the' })} </Text>
-                {/* <Tooltip
-                  placement="right"
-                  // overlayStyle={!disableNahmiiPayments && { display: 'none' }}
-                  title={<span>{formatMessage({ id: 'nahmii_payments' })}</span>}
-                >
-                </Tooltip> */}
-                <NahmiiText large />
-                <Text large style={{ marginRight: '0.5rem' }}> {formatMessage({ id: 'second_layer' })}</Text>
-                <NahmiiSwitch
-                  // disabled={disableNahmiiPayments}
-                  // disabled
-                  checked={layer === 'nahmii'}
-                  onChange={(() => this.handleLayerSwitch())}
-                />
-              </div>
               <Spring
                 from={{ noAdvProg: 0 }}
                 to={{ noAdvProg: layer === 'baseLayer' ? 0 : 1 }}
@@ -411,12 +404,13 @@ export class TransferForm extends React.PureComponent {
                       style={{
                         transform: `translate3d(0,${-80 * props.noAdvProg}px,0)`,
                         width: '12rem',
+                        marginTop: props.noAdvProg === 1 ? '9.5rem' : '0',
                       }}
                     >
                       <div
                         style={{
                           opacity: ((props.noAdvProg - 1) * -1),
-                          visibility: props.noAdvProg === 1 ? 'hidden' : 'visible',
+                          display: props.noAdvProg === 1 ? 'none' : 'block',
                         }}
                       >
                         <GasOptions
@@ -428,7 +422,7 @@ export class TransferForm extends React.PureComponent {
                         />
                       </div>
                       <ETHtoDollar>
-                        {`1 ${assetToSend.symbol} = ${formatFiat(assetToSendUsdValue, 'USD')}`}
+                        {`1 ${assetToSend.symbol} = `}<StyledNumericText value={assetToSendUsdValue.toString()} type="currency" />
                       </ETHtoDollar>
                     </div>
                   )

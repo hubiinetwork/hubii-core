@@ -46,6 +46,19 @@ function ledgerErrorMsg(error) {
   return msg;
 }
 
+export const logErrorMsg = (error) => {
+  let msg;
+  if (error.asStringified) {
+    msg = error.asStringified();
+  } else {
+    msg = error.message;
+  }
+  if (process.env.NODE_ENV !== 'test') {
+    console.error(msg); //eslint-disable-line
+  }
+  return msg;
+};
+
 export default (error, type) => {
   let msg;
   if (!type || type === 'lns') {

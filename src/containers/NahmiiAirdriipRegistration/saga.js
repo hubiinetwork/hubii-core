@@ -8,7 +8,7 @@ import { getIntl } from 'utils/localisation';
 import { notify } from 'containers/App/actions';
 import { signPersonalMessage } from 'containers/WalletHoc/saga';
 import { showDecryptWalletModal, setCurrentWallet } from 'containers/WalletHoc/actions';
-import { makeSelectCurrentWalletWithInfo } from 'containers/WalletHoc/selectors';
+import { makeSelectCurrentWalletWithInfo } from 'containers/NahmiiHoc/combined-selectors';
 import { SET_CURRENT_WALLET } from 'containers/WalletHoc/constants';
 import { LOAD_IDENTITY_SERVICE_TOKEN_SUCCESS } from 'containers/HubiiApiHoc/constants';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';

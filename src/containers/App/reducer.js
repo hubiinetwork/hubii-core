@@ -18,7 +18,7 @@ import {
 } from './constants';
 
 export const initialState = fromJS({
-  currentNetwork: SUPPORTED_NETWORKS.mainnet,
+  currentNetwork: process.env.NODE_ENV === 'production' ? SUPPORTED_NETWORKS.mainnet : SUPPORTED_NETWORKS.ropsten,
   supportedNetworks: SUPPORTED_NETWORKS,
   releaseNotes: {
     show: false,

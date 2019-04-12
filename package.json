@@ -1,6 +1,6 @@
 {
   "name": "hubii-core",
-  "version": "0.10.1",
+  "version": "1.0.0-beta.1",
   "author": {
     "name": "hubii",
     "email": "info@hubii.com",
@@ -30,7 +30,7 @@
   },
   "scripts": {
     "release": "electron-builder -lwm -p always",
-    "electron-dev": "concurrently --kill-others \"cross-env NODE_ENV=development yarn electron-compile --watch\" \"cross-env BROWSER=none TARGET=electron yarn start-web\" \"wait-on http://localhost:3000 && yarn electron\"",
+    "electron-dev": "concurrently --kill-others \"cross-env NODE_ENV=development yarn electron-compile --watch\" \"cross-env BROWSER=none TARGET=electron yarn start-web\" \"wait-on http://localhost:3000 && yarn electron --ignore-certificate-errors\"",
     "preelectron-dev": "electron-rebuild --force --module_dir . -w node-hid",
     "electron": "electron .",
     "electron-build": "cross-env TARGET=electron npm run build && cross-env DEBUG=electron-builder electron-builder --publish never",
@@ -313,7 +313,7 @@
     "lodash.debounce": "^4.0.8",
     "minimist": "1.2.0",
     "moment": "2.22.2",
-    "nahmii-sdk": "1.0.0-beta.45",
+    "nahmii-sdk": "1.0.0-beta.47",
     "prop-types": "15.6.1",
     "qrcode.react": "0.8.0",
     "react": "16.6.3",

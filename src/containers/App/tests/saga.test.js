@@ -102,7 +102,7 @@ describe('init nahmii providers', () => {
           const currentNetwork = result.storeState.getIn(['app', 'currentNetwork']);
           expect(supportedNetworks.getIn(['mainnet', 'nahmiiProvider'])).toEqual(nahmiiProviders[0].provider);
           expect(supportedNetworks.getIn(['ropsten', 'nahmiiProvider'])).toEqual(nahmiiProviders[1].provider);
-          expect(currentNetwork.get('nahmiiProvider')).toEqual(nahmiiProviders[0].provider);
+          expect(currentNetwork.get('nahmiiProvider')).toEqual(nahmiiProviders[1].provider);
         });
   });
   it('should use default default nahmii providers when failed to determine from API', () => expectSaga(initNahmiiProviders)

@@ -2,8 +2,6 @@ import { fromJS } from 'immutable';
 
 import { initialState as walletHocInitialState } from 'containers/WalletHoc/reducer';
 import { initialState as contactsInitialState } from 'containers/ContactBook/reducer';
-import { initialState as nahmiiInitialState } from 'containers/NahmiiHoc/reducer';
-
 
 export const loadState = () => {
   try {
@@ -52,7 +50,6 @@ export const filterPersistedState = (state) => {
   // Start with clean initialState
   persistedState = persistedState.set('contacts', contactsInitialState);
   persistedState = persistedState.set('walletHoc', walletHocInitialState);
-  persistedState = persistedState.set('nahmiiHoc', nahmiiInitialState);
 
   /*
    * Sanitised software wallets from WalletHoc
@@ -86,12 +83,6 @@ export const filterPersistedState = (state) => {
    */
   persistedState = persistedState
     .set('language', state.get('language'));
-
-  /**
-   * Nahmii withdraw/settlement transactions
-   */
-  persistedState = persistedState
-    .setIn(['nahmiiHoc', 'transactions'], state.getIn(['nahmiiHoc', 'transactions']));
 
   return persistedState;
 };

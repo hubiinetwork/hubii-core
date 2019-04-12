@@ -25,9 +25,11 @@ import {
   makeSelectCurrentNetwork,
 } from 'containers/App/selectors';
 import {
-  makeSelectWallets,
-  makeSelectCurrentWalletWithInfo,
+  makeSelectExecutableWallets,
 } from 'containers/WalletHoc/selectors';
+import {
+  makeSelectCurrentWalletWithInfo,
+} from 'containers/NahmiiHoc/combined-selectors';
 import HWPromptContainer from 'containers/HWPromptContainer';
 
 import AirdriipRegistrationStatusUi from 'components/AirdriipRegistrationStatusUi';
@@ -280,7 +282,7 @@ Start.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   store: makeSelectNahmiiAirdriipRegistration(),
-  wallets: makeSelectWallets(),
+  wallets: makeSelectExecutableWallets(),
   currentWalletWithInfo: makeSelectCurrentWalletWithInfo(),
   ledgerInfo: makeSelectLedgerHoc(),
   trezorInfo: makeSelectTrezorHoc(),

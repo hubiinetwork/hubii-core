@@ -26,6 +26,9 @@ import { notify as notifyAction } from 'containers/App/actions';
 import {
   makeSelectWalletsWithInfo,
   makeSelectTotalBalances,
+} from 'containers/NahmiiHoc/combined-selectors';
+
+import {
   makeSelectWallets,
 } from 'containers/WalletHoc/selectors';
 

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Icon } from 'antd';
 
 import Text from 'components/ui/Text';
+import NumericText from 'components/ui/NumericText';
 
 export const Logo = styled.img`
   border-radius: 50%;
@@ -14,12 +15,26 @@ export const Label = styled(Text)`
   color: ${({ theme }) => theme.palette.light};
 `;
 
-export const Percentage = styled.div`
-  color: ${({ theme, unknownPrice }) => unknownPrice
-    ? theme.palette.secondary
-    : theme.palette.info
-  };
+export const StyledNumericText = styled(NumericText)`
+`;
+
+export const StyledText = styled(Text)`
+`;
+
+const shared = ({ theme, unknownPrice }) => `
+  color: ${unknownPrice ? theme.palette.secondary : theme.palette.info};
   white-space: nowrap;
+`;
+
+export const Percentage = styled.div`
+  ${(props) => shared(props)}
+
+  ${StyledNumericText} {
+    ${(props) => shared(props)}
+  }
+  ${StyledText} {
+    ${(props) => shared(props)}
+  }
 `;
 
 export const FlexContainer = styled.div`

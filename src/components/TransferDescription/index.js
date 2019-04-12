@@ -4,12 +4,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 
-import { formatFiat } from 'utils/numberFormats';
 import { isValidAddress } from 'ethereumjs-util';
 import { isHardwareWallet } from 'utils/wallet';
 
 import HWPromptContainer from 'containers/HWPromptContainer';
 import Text from 'components/ui/Text';
+import NumericText from 'components/ui/NumericText';
+import SelectableText from 'components/ui/SelectableText';
 
 import {
   StyledCol,
@@ -89,8 +90,8 @@ class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           <TransferDescriptionItem
-            main={`${amountToSend.toString()} ${assetToSend.symbol}`}
-            subtitle={formatFiat(usdValueToSend.toNumber(), 'USD')}
+            main={<SelectableText><NumericText value={amountToSend.toString()} /> {amountToSend.symbol}</SelectableText>}
+            subtitle={<NumericText value={usdValueToSend.toString()} type="currency" />}
           />
         </Row>
         <Row>
@@ -104,8 +105,8 @@ class TransferDescription extends React.PureComponent {
         </Row>
         <Row>
           <TransferDescriptionItem
-            main={`${transactionFee.amount.toString()} ${transactionFee.symbol}`}
-            subtitle={formatFiat(transactionFee.usdValue.toNumber(), 'USD')}
+            main={<SelectableText><NumericText value={transactionFee.amount.toString()} /> {transactionFee.symbol}</SelectableText>}
+            subtitle={<NumericText value={transactionFee.usdValue.toString()} type="currency" />}
           />
         </Row>
         {layer === 'baseLayer' &&
@@ -115,8 +116,8 @@ class TransferDescription extends React.PureComponent {
           </Row>
           <Row>
             <TransferDescriptionItem
-              main={`${baseLayerEthBalanceBefore.amount.toString()} ETH`}
-              subtitle={formatFiat(baseLayerEthBalanceBefore.usdValue.toNumber(), 'USD')}
+              main={<SelectableText><NumericText value={baseLayerEthBalanceBefore.amount.toString()} /> {'ETH'}</SelectableText>}
+              subtitle={<NumericText value={baseLayerEthBalanceBefore.usdValue.toString()} type="currency" />}
             />
           </Row>
           <Row>
@@ -126,8 +127,8 @@ class TransferDescription extends React.PureComponent {
           </Row>
           <Row>
             <TransferDescriptionItem
-              main={`${baseLayerEthBalanceAfter.amount} ETH`}
-              subtitle={formatFiat(baseLayerEthBalanceAfter.usdValue.toNumber(), 'USD')}
+              main={<SelectableText><NumericText value={baseLayerEthBalanceAfter.amount.toString()} /> {'ETH'}</SelectableText>}
+              subtitle={<NumericText value={baseLayerEthBalanceAfter.usdValue.toString()} type="currency" />}
             />
           </Row>
         </div>
@@ -141,8 +142,8 @@ class TransferDescription extends React.PureComponent {
           </Row>
           <Row>
             <TransferDescriptionItem
-              main={`${assetBalanceBefore.amount} ${assetToSend.symbol}`}
-              subtitle={formatFiat(assetBalanceBefore.usdValue.toNumber(), 'USD')}
+              main={<SelectableText><NumericText value={assetBalanceBefore.amount.toString()} /> {assetToSend.symbol}</SelectableText>}
+              subtitle={<NumericText value={assetBalanceBefore.usdValue.toString()} type="currency" />}
             />
           </Row>
           <Row>
@@ -152,8 +153,8 @@ class TransferDescription extends React.PureComponent {
           </Row>
           <Row>
             <TransferDescriptionItem
-              main={`${assetBalanceAfter.amount} ${assetToSend.symbol}`}
-              subtitle={formatFiat(assetBalanceAfter.usdValue.toNumber(), 'USD')}
+              main={<SelectableText><NumericText value={assetBalanceAfter.amount.toString()} /> {assetToSend.symbol}</SelectableText>}
+              subtitle={<NumericText value={assetBalanceAfter.usdValue.toString()} type="currency" />}
             />
           </Row>
         </div>
@@ -162,16 +163,16 @@ class TransferDescription extends React.PureComponent {
           <StyledCol span={12}>{formatMessage({ id: 'total_value_before' })}</StyledCol>
         </Row>
         <Row>
-          <Balance large>
-            {formatFiat(walletUsdValueBefore, 'USD')}
+          <Balance>
+            {<NumericText large value={walletUsdValueBefore.toString()} type="currency" />}
           </Balance>
         </Row>
         <Row>
           <StyledCol span={12}>{formatMessage({ id: 'total_value_after' })}</StyledCol>
         </Row>
         <Row>
-          <Balance large>
-            {formatFiat(walletUsdValueAfter, 'USD')}
+          <Balance>
+            {<NumericText large value={walletUsdValueAfter.toString()} type="currency" />}
           </Balance>
         </Row>
         <Row>

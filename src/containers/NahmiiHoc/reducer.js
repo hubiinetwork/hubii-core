@@ -8,9 +8,27 @@ import { fromJS } from 'immutable';
 
 import { CHANGE_NETWORK } from 'containers/App/constants';
 import {
+  SET_SELECTED_WALLET_CURRENCY,
   LOAD_NAHMII_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGED_BALANCES_SUCCESS,
   LOAD_NAHMII_STAGING_BALANCES_SUCCESS,
+  START_CHALLENGE,
+  START_CHALLENGE_SUCCESS,
+  START_CHALLENGE_ERROR,
+  START_REQUIRED_CHALLENGES_SUCCESS,
+  LOAD_START_CHALLENGE_TX_REQUEST,
+  LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS,
+  SETTLE,
+  SETTLE_SUCCESS,
+  SETTLE_ERROR,
+  SETTLE_ALL_CHALLENGES_SUCCESS,
+  LOAD_SETTLE_TX_REQUEST,
+  LOAD_SETTLE_TX_RECEIPT_SUCCESS,
+  WITHDRAW,
+  WITHDRAW_SUCCESS,
+  WITHDRAW_ERROR,
+  LOAD_WITHDRAW_TX_REQUEST,
+  LOAD_WITHDRAW_TX_RECEIPT_SUCCESS,
   LOAD_NAHMII_RECEIPTS,
   LOAD_NAHMII_RECEIPTS_SUCCESS,
   LOAD_NAHMII_RECEIPTS_ERROR,
@@ -21,6 +39,11 @@ import {
   NAHMII_COMPLETE_TOKEN_DEPOSIT,
   NAHMII_COMPLETE_TOKEN_DEPOSIT_SUCCESS,
   NAHMII_DEPOSIT_FAILED,
+  LOAD_ONGOING_CHALLENGES_SUCCESS,
+  LOAD_ONGOING_CHALLENGES_ERROR,
+  LOAD_SETTLEABLE_CHALLENGES_SUCCESS,
+  LOAD_SETTLEABLE_CHALLENGES_ERROR,
+  UPDATE_START_CHALLENGE_BLOCK_HEIGHT,
 } from './constants';
 
 export const initialState = fromJS({
@@ -28,16 +51,22 @@ export const initialState = fromJS({
   balances: {},
   receipts: {},
   transactions: {},
+  selectedCurrency: '0x0000000000000000000000000000000000000000',
   depositStatus: {
     depositingEth: false,
     approvingTokenDeposit: false,
     completingTokenDeposit: false,
     error: null,
   },
+  ongoingChallenges: {},
+  settleableChallenges: {},
+  withdrawals: {},
 });
 
 function nahmiiHocReducer(state = initialState, action) {
   switch (action.type) {
+    case SET_SELECTED_WALLET_CURRENCY:
+      return state.set('selectedCurrency', action.currencyAddress);
     case NAHMII_DEPOSIT_ETH:
       return state
         .setIn(['depositStatus', 'depositingEth'], true)
@@ -83,6 +112,82 @@ function nahmiiHocReducer(state = initialState, action) {
         .setIn(['balances', action.address, 'staging', 'loading'], false)
         .setIn(['balances', action.address, 'staging', 'error'], null)
         .setIn(['balances', action.address, 'staging', 'assets'], fromJS(action.balances));
+    case LOAD_ONGOING_CHALLENGES_SUCCESS:
+      return state
+        .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], action.challenges);
+    case LOAD_ONGOING_CHALLENGES_ERROR:
+      return state
+        .setIn(['ongoingChallenges', action.address, action.currencyAddress, 'details'], null);
+    case LOAD_SETTLEABLE_CHALLENGES_SUCCESS:
+      return state
+        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], action.challenges)
+        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'invalidReasons'], action.invalidReasons);
+    case LOAD_SETTLEABLE_CHALLENGES_ERROR:
+      return state
+        .setIn(['settleableChallenges', action.address, action.currencyAddress, 'details'], null);
+    case UPDATE_START_CHALLENGE_BLOCK_HEIGHT:
+      return state
+          .setIn(['ongoingChallenges', action.address, action.currency, 'attemptedAtBlockHeight'], action.blockHeight);
+    case START_CHALLENGE:
+      return state
+          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'requesting');
+    case START_REQUIRED_CHALLENGES_SUCCESS:
+      return state
+          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'success');
+    case START_CHALLENGE_SUCCESS:
+      return state
+          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'success')
+          .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
+    case START_CHALLENGE_ERROR:
+      return state
+          .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'failed');
+    case LOAD_START_CHALLENGE_TX_REQUEST:
+      return state
+        .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'mining')
+        .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txRequest.hash], action.txRequest);
+    case LOAD_START_CHALLENGE_TX_RECEIPT_SUCCESS:
+      return state
+        .setIn(['ongoingChallenges', action.address, action.currency, 'status'], 'receipt')
+        .setIn(['ongoingChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
+    case SETTLE:
+      return state
+        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'requesting');
+    case SETTLE_ALL_CHALLENGES_SUCCESS:
+      return state
+        .setIn(['settleableChallenges', action.address, action.currency, 'details'], null)
+        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'success');
+    case SETTLE_SUCCESS:
+      return state
+        .setIn(['settleableChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
+    case SETTLE_ERROR:
+      return state
+        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'failed');
+    case LOAD_SETTLE_TX_REQUEST:
+      return state
+        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'mining')
+        .setIn(['settleableChallenges', action.address, action.currency, 'transactions', action.txRequest.hash], action.txRequest);
+    case LOAD_SETTLE_TX_RECEIPT_SUCCESS:
+      return state
+        .setIn(['settleableChallenges', action.address, action.currency, 'status'], 'receipt')
+        .setIn(['settleableChallenges', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
+    case WITHDRAW:
+      return state
+        .setIn(['withdrawals', action.address, action.currency, 'status'], 'requesting');
+    case WITHDRAW_SUCCESS:
+      return state
+        .setIn(['withdrawals', action.address, action.currency, 'status'], 'success')
+        .setIn(['withdrawals', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
+    case WITHDRAW_ERROR:
+      return state
+        .setIn(['withdrawals', action.address, action.currency, 'status'], 'failed');
+    case LOAD_WITHDRAW_TX_REQUEST:
+      return state
+        .setIn(['withdrawals', action.address, action.currency, 'status'], 'mining')
+        .setIn(['withdrawals', action.address, action.currency, 'transactions', action.txRequest.hash], action.txRequest);
+    case LOAD_WITHDRAW_TX_RECEIPT_SUCCESS:
+      return state
+        .setIn(['withdrawals', action.address, action.currency, 'status'], 'receipt')
+        .setIn(['withdrawals', action.address, action.currency, 'transactions', action.txReceipt.transactionHash], action.txReceipt);
     case LOAD_NAHMII_RECEIPTS:
       return state
         .setIn(['receipts', action.address, 'available', 'loading'], true)
@@ -102,7 +207,9 @@ function nahmiiHocReducer(state = initialState, action) {
       return state
         .set('balances', initialState.get('balances'))
         .set('receipts', initialState.get('receipts'))
-        .set('transactions', initialState.get('transactions'));
+        .set('ongoingChallenges', initialState.get('ongoingChallenges'))
+        .set('settleableChallenges', initialState.get('settleableChallenges'))
+        .set('withdrawals', initialState.get('withdrawals'));
     default:
       return state;
   }

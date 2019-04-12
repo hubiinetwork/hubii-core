@@ -5,7 +5,8 @@ import {
   select,
 } from 'redux-saga/effects';
 import { Wallet, Signer, utils, Contract } from 'ethers';
-import { fromRpcSig } from 'ethereumjs-util';
+import { fromRpcSig, isValidAddress } from 'ethereumjs-util';
+import nahmii from 'nahmii-sdk';
 
 import { notify } from 'containers/App/actions';
 import { makeSelectCurrentNetwork } from 'containers/App/selectors';
@@ -14,7 +15,6 @@ import {
   ERC20ABI,
   isHardwareWallet,
   isAddressMatch,
-  prependHexToAddress,
 } from 'utils/wallet';
 import generateRawTx from 'utils/generateRawTx';
 
@@ -30,19 +30,23 @@ import {
 
 import {
   makeSelectCurrentWalletWithInfo,
+} from 'containers/NahmiiHoc/combined-selectors';
+
+import {
   makeSelectWallets,
   makeSelectCurrentDecryptionCallback,
 } from './selectors';
 
 import {
   CREATE_WALLET_FROM_MNEMONIC,
+  CREATE_WALLET_FROM_PRIVATE_KEY,
+  CREATE_WALLET_FROM_KEYSTORE,
+  CREATE_WALLET_FROM_ADDRESS,
   CREATE_WALLET_SUCCESS,
-  DECRYPT_WALLET,
   TRANSFER,
   TRANSFER_ETHER,
   TRANSFER_ERC20,
-  CREATE_WALLET_FROM_PRIVATE_KEY,
-  CREATE_WALLET_FROM_KEYSTORE,
+  DECRYPT_WALLET,
   DECRYPT_WALLET_SUCCESS,
   DECRYPT_WALLET_FAILURE,
   LOCK_WALLET,
@@ -50,6 +54,7 @@ import {
 
 import {
   addNewWallet,
+  saveWatchAddress,
   createWalletFailed,
   createWalletSuccess,
   decryptWalletFailed,
@@ -100,9 +105,22 @@ export function* createWalletFromKeystore({ name, keystore }) {
       throw new Error(getIntl().formatMessage({ id: 'invalid_keystore_error' }));
     }
     const address = json.address;
-    yield put(createWalletSuccess(name, keystore, null, prependHexToAddress(address)));
+    yield put(createWalletSuccess(name, keystore, null, nahmii.utils.prefix0x(address)));
   } catch (e) {
     yield put(notify('error', getIntl().formatMessage({ id: 'import_keystore_failed_error' })));
+    yield put(createWalletFailed(e));
+  }
+}
+
+export function* createWalletFromAddress({ name, address }) {
+  try {
+    if (!name || !address) throw new Error(getIntl().formatMessage({ id: 'invalid_param_error' }));
+    if (!isValidAddress(address)) {
+      throw new Error(getIntl().formatMessage({ id: 'invalid_address' }));
+    }
+    yield put(saveWatchAddress(name, nahmii.utils.prefix0x(address)));
+  } catch (e) {
+    yield put(notify('error', getIntl().formatMessage({ id: 'add_watch_address_error' }, { message: getIntl().formatMessage({ id: e.message }) })));
     yield put(createWalletFailed(e));
   }
 }
@@ -346,8 +364,9 @@ export default function* walletHoc() {
   yield takeEvery(TRANSFER_ETHER, transferEther);
   yield takeEvery(TRANSFER_ERC20, transferERC20);
   yield takeEvery(CREATE_WALLET_FROM_PRIVATE_KEY, createWalletFromPrivateKey);
-  yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
   yield takeEvery(CREATE_WALLET_FROM_KEYSTORE, createWalletFromKeystore);
+  yield takeEvery(CREATE_WALLET_FROM_ADDRESS, createWalletFromAddress);
+  yield takeEvery(CREATE_WALLET_SUCCESS, hookNewWalletCreated);
   yield takeEvery(DECRYPT_WALLET_SUCCESS, decryptSuccessHook);
   yield takeEvery(DECRYPT_WALLET_FAILURE, decryptFailedHook);
   yield takeEvery(DECRYPT_WALLET, tryDecryptHook);

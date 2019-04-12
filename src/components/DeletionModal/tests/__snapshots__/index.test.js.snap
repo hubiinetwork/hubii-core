@@ -31,7 +31,7 @@ ShallowWrapper {
       "children": Array [
         <style__TopHeading>
            
-          delete_confirm
+          delete_confirm {"type":"wallet"}
 </style__TopHeading>,
         <style__TextPrimary>
           <div
@@ -90,13 +90,13 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             " ",
-            "delete_confirm",
+            "delete_confirm {\\"type\\":\\"wallet\\"}",
           ],
         },
         "ref": null,
         "rendered": Array [
           " ",
-          "delete_confirm",
+          "delete_confirm {\\"type\\":\\"wallet\\"}",
         ],
         "type": [Function],
       },
@@ -319,7 +319,7 @@ ShallowWrapper {
         "children": Array [
           <style__TopHeading>
              
-            delete_confirm
+            delete_confirm {"type":"wallet"}
 </style__TopHeading>,
           <style__TextPrimary>
             <div
@@ -378,13 +378,13 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               " ",
-              "delete_confirm",
+              "delete_confirm {\\"type\\":\\"wallet\\"}",
             ],
           },
           "ref": null,
           "rendered": Array [
             " ",
-            "delete_confirm",
+            "delete_confirm {\\"type\\":\\"wallet\\"}",
           ],
           "type": [Function],
         },

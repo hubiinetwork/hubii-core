@@ -2,7 +2,8 @@ import { ipcRenderer } from 'electron';
 import { takeLatest, takeEvery, put, call, select, take, race, spawn } from 'redux-saga/effects';
 import { delay, eventChannel } from 'redux-saga';
 import LedgerTransport from '@ledgerhq/hw-transport-node-hid';
-import { deriveAddresses, prependHexToAddress } from 'utils/wallet';
+import nahmii from 'nahmii-sdk';
+import { deriveAddresses } from 'utils/wallet';
 import { requestHardwareWalletAPI } from 'utils/request';
 import {
   makeSelectLedgerHoc,
@@ -162,7 +163,7 @@ export function* fetchLedgerAddresses({ pathTemplate, firstIndex, lastIndex, har
       const addresses = deriveAddresses({ publicKey: publicAddressKeyPair.publicKey, chainCode: publicAddressKeyPair.chainCode, firstIndex, lastIndex });
 
       for (let i = 0; i < addresses.length; i += 1) {
-        const address = prependHexToAddress(addresses[i]);
+        const address = nahmii.utils.prefix0x(addresses[i]);
         yield put(fetchedLedgerAddress(pathTemplate.replace('{index}', firstIndex + i), address));
       }
     }

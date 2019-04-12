@@ -12,9 +12,11 @@ import TransferForm from 'components/TransferForm';
 import PageLoadingIndicator from 'components/PageLoadingIndicator';
 import {
   makeSelectCurrentWallet,
-  makeSelectCurrentWalletWithInfo,
   makeSelectWallets,
 } from 'containers/WalletHoc/selectors';
+import {
+  makeSelectCurrentWalletWithInfo,
+} from 'containers/NahmiiHoc/combined-selectors';
 import {
   makeSelectGasStatistics,
 } from 'containers/EthOperationsHoc/selectors';

@@ -4,6 +4,8 @@ import moment from 'moment';
 import { injectIntl } from 'react-intl';
 import { getAbsolutePath, assetImageFallback } from 'utils/electron';
 import NahmiiText from 'components/ui/NahmiiText';
+import SelectableText from 'components/ui/SelectableText';
+
 import {
   Wrapper,
   Image,
@@ -16,6 +18,7 @@ import {
   FiatValue,
   TransactionHistoryTime,
   GreenTextWrapper,
+  SelectableGreenText,
   CollapsableContent,
   SubtitleText,
   TransactionId,
@@ -60,10 +63,10 @@ const Transaction = (props) => {
               <TypeText>
                 {type === 'received' ? formatMessage({ id: 'received' }) : formatMessage({ id: 'sent' })}
               </TypeText>
-              <Amount>
-                {amount} {symbol}
-              </Amount>
-              <FiatValue>{`(${fiatEquivilent})`}</FiatValue>
+              <SelectableText>
+                <Amount value={amount.toString()} /> {symbol}
+              </SelectableText>
+              <FiatValue value={fiatEquivilent.toString()} type="currency"></FiatValue>
               <div style={{ marginLeft: 'auto' }}>
                 {
                   layer === 'nahmii' &&
@@ -87,9 +90,9 @@ const Transaction = (props) => {
                   (type === 'received' ? (`${formatMessage({ id: 'from' })}:`) : `${formatMessage({ id: 'to' })}:`)
                 }
               </SubtitleText>
-              <GreenTextWrapper>
+              <SelectableGreenText>
                 {counterpartyAddress}
-              </GreenTextWrapper>
+              </SelectableGreenText>
             </div>
             <div style={{ display: 'flex' }}>
               {
