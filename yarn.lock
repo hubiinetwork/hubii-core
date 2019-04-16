@@ -11155,10 +11155,10 @@ nahmii-ethereum-address@^2.0.0:
   dependencies:
     bson "^3.0.2"
 
-nahmii-sdk@1.0.0-beta.46:
-  version "1.0.0-beta.46"
-  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-1.0.0-beta.46.tgz#fb52e0c1b6c03bcfebbee45dced5ea67ce9ee17e"
-  integrity sha512-/5lYeHIImxgQx6RAQ7QqxPLmBz3/hp0piIxWjyKJ9QNOt/Io1qC5zgWFz4mMpIjsnspQOWUQahjDWSLkk4CDAQ==
+nahmii-sdk@1.0.0-beta.47:
+  version "1.0.0-beta.47"
+  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-1.0.0-beta.47.tgz#7694c8a2d7f016fcbbeddbdc9998d7d4545c5d39"
+  integrity sha512-gL8ICMS99PCzh1Jp8pzQa27eKmXKtxCwrBbAvxwcpd4WC7FCWXwRKlk+sfNTlMFHoKad2be/P6E7/GgN+PWbDA==
   dependencies:
     ethereumjs-util "^5.2.0"
     keythereum "^1.0.4"

@@ -6,6 +6,7 @@ import { injectIntl } from 'react-intl';
 
 import ImportWalletSteps from 'components/ImportWalletSteps';
 import Text from 'components/ui/Text';
+import ImportWalletAddressForm from 'components/ImportWalletSteps/ImportWalletAddressForm';
 
 import {
   StyledButton,
@@ -49,6 +50,10 @@ class AddRestoreWalletModal extends React.Component {
             <StyledButton onClick={() => this.switchModals('import')}>
               <Icon type="download" />
               <span>{formatMessage({ id: 'import_exist_wallet' })}</span>
+            </StyledButton>
+            <StyledButton onClick={() => this.switchModals('add-watch-wallet')}>
+              <Icon type="eye-o" />
+              <span>{formatMessage({ id: 'wallet_type_watch' })}</span>
             </StyledButton>
           </Container>
         )}
@@ -96,14 +101,38 @@ class AddRestoreWalletModal extends React.Component {
                   src: getAbsolutePath('public/images/keystore.png'),
                   name: 'Keystore',
                 },
-                {
-                  src: getAbsolutePath('public/images/watch-only.png'),
-                  name: 'Watch',
-                },
               ]}
               onBackIcon={() => this.switchModals('main')}
               handleSubmit={this.props.handleImportWalletSubmit}
               loading={loading.toJS().creatingWallet}
+            />
+          </div>
+        )}
+        {modalType === 'add-watch-wallet' && (
+          <div>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+            >
+              <IconWrapper>
+                <Arrow
+                  type="arrow-left"
+                  onClick={() => this.switchModals('main')}
+                />
+                <Text large>{formatMessage({ id: 'wallet_type_watch' })}</Text>
+              </IconWrapper>
+            </div>
+            <ImportWalletAddressForm
+              handleBack={() => this.switchModals('main')}
+              handleNext={(inputs) => {
+                this.props.handleImportWalletSubmit([
+                  { walletType: 'Watch' },
+                  { ...inputs },
+                ]);
+              }}
             />
           </div>
         )}
