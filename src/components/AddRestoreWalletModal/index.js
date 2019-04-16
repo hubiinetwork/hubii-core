@@ -53,7 +53,7 @@ class AddRestoreWalletModal extends React.Component {
             </StyledButton>
             <StyledButton onClick={() => this.switchModals('add-watch-wallet')}>
               <Icon type="eye-o" />
-              <span>{formatMessage({ id: 'wallet_type_watch' })}</span>
+              <span>{formatMessage({ id: 'import_watch_only' })}</span>
             </StyledButton>
           </Container>
         )}
@@ -122,7 +122,7 @@ class AddRestoreWalletModal extends React.Component {
                   type="arrow-left"
                   onClick={() => this.switchModals('main')}
                 />
-                <Text large>{formatMessage({ id: 'wallet_type_watch' })}</Text>
+                <Text large>{formatMessage({ id: 'import_watch_only' })}</Text>
               </IconWrapper>
             </div>
             <ImportWalletAddressForm
