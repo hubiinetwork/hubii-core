@@ -11138,10 +11138,10 @@ mute-stream@0.0.7:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
   integrity sha1-MHXOk7whuPq0PhvE2n6BFe0ee6s=
 
-nahmii-contract-abstractions-ropsten@1.0.0-ropsten.10:
-  version "1.0.0-ropsten.10"
-  resolved "https://registry.yarnpkg.com/nahmii-contract-abstractions-ropsten/-/nahmii-contract-abstractions-ropsten-1.0.0-ropsten.10.tgz#ffb0d13142d1efa957d9f46d55079abc1513c048"
-  integrity sha512-IhLRBJGoXgJ0VpZ5f7/3Wpko/QobXPVgYiK/r57OxxLdU+XK17aT/b902VdG91VEEc2abvCTQMcCZRV2tiKzEw==
+nahmii-contract-abstractions-ropsten@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/nahmii-contract-abstractions-ropsten/-/nahmii-contract-abstractions-ropsten-1.3.0.tgz#0966c377de4c350a7e0714b8d5ffa40da0b36335"
+  integrity sha512-su1t+f66K9bDejTLLN+wr0nNRgy56FZDvSptamenR7EgBK3tEtfcoE3F3K17wdRNQCs3xKFlWTyHcBVnGZZFrA==
 
 nahmii-contract-abstractions@1.0.0:
   version "1.0.0"
@@ -11155,16 +11155,16 @@ nahmii-ethereum-address@^2.0.0:
   dependencies:
     bson "^3.0.2"
 
-nahmii-sdk@1.0.0-beta.46:
-  version "1.0.0-beta.46"
-  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-1.0.0-beta.46.tgz#fb52e0c1b6c03bcfebbee45dced5ea67ce9ee17e"
-  integrity sha512-/5lYeHIImxgQx6RAQ7QqxPLmBz3/hp0piIxWjyKJ9QNOt/Io1qC5zgWFz4mMpIjsnspQOWUQahjDWSLkk4CDAQ==
+nahmii-sdk@1.0.0-beta.48:
+  version "1.0.0-beta.48"
+  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-1.0.0-beta.48.tgz#12e2e6514ee5f17829f383ccd1c6d98e5354cfed"
+  integrity sha512-Kgd/1luNP5E9ZWNHeOPTEAEnl4Z4VURncvQHLwO8t5kBg5kcU1Mvv6rnbDwshpf2VHWikqnWSF+nj0kqMyPqgg==
   dependencies:
     ethereumjs-util "^5.2.0"
     keythereum "^1.0.4"
     lodash.get "^4.4.2"
     nahmii-contract-abstractions "1.0.0"
-    nahmii-contract-abstractions-ropsten "1.0.0-ropsten.10"
+    nahmii-contract-abstractions-ropsten "1.3.0"
     nahmii-ethereum-address "^2.0.0"
     node-yaml "^3.1.1"
     socket.io-client "^2.2.0"

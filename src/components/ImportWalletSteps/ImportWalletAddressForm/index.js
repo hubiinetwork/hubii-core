@@ -12,7 +12,6 @@ import {
   ButtonDiv,
   StyledBackButton,
   StyledButton,
-  StyledSpin,
   FinalHeader,
 } from '../style';
 import Text from '../../ui/Text';
@@ -34,7 +33,7 @@ class ImportWalletAddressForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { form, handleNext, loading, intl } = this.props;
+    const { form, handleNext, intl } = this.props;
     const { formatMessage } = intl;
     return (
       <div>
@@ -67,7 +66,7 @@ class ImportWalletAddressForm extends React.Component {
                     whitespace: true,
                   },
                 ],
-              })(<ModalFormInput disabled={loading} />)}
+              })(<ModalFormInput />)}
             </ModalFormItem>
             <ModalFormItem
               label={
@@ -87,29 +86,16 @@ class ImportWalletAddressForm extends React.Component {
                     validator: this.validateAddress,
                   },
                 ],
-              })(<ModalFormInput disabled={loading} />)}
+              })(<ModalFormInput />)}
             </ModalFormItem>
-            {loading ?
-              (
-                <ButtonDiv loading={loading}>
-                  <StyledSpin
-                    delay={0}
-                    size="large"
-                  />
-                </ButtonDiv>
-              )
-              :
-              (
-                <ButtonDiv>
-                  <StyledBackButton type="default" onClick={this.props.handleBack}>
-                    <Text>{formatMessage({ id: 'back' })}</Text>
-                  </StyledBackButton>
-                  <StyledButton type="primary" htmlType="submit">
-                    <Text>{formatMessage({ id: 'import_wallet' })}</Text>
-                  </StyledButton>
-                </ButtonDiv>
-              )
-            }
+            <ButtonDiv>
+              <StyledBackButton type="default" onClick={this.props.handleBack}>
+                <Text>{formatMessage({ id: 'back' })}</Text>
+              </StyledBackButton>
+              <StyledButton type="primary" htmlType="submit">
+                <Text>{formatMessage({ id: 'import_wallet' })}</Text>
+              </StyledButton>
+            </ButtonDiv>
           </WidthEighty>
         </Form>
       </div>
@@ -130,10 +116,6 @@ ImportWalletAddressForm.propTypes = {
    * ant design form
    */
   form: PropTypes.object,
-  /**
-   * loading
-   */
-  loading: PropTypes.bool.isRequired,
   intl: PropTypes.object,
 };
 
