@@ -80,8 +80,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
   constructor(props) {
     super(props);
 
-    const baseLayerAssets = props.currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
-    const assetToWithdraw = baseLayerAssets[0] || { symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000', balance: new BigNumber('0') };
+    const nahmiiCombinedAssets = props.currentWalletWithInfo.getIn(['balances', 'nahmiiCombined', 'assets']).toJS();
+    const assetToWithdraw = nahmiiCombinedAssets[0] || { symbol: 'ETH', currency: '0x0000000000000000000000000000000000000000', balance: new BigNumber('0') };
 
     // max decimals possible for current asset
     let assetToWithdrawMaxDecimals = 18;
@@ -128,8 +128,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     const { assetToWithdraw } = this.state;
     const { currentWalletWithInfo } = this.props;
 
-    const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
-    const asset = baseLayerAssets.find((a) => a.symbol === assetToWithdraw.symbol);
+    const nahmiiCombinedAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiCombined', 'assets']).toJS();
+    const asset = nahmiiCombinedAssets.find((a) => a.symbol === assetToWithdraw.symbol);
     if (asset && asset.balance.toString() !== assetToWithdraw.balance.toString()) {
       assetToWithdraw.balance = asset.balance;
     }
@@ -208,8 +208,8 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
 
   handleAssetChange(newSymbol) {
     const { currentWalletWithInfo, supportedAssets } = this.props;
-    const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
-    const assetToWithdraw = baseLayerAssets.find((a) => a.symbol === newSymbol);
+    const nahmiiCombinedAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiCombined', 'assets']).toJS();
+    const assetToWithdraw = nahmiiCombinedAssets.find((a) => a.symbol === newSymbol);
 
     // max decimals possible for current asset
     const assetToWithdrawMaxDecimals = supportedAssets
@@ -438,6 +438,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     }
 
     const baseLayerAssets = currentWalletWithInfo.getIn(['balances', 'baseLayer', 'assets']).toJS();
+    const nahmiiCombinedAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiCombined', 'assets']).toJS();
     const nahmiiStagedAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiStaged', 'assets']).toJS();
 
     const nahmiiAssets = currentWalletWithInfo.getIn(['balances', 'nahmiiAvailable', 'assets']).toJS();
@@ -459,9 +460,14 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     };
 
     // construct asset before and after balances
+    const baseLayerAsset = baseLayerAssets.find((a) => a.symbol === assetToWithdraw.symbol) || {
+      symbol: assetToWithdraw.symbol,
+      currency: assetToWithdraw.symbol,
+      balance: new BigNumber('0'),
+    };
     const baseLayerBalanceBefore = {
-      amount: assetToWithdraw.balance,
-      usdValue: assetToWithdraw.balance.times(assetToWithdrawUsdValue),
+      amount: baseLayerAsset.balance,
+      usdValue: baseLayerAsset.balance.times(assetToWithdrawUsdValue),
     };
     const nahmiiBalanceBeforeAmt = (nahmiiAssets
       .find((asset) => asset.currency === assetToWithdraw.currency) || { balance: new BigNumber('0') })
@@ -554,7 +560,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
                     onSelect={this.handleAssetChange}
                     style={{ paddingLeft: '0.5rem' }}
                   >
-                    {baseLayerAssets.map((currency) => (
+                    {nahmiiCombinedAssets.map((currency) => (
                       <Option value={currency.symbol} key={currency.symbol}>
                         {currency.symbol}
                       </Option>

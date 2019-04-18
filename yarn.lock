@@ -11143,10 +11143,10 @@ nahmii-contract-abstractions-ropsten@1.3.0:
   resolved "https://registry.yarnpkg.com/nahmii-contract-abstractions-ropsten/-/nahmii-contract-abstractions-ropsten-1.3.0.tgz#0966c377de4c350a7e0714b8d5ffa40da0b36335"
   integrity sha512-su1t+f66K9bDejTLLN+wr0nNRgy56FZDvSptamenR7EgBK3tEtfcoE3F3K17wdRNQCs3xKFlWTyHcBVnGZZFrA==
 
-nahmii-contract-abstractions@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/nahmii-contract-abstractions/-/nahmii-contract-abstractions-1.0.0.tgz#df26ac3dcf60d5f7a7bdf15cfd2809c15e34f28a"
-  integrity sha512-t/iRligdjC9yRz7/4cS7QqJOCQqKJbh+yvybhqlJCuMkQo1D4cB/KxcaZGJqjyDxfFXBTJOY4Vp83psKTE53sQ==
+nahmii-contract-abstractions@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/nahmii-contract-abstractions/-/nahmii-contract-abstractions-1.1.1.tgz#3a8582412c6d776565e0e11e1c1d7db4ccbb2c18"
+  integrity sha512-blTe6LBCcjl2THW9m55zhoDZYWcKHlNBLfZFbJnrdvQNkNprmTAArf1OFuZYTK56mJsh49+Va3AE3w8NpWlU2Q==
 
 nahmii-ethereum-address@^2.0.0:
   version "2.0.0"
@@ -11155,15 +11155,15 @@ nahmii-ethereum-address@^2.0.0:
   dependencies:
     bson "^3.0.2"
 
-nahmii-sdk@1.0.0-beta.48:
-  version "1.0.0-beta.48"
-  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-1.0.0-beta.48.tgz#12e2e6514ee5f17829f383ccd1c6d98e5354cfed"
-  integrity sha512-Kgd/1luNP5E9ZWNHeOPTEAEnl4Z4VURncvQHLwO8t5kBg5kcU1Mvv6rnbDwshpf2VHWikqnWSF+nj0kqMyPqgg==
+nahmii-sdk@1.0.0-beta.49:
+  version "1.0.0-beta.49"
+  resolved "https://registry.yarnpkg.com/nahmii-sdk/-/nahmii-sdk-1.0.0-beta.49.tgz#cb7f8c1b8fafa3195fe7d66a3c397e9f3313577c"
+  integrity sha512-RnEyJjcXo8q6VraBTJ2C+/oxT5G6tVRAjWKdbdyCDizNYLZyDcwatDUQiAx/Dtfpof2ol2crxVErRkhiIT7/6g==
   dependencies:
     ethereumjs-util "^5.2.0"
     keythereum "^1.0.4"
     lodash.get "^4.4.2"
-    nahmii-contract-abstractions "1.0.0"
+    nahmii-contract-abstractions "1.1.1"
     nahmii-contract-abstractions-ropsten "1.3.0"
     nahmii-ethereum-address "^2.0.0"
     node-yaml "^3.1.1"
