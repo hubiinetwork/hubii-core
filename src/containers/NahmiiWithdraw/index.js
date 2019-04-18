@@ -462,7 +462,7 @@ export class NahmiiWithdraw extends React.Component { // eslint-disable-line rea
     // construct asset before and after balances
     const baseLayerAsset = baseLayerAssets.find((a) => a.symbol === assetToWithdraw.symbol) || {
       symbol: assetToWithdraw.symbol,
-      currency: assetToWithdraw.symbol,
+      currency: assetToWithdraw.currency,
       balance: new BigNumber('0'),
     };
     const baseLayerBalanceBefore = {
